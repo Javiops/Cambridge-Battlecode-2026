@@ -1,0 +1,25 @@
+{
+ "id": "I011",
+ "title": "Test bench with Mite's macro fixed per map (P_MITEMACRO)",
+ "kind": "infra",
+ "source": "thread Hardcoded macro like Mite, 15 Oct",
+ "owner": "Javi",
+ "hypothesis": "isolate the micro: same macro as Mite, measure only the fight",
+ "stage": "dev",
+ "created": "2026-10-15T22:12Z",
+ "history": [
+  {
+   "at": "2026-10-15T22:12Z",
+   "stage": "idea",
+   "note": ""
+  },
+  {
+   "at": "2026-10-15T22:12Z",
+   "stage": "dev",
+   "note": "PR #12 open"
+  }
+ ],
+ "updated": "2026-10-15T22:12Z",
+ "branch": "claude/project-thread-cn0ial",
+ "pr": "12"
+}

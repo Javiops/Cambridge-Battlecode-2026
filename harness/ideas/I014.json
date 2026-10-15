@@ -1,0 +1,25 @@
+{
+ "id": "I014",
+ "title": "Connected farming and banking policies (study27 economy)",
+ "kind": "farm",
+ "source": "teammate",
+ "owner": "Fran",
+ "hypothesis": "more tributed gems / 100 rounds",
+ "stage": "dev",
+ "created": "2026-10-15T22:12Z",
+ "history": [
+  {
+   "at": "2026-10-15T22:12Z",
+   "stage": "idea",
+   "note": ""
+  },
+  {
+   "at": "2026-10-15T22:12Z",
+   "stage": "dev",
+   "note": "PR #13 open; put it through gate.py --kind farm"
+  }
+ ],
+ "updated": "2026-10-15T22:12Z",
+ "branch": "fran/study27-economy",
+ "pr": "13"
+}

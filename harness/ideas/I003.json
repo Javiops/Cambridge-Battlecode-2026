@@ -1,0 +1,25 @@
+{
+ "id": "I003",
+ "title": "Cancel doomed tributes and recalls (study28, P_CHANCANCEL 60)",
+ "kind": "fight",
+ "source": "study27 dissection, 15 Oct",
+ "owner": "Javi",
+ "hypothesis": "fewer deaths while channeling",
+ "stage": "rejected",
+ "created": "2026-10-15T22:12Z",
+ "history": [
+  {
+   "at": "2026-10-15T22:12Z",
+   "stage": "idea",
+   "note": ""
+  },
+  {
+   "at": "2026-10-15T22:12Z",
+   "stage": "rejected",
+   "note": "local dev200 24-5 vs study27, online paired equal (14 vs 18 on 58 pairings), ranked 36%: back to study27 at 15:36"
+  }
+ ],
+ "updated": "2026-10-15T22:12Z",
+ "pr": "6",
+ "version": "v37 = study28"
+}

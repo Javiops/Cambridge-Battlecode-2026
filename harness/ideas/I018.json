@@ -1,0 +1,23 @@
+{
+ "id": "I018",
+ "title": "The fight opening: do not walk towards a visible pack before the first hit",
+ "kind": "fight",
+ "source": "study28 dissection, 15 Oct: we walk towards them in 49% of the openings",
+ "owner": "Javi",
+ "hypothesis": "outnumbered openings from 42% to 25%; deaths/game -1",
+ "stage": "idea",
+ "created": "2026-10-15T22:12Z",
+ "history": [
+  {
+   "at": "2026-10-15T22:12Z",
+   "stage": "idea",
+   "note": ""
+  },
+  {
+   "at": "2026-10-15T22:12Z",
+   "stage": "idea",
+   "note": "untested dimension; no rule today touched it"
+  }
+ ],
+ "updated": "2026-10-15T22:12Z"
+}

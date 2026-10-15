@@ -17,3 +17,8 @@ replays/
 # nunca subas credenciales (cambc login las guarda fuera del repo, en ~/.config/cambc)
 .env
 *.token
+
+# datos del bucle online (partidas, repeticiones, fichas): viven en /mnt/project-files/online/data o en tu PC
+online/data/
+online/__pycache__/
+__pycache__/

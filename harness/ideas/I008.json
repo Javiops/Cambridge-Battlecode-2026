@@ -1,0 +1,23 @@
+{
+ "id": "I008",
+ "title": "Side-symmetric tie-breaks (P_SYM)",
+ "kind": "bug",
+ "source": "audit, 15 Oct",
+ "owner": "Javi",
+ "hypothesis": "the same game from both sides",
+ "stage": "rejected",
+ "created": "2026-10-15T22:12Z",
+ "history": [
+  {
+   "at": "2026-10-15T22:12Z",
+   "stage": "idea",
+   "note": ""
+  },
+  {
+   "at": "2026-10-15T22:12Z",
+   "stage": "rejected",
+   "note": "sides identical on 37/44 maps but 4% slower and 107/212 vs study27: the gap is chaos, not bias"
+  }
+ ],
+ "updated": "2026-10-15T22:12Z"
+}

@@ -1,0 +1,23 @@
+{
+ "id": "I012",
+ "title": "Second farming lap on race maps (expanse, rows)",
+ "kind": "farm",
+ "source": "study27 dissection, 15 Oct",
+ "owner": "Javi",
+ "hypothesis": "fewer idle rounds at the end",
+ "stage": "idea",
+ "created": "2026-10-15T22:12Z",
+ "history": [
+  {
+   "at": "2026-10-15T22:12Z",
+   "stage": "idea",
+   "note": ""
+  },
+  {
+   "at": "2026-10-15T22:12Z",
+   "stage": "idea",
+   "note": "open front, no branch yet"
+  }
+ ],
+ "updated": "2026-10-15T22:12Z"
+}

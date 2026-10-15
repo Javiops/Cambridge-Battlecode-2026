@@ -58,8 +58,6 @@
 
 #define P_U34_ATTACK_LIVE 0
 
-#define P_U34_RESET_LIVE 1
-
 #define P_U34_FARM_REACH 1
 
 #define P_U34_FAILED_CHANNELS 0

@@ -105,3 +105,14 @@
  #ifdef P_SWEEP_LOG
      if (cast) std::printf("[sweep] r=%d %s mode=%s hit=%d tgt_d=%d canmove=%d canatk=%d\n", static_cast<int>(bc::round_number()), s.name.c_str(), g_mode,
                            static_cast<int>(bc::round_number()) - s.hit_round, weak->d, me.can_move() ? 1 : 0, me.can_attack() ? 1 : 0);
+--- a/bots/study27/src/params.h
++++ b/bots/study27/src/params.h
+@@ -58,8 +58,6 @@
+ 
+ #define P_U34_ATTACK_LIVE 0
+ 
+-#define P_U34_RESET_LIVE 1
+-
+ #define P_U34_FARM_REACH 1
+ 
+ #define P_U34_FAILED_CHANNELS 0

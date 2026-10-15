@@ -6,15 +6,24 @@ gates. It won 1,074–974 against the original study27 and improved the matched
 three-spar panel by 161 wins across 6,144 games. This supports the combined bot
 under the tested distribution. It is not a guarantee about the current ladder.
 
-This is a work-only completed-results report. Remote publication and delivery
-are controlled by root after its independent final audit. The frozen source,
-pending ZIP and existing review bundle have not been changed by this report.
+The current delivered source adds a post-confirmation parameter cleanup:
+remove the earlier redundant #define P_U34_RESET_LIVE 1 and retain the later effective
+#define P_U34_RESET_LIVE 2 as its single definition. The 14,336-game confirmation
+results below apply to the original frozen source. They were not rerun after
+cleanup; separate macro/preprocessing and build validation is in cleanup-validation.json.
+Preprocessed C++ and macro environments are identical, and the clean SDK build
+produced the same injected-WASM hash as the historical candidate.
+cleanup-wasm-equivalence.json separately verifies complete WASM byte equality.
+The current source and ZIP have new hashes in the derived source manifest.
+Frozen source, freeze records, review bundle and evidence archives are preserved.
 
 Source and behavior
 -------------------
 Baseline: Javiops/Cambridge-Battlecode-2026 study27 at commit
 c462346d4ace741bfd8f5251fb0e5e2eee69b800.
-Only main.cpp and fight.h change; four other source files are byte-identical.
+The confirmed behavior changes affect main.cpp and fight.h; four source files
+were byte-identical at confirmation. The delivered params.h subsequently removes
+only the redundant earlier P_U34_RESET_LIVE definition and its adjacent blank line.
 
 1. AoE edge fallback: the original spell sweep ignored enemies beyond four tiles
    even when a legal ground centre could hit them with an AoE radius. The new
@@ -28,7 +37,7 @@ Only main.cpp and fight.h change; four other source files are byte-identical.
    cooldowns. Other melee/ranged return values are unchanged. It still does not
    prove path feasibility or exactly forecast dash-plus-walk/initiative.
 
-There are no production edits to draft, parameter values, recall thresholds,
+There are no behavior-policy edits to draft, effective parameter values, recall thresholds,
 shop, camp selection/capture logic or shared-memory protocol. Different combat
 decisions can still indirectly change economic outcomes and trajectories.
 
@@ -153,14 +162,18 @@ Freeze SHA256:
 436d5e9c70a7c7c5726d91af9c9dc60e24d318f96689e7968f2f1af147c85185
 Tested candidate injected-WASM SHA256:
 a0077d5324047a799b7947b2b54634e46451cc64eabec1df06bf549c69632e43
-Six-file source ZIP SHA256 (existing pending archive, source unchanged):
+Historical frozen-source ZIP SHA256 (preserved review-bundle pending archive):
 dcb95308f09062e74b960896567fdb28d13193aa2ed4ab07ee877e3a0e5d8fa7
+This hash is not the current cleaned submission archive. Its source and ZIP
+hashes, and the separately validated cleanup, are in source-manifest.json.
 
 Evidence: selection-plan.json, screen/full/combo audit artifacts, freeze.json,
 generation.json, generation-audit.json, confirmation-verdict.json, complete
-confirmation result stages and confirmation-combo-metrics.json. Source ZIP,
-source-manifest.json and unified diff are in review-bundle. The source manifest
-contains all six file hashes and ZIP CRC/path checks. Confirmation map files
+confirmation result stages and confirmation-combo-metrics.json. The historical
+frozen source ZIP and pending manifest remain in review-bundle. The current
+tested-named ZIP, derived source-manifest.json, cleanup-validation.json and
+updated unified diff accompany this delivered report. The derived manifest
+contains all six current hashes and ZIP CRC/path checks. Confirmation map files
 and complete manifest are under arena/confirmation1024. Reproduction commands
 are recorded in the review-bundle behavior/reproduction note; its pending text
 is historical and superseded by this completed-results report.

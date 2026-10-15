@@ -1,0 +1,13 @@
+{
+  "passed": true,
+  "created_utc": "2026-10-15T20:00:59.387865+00:00",
+  "cleanup_validation_sha256": "b8bb2b21d85df6c7a8f1ea5a1596716a6989e619e2ebc11a0e0ca96ca41941f1",
+  "freeze_sha256": "436d5e9c70a7c7c5726d91af9c9dc60e24d318f96689e7968f2f1af147c85185",
+  "cleaned_and_frozen_wasm_byte_identical": true,
+  "wasm_sha256": "a0077d5324047a799b7947b2b54634e46451cc64eabec1df06bf549c69632e43",
+  "wasm_bytes": 1087852,
+  "cleaned_params_sha256": "d99ef2cecff65f7851efb491bb4691d40ddeaaa6a96499e13eddec814fdc1372",
+  "games_run": 0,
+  "builds_run_by_this_additional_check": 0,
+  "method": "Read and compare complete cleaned scratch and frozen candidate injected WASM bytes, then bind both hashes to frozen manifest and completed cleanup-validation record. Independent post-build read; no source, historical evidence or existing report modifications."
+}

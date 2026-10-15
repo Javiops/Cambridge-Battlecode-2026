@@ -3,7 +3,8 @@
 The retained bot is [bots/study27-combat](../../bots/study27-combat). Eleven
 isolated variants were screened on 53 exposed maps; two advanced to 253 maps,
 then their combination and direct component ablations were tested. The final
-source/WASM was frozen before generating 1,024 fresh maps (seed `2154873391`).
+tested source/WASM was frozen before generating 1,024 fresh maps (seed
+`2154873391`).
 
 Fresh confirmation comprised **14,336 unique physical games**:
 
@@ -19,9 +20,20 @@ The combination's incremental development comparison against AoE alone was
 258–248 (p=0.603); fresh evidence applies to the combined unit. These fixed older
 spars and procedural maps do not establish current ladder or tournament results.
 
+The current delivered source has one post-confirmation cleanup: remove the
+earlier redundant `#define P_U34_RESET_LIVE 1`, retaining the later effective value
+`2` as its single definition. The 14,336-game results remain historical evidence
+for the frozen source; they were not rerun after cleanup. Separate checks in
+`cleanup-validation.json` confirm identical preprocessed C++ and macro environment
+and a passing SDK build with the same WASM hash as the historical candidate.
+`cleanup-wasm-equivalence.json` separately verifies the complete compiled WASM
+bytes are identical. The new source/ZIP hashes
+and original frozen identities are distinguished in `source-manifest.json`.
+
 `RESULTS-FINAL.txt` contains detailed outcomes, descriptive combat/gem metrics,
-tests and limitations. `source-manifest.json` pins the six files, tested WASM,
-ZIP, verdict and audit. `study27-combat.patch` is the two-file diff against
+tests and limitations. `source-manifest.json` pins the six current files and ZIP,
+historically tested WASM, verdict, audit and cleanup validation.
+`study27-combat.patch` is the three-file diff, including parameter cleanup, against
 `c462346d4ace741bfd8f5251fb0e5e2eee69b800`.
 
 ## Evidence contents and extraction

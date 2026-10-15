@@ -1,0 +1,345 @@
+# 1. Fights per game and who starts them (all fights | real = >=1000 dmg or a death)
+| split | games (W-L) | fights | per game | real | real/game | we hit first (all) | we hit first (real) | our kills | our deaths | K/D per real fight | dmg dealt / taken per real fight | our dmg share | gems we lost / won in fights |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| ALL | 150 (59-91) | 2158 | 14.4 | 1096 | 7.3 | 54% | 52% | 565 | 840 | 0.52 / 0.77 | 1104 / 993 | 53% | 8502 / 8432 |
+| collision | 19 (12-7) | 554 | 29.2 | 293 | 15.4 | 60% | 56% | 161 | 212 | 0.55 / 0.72 | 1080 / 949 | 55% | 2402 / 3882 |
+| corners | 17 (5-12) | 356 | 20.9 | 234 | 13.8 | 61% | 58% | 121 | 231 | 0.52 / 0.99 | 1648 / 1326 | 56% | 1902 / 1536 |
+| elkring | 14 (5-9) | 325 | 23.2 | 169 | 12.1 | 64% | 57% | 102 | 80 | 0.60 / 0.47 | 1099 / 730 | 62% | 1368 / 954 |
+| expanse | 17 (11-6) | 13 | 0.8 | 1 | 0.1 | 0% | 0% | 1 | 0 | 1.00 / 0.00 | 750 / 865 | 16% | 0 / 0 |
+| interlock | 13 (7-6) | 208 | 16.0 | 86 | 6.6 | 50% | 51% | 42 | 56 | 0.49 / 0.65 | 1001 / 931 | 54% | 1486 / 918 |
+| lanes | 18 (3-15) | 176 | 9.8 | 71 | 3.9 | 27% | 27% | 26 | 67 | 0.37 / 0.94 | 536 / 998 | 35% | 280 / 208 |
+| monolith | 13 (5-8) | 155 | 11.9 | 67 | 5.2 | 28% | 37% | 31 | 48 | 0.46 / 0.72 | 652 / 792 | 43% | 630 / 528 |
+| packs | 21 (7-14) | 363 | 17.3 | 170 | 8.1 | 55% | 52% | 75 | 144 | 0.44 / 0.85 | 869 / 985 | 49% | 368 / 406 |
+| rows | 18 (4-14) | 8 | 0.4 | 5 | 0.3 | 38% | 40% | 6 | 2 | 1.20 / 0.40 | 1160 / 786 | 56% | 66 / 0 |
+| win | 59 (59-0) | 911 | 15.4 | 431 | 7.3 | 61% | 62% | 353 | 191 | 0.82 / 0.44 | 1222 / 714 | 64% | 2524 / 6238 |
+| loss | 91 (0-91) | 1247 | 13.7 | 665 | 7.3 | 48% | 46% | 212 | 649 | 0.32 / 0.98 | 1028 / 1173 | 47% | 5978 / 2194 |
+| top10 | 50 (10-40) | 677 | 13.5 | 338 | 6.8 | 45% | 44% | 148 | 312 | 0.44 / 0.92 | 1115 / 1157 | 50% | 2982 / 1890 |
+| r11-30 | 100 (49-51) | 1481 | 14.8 | 758 | 7.6 | 57% | 56% | 417 | 528 | 0.55 / 0.70 | 1099 / 920 | 55% | 5520 / 6542 |
+
+# 1b. The first hit: who, with what, from how far, when (all fights; opener side = us or them)
+| opener | n | spell | basic | dist 1 | dist 2 | dist 3 | dist 4 | dist 5+ | round p25/med/p75 | our n within 6 (mean) | their n within 6 | victim hp% med | victim <50% | victim: walking / farming / idle / recalling / tributing / fighting |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| us | 1156 | 89% | 11% | 7% | 8% | 20% | 62% | 3% | 181/313.0/450 | 1.60 | 1.91 | 88.5 | 14% | 58% / 13% / 13% / 10% / 6% / 0% |
+| them | 1002 | 81% | 19% | 13% | 4% | 14% | 54% | 14% | 164/290.0/415 | 1.88 | 1.58 | 95.0 | 8% | 58% / 19% / 12% / 5% / 6% / 0% |
+
+Opener champion (type, kind, dist) when WE open: [(('Stellar', 'spell', 4), 231), (('Ren', 'spell', 4), 193), (('Cassi', 'spell', 4), 106), (('Ryth', 'spell', 4), 71), (('Tavi', 'spell', 4), 68), (('Ren', 'spell', 3), 66), (('Prism', 'spell', 4), 49), (('Stellar', 'spell', 3), 41), (('Tavi', 'spell', 3), 34), (('Issac', 'atk', 1), 33), (('Ren', 'spell', 2), 33), (('Cassi', 'spell', 3), 26)]
+Opener champion when THEY open: [(('Stellar', 'spell', 4), 162), (('Ren', 'spell', 4), 124), (('Tavi', 'spell', 4), 95), (('Stellar', 'spell', 5), 93), (('Cassi', 'spell', 4), 82), (('Ryth', 'spell', 4), 54), (('Varg', 'atk', 1), 39), (('Issac', 'atk', 1), 39), (('Vendetta', 'atk', 1), 29), (('Ryth', 'spell', 5), 28), (('Stellar', 'spell', 3), 26), (('Ren', 'spell', 3), 21)]
+Victim type when WE open: [('Issac', 264), ('Ren', 171), ('Stellar', 167), ('Varg', 156), ('Cassi', 98), ('Vendetta', 90), ('Ryth', 82), ('Tavi', 76)]
+Victim type when THEY open (our champion hit first): [('Ren', 236), ('Issac', 172), ('Cassi', 131), ('Stellar', 125), ('Tavi', 101), ('Ryth', 97), ('Vendetta', 62), ('Varg', 45)]
+Attacker activity (what the opener was doing 1 round before) when WE open: [('walking', 864), ('farming', 138), ('idle', 134), ('tributing', 20)]
+Attacker activity when THEY open: [('walking', 723), ('idle', 129), ('farming', 100), ('recalling', 26), ('tributing', 24)]
+
+# 1c. Outcome by who started (real fights), with splits
+| split | who started | n | our kills | our deaths | K/D per fight | gems we lost | gems we won | our dmg / their dmg per fight | we won the fight (kills>deaths) | we lost it | even |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| ALL | us | 575 | 398 | 335 | 0.69 / 0.58 | 3200 | 6482 | 1305 / 852 | 39% | 30% | 31% |
+| ALL | them | 521 | 167 | 505 | 0.32 / 0.97 | 5302 | 1950 | 882 / 1149 | 16% | 57% | 27% |
+| collision | us | 164 | 123 | 89 | 0.75 / 0.54 | 902 | 3066 | 1210 / 803 | 45% | 26% | 29% |
+| collision | them | 129 | 38 | 123 | 0.29 / 0.95 | 1500 | 816 | 914 / 1136 | 14% | 52% | 34% |
+| corners | us | 135 | 80 | 121 | 0.59 / 0.90 | 1046 | 1246 | 1841 / 1241 | 23% | 44% | 33% |
+| corners | them | 99 | 41 | 110 | 0.41 / 1.11 | 856 | 290 | 1385 / 1442 | 11% | 64% | 25% |
+| elkring | us | 97 | 76 | 32 | 0.78 / 0.33 | 648 | 648 | 1294 / 578 | 52% | 20% | 29% |
+| elkring | them | 72 | 26 | 48 | 0.36 / 0.67 | 720 | 306 | 835 / 935 | 22% | 47% | 31% |
+| expanse | them | 1 | 1 | 0 | 1.00 / 0.00 | 0 | 0 | 750 / 865 | 100% | 0% | 0% |
+| interlock | us | 44 | 30 | 19 | 0.68 / 0.43 | 442 | 802 | 1084 / 702 | 45% | 23% | 32% |
+| interlock | them | 42 | 12 | 37 | 0.29 / 0.88 | 1044 | 116 | 914 / 1172 | 14% | 45% | 40% |
+| lanes | us | 19 | 12 | 4 | 0.63 / 0.21 | 0 | 116 | 825 / 687 | 42% | 16% | 42% |
+| lanes | them | 52 | 14 | 63 | 0.27 / 1.21 | 280 | 92 | 430 / 1111 | 17% | 69% | 13% |
+| monolith | us | 25 | 17 | 7 | 0.68 / 0.28 | 22 | 198 | 769 / 459 | 60% | 20% | 20% |
+| monolith | them | 42 | 14 | 41 | 0.33 / 0.98 | 608 | 330 | 582 / 991 | 17% | 67% | 17% |
+| packs | us | 89 | 56 | 63 | 0.63 / 0.71 | 140 | 406 | 1026 / 870 | 31% | 36% | 33% |
+| packs | them | 81 | 19 | 81 | 0.23 / 1.00 | 228 | 0 | 697 / 1112 | 14% | 60% | 26% |
+| rows | us | 2 | 4 | 0 | 2.00 / 0.00 | 0 | 0 | 1950 / 784 | 100% | 0% | 0% |
+| rows | them | 3 | 2 | 2 | 0.67 / 0.67 | 66 | 0 | 634 / 788 | 67% | 33% | 0% |
+| win | us | 267 | 252 | 80 | 0.94 / 0.30 | 1042 | 4936 | 1322 / 586 | 56% | 15% | 29% |
+| win | them | 164 | 101 | 111 | 0.62 / 0.68 | 1482 | 1302 | 1059 / 923 | 34% | 38% | 29% |
+| loss | us | 308 | 146 | 255 | 0.47 / 0.83 | 2158 | 1546 | 1290 / 1082 | 25% | 43% | 32% |
+| loss | them | 357 | 66 | 394 | 0.18 / 1.10 | 3820 | 648 | 801 / 1253 | 7% | 66% | 27% |
+| top10 | us | 149 | 101 | 128 | 0.68 / 0.86 | 1318 | 1498 | 1384 / 1108 | 33% | 38% | 30% |
+| top10 | them | 189 | 47 | 184 | 0.25 / 0.97 | 1664 | 392 | 902 / 1195 | 12% | 59% | 29% |
+| r11-30 | us | 426 | 297 | 207 | 0.70 / 0.49 | 1882 | 4984 | 1277 / 762 | 42% | 27% | 31% |
+| r11-30 | them | 332 | 120 | 321 | 0.36 / 0.97 | 3638 | 1558 | 871 / 1123 | 17% | 56% | 27% |
+
+# 1d. Outcome by victim activity at the first hit (real fights)
+| opener | victim activity | n | opener side kills | opener side deaths |
+|---|---|---|---|---|
+| us | walking | 341 | 0.57 | 0.64 |
+| us | idle | 74 | 0.61 | 0.65 |
+| us | farming | 69 | 0.81 | 0.42 |
+| us | recalling | 59 | 1.34 | 0.56 |
+| us | tributing | 32 | 0.75 | 0.22 |
+| them | walking | 308 | 0.96 | 0.32 |
+| them | farming | 101 | 0.95 | 0.22 |
+| them | idle | 63 | 0.94 | 0.54 |
+| them | recalling | 27 | 1.22 | 0.22 |
+| them | tributing | 22 | 0.95 | 0.32 |
+
+# 2. When WE start: deliberate approach or collision?
+deliberate = our opener moved toward the victim in >= 3 consecutive rounds before the hit; collision/they-came = victim closed more distance than the opener over the last 4 rounds;
+collision/farming = our opener was hitting or being hit by a camp in the 4 rounds before; other = neither (standing / short approach).
+| split | n (we open, with approach data) | deliberate | they came to us | we were farming | other | opener stood still in the 4 rounds | victim stepped in |
+|---|---|---|---|---|---|---|---|
+| ALL | 1156 | 38% | 29% | 13% | 21% | 11% | 67% |
+| collision | 333 | 34% | 30% | 17% | 19% | 14% | 70% |
+| corners | 217 | 40% | 35% | 7% | 18% | 16% | 69% |
+| elkring | 207 | 56% | 22% | 8% | 14% | 7% | 66% |
+| interlock | 105 | 30% | 27% | 5% | 39% | 8% | 55% |
+| lanes | 47 | 15% | 30% | 30% | 26% | 13% | 77% |
+| monolith | 43 | 51% | 30% | 9% | 9% | 2% | 56% |
+| packs | 201 | 29% | 27% | 19% | 24% | 10% | 66% |
+| rows | 3 | 33% | 33% | 33% | 0% | 0% | 100% |
+| win | 555 | 35% | 30% | 14% | 21% | 14% | 66% |
+| loss | 601 | 40% | 27% | 12% | 21% | 9% | 67% |
+| top10 | 308 | 38% | 26% | 13% | 22% | 9% | 64% |
+| r11-30 | 848 | 37% | 30% | 13% | 20% | 12% | 68% |
+
+Same for THEIR openers (how the opponents start on us):
+| split | n | deliberate | we walked into them | they were farming | other | opener stood still |
+|---|---|---|---|---|---|---|
+| ALL | 1002 | 36% | 32% | 8% | 23% | 13% |
+| collision | 221 | 38% | 28% | 10% | 24% | 13% |
+| corners | 139 | 29% | 43% | 9% | 19% | 20% |
+| elkring | 118 | 43% | 28% | 6% | 23% | 8% |
+| expanse | 13 | 23% | 46% | 8% | 23% | 31% |
+| interlock | 103 | 35% | 42% | 3% | 20% | 11% |
+| lanes | 129 | 31% | 29% | 12% | 28% | 14% |
+| monolith | 112 | 42% | 34% | 4% | 20% | 12% |
+| packs | 162 | 39% | 27% | 11% | 23% | 12% |
+| rows | 5 | 0% | 40% | 0% | 60% | 0% |
+| win | 356 | 37% | 32% | 6% | 25% | 10% |
+| loss | 646 | 36% | 33% | 10% | 22% | 15% |
+| top10 | 369 | 31% | 33% | 13% | 22% | 15% |
+| r11-30 | 633 | 39% | 32% | 6% | 23% | 12% |
+
+Closing rounds of our opener (consecutive rounds walking toward the victim): [(0, 426), (1, 192), (2, 104), (3, 69), (4, 41), (5, 34), (6, 34), (7, 256)]
+Closing rounds of their opener: [(0, 356), (1, 178), (2, 103), (3, 67), (4, 45), (5, 42), (6, 36), (7, 175)]
+
+# 2b. Numbers and hp at the first hit (real fights), split by who opened and by approach category
+| who opened | category | n | our n6 vs their n6 (mean) | we outnumber / equal / outnumbered (within 6) | our hp% / their hp% (med) | we healthier (+5) | our K/D | gems lost/won |
+|---|---|---|---|---|---|---|---|---|
+| us | all | 575 | 1.70 vs 2.07 | 23% / 35% / 42% | 94 / 86 | 49% | 0.69 / 0.58 | 3200 / 6482 |
+| us | deliberate | 206 | 1.61 vs 2.12 | 22% / 30% / 48% | 95.0 / 86.0 | 50% | 0.83 / 0.51 | 1160 / 2926 |
+| us | theycame | 162 | 1.66 vs 2.03 | 22% / 38% / 41% | 94.0 / 87.0 | 45% | 0.56 / 0.65 | 898 / 1354 |
+| us | other | 114 | 1.69 vs 2.03 | 21% / 43% / 36% | 94.0 / 78.5 | 66% | 0.70 / 0.53 | 622 / 1534 |
+| us | farming | 93 | 2.00 vs 2.06 | 32% / 32% / 35% | 86 / 89 | 29% | 0.60 / 0.69 | 520 / 668 |
+| them | all | 521 | 1.97 vs 1.74 | 43% / 32% / 26% | 89 / 88 | 40% | 0.32 / 0.97 | 5302 / 1950 |
+| them | deliberate | 208 | 1.97 vs 1.57 | 44% / 35% / 21% | 88.0 / 90.0 | 35% | 0.29 / 0.99 | 2224 / 694 |
+| them | theycame | 160 | 1.96 vs 1.86 | 41% / 31% / 28% | 90.5 / 86.0 | 50% | 0.41 / 0.95 | 1708 / 848 |
+| them | other | 112 | 1.98 vs 1.78 | 47% / 25% / 28% | 86.0 / 84.0 | 35% | 0.32 / 1.01 | 1136 / 386 |
+| them | farming | 41 | 1.90 vs 2.07 | 29% / 37% / 34% | 90 / 85 | 49% | 0.12 / 0.83 | 234 / 22 |
+
+Our openers by local numbers (within 6) in ALL fights: share we open when ahead / even / behind
+  ALL       n 2158: ahead 33% (we open 38%), even 37% (56%), behind 31% (67%)
+  collision n 554: ahead 39% (we open 39%), even 32% (66%), behind 29% (82%)
+  corners   n 356: ahead 21% (we open 47%), even 29% (66%), behind 51% (64%)
+  elkring   n 325: ahead 25% (we open 38%), even 39% (66%), behind 36% (79%)
+  expanse   n 13: ahead 23% (we open 0%), even 77% (0%), behind 0% (-)
+  interlock n 208: ahead 42% (we open 33%), even 32% (62%), behind 26% (64%)
+  lanes     n 176: ahead 52% (we open 28%), even 32% (25%), behind 16% (25%)
+  monolith  n 155: ahead 27% (we open 31%), even 57% (30%), behind 15% (12%)
+  packs     n 363: ahead 29% (we open 48%), even 44% (57%), behind 27% (62%)
+  rows      n 8: ahead 62% (we open 40%), even 25% (0%), behind 12% (100%)
+  win       n 911: ahead 35% (we open 44%), even 36% (64%), behind 29% (78%)
+  loss      n 1247: ahead 31% (we open 34%), even 37% (50%), behind 32% (60%)
+  top10     n 677: ahead 30% (we open 32%), even 36% (44%), behind 34% (59%)
+  r11-30    n 1481: ahead 34% (we open 41%), even 37% (61%), behind 30% (71%)
+
+Opener hp% (the champion that lands the first hit): us med 100.0 (<50%: 2%); them med 89.0 (<50%: 8%)
+Opener with how many allies within 6 (incl. itself) when WE open: [(0, 5), (1, 626), (2, 377), (3, 118), (4, 30)]  vs enemies within 6: [(0, 1), (1, 513), (2, 359), (3, 187), (4, 69), (5, 21), (6, 6)]
+When THEY open: their n6 [(0, 2), (1, 595), (2, 279), (3, 82), (4, 34), (5, 8), (6, 2)]  our n6: [(1, 415), (2, 364), (3, 163), (4, 53), (5, 7)]
+
+# 3. When THEY start: where we were, together or split, gems, vision before the hit
+| split | n (they open) | our dist to own spawn med | their dist to their spawn med | fight in our half / middle / their half | we within 3 of altar | our champs within 8 / alive (mean) | split (an ally alive but >8 away) | we carry gems | gems carried (mean, carriers) | contact rounds before hit: 1 / 2-3 / 4-7 / 8+ (med) |
+|---|---|---|---|---|---|---|---|---|---|---|
+| ALL | 1002 | 15.0 | 19.0 | 54% / 32% / 13% | 33% | 2.24 / 4.22 | 83% | 50% | 48.3 | 0% / 9% / 23% / 68% (13.0) |
+| collision | 221 | 14 | 17 | 48% / 36% / 16% | 38% | 2.36 / 3.33 | 62% | 62% | 41.7 | 0% / 10% / 24% / 67% (15) |
+| corners | 139 | 13 | 17 | 50% / 37% / 14% | 34% | 2.13 / 3.53 | 76% | 35% | 46.7 | 0% / 6% / 23% / 71% (17) |
+| elkring | 118 | 13.0 | 17.0 | 53% / 28% / 19% | 23% | 2.19 / 4.52 | 96% | 69% | 49.6 | 0% / 13% / 19% / 69% (12.0) |
+| expanse | 13 | 19 | 65 | 100% / 0% / 0% | 31% | 1.77 / 4.00 | 100% | 8% | 96.0 | 0% / 0% / 38% / 62% (11) |
+| interlock | 103 | 15 | 18 | 46% / 46% / 9% | 50% | 2.70 / 4.68 | 86% | 86% | 56.4 | 1% / 12% / 26% / 61% (10) |
+| lanes | 129 | 29 | 42 | 81% / 12% / 7% | 33% | 2.67 / 5.46 | 98% | 43% | 39.4 | 0% / 6% / 20% / 74% (16) |
+| monolith | 112 | 23.0 | 31.5 | 53% / 37% / 11% | 31% | 1.62 / 5.71 | 100% | 51% | 56.3 | 0% / 9% / 33% / 58% (9.0) |
+| packs | 162 | 12.0 | 14.5 | 49% / 34% / 17% | 20% | 2.01 / 3.50 | 81% | 14% | 48.5 | 0% / 6% / 21% / 73% (14.5) |
+| rows | 5 | 10 | 69 | 100% / 0% / 0% | 40% | 2.20 / 4.60 | 100% | 80% | 82.5 | 0% / 0% / 0% / 100% (14) |
+| win | 356 | 15.0 | 18.0 | 49% / 38% / 13% | 37% | 2.30 / 4.34 | 84% | 58% | 48.4 | 0% / 9% / 20% / 71% (15.0) |
+| loss | 646 | 14.0 | 19.0 | 58% / 29% / 14% | 30% | 2.20 / 4.15 | 83% | 45% | 48.2 | 0% / 8% / 25% / 66% (12.0) |
+| top10 | 369 | 14 | 18 | 53% / 34% / 13% | 30% | 2.17 / 4.13 | 82% | 45% | 48.6 | 0% / 11% / 25% / 64% (11) |
+| r11-30 | 633 | 15 | 19 | 55% / 31% / 14% | 34% | 2.28 / 4.27 | 84% | 52% | 48.1 | 0% / 7% / 23% / 70% (14) |
+
+Same when WE open (where we are when we start):
+| split | n (we open) | our dist spawn | their dist spawn | our half / middle / their half | we within 3 of altar | our within 8 / alive | we split | we carry gems | gems mean | contact rounds before our hit: 1 / 2-3 / 4-7 / 8+ (med) |
+|---|---|---|---|---|---|---|---|---|---|---|
+| ALL | 1156 | 15.5 | 16.0 | 37% / 37% / 26% | 36% | 1.94 / 3.90 | 85% | 49% | 47.1 | 1% / 8% / 26% / 66% (13.0) |
+| collision | 333 | 16 | 16 | 31% / 40% / 29% | 42% | 1.94 / 3.26 | 71% | 61% | 41.6 | 0% / 8% / 24% / 68% (13) |
+| corners | 217 | 15 | 15 | 33% / 35% / 32% | 49% | 2.15 / 3.76 | 82% | 36% | 48.6 | 0% / 6% / 24% / 70% (23) |
+| elkring | 207 | 17 | 16 | 39% / 27% / 34% | 27% | 1.68 / 4.47 | 96% | 69% | 47.1 | 0% / 10% / 36% / 55% (9) |
+| interlock | 105 | 16 | 18 | 34% / 50% / 16% | 53% | 2.06 / 4.57 | 96% | 79% | 59.4 | 1% / 7% / 16% / 76% (19) |
+| lanes | 47 | 30 | 42 | 74% / 19% / 6% | 30% | 2.79 / 5.43 | 96% | 40% | 33.4 | 0% / 0% / 13% / 87% (26) |
+| monolith | 43 | 24 | 30 | 49% / 28% / 23% | 35% | 1.72 / 5.51 | 100% | 63% | 55.9 | 0% / 7% / 28% / 65% (11) |
+| packs | 201 | 13 | 14 | 39% / 43% / 17% | 14% | 1.73 / 3.46 | 86% | 9% | 49.4 | 2% / 11% / 28% / 58% (10) |
+| rows | 3 | 12 | 36 | 100% / 0% / 0% | 33% | 2.67 / 5.00 | 100% | 0% | 0.0 | 0% / 0% / 0% / 100% (39) |
+| win | 555 | 16 | 16 | 30% / 39% / 31% | 46% | 1.99 / 4.08 | 87% | 56% | 49.6 | 0% / 7% / 26% / 67% (14) |
+| loss | 601 | 15 | 17 | 44% / 35% / 21% | 27% | 1.88 / 3.74 | 82% | 43% | 44.2 | 1% / 9% / 26% / 65% (13) |
+| top10 | 308 | 15.0 | 16.0 | 36% / 39% / 25% | 31% | 1.79 / 3.69 | 83% | 50% | 43.8 | 0% / 4% / 30% / 66% (13.0) |
+| r11-30 | 848 | 16.0 | 16.0 | 37% / 36% / 26% | 38% | 1.99 / 3.98 | 85% | 49% | 48.4 | 1% / 9% / 24% / 66% (14.0) |
+
+# 3b. What the victim side did in the contact rounds before the first hit (champion-rounds of the victim team with an enemy within 8, share)
+| victim side | contact champion-rounds | farming | idle | moved closer | moved away | sideways | recalling |
+|---|---|---|---|---|---|---|---|
+| us (they open on us) | 44033 | 23% | 16% | 29% | 10% | 18% | 5% |
+| opponents (we open on them) | 51238 | 14% | 18% | 33% | 11% | 18% | 7% |
+
+Dominant reaction per fight (victim side, fights with >= 2 contact rounds before the hit):
+  us: n 1001  closer 49%, farm 29%, side 12%, idle 8%, recall 1%, away 0%
+  opponents: n 1150  closer 54%, idle 17%, farm 14%, side 11%, recall 4%, away 0%
+
+# 4. Focus, target choice, chasing, spells, ranged distance (fight windows, all fights)
+| side | rounds with 2+ of the side hitting | same victim | target decisions with 2+ enemies in reach | nearest | lowest hp | caster (when one available) | gem carrier (when one available) | basic attacks | target out of range next round | ... and we stepped after it |
+|---|---|---|---|---|---|---|---|---|---|---|
+| us | 852 | 66% | 1946 | 72% | 63% | 63% (n=1291) | 66% (n=946) | 4754 | 44% | 71% |
+| them | 896 | 74% | 920 | 77% | 69% | 66% (n=699) | 72% (n=406) | 5025 | 44% | 69% |
+
+Spells:
+| side | real fights | cast within 2 rounds of first hit | casts per real fight (participants) | champion-rounds with enemy <=4 and both slots up | cast | walked instead | spell share of champion damage |
+|---|---|---|---|---|---|---|---|
+| us | 1096 | 88% | 5.88 | 2453 | 55% | 19% | 79% |
+| them | 1096 | 83% | 5.53 | 3500 | 38% | 32% | 65% |
+
+Spell timing of the side that did NOT open (real fights): cast within 2 rounds of the first hit, by tier/result
+  ALL       us (they opened): 79% of 521 | them (we opened): 70% of 575 | both-slots-up usage us 55% them 38% | focus same-victim us 66% them 74%
+  collision us (they opened): 78% of 129 | them (we opened): 68% of 164 | both-slots-up usage us 65% them 43% | focus same-victim us 80% them 79%
+  corners   us (they opened): 82% of 99 | them (we opened): 78% of 135 | both-slots-up usage us 64% them 35% | focus same-victim us 55% them 72%
+  elkring   us (they opened): 79% of 72 | them (we opened): 63% of 97 | both-slots-up usage us 65% them 37% | focus same-victim us 66% them 76%
+  expanse   us (they opened): 0% of 1 | them (we opened): - of 0 | both-slots-up usage us 43% them 100% | focus same-victim us 100% them -
+  interlock us (they opened): 88% of 42 | them (we opened): 66% of 44 | both-slots-up usage us 47% them 32% | focus same-victim us 71% them 77%
+  lanes     us (they opened): 73% of 52 | them (we opened): 79% of 19 | both-slots-up usage us 27% them 49% | focus same-victim us 94% them 71%
+  monolith  us (they opened): 71% of 42 | them (we opened): 48% of 25 | both-slots-up usage us 31% them 43% | focus same-victim us 92% them 90%
+  packs     us (they opened): 77% of 81 | them (we opened): 73% of 89 | both-slots-up usage us 65% them 43% | focus same-victim us 69% them 75%
+  rows      us (they opened): 100% of 3 | them (we opened): 100% of 2 | both-slots-up usage us 67% them 33% | focus same-victim us 100% them -
+  win       us (they opened): 82% of 164 | them (we opened): 66% of 267 | both-slots-up usage us 60% them 36% | focus same-victim us 72% them 78%
+  loss      us (they opened): 77% of 357 | them (we opened): 73% of 308 | both-slots-up usage us 53% them 40% | focus same-victim us 62% them 73%
+  top10     us (they opened): 77% of 189 | them (we opened): 77% of 149 | both-slots-up usage us 55% them 43% | focus same-victim us 63% them 66%
+  r11-30    us (they opened): 79% of 332 | them (we opened): 67% of 426 | both-slots-up usage us 55% them 37% | focus same-victim us 68% them 80%
+Game totals: our tributed gems 121260, theirs 136052; gems lost by death in fights: us 8502, them 8432
+
+Ranged/caster champions: distance of their hits on champions (basic attacks and spells), and share of fight rounds spent at distance <= 2 from an enemy
+| side | basic d1 | d2 | d3 | spell d1 | d2 | d3 | d4 | d5+ | ranged champion fight-rounds | at distance <= 2 |
+|---|---|---|---|---|---|---|---|---|---|---|
+| us | 16% | 19% | 65% | 5% | 8% | 23% | 56% | 8% | 18497 | 12% |
+   raw: {'spell4': 2024, 'spell3': 846, 'atk3': 1789, 'spell6': 47, 'atk2': 510, 'atk1': 443, 'spell1': 189, 'spell2': 289, 'spell5': 232, 'atk4': 1, 'atk6': 9}
+| them | 7% | 17% | 75% | 1% | 4% | 17% | 61% | 17% | 18014 | 6% |
+   raw: {'spell1': 39, 'atk1': 169, 'spell3': 448, 'atk3': 1711, 'atk2': 381, 'spell2': 112, 'spell4': 1643, 'spell5': 398, 'spell6': 60, 'atk6': 7, 'atk5': 3, 'atk4': 1}
+
+# 5. Fight length and how fights end
+| split | fights | real | length (first-last hit) med / p75 | single-poke (1 round) | >= 10 rounds | contact rounds to separation med | end: kill | wipe | recall | leave | we leave first | they leave first | same round |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| ALL | 2158 | 1096 | 4.0 / 10 | 27% | 28% | 15.0 | 16% | 14% | 13% | 56% | 26% | 26% | 29% |
+| collision | 554 | 293 | 3.0 / 9 | 29% | 24% | 15 | 14% | 15% | 18% | 53% | 25% | 29% | 28% |
+| corners | 356 | 234 | 10.0 / 21 | 13% | 51% | 22.5 | 22% | 13% | 13% | 50% | 26% | 21% | 34% |
+| elkring | 325 | 169 | 3 / 8 | 34% | 20% | 11.0 | 18% | 16% | 9% | 56% | 27% | 24% | 27% |
+| expanse | 13 | 1 | 1 / 2 | 62% | 0% | 11 | 0% | 8% | 23% | 69% | 69% | 15% | 8% |
+| interlock | 208 | 86 | 4.0 / 10 | 24% | 31% | 16.0 | 11% | 8% | 12% | 69% | 24% | 31% | 34% |
+| lanes | 176 | 71 | 4.0 / 10 | 28% | 28% | 16.0 | 19% | 7% | 10% | 63% | 34% | 24% | 28% |
+| monolith | 155 | 67 | 3 / 7 | 27% | 13% | 10 | 12% | 21% | 11% | 54% | 19% | 25% | 28% |
+| packs | 363 | 170 | 4 / 9 | 31% | 23% | 14 | 13% | 15% | 12% | 57% | 26% | 28% | 25% |
+| rows | 8 | 5 | 5.5 / 7 | 12% | 12% | 9.5 | 25% | 38% | 12% | 25% | 12% | 12% | 25% |
+| win | 911 | 431 | 3 / 9 | 31% | 24% | 14 | 14% | 14% | 14% | 57% | 24% | 29% | 28% |
+| loss | 1247 | 665 | 4 / 11 | 24% | 30% | 15 | 17% | 14% | 12% | 55% | 27% | 24% | 29% |
+| top10 | 677 | 338 | 4 / 10 | 25% | 28% | 14 | 14% | 15% | 14% | 55% | 27% | 26% | 27% |
+| r11-30 | 1481 | 758 | 4 / 10 | 28% | 28% | 15 | 16% | 14% | 12% | 56% | 26% | 26% | 29% |
+
+Real fights only: who leaves first vs who opened, and outcome
+  opened by us: n 575, we leave first 15%, they leave first 21%, same round 27%; ends: kill 30% wipe 28% (we wiped 69, they wiped 94) recall 9% leave 32%
+  opened by them: n 521, we leave first 17%, they leave first 22%, same round 25%; ends: kill 32% wipe 27% (we wiped 103, they wiped 37) recall 10% leave 30%
+Leave kind by side (all fights where a leaver was found): us: n 560 walk 77% recall 23%; them: n 561 walk 66% recall 34%; 
+Recall started by a participant between the last hit and separation: us 869 fights, them 974 fights (of 2158)
+
+# 6. Per opponent (real fights)
+| opponent (rank) | games (W-L) | real fights | we hit first | our kills | our deaths | gems lost / won |
+|---|---|---|---|---|---|---|
+| Intercontinental Fish (1) | 0-5 | 30 | 50% | 6 | 52 | 202 / 80 |
+| Mite (2) | 2-3 | 35 | 46% | 20 | 24 | 284 / 176 |
+| Shawn (3) | 1-4 | 37 | 54% | 15 | 36 | 402 / 374 |
+| Univardisty of Shingtonwash (4) | 1-4 | 36 | 39% | 6 | 35 | 300 / 44 |
+| VeryGood (5) | 0-5 | 37 | 22% | 1 | 31 | 500 / 0 |
+| hello (6) | 1-4 | 42 | 31% | 17 | 37 | 412 / 108 |
+| PTN Hyperion (7) | 1-4 | 35 | 54% | 44 | 46 | 274 / 494 |
+| Nyxius (8) | 1-4 | 12 | 67% | 9 | 4 | 0 / 66 |
+| procless (9) | 1-4 | 31 | 29% | 10 | 17 | 162 / 66 |
+| ❤️Quantom❤️ (10) | 2-3 | 43 | 63% | 20 | 30 | 446 / 482 |
+| Full Damage (11) | 1-4 | 33 | 36% | 11 | 17 | 336 / 248 |
+| 𓎼𓃭𓅱𓂋𓇌 𓏏𓅱 𓂋𓄿 (12) | 4-1 | 47 | 64% | 39 | 23 | 226 / 674 |
+| geese geese go (13) | 1-4 | 67 | 63% | 36 | 63 | 516 / 532 |
+| KratosMessi (14) | 3-2 | 29 | 69% | 13 | 17 | 154 / 388 |
+| Boost (15) | 1-4 | 25 | 28% | 8 | 22 | 386 / 22 |
+| lETHal (16) | 0-5 | 32 | 44% | 11 | 33 | 482 / 88 |
+| test (17) | 5-0 | 31 | 42% | 15 | 27 | 540 / 350 |
+| getramramd#euw (18) | 3-2 | 29 | 69% | 21 | 13 | 88 / 380 |
+| Still Testing (19) | 3-2 | 44 | 61% | 37 | 11 | 66 / 718 |
+| Conley (20) | 2-3 | 34 | 29% | 7 | 41 | 134 / 0 |
+| ひななー (21) | 1-4 | 44 | 61% | 17 | 46 | 656 / 138 |
+| AlphaSlop (22) | 4-1 | 37 | 65% | 29 | 14 | 96 / 314 |
+| octo's odyssey (23) | 3-2 | 30 | 57% | 36 | 8 | 48 / 334 |
+| Nyx (25) | 3-2 | 43 | 74% | 29 | 23 | 140 / 176 |
+| umamusume (26) | 3-2 | 49 | 57% | 14 | 35 | 468 / 338 |
+| BottleBots (27) | 1-4 | 44 | 52% | 25 | 46 | 504 / 486 |
+| Ely2sh (28) | 2-3 | 54 | 48% | 16 | 50 | 434 / 190 |
+| SSSA (29) | 2-3 | 27 | 67% | 14 | 15 | 154 / 326 |
+| WHIM (30) | 2-3 | 45 | 58% | 26 | 22 | 48 / 472 |
+| MicroStella (249) | 5-0 | 14 | 71% | 13 | 2 | 44 / 368 |
+
+# 7. Examples
+## we open, deliberate approach, won
+ - collision 79bed885 r194-200 vs MicroStella: WE Stellar spell d4 on Stellar (tributing, hp 100%, 44 gems) | us ['Cassi', 'Issac', 'Stellar'] hp90% n6 3, them ['Vendetta', 'Stellar'] hp72% n6 1 | K/D 1/0 gems -0/+44 | end kill leaver us 
+ - collision 79bed885 r302-306 vs MicroStella: WE Ren spell d4 on Cassi (walking, hp 100%, 22 gems) | us ['Cassi', 'Ren', 'Stellar'] hp91% n6 2, them ['Cassi', 'Issac', 'Stellar'] hp83% n6 3 | K/D 2/0 gems -0/+58 | end kill leaver us 
+ - collision 79bed885 r354-367 vs MicroStella: WE Ren spell d4 on Vendetta (walking, hp 100%, 44 gems) | us ['Cassi', 'Issac', 'Ren', 'Stellar'] hp96% n6 3, them ['Vendetta', 'Stellar'] hp79% n6 1 | K/D 1/0 gems -0/+44 | end leave leaver both 
+ - corners 2f4101a4 r109-113 vs MicroStella: WE Tavi spell d4 on Varg (idle, hp 58%, 0 gems) | us ['Ryth', 'Stellar', 'Ren', 'Tavi'] hp92% n6 4, them ['Vendetta', 'Varg'] hp76% n6 1 | K/D 1/0 gems -0/+48 | end kill leaver - 
+## we open, deliberate approach, lost
+ - corners 64d3af95 r532-568 vs ❤️Quantom❤️: WE Ren spell d4 on Cassi (idle, hp 100%, 48 gems) | us ['Stellar', 'Prism', 'Ren', 'Tavi'] hp100% n6 2, them ['Varg', 'Vendetta', 'Ryth', 'Cassi', 'Issac'] hp100% n6 4 | K/D 2/3 gems -118/+96 | end leave leaver us 
+ - corners 64d3af95 r576-601 vs ❤️Quantom❤️: WE Ren spell d3 on Varg (walking, hp 89%, 70 gems) | us ['Ryth', 'Ren'] hp86% n6 1, them ['Ren', 'Varg', 'Vendetta'] hp97% n6 2 | K/D 0/2 gems -0/+0 | end wipe leaver - 
+ - elkring ca10ce5a r501-520 vs ❤️Quantom❤️: WE Ren spell d4 on Marcella (walking, hp 100%, 0 gems) | us ['Ryth', 'Prism', 'Ren', 'Tavi'] hp95% n6 1, them ['Vendetta', 'Marcella'] hp100% n6 1 | K/D 0/1 gems -0/+0 | end leave leaver both 
+ - packs 5889b79f r345-349 vs Univardisty of Shi: WE Stellar spell d4 on Ren (farming, hp 80%, 0 gems) | us ['Cassi', 'Stellar'] hp90% n6 1, them ['Ren'] hp80% n6 1 | K/D 0/1 gems -0/+0 | end kill leaver them 
+## we open while outnumbered within 6
+ - collision 79bed885 r302-306 vs MicroStella: WE Ren spell d4 on Cassi (walking, hp 100%, 22 gems) | us ['Cassi', 'Ren', 'Stellar'] hp91% n6 2, them ['Cassi', 'Issac', 'Stellar'] hp83% n6 3 | K/D 2/0 gems -0/+58 | end kill leaver us 
+ - collision 79bed885 r464-473 vs MicroStella: WE Stellar spell d4 on Issac (walking, hp 100%, 44 gems) | us ['Stellar'] hp90% n6 1, them ['Vendetta', 'Cassi', 'Issac'] hp92% n6 3 | K/D 0/0 gems -0/+0 | end leave leaver both 
+ - elkring 310b4af7 r304-306 vs MicroStella: WE Stellar spell d4 on Issac (farming, hp 88%, 0 gems) | us ['Stellar'] hp81% n6 1, them ['Cassi', 'Issac', 'Varg'] hp50% n6 3 | K/D 2/0 gems -0/+36 | end kill leaver them 
+ - elkring 310b4af7 r449-449 vs MicroStella: WE Stellar spell d4 on Tavi (idle, hp 78%, 0 gems) | us ['Stellar', 'Tavi'] hp100% n6 1, them ['Varg', 'Tavi'] hp67% n6 2 | K/D 0/0 gems -0/+0 | end leave leaver them 
+## they open on us while we farm
+ - corners 2f4101a4 r87-102 vs MicroStella: THEY Ryth spell d4 on Ren (farming, hp 100%, 0 gems) | us ['Stellar', 'Ren'] hp100% n6 2, them ['Varg', 'Ryth'] hp76% n6 2 | K/D 1/0 gems -0/+0 | end kill leaver them 
+ - corners 64d3af95 r93-120 vs ❤️Quantom❤️: THEY Cassi spell d3 on Ren (farming, hp 100%, 0 gems) | us ['Ryth', 'Stellar', 'Ren', 'Tavi'] hp92% n6 2, them ['Vendetta', 'Ryth', 'Cassi', 'Issac'] hp79% n6 2 | K/D 0/0 gems -0/+0 | end leave leaver both 
+ - rows 14ebd970 r309-313 vs ❤️Quantom❤️: THEY Vendetta atk d1 on Ryth (farming, hp 83%, 0 gems) | us ['Vendetta', 'Cassi', 'Issac', 'Ryth'] hp87% n6 4, them ['Vendetta'] hp65% n6 1 | K/D 1/0 gems -0/+0 | end wipe leaver - 
+ - elkring d97caaff r194-202 vs Univardisty of Shi: THEY Ryth spell d5 on Stellar (farming, hp 100%, 0 gems) | us ['Stellar', 'Ren', 'Tavi'] hp85% n6 2, them ['Ryth', 'Tavi'] hp82% n6 1 | K/D 0/2 gems -0/+0 | end kill leaver us 
+## they open on us while we tribute / recall
+ - collision 79bed885 r403-406 vs MicroStella: THEY Stellar spell d3 on Ren (tributing, hp 95%, 22 gems) | us ['Ren'] hp95% n6 1, them ['Stellar'] hp100% n6 1 | K/D 0/0 gems -0/+0 | end recall leaver them 
+ - corners 64d3af95 r329-344 vs ❤️Quantom❤️: THEY Cassi spell d4 on Tavi (tributing, hp 100%, 0 gems) | us ['Ryth', 'Ren', 'Tavi'] hp100% n6 1, them ['Ren', 'Varg', 'Vendetta', 'Cassi'] hp67% n6 4 | K/D 0/1 gems -48/+0 | end leave leaver both 
+ - elkring ca10ce5a r527-535 vs ❤️Quantom❤️: THEY Vendetta atk d1 on Ren (recalling, hp 23%, 36 gems) | us ['Ryth', 'Prism', 'Ren'] hp60% n6 3, them ['Varg', 'Vendetta'] hp83% n6 2 | K/D 0/1 gems -36/+0 | end leave leaver us 
+ - collision 95784669 r232-232 vs Univardisty of Shi: THEY Stellar spell d5 on Stellar (recalling, hp 11%, 22 gems) | us ['Stellar'] hp11% n6 1, them ['Stellar'] hp14% n6 1 | K/D 0/1 gems -22/+0 | end wipe leaver - 
+## they open after >= 6 rounds of contact (we saw them and kept doing what we did)
+ - collision 15195780 r296-314 vs BottleBots: THEY Varg atk d1 on Issac (walking, hp 94%, 44 gems) | us ['Cassi', 'Issac', 'Ren', 'Stellar'] hp91% n6 2, them ['Vendetta', 'Varg'] hp90% n6 2 | K/D 1/4 gems -262/+152 | end wipe leaver - contact 15 rounds, we did {'idle': 8, 'closer': 16, 'farm': 22, 'side': 5, 'away': 9}
+ - lanes 920d31ac r75-96 vs ひななー: THEY Ren spell d4 on Cassi (farming, hp 91%, 0 gems) | us ['Vendetta', 'Cassi', 'Issac', 'Tavi'] hp97% n6 3, them ['Ryth', 'Stellar', 'Prism', 'Ren', 'Tavi'] hp93% n6 1 | K/D 0/4 gems -0/+0 | end wipe leaver - contact 7 rounds, we did {'closer': 8, 'farm': 11, 'side': 4, 'idle': 5}
+ - interlock 83a66318 r35-61 vs lETHal: THEY Tavi spell d4 on Ren (walking, hp 100%, 22 gems) | us ['Cassi', 'Issac', 'Ren', 'Stellar', 'Tavi'] hp94% n6 4, them ['Stellar', 'Tavi', 'Cassi', 'Issac', 'Prism'] hp99% n6 4 | K/D 0/4 gems -116/+0 | end leave leaver them contact 8 rounds, we did {'idle': 7, 'farm': 16, 'closer': 14, 'side': 2, 'away': 1}
+ - corners 62365ad4 r534-578 vs PTN Hyperion: THEY Ryth spell d5 on Tavi (walking, hp 60%, 0 gems) | us ['Ryth', 'Stellar', 'Prism', 'Ren', 'Tavi'] hp87% n6 1, them ['Cassi', 'Issac', 'Stellar', 'Ryth', 'Ren'] hp100% n6 1 | K/D 0/4 gems -0/+0 | end wipe leaver - contact 6 rounds, we did {'closer': 14, 'idle': 1, 'farm': 1, 'side': 1, 'away': 1}
+## biggest fights (damage)
+ - corners e3bc608b r639-704 vs WHIM: WE Stellar spell d4 on Varg (idle, hp 97%, 22 gems) | us ['Ryth', 'Stellar', 'Prism', 'Ren', 'Tavi'] hp96% n6 2, them ['Cassi', 'Issac', 'Vendetta', 'Stellar', 'Varg', 'Tavi'] hp92% n6 2 | K/D 1/2 gems -0/+0 | end leave leaver both dmg 7216/3988
+ - corners f159c312 r576-637 vs geese geese go: THEY Prism spell d4 on Stellar (walking, hp 100%, 0 gems) | us ['Ryth', 'Stellar', 'Prism', 'Ren', 'Tavi'] hp100% n6 2, them ['Ryth', 'Stellar', 'Prism', 'Ren', 'Tavi'] hp89% n6 2 | K/D 1/4 gems -22/+22 | end kill leaver - dmg 5472/5083
+ - corners 64d3af95 r443-509 vs ❤️Quantom❤️: WE Stellar spell d2 on Issac (farming, hp 89%, 0 gems) | us ['Ryth', 'Stellar', 'Prism', 'Ren', 'Tavi'] hp100% n6 1, them ['Ren', 'Varg', 'Vendetta', 'Ryth', 'Cassi', 'Issac'] hp87% n6 1 | K/D 1/1 gems -0/+0 | end kill leaver both dmg 5755/4072
+ - corners 5b4a4b49 r65-139 vs VeryGood: THEY Stellar spell d4 on Tavi (walking, hp 100%, 0 gems) | us ['Ryth', 'Stellar', 'Prism', 'Ren', 'Tavi'] hp98% n6 1, them ['Stellar', 'Tavi', 'Cassi', 'Issac', 'Willow', 'Prism'] hp93% n6 2 | K/D 0/2 gems -0/+0 | end recall leaver them dmg 4010/5154
+ - corners 62365ad4 r221-298 vs PTN Hyperion: WE Stellar spell d4 on Issac (recalling, hp 62%, 0 gems) | us ['Ryth', 'Stellar', 'Prism', 'Ren', 'Tavi'] hp100% n6 1, them ['Cassi', 'Issac', 'Stellar', 'Ryth', 'Ren', 'Prism'] hp86% n6 4 | K/D 6/4 gems -144/+144 | end wipe leaver - dmg 5164/3766
+ - corners 62365ad4 r433-489 vs PTN Hyperion: WE Stellar spell d4 on Prism (recalling, hp 96%, 0 gems) | us ['Ryth', 'Stellar', 'Prism', 'Tavi'] hp72% n6 2, them ['Cassi', 'Issac', 'Stellar', 'Ryth', 'Ren', 'Prism'] hp75% n6 4 | K/D 4/3 gems -36/+0 | end wipe leaver - dmg 4878/3394
+## we lost gems (largest)
+ - collision 15195780 r296-314 vs BottleBots: THEY Varg atk d1 on Issac (walking, hp 94%, 44 gems) | us ['Cassi', 'Issac', 'Ren', 'Stellar'] hp91% n6 2, them ['Vendetta', 'Varg'] hp90% n6 2 | K/D 1/4 gems -262/+152 | end wipe leaver - 
+ - collision 69757c8e r741-749 vs Shawn: WE Stellar spell d4 on Issac (walking, hp 100%, 22 gems) | us ['Cassi', 'Issac', 'Stellar'] hp98% n6 1, them ['Cassi', 'Issac', 'Stellar'] hp83% n6 3 | K/D 2/3 gems -154/+44 | end wipe leaver - 
+ - collision ae2470ab r797-808 vs Full Damage: THEY Prism spell d4 on Cassi (idle, hp 100%, 146 gems) | us ['Cassi', 'Issac', 'Ren'] hp98% n6 2, them ['Prism'] hp88% n6 1 | K/D 0/2 gems -146/+0 | end recall leaver them 
+ - interlock feb23cc4 r431-465 vs test: WE Tavi spell d4 on Ren (idle, hp 78%, 72 gems) | us ['Cassi', 'Issac', 'Ren', 'Stellar', 'Tavi'] hp94% n6 1, them ['Ren', 'Stellar', 'Tavi'] hp92% n6 2 | K/D 1/3 gems -144/+72 | end kill leaver - 
+ - corners 62365ad4 r221-298 vs PTN Hyperion: WE Stellar spell d4 on Issac (recalling, hp 62%, 0 gems) | us ['Ryth', 'Stellar', 'Prism', 'Ren', 'Tavi'] hp100% n6 1, them ['Cassi', 'Issac', 'Stellar', 'Ryth', 'Ren', 'Prism'] hp86% n6 4 | K/D 6/4 gems -144/+144 | end wipe leaver - 
+ - corners 64d3af95 r532-568 vs ❤️Quantom❤️: WE Ren spell d4 on Cassi (idle, hp 100%, 48 gems) | us ['Stellar', 'Prism', 'Ren', 'Tavi'] hp100% n6 2, them ['Varg', 'Vendetta', 'Ryth', 'Cassi', 'Issac'] hp100% n6 4 | K/D 2/3 gems -118/+96 | end leave leaver us 
+## we won gems (largest)
+ - collision 15195780 r296-314 vs BottleBots: THEY Varg atk d1 on Issac (walking, hp 94%, 44 gems) | us ['Cassi', 'Issac', 'Ren', 'Stellar'] hp91% n6 2, them ['Vendetta', 'Varg'] hp90% n6 2 | K/D 1/4 gems -262/+152 | end wipe leaver - 
+ - collision b790c80b r442-442 vs getramramd#euw: WE Stellar spell d4 on Stellar (recalling, hp 28%, 152 gems) | us ['Stellar'] hp81% n6 1, them ['Varg', 'Stellar'] hp32% n6 1 | K/D 1/0 gems -0/+152 | end kill leaver - 
+ - corners 62365ad4 r221-298 vs PTN Hyperion: WE Stellar spell d4 on Issac (recalling, hp 62%, 0 gems) | us ['Ryth', 'Stellar', 'Prism', 'Ren', 'Tavi'] hp100% n6 1, them ['Cassi', 'Issac', 'Stellar', 'Ryth', 'Ren', 'Prism'] hp86% n6 4 | K/D 6/4 gems -144/+144 | end wipe leaver - 
+ - interlock 5152af9b r464-480 vs Still Testing: WE Cassi spell d4 on Ren (tributing, hp 90%, 44 gems) | us ['Cassi', 'Ren', 'Tavi'] hp85% n6 2, them ['Vendetta', 'Ryth', 'Ren'] hp69% n6 3 | K/D 2/0 gems -0/+138 | end kill leaver them 
+## long fights
+ - corners 62365ad4 r221-298 vs PTN Hyperion: WE Stellar spell d4 on Issac (recalling, hp 62%, 0 gems) | us ['Ryth', 'Stellar', 'Prism', 'Ren', 'Tavi'] hp100% n6 1, them ['Cassi', 'Issac', 'Stellar', 'Ryth', 'Ren', 'Prism'] hp86% n6 4 | K/D 6/4 gems -144/+144 | end wipe leaver - len 78
+ - corners 5b4a4b49 r65-139 vs VeryGood: THEY Stellar spell d4 on Tavi (walking, hp 100%, 0 gems) | us ['Ryth', 'Stellar', 'Prism', 'Ren', 'Tavi'] hp98% n6 1, them ['Stellar', 'Tavi', 'Cassi', 'Issac', 'Willow', 'Prism'] hp93% n6 2 | K/D 0/2 gems -0/+0 | end recall leaver them len 75
+ - corners f2cb3e65 r571-639 vs ひななー: WE Ren spell d4 on Stellar (idle, hp 87%, 96 gems) | us ['Ryth', 'Stellar', 'Prism', 'Ren'] hp54% n6 2, them ['Willow', 'Tavi', 'Ryth', 'Stellar', 'Ren'] hp68% n6 3 | K/D 1/1 gems -48/+0 | end leave leaver them len 69
+ - corners 64d3af95 r443-509 vs ❤️Quantom❤️: WE Stellar spell d2 on Issac (farming, hp 89%, 0 gems) | us ['Ryth', 'Stellar', 'Prism', 'Ren', 'Tavi'] hp100% n6 1, them ['Ren', 'Varg', 'Vendetta', 'Ryth', 'Cassi', 'Issac'] hp87% n6 1 | K/D 1/1 gems -0/+0 | end kill leaver both len 67

@@ -1,0 +1,56 @@
+## deaths: n, per game, territory own/mid/enemy, next to a living camp, allies within 6 at death (0 / 1 / 2+), enemies within 6 (1 / 2 / 3+), 5 rounds earlier allies within 6 = 0, farming a camp in the 5 rounds before (>=2 rounds), hit by a camp in the last 5 rounds, median gems lost, distinct attackers, median dist to own spawn
+| split | who | n | per game | own/mid/enemy | at camp | allies 0/1/2+ | enemies 1/2/3+ | alone 5r before | farming before | camp-hit before | gems lost (med/mean) | attackers med | spawn dist med |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| ALL | us | 858 | 5.7 | 76/21/3 | 24% | 33/37/30 | 31/29/28 | 34% | 7% | 17% | 0/10 | 1 | 13 |
+| ALL | opp | 581 | 3.9 | 39/34/28 | 28% | 37/31/31 | 30/31/23 | 36% | 6% | 15% | 0/15 | 1 | 17 |
+| res:win | us | 195 | 3.3 | 67/30/3 | 30% | 23/42/35 | 34/30/19 | 30% | 6% | 23% | 0/13 | 1 | 13 |
+| res:win | opp | 353 | 6.0 | 42/37/20 | 26% | 37/33/29 | 25/31/27 | 36% | 5% | 13% | 0/18 | 1 | 16 |
+| res:loss | us | 663 | 7.3 | 79/19/3 | 22% | 36/35/29 | 30/29/31 | 35% | 7% | 16% | 0/9 | 1 | 12 |
+| res:loss | opp | 228 | 2.5 | 33/28/39 | 31% | 36/29/35 | 37/32/17 | 35% | 7% | 17% | 0/10 | 1 | 19 |
+| opp:top10 | us | 317 | 6.3 | 78/20/2 | 20% | 37/36/27 | 29/27/31 | 36% | 8% | 17% | 0/10 | 1 | 12 |
+| opp:top10 | opp | 151 | 3.0 | 34/36/29 | 31% | 38/29/32 | 27/32/23 | 36% | 5% | 22% | 0/13 | 1 | 17 |
+| opp:r11-30 | us | 541 | 5.4 | 75/22/3 | 26% | 31/38/31 | 32/30/27 | 32% | 6% | 17% | 0/10 | 1 | 13 |
+| opp:r11-30 | opp | 430 | 4.3 | 40/33/27 | 26% | 37/32/31 | 31/31/23 | 36% | 6% | 12% | 0/15 | 1 | 17 |
+| map:collision | us | 215 | 11.3 | 65/33/2 | 53% | 22/45/33 | 33/32/16 | 28% | 6% | 33% | 0/11 | 1 | 12 |
+| map:collision | opp | 161 | 8.5 | 38/52/11 | 43% | 34/37/29 | 29/30/23 | 37% | 7% | 18% | 22/24 | 1 | 16 |
+| map:corners | us | 230 | 13.5 | 80/17/2 | 12% | 33/37/30 | 17/27/56 | 30% | 0% | 0% | 0/8 | 2 | 13 |
+| map:corners | opp | 121 | 7.1 | 38/37/25 | 29% | 17/22/61 | 14/40/40 | 13% | 0% | 0% | 0/13 | 2 | 17 |
+| map:elkring | us | 91 | 6.5 | 78/19/3 | 14% | 48/35/16 | 34/36/19 | 37% | 9% | 31% | 0/15 | 1 | 11 |
+| map:elkring | opp | 113 | 8.1 | 42/24/35 | 17% | 42/35/23 | 42/27/12 | 39% | 9% | 29% | 0/9 | 1 | 17 |
+| map:expanse | opp | 1 | 0.1 | 0/0/100 | 0% | 100/0/0 | 0/100/0 | 100% | 0% | 0% | 0/0 | 2 | 61 |
+| map:interlock | us | 56 | 4.3 | 75/21/4 | 8% | 29/27/45 | 29/38/21 | 30% | 8% | 10% | 22/27 | 1 | 14 |
+| map:interlock | opp | 42 | 3.2 | 50/19/31 | 7% | 50/29/21 | 19/26/36 | 52% | 7% | 7% | 0/22 | 1 | 16 |
+| map:lanes | us | 68 | 3.8 | 84/12/4 | 39% | 22/28/50 | 24/34/32 | 20% | 16% | 27% | 0/4 | 2 | 30 |
+| map:lanes | opp | 26 | 1.4 | 38/12/50 | 57% | 46/42/12 | 12/50/19 | 53% | 3% | 30% | 0/8 | 1 | 41 |
+| map:monolith | us | 49 | 3.8 | 73/20/6 | 10% | 55/41/4 | 47/22/8 | 51% | 14% | 22% | 0/13 | 1 | 20 |
+| map:monolith | opp | 32 | 2.5 | 38/22/41 | 12% | 66/22/12 | 44/28/16 | 59% | 3% | 9% | 0/16 | 1 | 28 |
+| map:packs | us | 147 | 7.0 | 82/18/1 | 8% | 39/34/27 | 47/20/17 | 48% | 9% | 9% | 0/3 | 1 | 9 |
+| map:packs | opp | 79 | 3.8 | 33/29/38 | 17% | 42/33/25 | 47/25/13 | 36% | 8% | 11% | 0/5 | 1 | 13 |
+| map:rows | us | 2 | 0.1 | 100/0/0 | 0% | 50/0/50 | 50/0/0 | 50% | 0% | 0% | 33/33 | 1 | 14 |
+| map:rows | opp | 6 | 0.3 | 33/0/67 | 33% | 67/33/0 | 17/33/17 | 66% | 16% | 33% | 0/0 | 1 | 59 |
+
+## our deaths by champion type
+us [('Stellar', 164), ('Cassi', 158), ('Issac', 158), ('Ren', 106), ('Tavi', 103), ('Prism', 79), ('Ryth', 65), ('Vendetta', 16), ('Varg', 9)]
+opp [('Cassi', 129), ('Issac', 129), ('Stellar', 88), ('Ren', 55), ('Ryth', 50), ('Tavi', 35), ('Varg', 30), ('Vendetta', 27), ('Prism', 16), ('Willow', 13), ('Marcella', 8), ('VesperVale', 1)]
+
+## our deaths: alone (no ally within 6) share by map and by type
+| collision | us 215 deaths, alone 22%, farming-before 6%, gems lost mean 11 | opp 161 deaths, alone 34%, farming-before 7%, gems lost mean 24 |
+| corners | us 230 deaths, alone 32%, farming-before 0%, gems lost mean 8 | opp 121 deaths, alone 16%, farming-before 0%, gems lost mean 13 |
+| elkring | us 91 deaths, alone 48%, farming-before 9%, gems lost mean 15 | opp 113 deaths, alone 42%, farming-before 9%, gems lost mean 9 |
+| interlock | us 56 deaths, alone 28%, farming-before 8%, gems lost mean 27 | opp 42 deaths, alone 50%, farming-before 7%, gems lost mean 22 |
+| lanes | us 68 deaths, alone 22%, farming-before 16%, gems lost mean 4 | opp 26 deaths, alone 46%, farming-before 3%, gems lost mean 8 |
+| monolith | us 49 deaths, alone 55%, farming-before 14%, gems lost mean 13 | opp 32 deaths, alone 65%, farming-before 3%, gems lost mean 16 |
+| packs | us 147 deaths, alone 39%, farming-before 9%, gems lost mean 3 | opp 79 deaths, alone 41%, farming-before 8%, gems lost mean 5 |
+| rows | us 2 deaths, alone 50%, farming-before 0%, gems lost mean 33 | opp 6 deaths, alone 66%, farming-before 16%, gems lost mean 0 |
+
+## our deaths by round bin (per game)
+| 0-49 | us 27 | opp 19 |
+| 50-99 | us 64 | opp 36 |
+| 100-149 | us 51 | opp 37 |
+| 150-199 | us 96 | opp 47 |
+| 200-249 | us 50 | opp 51 |
+| 250-299 | us 80 | opp 52 |
+| 300-349 | us 82 | opp 50 |
+| 350-399 | us 75 | opp 52 |
+| 400-449 | us 90 | opp 72 |
+| 450+ | us 243 | opp 165 |

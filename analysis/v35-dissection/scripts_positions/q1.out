@@ -1,0 +1,133 @@
+games 136
+
+## own/mid/enemy % of alive champion-rounds, by 50-round bin
+| split | who | games | 0-49 | 50-99 | 100-149 | 150-199 | 200-249 | 250-299 | 300-349 | 350-399 | 400-449 | 450+ |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| ALL | us | 136 | 89/10/0 | 85/14/1 | 87/12/1 | 86/13/1 | 88/11/1 | 86/13/1 | 86/13/1 | 83/16/1 | 80/19/2 | 74/24/2 |
+| ALL | opp | 136 | 94/5/2 | 80/14/7 | 79/14/8 | 77/14/9 | 78/14/8 | 78/14/7 | 78/14/8 | 72/16/11 | 70/19/11 | 64/25/11 |
+| map:collision | us | 19 | 58/42/0 | 79/20/1 | 67/33/0 | 62/38/0 | 73/26/1 | 67/31/1 | 66/33/0 | 65/35/0 | 65/34/1 | 68/32/0 |
+| map:collision | opp | 19 | 93/6/1 | 73/23/5 | 73/23/4 | 76/21/3 | 66/27/7 | 69/26/5 | 68/25/6 | 64/24/13 | 70/22/8 | 66/29/5 |
+| map:corners | us | 14 | 80/19/1 | 84/13/3 | 77/20/3 | 80/19/1 | 89/10/0 | 82/16/2 | 76/20/3 | 78/19/3 | 80/18/2 | 86/12/2 |
+| map:corners | opp | 14 | 81/14/5 | 70/21/8 | 61/26/13 | 59/28/14 | 57/28/15 | 57/27/16 | 66/24/10 | 57/23/20 | 58/26/16 | 50/27/23 |
+| map:elkring | us | 14 | 97/3/0 | 79/20/1 | 88/12/1 | 82/15/2 | 81/16/3 | 76/19/5 | 77/20/4 | 77/21/2 | 75/21/4 | 77/19/4 |
+| map:elkring | opp | 14 | 95/4/0 | 79/12/9 | 77/18/5 | 79/13/8 | 74/19/8 | 76/15/8 | 76/17/7 | 71/17/12 | 72/19/8 | 69/19/12 |
+| map:expanse | us | 12 | 100/0/0 | 100/0/0 | 100/0/0 | 100/0/0 | 100/0/0 | 100/0/0 | 100/0/0 | 100/0/0 | - | - |
+| map:expanse | opp | 12 | 100/0/0 | 98/0/2 | 98/0/2 | 98/0/2 | 98/0/2 | 99/0/1 | 99/1/0 | 98/2/0 | - | - |
+| map:interlock | us | 12 | 97/2/0 | 89/10/1 | 88/11/1 | 88/11/1 | 94/5/1 | 94/6/0 | 90/10/0 | 86/13/1 | 87/12/1 | 81/14/5 |
+| map:interlock | opp | 12 | 90/7/4 | 75/15/11 | 80/13/7 | 79/12/9 | 84/10/7 | 80/15/5 | 80/12/8 | 80/13/7 | 79/11/10 | 73/15/12 |
+| map:lanes | us | 18 | 100/0/0 | 85/14/0 | 94/5/1 | 93/6/1 | 94/5/2 | 95/5/0 | 92/6/1 | 95/4/0 | 94/4/2 | 96/4/0 |
+| map:lanes | opp | 18 | 99/1/0 | 73/14/12 | 75/8/17 | 67/12/20 | 77/8/15 | 81/11/9 | 78/10/12 | 74/12/14 | 72/12/17 | 76/14/10 |
+| map:monolith | us | 11 | 100/0/0 | 65/33/2 | 88/11/1 | 83/17/0 | 80/19/1 | 75/23/2 | 83/15/1 | 74/22/4 | 84/14/2 | 76/18/6 |
+| map:monolith | opp | 11 | 99/1/0 | 87/10/2 | 84/10/6 | 83/12/5 | 79/12/8 | 78/14/8 | 69/16/15 | 68/20/13 | 71/15/13 | 62/19/19 |
+| map:packs | us | 19 | 73/27/0 | 83/17/0 | 77/23/0 | 78/20/2 | 78/21/1 | 78/21/1 | 79/20/1 | 79/21/0 | 78/21/1 | 78/21/1 |
+| map:packs | opp | 19 | 85/10/5 | 66/25/9 | 68/24/8 | 61/30/10 | 68/24/8 | 70/22/8 | 68/25/7 | 64/24/12 | 60/30/9 | 65/24/11 |
+| map:rows | us | 17 | 100/0/0 | 100/0/0 | 100/0/0 | 99/0/1 | 98/0/2 | 100/0/0 | 100/0/0 | 100/0/0 | 100/0/0 | 100/0/0 |
+| map:rows | opp | 17 | 100/0/0 | 99/0/0 | 98/0/2 | 100/0/0 | 99/0/0 | 96/0/4 | 97/0/3 | 99/0/1 | 98/0/2 | 80/0/20 |
+| opp:r11-30 | us | 91 | 90/10/0 | 84/15/1 | 88/11/1 | 86/13/1 | 88/11/1 | 85/13/1 | 86/12/1 | 83/16/1 | 79/19/2 | 74/25/2 |
+| opp:r11-30 | opp | 91 | 94/4/2 | 81/12/7 | 78/13/9 | 78/14/9 | 79/12/9 | 80/13/7 | 78/14/8 | 74/15/11 | 72/17/11 | 65/24/11 |
+| opp:top10 | us | 45 | 88/12/0 | 86/13/0 | 86/14/1 | 86/14/0 | 88/11/1 | 88/11/0 | 85/14/1 | 83/17/1 | 83/16/1 | 76/22/1 |
+| opp:top10 | opp | 45 | 93/6/1 | 77/17/6 | 79/15/6 | 77/15/8 | 76/17/7 | 74/17/9 | 78/15/7 | 69/19/13 | 64/25/11 | 62/28/11 |
+| res:loss | us | 82 | 91/9/0 | 86/14/1 | 88/11/1 | 88/11/1 | 90/9/1 | 90/9/1 | 88/11/1 | 87/12/1 | 84/15/1 | 81/17/2 |
+| res:loss | opp | 82 | 93/5/2 | 76/15/9 | 77/13/10 | 74/15/11 | 75/15/10 | 76/14/10 | 76/15/9 | 71/17/13 | 64/23/13 | 58/27/16 |
+| res:win | us | 54 | 87/13/0 | 84/15/1 | 85/14/1 | 82/16/1 | 85/14/2 | 81/17/2 | 82/16/2 | 77/22/1 | 76/22/2 | 68/30/2 |
+| res:win | opp | 54 | 95/5/1 | 85/12/3 | 81/14/4 | 82/13/5 | 83/12/4 | 82/14/4 | 82/13/5 | 75/15/9 | 79/14/6 | 72/24/4 |
+
+## other location shares (% of alive champion-rounds): at spawn(<=2) / idle at spawn / near altar(<=2) / near living camp(<=2) / doing nothing
+| split | who | 0-49 | 50-99 | 100-149 | 150-199 | 200-249 | 250-299 | 300-349 | 350-399 | 400-449 | 450+ |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| ALL | us | 18/2/10/32/8 | 10/1/14/29/8 | 12/1/15/25/10 | 11/1/16/26/9 | 12/1/14/25/10 | 11/1/16/22/10 | 11/1/17/24/10 | 11/1/17/23/10 | 14/2/17/21/10 | 16/2/16/31/11 |
+| ALL | opp | 18/1/12/27/8 | 10/1/15/26/10 | 10/1/17/25/10 | 10/1/17/25/11 | 9/1/19/23/10 | 9/1/18/23/12 | 10/1/18/23/12 | 10/1/18/20/11 | 11/1/21/20/11 | 13/2/20/30/11 |
+| map:collision | us | 12/0/10/61/9 | 16/1/10/68/10 | 12/1/17/62/11 | 12/1/21/64/12 | 16/1/15/59/10 | 14/2/19/60/12 | 13/1/21/63/12 | 13/2/21/60/13 | 14/1/18/56/13 | 15/2/19/54/13 |
+| map:collision | opp | 23/0/2/57/8 | 16/1/11/44/10 | 15/1/11/51/8 | 15/1/9/45/8 | 16/1/16/46/9 | 13/1/14/45/10 | 13/1/16/49/10 | 15/1/12/50/10 | 14/1/13/46/11 | 14/2/18/47/10 |
+| map:corners | us | 16/4/30/19/16 | 17/1/17/10/8 | 11/1/27/14/10 | 12/1/29/16/10 | 16/1/18/11/7 | 11/1/22/12/8 | 12/1/30/16/10 | 13/1/23/10/9 | 12/1/22/14/10 | 15/1/17/10/9 |
+| map:corners | opp | 15/2/18/20/9 | 9/1/27/15/10 | 8/1/30/20/11 | 7/1/38/20/13 | 6/1/37/19/13 | 8/1/40/21/13 | 9/1/28/17/11 | 9/1/30/15/11 | 7/1/34/16/11 | 8/1/35/18/12 |
+| map:elkring | us | 45/2/0/25/3 | 15/1/12/15/6 | 29/2/6/20/7 | 21/2/10/10/9 | 23/3/6/13/6 | 24/4/10/15/10 | 21/2/12/10/7 | 19/3/10/10/10 | 22/4/11/9/10 | 19/2/9/9/9 |
+| map:elkring | opp | 38/3/4/30/8 | 18/2/9/20/9 | 19/2/13/20/8 | 22/4/9/21/11 | 16/2/13/21/8 | 17/2/10/19/10 | 19/3/12/15/11 | 15/2/8/17/9 | 15/2/13/15/9 | 16/2/12/16/10 |
+| map:expanse | us | 20/5/6/33/11 | 8/1/19/36/4 | 8/1/17/17/10 | 17/2/16/28/3 | 8/0/17/28/8 | 10/0/19/10/3 | 9/1/17/26/9 | 2/0/39/14/7 | - | - |
+| map:expanse | opp | 18/2/7/24/9 | 7/1/18/21/11 | 7/0/14/25/11 | 8/1/14/24/10 | 6/0/20/20/11 | 7/0/14/22/14 | 9/1/21/18/17 | 14/2/17/13/20 | - | - |
+| map:interlock | us | 19/1/4/24/6 | 7/1/15/10/8 | 8/1/14/7/11 | 7/0/16/14/10 | 12/1/14/10/7 | 10/1/16/11/8 | 11/1/15/12/9 | 8/1/15/11/9 | 10/1/15/11/8 | 10/2/19/11/10 |
+| map:interlock | opp | 16/1/10/20/11 | 6/1/20/16/11 | 10/0/19/16/10 | 5/0/18/13/12 | 9/1/24/11/10 | 9/1/23/14/14 | 7/1/21/18/13 | 9/1/20/11/12 | 8/1/24/11/12 | 7/1/23/10/12 |
+| map:lanes | us | 13/4/18/22/12 | 1/0/13/51/15 | 7/1/21/35/11 | 5/1/19/36/14 | 5/1/21/36/15 | 6/1/22/28/15 | 4/0/19/35/15 | 7/1/20/32/15 | 7/1/23/24/15 | 8/1/23/27/15 |
+| map:lanes | opp | 8/1/30/19/9 | 2/0/15/43/10 | 2/0/23/34/13 | 2/0/19/39/14 | 3/1/22/33/12 | 3/0/19/34/13 | 2/0/22/34/14 | 3/1/22/30/14 | 3/0/24/27/11 | 1/0/22/47/12 |
+| map:monolith | us | 13/3/0/34/5 | 6/1/19/12/4 | 7/1/7/19/9 | 6/1/14/22/4 | 7/1/13/17/4 | 5/1/19/20/5 | 6/1/12/19/4 | 7/1/17/18/5 | 8/1/12/17/7 | 10/1/21/18/7 |
+| map:monolith | opp | 12/1/1/26/8 | 7/1/10/19/8 | 5/1/9/20/10 | 6/1/11/20/9 | 5/1/11/20/9 | 7/1/13/16/9 | 5/1/15/18/10 | 4/1/17/18/9 | 7/1/16/15/10 | 3/1/19/21/6 |
+| map:packs | us | 11/0/13/30/9 | 16/1/13/18/9 | 16/2/16/20/10 | 19/2/16/20/7 | 18/2/17/17/11 | 17/1/15/19/9 | 16/1/18/18/9 | 20/2/21/17/10 | 23/2/23/12/9 | 18/2/19/16/10 |
+| map:packs | opp | 27/1/19/17/6 | 15/1/20/22/11 | 18/2/22/16/10 | 19/2/20/18/10 | 22/1/19/16/8 | 19/1/21/14/10 | 19/2/20/17/11 | 18/2/24/14/10 | 21/1/26/13/10 | 20/1/24/12/11 |
+| map:rows | us | 15/0/1/36/3 | 10/0/8/21/5 | 8/1/10/18/13 | 8/0/8/21/9 | 7/0/7/22/18 | 8/0/8/18/11 | 11/1/12/17/7 | 6/1/9/20/7 | 8/0/8/12/6 | 20/20/20/0/80 |
+| map:rows | opp | 13/1/3/26/3 | 7/1/6/21/10 | 8/1/9/20/9 | 7/1/9/20/10 | 6/1/11/19/12 | 7/1/11/14/13 | 7/1/12/14/13 | 7/1/13/11/13 | 5/0/15/11/12 | 20/20/20/20/80 |
+| opp:r11-30 | us | 18/2/10/32/8 | 10/1/15/29/8 | 11/1/15/23/10 | 11/1/16/26/9 | 11/1/14/25/11 | 11/1/18/22/10 | 11/1/17/23/10 | 11/1/17/23/10 | 13/1/18/21/10 | 15/2/17/31/11 |
+| opp:r11-30 | opp | 18/1/11/26/9 | 10/1/13/26/10 | 10/1/16/25/10 | 10/1/16/25/12 | 10/1/17/24/11 | 9/1/16/22/12 | 9/1/17/23/13 | 10/1/17/21/12 | 11/1/19/21/11 | 14/2/19/29/11 |
+| opp:top10 | us | 17/2/10/31/8 | 10/1/12/29/9 | 12/1/16/28/11 | 12/1/16/27/10 | 13/1/14/24/10 | 12/1/13/21/9 | 12/1/17/26/10 | 11/1/16/23/10 | 18/2/13/23/11 | 18/2/14/33/11 |
+| opp:top10 | opp | 18/1/12/27/6 | 9/1/18/26/9 | 10/1/19/26/9 | 10/1/18/26/10 | 9/1/23/21/10 | 9/1/23/24/12 | 11/1/20/22/10 | 9/1/22/20/9 | 12/1/25/17/9 | 13/1/22/33/10 |
+| res:loss | us | 18/2/10/30/8 | 10/1/13/28/9 | 12/1/15/24/10 | 11/1/15/25/10 | 12/1/13/23/11 | 12/1/15/21/10 | 12/1/15/23/10 | 12/1/15/21/10 | 17/2/14/18/10 | 19/2/12/24/11 |
+| res:loss | opp | 18/1/13/25/8 | 9/1/16/25/9 | 9/1/17/25/10 | 9/1/18/25/11 | 9/1/21/23/10 | 9/1/20/23/12 | 9/1/20/22/11 | 10/1/20/19/11 | 11/1/24/18/10 | 13/1/23/26/10 |
+| res:win | us | 18/2/8/35/8 | 10/1/15/30/7 | 10/1/15/26/10 | 12/1/18/29/8 | 12/1/15/27/9 | 11/1/19/24/8 | 11/1/19/26/9 | 11/1/20/25/10 | 12/1/19/24/9 | 13/2/20/38/12 |
+| res:win | opp | 19/1/9/30/8 | 10/1/13/26/11 | 11/1/17/25/10 | 12/1/14/26/10 | 11/1/16/24/10 | 11/1/16/23/12 | 10/1/15/23/14 | 10/1/14/23/11 | 13/1/16/22/11 | 14/2/16/35/11 |
+
+## enemy-half episodes (one champion crossing into enemy territory)
+| split | who | games | episodes | per game | median len | median start r | hits camp there | hits enemy there | gets hit there | captures there | tributes there | ends dead | median score diff at entry | nearest enemy <=8 at entry |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| ALL | us | 136 | 373 | 2.7 | 6 | 288 | 13% | 43% | 32% | 17% | 4% | 4% | +2 | 76% |
+| ALL | opp | 136 | 1599 | 11.8 | 9 | 288 | 20% | 52% | 50% | 10% | 8% | 9% | +36 | 85% |
+| map:collision | us | 19 | 33 | 1.7 | 5 | 286 | 0% | 69% | 51% | 3% | 0% | 15% | +22 | 100% |
+| map:collision | opp | 19 | 217 | 11.4 | 7 | 356 | 17% | 58% | 58% | 6% | 0% | 7% | +22 | 92% |
+| map:corners | us | 14 | 81 | 5.8 | 4 | 292 | 16% | 45% | 35% | 14% | 14% | 4% | +144 | 85% |
+| map:corners | opp | 14 | 458 | 32.7 | 8 | 272 | 21% | 59% | 58% | 4% | 5% | 4% | +140 | 89% |
+| map:elkring | us | 14 | 108 | 7.7 | 10 | 323 | 18% | 43% | 27% | 15% | 0% | 2% | -36 | 76% |
+| map:elkring | opp | 14 | 242 | 17.3 | 10 | 354 | 30% | 45% | 49% | 15% | 5% | 16% | +54 | 72% |
+| map:expanse | us | 12 | 0 |
+| map:expanse | opp | 12 | 1 | 0.1 | 227 | 47 | 100% | 100% | 100% | 100% | 100% | 100% | -48 | 0% |
+| map:interlock | us | 12 | 30 | 2.5 | 6 | 213 | 3% | 76% | 50% | 3% | 0% | 3% | +69 | 93% |
+| map:interlock | opp | 12 | 159 | 13.2 | 8 | 221 | 11% | 45% | 45% | 3% | 10% | 7% | -8 | 90% |
+| map:lanes | us | 18 | 36 | 2.0 | 6 | 202 | 19% | 19% | 27% | 38% | 0% | 8% | -14 | 58% |
+| map:lanes | opp | 18 | 238 | 13.2 | 6 | 220 | 21% | 40% | 33% | 23% | 13% | 5% | +0 | 88% |
+| map:monolith | us | 11 | 48 | 4.4 | 7 | 291 | 8% | 25% | 20% | 29% | 6% | 4% | +56 | 56% |
+| map:monolith | opp | 11 | 87 | 7.9 | 16 | 321 | 20% | 50% | 37% | 20% | 5% | 12% | -44 | 64% |
+| map:packs | us | 19 | 34 | 1.8 | 4 | 344 | 17% | 35% | 32% | 20% | 0% | 0% | +2 | 70% |
+| map:packs | opp | 19 | 192 | 10.1 | 11 | 305 | 14% | 54% | 57% | 10% | 16% | 14% | +25 | 85% |
+| map:rows | us | 17 | 3 | 0.2 | 33 | 190 | 0% | 0% | 0% | 0% | 0% | 0% | -66 | 0% |
+| map:rows | opp | 17 | 5 | 0.3 | 69 | 241 | 0% | 100% | 100% | 0% | 40% | 80% | +66 | 20% |
+| opp:r11-30 | us | 91 | 277 | 3.0 | 7 | 286 | 14% | 44% | 32% | 18% | 3% | 5% | +24 | 75% |
+| opp:r11-30 | opp | 91 | 1056 | 11.6 | 9 | 304 | 20% | 47% | 49% | 12% | 8% | 9% | +0 | 83% |
+| opp:top10 | us | 45 | 96 | 2.1 | 4 | 291 | 11% | 40% | 32% | 15% | 6% | 4% | -38 | 79% |
+| opp:top10 | opp | 45 | 543 | 12.1 | 8 | 267 | 21% | 60% | 53% | 7% | 6% | 7% | +108 | 89% |
+| res:loss | us | 82 | 191 | 2.3 | 6 | 303 | 14% | 40% | 34% | 16% | 5% | 7% | -42 | 79% |
+| res:loss | opp | 82 | 1147 | 14.0 | 10 | 281 | 24% | 54% | 52% | 11% | 9% | 6% | +84 | 84% |
+| res:win | us | 54 | 182 | 3.4 | 6 | 275 | 13% | 45% | 31% | 19% | 2% | 2% | +74 | 73% |
+| res:win | opp | 54 | 452 | 8.4 | 6 | 313 | 10% | 44% | 46% | 8% | 4% | 15% | -86 | 88% |
+
+## what OUR champions do in rounds when at least one enemy stands in our half
+| split | rounds with invader | our champ-rounds | near invader (<=8) | own/mid/enemy where we are | actions (all) | actions when near |
+|---|---|---|---|---|---|---|---|
+| ALL | 15566 | 59472 | 44% | 89/9/1 | move 53%, attack camp 14%, nothing 10%, recall 7%, tribute 5%, cast@camp 2%, dash 2%, cast@champ 2%, attack champ 2%, buy 1%, ability(no eff) 1%, arrive 0%, attack(miss) 0% | move 52%, nothing 12%, attack camp 9%, recall 7%, attack champ 5%, cast@champ 5%, tribute 4%, dash 3%, cast@camp 2%, ability(no eff) 1%, attack(miss) 0%, buy 0%, arrive 0% |
+| map:collision | 1786 | 4140 | 63% | 90/9/0 | move 52%, nothing 13%, attack camp 10%, recall 9%, cast@champ 4%, dash 4%, attack champ 3%, cast@camp 2%, tribute 1%, ability(no eff) 1%, buy 1%, arrive 1%, attack(miss) 0% | move 51%, nothing 15%, recall 8%, attack camp 7%, cast@champ 7%, attack champ 5%, dash 4%, cast@camp 1%, ability(no eff) 1%, tribute 0%, attack(miss) 0% |
+| map:corners | 3059 | 9875 | 52% | 91/7/0 | move 62%, nothing 8%, recall 7%, cast@champ 6%, attack camp 5%, tribute 4%, attack champ 3%, dash 2%, cast@camp 2%, arrive 1%, attack(miss) 0%, buy 0%, ability(no eff) 0% | move 54%, nothing 11%, recall 11%, cast@champ 10%, attack champ 5%, tribute 3%, dash 2%, attack camp 2%, cast@camp 1%, attack(miss) 1%, ability(no eff) 0%, buy 0% |
+| map:elkring | 2253 | 9160 | 36% | 82/15/2 | move 52%, attack camp 14%, recall 9%, nothing 9%, cast@camp 5%, tribute 4%, cast@champ 3%, dash 2%, attack champ 2%, buy 1%, arrive 1%, attack(miss) 0%, ability(no eff) 0% | move 55%, nothing 11%, recall 9%, attack camp 8%, cast@champ 7%, attack champ 4%, cast@camp 3%, dash 2%, tribute 1%, attack(miss) 0%, ability(no eff) 0%, buy 0% |
+| map:expanse | 227 | 908 | 32% | 100/0/0 | move 54%, attack camp 21%, tribute 7%, nothing 7%, recall 6%, dash 3%, ability(no eff) 1%, arrive 1%, cast@camp 1%, buy 1%, attack champ 1% | move 69%, attack camp 8%, nothing 8%, tribute 4%, recall 3%, ability(no eff) 3%, dash 2%, attack champ 2% |
+| map:interlock | 1292 | 5173 | 53% | 88/10/0 | move 46%, attack camp 16%, nothing 11%, recall 9%, tribute 5%, cast@camp 4%, dash 3%, attack champ 3%, cast@champ 3%, buy 1%, arrive 0%, ability(no eff) 0%, attack(miss) 0% | move 43%, attack camp 13%, nothing 13%, recall 10%, tribute 6%, attack champ 5%, cast@champ 4%, cast@camp 3%, dash 2%, ability(no eff) 1%, attack(miss) 0% |
+| map:lanes | 2780 | 13785 | 39% | 94/4/0 | move 54%, attack camp 16%, nothing 12%, tribute 6%, recall 3%, dash 2%, attack champ 2%, cast@camp 2%, ability(no eff) 1%, cast@champ 0%, buy 0%, arrive 0%, attack(miss) 0% | move 53%, nothing 15%, attack camp 13%, attack champ 5%, tribute 4%, recall 3%, dash 2%, cast@camp 2%, ability(no eff) 2%, cast@champ 1%, attack(miss) 0% |
+| map:monolith | 1473 | 7649 | 28% | 82/15/1 | move 59%, attack camp 15%, nothing 6%, recall 6%, tribute 5%, dash 2%, attack champ 2%, cast@camp 2%, buy 1%, ability(no eff) 1%, cast@champ 0%, arrive 0%, attack(miss) 0% | move 69%, attack camp 9%, nothing 8%, attack champ 5%, recall 3%, dash 2%, ability(no eff) 2%, cast@champ 1%, cast@camp 1%, tribute 1%, attack(miss) 0%, buy 0% |
+| map:packs | 2236 | 6552 | 54% | 84/14/1 | move 38%, attack camp 19%, nothing 9%, recall 9%, tribute 7%, cast@camp 4%, dash 4%, attack champ 3%, cast@champ 3%, ability(no eff) 1%, buy 1%, arrive 0%, attack(miss) 0% | move 42%, attack camp 12%, nothing 10%, recall 9%, attack champ 6%, tribute 6%, cast@champ 5%, dash 4%, cast@camp 3%, ability(no eff) 2%, attack(miss) 1%, buy 0%, arrive 0% |
+| map:rows | 460 | 2230 | 37% | 100/0/0 | move 48%, attack camp 20%, nothing 11%, tribute 10%, recall 5%, dash 2%, cast@camp 2%, attack champ 1%, buy 0%, arrive 0%, ability(no eff) 0%, cast@champ 0%, attack(miss) 0% | move 54%, tribute 22%, attack camp 9%, nothing 7%, attack champ 4%, dash 2%, recall 1%, cast@camp 1%, cast@champ 0%, ability(no eff) 0%, attack(miss) 0% |
+| opp:r11-30 | 10690 | 41499 | 43% | 89/9/1 | move 53%, attack camp 14%, nothing 10%, recall 6%, tribute 5%, cast@camp 3%, dash 2%, attack champ 2%, cast@champ 2%, buy 1%, ability(no eff) 1%, arrive 0%, attack(miss) 0% | move 52%, nothing 12%, attack camp 10%, recall 6%, attack champ 5%, cast@champ 4%, tribute 4%, dash 3%, cast@camp 2%, ability(no eff) 1%, attack(miss) 0%, buy 0%, arrive 0% |
+| opp:top10 | 4876 | 17973 | 44% | 89/10/0 | move 52%, attack camp 13%, nothing 10%, recall 8%, tribute 5%, cast@champ 3%, attack champ 3%, dash 2%, cast@camp 2%, arrive 1%, buy 1%, ability(no eff) 0%, attack(miss) 0% | move 53%, nothing 12%, recall 9%, attack camp 6%, cast@champ 6%, attack champ 6%, tribute 3%, dash 2%, cast@camp 1%, ability(no eff) 1%, attack(miss) 0%, buy 0% |
+| res:loss | 11852 | 43719 | 44% | 89/9/0 | move 53%, attack camp 13%, nothing 10%, recall 7%, tribute 5%, cast@champ 3%, dash 2%, cast@camp 2%, attack champ 2%, buy 1%, arrive 1%, ability(no eff) 0%, attack(miss) 0% | move 52%, nothing 12%, attack camp 9%, recall 8%, cast@champ 5%, attack champ 5%, tribute 4%, dash 3%, cast@camp 2%, ability(no eff) 1%, attack(miss) 0%, buy 0%, arrive 0% |
+| res:win | 3714 | 15753 | 42% | 87/11/1 | move 52%, attack camp 15%, nothing 10%, recall 6%, tribute 5%, cast@camp 3%, attack champ 3%, dash 3%, cast@champ 2%, buy 1%, ability(no eff) 1%, arrive 0%, attack(miss) 0% | move 54%, nothing 12%, attack camp 9%, recall 6%, attack champ 6%, cast@champ 5%, tribute 3%, dash 3%, cast@camp 2%, ability(no eff) 1%, attack(miss) 0%, buy 0% |
+
+## longest enemy-half episodes (us / opp)
+us {'r': 195, 'end': 249, 'ty': 'Varg', 'camp': True, 'atk': False, 'cap': True, 'dead': False, 'diff': 2, 'maxdepth': 9}
+us {'r': 149, 'end': 201, 'ty': 'Cassi', 'camp': True, 'atk': False, 'cap': False, 'dead': False, 'diff': 8, 'maxdepth': 4}
+us {'r': 114, 'end': 149, 'ty': 'Prism', 'camp': False, 'atk': True, 'cap': False, 'dead': True, 'diff': -144, 'maxdepth': 30}
+us {'r': 190, 'end': 223, 'ty': 'Varg', 'camp': False, 'atk': False, 'cap': False, 'dead': False, 'diff': -66, 'maxdepth': 37}
+us {'r': 220, 'end': 253, 'ty': 'Ryth', 'camp': False, 'atk': False, 'cap': False, 'dead': False, 'diff': -66, 'maxdepth': 37}
+us {'r': 185, 'end': 216, 'ty': 'Vendetta', 'camp': False, 'atk': False, 'cap': False, 'dead': False, 'diff': -66, 'maxdepth': 43}
+us {'r': 459, 'end': 489, 'ty': 'Cassi', 'camp': False, 'atk': True, 'cap': False, 'dead': False, 'diff': 448, 'maxdepth': 11}
+us {'r': 351, 'end': 380, 'ty': 'Stellar', 'camp': True, 'atk': False, 'cap': False, 'dead': False, 'diff': 484, 'maxdepth': 12}
+opp {'r': 51, 'end': 327, 'ty': 'Stellar', 'camp': True, 'atk': True, 'cap': True, 'dead': True, 'diff': -24, 'maxdepth': 68}
+opp {'r': 47, 'end': 274, 'ty': 'Stellar', 'camp': True, 'atk': True, 'cap': True, 'dead': True, 'diff': -48, 'maxdepth': 65}
+opp {'r': 80, 'end': 292, 'ty': 'Stellar', 'camp': True, 'atk': True, 'cap': True, 'dead': False, 'diff': -36, 'maxdepth': 49}
+opp {'r': 78, 'end': 283, 'ty': 'Issac', 'camp': True, 'atk': True, 'cap': True, 'dead': False, 'diff': 48, 'maxdepth': 39}
+opp {'r': 58, 'end': 246, 'ty': 'Cassi', 'camp': True, 'atk': True, 'cap': True, 'dead': False, 'diff': 0, 'maxdepth': 53}
+opp {'r': 52, 'end': 228, 'ty': 'Tavi', 'camp': False, 'atk': True, 'cap': True, 'dead': False, 'diff': -24, 'maxdepth': 49}
+opp {'r': 70, 'end': 232, 'ty': 'Cassi', 'camp': True, 'atk': True, 'cap': True, 'dead': False, 'diff': 0, 'maxdepth': 29}
+opp {'r': 102, 'end': 239, 'ty': 'Tavi', 'camp': True, 'atk': True, 'cap': True, 'dead': False, 'diff': 36, 'maxdepth': 39}

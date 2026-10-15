@@ -1,0 +1,32 @@
+## rows: respawn->capture latency by group (group named by its team-A-frame tile), us vs opp: n, median, mean, max
+| (18, 3) | us n=106 med 32 mean 29.3 max 60 | opp n=0 med 0 mean 0.0 max 0 |
+| (18, 5) | us n=0 med 0 mean 0.0 max 0 | opp n=161 med 23 mean 25.4 max 60 |
+| (31, 3) | us n=102 med 24 mean 31.5 max 140 | opp n=0 med 0 mean 0.0 max 0 |
+| (31, 5) | us n=0 med 0 mean 0.0 max 0 | opp n=94 med 25 mean 31.1 max 75 |
+| (42, 3) | us n=77 med 31 mean 69.2 max 244 | opp n=0 med 0 mean 0.0 max 0 |
+| (42, 5) | us n=0 med 0 mean 0.0 max 0 | opp n=55 med 46 mean 69.6 max 267 |
+
+## camp hits by (who, territory, group tile)
+('opp', 'own', (1, 31)) 64
+('opp', 'own', (7, 44)) 3140
+('opp', 'own', (18, 44)) 5147
+('opp', 'own', (31, 44)) 5238
+('us', 'own', (18, 3)) 5215
+('us', 'own', (31, 3)) 4430
+('us', 'own', (42, 3)) 2514
+
+## timeline 604a6cf6 loss 726 1056 449
+0 (18, 3) own [('cap_us', 36, 36), ('spawn', 76), ('cap_us', 103, 27), ('spawn', 143), ('cap_us', 176, 33), ('spawn', 216), ('cap_us', 276, 60), ('spawn', 316), ('cap_us', 341, 25), ('spawn', 381), ('cap_us', 397, 16), ('spawn', 437)]
+1 (31, 44) enemy [('cap_opp', 30, 30), ('spawn', 70), ('cap_opp', 90, 20), ('spawn', 130), ('cap_opp', 147, 17), ('spawn', 187), ('cap_opp', 220, 33), ('spawn', 260), ('cap_opp', 307, 47), ('spawn', 347), ('cap_opp', 378, 31), ('spawn', 418), ('cap_opp', 430, 12)]
+2 (31, 3) own [('cap_us', 63, 63), ('spawn', 103), ('cap_us', 125, 22), ('spawn', 165), ('cap_us', 305, 140), ('spawn', 345), ('cap_us', 376, 31), ('spawn', 416), ('cap_us', 438, 22)]
+3 (18, 44) enemy [('cap_opp', 53, 53), ('spawn', 93), ('cap_opp', 119, 26), ('spawn', 159), ('cap_opp', 225, 66), ('spawn', 265), ('cap_opp', 283, 18), ('spawn', 323), ('cap_opp', 356, 33), ('spawn', 396), ('cap_opp', 423, 27)]
+4 (42, 3) own [('cap_us', 141, 141), ('spawn', 181), ('cap_us', 425, 244)]
+5 (7, 44) enemy [('cap_opp', 203, 203), ('spawn', 243), ('cap_opp', 282, 39), ('spawn', 322), ('cap_opp', 359, 37), ('spawn', 399)]
+
+## timeline c3eed638 loss 792 1056 391
+0 (18, 3) own [('cap_us', 36, 36), ('spawn', 76), ('cap_us', 103, 27), ('spawn', 143), ('cap_us', 175, 32), ('spawn', 215), ('cap_us', 233, 18), ('spawn', 273), ('cap_us', 314, 41), ('spawn', 354), ('cap_us', 374, 20)]
+1 (31, 44) enemy [('cap_opp', 31, 31), ('spawn', 71), ('cap_opp', 113, 42), ('spawn', 153), ('cap_opp', 168, 15), ('spawn', 208), ('cap_opp', 221, 13), ('spawn', 261), ('cap_opp', 272, 11), ('spawn', 312), ('cap_opp', 321, 9), ('spawn', 361), ('cap_opp', 371, 10)]
+2 (31, 3) own [('cap_us', 63, 63), ('spawn', 103), ('cap_us', 125, 22), ('spawn', 165), ('cap_us', 199, 34), ('spawn', 240), ('cap_us', 255, 15), ('spawn', 295), ('cap_us', 319, 24), ('spawn', 359), ('cap_us', 375, 16)]
+3 (18, 44) enemy [('cap_opp', 58, 58), ('spawn', 98), ('cap_opp', 142, 44), ('cap_opp', 142, 44), ('spawn', 182), ('cap_opp', 209, 27), ('spawn', 249), ('cap_opp', 285, 36), ('spawn', 325), ('cap_opp', 343, 18), ('spawn', 383)]
+4 (42, 3) own [('cap_us', 141, 141), ('spawn', 181), ('cap_us', 279, 98), ('spawn', 319), ('cap_us', 341, 22), ('cap_us', 341, 22), ('spawn', 381)]
+5 (7, 44) enemy [('cap_opp', 91, 91), ('spawn', 131), ('cap_opp', 181, 50), ('spawn', 221), ('cap_opp', 267, 46), ('spawn', 307), ('cap_opp', 366, 59)]

@@ -1,0 +1,40 @@
+## lanes (18 games, rounds 1-350): share of alive champion-rounds by lane x side. side = our half / their half / middle (x 45..44)
+| who | phase | top our/mid/their | mid-lane our/mid/their | bottom our/mid/their |
+|---|---|---|---|---|
+| us | 1-99 | 20/0/0 | 45/0/0 | 33/0/2 |
+| us | 100-249 | 23/0/0 | 51/0/0 | 23/0/2 |
+| us | 250-350 | 30/0/0 | 50/0/1 | 18/0/1 |
+| opp | 1-99 | 46/0/5 | 38/0/4 | 6/0/1 |
+| opp | 100-249 | 39/0/12 | 34/0/9 | 6/0/1 |
+| opp | 250-350 | 43/0/10 | 36/0/5 | 5/0/1 |
+
+## rounds with enemy champions in one of OUR lanes (top or bottom, our side of x=45): our champions in that lane vs invaders
+| invaders in lane | rounds | mean ours in lane | ours < invaders | ours = 0 |
+|---|---|---|---|---|
+| 1 | 1597 | 1.36 | 28% | 28% |
+| 2 | 580 | 1.33 | 57% | 33% |
+| 3 | 199 | 1.22 | 78% | 40% |
+| 4 | 92 | 0.85 | 100% | 54% |
+| 5 | 5 | 3.00 | 100% | 0% |
+win: lane-invasion rounds 365, invaders>=3 0%, we outnumbered in lane 20%, none of ours within 8 of them 24%
+loss: lane-invasion rounds 2108, invaders>=3 14%, we outnumbered in lane 45%, none of ours within 8 of them 18%
+
+per game (match,res,opp,rank, invasion lane-rounds, with >=3 invaders, we outnumbered, nobody near)
+('4cb4e065', 'loss', 'Interconti', 1, 129, 2, 56, 23)
+('ab951aad', 'loss', 'Mite', 2, 0, 0, 0, 0)
+('792435d1', 'loss', 'BottleBots', 27, 104, 0, 39, 25)
+('690fca52', 'loss', 'Conley', 20, 285, 98, 192, 70)
+('dd220d28', 'loss', 'WHIM', 30, 305, 112, 216, 25)
+('178189ae', 'loss', 'SSSA', 29, 219, 36, 66, 39)
+('adb9c933', 'loss', "octo's ody", 23, 155, 15, 46, 29)
+('920d31ac', 'loss', 'ひななー', 21, 153, 24, 108, 62)
+('24f16f62', 'loss', 'getramramd', 18, 59, 0, 0, 13)
+('58446caa', 'loss', 'lETHal', 16, 0, 0, 0, 0)
+('257d4afd', 'loss', 'Boost', 15, 211, 9, 123, 17)
+('dbb26492', 'loss', 'KratosMess', 14, 172, 0, 22, 14)
+('848c8b27', 'loss', 'procless', 9, 101, 0, 34, 26)
+('33f8c403', 'loss', 'Nyxius', 8, 210, 0, 61, 47)
+('07865243', 'loss', 'PTN Hyperi', 7, 5, 0, 1, 0)
+('4cce0949', 'win', 'test', 17, 218, 0, 53, 55)
+('8689da92', 'win', 'Nyx', 25, 85, 0, 13, 32)
+('d4fbbc81', 'win', 'Full Damag', 11, 62, 0, 8, 1)

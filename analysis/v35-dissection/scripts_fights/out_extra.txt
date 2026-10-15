@@ -1,0 +1,46 @@
+# First victim isolated (no ally within 4) and low (<50% hp), vs baseline of the victim team's champion-rounds in enemy vision (within 8)
+| opener | openers | victim isolated | baseline isolated | victim <50% | baseline <50% |
+|---|---|---|---|---|---|
+| us | 1156 | 56% | 38% | 14% | 24% |
+| them | 1002 | 56% | 36% | 8% | 15% |
+
+# Spell usage per champion in fight rounds with an enemy within 4 and no cast in the previous 8 rounds (both slots up)
+| champion | us: n | cast | walked | basic-attacked | them: n | cast | walked | basic-attacked |
+|---|---|---|---|---|---|---|---|---|
+| Stellar | 562 | 69% | 10% | 0% | 645 | 44% | 29% | 1% |
+| Tavi | 458 | 43% | 36% | 0% | 445 | 47% | 26% | 0% |
+| Ryth | 435 | 58% | 17% | 0% | 573 | 31% | 44% | 1% |
+| Cassi | 283 | 64% | 17% | 0% | 357 | 53% | 17% | 0% |
+| Prism | 216 | 59% | 15% | 0% | 106 | 42% | 34% | 0% |
+| Issac | 205 | 39% | 26% | 0% | 568 | 24% | 40% | 0% |
+| Ren | 177 | 49% | 4% | 0% | 265 | 48% | 14% | 4% |
+| Varg | 72 | 43% | 31% | 0% | 308 | 32% | 36% | 1% |
+| Vendetta | 45 | 38% | 40% | 0% | 138 | 27% | 34% | 1% |
+| Marcella | 0 | - | - | - | 36 | 50% | 36% | 0% |
+| Willow | 0 | - | - | - | 51 | 27% | 41% | 0% |
+| VesperVale | 0 | - | - | - | 8 | 38% | 50% | 0% |
+
+# Outcome per opener champion (real fights): opener side kills / deaths per fight
+| opener side | champion | n | kills | deaths |
+|---|---|---|---|---|
+| them | Stellar | 161 | 0.96 | 0.23 |
+| them | Ren | 87 | 0.95 | 0.28 |
+| them | Cassi | 61 | 0.87 | 0.44 |
+| them | Tavi | 61 | 1.10 | 0.16 |
+| them | Ryth | 49 | 0.96 | 0.67 |
+| them | Issac | 27 | 0.89 | 0.59 |
+| them | Vendetta | 23 | 1.22 | 0.04 |
+| them | Varg | 20 | 1.00 | 0.35 |
+| them | Prism | 20 | 0.80 | 0.40 |
+| them | Willow | 6 | 0.50 | 0.67 |
+| them | Marcella | 4 | 1.50 | 0.00 |
+| them | VesperVale | 2 | 2.00 | 0.00 |
+| us | Stellar | 194 | 0.78 | 0.56 |
+| us | Ren | 114 | 0.75 | 0.46 |
+| us | Cassi | 76 | 0.49 | 0.83 |
+| us | Ryth | 61 | 0.56 | 0.56 |
+| us | Tavi | 52 | 0.67 | 0.62 |
+| us | Prism | 43 | 0.65 | 0.91 |
+| us | Issac | 22 | 0.91 | 0.27 |
+| us | Varg | 8 | 0.62 | 0.00 |
+| us | Vendetta | 5 | 0.60 | 0.00 |

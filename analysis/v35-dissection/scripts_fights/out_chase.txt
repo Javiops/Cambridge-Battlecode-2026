@@ -1,0 +1,29 @@
+# Retreat under fire (first step away with an enemy within 4 and damage taken in the previous 3 rounds)
+| side | n | hp% at the step med (p25-p75) | <30% | <50% | >=70% | kite (hits again within 8 rounds) | outnumbered | recall within 10 | recall completed | recall dist to nearest enemy med | died within 12 |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| us | 1046 | 49 (31-71) | 22% | 51% | 26% | 21% | 31% | 50% | 85% | 6 | 19% |
+| them | 1334 | 47 (31-66) | 23% | 53% | 22% | 14% | 34% | 52% | 88% | 7.0 | 11% |
+us by class: melee n 656 hp% med 49.0 died 13% recalled 52%, caster n 390 hp% med 50.0 died 30% recalled 47%
+us by hp band (n, died, recalled, kite): 0-30: 230 28% 76% 5%, 30-50: 300 20% 74% 10%, 50-70: 239 17% 39% 21%, 70+: 277 13% 13% 45%
+them by class: melee n 899 hp% med 49 died 10% recalled 51%, caster n 409 hp% med 44 died 13% recalled 54%, ranged n 26 hp% med 42.0 died 12% recalled 58%
+them by hp band (n, died, recalled, kite): 0-30: 310 19% 78% 3%, 30-50: 392 8% 69% 8%, 50-70: 335 11% 40% 19%, 70+: 297 5% 18% 29%
+
+# Chase (reference definition): after an enemy champion's first step away, consecutive follow rounds by each of our champions that hit it in the previous 3 rounds
+| chaser | hitter-retreat episodes | 0 steps | 1-2 | >= 3 | >= 5 | >=3 when victim < 35% hp | victim died (all) | victim died when chased >= 3 | hit again after the step | chaser type for >= 3 |
+|---|---|---|---|---|---|---|---|---|---|---|
+| us | 1916 | 65% | 24% | 11% | 3% | 9% (n=574) | 11% | 18% | 11% | [('Stellar', 65), ('Ren', 53), ('Ryth', 31), ('Cassi', 20)] |
+   by chaser class: caster n 1105 >=3 steps 10%, melee n 811 >=3 steps 12%
+| them | 1453 | 55% | 30% | 14% | 4% | 11% (n=439) | 21% | 33% | 15% | [('Stellar', 67), ('Ren', 29), ('Ryth', 29), ('Tavi', 24)] |
+   by chaser class: caster n 797 >=3 steps 15%, melee n 639 >=3 steps 13%, ranged n 17 >=3 steps 12%
+
+examples of long chases:
+  us ('corners', '64d3af95', 'r22', 'Prism', 'follows', 'Varg', 'hp92%', '5 steps', 'escaped', 'hits after 0')
+  us ('elkring', 'ca10ce5a', 'r278', 'Prism', 'follows', 'Vendetta', 'hp22%', '5 steps', 'victim died', 'hits after 0')
+  us ('collision', 'e599d53c', 'r908', 'Stellar', 'follows', 'Ryth', 'hp56%', '5 steps', 'victim died', 'hits after 1')
+  us ('elkring', '2f3472aa', 'r87', 'Stellar', 'follows', 'Varg', 'hp71%', '6 steps', 'escaped', 'hits after 0')
+  us ('elkring', '2f3472aa', 'r160', 'Stellar', 'follows', 'Issac', 'hp47%', '8 steps', 'escaped', 'hits after 0')
+  them ('monolith', '40eab0a2', 'r73', 'Varg', 'follows', 'Ryth', 'hp59%', '12 steps', 'escaped', 'hits after 0')
+  them ('collision', '95784669', 'r185', 'Tavi', 'follows', 'Cassi', 'hp56%', '8 steps', 'victim died', 'hits after 0')
+  them ('interlock', '170d7411', 'r169', 'Ryth', 'follows', 'Issac', 'hp39%', '5 steps', 'escaped', 'hits after 1')
+  them ('collision', '69757c8e', 'r587', 'Stellar', 'follows', 'Stellar', 'hp92%', '5 steps', 'escaped', 'hits after 1')
+  them ('collision', '524c5b58', 'r566', 'Ren', 'follows', 'Ren', 'hp24%', '5 steps', 'escaped', 'hits after 0')

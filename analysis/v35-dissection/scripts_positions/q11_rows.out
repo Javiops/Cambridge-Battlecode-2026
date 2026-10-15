@@ -1,0 +1,11 @@
+## group clearing on farm maps: rounds from the team's first hit on the group to its capture (median/mean), distinct hitters (mean), share cleared by 1 / 2 / 3+ hitters; capture -> tribute delay per champion (median/mean rounds)
+| map | who | clearings | first hit->capture med/mean | hitters mean | 1 / 2 / 3+ hitters | tribute delay med/mean (n) |
+|---|---|---|---|---|---|---|
+| rows | us | 270 | 21 / 25.5 | 2.70 | 7% / 23% / 70% | 21 / 23.1 (239) |
+| rows | opp | 269 | 20 / 26.6 | 2.90 | 11% / 21% / 68% | 23 / 31.0 (262) |
+| expanse | us | 423 | 24 / 24.3 | 1.10 | 90% / 10% / 0% | 12 / 12.7 (403) |
+| expanse | opp | 386 | 23 / 27.8 | 1.30 | 75% / 21% / 4% | 13 / 22.2 (324) |
+| monolith | us | 339 | 24 / 30.1 | 1.47 | 57% / 39% / 4% | 31 / 36.3 (277) |
+| monolith | opp | 358 | 21 / 34.1 | 1.72 | 52% / 31% / 16% | 32 / 42.3 (265) |
+| lanes | us | 593 | 17 / 35.0 | 1.25 | 78% / 19% / 3% | 8 / 16.2 (507) |
+| lanes | opp | 605 | 16 / 34.6 | 1.64 | 59% / 26% / 16% | 11 / 21.6 (549) |

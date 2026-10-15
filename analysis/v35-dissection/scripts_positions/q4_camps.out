@@ -1,0 +1,99 @@
+games 150
+
+## captures by territory of the group (own/mid/enemy from the capturer's point of view), by 50-round bin
+| split | who | 0-49 | 50-99 | 100-149 | 150-199 | 200-249 | 250-299 | 300-349 | 350-399 | 400-449 | 450+ | total own/mid/enemy | gems own/mid/enemy |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| ALL | us | 260/96/0 | 305/30/1 | 336/61/10 | 331/41/4 | 296/52/7 | 337/52/8 | 382/57/9 | 231/57/1 | 187/45/7 | 337/131/5 | 3002/622/52 | 105018/22104/1784 |
+| ALL | opp | 344/15/0 | 287/46/8 | 356/64/24 | 350/66/27 | 354/61/16 | 373/58/14 | 359/62/18 | 270/55/19 | 173/45/14 | 355/144/26 | 3221/616/166 | 113152/23438/5526 |
+| map:collision | us | 0/32/0 | 38/1/0 | 18/13/0 | 21/15/0 | 21/15/1 | 30/11/0 | 28/14/0 | 33/16/0 | 32/15/0 | 179/86/0 | 400/218/1 | 9026/4796/22 |
+| map:collision | opp | 45/1/0 | 25/6/0 | 33/5/0 | 27/3/1 | 25/7/1 | 30/4/0 | 28/9/2 | 33/6/3 | 31/6/1 | 177/49/7 | 454/96/15 | 12314/2112/588 |
+| map:corners | us | 0/34/0 | 16/16/0 | 7/24/0 | 7/15/0 | 7/16/0 | 2/15/0 | 4/22/0 | 2/14/0 | 5/12/0 | 11/26/0 | 61/194/0 | 1564/9192/0 |
+| map:corners | opp | 15/8/0 | 14/12/0 | 13/21/0 | 12/23/2 | 16/21/0 | 5/17/1 | 15/20/0 | 13/21/0 | 6/19/0 | 30/75/3 | 139/237/6 | 3678/10944/146 |
+| map:elkring | us | 28/0/0 | 23/0/0 | 28/0/1 | 25/0/0 | 27/0/1 | 27/0/4 | 23/0/3 | 31/0/0 | 25/0/3 | 79/0/5 | 316/0/17 | 11376/0/612 |
+| map:elkring | opp | 34/0/0 | 24/0/1 | 37/0/4 | 29/0/3 | 32/0/3 | 24/0/4 | 33/0/1 | 30/0/3 | 28/0/2 | 79/0/9 | 350/0/30 | 12204/0/1080 |
+| map:expanse | us | 51/0/0 | 50/0/0 | 67/0/0 | 65/0/0 | 63/0/0 | 52/0/0 | 73/0/0 | 3/0/0 | - | - | 424/0/0 | 17128/0/0 |
+| map:expanse | opp | 48/0/0 | 52/0/1 | 63/0/0 | 60/0/2 | 62/0/0 | 65/1/0 | 53/2/0 | 9/1/0 | - | - | 412/4/3 | 16116/432/144 |
+| map:interlock | us | 39/0/0 | 32/0/0 | 40/0/0 | 35/0/1 | 34/0/0 | 42/0/0 | 37/1/0 | 36/2/0 | 33/1/0 | 23/1/0 | 351/5/1 | 11784/180/72 |
+| map:interlock | opp | 41/0/0 | 20/1/1 | 34/1/2 | 34/1/0 | 29/2/1 | 32/1/0 | 36/1/0 | 32/1/0 | 27/0/1 | 20/1/2 | 305/9/7 | 10858/324/382 |
+| map:lanes | us | 72/0/0 | 79/12/0 | 59/7/5 | 82/5/2 | 65/7/5 | 83/14/0 | 82/10/4 | 45/9/1 | 22/4/0 | 8/0/0 | 597/68/17 | 14290/1496/374 |
+| map:lanes | opp | 69/0/0 | 50/15/5 | 82/16/15 | 72/21/17 | 79/15/7 | 95/16/6 | 80/16/10 | 43/8/4 | 15/1/0 | 5/3/0 | 590/111/64 | 14574/2442/1514 |
+| map:monolith | us | 52/0/0 | 15/0/1 | 48/0/4 | 37/0/1 | 39/0/0 | 35/0/4 | 37/0/2 | 30/0/0 | 31/0/4 | 4/0/0 | 328/0/16 | 11458/0/704 |
+| map:monolith | opp | 42/0/0 | 40/0/0 | 35/0/3 | 53/0/1 | 46/0/4 | 47/0/1 | 37/0/3 | 43/0/6 | 33/0/3 | 5/0/1 | 381/0/22 | 12082/0/836 |
+| map:packs | us | 0/30/0 | 34/1/0 | 15/17/0 | 25/6/0 | 22/14/0 | 30/12/0 | 32/10/0 | 22/16/0 | 27/13/0 | 33/18/0 | 240/137/0 | 10572/6440/0 |
+| map:packs | opp | 31/6/0 | 24/12/0 | 21/21/0 | 25/18/1 | 25/16/0 | 30/19/2 | 33/14/2 | 29/18/3 | 23/19/7 | 39/16/4 | 280/159/19 | 11856/7184/836 |
+| map:rows | us | 18/0/0 | 18/0/0 | 54/0/0 | 34/0/0 | 18/0/0 | 36/0/0 | 66/0/0 | 29/0/0 | 12/0/0 | - | 285/0/0 | 17820/0/0 |
+| map:rows | opp | 19/0/0 | 38/0/0 | 38/0/0 | 38/0/0 | 40/0/0 | 45/0/0 | 44/0/0 | 38/0/0 | 10/0/0 | - | 310/0/0 | 19470/0/0 |
+| opp:r11-30 | us | 183/62/0 | 204/21/1 | 234/41/8 | 221/27/4 | 210/42/6 | 235/40/7 | 269/33/7 | 162/43/0 | 134/38/6 | 254/105/3 | 2106/452/42 | 73526/16434/1406 |
+| opp:r11-30 | opp | 235/7/0 | 181/25/6 | 244/32/20 | 228/40/17 | 239/28/14 | 250/25/12 | 249/35/14 | 184/29/12 | 126/20/11 | 258/104/19 | 2194/345/125 | 76588/12876/4030 |
+| opp:top10 | us | 77/34/0 | 101/9/0 | 102/20/2 | 110/14/0 | 86/10/1 | 102/12/1 | 113/24/2 | 69/14/1 | 53/7/1 | 83/26/2 | 896/170/10 | 31492/5670/378 |
+| opp:top10 | opp | 109/8/0 | 106/21/2 | 112/32/4 | 122/26/10 | 115/33/2 | 123/33/2 | 110/27/4 | 86/26/7 | 47/25/3 | 97/40/7 | 1027/271/41 | 36564/10562/1496 |
+| res:loss | us | 160/51/0 | 179/24/1 | 188/29/7 | 193/16/0 | 161/25/1 | 199/23/4 | 221/31/3 | 134/22/1 | 83/17/1 | 136/46/4 | 1654/284/22 | 58494/10808/756 |
+| res:loss | opp | 202/11/0 | 169/39/7 | 216/48/21 | 220/52/25 | 218/52/14 | 243/49/9 | 219/51/13 | 176/45/11 | 99/36/11 | 180/106/23 | 1942/489/134 | 69250/18558/4452 |
+| res:win | us | 100/45/0 | 126/6/0 | 148/32/3 | 138/25/4 | 135/27/6 | 138/29/4 | 161/26/6 | 97/35/0 | 104/28/6 | 201/85/1 | 1348/338/30 | 46524/11296/1028 |
+| res:win | opp | 142/4/0 | 118/7/1 | 140/16/3 | 130/14/2 | 136/9/2 | 130/9/5 | 140/11/5 | 94/10/8 | 74/9/3 | 175/38/3 | 1279/127/32 | 43902/4880/1074 |
+
+## own-half camps captured by the enemy: games where it happens, first round
+| split | games | games with own-half group lost | first loss round median / min / p25 |
+|---|---|---|---|
+| ALL | 150 | 64 (42%) | 214 / 50 / 143 |
+| map:collision | 19 | 7 (36%) | 369 / 172 / 223 |
+| map:corners | 17 | 3 (17%) | 163 / 157 / 157 |
+| map:elkring | 14 | 11 (78%) | 160 / 99 / 102 |
+| map:expanse | 17 | 1 (5%) | 97 / 97 / 97 |
+| map:interlock | 13 | 4 (30%) | 341 / 70 / 217 |
+| map:lanes | 18 | 14 (77%) | 130 / 50 / 103 |
+| map:monolith | 13 | 11 (84%) | 248 / 126 / 143 |
+| map:packs | 21 | 13 (61%) | 426 / 199 / 336 |
+| opp:r11-30 | 100 | 41 (41%) | 212 / 70 / 126 |
+| opp:top10 | 50 | 23 (46%) | 217 / 50 / 160 |
+| res:loss | 91 | 45 (49%) | 196 / 50 / 140 |
+| res:win | 59 | 19 (32%) | 333 / 99 / 157 |
+
+## per-game mid/enemy captures vs result (mean per game)
+| split | games | us mid caps | opp mid caps | us enemy-half caps | opp enemy-half caps (=our camps lost) | us own | opp own | us mid gems | opp mid gems | opp gems from our half |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| ALL | 150 | 4.1 | 4.1 | 0.3 | 1.1 | 20.0 | 21.5 | 147 | 156 | 37 |
+| res:win | 59 | 5.7 | 2.2 | 0.5 | 0.5 | 22.8 | 21.7 | 191 | 83 | 18 |
+| res:loss | 91 | 3.1 | 5.4 | 0.2 | 1.5 | 18.2 | 21.3 | 119 | 204 | 49 |
+| map:collision win | 12 | 14.2 | 3.0 | 0.1 | 0.3 | 24.2 | 22.2 | 314 | 66 | 14 |
+| map:collision loss | 7 | 6.7 | 8.6 | 0.0 | 1.6 | 15.6 | 26.7 | 148 | 189 | 59 |
+| map:corners win | 5 | 17.6 | 7.0 | 0.0 | 0.2 | 5.2 | 7.4 | 840 | 317 | 4 |
+| map:corners loss | 12 | 8.8 | 16.8 | 0.0 | 0.4 | 2.9 | 8.5 | 416 | 780 | 10 |
+| map:elkring win | 5 | 0.0 | 0.0 | 1.4 | 1.2 | 25.6 | 27.2 | 0 | 0 | 43 |
+| map:elkring loss | 9 | 0.0 | 0.0 | 1.1 | 2.7 | 20.9 | 23.8 | 0 | 0 | 96 |
+| map:expanse win | 11 | 0.0 | 0.3 | 0.0 | 0.0 | 25.8 | 24.5 | 0 | 29 | 0 |
+| map:expanse loss | 6 | 0.0 | 0.2 | 0.0 | 0.5 | 23.3 | 23.8 | 0 | 18 | 24 |
+| map:interlock win | 7 | 0.6 | 0.7 | 0.1 | 0.0 | 29.4 | 24.4 | 21 | 26 | 0 |
+| map:interlock loss | 6 | 0.2 | 0.7 | 0.0 | 1.2 | 24.2 | 22.3 | 6 | 24 | 64 |
+| map:lanes win | 3 | 4.3 | 3.3 | 3.7 | 3.3 | 37.7 | 33.0 | 95 | 73 | 74 |
+| map:lanes loss | 15 | 3.7 | 6.7 | 0.4 | 3.6 | 32.3 | 32.7 | 81 | 148 | 86 |
+| map:monolith win | 5 | 0.0 | 0.0 | 2.0 | 1.4 | 27.2 | 27.2 | 0 | 0 | 53 |
+| map:monolith loss | 8 | 0.0 | 0.0 | 0.8 | 1.9 | 24.0 | 30.6 | 0 | 0 | 72 |
+| map:packs win | 7 | 8.9 | 5.4 | 0.0 | 0.6 | 13.6 | 13.6 | 415 | 254 | 25 |
+| map:packs loss | 14 | 5.4 | 8.6 | 0.0 | 1.1 | 10.4 | 13.2 | 253 | 386 | 47 |
+| map:rows win | 4 | 0.0 | 0.0 | 0.0 | 0.0 | 17.2 | 17.2 | 0 | 0 | 0 |
+| map:rows loss | 14 | 0.0 | 0.0 | 0.0 | 0.0 | 15.4 | 17.2 | 0 | 0 | 0 |
+
+## mid-camp balance vs result: games grouped by (us mid caps - opp mid caps)
+| diff -99..-6 | 18 games | win 0% |
+| diff -5..-1 | 26 games | win 19% |
+| diff 0..0 | 63 games | win 38% |
+| diff 1..5 | 27 games | win 59% |
+| diff 6..99 | 16 games | win 87% |
+
+## games where the opponent took most from our half (opp enemy-half caps, gems)
+{'m': 'dd220d28', 'map': 'lanes', 'res': 'loss', 'opp': 'WHIM', 'orank': 30, 'rounds': 418, 'score': 630, 'oscore': 1018, 'us_own': 24, 'us_mid': 1, 'us_en': 1, 'op_own': 33, 'op_mid': 1, 'op_en': 13, 'g_us_mid': 22, 'g_op_mid': 22, 'g_us_en': 22, 'g_op_en': 324, 'first_lost': 79}
+{'m': '22a727e6', 'map': 'collision', 'res': 'loss', 'opp': 'Conley', 'orank': 20, 'rounds': 655, 'score': 22, 'oscore': 1004, 'us_own': 3, 'us_mid': 1, 'us_en': 0, 'op_own': 15, 'op_mid': 7, 'op_en': 5, 'g_us_mid': 22, 'g_op_mid': 154, 'g_us_en': 0, 'g_op_en': 282, 'first_lost': 172}
+{'m': '920d31ac', 'map': 'lanes', 'res': 'loss', 'opp': 'ひななー', 'orank': 21, 'rounds': 412, 'score': 802, 'oscore': 1002, 'us_own': 32, 'us_mid': 3, 'us_en': 0, 'op_own': 28, 'op_mid': 4, 'op_en': 11, 'g_us_mid': 66, 'g_op_mid': 88, 'g_us_en': 0, 'g_op_en': 264, 'first_lost': 107}
+{'m': '690fca52', 'map': 'lanes', 'res': 'loss', 'opp': 'Conley', 'orank': 20, 'rounds': 388, 'score': 536, 'oscore': 1008, 'us_own': 23, 'us_mid': 0, 'us_en': 1, 'op_own': 31, 'op_mid': 0, 'op_en': 10, 'g_us_mid': 0, 'g_op_mid': 0, 'g_us_en': 22, 'g_op_en': 240, 'first_lost': 91}
+{'m': '0969a47f', 'map': 'packs', 'res': 'loss', 'opp': 'BottleBots', 'orank': 27, 'rounds': 566, 'score': 828, 'oscore': 1024, 'us_own': 10, 'us_mid': 9, 'us_en': 0, 'op_own': 11, 'op_mid': 7, 'op_en': 5, 'g_us_mid': 384, 'g_op_mid': 320, 'g_us_en': 0, 'g_op_en': 220, 'first_lost': 199}
+{'m': '6e9d3b94', 'map': 'elkring', 'res': 'loss', 'opp': 'BottleBots', 'orank': 27, 'rounds': 671, 'score': 900, 'oscore': 1008, 'us_own': 26, 'us_mid': 0, 'us_en': 2, 'op_own': 22, 'op_mid': 0, 'op_en': 5, 'g_us_mid': 0, 'g_op_mid': 0, 'g_us_en': 72, 'g_op_en': 180, 'first_lost': 144}
+{'m': '710e2ba1', 'map': 'elkring', 'res': 'loss', 'opp': 'Full Damage', 'orank': 11, 'rounds': 669, 'score': 900, 'oscore': 1008, 'us_own': 25, 'us_mid': 0, 'us_en': 3, 'op_own': 26, 'op_mid': 0, 'op_en': 5, 'g_us_mid': 0, 'g_op_mid': 0, 'g_us_en': 108, 'g_op_en': 180, 'first_lost': 102}
+{'m': '178189ae', 'map': 'lanes', 'res': 'loss', 'opp': 'SSSA', 'orank': 29, 'rounds': 433, 'score': 772, 'oscore': 1006, 'us_own': 33, 'us_mid': 3, 'us_en': 0, 'op_own': 33, 'op_mid': 1, 'op_en': 7, 'g_us_mid': 66, 'g_op_mid': 22, 'g_us_en': 0, 'g_op_en': 168, 'first_lost': 113}
+{'m': '83a66318', 'map': 'interlock', 'res': 'loss', 'opp': 'lETHal', 'orank': 16, 'rounds': 457, 'score': 298, 'oscore': 1064, 'us_own': 17, 'us_mid': 0, 'us_en': 0, 'op_own': 14, 'op_mid': 1, 'op_en': 4, 'g_us_mid': 0, 'g_op_mid': 36, 'g_us_en': 0, 'g_op_en': 166, 'first_lost': 70}
+{'m': 'd97caaff', 'map': 'elkring', 'res': 'loss', 'opp': 'Univardisty of Shingtonwash', 'orank': 4, 'rounds': 582, 'score': 792, 'oscore': 1008, 'us_own': 22, 'us_mid': 0, 'us_en': 3, 'op_own': 25, 'op_mid': 0, 'op_en': 4, 'g_us_mid': 0, 'g_op_mid': 0, 'g_us_en': 108, 'g_op_en': 144, 'first_lost': 167}
+{'m': 'bf1de170', 'map': 'expanse', 'res': 'loss', 'opp': 'hello', 'orank': 6, 'rounds': 379, 'score': 610, 'oscore': 1036, 'us_own': 20, 'us_mid': 0, 'us_en': 0, 'op_own': 24, 'op_mid': 0, 'op_en': 3, 'g_us_mid': 0, 'g_op_mid': 0, 'g_us_en': 0, 'g_op_en': 144, 'first_lost': 97}
+{'m': 'ad957980', 'map': 'elkring', 'res': 'loss', 'opp': 'ひななー', 'orank': 21, 'rounds': 659, 'score': 468, 'oscore': 1008, 'us_own': 21, 'us_mid': 0, 'us_en': 0, 'op_own': 22, 'op_mid': 0, 'op_en': 4, 'g_us_mid': 0, 'g_op_mid': 0, 'g_us_en': 0, 'g_op_en': 144, 'first_lost': 297}
+{'m': '4ced717d', 'map': 'packs', 'res': 'loss', 'opp': 'geese geese go', 'orank': 13, 'rounds': 582, 'score': 768, 'oscore': 1040, 'us_own': 11, 'us_mid': 7, 'us_en': 0, 'op_own': 15, 'op_mid': 5, 'op_en': 3, 'g_us_mid': 332, 'g_op_mid': 240, 'g_us_en': 0, 'g_op_en': 132, 'first_lost': 272}
+{'m': 'f0067277', 'map': 'monolith', 'res': 'loss', 'opp': 'Boost', 'orank': 15, 'rounds': 453, 'score': 630, 'oscore': 1004, 'us_own': 21, 'us_mid': 0, 'us_en': 1, 'op_own': 27, 'op_mid': 0, 'op_en': 3, 'g_us_mid': 0, 'g_op_mid': 0, 'g_us_en': 44, 'g_op_en': 132, 'first_lost': 248}
+{'m': '15195780', 'map': 'collision', 'res': 'win', 'opp': 'BottleBots', 'orank': 27, 'rounds': 716, 'score': 1002, 'oscore': 800, 'us_own': 25, 'us_mid': 18, 'us_en': 0, 'op_own': 26, 'op_mid': 0, 'op_en': 2, 'g_us_mid': 396, 'g_op_mid': 0, 'g_us_en': 0, 'g_op_en': 130, 'first_lost': 336}

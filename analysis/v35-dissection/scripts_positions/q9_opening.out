@@ -1,0 +1,44 @@
+## opening: deaths before round 100 (us / opp) vs result, per map
+| map | games | our deaths <r100 (W / L) | their deaths <r100 (W / L) | win% when we lose more champions before r100 | win% when we lose fewer | win% when equal |
+|---|---|---|---|---|---|---|
+| ALL | 150 | 0.3 / 0.8 | 0.5 / 0.3 | 26% (n=38) | 56% (n=23) | 40% (n=89) |
+| collision | 19 | 0.6 / 0.9 | 0.6 / 0.0 | 57% (n=7) | 100% (n=3) | 55% (n=9) |
+| corners | 17 | 1.2 / 2.1 | 1.8 / 0.8 | 22% (n=9) | 50% (n=4) | 25% (n=4) |
+| elkring | 14 | 0.2 / 0.8 | 0.6 / 0.6 | 20% (n=5) | 40% (n=5) | 50% (n=4) |
+| expanse | 17 | 0.0 / 0.0 | 0.0 / 0.0 | - | - | 64% (n=17) |
+| interlock | 13 | 0.3 / 0.8 | 0.4 / 0.3 | 33% (n=3) | 66% (n=3) | 57% (n=7) |
+| lanes | 18 | 0.3 / 0.9 | 0.7 / 0.1 | 0% (n=6) | 50% (n=2) | 20% (n=10) |
+| monolith | 13 | 0.4 / 0.4 | 0.0 / 0.5 | 50% (n=2) | 0% (n=2) | 44% (n=9) |
+| packs | 21 | 0.1 / 0.9 | 0.9 / 0.1 | 16% (n=6) | 75% (n=4) | 27% (n=11) |
+| rows | 18 | 0.0 / 0.0 | 0.0 / 0.0 | - | - | 22% (n=18) |
+
+## local numbers when an enemy is within 8 (every 2nd round): share of champion-rounds outnumbered / even / outnumbering (allies within 8 of the champion, incl. itself, vs enemies within 8)
+| split | who | champ-rounds | outnumbered | even | outnumbering | deaths n | deaths while outnumbered | even | outnumbering |
+|---|---|---|---|---|---|---|---|---|---|
+| ALL | us | 42415 | 14% | 22% | 62% | 858 | 31% | 26% | 42% |
+| ALL | opp | 41736 | 15% | 23% | 60% | 581 | 29% | 24% | 45% |
+| res:win | us | 17106 | 10% | 21% | 68% | 195 | 20% | 31% | 48% |
+| res:win | opp | 15476 | 18% | 27% | 54% | 353 | 33% | 23% | 42% |
+| res:loss | us | 25309 | 17% | 23% | 58% | 663 | 34% | 24% | 40% |
+| res:loss | opp | 26260 | 13% | 21% | 64% | 228 | 23% | 26% | 50% |
+| opp:top10 | us | 12639 | 17% | 22% | 59% | 317 | 34% | 22% | 42% |
+| opp:top10 | opp | 13322 | 13% | 20% | 65% | 151 | 28% | 21% | 49% |
+| opp:r11-30 | us | 29776 | 13% | 22% | 63% | 541 | 29% | 28% | 41% |
+| opp:r11-30 | opp | 28414 | 16% | 24% | 58% | 430 | 30% | 25% | 44% |
+| map:collision | us | 9246 | 10% | 20% | 69% | 215 | 16% | 29% | 53% |
+| map:collision | opp | 8327 | 17% | 25% | 56% | 161 | 31% | 23% | 44% |
+| map:corners | us | 9358 | 28% | 23% | 48% | 230 | 56% | 26% | 17% |
+| map:corners | opp | 11303 | 9% | 15% | 75% | 121 | 24% | 23% | 51% |
+| map:elkring | us | 4580 | 17% | 23% | 58% | 91 | 37% | 20% | 41% |
+| map:elkring | opp | 4917 | 13% | 22% | 64% | 113 | 27% | 23% | 49% |
+| map:expanse | us | 148 | 0% | 22% | 77% | 0 | 0% | 0% | 0% |
+| map:interlock | us | 4227 | 10% | 15% | 74% | 56 | 25% | 19% | 55% |
+| map:interlock | opp | 3864 | 17% | 21% | 61% | 42 | 40% | 21% | 38% |
+| map:lanes | us | 5248 | 8% | 20% | 71% | 68 | 29% | 30% | 39% |
+| map:lanes | opp | 4545 | 20% | 23% | 55% | 26 | 42% | 11% | 46% |
+| map:monolith | us | 2832 | 11% | 33% | 55% | 49 | 18% | 34% | 46% |
+| map:monolith | opp | 2606 | 19% | 42% | 37% | 32 | 40% | 31% | 28% |
+| map:packs | us | 6332 | 10% | 26% | 62% | 147 | 19% | 21% | 59% |
+| map:packs | opp | 5848 | 17% | 28% | 53% | 79 | 18% | 36% | 44% |
+| map:rows | us | 444 | 3% | 14% | 82% | 2 | 0% | 50% | 50% |
+| map:rows | opp | 233 | 57% | 31% | 11% | 6 | 50% | 0% | 50% |

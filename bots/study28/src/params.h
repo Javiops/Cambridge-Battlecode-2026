@@ -82,3 +82,13 @@
 #define P_CASTSAFE 0         // skip a rooting cast when we should escape: lost 15-30 (hp only) and 12-29 (70%), off
 #define P_KITEFRONT 0        // 1 = front line before kite, 2 = kite shoots the team focus: both noise, off
 #define P_R5_WARD 0          // wards: 55-58 maps won/lost both sides, noise again, off
+
+// study28 (2026-10-15, from the online dissection of study27 = v35, 305 games vs the top 30). Each switch was measured alone
+// vs study27 on gen44 + hold60 + dev200 (maps won both sides / lost both sides), caster panel spar11/12/16 as a veto.
+#define P_CHANCANCEL 60  // cancel a tribute/recall when the foes that reach us before it ends would deal 60% of our hp: hold 4-3, dev 24-5 (p 0.00); 40 = 5-4 / 14-13, 80 = 4-5 / 18-10
+#define P_CHANSTART 0    // 1: also don't start a tribute that would be cancelled: 4-4 / 22-5, not better than cancelling alone, off
+#define P_PACKREACT 0    // D: 2+ foes within 8 outnumber our allies within 6 and the nearest is within D: regroup on an ally or back off before the first hit. 6: hold 9-13, dev 24-20, off
+#define P_OPENNUM 0      // open a fight (nobody hit us for 3 rounds) only with numbers (ours within 6 >= theirs within 8) or on a channelling foe: almost never fires, 1-1 / 5-4, off
+#define P_CASTDIST 0     // ranged: fight from at least this distance (capped at our range); kite tiles prefer it. 4: hold 2-3, dev 12-12, off
+#define P_ROWSEND 0      // rows end-game: once either team is within G gems of the win, no shop or free recalls, bank every bag at once. 150: only fires on the official rows map, 1-1 there, off
+// P_STACK_HP 2700 (monolith/packs wolf pairs): hold 2-5, dev 12-9, like 2400 before: keep 3000.

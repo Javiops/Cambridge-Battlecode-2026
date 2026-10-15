@@ -1,0 +1,96 @@
+Mechanism audit of study27 farming experiments
+============================================
+
+Scope and interpretation
+------------------------
+This audit uses source contracts, completed statistics and retained replay
+stdout. Outcome selection is reported separately. These observations do not
+establish that an individual camp was stolen, that a death happened while
+farming, or that any particular target rejection caused a win or loss.
+
+Broad live-camp guards
+---------------------
+The six broad guards run immediately before the final live-camp engage. They
+leave earlier champion-fight decisions, the pre-turn spell sweep, rallying,
+unknown-camp approach, rewards and recall unchanged. Their forecast uses ready
+spell metadata, a basic-attack reach heuristic, raw monster strength and a
+conservative envelope of legal camp-closing landings. It is not exact path or
+post-armour fight simulation. An optional dangerous landing can block an engage
+even if another landing would have worked, and any already damaged camp can be
+abandoned by these original broad variants.
+
+On the small official-map smoke panel, periodic logs recorded at least
+238/541/799 blocks for outnumbered/volley/contested hold responses, versus
+115/168/209 for their back-off counterparts. One contested-hold collision game
+recorded 146 blocks versus 18 with back-off against the same spar and side.
+Repeated waiting is therefore a plausible failure mode worth distinguishing
+from useful repositioning. Both example games were wins; the counters do not
+prove lost camps or causality. The complete development results, rather than
+these smoke counts, determine retention.
+
+The checks and blocks are cumulative per champion body and sampled periodically.
+Only bodies that have already blocked are logged. Blocks are lower bounds;
+blocks/checks is not a global trigger rate. Do not sum periodic cumulative
+samples as independent actions.
+
+Resource costs
+--------------
+The broad policy adds SDK inspections and a bounded landing evaluation. It has
+an entry fuel reserve, a cached self-health value, and a loop fuel exit. These
+costs can still influence other existing fuel-dependent paths; equivalent
+tactical intent does not imply identical runtime behaviour. On the matched
+54-game official smoke panel, every policy and the original had the same 30
+periodic low-fuel samples, and no bot faults or repeated initializations were
+reported. This does not mean there were no caught SDK errors or no unlogged
+low-fuel turns.
+
+The geometry re-entry module initially scanned support during recent danger
+even when no hold was active. Before those policies played any games, a separate
+immutable activity amendment added s.hold >= 0. Only reentry16_active and
+reentry32_active were evaluated. The earlier registered inactive variants were
+not selected from match outcomes.
+
+Corners components and roster dependence
+---------------------------------------
+The verified team v39 source contains three independently tested behaviours:
+a held-camp lone-entry restriction, relaxation of the normal nonheld-camp
+danger exclusion when a buddy is near, and 45% HP fleeing on Corners. The
+nonheld-camp relaxation is not the same operation as restricting lone entry.
+
+Original held geometry exists only when the caster-roster flag is enabled and
+an eligible central altar has at least two gem groups within the hold radius.
+In this source the caster flag is detected from a roster containing Stellar.
+Thus a held-camp rule is conditional on roster and geometry; its presence in
+source does not prove it runs in every match. The v39 buddy count includes
+living allies within six tiles without the new generic module's health,
+channel or spawn-healing exclusions. Its Corners flee threshold also applies
+to noncaster bodies, whose original flee threshold can differ from casters.
+
+Generic held-camp re-entry
+-------------------------
+The active generic variants use existing held geometry on every map, not a
+Corners fingerprint. They reject a travel target near recent shared danger
+without an available nearby buddy sufficiently close to that camp. Fresh
+rewards are exempt. Existing committed-camp execution, nonheld-camp danger
+exclusion, fight, flee, recall and shared-memory layout remain unchanged.
+Chebyshev proximity still cannot prove that a buddy can cross walls or help in
+time; remembered pack danger can also outlive the relevant contact.
+
+Existing diagnostic coverage
+----------------------------
+The completed re-entry stage contains 4,048 games. Its 16 retained replays are
+all collision: eight for each active policy. Every sampled candidate log prints
+"[hold] altar 27,20 groups 2", confirming active held geometry outside Corners.
+There are no explicit re-entry rejection or danger-age counters in these frozen
+logs. Consequently no observed Corners-versus-other-map rejection frequency can
+be calculated from the retained evidence.
+
+Periodic target and position trajectories differ from original study27 in the
+matched collision spar replays. Those trajectories demonstrate changed play,
+but they do not identify which choices the new clause rejected. Counts of
+target=-1 also include healing, banking and other priorities; they must not be
+labelled idle farming or conceded camps. Replay duration and intervening turns
+further limit snapshot comparisons.
+
+Detailed retained-log checks and SHA-verified replay coverage are recorded in
+reentry-log-audit.json. No new games were executed for this mechanism audit.

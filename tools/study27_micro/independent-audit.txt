@@ -1,0 +1,139 @@
+Independent study27 micro audit
+===============================
+
+Audit time UTC: 2026-10-15T17:40:13.247754+00:00
+Scope: completed general development, refined dash, active re-entry and Corners
+component experiments, including the completed current-v39-general stage.
+No new matches, production-source edits or confirmation maps were run/generated
+by this audit. Source transformation and data checks below are read-only.
+
+Decision
+--------
+Retain no proposed production change from these completed experiments. Every
+fully evaluated generic policy and all seven Corners component sets have a
+negative matched spar-panel point estimate. A small self-play lead alone does
+not meet the recorded selection rule. This does not prove every idea is always
+harmful; it means these candidates have not earned promotion on this evidence.
+Publish the negative experiment and reproducible tools for review. Keep stable
+study27 separate from uploaded v39, whose superiority was never assumed.
+
+General development:253 maps, both sides
+---------------------------------------
+Each row has506 direct games against original and1518 candidate games against
+the three spar bots, compared with original against identical spar/map/sides.
+Panel baseline score:1242/1518. Draws score0.5. All these are development data;
+p-values following adaptive selection are descriptive.
+
+Candidate                         W-L vs original    Panel delta    Points
+farm_outnumbered_hold             260-246                -10       -0.659pp
+farm_outnumbered_backoff          260-246                 -4       -0.264pp
+farm_volley_hold                  251-255                -17       -1.120pp
+farm_volley_backoff               259-247                -16       -1.054pp
+farm_contested_hold               252-254                 -5       -0.329pp
+farm_contested_backoff            255-251                -10       -0.659pp
+reserve_cc3                       252-254                 -3       -0.198pp
+reserve_cc6                       247-259                 -7       -0.461pp
+no_contact_dash                   251-255                 -7       -0.461pp
+reentry16_active                  255-251                 -5       -0.329pp
+reentry32_active                  249-257                 -6       -0.395pp
+
+Current uploaded v39 on the253-map general cohort
+------------------------------------------------
+Recomputed independently from current-v39-general and development-baseline:
+254-252 direct,1 both-won/0 both-lost,p=1. Matched panel1242 vs1242, with
+zero score delta against each spar. Across combined panel maps there are
+2 positive/2 negative/249 neutral outcomes,p=1. Outside the known official
+Corners map, the direct result is252/504 wins and each spar's aggregate delta
+is zero. Some individual map outcomes nevertheless changed: do not infer
+identical play outside Corners from a zero aggregate delta. The intended
+tactical source gates use the exact Corners fingerprint; fuel/layout effects
+are possible explanations for other differences but were not established.
+This stage does not establish an improvement or justify retaining v39 here.
+
+Active re-entry detail
+---------------------
+reentry16_active:255-251 direct,8 both-won/6 both-lost,p=0.79053.
+Matched spar panel:1237 vs1242;7 positive/13 negative/233 neutral maps,p=0.26318.
+Per-spar score deltas:+2,-2,-5. Fails positive-panel selection requirement.
+
+reentry32_active:249-257 direct,6 both-won/10 both-lost,p=0.45450.
+Matched spar panel:1236 vs1242;7 positive/13 negative/233 neutral maps,p=0.26318.
+Per-spar score deltas:+1,-2,-5. Fails direct and panel requirements.
+
+The completed reentry-development file contains the ACTIVE source identities,
+not the earlier source-only reentry16/reentry32 names. Audited4048 semantic rows
+equal4048 unique physical keys; candidate WASM identities match their immutable
+registered manifests. Both candidates report zero bot faults and zero observed
+repeat initializations. These quality checks do not establish strategic benefit.
+
+Five refined policies were also screened on53 exposed maps. None had a positive
+matched panel delta. Advancing the neutral no_contact_dash screen to253maps was
+an explicitly recorded adaptive development exception; its full result is above.
+
+Corners component development:65 maps, both sides
+------------------------------------------------
+This is64 new conditioned maps plus the known official Corners map. Each row has
+130 direct games and390 candidate spar-panel games. Baseline score:298/390.
+
+Candidate                         W-L vs original    Panel delta    Points
+corners_lone                       60-70                 -25       -6.410pp
+corners_reentry                    66-64                 -18       -4.615pp
+corners_flee                       74-56                 -28       -7.179pp
+corners_lone_reentry               60-70                 -38       -9.744pp
+corners_lone_flee                  65-65                 -39      -10.000pp
+corners_reentry_flee               74-56                 -27       -6.923pp
+corners_v39                        64-66                 -41      -10.513pp
+
+All seven comparisons were recomputed independently from corners-baseline.json
+and corners-components.json and match the saved comparison exactly. Full v39 is
+64-66 direct and loses41 panel win-score points(-10.513pp). Self-play gains of
+flee-only and reentry+flee do not overcome their negative spar-panel outcomes.
+
+Cohort coverage and limits
+-------------------------
+V1 geometric maps were never used in matches. Code review found their paths
+missed the caster draft gate, so V2 was specified before Corners outcomes.
+V2 has32 far paths(52-64),32 inset paths(26-42), exact71x71/five altars/44walls,
+at least four native central gem groups, full camp/altar reachability and64
+unique D4-normalized nonbush geometries. These are a deliberately conditioned
+Corners-fingerprint/hotspot distribution, not all maps. Geometric eligibility
+and path gates do not guarantee the actual roster or hold activation; the
+separate parent-run hold probe is not independently assessed in this report.
+
+The generic fresh generator always creates an even altar count, so it cannot
+validate Corners-specific behavior. No confirmation cohort was generated by
+this audit. With no qualifying candidate, do not describe selection data as
+a successful independent confirmation or claim an improved submission ZIP.
+
+Source and portable tooling checks
+----------------------------------
+The active wrapper makes one source substitution: require s.hold>=0 before
+querying re-entry support. Held-geometry behavior is unchanged; maps with no hold
+skip unnecessary helper calls. This is a valid independently registered source,
+not a change retroactively applied to earlier physical game identities.
+
+Portable bench SHA256:
+6a591622121d603e49b3368631548f6751cfa67e2e35fff38a55a5ff48e57cfe
+patch_reentry.py SHA256:
+97d7b86695fb956b659282f044f3d219fb4711c40351198c1ecba4f8cc98a291
+patch_reentry_active.py SHA256:
+a7f24709c1e8c83652c5c76915d67f64240a5b91de26dcbddb255a4d91d78f18
+
+All24 standalone transforms reproduced registered source hashes. All28
+Corners-by-reentry(old/active) combinations reproduced identical source and
+module pins regardless of requested order. Corners pins require applying it
+first; ordered_features canonicalizes this. Multiple generic policies, multiple
+Corners sets and conflicting CC reserves reject. Active wrappers pin their
+transitive re-entry dependency; start-only wrappers pin the original farm patch.
+Earlier boundary/symlink/junction checks remain present. No publication-tool
+safety or routing blocker was found.
+
+Caught SDK errors remain
+------------------------
+Zero bot faults is not zero SDK errors. Original baseline logged20319 caught
+samples across1518 games; active16 logged27074 and active32 logged27078 across
+2024 games each. These unequal cohorts/counts are not a causal rate comparison.
+Dominant messages already occur in original:42(target visibility/category),
+126(cast after movement) and32(unreachable destination). Error22(occupied
+destination) and45(cannot act) also remain. Do not label the bots API-error-free,
+or equate periodic low-fuel samples with exact native fuel exhaustion events.

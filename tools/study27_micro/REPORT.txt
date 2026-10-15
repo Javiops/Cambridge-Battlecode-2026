@@ -1,0 +1,191 @@
+study27 safe-farming and team v39 experiment report
+===================================================
+
+Decision: retain unchanged study27 as the reference. No tested change earned
+inclusion in a recommended bot. This is a negative experiment report and
+reproduction tooling, not a stronger submission or a production bot patch.
+
+Sources
+-------
+Stable study27: bots/study27/src at
+  c462346d4ace741bfd8f5251fb0e5e2eee69b800
+Spar11, spar12 and spar16:
+  43d003323cd16059cda6a54de14ed86e2da3b788
+User-supplied mybot_study27_corners.zip (online v39), SHA256:
+  66c558cfafa95fd2164befa0f37fddd4da0f21f5e2f97bba9c0634184c7ce902
+The full corners_v39 transform reconstructs all six ZIP source files exactly
+after LF normalization. The ZIP is evidence of source identity, not quality.
+CLI 2.1.6; actual game engine 0.0.1; statistics schema 2.
+
+What was tested
+---------------
+22 distinct evaluated policies: six live-camp threat guards, two global
+cooldown reservations, five narrower follow-ups, two generic held-camp
+re-entry windows, and all seven nonempty combinations of the three active
+v39 components. The two raw reentry16/32 preparations were never played;
+only their separately pinned active-geometry wrappers were evaluated.
+
+Each candidate plays original study27 and the three fixed sparring bots from
+both sides. The original's results against identical spar/map/side inputs
+form the matched comparison. We count a repeated deterministic physical
+input once, even when it supplies multiple stage or comparator views.
+
+The general development set is official9 + existing maps_gen44 + maps_dev200
+(253 maps). These are previously exposed selection data, not a holdout.
+The five narrow policies first used the official+gen 53-map subset. Dash was
+advanced despite a neutral panel under a recorded adaptive exception; its
+full 253-map result was negative. No promising candidate remained to combine
+across policy families. All three v39 components and their combinations were
+tested, including the exact full uploaded version.
+
+Corners coverage
+----------------
+The v39 tactics activate on the exact 71x71/5-altar/44-wall fingerprint. The
+general fresh-map generator has even altar counts, so cannot validate them.
+We therefore used the official Corners map plus 64 new Corners-family
+topologies from seed1749920311, generated before their outcomes were read.
+The final development generator alternates 32 long spawn paths (52-64) and
+32 inset paths (26-42), includes central gem hotspots, and varies team size
+3/4/5. Native integrity, expansion, reachability, symmetry and D4-normalized
+non-bush geometry uniqueness were checked. A counted original/original
+probe confirms caster draft plus central hold on an inset map.
+
+An initial 64-map V1 cohort was discovered before games to have only long
+paths, missing the caster gate. It was not played. V2 corrected this coverage
+before Corners outcomes. These conditioned maps are a controlled activated
+domain, not a sample of all possible tournament maps.
+
+Results
+-------
+Direct W-L is against original study27. Panel is candidate win score / the
+matched original win score, over both sides and all three spars. Draws would
+score 0.5; none occurred in these displayed comparisons. Panel +/- counts
+maps with a positive/negative sum of matched deltas, not independent games.
+All p-values below are descriptive development statistics after adaptation
+and many comparisons. They are not confirmatory proof or adjusted tests.
+
+Broad guards / resource reservation: 253 development maps
+---------------------------------------------------------
+Policy                        Direct W-L   Panel c/base    Delta   Maps +/-   Panel p  
+farm_outnumbered_hold         260-246      1232/1242        -10   24/27    0.77977
+farm_outnumbered_backoff      260-246      1238/1242         -4   26/27    1
+farm_volley_hold              251-255      1225/1242        -17   30/36    0.53858
+farm_volley_backoff           259-247      1226/1242        -16   30/40    0.28198
+farm_contested_hold           252-254      1237/1242         -5   38/35    0.81512
+farm_contested_backoff        255-251      1232/1242        -10   36/43    0.4999
+reserve_cc3                   252-254      1239/1242         -3   33/30    0.80131
+reserve_cc6                   247-259      1235/1242         -7   30/34    0.70798
+
+Narrow follow-ups: 53-map screen (adaptive development)
+-------------------------------------------------------
+Policy                        Direct W-L   Panel c/base    Delta   Maps +/-   Panel p  
+start_only_backoff             53-53        278/279          -1    1/2     1
+start_only_retarget            51-55        277/279          -2    1/3     0.625
+no_contact_dash                55-51        279/279          +0    3/3     1
+reserve_cc_contact5            53-53        277/279          -2    5/5     1
+reserve_cc_contact3            55-51        275/279          -4    2/3     1
+
+Dash follow-up: full 253-map development panel
+----------------------------------------------
+Policy                        Direct W-L   Panel c/base    Delta   Maps +/-   Panel p  
+no_contact_dash               251-255      1235/1242         -7   22/28    0.47989
+
+Generic held-camp re-entry: 253 development maps
+------------------------------------------------
+Policy                        Direct W-L   Panel c/base    Delta   Maps +/-   Panel p  
+reentry16_active              255-251      1237/1242         -5    7/13    0.26318
+reentry32_active              249-257      1236/1242         -6    7/13    0.26318
+
+Corners components: 65 Corners-family development maps
+------------------------------------------------------
+Policy                        Direct W-L   Panel c/base    Delta   Maps +/-   Panel p  
+corners_lone                   60-70        273/298         -25   11/24    0.04096
+corners_reentry                66-64        280/298         -18   11/20    0.14961
+corners_flee                   74-56        270/298         -28   11/23    0.057613
+corners_lone_reentry           60-70        260/298         -38    9/28    0.0025632
+corners_lone_flee              65-65        259/298         -39   12/28    0.016589
+corners_reentry_flee           74-56        271/298         -27   11/24    0.04096
+corners_v39                    64-66        257/298         -41    9/26    0.0059881
+
+Full v39 cross-check: general 253-map panel
+-------------------------------------------
+Policy                        Direct W-L   Panel c/base    Delta   Maps +/-   Panel p  
+corners_v39                   254-252      1242/1242         +0    2/2     1
+
+Interpretation and retention
+----------------------------
+All eight broad guards, both generic re-entry policies, and all seven Corners
+sets have negative matched spar-panel point estimates on their full panels.
+The full dash follow-up is 251-255 against study27 and loses seven panel wins.
+No policy has a positive full-panel estimate that justifies promotion to a
+frozen candidate. The exact full v39 is 64-66 against study27 on the Corners
+cohort; its spar panel is 257/390 versus study27's298/390 (41 fewer wins).
+The flee-only policy wins74-56 against study27 but loses28 matched panel wins:
+self-play alone would choose an unsupported change.
+
+On the general253-map panel, fullv39 is254-252 against study27, and ties its
+1242/1518 spar score. Outside official Corners its aggregate direct score is
+252/504 and spar deltas are zero. A few individual outcomes differ, so tactical
+gating must not be described as identical play or byte-equivalent runtime.
+
+The planned independent1024 general and256 Corners confirmations were NOT
+generated or run: no candidate passed development selection. They are not
+missing successful validation. Production bots, recall, draft, purchases,
+wards and shared-memory protocol receive no release change from this PR.
+
+Mechanism findings and next focus
+--------------------------------
+Broad guards can repeatedly wait, abandon already damaged camps, or reject an
+engage because one optional landing is unsafe. Retained periodic counters
+support repeated waiting as a possible failure mode; they do not prove stolen
+camps or causal losses. Additional SDK inspections also have a runtime cost.
+The spell/damage forecast and buddy distance are heuristics, not exact combat
+or reachable-support calculations. The pre-turn spell sweep already happens
+before the farming gate, so this late guard cannot reserve all earlier casts.
+
+v39 contains three distinct active rules: held-camp lone-entry exclusion;
+buddy relaxation of the existing danger exclusion for nonheld camps; and a
+45% HP Corners flee threshold. Central hold stays enabled in the actual ZIP.
+Its buddy count includes injured/channeling living allies near the champion,
+not demonstrated combat support near the camp. The generic re-entry attempt
+uses healthier available support and exempts fresh rewards, but also fails to
+improve the matched panel. Held geometry additionally depends on the roster.
+
+The useful next research target is action-level fight/support readiness and
+camp-reward handoff measurement before another broad farm veto. Existing
+aggregate gems/deaths cannot identify captures, steals or deaths while farming.
+Explicit decision counters and replay samples would help distinguish useful
+retreats from repeated waiting. This is a proposed next experiment, not an
+implemented or validated improvement.
+
+Validation and limits
+---------------------
+Candidate source/WASM/runtime/map identities were pinned before each stage.
+Source transforms, representative C++ helpers, composition and portable
+24-feature routing were checked independently. All24 preparation features
+match registered source hashes, including the two unplayed raw preparations.
+The portable harness supports28 corners/re-entry source compositions; those
+composition checks are not28 evaluated bot policies or extra matches.
+
+No CLI-reported bot fault or repeated initialization was observed in completed
+stages. Caught SDK exceptions DO exist, including original study27 (visibility,
+post-move cast and unreachable errors). Logging is sampled, and no-fault is
+not no-error or proof of no unlogged fuel shortage. Retained replays are sampled,
+not a complete native replay archive of every game. See independent-audit.txt,
+mechanism-notes.txt and the exported physical-game audit for exact scope.
+
+The opponent panel is three older fixed sparring bots. These results do not
+establish strength against current online opponents or unseen tournament maps.
+The Corners sample deliberately conditions a named-map fingerprint and central
+hotspot; it cannot prove broad generalization. The negative selection is not
+a claim that every conceivable threat-aware strategy is worse.
+
+Reproduction
+------------
+Keep the bench/patch/compare modules together and follow README.txt. They
+reconstruct pinned sources from local Git history without changing tracked
+bots or submitting anything. The accompanying map archive and per-game
+outcomes/provenance allow the exact evaluated panels to be reconstructed.
+The result-export audit documents reused deterministic keys rather than adding
+them to the count. Full local statistics and selected native replays were
+retained for audit; the compact GitHub evidence intentionally omits their bulk.

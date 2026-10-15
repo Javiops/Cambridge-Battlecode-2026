@@ -1,0 +1,47 @@
+{
+  "created_before_game_outcomes": true,
+  "baseline": "Current cleaned study27-combat from PR11 (origin e72cec8; exact six-file pins in baseline/manifest.json), not the earlier unmodified study27.",
+  "purpose": "Implement connected farming/banking decisions and measure their mechanisms and combined performance. Isolated wins are NOT a prerequisite for testing coherent combinations.",
+  "packages": {
+    "eco_tavi": ["cr_tavi"],
+    "eco_recall": ["cr_travel"],
+    "eco_walk": ["banking_walk"],
+    "eco_risk": ["banking_risk"],
+    "eco_reach": ["cf_camp_reach"],
+    "eco_focus": ["cf_camp_focus"],
+    "eco_evac": ["cf_camp_evac"],
+    "eco_bankloop": ["banking_risk", "cr_travel"],
+    "eco_campcore": ["cf_camp_reach", "cf_camp_focus", "cf_camp_evac"],
+    "eco_allrisk": ["banking_risk", "cf_camp_reach", "cf_camp_focus", "cf_camp_evac", "cr_travel"],
+    "eco_allwalk": ["banking_walk", "cf_camp_reach", "cf_camp_focus", "cf_camp_evac", "cr_travel"],
+    "eco_share85": ["banking_walk", "cf_camp_reach", "cf_camp_focus", "cf_camp_evac", "cr_travel", "share85"],
+    "eco_share100": ["banking_walk", "cf_camp_reach", "cf_camp_focus", "cf_camp_evac", "cr_travel", "share100"]
+  },
+  "references": {
+    "older_fixed_spars": ["spar11", "spar12", "spar16"],
+    "new_fixed_style_probes": {
+      "challenge_fastbank": {"P_TRIBUTE_GEMS": 6, "P_TRIBUTE_NEAR": 10, "P_CHAIN": 0, "P_BAG": 0},
+      "challenge_brawl": {"P_DRAFTUNI": 1, "P_UNI_FLEE": 20, "P_RECALL_PCT": 40, "P_VOLLEY": 50}
+    },
+    "direct_control": "original",
+    "limits": "Style probes are predeclared alternative policies, not claims of strength or contemporary top-team opponents. Also report older-spar and new-style subsets separately."
+  },
+  "development": {
+    "screen": "All 13 packages on official9 + gen44 =53 maps, both sides versus current baseline and all five fixed references.",
+    "mandatory_full_packages": ["eco_bankloop", "eco_campcore", "eco_allrisk", "eco_allwalk"],
+    "full": "These four coherent packages advance regardless isolated or screen win rate, unless a correctness/fault blocker makes their results invalid. Also advance at most one other screen candidate, ranked by matched five-reference win delta then submitted-gem delta. Full cohort is official9 + gen44 + dev200 =253 maps, both sides/all six opponents; reuse exact games once.",
+    "selection": "After full runs, prefer positive matched five-reference win score and direct baseline score >=50%, no individual reference regression >3 percentage points and zero reported faults/reinitializations on either side. Rank panel delta, then matched submitted-gem delta, then fewer features. Development significance is descriptive after adaptive selection.",
+    "transfer": "Before final freeze, run the leading full candidate on 128 previously exposed combat-confirmation maps, both sides/all six opponents with a matched baseline panel. This is exposed development evidence. If transfer has a nonpositive panel delta or direct baseline score <50%, permit the next full-ranked candidate a transfer check, at most two candidates total. No tuning from final holdout.",
+    "mechanisms": "Check branch activity; submitted/collected gems and deposit ratio, spent gold, deaths, monster damage dealt/taken, and rates per 100 rounds. Lower incoming camp damage without maintaining productivity is not itself an improvement. Geometry strata and actual drafts are descriptive. Telemetry maxima are sampled lower bounds; death-after-camp is an observational proxy, not death attribution."
+  },
+  "quality": "Full SDK compilation and meaningful helper/source checks before games. Include either team's reported faults/reinitializations. Low-fuel/caught API samples are diagnostics. Runtime, ordered WASMs, maps and statistics are pinned/deduplicated; cache reuse is never new evidence.",
+  "confirmation": {
+    "maps": 512,
+    "seed": 296314875,
+    "generator": "Existing native map generator at work/study28-fixes/generate-fresh.mjs, tools pinned before generating. Generate only after one final source/WASM freeze; ensure unique native geometries and no byte overlap with all exposed maps.",
+    "games": "Candidate vs current baseline and five fixed references; baseline vs five references; both sides =22 games/map, 11264 total.",
+    "pass": "Positive direct baseline score with exact two-sided paired-map both-won vs both-lost sign p<0.05; positive matched five-reference mean and positive vs negative per-map panel deltas with two-sided sign p<0.05; no reference regression >2 percentage points; zero all-side reported faults/reinitializations.",
+    "policy": "One fixed complete fresh cohort; no tuning, early stopping or candidate swapping based on its outcomes. If gates fail, do not claim a validated stronger submission. Preserve implemented code and honest diagnostics for further development.",
+    "limits": "One procedural distribution and fixed local opponents cannot establish superiority on the current online ladder or every unseen tournament map."
+  }
+}

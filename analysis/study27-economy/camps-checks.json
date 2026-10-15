@@ -1,0 +1,37 @@
+{
+  "passed": true,
+  "features": [
+    "cf_camp_reach",
+    "cf_camp_focus",
+    "cf_camp_evac"
+  ],
+  "canonical_subsets": 7,
+  "fixture_stdout": "actual camp forecast/availability: 31 checks passed",
+  "fixture_cpp_sha256": "7f594f75aa52bb3124e78c8bb43ecefe39f52d9622860a73ba290cfb5dc9ae9b",
+  "patch_sha256": "3413527246b445124d031aa3920bd509aa1091a24f710a3a39686a8b4c835fea",
+  "builds": [
+    {
+      "feature": "cf_camp_reach",
+      "full_sdk_compile": true,
+      "wasm_sha256": "630d0f1d736f5ec9beaa8b36d3235aa0c912f6ae9d7eb130f650634504064bb5"
+    },
+    {
+      "feature": "cf_camp_focus",
+      "full_sdk_compile": true,
+      "wasm_sha256": "987a3ccad9ffd29d2a0788f679e360934c0e626bf38442ead63ae98e179d25ed"
+    },
+    {
+      "feature": "cf_camp_evac",
+      "full_sdk_compile": true,
+      "wasm_sha256": "424b4b8c178e8b0d37a2b791d5c5297c0dab70c02ec324199208eed96958fc92"
+    },
+    {
+      "feature": "cf_camp_core",
+      "full_sdk_compile": true,
+      "wasm_sha256": "ede36115c2d32aa2dbb5b8dcb0ddc7f83b0d4b54f8196f88e5dcbbcc92448391"
+    }
+  ],
+  "baseline_source_unchanged": true,
+  "no_games": true,
+  "limits": "Forecast/availability bodies are actual inserted C++ run with narrow stand-ins. Evacuation ordering/safety is source-contract checked and full-SDK compiled, not simulated here."
+}

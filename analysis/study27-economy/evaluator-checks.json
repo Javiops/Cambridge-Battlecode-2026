@@ -1,0 +1,9 @@
+{
+  "passed": true,
+  "checks": 29,
+  "evaluation_script_sha256": "1d03cb0dda570b909904abdba6a6f1ff119da8044c46c510cf18862f5059e795",
+  "games_or_maps_created": 0,
+  "new_economy_outcomes_read": false,
+  "native_schema_observation": "Only field names from an already-authorized completed combat cache were inspected: native champion spentGold/deaths/monsterDamageDone/monsterDamageTaken/collectedGems exist; submittedGems uses the team total. Optional missing values remain unavailable.",
+  "fixtures": "Strict streaming chunk/scalar/trailing-comma cases, exact paired coverage, draw-aware/direct and five-reference scores, time-normalized native endpoints, missing-vs-zero metrics, zero-collection exclusions, matched-baseline all-side quality, sampled-counter deduplication, negative mandatory advancement."
+}

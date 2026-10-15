@@ -1,0 +1,6 @@
+{
+  "passed": true,
+  "stdout": "actual camp evacuation: 20 checks passed",
+  "patch_sha256": "3413527246b445124d031aa3920bd509aa1091a24f710a3a39686a8b4c835fea",
+  "method": "Actual inserted evacuation and availability C++ compiled/executed with narrow legal-action, query-failure, fuel and state stand-ins. No games."
+}

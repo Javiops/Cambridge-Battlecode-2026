@@ -1909,10 +1909,16 @@ std::optional<vec2> best_altar(State& s, vec2 pos, int round) {
     return best;
 }
 
+double channel_threat(State& s, bc::champion& me, vec2 pos, int rem);  // P_CHANCANCEL, defined after fight.h
+
 bool go_tribute(State& s, bc::champion& me, int round) {
     vec2 pos = me.position();
     auto a = best_altar(s, pos, round);
     if (!a) return false;
+    if (P_CHANSTART && P_CHANCANCEL && dist(pos, *a) <= 1) {  // a tribute we would cancel is not started
+        int dur = std::max(1, (static_cast<int>(me.gem_count()) + 9) / 10);
+        if (channel_threat(s, me, pos, dur) * 100.0 >= me.health() * P_CHANCANCEL) return false;
+    }
     if (dist(pos, *a) <= 1) {
         // Against an enemy lock this is converted into an attack on the lock.
         return attempt([&] {
@@ -2313,6 +2319,39 @@ void farm(State& s, bc::champion& me, int round, const std::vector<bc::camp>& ca
     }
 }
 
+// P_CHANCANCEL: a tribute (1 round per 10 gems) or a recall (5 rounds) was never interrupted; in one online batch 23 deaths
+// and 1436 gems were lost inside a channel with an enemy walking in. Damage expected from the foes that can reach us
+// before the channel ends (one tile a round, hitting from their reach) >= P_CHANCANCEL % of our hp: cancel and act now.
+double channel_threat(State& s, bc::champion& me, vec2 pos, int rem) {
+    double dmg = 0;
+    for (auto& c : bc::vision::champions(*s.en))
+        attempt([&] {
+            if (!c.is_alive()) return false;
+            Foe f{c, c.position(), c.health(), 0, 0, false};
+            f.d = dist(f.p, pos);
+            int first = std::max(1, f.d - fight::reach(f) + 1);  // the round of its first hit
+            int hits = rem - first + 1;
+            if (hits > 0) dmg += hits * fight::unit_dps(c);
+            return true;
+        });
+    return dmg;
+}
+
+bool cancel_doomed_channel(State& s, bc::champion& me, float hp) {
+    int rem = 0;
+    if (!attempt([&] {
+            rem = static_cast<int>(me.remaining_channel_time());
+            return true;
+        }) || rem <= 1)
+        return false;
+    if (channel_threat(s, me, me.position(), rem) * 100.0 < hp * P_CHANCANCEL) return false;
+    return attempt([&] {
+        if (me.is_submitting_gems()) me.cancel_submit_gems();
+        else me.cancel_recall();
+        return true;
+    });
+}
+
 // ---------------------------------------------------------------------------
 // One turn
 // ---------------------------------------------------------------------------
@@ -2360,7 +2399,8 @@ void play_turn(State& s) {
 
     if (me.is_submitting_gems() || me.is_teleporting() || me.is_recalling()) {
         g_mode = "channel";
-        return;
+        if (!(P_CHANCANCEL && !me.is_teleporting() && !on_spawn && cancel_doomed_channel(s, me, hp))) return;
+        g_mode = "cancelled";  // P_CHANCANCEL: the turn goes on (flee, fight, bank elsewhere)
     }
     if (!fuel_ok(15000)) {
         g_mode = "low-fuel";
@@ -2638,6 +2678,36 @@ void play_turn(State& s) {
                 if (dist(ap, tgt->p) <= 2) g_ally_near_tgt = true;
         bool killable = tgt && tgt->hp <= me.strength() * 2.0f;
         bool reachable = tgt && tgt->d <= me.attack_range() + 1;
+        int nb6 = 1, eb8 = 0;  // P_PACKREACT / P_OPENNUM: numbers, ours within 6 of us vs theirs within 8
+        for (auto& ap : allies) if (dist(ap, pos) <= 6) ++nb6;
+        for (auto& f : foes) if (f.d <= 8 && !gone(f) && !s.en_spawn.is_set(f.p)) ++eb8;
+        // P_PACKREACT: a pack is coming and we are not at numbers: before the first hit, fall back on the nearest ally
+        // that is not closer to the pack than us (so the pack meets us together), or back off. Online we kept farming,
+        // stood or approached in 88% of the rounds between seeing a pack and its first hit.
+        if (P_PACKREACT && !killable && !on_spawn && !pot_hold && !helping && nearest_foe <= P_PACKREACT &&
+            round - s.hit_round > 2 && eb8 >= 2 && eb8 > nb6) {
+            g_mode = "regroup";
+            vec2 fp = pos;
+            int fd = 99;
+            for (auto& f : foes) if (f.d < fd) { fd = f.d; fp = f.p; }
+            std::optional<vec2> ally;
+            int ad = 99;
+            for (auto& ap : allies) {
+                int d = dist(ap, pos);
+                if (d > 2 && d <= 12 && d < ad && dist(ap, fp) >= dist(pos, fp)) { ad = d; ally = ap; }
+            }
+            if (ally) {
+                bc::bitboard ring;
+                ring.draw_chebyshev(*ally, 2.0f);
+                if (step_towards(s, me, ring, true)) {
+                    shoot_back(s, me, foes);
+                    return;
+                }
+            }
+            fight::back_off(s, me, foes, round);
+            return;
+        }
+        bool open_ok = !P_OPENNUM || round - s.hit_round <= 3 || nb6 >= eb8;  // P_OPENNUM: no opening outnumbered
         bool carrying = P_CARRY && gems >= P_CARRY;
         int low_pct = (P_CASSI_PCT && starts_with(s.name, "cassi")) ? P_CASSI_PCT : P_LOWHP;
         if (!killable && !on_spawn && !pot_hold && ((low_pct && hpr * 100 < low_pct && nearest_foe <= 6) ||
@@ -2659,8 +2729,16 @@ void play_turn(State& s) {
             return;
         }
         if (tgt && carrying && !killable && !tgt->channeling) tgt = nullptr;
-        if (tgt && (killable || tgt->channeling || (reachable && favourable) || helping ||
+        if (tgt && (killable || tgt->channeling || (reachable && favourable && open_ok) || helping ||
                     (P_ALLYDUTY && favourable && tgt->d <= 8 && g_ally_near_tgt))) {
+            if (P_CASTDIST && !killable && !tgt->channeling && fight::space_out(s, me, foes, tgt->p, pos)) {
+                g_mode = "space";
+                if (tgt->d <= me.attack_range()) {
+                    cast_offense(s, me, tgt->c, tgt->p, true);
+                    basic_attack(s, me, tgt->c, tgt->p);
+                }
+                return;
+            }
             bool acted = engage(s, me, tgt->c, tgt->p, true, true);
             if (acted || !P_U34_ENGAGE_FALLBACK) return;
         }
@@ -2674,11 +2752,25 @@ void play_turn(State& s) {
     bool shop_trip = P_SHOP_RECALL && gold >= P_SHOP_RECALL && !starts_with(s.name, "tavi") &&
                      (!P_SHOPFIX || round - s.shop_fail > 150) &&
                      s.cap_start < 0 && round - s.shop_recall > 40;
+    // P_ROWSEND: rows is a race to the winning gems (we lose 11 of 14 by one bag, 957-1056, with 99-165 gems in hand
+    // and shop trips in the last 30 rounds). Inside the last G gems of either team: no shop trip, no free trip home,
+    // a recall only when about to die, and every bag banked at once.
+    bool endgame = false;
+    if (P_ROWSEND && s.de_map == v34de::Rows)
+        attempt([&] {
+            unsigned w = bc::constants::winning_gems;
+            endgame = bc::global_submitted_gems(*s.my) + P_ROWSEND >= w || bc::global_submitted_gems(*s.en) + P_ROWSEND >= w;
+            return true;
+        });
+    if (endgame) {
+        shop_trip = false;
+        want_recall = hpr * 100 < P.flee_pct + 10;
+    }
     want_recall = want_recall || shop_trip;
     // P_CAPRECALL: capture first and recall on the capture tiles, so the 5-round recall overlaps the 5-round
     // capture (procless on rows: it captures and arrives home healed in the same turn).
     // P_CAPRECALL 2: also take the free trip home whenever it heals or shops something (hp < 90%, 90+ gold).
-    bool cap_want = want_recall || (((s.de_map == v34de::Lanes) ? 1 : P_CAPRECALL) >= 2 && (hpr < 0.9f || gold >= 90));
+    bool cap_want = want_recall || (!endgame && ((s.de_map == v34de::Lanes) ? 1 : P_CAPRECALL) >= 2 && (hpr < 0.9f || gold >= 90));
     if (((s.de_map == v34de::Lanes) ? 1 : P_CAPRECALL) && cap_want && safe && s.target >= 0 && s.target < static_cast<int>(s.groups.size())) {
         Group& g = s.groups[s.target];
         if (g.reward_seen == round && !other_captures(s, me, g, s.target)) {
@@ -2753,6 +2845,7 @@ void play_turn(State& s) {
         // P_BAG: with no enemy seen for P_BAG_QUIET rounds, carry up to P_BAG gems before the trip
         // (rows winners bank 81 gems a trip; we banked 39).
         int bag = (((s.de_map == v34de::Rows) ? 48 : P_BAG) && round - s.foe_r > P_BAG_QUIET) ? std::max(P.tribute_gems, ((s.de_map == v34de::Rows) ? 48 : P_BAG)) : P.tribute_gems;
+        if (endgame) bag = std::min(bag, 10);  // P_ROWSEND
         if (!chain && (gems >= bag || late || (gems >= 10 && ad <= (s.de_map == v34de::Rows ? 4 : P_TRIBUTE_NEAR)) || (gems >= 5 && ad <= 2))) {
             // P_TELE: the walk to the altar is longer than recalling and walking from home: recall (heals and shops too).
             if (P_TELE && safe && s.tele_sa >= 0 && s.tele_va.is_set(pos) && !s.my_spawn.is_set(pos) &&

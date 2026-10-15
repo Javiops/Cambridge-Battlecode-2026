@@ -1,0 +1,35 @@
+{
+  "created_utc": "2026-10-15T21:59:34.709986+00:00",
+  "passed": true,
+  "verification": "Independent ZIP/file verification performed before repository prose editing; no source, archive or exported evidence modifications.",
+  "archive_filename": "cambc-study27-economy-experimental-productive_walk-fbf835ee.zip",
+  "archive_sha256": "d69b4385f7bbd3c05350b354f5cf5cb439c334e20e85acea65ac7b175895b6b9",
+  "archive_bytes": 213234,
+  "root_file_count": 6,
+  "root_filenames": [
+    "de_rules.h",
+    "fight.h",
+    "main.cpp",
+    "opening_replace.h",
+    "params.h",
+    "utility.h"
+  ],
+  "zip_crc_passed": true,
+  "no_extra_or_nested_paths": true,
+  "source_sha256": {
+    "de_rules.h": "3e50429c96765f325ea3804c2bbb5c13ce26a4119fc7b8694f58def60531221b",
+    "fight.h": "5fb073f23ce41a5f6d07fba3aa55a016582a46ac54c4f8316ee6c96ebe92a7bb",
+    "main.cpp": "cb8cbe3eb437bcbee66d7b2003b5cdb1d81d37042b72d22d1edc1e001a56f4c6",
+    "opening_replace.h": "ca6680bae82b74b89fd0bb65573904246df8761d8b22e3ce8cb6bd93207207e7",
+    "params.h": "d99ef2cecff65f7851efb491bb4691d40ddeaaa6a96499e13eddec814fdc1372",
+    "utility.h": "5e48af1229195c4b356a617fd7323f49efe2af3a09728f6eda91ed4975c2b580"
+  },
+  "every_entry_equals_exported_and_frozen_candidate_bytes": true,
+  "export_manifest_sha256": "2e57cf5576a3258fa642f0f0c6d240607ccdc33c5cb6518bf62ea697cf624a1b",
+  "copied_upload_manifest_byte_identical": true,
+  "injected_wasm_sha256": "fbf835eea4f7a3e629ca58dbff2792f66994d400e93f80332a4d11ba0143ce29",
+  "matches_current_frozen_injected_wasm": true,
+  "confirmation_status": "failed; experimental only",
+  "manifest_caveat": "Exported_files_sha256 pins original export prose. Repository README/RESULTS/REVIEW-NOTES are editorial revisions; source/WASM/diff/submission-ZIP pins remain unchanged.",
+  "games_source_edits_or_remote_actions": 0
+}

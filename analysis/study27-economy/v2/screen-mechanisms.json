@@ -1,0 +1,506 @@
+{
+  "created_utc": "2026-10-15T21:17:46.928679+00:00",
+  "scope": "Completed adaptive v2 53-map screen only; no incomplete full-stage outcomes.",
+  "pins": {
+    "selection-plan.json": "66d59120f78eff84dcd922bec1f5bfe8e98379e157b403b8f1e7e155255e4300",
+    "package-build-freeze.json": "45596eb5f20d3129bfcd4f9a9c9012cb5daa85b1474d8e1258de3801ff6a2e98",
+    "screen-evaluation.json": "f97ddddbf58cddab08f1c8c5d79d98457fbdfd79de41e83775e227f7ab209d11",
+    "results/v2-screen.json": "0183cb8fa478d5d2c83f6bd9fb98581a94f3bc91e6f978ec96c3e1520b97e85c",
+    "patch_banking.py": "a0409c3c9cbbdbd1012609b9b9d79fa61bae3c88be5dccfd655b47f053ae50ce",
+    "patch_camps.py": "3413527246b445124d031aa3920bd509aa1091a24f710a3a39686a8b4c835fea",
+    "patch_recall.py": "42d5dde8ee6f2a910f5016c018829a0e79f8d1eb18ae3adc4e55e3b9bb047325",
+    "evaluate.py": "78756df45d86080762a5bd0812b6319917737a5c4eb6508e30381c7b2b082d2f"
+  },
+  "comparisons": {
+    "productive_walk": {
+      "candidate_games_including_direct": 636,
+      "matched_panel_games": 530,
+      "observed_positive_games_and_panel_evac_events": {
+        "cf_evac_games": 44,
+        "cf_evac_panel_games": 37,
+        "cf_evac_panel_events": 52,
+        "cf_reach_games": 312,
+        "br_fallback_games": 311,
+        "br_stop_games": 0,
+        "cr_opportunity_games": 624,
+        "cr_skipped_games": 617,
+        "cr_path_unavailable_games": 12
+      },
+      "sampled_counter_maxima_sums": {
+        "br_decisions": 150517,
+        "br_fallbacks": 1080,
+        "br_routes": 0,
+        "br_stops": 0,
+        "cf_death_after_camp": 163,
+        "cf_evac": 62,
+        "cf_focus_exit": 0,
+        "cf_focus_hit": 0,
+        "cf_focus_wait": 0,
+        "cf_reach": 7400,
+        "cf_reward_gain_observed": 19576,
+        "cr_opportunity": 19485,
+        "cr_path_unavailable": 36,
+        "cr_skipped": 12106,
+        "cr_started": 2876,
+        "cr_tavi_skipped": 0
+      },
+      "sampled_counter_ratios": {
+        "bank_fallbacks_per_decision": 0.007175269238690646,
+        "safe_mask_route_attempts_per_banking_decision": 0.0,
+        "route_attempts_not_moving_per_safe_route_attempt": null,
+        "optional_recall_skipped_per_observed_opportunity": 0.6212984346933539
+      },
+      "matched_native_rates_per100rounds": {
+        "submittedGems": {
+          "candidate": 184.40957591351759,
+          "baseline": 182.99362151209775,
+          "relative_change_pct": 0.7737725444852295,
+          "endpoint_per_game_delta": -1.6415094339622642
+        },
+        "collectedGems": {
+          "candidate": 192.5115664628428,
+          "baseline": 190.71660273037665,
+          "relative_change_pct": 0.9411680507982689,
+          "endpoint_per_game_delta": -0.32075471698113206
+        },
+        "spentGold": {
+          "candidate": 501.7499269978346,
+          "baseline": 510.56469952273557,
+          "relative_change_pct": -1.7264751231608422,
+          "endpoint_per_game_delta": -79.43396226415095
+        },
+        "deaths": {
+          "candidate": 0.3269301712343833,
+          "baseline": 0.3334648734874818,
+          "relative_change_pct": -1.9596373629271802,
+          "endpoint_per_game_delta": -0.06792452830188679
+        },
+        "monsterDamageDone": {
+          "candidate": 9574.310215272315,
+          "baseline": 9449.507056744806,
+          "relative_change_pct": 1.3207372382290306,
+          "endpoint_per_game_delta": 110.65518853529444
+        },
+        "monsterDamageTaken": {
+          "candidate": 1780.6474469893951,
+          "baseline": 1789.3493395784676,
+          "relative_change_pct": -0.4863160254175103,
+          "endpoint_per_game_delta": -173.80915434495458
+        }
+      },
+      "deposit_ratio_delta_pp": -0.16902448482107485,
+      "direct_score_pct": 54.716981132075475,
+      "panel_delta_pp": -1.509433962264151,
+      "older_spar_delta_pp": -4.716981132075472,
+      "new_style_delta_pp": 3.30188679245283
+    },
+    "productive_risk": {
+      "candidate_games_including_direct": 636,
+      "matched_panel_games": 530,
+      "observed_positive_games_and_panel_evac_events": {
+        "cf_evac_games": 48,
+        "cf_evac_panel_games": 41,
+        "cf_evac_panel_events": 58,
+        "cf_reach_games": 308,
+        "br_fallback_games": 407,
+        "br_stop_games": 91,
+        "cr_opportunity_games": 624,
+        "cr_skipped_games": 608,
+        "cr_path_unavailable_games": 12
+      },
+      "sampled_counter_maxima_sums": {
+        "br_decisions": 151791,
+        "br_fallbacks": 3220,
+        "br_routes": 148351,
+        "br_stops": 243,
+        "cf_death_after_camp": 173,
+        "cf_evac": 68,
+        "cf_focus_exit": 0,
+        "cf_focus_hit": 0,
+        "cf_focus_wait": 0,
+        "cf_reach": 7097,
+        "cf_reward_gain_observed": 19539,
+        "cr_opportunity": 19237,
+        "cr_path_unavailable": 36,
+        "cr_skipped": 11914,
+        "cr_started": 2875,
+        "cr_tavi_skipped": 0
+      },
+      "sampled_counter_ratios": {
+        "bank_fallbacks_per_decision": 0.021213378922334,
+        "safe_mask_route_attempts_per_banking_decision": 0.9773372597848358,
+        "route_attempts_not_moving_per_safe_route_attempt": 0.001638007158697953,
+        "optional_recall_skipped_per_observed_opportunity": 0.6193273379425066
+      },
+      "matched_native_rates_per100rounds": {
+        "submittedGems": {
+          "candidate": 183.4370547974485,
+          "baseline": 182.99362151209775,
+          "relative_change_pct": 0.24232171683724602,
+          "endpoint_per_game_delta": -2.4754716981132074
+        },
+        "collectedGems": {
+          "candidate": 191.25413770377753,
+          "baseline": 190.71660273037665,
+          "relative_change_pct": 0.2818501198665002,
+          "endpoint_per_game_delta": -1.8150943396226416
+        },
+        "spentGold": {
+          "candidate": 500.5259102298528,
+          "baseline": 510.56469952273557,
+          "relative_change_pct": -1.966212960329372,
+          "endpoint_per_game_delta": -70.30188679245283
+        },
+        "deaths": {
+          "candidate": 0.3393899998329072,
+          "baseline": 0.3334648734874818,
+          "relative_change_pct": 1.7768367274965113,
+          "endpoint_per_game_delta": 0.018867924528301886
+        },
+        "monsterDamageDone": {
+          "candidate": 9515.522542586286,
+          "baseline": 9449.507056744806,
+          "relative_change_pct": 0.6986130117164313,
+          "endpoint_per_game_delta": 28.044245450001842
+        },
+        "monsterDamageTaken": {
+          "candidate": 1771.9374064015956,
+          "baseline": 1789.3493395784676,
+          "relative_change_pct": -0.9730874118171862,
+          "endpoint_per_game_delta": -182.0070773232658
+        }
+      },
+      "deposit_ratio_delta_pp": -0.09440143210856305,
+      "direct_score_pct": 51.886792452830186,
+      "panel_delta_pp": -1.6981132075471699,
+      "older_spar_delta_pp": -1.8867924528301887,
+      "new_style_delta_pp": -1.4150943396226414
+    },
+    "bank_walk": {
+      "candidate_games_including_direct": 636,
+      "matched_panel_games": 530,
+      "observed_positive_games_and_panel_evac_events": {
+        "cf_evac_games": 0,
+        "cf_evac_panel_games": 0,
+        "cf_evac_panel_events": 0,
+        "cf_reach_games": 0,
+        "br_fallback_games": 287,
+        "br_stop_games": 0,
+        "cr_opportunity_games": 624,
+        "cr_skipped_games": 612,
+        "cr_path_unavailable_games": 12
+      },
+      "sampled_counter_maxima_sums": {
+        "br_decisions": 148673,
+        "br_fallbacks": 978,
+        "br_routes": 0,
+        "br_stops": 0,
+        "cr_opportunity": 19606,
+        "cr_path_unavailable": 36,
+        "cr_skipped": 12266,
+        "cr_started": 2829,
+        "cr_tavi_skipped": 0
+      },
+      "sampled_counter_ratios": {
+        "bank_fallbacks_per_decision": 0.006578195099311913,
+        "safe_mask_route_attempts_per_banking_decision": 0.0,
+        "route_attempts_not_moving_per_safe_route_attempt": null,
+        "optional_recall_skipped_per_observed_opportunity": 0.6256248087320209
+      },
+      "matched_native_rates_per100rounds": {
+        "submittedGems": {
+          "candidate": 184.50782897329483,
+          "baseline": 182.99362151209775,
+          "relative_change_pct": 0.8274646125285834,
+          "endpoint_per_game_delta": -4.735849056603773
+        },
+        "collectedGems": {
+          "candidate": 192.48939688679212,
+          "baseline": 190.71660273037665,
+          "relative_change_pct": 0.9295436952186709,
+          "endpoint_per_game_delta": -3.852830188679245
+        },
+        "spentGold": {
+          "candidate": 501.4223559609754,
+          "baseline": 510.56469952273557,
+          "relative_change_pct": -1.790633698394395,
+          "endpoint_per_game_delta": -82.39622641509433
+        },
+        "deaths": {
+          "candidate": 0.33233550736886946,
+          "baseline": 0.3334648734874818,
+          "relative_change_pct": -0.33867618703016245,
+          "endpoint_per_game_delta": -0.03207547169811321
+        },
+        "monsterDamageDone": {
+          "candidate": 9515.492372280569,
+          "baseline": 9449.507056744806,
+          "relative_change_pct": 0.698293732567401,
+          "endpoint_per_game_delta": -333.03320740033996
+        },
+        "monsterDamageTaken": {
+          "candidate": 1792.0613224855279,
+          "baseline": 1789.3493395784676,
+          "relative_change_pct": 0.15156251756289763,
+          "endpoint_per_game_delta": -109.7916060933527
+        }
+      },
+      "deposit_ratio_delta_pp": -0.16471845103966212,
+      "direct_score_pct": 60.37735849056604,
+      "panel_delta_pp": -0.7547169811320755,
+      "older_spar_delta_pp": -2.5157232704402515,
+      "new_style_delta_pp": 1.8867924528301887
+    },
+    "mobile_camps": {
+      "candidate_games_including_direct": 636,
+      "matched_panel_games": 530,
+      "observed_positive_games_and_panel_evac_events": {
+        "cf_evac_games": 45,
+        "cf_evac_panel_games": 39,
+        "cf_evac_panel_events": 63,
+        "cf_reach_games": 321
+      },
+      "sampled_counter_maxima_sums": {
+        "cf_death_after_camp": 141,
+        "cf_evac": 75,
+        "cf_focus_exit": 0,
+        "cf_focus_hit": 0,
+        "cf_focus_wait": 0,
+        "cf_reach": 6943,
+        "cf_reward_gain_observed": 19587
+      },
+      "sampled_counter_ratios": {
+        "bank_fallbacks_per_decision": null,
+        "safe_mask_route_attempts_per_banking_decision": null,
+        "route_attempts_not_moving_per_safe_route_attempt": null,
+        "optional_recall_skipped_per_observed_opportunity": null
+      },
+      "matched_native_rates_per100rounds": {
+        "submittedGems": {
+          "candidate": 182.7042536745569,
+          "baseline": 182.99362151209775,
+          "relative_change_pct": -0.15813001302983354,
+          "endpoint_per_game_delta": -1.4886792452830189
+        },
+        "collectedGems": {
+          "candidate": 190.6074830369509,
+          "baseline": 190.71660273037665,
+          "relative_change_pct": -0.05721562352912768,
+          "endpoint_per_game_delta": -0.5509433962264151
+        },
+        "spentGold": {
+          "candidate": 509.6632096422876,
+          "baseline": 510.56469952273557,
+          "relative_change_pct": -0.17656721690525456,
+          "endpoint_per_game_delta": -14.830188679245284
+        },
+        "deaths": {
+          "candidate": 0.3246896283786292,
+          "baseline": 0.3334648734874818,
+          "relative_change_pct": -2.631535075067526,
+          "endpoint_per_game_delta": -0.06981132075471698
+        },
+        "monsterDamageDone": {
+          "candidate": 9470.671455396468,
+          "baseline": 9449.507056744806,
+          "relative_change_pct": 0.22397357369616788,
+          "endpoint_per_game_delta": 24.765660383116526
+        },
+        "monsterDamageTaken": {
+          "candidate": 1769.0732384095631,
+          "baseline": 1789.3493395784676,
+          "relative_change_pct": -1.1331549809989072,
+          "endpoint_per_game_delta": -159.9723605011994
+        }
+      },
+      "deposit_ratio_delta_pp": -0.13005927502776585,
+      "direct_score_pct": 55.660377358490564,
+      "panel_delta_pp": -0.7547169811320755,
+      "older_spar_delta_pp": -0.6289308176100629,
+      "new_style_delta_pp": -0.9433962264150944
+    },
+    "productive_share85": {
+      "candidate_games_including_direct": 636,
+      "matched_panel_games": 530,
+      "observed_positive_games_and_panel_evac_events": {
+        "cf_evac_games": 46,
+        "cf_evac_panel_games": 37,
+        "cf_evac_panel_events": 60,
+        "cf_reach_games": 319,
+        "br_fallback_games": 302,
+        "br_stop_games": 0,
+        "cr_opportunity_games": 624,
+        "cr_skipped_games": 606,
+        "cr_path_unavailable_games": 12
+      },
+      "sampled_counter_maxima_sums": {
+        "br_decisions": 155130,
+        "br_fallbacks": 1059,
+        "br_routes": 0,
+        "br_stops": 0,
+        "cf_death_after_camp": 131,
+        "cf_evac": 73,
+        "cf_focus_exit": 0,
+        "cf_focus_hit": 0,
+        "cf_focus_wait": 0,
+        "cf_reach": 7241,
+        "cf_reward_gain_observed": 19763,
+        "cr_opportunity": 19242,
+        "cr_path_unavailable": 36,
+        "cr_skipped": 11935,
+        "cr_started": 2907,
+        "cr_tavi_skipped": 0
+      },
+      "sampled_counter_ratios": {
+        "bank_fallbacks_per_decision": 0.00682653258557339,
+        "safe_mask_route_attempts_per_banking_decision": 0.0,
+        "route_attempts_not_moving_per_safe_route_attempt": null,
+        "optional_recall_skipped_per_observed_opportunity": 0.6202577694626338
+      },
+      "matched_native_rates_per100rounds": {
+        "submittedGems": {
+          "candidate": 183.57089958912252,
+          "baseline": 182.99362151209775,
+          "relative_change_pct": 0.3154634966260783,
+          "endpoint_per_game_delta": -5.862264150943396
+        },
+        "collectedGems": {
+          "candidate": 191.92776087629,
+          "baseline": 190.71660273037665,
+          "relative_change_pct": 0.635056480963847,
+          "endpoint_per_game_delta": -3.520754716981132
+        },
+        "spentGold": {
+          "candidate": 495.2669943741591,
+          "baseline": 510.56469952273557,
+          "relative_change_pct": -2.9962324388811856,
+          "endpoint_per_game_delta": -124.47169811320755
+        },
+        "deaths": {
+          "candidate": 0.3208926559120951,
+          "baseline": 0.3334648734874818,
+          "relative_change_pct": -3.7701774834340007,
+          "endpoint_per_game_delta": -0.10943396226415095
+        },
+        "monsterDamageDone": {
+          "candidate": 9473.766811199042,
+          "baseline": 9449.507056744806,
+          "relative_change_pct": 0.25673037025695233,
+          "endpoint_per_game_delta": -526.5589624081018
+        },
+        "monsterDamageTaken": {
+          "candidate": 1739.837715191379,
+          "baseline": 1789.3493395784676,
+          "relative_change_pct": -2.767018339680527,
+          "endpoint_per_game_delta": -445.3319835716823
+        }
+      },
+      "deposit_ratio_delta_pp": -0.26789064921734285,
+      "direct_score_pct": 53.77358490566038,
+      "panel_delta_pp": -2.452830188679245,
+      "older_spar_delta_pp": -4.716981132075472,
+      "new_style_delta_pp": 0.9433962264150944
+    },
+    "productive_share100": {
+      "candidate_games_including_direct": 636,
+      "matched_panel_games": 530,
+      "observed_positive_games_and_panel_evac_events": {
+        "cf_evac_games": 38,
+        "cf_evac_panel_games": 30,
+        "cf_evac_panel_events": 53,
+        "cf_reach_games": 303,
+        "br_fallback_games": 309,
+        "br_stop_games": 0,
+        "cr_opportunity_games": 622,
+        "cr_skipped_games": 612,
+        "cr_path_unavailable_games": 12
+      },
+      "sampled_counter_maxima_sums": {
+        "br_decisions": 155153,
+        "br_fallbacks": 1011,
+        "br_routes": 0,
+        "br_stops": 0,
+        "cf_death_after_camp": 126,
+        "cf_evac": 66,
+        "cf_focus_exit": 0,
+        "cf_focus_hit": 0,
+        "cf_focus_wait": 0,
+        "cf_reach": 5821,
+        "cf_reward_gain_observed": 20043,
+        "cr_opportunity": 19926,
+        "cr_path_unavailable": 36,
+        "cr_skipped": 12607,
+        "cr_started": 2991,
+        "cr_tavi_skipped": 0
+      },
+      "sampled_counter_ratios": {
+        "bank_fallbacks_per_decision": 0.006516148575921832,
+        "safe_mask_route_attempts_per_banking_decision": 0.0,
+        "route_attempts_not_moving_per_safe_route_attempt": null,
+        "optional_recall_skipped_per_observed_opportunity": 0.632690956539195
+      },
+      "matched_native_rates_per100rounds": {
+        "submittedGems": {
+          "candidate": 183.60451408506265,
+          "baseline": 182.99362151209775,
+          "relative_change_pct": 0.33383271390392544,
+          "endpoint_per_game_delta": 0.8358490566037736
+        },
+        "collectedGems": {
+          "candidate": 191.9847991062882,
+          "baseline": 190.71660273037665,
+          "relative_change_pct": 0.6649638037567351,
+          "endpoint_per_game_delta": 3.2566037735849056
+        },
+        "spentGold": {
+          "candidate": 492.8410254664686,
+          "baseline": 510.56469952273557,
+          "relative_change_pct": -3.4713865006403055,
+          "endpoint_per_game_delta": -128.75471698113208
+        },
+        "deaths": {
+          "candidate": 0.3098963064208473,
+          "baseline": 0.3334648734874818,
+          "relative_change_pct": -7.067781028972242,
+          "endpoint_per_game_delta": -0.19622641509433963
+        },
+        "monsterDamageDone": {
+          "candidate": 9438.203124823976,
+          "baseline": 9449.507056744806,
+          "relative_change_pct": -0.11962456721761328,
+          "endpoint_per_game_delta": -520.5703774938044
+        },
+        "monsterDamageTaken": {
+          "candidate": 1726.8818536028687,
+          "baseline": 1789.3493395784676,
+          "relative_change_pct": -3.491072681777996,
+          "endpoint_per_game_delta": -500.9094359038011
+        }
+      },
+      "deposit_ratio_delta_pp": -0.21046918272634504,
+      "direct_score_pct": 51.886792452830186,
+      "panel_delta_pp": -2.0754716981132075,
+      "older_spar_delta_pp": -2.830188679245283,
+      "new_style_delta_pp": -0.9433962264150944
+    }
+  },
+  "interpretation": [
+    "Productive_walk performs only62 observed evacuation moves in44/636 games, versus7400 observed in-range camp retargets in312games. Evacuation addresses a narrow capture handoff opportunity, not most camp farming.",
+    "Walking banking is frequently called; its pooled fallback counter is a small fraction of sampled decisions but appears in roughly half of games. Risk mode attempts its safe-mask executor on most sampled banking decisions. An executor not moving is not itself proof it blocked a dangerous step.",
+    "Optional recall filtering is frequent (about62% of sampled productive_walk opportunities). cr_started also includes ordinary successful capture recalls, while cr_opportunity counts only evaluated optional predicates (short-circuited when normal want_recall is true), so their ratio is not an acceptance rate.",
+    "Tavi-specific skip counters remain zero in these samples; that does not establish no Tavi drafts or no possible usefulness. Path-unavailable36 observations appear in12games, not a demonstrated frequent routing failure.",
+    "Productive_walk preserves/slightly raises work rates and slightly lowers death rate against matched baseline, but the matched panel remains negative. Delivery ratio barely changes; neither tiny native deltas nor positive direct self-play establish broader strength.",
+    "The focus component is absent. These packages address camp target reach, reward handoff, walking/risk-aware banking and optional return cost; they do not constitute a comprehensive new contested-camp combat policy."
+  ],
+  "limits": [
+    "Counter maxima and positive-game counts are sampled lower bounds. Fractions formed from two lower-bound counter sums are descriptive ratios of observed maxima, not bounds on the true event fraction.",
+    "Evacuation requires a healthy nonchanneling ally already on the reward, an alternate target and a legal safe improving exit. Rare observed activation is expected from those narrow prerequisites; missing samples can hide trailing activations.",
+    "br_routes counts attempts using the risk mask, not guaranteed movement or safety; ordinary walk mode intentionally records zero. Fallback reasons (fuel/query/unreachable/all-unsafe) are pooled and cannot be separated with these counters.",
+    "Native rate changes are paired descriptive endpoints over complete games, not controlled attribution to one feature. Team size, match duration, opponents and interaction effects can influence them.",
+    "cf_reward_gain_observed and death-after-recent-camp are proxies, not exact unique capture counts or causal death attribution. Baseline lacks these new policy counters.",
+    "Adaptive development screen53, five fixed references and reused physical keys do not substitute for frozen fresh confirmation or online-ladder validation."
+  ],
+  "no_policy_or_candidate_changes": true,
+  "new_games_or_maps": 0,
+  "incomplete_full_outcomes_read": false
+}

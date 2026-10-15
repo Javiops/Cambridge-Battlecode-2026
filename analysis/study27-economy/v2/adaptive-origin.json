@@ -1,0 +1,20 @@
+{
+  "created_utc": "2026-10-15T21:00:38.273835+00:00",
+  "parent_experiment": "study27-economy",
+  "parent_evidence_sha256": {
+    "selection-plan.json": "8d547b48dca5d482beea10e1358c6b19d6b72f76c161cfb8ae79e5faceb1f130",
+    "package-build-freeze.json": "ee92e59af85805eeb588b81e97102d47667b956e155ae4c75ff27044e633944d",
+    "results/economy-screen.json": "78781a06b25758565d9c53fbdcd876edffa6f42b29d5136220aa5f6dd5154572",
+    "screen-evaluation.json": "f95ccb2704f582ab037896ac8bac8fce6186f15354950a0302fb37939fcc04b4",
+    "harness-plan.json": "2cff21ccf9781923eb4e9cefe00a6e9cf267ef77454faef024bd8cd553492b1c"
+  },
+  "selection_plan_sha256": "66d59120f78eff84dcd922bec1f5bfe8e98379e157b403b8f1e7e155255e4300",
+  "policy_module_sha256": {
+    "patch_banking.py": "a0409c3c9cbbdbd1012609b9b9d79fa61bae3c88be5dccfd655b47f053ae50ce",
+    "patch_camps.py": "3413527246b445124d031aa3920bd509aa1091a24f710a3a39686a8b4c835fea",
+    "patch_recall.py": "42d5dde8ee6f2a910f5016c018829a0e79f8d1eb18ae3adc4e55e3b9bb047325"
+  },
+  "games_launched": 0,
+  "new_maps_generated": 0,
+  "source_policy": "Frozen modules copied byte for byte. Prior experiment remains authoritative and untouched."
+}

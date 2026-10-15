@@ -1,0 +1,17 @@
+{
+  "created_utc": "2026-10-15T20:24:02.682874+00:00",
+  "commit": "e72cec8",
+  "commit_is_abbreviated": true,
+  "origin": "Cleaned PR11 publication; exact current six-source-file hashes, same compiled policy as confirmed combat combination.",
+  "origin_pull_request": 11,
+  "origin_publication_manifest_sha256": "172b2db0ba707c7879acf1d279dc657a5bad99715d9081db01541d7acc4e2c38",
+  "source_sha256": {
+    "de_rules.h": "3e50429c96765f325ea3804c2bbb5c13ce26a4119fc7b8694f58def60531221b",
+    "fight.h": "5fb073f23ce41a5f6d07fba3aa55a016582a46ac54c4f8316ee6c96ebe92a7bb",
+    "main.cpp": "8ef9c27093272f5c14dbda5d16e7b91852edc63523ea86ac3d50d322514e71f7",
+    "opening_replace.h": "ca6680bae82b74b89fd0bb65573904246df8761d8b22e3ce8cb6bd93207207e7",
+    "params.h": "d99ef2cecff65f7851efb491bb4691d40ddeaaa6a96499e13eddec814fdc1372",
+    "utility.h": "5e48af1229195c4b356a617fd7323f49efe2af3a09728f6eda91ed4975c2b580"
+  },
+  "expected_injected_wasm_sha256": "a0077d5324047a799b7947b2b54634e46451cc64eabec1df06bf549c69632e43"
+}

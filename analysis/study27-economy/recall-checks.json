@@ -1,0 +1,44 @@
+{
+  "passed": true,
+  "module_sha256": {
+    "patch_recall.py": "42d5dde8ee6f2a910f5016c018829a0e79f8d1eb18ae3adc4e55e3b9bb047325",
+    "patch_banking.py": "a0409c3c9cbbdbd1012609b9b9d79fa61bae3c88be5dccfd655b47f053ae50ce",
+    "patch_camps.py": "3413527246b445124d031aa3920bd509aa1091a24f710a3a39686a8b4c835fea"
+  },
+  "valid_nonempty_recall_subsets": 11,
+  "all_valid_cross_module_packages": 287,
+  "actual_fixture_stdout": "actual cr_optional_value: 19 checks passed",
+  "fixture_cpp_sha256": "05186b039f98c60922897c51f9a1731b3a7c231499ff9f57d92281c72ce09fdf",
+  "builds": [
+    {
+      "feature": "cr_tavi",
+      "wasm_sha256": "93b6cd98bd05f5ed69f3021df7cd7b510946af20aca29ed1ca1fd59213c9c628",
+      "source_sha256": {
+        "de_rules.h": "3e50429c96765f325ea3804c2bbb5c13ce26a4119fc7b8694f58def60531221b",
+        "fight.h": "5fb073f23ce41a5f6d07fba3aa55a016582a46ac54c4f8316ee6c96ebe92a7bb",
+        "main.cpp": "cf6106371443edf05a9b95f5acd14d72c21f2309038e6f1d71c523343c695b4c",
+        "opening_replace.h": "ca6680bae82b74b89fd0bb65573904246df8761d8b22e3ce8cb6bd93207207e7",
+        "params.h": "d99ef2cecff65f7851efb491bb4691d40ddeaaa6a96499e13eddec814fdc1372",
+        "utility.h": "5e48af1229195c4b356a617fd7323f49efe2af3a09728f6eda91ed4975c2b580"
+      },
+      "build_log_sha256": "379d9f6055b40bf92a49ba140a4fc5b43e1d86b774e5a4b56ba7ead448bdd894"
+    },
+    {
+      "feature": "cr_travel",
+      "wasm_sha256": "fd016362ada52e01b6f75aa6ed957f2bae9904f566edd23548cb912e9ba59fd0",
+      "source_sha256": {
+        "de_rules.h": "3e50429c96765f325ea3804c2bbb5c13ce26a4119fc7b8694f58def60531221b",
+        "fight.h": "5fb073f23ce41a5f6d07fba3aa55a016582a46ac54c4f8316ee6c96ebe92a7bb",
+        "main.cpp": "01d2589d462ca08cd7daf91f70921d309631e30d5d996b68cbb05111d3b83386",
+        "opening_replace.h": "ca6680bae82b74b89fd0bb65573904246df8761d8b22e3ce8cb6bd93207207e7",
+        "params.h": "d99ef2cecff65f7851efb491bb4691d40ddeaaa6a96499e13eddec814fdc1372",
+        "utility.h": "5e48af1229195c4b356a617fd7323f49efe2af3a09728f6eda91ed4975c2b580"
+      },
+      "build_log_sha256": "dc5edd4a665697b417acba84b8404930f886bb7e07d4a2250c9dd583dc2fb6fb"
+    }
+  ],
+  "baseline_source_unchanged": true,
+  "games_run": 0,
+  "candidate_registrations": 0,
+  "limits": "Actual optional-benefit C++ predicate executed with no game imports. Complete emergency/shop policy preservation source-checked; return distance SDK-compiled, not a full-game behavior proof. Cross-module packages source-checked; planned registered packages will receive full SDK builds separately."
+}

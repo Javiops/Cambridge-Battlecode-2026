@@ -1,0 +1,10 @@
+{
+  "pull_request": "https://github.com/Javiops/Cambridge-Battlecode-2026/pull/13",
+  "branch": "fran/study27-economy",
+  "file": "bots/study27-economy/src/main.cpp",
+  "verification": "Authenticated GitHub file view matched the local frozen candidate text (viewer omits one final LF); Download raw file UI returned bytes exactly equal to the frozen source.",
+  "remote_download_sha256": "cb8cbe3eb437bcbee66d7b2003b5cdb1d81d37042b72d22d1edc1e001a56f4c6",
+  "local_frozen_sha256": "cb8cbe3eb437bcbee66d7b2003b5cdb1d81d37042b72d22d1edc1e001a56f4c6",
+  "other_five_source_files": "Uploaded directly as exact frozen source files through the GitHub file chooser, without text editing.",
+  "state_at_source_upload": "Draft PR; fresh confirmation running. No online activation."
+}

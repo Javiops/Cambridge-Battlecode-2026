@@ -1,0 +1,402 @@
+{
+  "created_utc": "2026-10-15T21:04:23.603818+00:00",
+  "scope": "Adaptive second-development packages; immutable unchanged policy modules; not a final candidate confirmation freeze.",
+  "selection_plan_sha256": "66d59120f78eff84dcd922bec1f5bfe8e98379e157b403b8f1e7e155255e4300",
+  "adaptive_origin_sha256": "d1a48b9b7ce69b4b938a49c21547c53116e248698eeec1c16f7f3f390ed8a252",
+  "parent_experiment": "study27-economy",
+  "parent_evidence_sha256": {
+    "selection-plan.json": "8d547b48dca5d482beea10e1358c6b19d6b72f76c161cfb8ae79e5faceb1f130",
+    "package-build-freeze.json": "ee92e59af85805eeb588b81e97102d47667b956e155ae4c75ff27044e633944d",
+    "results/economy-screen.json": "78781a06b25758565d9c53fbdcd876edffa6f42b29d5136220aa5f6dd5154572",
+    "screen-evaluation.json": "f95ccb2704f582ab037896ac8bac8fce6186f15354950a0302fb37939fcc04b4",
+    "harness-plan.json": "2cff21ccf9781923eb4e9cefe00a6e9cf267ef77454faef024bd8cd553492b1c"
+  },
+  "module_sha256": {
+    "patch_banking.py": "a0409c3c9cbbdbd1012609b9b9d79fa61bae3c88be5dccfd655b47f053ae50ce",
+    "patch_camps.py": "3413527246b445124d031aa3920bd509aa1091a24f710a3a39686a8b4c835fea",
+    "patch_recall.py": "42d5dde8ee6f2a910f5016c018829a0e79f8d1eb18ae3adc4e55e3b9bb047325"
+  },
+  "runtime": {
+    "cli_version": "cambc 2.1.6",
+    "cli_sha256": "91f42c859c40c07c186eb94a692349396c7b168d2b454f1cb060c714825d9882",
+    "project_config_sha256": "283283f8e2c87df8f5db09bb1dbdc14d9b30bbcd3ffb49b6286a0e613204ed3c",
+    "sdk_header_sha256": "90f4242686f22305b28d76d4fa2297187931b3c974f96faf324199e93979203d",
+    "engine_version": "0.0.1",
+    "reference_engine_wasm_sha256": "ce302dc6666ae43592f6936e572bc4baca92a345bff13ef7f986609ac666a0dc",
+    "engine_pin_limit": "CLI has no engine-file option. Version is verified in final statistics; reference WASM is the official map-generator engine, not a claim of CLI engine injection.",
+    "settings": {
+      "full_game": true,
+      "fuel": "CLI default",
+      "language": "cpp",
+      "update_check": false
+    }
+  },
+  "base_source_sha256": {
+    "de_rules.h": "3e50429c96765f325ea3804c2bbb5c13ce26a4119fc7b8694f58def60531221b",
+    "fight.h": "5fb073f23ce41a5f6d07fba3aa55a016582a46ac54c4f8316ee6c96ebe92a7bb",
+    "main.cpp": "8ef9c27093272f5c14dbda5d16e7b91852edc63523ea86ac3d50d322514e71f7",
+    "opening_replace.h": "ca6680bae82b74b89fd0bb65573904246df8761d8b22e3ce8cb6bd93207207e7",
+    "params.h": "d99ef2cecff65f7851efb491bb4691d40ddeaaa6a96499e13eddec814fdc1372",
+    "utility.h": "5e48af1229195c4b356a617fd7323f49efe2af3a09728f6eda91ed4975c2b580"
+  },
+  "base_wasm_sha256": "a0077d5324047a799b7947b2b54634e46451cc64eabec1df06bf549c69632e43",
+  "packages": {
+    "productive_walk": {
+      "base_commit": "e72cec8",
+      "base_commit_is_abbreviated": true,
+      "base_path": "PR11-cleaned-publication/src",
+      "base_source_sha256": {
+        "de_rules.h": "3e50429c96765f325ea3804c2bbb5c13ce26a4119fc7b8694f58def60531221b",
+        "fight.h": "5fb073f23ce41a5f6d07fba3aa55a016582a46ac54c4f8316ee6c96ebe92a7bb",
+        "main.cpp": "8ef9c27093272f5c14dbda5d16e7b91852edc63523ea86ac3d50d322514e71f7",
+        "opening_replace.h": "ca6680bae82b74b89fd0bb65573904246df8761d8b22e3ce8cb6bd93207207e7",
+        "params.h": "d99ef2cecff65f7851efb491bb4691d40ddeaaa6a96499e13eddec814fdc1372",
+        "utility.h": "5e48af1229195c4b356a617fd7323f49efe2af3a09728f6eda91ed4975c2b580"
+      },
+      "features": [
+        "banking_walk",
+        "cf_camp_reach",
+        "cf_camp_evac",
+        "cr_travel"
+      ],
+      "patch_modules_sha256": {
+        "patch_banking.py": "a0409c3c9cbbdbd1012609b9b9d79fa61bae3c88be5dccfd655b47f053ae50ce",
+        "patch_camps.py": "3413527246b445124d031aa3920bd509aa1091a24f710a3a39686a8b4c835fea",
+        "patch_recall.py": "42d5dde8ee6f2a910f5016c018829a0e79f8d1eb18ae3adc4e55e3b9bb047325"
+      },
+      "role": "candidate",
+      "applied_feature_batches": [
+        {
+          "module": "patch_banking.py",
+          "features": [
+            "banking_walk"
+          ]
+        },
+        {
+          "module": "patch_camps.py",
+          "features": [
+            "cf_camp_reach",
+            "cf_camp_evac"
+          ]
+        },
+        {
+          "module": "patch_recall.py",
+          "features": [
+            "cr_travel"
+          ]
+        }
+      ],
+      "name": "productive_walk",
+      "source_sha256": {
+        "de_rules.h": "3e50429c96765f325ea3804c2bbb5c13ce26a4119fc7b8694f58def60531221b",
+        "fight.h": "5fb073f23ce41a5f6d07fba3aa55a016582a46ac54c4f8316ee6c96ebe92a7bb",
+        "main.cpp": "cb8cbe3eb437bcbee66d7b2003b5cdb1d81d37042b72d22d1edc1e001a56f4c6",
+        "opening_replace.h": "ca6680bae82b74b89fd0bb65573904246df8761d8b22e3ce8cb6bd93207207e7",
+        "params.h": "d99ef2cecff65f7851efb491bb4691d40ddeaaa6a96499e13eddec814fdc1372",
+        "utility.h": "5e48af1229195c4b356a617fd7323f49efe2af3a09728f6eda91ed4975c2b580"
+      },
+      "created_utc": "2026-10-15T21:02:53.062019+00:00",
+      "wasm_sha256": "fbf835eea4f7a3e629ca58dbff2792f66994d400e93f80332a4d11ba0143ce29",
+      "cli_sha256": "91f42c859c40c07c186eb94a692349396c7b168d2b454f1cb060c714825d9882",
+      "project_config_sha256": "283283f8e2c87df8f5db09bb1dbdc14d9b30bbcd3ffb49b6286a0e613204ed3c",
+      "sdk_header_sha256": "90f4242686f22305b28d76d4fa2297187931b3c974f96faf324199e93979203d"
+    },
+    "productive_risk": {
+      "base_commit": "e72cec8",
+      "base_commit_is_abbreviated": true,
+      "base_path": "PR11-cleaned-publication/src",
+      "base_source_sha256": {
+        "de_rules.h": "3e50429c96765f325ea3804c2bbb5c13ce26a4119fc7b8694f58def60531221b",
+        "fight.h": "5fb073f23ce41a5f6d07fba3aa55a016582a46ac54c4f8316ee6c96ebe92a7bb",
+        "main.cpp": "8ef9c27093272f5c14dbda5d16e7b91852edc63523ea86ac3d50d322514e71f7",
+        "opening_replace.h": "ca6680bae82b74b89fd0bb65573904246df8761d8b22e3ce8cb6bd93207207e7",
+        "params.h": "d99ef2cecff65f7851efb491bb4691d40ddeaaa6a96499e13eddec814fdc1372",
+        "utility.h": "5e48af1229195c4b356a617fd7323f49efe2af3a09728f6eda91ed4975c2b580"
+      },
+      "features": [
+        "banking_risk",
+        "cf_camp_reach",
+        "cf_camp_evac",
+        "cr_travel"
+      ],
+      "patch_modules_sha256": {
+        "patch_banking.py": "a0409c3c9cbbdbd1012609b9b9d79fa61bae3c88be5dccfd655b47f053ae50ce",
+        "patch_camps.py": "3413527246b445124d031aa3920bd509aa1091a24f710a3a39686a8b4c835fea",
+        "patch_recall.py": "42d5dde8ee6f2a910f5016c018829a0e79f8d1eb18ae3adc4e55e3b9bb047325"
+      },
+      "role": "candidate",
+      "applied_feature_batches": [
+        {
+          "module": "patch_banking.py",
+          "features": [
+            "banking_risk"
+          ]
+        },
+        {
+          "module": "patch_camps.py",
+          "features": [
+            "cf_camp_reach",
+            "cf_camp_evac"
+          ]
+        },
+        {
+          "module": "patch_recall.py",
+          "features": [
+            "cr_travel"
+          ]
+        }
+      ],
+      "name": "productive_risk",
+      "source_sha256": {
+        "de_rules.h": "3e50429c96765f325ea3804c2bbb5c13ce26a4119fc7b8694f58def60531221b",
+        "fight.h": "5fb073f23ce41a5f6d07fba3aa55a016582a46ac54c4f8316ee6c96ebe92a7bb",
+        "main.cpp": "3043d8793379a20cf2efcd9734684bb72426e5127d86f742a35a68117af229ac",
+        "opening_replace.h": "ca6680bae82b74b89fd0bb65573904246df8761d8b22e3ce8cb6bd93207207e7",
+        "params.h": "d99ef2cecff65f7851efb491bb4691d40ddeaaa6a96499e13eddec814fdc1372",
+        "utility.h": "5e48af1229195c4b356a617fd7323f49efe2af3a09728f6eda91ed4975c2b580"
+      },
+      "created_utc": "2026-10-15T21:02:53.132074+00:00",
+      "wasm_sha256": "dfa8453e86ac371604ffcdbbfe88fc0f1bd945aee923b083aec4b61addf27ea0",
+      "cli_sha256": "91f42c859c40c07c186eb94a692349396c7b168d2b454f1cb060c714825d9882",
+      "project_config_sha256": "283283f8e2c87df8f5db09bb1dbdc14d9b30bbcd3ffb49b6286a0e613204ed3c",
+      "sdk_header_sha256": "90f4242686f22305b28d76d4fa2297187931b3c974f96faf324199e93979203d"
+    },
+    "bank_walk": {
+      "base_commit": "e72cec8",
+      "base_commit_is_abbreviated": true,
+      "base_path": "PR11-cleaned-publication/src",
+      "base_source_sha256": {
+        "de_rules.h": "3e50429c96765f325ea3804c2bbb5c13ce26a4119fc7b8694f58def60531221b",
+        "fight.h": "5fb073f23ce41a5f6d07fba3aa55a016582a46ac54c4f8316ee6c96ebe92a7bb",
+        "main.cpp": "8ef9c27093272f5c14dbda5d16e7b91852edc63523ea86ac3d50d322514e71f7",
+        "opening_replace.h": "ca6680bae82b74b89fd0bb65573904246df8761d8b22e3ce8cb6bd93207207e7",
+        "params.h": "d99ef2cecff65f7851efb491bb4691d40ddeaaa6a96499e13eddec814fdc1372",
+        "utility.h": "5e48af1229195c4b356a617fd7323f49efe2af3a09728f6eda91ed4975c2b580"
+      },
+      "features": [
+        "banking_walk",
+        "cr_travel"
+      ],
+      "patch_modules_sha256": {
+        "patch_banking.py": "a0409c3c9cbbdbd1012609b9b9d79fa61bae3c88be5dccfd655b47f053ae50ce",
+        "patch_recall.py": "42d5dde8ee6f2a910f5016c018829a0e79f8d1eb18ae3adc4e55e3b9bb047325"
+      },
+      "role": "candidate",
+      "applied_feature_batches": [
+        {
+          "module": "patch_banking.py",
+          "features": [
+            "banking_walk"
+          ]
+        },
+        {
+          "module": "patch_recall.py",
+          "features": [
+            "cr_travel"
+          ]
+        }
+      ],
+      "name": "bank_walk",
+      "source_sha256": {
+        "de_rules.h": "3e50429c96765f325ea3804c2bbb5c13ce26a4119fc7b8694f58def60531221b",
+        "fight.h": "5fb073f23ce41a5f6d07fba3aa55a016582a46ac54c4f8316ee6c96ebe92a7bb",
+        "main.cpp": "4d49f62e372fb7db3b98069d2b248d75cce7d3cc610c5e751621695ea60e75b9",
+        "opening_replace.h": "ca6680bae82b74b89fd0bb65573904246df8761d8b22e3ce8cb6bd93207207e7",
+        "params.h": "d99ef2cecff65f7851efb491bb4691d40ddeaaa6a96499e13eddec814fdc1372",
+        "utility.h": "5e48af1229195c4b356a617fd7323f49efe2af3a09728f6eda91ed4975c2b580"
+      },
+      "created_utc": "2026-10-15T21:02:53.195251+00:00",
+      "wasm_sha256": "f0747cadd19cdf3d9e87405d1d818cf73761e1ba2b5db84e611d2abd1c7cbc27",
+      "cli_sha256": "91f42c859c40c07c186eb94a692349396c7b168d2b454f1cb060c714825d9882",
+      "project_config_sha256": "283283f8e2c87df8f5db09bb1dbdc14d9b30bbcd3ffb49b6286a0e613204ed3c",
+      "sdk_header_sha256": "90f4242686f22305b28d76d4fa2297187931b3c974f96faf324199e93979203d"
+    },
+    "mobile_camps": {
+      "base_commit": "e72cec8",
+      "base_commit_is_abbreviated": true,
+      "base_path": "PR11-cleaned-publication/src",
+      "base_source_sha256": {
+        "de_rules.h": "3e50429c96765f325ea3804c2bbb5c13ce26a4119fc7b8694f58def60531221b",
+        "fight.h": "5fb073f23ce41a5f6d07fba3aa55a016582a46ac54c4f8316ee6c96ebe92a7bb",
+        "main.cpp": "8ef9c27093272f5c14dbda5d16e7b91852edc63523ea86ac3d50d322514e71f7",
+        "opening_replace.h": "ca6680bae82b74b89fd0bb65573904246df8761d8b22e3ce8cb6bd93207207e7",
+        "params.h": "d99ef2cecff65f7851efb491bb4691d40ddeaaa6a96499e13eddec814fdc1372",
+        "utility.h": "5e48af1229195c4b356a617fd7323f49efe2af3a09728f6eda91ed4975c2b580"
+      },
+      "features": [
+        "cf_camp_reach",
+        "cf_camp_evac"
+      ],
+      "patch_modules_sha256": {
+        "patch_camps.py": "3413527246b445124d031aa3920bd509aa1091a24f710a3a39686a8b4c835fea"
+      },
+      "role": "candidate",
+      "applied_feature_batches": [
+        {
+          "module": "patch_camps.py",
+          "features": [
+            "cf_camp_reach",
+            "cf_camp_evac"
+          ]
+        }
+      ],
+      "name": "mobile_camps",
+      "source_sha256": {
+        "de_rules.h": "3e50429c96765f325ea3804c2bbb5c13ce26a4119fc7b8694f58def60531221b",
+        "fight.h": "5fb073f23ce41a5f6d07fba3aa55a016582a46ac54c4f8316ee6c96ebe92a7bb",
+        "main.cpp": "7a78acc0346115294ff357d3da74a08dc9a1f479f3ff767472dac5b1e08a9162",
+        "opening_replace.h": "ca6680bae82b74b89fd0bb65573904246df8761d8b22e3ce8cb6bd93207207e7",
+        "params.h": "d99ef2cecff65f7851efb491bb4691d40ddeaaa6a96499e13eddec814fdc1372",
+        "utility.h": "5e48af1229195c4b356a617fd7323f49efe2af3a09728f6eda91ed4975c2b580"
+      },
+      "created_utc": "2026-10-15T21:02:53.267609+00:00",
+      "wasm_sha256": "134b4c26ff53c7697707a89b56bf553634c3014f393a759ac925e9ddedb46132",
+      "cli_sha256": "91f42c859c40c07c186eb94a692349396c7b168d2b454f1cb060c714825d9882",
+      "project_config_sha256": "283283f8e2c87df8f5db09bb1dbdc14d9b30bbcd3ffb49b6286a0e613204ed3c",
+      "sdk_header_sha256": "90f4242686f22305b28d76d4fa2297187931b3c974f96faf324199e93979203d"
+    },
+    "productive_share85": {
+      "base_commit": "e72cec8",
+      "base_commit_is_abbreviated": true,
+      "base_path": "PR11-cleaned-publication/src",
+      "base_source_sha256": {
+        "de_rules.h": "3e50429c96765f325ea3804c2bbb5c13ce26a4119fc7b8694f58def60531221b",
+        "fight.h": "5fb073f23ce41a5f6d07fba3aa55a016582a46ac54c4f8316ee6c96ebe92a7bb",
+        "main.cpp": "8ef9c27093272f5c14dbda5d16e7b91852edc63523ea86ac3d50d322514e71f7",
+        "opening_replace.h": "ca6680bae82b74b89fd0bb65573904246df8761d8b22e3ce8cb6bd93207207e7",
+        "params.h": "d99ef2cecff65f7851efb491bb4691d40ddeaaa6a96499e13eddec814fdc1372",
+        "utility.h": "5e48af1229195c4b356a617fd7323f49efe2af3a09728f6eda91ed4975c2b580"
+      },
+      "features": [
+        "banking_walk",
+        "cf_camp_reach",
+        "cf_camp_evac",
+        "cr_travel",
+        "share85"
+      ],
+      "patch_modules_sha256": {
+        "patch_banking.py": "a0409c3c9cbbdbd1012609b9b9d79fa61bae3c88be5dccfd655b47f053ae50ce",
+        "patch_camps.py": "3413527246b445124d031aa3920bd509aa1091a24f710a3a39686a8b4c835fea",
+        "patch_recall.py": "42d5dde8ee6f2a910f5016c018829a0e79f8d1eb18ae3adc4e55e3b9bb047325"
+      },
+      "role": "candidate",
+      "applied_feature_batches": [
+        {
+          "module": "patch_banking.py",
+          "features": [
+            "banking_walk"
+          ]
+        },
+        {
+          "module": "patch_camps.py",
+          "features": [
+            "cf_camp_reach",
+            "cf_camp_evac"
+          ]
+        },
+        {
+          "module": "patch_recall.py",
+          "features": [
+            "cr_travel",
+            "share85"
+          ]
+        }
+      ],
+      "name": "productive_share85",
+      "source_sha256": {
+        "de_rules.h": "3e50429c96765f325ea3804c2bbb5c13ce26a4119fc7b8694f58def60531221b",
+        "fight.h": "5fb073f23ce41a5f6d07fba3aa55a016582a46ac54c4f8316ee6c96ebe92a7bb",
+        "main.cpp": "cb8cbe3eb437bcbee66d7b2003b5cdb1d81d37042b72d22d1edc1e001a56f4c6",
+        "opening_replace.h": "ca6680bae82b74b89fd0bb65573904246df8761d8b22e3ce8cb6bd93207207e7",
+        "params.h": "0064c73af72215d8c819bc826e0306f82f85b64d1248475062b0bf905959a914",
+        "utility.h": "5e48af1229195c4b356a617fd7323f49efe2af3a09728f6eda91ed4975c2b580"
+      },
+      "created_utc": "2026-10-15T21:03:17.354025+00:00",
+      "wasm_sha256": "6a8911f696704399ef1920fbb547d0ac744d5234c16af6b770b138b6fce0543f",
+      "cli_sha256": "91f42c859c40c07c186eb94a692349396c7b168d2b454f1cb060c714825d9882",
+      "project_config_sha256": "283283f8e2c87df8f5db09bb1dbdc14d9b30bbcd3ffb49b6286a0e613204ed3c",
+      "sdk_header_sha256": "90f4242686f22305b28d76d4fa2297187931b3c974f96faf324199e93979203d"
+    },
+    "productive_share100": {
+      "base_commit": "e72cec8",
+      "base_commit_is_abbreviated": true,
+      "base_path": "PR11-cleaned-publication/src",
+      "base_source_sha256": {
+        "de_rules.h": "3e50429c96765f325ea3804c2bbb5c13ce26a4119fc7b8694f58def60531221b",
+        "fight.h": "5fb073f23ce41a5f6d07fba3aa55a016582a46ac54c4f8316ee6c96ebe92a7bb",
+        "main.cpp": "8ef9c27093272f5c14dbda5d16e7b91852edc63523ea86ac3d50d322514e71f7",
+        "opening_replace.h": "ca6680bae82b74b89fd0bb65573904246df8761d8b22e3ce8cb6bd93207207e7",
+        "params.h": "d99ef2cecff65f7851efb491bb4691d40ddeaaa6a96499e13eddec814fdc1372",
+        "utility.h": "5e48af1229195c4b356a617fd7323f49efe2af3a09728f6eda91ed4975c2b580"
+      },
+      "features": [
+        "banking_walk",
+        "cf_camp_reach",
+        "cf_camp_evac",
+        "cr_travel",
+        "share100"
+      ],
+      "patch_modules_sha256": {
+        "patch_banking.py": "a0409c3c9cbbdbd1012609b9b9d79fa61bae3c88be5dccfd655b47f053ae50ce",
+        "patch_camps.py": "3413527246b445124d031aa3920bd509aa1091a24f710a3a39686a8b4c835fea",
+        "patch_recall.py": "42d5dde8ee6f2a910f5016c018829a0e79f8d1eb18ae3adc4e55e3b9bb047325"
+      },
+      "role": "candidate",
+      "applied_feature_batches": [
+        {
+          "module": "patch_banking.py",
+          "features": [
+            "banking_walk"
+          ]
+        },
+        {
+          "module": "patch_camps.py",
+          "features": [
+            "cf_camp_reach",
+            "cf_camp_evac"
+          ]
+        },
+        {
+          "module": "patch_recall.py",
+          "features": [
+            "cr_travel",
+            "share100"
+          ]
+        }
+      ],
+      "name": "productive_share100",
+      "source_sha256": {
+        "de_rules.h": "3e50429c96765f325ea3804c2bbb5c13ce26a4119fc7b8694f58def60531221b",
+        "fight.h": "5fb073f23ce41a5f6d07fba3aa55a016582a46ac54c4f8316ee6c96ebe92a7bb",
+        "main.cpp": "cb8cbe3eb437bcbee66d7b2003b5cdb1d81d37042b72d22d1edc1e001a56f4c6",
+        "opening_replace.h": "ca6680bae82b74b89fd0bb65573904246df8761d8b22e3ce8cb6bd93207207e7",
+        "params.h": "906ee9fdd7b84172e5f0ec5c0d1c43008bad86a7ae3738ba3d2f49e43c07bd95",
+        "utility.h": "5e48af1229195c4b356a617fd7323f49efe2af3a09728f6eda91ed4975c2b580"
+      },
+      "created_utc": "2026-10-15T21:03:17.453411+00:00",
+      "wasm_sha256": "dfcecb501bbf5576dd53a73e002cbb9f960d040fef147031589a3bf4c756cc6a",
+      "cli_sha256": "91f42c859c40c07c186eb94a692349396c7b168d2b454f1cb060c714825d9882",
+      "project_config_sha256": "283283f8e2c87df8f5db09bb1dbdc14d9b30bbcd3ffb49b6286a0e613204ed3c",
+      "sdk_header_sha256": "90f4242686f22305b28d76d4fa2297187931b3c974f96faf324199e93979203d"
+    }
+  },
+  "reference_imports_sha256": "2ef63a00bb03551c5c78aed6aa1a2ccbfdd3651297da655c872f192e575e6a25",
+  "review_evidence_sha256": {
+    "banking-build-checks.json": "69a8016b62a604588f1a3c559082585d75b0cd67ec727cb48b512b4351a79b78",
+    "banking-helper-checks.json": "8285b5138d27f3d308842c710f2f7faa0af0fbf321427f92db78f8456ddcbfdd",
+    "camps-checks.json": "f4f5e8b382cfb4177af7aede82279b5bd6afe22a128587181235a775b4ca72dc",
+    "evac-checks.json": "64ecf53f84488595569cc990f65334f23ba6b44c1b8f69b111f5085f39af1c2a",
+    "camps-pre-game-audit-repair.json": "27472080ca8c6d5d41d7d0f661a0651e63135ac7094cc2fd79fd40d445eda25c",
+    "recall-checks.json": "d6aad04158472a1dc9e1523a1c10a319ca02f7bad9876a3a190843f6592ea979",
+    "cross-module-review.json": "93a5759995b72493d45a22b7057919e4029149da5921af804db419ec067dcdf8",
+    "resolver-repair.json": "57c7570c1fec53cff037446c8d67fb7a1f509d22c8744d2aed9876614574dcf1",
+    "composition-checks.json": "09369d3226b71e95b6bd050ae3e78dc77ed2f7d73c103bcfa1c60d5835b0504e"
+  },
+  "harness_sha256": {
+    "lab.py": "36e6dde582cca9ea7c5818c1e8c9f70b368f8e60a5cc8ca7ade1fe43e00fab37",
+    "test_matches.py": "6e55ec657934298ecb3e7b376ae0cb9278590949530016434142790bc19217f4",
+    "compare.py": "3a290abc7d8a8b731faf8330bf3a1ca1ec8ed59a3e8592231c43f890b8526f0f"
+  },
+  "games_launched_by_registration": 0,
+  "new_maps": 0
+}

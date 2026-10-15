@@ -1,0 +1,1329 @@
+{
+  "created_utc": "2026-10-15T21:19:55.834689+00:00",
+  "phase": "transfer",
+  "maps": 128,
+  "names": [
+    "productive_walk"
+  ],
+  "comparisons": {
+    "productive_walk": {
+      "candidate": "productive_walk",
+      "features": [
+        "banking_walk",
+        "cf_camp_reach",
+        "cf_camp_evac",
+        "cr_travel"
+      ],
+      "maps": 128,
+      "direct": {
+        "games": 256,
+        "wins": 143,
+        "losses": 113,
+        "draws": 0,
+        "score_pct": 55.859375,
+        "both_won": 33,
+        "both_lost": 18,
+        "p_two_sided": 0.04887389231827033
+      },
+      "panel": {
+        "games": 1280,
+        "maps": 128,
+        "candidate_win_score": 955.0,
+        "baseline_win_score": 930.0,
+        "score_delta": 25.0,
+        "percentage_point_delta": 1.953125,
+        "positive_maps": 54,
+        "negative_maps": 40,
+        "neutral_maps": 34,
+        "p_two_sided": 0.17966501480803043
+      },
+      "older_spars": {
+        "games": 768,
+        "maps": 128,
+        "candidate_win_score": 650.0,
+        "baseline_win_score": 641.0,
+        "score_delta": 9.0,
+        "percentage_point_delta": 1.171875,
+        "positive_maps": 29,
+        "negative_maps": 24,
+        "neutral_maps": 75,
+        "p_two_sided": 0.5831321542611763
+      },
+      "new_style_probes": {
+        "games": 512,
+        "maps": 128,
+        "candidate_win_score": 305.0,
+        "baseline_win_score": 289.0,
+        "score_delta": 16.0,
+        "percentage_point_delta": 3.125,
+        "positive_maps": 44,
+        "negative_maps": 33,
+        "neutral_maps": 51,
+        "p_two_sided": 0.25430466614770003
+      },
+      "references": {
+        "spar11": {
+          "games": 256,
+          "maps": 128,
+          "candidate_win_score": 216.0,
+          "baseline_win_score": 210.0,
+          "score_delta": 6.0,
+          "percentage_point_delta": 2.34375,
+          "positive_maps": 19,
+          "negative_maps": 13,
+          "neutral_maps": 96,
+          "p_two_sided": 0.37708558747544885
+        },
+        "spar12": {
+          "games": 256,
+          "maps": 128,
+          "candidate_win_score": 219.0,
+          "baseline_win_score": 222.0,
+          "score_delta": -3.0,
+          "percentage_point_delta": -1.171875,
+          "positive_maps": 16,
+          "negative_maps": 17,
+          "neutral_maps": 95,
+          "p_two_sided": 1.0
+        },
+        "spar16": {
+          "games": 256,
+          "maps": 128,
+          "candidate_win_score": 215.0,
+          "baseline_win_score": 209.0,
+          "score_delta": 6.0,
+          "percentage_point_delta": 2.34375,
+          "positive_maps": 16,
+          "negative_maps": 12,
+          "neutral_maps": 100,
+          "p_two_sided": 0.5715881884098053
+        },
+        "challenge_fastbank": {
+          "games": 256,
+          "maps": 128,
+          "candidate_win_score": 142.0,
+          "baseline_win_score": 132.0,
+          "score_delta": 10.0,
+          "percentage_point_delta": 3.90625,
+          "positive_maps": 33,
+          "negative_maps": 23,
+          "neutral_maps": 72,
+          "p_two_sided": 0.22880554123435617
+        },
+        "challenge_brawl": {
+          "games": 256,
+          "maps": 128,
+          "candidate_win_score": 163.0,
+          "baseline_win_score": 157.0,
+          "score_delta": 6.0,
+          "percentage_point_delta": 2.34375,
+          "positive_maps": 32,
+          "negative_maps": 24,
+          "neutral_maps": 72,
+          "p_two_sided": 0.3496819529836849
+        }
+      },
+      "quality": {
+        "unique_physical_games_including_matched_baseline": 2816,
+        "fault_games_either_team": 0,
+        "reinitialization_games_either_team": 0,
+        "caught_error_samples_both_teams": 98628,
+        "sampled_low_fuel_entries_both_teams": 4016
+      },
+      "native_mechanisms": {
+        "matched_games": 1280,
+        "panel": {
+          "submittedGems": {
+            "matched_pairs": 1280,
+            "missing_metric_pairs": 0,
+            "per_game": {
+              "candidate_mean": 972.6453125,
+              "baseline_mean": 970.50234375,
+              "paired_mean_delta": 2.14296875,
+              "paired_total_delta": 2743
+            },
+            "per100rounds_mean_of_game_rates": {
+              "candidate_mean": 255.84551711460176,
+              "baseline_mean": 251.59980986718944,
+              "paired_mean_delta": 4.245707247412332,
+              "paired_total_delta": 5434.505276687785
+            }
+          },
+          "collectedGems": {
+            "matched_pairs": 1280,
+            "missing_metric_pairs": 0,
+            "per_game": {
+              "candidate_mean": 1054.1890625,
+              "baseline_mean": 1049.625,
+              "paired_mean_delta": 4.5640625,
+              "paired_total_delta": 5842
+            },
+            "per100rounds_mean_of_game_rates": {
+              "candidate_mean": 275.0023195983857,
+              "baseline_mean": 269.9302860351258,
+              "paired_mean_delta": 5.072033563259913,
+              "paired_total_delta": 6492.202960972688
+            }
+          },
+          "spentGold": {
+            "matched_pairs": 1280,
+            "missing_metric_pairs": 0,
+            "per_game": {
+              "candidate_mean": 2581.6171875,
+              "baseline_mean": 2617.765625,
+              "paired_mean_delta": -36.1484375,
+              "paired_total_delta": -46270
+            },
+            "per100rounds_mean_of_game_rates": {
+              "candidate_mean": 665.5805061339763,
+              "baseline_mean": 665.8705599375438,
+              "paired_mean_delta": -0.2900538035674446,
+              "paired_total_delta": -371.26886856632905
+            }
+          },
+          "deaths": {
+            "matched_pairs": 1280,
+            "missing_metric_pairs": 0,
+            "per_game": {
+              "candidate_mean": 3.478125,
+              "baseline_mean": 3.55546875,
+              "paired_mean_delta": -0.07734375,
+              "paired_total_delta": -99
+            },
+            "per100rounds_mean_of_game_rates": {
+              "candidate_mean": 0.6471989484268756,
+              "baseline_mean": 0.6561414510389739,
+              "paired_mean_delta": -0.008942502612098339,
+              "paired_total_delta": -11.446403343485875
+            }
+          },
+          "monsterDamageDone": {
+            "matched_pairs": 1280,
+            "missing_metric_pairs": 0,
+            "per_game": {
+              "candidate_mean": 51220.775820475814,
+              "baseline_mean": 51118.696484488246,
+              "paired_mean_delta": 102.0793359875679,
+              "paired_total_delta": 130661.55006408691
+            },
+            "per100rounds_mean_of_game_rates": {
+              "candidate_mean": 13397.773998406177,
+              "baseline_mean": 13182.077366408837,
+              "paired_mean_delta": 215.696631997341,
+              "paired_total_delta": 276091.6889565965
+            }
+          },
+          "monsterDamageTaken": {
+            "matched_pairs": 1280,
+            "missing_metric_pairs": 0,
+            "per_game": {
+              "candidate_mean": 9938.46954985112,
+              "baseline_mean": 10332.120952649415,
+              "paired_mean_delta": -393.651402798295,
+              "paired_total_delta": -503873.7955818176
+            },
+            "per100rounds_mean_of_game_rates": {
+              "candidate_mean": 2449.07352693626,
+              "baseline_mean": 2494.8078652000045,
+              "paired_mean_delta": -45.73433826374445,
+              "paired_total_delta": -58539.95297759289
+            }
+          },
+          "submitted_over_collected": {
+            "paired_games_both_positive_collection": 1279,
+            "excluded_zero_collection_pairs": 1,
+            "missing_metric_pairs": 0,
+            "candidate_mean_pct": 92.28418717210661,
+            "baseline_mean_pct": 92.38770910429426,
+            "paired_mean_percentage_point_delta": -0.1035219321876395
+          }
+        },
+        "by_reference": {
+          "spar11": {
+            "submittedGems": {
+              "matched_pairs": 256,
+              "missing_metric_pairs": 0,
+              "per_game": {
+                "candidate_mean": 997.5078125,
+                "baseline_mean": 997.75390625,
+                "paired_mean_delta": -0.24609375,
+                "paired_total_delta": -63
+              },
+              "per100rounds_mean_of_game_rates": {
+                "candidate_mean": 260.68486625851784,
+                "baseline_mean": 256.2978124694284,
+                "paired_mean_delta": 4.3870537890894585,
+                "paired_total_delta": 1123.0857700069014
+              }
+            },
+            "collectedGems": {
+              "matched_pairs": 256,
+              "missing_metric_pairs": 0,
+              "per_game": {
+                "candidate_mean": 1070.6328125,
+                "baseline_mean": 1068.44921875,
+                "paired_mean_delta": 2.18359375,
+                "paired_total_delta": 559
+              },
+              "per100rounds_mean_of_game_rates": {
+                "candidate_mean": 278.1853940253923,
+                "baseline_mean": 272.27906712060866,
+                "paired_mean_delta": 5.906326904783697,
+                "paired_total_delta": 1512.0196876246264
+              }
+            },
+            "spentGold": {
+              "matched_pairs": 256,
+              "missing_metric_pairs": 0,
+              "per_game": {
+                "candidate_mean": 2642.9296875,
+                "baseline_mean": 2687.8515625,
+                "paired_mean_delta": -44.921875,
+                "paired_total_delta": -11500
+              },
+              "per100rounds_mean_of_game_rates": {
+                "candidate_mean": 676.0099340062244,
+                "baseline_mean": 676.3015283920798,
+                "paired_mean_delta": -0.2915943858554229,
+                "paired_total_delta": -74.64816277898827
+              }
+            },
+            "deaths": {
+              "matched_pairs": 256,
+              "missing_metric_pairs": 0,
+              "per_game": {
+                "candidate_mean": 3.125,
+                "baseline_mean": 3.26171875,
+                "paired_mean_delta": -0.13671875,
+                "paired_total_delta": -35
+              },
+              "per100rounds_mean_of_game_rates": {
+                "candidate_mean": 0.5748233593996743,
+                "baseline_mean": 0.577646539085949,
+                "paired_mean_delta": -0.002823179686274652,
+                "paired_total_delta": -0.7227339996863109
+              }
+            },
+            "monsterDamageDone": {
+              "matched_pairs": 256,
+              "missing_metric_pairs": 0,
+              "per_game": {
+                "candidate_mean": 51908.22402361035,
+                "baseline_mean": 52149.668945491314,
+                "paired_mean_delta": -241.44492188096046,
+                "paired_total_delta": -61809.90000152588
+              },
+              "per100rounds_mean_of_game_rates": {
+                "candidate_mean": 13503.669642345487,
+                "baseline_mean": 13300.460452690573,
+                "paired_mean_delta": 203.20918965491427,
+                "paired_total_delta": 52021.55255165805
+              }
+            },
+            "monsterDamageTaken": {
+              "matched_pairs": 256,
+              "missing_metric_pairs": 0,
+              "per_game": {
+                "candidate_mean": 10024.658963106573,
+                "baseline_mean": 10660.389623731375,
+                "paired_mean_delta": -635.7306606248021,
+                "paired_total_delta": -162747.04911994934
+              },
+              "per100rounds_mean_of_game_rates": {
+                "candidate_mean": 2455.2656855122073,
+                "baseline_mean": 2522.3497768093025,
+                "paired_mean_delta": -67.08409129709493,
+                "paired_total_delta": -17173.527372056302
+              }
+            },
+            "submitted_over_collected": {
+              "paired_games_both_positive_collection": 256,
+              "excluded_zero_collection_pairs": 0,
+              "missing_metric_pairs": 0,
+              "candidate_mean_pct": 93.22427570434343,
+              "baseline_mean_pct": 93.4920492316444,
+              "paired_mean_percentage_point_delta": -0.2677735273009867
+            }
+          },
+          "spar12": {
+            "submittedGems": {
+              "matched_pairs": 256,
+              "missing_metric_pairs": 0,
+              "per_game": {
+                "candidate_mean": 997.64453125,
+                "baseline_mean": 1005.10546875,
+                "paired_mean_delta": -7.4609375,
+                "paired_total_delta": -1910
+              },
+              "per100rounds_mean_of_game_rates": {
+                "candidate_mean": 260.2976957769735,
+                "baseline_mean": 256.97206301610856,
+                "paired_mean_delta": 3.3256327608649094,
+                "paired_total_delta": 851.3619867814168
+              }
+            },
+            "collectedGems": {
+              "matched_pairs": 256,
+              "missing_metric_pairs": 0,
+              "per_game": {
+                "candidate_mean": 1074.3359375,
+                "baseline_mean": 1079.8984375,
+                "paired_mean_delta": -5.5625,
+                "paired_total_delta": -1424
+              },
+              "per100rounds_mean_of_game_rates": {
+                "candidate_mean": 278.61656016662545,
+                "baseline_mean": 274.0796289403449,
+                "paired_mean_delta": 4.536931226280604,
+                "paired_total_delta": 1161.4543939278346
+              }
+            },
+            "spentGold": {
+              "matched_pairs": 256,
+              "missing_metric_pairs": 0,
+              "per_game": {
+                "candidate_mean": 2625.46875,
+                "baseline_mean": 2689.53125,
+                "paired_mean_delta": -64.0625,
+                "paired_total_delta": -16400
+              },
+              "per100rounds_mean_of_game_rates": {
+                "candidate_mean": 671.9509604765,
+                "baseline_mean": 675.9855654418467,
+                "paired_mean_delta": -4.034604965346744,
+                "paired_total_delta": -1032.8588711287664
+              }
+            },
+            "deaths": {
+              "matched_pairs": 256,
+              "missing_metric_pairs": 0,
+              "per_game": {
+                "candidate_mean": 3.21484375,
+                "baseline_mean": 3.56640625,
+                "paired_mean_delta": -0.3515625,
+                "paired_total_delta": -90
+              },
+              "per100rounds_mean_of_game_rates": {
+                "candidate_mean": 0.5959365650091599,
+                "baseline_mean": 0.6390428981011649,
+                "paired_mean_delta": -0.0431063330920049,
+                "paired_total_delta": -11.035221271553254
+              }
+            },
+            "monsterDamageDone": {
+              "matched_pairs": 256,
+              "missing_metric_pairs": 0,
+              "per_game": {
+                "candidate_mean": 52321.833008021116,
+                "baseline_mean": 52496.7421875,
+                "paired_mean_delta": -174.90917947888374,
+                "paired_total_delta": -44776.74994659424
+              },
+              "per100rounds_mean_of_game_rates": {
+                "candidate_mean": 13582.320113816993,
+                "baseline_mean": 13367.784274298529,
+                "paired_mean_delta": 214.53583951846375,
+                "paired_total_delta": 54921.17491672672
+              }
+            },
+            "monsterDamageTaken": {
+              "matched_pairs": 256,
+              "missing_metric_pairs": 0,
+              "per_game": {
+                "candidate_mean": 10051.539235763252,
+                "baseline_mean": 10380.766186300665,
+                "paired_mean_delta": -329.22695053741336,
+                "paired_total_delta": -84282.09933757782
+              },
+              "per100rounds_mean_of_game_rates": {
+                "candidate_mean": 2471.255598849699,
+                "baseline_mean": 2486.740583703431,
+                "paired_mean_delta": -15.484984853732236,
+                "paired_total_delta": -3964.1561225554524
+              }
+            },
+            "submitted_over_collected": {
+              "paired_games_both_positive_collection": 256,
+              "excluded_zero_collection_pairs": 0,
+              "missing_metric_pairs": 0,
+              "candidate_mean_pct": 92.9820929240368,
+              "baseline_mean_pct": 93.37788259261191,
+              "paired_mean_percentage_point_delta": -0.3957896685750978
+            }
+          },
+          "spar16": {
+            "submittedGems": {
+              "matched_pairs": 256,
+              "missing_metric_pairs": 0,
+              "per_game": {
+                "candidate_mean": 996.5546875,
+                "baseline_mean": 993.85546875,
+                "paired_mean_delta": 2.69921875,
+                "paired_total_delta": 691
+              },
+              "per100rounds_mean_of_game_rates": {
+                "candidate_mean": 259.956230073946,
+                "baseline_mean": 257.3723839805518,
+                "paired_mean_delta": 2.5838460933942557,
+                "paired_total_delta": 661.4645999089295
+              }
+            },
+            "collectedGems": {
+              "matched_pairs": 256,
+              "missing_metric_pairs": 0,
+              "per_game": {
+                "candidate_mean": 1069.734375,
+                "baseline_mean": 1064.50390625,
+                "paired_mean_delta": 5.23046875,
+                "paired_total_delta": 1339
+              },
+              "per100rounds_mean_of_game_rates": {
+                "candidate_mean": 277.4589216314499,
+                "baseline_mean": 273.7068001857492,
+                "paired_mean_delta": 3.752121445700695,
+                "paired_total_delta": 960.5430900993779
+              }
+            },
+            "spentGold": {
+              "matched_pairs": 256,
+              "missing_metric_pairs": 0,
+              "per_game": {
+                "candidate_mean": 2652.8125,
+                "baseline_mean": 2676.6796875,
+                "paired_mean_delta": -23.8671875,
+                "paired_total_delta": -6110
+              },
+              "per100rounds_mean_of_game_rates": {
+                "candidate_mean": 675.3404006667481,
+                "baseline_mean": 677.2386545902498,
+                "paired_mean_delta": -1.898253923501717,
+                "paired_total_delta": -485.95300441643957
+              }
+            },
+            "deaths": {
+              "matched_pairs": 256,
+              "missing_metric_pairs": 0,
+              "per_game": {
+                "candidate_mean": 3.15625,
+                "baseline_mean": 3.10546875,
+                "paired_mean_delta": 0.05078125,
+                "paired_total_delta": 13
+              },
+              "per100rounds_mean_of_game_rates": {
+                "candidate_mean": 0.5857744764116732,
+                "baseline_mean": 0.5585916748358565,
+                "paired_mean_delta": 0.027182801575816817,
+                "paired_total_delta": 6.958797203409105
+              }
+            },
+            "monsterDamageDone": {
+              "matched_pairs": 256,
+              "missing_metric_pairs": 0,
+              "per_game": {
+                "candidate_mean": 52179.72109392285,
+                "baseline_mean": 51957.587890803814,
+                "paired_mean_delta": 222.13320311903954,
+                "paired_total_delta": 56866.09999847412
+              },
+              "per100rounds_mean_of_game_rates": {
+                "candidate_mean": 13506.866862737294,
+                "baseline_mean": 13339.126015370763,
+                "paired_mean_delta": 167.74084736653217,
+                "paired_total_delta": 42941.656925832234
+              }
+            },
+            "monsterDamageTaken": {
+              "matched_pairs": 256,
+              "missing_metric_pairs": 0,
+              "per_game": {
+                "candidate_mean": 10048.447635572404,
+                "baseline_mean": 10649.307591985911,
+                "paired_mean_delta": -600.8599564135075,
+                "paired_total_delta": -153820.1488418579
+              },
+              "per100rounds_mean_of_game_rates": {
+                "candidate_mean": 2453.505967967387,
+                "baseline_mean": 2529.770079144951,
+                "paired_mean_delta": -76.26411117756449,
+                "paired_total_delta": -19523.61246145651
+              }
+            },
+            "submitted_over_collected": {
+              "paired_games_both_positive_collection": 256,
+              "excluded_zero_collection_pairs": 0,
+              "missing_metric_pairs": 0,
+              "candidate_mean_pct": 93.18976584690763,
+              "baseline_mean_pct": 93.43044120387832,
+              "paired_mean_percentage_point_delta": -0.24067535697068682
+            }
+          },
+          "challenge_fastbank": {
+            "submittedGems": {
+              "matched_pairs": 256,
+              "missing_metric_pairs": 0,
+              "per_game": {
+                "candidate_mean": 930.453125,
+                "baseline_mean": 923.9140625,
+                "paired_mean_delta": 6.5390625,
+                "paired_total_delta": 1674
+              },
+              "per100rounds_mean_of_game_rates": {
+                "candidate_mean": 249.64055531883287,
+                "baseline_mean": 243.2586354879267,
+                "paired_mean_delta": 6.381919830906142,
+                "paired_total_delta": 1633.7714767119724
+              }
+            },
+            "collectedGems": {
+              "matched_pairs": 256,
+              "missing_metric_pairs": 0,
+              "per_game": {
+                "candidate_mean": 1013.0234375,
+                "baseline_mean": 1009.1953125,
+                "paired_mean_delta": 3.828125,
+                "paired_total_delta": 980
+              },
+              "per100rounds_mean_of_game_rates": {
+                "candidate_mean": 269.99077036708115,
+                "baseline_mean": 263.9928934671897,
+                "paired_mean_delta": 5.997876899891484,
+                "paired_total_delta": 1535.4564863722198
+              }
+            },
+            "spentGold": {
+              "matched_pairs": 256,
+              "missing_metric_pairs": 0,
+              "per_game": {
+                "candidate_mean": 2454.4921875,
+                "baseline_mean": 2485.390625,
+                "paired_mean_delta": -30.8984375,
+                "paired_total_delta": -7910
+              },
+              "per100rounds_mean_of_game_rates": {
+                "candidate_mean": 648.2115875813249,
+                "baseline_mean": 643.1912856327205,
+                "paired_mean_delta": 5.020301948604566,
+                "paired_total_delta": 1285.197298842769
+              }
+            },
+            "deaths": {
+              "matched_pairs": 256,
+              "missing_metric_pairs": 0,
+              "per_game": {
+                "candidate_mean": 3.765625,
+                "baseline_mean": 3.859375,
+                "paired_mean_delta": -0.09375,
+                "paired_total_delta": -24
+              },
+              "per100rounds_mean_of_game_rates": {
+                "candidate_mean": 0.7229903345172158,
+                "baseline_mean": 0.7286043257936965,
+                "paired_mean_delta": -0.005613991276480723,
+                "paired_total_delta": -1.4371817667790652
+              }
+            },
+            "monsterDamageDone": {
+              "matched_pairs": 256,
+              "missing_metric_pairs": 0,
+              "per_game": {
+                "candidate_mean": 49255.039062440395,
+                "baseline_mean": 49062.10546889901,
+                "paired_mean_delta": 192.93359354138374,
+                "paired_total_delta": 49390.99994659424
+              },
+              "per100rounds_mean_of_game_rates": {
+                "candidate_mean": 13161.678812780836,
+                "baseline_mean": 12886.927180022027,
+                "paired_mean_delta": 274.751632758808,
+                "paired_total_delta": 70336.41798625485
+              }
+            },
+            "monsterDamageTaken": {
+              "matched_pairs": 256,
+              "missing_metric_pairs": 0,
+              "per_game": {
+                "candidate_mean": 9615.797833006829,
+                "baseline_mean": 9908.99177481234,
+                "paired_mean_delta": -293.1939418055117,
+                "paired_total_delta": -75057.649102211
+              },
+              "per100rounds_mean_of_game_rates": {
+                "candidate_mean": 2420.2589057956584,
+                "baseline_mean": 2453.452152603799,
+                "paired_mean_delta": -33.193246808140096,
+                "paired_total_delta": -8497.471182883864
+              }
+            },
+            "submitted_over_collected": {
+              "paired_games_both_positive_collection": 256,
+              "excluded_zero_collection_pairs": 0,
+              "missing_metric_pairs": 0,
+              "candidate_mean_pct": 91.24389147836793,
+              "baseline_mean_pct": 91.3224694873248,
+              "paired_mean_percentage_point_delta": -0.07857800895686458
+            }
+          },
+          "challenge_brawl": {
+            "submittedGems": {
+              "matched_pairs": 256,
+              "missing_metric_pairs": 0,
+              "per_game": {
+                "candidate_mean": 941.06640625,
+                "baseline_mean": 931.8828125,
+                "paired_mean_delta": 9.18359375,
+                "paired_total_delta": 2351
+              },
+              "per100rounds_mean_of_game_rates": {
+                "candidate_mean": 248.64823814473857,
+                "baseline_mean": 244.09815438193166,
+                "paired_mean_delta": 4.550083762806895,
+                "paired_total_delta": 1164.821443278565
+              }
+            },
+            "collectedGems": {
+              "matched_pairs": 256,
+              "missing_metric_pairs": 0,
+              "per_game": {
+                "candidate_mean": 1043.21875,
+                "baseline_mean": 1026.078125,
+                "paired_mean_delta": 17.140625,
+                "paired_total_delta": 4388
+              },
+              "per100rounds_mean_of_game_rates": {
+                "candidate_mean": 270.75995180137954,
+                "baseline_mean": 265.59304046173645,
+                "paired_mean_delta": 5.166911339643083,
+                "paired_total_delta": 1322.7293029486293
+              }
+            },
+            "spentGold": {
+              "matched_pairs": 256,
+              "missing_metric_pairs": 0,
+              "per_game": {
+                "candidate_mean": 2532.3828125,
+                "baseline_mean": 2549.375,
+                "paired_mean_delta": -16.9921875,
+                "paired_total_delta": -4350
+              },
+              "per100rounds_mean_of_game_rates": {
+                "candidate_mean": 656.3896479390845,
+                "baseline_mean": 656.6357656308224,
+                "paired_mean_delta": -0.24611769173790515,
+                "paired_total_delta": -63.00612908490372
+              }
+            },
+            "deaths": {
+              "matched_pairs": 256,
+              "missing_metric_pairs": 0,
+              "per_game": {
+                "candidate_mean": 4.12890625,
+                "baseline_mean": 3.984375,
+                "paired_mean_delta": 0.14453125,
+                "paired_total_delta": 37
+              },
+              "per100rounds_mean_of_game_rates": {
+                "candidate_mean": 0.7564700067966548,
+                "baseline_mean": 0.776821817378203,
+                "paired_mean_delta": -0.020351810581548238,
+                "paired_total_delta": -5.210063508876349
+              }
+            },
+            "monsterDamageDone": {
+              "matched_pairs": 256,
+              "missing_metric_pairs": 0,
+              "per_game": {
+                "candidate_mean": 50439.061914384365,
+                "baseline_mean": 49927.377929747105,
+                "paired_mean_delta": 511.68398463726044,
+                "paired_total_delta": 130991.10006713867
+              },
+              "per100rounds_mean_of_game_rates": {
+                "candidate_mean": 13234.334560350284,
+                "baseline_mean": 13016.088909662296,
+                "paired_mean_delta": 218.2456506879869,
+                "paired_total_delta": 55870.88657612465
+              }
+            },
+            "monsterDamageTaken": {
+              "matched_pairs": 256,
+              "missing_metric_pairs": 0,
+              "per_game": {
+                "candidate_mean": 9951.90408180654,
+                "baseline_mean": 10061.149586416781,
+                "paired_mean_delta": -109.24550461024046,
+                "paired_total_delta": -27966.849180221558
+              },
+              "per100rounds_mean_of_game_rates": {
+                "candidate_mean": 2445.0814765563478,
+                "baseline_mean": 2481.7267337385383,
+                "paired_mean_delta": -36.64525718219049,
+                "paired_total_delta": -9381.185838640766
+              }
+            },
+            "submitted_over_collected": {
+              "paired_games_both_positive_collection": 255,
+              "excluded_zero_collection_pairs": 1,
+              "missing_metric_pairs": 0,
+              "candidate_mean_pct": 90.77501470191557,
+              "baseline_mean_pct": 90.30757749190091,
+              "paired_mean_percentage_point_delta": 0.46743721001466615
+            }
+          }
+        }
+      },
+      "activity": {
+        "unique_game_sides": 1536,
+        "games_with_policy_samples": 1536,
+        "games_without_policy_samples": 0,
+        "sampled_cumulative_counters": {
+          "br_decisions": {
+            "sum_of_observed_body_maxima": 160213,
+            "games_counter_observed": 1536,
+            "body_observations": 7130,
+            "mean_per100rounds_in_observed_games": 24.98132912561728
+          },
+          "br_fallbacks": {
+            "sum_of_observed_body_maxima": 1378,
+            "games_counter_observed": 1536,
+            "body_observations": 7130,
+            "mean_per100rounds_in_observed_games": 0.20859139770320348
+          },
+          "br_routes": {
+            "sum_of_observed_body_maxima": 0,
+            "games_counter_observed": 1536,
+            "body_observations": 7130,
+            "mean_per100rounds_in_observed_games": 0.0
+          },
+          "br_stops": {
+            "sum_of_observed_body_maxima": 0,
+            "games_counter_observed": 1536,
+            "body_observations": 7130,
+            "mean_per100rounds_in_observed_games": 0.0
+          },
+          "cf_death_after_camp": {
+            "sum_of_observed_body_maxima": 887,
+            "games_counter_observed": 1536,
+            "body_observations": 7512,
+            "mean_per100rounds_in_observed_games": 0.11491274571589334
+          },
+          "cf_evac": {
+            "sum_of_observed_body_maxima": 826,
+            "games_counter_observed": 1536,
+            "body_observations": 7512,
+            "mean_per100rounds_in_observed_games": 0.16065356116061216
+          },
+          "cf_focus_exit": {
+            "sum_of_observed_body_maxima": 0,
+            "games_counter_observed": 1536,
+            "body_observations": 7512,
+            "mean_per100rounds_in_observed_games": 0.0
+          },
+          "cf_focus_hit": {
+            "sum_of_observed_body_maxima": 0,
+            "games_counter_observed": 1536,
+            "body_observations": 7512,
+            "mean_per100rounds_in_observed_games": 0.0
+          },
+          "cf_focus_wait": {
+            "sum_of_observed_body_maxima": 0,
+            "games_counter_observed": 1536,
+            "body_observations": 7512,
+            "mean_per100rounds_in_observed_games": 0.0
+          },
+          "cf_reach": {
+            "sum_of_observed_body_maxima": 59003,
+            "games_counter_observed": 1536,
+            "body_observations": 7512,
+            "mean_per100rounds_in_observed_games": 10.193487008435982
+          },
+          "cf_reward_gain_observed": {
+            "sum_of_observed_body_maxima": 24205,
+            "games_counter_observed": 1536,
+            "body_observations": 7512,
+            "mean_per100rounds_in_observed_games": 4.102897430083397
+          },
+          "cr_opportunity": {
+            "sum_of_observed_body_maxima": 29424,
+            "games_counter_observed": 1517,
+            "body_observations": 5756,
+            "mean_per100rounds_in_observed_games": 5.075065786318624
+          },
+          "cr_path_unavailable": {
+            "sum_of_observed_body_maxima": 24,
+            "games_counter_observed": 1517,
+            "body_observations": 5756,
+            "mean_per100rounds_in_observed_games": 0.004580096043510677
+          },
+          "cr_skipped": {
+            "sum_of_observed_body_maxima": 12428,
+            "games_counter_observed": 1517,
+            "body_observations": 5756,
+            "mean_per100rounds_in_observed_games": 2.0949591523202518
+          },
+          "cr_started": {
+            "sum_of_observed_body_maxima": 4991,
+            "games_counter_observed": 1517,
+            "body_observations": 5756,
+            "mean_per100rounds_in_observed_games": 0.8923685025776723
+          },
+          "cr_tavi_skipped": {
+            "sum_of_observed_body_maxima": 0,
+            "games_counter_observed": 1517,
+            "body_observations": 5756,
+            "mean_per100rounds_in_observed_games": 0.0
+          }
+        },
+        "limits": "Team streams remain separate. Existing parser takes per-body/counter maxima; sums are sampled lower bounds, not exact event totals. Absent logs/counters are unobserved, not zero. Counters describe branch activity, not causality; cr_started is not solely optional recalls."
+      },
+      "matched_baseline_activity": {
+        "unique_game_sides": 1280,
+        "games_with_policy_samples": 0,
+        "games_without_policy_samples": 1280,
+        "sampled_cumulative_counters": {},
+        "limits": "Team streams remain separate. Existing parser takes per-body/counter maxima; sums are sampled lower bounds, not exact event totals. Absent logs/counters are unobserved, not zero. Counters describe branch activity, not causality; cr_started is not solely optional recalls."
+      },
+      "full_development_eligible": true,
+      "transfer_eligible": true
+    }
+  },
+  "screen_promotion": null,
+  "full_development_eligible_ranked": [
+    "productive_walk"
+  ],
+  "provenance": {
+    "stages": {
+      "C:\\Users\\frans\\Documents\\Codex\\2026-10-14\\v\\work\\study27-economy-v2\\results\\v2-transfer-baseline.json": {
+        "sha256": "16132cbede7fe8c4efe242c1582492df07c3d8996e1bdd2ad483a5a5c15c867d",
+        "stage_plan_sha256": "1747da3fdc131a63b9a734064ee5789cc9468dd1721f5686854ea25b75c2abbf",
+        "completed_utc": "2026-10-15T21:18:27.568694+00:00",
+        "semantic_slots": 1280,
+        "physical_inputs": 1280
+      },
+      "C:\\Users\\frans\\Documents\\Codex\\2026-10-14\\v\\work\\study27-economy-v2\\results\\v2-transfer-first.json": {
+        "sha256": "f316e6a3e227f2f3622a658c2b4c884132566c3f153f6f7ca75ea4ed97ff020f",
+        "stage_plan_sha256": "6dac6560c37b5c674349fbe284fb48901171ac937a1e138c2afca5f69067c28a",
+        "completed_utc": "2026-10-15T21:19:23.601742+00:00",
+        "semantic_slots": 1536,
+        "physical_inputs": 1536
+      }
+    },
+    "runtime": {
+      "cli_version": "cambc 2.1.6",
+      "cli_sha256": "91f42c859c40c07c186eb94a692349396c7b168d2b454f1cb060c714825d9882",
+      "project_config_sha256": "283283f8e2c87df8f5db09bb1dbdc14d9b30bbcd3ffb49b6286a0e613204ed3c",
+      "sdk_header_sha256": "90f4242686f22305b28d76d4fa2297187931b3c974f96faf324199e93979203d",
+      "engine_version": "0.0.1",
+      "reference_engine_wasm_sha256": "ce302dc6666ae43592f6936e572bc4baca92a345bff13ef7f986609ac666a0dc",
+      "engine_pin_limit": "CLI has no engine-file option. Version is verified in final statistics; reference WASM is the official map-generator engine, not a claim of CLI engine injection.",
+      "settings": {
+        "full_game": true,
+        "fuel": "CLI default",
+        "language": "cpp",
+        "update_check": false
+      }
+    },
+    "sources": {
+      "spar11": {
+        "base_commit": "43d003323cd16059cda6a54de14ed86e2da3b788",
+        "base_path": "bots/spar11/src",
+        "base_source_sha256": {
+          "fight.h": "40e22492d61a9a79907b20e26ae536787952759d2fe4333771aa2415a461b362",
+          "main.cpp": "0bf959d3143110e3e6c29bae8c8bb035b60131230dd8d92912ed5fa8d3769684",
+          "params.h": "73e598fae85e7f68e127543bc358b10715c234e8887d0966fdd84569f06b20d5"
+        },
+        "features": [],
+        "patch_modules_sha256": {},
+        "role": "sparring",
+        "name": "spar11",
+        "source_sha256": {
+          "fight.h": "40e22492d61a9a79907b20e26ae536787952759d2fe4333771aa2415a461b362",
+          "main.cpp": "0bf959d3143110e3e6c29bae8c8bb035b60131230dd8d92912ed5fa8d3769684",
+          "params.h": "73e598fae85e7f68e127543bc358b10715c234e8887d0966fdd84569f06b20d5"
+        },
+        "created_utc": "2026-10-15T21:01:50.304477+00:00",
+        "wasm_sha256": "2af1f7a038f6c3bc0dde4067abbcbec75d917ac45639e86d987b446ebebf9ba2",
+        "cli_sha256": "91f42c859c40c07c186eb94a692349396c7b168d2b454f1cb060c714825d9882",
+        "project_config_sha256": "283283f8e2c87df8f5db09bb1dbdc14d9b30bbcd3ffb49b6286a0e613204ed3c",
+        "sdk_header_sha256": "90f4242686f22305b28d76d4fa2297187931b3c974f96faf324199e93979203d"
+      },
+      "spar16": {
+        "base_commit": "43d003323cd16059cda6a54de14ed86e2da3b788",
+        "base_path": "bots/spar16/src",
+        "base_source_sha256": {
+          "fight.h": "82eac085aa0eef23f311ff49972709801e5b009ee5b495710ddd20d0ea8c5169",
+          "main.cpp": "56c1771b6fcc83eafbf6afd237b15741738958f2b4e0d8eaa4732e410e8dcc25",
+          "params.h": "f9b7b55d7958bd012accf0e18aaef5fba91ed3d21fc06330094844b57bb9ccaf"
+        },
+        "features": [],
+        "patch_modules_sha256": {},
+        "role": "sparring",
+        "name": "spar16",
+        "source_sha256": {
+          "fight.h": "82eac085aa0eef23f311ff49972709801e5b009ee5b495710ddd20d0ea8c5169",
+          "main.cpp": "56c1771b6fcc83eafbf6afd237b15741738958f2b4e0d8eaa4732e410e8dcc25",
+          "params.h": "f9b7b55d7958bd012accf0e18aaef5fba91ed3d21fc06330094844b57bb9ccaf"
+        },
+        "created_utc": "2026-10-15T21:01:50.392886+00:00",
+        "wasm_sha256": "413b227f11b25165da6ec25bdf128ee4459c8c1060d452f904ab74a28ec859e4",
+        "cli_sha256": "91f42c859c40c07c186eb94a692349396c7b168d2b454f1cb060c714825d9882",
+        "project_config_sha256": "283283f8e2c87df8f5db09bb1dbdc14d9b30bbcd3ffb49b6286a0e613204ed3c",
+        "sdk_header_sha256": "90f4242686f22305b28d76d4fa2297187931b3c974f96faf324199e93979203d"
+      },
+      "challenge_fastbank": {
+        "base_commit": "e72cec8",
+        "base_commit_is_abbreviated": true,
+        "base_path": "PR11-cleaned-publication/src",
+        "base_source_sha256": {
+          "de_rules.h": "3e50429c96765f325ea3804c2bbb5c13ce26a4119fc7b8694f58def60531221b",
+          "fight.h": "5fb073f23ce41a5f6d07fba3aa55a016582a46ac54c4f8316ee6c96ebe92a7bb",
+          "main.cpp": "8ef9c27093272f5c14dbda5d16e7b91852edc63523ea86ac3d50d322514e71f7",
+          "opening_replace.h": "ca6680bae82b74b89fd0bb65573904246df8761d8b22e3ce8cb6bd93207207e7",
+          "params.h": "d99ef2cecff65f7851efb491bb4691d40ddeaaa6a96499e13eddec814fdc1372",
+          "utility.h": "5e48af1229195c4b356a617fd7323f49efe2af3a09728f6eda91ed4975c2b580"
+        },
+        "features": [],
+        "patch_modules_sha256": {},
+        "role": "fixed-style-reference",
+        "parameter_overrides": {
+          "P_TRIBUTE_GEMS": 6,
+          "P_TRIBUTE_NEAR": 10,
+          "P_CHAIN": 0,
+          "P_BAG": 0
+        },
+        "selectable": false,
+        "limits": "Deliberately different style probe, not a claim of strength or contemporary online opposition.",
+        "name": "challenge_fastbank",
+        "source_sha256": {
+          "de_rules.h": "3e50429c96765f325ea3804c2bbb5c13ce26a4119fc7b8694f58def60531221b",
+          "fight.h": "5fb073f23ce41a5f6d07fba3aa55a016582a46ac54c4f8316ee6c96ebe92a7bb",
+          "main.cpp": "8ef9c27093272f5c14dbda5d16e7b91852edc63523ea86ac3d50d322514e71f7",
+          "opening_replace.h": "ca6680bae82b74b89fd0bb65573904246df8761d8b22e3ce8cb6bd93207207e7",
+          "params.h": "3105d842ab478651e80d05463cf402e6b990f7a8b2a897d547bf774b4ed84f7e",
+          "utility.h": "5e48af1229195c4b356a617fd7323f49efe2af3a09728f6eda91ed4975c2b580"
+        },
+        "created_utc": "2026-10-15T21:01:50.407427+00:00",
+        "wasm_sha256": "d5b2213a87d73177904d7e36afd8bd1c971b1bd8bdc2598d57ca8596eaa4a6a8",
+        "cli_sha256": "91f42c859c40c07c186eb94a692349396c7b168d2b454f1cb060c714825d9882",
+        "project_config_sha256": "283283f8e2c87df8f5db09bb1dbdc14d9b30bbcd3ffb49b6286a0e613204ed3c",
+        "sdk_header_sha256": "90f4242686f22305b28d76d4fa2297187931b3c974f96faf324199e93979203d"
+      },
+      "spar12": {
+        "base_commit": "43d003323cd16059cda6a54de14ed86e2da3b788",
+        "base_path": "bots/spar12/src",
+        "base_source_sha256": {
+          "fight.h": "40e22492d61a9a79907b20e26ae536787952759d2fe4333771aa2415a461b362",
+          "main.cpp": "0bf959d3143110e3e6c29bae8c8bb035b60131230dd8d92912ed5fa8d3769684",
+          "params.h": "0c8fdf62cabab7d1aa462d791f9680405c00132d6d324dbeb59f1749a7d003cf"
+        },
+        "features": [],
+        "patch_modules_sha256": {},
+        "role": "sparring",
+        "name": "spar12",
+        "source_sha256": {
+          "fight.h": "40e22492d61a9a79907b20e26ae536787952759d2fe4333771aa2415a461b362",
+          "main.cpp": "0bf959d3143110e3e6c29bae8c8bb035b60131230dd8d92912ed5fa8d3769684",
+          "params.h": "0c8fdf62cabab7d1aa462d791f9680405c00132d6d324dbeb59f1749a7d003cf"
+        },
+        "created_utc": "2026-10-15T21:01:50.351558+00:00",
+        "wasm_sha256": "0d2ba49e8ee3e926a1420aabc54d6120d9955e75774912a0ac05029c98112de4",
+        "cli_sha256": "91f42c859c40c07c186eb94a692349396c7b168d2b454f1cb060c714825d9882",
+        "project_config_sha256": "283283f8e2c87df8f5db09bb1dbdc14d9b30bbcd3ffb49b6286a0e613204ed3c",
+        "sdk_header_sha256": "90f4242686f22305b28d76d4fa2297187931b3c974f96faf324199e93979203d"
+      },
+      "original": {
+        "base_commit": "e72cec8",
+        "base_commit_is_abbreviated": true,
+        "base_path": "PR11-cleaned-publication/src",
+        "base_source_sha256": {
+          "de_rules.h": "3e50429c96765f325ea3804c2bbb5c13ce26a4119fc7b8694f58def60531221b",
+          "fight.h": "5fb073f23ce41a5f6d07fba3aa55a016582a46ac54c4f8316ee6c96ebe92a7bb",
+          "main.cpp": "8ef9c27093272f5c14dbda5d16e7b91852edc63523ea86ac3d50d322514e71f7",
+          "opening_replace.h": "ca6680bae82b74b89fd0bb65573904246df8761d8b22e3ce8cb6bd93207207e7",
+          "params.h": "d99ef2cecff65f7851efb491bb4691d40ddeaaa6a96499e13eddec814fdc1372",
+          "utility.h": "5e48af1229195c4b356a617fd7323f49efe2af3a09728f6eda91ed4975c2b580"
+        },
+        "features": [],
+        "patch_modules_sha256": {},
+        "role": "candidate",
+        "name": "original",
+        "source_sha256": {
+          "de_rules.h": "3e50429c96765f325ea3804c2bbb5c13ce26a4119fc7b8694f58def60531221b",
+          "fight.h": "5fb073f23ce41a5f6d07fba3aa55a016582a46ac54c4f8316ee6c96ebe92a7bb",
+          "main.cpp": "8ef9c27093272f5c14dbda5d16e7b91852edc63523ea86ac3d50d322514e71f7",
+          "opening_replace.h": "ca6680bae82b74b89fd0bb65573904246df8761d8b22e3ce8cb6bd93207207e7",
+          "params.h": "d99ef2cecff65f7851efb491bb4691d40ddeaaa6a96499e13eddec814fdc1372",
+          "utility.h": "5e48af1229195c4b356a617fd7323f49efe2af3a09728f6eda91ed4975c2b580"
+        },
+        "created_utc": "2026-10-15T21:01:50.267777+00:00",
+        "wasm_sha256": "a0077d5324047a799b7947b2b54634e46451cc64eabec1df06bf549c69632e43",
+        "cli_sha256": "91f42c859c40c07c186eb94a692349396c7b168d2b454f1cb060c714825d9882",
+        "project_config_sha256": "283283f8e2c87df8f5db09bb1dbdc14d9b30bbcd3ffb49b6286a0e613204ed3c",
+        "sdk_header_sha256": "90f4242686f22305b28d76d4fa2297187931b3c974f96faf324199e93979203d"
+      },
+      "challenge_brawl": {
+        "base_commit": "e72cec8",
+        "base_commit_is_abbreviated": true,
+        "base_path": "PR11-cleaned-publication/src",
+        "base_source_sha256": {
+          "de_rules.h": "3e50429c96765f325ea3804c2bbb5c13ce26a4119fc7b8694f58def60531221b",
+          "fight.h": "5fb073f23ce41a5f6d07fba3aa55a016582a46ac54c4f8316ee6c96ebe92a7bb",
+          "main.cpp": "8ef9c27093272f5c14dbda5d16e7b91852edc63523ea86ac3d50d322514e71f7",
+          "opening_replace.h": "ca6680bae82b74b89fd0bb65573904246df8761d8b22e3ce8cb6bd93207207e7",
+          "params.h": "d99ef2cecff65f7851efb491bb4691d40ddeaaa6a96499e13eddec814fdc1372",
+          "utility.h": "5e48af1229195c4b356a617fd7323f49efe2af3a09728f6eda91ed4975c2b580"
+        },
+        "features": [],
+        "patch_modules_sha256": {},
+        "role": "fixed-style-reference",
+        "parameter_overrides": {
+          "P_DRAFTUNI": 1,
+          "P_UNI_FLEE": 20,
+          "P_RECALL_PCT": 40,
+          "P_VOLLEY": 50
+        },
+        "selectable": false,
+        "limits": "Deliberately different style probe, not a claim of strength or contemporary online opposition.",
+        "name": "challenge_brawl",
+        "source_sha256": {
+          "de_rules.h": "3e50429c96765f325ea3804c2bbb5c13ce26a4119fc7b8694f58def60531221b",
+          "fight.h": "5fb073f23ce41a5f6d07fba3aa55a016582a46ac54c4f8316ee6c96ebe92a7bb",
+          "main.cpp": "8ef9c27093272f5c14dbda5d16e7b91852edc63523ea86ac3d50d322514e71f7",
+          "opening_replace.h": "ca6680bae82b74b89fd0bb65573904246df8761d8b22e3ce8cb6bd93207207e7",
+          "params.h": "275c20f7dee97aa0ebf623050edc56cb5580dca73eb18d348f5a101080742cdb",
+          "utility.h": "5e48af1229195c4b356a617fd7323f49efe2af3a09728f6eda91ed4975c2b580"
+        },
+        "created_utc": "2026-10-15T21:01:50.422427+00:00",
+        "wasm_sha256": "3038436dcafba01e1a69295087a0ef37f0405514dc9f6ad67a0a84b2938ea9af",
+        "cli_sha256": "91f42c859c40c07c186eb94a692349396c7b168d2b454f1cb060c714825d9882",
+        "project_config_sha256": "283283f8e2c87df8f5db09bb1dbdc14d9b30bbcd3ffb49b6286a0e613204ed3c",
+        "sdk_header_sha256": "90f4242686f22305b28d76d4fa2297187931b3c974f96faf324199e93979203d"
+      },
+      "productive_walk": {
+        "base_commit": "e72cec8",
+        "base_commit_is_abbreviated": true,
+        "base_path": "PR11-cleaned-publication/src",
+        "base_source_sha256": {
+          "de_rules.h": "3e50429c96765f325ea3804c2bbb5c13ce26a4119fc7b8694f58def60531221b",
+          "fight.h": "5fb073f23ce41a5f6d07fba3aa55a016582a46ac54c4f8316ee6c96ebe92a7bb",
+          "main.cpp": "8ef9c27093272f5c14dbda5d16e7b91852edc63523ea86ac3d50d322514e71f7",
+          "opening_replace.h": "ca6680bae82b74b89fd0bb65573904246df8761d8b22e3ce8cb6bd93207207e7",
+          "params.h": "d99ef2cecff65f7851efb491bb4691d40ddeaaa6a96499e13eddec814fdc1372",
+          "utility.h": "5e48af1229195c4b356a617fd7323f49efe2af3a09728f6eda91ed4975c2b580"
+        },
+        "features": [
+          "banking_walk",
+          "cf_camp_reach",
+          "cf_camp_evac",
+          "cr_travel"
+        ],
+        "patch_modules_sha256": {
+          "patch_banking.py": "a0409c3c9cbbdbd1012609b9b9d79fa61bae3c88be5dccfd655b47f053ae50ce",
+          "patch_camps.py": "3413527246b445124d031aa3920bd509aa1091a24f710a3a39686a8b4c835fea",
+          "patch_recall.py": "42d5dde8ee6f2a910f5016c018829a0e79f8d1eb18ae3adc4e55e3b9bb047325"
+        },
+        "role": "candidate",
+        "applied_feature_batches": [
+          {
+            "module": "patch_banking.py",
+            "features": [
+              "banking_walk"
+            ]
+          },
+          {
+            "module": "patch_camps.py",
+            "features": [
+              "cf_camp_reach",
+              "cf_camp_evac"
+            ]
+          },
+          {
+            "module": "patch_recall.py",
+            "features": [
+              "cr_travel"
+            ]
+          }
+        ],
+        "name": "productive_walk",
+        "source_sha256": {
+          "de_rules.h": "3e50429c96765f325ea3804c2bbb5c13ce26a4119fc7b8694f58def60531221b",
+          "fight.h": "5fb073f23ce41a5f6d07fba3aa55a016582a46ac54c4f8316ee6c96ebe92a7bb",
+          "main.cpp": "cb8cbe3eb437bcbee66d7b2003b5cdb1d81d37042b72d22d1edc1e001a56f4c6",
+          "opening_replace.h": "ca6680bae82b74b89fd0bb65573904246df8761d8b22e3ce8cb6bd93207207e7",
+          "params.h": "d99ef2cecff65f7851efb491bb4691d40ddeaaa6a96499e13eddec814fdc1372",
+          "utility.h": "5e48af1229195c4b356a617fd7323f49efe2af3a09728f6eda91ed4975c2b580"
+        },
+        "created_utc": "2026-10-15T21:02:53.062019+00:00",
+        "wasm_sha256": "fbf835eea4f7a3e629ca58dbff2792f66994d400e93f80332a4d11ba0143ce29",
+        "cli_sha256": "91f42c859c40c07c186eb94a692349396c7b168d2b454f1cb060c714825d9882",
+        "project_config_sha256": "283283f8e2c87df8f5db09bb1dbdc14d9b30bbcd3ffb49b6286a0e613204ed3c",
+        "sdk_header_sha256": "90f4242686f22305b28d76d4fa2297187931b3c974f96faf324199e93979203d"
+      }
+    },
+    "candidate_registration_sha256": {
+      "spar11": "07574492f701a3abfc9850e0dbf568aa052b09c5bab0b54d916ccad25fa4f5c9",
+      "spar16": "d35f4168628692154382269648980a5a7f7f0420e1efc25fa627f16a4b2f5335",
+      "challenge_fastbank": "61ab260783c20ca298e013935c77ce4048c45d803c7caab75ec990c21f3fdb1a",
+      "spar12": "f55372b7af11ee7673a913d4b63287a430afdc8c383f6b9b3ba0ddb724eaddd9",
+      "original": "0f0bbc22af0eadf55c6c7d798d65845c6737e7d4d39832a947dafb5d0266e8c8",
+      "challenge_brawl": "a2e7c5f56a2b2e32eab5aec24c86e11a67461d655e60b76d95b77e7ba327287f",
+      "productive_walk": "e5576e12818a2ef4769ac5a8b0cef46afbe6083506b1fe7cd62afb64a01d73a9"
+    },
+    "input_semantic_slots_deduplicated": 2816,
+    "input_physical_games_deduplicated": 2816,
+    "cache_records_independently_compared": 0
+  },
+  "selection_plan_sha256": "66d59120f78eff84dcd922bec1f5bfe8e98379e157b403b8f1e7e155255e4300",
+  "package_build_freeze_sha256": "45596eb5f20d3129bfcd4f9a9c9012cb5daa85b1474d8e1258de3801ff6a2e98",
+  "evaluation_script_sha256": "78756df45d86080762a5bd0812b6319917737a5c4eb6508e30381c7b2b082d2f",
+  "tool_source_sha256": {
+    "lab.py": "36e6dde582cca9ea7c5818c1e8c9f70b368f8e60a5cc8ca7ade1fe43e00fab37",
+    "test_matches.py": "6e55ec657934298ecb3e7b376ae0cb9278590949530016434142790bc19217f4",
+    "compare.py": "3a290abc7d8a8b731faf8330bf3a1ca1ec8ed59a3e8592231c43f890b8526f0f"
+  },
+  "map_files_sha256": {
+    "maps_exposed128\\fresh-0000.map26a": "482ccc7b830dd1d7358f798fdb33e80d6dc7e4cbb09875d740c55141fa1f3556",
+    "maps_exposed128\\fresh-0001.map26a": "e618833915b6d871e68b176ccb603586608d43304fd29265f6a7cb47ba6d7627",
+    "maps_exposed128\\fresh-0002.map26a": "cadf064d8c10dee4700d88c95528c11be0c05a6f94a2384330b4a8a5c1f962ad",
+    "maps_exposed128\\fresh-0003.map26a": "d2d7c615054ce415bbf1ed871619d69a710b58c6d8e9f95fdaffa9c74e9f7a9a",
+    "maps_exposed128\\fresh-0004.map26a": "b6551c3dfd548071ba9152008329574f5e05fe13821f73f4d2f8edff5a56e3ac",
+    "maps_exposed128\\fresh-0005.map26a": "e6825896995d34f7a91580425478abe6bcb9407fa3283ca72cc0520253d75c60",
+    "maps_exposed128\\fresh-0006.map26a": "d9e3b954fc4839caf822eb30b83313616862f36e22464b33b46b88f34608d57d",
+    "maps_exposed128\\fresh-0007.map26a": "6f695b48800c3bb6e685a9eeb2c28a460b6c4bbdc2182d12d281eaa1f38daf98",
+    "maps_exposed128\\fresh-0008.map26a": "7e9a7bc41e26ce8d6921a0dd57fbbd8bbf83380a8acfef41e166ec74c8e5dd1a",
+    "maps_exposed128\\fresh-0009.map26a": "059e17bc0fb8e99bcf4f840cb241d2676a070d6dbe75493c2f6b4a808f05fa5b",
+    "maps_exposed128\\fresh-0010.map26a": "d2bfb1ef1168b60928e3396c640c6af8863d64da378eae4cff604d817d63c8a4",
+    "maps_exposed128\\fresh-0011.map26a": "d640ce30cdd464d3c69c132655dc05c9408b5b0a817754e314b848ac9c3d361c",
+    "maps_exposed128\\fresh-0012.map26a": "71396f9e0fe571b19ef7252311634d280dfb41b0d78d2de41128d48f8c3347f1",
+    "maps_exposed128\\fresh-0013.map26a": "d6afa695c73ae3e3f881a0b7f71b5ed14be0011608ede7d229531242f794dc1c",
+    "maps_exposed128\\fresh-0014.map26a": "6a2681a83ab28f6aa99576b5317c40ac28af29a4fb007644e4218f2982828f06",
+    "maps_exposed128\\fresh-0015.map26a": "bc2a8f8b004db7543f2d80e320574184ce3d1b3478438e07a9fe1b20e524eee9",
+    "maps_exposed128\\fresh-0016.map26a": "d2da16e79691225e2ab9ceaf5e3c238009e3a4dcbff2721167cbd13a9d01eda1",
+    "maps_exposed128\\fresh-0017.map26a": "dde7d608a47fe3b5a2a30fcd0446b0e74ef5e7898ea850cff5fe0fc26a4911c0",
+    "maps_exposed128\\fresh-0018.map26a": "db26603dd916644d5d5ea58f3e36d113b1df44478866652851899e24421c1317",
+    "maps_exposed128\\fresh-0019.map26a": "796bf7bbfb0693a673ac22df9fa7ebf28f7c402f41867df6c2bf3f34fb52a9b2",
+    "maps_exposed128\\fresh-0020.map26a": "a9acf770929ccf4db6b485f378904e0782a37a4fc8ee9c68dbb95f4bf1a8ed4a",
+    "maps_exposed128\\fresh-0021.map26a": "117f606a7ea3acb180aca2c680a62537643613164401d5187d7dbfbca616d8b1",
+    "maps_exposed128\\fresh-0022.map26a": "075a291eba2ce30486a2aecc1b1dc14a31349b6136a80cfb53108ee61bd4a9ed",
+    "maps_exposed128\\fresh-0023.map26a": "e3b6071362eb90399718dd9b7f5003e188883488c44d10ba3df91b88042b16ad",
+    "maps_exposed128\\fresh-0024.map26a": "d1746b8edc5a1717903006cb409d45071ac63f069d5ee9efbefc05002e500c73",
+    "maps_exposed128\\fresh-0025.map26a": "ad66bc2cfe7971f308a6f500bc49131b02f6c1db7c23f4fba19afe3cda86d1fd",
+    "maps_exposed128\\fresh-0026.map26a": "e3fffb568e4c68822172cc7da840bee3da623ace11376578f683f53c5d79eb0d",
+    "maps_exposed128\\fresh-0027.map26a": "0a1cb49c98f6453f8ccdb32c09ab29f8e12f0448b50e1d0457557024cb9d73cb",
+    "maps_exposed128\\fresh-0028.map26a": "533e999ed72f603ca30ada760608cd33f8e753b5f850b2e105b1840d56f37735",
+    "maps_exposed128\\fresh-0029.map26a": "03be5a055011fe685f1936f64c24a41b2eddc6474301c19d943cc1cccfa6df47",
+    "maps_exposed128\\fresh-0030.map26a": "57ab728cacf6629f876d1a3dc1637ca04dad6644ee3ae388fbdf321620304633",
+    "maps_exposed128\\fresh-0031.map26a": "db01f47fe6379d06b806f758b30e08eef86be48c478238a2ac36bf97ee740a11",
+    "maps_exposed128\\fresh-0032.map26a": "b7fd78c704d24e901aecfbe15112a3141d86026e0e7ce5389191bcfdf77c1b75",
+    "maps_exposed128\\fresh-0033.map26a": "ffb6e9f10085810ad75854263cf439cada67762c004cd4ac5fa0faaca7cabb86",
+    "maps_exposed128\\fresh-0034.map26a": "58d76e0efa324b6f754784a062abdf9456d722e64fd5451363529f5b0f7da3a4",
+    "maps_exposed128\\fresh-0035.map26a": "6d3d842632cffbdcbf95899dc78d854ca863c03beb093114a5afcb8127643bc1",
+    "maps_exposed128\\fresh-0036.map26a": "e8d893ea96b4dad9658b4bd567ea7750a47486a01753156feddfd73d60c8f9e7",
+    "maps_exposed128\\fresh-0037.map26a": "716889c46b9487860d034b5531a1f0635b7d9aa860ba666ea788371394baa78a",
+    "maps_exposed128\\fresh-0038.map26a": "2aacfbcd4b267146720263a2c41a8aa39549b94f228be16aa009a8361a9f5853",
+    "maps_exposed128\\fresh-0039.map26a": "001878c7603ba9c7d5348c63a354239dada0dbb6d7d27619aa542ca14e1d5c37",
+    "maps_exposed128\\fresh-0040.map26a": "c2fd8b2cab38ae3c636f8c919ab50141e08568242ef019c6208c7574c5d0e8ed",
+    "maps_exposed128\\fresh-0041.map26a": "44d9eaf94ef2ae3f1228f5b27ac2a8173b4194012227301912f363a22d71e17a",
+    "maps_exposed128\\fresh-0042.map26a": "3c9bf47cf02d36f9dd0dfcbc905225030d7cab4691903a0c2c6a7a35b72c72f3",
+    "maps_exposed128\\fresh-0043.map26a": "4585d2e8409fa5c1a69f6e44172ff780ee05a913ea38d23e15df9cf9fd12a0a3",
+    "maps_exposed128\\fresh-0044.map26a": "e95e571c092de59743cb8a96fe2134de13421130c47071fb56b87e62de822929",
+    "maps_exposed128\\fresh-0045.map26a": "270f7b3ff5c9eb1b5794e7219b1c3717010eb6fb528ec0378e18a9007006714b",
+    "maps_exposed128\\fresh-0046.map26a": "7268472ade8f4eee9c34a7adaf7342fb76a00e19b44595cc15cf303bafd557c0",
+    "maps_exposed128\\fresh-0047.map26a": "f821af9de05263fbc8a85e9c7c9a9ea645174a144a9a2a2cef9ef5c024bba391",
+    "maps_exposed128\\fresh-0048.map26a": "990db8eb549684240d4861e6b65a08014f7c97ecd8db814a122ed0907281c247",
+    "maps_exposed128\\fresh-0049.map26a": "6f9abff042a81267b900f5163e3f3add370152a21cfbfbdbb75b706c81d3e65a",
+    "maps_exposed128\\fresh-0050.map26a": "0619e16d969850a5ae10add3517c0bd210f7a14b5d9dfcda0b1b42636aeb8fbd",
+    "maps_exposed128\\fresh-0051.map26a": "89e82676ad019fd875f314e9be9f2045afba6f4eccb2376ed70f6df6d7f7b3a0",
+    "maps_exposed128\\fresh-0052.map26a": "665d574527e5a233b2edf000fec485e7ac513375ccc0f3db529b034b28900403",
+    "maps_exposed128\\fresh-0053.map26a": "ceec8a1926b2ce0f2412224235809f14352e72df718034198c1a0732968c9467",
+    "maps_exposed128\\fresh-0054.map26a": "7aaddbb4b0d626f3d9937305c0db303b38063414368d9c587330f1d0d839b03f",
+    "maps_exposed128\\fresh-0055.map26a": "51c88eef7c5db6dbb8c285af3883fd830487b08796110b598f876e4d14c91eb0",
+    "maps_exposed128\\fresh-0056.map26a": "a399db30136578f12715fcc791dfe42a85b566670b791ebd45937914d656b57b",
+    "maps_exposed128\\fresh-0057.map26a": "4c0522603d3f79a453d97cbd03cb31e39af89aec98d6b45348d37815ee7950f5",
+    "maps_exposed128\\fresh-0058.map26a": "efb5eae4c8ee6514999e720bd6cd7a8e771881d5cc8674a1ecc6922223f5e952",
+    "maps_exposed128\\fresh-0059.map26a": "80c50c6cfc9101765ed99513fc70430fb8d50b060e2a8b1e36b794d40b9767f0",
+    "maps_exposed128\\fresh-0060.map26a": "7fd18b4ead618b91c81d35e5f2d591719417d4ef35c39c6862513790200dcb90",
+    "maps_exposed128\\fresh-0061.map26a": "30aa235f4b9d4a4c911e9302ae8c07dc0b3feb164eaf824565656449e7e8b7fd",
+    "maps_exposed128\\fresh-0062.map26a": "b3296f060a0c91cf317097d9a2fb37d7f7fd339c32c6453431f456f910f2976f",
+    "maps_exposed128\\fresh-0063.map26a": "e5f6c7500539465ccfb01199b07777f0c5a034c52fbb69d876bc8d5a4b9486eb",
+    "maps_exposed128\\fresh-0064.map26a": "267667b99def2b4dd2b980811a0153c13569d9f836214cc011e8367f99b7590c",
+    "maps_exposed128\\fresh-0065.map26a": "1412e75e3c1a6c7dba4a062ce7d4b8f11e2bfd6cedd59ac6df0362d3ddd26f89",
+    "maps_exposed128\\fresh-0066.map26a": "10657c0f9361f1f2e17fbbded8b6f7f96a8625a3c417616a147efdc7d2f98774",
+    "maps_exposed128\\fresh-0067.map26a": "f4e6dcdc61ab1d5d36303678d825f7d0d9483b0e1a1c254ce447ca69899eae27",
+    "maps_exposed128\\fresh-0068.map26a": "6ed0365ec6ca74354dcc30b7fe7fb8a136f8295c087e9f3348727c45df39daf2",
+    "maps_exposed128\\fresh-0069.map26a": "c40f6cd1eb13497397accfb9552bddf67d19f1e75990a4030370caab746bc1c9",
+    "maps_exposed128\\fresh-0070.map26a": "041334e845027ff4aa88ab12fd727b4e85b02a4c06d5f2982d3c1ba954e4e84f",
+    "maps_exposed128\\fresh-0071.map26a": "307d8a1f79b399ff4bc5c915f32496923d59af600f4ea367c3f37af443b558a2",
+    "maps_exposed128\\fresh-0072.map26a": "b177b80f25f62484dc34060f8fca8c77504b0115d87dc66542da1bfffe69e532",
+    "maps_exposed128\\fresh-0073.map26a": "44be3bd4b9f6f37cec4ee186d9381da62045a6a5a9a7f38296b33fab0f8fe150",
+    "maps_exposed128\\fresh-0074.map26a": "97cc62fb413d4f862237753cc54dc5f74a1101e900f3172d6bc776e0c955370b",
+    "maps_exposed128\\fresh-0075.map26a": "52325535de413c314e73ee4114ee0c5f86dd70cb5bf7f1ec0d3a0fe3862b4493",
+    "maps_exposed128\\fresh-0076.map26a": "4c63f749f6d57c11f8b83cdc45f0e920b0cacba1939e588a6822eca51f33f8bc",
+    "maps_exposed128\\fresh-0077.map26a": "b1826b6e1ac4b843e176942cc0c450bb74c5920a78f4fbf0685ddf6a89768e19",
+    "maps_exposed128\\fresh-0078.map26a": "8323a05b43e87207f4d402735f238c118d3bcf1acbe77c7bf15789e046c84d4e",
+    "maps_exposed128\\fresh-0079.map26a": "7f8c870e77f94b990c919935d75daea701f09c310c10ec265b9b3fec825de976",
+    "maps_exposed128\\fresh-0080.map26a": "132b4ca14d1da930de72038601d312bac6b609add552af09a0f011e2e2d1a07e",
+    "maps_exposed128\\fresh-0081.map26a": "1cb3729f201fca7ba41d9b9c48d5175a55687ba6f7e18688282e3cc75941add8",
+    "maps_exposed128\\fresh-0082.map26a": "27d38cb967ca103f6f43ce0c3a72c4304501490778cd6bf405bb617115401465",
+    "maps_exposed128\\fresh-0083.map26a": "e46cea0ba6f1547ce17564ab538397f52df891d4385491bbcaea505c27a81716",
+    "maps_exposed128\\fresh-0084.map26a": "7b09f6066d6ae644a39c95c7bb1da93af125c82ad959b096d0caf65187a4483b",
+    "maps_exposed128\\fresh-0085.map26a": "3b9add73fc1a6c908a125e90f296d17b1b447c14e7e15a3369eb786960b933ee",
+    "maps_exposed128\\fresh-0086.map26a": "6424907309ba90396a7914ad9f606ffea0a4b2d44e5ffeb8380c164b6a7246cd",
+    "maps_exposed128\\fresh-0087.map26a": "fc0c1343f5a7779727349ceb52a390ffcc7c4fd52bc9175b7978e4d705ca6804",
+    "maps_exposed128\\fresh-0088.map26a": "77d18652096bb616fea490d0afb527b92977f11c26b2e187abb302bd6ee11720",
+    "maps_exposed128\\fresh-0089.map26a": "12b2bb2fc3569b15a0eaa53f890051074e4b6f6a95bc1e7c50e6b7f06d25ed75",
+    "maps_exposed128\\fresh-0090.map26a": "7bcafece381488b2ed19bb50b1f19a5e6241999ac4542ed8d8f319d99938aaae",
+    "maps_exposed128\\fresh-0091.map26a": "27a1d9218ffe75ef962f1db6f5f1c09722290973aea432dca82cb750acb5d42a",
+    "maps_exposed128\\fresh-0092.map26a": "613a99b3199d904bcec51742335343f8c05afad1ee68393c9e5b8c19b0ad0d56",
+    "maps_exposed128\\fresh-0093.map26a": "99978e87d6ad3c329d530020203c456a823d14b8bd8656082a6f35e8ff053f80",
+    "maps_exposed128\\fresh-0094.map26a": "04def1cb3283a85c8162a290695c23c797c62914f99c30a06b76a5a06ac9f689",
+    "maps_exposed128\\fresh-0095.map26a": "9dba976dacd34a27087c5f72e08fdb5ca43fc90ce604ca716cfd2b76d3907694",
+    "maps_exposed128\\fresh-0096.map26a": "2aebc6f54c0cadd1689cc8c40129582f179223b02e4e7935b179d4fa75cc19f7",
+    "maps_exposed128\\fresh-0097.map26a": "f1e431a3df91b6829e25f32c793db9355a6c606dcd16be08481ede9ed7f4a648",
+    "maps_exposed128\\fresh-0098.map26a": "eb0027706f1ad9c95c4fc11700f6f1e27bb16dfb4f2bb7f5d42ee63db1d488f1",
+    "maps_exposed128\\fresh-0099.map26a": "25d741f27b862006e48778e232c7e2feae92b42b85bd921eeb1824f035cd7f22",
+    "maps_exposed128\\fresh-0100.map26a": "6cb044a6f779ac7aacec38213c0c89157ee4b19a09be1d8a053c32d3a92a0468",
+    "maps_exposed128\\fresh-0101.map26a": "636bd165ecbcd3fb05517d65553efca6f2a09d6bec0800accbc3e817585e8773",
+    "maps_exposed128\\fresh-0102.map26a": "986ef0d84cda5c0886e9b58e5898579d84435fd3c6f73781f61a5cc6e8acbb32",
+    "maps_exposed128\\fresh-0103.map26a": "d4970562a205f7a36a9146d84e37f68a817c39cc2586b3669602e8b2fb2b6b10",
+    "maps_exposed128\\fresh-0104.map26a": "fb5297ab292e0303c5655278486b017d4018fb5683a9ef5565eeb6f22c0ab6fe",
+    "maps_exposed128\\fresh-0105.map26a": "489cc6b0a4ecd7857935b2ecc8bc911e4ad5f144d76dea588ecefe0d4fbf64c4",
+    "maps_exposed128\\fresh-0106.map26a": "c90cfa02be68506b3747d8ec4d2a32d38e992dd6a32c82c26db0efe29f1d7783",
+    "maps_exposed128\\fresh-0107.map26a": "6f3b09a587127b883f224d5a8cedf893517df633e628edbe96f922f74e9b3747",
+    "maps_exposed128\\fresh-0108.map26a": "c81e2679062c0df53fad570b48707bef7e489a9b42b99fa0fdf2a300ad2c4892",
+    "maps_exposed128\\fresh-0109.map26a": "ce8843d1f2e160b619e70b99f77b760298f09c44c1cd7fc1420cca47b131958f",
+    "maps_exposed128\\fresh-0110.map26a": "e2347d50847e15387864236fa851db0b0636d653b6a13345293a12db29f8dac0",
+    "maps_exposed128\\fresh-0111.map26a": "b067f4599ebe2c0806facac55959776437a6241ee3eb6df2b2eaa2fb9431f244",
+    "maps_exposed128\\fresh-0112.map26a": "a2c756c777d4ab394fa70a62a4a8ac08a19b4eeb734c992ff22d4801f4bc673c",
+    "maps_exposed128\\fresh-0113.map26a": "0e8deb383468a5a31718d793ff83a7e75407786551109db282dccfd3e3e7adbe",
+    "maps_exposed128\\fresh-0114.map26a": "fe2f1aca76da8a65483821cea544902b0d11d8987793a81f9fd77b3ff013351d",
+    "maps_exposed128\\fresh-0115.map26a": "a3b0cddd1d54d1c35d51f495e01d14fc114176e04fac44c4a33c869d8fd1f582",
+    "maps_exposed128\\fresh-0116.map26a": "72a88f76320bc5d840909f15a5ea228665541a57201af56a3cf112f6fb496855",
+    "maps_exposed128\\fresh-0117.map26a": "56c455072ba370d5696d61211600c79d44d3e250e1d1a844c497d67b1cf49e0d",
+    "maps_exposed128\\fresh-0118.map26a": "b7c9fe028b9bfcb34750cd1a3c12958eead95224113b8554f10cd5dc665e0d19",
+    "maps_exposed128\\fresh-0119.map26a": "9ebffeccfe96b4ababd392839db1f9502c226f67e0821f69c35d530b825c3639",
+    "maps_exposed128\\fresh-0120.map26a": "ebbccbd683b395ed56919ab014a7372142c00d6193769077335973bb5a086e2f",
+    "maps_exposed128\\fresh-0121.map26a": "be6ea6065566645237aee32811faf2f19035e8b7ccd8d9bf75bfbf8d53ab4ad7",
+    "maps_exposed128\\fresh-0122.map26a": "55c27127b0e6b7c93c5f99038f1038d218a007978172426ac145649a1782c164",
+    "maps_exposed128\\fresh-0123.map26a": "7324da8c7292d28cbb3988f91b2641ea780f9912ead78b4f3f2f7c073b9c812b",
+    "maps_exposed128\\fresh-0124.map26a": "02261c13631efedd9fd3ade0deada18037a2fcf1a9376773d8c80450d53b5d5a",
+    "maps_exposed128\\fresh-0125.map26a": "6cfa09477bff7c905fe8b8d84a185fa905841285869fb769d5681442c01025b7",
+    "maps_exposed128\\fresh-0126.map26a": "ad0b602a10cc7106bf428968c6241e4d001b2db03f4a56e6c64ca8a1ad6ef241",
+    "maps_exposed128\\fresh-0127.map26a": "fbdce1f18ef7c284cc3b766cf7c6c8a385123882a503641e3be33071720ff618"
+  },
+  "adaptive_parent_experiment": "study27-economy",
+  "parent_evidence_sha256": {
+    "selection-plan.json": "8d547b48dca5d482beea10e1358c6b19d6b72f76c161cfb8ae79e5faceb1f130",
+    "package-build-freeze.json": "ee92e59af85805eeb588b81e97102d47667b956e155ae4c75ff27044e633944d",
+    "results/economy-screen.json": "78781a06b25758565d9c53fbdcd876edffa6f42b29d5136220aa5f6dd5154572",
+    "screen-evaluation.json": "f95ccb2704f582ab037896ac8bac8fce6186f15354950a0302fb37939fcc04b4",
+    "harness-plan.json": "2cff21ccf9781923eb4e9cefe00a6e9cf267ef77454faef024bd8cd553492b1c"
+  },
+  "limits": [
+    "Development scores/p-values and native endpoint/rate differences are descriptive after multiple/adaptive comparisons.",
+    "Native metric pairs with unavailable fields are excluded and counted, not imputed zero. Submitted/collected ratio is a descriptive per-game ratio, not a probability.",
+    "Five-reference aggregate, older three-spar subset and two fixed style probes are reported separately. Style probes are not contemporary top-team evidence.",
+    "All-side quality includes candidate games and matched original panel. Caught errors and low-fuel samples are diagnostics; zero reported faults is not zero caught SDK errors.",
+    "Sampled cumulative policy counters are lower bounds; absent telemetry is unobserved. A recent-camp death counter is temporal association, not damage attribution.",
+    "This report never changes candidates, runs games, promotes a bot remotely, or substitutes for final frozen fresh confirmation."
+  ]
+}

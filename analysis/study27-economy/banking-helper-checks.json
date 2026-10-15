@@ -1,0 +1,19 @@
+{
+  "passed": true,
+  "module_sha256": "a0409c3c9cbbdbd1012609b9b9d79fa61bae3c88be5dccfd655b47f053ae50ce",
+  "fixtures": [
+    {
+      "feature": "banking_walk",
+      "stdout": "[econ] who=0 r=1 br_decisions=1 br_fallbacks=0 br_routes=0 br_stops=0 altar=0 path=1 fallback=0\nPASS 23 actual-helper checks mode1",
+      "fixture_sha256": "e1e87cd20353a7b17ad6321c0a1a74a4a4e307461d4f4be1af3ec2cf77259d20"
+    },
+    {
+      "feature": "banking_risk",
+      "stdout": "[econ] who=0 r=1 br_decisions=1 br_fallbacks=0 br_routes=0 br_stops=0 altar=0 path=1 fallback=0\n[econ] who=0 r=1 br_decisions=1 br_fallbacks=0 br_routes=1 br_stops=0 altar=0 path=16 fallback=0\n[econ] who=0 r=2 br_decisions=2 br_fallbacks=0 br_routes=2 br_stops=0 altar=0 path=15 fallback=0\n[econ] who=0 r=3 br_decisions=3 br_fallbacks=0 br_routes=3 br_stops=0 altar=0 path=14 fallback=0\n[econ] who=0 r=4 br_decisions=4 br_fallbacks=0 br_routes=4 br_stops=0 altar=0 path=13 fallback=0\n[econ] who=0 r=5 br_decisions=5 br_fallbacks=0 br_routes=5 br_stops=0 altar=0 path=12 fallback=0\n[econ] who=0 r=6 br_decisions=6 br_fallbacks=0 br_routes=6 br_stops=0 altar=0 path=11 fallback=0\n[econ] who=0 r=7 br_decisions=7 br_fallbacks=0 br_routes=7 br_stops=0 altar=0 path=10 fallback=0\n[econ] who=0 r=8 br_decisions=8 br_fallbacks=0 br_routes=8 br_stops=0 altar=0 path=9 fallback=0\n[econ] who=0 r=1 br_decisions=1 br_fallbacks=1 br_routes=0 br_stops=0 altar=0 path=6 fallback=4\n[econ] who=0 r=1 br_decisions=1 br_fallbacks=0 br_routes=1 br_stops=0 altar=0 path=16 fallback=0\nPASS 88 actual-helper checks mode2",
+      "fixture_sha256": "977eb63b016a4b960dd1671de1862b4f0957bf3907cba31a79e0f6e686175dcd"
+    }
+  ],
+  "method": "Actual transformed legacy/banking/route/tribute C++ helpers compiled and WASI-run with narrow SDK stand-ins using8-neighbour landing-only BFS. API compilation is separately tested against full official SDK. These are helper contracts, not bot matches.",
+  "games_run": 0,
+  "baseline_unchanged": true
+}

@@ -1,0 +1,278 @@
+{
+  "created_utc": "2026-10-15T21:51:47.378826+00:00",
+  "status": "experimental",
+  "claim": "EXPERIMENTAL; completed fresh confirmation FAILED its predeclared gates",
+  "candidate": "productive_walk",
+  "features": [
+    "banking_walk",
+    "cf_camp_reach",
+    "cf_camp_evac",
+    "cr_travel"
+  ],
+  "repository_target": "bots/study27-economy/src",
+  "base_commit": "e72cec8",
+  "base_commit_is_abbreviated": true,
+  "base_source_sha256": {
+    "de_rules.h": "3e50429c96765f325ea3804c2bbb5c13ce26a4119fc7b8694f58def60531221b",
+    "fight.h": "5fb073f23ce41a5f6d07fba3aa55a016582a46ac54c4f8316ee6c96ebe92a7bb",
+    "main.cpp": "8ef9c27093272f5c14dbda5d16e7b91852edc63523ea86ac3d50d322514e71f7",
+    "opening_replace.h": "ca6680bae82b74b89fd0bb65573904246df8761d8b22e3ce8cb6bd93207207e7",
+    "params.h": "d99ef2cecff65f7851efb491bb4691d40ddeaaa6a96499e13eddec814fdc1372",
+    "utility.h": "5e48af1229195c4b356a617fd7323f49efe2af3a09728f6eda91ed4975c2b580"
+  },
+  "source_sha256": {
+    "de_rules.h": "3e50429c96765f325ea3804c2bbb5c13ce26a4119fc7b8694f58def60531221b",
+    "fight.h": "5fb073f23ce41a5f6d07fba3aa55a016582a46ac54c4f8316ee6c96ebe92a7bb",
+    "main.cpp": "cb8cbe3eb437bcbee66d7b2003b5cdb1d81d37042b72d22d1edc1e001a56f4c6",
+    "opening_replace.h": "ca6680bae82b74b89fd0bb65573904246df8761d8b22e3ce8cb6bd93207207e7",
+    "params.h": "d99ef2cecff65f7851efb491bb4691d40ddeaaa6a96499e13eddec814fdc1372",
+    "utility.h": "5e48af1229195c4b356a617fd7323f49efe2af3a09728f6eda91ed4975c2b580"
+  },
+  "injected_wasm_sha256": "fbf835eea4f7a3e629ca58dbff2792f66994d400e93f80332a4d11ba0143ce29",
+  "source_archive": {
+    "filename": "cambc-study27-economy-experimental-productive_walk-fbf835ee.zip",
+    "bytes": 213234,
+    "sha256": "d69b4385f7bbd3c05350b354f5cf5cb439c334e20e85acea65ac7b175895b6b9",
+    "format": "ZIP_STORED, exact six root-source files, sorted names, fixed2026-01-01 timestamp and0644 modes"
+  },
+  "review_diff_sha256": "2354b45ae21f4d60089c55bc63256545ee06ae8ef6503b0ebc76d87b9a560794",
+  "selection_plan_sha256": "66d59120f78eff84dcd922bec1f5bfe8e98379e157b403b8f1e7e155255e4300",
+  "package_build_freeze_sha256": "45596eb5f20d3129bfcd4f9a9c9012cb5daa85b1474d8e1258de3801ff6a2e98",
+  "adaptive_origin_sha256": "d1a48b9b7ce69b4b938a49c21547c53116e248698eeec1c16f7f3f390ed8a252",
+  "parent_evidence_sha256": {
+    "selection-plan.json": "8d547b48dca5d482beea10e1358c6b19d6b72f76c161cfb8ae79e5faceb1f130",
+    "package-build-freeze.json": "ee92e59af85805eeb588b81e97102d47667b956e155ae4c75ff27044e633944d",
+    "results/economy-screen.json": "78781a06b25758565d9c53fbdcd876edffa6f42b29d5136220aa5f6dd5154572",
+    "screen-evaluation.json": "f95ccb2704f582ab037896ac8bac8fce6186f15354950a0302fb37939fcc04b4",
+    "harness-plan.json": "2cff21ccf9781923eb4e9cefe00a6e9cf267ef77454faef024bd8cd553492b1c"
+  },
+  "module_sha256": {
+    "patch_banking.py": "a0409c3c9cbbdbd1012609b9b9d79fa61bae3c88be5dccfd655b47f053ae50ce",
+    "patch_camps.py": "3413527246b445124d031aa3920bd509aa1091a24f710a3a39686a8b4c835fea",
+    "patch_recall.py": "42d5dde8ee6f2a910f5016c018829a0e79f8d1eb18ae3adc4e55e3b9bb047325"
+  },
+  "runtime": {
+    "cli_version": "cambc 2.1.6",
+    "cli_sha256": "91f42c859c40c07c186eb94a692349396c7b168d2b454f1cb060c714825d9882",
+    "project_config_sha256": "283283f8e2c87df8f5db09bb1dbdc14d9b30bbcd3ffb49b6286a0e613204ed3c",
+    "sdk_header_sha256": "90f4242686f22305b28d76d4fa2297187931b3c974f96faf324199e93979203d",
+    "engine_version": "0.0.1",
+    "reference_engine_wasm_sha256": "ce302dc6666ae43592f6936e572bc4baca92a345bff13ef7f986609ac666a0dc",
+    "engine_pin_limit": "CLI has no engine-file option. Version is verified in final statistics; reference WASM is the official map-generator engine, not a claim of CLI engine injection.",
+    "settings": {
+      "full_game": true,
+      "fuel": "CLI default",
+      "language": "cpp",
+      "update_check": false
+    }
+  },
+  "completed_development_evidence": {
+    "full-evaluation.json": {
+      "path": "full-evaluation.json",
+      "sha256": "71b27fd03b77c9319444f5a267b0058ec402e817d60ea507e7587aaa7c156f58"
+    },
+    "transfer-1.json": {
+      "path": "transfer-FIRST.json",
+      "sha256": "95c949a426997a880d05f2f18830beefe1bf07a306467652e9c5da3e569f16d2"
+    }
+  },
+  "confirmation_passed": false,
+  "confirmation_status": "failed",
+  "confirmation_failed_gates": [
+    "original_p",
+    "panel_p"
+  ],
+  "confirmation_verdict_sha256": "4efb82339aaa24b6c87cc8a14c70fec93a79f98bfbd519a6f493544524ee60b6",
+  "publication_helper_sha256": "3adddde896d46abbbbe286ac5a5acf1f657be49fd659c765785152c18f9d68b6",
+  "all_implemented_packages": {
+    "productive_walk": {
+      "features": [
+        "banking_walk",
+        "cf_camp_reach",
+        "cf_camp_evac",
+        "cr_travel"
+      ],
+      "source_sha256": {
+        "de_rules.h": "3e50429c96765f325ea3804c2bbb5c13ce26a4119fc7b8694f58def60531221b",
+        "fight.h": "5fb073f23ce41a5f6d07fba3aa55a016582a46ac54c4f8316ee6c96ebe92a7bb",
+        "main.cpp": "cb8cbe3eb437bcbee66d7b2003b5cdb1d81d37042b72d22d1edc1e001a56f4c6",
+        "opening_replace.h": "ca6680bae82b74b89fd0bb65573904246df8761d8b22e3ce8cb6bd93207207e7",
+        "params.h": "d99ef2cecff65f7851efb491bb4691d40ddeaaa6a96499e13eddec814fdc1372",
+        "utility.h": "5e48af1229195c4b356a617fd7323f49efe2af3a09728f6eda91ed4975c2b580"
+      },
+      "wasm_sha256": "fbf835eea4f7a3e629ca58dbff2792f66994d400e93f80332a4d11ba0143ce29"
+    },
+    "productive_risk": {
+      "features": [
+        "banking_risk",
+        "cf_camp_reach",
+        "cf_camp_evac",
+        "cr_travel"
+      ],
+      "source_sha256": {
+        "de_rules.h": "3e50429c96765f325ea3804c2bbb5c13ce26a4119fc7b8694f58def60531221b",
+        "fight.h": "5fb073f23ce41a5f6d07fba3aa55a016582a46ac54c4f8316ee6c96ebe92a7bb",
+        "main.cpp": "3043d8793379a20cf2efcd9734684bb72426e5127d86f742a35a68117af229ac",
+        "opening_replace.h": "ca6680bae82b74b89fd0bb65573904246df8761d8b22e3ce8cb6bd93207207e7",
+        "params.h": "d99ef2cecff65f7851efb491bb4691d40ddeaaa6a96499e13eddec814fdc1372",
+        "utility.h": "5e48af1229195c4b356a617fd7323f49efe2af3a09728f6eda91ed4975c2b580"
+      },
+      "wasm_sha256": "dfa8453e86ac371604ffcdbbfe88fc0f1bd945aee923b083aec4b61addf27ea0"
+    },
+    "bank_walk": {
+      "features": [
+        "banking_walk",
+        "cr_travel"
+      ],
+      "source_sha256": {
+        "de_rules.h": "3e50429c96765f325ea3804c2bbb5c13ce26a4119fc7b8694f58def60531221b",
+        "fight.h": "5fb073f23ce41a5f6d07fba3aa55a016582a46ac54c4f8316ee6c96ebe92a7bb",
+        "main.cpp": "4d49f62e372fb7db3b98069d2b248d75cce7d3cc610c5e751621695ea60e75b9",
+        "opening_replace.h": "ca6680bae82b74b89fd0bb65573904246df8761d8b22e3ce8cb6bd93207207e7",
+        "params.h": "d99ef2cecff65f7851efb491bb4691d40ddeaaa6a96499e13eddec814fdc1372",
+        "utility.h": "5e48af1229195c4b356a617fd7323f49efe2af3a09728f6eda91ed4975c2b580"
+      },
+      "wasm_sha256": "f0747cadd19cdf3d9e87405d1d818cf73761e1ba2b5db84e611d2abd1c7cbc27"
+    },
+    "mobile_camps": {
+      "features": [
+        "cf_camp_reach",
+        "cf_camp_evac"
+      ],
+      "source_sha256": {
+        "de_rules.h": "3e50429c96765f325ea3804c2bbb5c13ce26a4119fc7b8694f58def60531221b",
+        "fight.h": "5fb073f23ce41a5f6d07fba3aa55a016582a46ac54c4f8316ee6c96ebe92a7bb",
+        "main.cpp": "7a78acc0346115294ff357d3da74a08dc9a1f479f3ff767472dac5b1e08a9162",
+        "opening_replace.h": "ca6680bae82b74b89fd0bb65573904246df8761d8b22e3ce8cb6bd93207207e7",
+        "params.h": "d99ef2cecff65f7851efb491bb4691d40ddeaaa6a96499e13eddec814fdc1372",
+        "utility.h": "5e48af1229195c4b356a617fd7323f49efe2af3a09728f6eda91ed4975c2b580"
+      },
+      "wasm_sha256": "134b4c26ff53c7697707a89b56bf553634c3014f393a759ac925e9ddedb46132"
+    },
+    "productive_share85": {
+      "features": [
+        "banking_walk",
+        "cf_camp_reach",
+        "cf_camp_evac",
+        "cr_travel",
+        "share85"
+      ],
+      "source_sha256": {
+        "de_rules.h": "3e50429c96765f325ea3804c2bbb5c13ce26a4119fc7b8694f58def60531221b",
+        "fight.h": "5fb073f23ce41a5f6d07fba3aa55a016582a46ac54c4f8316ee6c96ebe92a7bb",
+        "main.cpp": "cb8cbe3eb437bcbee66d7b2003b5cdb1d81d37042b72d22d1edc1e001a56f4c6",
+        "opening_replace.h": "ca6680bae82b74b89fd0bb65573904246df8761d8b22e3ce8cb6bd93207207e7",
+        "params.h": "0064c73af72215d8c819bc826e0306f82f85b64d1248475062b0bf905959a914",
+        "utility.h": "5e48af1229195c4b356a617fd7323f49efe2af3a09728f6eda91ed4975c2b580"
+      },
+      "wasm_sha256": "6a8911f696704399ef1920fbb547d0ac744d5234c16af6b770b138b6fce0543f"
+    },
+    "productive_share100": {
+      "features": [
+        "banking_walk",
+        "cf_camp_reach",
+        "cf_camp_evac",
+        "cr_travel",
+        "share100"
+      ],
+      "source_sha256": {
+        "de_rules.h": "3e50429c96765f325ea3804c2bbb5c13ce26a4119fc7b8694f58def60531221b",
+        "fight.h": "5fb073f23ce41a5f6d07fba3aa55a016582a46ac54c4f8316ee6c96ebe92a7bb",
+        "main.cpp": "cb8cbe3eb437bcbee66d7b2003b5cdb1d81d37042b72d22d1edc1e001a56f4c6",
+        "opening_replace.h": "ca6680bae82b74b89fd0bb65573904246df8761d8b22e3ce8cb6bd93207207e7",
+        "params.h": "906ee9fdd7b84172e5f0ec5c0d1c43008bad86a7ae3738ba3d2f49e43c07bd95",
+        "utility.h": "5e48af1229195c4b356a617fd7323f49efe2af3a09728f6eda91ed4975c2b580"
+      },
+      "wasm_sha256": "dfcecb501bbf5576dd53a73e002cbb9f960d040fef147031589a3bf4c756cc6a"
+    }
+  },
+  "exported_files_sha256": {
+    "BOT-README.md": "b42b5b4905dedea9f852ea3f1d20939fa0c093f2b4a50ed45aa33e912ce11966",
+    "bots/study27-economy/README.md": "b42b5b4905dedea9f852ea3f1d20939fa0c093f2b4a50ed45aa33e912ce11966",
+    "bots/study27-economy/RESULTS.md": "3497d44e81616a291d4dee7530f2f5da65e4a387a30cd0bae62ed9b08c28d005",
+    "bots/study27-economy/REVIEW-NOTES.md": "f0abaca8f85aba36bd52e4318568397cef98ed14dd39cbe0bdd1988b7fcc6ffa",
+    "bots/study27-economy/src/de_rules.h": "3e50429c96765f325ea3804c2bbb5c13ce26a4119fc7b8694f58def60531221b",
+    "bots/study27-economy/src/fight.h": "5fb073f23ce41a5f6d07fba3aa55a016582a46ac54c4f8316ee6c96ebe92a7bb",
+    "bots/study27-economy/src/main.cpp": "cb8cbe3eb437bcbee66d7b2003b5cdb1d81d37042b72d22d1edc1e001a56f4c6",
+    "bots/study27-economy/src/opening_replace.h": "ca6680bae82b74b89fd0bb65573904246df8761d8b22e3ce8cb6bd93207207e7",
+    "bots/study27-economy/src/params.h": "d99ef2cecff65f7851efb491bb4691d40ddeaaa6a96499e13eddec814fdc1372",
+    "bots/study27-economy/src/utility.h": "5e48af1229195c4b356a617fd7323f49efe2af3a09728f6eda91ed4975c2b580",
+    "cambc-study27-economy-experimental-productive_walk-fbf835ee.zip": "d69b4385f7bbd3c05350b354f5cf5cb439c334e20e85acea65ac7b175895b6b9",
+    "portable-packages/bank_walk/src/de_rules.h": "3e50429c96765f325ea3804c2bbb5c13ce26a4119fc7b8694f58def60531221b",
+    "portable-packages/bank_walk/src/fight.h": "5fb073f23ce41a5f6d07fba3aa55a016582a46ac54c4f8316ee6c96ebe92a7bb",
+    "portable-packages/bank_walk/src/main.cpp": "4d49f62e372fb7db3b98069d2b248d75cce7d3cc610c5e751621695ea60e75b9",
+    "portable-packages/bank_walk/src/opening_replace.h": "ca6680bae82b74b89fd0bb65573904246df8761d8b22e3ce8cb6bd93207207e7",
+    "portable-packages/bank_walk/src/params.h": "d99ef2cecff65f7851efb491bb4691d40ddeaaa6a96499e13eddec814fdc1372",
+    "portable-packages/bank_walk/src/utility.h": "5e48af1229195c4b356a617fd7323f49efe2af3a09728f6eda91ed4975c2b580",
+    "portable-packages/mobile_camps/src/de_rules.h": "3e50429c96765f325ea3804c2bbb5c13ce26a4119fc7b8694f58def60531221b",
+    "portable-packages/mobile_camps/src/fight.h": "5fb073f23ce41a5f6d07fba3aa55a016582a46ac54c4f8316ee6c96ebe92a7bb",
+    "portable-packages/mobile_camps/src/main.cpp": "7a78acc0346115294ff357d3da74a08dc9a1f479f3ff767472dac5b1e08a9162",
+    "portable-packages/mobile_camps/src/opening_replace.h": "ca6680bae82b74b89fd0bb65573904246df8761d8b22e3ce8cb6bd93207207e7",
+    "portable-packages/mobile_camps/src/params.h": "d99ef2cecff65f7851efb491bb4691d40ddeaaa6a96499e13eddec814fdc1372",
+    "portable-packages/mobile_camps/src/utility.h": "5e48af1229195c4b356a617fd7323f49efe2af3a09728f6eda91ed4975c2b580",
+    "portable-packages/productive_risk/src/de_rules.h": "3e50429c96765f325ea3804c2bbb5c13ce26a4119fc7b8694f58def60531221b",
+    "portable-packages/productive_risk/src/fight.h": "5fb073f23ce41a5f6d07fba3aa55a016582a46ac54c4f8316ee6c96ebe92a7bb",
+    "portable-packages/productive_risk/src/main.cpp": "3043d8793379a20cf2efcd9734684bb72426e5127d86f742a35a68117af229ac",
+    "portable-packages/productive_risk/src/opening_replace.h": "ca6680bae82b74b89fd0bb65573904246df8761d8b22e3ce8cb6bd93207207e7",
+    "portable-packages/productive_risk/src/params.h": "d99ef2cecff65f7851efb491bb4691d40ddeaaa6a96499e13eddec814fdc1372",
+    "portable-packages/productive_risk/src/utility.h": "5e48af1229195c4b356a617fd7323f49efe2af3a09728f6eda91ed4975c2b580",
+    "portable-packages/productive_share100/src/de_rules.h": "3e50429c96765f325ea3804c2bbb5c13ce26a4119fc7b8694f58def60531221b",
+    "portable-packages/productive_share100/src/fight.h": "5fb073f23ce41a5f6d07fba3aa55a016582a46ac54c4f8316ee6c96ebe92a7bb",
+    "portable-packages/productive_share100/src/main.cpp": "cb8cbe3eb437bcbee66d7b2003b5cdb1d81d37042b72d22d1edc1e001a56f4c6",
+    "portable-packages/productive_share100/src/opening_replace.h": "ca6680bae82b74b89fd0bb65573904246df8761d8b22e3ce8cb6bd93207207e7",
+    "portable-packages/productive_share100/src/params.h": "906ee9fdd7b84172e5f0ec5c0d1c43008bad86a7ae3738ba3d2f49e43c07bd95",
+    "portable-packages/productive_share100/src/utility.h": "5e48af1229195c4b356a617fd7323f49efe2af3a09728f6eda91ed4975c2b580",
+    "portable-packages/productive_share85/src/de_rules.h": "3e50429c96765f325ea3804c2bbb5c13ce26a4119fc7b8694f58def60531221b",
+    "portable-packages/productive_share85/src/fight.h": "5fb073f23ce41a5f6d07fba3aa55a016582a46ac54c4f8316ee6c96ebe92a7bb",
+    "portable-packages/productive_share85/src/main.cpp": "cb8cbe3eb437bcbee66d7b2003b5cdb1d81d37042b72d22d1edc1e001a56f4c6",
+    "portable-packages/productive_share85/src/opening_replace.h": "ca6680bae82b74b89fd0bb65573904246df8761d8b22e3ce8cb6bd93207207e7",
+    "portable-packages/productive_share85/src/params.h": "0064c73af72215d8c819bc826e0306f82f85b64d1248475062b0bf905959a914",
+    "portable-packages/productive_share85/src/utility.h": "5e48af1229195c4b356a617fd7323f49efe2af3a09728f6eda91ed4975c2b580",
+    "portable-packages/productive_walk/src/de_rules.h": "3e50429c96765f325ea3804c2bbb5c13ce26a4119fc7b8694f58def60531221b",
+    "portable-packages/productive_walk/src/fight.h": "5fb073f23ce41a5f6d07fba3aa55a016582a46ac54c4f8316ee6c96ebe92a7bb",
+    "portable-packages/productive_walk/src/main.cpp": "cb8cbe3eb437bcbee66d7b2003b5cdb1d81d37042b72d22d1edc1e001a56f4c6",
+    "portable-packages/productive_walk/src/opening_replace.h": "ca6680bae82b74b89fd0bb65573904246df8761d8b22e3ce8cb6bd93207207e7",
+    "portable-packages/productive_walk/src/params.h": "d99ef2cecff65f7851efb491bb4691d40ddeaaa6a96499e13eddec814fdc1372",
+    "portable-packages/productive_walk/src/utility.h": "5e48af1229195c4b356a617fd7323f49efe2af3a09728f6eda91ed4975c2b580",
+    "portable-tools/adaptive-origin.json": "d1a48b9b7ce69b4b938a49c21547c53116e248698eeec1c16f7f3f390ed8a252",
+    "portable-tools/baseline-manifest.json": "cf7da4ed42eabf9c733ab0cb73b74687b998946c1565b8d79ead0caca5a60a29",
+    "portable-tools/baseline-src/de_rules.h": "3e50429c96765f325ea3804c2bbb5c13ce26a4119fc7b8694f58def60531221b",
+    "portable-tools/baseline-src/fight.h": "5fb073f23ce41a5f6d07fba3aa55a016582a46ac54c4f8316ee6c96ebe92a7bb",
+    "portable-tools/baseline-src/main.cpp": "8ef9c27093272f5c14dbda5d16e7b91852edc63523ea86ac3d50d322514e71f7",
+    "portable-tools/baseline-src/opening_replace.h": "ca6680bae82b74b89fd0bb65573904246df8761d8b22e3ce8cb6bd93207207e7",
+    "portable-tools/baseline-src/params.h": "d99ef2cecff65f7851efb491bb4691d40ddeaaa6a96499e13eddec814fdc1372",
+    "portable-tools/baseline-src/utility.h": "5e48af1229195c4b356a617fd7323f49efe2af3a09728f6eda91ed4975c2b580",
+    "portable-tools/package-build-freeze.json": "45596eb5f20d3129bfcd4f9a9c9012cb5daa85b1474d8e1258de3801ff6a2e98",
+    "portable-tools/patch_banking.py": "a0409c3c9cbbdbd1012609b9b9d79fa61bae3c88be5dccfd655b47f053ae50ce",
+    "portable-tools/patch_camps.py": "3413527246b445124d031aa3920bd509aa1091a24f710a3a39686a8b4c835fea",
+    "portable-tools/patch_recall.py": "42d5dde8ee6f2a910f5016c018829a0e79f8d1eb18ae3adc4e55e3b9bb047325",
+    "portable-tools/rebuild_candidates.py": "e7a42dde1e9c65b2b5c4663b31303145b1c6698cb0e395b77bacb2f68bd2e00d",
+    "portable-tools/selection-plan.json": "66d59120f78eff84dcd922bec1f5bfe8e98379e157b403b8f1e7e155255e4300",
+    "provenance/composition-checks.json": "09369d3226b71e95b6bd050ae3e78dc77ed2f7d73c103bcfa1c60d5835b0504e",
+    "provenance/confirmation-verdict.json": "4efb82339aaa24b6c87cc8a14c70fec93a79f98bfbd519a6f493544524ee60b6",
+    "provenance/freeze.json": "69f8a0f6e2984a35a289186f3f4546155ef621a3d2eb71475d44999d52700228",
+    "provenance/full-evaluation.json": "71b27fd03b77c9319444f5a267b0058ec402e817d60ea507e7587aaa7c156f58",
+    "provenance/generation.json": "7cd12b19abb601fe6378934d3f5f5bdbbaee44275a457efabdaa89b680ff2bb9",
+    "provenance/parent-focus-progress-blocker.json": "bde8350f706f75c0112ca52c46a0e464cdd2462dccffa8a7dc88745984a76365",
+    "provenance/parent-full-interruption.txt": "bbca2d421634b27ebb9dedf0858c83f30b6dafc5205e5af48c23638f44a61b7a",
+    "provenance/parent-screen-evaluation.json": "f95ccb2704f582ab037896ac8bac8fce6186f15354950a0302fb37939fcc04b4",
+    "provenance/rebuild-checks.json": "0fc765c3c271c0ed21269ec7a8b0b9a7781d8acb9de5b7b58db3314308f7e70f",
+    "provenance/rebuild-freeze-checks.json": "79f40658a610b9e8c58e3918453f9dacbd59fa2f3a1464d3b4be277a3b6af1c4",
+    "provenance/screen-evaluation.json": "f97ddddbf58cddab08f1c8c5d79d98457fbdfd79de41e83775e227f7ab209d11",
+    "provenance/selection-tool-checks.json": "1f2e9adaf88b263cdee201eec109b31d21141bfe01cf871dd92b5a97daad58cc",
+    "provenance/selection.json": "3d51abd08d046205dc090394c511ec43215335abec938855a0fb697e87129438",
+    "provenance/transfer-1.json": "95c949a426997a880d05f2f18830beefe1bf07a306467652e9c5da3e569f16d2",
+    "RESULTS.md": "3497d44e81616a291d4dee7530f2f5da65e4a387a30cd0bae62ed9b08c28d005",
+    "REVIEW-NOTES.md": "f0abaca8f85aba36bd52e4318568397cef98ed14dd39cbe0bdd1988b7fcc6ffa",
+    "src/de_rules.h": "3e50429c96765f325ea3804c2bbb5c13ce26a4119fc7b8694f58def60531221b",
+    "src/fight.h": "5fb073f23ce41a5f6d07fba3aa55a016582a46ac54c4f8316ee6c96ebe92a7bb",
+    "src/main.cpp": "cb8cbe3eb437bcbee66d7b2003b5cdb1d81d37042b72d22d1edc1e001a56f4c6",
+    "src/opening_replace.h": "ca6680bae82b74b89fd0bb65573904246df8761d8b22e3ce8cb6bd93207207e7",
+    "src/params.h": "d99ef2cecff65f7851efb491bb4691d40ddeaaa6a96499e13eddec814fdc1372",
+    "src/utility.h": "5e48af1229195c4b356a617fd7323f49efe2af3a09728f6eda91ed4975c2b580",
+    "study27-economy.patch": "2354b45ae21f4d60089c55bc63256545ee06ae8ef6503b0ebc76d87b9a560794"
+  },
+  "games_run_by_export": 0,
+  "new_maps_by_export": 0,
+  "remote_actions": 0
+}

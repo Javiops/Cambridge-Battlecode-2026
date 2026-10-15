@@ -1,20 +1,20 @@
-# Brief para quien coge una idea (persona o hilo de Claude)
+# Brief for whoever takes an idea (a person or a Claude thread)
 
-Copia esto en el hilo o en el PR al empezar. Todo lo que no está aquí no es parte del trabajo.
+Copy this into the thread or the PR when you start. Anything not in here is not part of the job.
 
-- **Idea:** I### <título> (`python3 tools/idea.py show I###`)
-- **Hipótesis a comprobar:** <número de la ficha, de cuánto a cuánto, en qué mapas>
-- **Tipo y puerta:** `farm` (mapas nuevos a favor con p<0.05) | `fight` (no peor en local; decide online) | `bug` | `macro`
-- **Bot base:** `bots/study28` en `main` (commit <sha>)
-- **Rama:** `idea/I###-nombre-corto`
-- **Un solo cambio:** <la regla / el umbral / el interruptor>. Si por el camino aparece otra mejora, se apunta como idea nueva, no se mete aquí.
-- **No tocar:** las ramas de los demás; `maps_hold60`/`maps_dev200` no se usan para ajustar.
-- **Tiempo:** <horas>. Si al acabar no pasa la puerta, se entrega igual con el número y se cierra como `rechazada`.
+- **Idea:** I### <title> (`python3 tools/idea.py show I###`)
+- **Hypothesis to check:** <scorecard number, from what to what, on which maps>
+- **Kind and gate:** `farm` (fresh maps in favour with p<0.05) | `fight` (not worse locally; online decides) | `bug` | `macro`
+- **Base bot:** `bots/study28` on `main` (commit <sha>)
+- **Branch:** `idea/I###-short-name`
+- **One change:** <the rule / the threshold / the switch>. If another improvement shows up on the way, it becomes a new idea, it does not go in here.
+- **Do not touch:** other people's branches; `maps_hold60`/`maps_dev200` are never used for tuning.
+- **Time box:** <hours>. If it does not pass the gate by then, deliver it anyway with the number and close it as `rejected`.
 
-## Entregar
+## Deliver
 
-1. Rama con el diff del bot (solo `bots/study28/src`, y `params.h` si es un switch).
-2. `python3 tools/gate.py bots/study28 main --kind <tipo> --idea I###` con el candidato final; adjuntar `out/gate/.../gate.txt`.
-3. Los 3 peores contraejemplos mirados con `cambc view` y una línea sobre cada uno.
-4. `docs/I###-nombre.md` según `harness/templates/resultado.md` y el PR (borrador hasta la decisión online).
-5. Tablero: `idea.py set I### --stage local-ok|test-local|rechazada --pr <n> --note "<número que lo decide>"`.
+1. The branch with the bot diff (only `bots/study28/src`, plus `params.h` if it is a switch).
+2. `python3 tools/gate.py bots/study28 main --kind <kind> --idea I###` on the final candidate; attach `out/gate/.../gate.txt`.
+3. The 3 worst counterexamples watched with `cambc view` and one line about each.
+4. `docs/I###-name.md` following `harness/templates/result.md`, and the PR (draft until the online decision).
+5. Board: `idea.py set I### --stage local-ok|local-test|rejected --pr <n> --note "<the number that decides it>"`.

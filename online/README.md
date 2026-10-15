@@ -15,7 +15,7 @@ What Mite does: ~27 challenge groups an hour against the top teams, all day. Thi
   (opponent, map, side) pairings, sign test on the pairings that flip, verdict + how many more are needed:
   `python3 lfl.py --a "corners fix" --b "v36 = study27" [--idea I012]`.
 * `version.py` — registers the active version the minute you activate it: `python3 version.py "v38 = I012 ..."`.
-* `dissect.py` — **stage 4**: replays of a version -> `data/dissect/<version>-<date>/ficha.md` (same metrics for us and
+* `dissect.py` — **stage 4**: replays of a version -> `data/dissect/<version>-<date>/scorecard.md` (same metrics for us and
   the rival in the same games, by map and tier, with the previous version as an extra column via `--ref`) ending in
   proposals for the next brainstorm. Needs node and the repo's `tools/` (replaydump.js, compact.py; ~20 s per new game).
 * `loop.py` — every 10 min collect, every hour challenge. `python3 loop.py --top 20` (or `--no-challenge`).

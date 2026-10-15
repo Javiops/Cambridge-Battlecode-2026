@@ -1,23 +1,23 @@
 {
  "id": "I006",
- "title": "Final de rows: guardar cada bolsa cuando alguien está a 150 de 1000",
+ "title": "Rows end-game: bank every bag once someone is within 150 of 1000",
  "kind": "farm",
- "source": "disección study27 15/10",
+ "source": "study27 dissection, 15 Oct",
  "owner": "Javi",
- "hypothesis": "rows: banca 1000 antes",
- "stage": "rechazada",
- "created": "2026-10-15T21:58Z",
+ "hypothesis": "rows: banks 1000 earlier",
+ "stage": "rejected",
+ "created": "2026-10-15T22:12Z",
  "history": [
   {
-   "at": "2026-10-15T21:58Z",
+   "at": "2026-10-15T22:12Z",
    "stage": "idea",
    "note": ""
   },
   {
-   "at": "2026-10-15T21:58Z",
-   "stage": "rechazada",
-   "note": "sin cambio en ningún mapa; rows banca en 404 vs 401 y pierde el espejo por los dos lados"
+   "at": "2026-10-15T22:12Z",
+   "stage": "rejected",
+   "note": "no change on any map; rows banks at 404 vs 401 and loses the mirror on both sides"
   }
  ],
- "updated": "2026-10-15T21:58Z"
+ "updated": "2026-10-15T22:12Z"
 }

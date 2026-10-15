@@ -7,8 +7,9 @@ la misma que está subida a la web como versión 30. Con la v29 llegamos al pues
 
 Las ideas pasan por cuatro etapas con una puerta con números en cada una (brainstorm -> desarrollo y puerta local
 `tools/gate.py` -> online A/B emparejado `online/lfl.py` -> disección `online/dissect.py` -> nuevas ideas). El
-pipeline completo, quién hace qué y dónde vive cada cosa: **[harness/README.md](harness/README.md)**. El estado de
-cada idea: **[harness/IDEAS.md](harness/IDEAS.md)** (`python3 tools/idea.py board`).
+pipeline completo, quién hace qué y dónde vive cada cosa (en inglés, para todo el equipo):
+**[harness/README.md](harness/README.md)**. El estado de cada idea: **[harness/IDEAS.md](harness/IDEAS.md)**
+(`python3 tools/idea.py board`).
 
 ## Qué hay en el repo
 

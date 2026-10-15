@@ -1,23 +1,23 @@
 {
  "id": "I013",
- "title": "Farmear en nuestra mitad cuando estamos en inferioridad",
+ "title": "Farm in our own half when outnumbered",
  "kind": "macro",
- "source": "disección v35 15/10",
+ "source": "v35 dissection, 15 Oct",
  "owner": "Javi",
- "hypothesis": "muertes en su mitad y cruces",
+ "hypothesis": "deaths in their half and crossings",
  "stage": "idea",
- "created": "2026-10-15T21:58Z",
+ "created": "2026-10-15T22:12Z",
  "history": [
   {
-   "at": "2026-10-15T21:58Z",
+   "at": "2026-10-15T22:12Z",
    "stage": "idea",
    "note": ""
   },
   {
-   "at": "2026-10-15T21:58Z",
+   "at": "2026-10-15T22:12Z",
    "stage": "idea",
-   "note": "frente abierto, sin rama"
+   "note": "open front, no branch yet"
   }
  ],
- "updated": "2026-10-15T21:58Z"
+ "updated": "2026-10-15T22:12Z"
 }

@@ -1,23 +1,23 @@
 #!/usr/bin/env python3
-"""Disección en una orden (etapa 4 del harness): de las partidas online de una versión a su ficha de métricas
-y a una lista de propuestas para el brainstorm.
+"""One-command dissection (stage 4 of the harness): from the online games of a version to its metric scorecard and a
+list of proposals for the brainstorm.
 
-uso (desde online/, con data/games.jsonl al día):
-  python3 dissect.py --version "corners fix"                      # últimas 150 partidas unranked de esa etiqueta
-  python3 dissect.py --version "corners fix" --ref "v36 = study27"  # columna extra: la misma ficha de la versión anterior
+usage (from online/, with data/games.jsonl up to date):
+  python3 dissect.py --version "corners fix"                      # the latest 150 unranked games of that label
+  python3 dissect.py --version "corners fix" --ref "v36 = study27"  # extra column: the same scorecard of the previous version
   python3 dissect.py --version 2026-10-15T20:00/2026-10-15T22:00 --max 60 --maps corners,rows --jobs 4
-  python3 dissect.py --version "corners fix" --idea I012          # apunta el resumen en el tracker
+  python3 dissect.py --version "corners fix" --idea I012          # record the summary on the board
 
-Qué hace: elige las partidas (etiqueta de data/versions.jsonl o ventana desde/hasta), baja las repeticiones que falten a
-data/replays/, las decodifica paso a paso (tools/replaydump.js + tools/compact.py, ~25 s por partida, en paralelo y
-con caché en <out>/steps/) y mide lo mismo para nosotros y para el rival en las mismas partidas: muertes y cómo
-morimos, capturas por ronda-campeón, tiempo muerto e inactivo, contacto antes del primer golpe, aperturas en solitario,
-hechizos, combustible. Escribe <out>/ficha.md, ficha.json y selected.json (el workspace que usan los scripts de
-analysis/v35-dissection-2026-10-15/scripts_* para preguntas más finas: WS=<out>).
+What it does: picks the games (a label from data/versions.jsonl or a from/to window), downloads the missing replays
+to data/replays/, decodes them step by step (tools/replaydump.js + tools/compact.py, ~25 s per game, in parallel and
+cached in <out>/steps/) and measures the same things for us and for the rival in the same games: deaths and how we
+die, captures per champion-round, dead and idle time, contact before the first hit, openings alone, spells, fuel.
+Writes <out>/scorecard.md, scorecard.json and selected.json (the workspace the scripts in
+analysis/v35-dissection-2026-10-15/scripts_* read for finer questions: WS=<out>).
 
-La ficha termina con "Propuestas": los huecos más grandes respecto al rival, listos para `tools/idea.py add`.
+The scorecard ends with "Proposals": the biggest gaps against the rival, ready for `tools/idea.py add`.
 """
-import argparse, collections, json, os, re, statistics, subprocess, sys, time, urllib.request
+import argparse, collections, json, os, re, subprocess, sys, time, urllib.request
 from concurrent.futures import ThreadPoolExecutor
 
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -33,7 +33,7 @@ def tool(name):
     for d in (os.environ.get('HARNESS_TOOLS', ''), os.path.join(HERE, 'tools'), os.path.join(ROOT, 'tools')):
         if d and os.path.exists(os.path.join(d, name)):
             return os.path.join(d, name)
-    sys.exit(f'no encuentro {name} (tools/ del repo, online/tools/ o HARNESS_TOOLS)')
+    sys.exit(f'cannot find {name} (the repo tools/, online/tools/ or HARNESS_TOOLS)')
 
 
 def fetch_replay(g, dest):
@@ -45,7 +45,7 @@ def fetch_replay(g, dest):
             urllib.request.urlretrieve(BASE + g['replay'], dest + '.tmp'); os.replace(dest + '.tmp', dest)
             return True
         except Exception as e:
-            print('  descarga fallida', g['match'][:8], e, file=sys.stderr); time.sleep(5 * (a + 1))
+            print('  download failed', g['match'][:8], e, file=sys.stderr); time.sleep(5 * (a + 1))
     return False
 
 
@@ -57,7 +57,7 @@ def decode(zip_path, out_path):
     p2 = subprocess.run([sys.executable, '-I', comp, '/dev/stdin', out_path + '.tmp'], stdin=p1.stdout, capture_output=True)
     p1.wait()
     if p2.returncode == 0 and os.path.getsize(out_path + '.tmp') > 1000:
-        with open(out_path + '.tmp', 'rb') as f:   # completa = lleva la línea de resumen del final
+        with open(out_path + '.tmp', 'rb') as f:   # complete = it carries the summary line at the end
             f.seek(max(0, os.path.getsize(out_path + '.tmp') - 65536)); tail = f.read()
         if b'"t": "summary"' in tail:
             os.replace(out_path + '.tmp', out_path); return True
@@ -77,15 +77,15 @@ def ensure_mapsj(ws_root, names):
             open(dst, 'w').write(open(src).read()); continue
         mp = os.path.join(ROOT, 'maps', n + '.map26a')
         if not os.path.exists(mp):
-            sys.exit(f'falta el mapa {n}: ni online/mapsj/{n}.json ni maps/{n}.map26a (haz `cambc init --yes` en el repo)')
+            sys.exit(f'missing map {n}: neither online/mapsj/{n}.json nor maps/{n}.map26a (run `cambc init --yes` in the repo)')
         r = subprocess.run(['node', tool('mapjson.js'), mp], capture_output=True, text=True)
-        if r.returncode != 0: sys.exit('mapjson.js falló: ' + r.stderr[-300:])
+        if r.returncode != 0: sys.exit('mapjson.js failed: ' + r.stderr[-300:])
         open(dst, 'w').write(r.stdout)
 
 
-# ---------------------------------------------------------------- métricas
+# ---------------------------------------------------------------- metrics
 def measure(ws, rec):
-    """Una fila por equipo (us/them) con los contadores de esta partida."""
+    """One row per team (us/them) with this game's counters."""
     G = Game(ws, rec); order = G.order; last = order[-1]
     out = {}
     for who, t in (('us', G.side), ('them', 1 - G.side)):
@@ -107,7 +107,7 @@ def measure(ws, rec):
                 if G.nearest_foe(r, i)[0] <= 8: contact_r += 1
                 a = G.act[r][i]
                 c['spells'] += 'spell' in a; c['atks'] += 'atk' in a
-            # muertes
+            # deaths
             for r in G.death_round[i]:
                 pr = r - 1
                 if pr not in G.rounds: continue
@@ -121,7 +121,7 @@ def measure(ws, rec):
                     c['d_ally_idle'] += all(not (G.act[rr][x['i']] & {'atk', 'spell'}) for x in al6 for rr in range(r - 3, r + 1))
                 kk = G.killkind.get((r, i), 'other')
                 c['d_' + kk] += 1
-            # episodios de golpes recibidos: apertura y contacto previo
+            # episodes of hits taken: opening and the contact before it
             hits = [r for r in order if G.champ_dmg(r, i)]
             eps = []
             for r in hits:
@@ -147,7 +147,7 @@ def measure(ws, rec):
         c['gems'] = 0
         c['fuel'] = G.fuel[t]
         out[who] = c
-    # gemas tributadas: último snapshot
+    # tributed gems: the last snapshot
     sub = None
     with open(ws.steps_path(rec['match'])) as f:
         for line in f:
@@ -165,37 +165,37 @@ def agg(rows):
     return tot
 
 
-def ficha(tot):
-    """Métricas por equipo a partir de los contadores agregados."""
+def scorecard(tot):
+    """Per-team metrics from the aggregated counters."""
     F = {}
     for who, c in tot.items():
         g = max(1, c['games']); d = max(1, c['deaths']); e = max(1, c['eps']); ct = max(1, sum(v for k, v in c.items() if k.startswith('ct_') and k != 'ct_len'))
         F[who] = collections.OrderedDict([
-            ('partidas', c['games']), ('victorias %', 100.0 * c['win'] / g),
-            ('muertes / partida', c['deaths'] / g),
-            ('  en su propia mitad %', 100.0 * c['d_own'] / d),
-            ('  huyendo (3 rondas antes) %', 100.0 * c['d_flee'] / d),
-            ('  con aliado a 6 que no atacó %', 100.0 * c['d_ally_idle'] / d),
-            ('  por hechizo %', 100.0 * c['d_spell'] / d),
-            ('  por monstruo %', 100.0 * c['d_camp'] / d),
-            ('rondas-campeón muerto %', 100.0 * c['dead_r'] / max(1, c['dead_r'] + c['alive_r'])),
-            ('rondas-campeón inactivo %', 100.0 * c['idle_r'] / max(1, c['alive_r'])),
-            ('rondas-campeón en contacto (rival a 8) %', 100.0 * c['contact_r'] / max(1, c['alive_r'])),
-            ('capturas / 100 rondas-campeón vivas', 100.0 * c['captures'] / max(1, c['alive_r'])),
-            ('gemas tributadas / 100 rondas', 100.0 * c['gems'] / max(1, c['rounds'])),
-            ('cruces a la mitad enemiga / partida', c['crossings'] / g),
-            ('hechizos a campeones / partida', c['spells'] / g),
-            ('ataques básicos a campeones / partida', c['atks'] / g),
-            ('golpes recibidos (episodios) / partida', c['eps'] / g),
-            ('  víctima sin aliado a 8 %', 100.0 * c['ep_alone'] / e),
-            ('  atacante sin aliado a 8 %', 100.0 * c['ep_att_alone'] / e),
-            ('  contacto previo (rondas, media)', c['ct_len'] / e),
-            ('  en contacto: farmeando %', 100.0 * c['ct_farm'] / ct),
-            ('  en contacto: inactivo %', 100.0 * c['ct_idle'] / ct),
-            ('  en contacto: alejándose %', 100.0 * c['ct_away'] / ct),
-            ('  en contacto: acercándose %', 100.0 * c['ct_closer'] / ct),
-            ('  en contacto: canalizando (recall/tributo) %', 100.0 * c['ct_channel'] / ct),
-            ('turnos sin combustible / partida', c['fuel'] / g),
+            ('games', c['games']), ('win %', 100.0 * c['win'] / g),
+            ('deaths / game', c['deaths'] / g),
+            ('  in own half %', 100.0 * c['d_own'] / d),
+            ('  while fleeing (3 rounds before) %', 100.0 * c['d_flee'] / d),
+            ('  with an ally within 6 that did not attack %', 100.0 * c['d_ally_idle'] / d),
+            ('  by spell %', 100.0 * c['d_spell'] / d),
+            ('  by monster %', 100.0 * c['d_camp'] / d),
+            ('champion-rounds dead %', 100.0 * c['dead_r'] / max(1, c['dead_r'] + c['alive_r'])),
+            ('champion-rounds idle %', 100.0 * c['idle_r'] / max(1, c['alive_r'])),
+            ('champion-rounds in contact (enemy within 8) %', 100.0 * c['contact_r'] / max(1, c['alive_r'])),
+            ('captures / 100 alive champion-rounds', 100.0 * c['captures'] / max(1, c['alive_r'])),
+            ('tributed gems / 100 rounds', 100.0 * c['gems'] / max(1, c['rounds'])),
+            ('crossings into the enemy half / game', c['crossings'] / g),
+            ('spells at champions / game', c['spells'] / g),
+            ('basic attacks at champions / game', c['atks'] / g),
+            ('hit episodes taken / game', c['eps'] / g),
+            ('  victim with no ally within 8 %', 100.0 * c['ep_alone'] / e),
+            ('  attacker with no ally within 8 %', 100.0 * c['ep_att_alone'] / e),
+            ('  contact before the hit (rounds, mean)', c['ct_len'] / e),
+            ('  in contact: farming %', 100.0 * c['ct_farm'] / ct),
+            ('  in contact: idle %', 100.0 * c['ct_idle'] / ct),
+            ('  in contact: moving away %', 100.0 * c['ct_away'] / ct),
+            ('  in contact: moving closer %', 100.0 * c['ct_closer'] / ct),
+            ('  in contact: channeling (recall/tribute) %', 100.0 * c['ct_channel'] / ct),
+            ('fuel-exhausted turns / game', c['fuel'] / g),
         ])
     return F
 
@@ -209,17 +209,17 @@ def proposals(F, bymap):
         if diff > max(abs_, rel * max(abs(b), 1e-9)): return diff
         return None
     rules = [
-        ('muertes / partida', True, 0.15, 0.3, 'Morimos {a:.1f} veces por partida y el rival {b:.1f}: cada muerte regala las gemas y 60 rondas; mira de qué muertes se compone la ficha (huyendo, solos, hechizo).'),
-        ('  huyendo (3 rondas antes) %', True, 0.2, 5, 'El {a:.0f}% de nuestras muertes llegan huyendo (rival {b:.0f}%): huimos tarde o un paso por ronda con el atacante pegado; probar huir antes (umbral de peligro) o no huir y pegar.'),
-        ('  víctima sin aliado a 8 %', True, 0.15, 5, 'Nos pegan sin aliado a 8 el {a:.0f}% de las veces (rival {b:.0f}%): farmeamos separados; probar pares/bola por campamento en mapas de pelea.'),
-        ('  con aliado a 6 que no atacó %', True, 0.15, 5, 'En el {a:.0f}% de las muertes había un aliado a 6 que no atacó (rival {b:.0f}%): regla de ayuda (si un aliado recibe daño a 6, atacar a su atacante).'),
-        ('  en contacto: farmeando %', True, 0.15, 5, 'Con un rival a 8 seguimos farmeando el {a:.0f}% de las rondas (rival {b:.0f}%): reaccionar al contacto antes del primer golpe.'),
-        ('  en contacto: inactivo %', True, 0.15, 5, 'Con un rival a 8 estamos parados el {a:.0f}% de las rondas (rival {b:.0f}%): decidir pelea o retirada en cuanto hay contacto.'),
-        ('capturas / 100 rondas-campeón vivas', False, 0.08, 0.0, 'Capturamos {a:.2f} por 100 rondas-campeón vivas y el rival {b:.2f}: la velocidad de farmeo también va por detrás (ruta, cola de campamentos, tamaño del grupo).'),
-        ('rondas-campeón inactivo %', True, 0.2, 2, 'Rondas inactivas {a:.0f}% vs {b:.0f}%: campeones sin objetivo (cola vacía, esperando respawn); revisar la elección de campamento.'),
-        ('hechizos a campeones / partida', False, 0.3, 2, 'Lanzamos {a:.0f} hechizos a campeones por partida y el rival {b:.0f}: los lanzadores no usan sus hechizos en las peleas (alcance, cooldown, objetivo).'),
-        ('turnos sin combustible / partida', True, 0.5, 5, 'Turnos sin combustible {a:.0f} por partida (rival {b:.0f}): hay bucles caros por turno; perfilar antes de añadir reglas.'),
-        ('cruces a la mitad enemiga / partida', False, 0.3, 1, 'Cruzamos a su mitad {a:.1f} veces por partida y ellos {b:.1f}: no disputamos ni defendemos territorio (ellos capturan en nuestra mitad).'),
+        ('deaths / game', True, 0.15, 0.3, 'We die {a:.1f} times a game and the rival {b:.1f}: every death gives away the gems and 60 rounds; look at what the deaths are made of in the scorecard (fleeing, alone, spells).'),
+        ('  while fleeing (3 rounds before) %', True, 0.2, 5, '{a:.0f}% of our deaths come while fleeing (rival {b:.0f}%): we flee late or one tile a round with the attacker adjacent; try fleeing earlier (danger threshold) or not fleeing and hitting back.'),
+        ('  victim with no ally within 8 %', True, 0.15, 5, 'We get hit with no ally within 8 in {a:.0f}% of the episodes (rival {b:.0f}%): we farm apart; try pairs/a ball per camp on fight maps.'),
+        ('  with an ally within 6 that did not attack %', True, 0.15, 5, 'In {a:.0f}% of our deaths an ally within 6 never attacked (rival {b:.0f}%): a help rule (when an ally within 6 takes damage, attack its attacker).'),
+        ('  in contact: farming %', True, 0.15, 5, 'With an enemy within 8 we keep farming {a:.0f}% of the rounds (rival {b:.0f}%): react to contact before the first hit.'),
+        ('  in contact: idle %', True, 0.15, 5, 'With an enemy within 8 we stand still {a:.0f}% of the rounds (rival {b:.0f}%): decide fight or retreat as soon as there is contact.'),
+        ('captures / 100 alive champion-rounds', False, 0.08, 0.0, 'We capture {a:.2f} per 100 alive champion-rounds and the rival {b:.2f}: farming speed is also behind (route, camp queue, squad size).'),
+        ('champion-rounds idle %', True, 0.2, 2, 'Idle rounds {a:.0f}% vs {b:.0f}%: champions without a target (empty queue, waiting for a respawn); review the camp choice.'),
+        ('spells at champions / game', False, 0.3, 2, 'We cast {a:.0f} spells at champions a game and the rival {b:.0f}: the casters do not use their spells in fights (range, cooldown, target).'),
+        ('fuel-exhausted turns / game', True, 0.5, 5, 'Fuel-exhausted turns {a:.0f} a game (rival {b:.0f}): there are expensive per-turn loops; profile before adding rules.'),
+        ('crossings into the enemy half / game', False, 0.3, 1, 'We cross into their half {a:.1f} times a game and they {b:.1f}: we neither contest nor defend territory (they capture in our half).'),
     ]
     for k, hi, rel, ab, txt in rules:
         d = gap(k, hi, rel, ab)
@@ -227,18 +227,18 @@ def proposals(F, bymap):
             P.append((abs(d) / max(abs(th[k]), 1e-9), txt.format(a=us[k], b=th[k])))
     P.sort(reverse=True)
     maps = sorted(bymap.items(), key=lambda kv: (kv[1]['win'] / max(1, kv[1]['games'])))
-    worst = [f"{m} {100 * v['win'] / max(1, v['games']):.0f}% ({v['games']} partidas, muertes {v['du'] / max(1, v['games']):.1f} vs {v['dt'] / max(1, v['games']):.1f})"
+    worst = [f"{m} {100 * v['win'] / max(1, v['games']):.0f}% ({v['games']} games, deaths {v['du'] / max(1, v['games']):.1f} vs {v['dt'] / max(1, v['games']):.1f})"
              for m, v in maps[:3]]
     return [p for _, p in P], worst
 
 
 def main():
     p = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    p.add_argument('--version', required=True, help='etiqueta de data/versions.jsonl (subcadena) o ventana desde/hasta')
-    p.add_argument('--ref', default='', help='segunda versión para comparar nuestra ficha con la suya')
+    p.add_argument('--version', required=True, help='label from data/versions.jsonl (substring) or a from/to window')
+    p.add_argument('--ref', default='', help='a second version to compare our scorecard with')
     p.add_argument('--kind', default='unranked'); p.add_argument('--max', type=int, default=150)
     p.add_argument('--maps', default=''); p.add_argument('--jobs', type=int, default=min(4, os.cpu_count() or 2))
-    p.add_argument('--out', default='', help='carpeta de salida (por defecto data/dissect/<versión>-<fecha>)')
+    p.add_argument('--out', default='', help='output folder (default data/dissect/<version>-<date>)')
     p.add_argument('--idea', default='')
     A = p.parse_args()
     vs = versions()
@@ -248,18 +248,19 @@ def main():
     def pick(spec):
         sel, name = selector(spec, vs)
         G = sorted((g for g in games if sel(g)), key=lambda g: g['at'], reverse=True)[:A.max]
-        if not G: sys.exit(f'sin partidas para {spec}')
+        if not G: sys.exit(f'no games for {spec}')
         return name, G
     sets = [pick(A.version)] + ([pick(A.ref)] if A.ref else [])
+    short = lambda name: name.split(' (')[0][:30]
     slug = re.sub(r'[^a-z0-9]+', '-', sets[0][0].lower())[:30].strip('-')
     out = A.out or os.path.join(DATA, 'dissect', f'{slug}-{time.strftime("%m%d-%H%M", time.gmtime())}')
     steps = os.path.join(out, 'steps'); os.makedirs(steps, exist_ok=True)
     reps = os.path.join(DATA, 'replays'); os.makedirs(reps, exist_ok=True)
     allg = [g for _, G in sets for g in G]
     ensure_mapsj(out, sorted({g['map'] for g in allg}))
-    print(f'{len(allg)} partidas; bajando repeticiones que falten a {reps} ...', flush=True)
+    print(f'{len(allg)} games; downloading missing replays to {reps} ...', flush=True)
     todo = [g for g in allg if fetch_replay(g, os.path.join(reps, g['match'] + '.zip'))]
-    print(f'decodificando {len(todo)} (caché en {steps}, ~25 s por partida nueva, {A.jobs} a la vez) ...', flush=True)
+    print(f'decoding {len(todo)} (cache in {steps}, ~25 s per new game, {A.jobs} at a time) ...', flush=True)
     t0 = time.time(); done = 0
     with ThreadPoolExecutor(A.jobs) as ex:
         for g, ok in zip(todo, ex.map(lambda g: decode(os.path.join(reps, g['match'] + '.zip'), os.path.join(steps, g['match'] + '.c.jsonl')), todo)):
@@ -276,41 +277,40 @@ def main():
             if not os.path.exists(ws.steps_path(g['match'])): continue
             try:
                 row = measure(ws, dict(g, side=g['side']))
-            except Exception as e:  # una partida rara no tumba la ficha
-                print('  no medida', g['match'][:8], g['map'], repr(e)[:80], file=sys.stderr); continue
+            except Exception as e:  # one odd game does not sink the scorecard
+                print('  not measured', g['match'][:8], g['map'], repr(e)[:80], file=sys.stderr); continue
             rows.append(row)
             for tab, k in ((bymap, g['map']), (bytier, tier(g['opp_rank']))):
                 tab[k]['games'] += 1; tab[k]['win'] += row['us']['win']; tab[k]['du'] += row['us']['deaths']; tab[k]['dt'] += row['them']['deaths']
-        results.append((name, rows, ficha(agg(rows)), bymap, bytier))
-    # ---- ficha.md
-    L = [f'# Ficha: {sets[0][0]}', '', f'{len(results[0][1])} partidas {A.kind} medidas (las más recientes, máx. {A.max}), generada {time.strftime("%Y-%m-%d %H:%M UTC", time.gmtime())}. '
-         'Cada métrica se mide igual para nosotros y para el rival en las mismas partidas.', '']
-    short = lambda name: name.split(' (')[0][:30]
-    head = '| métrica | nosotros | rival |' + (' nosotros antes (' + short(results[1][0]) + ') |' if len(results) > 1 else '')
+        results.append((name, rows, scorecard(agg(rows)), bymap, bytier))
+    # ---- scorecard.md
+    L = [f'# Scorecard: {sets[0][0]}', '', f'{len(results[0][1])} {A.kind} games measured (the most recent, max {A.max}), generated {time.strftime("%Y-%m-%d %H:%M UTC", time.gmtime())}. '
+         'Every metric is measured the same way for us and for the rival in the same games.', '']
+    head = '| metric | us | rival |' + (' us before (' + short(results[1][0]) + ') |' if len(results) > 1 else '')
     L += [head, '|---|---|---|' + ('---|' if len(results) > 1 else '')]
     F0 = results[0][2]
     for k in F0['us']:
-        fmt = (lambda v: f'{v:.0f}') if k == 'partidas' else (lambda v: f'{v:.1f}')
+        fmt = (lambda v: f'{v:.0f}') if k == 'games' else (lambda v: f'{v:.1f}')
         L.append(f'| {k} | {fmt(F0["us"][k])} | {fmt(F0["them"][k])} |' + (f' {fmt(results[1][2]["us"][k])} |' if len(results) > 1 else ''))
-    for title, tab in (('Por mapa', results[0][3]), ('Por nivel de rival', results[0][4])):
-        L += ['', f'## {title}', '', '| | partidas | victorias % | muertes nuestras / partida | muertes del rival / partida |', '|---|---|---|---|---|']
+    for title, tab in (('By map', results[0][3]), ('By rival tier', results[0][4])):
+        L += ['', f'## {title}', '', '| | games | win % | our deaths / game | rival deaths / game |', '|---|---|---|---|---|']
         for k, v in sorted(tab.items(), key=lambda kv: kv[1]['win'] / max(1, kv[1]['games'])):
             n = max(1, v['games']); L.append(f"| {k} | {v['games']} | {100 * v['win'] / n:.0f} | {v['du'] / n:.1f} | {v['dt'] / n:.1f} |")
     props, worst = proposals(F0, results[0][3])
-    L += ['', '## Propuestas (huecos más grandes respecto al rival, de mayor a menor)', '']
-    L += [f'{i + 1}. {t}' for i, t in enumerate(props)] or ['- ninguna métrica va claramente peor que la del rival en estas partidas']
-    L += ['', 'Peores mapas: ' + '; '.join(worst), '',
-          'Siguiente paso: `python3 tools/idea.py add "..." --kind fight|farm --source "disección ' + short(sets[0][0]) + '"` por cada propuesta que merezca una prueba.',
-          f'Workspace para preguntas más finas: `WS={out}` con los scripts de analysis/v35-dissection-2026-10-15/scripts_*.']
+    L += ['', '## Proposals (biggest gaps against the rival, largest first)', '']
+    L += [f'{i + 1}. {t}' for i, t in enumerate(props)] or ['- no metric is clearly worse than the rival in these games']
+    L += ['', 'Worst maps: ' + '; '.join(worst), '',
+          'Next step: `python3 tools/idea.py add "..." --kind fight|farm --source "dissection ' + short(sets[0][0]) + '"` for every proposal worth a test.',
+          f'Workspace for finer questions: `WS={out}` with the scripts in analysis/v35-dissection-2026-10-15/scripts_*.']
     txt = '\n'.join(L) + '\n'
-    open(os.path.join(out, 'ficha.md'), 'w').write(txt)
+    open(os.path.join(out, 'scorecard.md'), 'w').write(txt)
     json.dump({name: {'us': dict(F['us']), 'them': dict(F['them']), 'bymap': bymap, 'bytier': bytier} for name, _, F, bymap, bytier in results},
-              open(os.path.join(out, 'ficha.json'), 'w'), indent=1, ensure_ascii=False)
-    print(txt); print('escrito en', out)
+              open(os.path.join(out, 'scorecard.json'), 'w'), indent=1, ensure_ascii=False)
+    print(txt); print('written to', out)
     if A.idea:
         sys.path.insert(0, os.path.join(ROOT, 'tools'))
         import idea
-        idea.record(A.idea, note=f'disección {short(sets[0][0])}: {len(results[0][1])} partidas, {F0["us"]["victorias %"]:.0f}%, muertes {F0["us"]["muertes / partida"]:.1f} vs {F0["them"]["muertes / partida"]:.1f}; ficha en {out}/ficha.md')
+        idea.record(A.idea, note=f'dissection {short(sets[0][0])}: {len(results[0][1])} games, {F0["us"]["win %"]:.0f}%, deaths {F0["us"]["deaths / game"]:.1f} vs {F0["them"]["deaths / game"]:.1f}; scorecard in {out}/scorecard.md')
 
 
 if __name__ == '__main__':

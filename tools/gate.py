@@ -1,33 +1,33 @@
 #!/usr/bin/env python3
-"""Puerta local (etapa 2 del harness): ¿puede este candidato subir online?
+"""Local gate (stage 2 of the harness): may this candidate go online?
 
-uso (desde la raíz del repo, después de `cambc init --yes`):
-  python3 tools/gate.py bots/CAND bots/BASE --kind farm          # cambio de farmeo / macro
-  python3 tools/gate.py bots/CAND bots/BASE --kind fight         # cambio de pelea (local solo puede vetar)
+usage (from the repo root, after `cambc init --yes`):
+  python3 tools/gate.py bots/CAND bots/BASE --kind farm          # a farming / macro change
+  python3 tools/gate.py bots/CAND main --kind fight              # a fight change; the base is the same bot folder as on main
   python3 tools/gate.py bots/CAND bots/BASE --kind farm --idea I017 --extra '/mnt/project-files/arena/maps/fresh300/*.map26a'
 
-Corre por fases, de la más barata a la más cara, y para en cuanto el resultado está claro:
-  1. seguridad    9 mapas oficiales x 2 lados: ningún fallo del bot (botFaults), ninguna partida rota, y los turnos
-                  sin combustible (paso tipo 26) en lanes/corners/collision no suben más de 30 sobre la base.
-  2. mapas nuevos hold60 + dev200 (+ --extra) barajados en tandas de 40 mapas, contando mapas ganados por los dos
-                  lados. Para antes si ya se ve peor (p<0.05 en contra) o, en farm, si ya se ve mejor (p<0.01).
-  3. panel        contra spar11/12/16 (los rivales que matan como online) en oficiales + gen: el candidato y la base
-                  juegan las mismas partidas; veto si las partidas que cambian van en contra con p<0.05.
-  4. contraejemplos  los mapas nuevos perdidos por los dos lados, peor primero, con la orden para reproducirlos.
+Runs in phases, cheapest first, and stops as soon as the result is clear:
+  1. safety     9 official maps x 2 sides: no bot fault (botFaults), no broken game, and the fuel-exhausted turns
+                (step kind 26) on lanes/corners/collision do not rise more than 30 over the base.
+  2. fresh maps hold60 + dev200 (+ --extra) shuffled in chunks of 40 maps, counting maps won on both sides. Stops early
+                when it already looks worse (p<0.05 against) or, for farm, already better (p<0.01).
+  3. panel      against spar11/12/16 (the rivals that kill like online teams) on official + gen: the candidate and
+                the base play the same games; veto if the games that flip go against with p<0.05.
+  4. counterexamples  the fresh maps lost on both sides, worst first, with the command to reproduce them.
 
-Veredicto:
-  farm : PASA si mapas nuevos a favor con p<0.05, seguridad bien y panel sin veto.
-  fight: PASA si los mapas nuevos no van en contra (p>=0.05), seguridad bien y panel sin veto. El juicio de verdad
-         de una regla de pelea es online (etapa 3): local solo puede decir que no rompe nada.
-Todo lo jugado queda en out/ab-cache (lo comparte con ab.py): repetir la puerta o cambiar solo el candidato no
-repite las partidas de la base contra el panel. Resultado en out/gate/<cand>_vs_<base>/ (result.json, contraejemplos.md);
-con --idea se apunta también en el tracker (harness/ideas.jsonl).
+Verdict:
+  farm : PASS if fresh maps in favour with p<0.05, safety clean and no panel veto.
+  fight: PASS if fresh maps are not against (p>=0.05), safety clean and no panel veto. The real judge of a fight rule
+         is online (stage 3): local can only say it breaks nothing.
+Everything played stays in out/ab-cache (shared with ab.py): rerunning the gate, or changing only the candidate, never
+replays the base against the panel. Output in out/gate/<cand>_vs_<base>/ (gate.txt, result.json, counterexamples.md);
+with --idea the result is also recorded on the board (harness/ideas).
 """
 import argparse, glob, hashlib, json, os, random, subprocess, sys, time
 from concurrent.futures import ThreadPoolExecutor
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-import ab  # noqa: E402  (reutiliza build, play, sign_p, caché y la variable de caché de wasmtime)
+import ab  # noqa: E402  (reuses build, play, sign_p, the result cache and the wasmtime cache variable)
 
 PANEL = ['bots/spar11', 'bots/spar12', 'bots/spar16']
 FUEL_MAPS = ['lanes', 'corners', 'collision']
@@ -83,7 +83,7 @@ def tally(per):
 
 
 def fuel_check(cand, base, ha, hb, ver, jobs):
-    """k26 (fuel exhausted turn ends) of each bot on the big official maps, side A vs the other bot."""
+    """k26 (fuel-exhausted turn ends) of each bot on the big official maps, side A vs the other bot."""
     maps = [f'maps/{n}.map26a' for n in FUEL_MAPS if os.path.exists(f'maps/{n}.map26a')]
     tag = 'fuel_' + ha + '_' + hb
     todo = []
@@ -138,25 +138,25 @@ def export_ref(ref, cand):
         if sha: ref = 'origin/' + ref
     sha = sha or rev(ref)
     if not sha:
-        sys.exit(f'{ref}: ni carpeta de bot ni referencia de git')
+        sys.exit(f'{ref}: neither a bot folder nor a git reference')
     dst = os.path.join('out', 'base', f'{os.path.basename(cand)}@{sha[:10]}')
     if not os.path.isdir(os.path.join(dst, 'src')):
         os.makedirs(dst, exist_ok=True)
         ar = subprocess.run(['git', 'archive', '--format=tar', ref, cand], capture_output=True)
         if ar.returncode != 0:
-            sys.exit(f'git archive {ref} {cand} falló: {ar.stderr.decode()[-300:]}')
+            sys.exit(f'git archive {ref} {cand} failed: {ar.stderr.decode()[-300:]}')
         subprocess.run(['tar', '-x', '-C', dst, '--strip-components=' + str(cand.count('/') + 1)], input=ar.stdout, check=True)
-    print(f'base = {cand} en {ref} ({sha[:10]}) -> {dst}')
+    print(f'base = {cand} at {ref} ({sha[:10]}) -> {dst}')
     return dst
 
 
 def main():
     p = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    p.add_argument('cand'); p.add_argument('base')
+    p.add_argument('cand'); p.add_argument('base', help='a bot folder, or a git ref (main) meaning the candidate folder at that ref')
     p.add_argument('--kind', choices=['farm', 'fight'], required=True)
-    p.add_argument('--idea', default='', help='id del tracker (I001...): apunta el resultado allí')
-    p.add_argument('--extra', default='', help='glob de mapas nuevos adicionales (p. ej. fresh300)')
-    p.add_argument('--max-maps', type=int, default=0, help='tope de mapas nuevos (0 = todos)')
+    p.add_argument('--idea', default='', help='tracker id (I001...): record the result there')
+    p.add_argument('--extra', default='', help='glob of additional fresh maps (e.g. fresh300)')
+    p.add_argument('--max-maps', type=int, default=0, help='cap on fresh maps (0 = all)')
     p.add_argument('--no-panel', action='store_true'); p.add_argument('--no-fuel', action='store_true')
     p.add_argument('--jobs', type=int, default=os.cpu_count() or 4)
     A = p.parse_args()
@@ -178,55 +178,55 @@ def main():
     hc, hb = ab.sha(ab.wasm_of(cand)), ab.sha(ab.wasm_of(base))
     verdict = {'cand': cand, 'base': base, 'kind': A.kind, 'cand_wasm': hc, 'base_wasm': hb,
                'at': time.strftime('%Y-%m-%dT%H:%M:%SZ', time.gmtime())}
-    say(f'{cand} (candidato) vs {base} (base), tipo {A.kind}   [compilado en {time.time() - t0:.0f}s]')
+    say(f'{cand} (candidate) vs {base} (base), kind {A.kind}   [built in {time.time() - t0:.0f}s]')
     if hc == hb:
-        say('El candidato compila al mismo wasm que la base: no cambia nada. NO PASA.')
-        return finish(A, verdict | {'pass': False, 'why': 'mismo wasm'}, outdir, log)
+        say('The candidate compiles to the same wasm as the base: it changes nothing. FAIL.')
+        return finish(A, verdict | {'pass': False, 'why': 'same wasm'}, outdir, log)
 
-    # 1. seguridad ------------------------------------------------------------------------------------------
+    # 1. safety ---------------------------------------------------------------------------------------------
     t = time.time()
     per = run(jobs_for(cand, base, hc, hb, maps_of(ab.SETS['official']), tag, ver, cache), A.jobs)
     broken = [f'{os.path.basename(m)} {s}' for m, d in per.items() for s, r in d.items() if not r.get('ok')]
     faults = sum(r['faults'][0 if s == 'A' else 1] for d in per.values() for s, r in d.items()
                  if r.get('ok') and r.get('faults'))
     w, l, sp, _ = tally(per)
-    say(f'\n1. seguridad: oficiales {w} ganados por los dos lados, {l} perdidos, {sp} repartidos; '
-        f'fallos del candidato {faults}, partidas rotas {len(broken)}   [{time.time() - t:.0f}s]')
+    say(f'\n1. safety: official maps {w} won both sides, {l} lost both, {sp} split; '
+        f'candidate faults {faults}, broken games {len(broken)}   [{time.time() - t:.0f}s]')
     ok = not broken and faults == 0
     fuel = None
     if ok and not A.no_fuel:
         t = time.time()
         fuel = fuel_check(cand, base, hc, hb, ver, A.jobs)
         if fuel is None:
-            say('   combustible: no se pudo medir (¿node o el wasm del visor?); sigue sin esta comprobación')
+            say('   fuel: could not measure (node or the visualiser wasm missing?); going on without this check')
         else:
-            say(f'   turnos sin combustible en {"/".join(FUEL_MAPS)} (lado A): candidato {fuel["cand"]}, base {fuel["base"]}'
+            say(f'   fuel-exhausted turns on {"/".join(FUEL_MAPS)} (side A): candidate {fuel["cand"]}, base {fuel["base"]}'
                 f'   [{time.time() - t:.0f}s]')
             if fuel['cand'] > fuel['base'] + 30:
-                ok = False; say('   el candidato se queda sin combustible más que la base: revisa bucles por turno')
+                ok = False; say('   the candidate runs out of fuel more than the base: look for per-turn loops')
     verdict['safety'] = {'broken': broken, 'faults': faults, 'fuel': fuel, 'official': [w, l, sp]}
     if not ok:
-        say('NO PASA en seguridad.' + (f' Rotas: {broken[:5]}' if broken else ''))
-        return finish(A, verdict | {'pass': False, 'why': 'seguridad'}, outdir, log)
+        say('FAIL on safety.' + (f' Broken: {broken[:5]}' if broken else ''))
+        return finish(A, verdict | {'pass': False, 'why': 'safety'}, outdir, log)
 
-    # 2. mapas nuevos con parada temprana ---------------------------------------------------------------------
+    # 2. fresh maps with early stopping -----------------------------------------------------------------------
     fresh = maps_of(ab.SETS['hold']) + maps_of(ab.SETS['dev']) + (maps_of(A.extra) if A.extra else [])
     random.Random(20261015).shuffle(fresh)
     if A.max_maps: fresh = fresh[:A.max_maps]
-    say(f'\n2. mapas nuevos: {len(fresh)} mapas en tandas de {CHUNK}')
+    say(f'\n2. fresh maps: {len(fresh)} maps in chunks of {CHUNK}')
     t = time.time(); per2 = {}; stop = ''
     for i in range(0, len(fresh), CHUNK):
         per2.update(run(jobs_for(cand, base, hc, hb, fresh[i:i + CHUNK], tag, ver, cache), A.jobs))
         w, l, sp, _ = tally(per2); n = w + l; pv = ab.sign_p(w, n)
-        say(f'   {len(per2):4d} mapas: {w}-{l} decididos ({sp} repartidos), p={pv:.3f}   [{time.time() - t:.0f}s]')
-        if l > w and pv < 0.05: stop = 'peor'; break
-        if A.kind == 'farm' and w > l and n >= 30 and pv < 0.01: stop = 'mejor'; break
+        say(f'   {len(per2):4d} maps: {w}-{l} decided ({sp} split), p={pv:.3f}   [{time.time() - t:.0f}s]')
+        if l > w and pv < 0.05: stop = 'worse'; break
+        if A.kind == 'farm' and w > l and n >= 30 and pv < 0.01: stop = 'better'; break
     w, l, sp, ce = tally(per2); pv = ab.sign_p(w, w + l)
     rate = lambda per_, me: sum(50.0 * (d['A']['gems'][me] / d['A']['round'] + d['B']['gems'][1 - me] / d['B']['round'])
                                for d in per_.values() if len(d) == 2 and all(x.get('ok') for x in d.values())) / max(1, len(per_))
     gc, gb = rate(per2, 0), rate(per2, 1)
-    say(f'   resultado: {w}-{l} mapas ganados/perdidos por los dos lados, p={pv:.3f}; gemas/100 rondas {gc:.1f} vs {gb:.1f}'
-        + (f' (parada temprana: {stop})' if stop else ''))
+    say(f'   result: {w}-{l} maps won/lost on both sides, p={pv:.3f}; gems/100 rounds {gc:.1f} vs {gb:.1f}'
+        + (f' (early stop: {stop})' if stop else ''))
     verdict['fresh'] = {'maps': len(per2), 'won': w, 'lost': l, 'split': sp, 'p': round(pv, 4),
                         'gems100': [round(gc, 1), round(gb, 1)]}
     if A.kind == 'farm':
@@ -234,24 +234,24 @@ def main():
     else:
         fresh_ok = not (l > w and pv < 0.05)
 
-    # 4. contraejemplos (se escriben siempre) ----------------------------------------------------------------
-    with open(os.path.join(outdir, 'contraejemplos.md'), 'w') as f:
-        f.write(f'# Contraejemplos: {cand} vs {base}\n\nMapas nuevos que el candidato pierde por los dos lados, '
-                'peor diferencia de gemas primero. Reproducir y ver:\n\n')
+    # 4. counterexamples (always written) --------------------------------------------------------------------
+    with open(os.path.join(outdir, 'counterexamples.md'), 'w') as f:
+        f.write(f'# Counterexamples: {cand} vs {base}\n\nFresh maps the candidate loses on both sides, worst gem '
+                'difference first. Reproduce and watch:\n\n')
         for gd, m, d in ce[:25]:
             name = os.path.splitext(os.path.basename(m))[0]
-            f.write(f'- `{name}` gemas {gd:+d} (lado A {d["A"]["gems"][0]}-{d["A"]["gems"][1]} r{d["A"]["round"]}, '
-                    f'lado B {d["B"]["gems"][1]}-{d["B"]["gems"][0]} r{d["B"]["round"]})  \n'
+            f.write(f'- `{name}` gems {gd:+d} (side A {d["A"]["gems"][0]}-{d["A"]["gems"][1]} r{d["A"]["round"]}, '
+                    f'side B {d["B"]["gems"][1]}-{d["B"]["gems"][0]} r{d["B"]["round"]})  \n'
                     f'  `cambc run {cand} {base} --map {m} -o out/ce/{name} && cambc view out/ce/{name}/*.repl26a`\n')
     verdict['counterexamples'] = [os.path.basename(m) for _, m, _ in ce[:25]]
     if ce:
-        say(f'   {len(ce)} contraejemplos en {outdir}/contraejemplos.md (peor: {os.path.basename(ce[0][1])})')
+        say(f'   {len(ce)} counterexamples in {outdir}/counterexamples.md (worst: {os.path.basename(ce[0][1])})')
     if not fresh_ok:
-        say('NO PASA en mapas nuevos.' if A.kind == 'fight' or (l >= w) else
-            'NO PASA: a favor pero sin decidir; añade --extra con más mapas nuevos o déjala como neutra.')
-        return finish(A, verdict | {'pass': False, 'why': 'mapas nuevos'}, outdir, log)
+        say('FAIL on fresh maps.' if A.kind == 'fight' or (l >= w) else
+            'FAIL: in favour but undecided; add --extra with more fresh maps or leave it as neutral.')
+        return finish(A, verdict | {'pass': False, 'why': 'fresh maps'}, outdir, log)
 
-    # 3. panel de lanzadores (veto) ---------------------------------------------------------------------------
+    # 3. caster panel (veto) ----------------------------------------------------------------------------------
     if panel:
         t = time.time(); maps = maps_of(ab.SETS['official']) + maps_of(ab.SETS['gen'])
         up = down = 0; wc = wb = 0
@@ -266,18 +266,18 @@ def main():
                     xc, xb = score(pc[m][s], me) == 'WIN', score(pb[m][s], me) == 'WIN'
                     c1 += xc; b1 += xb; up += xc and not xb; down += xb and not xc
             wc += c1; wb += b1
-            say(f'   {os.path.basename(sp_bot)}: candidato gana {c1}, base gana {b1} (de {2 * len(pc)})')
+            say(f'   {os.path.basename(sp_bot)}: candidate wins {c1}, base wins {b1} (of {2 * len(pc)})')
         pv3 = ab.sign_p(up, up + down)
         veto = down > up and pv3 < 0.05
-        say(f'3. panel: partidas que cambian {up} a favor, {down} en contra, p={pv3:.3f}'
+        say(f'3. panel: games that flip {up} for, {down} against, p={pv3:.3f}'
             f'{" -> VETO" if veto else ""}   [{time.time() - t:.0f}s]')
         verdict['panel'] = {'cand_wins': wc, 'base_wins': wb, 'flips_up': up, 'flips_down': down, 'p': round(pv3, 4), 'veto': veto}
         if veto:
-            say('NO PASA: el panel de lanzadores le gana más (es el único rival local que mata como online).')
+            say('FAIL: the caster panel beats it more (the only local rival that kills like online teams).')
             return finish(A, verdict | {'pass': False, 'why': 'panel'}, outdir, log)
 
-    say(f'\nPASA ({A.kind}). ' + ('Sube online y mide en la etapa 3 (online/lfl.py).' if A.kind == 'fight' else
-                                  'Mejora de farmeo clara: sube online y confirma que no empeora (etapa 3).'))
+    say(f'\nPASS ({A.kind}). ' + ('Upload it and measure in stage 3 (online/lfl.py).' if A.kind == 'fight' else
+                                  'Clear farming gain: upload it and confirm online that it does not get worse (stage 3).'))
     say(f'Total {time.time() - t0:.0f}s')
     return finish(A, verdict | {'pass': True}, outdir, log)
 
@@ -288,10 +288,10 @@ def finish(A, verdict, outdir, log):
     if A.idea:
         import idea
         fr = verdict.get('fresh') or {}
-        note = (f"gate {A.kind}: {'PASA' if verdict['pass'] else 'NO PASA (' + verdict.get('why', '') + ')'}; "
-                f"nuevos {fr.get('won', '?')}-{fr.get('lost', '?')} p={fr.get('p', '?')}"
+        note = (f"gate {A.kind}: {'PASS' if verdict['pass'] else 'FAIL (' + verdict.get('why', '') + ')'}; "
+                f"fresh {fr.get('won', '?')}-{fr.get('lost', '?')} p={fr.get('p', '?')}"
                 + (f"; panel {verdict['panel']['flips_up']}/{verdict['panel']['flips_down']}" if 'panel' in verdict else ''))
-        idea.record(A.idea, stage='local-ok' if verdict['pass'] else 'test-local', note=note,
+        idea.record(A.idea, stage='local-ok' if verdict['pass'] else 'local-test', note=note,
                     result=os.path.join(outdir, 'result.json'))
     sys.exit(0 if verdict['pass'] else 1)
 

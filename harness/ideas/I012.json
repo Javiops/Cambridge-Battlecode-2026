@@ -1,23 +1,23 @@
 {
  "id": "I012",
- "title": "Segunda vuelta de farmeo en mapas de carrera (expanse, rows)",
+ "title": "Second farming lap on race maps (expanse, rows)",
  "kind": "farm",
- "source": "disección study27 15/10",
+ "source": "study27 dissection, 15 Oct",
  "owner": "Javi",
- "hypothesis": "menos rondas inactivas al final",
+ "hypothesis": "fewer idle rounds at the end",
  "stage": "idea",
- "created": "2026-10-15T21:58Z",
+ "created": "2026-10-15T22:12Z",
  "history": [
   {
-   "at": "2026-10-15T21:58Z",
+   "at": "2026-10-15T22:12Z",
    "stage": "idea",
    "note": ""
   },
   {
-   "at": "2026-10-15T21:58Z",
+   "at": "2026-10-15T22:12Z",
    "stage": "idea",
-   "note": "frente abierto, sin rama"
+   "note": "open front, no branch yet"
   }
  ],
- "updated": "2026-10-15T21:58Z"
+ "updated": "2026-10-15T22:12Z"
 }

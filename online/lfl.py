@@ -1,22 +1,22 @@
 #!/usr/bin/env python3
-"""Comparación online emparejada (like-for-like) de dos versiones: etapa 3 del harness.
+"""Paired (like-for-like) online comparison of two versions: stage 3 of the harness.
 
-Online el rival y el mapa cambian cada hora, así que el porcentaje bruto de un batch no dice nada (hoy fue del 25% al
-41% sin cambiar el bot). Lo que sí se puede comparar es la MISMA pareja (rival, mapa, lado) jugada con la versión A y
-con la versión B: el motor es determinista, así que cada pareja es un experimento controlado.
+Online the opponent and the map change every hour, so the raw percentage of a batch says nothing (today it went from
+25% to 41% without changing the bot). What can be compared is the SAME pairing (opponent, map, side) played with
+version A and with version B: the engine is deterministic, so every pairing is a controlled experiment.
 
-uso (desde online/, con data/games.jsonl y data/versions.jsonl al día; `python3 collect.py` antes):
-  python3 lfl.py --a "corners fix" --b "study27"                 # etiquetas de data/versions.jsonl (subcadena)
-  python3 lfl.py --a 2026-10-15T20:00/2026-10-15T22:00 --b 2026-10-15T15:30/2026-10-15T17:00   # ventanas de tiempo
-  python3 lfl.py --a "corners fix" --b study27 --maps corners,rows --idea I012   # apunta el resultado en el tracker
+usage (from online/, with data/games.jsonl and data/versions.jsonl up to date; `python3 collect.py` first):
+  python3 lfl.py --a "corners fix" --b "study27"                 # labels from data/versions.jsonl (substring)
+  python3 lfl.py --a 2026-10-15T20:00/2026-10-15T22:00 --b 2026-10-15T15:30/2026-10-15T17:00   # time windows
+  python3 lfl.py --a "corners fix" --b study27 --maps corners,rows --idea I012   # record the result on the board
 
-Lee: unranked por defecto (--kind ranked|all), ambos lados (la pareja incluye el lado). Si una pareja se repitió,
-cuenta la partida más reciente de cada versión. Imprime: récord bruto de cada versión, récord ranked en su ventana,
-parejas compartidas y quién las gana, por mapa y por nivel de rival, y el veredicto con el test de signos sobre las
-parejas que cambian de resultado.
+Reads: unranked by default (--kind ranked|all), both sides (the pairing includes the side). If a pairing was
+repeated, the most recent game of each version counts. Prints: raw record of each version, ranked record in its
+window, shared pairings and who wins them, by map and by rival tier, and the verdict with the sign test on the
+pairings that flip.
 
-Regla de parada (harness/README.md): se decide con p<0.05 sobre las parejas que cambian; mientras no, sigue alternando
-las dos versiones hora a hora contra los mismos 30 equipos (challenge.py --top 30). Con ~100 parejas se ve un +10%.
+Stop rule (harness/README.md): decided at p<0.05 on the pairings that flip; until then keep alternating the two
+versions hour by hour against the same 30 teams (challenge.py --top 30). With ~100 pairings a +10% shows.
 """
 import argparse, collections, json, math, os, sys
 
@@ -52,20 +52,20 @@ def label_of(t, vs):
 
 
 def selector(spec, vs):
-    """'desde/hasta' = ventana de tiempo; si no, subcadena de la etiqueta de versión."""
+    """'from/to' = time window; otherwise a substring of the version label."""
     if '/' in spec:
         a, b = spec.split('/', 1)
         return (lambda g: a <= g['at'] <= (b or '9')), f'{a} .. {b}'
     s = spec.lower()
     labs = sorted({v for _, v in vs if s in v.lower()})
     if not labs:
-        sys.exit(f'ninguna versión de data/versions.jsonl contiene "{spec}"; etiquetas: {sorted({v for _, v in vs})}')
+        sys.exit(f'no version in data/versions.jsonl contains "{spec}"; labels: {sorted({v for _, v in vs})}')
     return (lambda g: s in label_of(g['at'], vs).lower()), ' | '.join(labs)
 
 
 def tier(r):
     r = r or 999
-    return 'top 10' if r <= 10 else 'top 11-30' if r <= 30 else 'resto'
+    return 'top 10' if r <= 10 else 'top 11-30' if r <= 30 else 'others'
 
 
 def rec(games):
@@ -75,12 +75,12 @@ def rec(games):
 
 def main():
     p = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    p.add_argument('--a', required=True, help='versión candidata (etiqueta o desde/hasta)')
-    p.add_argument('--b', required=True, help='versión de referencia')
-    p.add_argument('--kind', default='unranked', help='unranked (por defecto), ranked o all')
-    p.add_argument('--maps', default='', help='solo estos mapas, separados por comas')
-    p.add_argument('--since', default='', help='ignora partidas anteriores a esta hora ISO')
-    p.add_argument('--idea', default='', help='apunta el resultado en harness/ideas (tools/idea.py)')
+    p.add_argument('--a', required=True, help='candidate version (label or from/to)')
+    p.add_argument('--b', required=True, help='reference version')
+    p.add_argument('--kind', default='unranked', help='unranked (default), ranked or all')
+    p.add_argument('--maps', default='', help='only these maps, comma separated')
+    p.add_argument('--since', default='', help='ignore games before this ISO time')
+    p.add_argument('--idea', default='', help='record the result in harness/ideas (tools/idea.py)')
     A = p.parse_args()
     vs = versions()
     games = [g for g in load_jsonl(os.path.join(DATA, 'games.jsonl')) if g['result'] in ('win', 'loss') and g['at'] >= A.since]
@@ -93,11 +93,11 @@ def main():
     RA = [g for g in games if g['kind'] == 'ranked' and selA(g)]
     RB = [g for g in games if g['kind'] == 'ranked' and selB(g)]
     if not GA or not GB:
-        sys.exit(f'sin partidas: A {len(GA)}, B {len(GB)} (¿collect.py? ¿etiqueta? ¿--kind?)')
-    print(f'A = {nameA}: {len(GA)} partidas {A.kind}, {rec(GA)}; vs top 10 {rec([g for g in GA if tier(g["opp_rank"]) == "top 10"])}; '
-          f'ranked en su ventana {rec(RA)} ({min(g["at"] for g in GA)[11:16]}-{max(g["at"] for g in GA)[11:16]} UTC)')
-    print(f'B = {nameB}: {len(GB)} partidas {A.kind}, {rec(GB)}; vs top 10 {rec([g for g in GB if tier(g["opp_rank"]) == "top 10"])}; '
-          f'ranked en su ventana {rec(RB)} ({min(g["at"] for g in GB)[11:16]}-{max(g["at"] for g in GB)[11:16]} UTC)')
+        sys.exit(f'no games: A {len(GA)}, B {len(GB)} (collect.py? label? --kind?)')
+    print(f'A = {nameA}: {len(GA)} {A.kind} games, {rec(GA)}; vs top 10 {rec([g for g in GA if tier(g["opp_rank"]) == "top 10"])}; '
+          f'ranked in its window {rec(RA)} ({min(g["at"] for g in GA)[11:16]}-{max(g["at"] for g in GA)[11:16]} UTC)')
+    print(f'B = {nameB}: {len(GB)} {A.kind} games, {rec(GB)}; vs top 10 {rec([g for g in GB if tier(g["opp_rank"]) == "top 10"])}; '
+          f'ranked in its window {rec(RB)} ({min(g["at"] for g in GB)[11:16]}-{max(g["at"] for g in GB)[11:16]} UTC)')
 
     def latest(G):
         d = {}
@@ -107,7 +107,7 @@ def main():
     da, db = latest(GA), latest(GB)
     keys = sorted(set(da) & set(db))
     if not keys:
-        sys.exit('ninguna pareja (rival, mapa, lado) jugada con las dos versiones: reta a los mismos equipos con las dos')
+        sys.exit('no (opponent, map, side) pairing played with both versions: challenge the same teams with both')
     both_w = both_l = a_only = b_only = 0
     bymap = collections.defaultdict(lambda: [0, 0, 0]); bytier = collections.defaultdict(lambda: [0, 0, 0])
     flips = []
@@ -120,35 +120,35 @@ def main():
         elif wa: a_only += 1; flips.append(('A', da[k]))
         else: b_only += 1; flips.append(('B', db[k]))
     n = a_only + b_only; pv = sign_p(a_only, n)
-    print(f'\nParejas compartidas (rival, mapa, lado): {len(keys)}. Ganan las dos {both_w}, pierden las dos {both_l}, '
-          f'solo A gana {a_only}, solo B gana {b_only}.  A {both_w + a_only} vs B {both_w + b_only}, p={pv:.3f}')
-    print(f"\n{'mapa':12s} {'parejas':>7s} {'A gana':>7s} {'B gana':>7s}")
+    print(f'\nShared pairings (opponent, map, side): {len(keys)}. Both win {both_w}, both lose {both_l}, '
+          f'only A wins {a_only}, only B wins {b_only}.  A {both_w + a_only} vs B {both_w + b_only}, p={pv:.3f}')
+    print(f"\n{'map':12s} {'pairs':>7s} {'A wins':>7s} {'B wins':>7s}")
     for m, (c, wa, wb) in sorted(bymap.items(), key=lambda kv: -(kv[1][1] - kv[1][2])):
         print(f'{m:12s} {c:7d} {wa:7d} {wb:7d}')
-    print(f"\n{'rival':12s} {'parejas':>7s} {'A gana':>7s} {'B gana':>7s}")
+    print(f"\n{'rival':12s} {'pairs':>7s} {'A wins':>7s} {'B wins':>7s}")
     for m, (c, wa, wb) in bytier.items():
         print(f'{m:12s} {c:7d} {wa:7d} {wb:7d}')
     if flips:
-        print('\nParejas que cambian (las 12 más recientes):')
+        print('\nPairings that flip (the 12 most recent):')
         for who, g in sorted(flips, key=lambda x: x[1]['at'])[-12:]:
-            print(f"  gana solo {who}: {g['map']:10s} vs {g['opp']} (#{g['opp_rank']}) lado {g['side']}  gemas {g['gems']}-{g['opp_gems']}")
+            print(f"  only {who} wins: {g['map']:10s} vs {g['opp']} (#{g['opp_rank']}) side {g['side']}  gems {g['gems']}-{g['opp_gems']}")
     if n == 0:
-        verdict = 'IGUALES: ninguna pareja cambia de resultado.'
+        verdict = 'EQUAL: no pairing flips.'
     elif pv < 0.05:
-        verdict = f"{'A ES MEJOR' if a_only > b_only else 'A ES PEOR'} que B (p={pv:.3f} sobre {n} parejas que cambian)."
+        verdict = f"A IS {'BETTER' if a_only > b_only else 'WORSE'} than B (p={pv:.3f} on {n} pairings that flip)."
     else:
         q = max(a_only, b_only) / n
         need = math.ceil(((1.96 * 0.5 + 0.84 * math.sqrt(q * (1 - q))) / (q - 0.5)) ** 2) if q > 0.5 else None
-        verdict = (f'SIN DECIDIR (p={pv:.3f}): {a_only} vs {b_only} en las parejas que cambian' +
-                   (f'; a este ritmo harían falta ~{need} parejas que cambien (hay {n}): sigue alternando A y B.' if need and need < 1000
-                    else '; diferencia nula a efectos prácticos: trátalo como empate.'))
-    print('\nVeredicto:', verdict)
+        verdict = (f'UNDECIDED (p={pv:.3f}): {a_only} vs {b_only} on the pairings that flip' +
+                   (f'; at this rate you need ~{need} flipping pairings (you have {n}): keep alternating A and B.' if need and need < 1000
+                    else '; no practical difference: treat it as a tie.'))
+    print('\nVerdict:', verdict)
     if A.idea:
         sys.path.insert(0, os.path.join(os.path.dirname(HERE), 'tools'))
         import idea
-        stage = 'aceptada' if (pv < 0.05 and a_only > b_only) else 'rechazada' if (pv < 0.05 and a_only < b_only) else None
-        idea.record(A.idea, stage=stage, note=f'online lfl {nameA} vs {nameB}: parejas {len(keys)}, solo A {a_only} / solo B {b_only}, p={pv:.3f}. {verdict}')
-        print(f'apuntado en {A.idea}' + (f' (etapa {stage})' if stage else ''))
+        stage = 'accepted' if (pv < 0.05 and a_only > b_only) else 'rejected' if (pv < 0.05 and a_only < b_only) else None
+        idea.record(A.idea, stage=stage, note=f'online lfl {nameA} vs {nameB}: pairings {len(keys)}, only A {a_only} / only B {b_only}, p={pv:.3f}. {verdict}')
+        print(f'recorded on {A.idea}' + (f' (stage {stage})' if stage else ''))
 
 
 if __name__ == '__main__':

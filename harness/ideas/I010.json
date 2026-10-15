@@ -1,23 +1,23 @@
 {
  "id": "I010",
- "title": "P_RECALL_PCT 50 (recall con la bolsa al 50%)",
+ "title": "P_RECALL_PCT 50 (recall with the bag at 50%)",
  "kind": "farm",
- "source": "ajuste de umbral 15/10",
+ "source": "threshold sweep, 15 Oct",
  "owner": "Javi",
- "hypothesis": "gemas/100 rondas +3%",
+ "hypothesis": "gems/100 rounds +3%",
  "stage": "local-ok",
- "created": "2026-10-15T21:58Z",
+ "created": "2026-10-15T22:12Z",
  "history": [
   {
-   "at": "2026-10-15T21:58Z",
+   "at": "2026-10-15T22:12Z",
    "stage": "idea",
    "note": ""
   },
   {
-   "at": "2026-10-15T21:58Z",
+   "at": "2026-10-15T22:12Z",
    "stage": "local-ok",
-   "note": "local 91-58; pendiente de subir y confirmar online que no empeora"
+   "note": "local 91-58; waiting for the upload and an online check that it does not get worse"
   }
  ],
- "updated": "2026-10-15T21:58Z"
+ "updated": "2026-10-15T22:12Z"
 }

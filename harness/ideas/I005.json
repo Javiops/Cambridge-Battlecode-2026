@@ -1,23 +1,23 @@
 {
  "id": "I005",
- "title": "Dos campeones por campamento como Mite (msquad)",
+ "title": "Two champions per camp like Mite (msquad)",
  "kind": "fight",
- "source": "disección study28 15/10",
+ "source": "study28 dissection, 15 Oct",
  "owner": "Javi",
- "hypothesis": "golpes sin aliado a 8 del 22% al 12%",
- "stage": "rechazada",
- "created": "2026-10-15T21:58Z",
+ "hypothesis": "hits taken with no ally within 8 from 22% to 12%",
+ "stage": "rejected",
+ "created": "2026-10-15T22:12Z",
  "history": [
   {
-   "at": "2026-10-15T21:58Z",
+   "at": "2026-10-15T22:12Z",
    "stage": "idea",
    "note": ""
   },
   {
-   "at": "2026-10-15T21:58Z",
-   "stage": "rechazada",
-   "note": "local: 6% más lento farmeando y el panel de lanzadores le gana más (66-13 vs 78-11): veto"
+   "at": "2026-10-15T22:12Z",
+   "stage": "rejected",
+   "note": "local: farms 6% slower and the caster panel beats it more (66-13 vs 78-11): veto"
   }
  ],
- "updated": "2026-10-15T21:58Z"
+ "updated": "2026-10-15T22:12Z"
 }

@@ -1,25 +1,25 @@
 {
  "id": "I003",
- "title": "Cancelar tributos y recalls condenados (study28, P_CHANCANCEL 60)",
+ "title": "Cancel doomed tributes and recalls (study28, P_CHANCANCEL 60)",
  "kind": "fight",
- "source": "disección study27 15/10",
+ "source": "study27 dissection, 15 Oct",
  "owner": "Javi",
- "hypothesis": "menos muertes canalizando",
- "stage": "rechazada",
- "created": "2026-10-15T21:58Z",
+ "hypothesis": "fewer deaths while channeling",
+ "stage": "rejected",
+ "created": "2026-10-15T22:12Z",
  "history": [
   {
-   "at": "2026-10-15T21:58Z",
+   "at": "2026-10-15T22:12Z",
    "stage": "idea",
    "note": ""
   },
   {
-   "at": "2026-10-15T21:58Z",
-   "stage": "rechazada",
-   "note": "local dev200 24-5 vs study27, online emparejado igual (14 vs 18 en 58 parejas), ranked 36%: vuelta a study27 15:36"
+   "at": "2026-10-15T22:12Z",
+   "stage": "rejected",
+   "note": "local dev200 24-5 vs study27, online paired equal (14 vs 18 on 58 pairings), ranked 36%: back to study27 at 15:36"
   }
  ],
- "updated": "2026-10-15T21:58Z",
+ "updated": "2026-10-15T22:12Z",
  "pr": "6",
  "version": "v37 = study28"
 }

@@ -1,195 +1,194 @@
-# Harness de desarrollo: cómo pasa una idea a ser bot
+# Development harness: how an idea becomes the bot
 
-Cuatro etapas, cada una con una puerta con números. Nada entra en la siguiente etapa sin pasar la puerta, y todo
-lo que pasa por aquí queda apuntado en el tablero ([IDEAS.md](IDEAS.md)) con su etapa y su resultado.
+Four stages, each with a gate that has numbers. Nothing enters the next stage without passing the gate, and
+everything that goes through gets recorded on the board ([IDEAS.md](IDEAS.md)) with its stage and its result.
 
 ```
- 1. brainstorm  ──►  2. desarrollo + test local  ──►  3. online (horas, ranked + 30 retos/hora)  ──►  4. disección
-    ideas con            una idea = una rama,            A/B emparejado contra los mismos             ficha de métricas
-    hipótesis            tools/gate.py decide             30 equipos, online/lfl.py decide              y propuestas ──► 1.
+ 1. brainstorm  ──►  2. development + local test  ──►  3. online (hours: ranked + 30 challenges/hour)  ──►  4. dissection
+    ideas with a         one idea = one branch,           paired A/B against the same 30 teams,               metric scorecard
+    hypothesis           tools/gate.py decides            online/lfl.py decides                               and proposals ──► 1.
 ```
 
-Todo son órdenes de una línea que ya existen en el repo; este documento dice cuándo se lanza cada una, qué número
-tiene que salir para seguir y dónde se guarda lo que produce.
+Every step is a one-line command that already lives in the repo; this document says when each one runs, which
+number has to come out to move on, and where what it produces is kept.
 
-## Reglas de la casa
+## House rules
 
-1. **Una idea, una rama, un cambio.** Rama `idea/I012-nombre-corto`, editando el bot actual en su sitio
-   (`bots/study28/src`, nunca una copia nueva en `bots/`: así el diff del PR es el cambio y nada más). Para probar la
-   idea contra la base, `gate.py` exporta sola la versión de `main` (`python3 tools/gate.py bots/study28 main ...`).
-2. **El bot online solo cambia con una idea en etapa `local-ok`**, apuntada en el tablero, y como mucho una vez por
-   hora (cada hora online es una muestra de 150 partidas; dos cambios en la misma hora no se pueden separar).
-3. **Lo que decide es la puerta, no la sensación.** Un resultado sin su `gate.txt` (local) o sin su salida de
-   `lfl.py` (online) no es un resultado. Los números de las puertas están abajo; si una idea no los alcanza, se queda
-   en su etapa o se cierra como `rechazada` con el número que la cerró.
-4. **El trabajo del compañero no se toca.** Cada uno trabaja en su rama y pasa sus ideas por la misma puerta; las
-   ideas se combinan en la etapa 2 (ver "combinaciones"), nunca editando la rama de otro.
-5. **Todo al tablero.** `python3 tools/idea.py add|set` en cada cambio de etapa. El tablero es lo que lee el
-   coordinador para el resumen de la hora y lo que mira cualquiera para saber en qué estamos.
-6. **Máximo 3 ideas en `desarrollo`/`test-local` por persona.** Con más, nadie termina ninguna.
+1. **One idea, one branch, one change.** Branch `idea/I012-short-name`, editing the current bot in place
+   (`bots/study28/src`, never a new copy under `bots/`: the PR diff is the change and nothing else). To test the
+   idea against the base, `gate.py` exports the `main` version by itself (`python3 tools/gate.py bots/study28 main ...`).
+2. **The online bot only changes with an idea in stage `local-ok`**, recorded on the board, and at most once an hour
+   (each online hour is a 150-game sample; two changes in the same hour cannot be told apart).
+3. **The gate decides, not the feeling.** A result without its `gate.txt` (local) or its `lfl.py` output (online) is
+   not a result. The gate numbers are below; an idea that does not reach them stays in its stage or closes as
+   `rejected` with the number that closed it.
+4. **Nobody touches a teammate's work.** Everyone works on their own branch and puts their ideas through the same
+   gate; ideas get combined in stage 2 (see "combinations"), never by editing someone else's branch.
+5. **Everything goes on the board.** `python3 tools/idea.py add|set` at every stage change. The board is what the
+   coordinator reads for the hourly summary and what anyone looks at to know where we are.
+6. **At most 3 ideas in `dev`/`local-test` per person.** With more, nobody finishes any.
 
-## Etapa 1: brainstorm
+## Stage 1: brainstorm
 
-**Entra:** la última ficha de disección (`online/data/dissect/<versión>/ficha.md`, etapa 4), la salida de
-`lfl.py` de la última idea online, los estudios de los equipos top (`/mnt/project-files/analysis/`, resumen en
-[current-state/](../current-state/README.md)) y lo que ya se probó (sección "Cerradas" del tablero: no repetir).
+**In:** the latest dissection scorecard (`online/data/dissect/<version>/scorecard.md`, stage 4), the `lfl.py` output
+of the last idea tested online, the top-team studies (`/mnt/project-files/analysis/`, summary in
+[current-state/](../current-state/README.md)) and what was already tried ("Closed" section of the board: no repeats).
 
-**Sale:** ideas en el tablero con hipótesis medible. Plantilla: [templates/brainstorm.md](templates/brainstorm.md).
+**Out:** ideas on the board with a measurable hypothesis. Template: [templates/brainstorm.md](templates/brainstorm.md).
 
 ```bash
-python3 tools/idea.py add "Dos campeones por campamento en mapas de pelea" --kind fight \
-    --source "ficha corners fix 15/10: 22% de golpes sin aliado a 8" \
-    --hypothesis "golpes recibidos sin aliado a 8 del 22% al 12%; muertes/partida de 5.5 a 4.5 en corners/collision/packs"
+python3 tools/idea.py add "Two champions per camp on fight maps" --kind fight \
+    --source "corners-fix scorecard 15 Oct: 22% of hits taken with no ally within 8" \
+    --hypothesis "hits taken with no ally within 8 from 22% to 12%; deaths/game from 5.5 to 4.5 on corners/collision/packs"
 ```
 
-Reglas: cada idea nombra **qué número de la ficha mueve y cuánto** (si no se puede medir, no es una idea, es una
-opinión); dice **en qué mapas** aplica; es **un solo cambio** (una regla, un umbral, un interruptor). Una
-combinación de ideas es otra idea, y se abre solo cuando sus partes ya tienen resultado.
+Rules: every idea names **which scorecard number it moves and by how much** (if it cannot be measured it is an
+opinion, not an idea); says **on which maps** it applies; is **one change** (one rule, one threshold, one switch). A
+combination of ideas is another idea, opened only once its parts have a result.
 
-**Puerta para pasar a desarrollo:** hipótesis con número, tipo (`farm`/`fight`/`macro`/`bug`), alguien asignado
-(`--owner`). El que la coge la pasa a `desarrollo` con su rama.
+**Gate to development:** a hypothesis with a number, a kind (`farm`/`fight`/`macro`/`bug`), someone assigned
+(`--owner`). Whoever takes it moves it to `dev` with their branch.
 
-## Etapa 2: desarrollo y test local
+## Stage 2: development and local test
 
-Un "subagente" es quien coge la idea: una persona o un hilo de Claude. Recibe el brief de
-[templates/brief.md](templates/brief.md) (idea, hipótesis, bot base, puerta que tiene que pasar, qué entregar) y
-no se sale de él: hacer que **su** idea funcione, no mejorar el bot en general.
+A "subagent" is whoever takes the idea: a person or a Claude thread. They get the brief from
+[templates/brief.md](templates/brief.md) (idea, hypothesis, base bot, the gate it has to pass, what to deliver) and
+stay inside it: make **their** idea work, not improve the bot in general.
 
 ```bash
-git checkout -b idea/I012-dos-por-campo main
-python3 tools/idea.py set I012 --stage desarrollo --branch idea/I012-dos-por-campo --owner Javi
-#   ... editar bots/study28/src (switch P_* en params.h si es un umbral: tools/variante.sh sirve para probar valores)
-python3 tools/gate.py bots/study28 main --kind fight --idea I012        # la puerta; ~1-3 min con 4 núcleos
+git checkout -b idea/I012-two-per-camp main
+python3 tools/idea.py set I012 --stage dev --branch idea/I012-two-per-camp --owner Javi
+#   ... edit bots/study28/src (a P_* switch in params.h if it is a threshold: tools/variante.sh helps try values)
+python3 tools/gate.py bots/study28 main --kind fight --idea I012        # the gate; ~1-3 min on 4 cores
 ```
 
-`gate.py` corre por fases, de la más barata a la más cara, y para en cuanto el resultado está claro:
+`gate.py` runs in phases, cheapest first, and stops as soon as the result is clear:
 
-| fase | qué juega | para si | tiempo (4 núcleos, caché caliente) |
+| phase | what it plays | stops if | time (4 cores, warm cache) |
 |---|---|---|---|
-| 1 seguridad | 9 oficiales x 2 lados + combustible en lanes/corners/collision | fallos del bot > 0, partida rota, o +30 turnos sin combustible sobre la base | 20 s |
-| 2 mapas nuevos | hold60 + dev200 (+ `--extra fresh300`) barajados, en tandas de 40, mapas ganados **por los dos lados** | peor con p<0.05 (cualquiera); mejor con p<0.01 (farm) | 10 s por tanda |
-| 3 panel | spar11/12/16 (los únicos rivales locales que matan como online) en oficiales + gen | las partidas que cambian van en contra con p<0.05 = **veto** | 60 s |
-| 4 contraejemplos | lista de los mapas nuevos perdidos por los dos lados, con la orden para verlos | siempre se escribe | 0 |
+| 1 safety | 9 official maps x 2 sides + fuel on lanes/corners/collision | bot faults > 0, a broken game, or +30 fuel-exhausted turns over the base | 20 s |
+| 2 fresh maps | hold60 + dev200 (+ `--extra fresh300`) shuffled, in chunks of 40, maps won **on both sides** | worse with p<0.05 (any kind); better with p<0.01 (farm) | 10 s per chunk |
+| 3 panel | spar11/12/16 (the only local rivals that kill like online teams) on official + gen | the games that flip go against with p<0.05 = **veto** | 60 s |
+| 4 counterexamples | the fresh maps lost on both sides, with the command to watch them | always written | 0 |
 
-**Puerta a `local-ok`:**
+**Gate to `local-ok`:**
 
-| tipo | mapas nuevos (fase 2) | seguridad | panel |
+| kind | fresh maps (phase 2) | safety | panel |
 |---|---|---|---|
-| `farm` / `macro` | a favor con **p<0.05** (unos +6 mapas netos en 44 decididos, +10 en 100) | limpia | sin veto |
-| `fight` | **no peor** (p≥0.05): local no puede juzgar una regla de pelea (es self-play, ver `cambc-online-ab`) | limpia | sin veto |
-| `bug` | no peor | limpia y el bug ya no se reproduce en su contraejemplo | sin veto |
+| `farm` / `macro` | in favour with **p<0.05** (about +6 net maps out of 44 decided, +10 out of 100) | clean | no veto |
+| `fight` | **not worse** (p>=0.05): local play cannot judge a fight rule (it is self-play, see memory `cambc-online-ab`) | clean | no veto |
+| `bug` | not worse | clean, and the bug no longer reproduces on its counterexample | no veto |
 
-El veredicto sale solo (`PASA` / `NO PASA` y por qué) y queda en `out/gate/<cand>_vs_<base>/gate.txt`,
-`result.json` y `contraejemplos.md`; con `--idea` se apunta en el tablero.
+The verdict comes out on its own (`PASS` / `FAIL` and why) and stays in `out/gate/<cand>_vs_<base>/gate.txt`,
+`result.json` and `counterexamples.md`; with `--idea` it is recorded on the board.
 
-Reglas de la fase:
-- **Contraejemplos antes de celebrar.** Antes de pasar a `local-ok` se miran los 3 peores contraejemplos con
-  `cambc view` y se escribe una línea por cada uno en el doc de la idea (por qué pierde ahí y si importa).
-- **Tiempo.** La caché (`out/ab-cache`, `out/wasmtime-cache`) hace que la base y el panel no se repitan: el segundo
-  candidato cuesta solo sus partidas. `--max-maps 80` para una primera mirada; la puerta completa para decidir.
-  Nunca se ajusta un umbral mirando hold60/dev200 (son la comprobación sellada); para ajustar, `maps_gen` o `--extra`.
-- **Seguridad** = fallos del bot (`botFaults`), partidas rotas, combustible (`tools/replaydump.js` cuenta los turnos
-  tipo 26), y el bot no escanea todos los campamentos o campeones por turno (memoria `cambc-fuel-budget`).
-- **Combinaciones.** Una combinación (dos switches, dos ramas fusionadas) pasa la misma puerta **contra la mejor de
-  sus partes**, no contra la base: si no gana a la mejor parte, se queda con la parte.
-- **Lo que local no ve**: cómo pelean los equipos top. Por eso una regla de pelea con `PASA` local está en `local-ok`,
-  no en `aceptada`; la decide la etapa 3.
+Rules of the stage:
+- **Counterexamples before celebrating.** Before moving to `local-ok`, watch the 3 worst counterexamples with
+  `cambc view` and write one line per map in the idea's doc (why it loses there and whether it matters).
+- **Time.** The caches (`out/ab-cache`, `out/wasmtime-cache`) mean the base and the panel are never replayed: the
+  second candidate costs only its own games. `--max-maps 80` for a first look; the full gate to decide. Never tune
+  a threshold by looking at hold60/dev200 (they are the sealed check); tune on `maps_gen` or `--extra`.
+- **Safety** = bot faults (`botFaults`), broken games, fuel (`tools/replaydump.js` counts the kind-26 turn ends), and
+  no per-turn scan of every camp or champion (memory `cambc-fuel-budget`).
+- **Combinations.** A combination (two switches, two branches merged) passes the same gate **against the best of
+  its parts**, not against the base: if it does not beat the best part, keep the part.
+- **What local cannot see**: how the top teams fight. That is why a fight rule with a local `PASS` is in `local-ok`,
+  not `accepted`; stage 3 decides it.
 
-**Entrega de la etapa:** PR con el diff del bot + `docs/<I012-nombre>.md` según
-[templates/resultado.md](templates/resultado.md) (hipótesis, cambio, tabla de la puerta, contraejemplos mirados). El
-PR no se fusiona hasta la decisión online (etapa 3), salvo `bug` e `infra`.
+**Deliverable of the stage:** a PR with the bot diff + `docs/<I012-name>.md` following
+[templates/result.md](templates/result.md) (hypothesis, change, gate table, counterexamples watched). The PR is not
+merged until the online decision (stage 3), except for `bug` and `infra`.
 
-## Etapa 3: online (varias horas, ranked + 30 retos por hora)
+## Stage 3: online (several hours, ranked + 30 challenges per hour)
 
-Solo entra una idea en `local-ok`. Quien sube es siempre una persona (subir y activar en la web es una acción en
-vivo): el bot se empaqueta, se sube, se activa y se registra la versión en el mismo minuto.
+Only an idea in `local-ok` goes in. A person always does the upload (uploading and activating on the site is a live
+action): bundle, upload, activate and register the version in the same minute.
 
 ```bash
-cambc bundle bots/study28 --output /mnt/project-files/bot/mybot_I012.zip   # 1. zip (en el repo, en la rama de la idea)
-#   2. subir y ACTIVAR en 2026a.battlecode.co.uk (persona)
-python3 online/version.py "v38 = I012 dos por campo"                        # 3. desde ese minuto las partidas son de I012
+cambc bundle bots/study28 --output /mnt/project-files/bot/mybot_I012.zip   # 1. the zip (in the repo, on the idea's branch)
+#   2. upload and ACTIVATE on 2026a.battlecode.co.uk (a person)
+python3 online/version.py "v38 = I012 two per camp"                         # 3. games from that minute belong to I012
 python3 tools/idea.py set I012 --stage online --version "v38"
 ```
 
-El bucle de retos (`online/loop.py --top 30`, o la tarea programada de las :46 UTC que ya corre) gasta los 30 grupos
-de la hora contra los mismos 30 equipos del top; `collect.py` baja los resultados. **Protocolo A/B:** la candidata y
-la base se alternan hora a hora (A, B, A, B...), mínimo **2 horas cada una** (unas 300 partidas y ~200 parejas
-rival+mapa compartidas); cada batch se compara en cuanto llega:
+The challenge loop (`online/loop.py --top 30`, or the scheduled task at :46 UTC that already runs) spends the 30
+groups of the hour against the same 30 top teams; `collect.py` downloads the results. **A/B protocol:** the candidate
+and the base alternate hour by hour (A, B, A, B...), at least **2 hours each** (about 300 games and ~200 shared
+opponent+map pairings); every batch is compared as soon as it lands:
 
 ```bash
 cd online && python3 collect.py && python3 lfl.py --a "I012" --b "study27" --idea I012
 ```
 
-`lfl.py` cuenta solo las parejas (rival, mapa, lado) jugadas con las dos versiones (el motor es determinista: la
-pareja es un experimento controlado) y hace el test de signos sobre las que cambian de resultado. El porcentaje
-bruto de un batch **no vale** (hoy fue del 25% al 41% sin tocar el bot: cambia el sorteo de rivales).
+`lfl.py` counts only the (opponent, map, side) pairings played with both versions (the engine is deterministic: a
+pairing is a controlled experiment) and runs the sign test on the pairings that flip. The raw percentage of a batch
+is **worthless** (today it went from 25% to 41% without touching the bot: the opponent draw changed).
 
-**Puerta:**
+**Gate:**
 
-| resultado de `lfl.py` | decisión |
+| `lfl.py` result | decision |
 |---|---|
-| A mejor con p<0.05 | `aceptada`: la rama se fusiona en `main` (rename + diff, nunca copia nueva), queda como bot online |
-| A peor con p<0.05 | `rechazada` con el número; vuelve la base a la web en la siguiente hora |
-| sin decidir tras 3 horas de cada una (6 batches) | `rechazada` como "no cambia nada" salvo que sea `farm` con `PASA` local claro: entonces `aceptada` como neutra (el farmeo sí se mide bien en local) |
+| A better with p<0.05 | `accepted`: the branch merges into `main` (rename + diff, never a new copy) and stays as the online bot |
+| A worse with p<0.05 | `rejected` with the number; the base goes back on the site next hour |
+| undecided after 3 hours each (6 batches) | `rejected` as "changes nothing", unless it is `farm` with a clear local `PASS`: then `accepted` as neutral (farming is measured well locally) |
 
-Mientras tanto, los ranked de la ventana (unos 20 por hora) son solo una comprobación de que no se hunde: con 20
-partidas por hora no deciden nada. Mirar también `faults` de `games.jsonl`: un fallo del bot online es `rechazada`
-al momento, sea cual sea el marcador.
+Meanwhile the ranked games of the window (about 20 an hour) are only a check that nothing sinks: 20 games an hour
+decide nothing. Also watch `faults` in `games.jsonl`: a bot fault online is `rejected` on the spot, whatever the score.
 
-Reglas: no se sube otra idea mientras una está en etapa 3 (se mezclarían las muestras); si la cookie caduca
-(`challenge.py` da 401), la persona la renueva (README de `online/`) y la hora perdida no cuenta.
+Rules: no other idea goes up while one is in stage 3 (the samples would mix); when the cookie expires
+(`challenge.py` returns 401) a person renews it (README in `online/`) and the lost hour does not count.
 
-## Etapa 4: disección y nuevas ideas
+## Stage 4: dissection and new ideas
 
-Cuando una idea termina su etapa 3 (o cada mañana con la versión activa), la ficha:
+When an idea finishes stage 3 (or every morning with the active version), the scorecard:
 
 ```bash
 cd online && python3 collect.py && python3 dissect.py --version "I012" --ref "study27" --idea I012
 ```
 
-`dissect.py` baja las repeticiones que faltan, las decodifica (unos 25 s por partida nueva, 4 a la vez, con caché) y
-escribe `data/dissect/<versión>-<fecha>/ficha.md`: la misma métrica para nosotros y para el rival en las mismas
-partidas (muertes y cómo morimos, rondas muerto/inactivo, capturas por ronda-campeón, contacto antes del primer golpe,
-aperturas en solitario, hechizos, combustible), por mapa y por nivel de rival, con la columna de la versión anterior
-si se pide `--ref`. La ficha termina en **Propuestas**: los huecos más grandes respecto al rival, en frases que van
-directas a `idea.py add`. Con eso se vuelve a la etapa 1.
+`dissect.py` downloads the missing replays, decodes them (about 25 s per new game, 4 at a time, cached) and writes
+`data/dissect/<version>-<date>/scorecard.md`: the same metric for us and for the rival in the same games (deaths and
+how we die, dead/idle champion-rounds, captures per champion-round, contact before the first hit, openings alone,
+spells, fuel), by map and by rival tier, with the previous version as an extra column when `--ref` is given. The
+scorecard ends in **Proposals**: the biggest gaps against the rival, as sentences that go straight into
+`idea.py add`. With that, back to stage 1.
 
-Para preguntas más finas (por qué morimos en corners, qué hace el rival en lanes) el workspace que deja `dissect.py`
-(`selected.json`, `steps/`, `mapsj/`) es el mismo formato que usan los scripts de
-`/mnt/project-files/analysis/v35-dissection-2026-10-15/scripts_*` (`WS=<carpeta>`); el análisis largo se guarda en
-`/mnt/project-files/analysis/<tema>-<fecha>/README.md` y se enlaza desde la idea.
+For finer questions (why we die on corners, what the rival does on lanes) the workspace `dissect.py` leaves
+(`selected.json`, `steps/`, `mapsj/`) is the same format the scripts in
+`/mnt/project-files/analysis/v35-dissection-2026-10-15/scripts_*` read (`WS=<folder>`); long analyses go to
+`/mnt/project-files/analysis/<topic>-<date>/README.md` and are linked from the idea.
 
-## Quién hace qué
+## Who does what
 
-| | brainstorm | desarrollo + local | online | disección |
+| | brainstorm | development + local | online | dissection |
 |---|---|---|---|---|
-| Javi | decide qué ideas entran y su orden; asigna | sus ideas por la puerta | sube, activa, registra la versión; decide con `lfl.py` | lee la ficha |
-| compañero | propone con hipótesis | sus ideas por la misma puerta, en su rama | igual, cuando tiene el bot activo | |
-| hilos de Claude | proponen desde la ficha y los estudios | un hilo por idea con el brief; entrega PR + doc + gate.txt | el hilo del bucle manda los retos y pasa `lfl.py` cada hora | `dissect.py` y las preguntas finas |
-| coordinador | | resume el tablero en el proyecto (ideas por etapa, última que cambió) | avisa cuando `lfl.py` decide | |
+| Javi | decides which ideas go in and in what order; assigns | own ideas through the gate | uploads, activates, registers the version; decides with `lfl.py` | reads the scorecard |
+| teammate | proposes with a hypothesis | own ideas through the same gate, on their branch | same, when their bot is the active one | |
+| Claude threads | propose from the scorecard and the studies | one thread per idea with the brief; delivers PR + doc + gate.txt | the loop thread sends the challenges and runs `lfl.py` every hour | `dissect.py` and the finer questions |
+| coordinator | | summarises the board in the project chat (ideas per stage, last one that moved) | says when `lfl.py` decides | |
 
-## Dónde vive cada cosa
+## Where everything lives
 
-| qué | dónde |
+| what | where |
 |---|---|
-| tablero de ideas | `harness/ideas/I###.json` (uno por idea, se fusiona sin conflictos) y `harness/IDEAS.md` (generado: `idea.py board`) |
-| bot actual | `bots/study28/src` en `main`; versión online en `online/data/versions.jsonl` |
-| puerta local | `tools/gate.py`, resultados en `out/gate/<cand>_vs_<base>/` (gate.txt, result.json, contraejemplos.md); A/B suelto: `tools/ab.py` |
-| mapas | `maps/` oficiales (cambc init), `maps_gen` (entrenamiento), `maps_hold60` + `maps_dev200` (sellados, deciden), `/mnt/project-files/arena/maps/fresh300` (`--extra`) |
-| rivales de panel | `bots/spar11`, `spar12`, `spar16` |
-| online | `online/` (collect, challenge, loop, report, lfl, version, dissect); datos en `online/data/` (en la nube: `/mnt/project-files/online/data/`, `games.jsonl`, `hourly.md`, `versions.jsonl`) |
-| zips subidos | `/mnt/project-files/bot/mybot_<idea>.zip` |
-| fichas de disección | `online/data/dissect/<versión>-<fecha>/ficha.md` |
-| análisis largos | `/mnt/project-files/analysis/<tema>-<fecha>/README.md` |
-| doc de cada versión | `docs/<I###-nombre>.md` (plantilla `harness/templates/resultado.md`) |
-| memoria del equipo (lecciones) | memoria del proyecto (`cambc-eval-method`, `cambc-online-ab`, `cambc-fuel-budget`...) |
+| ideas board | `harness/ideas/I###.json` (one file per idea, merges without conflicts) and `harness/IDEAS.md` (generated: `idea.py board`) |
+| current bot | `bots/study28/src` on `main`; online version in `online/data/versions.jsonl` |
+| local gate | `tools/gate.py`, results in `out/gate/<cand>_vs_<base>/` (gate.txt, result.json, counterexamples.md); loose A/B: `tools/ab.py` |
+| maps | `maps/` official (cambc init), `maps_gen` (training), `maps_hold60` + `maps_dev200` (sealed, they decide), `/mnt/project-files/arena/maps/fresh300` (`--extra`) |
+| panel rivals | `bots/spar11`, `spar12`, `spar16` |
+| online | `online/` (collect, challenge, loop, report, lfl, version, dissect); data in `online/data/` (in the cloud: `/mnt/project-files/online/data/`, `games.jsonl`, `hourly.md`, `versions.jsonl`) |
+| uploaded zips | `/mnt/project-files/bot/mybot_<idea>.zip` |
+| dissection scorecards | `online/data/dissect/<version>-<date>/scorecard.md` |
+| long analyses | `/mnt/project-files/analysis/<topic>-<date>/README.md` |
+| doc of each version | `docs/<I###-name>.md` (template `harness/templates/result.md`) |
+| team memory (lessons) | project memory (`cambc-eval-method`, `cambc-online-ab`, `cambc-fuel-budget`...) |
 
-## Montar el entorno (una vez)
+## Set up the environment (once)
 
 ```bash
-pip install cambc && cambc init --yes          # SDK, toolchain, 9 mapas oficiales en maps/
+pip install cambc && cambc init --yes          # SDK, toolchain, the 9 official maps in maps/
 cambc build bots/study28 && cambc build bots/spar11 bots/spar12 bots/spar16
-python3 tools/gate.py bots/study28 bots/study25 --kind farm --max-maps 40   # prueba: ~40 s, debe decir "a favor pero sin decidir"
+python3 tools/gate.py bots/study28 bots/study25 --kind farm --max-maps 40   # smoke test: ~40 s, should say "in favour but undecided"
 ```
-En la nube, si `cambc init` no puede bajar la toolchain (certificado), se descarga a mano en `~/.cache/cambc/`
-(`wasi-sdk-33`, `cmake-3.31.8-linux-x86_64`, `ninja-1.12.1-linux-x86_64`) y se repite.
+In the cloud, when `cambc init` cannot download the toolchain (certificate), fetch it by hand into `~/.cache/cambc/`
+(`wasi-sdk-33`, `cmake-3.31.8-linux-x86_64`, `ninja-1.12.1-linux-x86_64`) and run it again.

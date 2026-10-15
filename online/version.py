@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
-"""Apunta qué versión está activa en la web (data/versions.jsonl): lo lee report.py y lfl.py para etiquetar las partidas.
+"""Record which version is active on the site (data/versions.jsonl): report.py and lfl.py read it to label the games.
 
-uso:  python3 version.py "v38 = study29 (I012)" [--at 2026-10-15T21:30Z] [--note "activada por Javi"]
-Hazlo justo después de activar el bot en la web; las partidas desde esa hora se atribuyen a esa etiqueta.
+usage:  python3 version.py "v38 = study29 (I012)" [--at 2026-10-15T21:30Z] [--note "activated by Javi"]
+Run it right after activating the bot on the site; games from that time on are attributed to that label.
 """
 import json, os, sys, time
 

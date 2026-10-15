@@ -1,25 +1,25 @@
 {
  "id": "I002",
- "title": "Apilar en campamentos de 3000+ hp, repartir en los pequeños (study27)",
+ "title": "Stack on 3000+ hp camps, spread on the small ones (study27)",
  "kind": "farm",
- "source": "estudio stack-or-spread 15/10",
+ "source": "stack-or-spread study, 15 Oct",
  "owner": "Javi",
- "hypothesis": "capturas más rápidas en campamentos grandes",
- "stage": "aceptada",
- "created": "2026-10-15T21:58Z",
+ "hypothesis": "faster captures on big camps",
+ "stage": "accepted",
+ "created": "2026-10-15T22:12Z",
  "history": [
   {
-   "at": "2026-10-15T21:58Z",
+   "at": "2026-10-15T22:12Z",
    "stage": "idea",
    "note": ""
   },
   {
-   "at": "2026-10-15T21:58Z",
-   "stage": "aceptada",
-   "note": "online: apilar funciona en mapas con campamentos 3000+; es el bot online desde las 15:36"
+   "at": "2026-10-15T22:12Z",
+   "stage": "accepted",
+   "note": "online: stacking works on maps with 3000+ hp camps; the online bot since 15:36"
   }
  ],
- "updated": "2026-10-15T21:58Z",
+ "updated": "2026-10-15T22:12Z",
  "pr": "4",
  "version": "v36 = study27"
 }

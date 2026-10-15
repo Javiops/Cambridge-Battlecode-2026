@@ -1,8 +1,8 @@
-"""Lector de partidas decodificadas (formato compacto de tools/compact.py) para la disección (online/dissect.py).
+"""Reader of decoded games (the compact format of tools/compact.py) for the dissection (online/dissect.py).
 
-Es el mismo cargador que usaron las disecciones de v35/study27/study28 (analysis/v35-dissection-2026-10-15/scripts_*),
-con las rutas parametrizadas: un workspace con selected.json, steps/<match>.c.jsonl y mapsj/<map>.json.
-Formato de los pasos: analysis/v35-dissection-2026-10-15/data/DATA.md.
+The same loader the v35/study27/study28 dissections used (analysis/v35-dissection-2026-10-15/scripts_*), with the
+paths parameterised: a workspace with selected.json, steps/<match>.c.jsonl and mapsj/<map>.json.
+Step format: analysis/v35-dissection-2026-10-15/data/DATA.md.
 """
 import json, collections, os
 
@@ -22,7 +22,7 @@ def tier(orank):
     orank = orank or 999
     if orank <= 10: return 'top10'
     if orank <= 30: return '11-30'
-    return 'resto'
+    return 'others'
 
 
 def mirror(m, x, y):

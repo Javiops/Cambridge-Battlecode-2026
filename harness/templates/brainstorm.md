@@ -1,30 +1,30 @@
-# Brainstorm <fecha> (plantilla)
+# Brainstorm <date> (template)
 
-Antes de empezar, en la mesa:
-- `ficha.md` de la última disección (`online/data/dissect/<versión>/ficha.md`): la tabla nosotros/rival y las **Propuestas**.
-- Salida de `lfl.py` de la última idea online (qué cambió y qué no).
-- Sección "Cerradas" de `harness/IDEAS.md`: lo que ya se probó y con qué número murió. No se vuelve a proponer sin un motivo nuevo.
-- Estudios de los equipos top que toquen el tema (`/mnt/project-files/analysis/`).
+On the table before starting:
+- `scorecard.md` of the latest dissection (`online/data/dissect/<version>/scorecard.md`): the us/rival table and the **Proposals**.
+- The `lfl.py` output of the last idea tested online (what changed and what did not).
+- The "Closed" section of `harness/IDEAS.md`: what was already tried and the number that killed it. Nothing comes back without a new reason.
+- The top-team studies that touch the topic (`/mnt/project-files/analysis/`).
 
-## Huecos (de la ficha, el número nuestro y el del rival)
+## Gaps (from the scorecard: our number and the rival's)
 
-| hueco | nosotros | rival | mapas donde pesa |
+| gap | us | rival | maps where it weighs |
 |---|---|---|---|
 | | | | |
 
 ## Ideas
 
-Una fila por idea. Sin hipótesis medible no entra en el tablero.
+One row per idea. Without a measurable hypothesis it does not go on the board.
 
-| idea (un solo cambio) | tipo | hueco que ataca | hipótesis (qué número, de cuánto a cuánto, en qué mapas) | riesgo (qué puede empeorar) | quién |
+| idea (one change) | kind | gap it attacks | hypothesis (which number, from what to what, on which maps) | risk (what could get worse) | who |
 |---|---|---|---|---|---|
 | | farm/fight/macro/bug | | | | |
 
-## Orden
+## Order
 
-1. ...   (razón: el hueco más grande / la más barata de probar / desbloquea otras)
+1. ...   (reason: the biggest gap / the cheapest to test / unblocks others)
 2. ...
 3. ...
 
-Al terminar: `python3 tools/idea.py add "..." --kind ... --source "brainstorm <fecha>" --hypothesis "..." --owner ...` por cada
-idea de la lista, en ese orden; máximo 3 en desarrollo por persona.
+When done: `python3 tools/idea.py add "..." --kind ... --source "brainstorm <date>" --hypothesis "..." --owner ...` for each
+idea on the list, in that order; at most 3 in development per person.

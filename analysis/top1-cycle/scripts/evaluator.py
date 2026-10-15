@@ -5,13 +5,25 @@ def mirror(m, x, y):
     w, h = m['w'], m['h']
     return {'H': (w-1-x, y), 'V': (x, h-1-y), 'R180': (w-1-x, h-1-y)}[m['sym']]
 def full_groups(m):
+    """camp groups as the engine builds them: adjacent camps (original + mirrored) form one group; values from the map's group table"""
+    camps = []
+    for i, c in enumerate(m['camps']):
+        camps.append((c['x'], c['y'], c['type'], i))
+        mx, my = mirror(m, c['x'], c['y'])
+        if (mx, my) != (c['x'], c['y']): camps.append((mx, my, c['type'], i))
+    val = {}
+    for g in m['groups']:
+        for ci in g['camps']: val[ci] = g
+    clusters = []
+    for c in camps:
+        hit = [cl for cl in clusters if any(max(abs(c[0]-d[0]), abs(c[1]-d[1])) <= 1 for d in cl)]
+        if not hit: clusters.append([c]); continue
+        base = hit[0]; base.append(c)
+        for h in hit[1:]: base.extend(h); clusters.remove(h)
     out = []
-    for gi, g in enumerate(m['groups']):
-        tiles = [(m['camps'][c]['x'], m['camps'][c]['y']) for c in g['camps']]
-        types = [m['camps'][c]['type'] for c in g['camps']]
-        for mir in (False, True):
-            t = [mirror(m, x, y) for x, y in tiles] if mir else tiles
-            out.append(dict(tiles=t, types=types, gems=g['gems'], gold=g['gold'], respawn=g['respawn']))
+    for cl in clusters:
+        g = val[cl[0][3]]
+        out.append(dict(tiles=[(x, y) for x, y, _, _ in cl], types=[t for _, _, t, _ in cl], gems=g['gems'], gold=g['gold'], respawn=g['respawn']))
     return out
 HP = {'WOLF': 1350, 'ELK': 2400, 'GEM_CLUSTER': 500, 'GOLD_CLUSTER': 500, 'MONOLITH': 20000}   # rough, only the ranking matters
 def evaluate(path):

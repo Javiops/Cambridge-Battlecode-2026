@@ -2,6 +2,9 @@
 
 study27 = study26 + one rule about when several champions farm the same camp.
 
+`bots/study27` is `bots/study26` renamed and edited in place, so `git diff` shows only the changed lines (9 in
+`main.cpp`, 3 in `params.h`). study26 itself stays in the history (`git show 5a9229b:bots/study26/src/main.cpp`).
+
 ## The rule, step by step
 
 Every 20 rounds (or when its camp is done) each champion scores every camp group and walks to the best one

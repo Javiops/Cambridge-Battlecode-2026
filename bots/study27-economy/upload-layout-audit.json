@@ -1,0 +1,72 @@
+{
+  "created_utc": "2026-10-15T22:11:31.923041+00:00",
+  "passed": true,
+  "archive_filename": "cambc-study27-economy-experimental-src-fbf835ee.zip",
+  "archive_bytes": 57151,
+  "archive_sha256": "6112d28712194ef96c0dfa3170d3f619e5b5984625c3a0c8e13fe8284354a523",
+  "required_upload_layout": "Exactly src/<six registered source names>, no outer bot-name directory and no root source files",
+  "entries": {
+    "src/de_rules.h": {
+      "bytes": 4921,
+      "sha256": "3e50429c96765f325ea3804c2bbb5c13ce26a4119fc7b8694f58def60531221b",
+      "zip_crc32": "ba08dba3"
+    },
+    "src/fight.h": {
+      "bytes": 39921,
+      "sha256": "5fb073f23ce41a5f6d07fba3aa55a016582a46ac54c4f8316ee6c96ebe92a7bb",
+      "zip_crc32": "993f8820"
+    },
+    "src/main.cpp": {
+      "bytes": 158208,
+      "sha256": "cb8cbe3eb437bcbee66d7b2003b5cdb1d81d37042b72d22d1edc1e001a56f4c6",
+      "zip_crc32": "88ba7aed"
+    },
+    "src/opening_replace.h": {
+      "bytes": 1760,
+      "sha256": "ca6680bae82b74b89fd0bb65573904246df8761d8b22e3ce8cb6bd93207207e7",
+      "zip_crc32": "349aabc2"
+    },
+    "src/params.h": {
+      "bytes": 3037,
+      "sha256": "d99ef2cecff65f7851efb491bb4691d40ddeaaa6a96499e13eddec814fdc1372",
+      "zip_crc32": "d06a5317"
+    },
+    "src/utility.h": {
+      "bytes": 4791,
+      "sha256": "5e48af1229195c4b356a617fd7323f49efe2af3a09728f6eda91ed4975c2b580",
+      "zip_crc32": "b312351c"
+    }
+  },
+  "zip_crc_passed": true,
+  "no_extra_duplicate_unsafe_or_directory_entries": true,
+  "every_entry_equals_frozen_registered_and_exported_source_bytes": true,
+  "frozen_candidate": "productive_walk",
+  "frozen_source_manifest_sha256": "2e57cf5576a3258fa642f0f0c6d240607ccdc33c5cb6518bf62ea697cf624a1b",
+  "frozen_wasm_sha256": "fbf835eea4f7a3e629ca58dbff2792f66994d400e93f80332a4d11ba0143ce29",
+  "official_bundle_command_reported_by_orchestrator": "cambc bundle bots/productive_walk --output outputs/cambc-study27-economy-experimental-src-fbf835ee.zip",
+  "official_cli_version": "cambc 2.1.6",
+  "official_cli_sha256": "91f42c859c40c07c186eb94a692349396c7b168d2b454f1cb060c714825d9882",
+  "local_official_contract_evidence": [
+    {
+      "path": "work/battlecode-review/docs/GettingStarted.txt",
+      "lines": "115\u2013118",
+      "fact": "Use cambc bundle for an uploadable source ZIP; source selection matches submit."
+    },
+    {
+      "path": "work/study27-economy-v2/arena/cmake/CMakeLists.txt",
+      "line": 13,
+      "fact": "Official C++ CMake discovers ${BOT_DIR}/src/*.cpp."
+    }
+  ],
+  "superseded_root_archive": {
+    "filename": "cambc-study27-economy-experimental-productive_walk-fbf835ee.zip",
+    "sha256": "d69b4385f7bbd3c05350b354f5cf5cb439c334e20e85acea65ac7b175895b6b9",
+    "exists_at_audit": true,
+    "status": "Invalid browser-upload layout; deprecated. Historical root-file integrity audit did not establish upload compatibility."
+  },
+  "source_code_changed": false,
+  "new_games": 0,
+  "remote_actions": 0,
+  "confirmation_status": "Failed predeclared statistical gates; corrected archive remains experimental.",
+  "build_note": "This audit validates packaging and exact source bytes. The orchestrator separately extracts this archive and performs the official build; no new build was run by this audit."
+}

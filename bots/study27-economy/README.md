@@ -11,10 +11,16 @@ The candidate builds on the cleaned PR11 combat bot. Its four changes are:
 
 Only `main.cpp` differs from the control; the other five source files match its exact pins. The source is byte-identical to the frozen package tested in all 11,264 fresh games. The rejected camp-focus forecast is absent.
 
-The experimental submission archive is `cambc-study27-economy-experimental-productive_walk-fbf835ee.zip`, containing exactly six source files at its root. Its SHA-256 is:
+The [corrected experimental submission archive](cambc-study27-economy-experimental-src-fbf835ee.zip) is made with official `cambc bundle` and contains exactly six source files under `src/`. It replaces the earlier root-layout ZIP, which the platform rejected. Source bytes and match results are unchanged. Extracting and building the corrected ZIP produces exactly the frozen tested WASM. Its ZIP SHA-256 is:
 
 ```text
-d69b4385f7bbd3c05350b354f5cf5cb439c334e20e85acea65ac7b175895b6b9
+6112d28712194ef96c0dfa3170d3f619e5b5984625c3a0c8e13fe8284354a523
 ```
 
-See [results](RESULTS.md), [review notes](REVIEW-NOTES.md), and the unchanged [export manifest](source-manifest.json). The [review assets and reproduction guide](../../analysis/study27-economy/v2/README.md) include the exact maps and opponent sources. That review bundle is a separate artifact and is not a bot upload.
+See the [current upload verification](upload-layout-verification.json), [independent layout audit](upload-layout-audit.json), [results](RESULTS.md), [review notes](REVIEW-NOTES.md), and the unchanged [original export manifest](source-manifest.json). The original manifest records the superseded root-layout archive; its source and WASM pins still apply. The [review assets and reproduction guide](../../analysis/study27-economy/v2/README.md) include the exact maps and opponent sources. That review bundle is a separate artifact and is not a bot upload.
+
+To produce a platform-compatible archive from this repository folder:
+
+```sh
+cambc bundle bots/study27-economy --output study27-economy.zip
+```

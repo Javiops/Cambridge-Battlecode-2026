@@ -1,0 +1,30 @@
+{
+  "archive": "cambc-study27-economy-experimental-src-fbf835ee.zip",
+  "archive_sha256": "6112d28712194ef96c0dfa3170d3f619e5b5984625c3a0c8e13fe8284354a523",
+  "archive_bytes": 57151,
+  "layout": "Exactly six registered C++ source/header files under src/",
+  "source_sha256": {
+    "de_rules.h": "3e50429c96765f325ea3804c2bbb5c13ce26a4119fc7b8694f58def60531221b",
+    "fight.h": "5fb073f23ce41a5f6d07fba3aa55a016582a46ac54c4f8316ee6c96ebe92a7bb",
+    "main.cpp": "cb8cbe3eb437bcbee66d7b2003b5cdb1d81d37042b72d22d1edc1e001a56f4c6",
+    "opening_replace.h": "ca6680bae82b74b89fd0bb65573904246df8761d8b22e3ce8cb6bd93207207e7",
+    "params.h": "d99ef2cecff65f7851efb491bb4691d40ddeaaa6a96499e13eddec814fdc1372",
+    "utility.h": "5e48af1229195c4b356a617fd7323f49efe2af3a09728f6eda91ed4975c2b580"
+  },
+  "source_changed": false,
+  "game_results_changed": false,
+  "new_games": 0,
+  "build_pending": false,
+  "packager": "Official cambc 2.1.6 bundle",
+  "supersedes_for_upload": {
+    "filename": "cambc-study27-economy-experimental-productive_walk-fbf835ee.zip",
+    "bytes": 213234,
+    "sha256": "d69b4385f7bbd3c05350b354f5cf5cb439c334e20e85acea65ac7b175895b6b9",
+    "format": "ZIP_STORED, exact six root-source files, sorted names, fixed2026-01-01 timestamp and0644 modes"
+  },
+  "reason": "Previous archive had files at its root; platform requires src/ for C++.",
+  "official_cli_build_exit_code": 0,
+  "rebuilt_injected_wasm_sha256": "fbf835eea4f7a3e629ca58dbff2792f66994d400e93f80332a4d11ba0143ce29",
+  "rebuilt_wasm_matches_tested_frozen_wasm": true,
+  "publication_contracts_passed": 96
+}

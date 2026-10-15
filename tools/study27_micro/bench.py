@@ -61,7 +61,12 @@ SPAR_SHA256={
         'main.cpp':'56c1771b6fcc83eafbf6afd237b15741738958f2b4e0d8eaa4732e410e8dcc25',
         'params.h':'f9b7b55d7958bd012accf0e18aaef5fba91ed3d21fc06330094844b57bb9ccaf'},
 }
-FEATURES=tuple(f'farm_{m}_{r}' for m in ('outnumbered','volley','contested') for r in ('hold','backoff'))+('reserve_cc3','reserve_cc6')
+ORIGINAL_FEATURES=tuple(f'farm_{m}_{r}' for m in ('outnumbered','volley','contested') for r in ('hold','backoff'))+('reserve_cc3','reserve_cc6')
+REFINED_FEATURES=('start_only_backoff','start_only_retarget','no_contact_dash','reserve_cc_contact5','reserve_cc_contact3')
+CORNERS_FEATURES=('corners_lone','corners_reentry','corners_flee','corners_lone_reentry','corners_lone_flee','corners_reentry_flee','corners_v39')
+REENTRY_FEATURES=('reentry16','reentry32')
+ACTIVE_REENTRY_FEATURES=('reentry16_active','reentry32_active')
+FEATURES=ORIGINAL_FEATURES+REFINED_FEATURES+CORNERS_FEATURES+REENTRY_FEATURES+ACTIVE_REENTRY_FEATURES
 OUTPUT_ROOT=None
 OUTPUT_REPO=None
 
@@ -99,6 +104,17 @@ def write(path,value):
     os.replace(temporary,path)
 def valid_name(name):
     require(re.fullmatch(r'[A-Za-z0-9][A-Za-z0-9_-]{0,63}',name) is not None,'Invalid output bot name')
+def ordered_features(features):
+    require(len(set(features))==len(features) and all(f in FEATURES for f in features),'Unknown/duplicate feature')
+    corners=[f for f in features if f in CORNERS_FEATURES]
+    reserves=[f for f in features if f in ('reserve_cc3','reserve_cc6')]
+    policies=[f for f in features if f not in CORNERS_FEATURES and f not in ('reserve_cc3','reserve_cc6')]
+    require(len(corners)<=1 and len(policies)<=1 and len(reserves)<=1,
+            'Select at most one corners component set, one generic policy and one global CC reserve')
+    require(not (any(f.startswith('reserve_cc_contact') for f in policies) and reserves),
+            'Contact-only CC policies cannot be combined with another CC reserve')
+    # Corners verifies the complete original main/params pins and must run first.
+    return corners+policies+reserves
 def source_hashes(path):
     children=list(Path(path).iterdir())
     require(all(p.is_file() for p in children),'Unexpected source subdirectory')
@@ -135,21 +151,37 @@ def pinned_source(repo,commit,path,expected):
     return files
 
 def patched_source(original,features):
+    features=ordered_features(features)
     decoded={name:content.decode('utf-8').replace('\r\n','\n').replace('\r','\n') for name,content in original.items()}
     files=dict(decoded);module_pins={}
-    if features:
-        module_path=Path(__file__).resolve().with_name('patch_farm.py')
-        require(module_path.is_file(),'Missing neighboring patch_farm.py')
-        spec=importlib.util.spec_from_file_location('study27_farm_patch',module_path)
-        module=importlib.util.module_from_spec(spec);spec.loader.exec_module(module)
-        for feature in features:
-            files=module.apply(files,feature=feature)
-            require(isinstance(files,dict),'Transform did not return source files')
-        module_pins['patch_farm.py']=sha(module_path)
+    modules={}
+    for feature in features:
+        module_name=('patch_corners.py' if feature in CORNERS_FEATURES else
+                     'patch_reentry_active.py' if feature in ACTIVE_REENTRY_FEATURES else
+                     'patch_reentry.py' if feature in REENTRY_FEATURES else
+                     'patch_farm_refined.py' if feature in REFINED_FEATURES else 'patch_farm.py')
+        module_path=Path(__file__).resolve().with_name(module_name)
+        require(module_path.is_file(),'Missing neighboring '+module_name)
+        if module_name not in modules:
+            spec=importlib.util.spec_from_file_location('study27_'+module_path.stem,module_path)
+            module=importlib.util.module_from_spec(spec);spec.loader.exec_module(module)
+            modules[module_name]=module
+            module_pins[module_name]=sha(module_path)
+        if feature in ('start_only_backoff','start_only_retarget'):
+            dependency=module_path.with_name('patch_farm.py')
+            require(dependency.is_file(),'Missing transitive start-only dependency patch_farm.py')
+            module_pins[dependency.name]=sha(dependency)
+        if feature in ACTIVE_REENTRY_FEATURES:
+            dependency=module_path.with_name('patch_reentry.py')
+            require(dependency.is_file(),'Missing transitive active re-entry dependency patch_reentry.py')
+            module_pins[dependency.name]=sha(dependency)
+        files=modules[module_name].apply(files,feature=feature)
+        require(isinstance(files,dict),'Transform did not return source files')
     require(set(files)==set(original),'Transform added or removed source files')
     return {name:original[name] if value==decoded[name] else value.encode('utf-8') for name,value in files.items()},module_pins
 
 def prepare(root,name,features,original,commit,base_path):
+    features=ordered_features(features)
     payload,module_pins=patched_source(original,features)
     pins={name:sha_bytes(content) for name,content in sorted(payload.items())}
     target=guard(root/'bots'/name/'src')
@@ -272,9 +304,7 @@ def main():
     p.add_argument('--timeout',type=int,default=240);p.add_argument('--prepare-only',action='store_true')
     a=p.parse_args();valid_name(a.candidate)
     require(a.candidate not in ('original',*SPARS),'Candidate name is reserved')
-    features=[s.strip() for s in a.features.split(',') if s.strip()]
-    require(len(set(features))==len(features) and all(f in FEATURES for f in features),'Unknown/duplicate feature')
-    require(sum(f.startswith('farm_') for f in features)<=1 and sum(f.startswith('reserve_') for f in features)<=1,'Select at most one farm guard and one CC reserve')
+    features=ordered_features([s.strip() for s in a.features.split(',') if s.strip()])
     opponents=[s.strip() for s in a.opponents.split(',') if s.strip()]
     require(opponents and len(set(opponents))==len(opponents) and all(o in ('original',*SPARS) for o in opponents),'Invalid/duplicate opponent')
     require(1<=a.jobs<=32 and a.timeout>0,'Require jobs1..32 and positive timeout')

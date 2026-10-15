@@ -1,0 +1,109 @@
+{
+  "created_utc": "2026-10-15T21:00:38.273835+00:00",
+  "phase": "Adaptive second development phase, before any v2 candidate games.",
+  "created_before_game_outcomes": false,
+  "created_before_v2_game_outcomes": true,
+  "parent_experiment": "study27-economy",
+  "parent_evidence_sha256": {
+    "selection-plan.json": "8d547b48dca5d482beea10e1358c6b19d6b72f76c161cfb8ae79e5faceb1f130",
+    "package-build-freeze.json": "ee92e59af85805eeb588b81e97102d47667b956e155ae4c75ff27044e633944d",
+    "results/economy-screen.json": "78781a06b25758565d9c53fbdcd876edffa6f42b29d5136220aa5f6dd5154572",
+    "screen-evaluation.json": "f95ccb2704f582ab037896ac8bac8fce6186f15354950a0302fb37939fcc04b4",
+    "harness-plan.json": "2cff21ccf9781923eb4e9cefe00a6e9cf267ef77454faef024bd8cd553492b1c"
+  },
+  "adaptive_hypothesis": {
+    "observed_after": "Completed parent screen: 8268 semantic game slots on 53 development maps.",
+    "screen_observation": "cf_camp_focus alone lost about31.32 percentage points against the matched five-reference panel; packages containing it lost about28 points. Other isolated changes were much closer to control.",
+    "mechanism": "Code review found a plausible travel-stall mechanism: hypothetical camp contact can be rejected outside actual monster range, while a retained damaged/claimed target can leave the actor idle. This is a concrete hypothesis, not a claim that it explains every loss.",
+    "intervention": "Compose the already frozen complementary banking, camp reach/evacuation and travel-recall policies WITHOUT cf_camp_focus. No new policy code and no edits to prior results or source.",
+    "statistical_limit": "These packages are adaptively chosen using exposed development outcomes. All development comparisons are descriptive. Only one final fixed candidate may use the still-ungenerated fresh cohort."
+  },
+  "baseline": "Current cleaned study27-combat from PR11 (origin e72cec8; exact six-file pins in baseline/manifest.json), not the earlier unmodified study27.",
+  "packages": {
+    "productive_walk": [
+      "banking_walk",
+      "cf_camp_reach",
+      "cf_camp_evac",
+      "cr_travel"
+    ],
+    "productive_risk": [
+      "banking_risk",
+      "cf_camp_reach",
+      "cf_camp_evac",
+      "cr_travel"
+    ],
+    "bank_walk": [
+      "banking_walk",
+      "cr_travel"
+    ],
+    "mobile_camps": [
+      "cf_camp_reach",
+      "cf_camp_evac"
+    ],
+    "productive_share85": [
+      "banking_walk",
+      "cf_camp_reach",
+      "cf_camp_evac",
+      "cr_travel",
+      "share85"
+    ],
+    "productive_share100": [
+      "banking_walk",
+      "cf_camp_reach",
+      "cf_camp_evac",
+      "cr_travel",
+      "share100"
+    ]
+  },
+  "references": {
+    "older_fixed_spars": [
+      "spar11",
+      "spar12",
+      "spar16"
+    ],
+    "new_fixed_style_probes": {
+      "challenge_fastbank": {
+        "P_TRIBUTE_GEMS": 6,
+        "P_TRIBUTE_NEAR": 10,
+        "P_CHAIN": 0,
+        "P_BAG": 0
+      },
+      "challenge_brawl": {
+        "P_DRAFTUNI": 1,
+        "P_UNI_FLEE": 20,
+        "P_RECALL_PCT": 40,
+        "P_VOLLEY": 50
+      }
+    },
+    "direct_control": "original",
+    "limits": "Style probes are predeclared alternative policies, not claims of strength or contemporary top-team opponents. Also report older-spar and new-style subsets separately."
+  },
+  "development": {
+    "screen": "All six packages on official9 + gen44 =53 maps, both sides versus original and all five fixed references. Reuse exact physical games once.",
+    "mandatory_full_packages": [
+      "productive_walk"
+    ],
+    "maximum_full_candidates": 2,
+    "full": "Advance productive_walk regardless its screen score, unless a correctness/fault blocker invalidates it. Also advance the best OTHER screen package ranked by matched five-reference win delta, then submitted-gem delta, then fewer features/name for a deterministic tie. At most two full candidates. Full official9 + gen44 + dev200 =253 maps, both sides/all six opponents.",
+    "selection": "After full runs, prefer positive matched five-reference win score and direct baseline score >=50%, no individual reference regression >3 percentage points and zero reported faults/reinitializations on either side. Rank panel delta, then matched submitted-gem delta, then fewer features. Development significance is descriptive after adaptive selection.",
+    "transfer": "Before final freeze, run the leading full candidate on 128 previously exposed combat-confirmation maps, both sides/all six opponents with a matched baseline panel. This is exposed development evidence. If transfer has a nonpositive panel delta or direct baseline score <50%, permit the next full-ranked candidate a transfer check, at most two candidates total. No tuning from final holdout.",
+    "mechanisms": "Check branch activity; submitted/collected gems and deposit ratio, spent gold, deaths, monster damage dealt/taken, and rates per 100 rounds. Lower incoming camp damage without maintaining productivity is not itself an improvement. Geometry strata and actual drafts are descriptive. Telemetry maxima are sampled lower bounds; death-after-camp is an observational proxy, not death attribution."
+  },
+  "quality": "Full SDK compilation and meaningful helper/source checks before games. Include either team's reported faults/reinitializations. Low-fuel/caught API samples are diagnostics. Runtime, ordered WASMs, maps and statistics are pinned/deduplicated; cache reuse is never new evidence.",
+  "confirmation": {
+    "maps": 512,
+    "seed": 296314875,
+    "generator": "Existing native map generator at work/study28-fixes/generate-fresh.mjs, tools pinned before generating. Generate only after one final source/WASM freeze; ensure unique native geometries and no byte overlap with all exposed maps.",
+    "games": "Candidate vs current baseline and five fixed references; baseline vs five references; both sides =22 games/map, 11264 total.",
+    "pass": "Positive direct baseline score with exact two-sided paired-map both-won vs both-lost sign p<0.05; positive matched five-reference mean and positive vs negative per-map panel deltas with two-sided sign p<0.05; no reference regression >2 percentage points; zero all-side reported faults/reinitializations.",
+    "policy": "One fixed complete fresh cohort; no tuning, early stopping or candidate swapping based on its outcomes. If gates fail, do not claim a validated stronger submission. Preserve implemented code and honest diagnostics for further development.",
+    "limits": "One procedural distribution and fixed local opponents cannot establish superiority on the current online ladder or every unseen tournament map."
+  },
+  "shared_fresh_cohort_policy": "The parent and v2 share the same not-yet-generated512-map seed296314875. Select only one final winner after development/transfer; freeze that candidate once, generate once, and do not test parent alternatives on the final outcomes.",
+  "module_sha256": {
+    "patch_banking.py": "a0409c3c9cbbdbd1012609b9b9d79fa61bae3c88be5dccfd655b47f053ae50ce",
+    "patch_camps.py": "3413527246b445124d031aa3920bd509aa1091a24f710a3a39686a8b4c835fea",
+    "patch_recall.py": "42d5dde8ee6f2a910f5016c018829a0e79f8d1eb18ae3adc4e55e3b9bb047325"
+  },
+  "no_policy_code_changes": true
+}

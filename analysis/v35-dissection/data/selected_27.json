@@ -1,0 +1,4038 @@
+[
+{
+"match": "0413ec21-4796-42e3-bcf2-54b42b695251",
+"team": "us",
+"side": "a",
+"map": "rows",
+"opp": "Nyx",
+"orank": 21,
+"res": "loss",
+"score": 990,
+"oscore": 1056,
+"rounds": 442,
+"created": "2026-10-15T12:35:39.866Z",
+"draft": [
+"vendetta",
+"varg",
+"cassi_issac",
+"ryth"
+],
+"odraft": [
+"vendetta",
+"cassi_issac",
+"stellar",
+"ryth"
+],
+"replay": "/api/v1/matches/0413ec21-4796-42e3-bcf2-54b42b695251/bundle"
+},
+{
+"match": "a6a09bad-5643-4e1e-96c9-01ac9e6188e4",
+"team": "us",
+"side": "a",
+"map": "monolith",
+"opp": "Nyx",
+"orank": 21,
+"res": "loss",
+"score": 864,
+"oscore": 1010,
+"rounds": 445,
+"created": "2026-10-15T12:35:39.866Z",
+"draft": [
+"vendetta",
+"varg",
+"cassi_issac",
+"ryth",
+"tavi"
+],
+"odraft": [
+"vendetta",
+"cassi_issac",
+"stellar",
+"ryth",
+"tavi"
+],
+"replay": "/api/v1/matches/a6a09bad-5643-4e1e-96c9-01ac9e6188e4/bundle"
+},
+{
+"match": "23fc6b7e-c518-4adf-a344-d1911038b984",
+"team": "us",
+"side": "a",
+"map": "corners",
+"opp": "Nyx",
+"orank": 21,
+"res": "win",
+"score": 1036,
+"oscore": 590,
+"rounds": 714,
+"created": "2026-10-15T12:35:39.866Z",
+"draft": [
+"ryth",
+"stellar",
+"prism",
+"ren",
+"tavi"
+],
+"odraft": [
+"vendetta",
+"cassi_issac",
+"stellar",
+"ryth",
+"tavi"
+],
+"replay": "/api/v1/matches/23fc6b7e-c518-4adf-a344-d1911038b984/bundle"
+},
+{
+"match": "0ef584da-4b69-4360-85cf-7f4288b23765",
+"team": "us",
+"side": "a",
+"map": "collision",
+"opp": "Nyx",
+"orank": 21,
+"res": "loss",
+"score": 630,
+"oscore": 1006,
+"rounds": 732,
+"created": "2026-10-15T12:35:39.866Z",
+"draft": [
+"cassi_issac",
+"ren",
+"stellar"
+],
+"odraft": [
+"vendetta",
+"cassi_issac",
+"stellar"
+],
+"replay": "/api/v1/matches/0ef584da-4b69-4360-85cf-7f4288b23765/bundle"
+},
+{
+"match": "8cbb4b72-5a22-48e5-bb42-dde937c2aac0",
+"team": "us",
+"side": "a",
+"map": "packs",
+"opp": "Nyx",
+"orank": 21,
+"res": "loss",
+"score": 864,
+"oscore": 1032,
+"rounds": 510,
+"created": "2026-10-15T12:35:39.866Z",
+"draft": [
+"cassi_issac",
+"ren",
+"stellar"
+],
+"odraft": [
+"vendetta",
+"cassi_issac",
+"stellar"
+],
+"replay": "/api/v1/matches/8cbb4b72-5a22-48e5-bb42-dde937c2aac0/bundle"
+},
+{
+"match": "298b3a16-8bd4-4d96-bdfd-50a55be16d4a",
+"team": "us",
+"side": "a",
+"map": "interlock",
+"opp": "Still Testing",
+"orank": 19,
+"res": "win",
+"score": 1016,
+"oscore": 524,
+"rounds": 504,
+"created": "2026-10-15T12:35:32.047Z",
+"draft": [
+"cassi_issac",
+"ren",
+"stellar",
+"tavi"
+],
+"odraft": [
+"varg",
+"vendetta",
+"ryth",
+"ren"
+],
+"replay": "/api/v1/matches/298b3a16-8bd4-4d96-bdfd-50a55be16d4a/bundle"
+},
+{
+"match": "83adaff4-8dc8-4886-b26c-04a1d3faf2d8",
+"team": "us",
+"side": "a",
+"map": "corners",
+"opp": "Still Testing",
+"orank": 19,
+"res": "win",
+"score": 1036,
+"oscore": 780,
+"rounds": 595,
+"created": "2026-10-15T12:35:32.047Z",
+"draft": [
+"ryth",
+"stellar",
+"prism",
+"ren",
+"tavi"
+],
+"odraft": [
+"varg",
+"stellar",
+"cassi_issac",
+"ryth",
+"ren"
+],
+"replay": "/api/v1/matches/83adaff4-8dc8-4886-b26c-04a1d3faf2d8/bundle"
+},
+{
+"match": "93096f66-a483-44a2-a6aa-ba03e07e3931",
+"team": "us",
+"side": "a",
+"map": "expanse",
+"opp": "Still Testing",
+"orank": 19,
+"res": "loss",
+"score": 904,
+"oscore": 1016,
+"rounds": 338,
+"created": "2026-10-15T12:35:32.047Z",
+"draft": [
+"vendetta",
+"varg",
+"cassi_issac"
+],
+"odraft": [
+"varg",
+"vendetta",
+"cassi_issac"
+],
+"replay": "/api/v1/matches/93096f66-a483-44a2-a6aa-ba03e07e3931/bundle"
+},
+{
+"match": "81ff614b-7ae9-4e3b-b03a-69d15d865a77",
+"team": "us",
+"side": "a",
+"map": "lanes",
+"opp": "Still Testing",
+"orank": 19,
+"res": "loss",
+"score": 688,
+"oscore": 1006,
+"rounds": 413,
+"created": "2026-10-15T12:35:32.047Z",
+"draft": [
+"vendetta",
+"varg",
+"cassi_issac",
+"ryth",
+"tavi"
+],
+"odraft": [
+"varg",
+"stellar",
+"cassi_issac",
+"ryth",
+"ren"
+],
+"replay": "/api/v1/matches/81ff614b-7ae9-4e3b-b03a-69d15d865a77/bundle"
+},
+{
+"match": "48de9985-afe4-4ed1-a2e8-1fa59d281e4c",
+"team": "us",
+"side": "a",
+"map": "collision",
+"opp": "Still Testing",
+"orank": 19,
+"res": "win",
+"score": 1024,
+"oscore": 702,
+"rounds": 1086,
+"created": "2026-10-15T12:35:32.047Z",
+"draft": [
+"cassi_issac",
+"ren",
+"stellar"
+],
+"odraft": [
+"cassi_issac",
+"ryth",
+"ren"
+],
+"replay": "/api/v1/matches/48de9985-afe4-4ed1-a2e8-1fa59d281e4c/bundle"
+},
+{
+"match": "2bc7a917-25fc-4aab-8219-28ba99164ff0",
+"team": "us",
+"side": "b",
+"map": "rows",
+"opp": "Palestine \ud83c\uddf5\ud83c\uddf8",
+"orank": 54,
+"res": "win",
+"score": 1056,
+"oscore": 924,
+"rounds": 404,
+"created": "2026-10-15T12:31:29.032Z",
+"draft": [
+"vendetta",
+"varg",
+"cassi_issac",
+"ryth"
+],
+"odraft": [
+"cassi_issac",
+"stellar",
+"varg",
+"tavi"
+],
+"replay": "/api/v1/matches/2bc7a917-25fc-4aab-8219-28ba99164ff0/bundle"
+},
+{
+"match": "522c783a-4c1a-4fdd-8f4d-2f373394c3d1",
+"team": "us",
+"side": "b",
+"map": "expanse",
+"opp": "Palestine \ud83c\uddf5\ud83c\uddf8",
+"orank": 54,
+"res": "win",
+"score": 1004,
+"oscore": 992,
+"rounds": 398,
+"created": "2026-10-15T12:31:29.032Z",
+"draft": [
+"vendetta",
+"varg",
+"cassi_issac"
+],
+"odraft": [
+"cassi_issac",
+"varg",
+"vendetta"
+],
+"replay": "/api/v1/matches/522c783a-4c1a-4fdd-8f4d-2f373394c3d1/bundle"
+},
+{
+"match": "13795808-25e0-4fe2-b0c6-70d317607654",
+"team": "us",
+"side": "b",
+"map": "corners",
+"opp": "Palestine \ud83c\uddf5\ud83c\uddf8",
+"orank": 54,
+"res": "win",
+"score": 1016,
+"oscore": 362,
+"rounds": 481,
+"created": "2026-10-15T12:31:29.032Z",
+"draft": [
+"ryth",
+"stellar",
+"prism",
+"ren",
+"tavi"
+],
+"odraft": [
+"varg",
+"ryth",
+"stellar",
+"ren",
+"tavi"
+],
+"replay": "/api/v1/matches/13795808-25e0-4fe2-b0c6-70d317607654/bundle"
+},
+{
+"match": "ebc9c015-d19b-4637-9cba-7264e356e4fa",
+"team": "us",
+"side": "b",
+"map": "packs",
+"opp": "Palestine \ud83c\uddf5\ud83c\uddf8",
+"orank": 54,
+"res": "win",
+"score": 1000,
+"oscore": 892,
+"rounds": 472,
+"created": "2026-10-15T12:31:29.032Z",
+"draft": [
+"cassi_issac",
+"ren",
+"stellar"
+],
+"odraft": [
+"cassi_issac",
+"stellar",
+"varg"
+],
+"replay": "/api/v1/matches/ebc9c015-d19b-4637-9cba-7264e356e4fa/bundle"
+},
+{
+"match": "600545aa-d0d9-4962-aeb5-18b531cf3537",
+"team": "us",
+"side": "b",
+"map": "lanes",
+"opp": "Palestine \ud83c\uddf5\ud83c\uddf8",
+"orank": 54,
+"res": "win",
+"score": 1018,
+"oscore": 800,
+"rounds": 381,
+"created": "2026-10-15T12:31:29.032Z",
+"draft": [
+"vendetta",
+"varg",
+"cassi_issac",
+"ryth",
+"tavi"
+],
+"odraft": [
+"cassi_issac",
+"varg",
+"vendetta",
+"stellar",
+"tavi"
+],
+"replay": "/api/v1/matches/600545aa-d0d9-4962-aeb5-18b531cf3537/bundle"
+},
+{
+"match": "8e307097-ec3e-4812-9085-9b3ae3b13a14",
+"team": "us",
+"side": "a",
+"map": "corners",
+"opp": "\u3072\u306a\u306a\u30fc",
+"orank": 23,
+"res": "win",
+"score": 1004,
+"oscore": 0,
+"rounds": 455,
+"created": "2026-10-15T12:37:56.541Z",
+"draft": [
+"ryth",
+"stellar",
+"prism",
+"ren",
+"tavi"
+],
+"odraft": [
+"willow",
+"tavi",
+"ryth",
+"stellar",
+"ren"
+],
+"replay": "/api/v1/matches/8e307097-ec3e-4812-9085-9b3ae3b13a14/bundle"
+},
+{
+"match": "50c2eb32-602c-41cf-86ac-ef76e7273190",
+"team": "us",
+"side": "a",
+"map": "lanes",
+"opp": "\u3072\u306a\u306a\u30fc",
+"orank": 23,
+"res": "loss",
+"score": 826,
+"oscore": 1000,
+"rounds": 485,
+"created": "2026-10-15T12:37:56.541Z",
+"draft": [
+"vendetta",
+"varg",
+"cassi_issac",
+"ryth",
+"tavi"
+],
+"odraft": [
+"ryth",
+"stellar",
+"prism",
+"ren",
+"tavi"
+],
+"replay": "/api/v1/matches/50c2eb32-602c-41cf-86ac-ef76e7273190/bundle"
+},
+{
+"match": "4a913de2-36cd-4609-9d31-fb8aa4549278",
+"team": "us",
+"side": "a",
+"map": "packs",
+"opp": "\u3072\u306a\u306a\u30fc",
+"orank": 23,
+"res": "win",
+"score": 1008,
+"oscore": 760,
+"rounds": 549,
+"created": "2026-10-15T12:37:56.541Z",
+"draft": [
+"cassi_issac",
+"ren",
+"stellar"
+],
+"odraft": [
+"stellar",
+"ryth",
+"varg"
+],
+"replay": "/api/v1/matches/4a913de2-36cd-4609-9d31-fb8aa4549278/bundle"
+},
+{
+"match": "5478c92c-7163-4caf-a95b-be9909ee17a2",
+"team": "us",
+"side": "a",
+"map": "interlock",
+"opp": "\u3072\u306a\u306a\u30fc",
+"orank": 23,
+"res": "loss",
+"score": 922,
+"oscore": 1038,
+"rounds": 579,
+"created": "2026-10-15T12:37:56.541Z",
+"draft": [
+"cassi_issac",
+"ren",
+"stellar",
+"tavi"
+],
+"odraft": [
+"ryth",
+"cassi_issac",
+"ren",
+"stellar"
+],
+"replay": "/api/v1/matches/5478c92c-7163-4caf-a95b-be9909ee17a2/bundle"
+},
+{
+"match": "e30b7049-d40b-4c61-9d36-25d5388c6f10",
+"team": "us",
+"side": "a",
+"map": "expanse",
+"opp": "\u3072\u306a\u306a\u30fc",
+"orank": 23,
+"res": "win",
+"score": 1024,
+"oscore": 910,
+"rounds": 375,
+"created": "2026-10-15T12:37:56.541Z",
+"draft": [
+"vendetta",
+"varg",
+"cassi_issac"
+],
+"odraft": [
+"cassi_issac",
+"vendetta",
+"varg"
+],
+"replay": "/api/v1/matches/e30b7049-d40b-4c61-9d36-25d5388c6f10/bundle"
+},
+{
+"match": "89bc66b5-92c7-4d01-bf0c-9e8a07890881",
+"team": "us",
+"side": "a",
+"map": "monolith",
+"opp": "getramramd#euw",
+"orank": 18,
+"res": "loss",
+"score": 916,
+"oscore": 1048,
+"rounds": 491,
+"created": "2026-10-15T12:37:54.118Z",
+"draft": [
+"vendetta",
+"varg",
+"cassi_issac",
+"ryth",
+"tavi"
+],
+"odraft": [
+"varg",
+"cassi_issac",
+"stellar",
+"tavi",
+"ren"
+],
+"replay": "/api/v1/matches/89bc66b5-92c7-4d01-bf0c-9e8a07890881/bundle"
+},
+{
+"match": "8ec75b50-d214-46f9-9e95-c4338b95d39a",
+"team": "us",
+"side": "a",
+"map": "expanse",
+"opp": "getramramd#euw",
+"orank": 18,
+"res": "loss",
+"score": 820,
+"oscore": 1002,
+"rounds": 342,
+"created": "2026-10-15T12:37:54.118Z",
+"draft": [
+"vendetta",
+"varg",
+"cassi_issac"
+],
+"odraft": [
+"varg",
+"vendetta",
+"cassi_issac"
+],
+"replay": "/api/v1/matches/8ec75b50-d214-46f9-9e95-c4338b95d39a/bundle"
+},
+{
+"match": "4d2a9c14-e75d-425f-87e5-6f9dfaa860a5",
+"team": "us",
+"side": "a",
+"map": "corners",
+"opp": "getramramd#euw",
+"orank": 18,
+"res": "win",
+"score": 1004,
+"oscore": 96,
+"rounds": 563,
+"created": "2026-10-15T12:37:54.118Z",
+"draft": [
+"ryth",
+"stellar",
+"prism",
+"ren",
+"tavi"
+],
+"odraft": [
+"varg",
+"cassi_issac",
+"stellar",
+"tavi",
+"ren"
+],
+"replay": "/api/v1/matches/4d2a9c14-e75d-425f-87e5-6f9dfaa860a5/bundle"
+},
+{
+"match": "6eff9347-4eff-46ae-a95f-514b5294de0d",
+"team": "us",
+"side": "a",
+"map": "collision",
+"opp": "getramramd#euw",
+"orank": 18,
+"res": "win",
+"score": 1024,
+"oscore": 370,
+"rounds": 578,
+"created": "2026-10-15T12:37:54.118Z",
+"draft": [
+"cassi_issac",
+"ren",
+"stellar"
+],
+"odraft": [
+"varg",
+"cassi_issac",
+"stellar"
+],
+"replay": "/api/v1/matches/6eff9347-4eff-46ae-a95f-514b5294de0d/bundle"
+},
+{
+"match": "0448c1b5-aa3e-420b-a668-bafaaa1f2f61",
+"team": "us",
+"side": "a",
+"map": "lanes",
+"opp": "getramramd#euw",
+"orank": 18,
+"res": "loss",
+"score": 830,
+"oscore": 1014,
+"rounds": 414,
+"created": "2026-10-15T12:37:54.118Z",
+"draft": [
+"vendetta",
+"varg",
+"cassi_issac",
+"ryth",
+"tavi"
+],
+"odraft": [
+"varg",
+"cassi_issac",
+"stellar",
+"tavi",
+"ren"
+],
+"replay": "/api/v1/matches/0448c1b5-aa3e-420b-a668-bafaaa1f2f61/bundle"
+},
+{
+"match": "441456a5-521a-4c8e-be0a-2cf911290553",
+"team": "us",
+"side": "a",
+"map": "packs",
+"opp": "\u2764\ufe0fQuantom\u2764\ufe0f",
+"orank": 10,
+"res": "loss",
+"score": 772,
+"oscore": 1036,
+"rounds": 467,
+"created": "2026-10-15T12:37:51.695Z",
+"draft": [
+"cassi_issac",
+"ren",
+"stellar"
+],
+"odraft": [
+"ren",
+"varg",
+"vendetta"
+],
+"replay": "/api/v1/matches/441456a5-521a-4c8e-be0a-2cf911290553/bundle"
+},
+{
+"match": "78cd0a10-d800-405d-a20d-cfaf2c5569cd",
+"team": "us",
+"side": "a",
+"map": "corners",
+"opp": "\u2764\ufe0fQuantom\u2764\ufe0f",
+"orank": 10,
+"res": "win",
+"score": 1006,
+"oscore": 510,
+"rounds": 548,
+"created": "2026-10-15T12:37:51.695Z",
+"draft": [
+"ryth",
+"stellar",
+"prism",
+"ren",
+"tavi"
+],
+"odraft": [
+"ren",
+"varg",
+"vendetta",
+"ryth",
+"cassi_issac"
+],
+"replay": "/api/v1/matches/78cd0a10-d800-405d-a20d-cfaf2c5569cd/bundle"
+},
+{
+"match": "575e0a24-3228-4e45-9bd9-d587475429d6",
+"team": "us",
+"side": "a",
+"map": "lanes",
+"opp": "\u2764\ufe0fQuantom\u2764\ufe0f",
+"orank": 10,
+"res": "loss",
+"score": 902,
+"oscore": 1000,
+"rounds": 357,
+"created": "2026-10-15T12:37:51.695Z",
+"draft": [
+"vendetta",
+"varg",
+"cassi_issac",
+"ryth",
+"tavi"
+],
+"odraft": [
+"ren",
+"varg",
+"vendetta",
+"ryth",
+"cassi_issac"
+],
+"replay": "/api/v1/matches/575e0a24-3228-4e45-9bd9-d587475429d6/bundle"
+},
+{
+"match": "37a6ef59-469e-4faf-91cb-e05295634115",
+"team": "us",
+"side": "a",
+"map": "interlock",
+"opp": "\u2764\ufe0fQuantom\u2764\ufe0f",
+"orank": 10,
+"res": "win",
+"score": 1046,
+"oscore": 630,
+"rounds": 480,
+"created": "2026-10-15T12:37:51.695Z",
+"draft": [
+"cassi_issac",
+"ren",
+"stellar",
+"tavi"
+],
+"odraft": [
+"ren",
+"varg",
+"vendetta",
+"ryth"
+],
+"replay": "/api/v1/matches/37a6ef59-469e-4faf-91cb-e05295634115/bundle"
+},
+{
+"match": "1f163210-a3b9-49b6-b97f-fa4915689e51",
+"team": "us",
+"side": "a",
+"map": "collision",
+"opp": "\u2764\ufe0fQuantom\u2764\ufe0f",
+"orank": 10,
+"res": "win",
+"score": 1002,
+"oscore": 566,
+"rounds": 661,
+"created": "2026-10-15T12:37:51.695Z",
+"draft": [
+"cassi_issac",
+"ren",
+"stellar"
+],
+"odraft": [
+"ren",
+"varg",
+"vendetta"
+],
+"replay": "/api/v1/matches/1f163210-a3b9-49b6-b97f-fa4915689e51/bundle"
+},
+{
+"match": "c3a7077e-95c9-48f3-99d5-fb1b2df6ce40",
+"team": "us",
+"side": "a",
+"map": "rows",
+"opp": "Univardisty of Shingtonwash",
+"orank": 6,
+"res": "loss",
+"score": 957,
+"oscore": 1056,
+"rounds": 401,
+"created": "2026-10-15T12:37:49.419Z",
+"draft": [
+"vendetta",
+"varg",
+"cassi_issac",
+"ryth"
+],
+"odraft": [
+"cassi_issac",
+"stellar",
+"prism",
+"varg"
+],
+"replay": "/api/v1/matches/c3a7077e-95c9-48f3-99d5-fb1b2df6ce40/bundle"
+},
+{
+"match": "3316543c-9a4e-4a4c-bb9d-911233c99c9c",
+"team": "us",
+"side": "a",
+"map": "collision",
+"opp": "Univardisty of Shingtonwash",
+"orank": 6,
+"res": "loss",
+"score": 66,
+"oscore": 1078,
+"rounds": 584,
+"created": "2026-10-15T12:37:49.419Z",
+"draft": [
+"cassi_issac",
+"ren",
+"stellar"
+],
+"odraft": [
+"stellar",
+"ren",
+"tavi"
+],
+"replay": "/api/v1/matches/3316543c-9a4e-4a4c-bb9d-911233c99c9c/bundle"
+},
+{
+"match": "0818ab91-e373-4197-9638-c42bfa14d4f7",
+"team": "us",
+"side": "a",
+"map": "corners",
+"opp": "Univardisty of Shingtonwash",
+"orank": 6,
+"res": "loss",
+"score": 92,
+"oscore": 1018,
+"rounds": 415,
+"created": "2026-10-15T12:37:49.419Z",
+"draft": [
+"ryth",
+"stellar",
+"prism",
+"ren",
+"tavi"
+],
+"odraft": [
+"willow",
+"tavi",
+"ryth",
+"stellar",
+"ren"
+],
+"replay": "/api/v1/matches/0818ab91-e373-4197-9638-c42bfa14d4f7/bundle"
+},
+{
+"match": "83cdf11a-ec80-4897-a9ef-e5d03eeccdf8",
+"team": "us",
+"side": "a",
+"map": "packs",
+"opp": "Univardisty of Shingtonwash",
+"orank": 6,
+"res": "loss",
+"score": 776,
+"oscore": 1024,
+"rounds": 490,
+"created": "2026-10-15T12:37:49.419Z",
+"draft": [
+"cassi_issac",
+"ren",
+"stellar"
+],
+"odraft": [
+"stellar",
+"ren",
+"varg"
+],
+"replay": "/api/v1/matches/83cdf11a-ec80-4897-a9ef-e5d03eeccdf8/bundle"
+},
+{
+"match": "a9f211f4-1cbd-46f0-9a65-5ef30fb53caf",
+"team": "us",
+"side": "a",
+"map": "lanes",
+"opp": "Univardisty of Shingtonwash",
+"orank": 6,
+"res": "loss",
+"score": 344,
+"oscore": 1020,
+"rounds": 311,
+"created": "2026-10-15T12:37:49.419Z",
+"draft": [
+"vendetta",
+"varg",
+"cassi_issac",
+"ryth",
+"tavi"
+],
+"odraft": [
+"ryth",
+"cassi_issac",
+"stellar",
+"ren",
+"tavi"
+],
+"replay": "/api/v1/matches/a9f211f4-1cbd-46f0-9a65-5ef30fb53caf/bundle"
+},
+{
+"match": "22e9ad91-343f-4bc3-afb1-dda8a9363231",
+"team": "us",
+"side": "a",
+"map": "monolith",
+"opp": "Shawn",
+"orank": 3,
+"res": "win",
+"score": 1004,
+"oscore": 900,
+"rounds": 461,
+"created": "2026-10-15T12:37:47.046Z",
+"draft": [
+"vendetta",
+"varg",
+"cassi_issac",
+"ryth",
+"tavi"
+],
+"odraft": [
+"varg",
+"ryth",
+"vendetta",
+"ren",
+"marcella"
+],
+"replay": "/api/v1/matches/22e9ad91-343f-4bc3-afb1-dda8a9363231/bundle"
+},
+{
+"match": "aca931fe-f87d-4b0b-91da-c359e54d4cac",
+"team": "us",
+"side": "a",
+"map": "lanes",
+"opp": "Shawn",
+"orank": 3,
+"res": "win",
+"score": 1014,
+"oscore": 858,
+"rounds": 430,
+"created": "2026-10-15T12:37:47.046Z",
+"draft": [
+"vendetta",
+"varg",
+"cassi_issac",
+"ryth",
+"tavi"
+],
+"odraft": [
+"cassi_issac",
+"ryth",
+"stellar",
+"tavi",
+"ren"
+],
+"replay": "/api/v1/matches/aca931fe-f87d-4b0b-91da-c359e54d4cac/bundle"
+},
+{
+"match": "ff9f5886-d7ca-4211-8baf-6b7c324e962d",
+"team": "us",
+"side": "a",
+"map": "rows",
+"opp": "Shawn",
+"orank": 3,
+"res": "loss",
+"score": 891,
+"oscore": 1056,
+"rounds": 351,
+"created": "2026-10-15T12:37:47.046Z",
+"draft": [
+"vendetta",
+"varg",
+"cassi_issac",
+"ryth"
+],
+"odraft": [
+"varg",
+"ryth",
+"vendetta",
+"cassi_issac"
+],
+"replay": "/api/v1/matches/ff9f5886-d7ca-4211-8baf-6b7c324e962d/bundle"
+},
+{
+"match": "f0a4886e-5bd4-4e05-9e60-8367e6d024f5",
+"team": "us",
+"side": "a",
+"map": "collision",
+"opp": "Shawn",
+"orank": 3,
+"res": "win",
+"score": 1122,
+"oscore": 440,
+"rounds": 836,
+"created": "2026-10-15T12:37:47.046Z",
+"draft": [
+"cassi_issac",
+"ren",
+"stellar"
+],
+"odraft": [
+"cassi_issac",
+"stellar",
+"ren"
+],
+"replay": "/api/v1/matches/f0a4886e-5bd4-4e05-9e60-8367e6d024f5/bundle"
+},
+{
+"match": "54fec30f-f8d4-437f-9b81-4f500da85d62",
+"team": "us",
+"side": "a",
+"map": "interlock",
+"opp": "Shawn",
+"orank": 3,
+"res": "win",
+"score": 1016,
+"oscore": 834,
+"rounds": 560,
+"created": "2026-10-15T12:37:47.046Z",
+"draft": [
+"cassi_issac",
+"ren",
+"stellar",
+"tavi"
+],
+"odraft": [
+"ryth",
+"stellar",
+"prism",
+"ren"
+],
+"replay": "/api/v1/matches/54fec30f-f8d4-437f-9b81-4f500da85d62/bundle"
+},
+{
+"match": "6e29d9a4-126f-4eb2-b6b0-fbba6d0d0a40",
+"team": "us",
+"side": "a",
+"map": "packs",
+"opp": "Intercontinental Fish",
+"orank": 2,
+"res": "loss",
+"score": 544,
+"oscore": 1036,
+"rounds": 443,
+"created": "2026-10-15T12:37:44.637Z",
+"draft": [
+"cassi_issac",
+"ren",
+"stellar"
+],
+"odraft": [
+"ren",
+"stellar",
+"cassi_issac"
+],
+"replay": "/api/v1/matches/6e29d9a4-126f-4eb2-b6b0-fbba6d0d0a40/bundle"
+},
+{
+"match": "8cdf892b-a6dc-4bbb-a8c4-b3ba97113795",
+"team": "us",
+"side": "a",
+"map": "expanse",
+"opp": "Intercontinental Fish",
+"orank": 2,
+"res": "win",
+"score": 1024,
+"oscore": 888,
+"rounds": 375,
+"created": "2026-10-15T12:37:44.637Z",
+"draft": [
+"vendetta",
+"varg",
+"cassi_issac"
+],
+"odraft": [
+"cassi_issac",
+"stellar",
+"varg"
+],
+"replay": "/api/v1/matches/8cdf892b-a6dc-4bbb-a8c4-b3ba97113795/bundle"
+},
+{
+"match": "09112589-5ee7-4b2f-bcf2-05eb8c1d56a4",
+"team": "us",
+"side": "a",
+"map": "rows",
+"opp": "Intercontinental Fish",
+"orank": 2,
+"res": "loss",
+"score": 957,
+"oscore": 1056,
+"rounds": 401,
+"created": "2026-10-15T12:37:44.637Z",
+"draft": [
+"vendetta",
+"varg",
+"cassi_issac",
+"ryth"
+],
+"odraft": [
+"cassi_issac",
+"stellar",
+"varg",
+"ren"
+],
+"replay": "/api/v1/matches/09112589-5ee7-4b2f-bcf2-05eb8c1d56a4/bundle"
+},
+{
+"match": "5bf8edf9-97f8-44c0-89a7-aab4b97a1aa3",
+"team": "us",
+"side": "a",
+"map": "interlock",
+"opp": "Intercontinental Fish",
+"orank": 2,
+"res": "loss",
+"score": 524,
+"oscore": 1014,
+"rounds": 460,
+"created": "2026-10-15T12:37:44.637Z",
+"draft": [
+"cassi_issac",
+"ren",
+"stellar",
+"tavi"
+],
+"odraft": [
+"ren",
+"stellar",
+"cassi_issac",
+"ryth"
+],
+"replay": "/api/v1/matches/5bf8edf9-97f8-44c0-89a7-aab4b97a1aa3/bundle"
+},
+{
+"match": "b830c75f-c976-4a22-ad87-2979b8424872",
+"team": "us",
+"side": "a",
+"map": "lanes",
+"opp": "Intercontinental Fish",
+"orank": 2,
+"res": "loss",
+"score": 774,
+"oscore": 1006,
+"rounds": 352,
+"created": "2026-10-15T12:37:44.637Z",
+"draft": [
+"vendetta",
+"varg",
+"cassi_issac",
+"ryth",
+"tavi"
+],
+"odraft": [
+"cassi_issac",
+"stellar",
+"varg",
+"ren",
+"ryth"
+],
+"replay": "/api/v1/matches/b830c75f-c976-4a22-ad87-2979b8424872/bundle"
+},
+{
+"match": "187de859-ffc4-40db-a6b7-89b740156a93",
+"team": "us",
+"side": "a",
+"map": "packs",
+"opp": "Mite",
+"orank": 1,
+"res": "loss",
+"score": 496,
+"oscore": 1000,
+"rounds": 433,
+"created": "2026-10-15T12:37:42.316Z",
+"draft": [
+"cassi_issac",
+"ren",
+"stellar"
+],
+"odraft": [
+"ren",
+"stellar",
+"cassi_issac"
+],
+"replay": "/api/v1/matches/187de859-ffc4-40db-a6b7-89b740156a93/bundle"
+},
+{
+"match": "0da6d890-8c5a-49d8-a19d-227271a90d40",
+"team": "us",
+"side": "a",
+"map": "rows",
+"opp": "Mite",
+"orank": 1,
+"res": "loss",
+"score": 957,
+"oscore": 1056,
+"rounds": 398,
+"created": "2026-10-15T12:37:42.316Z",
+"draft": [
+"vendetta",
+"varg",
+"cassi_issac",
+"ryth"
+],
+"odraft": [
+"varg",
+"ryth",
+"cassi_issac",
+"ren"
+],
+"replay": "/api/v1/matches/0da6d890-8c5a-49d8-a19d-227271a90d40/bundle"
+},
+{
+"match": "233c4851-6df6-494f-b8ba-477bd2e3d4ca",
+"team": "us",
+"side": "a",
+"map": "monolith",
+"opp": "Mite",
+"orank": 1,
+"res": "loss",
+"score": 718,
+"oscore": 1002,
+"rounds": 444,
+"created": "2026-10-15T12:37:42.316Z",
+"draft": [
+"vendetta",
+"varg",
+"cassi_issac",
+"ryth",
+"tavi"
+],
+"odraft": [
+"varg",
+"stellar",
+"cassi_issac",
+"ryth",
+"ren"
+],
+"replay": "/api/v1/matches/233c4851-6df6-494f-b8ba-477bd2e3d4ca/bundle"
+},
+{
+"match": "4106f2cb-0b8d-4347-8458-d069d658d42c",
+"team": "us",
+"side": "a",
+"map": "corners",
+"opp": "Mite",
+"orank": 1,
+"res": "loss",
+"score": 210,
+"oscore": 1042,
+"rounds": 466,
+"created": "2026-10-15T12:37:42.316Z",
+"draft": [
+"ryth",
+"stellar",
+"prism",
+"ren",
+"tavi"
+],
+"odraft": [
+"varg",
+"stellar",
+"cassi_issac",
+"ryth",
+"ren"
+],
+"replay": "/api/v1/matches/4106f2cb-0b8d-4347-8458-d069d658d42c/bundle"
+},
+{
+"match": "addc3c32-341a-4d04-afe5-7952b15c9007",
+"team": "us",
+"side": "a",
+"map": "expanse",
+"opp": "Mite",
+"orank": 1,
+"res": "win",
+"score": 1024,
+"oscore": 938,
+"rounds": 375,
+"created": "2026-10-15T12:37:42.316Z",
+"draft": [
+"vendetta",
+"varg",
+"cassi_issac"
+],
+"odraft": [
+"ren",
+"stellar",
+"cassi_issac"
+],
+"replay": "/api/v1/matches/addc3c32-341a-4d04-afe5-7952b15c9007/bundle"
+},
+{
+"match": "3667cd78-cc8e-4cd7-906b-1522c0b6579d",
+"team": "us",
+"side": "a",
+"map": "monolith",
+"opp": "BottleBots",
+"orank": 29,
+"res": "loss",
+"score": 828,
+"oscore": 1010,
+"rounds": 413,
+"created": "2026-10-15T12:37:39.979Z",
+"draft": [
+"vendetta",
+"varg",
+"cassi_issac",
+"ryth",
+"tavi"
+],
+"odraft": [
+"vendetta",
+"varg",
+"cassi_issac",
+"ryth",
+"ren"
+],
+"replay": "/api/v1/matches/3667cd78-cc8e-4cd7-906b-1522c0b6579d/bundle"
+},
+{
+"match": "826aea78-1441-469e-8395-109e29262971",
+"team": "us",
+"side": "a",
+"map": "interlock",
+"opp": "BottleBots",
+"orank": 29,
+"res": "loss",
+"score": 414,
+"oscore": 1008,
+"rounds": 487,
+"created": "2026-10-15T12:37:39.979Z",
+"draft": [
+"cassi_issac",
+"ren",
+"stellar",
+"tavi"
+],
+"odraft": [
+"vendetta",
+"varg",
+"cassi_issac",
+"ryth"
+],
+"replay": "/api/v1/matches/826aea78-1441-469e-8395-109e29262971/bundle"
+},
+{
+"match": "13c545f3-c11b-4233-8112-eb159a548b32",
+"team": "us",
+"side": "a",
+"map": "elkring",
+"opp": "BottleBots",
+"orank": 29,
+"res": "win",
+"score": 1008,
+"oscore": 648,
+"rounds": 547,
+"created": "2026-10-15T12:37:39.979Z",
+"draft": [
+"ryth",
+"stellar",
+"prism",
+"ren",
+"tavi"
+],
+"odraft": [
+"vendetta",
+"varg",
+"cassi_issac",
+"ryth",
+"ren"
+],
+"replay": "/api/v1/matches/13c545f3-c11b-4233-8112-eb159a548b32/bundle"
+},
+{
+"match": "be96b538-1bd4-4054-9c06-e9e52d50106c",
+"team": "us",
+"side": "a",
+"map": "collision",
+"opp": "BottleBots",
+"orank": 29,
+"res": "win",
+"score": 1018,
+"oscore": 66,
+"rounds": 677,
+"created": "2026-10-15T12:37:39.979Z",
+"draft": [
+"cassi_issac",
+"ren",
+"stellar"
+],
+"odraft": [
+"vendetta",
+"varg",
+"cassi_issac"
+],
+"replay": "/api/v1/matches/be96b538-1bd4-4054-9c06-e9e52d50106c/bundle"
+},
+{
+"match": "3094dd87-d272-47b4-b976-e9e13063e416",
+"team": "us",
+"side": "a",
+"map": "lanes",
+"opp": "BottleBots",
+"orank": 29,
+"res": "loss",
+"score": 926,
+"oscore": 1014,
+"rounds": 377,
+"created": "2026-10-15T12:37:39.979Z",
+"draft": [
+"vendetta",
+"varg",
+"cassi_issac",
+"ryth",
+"tavi"
+],
+"odraft": [
+"vendetta",
+"varg",
+"cassi_issac",
+"ryth",
+"ren"
+],
+"replay": "/api/v1/matches/3094dd87-d272-47b4-b976-e9e13063e416/bundle"
+},
+{
+"match": "fcd1a416-503f-4f03-9f7b-61d86acdd909",
+"team": "us",
+"side": "a",
+"map": "collision",
+"opp": "Ely2sh",
+"orank": 24,
+"res": "win",
+"score": 1004,
+"oscore": 330,
+"rounds": 765,
+"created": "2026-10-15T12:37:37.469Z",
+"draft": [
+"cassi_issac",
+"ren",
+"stellar"
+],
+"odraft": [
+"cassi_issac",
+"stellar",
+"tavi"
+],
+"replay": "/api/v1/matches/fcd1a416-503f-4f03-9f7b-61d86acdd909/bundle"
+},
+{
+"match": "9ee39785-782f-4bbc-a2b0-0c19877a8790",
+"team": "us",
+"side": "a",
+"map": "elkring",
+"opp": "Ely2sh",
+"orank": 24,
+"res": "win",
+"score": 1026,
+"oscore": 990,
+"rounds": 644,
+"created": "2026-10-15T12:37:37.469Z",
+"draft": [
+"ryth",
+"stellar",
+"prism",
+"ren",
+"tavi"
+],
+"odraft": [
+"varg",
+"cassi_issac",
+"vendetta",
+"ryth",
+"tavi"
+],
+"replay": "/api/v1/matches/9ee39785-782f-4bbc-a2b0-0c19877a8790/bundle"
+},
+{
+"match": "92735e59-afe6-47db-9c66-3e10c22286e0",
+"team": "us",
+"side": "a",
+"map": "monolith",
+"opp": "Ely2sh",
+"orank": 24,
+"res": "win",
+"score": 1026,
+"oscore": 804,
+"rounds": 539,
+"created": "2026-10-15T12:37:37.469Z",
+"draft": [
+"vendetta",
+"varg",
+"cassi_issac",
+"ryth",
+"tavi"
+],
+"odraft": [
+"cassi_issac",
+"stellar",
+"tavi",
+"ren",
+"varg"
+],
+"replay": "/api/v1/matches/92735e59-afe6-47db-9c66-3e10c22286e0/bundle"
+},
+{
+"match": "c2118565-bfcc-4571-a2f7-fd0f99e26aab",
+"team": "us",
+"side": "a",
+"map": "expanse",
+"opp": "Ely2sh",
+"orank": 24,
+"res": "loss",
+"score": 820,
+"oscore": 1012,
+"rounds": 343,
+"created": "2026-10-15T12:37:37.469Z",
+"draft": [
+"vendetta",
+"varg",
+"cassi_issac"
+],
+"odraft": [
+"varg",
+"cassi_issac",
+"vendetta"
+],
+"replay": "/api/v1/matches/c2118565-bfcc-4571-a2f7-fd0f99e26aab/bundle"
+},
+{
+"match": "780e6603-95d4-4c37-931e-4c2895f3186f",
+"team": "us",
+"side": "a",
+"map": "corners",
+"opp": "Ely2sh",
+"orank": 24,
+"res": "loss",
+"score": 308,
+"oscore": 1006,
+"rounds": 735,
+"created": "2026-10-15T12:37:37.469Z",
+"draft": [
+"ryth",
+"stellar",
+"prism",
+"ren",
+"tavi"
+],
+"odraft": [
+"stellar",
+"cassi_issac",
+"ren",
+"tavi",
+"ryth"
+],
+"replay": "/api/v1/matches/780e6603-95d4-4c37-931e-4c2895f3186f/bundle"
+},
+{
+"match": "dbecb8b6-d3ca-4798-8aaf-6f6ff1502499",
+"team": "us",
+"side": "a",
+"map": "expanse",
+"opp": "AlphaSlop",
+"orank": 27,
+"res": "loss",
+"score": 928,
+"oscore": 1028,
+"rounds": 374,
+"created": "2026-10-15T12:37:35.156Z",
+"draft": [
+"vendetta",
+"varg",
+"cassi_issac"
+],
+"odraft": [
+"ren",
+"cassi_issac",
+"stellar"
+],
+"replay": "/api/v1/matches/dbecb8b6-d3ca-4798-8aaf-6f6ff1502499/bundle"
+},
+{
+"match": "0c7b387d-906f-4087-937f-f53db2228cc5",
+"team": "us",
+"side": "a",
+"map": "elkring",
+"opp": "AlphaSlop",
+"orank": 27,
+"res": "win",
+"score": 1026,
+"oscore": 918,
+"rounds": 647,
+"created": "2026-10-15T12:37:35.156Z",
+"draft": [
+"ryth",
+"stellar",
+"prism",
+"ren",
+"tavi"
+],
+"odraft": [
+"stellar",
+"cassi_issac",
+"ren",
+"marcella",
+"ryth"
+],
+"replay": "/api/v1/matches/0c7b387d-906f-4087-937f-f53db2228cc5/bundle"
+},
+{
+"match": "0651ce8f-68b1-4f7b-9c68-57d837ca88d4",
+"team": "us",
+"side": "a",
+"map": "collision",
+"opp": "AlphaSlop",
+"orank": 27,
+"res": "loss",
+"score": 766,
+"oscore": 1000,
+"rounds": 851,
+"created": "2026-10-15T12:37:35.156Z",
+"draft": [
+"cassi_issac",
+"ren",
+"stellar"
+],
+"odraft": [
+"ren",
+"cassi_issac",
+"stellar"
+],
+"replay": "/api/v1/matches/0651ce8f-68b1-4f7b-9c68-57d837ca88d4/bundle"
+},
+{
+"match": "eef25c38-7674-4e4a-b79d-73e663b00652",
+"team": "us",
+"side": "a",
+"map": "interlock",
+"opp": "AlphaSlop",
+"orank": 27,
+"res": "win",
+"score": 1002,
+"oscore": 812,
+"rounds": 499,
+"created": "2026-10-15T12:37:35.156Z",
+"draft": [
+"cassi_issac",
+"ren",
+"stellar",
+"tavi"
+],
+"odraft": [
+"stellar",
+"cassi_issac",
+"ren",
+"tavi"
+],
+"replay": "/api/v1/matches/eef25c38-7674-4e4a-b79d-73e663b00652/bundle"
+},
+{
+"match": "e37b8c15-67c6-4cfb-afe5-ceed65e4afef",
+"team": "us",
+"side": "a",
+"map": "packs",
+"opp": "AlphaSlop",
+"orank": 27,
+"res": "win",
+"score": 1040,
+"oscore": 812,
+"rounds": 594,
+"created": "2026-10-15T12:37:35.156Z",
+"draft": [
+"cassi_issac",
+"ren",
+"stellar"
+],
+"odraft": [
+"ren",
+"cassi_issac",
+"stellar"
+],
+"replay": "/api/v1/matches/e37b8c15-67c6-4cfb-afe5-ceed65e4afef/bundle"
+},
+{
+"match": "551547ba-07c6-4352-86c0-13ed1a9f19fa",
+"team": "us",
+"side": "a",
+"map": "monolith",
+"opp": "test",
+"orank": 14,
+"res": "loss",
+"score": 938,
+"oscore": 1002,
+"rounds": 495,
+"created": "2026-10-15T12:37:32.779Z",
+"draft": [
+"vendetta",
+"varg",
+"cassi_issac",
+"ryth",
+"tavi"
+],
+"odraft": [
+"varg",
+"ryth",
+"ren",
+"stellar",
+"tavi"
+],
+"replay": "/api/v1/matches/551547ba-07c6-4352-86c0-13ed1a9f19fa/bundle"
+},
+{
+"match": "3fbc9fe9-20be-458c-88e4-33cbb9d26f72",
+"team": "us",
+"side": "a",
+"map": "interlock",
+"opp": "test",
+"orank": 14,
+"res": "win",
+"score": 1052,
+"oscore": 486,
+"rounds": 511,
+"created": "2026-10-15T12:37:32.779Z",
+"draft": [
+"cassi_issac",
+"ren",
+"stellar",
+"tavi"
+],
+"odraft": [
+"ren",
+"stellar",
+"tavi",
+"cassi_issac"
+],
+"replay": "/api/v1/matches/3fbc9fe9-20be-458c-88e4-33cbb9d26f72/bundle"
+},
+{
+"match": "51cc225a-cc07-4f13-b0c1-93003ba06e6c",
+"team": "us",
+"side": "a",
+"map": "packs",
+"opp": "test",
+"orank": 14,
+"res": "loss",
+"score": 808,
+"oscore": 1018,
+"rounds": 596,
+"created": "2026-10-15T12:37:32.779Z",
+"draft": [
+"cassi_issac",
+"ren",
+"stellar"
+],
+"odraft": [
+"cassi_issac",
+"tavi",
+"stellar"
+],
+"replay": "/api/v1/matches/51cc225a-cc07-4f13-b0c1-93003ba06e6c/bundle"
+},
+{
+"match": "d1ce27ab-cbea-4f38-a119-503d2c18cd1a",
+"team": "us",
+"side": "a",
+"map": "collision",
+"opp": "test",
+"orank": 14,
+"res": "loss",
+"score": 770,
+"oscore": 1012,
+"rounds": 1046,
+"created": "2026-10-15T12:37:32.779Z",
+"draft": [
+"cassi_issac",
+"ren",
+"stellar"
+],
+"odraft": [
+"stellar",
+"ren",
+"prism"
+],
+"replay": "/api/v1/matches/d1ce27ab-cbea-4f38-a119-503d2c18cd1a/bundle"
+},
+{
+"match": "ddcf57ff-8a2d-4199-a7d0-90da94da1637",
+"team": "us",
+"side": "a",
+"map": "rows",
+"opp": "test",
+"orank": 14,
+"res": "loss",
+"score": 957,
+"oscore": 1056,
+"rounds": 387,
+"created": "2026-10-15T12:37:32.779Z",
+"draft": [
+"vendetta",
+"varg",
+"cassi_issac",
+"ryth"
+],
+"odraft": [
+"varg",
+"cassi_issac",
+"vendetta",
+"willow"
+],
+"replay": "/api/v1/matches/ddcf57ff-8a2d-4199-a7d0-90da94da1637/bundle"
+},
+{
+"match": "d3fbf1ac-8649-400d-a4b2-d59cdab68df1",
+"team": "us",
+"side": "a",
+"map": "lanes",
+"opp": "Conley",
+"orank": 20,
+"res": "loss",
+"score": 462,
+"oscore": 1002,
+"rounds": 386,
+"created": "2026-10-15T12:37:30.268Z",
+"draft": [
+"vendetta",
+"varg",
+"cassi_issac",
+"ryth",
+"tavi"
+],
+"odraft": [
+"ryth",
+"cassi_issac",
+"stellar",
+"ren",
+"tavi"
+],
+"replay": "/api/v1/matches/d3fbf1ac-8649-400d-a4b2-d59cdab68df1/bundle"
+},
+{
+"match": "5f5a7483-ee1c-4cbd-988b-27a67484601e",
+"team": "us",
+"side": "a",
+"map": "interlock",
+"opp": "Conley",
+"orank": 20,
+"res": "loss",
+"score": 740,
+"oscore": 1016,
+"rounds": 567,
+"created": "2026-10-15T12:37:30.268Z",
+"draft": [
+"cassi_issac",
+"ren",
+"stellar",
+"tavi"
+],
+"odraft": [
+"cassi_issac",
+"ren",
+"stellar",
+"tavi"
+],
+"replay": "/api/v1/matches/5f5a7483-ee1c-4cbd-988b-27a67484601e/bundle"
+},
+{
+"match": "523e99bc-3927-4597-a7b0-8272c07b3084",
+"team": "us",
+"side": "a",
+"map": "packs",
+"opp": "Conley",
+"orank": 20,
+"res": "win",
+"score": 1000,
+"oscore": 848,
+"rounds": 519,
+"created": "2026-10-15T12:37:30.268Z",
+"draft": [
+"cassi_issac",
+"ren",
+"stellar"
+],
+"odraft": [
+"cassi_issac",
+"stellar",
+"varg"
+],
+"replay": "/api/v1/matches/523e99bc-3927-4597-a7b0-8272c07b3084/bundle"
+},
+{
+"match": "6e1049fe-92e2-4748-915b-f15ce04b1388",
+"team": "us",
+"side": "a",
+"map": "rows",
+"opp": "Conley",
+"orank": 20,
+"res": "win",
+"score": 1056,
+"oscore": 924,
+"rounds": 403,
+"created": "2026-10-15T12:37:30.268Z",
+"draft": [
+"vendetta",
+"varg",
+"cassi_issac",
+"ryth"
+],
+"odraft": [
+"cassi_issac",
+"stellar",
+"tavi",
+"varg"
+],
+"replay": "/api/v1/matches/6e1049fe-92e2-4748-915b-f15ce04b1388/bundle"
+},
+{
+"match": "19cd5ebd-8391-4fbe-adb2-b2ff479f4e11",
+"team": "us",
+"side": "a",
+"map": "expanse",
+"opp": "Conley",
+"orank": 20,
+"res": "win",
+"score": 1024,
+"oscore": 906,
+"rounds": 375,
+"created": "2026-10-15T12:37:30.268Z",
+"draft": [
+"vendetta",
+"varg",
+"cassi_issac"
+],
+"odraft": [
+"cassi_issac",
+"ren",
+"stellar"
+],
+"replay": "/api/v1/matches/19cd5ebd-8391-4fbe-adb2-b2ff479f4e11/bundle"
+},
+{
+"match": "390f2c70-d283-4826-8c1f-76a22f257115",
+"team": "us",
+"side": "a",
+"map": "corners",
+"opp": "umamusume",
+"orank": 25,
+"res": "loss",
+"score": 114,
+"oscore": 1040,
+"rounds": 380,
+"created": "2026-10-15T12:37:27.947Z",
+"draft": [
+"ryth",
+"stellar",
+"prism",
+"ren",
+"tavi"
+],
+"odraft": [
+"cassi_issac",
+"stellar",
+"willow",
+"ren",
+"tavi"
+],
+"replay": "/api/v1/matches/390f2c70-d283-4826-8c1f-76a22f257115/bundle"
+},
+{
+"match": "1a94eb6a-e180-4780-9ffc-0342ec2cd3e7",
+"team": "us",
+"side": "a",
+"map": "expanse",
+"opp": "umamusume",
+"orank": 25,
+"res": "win",
+"score": 1024,
+"oscore": 964,
+"rounds": 375,
+"created": "2026-10-15T12:37:27.947Z",
+"draft": [
+"vendetta",
+"varg",
+"cassi_issac"
+],
+"odraft": [
+"cassi_issac",
+"varg",
+"vendetta"
+],
+"replay": "/api/v1/matches/1a94eb6a-e180-4780-9ffc-0342ec2cd3e7/bundle"
+},
+{
+"match": "e3f457c0-32e9-4214-b946-6e5992e5f0ee",
+"team": "us",
+"side": "a",
+"map": "packs",
+"opp": "umamusume",
+"orank": 25,
+"res": "loss",
+"score": 900,
+"oscore": 1040,
+"rounds": 549,
+"created": "2026-10-15T12:37:27.947Z",
+"draft": [
+"cassi_issac",
+"ren",
+"stellar"
+],
+"odraft": [
+"cassi_issac",
+"stellar",
+"varg"
+],
+"replay": "/api/v1/matches/e3f457c0-32e9-4214-b946-6e5992e5f0ee/bundle"
+},
+{
+"match": "aa54fe39-be48-45f2-813c-e7eb135c02f2",
+"team": "us",
+"side": "a",
+"map": "interlock",
+"opp": "umamusume",
+"orank": 25,
+"res": "win",
+"score": 1052,
+"oscore": 900,
+"rounds": 501,
+"created": "2026-10-15T12:37:27.947Z",
+"draft": [
+"cassi_issac",
+"ren",
+"stellar",
+"tavi"
+],
+"odraft": [
+"cassi_issac",
+"ryth",
+"stellar",
+"ren"
+],
+"replay": "/api/v1/matches/aa54fe39-be48-45f2-813c-e7eb135c02f2/bundle"
+},
+{
+"match": "c55dcf06-3359-4739-bd89-55f582ee79e0",
+"team": "us",
+"side": "a",
+"map": "lanes",
+"opp": "umamusume",
+"orank": 25,
+"res": "loss",
+"score": 250,
+"oscore": 1018,
+"rounds": 312,
+"created": "2026-10-15T12:37:27.947Z",
+"draft": [
+"vendetta",
+"varg",
+"cassi_issac",
+"ryth",
+"tavi"
+],
+"odraft": [
+"cassi_issac",
+"stellar",
+"marcella",
+"ren",
+"tavi"
+],
+"replay": "/api/v1/matches/c55dcf06-3359-4739-bd89-55f582ee79e0/bundle"
+},
+{
+"match": "607ff748-37fa-4b05-8cdd-5bc4f64954c8",
+"team": "us",
+"side": "a",
+"map": "elkring",
+"opp": "hello",
+"orank": 5,
+"res": "loss",
+"score": 756,
+"oscore": 1008,
+"rounds": 541,
+"created": "2026-10-15T12:37:25.588Z",
+"draft": [
+"ryth",
+"stellar",
+"prism",
+"ren",
+"tavi"
+],
+"odraft": [
+"cassi_issac",
+"prism",
+"ren",
+"ryth",
+"stellar"
+],
+"replay": "/api/v1/matches/607ff748-37fa-4b05-8cdd-5bc4f64954c8/bundle"
+},
+{
+"match": "94b453b7-3e75-48b3-8d67-bfbd6ad4af33",
+"team": "us",
+"side": "a",
+"map": "collision",
+"opp": "hello",
+"orank": 5,
+"res": "loss",
+"score": 176,
+"oscore": 1012,
+"rounds": 730,
+"created": "2026-10-15T12:37:25.588Z",
+"draft": [
+"cassi_issac",
+"ren",
+"stellar"
+],
+"odraft": [
+"cassi_issac",
+"stellar",
+"ren"
+],
+"replay": "/api/v1/matches/94b453b7-3e75-48b3-8d67-bfbd6ad4af33/bundle"
+},
+{
+"match": "96e0cf68-cee2-4e0c-a795-781b265a24bd",
+"team": "us",
+"side": "a",
+"map": "expanse",
+"opp": "hello",
+"orank": 5,
+"res": "loss",
+"score": 590,
+"oscore": 1036,
+"rounds": 379,
+"created": "2026-10-15T12:37:25.588Z",
+"draft": [
+"vendetta",
+"varg",
+"cassi_issac"
+],
+"odraft": [
+"cassi_issac",
+"stellar",
+"tavi"
+],
+"replay": "/api/v1/matches/96e0cf68-cee2-4e0c-a795-781b265a24bd/bundle"
+},
+{
+"match": "20ecdfaf-8979-4147-beef-d5e813dac145",
+"team": "us",
+"side": "a",
+"map": "packs",
+"opp": "hello",
+"orank": 5,
+"res": "loss",
+"score": 332,
+"oscore": 1032,
+"rounds": 487,
+"created": "2026-10-15T12:37:25.588Z",
+"draft": [
+"cassi_issac",
+"ren",
+"stellar"
+],
+"odraft": [
+"cassi_issac",
+"stellar",
+"ren"
+],
+"replay": "/api/v1/matches/20ecdfaf-8979-4147-beef-d5e813dac145/bundle"
+},
+{
+"match": "5131ae7d-f337-4be0-998e-e889a5fac75c",
+"team": "us",
+"side": "a",
+"map": "corners",
+"opp": "hello",
+"orank": 5,
+"res": "loss",
+"score": 48,
+"oscore": 1008,
+"rounds": 573,
+"created": "2026-10-15T12:37:25.588Z",
+"draft": [
+"ryth",
+"stellar",
+"prism",
+"ren",
+"tavi"
+],
+"odraft": [
+"ryth",
+"stellar",
+"prism",
+"ren",
+"tavi"
+],
+"replay": "/api/v1/matches/5131ae7d-f337-4be0-998e-e889a5fac75c/bundle"
+},
+{
+"match": "21944306-174e-4d79-a7d9-5195ac736ee6",
+"team": "us",
+"side": "a",
+"map": "corners",
+"opp": "geese geese go",
+"orank": 11,
+"res": "loss",
+"score": 450,
+"oscore": 1006,
+"rounds": 664,
+"created": "2026-10-15T12:37:23.086Z",
+"draft": [
+"ryth",
+"stellar",
+"prism",
+"ren",
+"tavi"
+],
+"odraft": [
+"ryth",
+"stellar",
+"prism",
+"ren",
+"tavi"
+],
+"replay": "/api/v1/matches/21944306-174e-4d79-a7d9-5195ac736ee6/bundle"
+},
+{
+"match": "1593e361-7810-4a85-ae66-5b135893ff67",
+"team": "us",
+"side": "a",
+"map": "elkring",
+"opp": "geese geese go",
+"orank": 11,
+"res": "loss",
+"score": 576,
+"oscore": 1044,
+"rounds": 543,
+"created": "2026-10-15T12:37:23.086Z",
+"draft": [
+"ryth",
+"stellar",
+"prism",
+"ren",
+"tavi"
+],
+"odraft": [
+"varg",
+"stellar",
+"cassi_issac",
+"tavi",
+"ren"
+],
+"replay": "/api/v1/matches/1593e361-7810-4a85-ae66-5b135893ff67/bundle"
+},
+{
+"match": "c21d3221-bf1a-423c-b0f5-cd93c9526be9",
+"team": "us",
+"side": "a",
+"map": "rows",
+"opp": "geese geese go",
+"orank": 11,
+"res": "loss",
+"score": 957,
+"oscore": 1056,
+"rounds": 390,
+"created": "2026-10-15T12:37:23.086Z",
+"draft": [
+"vendetta",
+"varg",
+"cassi_issac",
+"ryth"
+],
+"odraft": [
+"ren",
+"varg",
+"cassi_issac",
+"stellar"
+],
+"replay": "/api/v1/matches/c21d3221-bf1a-423c-b0f5-cd93c9526be9/bundle"
+},
+{
+"match": "dbeb1e63-e99f-42ae-b2f1-fac59717ead5",
+"team": "us",
+"side": "a",
+"map": "collision",
+"opp": "geese geese go",
+"orank": 11,
+"res": "loss",
+"score": 990,
+"oscore": 1000,
+"rounds": 893,
+"created": "2026-10-15T12:37:23.086Z",
+"draft": [
+"cassi_issac",
+"ren",
+"stellar"
+],
+"odraft": [
+"cassi_issac",
+"stellar",
+"ren"
+],
+"replay": "/api/v1/matches/dbeb1e63-e99f-42ae-b2f1-fac59717ead5/bundle"
+},
+{
+"match": "004edcd5-2bcb-45b3-856b-7fddce7053f8",
+"team": "us",
+"side": "a",
+"map": "lanes",
+"opp": "geese geese go",
+"orank": 11,
+"res": "loss",
+"score": 844,
+"oscore": 1002,
+"rounds": 368,
+"created": "2026-10-15T12:37:23.086Z",
+"draft": [
+"vendetta",
+"varg",
+"cassi_issac",
+"ryth",
+"tavi"
+],
+"odraft": [
+"varg",
+"stellar",
+"cassi_issac",
+"tavi",
+"ren"
+],
+"replay": "/api/v1/matches/004edcd5-2bcb-45b3-856b-7fddce7053f8/bundle"
+},
+{
+"match": "1e0d1c70-f898-4abc-b9b7-b6cd264ac922",
+"team": "us",
+"side": "a",
+"map": "monolith",
+"opp": "octo's odyssey",
+"orank": 26,
+"res": "loss",
+"score": 946,
+"oscore": 1000,
+"rounds": 428,
+"created": "2026-10-15T12:37:20.422Z",
+"draft": [
+"vendetta",
+"varg",
+"cassi_issac",
+"ryth",
+"tavi"
+],
+"odraft": [
+"varg",
+"tavi",
+"stellar",
+"vendetta",
+"cassi_issac"
+],
+"replay": "/api/v1/matches/1e0d1c70-f898-4abc-b9b7-b6cd264ac922/bundle"
+},
+{
+"match": "9be0254f-e1b1-4997-9205-8e2444b804fd",
+"team": "us",
+"side": "a",
+"map": "elkring",
+"opp": "octo's odyssey",
+"orank": 26,
+"res": "win",
+"score": 1008,
+"oscore": 648,
+"rounds": 844,
+"created": "2026-10-15T12:37:20.422Z",
+"draft": [
+"ryth",
+"stellar",
+"prism",
+"ren",
+"tavi"
+],
+"odraft": [
+"varg",
+"marcella",
+"stellar",
+"tavi",
+"willow"
+],
+"replay": "/api/v1/matches/9be0254f-e1b1-4997-9205-8e2444b804fd/bundle"
+},
+{
+"match": "9e8ba919-8d75-488c-96ec-36fb86d4cde8",
+"team": "us",
+"side": "a",
+"map": "collision",
+"opp": "octo's odyssey",
+"orank": 26,
+"res": "win",
+"score": 1012,
+"oscore": 176,
+"rounds": 673,
+"created": "2026-10-15T12:37:20.422Z",
+"draft": [
+"cassi_issac",
+"ren",
+"stellar"
+],
+"odraft": [
+"cassi_issac",
+"ren",
+"stellar"
+],
+"replay": "/api/v1/matches/9e8ba919-8d75-488c-96ec-36fb86d4cde8/bundle"
+},
+{
+"match": "62ebcae9-70aa-470a-aeac-4bd590318a71",
+"team": "us",
+"side": "a",
+"map": "rows",
+"opp": "octo's odyssey",
+"orank": 26,
+"res": "loss",
+"score": 891,
+"oscore": 1056,
+"rounds": 368,
+"created": "2026-10-15T12:37:20.422Z",
+"draft": [
+"vendetta",
+"varg",
+"cassi_issac",
+"ryth"
+],
+"odraft": [
+"varg",
+"tavi",
+"cassi_issac",
+"stellar"
+],
+"replay": "/api/v1/matches/62ebcae9-70aa-470a-aeac-4bd590318a71/bundle"
+},
+{
+"match": "1270ba5a-6da2-4045-83bf-c580d99b03af",
+"team": "us",
+"side": "a",
+"map": "interlock",
+"opp": "octo's odyssey",
+"orank": 26,
+"res": "win",
+"score": 1010,
+"oscore": 668,
+"rounds": 506,
+"created": "2026-10-15T12:37:20.422Z",
+"draft": [
+"cassi_issac",
+"ren",
+"stellar",
+"tavi"
+],
+"odraft": [
+"varg",
+"tavi",
+"stellar",
+"cassi_issac"
+],
+"replay": "/api/v1/matches/1270ba5a-6da2-4045-83bf-c580d99b03af/bundle"
+},
+{
+"match": "d6b725b1-3f36-4cf2-95b2-173617222b1c",
+"team": "us",
+"side": "a",
+"map": "interlock",
+"opp": "lETHal",
+"orank": 22,
+"res": "loss",
+"score": 900,
+"oscore": 1044,
+"rounds": 613,
+"created": "2026-10-15T12:37:18.138Z",
+"draft": [
+"cassi_issac",
+"ren",
+"stellar",
+"tavi"
+],
+"odraft": [
+"stellar",
+"tavi",
+"cassi_issac",
+"prism"
+],
+"replay": "/api/v1/matches/d6b725b1-3f36-4cf2-95b2-173617222b1c/bundle"
+},
+{
+"match": "bcd168e0-5e97-46a6-8154-e44cb0691c01",
+"team": "us",
+"side": "a",
+"map": "expanse",
+"opp": "lETHal",
+"orank": 22,
+"res": "win",
+"score": 1024,
+"oscore": 880,
+"rounds": 375,
+"created": "2026-10-15T12:37:18.138Z",
+"draft": [
+"vendetta",
+"varg",
+"cassi_issac"
+],
+"odraft": [
+"stellar",
+"cassi_issac",
+"ren"
+],
+"replay": "/api/v1/matches/bcd168e0-5e97-46a6-8154-e44cb0691c01/bundle"
+},
+{
+"match": "fa356936-4455-470c-b2c9-a4cf5ed31868",
+"team": "us",
+"side": "a",
+"map": "packs",
+"opp": "lETHal",
+"orank": 22,
+"res": "win",
+"score": 1008,
+"oscore": 660,
+"rounds": 386,
+"created": "2026-10-15T12:37:18.138Z",
+"draft": [
+"cassi_issac",
+"ren",
+"stellar"
+],
+"odraft": [
+"stellar",
+"tavi",
+"cassi_issac"
+],
+"replay": "/api/v1/matches/fa356936-4455-470c-b2c9-a4cf5ed31868/bundle"
+},
+{
+"match": "8401ebce-39c8-40f6-8165-f178e329c452",
+"team": "us",
+"side": "a",
+"map": "rows",
+"opp": "lETHal",
+"orank": 22,
+"res": "loss",
+"score": 957,
+"oscore": 1056,
+"rounds": 400,
+"created": "2026-10-15T12:37:18.138Z",
+"draft": [
+"vendetta",
+"varg",
+"cassi_issac",
+"ryth"
+],
+"odraft": [
+"stellar",
+"cassi_issac",
+"ren",
+"vendetta"
+],
+"replay": "/api/v1/matches/8401ebce-39c8-40f6-8165-f178e329c452/bundle"
+},
+{
+"match": "951ce686-6fa1-46c2-bcdc-674884a1d1da",
+"team": "us",
+"side": "a",
+"map": "corners",
+"opp": "lETHal",
+"orank": 22,
+"res": "loss",
+"score": 476,
+"oscore": 1036,
+"rounds": 572,
+"created": "2026-10-15T12:37:18.138Z",
+"draft": [
+"ryth",
+"stellar",
+"prism",
+"ren",
+"tavi"
+],
+"odraft": [
+"stellar",
+"tavi",
+"cassi_issac",
+"prism",
+"willow"
+],
+"replay": "/api/v1/matches/951ce686-6fa1-46c2-bcdc-674884a1d1da/bundle"
+},
+{
+"match": "0caf578e-7ee6-4aaa-acfe-dd75f84ef974",
+"team": "us",
+"side": "a",
+"map": "lanes",
+"opp": "Boost",
+"orank": 15,
+"res": "loss",
+"score": 514,
+"oscore": 1020,
+"rounds": 388,
+"created": "2026-10-15T12:37:15.577Z",
+"draft": [
+"vendetta",
+"varg",
+"cassi_issac",
+"ryth",
+"tavi"
+],
+"odraft": [
+"cassi_issac",
+"vendetta",
+"stellar",
+"vesper",
+"tavi"
+],
+"replay": "/api/v1/matches/0caf578e-7ee6-4aaa-acfe-dd75f84ef974/bundle"
+},
+{
+"match": "f9a80f48-adcf-475e-ae10-6c07723e2ec9",
+"team": "us",
+"side": "a",
+"map": "elkring",
+"opp": "Boost",
+"orank": 15,
+"res": "loss",
+"score": 720,
+"oscore": 1008,
+"rounds": 633,
+"created": "2026-10-15T12:37:15.577Z",
+"draft": [
+"ryth",
+"stellar",
+"prism",
+"ren",
+"tavi"
+],
+"odraft": [
+"stellar",
+"prism",
+"tavi",
+"vesper",
+"willow"
+],
+"replay": "/api/v1/matches/f9a80f48-adcf-475e-ae10-6c07723e2ec9/bundle"
+},
+{
+"match": "679b94d5-bebf-43b3-a2db-9c4673741074",
+"team": "us",
+"side": "a",
+"map": "corners",
+"opp": "Boost",
+"orank": 15,
+"res": "loss",
+"score": 262,
+"oscore": 1006,
+"rounds": 543,
+"created": "2026-10-15T12:37:15.577Z",
+"draft": [
+"ryth",
+"stellar",
+"prism",
+"ren",
+"tavi"
+],
+"odraft": [
+"stellar",
+"prism",
+"tavi",
+"ren",
+"willow"
+],
+"replay": "/api/v1/matches/679b94d5-bebf-43b3-a2db-9c4673741074/bundle"
+},
+{
+"match": "5df25fa1-f3bf-4d3c-a509-cb8adacc8dd6",
+"team": "us",
+"side": "a",
+"map": "collision",
+"opp": "Boost",
+"orank": 15,
+"res": "loss",
+"score": 242,
+"oscore": 1008,
+"rounds": 698,
+"created": "2026-10-15T12:37:15.577Z",
+"draft": [
+"cassi_issac",
+"ren",
+"stellar"
+],
+"odraft": [
+"stellar",
+"ren",
+"tavi"
+],
+"replay": "/api/v1/matches/5df25fa1-f3bf-4d3c-a509-cb8adacc8dd6/bundle"
+},
+{
+"match": "3ab8a976-a649-454c-9984-4bc326cee885",
+"team": "us",
+"side": "a",
+"map": "interlock",
+"opp": "Boost",
+"orank": 15,
+"res": "loss",
+"score": 530,
+"oscore": 1008,
+"rounds": 510,
+"created": "2026-10-15T12:37:15.577Z",
+"draft": [
+"cassi_issac",
+"ren",
+"stellar",
+"tavi"
+],
+"odraft": [
+"stellar",
+"prism",
+"tavi",
+"ren"
+],
+"replay": "/api/v1/matches/3ab8a976-a649-454c-9984-4bc326cee885/bundle"
+},
+{
+"match": "d9fa7b4e-ca27-40fb-b3d7-ddf2b23d69f9",
+"team": "us",
+"side": "a",
+"map": "monolith",
+"opp": "KratosMessi",
+"orank": 13,
+"res": "win",
+"score": 1018,
+"oscore": 980,
+"rounds": 462,
+"created": "2026-10-15T12:37:13.291Z",
+"draft": [
+"vendetta",
+"varg",
+"cassi_issac",
+"ryth",
+"tavi"
+],
+"odraft": [
+"varg",
+"stellar",
+"cassi_issac",
+"tavi",
+"ren"
+],
+"replay": "/api/v1/matches/d9fa7b4e-ca27-40fb-b3d7-ddf2b23d69f9/bundle"
+},
+{
+"match": "09e3c08a-2dbb-4918-9cf2-b5a5f55bb1f6",
+"team": "us",
+"side": "a",
+"map": "packs",
+"opp": "KratosMessi",
+"orank": 13,
+"res": "loss",
+"score": 904,
+"oscore": 1036,
+"rounds": 501,
+"created": "2026-10-15T12:37:13.291Z",
+"draft": [
+"cassi_issac",
+"ren",
+"stellar"
+],
+"odraft": [
+"varg",
+"stellar",
+"cassi_issac"
+],
+"replay": "/api/v1/matches/09e3c08a-2dbb-4918-9cf2-b5a5f55bb1f6/bundle"
+},
+{
+"match": "a9fa7b43-8c16-4888-aad8-ee163d2ff346",
+"team": "us",
+"side": "a",
+"map": "interlock",
+"opp": "KratosMessi",
+"orank": 13,
+"res": "loss",
+"score": 910,
+"oscore": 1014,
+"rounds": 487,
+"created": "2026-10-15T12:37:13.291Z",
+"draft": [
+"cassi_issac",
+"ren",
+"stellar",
+"tavi"
+],
+"odraft": [
+"varg",
+"stellar",
+"cassi_issac",
+"tavi"
+],
+"replay": "/api/v1/matches/a9fa7b43-8c16-4888-aad8-ee163d2ff346/bundle"
+},
+{
+"match": "f36a2ad1-1d32-4372-bc36-7e042742613b",
+"team": "us",
+"side": "a",
+"map": "lanes",
+"opp": "KratosMessi",
+"orank": 13,
+"res": "loss",
+"score": 658,
+"oscore": 1028,
+"rounds": 315,
+"created": "2026-10-15T12:37:13.291Z",
+"draft": [
+"vendetta",
+"varg",
+"cassi_issac",
+"ryth",
+"tavi"
+],
+"odraft": [
+"varg",
+"cassi_issac",
+"vendetta",
+"ren",
+"tavi"
+],
+"replay": "/api/v1/matches/f36a2ad1-1d32-4372-bc36-7e042742613b/bundle"
+},
+{
+"match": "403d9af3-f904-4245-9518-ffb407b742c8",
+"team": "us",
+"side": "a",
+"map": "elkring",
+"opp": "KratosMessi",
+"orank": 13,
+"res": "win",
+"score": 1008,
+"oscore": 828,
+"rounds": 557,
+"created": "2026-10-15T12:37:13.291Z",
+"draft": [
+"ryth",
+"stellar",
+"prism",
+"ren",
+"tavi"
+],
+"odraft": [
+"varg",
+"stellar",
+"cassi_issac",
+"tavi",
+"ren"
+],
+"replay": "/api/v1/matches/403d9af3-f904-4245-9518-ffb407b742c8/bundle"
+},
+{
+"match": "95fb25ab-42cd-4d5d-8d66-8b97075059fa",
+"team": "us",
+"side": "a",
+"map": "expanse",
+"opp": "\ud80c\udfbc\ud80c\udced\ud80c\udd71\ud80c\udc8b\ud80c\uddcc \ud80c\udfcf\ud80c\udd71 \ud80c\udc8b\ud80c\udd3f",
+"orank": 17,
+"res": "win",
+"score": 1024,
+"oscore": 974,
+"rounds": 375,
+"created": "2026-10-15T12:37:11.011Z",
+"draft": [
+"vendetta",
+"varg",
+"cassi_issac"
+],
+"odraft": [
+"varg",
+"vendetta",
+"cassi_issac"
+],
+"replay": "/api/v1/matches/95fb25ab-42cd-4d5d-8d66-8b97075059fa/bundle"
+},
+{
+"match": "1ba7d60a-8460-4cae-9151-3cdc6f6f5762",
+"team": "us",
+"side": "a",
+"map": "elkring",
+"opp": "\ud80c\udfbc\ud80c\udced\ud80c\udd71\ud80c\udc8b\ud80c\uddcc \ud80c\udfcf\ud80c\udd71 \ud80c\udc8b\ud80c\udd3f",
+"orank": 17,
+"res": "loss",
+"score": 936,
+"oscore": 1008,
+"rounds": 691,
+"created": "2026-10-15T12:37:11.011Z",
+"draft": [
+"ryth",
+"stellar",
+"prism",
+"ren",
+"tavi"
+],
+"odraft": [
+"varg",
+"stellar",
+"cassi_issac",
+"tavi",
+"ren"
+],
+"replay": "/api/v1/matches/1ba7d60a-8460-4cae-9151-3cdc6f6f5762/bundle"
+},
+{
+"match": "79c94d65-6ecf-441f-b29d-53ce65b0bf72",
+"team": "us",
+"side": "a",
+"map": "monolith",
+"opp": "\ud80c\udfbc\ud80c\udced\ud80c\udd71\ud80c\udc8b\ud80c\uddcc \ud80c\udfcf\ud80c\udd71 \ud80c\udc8b\ud80c\udd3f",
+"orank": 17,
+"res": "loss",
+"score": 814,
+"oscore": 1026,
+"rounds": 483,
+"created": "2026-10-15T12:37:11.011Z",
+"draft": [
+"vendetta",
+"varg",
+"cassi_issac",
+"ryth",
+"tavi"
+],
+"odraft": [
+"varg",
+"stellar",
+"cassi_issac",
+"tavi",
+"ren"
+],
+"replay": "/api/v1/matches/79c94d65-6ecf-441f-b29d-53ce65b0bf72/bundle"
+},
+{
+"match": "258821b2-994d-4e77-8138-3c80b756405c",
+"team": "us",
+"side": "a",
+"map": "interlock",
+"opp": "\ud80c\udfbc\ud80c\udced\ud80c\udd71\ud80c\udc8b\ud80c\uddcc \ud80c\udfcf\ud80c\udd71 \ud80c\udc8b\ud80c\udd3f",
+"orank": 17,
+"res": "loss",
+"score": 160,
+"oscore": 1044,
+"rounds": 398,
+"created": "2026-10-15T12:37:11.011Z",
+"draft": [
+"cassi_issac",
+"ren",
+"stellar",
+"tavi"
+],
+"odraft": [
+"stellar",
+"cassi_issac",
+"ren",
+"ryth"
+],
+"replay": "/api/v1/matches/258821b2-994d-4e77-8138-3c80b756405c/bundle"
+},
+{
+"match": "540ea9e0-ddb8-4f6a-a411-18fd7508be67",
+"team": "us",
+"side": "a",
+"map": "packs",
+"opp": "\ud80c\udfbc\ud80c\udced\ud80c\udd71\ud80c\udc8b\ud80c\uddcc \ud80c\udfcf\ud80c\udd71 \ud80c\udc8b\ud80c\udd3f",
+"orank": 17,
+"res": "loss",
+"score": 680,
+"oscore": 1036,
+"rounds": 477,
+"created": "2026-10-15T12:37:11.011Z",
+"draft": [
+"cassi_issac",
+"ren",
+"stellar"
+],
+"odraft": [
+"varg",
+"vendetta",
+"cassi_issac"
+],
+"replay": "/api/v1/matches/540ea9e0-ddb8-4f6a-a411-18fd7508be67/bundle"
+},
+{
+"match": "2d5e6ef6-f587-4fd6-acad-dc370c9d2ce1",
+"team": "us",
+"side": "a",
+"map": "rows",
+"opp": "Full Damage",
+"orank": 9,
+"res": "loss",
+"score": 891,
+"oscore": 1056,
+"rounds": 368,
+"created": "2026-10-15T12:37:08.568Z",
+"draft": [
+"vendetta",
+"varg",
+"cassi_issac",
+"ryth"
+],
+"odraft": [
+"vendetta",
+"varg",
+"cassi_issac",
+"willow"
+],
+"replay": "/api/v1/matches/2d5e6ef6-f587-4fd6-acad-dc370c9d2ce1/bundle"
+},
+{
+"match": "8d2ac9cf-66b2-4fcc-a0dc-6027253b9ba0",
+"team": "us",
+"side": "a",
+"map": "interlock",
+"opp": "Full Damage",
+"orank": 9,
+"res": "win",
+"score": 1002,
+"oscore": 734,
+"rounds": 493,
+"created": "2026-10-15T12:37:08.568Z",
+"draft": [
+"cassi_issac",
+"ren",
+"stellar",
+"tavi"
+],
+"odraft": [
+"vendetta",
+"varg",
+"cassi_issac",
+"ryth"
+],
+"replay": "/api/v1/matches/8d2ac9cf-66b2-4fcc-a0dc-6027253b9ba0/bundle"
+},
+{
+"match": "becf230d-9ea0-4fec-9e94-b19444702458",
+"team": "us",
+"side": "a",
+"map": "monolith",
+"opp": "Full Damage",
+"orank": 9,
+"res": "win",
+"score": 1012,
+"oscore": 658,
+"rounds": 391,
+"created": "2026-10-15T12:37:08.568Z",
+"draft": [
+"vendetta",
+"varg",
+"cassi_issac",
+"ryth",
+"tavi"
+],
+"odraft": [
+"varg",
+"vendetta",
+"cassi_issac",
+"ryth",
+"ren"
+],
+"replay": "/api/v1/matches/becf230d-9ea0-4fec-9e94-b19444702458/bundle"
+},
+{
+"match": "ada33fb6-3545-46fd-90ad-5a0d8eb9a657",
+"team": "us",
+"side": "a",
+"map": "packs",
+"opp": "Full Damage",
+"orank": 9,
+"res": "loss",
+"score": 856,
+"oscore": 1036,
+"rounds": 467,
+"created": "2026-10-15T12:37:08.568Z",
+"draft": [
+"cassi_issac",
+"ren",
+"stellar"
+],
+"odraft": [
+"varg",
+"stellar",
+"cassi_issac"
+],
+"replay": "/api/v1/matches/ada33fb6-3545-46fd-90ad-5a0d8eb9a657/bundle"
+},
+{
+"match": "3f2c285b-a8e6-43fb-9166-340b7e1b4bc8",
+"team": "us",
+"side": "a",
+"map": "expanse",
+"opp": "Full Damage",
+"orank": 9,
+"res": "loss",
+"score": 820,
+"oscore": 1010,
+"rounds": 325,
+"created": "2026-10-15T12:37:08.568Z",
+"draft": [
+"vendetta",
+"varg",
+"cassi_issac"
+],
+"odraft": [
+"varg",
+"cassi_issac",
+"vendetta"
+],
+"replay": "/api/v1/matches/3f2c285b-a8e6-43fb-9166-340b7e1b4bc8/bundle"
+},
+{
+"match": "42d531ea-6a2b-4632-a645-3b6fffa699e0",
+"team": "us",
+"side": "a",
+"map": "packs",
+"opp": "procless",
+"orank": 7,
+"res": "win",
+"score": 1036,
+"oscore": 860,
+"rounds": 472,
+"created": "2026-10-15T12:37:06.074Z",
+"draft": [
+"cassi_issac",
+"ren",
+"stellar"
+],
+"odraft": [
+"varg",
+"stellar",
+"cassi_issac"
+],
+"replay": "/api/v1/matches/42d531ea-6a2b-4632-a645-3b6fffa699e0/bundle"
+},
+{
+"match": "a7ea11c0-3221-427b-a180-9ed861752180",
+"team": "us",
+"side": "a",
+"map": "interlock",
+"opp": "procless",
+"orank": 7,
+"res": "loss",
+"score": 756,
+"oscore": 1052,
+"rounds": 461,
+"created": "2026-10-15T12:37:06.074Z",
+"draft": [
+"cassi_issac",
+"ren",
+"stellar",
+"tavi"
+],
+"odraft": [
+"varg",
+"ryth",
+"cassi_issac",
+"ren"
+],
+"replay": "/api/v1/matches/a7ea11c0-3221-427b-a180-9ed861752180/bundle"
+},
+{
+"match": "7e3d4cf4-5d7a-4ba9-ae90-8aef19ca6829",
+"team": "us",
+"side": "a",
+"map": "corners",
+"opp": "procless",
+"orank": 7,
+"res": "loss",
+"score": 640,
+"oscore": 1018,
+"rounds": 436,
+"created": "2026-10-15T12:37:06.074Z",
+"draft": [
+"ryth",
+"stellar",
+"prism",
+"ren",
+"tavi"
+],
+"odraft": [
+"cassi_issac",
+"ren",
+"stellar",
+"tavi",
+"varg"
+],
+"replay": "/api/v1/matches/7e3d4cf4-5d7a-4ba9-ae90-8aef19ca6829/bundle"
+},
+{
+"match": "09c61b88-d39c-4697-abc3-f18ad706e6cd",
+"team": "us",
+"side": "a",
+"map": "collision",
+"opp": "procless",
+"orank": 7,
+"res": "loss",
+"score": 242,
+"oscore": 1008,
+"rounds": 518,
+"created": "2026-10-15T12:37:06.074Z",
+"draft": [
+"cassi_issac",
+"ren",
+"stellar"
+],
+"odraft": [
+"varg",
+"stellar",
+"cassi_issac"
+],
+"replay": "/api/v1/matches/09c61b88-d39c-4697-abc3-f18ad706e6cd/bundle"
+},
+{
+"match": "9c637e6d-c90f-4888-847c-26857c4a96c6",
+"team": "us",
+"side": "a",
+"map": "monolith",
+"opp": "procless",
+"orank": 7,
+"res": "loss",
+"score": 894,
+"oscore": 1018,
+"rounds": 407,
+"created": "2026-10-15T12:37:06.074Z",
+"draft": [
+"vendetta",
+"varg",
+"cassi_issac",
+"ryth",
+"tavi"
+],
+"odraft": [
+"cassi_issac",
+"ren",
+"stellar",
+"tavi",
+"varg"
+],
+"replay": "/api/v1/matches/9c637e6d-c90f-4888-847c-26857c4a96c6/bundle"
+},
+{
+"match": "662165c2-84e6-4f1b-975f-b24c55611bd0",
+"team": "us",
+"side": "a",
+"map": "collision",
+"opp": "Nyxius",
+"orank": 12,
+"res": "win",
+"score": 1002,
+"oscore": 286,
+"rounds": 570,
+"created": "2026-10-15T12:37:03.402Z",
+"draft": [
+"cassi_issac",
+"ren",
+"stellar"
+],
+"odraft": [
+"varg",
+"stellar",
+"cassi_issac"
+],
+"replay": "/api/v1/matches/662165c2-84e6-4f1b-975f-b24c55611bd0/bundle"
+},
+{
+"match": "d181f483-5c37-4b1b-bdf0-b6bdf91446bc",
+"team": "us",
+"side": "a",
+"map": "monolith",
+"opp": "Nyxius",
+"orank": 12,
+"res": "loss",
+"score": 688,
+"oscore": 1010,
+"rounds": 387,
+"created": "2026-10-15T12:37:03.402Z",
+"draft": [
+"vendetta",
+"varg",
+"cassi_issac",
+"ryth",
+"tavi"
+],
+"odraft": [
+"varg",
+"vendetta",
+"cassi_issac",
+"ryth",
+"ren"
+],
+"replay": "/api/v1/matches/d181f483-5c37-4b1b-bdf0-b6bdf91446bc/bundle"
+},
+{
+"match": "51508e78-4ef9-4aed-b552-6c2ff147141c",
+"team": "us",
+"side": "a",
+"map": "packs",
+"opp": "Nyxius",
+"orank": 12,
+"res": "loss",
+"score": 772,
+"oscore": 1084,
+"rounds": 526,
+"created": "2026-10-15T12:37:03.402Z",
+"draft": [
+"cassi_issac",
+"ren",
+"stellar"
+],
+"odraft": [
+"varg",
+"stellar",
+"cassi_issac"
+],
+"replay": "/api/v1/matches/51508e78-4ef9-4aed-b552-6c2ff147141c/bundle"
+},
+{
+"match": "8637d0d0-8508-4336-86ea-f4c03c04c163",
+"team": "us",
+"side": "a",
+"map": "rows",
+"opp": "Nyxius",
+"orank": 12,
+"res": "loss",
+"score": 957,
+"oscore": 1056,
+"rounds": 385,
+"created": "2026-10-15T12:37:03.402Z",
+"draft": [
+"vendetta",
+"varg",
+"cassi_issac",
+"ryth"
+],
+"odraft": [
+"varg",
+"vendetta",
+"cassi_issac",
+"willow"
+],
+"replay": "/api/v1/matches/8637d0d0-8508-4336-86ea-f4c03c04c163/bundle"
+},
+{
+"match": "b6b6e460-12cb-4c56-9800-5041aa8a821f",
+"team": "us",
+"side": "a",
+"map": "lanes",
+"opp": "Nyxius",
+"orank": 12,
+"res": "loss",
+"score": 670,
+"oscore": 1014,
+"rounds": 351,
+"created": "2026-10-15T12:37:03.402Z",
+"draft": [
+"vendetta",
+"varg",
+"cassi_issac",
+"ryth",
+"tavi"
+],
+"odraft": [
+"varg",
+"vendetta",
+"cassi_issac",
+"ryth",
+"ren"
+],
+"replay": "/api/v1/matches/b6b6e460-12cb-4c56-9800-5041aa8a821f/bundle"
+},
+{
+"match": "84dc6b4b-cf54-4d7b-bf2d-7e727d3581f2",
+"team": "us",
+"side": "a",
+"map": "expanse",
+"opp": "PTN Hyperion",
+"orank": 8,
+"res": "win",
+"score": 1024,
+"oscore": 778,
+"rounds": 375,
+"created": "2026-10-15T12:37:00.844Z",
+"draft": [
+"vendetta",
+"varg",
+"cassi_issac"
+],
+"odraft": [
+"cassi_issac",
+"stellar",
+"ryth"
+],
+"replay": "/api/v1/matches/84dc6b4b-cf54-4d7b-bf2d-7e727d3581f2/bundle"
+},
+{
+"match": "babaec13-33f7-4618-a440-07813dbcce07",
+"team": "us",
+"side": "a",
+"map": "monolith",
+"opp": "PTN Hyperion",
+"orank": 8,
+"res": "win",
+"score": 1004,
+"oscore": 834,
+"rounds": 476,
+"created": "2026-10-15T12:37:00.844Z",
+"draft": [
+"vendetta",
+"varg",
+"cassi_issac",
+"ryth",
+"tavi"
+],
+"odraft": [
+"cassi_issac",
+"stellar",
+"ryth",
+"ren",
+"prism"
+],
+"replay": "/api/v1/matches/babaec13-33f7-4618-a440-07813dbcce07/bundle"
+},
+{
+"match": "e339a02d-5c86-4743-9a51-ff0f75822f7b",
+"team": "us",
+"side": "a",
+"map": "packs",
+"opp": "PTN Hyperion",
+"orank": 8,
+"res": "loss",
+"score": 44,
+"oscore": 1012,
+"rounds": 489,
+"created": "2026-10-15T12:37:00.844Z",
+"draft": [
+"cassi_issac",
+"ren",
+"stellar"
+],
+"odraft": [
+"cassi_issac",
+"stellar",
+"ryth"
+],
+"replay": "/api/v1/matches/e339a02d-5c86-4743-9a51-ff0f75822f7b/bundle"
+},
+{
+"match": "09d2bdc1-3fad-43af-92eb-f07b0b09b6bf",
+"team": "us",
+"side": "a",
+"map": "rows",
+"opp": "PTN Hyperion",
+"orank": 8,
+"res": "loss",
+"score": 957,
+"oscore": 1056,
+"rounds": 400,
+"created": "2026-10-15T12:37:00.844Z",
+"draft": [
+"vendetta",
+"varg",
+"cassi_issac",
+"ryth"
+],
+"odraft": [
+"cassi_issac",
+"stellar",
+"ryth",
+"ren"
+],
+"replay": "/api/v1/matches/09d2bdc1-3fad-43af-92eb-f07b0b09b6bf/bundle"
+},
+{
+"match": "bb94878b-69d5-4c62-87df-618a40ca54fb",
+"team": "us",
+"side": "a",
+"map": "corners",
+"opp": "PTN Hyperion",
+"orank": 8,
+"res": "loss",
+"score": 0,
+"oscore": 1030,
+"rounds": 550,
+"created": "2026-10-15T12:37:00.844Z",
+"draft": [
+"ryth",
+"stellar",
+"prism",
+"ren",
+"tavi"
+],
+"odraft": [
+"cassi_issac",
+"stellar",
+"ryth",
+"ren",
+"prism"
+],
+"replay": "/api/v1/matches/bb94878b-69d5-4c62-87df-618a40ca54fb/bundle"
+},
+{
+"match": "f0a5f217-cc90-4381-bc26-dda5978fafa8",
+"team": "us",
+"side": "a",
+"map": "packs",
+"opp": "VeryGood",
+"orank": 4,
+"res": "loss",
+"score": 404,
+"oscore": 1008,
+"rounds": 470,
+"created": "2026-10-15T12:36:58.341Z",
+"draft": [
+"cassi_issac",
+"ren",
+"stellar"
+],
+"odraft": [
+"stellar",
+"tavi",
+"cassi_issac"
+],
+"replay": "/api/v1/matches/f0a5f217-cc90-4381-bc26-dda5978fafa8/bundle"
+},
+{
+"match": "9ebb5794-4798-42b4-81a3-2885528c0ac7",
+"team": "us",
+"side": "a",
+"map": "monolith",
+"opp": "VeryGood",
+"orank": 4,
+"res": "loss",
+"score": 894,
+"oscore": 1002,
+"rounds": 433,
+"created": "2026-10-15T12:36:58.341Z",
+"draft": [
+"vendetta",
+"varg",
+"cassi_issac",
+"ryth",
+"tavi"
+],
+"odraft": [
+"ryth",
+"cassi_issac",
+"stellar",
+"ren",
+"varg"
+],
+"replay": "/api/v1/matches/9ebb5794-4798-42b4-81a3-2885528c0ac7/bundle"
+},
+{
+"match": "01bc03f4-568b-45a3-998b-5e5068c3d0bd",
+"team": "us",
+"side": "a",
+"map": "lanes",
+"opp": "VeryGood",
+"orank": 4,
+"res": "win",
+"score": 1028,
+"oscore": 920,
+"rounds": 396,
+"created": "2026-10-15T12:36:58.341Z",
+"draft": [
+"vendetta",
+"varg",
+"cassi_issac",
+"ryth",
+"tavi"
+],
+"odraft": [
+"stellar",
+"tavi",
+"cassi_issac",
+"willow",
+"prism"
+],
+"replay": "/api/v1/matches/01bc03f4-568b-45a3-998b-5e5068c3d0bd/bundle"
+},
+{
+"match": "86ce75a8-63b6-4c0c-ab5f-624978b4abc6",
+"team": "us",
+"side": "a",
+"map": "collision",
+"opp": "VeryGood",
+"orank": 4,
+"res": "loss",
+"score": 352,
+"oscore": 1012,
+"rounds": 737,
+"created": "2026-10-15T12:36:58.341Z",
+"draft": [
+"cassi_issac",
+"ren",
+"stellar"
+],
+"odraft": [
+"cassi_issac",
+"stellar",
+"ren"
+],
+"replay": "/api/v1/matches/86ce75a8-63b6-4c0c-ab5f-624978b4abc6/bundle"
+},
+{
+"match": "78e0bf2c-1b58-424e-b444-946b5a1fc456",
+"team": "us",
+"side": "a",
+"map": "rows",
+"opp": "VeryGood",
+"orank": 4,
+"res": "loss",
+"score": 891,
+"oscore": 1056,
+"rounds": 374,
+"created": "2026-10-15T12:36:58.341Z",
+"draft": [
+"vendetta",
+"varg",
+"cassi_issac",
+"ryth"
+],
+"odraft": [
+"varg",
+"stellar",
+"cassi_issac",
+"willow"
+],
+"replay": "/api/v1/matches/78e0bf2c-1b58-424e-b444-946b5a1fc456/bundle"
+},
+{
+"match": "99607908-38a0-4030-bb9f-5de024092bfd",
+"team": "us",
+"side": "a",
+"map": "corners",
+"opp": "Cabbage",
+"orank": 16,
+"res": "loss",
+"score": 336,
+"oscore": 1018,
+"rounds": 612,
+"created": "2026-10-15T12:36:55.676Z",
+"draft": [
+"ryth",
+"stellar",
+"prism",
+"ren",
+"tavi"
+],
+"odraft": [
+"cassi_issac",
+"stellar",
+"tavi",
+"ren",
+"varg"
+],
+"replay": "/api/v1/matches/99607908-38a0-4030-bb9f-5de024092bfd/bundle"
+},
+{
+"match": "a1b65574-d26f-4036-994b-4bee060e6c87",
+"team": "us",
+"side": "a",
+"map": "rows",
+"opp": "Cabbage",
+"orank": 16,
+"res": "win",
+"score": 1056,
+"oscore": 990,
+"rounds": 403,
+"created": "2026-10-15T12:36:55.676Z",
+"draft": [
+"vendetta",
+"varg",
+"cassi_issac",
+"ryth"
+],
+"odraft": [
+"cassi_issac",
+"vendetta",
+"varg",
+"stellar"
+],
+"replay": "/api/v1/matches/a1b65574-d26f-4036-994b-4bee060e6c87/bundle"
+},
+{
+"match": "ce449943-a239-4c70-82e9-557a284aefb4",
+"team": "us",
+"side": "a",
+"map": "lanes",
+"opp": "Cabbage",
+"orank": 16,
+"res": "loss",
+"score": 492,
+"oscore": 1020,
+"rounds": 384,
+"created": "2026-10-15T12:36:55.676Z",
+"draft": [
+"vendetta",
+"varg",
+"cassi_issac",
+"ryth",
+"tavi"
+],
+"odraft": [
+"cassi_issac",
+"stellar",
+"tavi",
+"ren",
+"varg"
+],
+"replay": "/api/v1/matches/ce449943-a239-4c70-82e9-557a284aefb4/bundle"
+},
+{
+"match": "89dd852f-731c-4ac6-b32c-6ad5076768fb",
+"team": "us",
+"side": "a",
+"map": "expanse",
+"opp": "Cabbage",
+"orank": 16,
+"res": "win",
+"score": 1024,
+"oscore": 946,
+"rounds": 375,
+"created": "2026-10-15T12:36:55.676Z",
+"draft": [
+"vendetta",
+"varg",
+"cassi_issac"
+],
+"odraft": [
+"cassi_issac",
+"vendetta",
+"ryth"
+],
+"replay": "/api/v1/matches/89dd852f-731c-4ac6-b32c-6ad5076768fb/bundle"
+},
+{
+"match": "8f2955db-523d-4bd2-8aab-d8a217c94d03",
+"team": "us",
+"side": "a",
+"map": "collision",
+"opp": "Cabbage",
+"orank": 16,
+"res": "loss",
+"score": 264,
+"oscore": 1178,
+"rounds": 821,
+"created": "2026-10-15T12:36:55.676Z",
+"draft": [
+"cassi_issac",
+"ren",
+"stellar"
+],
+"odraft": [
+"cassi_issac",
+"stellar",
+"tavi"
+],
+"replay": "/api/v1/matches/8f2955db-523d-4bd2-8aab-d8a217c94d03/bundle"
+},
+{
+"match": "28396329-9c8e-452f-a44f-6622e572f0a9",
+"team": "us",
+"side": "a",
+"map": "interlock",
+"opp": "Mate in One",
+"orank": 28,
+"res": "win",
+"score": 1000,
+"oscore": 190,
+"rounds": 319,
+"created": "2026-10-15T12:36:53.168Z",
+"draft": [
+"cassi_issac",
+"ren",
+"stellar",
+"tavi"
+],
+"odraft": [
+"stellar",
+"tavi",
+"cassi_issac",
+"willow"
+],
+"replay": "/api/v1/matches/28396329-9c8e-452f-a44f-6622e572f0a9/bundle"
+},
+{
+"match": "74e9040b-4f95-448b-8b59-dfc8c080590b",
+"team": "us",
+"side": "a",
+"map": "corners",
+"opp": "Mate in One",
+"orank": 28,
+"res": "win",
+"score": 1046,
+"oscore": 384,
+"rounds": 787,
+"created": "2026-10-15T12:36:53.168Z",
+"draft": [
+"ryth",
+"stellar",
+"prism",
+"ren",
+"tavi"
+],
+"odraft": [
+"stellar",
+"tavi",
+"cassi_issac",
+"willow",
+"prism"
+],
+"replay": "/api/v1/matches/74e9040b-4f95-448b-8b59-dfc8c080590b/bundle"
+},
+{
+"match": "847a1fe8-093f-4dfc-a1e8-aea017eecd96",
+"team": "us",
+"side": "a",
+"map": "expanse",
+"opp": "Mate in One",
+"orank": 28,
+"res": "loss",
+"score": 820,
+"oscore": 1036,
+"rounds": 349,
+"created": "2026-10-15T12:36:53.168Z",
+"draft": [
+"vendetta",
+"varg",
+"cassi_issac"
+],
+"odraft": [
+"cassi_issac",
+"vendetta",
+"varg"
+],
+"replay": "/api/v1/matches/847a1fe8-093f-4dfc-a1e8-aea017eecd96/bundle"
+},
+{
+"match": "88b53bab-63a3-41bc-a88e-9a4c11c33627",
+"team": "us",
+"side": "a",
+"map": "rows",
+"opp": "Mate in One",
+"orank": 28,
+"res": "loss",
+"score": 957,
+"oscore": 1056,
+"rounds": 393,
+"created": "2026-10-15T12:36:53.168Z",
+"draft": [
+"vendetta",
+"varg",
+"cassi_issac",
+"ryth"
+],
+"odraft": [
+"vendetta",
+"varg",
+"cassi_issac",
+"ryth"
+],
+"replay": "/api/v1/matches/88b53bab-63a3-41bc-a88e-9a4c11c33627/bundle"
+},
+{
+"match": "7545df09-487f-47d0-8ce0-cf7eb349c540",
+"team": "us",
+"side": "a",
+"map": "packs",
+"opp": "Mate in One",
+"orank": 28,
+"res": "loss",
+"score": 488,
+"oscore": 1012,
+"rounds": 470,
+"created": "2026-10-15T12:36:53.168Z",
+"draft": [
+"cassi_issac",
+"ren",
+"stellar"
+],
+"odraft": [
+"varg",
+"stellar",
+"cassi_issac"
+],
+"replay": "/api/v1/matches/7545df09-487f-47d0-8ce0-cf7eb349c540/bundle"
+},
+{
+"match": "317bbf19-ed4d-4d77-9d02-e94b017fe05d",
+"team": "us",
+"side": "a",
+"map": "monolith",
+"opp": "EMPEROR Tung",
+"orank": 30,
+"res": "loss",
+"score": 886,
+"oscore": 1010,
+"rounds": 420,
+"created": "2026-10-15T12:36:50.637Z",
+"draft": [
+"vendetta",
+"varg",
+"cassi_issac",
+"ryth",
+"tavi"
+],
+"odraft": [
+"vendetta",
+"varg",
+"cassi_issac",
+"ryth",
+"ren"
+],
+"replay": "/api/v1/matches/317bbf19-ed4d-4d77-9d02-e94b017fe05d/bundle"
+},
+{
+"match": "cfdb42fd-93ca-4c26-9d39-df0f8723acdb",
+"team": "us",
+"side": "a",
+"map": "interlock",
+"opp": "EMPEROR Tung",
+"orank": 30,
+"res": "win",
+"score": 1038,
+"oscore": 574,
+"rounds": 550,
+"created": "2026-10-15T12:36:50.637Z",
+"draft": [
+"cassi_issac",
+"ren",
+"stellar",
+"tavi"
+],
+"odraft": [
+"vendetta",
+"varg",
+"cassi_issac",
+"ryth"
+],
+"replay": "/api/v1/matches/cfdb42fd-93ca-4c26-9d39-df0f8723acdb/bundle"
+},
+{
+"match": "98c9b4f1-49c0-4ce3-9caa-0c23c67ff773",
+"team": "us",
+"side": "a",
+"map": "corners",
+"opp": "EMPEROR Tung",
+"orank": 30,
+"res": "win",
+"score": 1040,
+"oscore": 66,
+"rounds": 519,
+"created": "2026-10-15T12:36:50.637Z",
+"draft": [
+"ryth",
+"stellar",
+"prism",
+"ren",
+"tavi"
+],
+"odraft": [
+"cassi_issac",
+"stellar",
+"tavi",
+"varg",
+"ren"
+],
+"replay": "/api/v1/matches/98c9b4f1-49c0-4ce3-9caa-0c23c67ff773/bundle"
+},
+{
+"match": "e3bf65f3-695d-48d5-990c-8475cb0f3e12",
+"team": "us",
+"side": "a",
+"map": "collision",
+"opp": "EMPEROR Tung",
+"orank": 30,
+"res": "loss",
+"score": 570,
+"oscore": 1040,
+"rounds": 854,
+"created": "2026-10-15T12:36:50.637Z",
+"draft": [
+"cassi_issac",
+"ren",
+"stellar"
+],
+"odraft": [
+"vendetta",
+"varg",
+"cassi_issac"
+],
+"replay": "/api/v1/matches/e3bf65f3-695d-48d5-990c-8475cb0f3e12/bundle"
+},
+{
+"match": "f148d2eb-17dc-45fe-af35-8bd0185e775c",
+"team": "us",
+"side": "a",
+"map": "packs",
+"opp": "EMPEROR Tung",
+"orank": 30,
+"res": "loss",
+"score": 812,
+"oscore": 1028,
+"rounds": 507,
+"created": "2026-10-15T12:36:50.637Z",
+"draft": [
+"cassi_issac",
+"ren",
+"stellar"
+],
+"odraft": [
+"vendetta",
+"varg",
+"cassi_issac"
+],
+"replay": "/api/v1/matches/f148d2eb-17dc-45fe-af35-8bd0185e775c/bundle"
+}
+]

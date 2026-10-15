@@ -1,0 +1,32 @@
+{
+  "status": "complete",
+  "run_id": "b7f70bfe-83e9-4568-a821-cfe0578119db",
+  "started_utc": "2026-10-15T21:30:06.650009+00:00",
+  "freeze_sha256": "69f8a0f6e2984a35a289186f3f4546155ef621a3d2eb71475d44999d52700228",
+  "selection_plan_sha256": "66d59120f78eff84dcd922bec1f5bfe8e98379e157b403b8f1e7e155255e4300",
+  "generation_inputs": {
+    "generator_sha256": "6c4020d86f9a20eea22caf809640932fb1d1ba19d0a149adb0945d1a9186607a",
+    "helper_sha256": "12812b46b0d4ddd759fe783a8fe9103c1279478ea0b3f3c9afd3f8ea6b0df1f1",
+    "engine_sha256": "ce302dc6666ae43592f6936e572bc4baca92a345bff13ef7f986609ac666a0dc",
+    "wrapper_sha256": "56be8a99ab4f44c52fcb5fdfca1e111cd5edae8436832064f3d961221466ea35"
+  },
+  "seed": 296314875,
+  "count": 512,
+  "destination": "arena/confirmation512",
+  "node_sha256": "3602f2bb1a10f2cbab4c36886218a33c1ab3db87290e73b033c46c77147d0237",
+  "command": [
+    "C:\\Users\\frans\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe",
+    "C:\\Users\\frans\\Documents\\Codex\\2026-10-14\\v\\work\\study28-fixes\\generate-fresh.mjs",
+    "--seed",
+    "296314875",
+    "--count",
+    "512",
+    "--out",
+    "C:\\Users\\frans\\Documents\\Codex\\2026-10-14\\v\\work\\study27-economy-v2\\arena\\confirmation512"
+  ],
+  "finished_utc": "2026-10-15T21:30:25.987791+00:00",
+  "manifest_sha256": "72e344bfc0279af0f0e3e7258e49d038bf505830a73d21078a8d99613169050b",
+  "generator_manifest_created_utc": "2026-10-15T21:30:14.443Z",
+  "first_map_file_utc": "2026-10-15T21:30:06.909875+00:00",
+  "last_map_file_utc": "2026-10-15T21:30:14.442656+00:00"
+}

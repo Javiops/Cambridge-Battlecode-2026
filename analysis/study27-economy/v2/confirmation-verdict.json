@@ -1,0 +1,561 @@
+{
+  "candidate": "productive_walk",
+  "comparison": {
+    "candidate": "productive_walk",
+    "spar": {
+      "spar11": {
+        "games": 1024,
+        "maps": 512,
+        "candidate_win_score": 864.0,
+        "original_win_score": 834.0,
+        "score_delta": 30.0,
+        "percentage_point_delta": 2.9296875,
+        "positive_maps": 85,
+        "negative_maps": 63,
+        "p_two_sided": 0.08396661724393041
+      },
+      "spar12": {
+        "games": 1024,
+        "maps": 512,
+        "candidate_win_score": 907.0,
+        "original_win_score": 893.0,
+        "score_delta": 14.0,
+        "percentage_point_delta": 1.3671875,
+        "positive_maps": 69,
+        "negative_maps": 60,
+        "p_two_sided": 0.4813541052575651
+      },
+      "spar16": {
+        "games": 1024,
+        "maps": 512,
+        "candidate_win_score": 867.0,
+        "original_win_score": 836.0,
+        "score_delta": 31.0,
+        "percentage_point_delta": 3.02734375,
+        "positive_maps": 83,
+        "negative_maps": 61,
+        "p_two_sided": 0.07975707036384051
+      },
+      "challenge_fastbank": {
+        "games": 1024,
+        "maps": 512,
+        "candidate_win_score": 533.0,
+        "original_win_score": 500.0,
+        "score_delta": 33.0,
+        "percentage_point_delta": 3.22265625,
+        "positive_maps": 138,
+        "negative_maps": 108,
+        "p_two_sided": 0.06424260857381481
+      },
+      "challenge_brawl": {
+        "games": 1024,
+        "maps": 512,
+        "candidate_win_score": 638.0,
+        "original_win_score": 632.0,
+        "score_delta": 6.0,
+        "percentage_point_delta": 0.5859375,
+        "positive_maps": 124,
+        "negative_maps": 111,
+        "p_two_sided": 0.4338124052967699
+      }
+    },
+    "original": {
+      "games": 1024,
+      "maps": 512,
+      "wins": 521,
+      "losses": 503,
+      "draws": 0,
+      "both_won": 123,
+      "both_lost": 114,
+      "p_two_sided": 0.6033972369843801
+    },
+    "panel": {
+      "games": 5120,
+      "maps": 512,
+      "candidate_win_score": 3809.0,
+      "original_win_score": 3695.0,
+      "score_delta": 114.0,
+      "percentage_point_delta": 2.2265625,
+      "positive_maps": 194,
+      "negative_maps": 165,
+      "neutral_maps": 153,
+      "p_two_sided": 0.13935710194324272
+    },
+    "mechanisms": {
+      "by_opponent": {
+        "spar11": {
+          "matched_games": 1024,
+          "raw_per_game": {
+            "monsterDamageTaken": {
+              "candidate_mean": 9993.463109673,
+              "baseline_mean": 10348.839609234594,
+              "paired_mean_delta": -355.37649956159294
+            },
+            "monsterDamageDone": {
+              "candidate_mean": 51622.42109388113,
+              "baseline_mean": 51471.56577131897,
+              "paired_mean_delta": 150.8553225621581
+            },
+            "collectedGems": {
+              "candidate_mean": 1071.2802734375,
+              "baseline_mean": 1065.134765625,
+              "paired_mean_delta": 6.1455078125
+            },
+            "submittedGems": {
+              "candidate_mean": 1000.267578125,
+              "baseline_mean": 995.4208984375,
+              "paired_mean_delta": 4.8466796875
+            },
+            "spentGold": {
+              "candidate_mean": 2663.583984375,
+              "baseline_mean": 2687.666015625,
+              "paired_mean_delta": -24.08203125
+            },
+            "deaths": {
+              "candidate_mean": 3.0859375,
+              "baseline_mean": 3.1533203125,
+              "paired_mean_delta": -0.0673828125
+            }
+          },
+          "per100rounds_mean_of_game_rates": {
+            "monsterDamageTaken": {
+              "candidate_mean": 2405.4128542168287,
+              "baseline_mean": 2458.317454377987,
+              "paired_mean_delta": -52.904600161157944
+            },
+            "monsterDamageDone": {
+              "candidate_mean": 13007.703913616237,
+              "baseline_mean": 12825.839359096308,
+              "paired_mean_delta": 181.86455451992782
+            },
+            "collectedGems": {
+              "candidate_mean": 272.25440236766616,
+              "baseline_mean": 267.1607498571998,
+              "paired_mean_delta": 5.0936525104663755
+            },
+            "submittedGems": {
+              "candidate_mean": 255.25669990822973,
+              "baseline_mean": 251.2727292905441,
+              "paired_mean_delta": 3.983970617685618
+            },
+            "spentGold": {
+              "candidate_mean": 654.3167077690819,
+              "baseline_mean": 652.6645913496149,
+              "paired_mean_delta": 1.6521164194669662
+            },
+            "deaths": {
+              "candidate_mean": 0.5944603966592774,
+              "baseline_mean": 0.5974247124976306,
+              "paired_mean_delta": -0.0029643158383531243
+            }
+          },
+          "submitted_over_collected": {
+            "paired_games_with_both_positive_collection": 1023,
+            "excluded_zero_collection_pairs": 1,
+            "candidate_mean_pct": 93.5988680574322,
+            "baseline_mean_pct": 93.6839734035843,
+            "paired_mean_percentage_point_delta": -0.08510534615209664
+          }
+        },
+        "spar12": {
+          "matched_games": 1024,
+          "raw_per_game": {
+            "monsterDamageTaken": {
+              "candidate_mean": 9943.616088055074,
+              "baseline_mean": 10227.238597457297,
+              "paired_mean_delta": -283.62250940222293
+            },
+            "monsterDamageDone": {
+              "candidate_mean": 52219.2080571875,
+              "baseline_mean": 52046.22788118571,
+              "paired_mean_delta": 172.98017600178719
+            },
+            "collectedGems": {
+              "candidate_mean": 1079.3642578125,
+              "baseline_mean": 1072.0634765625,
+              "paired_mean_delta": 7.30078125
+            },
+            "submittedGems": {
+              "candidate_mean": 1009.8154296875,
+              "baseline_mean": 1002.3623046875,
+              "paired_mean_delta": 7.453125
+            },
+            "spentGold": {
+              "candidate_mean": 2648.046875,
+              "baseline_mean": 2674.04296875,
+              "paired_mean_delta": -25.99609375
+            },
+            "deaths": {
+              "candidate_mean": 3.0380859375,
+              "baseline_mean": 3.2080078125,
+              "paired_mean_delta": -0.169921875
+            }
+          },
+          "per100rounds_mean_of_game_rates": {
+            "monsterDamageTaken": {
+              "candidate_mean": 2409.7863104369635,
+              "baseline_mean": 2438.5047040204777,
+              "paired_mean_delta": -28.71839358351434
+            },
+            "monsterDamageDone": {
+              "candidate_mean": 13189.945712714749,
+              "baseline_mean": 13003.481777229395,
+              "paired_mean_delta": 186.46393548535255
+            },
+            "collectedGems": {
+              "candidate_mean": 275.05178867286395,
+              "baseline_mean": 270.01402465330176,
+              "paired_mean_delta": 5.03776401956222
+            },
+            "submittedGems": {
+              "candidate_mean": 258.4126481073153,
+              "baseline_mean": 254.05086865254782,
+              "paired_mean_delta": 4.361779454767453
+            },
+            "spentGold": {
+              "candidate_mean": 652.7592320190959,
+              "baseline_mean": 652.7949730943562,
+              "paired_mean_delta": -0.03574107526032067
+            },
+            "deaths": {
+              "candidate_mean": 0.5776489999460341,
+              "baseline_mean": 0.5974163742562276,
+              "paired_mean_delta": -0.0197673743101935
+            }
+          },
+          "submitted_over_collected": {
+            "paired_games_with_both_positive_collection": 1023,
+            "excluded_zero_collection_pairs": 1,
+            "candidate_mean_pct": 93.86262448282272,
+            "baseline_mean_pct": 93.7035550954799,
+            "paired_mean_percentage_point_delta": 0.159069387342822
+          }
+        },
+        "spar16": {
+          "matched_games": 1024,
+          "raw_per_game": {
+            "monsterDamageTaken": {
+              "candidate_mean": 10037.77639034111,
+              "baseline_mean": 10375.424096417613,
+              "paired_mean_delta": -337.6477060765028
+            },
+            "monsterDamageDone": {
+              "candidate_mean": 51719.30771512538,
+              "baseline_mean": 51384.53500972688,
+              "paired_mean_delta": 334.77270539849997
+            },
+            "collectedGems": {
+              "candidate_mean": 1072.8525390625,
+              "baseline_mean": 1064.75,
+              "paired_mean_delta": 8.1025390625
+            },
+            "submittedGems": {
+              "candidate_mean": 1000.3037109375,
+              "baseline_mean": 993.5078125,
+              "paired_mean_delta": 6.7958984375
+            },
+            "spentGold": {
+              "candidate_mean": 2661.591796875,
+              "baseline_mean": 2680.556640625,
+              "paired_mean_delta": -18.96484375
+            },
+            "deaths": {
+              "candidate_mean": 3.1484375,
+              "baseline_mean": 3.158203125,
+              "paired_mean_delta": -0.009765625
+            }
+          },
+          "per100rounds_mean_of_game_rates": {
+            "monsterDamageTaken": {
+              "candidate_mean": 2406.2892603885953,
+              "baseline_mean": 2464.6026064431517,
+              "paired_mean_delta": -58.31334605455658
+            },
+            "monsterDamageDone": {
+              "candidate_mean": 12989.862914086878,
+              "baseline_mean": 12821.11278646968,
+              "paired_mean_delta": 168.75012761719856
+            },
+            "collectedGems": {
+              "candidate_mean": 271.6681236937142,
+              "baseline_mean": 267.48662497193925,
+              "paired_mean_delta": 4.18149872177497
+            },
+            "submittedGems": {
+              "candidate_mean": 254.43966679243337,
+              "baseline_mean": 251.25121061369362,
+              "paired_mean_delta": 3.188456178739753
+            },
+            "spentGold": {
+              "candidate_mean": 651.7147546975258,
+              "baseline_mean": 651.8317989752481,
+              "paired_mean_delta": -0.11704427772232133
+            },
+            "deaths": {
+              "candidate_mean": 0.6014221334759081,
+              "baseline_mean": 0.5963359415544521,
+              "paired_mean_delta": 0.005086191921456005
+            }
+          },
+          "submitted_over_collected": {
+            "paired_games_with_both_positive_collection": 1023,
+            "excluded_zero_collection_pairs": 1,
+            "candidate_mean_pct": 93.41920098863024,
+            "baseline_mean_pct": 93.50323520724078,
+            "paired_mean_percentage_point_delta": -0.08403421861054128
+          }
+        },
+        "challenge_fastbank": {
+          "matched_games": 1024,
+          "raw_per_game": {
+            "monsterDamageTaken": {
+              "candidate_mean": 9579.144167370163,
+              "baseline_mean": 9767.423460645601,
+              "paired_mean_delta": -188.27929327543825
+            },
+            "monsterDamageDone": {
+              "candidate_mean": 49054.87504902482,
+              "baseline_mean": 48322.211181759834,
+              "paired_mean_delta": 732.663867264986
+            },
+            "collectedGems": {
+              "candidate_mean": 1011.23828125,
+              "baseline_mean": 1002.3046875,
+              "paired_mean_delta": 8.93359375
+            },
+            "submittedGems": {
+              "candidate_mean": 921.783203125,
+              "baseline_mean": 907.748046875,
+              "paired_mean_delta": 14.03515625
+            },
+            "spentGold": {
+              "candidate_mean": 2462.71484375,
+              "baseline_mean": 2465.751953125,
+              "paired_mean_delta": -3.037109375
+            },
+            "deaths": {
+              "candidate_mean": 4.2744140625,
+              "baseline_mean": 4.31640625,
+              "paired_mean_delta": -0.0419921875
+            }
+          },
+          "per100rounds_mean_of_game_rates": {
+            "monsterDamageTaken": {
+              "candidate_mean": 2341.15880627359,
+              "baseline_mean": 2386.3837793034622,
+              "paired_mean_delta": -45.22497302987254
+            },
+            "monsterDamageDone": {
+              "candidate_mean": 12563.238073930263,
+              "baseline_mean": 12396.975359262637,
+              "paired_mean_delta": 166.2627146676263
+            },
+            "collectedGems": {
+              "candidate_mean": 260.33314101598575,
+              "baseline_mean": 257.05502079577917,
+              "paired_mean_delta": 3.2781202202065796
+            },
+            "submittedGems": {
+              "candidate_mean": 239.16354993144787,
+              "baseline_mean": 235.61372497511888,
+              "paired_mean_delta": 3.5498249563290103
+            },
+            "spentGold": {
+              "candidate_mean": 614.0680568147006,
+              "baseline_mean": 616.745233470783,
+              "paired_mean_delta": -2.6771766560822936
+            },
+            "deaths": {
+              "candidate_mean": 0.7879179475581083,
+              "baseline_mean": 0.7926376188467772,
+              "paired_mean_delta": -0.004719671288668866
+            }
+          },
+          "submitted_over_collected": {
+            "paired_games_with_both_positive_collection": 1023,
+            "excluded_zero_collection_pairs": 1,
+            "candidate_mean_pct": 90.76730293445557,
+            "baseline_mean_pct": 90.262926388259,
+            "paired_mean_percentage_point_delta": 0.5043765461965516
+          }
+        },
+        "challenge_brawl": {
+          "matched_games": 1024,
+          "raw_per_game": {
+            "monsterDamageTaken": {
+              "candidate_mean": 9551.788911551237,
+              "baseline_mean": 9859.213874174282,
+              "paired_mean_delta": -307.42496262304485
+            },
+            "monsterDamageDone": {
+              "candidate_mean": 49478.698876939714,
+              "baseline_mean": 49655.906738601625,
+              "paired_mean_delta": -177.207861661911
+            },
+            "collectedGems": {
+              "candidate_mean": 1017.4326171875,
+              "baseline_mean": 1026.7685546875,
+              "paired_mean_delta": -9.3359375
+            },
+            "submittedGems": {
+              "candidate_mean": 933.572265625,
+              "baseline_mean": 939.5791015625,
+              "paired_mean_delta": -6.0068359375
+            },
+            "spentGold": {
+              "candidate_mean": 2487.3828125,
+              "baseline_mean": 2558.84765625,
+              "paired_mean_delta": -71.46484375
+            },
+            "deaths": {
+              "candidate_mean": 4.3408203125,
+              "baseline_mean": 4.1337890625,
+              "paired_mean_delta": 0.20703125
+            }
+          },
+          "per100rounds_mean_of_game_rates": {
+            "monsterDamageTaken": {
+              "candidate_mean": 2330.3415571621576,
+              "baseline_mean": 2372.7362995814506,
+              "paired_mean_delta": -42.39474241929327
+            },
+            "monsterDamageDone": {
+              "candidate_mean": 12607.384492938705,
+              "baseline_mean": 12519.264267768978,
+              "paired_mean_delta": 88.12022516972553
+            },
+            "collectedGems": {
+              "candidate_mean": 260.5524530249421,
+              "baseline_mean": 259.2286296314721,
+              "paired_mean_delta": 1.3238233934699952
+            },
+            "submittedGems": {
+              "candidate_mean": 241.24971883113102,
+              "baseline_mean": 239.84852131189388,
+              "paired_mean_delta": 1.4011975192371349
+            },
+            "spentGold": {
+              "candidate_mean": 619.3273884006763,
+              "baseline_mean": 629.5096635225696,
+              "paired_mean_delta": -10.182275121893278
+            },
+            "deaths": {
+              "candidate_mean": 0.8168710182418564,
+              "baseline_mean": 0.7708582653495287,
+              "paired_mean_delta": 0.04601275289232761
+            }
+          },
+          "submitted_over_collected": {
+            "paired_games_with_both_positive_collection": 1023,
+            "excluded_zero_collection_pairs": 1,
+            "candidate_mean_pct": 91.50107514443678,
+            "baseline_mean_pct": 91.57700961201263,
+            "paired_mean_percentage_point_delta": -0.07593446757584664
+          }
+        }
+      },
+      "panel": {
+        "matched_games": 5120,
+        "raw_per_game": {
+          "monsterDamageTaken": {
+            "candidate_mean": 9821.157733398117,
+            "baseline_mean": 10115.627927585878,
+            "paired_mean_delta": -294.47019418776034
+          },
+          "monsterDamageDone": {
+            "candidate_mean": 50818.90215843171,
+            "baseline_mean": 50576.089316518606,
+            "paired_mean_delta": 242.81284191310405
+          },
+          "collectedGems": {
+            "candidate_mean": 1050.43359375,
+            "baseline_mean": 1046.204296875,
+            "paired_mean_delta": 4.229296875
+          },
+          "submittedGems": {
+            "candidate_mean": 973.1484375,
+            "baseline_mean": 967.7236328125,
+            "paired_mean_delta": 5.4248046875
+          },
+          "spentGold": {
+            "candidate_mean": 2584.6640625,
+            "baseline_mean": 2613.373046875,
+            "paired_mean_delta": -28.708984375
+          },
+          "deaths": {
+            "candidate_mean": 3.5775390625,
+            "baseline_mean": 3.5939453125,
+            "paired_mean_delta": -0.01640625
+          }
+        },
+        "per100rounds_mean_of_game_rates": {
+          "monsterDamageTaken": {
+            "candidate_mean": 2378.597757695627,
+            "baseline_mean": 2424.108968745306,
+            "paired_mean_delta": -45.511211049678934
+          },
+          "monsterDamageDone": {
+            "candidate_mean": 12871.627021457365,
+            "baseline_mean": 12713.3347099654,
+            "paired_mean_delta": 158.29231149196613
+          },
+          "collectedGems": {
+            "candidate_mean": 267.97198175503445,
+            "baseline_mean": 264.1890099819384,
+            "paired_mean_delta": 3.7829717730960284
+          },
+          "submittedGems": {
+            "candidate_mean": 249.70445671411144,
+            "baseline_mean": 246.40741096875968,
+            "paired_mean_delta": 3.297045745351794
+          },
+          "spentGold": {
+            "candidate_mean": 638.4372279402162,
+            "baseline_mean": 640.7092520825144,
+            "paired_mean_delta": -2.2720241422982497
+          },
+          "deaths": {
+            "candidate_mean": 0.6756640991762368,
+            "baseline_mean": 0.6709345825009232,
+            "paired_mean_delta": 0.004729516675313625
+          }
+        },
+        "submitted_over_collected": {
+          "paired_games_with_both_positive_collection": 5115,
+          "excluded_zero_collection_pairs": 5,
+          "candidate_mean_pct": 92.62981432155551,
+          "baseline_mean_pct": 92.54613994131532,
+          "paired_mean_percentage_point_delta": 0.0836743802401778
+        }
+      },
+      "limits": [
+        "Same opponent/map/side paired native statistics; game lengths can differ, hence per100round rates are also shown.",
+        "Ratios are descriptive per-game means over pairs where both collected totals are positive; zero-collection pairs are reported separately.",
+        "Lower camp damage is not itself improvement: check maintained collected/submitted gems, survival and score together.",
+        "Policy telemetry may be absent in controls; absence is unobserved, not zero actions. Sampled maxima are lower bounds, not causal proof.",
+        "Maps, sides and references are correlated; endpoint/rate differences here are descriptive."
+      ]
+    }
+  },
+  "gates": {
+    "positive_original": true,
+    "original_p": false,
+    "positive_panel_mean": true,
+    "positive_panel_map_direction": true,
+    "panel_p": false,
+    "per_spar_tolerance": true,
+    "faults_and_reinitializations": true
+  },
+  "passes": false,
+  "semantic_confirmation_slots": 11264,
+  "unique_physical_games": 11264,
+  "fault_games": 0,
+  "reinitialization_games": 0,
+  "freeze_sha256": "69f8a0f6e2984a35a289186f3f4546155ef621a3d2eb71475d44999d52700228",
+  "generation_record_sha256": "7cd12b19abb601fe6378934d3f5f5bdbbaee44275a457efabdaa89b680ff2bb9",
+  "result_files_sha256": {
+    "C:\\Users\\frans\\Documents\\Codex\\2026-10-14\\v\\work\\study27-economy-v2\\results\\confirmation-baseline.json": "21c98eb839b45270f020d3079999d053767b0028a34c2989624d3da25de84d1e",
+    "C:\\Users\\frans\\Documents\\Codex\\2026-10-14\\v\\work\\study27-economy-v2\\results\\confirmation-candidate.json": "b34aa0baef72bbcd58f7987df08521343783564ed805ed4d937a7892f1e3ba93"
+  },
+  "scope": "One frozen adaptive-v2 economy package and the shared fixed fresh-map cohort, selected after exposed parent-screen development, against exact cleanedPR11 control, three older spars and two predeclared style probes. Native/mechanism differences remain descriptive; not an online ladder guarantee. Caught SDK errors are separate diagnostics."
+}

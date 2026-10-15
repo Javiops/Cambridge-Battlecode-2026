@@ -1,0 +1,44 @@
+{
+  "created_utc": "2026-10-15T21:28:28.612908+00:00",
+  "candidate": "productive_walk",
+  "eligible_full_rank": 1,
+  "rule": "First full-ranked eligible candidate with a positive matched-panel exposed128 transfer and direct score>=50%; a second is permitted only after an explicit first failure; at most two.",
+  "selection_plan_sha256": "66d59120f78eff84dcd922bec1f5bfe8e98379e157b403b8f1e7e155255e4300",
+  "package_build_freeze_sha256": "45596eb5f20d3129bfcd4f9a9c9012cb5daa85b1474d8e1258de3801ff6a2e98",
+  "adaptive_origin_sha256": "d1a48b9b7ce69b4b938a49c21547c53116e248698eeec1c16f7f3f390ed8a252",
+  "parent_evidence_sha256": {
+    "selection-plan.json": "8d547b48dca5d482beea10e1358c6b19d6b72f76c161cfb8ae79e5faceb1f130",
+    "package-build-freeze.json": "ee92e59af85805eeb588b81e97102d47667b956e155ae4c75ff27044e633944d",
+    "results/economy-screen.json": "78781a06b25758565d9c53fbdcd876edffa6f42b29d5136220aa5f6dd5154572",
+    "screen-evaluation.json": "f95ccb2704f582ab037896ac8bac8fce6186f15354950a0302fb37939fcc04b4",
+    "harness-plan.json": "2cff21ccf9781923eb4e9cefe00a6e9cf267ef77454faef024bd8cd553492b1c"
+  },
+  "selection_helper_sha256": "f35d0c06970a1bc0b8968b5332617d1e70c592026118667bbf8b69a00b5c55ec",
+  "evaluation_script_sha256": "78756df45d86080762a5bd0812b6319917737a5c4eb6508e30381c7b2b082d2f",
+  "evidence": {
+    "screen": {
+      "path": "screen-evaluation.json",
+      "sha256": "f97ddddbf58cddab08f1c8c5d79d98457fbdfd79de41e83775e227f7ab209d11"
+    },
+    "full": {
+      "path": "full-evaluation.json",
+      "sha256": "71b27fd03b77c9319444f5a267b0058ec402e817d60ea507e7587aaa7c156f58"
+    },
+    "transfers": [
+      {
+        "path": "transfer-FIRST.json",
+        "sha256": "95c949a426997a880d05f2f18830beefe1bf07a306467652e9c5da3e569f16d2"
+      }
+    ]
+  },
+  "source_sha256": {
+    "de_rules.h": "3e50429c96765f325ea3804c2bbb5c13ce26a4119fc7b8694f58def60531221b",
+    "fight.h": "5fb073f23ce41a5f6d07fba3aa55a016582a46ac54c4f8316ee6c96ebe92a7bb",
+    "main.cpp": "cb8cbe3eb437bcbee66d7b2003b5cdb1d81d37042b72d22d1edc1e001a56f4c6",
+    "opening_replace.h": "ca6680bae82b74b89fd0bb65573904246df8761d8b22e3ce8cb6bd93207207e7",
+    "params.h": "d99ef2cecff65f7851efb491bb4691d40ddeaaa6a96499e13eddec814fdc1372",
+    "utility.h": "5e48af1229195c4b356a617fd7323f49efe2af3a09728f6eda91ed4975c2b580"
+  },
+  "wasm_sha256": "fbf835eea4f7a3e629ca58dbff2792f66994d400e93f80332a4d11ba0143ce29",
+  "limits": "Adaptive development/transfer selection; no fresh confirmation outcomes read and no efficacy claim before the complete final gates."
+}

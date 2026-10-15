@@ -2,7 +2,7 @@
 import sys, json, collections, statistics as st
 sys.path.insert(0, '/tmp/claude-0/-home-user-cambridge-battlecode-2026/7dd169fd-a130-5bbc-a998-7ca88e70fea6/scratchpad/ws2/scripts_fights')
 from common import *
-F = json.load(open(S + '/ws2/scripts_fights/fights.json'))
+F = json.load(open(FIGHTS))
 SEL = selected()
 NG = len(set(f['match'] for f in F)); NGAMES = len(SEL)
 def us(f): return f['sides'][str(f['us'])]

@@ -2,7 +2,7 @@
 import sys, json, collections, statistics as st
 sys.path.insert(0, '/tmp/claude-0/-home-user-cambridge-battlecode-2026/7dd169fd-a130-5bbc-a998-7ca88e70fea6/scratchpad/ws2/scripts_fights')
 from common import *
-F = json.load(open(S + '/ws2/scripts_fights/fights.json'))
+F = json.load(open(FIGHTS))
 byg = collections.defaultdict(list)
 for f in F: byg[f['match']].append(f)
 def pos(c): return (c['x'], c['y'])
@@ -67,3 +67,6 @@ print('| opener side | champion | n | kills | deaths |')
 print('|---|---|---|---|---|')
 for (who, ty), (n, k, d) in sorted(OPN.items(), key=lambda x: (x[0][0], -x[1][0])):
     print('| %s | %s | %d | %.2f | %.2f |' % (who, ty, n, k/n, d/n))
+# optional raw dump for compare.py: DUMP=path.json
+if os.environ.get('DUMP'):
+    json.dump(dict(ISO=ISO, BASE=BASE, USE={w: {t: dict(c) for t, c in v.items()} for w, v in USE.items()}, OPN={'%s|%s' % k: v for k, v in OPN.items()}), open(os.environ['DUMP'], 'w'))

@@ -3,6 +3,9 @@ Usage: from common import *; g = load_game(rec)  (rec = entry of selected.json)
 """
 import json, collections, os, functools
 S = '/tmp/claude-0/-home-user-cambridge-battlecode-2026/7dd169fd-a130-5bbc-a998-7ca88e70fea6/scratchpad'
+# data directory (selected.json, steps/, mapsj/) and the fights.json to analyse: WS=$S/ws3 FIGHTS=... python3 -I script.py
+WS = os.environ.get('WS', S + '/ws2')
+FIGHTS = os.environ.get('FIGHTS', S + '/ws2/scripts_fights/fights.json')
 MELEE = {'Varg', 'Ryth', 'Issac', 'Vendetta', 'Marcella', 'Ren'}
 CASTER = {'Stellar', 'Prism', 'Cassi', 'Tavi'}          # ranged with damage spells (range 4)
 RANGED = {'Vesper Vale', 'VesperVale', 'Vesper', 'Willow'}  # ranged, basic-attack oriented
@@ -13,11 +16,11 @@ def cls(ty):
 def cheb(a, b): return max(abs(a[0]-b[0]), abs(a[1]-b[1]))
 
 def selected():
-    return json.load(open(S + '/ws2/selected.json'))
+    return json.load(open(WS + '/selected.json'))
 
 @functools.lru_cache(None)
 def load_map(name):
-    m = json.load(open(S + '/ws2/mapsj/%s.json' % name))
+    m = json.load(open(WS + '/mapsj/%s.json' % name))
     grid = m['grid']; w, h = m['w'], m['h']
     altars = [(x, y) for y in range(h) for x in range(w) if grid[y][x] == 'A']
     m['altars'] = altars
@@ -51,7 +54,7 @@ def load_game(rec):
     g.team = rec['team']
     g.rounds = {}; g.order = []; g.events = collections.defaultdict(list); g.types = {}
     g.camps = {}
-    for line in open(S + '/ws2/steps/%s.c.jsonl' % rec['match']):
+    for line in open(WS + '/steps/%s.c.jsonl' % rec['match']):
         d = json.loads(line)
         if d['t'] == 'round':
             g.rounds[d['r']] = {c[0]: dict(i=c[0], team=c[1], ty=c[2], x=c[3], y=c[4], hp=c[5], mhp=c[6], gems=c[7], gold=c[8], alive=c[9]) for c in d['champs']}

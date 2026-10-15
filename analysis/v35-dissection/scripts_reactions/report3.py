@@ -2,12 +2,12 @@
 import sys, json, collections
 sys.path.insert(0, '/tmp/claude-0/-home-user-cambridge-battlecode-2026/7dd169fd-a130-5bbc-a998-7ca88e70fea6/scratchpad/ws2/scripts_reactions')
 from common import *
-R = json.load(open(W + '/scripts_reactions/rows.json'))
+R = json.load(open(RP))
 sel = load_sel(); byid = {s['match']: s for s in sel}
 D = [d for d in R['deaths'] if d['us']]
 lost = collections.Counter()
 for d in D: lost[d['match']] += d['gems']
-top = lost.most_common(10)
+top = lost.most_common(5)
 print('## Q6. The 10 worst games by gems lost to our deaths\n')
 print('| # | match | map | opponent (rank) | result | score us-opp | our deaths | gems lost | opp deaths / gems lost | biggest losses (type r round gems) |')
 print('|---|---|---|---|---|---|---|---|---|---|')

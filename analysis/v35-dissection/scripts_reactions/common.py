@@ -1,7 +1,9 @@
 """Loader for the ws2 compact replays + per-champion-round action/damage tables."""
 import json, collections, os
 S = '/tmp/claude-0/-home-user-cambridge-battlecode-2026/7dd169fd-a130-5bbc-a998-7ca88e70fea6/scratchpad'
-W = S + '/ws2'
+W = os.environ.get('WS', S + '/ws2')   # data dir: selected.json, steps/, mapsj/
+ROWS = os.environ.get('ROWS', 'rows.json')  # rows file name under scripts_reactions
+RP = S + '/ws2/scripts_reactions/' + ROWS
 MELEE = {'Varg', 'Ryth', 'Issac', 'Vendetta', 'Marcella', 'Ren'}
 CASTER = {'Stellar', 'Prism', 'Cassi', 'Tavi'}
 def cls(ty):
@@ -52,15 +54,16 @@ class Game:
     def __init__(self, rec):
         self.rec = rec; self.side = 0 if rec['side'] == 'a' else 1
         self.g = geo(rec['map'])
-        rounds = {}; order = []; events = collections.defaultdict(list); types = {}
+        rounds = {}; order = []; events = collections.defaultdict(list); types = {}; camps = {}
         for line in open(W + '/steps/%s.c.jsonl' % rec['match']):
             d = json.loads(line)
             if d['t'] == 'round':
                 rounds[d['r']] = {c[0]: dict(i=c[0], team=c[1], ty=c[2], x=c[3], y=c[4], hp=c[5], mhp=c[6], gems=c[7], gold=c[8], alive=c[9]) for c in d['champs']}
+                camps[d['r']] = {k[0]: dict(i=k[0], ty=k[1], x=k[2], y=k[3], hp=k[4], alive=k[5], awake=k[6], grp=k[7]) for k in d.get('camps', [])}
                 order.append(d['r'])
                 for c in d['champs']: types[c[0]] = (c[1], c[2])
             elif d['t'] == 'ev': events[d['r']].append(d)
-        self.rounds, self.order, self.events, self.types = rounds, order, events, types
+        self.rounds, self.order, self.events, self.types, self.camps = rounds, order, events, types, camps
         self.idx = {r: k for k, r in enumerate(order)}
         self.build()
     def team(self, i): return self.types[i][0]
@@ -70,6 +73,7 @@ class Game:
         self.act = collections.defaultdict(lambda: collections.defaultdict(set))
         self.dmg = collections.defaultdict(lambda: collections.defaultdict(list))
         self.dealt = collections.defaultdict(lambda: collections.defaultdict(int))
+        self.campdmg = collections.defaultdict(lambda: collections.defaultdict(list))  # r -> i -> [camp idx]
         self.recall_start = collections.defaultdict(list)   # i -> [rounds]
         self.recall_arrive = collections.defaultdict(list)
         self.tribute_start = collections.defaultdict(list)
@@ -120,7 +124,7 @@ class Game:
                     for x in e['eff']:
                         i = x['i']
                         if x.get('hp', 0) < 0:
-                            self.dmg[r][i].append(('camp', -x['hp'], 'camp'))
+                            self.dmg[r][i].append(('camp', -x['hp'], 'camp')); self.campdmg[r][i].append(e['a'])
                         if x.get('alive') == 0:
                             self.death_round[i].append(r); self.kill[(r, i)] = 'camp'; self.killkind[(r, i)] = 'camp'
                 else:

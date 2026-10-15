@@ -1,5 +1,5 @@
 """Q12 rows: per-group latency (respawn->capture) by group, camp hits on monolith/gold groups, and a per-group timeline of one loss."""
-import sys, collections, statistics as st
+import sys, os, collections, statistics as st
 sys.path.insert(0, '/tmp/claude-0/-home-user-cambridge-battlecode-2026/7dd169fd-a130-5bbc-a998-7ca88e70fea6/scratchpad/ws2/scripts_positions')
 from common import *
 LAT = collections.defaultdict(list); HITS = collections.Counter(); TL = {}
@@ -30,7 +30,7 @@ for rec, g in games():
             # normalise group by its mirrored tile for opp
             key = tile if who == 'us' else mirror(g.mp, *tile)
             LAT[(who, key)].append(r - spawn_r[gi]); tl[gi].append(('cap_' + who, r, r - spawn_r[gi]))
-    if rec['match'].startswith('604a6cf6') or rec['match'].startswith('c3eed638'): TL[rec['match'][:8]] = (rec, tl, g)
+    if any(rec['match'].startswith(x) for x in os.environ.get('TL_MATCHES', '604a6cf6,c3eed638').split(',')): TL[rec['match'][:8]] = (rec, tl, g)
 print('## rows: respawn->capture latency by group (group named by its team-A-frame tile), us vs opp: n, median, mean, max')
 for key in sorted(set(k[1] for k in LAT)):
     a = LAT[('us', key)]; b = LAT[('opp', key)]

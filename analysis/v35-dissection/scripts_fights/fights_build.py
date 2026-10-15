@@ -276,5 +276,5 @@ if __name__ == '__main__':
         fs = build(g)
         out.extend(fs)
         print(rec['map'], rec['match'][:8], 'fights', len(fs), file=sys.stderr)
-    json.dump(out, open(S + '/ws2/scripts_fights/fights.json', 'w'))
+    json.dump(out, open(FIGHTS, 'w'))
     print(len(out), 'fights')

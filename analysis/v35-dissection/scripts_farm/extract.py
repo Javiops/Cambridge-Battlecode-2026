@@ -2,7 +2,7 @@
 import sys, json, math, collections, os
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from common import *
-OUT=S+'/ws2/scripts_farm/out'
+OUT=os.environ.get('FARM_OUT',S+'/ws2/scripts_farm/out'); os.makedirs(OUT,exist_ok=True)
 def run(rec):
     G=Game(rec); mp=G.map; t=G.t; R=G.R; order=G.order
     alltiles={}
@@ -209,7 +209,7 @@ if __name__=='__main__':
     ids=sys.argv[1:]
     for rec in SEL:
         if ids and rec['match'] not in ids: continue
-        if not os.path.exists(S+'/ws2/steps/%s.c.jsonl'%rec['match']): continue
+        if not os.path.exists(WS+'/steps/%s.c.jsonl'%rec['match']): continue
         if os.path.exists(f'{OUT}/{rec["match"]}.json') and not ids: continue
         try: run(rec)
         except Exception as ex:

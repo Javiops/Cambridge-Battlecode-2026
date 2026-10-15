@@ -1,6 +1,7 @@
 import json, glob, collections, statistics as st, os
 S='/tmp/claude-0/-home-user-cambridge-battlecode-2026/7dd169fd-a130-5bbc-a998-7ca88e70fea6/scratchpad'
-G=[json.load(open(f)) for f in sorted(glob.glob(S+'/ws2/scripts_farm/out/*.json'))]
+OUT=os.environ.get('FARM_OUT',S+'/ws2/scripts_farm/out')
+G=[json.load(open(f)) for f in sorted(glob.glob(OUT+'/*.json'))]
 MAPS='collision corners elkring expanse interlock lanes monolith packs rows'.split()
 TIERS=['top10','11-20','21-30','other']
 def med(v): return st.median(v) if v else float('nan')

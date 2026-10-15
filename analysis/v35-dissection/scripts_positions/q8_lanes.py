@@ -29,7 +29,7 @@ for rec, g in games():
                 ALLOC[('inv', rec['res'])]['nobody_near'] += len(near) == 0
     inv = [s for s in stacks]
     PG.append((rec['match'][:8], rec['res'], rec['opp'][:10], rec['orank'], len(inv), sum(1 for s in inv if s[2] >= 3), sum(1 for s in inv if s[3] < s[2]), sum(1 for s in inv if s[4] == 0)))
-print('## lanes (18 games, rounds 1-350): share of alive champion-rounds by lane x side. side = our half / their half / middle (x 45..44)')
+print('## lanes (%d games, rounds 1-350)' % len(PG) + ': share of alive champion-rounds by lane x side. side = our half / their half / middle (x 45..44)')
 print('| who | phase | top our/mid/their | mid-lane our/mid/their | bottom our/mid/their |'); print('|---|---|---|---|---|')
 for who in ('us', 'opp'):
     for b, nm in enumerate(('1-99', '100-249', '250-350')):

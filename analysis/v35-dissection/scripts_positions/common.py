@@ -1,11 +1,14 @@
-"""Loader for ws2 (our v35 games). from common import *; for rec,g in games(): ...
+"""Loader for a batch directory (default ws2 = study26/v35; WS=ws3 = study27). Data dir = $S/$WS with selected.json, steps/, mapsj/.
+Select with env var WS (e.g. WS=ws3 python3 -I q1_territory.py) or by passing the directory name/path as DATA=... . from common import *; for rec,g in games(): ...
 g.us = our team index; g.rounds[r][i] champion dicts; g.acts[i][r] = set of action tags for round r;
 tags: move, atk (hit enemy champ), atkcamp, spell (hit enemy champ), spellcamp, dash, abil0 (no-effect ability), buy, recall (k11 start),
       recalling (rounds between start and arrival), trib (k12 start), tributing (channel rounds until k18), tribdone(k18), other
 """
 import json, collections, os, functools
 S = '/tmp/claude-0/-home-user-cambridge-battlecode-2026/7dd169fd-a130-5bbc-a998-7ca88e70fea6/scratchpad'
-SEL = json.load(open(S + '/ws2/selected.json'))
+WS = os.environ.get('DATA') or os.environ.get('WS') or 'ws2'
+D = WS if WS.startswith('/') else S + '/' + WS
+SEL = json.load(open(D + '/selected.json'))
 MELEE = {'Varg', 'Ryth', 'Issac', 'Vendetta', 'Marcella', 'Ren'}
 CASTER = {'Stellar', 'Prism', 'Cassi', 'Tavi'}
 def cls(ty):
@@ -43,7 +46,7 @@ def near_d(mp, d, x, y):
     return best
 @functools.lru_cache(None)
 def load_map(name):
-    mp = json.load(open(S + '/ws2/mapsj/%s.json' % name))
+    mp = json.load(open(D + '/mapsj/%s.json' % name))
     x0, y0, x1, y1 = mp['spawnA']
     sa = [(x, y) for x in range(x0, x1+1) for y in range(y0, y1+1)]
     sb = [mirror(mp, x, y) for x, y in sa]
@@ -64,7 +67,7 @@ def load_game(rec):
     g = Game(); g.rec = rec; g.match = rec['match']; g.map = rec['map']; g.mp = load_map(rec['map'])
     g.us = 0 if rec['side'] == 'a' else 1; g.them = 1-g.us
     g.rounds = {}; g.order = []; g.events = collections.defaultdict(list); g.types = {}; g.camps = {}; g.sub = {}
-    for line in open(S + '/ws2/steps/%s.c.jsonl' % rec['match']):
+    for line in open(D + '/steps/%s.c.jsonl' % rec['match']):
         d = json.loads(line)
         if d['t'] == 'round':
             g.rounds[d['r']] = {c[0]: dict(i=c[0], team=c[1], ty=c[2], x=c[3], y=c[4], hp=c[5], mhp=c[6], gems=c[7], gold=c[8], alive=c[9]) for c in d['champs']}
@@ -148,7 +151,7 @@ def load_game(rec):
 def games(only=None):
     for rec in SEL:
         if only and rec['match'] not in only: continue
-        if not os.path.exists(S + '/ws2/steps/%s.c.jsonl' % rec['match']): continue
+        if not os.path.exists(D + '/steps/%s.c.jsonl' % rec['match']): continue
         yield rec, load_game(rec)
 def primary(acts):
     """one label per champion-round"""

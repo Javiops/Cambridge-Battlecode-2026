@@ -1,6 +1,7 @@
 import json, collections, math, os
 S='/tmp/claude-0/-home-user-cambridge-battlecode-2026/7dd169fd-a130-5bbc-a998-7ca88e70fea6/scratchpad'
-SEL=json.load(open(S+'/ws2/selected.json'))
+WS=os.environ.get('FARM_WS',S+'/ws2')   # data dir: selected.json, steps/, mapsj/
+SEL=json.load(open(WS+'/selected.json'))
 ITEMS=[l.strip() for l in open('/mnt/project-files/analysis/data/items.txt') if l.strip()]
 MAPS={}
 TERR_T=3
@@ -30,7 +31,7 @@ def near_d(mp,d,x,y):
     return best
 def load_map(name):
     if name in MAPS: return MAPS[name]
-    mp=json.load(open(S+'/ws2/mapsj/%s.json'%name))
+    mp=json.load(open(WS+'/mapsj/%s.json'%name))
     x0,y0,x1,y1=mp['spawnA']
     sa=[(x,y) for x in range(x0,x1+1) for y in range(y0,y1+1)]; sb=[mirror(mp,x,y) for x,y in sa]
     mp['sp']=[set(sa),set(sb)]
@@ -47,7 +48,7 @@ class Game:
     def __init__(self,rec):
         self.rec=rec; mid=rec['match']; self.map=load_map(rec['map']); self.t=0 if rec['side']=='a' else 1
         self.R={}; self.ev=collections.defaultdict(list); self.order=[]; self.summary=None
-        for line in open(S+'/ws2/steps/%s.c.jsonl'%mid):
+        for line in open(WS+'/steps/%s.c.jsonl'%mid):
             d=json.loads(line)
             if d['t']=='round': self.R[d['r']]=d; self.order.append(d['r'])
             elif d['t']=='ev': self.ev[d['r']].append(d)

@@ -2,7 +2,7 @@
 import sys, json, collections, statistics as st
 sys.path.insert(0, '/tmp/claude-0/-home-user-cambridge-battlecode-2026/7dd169fd-a130-5bbc-a998-7ca88e70fea6/scratchpad/ws2/scripts_reactions')
 from common import *
-R = json.load(open(W + '/scripts_reactions/rows.json'))
+R = json.load(open(RP))
 sel = load_sel(); NG = len(sel)
 def pct(a, b): return '%d%%' % round(100 * a / b) if b else '-'
 def med(x): x = [v for v in x if v is not None]; return st.median(x) if x else None

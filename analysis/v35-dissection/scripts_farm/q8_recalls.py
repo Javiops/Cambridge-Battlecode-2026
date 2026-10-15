@@ -42,5 +42,5 @@ tbl(['map']+ks,rows)
 print('### Rounds lost on recalls after a capture where walking was shorter, by recall class (champion-rounds, total over 150 games; per game)\n')
 rows=[]
 for team in ('us','opp'):
-    for k in ks: rows.append([team,k,costn[team][k],f(cost[team][k],0),f(cost[team][k]/150,1)])
+    for k in ks: rows.append([team,k,costn[team][k],f(cost[team][k],0),f(cost[team][k]/len(G),1)])
 tbl(['team','recall class','recalls','rounds lost','per game'],rows)

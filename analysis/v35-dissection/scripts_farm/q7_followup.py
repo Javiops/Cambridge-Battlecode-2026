@@ -60,7 +60,7 @@ for team in ('us','opp'):
     tot=sum(cls[team].values()); print(f'- {team}: '+', '.join(f'{k} {v} ({100*v/tot:.0f}%)' for k,v in cls[team].most_common())+f'; gold at arrival med {med(goldarr[team]):.0f} (share >=90: {100*sum(x>=90 for x in goldarr[team])/len(goldarr[team]):.0f}%, >=150: {100*sum(x>=150 for x in goldarr[team])/len(goldarr[team]):.0f}%); hp at start med {med(hpstart[team]):.2f}')
 print()
 print('### Rounds lost on recalls after a capture where walking to the altar was shorter than 5 + spawn->altar\n')
-for team in ('us','opp'): print(f'- {team}: {costn[team]} such recalls, {cost[team]:.0f} champion-rounds lost in total = {cost[team]/150:.0f} per game ({cost[team]/max(1,costn[team]):.1f} per recall)')
+for team in ('us','opp'): print(f'- {team}: {costn[team]} such recalls, {cost[team]:.0f} champion-rounds lost in total = {cost[team]/len(G):.0f} per game ({cost[team]/max(1,costn[team]):.1f} per recall)')
 print()
 print('### Why tribute starts do not complete\n')
 for team in ('us','opp'): print(f'- {team}: {dict(trib_cause[team])}')

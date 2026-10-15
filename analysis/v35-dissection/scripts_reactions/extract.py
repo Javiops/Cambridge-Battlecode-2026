@@ -230,5 +230,5 @@ if __name__ == '__main__':
         h, rt, rc, hl, dt = process(rec)
         out['hits'] += h; out['retreats'] += rt; out['recalls'] += rc; out['helps'] += hl; out['deaths'] += dt
         if n % 20 == 0: print(n, len(out['hits']), len(out['deaths']), flush=True)
-    json.dump(out, open(W + '/scripts_reactions/rows.json', 'w'))
+    json.dump(out, open(RP, 'w'))
     print({k: len(v) for k, v in out.items()})

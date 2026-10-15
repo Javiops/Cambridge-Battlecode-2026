@@ -1,0 +1,1454 @@
+{
+  "Broad guards / resource reservation: 253 development maps": {
+    "farm_outnumbered_hold": {
+      "candidate": "farm_outnumbered_hold",
+      "spar": {
+        "spar11": {
+          "games": 506,
+          "maps": 253,
+          "candidate_win_score": 386.0,
+          "original_win_score": 389.0,
+          "score_delta": -3.0,
+          "percentage_point_delta": -0.5928853754940712,
+          "positive_maps": 13,
+          "negative_maps": 18,
+          "p_two_sided": 0.47312965989112854
+        },
+        "spar12": {
+          "games": 506,
+          "maps": 253,
+          "candidate_win_score": 459.0,
+          "original_win_score": 458.0,
+          "score_delta": 1.0,
+          "percentage_point_delta": 0.1976284584980237,
+          "positive_maps": 13,
+          "negative_maps": 12,
+          "p_two_sided": 1.0
+        },
+        "spar16": {
+          "games": 506,
+          "maps": 253,
+          "candidate_win_score": 387.0,
+          "original_win_score": 395.0,
+          "score_delta": -8.0,
+          "percentage_point_delta": -1.5810276679841897,
+          "positive_maps": 11,
+          "negative_maps": 19,
+          "p_two_sided": 0.20048842206597328
+        }
+      },
+      "original": {
+        "games": 506,
+        "maps": 253,
+        "wins": 260,
+        "losses": 246,
+        "draws": 0,
+        "both_won": 21,
+        "both_lost": 14,
+        "p_two_sided": 0.31050465907901525
+      },
+      "panel": {
+        "games": 1518,
+        "maps": 253,
+        "candidate_win_score": 1232.0,
+        "original_win_score": 1242.0,
+        "score_delta": -10.0,
+        "percentage_point_delta": -0.6587615283267457,
+        "positive_maps": 24,
+        "negative_maps": 27,
+        "neutral_maps": 202,
+        "p_two_sided": 0.7797679305530743
+      }
+    },
+    "farm_outnumbered_backoff": {
+      "candidate": "farm_outnumbered_backoff",
+      "spar": {
+        "spar11": {
+          "games": 506,
+          "maps": 253,
+          "candidate_win_score": 389.0,
+          "original_win_score": 389.0,
+          "score_delta": 0.0,
+          "percentage_point_delta": 0.0,
+          "positive_maps": 16,
+          "negative_maps": 16,
+          "p_two_sided": 1.0
+        },
+        "spar12": {
+          "games": 506,
+          "maps": 253,
+          "candidate_win_score": 460.0,
+          "original_win_score": 458.0,
+          "score_delta": 2.0,
+          "percentage_point_delta": 0.3952569169960474,
+          "positive_maps": 11,
+          "negative_maps": 8,
+          "p_two_sided": 0.6476058959960938
+        },
+        "spar16": {
+          "games": 506,
+          "maps": 253,
+          "candidate_win_score": 389.0,
+          "original_win_score": 395.0,
+          "score_delta": -6.0,
+          "percentage_point_delta": -1.1857707509881423,
+          "positive_maps": 15,
+          "negative_maps": 19,
+          "p_two_sided": 0.6075913612730801
+        }
+      },
+      "original": {
+        "games": 506,
+        "maps": 253,
+        "wins": 260,
+        "losses": 246,
+        "draws": 0,
+        "both_won": 23,
+        "both_lost": 16,
+        "p_two_sided": 0.3367836351899314
+      },
+      "panel": {
+        "games": 1518,
+        "maps": 253,
+        "candidate_win_score": 1238.0,
+        "original_win_score": 1242.0,
+        "score_delta": -4.0,
+        "percentage_point_delta": -0.2635046113306983,
+        "positive_maps": 26,
+        "negative_maps": 27,
+        "neutral_maps": 200,
+        "p_two_sided": 1.0
+      }
+    },
+    "farm_volley_hold": {
+      "candidate": "farm_volley_hold",
+      "spar": {
+        "spar11": {
+          "games": 506,
+          "maps": 253,
+          "candidate_win_score": 383.0,
+          "original_win_score": 389.0,
+          "score_delta": -6.0,
+          "percentage_point_delta": -1.1857707509881423,
+          "positive_maps": 19,
+          "negative_maps": 23,
+          "p_two_sided": 0.6439689563703723
+        },
+        "spar12": {
+          "games": 506,
+          "maps": 253,
+          "candidate_win_score": 459.0,
+          "original_win_score": 458.0,
+          "score_delta": 1.0,
+          "percentage_point_delta": 0.1976284584980237,
+          "positive_maps": 15,
+          "negative_maps": 13,
+          "p_two_sided": 0.8505540192127228
+        },
+        "spar16": {
+          "games": 506,
+          "maps": 253,
+          "candidate_win_score": 383.0,
+          "original_win_score": 395.0,
+          "score_delta": -12.0,
+          "percentage_point_delta": -2.3715415019762847,
+          "positive_maps": 13,
+          "negative_maps": 22,
+          "p_two_sided": 0.17546524899080396
+        }
+      },
+      "original": {
+        "games": 506,
+        "maps": 253,
+        "wins": 251,
+        "losses": 255,
+        "draws": 0,
+        "both_won": 20,
+        "both_lost": 22,
+        "p_two_sided": 0.8776143287523155
+      },
+      "panel": {
+        "games": 1518,
+        "maps": 253,
+        "candidate_win_score": 1225.0,
+        "original_win_score": 1242.0,
+        "score_delta": -17.0,
+        "percentage_point_delta": -1.1198945981554678,
+        "positive_maps": 30,
+        "negative_maps": 36,
+        "neutral_maps": 187,
+        "p_two_sided": 0.5385827752459464
+      }
+    },
+    "farm_volley_backoff": {
+      "candidate": "farm_volley_backoff",
+      "spar": {
+        "spar11": {
+          "games": 506,
+          "maps": 253,
+          "candidate_win_score": 386.0,
+          "original_win_score": 389.0,
+          "score_delta": -3.0,
+          "percentage_point_delta": -0.5928853754940712,
+          "positive_maps": 20,
+          "negative_maps": 23,
+          "p_two_sided": 0.7607916425613439
+        },
+        "spar12": {
+          "games": 506,
+          "maps": 253,
+          "candidate_win_score": 457.0,
+          "original_win_score": 458.0,
+          "score_delta": -1.0,
+          "percentage_point_delta": -0.1976284584980237,
+          "positive_maps": 14,
+          "negative_maps": 14,
+          "p_two_sided": 1.0
+        },
+        "spar16": {
+          "games": 506,
+          "maps": 253,
+          "candidate_win_score": 383.0,
+          "original_win_score": 395.0,
+          "score_delta": -12.0,
+          "percentage_point_delta": -2.3715415019762847,
+          "positive_maps": 18,
+          "negative_maps": 29,
+          "p_two_sided": 0.14386508844054902
+        }
+      },
+      "original": {
+        "games": 506,
+        "maps": 253,
+        "wins": 259,
+        "losses": 247,
+        "draws": 0,
+        "both_won": 24,
+        "both_lost": 18,
+        "p_two_sided": 0.44079906734259566
+      },
+      "panel": {
+        "games": 1518,
+        "maps": 253,
+        "candidate_win_score": 1226.0,
+        "original_win_score": 1242.0,
+        "score_delta": -16.0,
+        "percentage_point_delta": -1.0540184453227932,
+        "positive_maps": 30,
+        "negative_maps": 40,
+        "neutral_maps": 183,
+        "p_two_sided": 0.2819789217936561
+      }
+    },
+    "farm_contested_hold": {
+      "candidate": "farm_contested_hold",
+      "spar": {
+        "spar11": {
+          "games": 506,
+          "maps": 253,
+          "candidate_win_score": 387.0,
+          "original_win_score": 389.0,
+          "score_delta": -2.0,
+          "percentage_point_delta": -0.3952569169960474,
+          "positive_maps": 24,
+          "negative_maps": 24,
+          "p_two_sided": 1.0
+        },
+        "spar12": {
+          "games": 506,
+          "maps": 253,
+          "candidate_win_score": 463.0,
+          "original_win_score": 458.0,
+          "score_delta": 5.0,
+          "percentage_point_delta": 0.9881422924901185,
+          "positive_maps": 18,
+          "negative_maps": 11,
+          "p_two_sided": 0.26493089646101
+        },
+        "spar16": {
+          "games": 506,
+          "maps": 253,
+          "candidate_win_score": 387.0,
+          "original_win_score": 395.0,
+          "score_delta": -8.0,
+          "percentage_point_delta": -1.5810276679841897,
+          "positive_maps": 21,
+          "negative_maps": 26,
+          "p_two_sided": 0.5600646295802107
+        }
+      },
+      "original": {
+        "games": 506,
+        "maps": 253,
+        "wins": 252,
+        "losses": 254,
+        "draws": 0,
+        "both_won": 29,
+        "both_lost": 30,
+        "p_two_sided": 1.0
+      },
+      "panel": {
+        "games": 1518,
+        "maps": 253,
+        "candidate_win_score": 1237.0,
+        "original_win_score": 1242.0,
+        "score_delta": -5.0,
+        "percentage_point_delta": -0.32938076416337286,
+        "positive_maps": 38,
+        "negative_maps": 35,
+        "neutral_maps": 180,
+        "p_two_sided": 0.8151212352249975
+      }
+    },
+    "farm_contested_backoff": {
+      "candidate": "farm_contested_backoff",
+      "spar": {
+        "spar11": {
+          "games": 506,
+          "maps": 253,
+          "candidate_win_score": 385.0,
+          "original_win_score": 389.0,
+          "score_delta": -4.0,
+          "percentage_point_delta": -0.7905138339920948,
+          "positive_maps": 23,
+          "negative_maps": 27,
+          "p_two_sided": 0.6718110337653656
+        },
+        "spar12": {
+          "games": 506,
+          "maps": 253,
+          "candidate_win_score": 462.0,
+          "original_win_score": 458.0,
+          "score_delta": 4.0,
+          "percentage_point_delta": 0.7905138339920948,
+          "positive_maps": 18,
+          "negative_maps": 13,
+          "p_two_sided": 0.47312965989112854
+        },
+        "spar16": {
+          "games": 506,
+          "maps": 253,
+          "candidate_win_score": 385.0,
+          "original_win_score": 395.0,
+          "score_delta": -10.0,
+          "percentage_point_delta": -1.976284584980237,
+          "positive_maps": 19,
+          "negative_maps": 28,
+          "p_two_sided": 0.24296021728332562
+        }
+      },
+      "original": {
+        "games": 506,
+        "maps": 253,
+        "wins": 255,
+        "losses": 251,
+        "draws": 0,
+        "both_won": 29,
+        "both_lost": 27,
+        "p_two_sided": 0.8938530948350217
+      },
+      "panel": {
+        "games": 1518,
+        "maps": 253,
+        "candidate_win_score": 1232.0,
+        "original_win_score": 1242.0,
+        "score_delta": -10.0,
+        "percentage_point_delta": -0.6587615283267457,
+        "positive_maps": 36,
+        "negative_maps": 43,
+        "neutral_maps": 174,
+        "p_two_sided": 0.49989687686032663
+      }
+    },
+    "reserve_cc3": {
+      "candidate": "reserve_cc3",
+      "spar": {
+        "spar11": {
+          "games": 506,
+          "maps": 253,
+          "candidate_win_score": 391.0,
+          "original_win_score": 389.0,
+          "score_delta": 2.0,
+          "percentage_point_delta": 0.3952569169960474,
+          "positive_maps": 25,
+          "negative_maps": 23,
+          "p_two_sided": 0.8854334972865132
+        },
+        "spar12": {
+          "games": 506,
+          "maps": 253,
+          "candidate_win_score": 456.0,
+          "original_win_score": 458.0,
+          "score_delta": -2.0,
+          "percentage_point_delta": -0.3952569169960474,
+          "positive_maps": 11,
+          "negative_maps": 12,
+          "p_two_sided": 1.0
+        },
+        "spar16": {
+          "games": 506,
+          "maps": 253,
+          "candidate_win_score": 392.0,
+          "original_win_score": 395.0,
+          "score_delta": -3.0,
+          "percentage_point_delta": -0.5928853754940712,
+          "positive_maps": 20,
+          "negative_maps": 23,
+          "p_two_sided": 0.7607916425613439
+        }
+      },
+      "original": {
+        "games": 506,
+        "maps": 253,
+        "wins": 252,
+        "losses": 254,
+        "draws": 0,
+        "both_won": 23,
+        "both_lost": 24,
+        "p_two_sided": 1.0
+      },
+      "panel": {
+        "games": 1518,
+        "maps": 253,
+        "candidate_win_score": 1239.0,
+        "original_win_score": 1242.0,
+        "score_delta": -3.0,
+        "percentage_point_delta": -0.1976284584980237,
+        "positive_maps": 33,
+        "negative_maps": 30,
+        "neutral_maps": 190,
+        "p_two_sided": 0.8013064925040662
+      }
+    },
+    "reserve_cc6": {
+      "candidate": "reserve_cc6",
+      "spar": {
+        "spar11": {
+          "games": 506,
+          "maps": 253,
+          "candidate_win_score": 389.0,
+          "original_win_score": 389.0,
+          "score_delta": 0.0,
+          "percentage_point_delta": 0.0,
+          "positive_maps": 23,
+          "negative_maps": 23,
+          "p_two_sided": 1.0
+        },
+        "spar12": {
+          "games": 506,
+          "maps": 253,
+          "candidate_win_score": 452.0,
+          "original_win_score": 458.0,
+          "score_delta": -6.0,
+          "percentage_point_delta": -1.1857707509881423,
+          "positive_maps": 10,
+          "negative_maps": 17,
+          "p_two_sided": 0.24778856337070465
+        },
+        "spar16": {
+          "games": 506,
+          "maps": 253,
+          "candidate_win_score": 394.0,
+          "original_win_score": 395.0,
+          "score_delta": -1.0,
+          "percentage_point_delta": -0.1976284584980237,
+          "positive_maps": 21,
+          "negative_maps": 22,
+          "p_two_sided": 1.0
+        }
+      },
+      "original": {
+        "games": 506,
+        "maps": 253,
+        "wins": 247,
+        "losses": 259,
+        "draws": 0,
+        "both_won": 21,
+        "both_lost": 27,
+        "p_two_sided": 0.4708790136217118
+      },
+      "panel": {
+        "games": 1518,
+        "maps": 253,
+        "candidate_win_score": 1235.0,
+        "original_win_score": 1242.0,
+        "score_delta": -7.0,
+        "percentage_point_delta": -0.461133069828722,
+        "positive_maps": 30,
+        "negative_maps": 34,
+        "neutral_maps": 189,
+        "p_two_sided": 0.707980754134764
+      }
+    }
+  },
+  "Narrow follow-ups: 53-map screen (adaptive development)": {
+    "start_only_backoff": {
+      "candidate": "start_only_backoff",
+      "spar": {
+        "spar11": {
+          "games": 106,
+          "maps": 53,
+          "candidate_win_score": 90.0,
+          "original_win_score": 90.0,
+          "score_delta": 0.0,
+          "percentage_point_delta": 0.0,
+          "positive_maps": 1,
+          "negative_maps": 1,
+          "p_two_sided": 1.0
+        },
+        "spar12": {
+          "games": 106,
+          "maps": 53,
+          "candidate_win_score": 98.0,
+          "original_win_score": 98.0,
+          "score_delta": 0.0,
+          "percentage_point_delta": 0.0,
+          "positive_maps": 1,
+          "negative_maps": 1,
+          "p_two_sided": 1.0
+        },
+        "spar16": {
+          "games": 106,
+          "maps": 53,
+          "candidate_win_score": 90.0,
+          "original_win_score": 91.0,
+          "score_delta": -1.0,
+          "percentage_point_delta": -0.9433962264150944,
+          "positive_maps": 1,
+          "negative_maps": 2,
+          "p_two_sided": 1.0
+        }
+      },
+      "original": {
+        "games": 106,
+        "maps": 53,
+        "wins": 53,
+        "losses": 53,
+        "draws": 0,
+        "both_won": 2,
+        "both_lost": 2,
+        "p_two_sided": 1.0
+      },
+      "panel": {
+        "games": 318,
+        "maps": 53,
+        "candidate_win_score": 278.0,
+        "original_win_score": 279.0,
+        "score_delta": -1.0,
+        "percentage_point_delta": -0.31446540880503143,
+        "positive_maps": 1,
+        "negative_maps": 2,
+        "neutral_maps": 50,
+        "p_two_sided": 1.0
+      }
+    },
+    "start_only_retarget": {
+      "candidate": "start_only_retarget",
+      "spar": {
+        "spar11": {
+          "games": 106,
+          "maps": 53,
+          "candidate_win_score": 90.0,
+          "original_win_score": 90.0,
+          "score_delta": 0.0,
+          "percentage_point_delta": 0.0,
+          "positive_maps": 1,
+          "negative_maps": 1,
+          "p_two_sided": 1.0
+        },
+        "spar12": {
+          "games": 106,
+          "maps": 53,
+          "candidate_win_score": 97.0,
+          "original_win_score": 98.0,
+          "score_delta": -1.0,
+          "percentage_point_delta": -0.9433962264150944,
+          "positive_maps": 1,
+          "negative_maps": 2,
+          "p_two_sided": 1.0
+        },
+        "spar16": {
+          "games": 106,
+          "maps": 53,
+          "candidate_win_score": 90.0,
+          "original_win_score": 91.0,
+          "score_delta": -1.0,
+          "percentage_point_delta": -0.9433962264150944,
+          "positive_maps": 1,
+          "negative_maps": 2,
+          "p_two_sided": 1.0
+        }
+      },
+      "original": {
+        "games": 106,
+        "maps": 53,
+        "wins": 51,
+        "losses": 55,
+        "draws": 0,
+        "both_won": 0,
+        "both_lost": 2,
+        "p_two_sided": 0.5
+      },
+      "panel": {
+        "games": 318,
+        "maps": 53,
+        "candidate_win_score": 277.0,
+        "original_win_score": 279.0,
+        "score_delta": -2.0,
+        "percentage_point_delta": -0.6289308176100629,
+        "positive_maps": 1,
+        "negative_maps": 3,
+        "neutral_maps": 49,
+        "p_two_sided": 0.625
+      }
+    },
+    "no_contact_dash": {
+      "candidate": "no_contact_dash",
+      "spar": {
+        "spar11": {
+          "games": 106,
+          "maps": 53,
+          "candidate_win_score": 91.0,
+          "original_win_score": 90.0,
+          "score_delta": 1.0,
+          "percentage_point_delta": 0.9433962264150944,
+          "positive_maps": 3,
+          "negative_maps": 2,
+          "p_two_sided": 1.0
+        },
+        "spar12": {
+          "games": 106,
+          "maps": 53,
+          "candidate_win_score": 99.0,
+          "original_win_score": 98.0,
+          "score_delta": 1.0,
+          "percentage_point_delta": 0.9433962264150944,
+          "positive_maps": 2,
+          "negative_maps": 1,
+          "p_two_sided": 1.0
+        },
+        "spar16": {
+          "games": 106,
+          "maps": 53,
+          "candidate_win_score": 89.0,
+          "original_win_score": 91.0,
+          "score_delta": -2.0,
+          "percentage_point_delta": -1.8867924528301887,
+          "positive_maps": 1,
+          "negative_maps": 3,
+          "p_two_sided": 0.625
+        }
+      },
+      "original": {
+        "games": 106,
+        "maps": 53,
+        "wins": 55,
+        "losses": 51,
+        "draws": 0,
+        "both_won": 4,
+        "both_lost": 2,
+        "p_two_sided": 0.6875
+      },
+      "panel": {
+        "games": 318,
+        "maps": 53,
+        "candidate_win_score": 279.0,
+        "original_win_score": 279.0,
+        "score_delta": 0.0,
+        "percentage_point_delta": 0.0,
+        "positive_maps": 3,
+        "negative_maps": 3,
+        "neutral_maps": 47,
+        "p_two_sided": 1.0
+      }
+    },
+    "reserve_cc_contact5": {
+      "candidate": "reserve_cc_contact5",
+      "spar": {
+        "spar11": {
+          "games": 106,
+          "maps": 53,
+          "candidate_win_score": 89.0,
+          "original_win_score": 90.0,
+          "score_delta": -1.0,
+          "percentage_point_delta": -0.9433962264150944,
+          "positive_maps": 2,
+          "negative_maps": 3,
+          "p_two_sided": 1.0
+        },
+        "spar12": {
+          "games": 106,
+          "maps": 53,
+          "candidate_win_score": 97.0,
+          "original_win_score": 98.0,
+          "score_delta": -1.0,
+          "percentage_point_delta": -0.9433962264150944,
+          "positive_maps": 2,
+          "negative_maps": 3,
+          "p_two_sided": 1.0
+        },
+        "spar16": {
+          "games": 106,
+          "maps": 53,
+          "candidate_win_score": 91.0,
+          "original_win_score": 91.0,
+          "score_delta": 0.0,
+          "percentage_point_delta": 0.0,
+          "positive_maps": 3,
+          "negative_maps": 3,
+          "p_two_sided": 1.0
+        }
+      },
+      "original": {
+        "games": 106,
+        "maps": 53,
+        "wins": 53,
+        "losses": 53,
+        "draws": 0,
+        "both_won": 5,
+        "both_lost": 5,
+        "p_two_sided": 1.0
+      },
+      "panel": {
+        "games": 318,
+        "maps": 53,
+        "candidate_win_score": 277.0,
+        "original_win_score": 279.0,
+        "score_delta": -2.0,
+        "percentage_point_delta": -0.6289308176100629,
+        "positive_maps": 5,
+        "negative_maps": 5,
+        "neutral_maps": 43,
+        "p_two_sided": 1.0
+      }
+    },
+    "reserve_cc_contact3": {
+      "candidate": "reserve_cc_contact3",
+      "spar": {
+        "spar11": {
+          "games": 106,
+          "maps": 53,
+          "candidate_win_score": 87.0,
+          "original_win_score": 90.0,
+          "score_delta": -3.0,
+          "percentage_point_delta": -2.830188679245283,
+          "positive_maps": 0,
+          "negative_maps": 2,
+          "p_two_sided": 0.5
+        },
+        "spar12": {
+          "games": 106,
+          "maps": 53,
+          "candidate_win_score": 97.0,
+          "original_win_score": 98.0,
+          "score_delta": -1.0,
+          "percentage_point_delta": -0.9433962264150944,
+          "positive_maps": 0,
+          "negative_maps": 1,
+          "p_two_sided": 1.0
+        },
+        "spar16": {
+          "games": 106,
+          "maps": 53,
+          "candidate_win_score": 91.0,
+          "original_win_score": 91.0,
+          "score_delta": 0.0,
+          "percentage_point_delta": 0.0,
+          "positive_maps": 2,
+          "negative_maps": 2,
+          "p_two_sided": 1.0
+        }
+      },
+      "original": {
+        "games": 106,
+        "maps": 53,
+        "wins": 55,
+        "losses": 51,
+        "draws": 0,
+        "both_won": 4,
+        "both_lost": 2,
+        "p_two_sided": 0.6875
+      },
+      "panel": {
+        "games": 318,
+        "maps": 53,
+        "candidate_win_score": 275.0,
+        "original_win_score": 279.0,
+        "score_delta": -4.0,
+        "percentage_point_delta": -1.2578616352201257,
+        "positive_maps": 2,
+        "negative_maps": 3,
+        "neutral_maps": 48,
+        "p_two_sided": 1.0
+      }
+    }
+  },
+  "Dash follow-up: full 253-map development panel": {
+    "no_contact_dash": {
+      "candidate": "no_contact_dash",
+      "spar": {
+        "spar11": {
+          "games": 506,
+          "maps": 253,
+          "candidate_win_score": 387.0,
+          "original_win_score": 389.0,
+          "score_delta": -2.0,
+          "percentage_point_delta": -0.3952569169960474,
+          "positive_maps": 16,
+          "negative_maps": 18,
+          "p_two_sided": 0.8641662404406816
+        },
+        "spar12": {
+          "games": 506,
+          "maps": 253,
+          "candidate_win_score": 458.0,
+          "original_win_score": 458.0,
+          "score_delta": 0.0,
+          "percentage_point_delta": 0.0,
+          "positive_maps": 10,
+          "negative_maps": 10,
+          "p_two_sided": 1.0
+        },
+        "spar16": {
+          "games": 506,
+          "maps": 253,
+          "candidate_win_score": 390.0,
+          "original_win_score": 395.0,
+          "score_delta": -5.0,
+          "percentage_point_delta": -0.9881422924901185,
+          "positive_maps": 13,
+          "negative_maps": 17,
+          "p_two_sided": 0.584664711728692
+        }
+      },
+      "original": {
+        "games": 506,
+        "maps": 253,
+        "wins": 251,
+        "losses": 255,
+        "draws": 0,
+        "both_won": 20,
+        "both_lost": 22,
+        "p_two_sided": 0.8776143287523155
+      },
+      "panel": {
+        "games": 1518,
+        "maps": 253,
+        "candidate_win_score": 1235.0,
+        "original_win_score": 1242.0,
+        "score_delta": -7.0,
+        "percentage_point_delta": -0.461133069828722,
+        "positive_maps": 22,
+        "negative_maps": 28,
+        "neutral_maps": 203,
+        "p_two_sided": 0.47988766169832786
+      }
+    }
+  },
+  "Generic held-camp re-entry: 253 development maps": {
+    "reentry16_active": {
+      "candidate": "reentry16_active",
+      "spar": {
+        "spar11": {
+          "games": 506,
+          "maps": 253,
+          "candidate_win_score": 391.0,
+          "original_win_score": 389.0,
+          "score_delta": 2.0,
+          "percentage_point_delta": 0.3952569169960474,
+          "positive_maps": 6,
+          "negative_maps": 4,
+          "p_two_sided": 0.75390625
+        },
+        "spar12": {
+          "games": 506,
+          "maps": 253,
+          "candidate_win_score": 456.0,
+          "original_win_score": 458.0,
+          "score_delta": -2.0,
+          "percentage_point_delta": -0.3952569169960474,
+          "positive_maps": 4,
+          "negative_maps": 5,
+          "p_two_sided": 1.0
+        },
+        "spar16": {
+          "games": 506,
+          "maps": 253,
+          "candidate_win_score": 390.0,
+          "original_win_score": 395.0,
+          "score_delta": -5.0,
+          "percentage_point_delta": -0.9881422924901185,
+          "positive_maps": 4,
+          "negative_maps": 9,
+          "p_two_sided": 0.266845703125
+        }
+      },
+      "original": {
+        "games": 506,
+        "maps": 253,
+        "wins": 255,
+        "losses": 251,
+        "draws": 0,
+        "both_won": 8,
+        "both_lost": 6,
+        "p_two_sided": 0.79052734375
+      },
+      "panel": {
+        "games": 1518,
+        "maps": 253,
+        "candidate_win_score": 1237.0,
+        "original_win_score": 1242.0,
+        "score_delta": -5.0,
+        "percentage_point_delta": -0.32938076416337286,
+        "positive_maps": 7,
+        "negative_maps": 13,
+        "neutral_maps": 233,
+        "p_two_sided": 0.26317596435546875
+      }
+    },
+    "reentry32_active": {
+      "candidate": "reentry32_active",
+      "spar": {
+        "spar11": {
+          "games": 506,
+          "maps": 253,
+          "candidate_win_score": 390.0,
+          "original_win_score": 389.0,
+          "score_delta": 1.0,
+          "percentage_point_delta": 0.1976284584980237,
+          "positive_maps": 6,
+          "negative_maps": 5,
+          "p_two_sided": 1.0
+        },
+        "spar12": {
+          "games": 506,
+          "maps": 253,
+          "candidate_win_score": 456.0,
+          "original_win_score": 458.0,
+          "score_delta": -2.0,
+          "percentage_point_delta": -0.3952569169960474,
+          "positive_maps": 4,
+          "negative_maps": 6,
+          "p_two_sided": 0.75390625
+        },
+        "spar16": {
+          "games": 506,
+          "maps": 253,
+          "candidate_win_score": 390.0,
+          "original_win_score": 395.0,
+          "score_delta": -5.0,
+          "percentage_point_delta": -0.9881422924901185,
+          "positive_maps": 4,
+          "negative_maps": 9,
+          "p_two_sided": 0.266845703125
+        }
+      },
+      "original": {
+        "games": 506,
+        "maps": 253,
+        "wins": 249,
+        "losses": 257,
+        "draws": 0,
+        "both_won": 6,
+        "both_lost": 10,
+        "p_two_sided": 0.454498291015625
+      },
+      "panel": {
+        "games": 1518,
+        "maps": 253,
+        "candidate_win_score": 1236.0,
+        "original_win_score": 1242.0,
+        "score_delta": -6.0,
+        "percentage_point_delta": -0.3952569169960474,
+        "positive_maps": 7,
+        "negative_maps": 13,
+        "neutral_maps": 233,
+        "p_two_sided": 0.26317596435546875
+      }
+    }
+  },
+  "Corners components: 65 Corners-family development maps": {
+    "corners_lone": {
+      "candidate": "corners_lone",
+      "spar": {
+        "spar11": {
+          "games": 130,
+          "maps": 65,
+          "candidate_win_score": 87.0,
+          "original_win_score": 94.0,
+          "score_delta": -7.0,
+          "percentage_point_delta": -5.384615384615385,
+          "positive_maps": 9,
+          "negative_maps": 15,
+          "p_two_sided": 0.30745625495910645
+        },
+        "spar12": {
+          "games": 130,
+          "maps": 65,
+          "candidate_win_score": 100.0,
+          "original_win_score": 107.0,
+          "score_delta": -7.0,
+          "percentage_point_delta": -5.384615384615385,
+          "positive_maps": 6,
+          "negative_maps": 11,
+          "p_two_sided": 0.332305908203125
+        },
+        "spar16": {
+          "games": 130,
+          "maps": 65,
+          "candidate_win_score": 86.0,
+          "original_win_score": 97.0,
+          "score_delta": -11.0,
+          "percentage_point_delta": -8.461538461538462,
+          "positive_maps": 7,
+          "negative_maps": 18,
+          "p_two_sided": 0.043285250663757324
+        }
+      },
+      "original": {
+        "games": 130,
+        "maps": 65,
+        "wins": 60,
+        "losses": 70,
+        "draws": 0,
+        "both_won": 9,
+        "both_lost": 14,
+        "p_two_sided": 0.4048728942871094
+      },
+      "panel": {
+        "games": 390,
+        "maps": 65,
+        "candidate_win_score": 273.0,
+        "original_win_score": 298.0,
+        "score_delta": -25.0,
+        "percentage_point_delta": -6.410256410256411,
+        "positive_maps": 11,
+        "negative_maps": 24,
+        "neutral_maps": 30,
+        "p_two_sided": 0.04095959151163697
+      }
+    },
+    "corners_reentry": {
+      "candidate": "corners_reentry",
+      "spar": {
+        "spar11": {
+          "games": 130,
+          "maps": 65,
+          "candidate_win_score": 87.0,
+          "original_win_score": 94.0,
+          "score_delta": -7.0,
+          "percentage_point_delta": -5.384615384615385,
+          "positive_maps": 5,
+          "negative_maps": 12,
+          "p_two_sided": 0.143463134765625
+        },
+        "spar12": {
+          "games": 130,
+          "maps": 65,
+          "candidate_win_score": 102.0,
+          "original_win_score": 107.0,
+          "score_delta": -5.0,
+          "percentage_point_delta": -3.8461538461538463,
+          "positive_maps": 6,
+          "negative_maps": 11,
+          "p_two_sided": 0.332305908203125
+        },
+        "spar16": {
+          "games": 130,
+          "maps": 65,
+          "candidate_win_score": 91.0,
+          "original_win_score": 97.0,
+          "score_delta": -6.0,
+          "percentage_point_delta": -4.615384615384615,
+          "positive_maps": 6,
+          "negative_maps": 12,
+          "p_two_sided": 0.237884521484375
+        }
+      },
+      "original": {
+        "games": 130,
+        "maps": 65,
+        "wins": 66,
+        "losses": 64,
+        "draws": 0,
+        "both_won": 11,
+        "both_lost": 10,
+        "p_two_sided": 1.0
+      },
+      "panel": {
+        "games": 390,
+        "maps": 65,
+        "candidate_win_score": 280.0,
+        "original_win_score": 298.0,
+        "score_delta": -18.0,
+        "percentage_point_delta": -4.615384615384615,
+        "positive_maps": 11,
+        "negative_maps": 20,
+        "neutral_maps": 34,
+        "p_two_sided": 0.14961278438568115
+      }
+    },
+    "corners_flee": {
+      "candidate": "corners_flee",
+      "spar": {
+        "spar11": {
+          "games": 130,
+          "maps": 65,
+          "candidate_win_score": 79.0,
+          "original_win_score": 94.0,
+          "score_delta": -15.0,
+          "percentage_point_delta": -11.538461538461538,
+          "positive_maps": 5,
+          "negative_maps": 20,
+          "p_two_sided": 0.004077315330505371
+        },
+        "spar12": {
+          "games": 130,
+          "maps": 65,
+          "candidate_win_score": 107.0,
+          "original_win_score": 107.0,
+          "score_delta": 0.0,
+          "percentage_point_delta": 0.0,
+          "positive_maps": 11,
+          "negative_maps": 12,
+          "p_two_sided": 1.0
+        },
+        "spar16": {
+          "games": 130,
+          "maps": 65,
+          "candidate_win_score": 84.0,
+          "original_win_score": 97.0,
+          "score_delta": -13.0,
+          "percentage_point_delta": -10.0,
+          "positive_maps": 5,
+          "negative_maps": 18,
+          "p_two_sided": 0.010622024536132812
+        }
+      },
+      "original": {
+        "games": 130,
+        "maps": 65,
+        "wins": 74,
+        "losses": 56,
+        "draws": 0,
+        "both_won": 20,
+        "both_lost": 11,
+        "p_two_sided": 0.14961278438568115
+      },
+      "panel": {
+        "games": 390,
+        "maps": 65,
+        "candidate_win_score": 270.0,
+        "original_win_score": 298.0,
+        "score_delta": -28.0,
+        "percentage_point_delta": -7.17948717948718,
+        "positive_maps": 11,
+        "negative_maps": 23,
+        "neutral_maps": 31,
+        "p_two_sided": 0.05761267291381955
+      }
+    },
+    "corners_lone_reentry": {
+      "candidate": "corners_lone_reentry",
+      "spar": {
+        "spar11": {
+          "games": 130,
+          "maps": 65,
+          "candidate_win_score": 82.0,
+          "original_win_score": 94.0,
+          "score_delta": -12.0,
+          "percentage_point_delta": -9.23076923076923,
+          "positive_maps": 6,
+          "negative_maps": 16,
+          "p_two_sided": 0.052478790283203125
+        },
+        "spar12": {
+          "games": 130,
+          "maps": 65,
+          "candidate_win_score": 96.0,
+          "original_win_score": 107.0,
+          "score_delta": -11.0,
+          "percentage_point_delta": -8.461538461538462,
+          "positive_maps": 6,
+          "negative_maps": 15,
+          "p_two_sided": 0.0783538818359375
+        },
+        "spar16": {
+          "games": 130,
+          "maps": 65,
+          "candidate_win_score": 82.0,
+          "original_win_score": 97.0,
+          "score_delta": -15.0,
+          "percentage_point_delta": -11.538461538461538,
+          "positive_maps": 6,
+          "negative_maps": 20,
+          "p_two_sided": 0.009355306625366211
+        }
+      },
+      "original": {
+        "games": 130,
+        "maps": 65,
+        "wins": 60,
+        "losses": 70,
+        "draws": 0,
+        "both_won": 8,
+        "both_lost": 13,
+        "p_two_sided": 0.38331031799316406
+      },
+      "panel": {
+        "games": 390,
+        "maps": 65,
+        "candidate_win_score": 260.0,
+        "original_win_score": 298.0,
+        "score_delta": -38.0,
+        "percentage_point_delta": -9.743589743589743,
+        "positive_maps": 9,
+        "negative_maps": 28,
+        "neutral_maps": 28,
+        "p_two_sided": 0.0025632079923525453
+      }
+    },
+    "corners_lone_flee": {
+      "candidate": "corners_lone_flee",
+      "spar": {
+        "spar11": {
+          "games": 130,
+          "maps": 65,
+          "candidate_win_score": 82.0,
+          "original_win_score": 94.0,
+          "score_delta": -12.0,
+          "percentage_point_delta": -9.23076923076923,
+          "positive_maps": 9,
+          "negative_maps": 19,
+          "p_two_sided": 0.08715855330228806
+        },
+        "spar12": {
+          "games": 130,
+          "maps": 65,
+          "candidate_win_score": 94.0,
+          "original_win_score": 107.0,
+          "score_delta": -13.0,
+          "percentage_point_delta": -10.0,
+          "positive_maps": 5,
+          "negative_maps": 18,
+          "p_two_sided": 0.010622024536132812
+        },
+        "spar16": {
+          "games": 130,
+          "maps": 65,
+          "candidate_win_score": 83.0,
+          "original_win_score": 97.0,
+          "score_delta": -14.0,
+          "percentage_point_delta": -10.76923076923077,
+          "positive_maps": 9,
+          "negative_maps": 20,
+          "p_two_sided": 0.06142834573984146
+        }
+      },
+      "original": {
+        "games": 130,
+        "maps": 65,
+        "wins": 65,
+        "losses": 65,
+        "draws": 0,
+        "both_won": 17,
+        "both_lost": 17,
+        "p_two_sided": 1.0
+      },
+      "panel": {
+        "games": 390,
+        "maps": 65,
+        "candidate_win_score": 259.0,
+        "original_win_score": 298.0,
+        "score_delta": -39.0,
+        "percentage_point_delta": -10.0,
+        "positive_maps": 12,
+        "negative_maps": 28,
+        "neutral_maps": 25,
+        "p_two_sided": 0.01658900337497471
+      }
+    },
+    "corners_reentry_flee": {
+      "candidate": "corners_reentry_flee",
+      "spar": {
+        "spar11": {
+          "games": 130,
+          "maps": 65,
+          "candidate_win_score": 83.0,
+          "original_win_score": 94.0,
+          "score_delta": -11.0,
+          "percentage_point_delta": -8.461538461538462,
+          "positive_maps": 7,
+          "negative_maps": 15,
+          "p_two_sided": 0.13380050659179688
+        },
+        "spar12": {
+          "games": 130,
+          "maps": 65,
+          "candidate_win_score": 104.0,
+          "original_win_score": 107.0,
+          "score_delta": -3.0,
+          "percentage_point_delta": -2.3076923076923075,
+          "positive_maps": 8,
+          "negative_maps": 12,
+          "p_two_sided": 0.5034446716308594
+        },
+        "spar16": {
+          "games": 130,
+          "maps": 65,
+          "candidate_win_score": 84.0,
+          "original_win_score": 97.0,
+          "score_delta": -13.0,
+          "percentage_point_delta": -10.0,
+          "positive_maps": 6,
+          "negative_maps": 18,
+          "p_two_sided": 0.022655844688415527
+        }
+      },
+      "original": {
+        "games": 130,
+        "maps": 65,
+        "wins": 74,
+        "losses": 56,
+        "draws": 0,
+        "both_won": 21,
+        "both_lost": 12,
+        "p_two_sided": 0.16275565745308995
+      },
+      "panel": {
+        "games": 390,
+        "maps": 65,
+        "candidate_win_score": 271.0,
+        "original_win_score": 298.0,
+        "score_delta": -27.0,
+        "percentage_point_delta": -6.923076923076923,
+        "positive_maps": 11,
+        "negative_maps": 24,
+        "neutral_maps": 30,
+        "p_two_sided": 0.04095959151163697
+      }
+    },
+    "corners_v39": {
+      "candidate": "corners_v39",
+      "spar": {
+        "spar11": {
+          "games": 130,
+          "maps": 65,
+          "candidate_win_score": 80.0,
+          "original_win_score": 94.0,
+          "score_delta": -14.0,
+          "percentage_point_delta": -10.76923076923077,
+          "positive_maps": 8,
+          "negative_maps": 19,
+          "p_two_sided": 0.052238985896110535
+        },
+        "spar12": {
+          "games": 130,
+          "maps": 65,
+          "candidate_win_score": 98.0,
+          "original_win_score": 107.0,
+          "score_delta": -9.0,
+          "percentage_point_delta": -6.923076923076923,
+          "positive_maps": 5,
+          "negative_maps": 13,
+          "p_two_sided": 0.09625244140625
+        },
+        "spar16": {
+          "games": 130,
+          "maps": 65,
+          "candidate_win_score": 79.0,
+          "original_win_score": 97.0,
+          "score_delta": -18.0,
+          "percentage_point_delta": -13.846153846153847,
+          "positive_maps": 6,
+          "negative_maps": 20,
+          "p_two_sided": 0.009355306625366211
+        }
+      },
+      "original": {
+        "games": 130,
+        "maps": 65,
+        "wins": 64,
+        "losses": 66,
+        "draws": 0,
+        "both_won": 16,
+        "both_lost": 17,
+        "p_two_sided": 1.0
+      },
+      "panel": {
+        "games": 390,
+        "maps": 65,
+        "candidate_win_score": 257.0,
+        "original_win_score": 298.0,
+        "score_delta": -41.0,
+        "percentage_point_delta": -10.512820512820513,
+        "positive_maps": 9,
+        "negative_maps": 26,
+        "neutral_maps": 30,
+        "p_two_sided": 0.0059881205670535564
+      }
+    }
+  },
+  "Full v39 cross-check: general 253-map panel": {
+    "corners_v39": {
+      "candidate": "corners_v39",
+      "spar": {
+        "spar11": {
+          "games": 506,
+          "maps": 253,
+          "candidate_win_score": 389.0,
+          "original_win_score": 389.0,
+          "score_delta": 0.0,
+          "percentage_point_delta": 0.0,
+          "positive_maps": 1,
+          "negative_maps": 1,
+          "p_two_sided": 1.0
+        },
+        "spar12": {
+          "games": 506,
+          "maps": 253,
+          "candidate_win_score": 458.0,
+          "original_win_score": 458.0,
+          "score_delta": 0.0,
+          "percentage_point_delta": 0.0,
+          "positive_maps": 1,
+          "negative_maps": 1,
+          "p_two_sided": 1.0
+        },
+        "spar16": {
+          "games": 506,
+          "maps": 253,
+          "candidate_win_score": 395.0,
+          "original_win_score": 395.0,
+          "score_delta": 0.0,
+          "percentage_point_delta": 0.0,
+          "positive_maps": 1,
+          "negative_maps": 1,
+          "p_two_sided": 1.0
+        }
+      },
+      "original": {
+        "games": 506,
+        "maps": 253,
+        "wins": 254,
+        "losses": 252,
+        "draws": 0,
+        "both_won": 1,
+        "both_lost": 0,
+        "p_two_sided": 1.0
+      },
+      "panel": {
+        "games": 1518,
+        "maps": 253,
+        "candidate_win_score": 1242.0,
+        "original_win_score": 1242.0,
+        "score_delta": 0.0,
+        "percentage_point_delta": 0.0,
+        "positive_maps": 2,
+        "negative_maps": 2,
+        "neutral_maps": 249,
+        "p_two_sided": 1.0
+      }
+    }
+  }
+}

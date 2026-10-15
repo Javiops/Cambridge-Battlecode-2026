@@ -1,0 +1,35 @@
+{
+  "created_utc": "2026-10-15T17:48:18.533433+00:00",
+  "audit_script_sha256": "008eb85f80c94f732d062eeafe4d1f608a921bb5188ac315cfc2fddacc5d1060",
+  "artifacts": {
+    "audit.json": {
+      "bytes": 142871,
+      "sha256": "ac81e6e00353ae7b11c597117e70bb9f7c4cc3eb1b704b2cbef8dcc059c41e9d"
+    },
+    "outcomes.jsonl.gz": {
+      "bytes": 14750881,
+      "sha256": "718290112e88e401970a013b8d08276061cb83bb113389a8e0eb6f8da39b0ab0"
+    },
+    "views.jsonl.gz": {
+      "bytes": 1889429,
+      "sha256": "39b8dc1356c95f471236bbac7110de4e8eb1a23d6d19cc6519ef5c114c621373"
+    },
+    "maps.zip": {
+      "bytes": 307312,
+      "sha256": "11a2602602fd7f6b09d27d334790225c141a854ed2e72cfbb1cfb5222c5a8c86"
+    },
+    "provenance.zip": {
+      "bytes": 3859856,
+      "sha256": "f987f18bd4cbfbb640637cf033f8b74a7533ae723ef06553bb8316b53c5908f0"
+    }
+  },
+  "unique_completed_physical_inputs": 31519,
+  "path_policy": "Published plan copies replace task/work/user-home prefixes with TASK/WORK/USER; original local plan/result/cache SHA256 values pin original evidence.",
+  "limits": [
+    "Unique physical inputs are exact ordered WASM/map/runtime/config/settings identities, not statistically independent games.",
+    "Cache reuse, duplicate smoke slots and panel reuse never add new evidence.",
+    "SDK errors and low-fuel status are sampled logs, not exact native fuel-exhaustion counts.",
+    "Compact exports omit full raw statistics and native replay bulk; raw SHA256 pins remain, and full local evidence is retained.",
+    "Completed-stage snapshot can exclude concurrently running/newly published stages; snapshot_is_final is false when a planned stage is pending."
+  ]
+}

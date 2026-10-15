@@ -63,6 +63,7 @@
 #include <vector>
 #include <variant>
 #include <cstdio>
+#include <cstdlib>
 #include <exception>
 
 namespace bc = cambc;
@@ -473,6 +474,8 @@ inline bool fuel_ok(std::uint64_t need) { return bc::fuel_remaining() > need + F
 int g_errors = 0;
 const char* g_mode = "start";
 const char* g_farm = "-";
+int g_mm_force = -1;  // P_MITEMACRO: farm() takes this camp group instead of choose_target
+bool g_mm_cap = false;  // P_MITEMACRO: Mite's champion in this slot took this reward: never leave it to an ally
 
 void note_error(const char* what) {
     ++g_errors;
@@ -507,6 +510,10 @@ std::string norm(const std::string& s) {
 bool starts_with(const std::string& s, const std::string& p) { return s.rfind(p, 0) == 0; }
 
 #include "de_rules.h"
+#ifndef P_MITEMACRO
+#define P_MITEMACRO 0
+#endif
+#include "mite_macro.h"
 int g_de_map = 0;  // Public geometry family, transported in draft-memory byte28.
 
 // Base monster stats from the rules (health, strength).
@@ -677,6 +684,20 @@ void write_plan(const std::vector<std::uint8_t>& roster) {
             for (const char* fallback : PREFS) prefs.push_back(fallback);
         }
     }
+    std::vector<std::string> mm_names;  // P_MITEMACRO: Mite's draft on this map
+    if (P_MITEMACRO && g_de_map)
+        for (auto& sc : mitemacro::scripts)
+            if (sc.family == g_de_map) {
+                std::string d = sc.draft, cur;
+                for (char ch : d + ",")
+                    if (ch == ',') { if (!cur.empty()) mm_names.push_back(cur); cur.clear(); }
+                    else cur += ch;
+                prefs.clear();
+                for (auto& n : mm_names) prefs.push_back(n.c_str());
+                for (const char* fallback : PREFS) prefs.push_back(fallback);
+                std::printf("[draft] mite macro map %d: %s\n", g_de_map, sc.draft);
+                break;
+            }
     for (const char* p : prefs)
         for (auto& o : all)
             if ((o.name == p || starts_with(o.name, p)) && !has(o.name)) order.push_back(o);
@@ -954,6 +975,10 @@ struct State {
     bc::bitboard pdv;
     int thr_r = -1;
     int de_map = 0;
+    const mitemacro::MChamp* mm = nullptr;  // P_MITEMACRO: Mite's macro steps for this champion on this map and side
+    bool mm_init = false, mm_up = false;
+    int mm_i = 0, mm_start = -1, mm_nok = 0, mm_try = 0, mm_bad = 0, mm_got = -1;
+    std::vector<int> mm_group;              // per step: our camp-group index of its camp tile
 };
 
 Slot classify(const bc::ability& a) {
@@ -2138,7 +2163,14 @@ void farm(State& s, bc::champion& me, int round, const std::vector<bc::camp>& ca
 #endif
     // A damaged camp or active capture remains committed. Only travel plans
     // are reconsidered sooner when a more productive group becomes available.
-    if (s.target < 0 || expired || (!committed && round - s.target_round >= (ball_on(s, round) ? 3 : target_refresh))) {
+    if (g_mm_force >= 0) {  // P_MITEMACRO: the script picks the group
+        if (s.target != g_mm_force) {
+            s.target = g_mm_force;
+            s.cap_start = -1;
+            s.target_round = round;
+            write_claim(s, s.target);
+        }
+    } else if (s.target < 0 || expired || (!committed && round - s.target_round >= (ball_on(s, round) ? 3 : target_refresh))) {
         int t = choose_target(s, me, round);
         if (t != s.target) s.cap_start = -1;
         s.target = t;
@@ -2203,6 +2235,7 @@ void farm(State& s, bc::champion& me, int round, const std::vector<bc::camp>& ca
         int here = 1 + allies_near(s, me, g.center, 7);
         int coming = 1 + count_claimers(s, read_sm(), s.target);
         if (!engaged && needed > here) {
+            if (g_mm_force >= 0) ++s.mm_try;  // P_MITEMACRO: rounds this step waited for company (mite_exec gives up after P_MM_RALLY)
             if (needed > std::max(coming, s.roster) || needed > squad_needed(rem, str, dps, mhp * 0.75)) {
                 g_farm = "too-strong";  // not even a full-health squad would do it
                 g.bad_until = round + 60;
@@ -2264,7 +2297,7 @@ void farm(State& s, bc::champion& me, int round, const std::vector<bc::camp>& ca
     // Nothing of this group is visible alive.
     if (g.reward_seen == round) {  // the engine says the reward is waiting: stand on it
         g_farm = "capture";
-        if (P_ONE_CAP && other_captures(s, me, g, s.target)) {
+        if (P_ONE_CAP && !g_mm_cap && other_captures(s, me, g, s.target)) {
             g_farm = "leave-reward";
             g.bad_until = round + 12;
             drop_target(s);
@@ -2279,6 +2312,7 @@ void farm(State& s, bc::champion& me, int round, const std::vector<bc::camp>& ca
             if (s.cap_start < 0) s.cap_start = round;
             if (round - s.cap_start > 12) {  // nothing came: someone else holds it
                 g.next_ok = round + 20;
+                if (g_mm_force >= 0) g.bad_until = round + 20;  // P_MITEMACRO: the script's step is over
                 drop_target(s);
             }
             return;
@@ -2352,6 +2386,8 @@ bool cancel_doomed_channel(State& s, bc::champion& me, float hp) {
     });
 }
 
+#include "mite_exec.h"
+
 // ---------------------------------------------------------------------------
 // One turn
 // ---------------------------------------------------------------------------
@@ -2382,6 +2418,7 @@ void play_turn(State& s) {
         g.next_ok = round + g.respawn - (P_RESPAWN ? 6 : 0);
         g.reward_seen = -1;
         broadcast_cooldown(s.target, g.next_ok);
+        s.mm_got = s.target;  // P_MITEMACRO: our capture ends the script's step on this group
         drop_target(s);
     }
     s.last_gems = gems;
@@ -2504,8 +2541,9 @@ void play_turn(State& s) {
         if (sc < tgt_score) { tgt_score = sc; tgt = &f; }
     }
 
+    bool mm = P_MITEMACRO && mm_active(s, me, round);  // Mite's macro has a step left for us
     // Stuck: same tile for many turns with nothing to hit. Bank or go home, give the target up.
-    if (P_UNSTICK && s.still_n >= P_UNSTICK && !on_spawn && nearest_foe > 4 && !awake_camp_near &&
+    if (P_UNSTICK && !mm && s.still_n >= P_UNSTICK && !on_spawn && nearest_foe > 4 && !awake_camp_near &&
         (s.cap_start < 0 || round - s.cap_start > 10)) {
         g_mode = "unstick";
         if (s.target >= 0) {
@@ -2766,21 +2804,25 @@ void play_turn(State& s) {
         shop_trip = false;
         want_recall = hpr * 100 < P.flee_pct + 10;
     }
+    if (mm) shop_trip = false;  // P_MITEMACRO: trips home are the script's
     want_recall = want_recall || shop_trip;
     // P_CAPRECALL: capture first and recall on the capture tiles, so the 5-round recall overlaps the 5-round
     // capture (procless on rows: it captures and arrives home healed in the same turn).
     // P_CAPRECALL 2: also take the free trip home whenever it heals or shops something (hp < 90%, 90+ gold).
     bool cap_want = want_recall || (!endgame && ((s.de_map == v34de::Lanes) ? 1 : P_CAPRECALL) >= 2 && (hpr < 0.9f || gold >= 90));
+    if (mm) cap_want = want_recall || mm_caprecall(s);
     if (((s.de_map == v34de::Lanes) ? 1 : P_CAPRECALL) && cap_want && safe && s.target >= 0 && s.target < static_cast<int>(s.groups.size())) {
         Group& g = s.groups[s.target];
-        if (g.reward_seen == round && !other_captures(s, me, g, s.target)) {
+        if (g.reward_seen == round && ((mm && mm_iscap(s)) || !other_captures(s, me, g, s.target))) {
             if (g.mask.is_set(pos) && (P_CAPRECALL_DELAY == 0 || (s.cap_start >= 0 && round - s.cap_start >= P_CAPRECALL_DELAY))) {
                 g_mode = "cap-recall";
-                if (attempt([&] {
-                        me.recall();
-                        return true;
-                    }) && shop_trip)
-                    s.shop_recall = round;
+                bool mm_cr = mm && mm_caprecall(s);
+                bool rec = attempt([&] {
+                    me.recall();
+                    return true;
+                });
+                if (rec && shop_trip) s.shop_recall = round;
+                if (rec && mm_cr) { ++s.mm_i; s.mm_start = -1; }  // P_MITEMACRO: Mite's capture-recall: the step is done
                 return;
             }
             want_recall = false;  // step on the tiles first
@@ -2810,6 +2852,12 @@ void play_turn(State& s) {
             if (a && dist(*a, pos) <= std::min(home, 8) && go_tribute(s, me, round)) return;
         }
         if (flee(s, me)) return;
+    }
+
+    if (mm) {  // P_MITEMACRO: banking, regrouping and farming follow Mite's script
+        mm_turn(s, me, round, camps, rsafe, nearest_foe);
+        if (tgt && me.can_attack()) basic_attack(s, me, tgt->c, tgt->p);
+        return;
     }
 
     // 5. Bank gems.

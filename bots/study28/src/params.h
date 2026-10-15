@@ -92,3 +92,8 @@
 #define P_CASTDIST 0     // ranged: fight from at least this distance (capped at our range); kite tiles prefer it. 4: hold 2-3, dev 12-12, off
 #define P_ROWSEND 0      // rows end-game: once either team is within G gems of the win, no shop or free recalls, bank every bag at once. 150: only fires on the official rows map, 1-1 there, off
 // P_STACK_HP 2700 (monolith/packs wolf pairs): hold 2-5, dev 12-9, like 2400 before: keep 3000.
+
+// Mite macro test harness (2026-10-15). On the 9 official maps: Mite's draft and, per champion, Mite's ordered camp
+// groups / recalls / tributes from its replays (mite_macro.h, tools/mitemacro). Shop, healing, fleeing, hp recalls and
+// fights stay ours, so only micro and mid-game decisions differ between two bots with it on. Does nothing on new maps.
+#define P_MITEMACRO 0  // 1: Mite draft + items + routes, 2: Mite draft + items only (our routes)

@@ -1,0 +1,38 @@
+{
+  "created_utc": "2026-10-15T19:02:50.212949+00:00",
+  "audit_script_sha256": "5ae9c09fe846ca13b868790aab82fa58ed48dc0b0fc0387b0b877b6296563a28",
+  "artifacts": {
+    "audit.json": {
+      "bytes": 75433,
+      "sha256": "d0b71e94df3d633c80921cf70e318e15fe4d096fc9a05992413def90b667380f"
+    },
+    "outcomes.jsonl.gz": {
+      "bytes": 12280363,
+      "sha256": "51bc49c6b0cabb849f3159843a5d94bb48d172a83ca052cdafef2647a582f111"
+    },
+    "views.jsonl.gz": {
+      "bytes": 1603657,
+      "sha256": "639fa2be562a888299430b348e1420cc04cb146223a06da468582daa60b44acc"
+    },
+    "maps.zip": {
+      "bytes": 1292848,
+      "sha256": "b03abaf4f670298a5d39be5cc69f28ab8a5dcd754f489a3e07de86a2dddf2996"
+    },
+    "provenance.zip": {
+      "bytes": 5287802,
+      "sha256": "3e80173e6cfab418c197b829afbcc886a94cecba84a14c29e8f4efaf9f48dc75"
+    }
+  },
+  "unique_completed_physical_inputs": 26754,
+  "path_policy": "Published plan copies replace task/work/user-home prefixes with TASK/WORK/USER; original local plan/result/cache SHA256 values pin original evidence.",
+  "limits": [
+    "Unique physical inputs are exact ordered WASM/map/runtime/config/settings identities, not statistically independent games.",
+    "Cache reuse, duplicate smoke slots and panel reuse never add new evidence.",
+    "Imported old games may predate this experiment; their exact source cache hash, physical identity, statistics and retained replays are independently verified.",
+    "Quality counts include every physical input, including original-vs-spar baseline rows and either side.",
+    "Identity/quality audit success is not evidence of improvement. Publication still requires the separately recorded frozen confirmation gates.",
+    "SDK errors and low-fuel status are sampled logs, not exact native fuel-exhaustion counts.",
+    "Compact exports omit full raw statistics and native replay bulk; raw SHA256 pins remain, and full local evidence is retained.",
+    "Completed-stage snapshot can exclude concurrently running/newly published stages; snapshot_is_final is false when a planned stage is pending."
+  ]
+}

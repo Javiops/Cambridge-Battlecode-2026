@@ -62,7 +62,7 @@ study24 has 7 rules that fire only when the map's size, altars and walls match a
 | add the bank trip to camp cost (expanse) | any farm map (path > 45) | **24-64, loses** |
 | keep spell resets for live targets (corners, interlock) | path <= 45 | 45-43, neutral |
 
-**Warning about noise:** single games flip on tiny changes. A build that only changed how much computation the first turn uses flipped 5 of the 18 official games. Differences under about 10 games in 88 are noise. The audit thread's side bias (side B wins identical mirrors) adds to that.
+**Warning about noise:** single games flip on tiny changes. A build that only changed how much computation the first turn uses flipped 5 of the 18 official games. Differences under about 10 games in 88 are noise.
 
 **The habit that helps everywhere** is recall on the capture tile, `P_CAPRECALL 1` on every map (study24 only did it on lanes):
 - Solo farm pace against an idle rival: faster on the official maps (-65 rounds; 3 maps faster, 0 slower), on 44 generated maps (-310) and on 60 new generated maps (-194).

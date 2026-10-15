@@ -933,6 +933,7 @@ struct State {
     int hit_round = -1000;  // last round in which we lost health
     vec2 danger_p{0, 0};
     int danger_r = -1000;   // last round an enemy pack was seen at danger_p
+    int dbyte = -1, dbyte_r = -1000;  // P_DANGERFIX: byte 7 as last read and the round it changed
     int foe_r = -1000;      // last round this champion saw an enemy champion
     std::vector<Seen> seen; // P_NOCHASE: enemy positions last round
     int seen_r = -10;
@@ -1443,7 +1444,7 @@ bool step_towards(State& s, bc::champion& me, const bc::bitboard& goals_in, bool
                     if (!dx && !dy) continue;
                     vec2 t = pos + vec2(dx, dy);
                     if (!bc::map::is_in_bounds(t) || s.blocked.is_set(t) || !s.visited.is_set(t)) continue;
-                    if (s.df.get(t) > here + 1) continue;
+                    if (s.df.get(t) > here + (P_UNJAMFIX ? 0 : 1)) continue;  // P_UNJAMFIX: 'not farther' (+1 let it step back)
                     moved = attempt([&] { return me.move_absolute(t); });
                 }
         }
@@ -1773,10 +1774,20 @@ void update_danger(State& s, const std::vector<Foe>& foes, int round) {
         int ai = -1, ad = P_DANGER_R + 1;
         for (std::size_t i = 0; i < s.altars.size() && i < 7; ++i)
             if (dist(s.altars[i], s.danger_p) < ad) { ad = dist(s.altars[i], s.danger_p); ai = static_cast<int>(i); }
-        if (ai >= 0) write_sm(7, static_cast<std::uint8_t>((ai + 1) | (((round / 8) & 31) << 3)));
+        if (ai >= 0) {
+            auto v = static_cast<std::uint8_t>((ai + 1) | (((round / 8) & 31) << 3));
+            write_sm(7, v);
+            if (P_DANGERFIX) { s.dbyte = v; s.dbyte_r = round; }
+        }
         return;
     }
     int b = read_sm()[7];
+    // P_DANGERFIX: the byte keeps only (round / 8) & 31, so an old sighting reads as new again every 256 rounds and
+    // nothing ever clears it. Trust the byte only for P_DANGER_T rounds after we saw it change.
+    if (P_DANGERFIX) {
+        if (b != s.dbyte) { s.dbyte = b; s.dbyte_r = round; }
+        if (round - s.dbyte_r > P_DANGER_T) return;
+    }
     int ai = (b & 7) - 1, age = ((round / 8) - (b >> 3)) & 31;
     if (ai < 0 || ai >= static_cast<int>(s.altars.size()) || age * 8 > P_DANGER_T) return;
     int r = round - age * 8;
@@ -2203,7 +2214,7 @@ void farm(State& s, bc::champion& me, int round, const std::vector<bc::camp>& ca
         int here = 1 + allies_near(s, me, g.center, 7);
         int coming = 1 + count_claimers(s, read_sm(), s.target);
         if (!engaged && needed > here) {
-            if (needed > std::max(coming, s.roster) || needed > squad_needed(rem, str, dps, mhp * 0.75)) {
+            if (needed > std::max(coming, s.roster) || needed > squad_needed(rem, str, dps, P_FULLFIX ? mhp * (1.0 - P_RESERVE_PCT / 100.0) : mhp * 0.75)) {  // P_FULLFIX: a full-health squad affords what choose_target says
                 g_farm = "too-strong";  // not even a full-health squad would do it
                 g.bad_until = round + 60;
                 drop_target(s);
@@ -2328,6 +2339,8 @@ double channel_threat(State& s, bc::champion& me, vec2 pos, int rem) {
         attempt([&] {
             if (!c.is_alive()) return false;
             Foe f{c, c.position(), c.health(), 0, 0, false};
+            // P_CHANTHR: a foe on its own spawn or channelling itself (tribute / recall) is not walking at us
+            if (P_CHANTHR && (s.en_spawn.is_set(f.p) || c.is_submitting_gems() || c.is_recalling())) return false;
             f.d = dist(f.p, pos);
             int first = std::max(1, f.d - fight::reach(f) + 1);  // the round of its first hit
             int hits = rem - first + 1;
@@ -2344,6 +2357,16 @@ bool cancel_doomed_channel(State& s, bc::champion& me, float hp) {
             return true;
         }) || rem <= 1)
         return false;
+    if (P_CHANFIX == 2 && !me.is_submitting_gems()) {  // P_CHANFIX 2: a recall the start rule calls safe is kept
+        int nf = 99;
+        for (auto& c : bc::vision::champions(*s.en))
+            attempt([&] {
+                if (c.is_alive()) nf = std::min(nf, dist(c.position(), me.position()));
+                return true;
+            });
+        int round = static_cast<int>(bc::round_number());
+        if (round - s.hit_round >= 1 && (nf > 8 || (s.rnear && nf >= s.rnear))) return false;
+    }
     if (channel_threat(s, me, me.position(), rem) * 100.0 < hp * P_CHANCANCEL) return false;
     return attempt([&] {
         if (me.is_submitting_gems()) me.cancel_submit_gems();
@@ -2489,6 +2512,14 @@ void play_turn(State& s) {
     if (P_SAFE_RECALL) safe = safe && nearest_foe > 8 && round - s.hit_round > 2;
     // P_RECALL_NEAR: a recall only needs nobody to hit us while it channels, not an empty screen
     bool rsafe = safe || (s.rnear && nearest_foe >= s.rnear && round - s.hit_round >= 1 && !awake_camp_near);
+    // P_CHANFIX: a recall that P_CHANCANCEL would cancel next turn is not started. Without this the two rules disagreed:
+    // near-recall / flee-recall started a recall with a foe 5-6 tiles away, the next turn cancelled it and started it
+    // again in the same turn, so the champion stood still in a cancel-restart loop (325 of 391 cancelled recalls on the
+    // official maps restarted at once; one Ren stood 8 rounds that way). Now the turn flees or fights instead.
+    if (P_CHANFIX == 1 && P_CHANCANCEL && !on_spawn && (safe || rsafe) && channel_threat(s, me, pos, 5) * 100.0 >= hp * P_CHANCANCEL) {
+        safe = false;
+        rsafe = false;
+    }
 
     support_spells(s, me, in_combat);
 

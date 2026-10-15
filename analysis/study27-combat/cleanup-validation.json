@@ -1,0 +1,117 @@
+{
+  "passed": true,
+  "started_utc": "2026-10-15T19:59:35.785878+00:00",
+  "finished_utc": "2026-10-15T20:00:09.541438+00:00",
+  "validation_script_sha256": "3c6fc4ece620ef1daed0569289211d045ab08b8291059e25afdc190509783a3b",
+  "change": "Remove only earlier P_U34_RESET_LIVE1 definition and its spacer; retain2.",
+  "old_source_sha256": {
+    "de_rules.h": "3e50429c96765f325ea3804c2bbb5c13ce26a4119fc7b8694f58def60531221b",
+    "fight.h": "5fb073f23ce41a5f6d07fba3aa55a016582a46ac54c4f8316ee6c96ebe92a7bb",
+    "main.cpp": "8ef9c27093272f5c14dbda5d16e7b91852edc63523ea86ac3d50d322514e71f7",
+    "opening_replace.h": "ca6680bae82b74b89fd0bb65573904246df8761d8b22e3ce8cb6bd93207207e7",
+    "params.h": "5cc4bcda14dde61df979267dd5485abd89753f2d8b27f7e5b98ba3b0496ddda8",
+    "utility.h": "5e48af1229195c4b356a617fd7323f49efe2af3a09728f6eda91ed4975c2b580"
+  },
+  "cleaned_source_sha256": {
+    "de_rules.h": "3e50429c96765f325ea3804c2bbb5c13ce26a4119fc7b8694f58def60531221b",
+    "fight.h": "5fb073f23ce41a5f6d07fba3aa55a016582a46ac54c4f8316ee6c96ebe92a7bb",
+    "main.cpp": "8ef9c27093272f5c14dbda5d16e7b91852edc63523ea86ac3d50d322514e71f7",
+    "opening_replace.h": "ca6680bae82b74b89fd0bb65573904246df8761d8b22e3ce8cb6bd93207207e7",
+    "params.h": "d99ef2cecff65f7851efb491bb4691d40ddeaaa6a96499e13eddec814fdc1372",
+    "utility.h": "5e48af1229195c4b356a617fd7323f49efe2af3a09728f6eda91ed4975c2b580"
+  },
+  "full_sdk_preprocess_runs": [
+    {
+      "version": "old",
+      "source_sha256": {
+        "de_rules.h": "3e50429c96765f325ea3804c2bbb5c13ce26a4119fc7b8694f58def60531221b",
+        "fight.h": "5fb073f23ce41a5f6d07fba3aa55a016582a46ac54c4f8316ee6c96ebe92a7bb",
+        "main.cpp": "8ef9c27093272f5c14dbda5d16e7b91852edc63523ea86ac3d50d322514e71f7",
+        "opening_replace.h": "ca6680bae82b74b89fd0bb65573904246df8761d8b22e3ce8cb6bd93207207e7",
+        "params.h": "5cc4bcda14dde61df979267dd5485abd89753f2d8b27f7e5b98ba3b0496ddda8",
+        "utility.h": "5e48af1229195c4b356a617fd7323f49efe2af3a09728f6eda91ed4975c2b580"
+      },
+      "command": [
+        "C:\\Users\\frans\\AppData\\Local\\cambc\\wasi-sdk-33\\bin\\clang++.exe",
+        "--target=wasm32-wasip1",
+        "--sysroot=C:\\Users\\frans\\AppData\\Local\\cambc\\wasi-sdk-33\\share\\wasi-sysroot",
+        "-IC:\\Users\\frans\\Documents\\Codex\\2026-10-14\\v\\work\\params-reset-cleanup\\arena\\sdk\\cpp",
+        "-isystem",
+        "C:\\Users\\frans\\AppData\\Local\\cambc\\wasi-sdk-33\\share\\wasi-sysroot\\include\\wasm32-wasip1\\eh\\c++\\v1",
+        "-O3",
+        "-DNDEBUG",
+        "-std=c++20",
+        "-msimd128",
+        "-fwasm-exceptions",
+        "-mllvm",
+        "-wasm-use-legacy-eh=false",
+        "-E",
+        "-P",
+        "C:\\Users\\frans\\Documents\\Codex\\2026-10-14\\v\\work\\params-reset-cleanup\\arena\\bots\\cleanup\\src\\main.cpp"
+      ],
+      "preprocessed_sha256": "079d2e73466b4237e88e07dc66ac177c5b0830818d380010a6324606f6b9d543",
+      "preprocessed_bytes": 3277316,
+      "preprocess_log_sha256": "cb11a9de23da90bcb3e3bae08237b88a6b42ef8de8acdeafb3eebef18699d68b",
+      "effective_macro": 2,
+      "macro_output_sha256": "b73522d8a6f4a3ccce2420dc272c2eadbd3760a1beef82a6a9a5563b8ce73a4d",
+      "macro_log_sha256": "cb11a9de23da90bcb3e3bae08237b88a6b42ef8de8acdeafb3eebef18699d68b"
+    },
+    {
+      "version": "cleaned",
+      "source_sha256": {
+        "de_rules.h": "3e50429c96765f325ea3804c2bbb5c13ce26a4119fc7b8694f58def60531221b",
+        "fight.h": "5fb073f23ce41a5f6d07fba3aa55a016582a46ac54c4f8316ee6c96ebe92a7bb",
+        "main.cpp": "8ef9c27093272f5c14dbda5d16e7b91852edc63523ea86ac3d50d322514e71f7",
+        "opening_replace.h": "ca6680bae82b74b89fd0bb65573904246df8761d8b22e3ce8cb6bd93207207e7",
+        "params.h": "d99ef2cecff65f7851efb491bb4691d40ddeaaa6a96499e13eddec814fdc1372",
+        "utility.h": "5e48af1229195c4b356a617fd7323f49efe2af3a09728f6eda91ed4975c2b580"
+      },
+      "command": [
+        "C:\\Users\\frans\\AppData\\Local\\cambc\\wasi-sdk-33\\bin\\clang++.exe",
+        "--target=wasm32-wasip1",
+        "--sysroot=C:\\Users\\frans\\AppData\\Local\\cambc\\wasi-sdk-33\\share\\wasi-sysroot",
+        "-IC:\\Users\\frans\\Documents\\Codex\\2026-10-14\\v\\work\\params-reset-cleanup\\arena\\sdk\\cpp",
+        "-isystem",
+        "C:\\Users\\frans\\AppData\\Local\\cambc\\wasi-sdk-33\\share\\wasi-sysroot\\include\\wasm32-wasip1\\eh\\c++\\v1",
+        "-O3",
+        "-DNDEBUG",
+        "-std=c++20",
+        "-msimd128",
+        "-fwasm-exceptions",
+        "-mllvm",
+        "-wasm-use-legacy-eh=false",
+        "-E",
+        "-P",
+        "C:\\Users\\frans\\Documents\\Codex\\2026-10-14\\v\\work\\params-reset-cleanup\\arena\\bots\\cleanup\\src\\main.cpp"
+      ],
+      "preprocessed_sha256": "079d2e73466b4237e88e07dc66ac177c5b0830818d380010a6324606f6b9d543",
+      "preprocessed_bytes": 3277316,
+      "preprocess_log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "effective_macro": 2,
+      "macro_output_sha256": "b73522d8a6f4a3ccce2420dc272c2eadbd3760a1beef82a6a9a5563b8ce73a4d",
+      "macro_log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "same_scratch_main_path": "C:\\Users\\frans\\Documents\\Codex\\2026-10-14\\v\\work\\params-reset-cleanup\\arena\\bots\\cleanup\\src\\main.cpp",
+  "preprocessed_bodies_byte_identical": true,
+  "macro_environments_byte_identical": true,
+  "effective_P_U34_RESET_LIVE": 2,
+  "cleaned_full_sdk_build": {
+    "passed": true,
+    "command": [
+      "C:\\Users\\frans\\Documents\\Codex\\2026-10-14\\v\\work\\battlecode-bot-v1\\runtime\\cambc.exe",
+      "build",
+      "C:\\Users\\frans\\Documents\\Codex\\2026-10-14\\v\\work\\params-reset-cleanup\\arena\\bots\\cleanup"
+    ],
+    "injected_wasm_sha256": "a0077d5324047a799b7947b2b54634e46451cc64eabec1df06bf549c69632e43",
+    "log_sha256": "bfb4d37147fdf2992b69839aa784e6ae46b78ccca4699aae22d29c85da1e7ec1"
+  },
+  "compiler_sha256": "6d9b6b13a9d6c0e64765fe85c4ba86b605f9b65e49a0c28703c85ba66038a1df",
+  "cli_sha256": "91f42c859c40c07c186eb94a692349396c7b168d2b454f1cb060c714825d9882",
+  "sdk_header_sha256": "90f4242686f22305b28d76d4fa2297187931b3c974f96faf324199e93979203d",
+  "historical_source_and_freeze_pins_unchanged": true,
+  "historical_pins_sha256": "91eb449d725a1901503d93bff49df1e1d62d3f70726c2cfc53966ec54f6437d9",
+  "games_run": 0,
+  "remote_actions": 0,
+  "limits": "Behavior equivalence follows identical preprocessed C++ and effective macros at one scratch path. New scratch build checks compilation, not equality of path-dependent WASM bytes with the historical tournament build. Original benchmark/freeze sources and publication source were not edited by this validator."
+}

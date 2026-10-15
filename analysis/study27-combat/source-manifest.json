@@ -1,0 +1,122 @@
+{
+  "status": "PASS: post-confirmation duplicate-macro cleanup; identical preprocessed C++/macros and clean-built injected WASM; historical game evidence preserved",
+  "created_utc": "2026-10-15T19:07:16.713844+00:00",
+  "base_commit": "c462346d4ace741bfd8f5251fb0e5e2eee69b800",
+  "candidate": "cm_combo_aoe_dash",
+  "features": [
+    "cm_sweep_aoe_edge",
+    "cm_dash_cd_reach"
+  ],
+  "frozen_utc": "2026-10-15T18:36:46.410804+00:00",
+  "freeze_sha256": "436d5e9c70a7c7c5726d91af9c9dc60e24d318f96689e7968f2f1af147c85185",
+  "source_sha256": {
+    "de_rules.h": "3e50429c96765f325ea3804c2bbb5c13ce26a4119fc7b8694f58def60531221b",
+    "fight.h": "5fb073f23ce41a5f6d07fba3aa55a016582a46ac54c4f8316ee6c96ebe92a7bb",
+    "main.cpp": "8ef9c27093272f5c14dbda5d16e7b91852edc63523ea86ac3d50d322514e71f7",
+    "opening_replace.h": "ca6680bae82b74b89fd0bb65573904246df8761d8b22e3ce8cb6bd93207207e7",
+    "params.h": "d99ef2cecff65f7851efb491bb4691d40ddeaaa6a96499e13eddec814fdc1372",
+    "utility.h": "5e48af1229195c4b356a617fd7323f49efe2af3a09728f6eda91ed4975c2b580"
+  },
+  "changed_source_files": [
+    "fight.h",
+    "main.cpp",
+    "params.h"
+  ],
+  "source_archive": {
+    "filename": "cambc-study27-combat-tested.zip",
+    "bytes": 52398,
+    "sha256": "708d22693214d0fb8a2c2f6b0fbca00803ea0c6d8724bf90d414117bdf321c96",
+    "byte_identical_to_frozen_pending_archive": false
+  },
+  "review_diff_sha256": "2bc909a2d4e69bf1889eff2f3ef0b9bdd85ac9099174dab6fc5e63815485bb0f",
+  "confirmation": {
+    "passes": true,
+    "physical_games": 14336,
+    "maps": 1024,
+    "direct": {
+      "games": 2048,
+      "maps": 1024,
+      "wins": 1074,
+      "losses": 974,
+      "draws": 0,
+      "both_won": 139,
+      "both_lost": 89,
+      "p_two_sided": 0.0011275547447593003
+    },
+    "panel": {
+      "games": 6144,
+      "maps": 1024,
+      "candidate_win_score": 5050.0,
+      "original_win_score": 4889.0,
+      "score_delta": 161.0,
+      "percentage_point_delta": 2.6204427083333335,
+      "positive_maps": 221,
+      "negative_maps": 138,
+      "neutral_maps": 665,
+      "p_two_sided": 1.3867384149654957e-05
+    },
+    "source_snapshot": "Historical frozen source before duplicate-macro cleanup; full game cohort not rerun after cleanup"
+  },
+  "final_evidence_sha256": {
+    "freeze.json": "436d5e9c70a7c7c5726d91af9c9dc60e24d318f96689e7968f2f1af147c85185",
+    "confirmation-verdict.json": "342ef858a7baa87b91b5cd96fa26682f7440de5799b2b249deac73bd5ed079de",
+    "confirmation-audit.json": "dca2c7287fc7a0187cbadbee77f4c99f4b18a802116fa6af80433f13f56ddc66",
+    "evidence-final/audit.json": "d0b71e94df3d633c80921cf70e318e15fe4d096fc9a05992413def90b667380f",
+    "evidence-final/export-manifest.json": "4e456a49f8879c65f53761d2f49e3d19c67aeac9fb5d1ea659779a36475ba98c"
+  },
+  "historical_pending_manifest": {
+    "path": "review-bundle/source-manifest.json",
+    "sha256": "5b2b0f5e569c4a93c629d2dc803083635ade6bdc1a2e2fe5053ff53dad5c053e",
+    "status": "PENDING independent confirmation; work-only, not published"
+  },
+  "documentation_sha256": {
+    "RESULTS-FINAL.txt": "98e4ba41c43c678d16bd2bca3d7a44592f89213c0032235606161f43a2715c26",
+    "BOT-README.md": "f35a2f26d359c920f872bf0f7a901ee1948367f61e9fb00e738da5c95f92067b",
+    "EVIDENCE-README.md": "fbb29b4a792e2ad7912b89a6039dd2f185ce79d17da69f1fc30d6ee0277b9e24",
+    "PR-BODY-CLEANUP.txt": "a10ebce514c497bcda910e3dba8d6efa4b2775f27c14711ff89ec5c7400197f8"
+  },
+  "verification": {
+    "exactly_six_source_files": true,
+    "source_byte_identical_to_freeze": false,
+    "only_params_redundant_macro_removed_from_frozen_source": true,
+    "archive_crc_and_current_source_hashes_passed": true,
+    "frozen_and_evidence_inputs_unchanged": true,
+    "no_build_or_game_executed_by_packaging": true,
+    "no_outputs_or_remote_actions_by_packaging": true
+  },
+  "limits": [
+    "Fresh confirmation evaluates the two-feature combination, not independent fresh component effects.",
+    "Incremental development comparison versus AoE alone was 258–248, p=0.603.",
+    "QUALIFIED: isolated raw70e90d probe conflicts with older+archived141fded and cannot be reconstructed. No continuous historical orchestration-byte identity claim. Current frozen bot/WASM/runtime/map and all final row/cache integrity checks passed separately."
+  ],
+  "updated_utc": "2026-10-15T20:02:03.492342+00:00",
+  "historically_tested_wasm_sha256": "a0077d5324047a799b7947b2b54634e46451cc64eabec1df06bf549c69632e43",
+  "review_diff_lines": 118,
+  "post_confirmation_cleanup": {
+    "change": "Remove only earlier #define P_U34_RESET_LIVE 1 plus adjacent blank line; retain single later effective value 2.",
+    "previous_source_archive_sha256": "dcb95308f09062e74b960896567fdb28d13193aa2ed4ab07ee877e3a0e5d8fa7",
+    "previous_final_manifest_sha256": "cee546d719eb4ffaa9234aafaf53acfa61e43627017b24f0c84255b26167fd04",
+    "historical_source_sha256": {
+      "de_rules.h": "3e50429c96765f325ea3804c2bbb5c13ce26a4119fc7b8694f58def60531221b",
+      "fight.h": "5fb073f23ce41a5f6d07fba3aa55a016582a46ac54c4f8316ee6c96ebe92a7bb",
+      "main.cpp": "8ef9c27093272f5c14dbda5d16e7b91852edc63523ea86ac3d50d322514e71f7",
+      "opening_replace.h": "ca6680bae82b74b89fd0bb65573904246df8761d8b22e3ce8cb6bd93207207e7",
+      "params.h": "5cc4bcda14dde61df979267dd5485abd89753f2d8b27f7e5b98ba3b0496ddda8",
+      "utility.h": "5e48af1229195c4b356a617fd7323f49efe2af3a09728f6eda91ed4975c2b580"
+    },
+    "validation": {
+      "filename": "cleanup-validation.json",
+      "sha256": "b8bb2b21d85df6c7a8f1ea5a1596716a6989e619e2ebc11a0e0ca96ca41941f1"
+    },
+    "wasm_equivalence": {
+      "filename": "cleanup-wasm-equivalence.json",
+      "sha256": "ef662eb13faf48047441f157d54b8e3d7fd33b95fdc415130ef0bef501f793a3"
+    },
+    "preprocessed_cpp_byte_identical": true,
+    "macro_environments_byte_identical": true,
+    "cleaned_sdk_build_passed": true,
+    "cleaned_build_wasm_sha256": "a0077d5324047a799b7947b2b54634e46451cc64eabec1df06bf549c69632e43",
+    "cleaned_build_wasm_identical_to_historical_tested_wasm": true,
+    "new_games": 0
+  }
+}

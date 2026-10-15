@@ -53,6 +53,7 @@
 #endif
 
 #include <algorithm>
+#include <cmath>
 #include <array>
 #include <cstddef>
 #include <cstdint>
@@ -411,6 +412,12 @@ namespace {
 #endif
 #ifndef P_MAX_SHARE
 #define P_MAX_SHARE 2         // champions allowed on one monster group
+#endif
+#ifndef P_STACK_HP
+#define P_STACK_HP 0          // camps with at least this much hp use P_SHAREEXP (big camps: stack, small: spread)
+#endif
+#ifndef P_SHAREEXP
+#define P_SHAREEXP 100        // a joiner values a big camp at gems / team^(P_SHAREEXP/100); 100 = even split
 #endif
 #ifndef P_GOLD_W_EARLY
 #define P_GOLD_W_EARLY 35     // gold weight in % of a gem before round 600
@@ -1856,7 +1863,7 @@ int choose_target(State& s, bc::champion& me, int round) {
         if (P_R34_BANKCOST && (s.de_map == v34de::Expanse || s.de_map == v34de::Monolith) && g.gems > 0 && g.altar_pd >= 0)
             rounds += ((s.de_map == v34de::Monolith ? 100 : P_R34_BANKCOST) / 100.0) * 2.0 * std::max(0, g.altar_pd - 1) / team;
         bool pack = P_PACKOPEN && round < P_PACKOPEN;  // opening: everybody on the best camp together
-        double value = (g.gems + gold_w * g.gold) / (pack ? 1 : team);
+        double value = (g.gems + gold_w * g.gold) / (pack ? 1.0 : std::pow(static_cast<double>(team), ((g.monolith || g.hp < P_STACK_HP) ? 100 : P_SHAREEXP) / 100.0));  // big camps (P_STACK_HP+): a joiner keeps more of the value, so champions stack there
         double score = value / std::max(1.0, rounds);
         if (needed > 1 + claimers) score *= 0.7;              // still needs company
         if (claimers > 0 && g.str == 0 && !(P_PAIR && g.gems > 0 && claimers < P_PAIR) && !(pot && claimers < 2)) score *= pack ? 1.0 : 0.3;  // clusters are a solo job

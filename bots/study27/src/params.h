@@ -3,7 +3,9 @@
 #define P_RECALL_PCT 55
 #define P_FLEE_PCT 25
 #define P_SHOP_GOLD 240
-#define P_MAX_SHARE 3
+#define P_MAX_SHARE 4
+#define P_SHAREEXP 75        // study27: a champion joining a big camp values it at gems / team^0.75 (was an even split)
+#define P_STACK_HP 3000      // study27: big camp = 3000+ hp (2-3 elks, elk + wolves, 3 wolves); smaller camps keep the even split
 #define P_GOLD_W_EARLY 25
 #define P_GOLD_W_LATE 24
 #define P_BAIL_PCT 18

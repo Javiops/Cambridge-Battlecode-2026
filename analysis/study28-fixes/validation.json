@@ -1,0 +1,157 @@
+{
+  "base_commit": "43d003323cd16059cda6a54de14ed86e2da3b788",
+  "final_features": [
+    "capture_handoff"
+  ],
+  "freeze": {
+    "frozen_utc": "2026-10-15T15:43:06.435348+00:00",
+    "candidate": "capture_handoff",
+    "retained_features": [
+      "capture_handoff"
+    ],
+    "reason": "Across253development maps, handoff alone is263W243L (18both-won/8both-lost); additional danger/lock/income gains are small or inconclusive, dash/resume reduce the handoff gain, and all-seven is near neutral. Prefer the minimal three-line production change. Final confirmation is independent of development selection.",
+    "development_games_before_direct_diagnostics": 8602,
+    "source_sha256": {
+      "de_rules.h": "3e50429c96765f325ea3804c2bbb5c13ce26a4119fc7b8694f58def60531221b",
+      "fight.h": "af54a56889b086d06c867b1681cbcab6b2fa4b7de342000dcdf0861ac0d467bf",
+      "main.cpp": "0b2263e016ce238acb5339b91747478d8a3a4cecd8d063a64db6e2d3e9213d24",
+      "opening_replace.h": "ca6680bae82b74b89fd0bb65573904246df8761d8b22e3ce8cb6bd93207207e7",
+      "params.h": "c2d84cb2891f46d17442b6295e308b3199034555ed8edaf43803937a08ffa5d5",
+      "utility.h": "5e48af1229195c4b356a617fd7323f49efe2af3a09728f6eda91ed4975c2b580"
+    },
+    "wasm_sha256": "47d6f952437ed620811e2a789fcd6d249c4bd607fd5ba0c324b45ff41dbf33c0",
+    "base_commit": "43d003323cd16059cda6a54de14ed86e2da3b788",
+    "base_source_sha256": {
+      "de_rules.h": "3e50429c96765f325ea3804c2bbb5c13ce26a4119fc7b8694f58def60531221b",
+      "fight.h": "af54a56889b086d06c867b1681cbcab6b2fa4b7de342000dcdf0861ac0d467bf",
+      "main.cpp": "b8b376a48cd6e7d0d01af3df7842945bca9fa2e8ae718dd11653f889394aa8e0",
+      "opening_replace.h": "ca6680bae82b74b89fd0bb65573904246df8761d8b22e3ce8cb6bd93207207e7",
+      "params.h": "c2d84cb2891f46d17442b6295e308b3199034555ed8edaf43803937a08ffa5d5",
+      "utility.h": "5e48af1229195c4b356a617fd7323f49efe2af3a09728f6eda91ed4975c2b580"
+    },
+    "confirmation": {
+      "seed": 3856219347,
+      "maps": 1024,
+      "games": 2048,
+      "folder": "fresh_confirmation",
+      "generator_sha256": "6c4020d86f9a20eea22caf809640932fb1d1ba19d0a149adb0945d1a9186607a",
+      "design": "One frozen candidate vs frozen original; every fresh procedural topology from both sides. No tuning or early stopping based on confirmation outcomes.",
+      "pass": "All2048games valid and zero bot faults/reinitializations; candidate wins more games and more decisive paired maps; two-sided exact paired-map sign p<0.05.",
+      "fail": "Do not claim or package an improvement if the fixed confirmation gate fails. Any further candidate development requires a new disclosed confirmation cohort."
+    }
+  },
+  "confirmation_summary": {
+    "games": 2048,
+    "maps": 1024,
+    "wins": 1049,
+    "losses": 999,
+    "draws": 0,
+    "both_won": 80,
+    "both_lost": 55,
+    "split_or_draw": 889,
+    "paired_sign_p_two_sided": 0.038471500325522184,
+    "mean_gem_difference": 9.6064453125,
+    "mean_death_difference": -0.0615234375,
+    "fault_games": 0,
+    "new_games": 2048
+  },
+  "unique_games": 12888,
+  "total_fault_games": 0,
+  "independent_audit": {
+    "created_at_utc": "2026-10-15T15:51:12.483028+00:00",
+    "passed": true,
+    "errors": [],
+    "candidate": "capture_handoff",
+    "retained_features": [
+      "capture_handoff"
+    ],
+    "source_changes": [
+      "main.cpp"
+    ],
+    "summary_independently_recomputed": {
+      "games": 2048,
+      "maps": 1024,
+      "wins": 1049,
+      "losses": 999,
+      "draws": 0,
+      "both_won": 80,
+      "both_lost": 55,
+      "split_or_draw": 889,
+      "paired_sign_p_two_sided": 0.038471500325522184,
+      "mean_gem_difference": 9.6064453125,
+      "mean_death_difference": -0.0615234375,
+      "fault_games": 0,
+      "new_games": 2048
+    },
+    "candidate_win_percent": 51.220703125,
+    "percentage_points_above_50_percent": 1.220703125,
+    "chronology": {
+      "freeze": "2026-10-15T15:43:06.435348+00:00",
+      "map_generation_completed": "2026-10-15T15:43:24.608Z",
+      "earliest_map_mtime": "2026-10-15T15:43:06.674289+00:00",
+      "latest_map_mtime": "2026-10-15T15:43:24.608510+00:00",
+      "inferred_confirmation_start": "2026-10-15T15:44:06.457430+00:00",
+      "confirmation_completed": "2026-10-15T15:46:06.191430+00:00",
+      "earliest_confirmation_cache_mtime": "2026-10-15T15:44:06.945937+00:00"
+    },
+    "all_stage_rows": 12892,
+    "all_unique_physical_inputs": 12888,
+    "duplicate_stage_rows": 4,
+    "stage_rows": {
+      "combinations": 3542,
+      "confirmation": 2048,
+      "danger_ablation": 626,
+      "handoff_lock_ablation": 626,
+      "isolated": 3542,
+      "legacy": 360,
+      "lock_ablation": 626,
+      "resume": 1518,
+      "smoke": 4
+    },
+    "confirmation_cache_hits": 0,
+    "fresh_maps": 1024,
+    "fresh_nonbush_D4_topology_hashes": 1024,
+    "prior_map_bytes_overlap": 0,
+    "initializations_once_per_recorded_body": {
+      "candidate": 9746,
+      "original": 9746
+    },
+    "caught_errors_logged": {
+      "candidate": 35654,
+      "original": 35330
+    },
+    "pins": {
+      "freeze": "9631504380445d54004fb6beb8219ddc2116e1a43c50610c945a4999c945fa40",
+      "manifest": "d0cde6bc060b9aeb16acb370629b52fa6ba16729b7b7d3ad2a816c48c35f3dcf",
+      "runtime": "91f42c859c40c07c186eb94a692349396c7b168d2b454f1cb060c714825d9882",
+      "candidate_wasm": "47d6f952437ed620811e2a789fcd6d249c4bd607fd5ba0c324b45ff41dbf33c0",
+      "original_wasm": "6b7b66f8a28614cfb7125d66cea0baee986f78141589c61033450b3eab3218bb",
+      "results": {
+        "combinations": "5bd4339c538fdf039764d21c5b6bf7120de30f664614a8b4943e174378993396",
+        "confirmation": "d4abd70794452da01c24fd2f8840ac7b58a4b28159ad7dfa469d0f96815bab80",
+        "danger_ablation": "685a25cf86c4cec9476e9a708f6f38569923642e5ca4d1d6760ee8b5e9680146",
+        "handoff_lock_ablation": "c212101a678737846e1e0720553534749b51256369f2c9c820914c9affbef4bd",
+        "isolated": "5361178e30bce7f5e7d20dc8c021e7930c5c5c9858a66ab742ffc340f04d9d47",
+        "legacy": "0c466164cf1c3c6d8a9817b6242a5dc5a139d4eeaf810de383babd42821e0e2e",
+        "lock_ablation": "fcde8861c12affd4598cc5e0d8378a1c5ed4923c8fc845ead4828ef49c10336f",
+        "resume": "5742557bdced0d411336e89083d92ff2f1a01ad451aab254f0814ae465016bbd",
+        "smoke": "a5951fa45749b06c54fda63037e312ee31ea516013ccc1c2096bbfff17a56462"
+      }
+    },
+    "description": "A modest51.2% win rate on this one prospective1024-map procedural cohort, against the frozen original. Paired-map sign test80both-won versus55both-lost, p=0.03847;889maps split. No claim of a global optimum or universal strength.",
+    "limitations": [
+      "The unit is a map pair, not2048 independent games. Generated maps share design styles and constraints, so p relies on the paired-map sampling model.",
+      "Confirmation used one frozen candidate after exploratory development selection. No independent replication cohort was run.",
+      "Fresh generator covers dimensions24–72,picks3–5, symmetric layouts and its own camp/walkability constraints. This does not establish performance on every tournament map or opponent.",
+      "Audit validates persisted authoritative CLI statistics, captured stdout summaries, cache records and exact current input hashes. Full replay files were not retained for every game; this audit did not re-execute or decode every full replay.",
+      "Map nonbush-D4 hashes are unique within the fresh manifest; raw map hashes are disjoint from prior tested maps. Full graph-isomorphism exclusion versus every historical map was not independently recomputed.",
+      "No bot faults does not mean no caught SDK errors; logged errors remain nonzero. Source and WASM identity are checked, but timestamps are local records rather than external attestations."
+    ]
+  },
+  "source_zip_sha256": "ce0a17fcd94478c12e3173046b7e9780b7b14301344c3d58b9da56b9ed656b97",
+  "artifact_sha256": {
+    "confirmation-maps.zip": "69ddb61d1e1b619a7c9de2150bdd04ac82391dedd9d7d7d9c923b96841933d20",
+    "experiments.json.gz": "4e74ced619cc482077a0df93fe90fcd2bf2cd45a3ad3f7e3517636afec537a59",
+    "results.txt": "71fe15b34eec6039e6a771cddce592535ff70d618eed47c9b245945090fc1280"
+  }
+}

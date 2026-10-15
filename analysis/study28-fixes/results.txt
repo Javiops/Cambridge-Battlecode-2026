@@ -1,0 +1,217 @@
+STUDY28 FIX EXPERIMENTS — RESULTS
+
+Baseline: 43d003323cd16059cda6a54de14ed86e2da3b788, bots/study28/src.
+CLI 2.1.6; game engine 0.0.1 (statistics schema 2); default fuel and full games.
+12888 unique ordered bot-pair/map inputs were completed. Repeated smoke/cache
+rows are not additional games. Every comparison swaps map sides.
+
+PRODUCTION CHANGE
+
+Only capture_handoff is retained in bots/study28/src/main.cpp. A living ally
+that still claims a camp but is channeling off its capture mask cannot win
+the capturer election. The available ally continues the capture instead of
+abandoning it for 12 rounds. On-mask capture/recall overlap is preserved.
+This is a three-line insertion. Draft, item plans and parameter values do
+not change. All other source files are byte-identical to the baseline.
+
+INDEPENDENT FROZEN CONFIRMATION
+
+Source frozen at 2026-10-15T15:43:06.435348+00:00, before generating any confirmation
+map. Seed 3856219347 produced 1024 new symmetric procedural topologies from a
+blank official MapBuilder: 24–72 dimensions, 3/4/5 picks, open/choke/scatter/rib/
+mixed profiles, 1–4 monsters per group. Official integrity, static reachability,
+runtime group expansion and D4-normalized non-bush uniqueness were checked.
+No original map file was reused. There was no candidate change, early
+stopping or further selection using these confirmation outcomes.
+
+variant                     games      W      L   both-W both-L     p(two-sided)
+capture_handoff              2048   1049    999       80     55         0.038472
+
+Win rate: 51.2207%. The advantage is small: 1.2207 percentage points above 50%.
+80 maps were won from BOTH sides;55 lost from BOTH sides;889 split.
+Two-sided exact paired-map sign p=0.038471500325522184. The fixed gate passed.
+Mean candidate-original gem difference:+9.6064; mean death difference:-0.0615.
+Zero reported bot faults and no repeated body initializations. Caught SDK
+errors still exist; this is not a claim of zero API errors or zero fuel waits.
+The result is against original study28 on this generator. It does not prove
+the bot is globally best or will beat stronger online teams.
+
+INDIVIDUAL DEVELOPMENT TESTS
+
+253 maps each: official 9 + existing generated 44 + development 200; 506 games per
+variant. These were selection data, not unseen confirmation. P-values below
+are descriptive after multiple candidate comparisons.
+
+variant                     games      W      L   both-W both-L     p(two-sided)
+channel                       506    244    262        9     18         0.122078
+dash                          506    255    251       39     37         0.908777
+danger                        506    256    250        6      3         0.507812
+capture_income                506    253    253        2      2         1.000000
+capture_handoff               506    263    243       18      8         0.075519
+ally_lock                     506    254    252        3      2         1.000000
+spawn_path                    506    247    259        2      8         0.109375
+
+channel: cancel then escape immediately instead of restarting the channel.
+dash: ready dash + ordinary move + melee attack envelope, including volley.
+danger: remember full local epoch so an unchanged5-bit packet cannot revive.
+capture_income: verify group respawning before interpreting personal income.
+capture_handoff: exclude off-mask channeling allies from capture delegation.
+ally_lock: conservatively protect possible allied tributes at a candidate altar.
+spawn_path: include altar obstacles in the spawn distance field.
+
+COMBINATIONS AGAINST THE ORIGINAL
+
+Same 253 maps and both sides. All-seven is essentially neutral. Small capture
+combinations perform better, but extra components do not justify themselves
+convincingly enough to enlarge the production change.
+
+variant                     games      W      L   both-W both-L     p(two-sided)
+all_seven                     506    254    252       38     37         1.000000
+handoff_danger                506    265    241       22     10         0.050102
+handoff_lock                  506    264    242       20      9         0.061428
+handoff_income                506    263    243       21     11         0.110184
+handoff_dash                  506    258    248       41     36         0.648791
+handoff_danger_lock           506    265    241       23     11         0.057613
+economy_four                  506    264    242       24     13         0.098872
+
+all_seven=all 7 original fixes.
+handoff_danger=handoff+danger; handoff_lock=handoff+ally_lock.
+handoff_income=handoff+capture_income; handoff_dash=handoff+dash.
+handoff_danger_lock=handoff+danger+ally_lock.
+economy_four=handoff+danger+ally_lock+capture_income.
+
+LESS INVASIVE CHANNEL ALTERNATIVE
+
+channel_resume prevents same-turn restarts but continues ordinary combat/
+farming and permits walking to another altar. It was measured alone and with
+handoff/danger on the same 253 maps. It did not improve the chosen finalist.
+
+variant                     games      W      L   both-W both-L     p(two-sided)
+channel_resume                506    248    258       14     19         0.486850
+resume_handoff                506    258    248       20     15         0.499560
+resume_handoff_danger         506    262    244       24     15         0.199591
+
+DIRECT COMPONENT ABLATIONS
+
+313 existing maps = 253 development + 60 legacy validation. The 60 legacy maps had
+already been used in earlier team work and are NOT called new holdout data.
+
+handoff_danger vs capture_handoff:
+variant                     games      W      L   both-W both-L     p(two-sided)
+handoff_danger                626    314    312        4      3         1.000000
+
+handoff_danger_lock vs handoff_danger:
+variant                     games      W      L   both-W both-L     p(two-sided)
+handoff_danger_lock           626    316    310        4      1         0.375000
+
+handoff_lock vs capture_handoff:
+variant                     games      W      L   both-W both-L     p(two-sided)
+handoff_lock                  626    317    309        5      1         0.218750
+
+LEGACY MAP CHECK AGAINST ORIGINAL
+
+variant                     games      W      L   both-W both-L     p(two-sided)
+capture_handoff               120     60     60        1      1         1.000000
+handoff_danger                120     59     61        1      2         1.000000
+handoff_danger_lock           120     60     60        2      2         1.000000
+
+The direct diagnostic results are inconclusive for the added components.
+Finalist capture_handoff was frozen before generating the independent cohort.
+
+WHAT WAS EXCLUDED
+
+The two channel implementations and spawn distance change were negative in
+their isolated development results. Dash was near neutral; adding it to
+handoff reduced the gain. Capture-income was neutral. Danger and ally-lock
+had small positive point estimates but inconclusive direct incremental
+evidence. They remain inspectable, independent patch functions under
+tools/study28_fixes and are not enabled in the production bot.
+
+Focused regressions exercised actual inserted C++ helper/blocks with stand-in
+SDK state:17 combat checks, 21 alternative-channel checks, 1002 danger cases,
+21 income states, 24 handoff cases, 12 lock fixtures and 4 utility/source checks.
+Composition ordering, baseline preservation and additional 226 danger overwrite
+cases were checked. The full bot variants were then built and played above.
+The portable bench tool was independently reviewed; it reconstructs the
+original from local Git history and performs no online submission.
+
+REPRODUCING
+
+Run cambc init --yes once in a Git clone. Ensure the baseline commit exists.
+python tools/study28_fixes/bench.py --candidate handoff-dev --features capture_handoff --maps "maps/*.map26a" "maps_gen/*.map26a" "maps_dev200/*.map26a"
+
+Repeat with --features channel,dash,etc (comma-separated for combinations).
+channel and channel_resume are mutually exclusive. Use a new candidate name
+for each feature set. --prepare-only creates checked copies without games.
+
+To replay the disclosed confirmation cohort:
+python -m zipfile -e analysis/study28-fixes/confirmation-maps.zip out/study28-confirmation
+python tools/study28_fixes/bench.py --candidate handoff-confirm --features capture_handoff --maps "out/study28-confirmation/*.map26a"
+
+Default jobs=1 avoids Windows metadata races; set CAMBC_CLI to the executable
+if needed. Replaying deterministic inputs is reproduction, not new evidence.
+The neighboring experiments.json.gz stores every unique outcome, exact input
+hashes and stage membership; validation.json pins the audit and frozen source.
+Full per-game statistics and selected replay bundles were retained locally.
+
+CONFIRMATION STRATA (DESCRIPTIVE; NOT USED FOR SELECTION)
+
+{
+  "style": {
+    "mixed": {
+      "maps": 205,
+      "wins": 206,
+      "losses": 204
+    },
+    "scatter": {
+      "maps": 205,
+      "wins": 198,
+      "losses": 212
+    },
+    "open": {
+      "maps": 205,
+      "wins": 213,
+      "losses": 197
+    },
+    "ribs": {
+      "maps": 205,
+      "wins": 220,
+      "losses": 190
+    },
+    "chokes": {
+      "maps": 204,
+      "wins": 212,
+      "losses": 196
+    }
+  },
+  "champions": {
+    "5": {
+      "maps": 341,
+      "wins": 355,
+      "losses": 327
+    },
+    "3": {
+      "maps": 342,
+      "wins": 340,
+      "losses": 344
+    },
+    "4": {
+      "maps": 341,
+      "wins": 354,
+      "losses": 328
+    }
+  }
+}
+
+FINAL SOURCE SHA256
+
+{
+  "de_rules.h": "3e50429c96765f325ea3804c2bbb5c13ce26a4119fc7b8694f58def60531221b",
+  "fight.h": "af54a56889b086d06c867b1681cbcab6b2fa4b7de342000dcdf0861ac0d467bf",
+  "main.cpp": "0b2263e016ce238acb5339b91747478d8a3a4cecd8d063a64db6e2d3e9213d24",
+  "opening_replace.h": "ca6680bae82b74b89fd0bb65573904246df8761d8b22e3ce8cb6bd93207207e7",
+  "params.h": "c2d84cb2891f46d17442b6295e308b3199034555ed8edaf43803937a08ffa5d5",
+  "utility.h": "5e48af1229195c4b356a617fd7323f49efe2af3a09728f6eda91ed4975c2b580"
+}
+Tested injected WASM SHA256: 47d6f952437ed620811e2a789fcd6d249c4bd607fd5ba0c324b45ff41dbf33c0
+Submit ZIP SHA256: ce0a17fcd94478c12e3173046b7e9780b7b14301344c3d58b9da56b9ed656b97

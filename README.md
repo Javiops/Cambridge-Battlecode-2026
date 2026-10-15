@@ -11,7 +11,10 @@ la misma que está subida a la web como versión 30. Con la v29 llegamos al pues
 | `bots/spar11`, `spar12`, `spar16` | rivales de entrenamiento: el mismo motor con draft de lanzadores (Stellar, Tavi, Cassi&Issac, Willow, Prism). spar12 va en bola, spar16 prioriza matar a los de rango |
 | `tools/arena.py` | juega muchas partidas en paralelo y resume victorias, gemas, muertes y kills |
 | `tools/variante.sh` | crea una copia de un bot cambiando interruptores de `params.h` y la compila |
-| `maps_gen/` | 44 mapas generados al azar, para probar en mapas que nadie ha visto (los mapas de clasificación serán nuevos) |
+| `tools/ab.py` | **la prueba estándar**: ¿es la variante mejor que la base? Compila las dos, juega todos los mapas por los dos lados y da un veredicto |
+| `maps_gen/` | 44 mapas generados al azar. Ya hemos ajustado mucho sobre ellos: sirven para entrenar, no para decidir |
+| `maps_hold60/` | 60 mapas nuevos sellados (semilla 20261015): no ajustes nada mirándolos, son la comprobación final |
+| `maps_dev200/` | 200 mapas nuevos (semilla 4242): la muestra grande para decidir si un cambio pequeño sirve |
 
 ## Empezar
 
@@ -32,13 +35,19 @@ cambc view out/partida            # ver la repetición
    tools/variante.sh prueba1 v30 "#define P_FINISH 40"
    ```
    O copia `bots/v30` a `bots/mi_bot` y edita el código.
-2. Juégala contra la v30 y contra los rivales, por los dos lados:
+2. Compárala con la base en una sola orden:
    ```bash
-   python3 tools/arena.py bots/prueba1 bots/v30    --maps "maps/*.map26a"     --sides both --jobs 4 --no-build --out out/p1_v30
-   python3 tools/arena.py bots/prueba1 bots/spar11 --maps "maps/*.map26a"     --sides both --jobs 4 --no-build --out out/p1_s11
-   python3 tools/arena.py bots/prueba1 bots/v30    --maps "maps_gen/*.map26a" --sides both --jobs 4 --no-build --out out/p1_gen
+   python3 tools/ab.py bots/prueba1 bots/v30                              # oficiales + gen + hold60 (226 partidas, ~35 s con 4 núcleos)
+   python3 tools/ab.py bots/prueba1 bots/v30 --sets official,gen,hold,dev  # + 200 mapas nuevos (626 partidas, ~100 s)
    ```
-   (quita `--no-build` la primera vez o compila antes con `cambc build`).
+   Cuenta **mapas**, no partidas: un mapa es tuyo solo si lo ganas por los dos lados. La columna `same game`
+   cuenta los mapas donde la variante jugó exactamente igual que la base (el lado decidió): son ruido.
+   El veredicto usa solo los mapas nuevos (hold, dev) y dice cuántos mapas harían falta si no está decidido.
+   Las partidas ya jugadas se guardan en `out/ab-cache/` (el motor es determinista) y no se repiten.
+3. Contra los rivales de entrenamiento sigue sirviendo `arena.py`:
+   ```bash
+   python3 tools/arena.py bots/prueba1 bots/spar11 --maps "maps/*.map26a" --sides both --jobs 4 --out out/p1_s11
+   ```
 
 Cosas que hemos aprendido probando:
 - El motor es determinista: la misma partida sale igual siempre. Un cambio minúsculo puede cambiar varios

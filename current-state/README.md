@@ -152,3 +152,12 @@ are spent more than 8 tiles from it.
 
 These are measurements of study26; study27 (stacking on big camps) is active since 12:08 and the loop is collecting its
 games the same way, so the same scripts can be re-run on it (`scripts_*/`, with a new `selected.json`).
+
+## Update: study27 (the 12:37 batch, 155 games) and study28
+
+[study27/README.md](study27/README.md) repeats the four analyses on the next version (study27 = study26 + stacking up to 4
+champions on 3000+ hp camps) side by side with study26: stacking works on rows and costs nothing, everything else is the
+same bot; the verdict was keep study27. From that evidence, study28 (PR #6, merged) adds one rule: cancel a tribute or
+recall when the enemies walking in would deal 60% of our hp before it ends (locally 24-5 maps on dev200 vs study27). The
+other five ideas (react to a pack before the first hit, open only with numbers, ranged at 4+, rows end-game, stacking
+threshold 2700) were coin flips locally and stay off in `params.h` with their numbers.

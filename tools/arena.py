@@ -6,6 +6,8 @@ Prints one line per match and a summary (win rate for BOT_A, mean gems, gems per
 import argparse, glob, json, os, shutil, subprocess, sys, zipfile
 from concurrent.futures import ThreadPoolExecutor
 CLI = os.environ.get('CAMBC_CLI', 'cambc')
+# compile each bot once and reuse it: without this every game spends ~1.5 s of CPU compiling both wasm bots
+os.environ.setdefault('CAMBC_WASMTIME_CACHE', os.path.abspath(os.path.join('out', 'wasmtime-cache')))
 def build(bot):
     r = subprocess.run([CLI, 'build', bot], capture_output=True, text=True)
     if r.returncode != 0:

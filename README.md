@@ -3,6 +3,13 @@
 Bot en C++ para [CAMBC 2026a](https://2026a.battlecode.co.uk). La versión actual es la **v30** (`bots/v30`),
 la misma que está subida a la web como versión 30. Con la v29 llegamos al puesto 25 del ranking.
 
+## Cómo trabajamos: el harness
+
+Las ideas pasan por cuatro etapas con una puerta con números en cada una (brainstorm -> desarrollo y puerta local
+`tools/gate.py` -> online A/B emparejado `online/lfl.py` -> disección `online/dissect.py` -> nuevas ideas). El
+pipeline completo, quién hace qué y dónde vive cada cosa: **[harness/README.md](harness/README.md)**. El estado de
+cada idea: **[harness/IDEAS.md](harness/IDEAS.md)** (`python3 tools/idea.py board`).
+
 ## Qué hay en el repo
 
 | carpeta | qué es |
@@ -11,7 +18,10 @@ la misma que está subida a la web como versión 30. Con la v29 llegamos al pues
 | `bots/spar11`, `spar12`, `spar16` | rivales de entrenamiento: el mismo motor con draft de lanzadores (Stellar, Tavi, Cassi&Issac, Willow, Prism). spar12 va en bola, spar16 prioriza matar a los de rango |
 | `tools/arena.py` | juega muchas partidas en paralelo y resume victorias, gemas, muertes y kills |
 | `tools/variante.sh` | crea una copia de un bot cambiando interruptores de `params.h` y la compila |
-| `tools/ab.py` | **la prueba estándar**: ¿es la variante mejor que la base? Compila las dos, juega todos los mapas por los dos lados y da un veredicto |
+| `tools/ab.py` | la prueba suelta: ¿es la variante mejor que la base? Compila las dos, juega todos los mapas por los dos lados y da un veredicto |
+| `tools/gate.py` | **la puerta del harness**: seguridad + mapas nuevos con parada temprana + panel de lanzadores + contraejemplos, y veredicto PASA/NO PASA por tipo de cambio |
+| `tools/idea.py` | el tablero de ideas (`harness/ideas/`, `harness/IDEAS.md`) |
+| `online/` | el bucle online: retos, resultados, comparación emparejada de versiones (`lfl.py`) y disección (`dissect.py`) |
 | `maps_gen/` | 44 mapas generados al azar. Ya hemos ajustado mucho sobre ellos: sirven para entrenar, no para decidir |
 | `maps_hold60/` | 60 mapas nuevos sellados (semilla 20261015): no ajustes nada mirándolos, son la comprobación final |
 | `maps_dev200/` | 200 mapas nuevos (semilla 4242): la muestra grande para decidir si un cambio pequeño sirve |

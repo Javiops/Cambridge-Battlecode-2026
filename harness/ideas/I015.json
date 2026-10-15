@@ -1,0 +1,25 @@
+{
+ "id": "I015",
+ "title": "Farmeo seguro y cambios de corners v39",
+ "kind": "fight",
+ "source": "compañero",
+ "owner": "Fran",
+ "hypothesis": "menos muertes farmeando",
+ "stage": "desarrollo",
+ "created": "2026-10-15T21:58Z",
+ "history": [
+  {
+   "at": "2026-10-15T21:58Z",
+   "stage": "idea",
+   "note": ""
+  },
+  {
+   "at": "2026-10-15T21:58Z",
+   "stage": "desarrollo",
+   "note": "PR #10 abierto; pasar por gate.py --kind fight"
+  }
+ ],
+ "updated": "2026-10-15T21:58Z",
+ "branch": "fran/study27-safe-farming",
+ "pr": "10"
+}

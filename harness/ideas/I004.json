@@ -1,0 +1,24 @@
+{
+ "id": "I004",
+ "title": "Arreglo de corners: no volver solos, huir antes (study27 + corners fix)",
+ "kind": "fight",
+ "source": "corners-why 15/10",
+ "owner": "Javi",
+ "hypothesis": "muertes en corners de 14 a 7 por partida",
+ "stage": "online",
+ "created": "2026-10-15T21:58Z",
+ "history": [
+  {
+   "at": "2026-10-15T21:58Z",
+   "stage": "idea",
+   "note": ""
+  },
+  {
+   "at": "2026-10-15T21:58Z",
+   "stage": "online",
+   "note": "local corners 16-0; online lfl: 24 vs 17 en 206 parejas (p=0.35), corners 7 vs 7: sin decidir tras 4 batches"
+  }
+ ],
+ "updated": "2026-10-15T21:58Z",
+ "version": "study27 + corners fix"
+}

@@ -1,0 +1,25 @@
+{
+ "id": "I009",
+ "title": "Barrido con el hechizo de área en el borde (AoE sweep, dash cooldowns)",
+ "kind": "fight",
+ "source": "estudio del compañero",
+ "owner": "Fran",
+ "hypothesis": "más daño con hechizos en las peleas",
+ "stage": "local-ok",
+ "created": "2026-10-15T21:58Z",
+ "history": [
+  {
+   "at": "2026-10-15T21:58Z",
+   "stage": "idea",
+   "note": ""
+  },
+  {
+   "at": "2026-10-15T21:58Z",
+   "stage": "local-ok",
+   "note": "local 92-55 sobre el bot combinado (zip bot/mybot_study27_corners_combat.zip); pendiente de subir y lfl online"
+  }
+ ],
+ "updated": "2026-10-15T21:58Z",
+ "branch": "fran/study27-combat-micro",
+ "pr": "11"
+}

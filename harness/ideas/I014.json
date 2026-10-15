@@ -1,0 +1,25 @@
+{
+ "id": "I014",
+ "title": "Políticas de farmeo y banca conectadas (study27 economy)",
+ "kind": "farm",
+ "source": "compañero",
+ "owner": "Fran",
+ "hypothesis": "más gemas tributadas / 100 rondas",
+ "stage": "desarrollo",
+ "created": "2026-10-15T21:58Z",
+ "history": [
+  {
+   "at": "2026-10-15T21:58Z",
+   "stage": "idea",
+   "note": ""
+  },
+  {
+   "at": "2026-10-15T21:58Z",
+   "stage": "desarrollo",
+   "note": "PR #13 abierto; pasar por gate.py --kind farm"
+  }
+ ],
+ "updated": "2026-10-15T21:58Z",
+ "branch": "fran/study27-economy",
+ "pr": "13"
+}

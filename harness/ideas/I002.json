@@ -1,0 +1,25 @@
+{
+ "id": "I002",
+ "title": "Apilar en campamentos de 3000+ hp, repartir en los pequeños (study27)",
+ "kind": "farm",
+ "source": "estudio stack-or-spread 15/10",
+ "owner": "Javi",
+ "hypothesis": "capturas más rápidas en campamentos grandes",
+ "stage": "aceptada",
+ "created": "2026-10-15T21:58Z",
+ "history": [
+  {
+   "at": "2026-10-15T21:58Z",
+   "stage": "idea",
+   "note": ""
+  },
+  {
+   "at": "2026-10-15T21:58Z",
+   "stage": "aceptada",
+   "note": "online: apilar funciona en mapas con campamentos 3000+; es el bot online desde las 15:36"
+  }
+ ],
+ "updated": "2026-10-15T21:58Z",
+ "pr": "4",
+ "version": "v36 = study27"
+}

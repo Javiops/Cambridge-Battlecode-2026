@@ -1,0 +1,23 @@
+{
+ "id": "I018",
+ "title": "La apertura de la pelea: no andar hacia un grupo visible antes del primer golpe",
+ "kind": "fight",
+ "source": "disección study28 15/10: 49% de las aperturas andamos hacia ellos",
+ "owner": "Javi",
+ "hypothesis": "aperturas en inferioridad del 42% al 25%; muertes/partida -1",
+ "stage": "idea",
+ "created": "2026-10-15T21:58Z",
+ "history": [
+  {
+   "at": "2026-10-15T21:58Z",
+   "stage": "idea",
+   "note": ""
+  },
+  {
+   "at": "2026-10-15T21:58Z",
+   "stage": "idea",
+   "note": "dimensión sin probar; ninguna regla de hoy la tocó"
+  }
+ ],
+ "updated": "2026-10-15T21:58Z"
+}

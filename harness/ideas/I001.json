@@ -1,0 +1,25 @@
+{
+ "id": "I001",
+ "title": "Recall sobre las casillas de captura en todos los mapas (study25, P_CAPRECALL 2)",
+ "kind": "farm",
+ "source": "estudio del #1 Mite 15/10",
+ "owner": "Javi",
+ "hypothesis": "gemas/100 rondas +5% en mapas grandes",
+ "stage": "aceptada",
+ "created": "2026-10-15T21:58Z",
+ "history": [
+  {
+   "at": "2026-10-15T21:58Z",
+   "stage": "idea",
+   "note": ""
+  },
+  {
+   "at": "2026-10-15T21:58Z",
+   "stage": "aceptada",
+   "note": "local dev 88-34, hold 19-12 vs v30; en study26/27 online"
+  }
+ ],
+ "updated": "2026-10-15T21:58Z",
+ "pr": "1",
+ "version": "v35 lineage"
+}

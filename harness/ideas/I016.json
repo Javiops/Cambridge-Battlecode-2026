@@ -1,0 +1,25 @@
+{
+ "id": "I016",
+ "title": "No abandonar la captura a aliados canalizando",
+ "kind": "bug",
+ "source": "compañero",
+ "owner": "Fran",
+ "hypothesis": "capturas perdidas a 0",
+ "stage": "desarrollo",
+ "created": "2026-10-15T21:58Z",
+ "history": [
+  {
+   "at": "2026-10-15T21:58Z",
+   "stage": "idea",
+   "note": ""
+  },
+  {
+   "at": "2026-10-15T21:58Z",
+   "stage": "desarrollo",
+   "note": "PR #8 abierto"
+  }
+ ],
+ "updated": "2026-10-15T21:58Z",
+ "branch": "fran/study28-tested-fixes",
+ "pr": "8"
+}

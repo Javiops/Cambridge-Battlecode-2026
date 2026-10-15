@@ -1,0 +1,23 @@
+{
+ "id": "I005",
+ "title": "Dos campeones por campamento como Mite (msquad)",
+ "kind": "fight",
+ "source": "disección study28 15/10",
+ "owner": "Javi",
+ "hypothesis": "golpes sin aliado a 8 del 22% al 12%",
+ "stage": "rechazada",
+ "created": "2026-10-15T21:58Z",
+ "history": [
+  {
+   "at": "2026-10-15T21:58Z",
+   "stage": "idea",
+   "note": ""
+  },
+  {
+   "at": "2026-10-15T21:58Z",
+   "stage": "rechazada",
+   "note": "local: 6% más lento farmeando y el panel de lanzadores le gana más (66-13 vs 78-11): veto"
+  }
+ ],
+ "updated": "2026-10-15T21:58Z"
+}

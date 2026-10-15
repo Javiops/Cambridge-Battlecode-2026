@@ -1,0 +1,23 @@
+{
+ "id": "I008",
+ "title": "Desempates simétricos por lado (P_SYM)",
+ "kind": "bug",
+ "source": "auditoría 15/10",
+ "owner": "Javi",
+ "hypothesis": "mismo juego por los dos lados",
+ "stage": "rechazada",
+ "created": "2026-10-15T21:58Z",
+ "history": [
+  {
+   "at": "2026-10-15T21:58Z",
+   "stage": "idea",
+   "note": ""
+  },
+  {
+   "at": "2026-10-15T21:58Z",
+   "stage": "rechazada",
+   "note": "lados iguales en 37/44 mapas pero 4% más lento y 107/212 vs study27: el hueco es caos, no sesgo"
+  }
+ ],
+ "updated": "2026-10-15T21:58Z"
+}

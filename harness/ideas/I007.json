@@ -1,0 +1,23 @@
+{
+ "id": "I007",
+ "title": "Nivel de peligro 0-1 para decidir la huida (P_DLEVEL)",
+ "kind": "fight",
+ "source": "danger-level.md 15/10",
+ "owner": "Javi",
+ "hypothesis": "muertes huyendo del 65% al 45%",
+ "stage": "rechazada",
+ "created": "2026-10-15T21:58Z",
+ "history": [
+  {
+   "at": "2026-10-15T21:58Z",
+   "stage": "idea",
+   "note": ""
+  },
+  {
+   "at": "2026-10-15T21:58Z",
+   "stage": "rechazada",
+   "note": "sin victoria local; 2/3 de las muertes siguen siendo huyendo"
+  }
+ ],
+ "updated": "2026-10-15T21:58Z"
+}

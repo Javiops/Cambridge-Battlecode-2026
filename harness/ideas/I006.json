@@ -1,0 +1,23 @@
+{
+ "id": "I006",
+ "title": "Final de rows: guardar cada bolsa cuando alguien está a 150 de 1000",
+ "kind": "farm",
+ "source": "disección study27 15/10",
+ "owner": "Javi",
+ "hypothesis": "rows: banca 1000 antes",
+ "stage": "rechazada",
+ "created": "2026-10-15T21:58Z",
+ "history": [
+  {
+   "at": "2026-10-15T21:58Z",
+   "stage": "idea",
+   "note": ""
+  },
+  {
+   "at": "2026-10-15T21:58Z",
+   "stage": "rechazada",
+   "note": "sin cambio en ningún mapa; rows banca en 404 vs 401 y pierde el espejo por los dos lados"
+  }
+ ],
+ "updated": "2026-10-15T21:58Z"
+}

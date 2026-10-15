@@ -1,0 +1,249 @@
+{
+  "created_utc": "2026-10-15T21:01:04.457102+00:00",
+  "finding": "Concrete possible progress deadlock in cf_camp_focus; completed screen also shows severe inactivity and acquisition collapse.",
+  "classification": "Source/control-flow liveness blocker, separately from conservative forecast quality. No crash/fault is required.",
+  "pins": {
+    "patch_camps.py": "3413527246b445124d031aa3920bd509aa1091a24f710a3a39686a8b4c835fea",
+    "baseline/src/main.cpp": "8ef9c27093272f5c14dbda5d16e7b91852edc63523ea86ac3d50d322514e71f7",
+    "baseline/src/params.h": "d99ef2cecff65f7851efb491bb4691d40ddeaaa6a96499e13eddec814fdc1372",
+    "arena/bots/eco_focus/src/main.cpp": "9809c99a95b82f238887de86737f0f9af8e0f965006a825daeab885d0f27de34",
+    "selection-plan.json": "8d547b48dca5d482beea10e1358c6b19d6b72f76c161cfb8ae79e5faceb1f130",
+    "package-build-freeze.json": "ee92e59af85805eeb588b81e97102d47667b956e155ae4c75ff27044e633944d",
+    "screen-evaluation.json": "f95ccb2704f582ab037896ac8bac8fce6186f15354950a0302fb37939fcc04b4",
+    "results/economy-screen.json": "78781a06b25758565d9c53fbdcd876edffa6f42b29d5136220aa5f6dd5154572"
+  },
+  "scope": {
+    "read_completed_screen": true,
+    "read_completed_baseline": true,
+    "read_incomplete_parent_full_outcomes": false,
+    "new_games_or_maps": 0,
+    "source_changes": 0,
+    "parent_full": "Stopped/incomplete; no efficacy conclusion from partial full-stage outcomes."
+  },
+  "minimal_control_flow_scenario": {
+    "conditions": "Interior translated coordinates may be used. Melee Ryth at(5,0), no dash, legal one-step movement, full1200HP, basicStrength50/Focus100, two damaged cardinally adjacent elks T(0,0) HP1000 and U(1,0) HP2000, each strength60/range3. No healthy near helper, visible enemy, bag/shop/emergency motive or other earlier-action trigger. Group is current target; not expired/cooldown.",
+    "selected_target": "Farm chooses weakest live T, distance5. Both camps are damaged, so engaged=true and farm committed=true.",
+    "forecast": "cf_contact advances hypothetically to(4,0). T is distance4 and U distance3. With self my_dps=50*1.125+100*1.5/8=75, cf_forecast charges U for ceil((1000+2000)/75)-1=39 rounds, focused=2340. Budget=1200*(1-0.18)=984, so it rejects.",
+    "no_legal_handler_action": "At actual(5,0), camp distances5 and4 exceed range3, so here=0 and escape search is skipped. cast_offense(T) immediately rejects target distance5>SPELL_RANGE4; basic_attack rejects5>meleeRange1. No movement or camp damage occurs in this handler.",
+    "no_exit": "engaged=true disables the only drop_target condition. cf_focus_safe returns false, and farm immediately returns. Next local decision repeats if the world state persists.",
+    "retarget_suppression": "Damaged camp => committed=true, suppressing ordinary periodic target refresh. Damaged U at distance4 satisfies awake_camp_near (CAMP_RANGE+1), even if the actual camp has since slept; this also disables P_UNSTICK30. The blocker does not rely on a cooldown remaining unready.",
+    "original_behavior": "Original engaged groups bypass the fresh-pull squad gate and reach engage(), which can step toward the attack ring; this focus guard removes that progress path.",
+    "qualification": "A source-proven possible stable branch, not an executed synthetic engine match. External allies/enemies, changed health/state, emergency decisions or a different target can break the loop; not every rejection is permanent."
+  },
+  "completed_screen_mechanisms": {
+    "matched_panel_games": 530,
+    "activity_candidate_games_including_direct": 636,
+    "direct_score_pct": 22.641509433962263,
+    "panel_delta_pp": -31.32075471698113,
+    "native_matched_metrics": {
+      "submittedGems": {
+        "matched_pairs": 530,
+        "missing_metric_pairs": 0,
+        "per_game": {
+          "candidate_mean": 876.8641509433962,
+          "baseline_mean": 986.6094339622641,
+          "paired_mean_delta": -109.74528301886792,
+          "paired_total_delta": -58165
+        },
+        "per100rounds_mean_of_game_rates": {
+          "candidate_mean": 152.38284520546637,
+          "baseline_mean": 182.99362151209775,
+          "paired_mean_delta": -30.610776306631376,
+          "paired_total_delta": -16223.71144251463
+        }
+      },
+      "collectedGems": {
+        "matched_pairs": 530,
+        "missing_metric_pairs": 0,
+        "per_game": {
+          "candidate_mean": 917.3962264150944,
+          "baseline_mean": 1029.2905660377357,
+          "paired_mean_delta": -111.89433962264151,
+          "paired_total_delta": -59304
+        },
+        "per100rounds_mean_of_game_rates": {
+          "candidate_mean": 159.30538345086381,
+          "baseline_mean": 190.71660273037665,
+          "paired_mean_delta": -31.41121927951286,
+          "paired_total_delta": -16647.946218141817
+        }
+      },
+      "spentGold": {
+        "matched_pairs": 530,
+        "missing_metric_pairs": 0,
+        "per_game": {
+          "candidate_mean": 2251.754716981132,
+          "baseline_mean": 2758.5471698113206,
+          "paired_mean_delta": -506.79245283018867,
+          "paired_total_delta": -268600
+        },
+        "per100rounds_mean_of_game_rates": {
+          "candidate_mean": 389.78148985784026,
+          "baseline_mean": 510.56469952273557,
+          "paired_mean_delta": -120.7832096648953,
+          "paired_total_delta": -64015.10112239451
+        }
+      },
+      "deaths": {
+        "matched_pairs": 530,
+        "missing_metric_pairs": 0,
+        "per_game": {
+          "candidate_mean": 2.1490566037735848,
+          "baseline_mean": 2.2056603773584906,
+          "paired_mean_delta": -0.05660377358490566,
+          "paired_total_delta": -30
+        },
+        "per100rounds_mean_of_game_rates": {
+          "candidate_mean": 0.31952195628662694,
+          "baseline_mean": 0.3334648734874818,
+          "paired_mean_delta": -0.013942917200854834,
+          "paired_total_delta": -7.389746116453062
+        }
+      },
+      "monsterDamageDone": {
+        "matched_pairs": 530,
+        "missing_metric_pairs": 0,
+        "per_game": {
+          "candidate_mean": 43148.848962243996,
+          "baseline_mean": 50844.61396241098,
+          "paired_mean_delta": -7695.765000166983,
+          "paired_total_delta": -4078755.450088501
+        },
+        "per100rounds_mean_of_game_rates": {
+          "candidate_mean": 7516.852432550977,
+          "baseline_mean": 9449.507056744806,
+          "paired_mean_delta": -1932.6546241938292,
+          "paired_total_delta": -1024306.9508227295
+        }
+      },
+      "monsterDamageTaken": {
+        "matched_pairs": 530,
+        "missing_metric_pairs": 0,
+        "per_game": {
+          "candidate_mean": 6538.488562225845,
+          "baseline_mean": 9775.04855485952,
+          "paired_mean_delta": -3236.559992633676,
+          "paired_total_delta": -1715376.796095848
+        },
+        "per100rounds_mean_of_game_rates": {
+          "candidate_mean": 1136.3113932913093,
+          "baseline_mean": 1789.3493395784676,
+          "paired_mean_delta": -653.0379462871584,
+          "paired_total_delta": -346110.11153219396
+        }
+      },
+      "submitted_over_collected": {
+        "paired_games_both_positive_collection": 530,
+        "excluded_zero_collection_pairs": 0,
+        "missing_metric_pairs": 0,
+        "candidate_mean_pct": 95.37877333210466,
+        "baseline_mean_pct": 95.86426013898836,
+        "paired_mean_percentage_point_delta": -0.4854868068836942
+      }
+    },
+    "sampled_counters": {
+      "cf_death_after_camp": {
+        "sum_of_observed_body_maxima": 117,
+        "games_counter_observed": 636,
+        "body_observations": 3036,
+        "mean_per100rounds_in_observed_games": 0.026283144267322325
+      },
+      "cf_evac": {
+        "sum_of_observed_body_maxima": 0,
+        "games_counter_observed": 636,
+        "body_observations": 3036,
+        "mean_per100rounds_in_observed_games": 0.0
+      },
+      "cf_focus_exit": {
+        "sum_of_observed_body_maxima": 15131,
+        "games_counter_observed": 636,
+        "body_observations": 3036,
+        "mean_per100rounds_in_observed_games": 4.144406731821243
+      },
+      "cf_focus_hit": {
+        "sum_of_observed_body_maxima": 18514,
+        "games_counter_observed": 636,
+        "body_observations": 3036,
+        "mean_per100rounds_in_observed_games": 4.763344762350247
+      },
+      "cf_focus_wait": {
+        "sum_of_observed_body_maxima": 265237,
+        "games_counter_observed": 636,
+        "body_observations": 3036,
+        "mean_per100rounds_in_observed_games": 67.29632086996158
+      },
+      "cf_reach": {
+        "sum_of_observed_body_maxima": 0,
+        "games_counter_observed": 636,
+        "body_observations": 3036,
+        "mean_per100rounds_in_observed_games": 0.0
+      },
+      "cf_reward_gain_observed": {
+        "sum_of_observed_body_maxima": 18263,
+        "games_counter_observed": 636,
+        "body_observations": 3036,
+        "mean_per100rounds_in_observed_games": 4.987074637231546
+      }
+    },
+    "rejects_without_handler_exit_or_stationary_hit_at_common_samples": 231592,
+    "interpretation": "Lower incoming camp damage accompanies much lower clear/gem/gold throughput and only a small death-rate reduction. Deposit ratio is nearly unchanged. Counter maxima are sampled lower bounds; this subtraction describes handler activity at common periodic snapshots, not all champion-turn activity."
+  },
+  "completed_case": {
+    "map_file": "gen23_06.map26a",
+    "map_sha256": "fd8a0e7d01247965578456b6ea20e522e562c4e0b47b1e49acdddfe6a6336ea2",
+    "opponent": "spar11",
+    "side": 0,
+    "candidate_key": "16d5ddb6165d7ac230d5ceca53b70ad151cdd45f3d174adac25ec0ab0cea9d89",
+    "candidate_rounds": 1028,
+    "candidate_submitted_gems": [
+      384,
+      1024
+    ],
+    "last_sample_round": 1000,
+    "body_focus_wait_exit_hit": {
+      "0": [
+        976,
+        1,
+        0
+      ],
+      "1": [
+        977,
+        1,
+        0
+      ],
+      "2": [
+        914,
+        0,
+        0
+      ],
+      "4": [
+        975,
+        1,
+        1
+      ]
+    },
+    "candidate_bodies0_and1": "Each native monsterDamageDone0, earnedGold0, collectedGems0, deaths0; each took60 camp damage. Body2 did only500 monster damage/24 collected gems.",
+    "matched_original_key": "29c4ee546dc4ee19f4f9354ca110c45a63e16b1f783eebae9dcd67dba890ff63",
+    "original_rounds": 777,
+    "original_submitted_gems": [
+      1068,
+      666
+    ],
+    "original_body_monster_damage_done": [
+      6500,
+      9294,
+      8137.5,
+      26844.5,
+      10579
+    ],
+    "limitation": "No retained positional replay for this example. Native endpoint/counter evidence demonstrates severe inactivity, not the exact hypothetical positions or every causal transition."
+  },
+  "model_biases_separate_from_blocker": [
+    "Reject budget is health minus18% maxHP, while original fresh-pull affordability uses P_RESERVE_PCT=-60 (health plus60% maxHP); this is a major deliberate conservatism change, not an API error.",
+    "Forecast holds current contact geometry and helper positions constant across a full clear and counts a full hit on nearest-distance ties. It omits mitigation, shields, heals and dynamic tank rotation.",
+    "Helper inclusion requires actual healthy presence within basic range+1 of some group member. Two approaching claimers can both reject entry before either counts as help, while the presence of claims prevents fresh-solo target drop.",
+    "All helper DPS is assigned to the predicted clear order despite their possibly pursuing another target. Contact chooses a legal endpoint in a square but does not prove the actual pathfinder will use it.",
+    "Stationary fallback attacks only selected weakest camp; another camp can be in spell/basic reach without rescuing the selected out-of-range target."
+  ],
+  "decision": "Treat focus-containing original-phase full packages as invalid for the correctness exception, preserve completed screen and incomplete full evidence, and predeclare any adaptive replacement phase before new source/outcome selection. Do not modify the frozen parent implementations."
+}

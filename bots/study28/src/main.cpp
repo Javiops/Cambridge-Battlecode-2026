@@ -2095,6 +2095,9 @@ bool other_captures(State& s, bc::champion& me, const Group& g, int gi) {
             // P_CAPCLAIM: only allies still claiming the group count. Allies that already chose to
             // leave stand on the tiles for one more turn, and counting them made everybody leave.
             if (P_CAPCLAIM ? !(claims && d <= 4) : !(d == 0 || (claims && d <= 4))) continue;
+            // On-mask recall may deliberately overlap capture. Off-mask
+            // channeling allies cannot take over the waiting reward.
+            if (d > 0 && (a.is_recalling() || a.is_teleporting() || a.is_submitting_gems())) continue;
             if (P_CAPDPS) {  // the capture's gold goes to a ranged damage dealer first (top 4: Ryth/Stellar/Cassi earn it)
                 int ka = (a.attack_range() > 1 ? 0 : 100) + d, km = (me.attack_range() > 1 ? 0 : 100) + mine;
                 if (ka < km || (ka == km && static_cast<int>(k) < s.ally_idx)) other = true;

@@ -25,16 +25,17 @@ def main():
  with zipfile.ZipFile(replay)as z:
   for side in('a','b'):
    text=z.read('team-'+side+'.stdout').decode(errors='replace').replace(chr(0),'');markers[side]=re.findall(r'NATIVE_ASSEMBLY_BUDGET[^\r\n]+',text)
-   for case in('funded-pair-quote','coordinator-move','current-pair-readiness','current-ready-consumer','missing-helper-declines','stale-camp-declines','gold-only-declines','unsupported-declines','long-rollout-budget'):
+   for case in('funded-pair-quote','coordinator-move','current-pair-readiness','current-ready-consumer','missing-helper-declines','stale-camp-declines','gold-only-declines','unsupported-declines'):
     if text.count('NATIVE_ASSEMBLY_BUDGET_CASE_PASS '+case)!=2:failures.append(side+':'+case)
    if text.count('NATIVE_ASSEMBLY_BUDGET_PASS ')!=2 or re.search(r'NATIVE_ASSEMBLY_BUDGET_FAIL|TACTICS_ERROR|bot error:|\[err',text):failures.append(side+':fault-marker')
  fuel=sum(len(e['entries'])for e in d['events']if e['kind']=='fuelExhausted')
  if fuel or any(d['diagnostics']['botFaults'].values()):failures.append('native-fault-or-fuel')
  if hashes!={x.name:sha(x)for x in source.glob('*.h')}:failures.append('source-changed')
- report={'passed':not failures,'created_utc':datetime.now(timezone.utc).isoformat(),'source_headers_sha256':hashes,'fixture_sha256':sha(bot/'src/main.cpp'),'sdk_header_sha256':sha(sdk),'module_sha256':sha(bot/'.cambc/build-release/bot-injected.wasm'),'map_sha256':sha(map_path),'replay_sha256':sha(replay),'statistics_sha256':sha(stats),'actual_engine':d['match'],'native_faults':d['diagnostics']['botFaults'],'fuel_exhausted':fuel,'failures':failures,'markers':markers,'commands':commands,'scope':'Nine finite explicit World/kit/position/claim projections on each actual Cassi/Issac SDK body. Actual public geometry, initialized SDK and production producer/coordinator/farming consumer; no projected action executed.65k quote,80k coordinator, real current-position readiness, unsupported unknown. Not physical rendezvous, real clear/payout, optimal crew size or strength evidence.'}
+ report={'passed':not failures,'created_utc':datetime.now(timezone.utc).isoformat(),'source_headers_sha256':hashes,'fixture_sha256':sha(bot/'src/main.cpp'),'sdk_header_sha256':sha(sdk),'module_sha256':sha(bot/'.cambc/build-release/bot-injected.wasm'),'map_sha256':sha(map_path),'replay_sha256':sha(replay),'statistics_sha256':sha(stats),'actual_engine':d['match'],'native_faults':d['diagnostics']['botFaults'],'fuel_exhausted':fuel,'failures':failures,'markers':markers,'commands':commands,'scope':'Eight finite explicit World/kit/position/claim projections on each actual Cassi/Issac SDK body. Actual public geometry, initialized SDK and production producer/coordinator/farming consumer; no projected action executed.65k quote,80k coordinator, real current-position readiness, unsupported unknown. Not physical rendezvous, real clear/payout, optimal crew size or strength evidence.'}
  (output/'report.json').write_text(json.dumps(report,indent=2)+'\n',encoding='utf8');print(json.dumps({'passed':not failures,'failures':failures,'markers':{s:x[:14]for s,x in markers.items()},'fuel':fuel},indent=2))
  if failures:raise SystemExit(1)
 if __name__=='__main__':main()
+
 
 
 

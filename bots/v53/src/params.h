@@ -107,3 +107,11 @@
 #define P_ALLYDUTY 1
 #define P_AVOIDFIRST 1
 #define P_MAPPLAN 1
+#define P_ROSTER 1
+#define P_OCMEMO 1
+#define P_TRACK 1
+#define P_TRACK_RET 6
+#define P_PV 1
+#define P_PV_LEAVE 60
+#define P_PV_ER 6
+#define P_MP_DASHHOLE 4

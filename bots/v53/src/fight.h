@@ -137,6 +137,7 @@ inline bool safe_step(State& s, bc::champion& me, const std::vector<Foe>& foes) 
             if (!(a == me) && a.is_alive() && a.health() > 0.4f * a.max_health()) allies.push_back(a.position());
         return true;
     });
+    if (P_TRACK && P_TRACK_RET) track::remembered_allies(allies, static_cast<int>(bc::round_number()));
     auto score = [&](vec2 t) {
         int ally = 30;
         for (auto a : allies) ally = std::min(ally, dist(t, a));
@@ -187,7 +188,7 @@ inline void call_help(State& s, const std::vector<Foe>& foes, int round) {
     if (!near || near->d > 4) return;
     int idx = -1;
     attempt([&] {
-        auto roster = bc::champions(*s.en);
+        auto roster = en_roster(s);
         for (std::size_t k = 0; k < roster.size(); ++k)
             if (roster[k] == near->c) idx = static_cast<int>(k);
         return true;
@@ -204,7 +205,7 @@ inline Foe* help_target(State& s, std::vector<Foe>& foes, int round) {
     if (idx < 0 || ((round - r) & 31) > 2) return nullptr;
     Foe* out = nullptr;
     attempt([&] {
-        auto roster = bc::champions(*s.en);
+        auto roster = en_roster(s);
         if (idx >= static_cast<int>(roster.size())) return false;
         for (auto& f : foes)
             if (f.c == roster[idx]) out = &f;

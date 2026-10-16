@@ -919,6 +919,229 @@ def cmd_export(A):
     print(f'{A.out}: {json.dumps(describe(geno))}')
 
 
+# ------------------------------------------------------------------------------------------------- champion
+FUELGUARD_REF = 'origin/claude/fuel-skipped-turns-004urj'  # PR #23: study27-economy + P_FUELGUARD (+ P_MONO)
+
+
+def overlay_src(A, scratch):
+    """The base bot of --overlay-ref (a git ref holding bots/study27-economy with extra fixes, e.g. the fuel guard),
+    extracted into scratch. None when no overlay."""
+    if not A.overlay_ref:
+        return None
+    ref = A.overlay_ref
+    run_git(['fetch', '-q', 'origin', ref.split('origin/', 1)[-1]])
+    out = os.path.join(scratch, 'overlay')
+    shutil.rmtree(out, ignore_errors=True)
+    os.makedirs(os.path.join(out, 'src'))
+    names = run_git(['ls-tree', '--name-only', ref + ':' + A.base_bot.replace('\\', '/') + '/src'], check=True).stdout.split()
+    for n in names:
+        blob = subprocess.run(['git', 'show', '%s:%s/src/%s' % (ref, A.base_bot.replace('\\', '/'), n)],
+                              capture_output=True, check=True).stdout
+        open(os.path.join(out, 'src', n), 'wb').write(blob.replace(b'\r\n', b'\n'))
+    return out
+
+
+def write_bot(A, ints, out, overlay, scratch):
+    """A normal bot folder with the genome: the instrumented source of the base, carried onto the overlay base by a
+    3-way merge (overlay + (instrumented - base)); conflicts that only touch the overlay's fuel-profile markers
+    take the instrumented side."""
+    T.write_src(A.base_bot, out, ints)
+    if not overlay:
+        return
+    lit = os.path.join(scratch, 'lit')
+    olit = os.path.join(scratch, 'olit')
+    for src, dst in ((A.base_bot, lit), (overlay, olit)):
+        shutil.rmtree(dst, ignore_errors=True)
+        shutil.copytree(os.path.join(src, 'src'), os.path.join(dst, 'src'))
+        for fname in os.listdir(os.path.join(dst, 'src')):
+            q = os.path.join(dst, 'src', fname)
+            b = open(q, 'rb').read()
+            open(q, 'wb').write(b.replace(b'\r\n', b'\n'))
+        for fname, o, n in G.LITERALS:
+            q = os.path.join(dst, 'src', fname)
+            t = open(q, newline='').read()
+            open(q, 'w', newline='\n').write(t.replace(o, n))
+    for fname in os.listdir(os.path.join(out, 'src')):
+        mine = os.path.join(out, 'src', fname)
+        base = os.path.join(lit, 'src', fname)
+        theirs = os.path.join(olit, 'src', fname)
+        if not os.path.exists(base) or not os.path.exists(theirs):
+            continue  # ga_struct.h: ours only
+        merged = os.path.join(scratch, 'merged_' + fname)
+        shutil.copy(theirs, merged)
+        r = subprocess.run(['git', 'merge-file', '-p', merged, base, mine], capture_output=True)
+        text = r.stdout
+        if r.returncode:
+            # resolve each conflict: keep the instrumented side, plus the overlay side's lines that are not FP markers
+            lines, outl, side = text.decode().split('\n'), [], None
+            for l in lines:
+                if l.startswith('<<<<<<< '):
+                    side, ov, mine_l = 'ov', [], []
+                elif l.startswith('=======') and side == 'ov':
+                    side = 'mine'
+                elif l.startswith('>>>>>>> ') and side == 'mine':
+                    if fname == 'params.h':  # params: both sides (the overlay's switches, then our genome)
+                        outl[len(outl) - len(mine_l):len(outl) - len(mine_l)] = ov
+                    side = None
+                elif side == 'ov':
+                    ov.append(l)
+                else:
+                    if side == 'mine':
+                        mine_l.append(l)
+                    outl.append(l)
+            text = '\n'.join(outl).encode()
+            if fname != 'params.h' and extra_lost(lines):
+                print('warning: %s: overlay lines inside merge conflicts were dropped: %s' % (fname, extra_lost(lines)))
+        open(mine, 'wb').write(text)
+
+
+def extra_lost(lines):
+    """Overlay-side lines inside conflicts that are neither FP markers nor present on our side."""
+    out, side, ov, mine = [], None, [], []
+    for l in lines:
+        if l.startswith('<<<<<<< '):
+            side, ov, mine = 'ov', [], []
+        elif l.startswith('=======') and side == 'ov':
+            side = 'mine'
+        elif l.startswith('>>>>>>> ') and side == 'mine':
+            ms = {x.strip() for x in mine}
+            out += [x.strip() for x in ov if x.strip() and not x.strip().startswith('FP(') and x.strip() not in ms]
+            side = None
+        elif side == 'ov':
+            ov.append(l)
+        elif side == 'mine':
+            mine.append(l)
+    return out
+
+
+def cmd_champion(A):
+    """Final local tournament: every island's best genomes, built as the bot we would upload (overlay = fuel guard),
+    against the full rival pool on the sealed maps, each judged against the control built the same way."""
+    farm = A.farm
+    scratch = os.path.join(A.scratch, 'champion')
+    os.makedirs(scratch, exist_ok=True)
+    bh = base_hash(A.base_bot)
+    cands = {}
+    for m in read_migrants(farm, bh):
+        if m.get('base') != bh:
+            continue
+        key = cid_of(norm(m['genome']))
+        f = m.get('fitness', {}).get('shrunk', 0)
+        isl = m.get('island')
+        if key not in cands or f > cands[key]['fit']:
+            cands[key] = {'geno': norm(m['genome']), 'fit': f, 'island': isl}
+    by_isl = {}
+    for k, c in cands.items():
+        by_isl.setdefault(c['island'], []).append((c['fit'], k))
+    finalists = []
+    for isl, lst in by_isl.items():
+        finalists += [k for f, k in sorted(lst, reverse=True)[:A.per_island] if f > 0]
+    start = resolve(A.start)
+    ctl = cid_of(start)
+    finalists = [k for k in finalists if k != ctl]
+    if A.ids:
+        finalists = A.ids.split(',')
+    print(f'{len(finalists)} finalists from {len(by_isl)} islands, control {A.start} ({ctl})', flush=True)
+    overlay = overlay_src(A, scratch)
+    genos = dict({k: cands[k]['geno'] for k in finalists if k in cands}, **{ctl: start})
+    bots = {}
+    for k in [ctl] + finalists:
+        out = os.path.join(scratch, 'bot_' + k)
+        if not os.path.exists(ga.wasm_of(out)):
+            write_bot(A, to_ints(genos[k]), out, overlay, scratch)
+            ga.build(out)
+        bots[k] = ga.md5(ga.wasm_of(out)), ga.wasm_of(out)
+    home = os.path.join(farm, 'champion')
+    os.makedirs(home, exist_ok=True)
+    meta = {'offset': 0}
+    B = Bench.__new__(Bench)
+    B.work, B.jobs, B.extra, B.meta = scratch, A.jobs, [], meta
+    B.cache_path = os.path.join(home, 'games.jsonl')
+    B.cache = {}
+    if os.path.exists(B.cache_path):
+        for line in open(B.cache_path):
+            try:
+                d = json.loads(line)
+                B.cache[d['key']] = d
+            except ValueError:
+                pass
+    B.opp_wasm, B.map_md5, B.genomes = {}, {}, {}
+    os.makedirs(os.path.join(scratch, 'tmp'), exist_ok=True)
+    opps = [o for o in A.opps.split(',') if o and '@' not in o]
+    prev = os.path.join(home, 'champion.json')
+    if os.path.exists(prev):  # the last champion stays a rival
+        opps.append('genome:' + prev)
+    for o in opps:  # genome rivals (v44 = start, past champions) are built like the finalists
+        if o.startswith('genome:'):
+            g = start if o == 'genome:start' else resolve(o[len('genome:'):])
+            out = os.path.join(scratch, 'opp_' + cid_of(g))
+            if not os.path.exists(ga.wasm_of(out)):
+                write_bot(A, to_ints(g), out, overlay, scratch)
+                ga.build(out)
+            B.opp_wasm[o] = ga.md5(ga.wasm_of(out)), ga.wasm_of(out)
+    pins = pinned(A.opps)
+    maps = ga.map_pool(A.maps.split(','))
+    if A.max_maps and len(maps) > A.max_maps:
+        maps = random.Random(7).sample(maps, A.max_maps)
+    cl = [(bots[k][0], bots[k][1]) for k in [ctl] + finalists]
+    print(f'{len(cl)} bots x {len(opps)} rivals x {len(maps)} maps x 2 sides + {len(pins)} ghost games', flush=True)
+    pin_games(B, cl, pins)
+    B.games(cl, opps, maps)
+
+    def fit(h):
+        f = B.score(h, opps, maps)[0]
+        return (f * len(opps) + pin_fit(B, h, pins) * len(pins)) / (len(opps) + len(pins))
+    ch = bots[ctl][0]
+    cf, cper = fit(ch), B.score(ch, opps, maps)[1]
+    rows = []
+    for k in finalists:
+        h = bots[k][0]
+        better = worse = 0
+        for ob in opps:
+            oh = B.opp(ob)[0]
+            for m in maps:
+                mk = B.mkey(m)
+                a = sum(B.cache.get(f'{h}|{oh}|{mk}|{s}', {}).get('r', 0) for s in (0, 1))
+                b = sum(B.cache.get(f'{ch}|{oh}|{mk}|{s}', {}).get('r', 0) for s in (0, 1))
+                better += a > b
+                worse += a < b
+        per = B.score(h, opps, maps)[1]
+        rows.append({'cid': k, 'island': cands.get(k, {}).get('island', ''), 'delta': fit(h) - cf,
+                     'better': better, 'worse': worse, 'p': ga.sign_p(better, worse),
+                     'per': {os.path.basename(o): '%d-%d' % (v['won2'], v['lost2']) for o, v in per.items()},
+                     'ghosts': pin_fit(B, h, pins), 'describe': describe(genos[k], start)})
+    rows.sort(key=lambda r: -r['delta'])
+    lines = ['# GA farm champion', '', f'Tournament {now()}: {len(finalists)} finalists (top {A.per_island} of each '
+             f'island), built as uploaded (overlay `{A.overlay_ref or "none"}`), vs {", ".join(opps)} on {len(maps)} '
+             f'sealed maps both sides, plus {len(pins)} ghost games. Control = {A.start} built the same way: fit '
+             f'{cf:+.3f}, ' + ', '.join(f'{os.path.basename(o)} {v["won2"]}-{v["lost2"]}' for o, v in cper.items()) +
+             f', ghosts {pin_fit(B, ch, pins):+.2f}.', '',
+             '| rank | genome | island | delta vs control | pairs better-worse (p) | maps won-lost both sides per rival | ghosts | changes vs control |',
+             '|---|---|---|---|---|---|---|---|']
+    for n, r in enumerate(rows, 1):
+        lines.append(f"| {n} | {r['cid']} | {r['island']} | {r['delta']:+.3f} | {r['better']}-{r['worse']} ({r['p']:.3f}) | "
+                     f"{' '.join(f'{a} {b}' for a, b in r['per'].items())} | {r['ghosts']:+.2f} | {json.dumps(r['describe'])} |")
+    if rows and rows[0]['delta'] > 0:
+        top = rows[0]['cid']
+        z = os.path.join(A.zip_dir, 'mybot_%s.zip' % top)
+        os.makedirs(A.zip_dir, exist_ok=True)
+        import zipfile
+        with zipfile.ZipFile(z, 'w', zipfile.ZIP_DEFLATED) as zf:
+            src = os.path.join(scratch, 'bot_' + top, 'src')
+            for f in sorted(os.listdir(src)):
+                zf.write(os.path.join(src, f), 'src/' + f)
+        write_json(os.path.join(home, 'champion.json'), {'cid': top, 'genome': genos[top], 'zip': z, 'row': rows[0],
+                                                         'time': now()})
+        lines += ['', f'Champion: **{top}** ({rows[0]["island"]}), zip `{z}` (not uploaded). '
+                  f'{"Significant" if rows[0]["p"] < 0.05 else "Not significant"} vs the control (p={rows[0]["p"]:.3f}).']
+    else:
+        lines += ['', 'No finalist beats the control: no zip.']
+    txt = '\n'.join(lines) + '\n'
+    with open(os.path.join(farm, 'CHAMPION.md'), 'w', newline='\n') as f:
+        f.write(txt)
+    print(txt)
+
+
 def main():
     p = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     sub = p.add_subparsers(dest='cmd', required=True)
@@ -964,11 +1187,19 @@ def main():
     s = sub.add_parser('validate'); common(s)
     s.add_argument('--top', type=int, default=3); s.add_argument('--min-n', type=int, default=3)
     s.add_argument('--ids', default=''); s.add_argument('--maps', default='', help='map globs (default v100)')
+    s = sub.add_parser('champion'); common(s)
+    s.add_argument('--start', default='ga65a6', help='the control (v44)')
+    s.add_argument('--per-island', type=int, default=2)
+    s.add_argument('--ids', default='', help='finalists by cid instead of the islands\' best')
+    s.add_argument('--maps', default='maps_hold60/*.map26a,maps_dev200/*.map26a', help='sealed map globs')
+    s.add_argument('--max-maps', type=int, default=120)
+    s.add_argument('--overlay-ref', default=FUELGUARD_REF, help='git ref whose base bot the zip is built on ('' = none)')
+    s.add_argument('--zip-dir', default=os.path.join(SHARED, 'bot') if os.path.isdir(SHARED) else os.path.join('out', 'bot'))
     s = sub.add_parser('export'); common(s)
     s.add_argument('--id', default=''); s.add_argument('--migrant', default=''); s.add_argument('--out', required=True)
     A = p.parse_args()
     {'run': cmd_run, 'ensure': cmd_ensure, 'stop': cmd_stop, 'board': cmd_board, 'validate': cmd_validate,
-     'export': cmd_export}[A.cmd](A)
+     'export': cmd_export, 'champion': cmd_champion}[A.cmd](A)
 
 
 if __name__ == '__main__':

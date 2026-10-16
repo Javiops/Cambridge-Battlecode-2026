@@ -23,20 +23,25 @@ still take in migrants that differ anywhere.
 
 ## How an island scores a candidate
 
-Each generation, the island draws `--maps` fresh maps (10 by default) from 211 training maps: the 17 site maps,
-`maps_gen` and `maps_train`. The sealed sets `maps_hold60`, `maps_dev200` and fresh300, and the validation set
+Each generation, the island draws `--maps` fresh maps (8 by default) from 415 training maps: the 17 site maps,
+`maps_gen` and `maps_train` (gen2, gen3, f150 and the 204 generated cousins of the site maps from PR #24). The sealed sets `maps_hold60`, `maps_dev200` and fresh300, and the validation set
 `maps_v100`, are excluded.
 
 Every candidate plays every rival on both sides. Fitness is the candidate's margin over the **control** (the
 island's start genome, default `ga65a6` = v44 online) on the same games, averaged over every generation it was
 evaluated in and shrunk toward 0. This is the same rule as `ga.py` and `sga.py`.
 
-**Rivals:**
-- the control itself (`genome:start`)
-- the previous online bot (`genome:default`)
-- the earlier weight-GA genome `9872f93cac`
-- `bots/spar11` and `bots/spar16`
-- the **hall of fame**: the best migrant of the 2 most recently active other islands (`--hof 2`)
+**Rivals** (v44 self-play is only one of them, because fight rules judged by self-play have failed online):
+- the control itself (`genome:start`, v44)
+- the caster sparring panel `bots/spar11`, `bots/spar12`, `bots/spar16`
+- 6 **ghosts** of real top-10 ladder games (`bots/gh_*`, from `/mnt/project-files/arena/bots`, built by
+  `arena/tools/ghost/mkghost.py` from replay dumps: they draft the same champions and walk the recorded route).
+  They only make sense on the map and side they were recorded on, so they are pinned:
+  `bots/gh_cabbage_corners@maps_ghost/corners.map26a:0` (the map versions of those replays are in `maps_ghost/`).
+  Each ghost game weighs as much as one random-map rival. New ghosts: dump a ladder replay, run mkghost.py, add the
+  folder to `bots/` and the pin to `GHOSTS` in island.py.
+- the **hall of fame**: the best migrant of the 2 most recently active other islands (`--hof 2`), and this
+  island's own 2 previous champions (`--own-hof 2`), so the population does not cycle against one opponent
 
 **Racing:** every candidate plays the first half of the maps. Only the better half, plus the elites, plays the
 rest, which saves about 25% of the games (`--race 0.5 --keep 0.5`; `--race 1` turns it off).
@@ -109,6 +114,28 @@ py tools\ga\island.py ensure --name pc --scope all --git-branch ga-farm --jobs 1
 - The wasmtime compile cache is `out\wasmtime-cache` (set automatically).
 - Restart after a reboot with the same `ensure` command. Stop with
   `py tools\ga\island.py stop --name pc --git-branch ga-farm`.
+
+## Champion: the bot we upload
+
+Online feedback is too scarce to judge candidates, so the local winner is what gets uploaded:
+
+```bash
+python3 tools/ga/island.py champion --name champion --farm /mnt/project-files/ga-farm --jobs 4
+```
+
+1. **Finalists:** the top 2 migrants of every island (positive fitness), plus the control (v44).
+2. **Build:** each finalist is built as the bot we would upload. That is the genome on the base with the fuel guard
+   (`--overlay-ref origin/claude/fuel-skipped-turns-004urj`, PR #23: P_FUELGUARD, plus P_MONO), carried over by a
+   3-way merge. The v44 control built this way plays 34/34 identical games to `mybot_ga65a6_fuelguard.zip` with
+   unlimited fuel.
+3. **Tournament:** every finalist plays the full rival pool on 120 sealed maps (`maps_hold60` + `maps_dev200`) on
+   both sides, plus the ghosts and the previous champion. Each is scored against the control: fitness delta,
+   pairs better/worse with a sign test, and maps won on both sides per rival.
+4. **Output:** the ranking goes to `ga-farm/CHAMPION.md`. When the top finalist beats the control, its zip is
+   written to `/mnt/project-files/bot/mybot_<cid>.zip` (never uploaded by a thread) and the genome to
+   `ga-farm/champion/champion.json`. That genome becomes a rival in the next tournament.
+
+Scope priority (user, 16 Oct): micro and structure first (we lose by dying), macro second.
 
 ## Checking the farm
 

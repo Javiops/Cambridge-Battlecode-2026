@@ -18,9 +18,14 @@
    "stage": "rejected",
    "note": "P_ALTARPICK 1; altar picked today is almost always right; docs/I019-I022-review-fixes.md",
    "result": "gate 86-103 on 710 fresh maps (p=0.24), 35-32 on hold60+dev200"
+  },
+  {
+   "at": "2026-10-16T07:33Z",
+   "stage": "rejected"
   }
  ],
- "updated": "2026-10-16T07:32Z",
+ "updated": "2026-10-16T07:33Z",
  "bot": "bots/study28",
- "branch": "claude/four-fixes-harness-dulpj2"
+ "branch": "claude/four-fixes-harness-dulpj2",
+ "pr": "16"
 }

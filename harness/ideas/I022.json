@@ -18,9 +18,14 @@
    "stage": "rejected",
    "note": "P_CHAINWALK; docs/I019-I022-review-fixes.md",
    "result": "gate 19-23 (walking) and 24-38 (walking + clear + capture) on 260 fresh maps"
+  },
+  {
+   "at": "2026-10-16T07:33Z",
+   "stage": "rejected"
   }
  ],
- "updated": "2026-10-16T07:32Z",
+ "updated": "2026-10-16T07:33Z",
  "bot": "bots/study28",
- "branch": "claude/four-fixes-harness-dulpj2"
+ "branch": "claude/four-fixes-harness-dulpj2",
+ "pr": "16"
 }

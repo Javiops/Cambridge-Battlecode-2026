@@ -21,7 +21,7 @@ kits under an initialized real SDK. Projected actions are **never executed**.
 It tests a finite priced invitation at65k fuel, coordinator pending Move at80k,
 current readiness and a production farming first-hit proposal at65k, missing
 helper and stale-camp negatives, unpriced gold rejection, unsupported-kit unknown,
-and a long forecast that must stop unknown while retaining useful action reserve.
+A live fuel callback for long forecasts is a separate follow-up source change, not part of checkpoint15.
 This is not physical rendezvous, actual payout, crew optimality or strength proof.
 
 ## Physical bodies and capture
@@ -44,3 +44,4 @@ The current committed map SHA256 is
 Budget-capped long real clears can legitimately return unknown. A short funded
 positive and a safely declined long case are separate required observations;
 neither licenses unsupported future helper DPS.
+

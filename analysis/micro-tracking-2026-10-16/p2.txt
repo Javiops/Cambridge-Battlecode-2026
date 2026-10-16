@@ -1,0 +1,39 @@
+17 maps x 2 sides x 5 specialists; 0 games did not finish
+
+bot                            sp_castera   sp_casterh      sp_hunt    sp_centre      sp_farm      all
+bots/v52                        65% d 9.7    71% d10.1    71% d12.2    85% d12.6    65% d 8.8    71.2%
+bots/trk2                       65% d 9.7    71% d10.1    71% d12.2    85% d12.6    65% d 8.8    71.2%
+bots/u1                         62% d10.1    62% d13.0    68% d11.5    88% d12.4    68% d 9.0    69.4%
+bots/uret                       65% d 9.7    71% d12.5    68% d12.5    91% d13.7    74% d 7.9    73.5%
+bots/ufav                       65% d10.4    62% d13.0    71% d10.5    82% d12.7    74% d 7.3    70.6%
+bots/uiso                       59% d10.6    59% d14.7    68% d13.3    91% d12.6    71% d 8.1    69.4%
+
+bots/v52 vs bots/trk2: games that flip 0-0 (0% for v52), p=1.000; 
+
+bots/v52 vs bots/u1: games that flip 25-22 (53% for v52), p=0.771; sp_castera 5-4, sp_casterh 6-3, sp_hunt 5-4, sp_centre 4-5, sp_farm 5-6
+
+bots/v52 vs bots/uret: games that flip 20-24 (45% for v52), p=0.652; sp_castera 5-5, sp_casterh 4-4, sp_hunt 4-3, sp_centre 3-5, sp_farm 4-7
+
+bots/v52 vs bots/ufav: games that flip 27-26 (51% for v52), p=1.000; sp_castera 6-6, sp_casterh 5-2, sp_hunt 6-6, sp_centre 6-5, sp_farm 4-7
+
+bots/v52 vs bots/uiso: games that flip 28-25 (53% for v52), p=0.784; sp_castera 5-3, sp_casterh 8-4, sp_hunt 6-5, sp_centre 3-5, sp_farm 6-8
+
+bots/trk2 vs bots/u1: games that flip 25-22 (53% for trk2), p=0.771; sp_castera 5-4, sp_casterh 6-3, sp_hunt 5-4, sp_centre 4-5, sp_farm 5-6
+
+bots/trk2 vs bots/uret: games that flip 20-24 (45% for trk2), p=0.652; sp_castera 5-5, sp_casterh 4-4, sp_hunt 4-3, sp_centre 3-5, sp_farm 4-7
+
+bots/trk2 vs bots/ufav: games that flip 27-26 (51% for trk2), p=1.000; sp_castera 6-6, sp_casterh 5-2, sp_hunt 6-6, sp_centre 6-5, sp_farm 4-7
+
+bots/trk2 vs bots/uiso: games that flip 28-25 (53% for trk2), p=0.784; sp_castera 5-3, sp_casterh 8-4, sp_hunt 6-5, sp_centre 3-5, sp_farm 6-8
+
+bots/u1 vs bots/uret: games that flip 3-10 (23% for u1), p=0.092; sp_castera 1-2, sp_casterh 0-3, sp_hunt 2-2, sp_centre 0-1, sp_farm 0-2
+
+bots/u1 vs bots/ufav: games that flip 14-16 (47% for u1), p=0.856; sp_castera 2-3, sp_casterh 5-5, sp_hunt 2-3, sp_centre 4-2, sp_farm 1-3
+
+bots/u1 vs bots/uiso: games that flip 20-20 (50% for u1), p=1.000; sp_castera 4-3, sp_casterh 4-3, sp_hunt 6-6, sp_centre 2-3, sp_farm 4-5
+
+bots/uret vs bots/ufav: games that flip 18-13 (58% for uret), p=0.473; sp_castera 3-3, sp_casterh 7-4, sp_hunt 2-3, sp_centre 4-1, sp_farm 2-2
+
+bots/uret vs bots/uiso: games that flip 22-15 (59% for uret), p=0.324; sp_castera 5-3, sp_casterh 6-2, sp_hunt 4-4, sp_centre 2-2, sp_farm 5-4
+
+bots/ufav vs bots/uiso: games that flip 23-21 (52% for ufav), p=0.880; sp_castera 6-4, sp_casterh 5-4, sp_hunt 5-4, sp_centre 2-5, sp_farm 5-4

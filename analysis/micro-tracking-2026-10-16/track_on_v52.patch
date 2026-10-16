@@ -1,0 +1,60 @@
+diff -ru -x '*.bak' bots/v52/src/fight.h bots/trk2/src/fight.h
+--- bots/v52/src/fight.h	2026-10-16 19:36:07.554280869 +0000
++++ bots/trk2/src/fight.h	2026-10-16 19:43:11.711661370 +0000
+@@ -137,6 +137,7 @@
+             if (!(a == me) && a.is_alive() && a.health() > 0.4f * a.max_health()) allies.push_back(a.position());
+         return true;
+     });
++    if (P_TRACK && P_TRACK_RET) track::remembered_allies(me, allies, static_cast<int>(bc::round_number()));
+     auto score = [&](vec2 t) {
+         int ally = 30;
+         for (auto a : allies) ally = std::min(ally, dist(t, a));
+diff -ru -x '*.bak' bots/v52/src/main.cpp bots/trk2/src/main.cpp
+--- bots/v52/src/main.cpp	2026-10-16 19:36:07.554317633 +0000
++++ bots/trk2/src/main.cpp	2026-10-16 19:43:11.711347371 +0000
+@@ -2660,6 +2660,7 @@
+     return best;
+ }
+ 
++#include "track.h"
+ #include "fight.h"
+ 
+ bool g_cap_other_on = false;  // P_CAPPRIO: the ally that takes the reward already stands on it
+@@ -3249,6 +3250,9 @@
+ 
+     if (!me.is_alive()) {
+         g_mode = "dead";
++#if P_TRACK_LOG
++        track::on_dead(round);
++#endif
+         shop(s, me);  // dead champions can still shop
+         drop_target(s);
+         return;
+@@ -3352,6 +3356,7 @@
+         s.seen_r = round;
+         s.seen_me = pos;
+     }
++    if (P_TRACK) track::update(s, me, foes, pos, round);
+     if (P_DANGER) update_danger(s, foes, round);
+     if (P_VOLLEY || P_FM >= 2) {  // the volley map of this round (step_towards reads it)
+         s.thr.clear();
+@@ -3646,6 +3651,7 @@
+                 if (dist(f.p, tgt->p) <= 8) { ++eb; eh += f.hp; }
+             favourable = nb >= eb && oh * 100.0 >= P_ENGAGE2 * eh;
+         }
++        if (P_TRACK && P_TRACK_FAV && tgt) favourable = track::favourable(me, tgt->p, round);
+         bool helping = false;
+         if (P_CALLHELP && hpr > 0.4f) {  // an ally named the foe hitting it: go and hit that one
+             Foe* h = fight::help_target(s, foes, round);
+@@ -3679,6 +3685,10 @@
+             }
+             if (best) { tgt = best; favourable = true; helping = true; }
+         }
++        if (P_TRACK && P_TRACK_ISO && !helping && hpr > 0.4f) {  // a lone enemy the allies near it kill fast
++            Foe* iso = track::isolated(s, me, foes, round, gone);
++            if (iso) { tgt = iso; favourable = true; helping = true; }
++        }
+         bool pot_hold = false;
+         if (P_POT && hpr > 0.3f)
+             for (auto pa : s.pots)
+Only in bots/trk2/src: track.h

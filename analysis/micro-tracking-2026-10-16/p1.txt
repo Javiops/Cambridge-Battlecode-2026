@@ -1,0 +1,28 @@
+17 maps x 2 sides x 5 specialists; 0 games did not finish
+
+bot                            sp_castera   sp_casterh      sp_hunt    sp_centre      sp_farm      all
+bots/v52                        65% d 9.7    71% d10.1    71% d12.2    85% d12.6    65% d 8.8    71.2%
+bots/trk                        65% d 9.7    71% d10.1    71% d12.2    85% d12.6    65% d 8.8    71.2%
+bots/t1                         62% d10.1    62% d13.0    68% d11.5    88% d12.4    68% d 9.0    69.4%
+bots/tfav                       71% d 9.6    68% d13.9    56% d13.4    82% d13.4    74% d 9.2    70.0%
+bots/tiso                       59% d10.8    68% d12.9    71% d13.1    82% d12.9    65% d 8.4    68.8%
+
+bots/v52 vs bots/trk: games that flip 0-0 (0% for v52), p=1.000; 
+
+bots/v52 vs bots/t1: games that flip 25-22 (53% for v52), p=0.771; sp_castera 5-4, sp_casterh 6-3, sp_hunt 5-4, sp_centre 4-5, sp_farm 5-6
+
+bots/v52 vs bots/tfav: games that flip 25-23 (52% for v52), p=0.885; sp_castera 5-7, sp_casterh 4-3, sp_hunt 8-3, sp_centre 5-4, sp_farm 3-6
+
+bots/v52 vs bots/tiso: games that flip 26-22 (54% for v52), p=0.665; sp_castera 5-3, sp_casterh 4-3, sp_hunt 4-4, sp_centre 5-4, sp_farm 8-8
+
+bots/trk vs bots/t1: games that flip 25-22 (53% for trk), p=0.771; sp_castera 5-4, sp_casterh 6-3, sp_hunt 5-4, sp_centre 4-5, sp_farm 5-6
+
+bots/trk vs bots/tfav: games that flip 25-23 (52% for trk), p=0.885; sp_castera 5-7, sp_casterh 4-3, sp_hunt 8-3, sp_centre 5-4, sp_farm 3-6
+
+bots/trk vs bots/tiso: games that flip 26-22 (54% for trk), p=0.665; sp_castera 5-3, sp_casterh 4-3, sp_hunt 4-4, sp_centre 5-4, sp_farm 8-8
+
+bots/t1 vs bots/tfav: games that flip 10-11 (48% for t1), p=1.000; sp_castera 0-3, sp_casterh 2-4, sp_hunt 5-1, sp_centre 2-0, sp_farm 1-3
+
+bots/t1 vs bots/tiso: games that flip 18-17 (51% for t1), p=1.000; sp_castera 5-4, sp_casterh 3-5, sp_hunt 2-3, sp_centre 3-1, sp_farm 5-4
+
+bots/tfav vs bots/tiso: games that flip 19-17 (53% for tfav), p=0.868; sp_castera 7-3, sp_casterh 3-3, sp_hunt 1-6, sp_centre 2-2, sp_farm 6-3

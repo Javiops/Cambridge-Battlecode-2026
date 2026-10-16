@@ -1,0 +1,534 @@
+{
+  "passed": true,
+  "created_utc": "2026-10-16T19:41:14.300278+00:00",
+  "source_headers_sha256": {
+    "actions.h": "f62e94acec71929553e0f76429fea462b67a79fda06f2f8c319a15fe94646d61",
+    "assembly.h": "a9e3ec05aae1be8dc2840398b84bf72b71500d2ddeea8c68840cb43688f33157",
+    "combat.h": "f30a901c843fb1f00e32bc49422dfaab9d36e3511ad2cbe157913435a5f5b4af",
+    "coordination.h": "94f38df621791fba50213d9954119991a90bc32e40d907df94d905a566ea8f2e",
+    "coordinator.h": "892388d433e177690362a19a38aee554d721776bb7b6fab7e853cc25c2ba4a76",
+    "cycles.h": "957d9754a3233cb3920f0f7c95d030b4f0e41309d2ac2d9298ab85815273f661",
+    "deny.h": "34766bcdc919400e2bcb821541a6aa6d560d88df1ab855b674d5c0d56e467872",
+    "draft.h": "4aacfd6fe0c9d8867f551ad54c2394cfbf1a984ce2c1d6cdd339582165f8346a",
+    "economy.h": "3812c48dd38d2f41e046223f0e547b601a970604cdd5f1702f2907a4717d74c4",
+    "geometry.h": "1e247a48f232b300e9cfbd8944368d50e6b644fdd1793ed57418da0213e354f2",
+    "information.h": "ae1a681040a444c1bd3470a6fa7c06b725c1318429dbcfd7cefb8554f38483d2",
+    "log.h": "bd93aec4806ef14eba825578c53ed15f37798467ba3ad8db36cef859f3995fbe",
+    "ranking.h": "201400083dec5db6fc5ee298ceb6d8ba17a989b361b40677d50fe9dc3c70c5a5",
+    "resource.h": "a4c015f487574d37459b0483fb7704ff1feb71fd672ba87c5c0a070d4cd1ce9a",
+    "sdk_world.h": "1b8a5b0283b954cd2074ff51adddfc9a9a7a5f30a4668d641b488cce06808b79",
+    "shopping.h": "55476c719c17a657e66568cdffb193268da0b5de53129b2a8a3c64e87f7a053f",
+    "solo.h": "8ae7c528704cc86e1fc2f14f490c4cf902a7ac7beeb228a53e219138dab2e0f6",
+    "solo_bounds.h": "37848f2d951b318f00bd6a197edd89b827080edd0900e34b99f3111d4280fc77",
+    "squads.h": "f2075e3b0c5b5a977b04b00e6f24c6a1b5952d8b0da707ee8e8a715f2e96faa2",
+    "strategic.h": "c2f67e403ce8d591e99e016aaf156b69dfca92070cdf84502411633b86e1fb01",
+    "types.h": "97f37cc3e7c027ae282c7a5d966ef1e9e2171151983311c1e2dc6eb9dca2a5e1",
+    "vision.h": "6cea9e058fe56bbc7b5ac85ff316270760e7f2be7ad84888a7dab55eb3012abf"
+  },
+  "current_source_headers_match": true,
+  "cli_sha256": "a4262675695e4716ec5355712d21d2ec71e78cc8371dca28990bf1de84480da3",
+  "sdk_header_sha256": "76664dc7c4ab764243a7530eb97be12d9c20518b7bd2601a962fb0669d1da4a4",
+  "fixture_sha256": "8ccf9f730ccfbfe9456108e6691d334f4837af8e6ef3515f02f97e6d95e66a88",
+  "module_sha256": "009b78cec5e7e9ef34324510380124e5e71ba45fd032f53254f4be9b3d6f419f",
+  "map_sha256": "a79d62228a4e08fa0279a070cfd13436111e64a335ef1578400df33421fa6a54",
+  "replay_sha256": "d3a3630d6e8cfa7d4ac5d19648ba27e6d4d7bcd2dc6b7af982bfc7961cbbac47",
+  "statistics_sha256": "51fd6784645759ca0dfed0aedfd05eca97bfb1f772a6553e3021636717eaf767",
+  "actual_engine": {
+    "engineBuildHash": "02c4624c8c9b8bcaf9d906f407c0b1d932d5b5bce6e8ea7e222e08065dd9cede",
+    "engineVersion": "0.0.2",
+    "finalInput": 4356,
+    "finalRoundPartial": false,
+    "finalSubstep": 6,
+    "height": 32,
+    "mapHash": "a79d62228a4e08fa0279a070cfd13436111e64a335ef1578400df33421fa6a54",
+    "metricSemanticsVersion": 1,
+    "outcome": "teamB",
+    "roundsCompleted": 2000,
+    "roundsStarted": 2000,
+    "seed": "5804249297354915948",
+    "width": 32
+  },
+  "native_faults": {
+    "teamA": 0,
+    "teamB": 0
+  },
+  "fuel_exhausted": 0,
+  "markers": {
+    "a": [
+      "SHOP_GEM_PLAN 0 64976 59084 -1 -1 -1 0",
+      "SHOP_GEM_PLAN 0 64985 57232 -1 -1 -1 0",
+      "SHOP_GEM_PLAN 0 64983 50354 28 2 0 1",
+      "SHOP_GEM_INSTALL 0 568 15 2 94266",
+      "SHOP_GEM_PASS 0 627 175 36 2300 93741"
+    ],
+    "b": [
+      "SHOP_GEM_PLAN 1 64988 59090 -1 -1 -1 0",
+      "SHOP_GEM_PLAN 1 64978 57219 -1 -1 -1 0",
+      "SHOP_GEM_PLAN 1 64988 50359 28 3 1 1",
+      "SHOP_GEM_INSTALL 1 568 15 3 94266",
+      "SHOP_GEM_PASS 1 627 175 36 2300 93703"
+    ]
+  },
+  "economic_events": {
+    "teamA": {
+      "gemCollection": [
+        {
+          "amount": 0.0,
+          "context": "campGroup",
+          "target": {
+            "id": 0,
+            "kind": "campGroup"
+          },
+          "timestamp": {
+            "input": 72,
+            "ordinal": 758,
+            "phase": "campCaptures",
+            "round": 21,
+            "substep": 10
+          },
+          "value": "0",
+          "x": 6,
+          "y": 6
+        },
+        {
+          "amount": 0.0,
+          "context": "campGroup",
+          "target": {
+            "id": 0,
+            "kind": "campGroup"
+          },
+          "timestamp": {
+            "input": 228,
+            "ordinal": 3138,
+            "phase": "campCaptures",
+            "round": 87,
+            "substep": 10
+          },
+          "value": "0",
+          "x": 6,
+          "y": 6
+        },
+        {
+          "amount": 0.0,
+          "context": "campGroup",
+          "target": {
+            "id": 0,
+            "kind": "campGroup"
+          },
+          "timestamp": {
+            "input": 384,
+            "ordinal": 5518,
+            "phase": "campCaptures",
+            "round": 153,
+            "substep": 10
+          },
+          "value": "0",
+          "x": 6,
+          "y": 6
+        },
+        {
+          "amount": 0.0,
+          "context": "campGroup",
+          "target": {
+            "id": 0,
+            "kind": "campGroup"
+          },
+          "timestamp": {
+            "input": 540,
+            "ordinal": 7898,
+            "phase": "campCaptures",
+            "round": 219,
+            "substep": 10
+          },
+          "value": "0",
+          "x": 6,
+          "y": 6
+        },
+        {
+          "amount": 0.0,
+          "context": "campGroup",
+          "target": {
+            "id": 0,
+            "kind": "campGroup"
+          },
+          "timestamp": {
+            "input": 696,
+            "ordinal": 10278,
+            "phase": "campCaptures",
+            "round": 285,
+            "substep": 10
+          },
+          "value": "0",
+          "x": 6,
+          "y": 6
+        },
+        {
+          "amount": 0.0,
+          "context": "campGroup",
+          "target": {
+            "id": 0,
+            "kind": "campGroup"
+          },
+          "timestamp": {
+            "input": 852,
+            "ordinal": 12658,
+            "phase": "campCaptures",
+            "round": 351,
+            "substep": 10
+          },
+          "value": "0",
+          "x": 6,
+          "y": 6
+        },
+        {
+          "amount": 0.0,
+          "context": "campGroup",
+          "target": {
+            "id": 0,
+            "kind": "campGroup"
+          },
+          "timestamp": {
+            "input": 1008,
+            "ordinal": 15038,
+            "phase": "campCaptures",
+            "round": 417,
+            "substep": 10
+          },
+          "value": "0",
+          "x": 6,
+          "y": 6
+        },
+        {
+          "amount": 0.0,
+          "context": "campGroup",
+          "target": {
+            "id": 0,
+            "kind": "campGroup"
+          },
+          "timestamp": {
+            "input": 1164,
+            "ordinal": 17418,
+            "phase": "campCaptures",
+            "round": 483,
+            "substep": 10
+          },
+          "value": "0",
+          "x": 6,
+          "y": 6
+        },
+        {
+          "amount": 0.0,
+          "context": "campGroup",
+          "target": {
+            "id": 0,
+            "kind": "campGroup"
+          },
+          "timestamp": {
+            "input": 1320,
+            "ordinal": 19798,
+            "phase": "campCaptures",
+            "round": 549,
+            "substep": 10
+          },
+          "value": "0",
+          "x": 6,
+          "y": 6
+        },
+        {
+          "amount": 0.0,
+          "context": "campGroup",
+          "target": {
+            "id": 2,
+            "kind": "campGroup"
+          },
+          "timestamp": {
+            "input": 1572,
+            "ordinal": 22150,
+            "phase": "campCaptures",
+            "round": 614,
+            "substep": 10
+          },
+          "value": "36",
+          "x": 13,
+          "y": 6
+        }
+      ],
+      "gemSubmission": [
+        {
+          "amount": 0.0,
+          "context": "0",
+          "target": 0,
+          "timestamp": {
+            "input": 1594,
+            "ordinal": 22404,
+            "phase": "championStartTurn",
+            "round": 621,
+            "substep": 18
+          },
+          "value": "36",
+          "x": 10,
+          "y": 10
+        }
+      ]
+    },
+    "teamB": {
+      "gemCollection": [
+        {
+          "amount": 0.0,
+          "context": "campGroup",
+          "target": {
+            "id": 1,
+            "kind": "campGroup"
+          },
+          "timestamp": {
+            "input": 72,
+            "ordinal": 759,
+            "phase": "campCaptures",
+            "round": 21,
+            "substep": 11
+          },
+          "value": "0",
+          "x": 25,
+          "y": 6
+        },
+        {
+          "amount": 0.0,
+          "context": "campGroup",
+          "target": {
+            "id": 1,
+            "kind": "campGroup"
+          },
+          "timestamp": {
+            "input": 228,
+            "ordinal": 3139,
+            "phase": "campCaptures",
+            "round": 87,
+            "substep": 11
+          },
+          "value": "0",
+          "x": 25,
+          "y": 6
+        },
+        {
+          "amount": 0.0,
+          "context": "campGroup",
+          "target": {
+            "id": 1,
+            "kind": "campGroup"
+          },
+          "timestamp": {
+            "input": 384,
+            "ordinal": 5519,
+            "phase": "campCaptures",
+            "round": 153,
+            "substep": 11
+          },
+          "value": "0",
+          "x": 25,
+          "y": 6
+        },
+        {
+          "amount": 0.0,
+          "context": "campGroup",
+          "target": {
+            "id": 1,
+            "kind": "campGroup"
+          },
+          "timestamp": {
+            "input": 540,
+            "ordinal": 7899,
+            "phase": "campCaptures",
+            "round": 219,
+            "substep": 11
+          },
+          "value": "0",
+          "x": 25,
+          "y": 6
+        },
+        {
+          "amount": 0.0,
+          "context": "campGroup",
+          "target": {
+            "id": 1,
+            "kind": "campGroup"
+          },
+          "timestamp": {
+            "input": 696,
+            "ordinal": 10279,
+            "phase": "campCaptures",
+            "round": 285,
+            "substep": 11
+          },
+          "value": "0",
+          "x": 25,
+          "y": 6
+        },
+        {
+          "amount": 0.0,
+          "context": "campGroup",
+          "target": {
+            "id": 1,
+            "kind": "campGroup"
+          },
+          "timestamp": {
+            "input": 852,
+            "ordinal": 12659,
+            "phase": "campCaptures",
+            "round": 351,
+            "substep": 11
+          },
+          "value": "0",
+          "x": 25,
+          "y": 6
+        },
+        {
+          "amount": 0.0,
+          "context": "campGroup",
+          "target": {
+            "id": 1,
+            "kind": "campGroup"
+          },
+          "timestamp": {
+            "input": 1008,
+            "ordinal": 15039,
+            "phase": "campCaptures",
+            "round": 417,
+            "substep": 11
+          },
+          "value": "0",
+          "x": 25,
+          "y": 6
+        },
+        {
+          "amount": 0.0,
+          "context": "campGroup",
+          "target": {
+            "id": 1,
+            "kind": "campGroup"
+          },
+          "timestamp": {
+            "input": 1164,
+            "ordinal": 17419,
+            "phase": "campCaptures",
+            "round": 483,
+            "substep": 11
+          },
+          "value": "0",
+          "x": 25,
+          "y": 6
+        },
+        {
+          "amount": 0.0,
+          "context": "campGroup",
+          "target": {
+            "id": 1,
+            "kind": "campGroup"
+          },
+          "timestamp": {
+            "input": 1320,
+            "ordinal": 19799,
+            "phase": "campCaptures",
+            "round": 549,
+            "substep": 11
+          },
+          "value": "0",
+          "x": 25,
+          "y": 6
+        },
+        {
+          "amount": 0.0,
+          "context": "campGroup",
+          "target": {
+            "id": 3,
+            "kind": "campGroup"
+          },
+          "timestamp": {
+            "input": 1572,
+            "ordinal": 22151,
+            "phase": "campCaptures",
+            "round": 614,
+            "substep": 11
+          },
+          "value": "36",
+          "x": 18,
+          "y": 6
+        }
+      ],
+      "gemSubmission": [
+        {
+          "amount": 0.0,
+          "context": "0",
+          "target": 0,
+          "timestamp": {
+            "input": 1596,
+            "ordinal": 22405,
+            "phase": "championStartTurn",
+            "round": 621,
+            "substep": 7
+          },
+          "value": "36",
+          "x": 21,
+          "y": 10
+        }
+      ]
+    }
+  },
+  "production_helpers": [
+    "plan_upgrade_return",
+    "plan_gold_gem_return",
+    "completed_gem_return",
+    "certify_solo_clear",
+    "project_bundle_actor",
+    "shopping_proposal",
+    "shopping_after_action",
+    "execute",
+    "World.refresh"
+  ],
+  "planner_budgets": {
+    "a": {
+      "owner_plans": 3,
+      "maximum_spent": 14629,
+      "funded_plan_spent": 14629,
+      "funded_plan_remaining": 50354
+    },
+    "b": {
+      "owner_plans": 3,
+      "maximum_spent": 14629,
+      "funded_plan_spent": 14629,
+      "funded_plan_remaining": 50359
+    }
+  },
+  "scope": "Actual native private-wallet investment followed by one completed gem cycle.\n\nScripted tactical main with unchanged production shopping, solo model, SDKWorld\nand mutation gateway. Gold is physically earned, both item bundles are actually\nbought, and the final resource is physically cleared, captured and banked. This\nis not full production arbiter activation or evidence of competitive strength.",
+  "limitations": [
+    "Old same-camp reserve certificate rejects the unupgraded kit; this is not proof all other tactics cannot clear it.",
+    "Resource remains available in this scripted quiet scenario; future visibility/ownership in a competitive game is revalidated.",
+    "Scripted tactical main; full production arbiter and strength require separate local development and holdout matches."
+  ],
+  "commands": [
+    [
+      "C:\\Users\\frans\\Documents\\Codex\\2026-10-14\\v\\work\\combat-research\\acquisition\\cli-2.2.2\\cambc-2.2.2.data\\scripts\\cambc.exe",
+      "build",
+      "C:\\Users\\frans\\Documents\\Codex\\2026-10-14\\v\\work\\tactics-bot-v1\\testing\\improvement-v2\\shopping-gem15\\portable-native-final\\native-shopping-gem"
+    ],
+    [
+      "C:\\Users\\frans\\Documents\\Codex\\2026-10-14\\v\\work\\combat-research\\acquisition\\cli-2.2.2\\cambc-2.2.2.data\\scripts\\cambc.exe",
+      "build",
+      "C:\\Users\\frans\\Documents\\Codex\\2026-10-14\\v\\work\\tactics-bot-v1\\testing\\improvement-v2\\shopping-gem15\\portable-native-final\\native-shopping-gem",
+      "--release"
+    ],
+    [
+      "C:\\Users\\frans\\Documents\\Codex\\2026-10-14\\v\\work\\combat-research\\acquisition\\cli-2.2.2\\cambc-2.2.2.data\\scripts\\cambc.exe",
+      "run",
+      "C:\\Users\\frans\\Documents\\Codex\\2026-10-14\\v\\work\\tactics-bot-v1\\testing\\improvement-v2\\shopping-gem15\\portable-native-final\\native-shopping-gem",
+      "C:\\Users\\frans\\Documents\\Codex\\2026-10-14\\v\\work\\tactics-bot-v1\\testing\\improvement-v2\\shopping-gem15\\portable-native-final\\native-shopping-gem",
+      "--map",
+      "C:\\Users\\frans\\Documents\\Codex\\2026-10-14\\v\\work\\tactics-bot-v1\\repo\\tools\\tactics-v1-validation\\fixtures\\native-shopping-gem.map26a",
+      "--release",
+      "--json",
+      "-o",
+      "C:\\Users\\frans\\Documents\\Codex\\2026-10-14\\v\\work\\tactics-bot-v1\\testing\\improvement-v2\\shopping-gem15\\portable-native-final\\game",
+      "--statistics",
+      "C:\\Users\\frans\\Documents\\Codex\\2026-10-14\\v\\work\\tactics-bot-v1\\testing\\improvement-v2\\shopping-gem15\\portable-native-final\\game\\statistics.json"
+    ]
+  ]
+}

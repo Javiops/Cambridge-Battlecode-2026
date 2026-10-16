@@ -503,6 +503,34 @@ def cmd_export(A):
     print(f'{A.out}: {json.dumps(rep.describe(geno))}')
 
 
+def cmd_migrate(A):
+    """Write genomes for the GA farm (/mnt/project-files/ga-farm/migrants/): full scalars + blocks, fitness history,
+    the validation line if any, the base they were measured on and what part of the bot they touch."""
+    rep = REPS[A.level](A)
+    work = work_of(A)
+    st = json.load(open(os.path.join(work, 'state.json')))
+    vt = open(os.path.join(work, 'validate.txt')).read() if os.path.exists(os.path.join(work, 'validate.txt')) else ''
+    os.makedirs(A.dir, exist_ok=True)
+    meta = json.load(open(os.path.join(A.work, 'meta.json')))
+    for i in A.ids.split(','):
+        d = st['inds'][i]
+        ints = rep.ints(d['geno'])
+        n = len(T.SCALARS)
+        lines = [l for l in vt.split('\n') if l.startswith(i + ':')]
+        out = {'id': i, 'source': 'thread "Evolucionar la estructura de la micro", tools/ga/sga.py level %d' % A.level,
+               'scope': ['micro structure (rules on/off, rule order, fight switches)', 'GP conditions',
+                         'NEAT action net'][A.level - 1],
+               'base_bot': meta['base'], 'base_src_md5': ga.md5(meta['wasm']), 'base_scalars_label': A.base or 'default',
+               'scalars': dict(zip(T.SCALARS, ints[:n])), 'blocks': ints[n:] if A.level > 1 else [],
+               'genotype': d['geno'], 'describe': rep.describe(d['geno']),
+               'train': {'deltas_vs_control': [round(x, 4) for x in d['deltas']], 'shrunk': round(ga.shrunk(d), 4)},
+               'validation': lines[-1] if lines else '', 'extra': A.note,
+               'time': time.strftime('%Y-%m-%dT%H:%MZ', time.gmtime())}
+        path = os.path.join(A.dir, 'structL%d_%s.json' % (A.level, i))
+        json.dump(out, open(path, 'w'), indent=1)
+        print(path)
+
+
 def main():
     p = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     p.add_argument('--work', default='out/sga')
@@ -528,8 +556,11 @@ def main():
     s.add_argument('--ids', default=''); s.add_argument('--maps', default=ga.VALID)
     s = sub.add_parser('export'); common(s)
     s.add_argument('--id', required=True); s.add_argument('--out', required=True)
+    s = sub.add_parser('migrate'); common(s)
+    s.add_argument('--ids', required=True); s.add_argument('--dir', default='/mnt/project-files/ga-farm/migrants')
+    s.add_argument('--note', default='')
     A = p.parse_args()
-    {'prepare': cmd_prepare, 'check': cmd_check, 'run': cmd_run, 'validate': cmd_validate, 'export': cmd_export}[A.cmd](A)
+    {'migrate': cmd_migrate, 'prepare': cmd_prepare, 'check': cmd_check, 'run': cmd_run, 'validate': cmd_validate, 'export': cmd_export}[A.cmd](A)
 
 
 if __name__ == '__main__':

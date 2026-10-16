@@ -92,3 +92,8 @@
 #define P_CASTDIST 0     // ranged: fight from at least this distance (capped at our range); kite tiles prefer it. 4: hold 2-3, dev 12-12, off
 #define P_ROWSEND 0      // rows end-game: once either team is within G gems of the win, no shop or free recalls, bank every bag at once. 150: only fires on the official rows map, 1-1 there, off
 // P_STACK_HP 2700 (monolith/packs wolf pairs): hold 2-5, dev 12-9, like 2400 before: keep 3000.
+#define P_CHANFIX 1      // bug fix: never start a recall that P_CHANCANCEL would cancel next turn (cancel-restart loop: the champion stood still)
+#define P_CHANTHR 1      // channel_threat skips foes on their spawn or channelling themselves
+#define P_DANGERFIX 1    // bug fix: the danger byte (shared byte 7) came back to life every 256 rounds
+#define P_UNJAMFIX 1     // bug fix: the jammed fallback step could walk away from the goal ("not farther" was "+1")
+#define P_FULLFIX 1      // bug fix: farm's "a full-health squad cannot do it" used the old reserve (0.75 hp), not P_RESERVE_PCT

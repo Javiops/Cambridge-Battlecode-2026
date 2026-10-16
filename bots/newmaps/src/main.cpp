@@ -1076,6 +1076,8 @@ struct Seen {
 };
 
 struct State {
+    bc::bitboard mp_dashholes, mp_hvis, mp_hole_all;  // mapplan_game.h rule 5: hole tiles a dash crosses, and its field
+    bc::distance_field mp_hdf;
     int mp_bank_d = -1, mp_home_d = -1;  // mapplan_game.h: median walk from a gem group to its altar / to our spawn
     bool ready = false;
 
@@ -1555,6 +1557,7 @@ bool init(State& s, bc::champion& me) {
         if (P_FUELGUARD && !fuel_ok(50000)) return false;
         s.init_stage = 3;
         init_roles(s, me);
+        if (P_MAPPLAN && P_MP_DASHHOLE && s.dash_slot >= 0) mp_find_dashholes(s);  // mapplan_game.h rule 5
     }
     return true;
 }
@@ -1646,6 +1649,7 @@ bool greedy_step(State& s, bc::champion& me, vec2 to) {
 }
 
 bc::bitboard mp_awake_camp_zone(State& s, vec2 pos);
+int mp_dash_hole_step(State& s, bc::champion& me, const bc::bitboard& goals, const bc::bitboard& vblock, vec2 pos);
 bool step_towards(State& s, bc::champion& me, const bc::bitboard& goals_in, bool use_dash) {
     FP_SCOPE(16, "step_towards");
     vec2 pos = me.position();
@@ -1738,6 +1742,10 @@ bool step_towards(State& s, bc::champion& me, const bc::bitboard& goals_in, bool
     }
     if (!ok_field) return fallback();
 
+    if (P_MAPPLAN && P_MP_DASHHOLE && use_dash && s.dash_slot >= 0 && !s.mp_dashholes.is_empty() && fuel_ok(40000)) {
+        int r = mp_dash_hole_step(s, me, goals, vblock, pos);  // mapplan_game.h rule 5: plan across holes we can dash
+        if (r) return r > 0;
+    }
     bool moved = false;
     if (use_dash && s.dash_slot >= 0 && me.can_cast()) {
         auto ab = me.abilities()[s.dash_slot];
@@ -2292,7 +2300,7 @@ int choose_target_impl(State& s, bc::champion& me, int round) {
         if (held) score *= P_HOLD / 100.0;
         if (lead) score *= (P_BALL && s.casters) ? P_BALL : P_GROUP_W;
         else if (lead_p && dist(g.center, *lead_p) > 8) score *= 0.3;
-        if (i == s.target) score *= P_STICK / 100.0;          // hysteresis
+        if (i == s.target) score *= (P_MAPPLAN && P_MP_STICK && gd >= P_MP_STICK_D) ? P_MP_STICK / 100.0 : P_STICK / 100.0;  // hysteresis (mapplan_game.h rule 6)
         if (jack_go) score *= P_JACKW;
 #ifdef P_DBGT
         if (round >= P_DBGT && round < P_DBGT + P_DBGT_LEN) std::printf("[dbgt] r%d %s g%d gems=%d gold=%d d=%d need=%d cl=%d wait=%d score=%.3f\n", round, s.name.c_str(), i, g.gems, g.gold, dist(pos, g.center), needed, claimers, wait, score);

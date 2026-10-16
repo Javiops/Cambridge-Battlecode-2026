@@ -54,6 +54,97 @@ inline bc::bitboard mp_awake_camp_zone(State& s, vec2 pos) {
     return z;
 }
 
+// Rule 5, dash over holes. A dash moves 2 tiles and may cross a hole (not a wall). Ambush has 1-tile hole lines inside
+// its wall lines (row 37 x16-26 above the 106-gem camp, row 62, x72 ...): the walking field treats holes as walls, so
+// Ren, Tavi, Issac and Vendetta walk around them (Varg and Ren went round via the bushes at x36-42, ~15 tiles more).
+// With P_MP_DASHHOLE, a dash champion also plans with the crossable hole tiles open; when that route is at least
+// P_MP_DASHHOLE tiles shorter than the walk and the dash cooldown is shorter than the saving, it walks that route,
+// keeps the dash for the crossing and waits at the edge if the dash is not back yet.
+#ifndef P_MP_DASHHOLE
+#define P_MP_DASHHOLE 0
+#endif
+inline void mp_find_dashholes(State& s) {
+    s.mp_hole_all = bc::map::holes();
+    bc::bitboard bad = bc::map::walls() | s.mp_hole_all | bc::map::altars();
+    attempt([&] {
+        for (auto h : bc::map::holes().positions())
+            for (int dx = -1; dx <= 1; ++dx)
+                for (int dy = -1; dy <= 1; ++dy) {
+                    if (!dx && !dy) continue;
+                    vec2 a = h - vec2(dx, dy), b = h + vec2(dx, dy);
+                    if (!bc::map::is_in_bounds(a) || !bc::map::is_in_bounds(b) || bad.is_set(a) || bad.is_set(b)) continue;
+                    s.mp_dashholes.set(h);
+                }
+        return true;
+    });
+}
+// 1 = moved (or dashed), -1 = wait at the hole edge for the dash, 0 = no gain: the caller walks as before.
+inline int mp_dash_hole_step(State& s, bc::champion& me, const bc::bitboard& goals, const bc::bitboard& vblock, vec2 pos) {
+    if (!s.visited.is_set(pos)) return 0;
+    int here = s.df.get(pos);
+    auto ab = me.abilities()[s.dash_slot];
+    int cd = 99;
+    attempt([&] { cd = ab.cooldown(); return true; });
+    if (here - P_MP_DASHHOLE <= cd) return 0;  // the walk is as fast as waiting for the dash
+    bool ok = attempt([&] {
+        s.mp_hdf.compute_to(vblock & ~s.mp_dashholes, goals, s.dest, s.mp_hvis);
+        return s.mp_hvis.is_set(pos);
+    });
+    if (!ok) return 0;
+    int hh = s.mp_hdf.get(pos);
+    if (hh > here - P_MP_DASHHOLE || hh <= cd) return 0;  // no crossing on the way, or it does not pay
+    if (cd <= 0 && me.can_cast()) {  // dash across a hole tile next to us toward the goal
+        std::optional<vec2> best;
+        int bestd = hh - 1;
+        for (int dx = -2; dx <= 2; ++dx)
+            for (int dy = -2; dy <= 2; ++dy) {
+                if (std::max(std::abs(dx), std::abs(dy)) < 2) continue;
+                vec2 t = pos + vec2(dx, dy);
+                if (!bc::map::is_in_bounds(t) || s.blocked.is_set(t) || !s.mp_hvis.is_set(t)) continue;
+                int d = s.mp_hdf.get(t);
+                if (d >= bestd) continue;
+                bool over = false;  // a crossable hole on a tile adjacent to both ends
+                for (int mx = -1; mx <= 1 && !over; ++mx)
+                    for (int my = -1; my <= 1 && !over; ++my) {
+                        vec2 m = pos + vec2(mx, my);
+                        if (std::max(std::abs(m.x - t.x), std::abs(m.y - t.y)) <= 1 && bc::map::is_in_bounds(m) && s.mp_dashholes.is_set(m)) over = true;
+                    }
+                if (over) { bestd = d; best = t; }
+            }
+        if (best && attempt([&] { return ab.use(*best); })) {
+            pos = *best;
+            if (me.can_move()) {
+                std::vector<vec2> st;
+                attempt([&] { st = s.mp_hdf.next_moves_from(pos); return true; });
+                for (auto d : st)
+                    if (!s.mp_hole_all.is_set(pos + d) && attempt([&] { return me.move(d); })) break;
+            }
+            return 1;
+        }
+    }
+    if (!me.can_move()) return 0;
+    std::vector<vec2> st;
+    attempt([&] { st = s.mp_hdf.next_moves_from(pos); return true; });
+    bool edge = false;
+    for (auto d : st) {
+        if (s.mp_hole_all.is_set(pos + d)) { edge = true; continue; }
+        if (attempt([&] { return me.move(d); })) return 1;
+    }
+    return edge ? -1 : 0;
+}
+
+// Rule 6, keep the camp on a long walk. On ambush 3-4 camps score within 30% of each other (106-gem elks 0.38, 48-gem
+// cluster 0.53 that drops to 0.16 once an ally claims it, 120-gem camp 0.29), and the target is re-chosen every 6 rounds
+// with a 25% bonus for the current one, so as claims change a champion swaps camp mid-walk: Ren went 11 -> 8 -> 6 -> 1 ->
+// 8 -> 11 and reached its first camp at r75 (r49 in a game where it kept camp 11). With P_MP_STICK, a target still
+// P_MP_STICK_D or more tiles away keeps a P_MP_STICK % bonus instead.
+#ifndef P_MP_STICK
+#define P_MP_STICK 0
+#endif
+#ifndef P_MP_STICK_D
+#define P_MP_STICK_D 15
+#endif
+
 // Called once, after init_paths. Fills s.mp_* from the map's features.
 inline void mp_game_plan(State& s) {
     std::vector<int> bank, home;

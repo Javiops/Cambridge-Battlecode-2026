@@ -37,6 +37,7 @@ import macro as M
 import pair as PR
 
 FAMILIES = {'micro': list(G.NAMES) + list(PR.NAMES), 'structure': list(T.L1_GENES), 'macro': list(M.NAMES)}
+ONLINE = {'online1520': ('ga65a6', {'P_IM_PAIRED': 1})}  # online bot genomes: (sga preset, extra genes)
 SHARED = '/mnt/project-files'
 TRAIN = ga.TRAIN + ['maps_train/*/*.map26a']
 VALID = ['maps_v100/*.map26a', ga.VALID]
@@ -117,6 +118,8 @@ def resolve(spec):
         return norm({})
     if spec in sga.PRESETS:
         return norm({'sc': sga.PRESETS[spec]})
+    if spec in ONLINE:  # the online bots' genomes (with ONLINE_ZIP as overlay they build the uploaded zip)
+        return norm({'sc': dict(sga.PRESETS[ONLINE[spec][0]], **ONLINE[spec][1])})
     if os.path.exists(spec):
         d = json.load(open(spec))
         if 'genome' in d:
@@ -962,11 +965,24 @@ def cmd_export(A):
 
 # ------------------------------------------------------------------------------------------------- champion
 FUELGUARD_REF = 'origin/claude/fuel-skipped-turns-004urj'  # PR #23: study27-economy + P_FUELGUARD (+ P_MONO)
+# The online bot since 16 Oct 15:20 = mybot_online1252_jackgo_imp.zip = this zip (v44 + contest fix + fuel guard +
+# jackpot + stampede rule) built with genome 'online1520' (ga65a6 + im_p as genes): 36/36 identical games, unlimited fuel
+ONLINE_ZIP = '/mnt/project-files/bot/mybot_online1252_jackgo.zip'
 
 
 def overlay_src(A, scratch):
     """The base bot of --overlay-ref (a git ref holding bots/study27-economy with extra fixes, e.g. the fuel guard),
     extracted into scratch. None when no overlay."""
+    if A.overlay_ref.endswith('.zip'):  # a bot zip (e.g. the online bot): its src/
+        import zipfile
+        out = os.path.join(scratch, 'overlay')
+        shutil.rmtree(out, ignore_errors=True)
+        os.makedirs(os.path.join(out, 'src'))
+        with zipfile.ZipFile(A.overlay_ref) as zf:
+            for n in zf.namelist():
+                if n.startswith('src/') and not n.endswith('/'):
+                    open(os.path.join(out, 'src', os.path.basename(n)), 'wb').write(zf.read(n).replace(b'\r\n', b'\n'))
+        return out
     if not A.overlay_ref:
         return None
     ref = A.overlay_ref
@@ -1002,6 +1018,11 @@ def write_bot(A, ints, out, overlay, scratch):
             q = os.path.join(dst, 'src', fname)
             t = open(q, newline='').read()
             open(q, 'w', newline='\n').write(t.replace(o, n))
+        q = os.path.join(dst, 'src', 'params.h')  # genome genes are defined by the genome section only
+        if os.path.exists(q):
+            pl = open(q, newline='').read().split('\n')
+            open(q, 'w', newline='\n').write('\n'.join(l for l in pl if not (l.strip().startswith('#define ') and
+                                                                            l.split()[1] in T.SCALARS)))
     for fname in os.listdir(os.path.join(out, 'src')):
         mine = os.path.join(out, 'src', fname)
         base = os.path.join(lit, 'src', fname)
@@ -1087,6 +1108,14 @@ def cmd_champion(A):
     print(f'{len(finalists)} finalists from {len(by_isl)} islands, control {A.start} ({ctl})', flush=True)
     overlay = overlay_src(A, scratch)
     genos = dict({k: cands[k]['geno'] for k in finalists if k in cands}, **{ctl: start})
+    if A.graft:  # each finalist also with the graft (e.g. the online bot's im_p on genomes evolved without it)
+        for k in list(finalists):
+            g2 = norm({**genos[k], 'sc': dict(scalars(genos[k]), **json.loads(A.graft))})
+            k2 = cid_of(g2)
+            if k2 not in genos:
+                genos[k2] = g2
+                finalists.append(k2)
+                cands[k2] = {'island': cands.get(k, {}).get('island', '') + '+graft', 'geno': g2, 'fit': 0}
     bots = {}
     for k in [ctl] + finalists:
         out = os.path.join(scratch, 'bot_' + k)
@@ -1165,12 +1194,12 @@ def cmd_champion(A):
              f'sealed maps both sides, plus {len(pins)} ghost games. Control = {A.start} built the same way: fit '
              f'{cf:+.3f}, ' + ', '.join(f'{os.path.basename(o)} {v["won2"]}-{v["lost2"]}' for o, v in cper.items()) +
              f', ghosts {pin_fit(B, ch, pins):+.2f}.', '',
-             f'Fitness weights: v44 x{A.w_base:g}, each sparring bot x{A.w_spar:g}, ghost games together x{A.w_ghosts:g}, '
-             'other rivals x1. A champion needs delta > 0 and pairs vs v44 not worse.', '',
+             f'Fitness weights: start bot x{A.w_base:g}, each sparring bot x{A.w_spar:g}, ghost games together x{A.w_ghosts:g}, '
+             'other rivals x1. A champion needs delta > 0 and pairs vs the start bot not worse.', '',
              f'Deaths per game vs the caster sparring bots: control '
              f'{sum(v["dth"] for o, v in cper.items() if rival_weight(o, A) == A.w_spar) / max(1, sum(1 for o in cper if rival_weight(o, A) == A.w_spar)):.2f}, '
-             f'vs v44 {cper.get("genome:start", {}).get("dth", 0.0):.2f}.', '',
-             '| rank | genome | island | delta vs control | pairs better-worse (p) | pairs vs v44 | pairs vs others | deaths vs casters / v44 | maps won-lost both sides per rival | ghosts | changes vs control |',
+             f'vs the start bot {cper.get("genome:start", {}).get("dth", 0.0):.2f}.', '',
+             '| rank | genome | island | delta vs control | pairs better-worse (p) | pairs vs the start bot | pairs vs others | deaths vs casters / start bot | maps won-lost both sides per rival | ghosts | changes vs control |',
              '|---|---|---|---|---|---|---|---|---|---|---|']
     for n, r in enumerate(rows, 1):
         lines.append(f"| {n} | {r['cid']} | {r['island']} | {r['delta']:+.3f} | {r['better']}-{r['worse']} ({r['p']:.3f}) | {r['v44'][0]}-{r['v44'][1]} | {r['cast'][0]}-{r['cast'][1]} | {r['dth']:.2f} / {r['dth44']:.2f} | "
@@ -1190,9 +1219,9 @@ def cmd_champion(A):
                                                          'time': now()})
         lines += ['', f'Champion: **{top}** ({win["island"]}), zip `{z}` (not uploaded). '
                   f'{"Significant" if win["p"] < 0.05 else "Not significant"} vs the control (p={win["p"]:.3f}), '
-                  f'pairs vs v44 {win["v44"][0]}-{win["v44"][1]}.']
+                  f'pairs vs the start bot {win["v44"][0]}-{win["v44"][1]}.']
     else:
-        lines += ['', 'No finalist beats the control without losing to v44: no zip.']
+        lines += ['', 'No finalist beats the control without losing to the start bot: no zip.']
     txt = '\n'.join(lines) + '\n'
     with open(os.path.join(farm, 'CHAMPION.md'), 'w', newline='\n') as f:
         f.write(txt)
@@ -1248,14 +1277,15 @@ def main():
     s.add_argument('--top', type=int, default=3); s.add_argument('--min-n', type=int, default=3)
     s.add_argument('--ids', default=''); s.add_argument('--maps', default='', help='map globs (default v100)')
     s = sub.add_parser('champion'); common(s)
-    s.add_argument('--start', default='ga65a6', help='the control (v44)')
+    s.add_argument('--start', default='online1520', help='the control (the online bot: online1520, or v44: ga65a6)')
+    s.add_argument('--graft', default='', help='JSON scalars also tried on top of every finalist, e.g. {"P_IM_PAIRED": 1}')
     s.add_argument('--per-island', type=int, default=2)
     s.add_argument('--ids', default='', help='finalists by cid instead of the islands\' best')
     s.add_argument('--maps', default='maps_hold60/*.map26a,maps_dev200/*.map26a', help='sealed map globs')
     s.add_argument('--min-n', type=int, default=4, help='finalists: generations evaluated on their island (>= 32 maps)')
     s.add_argument('--map-offset', type=int, default=0, help='skip this many maps of the shuffled sealed set')
     s.add_argument('--max-maps', type=int, default=120)
-    s.add_argument('--overlay-ref', default=FUELGUARD_REF, help='git ref whose base bot the zip is built on ('' = none)')
+    s.add_argument('--overlay-ref', default=ONLINE_ZIP if os.path.exists(ONLINE_ZIP) else FUELGUARD_REF, help='git ref whose base bot the zip is built on ('' = none)')
     s.add_argument('--zip-dir', default=os.path.join(SHARED, 'bot') if os.path.isdir(SHARED) else os.path.join('out', 'bot'))
     s = sub.add_parser('export'); common(s)
     s.add_argument('--id', default=''); s.add_argument('--migrant', default=''); s.add_argument('--out', required=True)

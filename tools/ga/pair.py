@@ -23,7 +23,18 @@ GENES = {
     'P_PAIR_STICK': (0, 0, 1, 'bool',   'alone in contact: step toward the nearest ally first'),
     'P_PAIR_ENGAGE': (0, 0, 1, 'bool',  'alone: do not engage unless the target is killable or channeling'),
     'P_PAIR_LOWHP': (0, 0, 40, 'int',   'alone: back off from a foe within 6 this many % hp earlier (0 = as paired)'),
+    # im_p (I062, imitation thread, online since 16 Oct 15:20): 4 retreat thresholds take their paired value when an
+    # ally is within P_IM_PAIR_R; the plain genes (P_UNI_FLEE ...) are the alone values
+    'P_IM_PAIRED':  (0, 0, 1, 'bool',   'im_p: paired thresholds when an ally is within P_IM_PAIR_R (1 = online bot)'),
+    'P_IM_PAIR_R':  (2, 1, 4, 'int',    'im_p: paired = an ally within this many tiles'),
+    'P_UNI_FLEE_P': (33, 5, 70, 'int',  'im_p paired: P_UNI_FLEE (caster draft flee %)'),
+    'P_LOWHP_P':    (40, 0, 85, 'int',  'im_p paired: P_LOWHP (back off below this % with a foe within 6)'),
+    'P_GA_AVOID_HP_P': (45, 20, 95, 'int', 'im_p paired: P_GA_AVOID_HP'),
+    'P_AVOID_DIST_P': (2, 0, 9, 'int',  'im_p paired: P_AVOID_DIST'),
 }
+# im_p: these genes read their *_P value while g_ga_paired (structure.write_src emits the switch)
+SWITCHED = ['P_UNI_FLEE', 'P_LOWHP', 'P_GA_AVOID_HP', 'P_AVOID_DIST']
+PAIRED_DECL = 'static bool g_ga_paired = false;  // im_p (tools/ga/pair.py), set each turn in play_turn'
 NAMES = list(GENES)
 
 PAIR_STEP = '''// P_PAIR_STICK (tools/ga/pair.py): step toward an ally through the tile the fewest foes can reach, hitting first
@@ -84,6 +95,16 @@ LITERALS = [
             g_mode = "pair";
             return true;
         }'''),
+    ('main.cpp', '''    float hpr = hp / mhp;''',
+                 '''    float hpr = hp / mhp;
+    g_ga_paired = false;  // im_p: an alive ally within P_IM_PAIR_R
+    if (P_IM_PAIRED)
+        attempt([&] {
+            vec2 mp = me.position();
+            for (auto& a : bc::vision::champions(*s.my))
+                if (!(a == me) && a.is_alive() && dist(a.position(), mp) <= P_IM_PAIR_R) { g_ga_paired = true; break; }
+            return true;
+        });'''),
     ('main.cpp', '''        if (want) {
             bool acted = engage(s, me, tgt->c, tgt->p, true, true);''',
                  '''        if (want && P_PAIR_ENGAGE && alone && !cx.killable && !tgt->channeling) want = false;

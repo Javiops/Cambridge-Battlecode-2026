@@ -129,11 +129,13 @@ Online feedback is too scarce to judge candidates, so the local winner is what g
 python3 tools/ga/island.py champion --name champion --farm /mnt/project-files/ga-farm --jobs 4
 ```
 
-1. **Finalists:** the top 2 migrants of every island (positive fitness), plus the control (v44).
-2. **Build:** each finalist is built as the bot we would upload. That is the genome on the base with the fuel guard
-   (`--overlay-ref origin/claude/fuel-skipped-turns-004urj`, PR #23: P_FUELGUARD, plus P_MONO), carried over by a
-   3-way merge. The v44 control built this way plays 34/34 identical games to `mybot_ga65a6_fuelguard.zip` with
-   unlimited fuel.
+1. **Finalists:** the top 2 migrants of every island (positive fitness, evaluated over 4+ generations), plus the
+   control: the online bot (`--start online1520` = v44 genes + the im_p paired-retreat genes, `P_IM_PAIRED 1`).
+   `--graft '{"P_IM_PAIRED": 1}'` also tries every finalist with im_p on, since most islands evolved without it.
+2. **Build:** each finalist is built as the bot we would upload: the genome carried by a 3-way merge onto the online
+   bot's source (`--overlay-ref /mnt/project-files/bot/mybot_online1252_jackgo.zip`: contest fix, fuel guard, jackpot,
+   stampede rule; a git ref also works). Built this way, genome `online1520` plays 36/36 identical games to the online
+   zip `mybot_online1252_jackgo_imp.zip` with unlimited fuel.
 3. **Tournament:** every finalist plays the full rival pool on 120 sealed maps (`maps_hold60` + `maps_dev200`) on
    both sides, plus the ghosts and the previous champion. Each is scored against the control: fitness delta,
    pairs better/worse with a sign test, and maps won on both sides per rival.

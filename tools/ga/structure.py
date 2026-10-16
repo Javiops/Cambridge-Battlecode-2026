@@ -183,7 +183,9 @@ def write_src(base, dst, ints):
                   'volatile int ga_s[%d] = {%s};' % (len(vals), ', '.join(str(v) for v in vals))]
     # scalars are copied once at start-up into plain constants; programs and the net are read in place
     out += ['static const int ga_%s = ga_s[%d];' % (k, i + len(HEADER)) for i, k in enumerate(SCALARS)]
-    out += ['#define %s ga_%s' % (k, k) for k in SCALARS]
+    out += [PR.PAIRED_DECL]
+    out += ['#define %s ga_%s' % (k, k) if k not in PR.SWITCHED else
+            '#define %s (g_ga_paired ? ga_%s_P : ga_%s)' % (k, k, k) for k in SCALARS]
     off = len(HEADER) + len(SCALARS)
     for name, n in BLOCKS:
         out.append('#define %s ((const volatile int*)(ga_s + %d))' % (name, off))

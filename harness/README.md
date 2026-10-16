@@ -92,6 +92,14 @@ Rules of the stage:
   no per-turn scan of every camp or champion (memory `cambc-fuel-budget`).
 - **Combinations.** A combination (two switches, two branches merged) passes the same gate **against the best of
   its parts**, not against the base: if it does not beat the best part, keep the part.
+- **The base is the online bot, checked by hash.** Register every upload with its zip:
+  `python3 online/version.py "v38 = I012" --zip /mnt/project-files/bot/mybot_I012.zip`. Then
+  `gate.py bots/CAND online` plays against that exact zip, and every gate run prints whether its base is the online
+  bot (`python3 tools/online_base.py bots/X` checks a folder by itself). A PASS against any other base does not
+  clear an upload. (16 Oct: a morning of gate runs used `main` while the online bot was another branch.)
+- **Site maps.** `cambc init --yes` pulls the site's current pool into `maps/` (17 maps on 16 Oct; older setups
+  have 9): rerun it when the site adds maps. Phase 1 lists every site map as won (+), lost (-) or split (=) on both
+  sides, so a candidate that breaks a real map is seen by name.
 - **What local cannot see**: how the top teams fight. That is why a fight rule with a local `PASS` is in `local-ok`,
   not `accepted`; stage 3 decides it.
 

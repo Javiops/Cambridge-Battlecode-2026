@@ -4,6 +4,8 @@
 #include <cstdio>
 #include <cstdlib>
 #include <map>
+#include <array>
+#include <span>
 #include <tuple>
 namespace tactics {
 struct Sighting { Actor actor; int round; };

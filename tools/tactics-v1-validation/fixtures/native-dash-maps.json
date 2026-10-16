@@ -1,0 +1,21 @@
+{
+  "engine_sha256": "e123b59d9dea198762ab7a04db9b3cb6d06dfa991088e41c24750fc4cb88b947",
+  "purpose": "Native Ren dash range/path and gateway regression; one pick per team; no strategy performance inference",
+  "maps": [
+    {
+      "case": "wall-barrier",
+      "file": "native-dash-wall-barrier.map26a",
+      "sha256": "d96ed77a5fea716c083fbb0840fe3ccca49f8eba6378c43fc6fe68c7ac7478f0"
+    },
+    {
+      "case": "hole-barrier",
+      "file": "native-dash-hole-barrier.map26a",
+      "sha256": "70ca0ecf987afbe0de611478773b85fd66371986ca69637421309241dfc48046"
+    },
+    {
+      "case": "single-wall-bend",
+      "file": "native-dash-single-wall-bend.map26a",
+      "sha256": "c62514c5d5835112f60b5c95f5fe4d0b0adf8ef76c8aa1c90614616d19cb594c"
+    }
+  ]
+}

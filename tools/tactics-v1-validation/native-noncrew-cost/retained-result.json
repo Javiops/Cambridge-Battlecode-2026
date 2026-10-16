@@ -1,0 +1,43 @@
+{
+  "scope": "Microbenchmark only, synthetic unflagged Proposal with actual native SDK World. No whole-main behavior claim.",
+  "passed": true,
+  "fuel": 0,
+  "faults": {
+    "teamA": 0,
+    "teamB": 0
+  },
+  "module_sha256": "c07df0fb0a556b72a337479d017e9fe271e9ed3f67616783404cc7ccb5dd5ab4",
+  "sdk_sha256": "76664dc7c4ab764243a7530eb97be12d9c20518b7bd2601a962fb0669d1da4a4",
+  "source_sha256": {
+    "actions.h": "f62e94acec71929553e0f76429fea462b67a79fda06f2f8c319a15fe94646d61",
+    "assembly.h": "30c40911b371c65cb612c0fd5c2197f24a2570113929e20a63fc92abd2ee4b1c",
+    "camp_actions.h": "0fd8f78951d8a3f6e6c2f4d77344aa283d9374b9fcace149d39c1a9b1a936696",
+    "camp_basic.h": "7eba57ca81b56f493f937e75fbc3927425eea53a920da677cf4b31419d5ac397",
+    "camp_collateral.h": "aba4225ddeba2d5bfe3a953e5b80081795ef59d579635d34a4094a0133850988",
+    "combat.h": "6105139b6db7c023c75fa5582da9e754656f95f86c37f0daa368900e2ef8b592",
+    "coordination.h": "5291c2e67eab53499df9c776e28013d3e7ed7c80551eecbe0883c0aa2c48ffd3",
+    "coordinator.h": "4c5c9757e658180489eaccb5a7550c8c273a8ca481419766eb70712ebe51eba1",
+    "crew_sequence.h": "b51c519d632a0aed96bfbee5b73f756f2666fbdfbe375cb09025f07d179ff5c0",
+    "cycles.h": "957d9754a3233cb3920f0f7c95d030b4f0e41309d2ac2d9298ab85815273f661",
+    "deny.h": "34766bcdc919400e2bcb821541a6aa6d560d88df1ab855b674d5c0d56e467872",
+    "draft.h": "4aacfd6fe0c9d8867f551ad54c2394cfbf1a984ce2c1d6cdd339582165f8346a",
+    "economy.h": "9663f017286b4cc2fb56c4a651c0229eef1e0e1039739a8617ca61c1d2c08ce7",
+    "farm_readiness.h": "440153f3982e535832654f90ba9099cd7053bb8e5365b3f698952acf27c61c99",
+    "geometry.h": "1e247a48f232b300e9cfbd8944368d50e6b644fdd1793ed57418da0213e354f2",
+    "information.h": "ae1a681040a444c1bd3470a6fa7c06b725c1318429dbcfd7cefb8554f38483d2",
+    "log.h": "bd93aec4806ef14eba825578c53ed15f37798467ba3ad8db36cef859f3995fbe",
+    "main.cpp": "222d6422624355fcadd8f3fc90bf090f07a88756a47e391fa8bb59efb3447370",
+    "ranking.h": "201400083dec5db6fc5ee298ceb6d8ba17a989b361b40677d50fe9dc3c70c5a5",
+    "resource.h": "aecc6dbd349f520d7b4167c68cd1abf5217a33698696678277d614f7da232c3e",
+    "sdk_world.h": "d98a87de11a72d4814f29c6e48e651b6b3d276b618ced2339d88da583961ee41",
+    "shopping.h": "cdbe7ebaf5d34f820eea2ed5544aca6edb9f0578857e2185b37933c987968a79",
+    "solo.h": "09ac7d34421e4bb2186a12f7ed9384401947d889cb56fdaa663a35eb582e3ef4",
+    "solo_bounds.h": "37848f2d951b318f00bd6a197edd89b827080edd0900e34b99f3111d4280fc77",
+    "squads.h": "f2075e3b0c5b5a977b04b00e6f24c6a1b5952d8b0da707ee8e8a715f2e96faa2",
+    "strategic.h": "c2f67e403ce8d591e99e016aaf156b69dfca92070cdf84502411633b86e1fb01",
+    "types.h": "cf89c631923956580fb7cb72d8b6bfb755ffbc822a0959ee5303eecbbbf5c425",
+    "vision.h": "6cea9e058fe56bbc7b5ac85ff316270760e7f2be7ad84888a7dab55eb3012abf"
+  },
+  "stdout": "NONCREW18 actor=0 nativeCost=2047 valid=0 required=0\nNONCREW18_GATED actor=0 nativeCost=16 valid=0 required=0\nNONCREW18 actor=1 nativeCost=2047 valid=0 required=0\nNONCREW18_GATED actor=1 nativeCost=16 valid=0 required=0\nNONCREW18 actor=2 nativeCost=2047 valid=0 required=0\nNONCREW18_GATED actor=2 nativeCost=16 valid=0 required=0\n",
+  "production_main_with_guard_sha256": "4eb25ac1afe4948ad4cc1cf16963a026f336d66dab6a79a0090c6ce7c5726e6b"
+}

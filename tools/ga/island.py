@@ -395,6 +395,9 @@ def board(farm):
                    f"| {s.get('exported', 0)}/{s.get('imported', 0)} | {s.get('updated', '')} |")
     out += ['', 'Code: branch `%s`. Migrants: `migrants/<island>/<cid>.json` (full genome + fitness); '
             'state: `islands/<island>/`.' % (rows[0].get('code', '?') if rows else '?'), '']
+    notes = os.path.join(farm, 'NOTES.md')  # farm-wide notes (champion cadence, code changes), kept by the farm thread
+    if os.path.exists(notes):
+        out += [open(notes).read().strip(), '']
     with open(os.path.join(farm, 'BOARD.md'), 'w', newline='\n') as f:
         f.write('\n'.join(out))
 

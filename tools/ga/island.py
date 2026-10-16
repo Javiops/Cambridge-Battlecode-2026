@@ -850,7 +850,8 @@ def cmd_ensure(A):
     os.makedirs(home, exist_ok=True)
     args = [sys.executable, os.path.abspath(__file__)] + ['run' if a == 'ensure' else a for a in sys.argv[1:]]
     log = open(os.path.join(home, 'run.log'), 'a')
-    kw = {'creationflags': 0x00000008 | 0x00000200} if WIN else {'start_new_session': True}
+    # CREATE_NO_WINDOW | CREATE_NEW_PROCESS_GROUP: one hidden console that every child (cambc, git) inherits
+    kw = {'creationflags': 0x08000000 | 0x00000200} if WIN else {'start_new_session': True}
     p = subprocess.Popen(args, stdout=log, stderr=subprocess.STDOUT, stdin=subprocess.DEVNULL, **kw)
     print(f'island {A.name} started (pid {p.pid}), log {os.path.join(home, "run.log")}')
 

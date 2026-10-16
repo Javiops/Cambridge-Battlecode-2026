@@ -1,0 +1,40 @@
+{
+ "id": "I040",
+ "title": "Macro/economy genetic algorithm (50 genes: camp choice, banking, recall trips, shop, draft)",
+ "kind": "farm",
+ "source": "user 16 Oct 11:36 UTC: go all in on the genetic path, everywhere, not only micro",
+ "owner": "Javi",
+ "hypothesis": "evolving the farming genome against the online bot finds a clear gem-rate gain (fresh maps won both sides p<0.05) without losing to the caster panel",
+ "stage": "local-ok",
+ "bot": "bots/gamacro3m",
+ "branch": "claude/ga-macro-aa5r2c",
+ "created": "2026-10-16T11:40Z",
+ "history": [
+  {
+   "at": "2026-10-16T13:10Z",
+   "stage": "local-test",
+   "note": "run 1 best 0abaecb2ec (fitness base x2 + casters): gate vs ga65a6 FAIL fresh 6-19; gains were caster-only"
+  },
+  {
+   "at": "2026-10-16T15:15Z",
+   "stage": "local-test",
+   "note": "run 2 (base v44x x3 + spar16) leader 378af7382f: v100 vs v44x 21-31, caster-only gains again"
+  },
+  {
+   "at": "2026-10-16T16:25Z",
+   "stage": "local-test",
+   "note": "run 3 (rival = v44x only, 40 maps/gen) leader c5e3448391: v100 vs v44x 38-25 maps won both sides; gate bots/gamacro3 vs bots/v44x PASS fresh 32-13 p=0.007, gems/100r 175.0 vs 166.6, panel 21-29 p=0.32"
+  },
+  {
+   "at": "2026-10-16T17:05Z",
+   "stage": "local-test",
+   "note": "same genome on the v49 online zip (im_p): gate bots/gamacro3p vs bots/v49 FAIL: fresh 81-47 p=0.003, gems/100r 175.3 vs 169.4, but caster panel flips 11-33 p=0.001 VETO. Ablation by gene group running. Zips /mnt/project-files/bot/mybot_gamacro3.zip, mybot_gamacro3p.zip (not cleared)"
+  },
+  {
+   "at": "2026-10-16T17:45Z",
+   "stage": "local-ok",
+   "note": "ablation on v49: reverting any one gene group (camp/bank/recall/shop/draft-jackpot) still vetoed by the panel (flips 9-29..14-29): the caster cost is spread, not one group. On the teammate's bot (bots/capture_fix = bots/mate): gamacro3m gate --kind farm PASS with fresh300 extra: 57-31 p=0.007 (early stop), gems/100r 172.1 vs 167.6, panel 17-30 p=0.079 (no veto); first run on hold60+dev200 only was 92-67 p=0.057. Site maps 4 won both / 8 lost both (corners, eight, elkring, fragment, interlock, pilgrimage, rows, swirl lost). Zip /mnt/project-files/bot/mybot_gamacro3m.zip"
+  }
+ ],
+ "updated": "2026-10-16T17:45Z"
+}

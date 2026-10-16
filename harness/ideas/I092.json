@@ -1,6 +1,6 @@
 {
- "id": "I032",
- "title": "Teammate fixes: CAMPFOE+BACKHOME+NEEDHEAL+KITEALLY+NOCHASE2+TWIN",
+ "id": "I092",
+ "title": "ALLYDUTY + AVOIDFIRST on the teammate fixes (from GA genome b672)",
  "kind": "fight",
  "source": "teammate-fixes thread 2026-10-16",
  "owner": "Javi",
@@ -16,10 +16,9 @@
   {
    "at": "2026-10-16T18:28Z",
    "stage": "local-ok",
-   "note": "zip mybot_teammate_fixes1.zip; panel 77 maps: CAMPFOE 84-47 p=.002, BACKHOME 50-32; others neutral; site maps vs 5 specialists: 118/170 vs base 109"
+   "note": "zip mybot_teammate_fixes2.zip; 17 site maps x2 sides x5 specialists: 131/170 vs 113 for fixes1, flips 28-10 p=.005; CALLHELP, NOCHASE 0, LOWHP 0, AVOID_HP 54 alone = noise"
   }
  ],
  "updated": "2026-10-16T18:28Z",
- "bot": "bots/teammate_fixes",
- "branch": "claude/fix-teammate-behaviours-vz3di8"
+ "bot": "bots/teammate_fixes"
 }

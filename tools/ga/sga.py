@@ -235,10 +235,9 @@ class Level3:
 
     def initial(self, n, rng):
         out = [neat.seed()]
-        while len(out) < n:  # the seed plus one or two links into a non-default action each
+        while len(out) < n:  # the seed plus one threshold rule into a non-default action each
             g = neat.seed()
-            for _ in range(rng.randint(1, 2)):
-                neat.add_conn(g, rng, self.inn)
+            neat.add_rule(g, rng, self.inn)
             out.append(g)
         return out
 

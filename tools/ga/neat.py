@@ -89,7 +89,7 @@ def mutate(g, rng, inn, p_conn=0.35, p_node=0.12):
         if rng.random() < 0.3:
             n['bias'] += rng.gauss(0, 0.25)
     if rng.random() < p_conn:
-        add_conn(g, rng, inn)
+        add_rule(g, rng, inn) if rng.random() < 0.3 else add_conn(g, rng, inn)
     if rng.random() < p_node:
         add_node(g, rng, inn)
     if g['conns'] and rng.random() < 0.05:
@@ -111,6 +111,27 @@ def add_conn(g, rng, inn, w=None):
         g['conns'][k] = [s, d, rng.gauss(0, 1.5) if w is None else w, True]
         return True
     return False
+
+
+# input scales of ga_struct.h ga_feat_scale (input = feature / scale)
+SCALE = [100, 10, 3, 3, 3, 3, 200, 200, 1, 1, 1, 100, 10, 50, 20, 100, 1, 1, 1, 1, 200, 1, 3, 3, 1]
+assert len(SCALE) == NF
+
+
+def add_rule(g, rng, inn, w=4.0):
+    """A link that makes one action beat 'default' on one side of a threshold: "if feature > t (or < t): action".
+    Plain random links almost never beat the default bias, so a population of them plays the seed's games."""
+    act = rng.randrange(1, T.NN_OUT)
+    f = rng.randrange(NF)
+    name = T.FEATURES[f]
+    lo, hi = T.FEATURE_RANGE.get(name, (0, 1))
+    t = (0.5 if name in T.BOOL_FEATURES else rng.uniform(lo, hi)) / SCALE[f]
+    sign = rng.choice([-1.0, 1.0])
+    k = str(inn.of_conn(f, OUT0 + act))
+    g['conns'][k] = [f, OUT0 + act, sign * w, True]
+    # output act = bias + sign*w*x > 1 (the default's bias) exactly when sign*(x - t) > 0
+    g['nodes'][str(OUT0 + act)]['bias'] = 1.0 - sign * w * t
+    return True
 
 
 def add_node(g, rng, inn):

@@ -151,18 +151,19 @@
   "gp0": "((not FAV and (NB > FAV)) and (((HP < 56) or not (NEAR > 4)) and not SPAWN))"
  },
  "fitness": {
-  "shrunk": 0.0903,
-  "n": 4,
+  "shrunk": 0.0636,
+  "n": 5,
   "deltas": [
    0.14692,
    0.19996,
    0.12903,
-   -0.02456
+   -0.02456,
+   -0.07004
   ]
  },
- "gen": 20,
+ "gen": 22,
  "scope": "gp",
  "start": "ga65a6",
- "time": "2026-10-16 14:54:17 UTC",
+ "time": "2026-10-16 15:06:06 UTC",
  "transport": "shared"
 }

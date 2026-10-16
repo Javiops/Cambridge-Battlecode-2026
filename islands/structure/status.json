@@ -4,14 +4,14 @@
  "scope": "structure,gp,neat",
  "start": "ga65a6",
  "jobs": 4,
- "gen": 64,
- "games": 111088,
- "gps": 7.59,
+ "gen": 65,
+ "games": 112992,
+ "gps": 5.46,
  "base": "7c2d0330e54e",
  "best": {
-  "cid": "5badfecec9",
-  "shrunk": 0.2061,
-  "n": 2,
+  "cid": "f79d936666",
+  "shrunk": 0.194,
+  "n": 4,
   "describe": {
    "P_FLEE_PCT": 27,
    "P_RECALL_NEAR": 9,
@@ -33,9 +33,9 @@
    "nn": "0 hidden, 4 links, outputs used: back off, farm, kite, recall"
   }
  },
- "exported": 42,
- "imported": 163,
- "updated": "2026-10-16 18:26:58 UTC",
+ "exported": 43,
+ "imported": 165,
+ "updated": "2026-10-16 18:32:48 UTC",
  "code": "HEAD@e2d1227",
  "home": "/mnt/project-files/ga-farm/islands/structure",
  "transport": "shared"

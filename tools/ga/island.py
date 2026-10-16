@@ -1069,6 +1069,8 @@ def cmd_champion(A):
         key = cid_of(norm(m['genome']))
         f = m.get('fitness', {}).get('shrunk', 0)
         isl = m.get('island')
+        if m.get('fitness', {}).get('n', 0) < A.min_n:  # a leader of one or two generations is mostly selection luck
+            continue
         if key not in cands or f > cands[key]['fit']:
             cands[key] = {'geno': norm(m['genome']), 'fit': f, 'island': isl}
     by_isl = {}
@@ -1229,7 +1231,7 @@ def main():
         s.add_argument('--seed', type=int, default=None)
         s.add_argument('--imports', type=int, default=2, help='migrants taken in per generation')
         s.add_argument('--export-top', type=int, default=3)
-        s.add_argument('--min-n', type=int, default=2, help='generations evaluated before a genome may migrate')
+        s.add_argument('--min-n', type=int, default=3, help='generations evaluated before a genome may migrate')
         s.add_argument('--fuel', type=int, default=0, help='cambc --fuel for training games (0 = the real budget)')
         s.add_argument('--own-hof', type=int, default=2, help='our own past champions kept as rivals')
         s.add_argument('--hof', type=int, default=2, help='rivals taken from other islands\' best (hall of fame)')
@@ -1243,6 +1245,7 @@ def main():
     s.add_argument('--per-island', type=int, default=2)
     s.add_argument('--ids', default='', help='finalists by cid instead of the islands\' best')
     s.add_argument('--maps', default='maps_hold60/*.map26a,maps_dev200/*.map26a', help='sealed map globs')
+    s.add_argument('--min-n', type=int, default=4, help='finalists: generations evaluated on their island (>= 32 maps)')
     s.add_argument('--max-maps', type=int, default=120)
     s.add_argument('--overlay-ref', default=FUELGUARD_REF, help='git ref whose base bot the zip is built on ('' = none)')
     s.add_argument('--zip-dir', default=os.path.join(SHARED, 'bot') if os.path.isdir(SHARED) else os.path.join('out', 'bot'))

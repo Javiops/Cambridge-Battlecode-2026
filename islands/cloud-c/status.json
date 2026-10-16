@@ -1,0 +1,27 @@
+{
+ "name": "cloud-c",
+ "host": "vm",
+ "scope": "micro",
+ "start": "ga65a6",
+ "jobs": 4,
+ "gen": 4,
+ "games": 5286,
+ "gps": 5.2,
+ "base": "7c2d0330e54e",
+ "best": {
+  "cid": "456c9eb6e6",
+  "shrunk": 0.0414,
+  "n": 1,
+  "describe": {
+   "P_FLEE_PCT": 35,
+   "P_GA_KITE_HP": 146,
+   "P_VOLLEY": 20
+  }
+ },
+ "exported": 4,
+ "imported": 8,
+ "updated": "2026-10-16 12:58:19 UTC",
+ "code": "claude/project-thread-rkjugw@ed0f505",
+ "home": "/mnt/project-files/ga-farm/islands/cloud-c",
+ "transport": "shared"
+}

@@ -1,0 +1,35 @@
+{
+ "name": "cloud-a",
+ "host": "vm",
+ "scope": "micro,structure,gp",
+ "start": "ga65a6",
+ "jobs": 4,
+ "gen": 11,
+ "games": 14396,
+ "gps": 6.35,
+ "base": "7c2d0330e54e",
+ "best": {
+  "cid": "ec6f7d3d1c",
+  "shrunk": 0.0542,
+  "n": 1,
+  "describe": {
+   "P_CHASE_GEMS": 94,
+   "P_FRONT": 0,
+   "P_SAFESTEP": 0,
+   "P_NOCHASE": 0,
+   "P_ALLYDUTY": 1,
+   "P_NN_ON": 1,
+   "P_SHAREEXP": 72,
+   "P_TRIBUTE_NEAR": 10,
+   "P_TELE": 5,
+   "order": "FLEE>NEARRECALL>FM>KITE>FRONT>AVOID>ENGAGE>AVOIDLOW>WALKHOME>RECALLSHOP",
+   "nn": "0 hidden, 1 links, outputs used: farm"
+  }
+ },
+ "exported": 12,
+ "imported": 25,
+ "updated": "2026-10-16 13:02:30 UTC",
+ "code": "claude/ga-farm-d37xlq@5132c9d",
+ "home": "/mnt/project-files/ga-farm/islands/cloud-a",
+ "transport": "shared"
+}

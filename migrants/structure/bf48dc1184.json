@@ -1,0 +1,76 @@
+{
+ "island": "structure",
+ "cid": "bf48dc1184",
+ "base": "7c2d0330e54e",
+ "genome": {
+  "sc": {
+   "P_FLEE_PCT": 29,
+   "P_UNI_FLEE": 44,
+   "P_RECALL_PCT": 54,
+   "P_RECALL_NEAR": 7,
+   "P_BAIL_PCT": 12,
+   "P_ENGAGE2": 74,
+   "P_GA_FAV": 83,
+   "P_GA_KILL_X": 5,
+   "P_GA_SPAWN_HEAL": 87,
+   "P_FRONT_OUT": 145,
+   "P_GA_KITE_HP": 128,
+   "P_VOLLEY": 43,
+   "P_CHASE_GEMS": 144,
+   "P_DANGER": 4,
+   "P_DANGER_T": 45,
+   "P_DANGER_R": 5,
+   "P_FRONT_LOCAL": 0,
+   "P_ALLYDUTY": 1,
+   "P_R_AVOIDLOW": 0,
+   "P_O_AVOIDLOW": 61,
+   "P_O_AVOID": 86
+  }
+ },
+ "describe": {
+  "P_FLEE_PCT": 29,
+  "P_UNI_FLEE": 44,
+  "P_RECALL_PCT": 54,
+  "P_RECALL_NEAR": 7,
+  "P_BAIL_PCT": 12,
+  "P_ENGAGE2": 74,
+  "P_GA_FAV": 83,
+  "P_GA_KILL_X": 5,
+  "P_GA_SPAWN_HEAL": 87,
+  "P_FRONT_OUT": 145,
+  "P_GA_KITE_HP": 128,
+  "P_VOLLEY": 43,
+  "P_CHASE_GEMS": 144,
+  "P_DANGER": 4,
+  "P_DANGER_T": 45,
+  "P_DANGER_R": 5,
+  "P_FRONT_LOCAL": 0,
+  "P_ALLYDUTY": 1,
+  "P_R_AVOIDLOW": 0,
+  "order": "FLEE>NEARRECALL>FM>KITE>FRONT>AVOIDLOW>ENGAGE>AVOID>RECALLSHOP>WALKHOME"
+ },
+ "vs_start": {
+  "P_FRONT_LOCAL": 0,
+  "P_ALLYDUTY": 1,
+  "P_R_AVOIDLOW": 0,
+  "order": "FLEE>NEARRECALL>FM>KITE>FRONT>AVOIDLOW>ENGAGE>AVOID>RECALLSHOP>WALKHOME"
+ },
+ "fitness": {
+  "shrunk": 0.0319,
+  "n": 7,
+  "deltas": [
+   0.03117,
+   0.05288,
+   0.07444,
+   0.02037,
+   -0.0079,
+   -0.04137,
+   0.12592
+  ]
+ },
+ "gen": 7,
+ "scope": "structure,gp,neat",
+ "start": "ga65a6",
+ "time": "2026-10-16 12:43:52 UTC",
+ "transport": "shared"
+}

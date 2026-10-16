@@ -1,0 +1,110 @@
+{
+ "island": "cloud-f",
+ "cid": "c8182186fd",
+ "base": "7c2d0330e54e",
+ "genome": {
+  "sc": {
+   "P_FLEE_PCT": 29,
+   "P_UNI_FLEE": 44,
+   "P_RECALL_PCT": 54,
+   "P_RECALL_NEAR": 7,
+   "P_BAIL_PCT": 12,
+   "P_ENGAGE2": 74,
+   "P_GA_FAV": 83,
+   "P_GA_KILL_X": 5,
+   "P_GA_SPAWN_HEAL": 87,
+   "P_FRONT_OUT": 145,
+   "P_GA_KITE_HP": 128,
+   "P_VOLLEY": 43,
+   "P_CHASE_GEMS": 144,
+   "P_DANGER": 4,
+   "P_DANGER_T": 45,
+   "P_DANGER_R": 5,
+   "P_NN_ON": 1
+  },
+  "nn": {
+   "nodes": {
+    "1000": {
+     "bias": 1.0,
+     "depth": 1.0
+    },
+    "1001": {
+     "bias": 0.0,
+     "depth": 1.0
+    },
+    "1002": {
+     "bias": -0.25461741825337886,
+     "depth": 1.0
+    },
+    "1003": {
+     "bias": -1.0,
+     "depth": 1.0
+    },
+    "1004": {
+     "bias": 0.0,
+     "depth": 1.0
+    },
+    "1005": {
+     "bias": 0.0,
+     "depth": 1.0
+    },
+    "1006": {
+     "bias": 0.0,
+     "depth": 1.0
+    }
+   },
+   "conns": {
+    "9": [
+     17,
+     1003,
+     4.272914377765705,
+     true
+    ],
+    "17": [
+     10,
+     1006,
+     -1.765814108668339,
+     true
+    ]
+   }
+  },
+  "nn_from": "cloud-f"
+ },
+ "describe": {
+  "P_FLEE_PCT": 29,
+  "P_UNI_FLEE": 44,
+  "P_RECALL_PCT": 54,
+  "P_RECALL_NEAR": 7,
+  "P_BAIL_PCT": 12,
+  "P_ENGAGE2": 74,
+  "P_GA_FAV": 83,
+  "P_GA_KILL_X": 5,
+  "P_GA_SPAWN_HEAL": 87,
+  "P_FRONT_OUT": 145,
+  "P_GA_KITE_HP": 128,
+  "P_VOLLEY": 43,
+  "P_CHASE_GEMS": 144,
+  "P_DANGER": 4,
+  "P_DANGER_T": 45,
+  "P_DANGER_R": 5,
+  "P_NN_ON": 1,
+  "nn": "0 hidden, 2 links, outputs used: back off, farm"
+ },
+ "vs_start": {
+  "P_NN_ON": 1,
+  "nn": "0 hidden, 2 links, outputs used: back off, farm"
+ },
+ "fitness": {
+  "shrunk": 0.01,
+  "n": 2,
+  "deltas": [
+   0.04212,
+   -0.01212
+  ]
+ },
+ "gen": 5,
+ "scope": "neat",
+ "start": "ga65a6",
+ "time": "2026-10-16 12:51:32 UTC",
+ "transport": "shared"
+}

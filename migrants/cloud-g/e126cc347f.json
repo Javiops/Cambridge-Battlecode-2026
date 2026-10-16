@@ -1,0 +1,71 @@
+{
+ "island": "cloud-g",
+ "cid": "e126cc347f",
+ "base": "7c2d0330e54e",
+ "genome": {
+  "sc": {
+   "P_FLEE_PCT": 29,
+   "P_UNI_FLEE": 44,
+   "P_RECALL_PCT": 54,
+   "P_RECALL_NEAR": 7,
+   "P_BAIL_PCT": 12,
+   "P_ENGAGE2": 74,
+   "P_GA_FAV": 83,
+   "P_GA_KILL_X": 5,
+   "P_GA_SPAWN_HEAL": 87,
+   "P_FRONT_OUT": 145,
+   "P_GA_KITE_HP": 128,
+   "P_VOLLEY": 43,
+   "P_CHASE_GEMS": 144,
+   "P_DANGER": 4,
+   "P_DANGER_T": 45,
+   "P_DANGER_R": 5,
+   "P_U34_ENGAGE_FALLBACK": 1,
+   "P_GA_OVERHEAD": 10,
+   "P_OWN_ALTAR": 14,
+   "P_SHOP_GOLD": 371
+  }
+ },
+ "describe": {
+  "P_FLEE_PCT": 29,
+  "P_UNI_FLEE": 44,
+  "P_RECALL_PCT": 54,
+  "P_RECALL_NEAR": 7,
+  "P_BAIL_PCT": 12,
+  "P_ENGAGE2": 74,
+  "P_GA_FAV": 83,
+  "P_GA_KILL_X": 5,
+  "P_GA_SPAWN_HEAL": 87,
+  "P_FRONT_OUT": 145,
+  "P_GA_KITE_HP": 128,
+  "P_VOLLEY": 43,
+  "P_CHASE_GEMS": 144,
+  "P_DANGER": 4,
+  "P_DANGER_T": 45,
+  "P_DANGER_R": 5,
+  "P_U34_ENGAGE_FALLBACK": 1,
+  "P_GA_OVERHEAD": 10,
+  "P_OWN_ALTAR": 14,
+  "P_SHOP_GOLD": 371
+ },
+ "vs_start": {
+  "P_U34_ENGAGE_FALLBACK": 1,
+  "P_GA_OVERHEAD": 10,
+  "P_OWN_ALTAR": 14,
+  "P_SHOP_GOLD": 371
+ },
+ "fitness": {
+  "shrunk": 0.0535,
+  "n": 3,
+  "deltas": [
+   0.12887,
+   0.08461,
+   0.00039
+  ]
+ },
+ "gen": 5,
+ "scope": "all",
+ "start": "ga65a6",
+ "time": "2026-10-16 12:45:42 UTC",
+ "transport": "shared"
+}

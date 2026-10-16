@@ -1,0 +1,28 @@
+{
+ "name": "cloud-e",
+ "host": "vm",
+ "scope": "gp",
+ "start": "ga65a6",
+ "jobs": 4,
+ "gen": 5,
+ "games": 6666,
+ "gps": 5.79,
+ "base": "7c2d0330e54e",
+ "best": {
+  "cid": "bf48dc1184",
+  "shrunk": 0.0412,
+  "n": 4,
+  "describe": {
+   "P_FRONT_LOCAL": 0,
+   "P_ALLYDUTY": 1,
+   "P_R_AVOIDLOW": 0,
+   "order": "FLEE>NEARRECALL>FM>KITE>FRONT>AVOIDLOW>ENGAGE>AVOID>RECALLSHOP>WALKHOME"
+  }
+ },
+ "exported": 4,
+ "imported": 10,
+ "updated": "2026-10-16 13:00:03 UTC",
+ "code": "claude/project-thread-om45ra@ed0f505",
+ "home": "/mnt/project-files/ga-farm/islands/cloud-e",
+ "transport": "shared"
+}

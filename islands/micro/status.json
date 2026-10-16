@@ -1,0 +1,31 @@
+{
+ "name": "micro",
+ "host": "vm",
+ "scope": "micro",
+ "start": "ga65a6",
+ "jobs": 4,
+ "gen": 7,
+ "games": 9226,
+ "gps": 6.37,
+ "base": "7c2d0330e54e",
+ "best": {
+  "cid": "21d32929e6",
+  "shrunk": 0.029,
+  "n": 1,
+  "describe": {
+   "P_RECALL_PCT": 45,
+   "P_RECALL_NEAR": 9,
+   "P_GA_KILL_X": 6,
+   "P_FRONT_ZONE": 4,
+   "P_FRONT_OUT": 174,
+   "P_VOLLEY": 42,
+   "P_DANGER_T": 57
+  }
+ },
+ "exported": 8,
+ "imported": 14,
+ "updated": "2026-10-16 12:57:21 UTC",
+ "code": "HEAD@ed0f505",
+ "home": "/mnt/project-files/ga-farm/islands/micro",
+ "transport": "shared"
+}

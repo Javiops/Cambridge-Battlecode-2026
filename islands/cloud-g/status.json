@@ -1,0 +1,26 @@
+{
+ "name": "cloud-g",
+ "host": "vm",
+ "scope": "all",
+ "start": "ga65a6",
+ "jobs": 4,
+ "gen": 6,
+ "games": 7758,
+ "gps": 6.8,
+ "base": "7c2d0330e54e",
+ "best": {
+  "cid": "d8cbd0e5dc",
+  "shrunk": 0.0508,
+  "n": 3,
+  "describe": {
+   "P_GA_DOOR_D": 10,
+   "P_GA_OVERHEAD": 10
+  }
+ },
+ "exported": 8,
+ "imported": 28,
+ "updated": "2026-10-16 12:48:58 UTC",
+ "code": "claude/project-thread-qbnlhu@ed0f505",
+ "home": "/mnt/project-files/ga-farm/islands/cloud-g",
+ "transport": "shared"
+}

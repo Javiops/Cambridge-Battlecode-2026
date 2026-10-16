@@ -1,0 +1,151 @@
+{
+ "island": "cloud-e",
+ "cid": "cab8d4984f",
+ "base": "7c2d0330e54e",
+ "genome": {
+  "sc": {
+   "P_FLEE_PCT": 29,
+   "P_UNI_FLEE": 44,
+   "P_RECALL_PCT": 54,
+   "P_RECALL_NEAR": 7,
+   "P_BAIL_PCT": 12,
+   "P_ENGAGE2": 74,
+   "P_GA_FAV": 83,
+   "P_GA_KILL_X": 5,
+   "P_GA_SPAWN_HEAL": 87,
+   "P_FRONT_OUT": 145,
+   "P_GA_KITE_HP": 128,
+   "P_VOLLEY": 43,
+   "P_CHASE_GEMS": 144,
+   "P_DANGER": 4,
+   "P_DANGER_T": 45,
+   "P_DANGER_R": 5,
+   "P_GP0_ON": 1,
+   "P_GP1_ON": 1
+  },
+  "gp0": [
+   "AND",
+   [
+    "AND",
+    [
+     "NOT",
+     [
+      "VAR",
+      8
+     ]
+    ],
+    [
+     "NOT",
+     [
+      "VAR",
+      9
+     ]
+    ]
+   ],
+   [
+    "MUL",
+    [
+     "OR",
+     [
+      "LT",
+      [
+       "VAR",
+       0
+      ],
+      [
+       "CONST",
+       60
+      ]
+     ],
+     [
+      "NOT",
+      [
+       "GT",
+       [
+        "VAR",
+        1
+       ],
+       [
+        "CONST",
+        4
+       ]
+      ]
+     ]
+    ],
+    [
+     "NOT",
+     [
+      "VAR",
+      16
+     ]
+    ]
+   ]
+  ],
+  "gp1": [
+   "MAX",
+   [
+    "VAR",
+    21
+   ],
+   [
+    "SUB",
+    [
+     "AND",
+     [
+      "VAR",
+      10
+     ],
+     [
+      "VAR",
+      8
+     ]
+    ],
+    [
+     "VAR",
+     18
+    ]
+   ]
+  ]
+ },
+ "describe": {
+  "P_FLEE_PCT": 29,
+  "P_UNI_FLEE": 44,
+  "P_RECALL_PCT": 54,
+  "P_RECALL_NEAR": 7,
+  "P_BAIL_PCT": 12,
+  "P_ENGAGE2": 74,
+  "P_GA_FAV": 83,
+  "P_GA_KILL_X": 5,
+  "P_GA_SPAWN_HEAL": 87,
+  "P_FRONT_OUT": 145,
+  "P_GA_KITE_HP": 128,
+  "P_VOLLEY": 43,
+  "P_CHASE_GEMS": 144,
+  "P_DANGER": 4,
+  "P_DANGER_T": 45,
+  "P_DANGER_R": 5,
+  "P_GP0_ON": 1,
+  "P_GP1_ON": 1,
+  "gp0": "((not FAV and not KILL) and (((HP < 60) or not (NEAR > 4)) * not SPAWN))",
+  "gp1": "max(HIT, ((REACH and FAV) - HELP))"
+ },
+ "vs_start": {
+  "P_GP0_ON": 1,
+  "P_GP1_ON": 1,
+  "gp0": "((not FAV and not KILL) and (((HP < 60) or not (NEAR > 4)) * not SPAWN))",
+  "gp1": "max(HIT, ((REACH and FAV) - HELP))"
+ },
+ "fitness": {
+  "shrunk": 0.0098,
+  "n": 2,
+  "deltas": [
+   0.052,
+   -0.02256
+  ]
+ },
+ "gen": 5,
+ "scope": "gp",
+ "start": "ga65a6",
+ "time": "2026-10-16 13:00:03 UTC",
+ "transport": "shared"
+}

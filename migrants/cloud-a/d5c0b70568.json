@@ -1,0 +1,133 @@
+{
+ "island": "cloud-a",
+ "cid": "d5c0b70568",
+ "base": "7c2d0330e54e",
+ "genome": {
+  "sc": {
+   "P_FLEE_PCT": 29,
+   "P_UNI_FLEE": 44,
+   "P_RECALL_PCT": 54,
+   "P_RECALL_NEAR": 7,
+   "P_BAIL_PCT": 12,
+   "P_GA_AVOID_HP": 73,
+   "P_ENGAGE2": 74,
+   "P_GA_FAV": 83,
+   "P_GA_KILL_X": 5,
+   "P_GA_SPAWN_HEAL": 87,
+   "P_FRONT_OUT": 145,
+   "P_GA_KITE_HP": 128,
+   "P_VOLLEY": 43,
+   "P_CHASE_GEMS": 144,
+   "P_DANGER": 4,
+   "P_DANGER_T": 45,
+   "P_DANGER_R": 4,
+   "P_FRONT": 0,
+   "P_R_AVOIDLOW": 0,
+   "P_O_NEARRECALL": 25,
+   "P_GP0_ON": 1
+  },
+  "gp0": [
+   "AND",
+   [
+    "AND",
+    [
+     "NOT",
+     [
+      "VAR",
+      8
+     ]
+    ],
+    [
+     "NOT",
+     [
+      "VAR",
+      9
+     ]
+    ]
+   ],
+   [
+    "AND",
+    [
+     "OR",
+     [
+      "LT",
+      [
+       "VAR",
+       0
+      ],
+      [
+       "CONST",
+       60
+      ]
+     ],
+     [
+      "NOT",
+      [
+       "GT",
+       [
+        "VAR",
+        1
+       ],
+       [
+        "CONST",
+        5
+       ]
+      ]
+     ]
+    ],
+    [
+     "NOT",
+     [
+      "VAR",
+      16
+     ]
+    ]
+   ]
+  ]
+ },
+ "describe": {
+  "P_FLEE_PCT": 29,
+  "P_UNI_FLEE": 44,
+  "P_RECALL_PCT": 54,
+  "P_RECALL_NEAR": 7,
+  "P_BAIL_PCT": 12,
+  "P_GA_AVOID_HP": 73,
+  "P_ENGAGE2": 74,
+  "P_GA_FAV": 83,
+  "P_GA_KILL_X": 5,
+  "P_GA_SPAWN_HEAL": 87,
+  "P_FRONT_OUT": 145,
+  "P_GA_KITE_HP": 128,
+  "P_VOLLEY": 43,
+  "P_CHASE_GEMS": 144,
+  "P_DANGER": 4,
+  "P_DANGER_T": 45,
+  "P_DANGER_R": 4,
+  "P_FRONT": 0,
+  "P_R_AVOIDLOW": 0,
+  "P_GP0_ON": 1,
+  "gp0": "((not FAV and not KILL) and (((HP < 60) or not (NEAR > 5)) and not SPAWN))"
+ },
+ "vs_start": {
+  "P_GA_AVOID_HP": 73,
+  "P_DANGER_R": 4,
+  "P_FRONT": 0,
+  "P_R_AVOIDLOW": 0,
+  "P_GP0_ON": 1,
+  "gp0": "((not FAV and not KILL) and (((HP < 60) or not (NEAR > 5)) and not SPAWN))"
+ },
+ "fitness": {
+  "shrunk": 0.0329,
+  "n": 3,
+  "deltas": [
+   0.04367,
+   0.04905,
+   0.03874
+  ]
+ },
+ "gen": 11,
+ "scope": "micro,structure,gp",
+ "start": "ga65a6",
+ "time": "2026-10-16 13:02:30 UTC",
+ "transport": "shared"
+}

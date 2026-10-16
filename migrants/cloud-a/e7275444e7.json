@@ -1,0 +1,160 @@
+{
+ "island": "cloud-a",
+ "cid": "e7275444e7",
+ "base": "7c2d0330e54e",
+ "genome": {
+  "sc": {
+   "P_FLEE_PCT": 29,
+   "P_UNI_FLEE": 44,
+   "P_RECALL_PCT": 54,
+   "P_RECALL_NEAR": 7,
+   "P_BAIL_PCT": 12,
+   "P_GA_AVOID_HP": 73,
+   "P_ENGAGE2": 74,
+   "P_GA_FAV": 83,
+   "P_GA_KILL_X": 5,
+   "P_GA_SPAWN_HEAL": 87,
+   "P_FRONT_OUT": 145,
+   "P_GA_KITE_HP": 128,
+   "P_VOLLEY": 43,
+   "P_CHASE_GEMS": 144,
+   "P_DANGER": 4,
+   "P_DANGER_T": 45,
+   "P_DANGER_R": 4,
+   "P_FRONT": 0,
+   "P_R_AVOIDLOW": 0,
+   "P_O_NEARRECALL": 25,
+   "P_GP0_ON": 1
+  },
+  "gp0": [
+   "AND",
+   [
+    "AND",
+    [
+     "NOT",
+     [
+      "VAR",
+      8
+     ]
+    ],
+    [
+     "NOT",
+     [
+      "OR",
+      [
+       "VAR",
+       9
+      ],
+      [
+       "GT",
+       [
+        "VAR",
+        6
+       ],
+       [
+        "CONST",
+        147
+       ]
+      ]
+     ]
+    ]
+   ],
+   [
+    "AND",
+    [
+     "OR",
+     [
+      "LT",
+      [
+       "VAR",
+       0
+      ],
+      [
+       "CONST",
+       60
+      ]
+     ],
+     [
+      "NOT",
+      [
+       "GT",
+       [
+        "VAR",
+        1
+       ],
+       [
+        "CONST",
+        5
+       ]
+      ]
+     ]
+    ],
+    [
+     "OR",
+     [
+      "NOT",
+      [
+       "VAR",
+       16
+      ]
+     ],
+     [
+      "GT",
+      [
+       "VAR",
+       6
+      ],
+      [
+       "CONST",
+       178
+      ]
+     ]
+    ]
+   ]
+  ]
+ },
+ "describe": {
+  "P_FLEE_PCT": 29,
+  "P_UNI_FLEE": 44,
+  "P_RECALL_PCT": 54,
+  "P_RECALL_NEAR": 7,
+  "P_BAIL_PCT": 12,
+  "P_GA_AVOID_HP": 73,
+  "P_ENGAGE2": 74,
+  "P_GA_FAV": 83,
+  "P_GA_KILL_X": 5,
+  "P_GA_SPAWN_HEAL": 87,
+  "P_FRONT_OUT": 145,
+  "P_GA_KITE_HP": 128,
+  "P_VOLLEY": 43,
+  "P_CHASE_GEMS": 144,
+  "P_DANGER": 4,
+  "P_DANGER_T": 45,
+  "P_DANGER_R": 4,
+  "P_FRONT": 0,
+  "P_R_AVOIDLOW": 0,
+  "P_GP0_ON": 1,
+  "gp0": "((not FAV and not (KILL or (RATIO > 147))) and (((HP < 60) or not (NEAR > 5)) and (not SPAWN or (RATIO > 178))))"
+ },
+ "vs_start": {
+  "P_GA_AVOID_HP": 73,
+  "P_DANGER_R": 4,
+  "P_FRONT": 0,
+  "P_R_AVOIDLOW": 0,
+  "P_GP0_ON": 1,
+  "gp0": "((not FAV and not (KILL or (RATIO > 147))) and (((HP < 60) or not (NEAR > 5)) and (not SPAWN or (RATIO > 178))))"
+ },
+ "fitness": {
+  "shrunk": 0.039,
+  "n": 2,
+  "deltas": [
+   0.0886,
+   0.02836
+  ]
+ },
+ "gen": 11,
+ "scope": "micro,structure,gp",
+ "start": "ga65a6",
+ "time": "2026-10-16 13:02:30 UTC",
+ "transport": "shared"
+}

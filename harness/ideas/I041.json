@@ -1,0 +1,36 @@
+{
+ "id": "I041",
+ "title": "Farm gold clusters again (P_NOGOLD 0): gold buys the items that win fights",
+ "kind": "farm",
+ "source": "new-maps study 2026-10-16 (analysis/new-maps-2026-10-16)",
+ "owner": "Javi",
+ "hypothesis": "top-10 winners earn ~2x our gold on all 8 new maps; on stampede/contest they farm gold for 500-1300 rounds (55-79 gold captures) then win the gem group by force; we earn 50 and 0. Expect stampede/contest wins, more items everywhere",
+ "stage": "rejected",
+ "created": "2026-10-16T11:43Z",
+ "history": [
+  {
+   "at": "2026-10-16T11:43Z",
+   "stage": "idea",
+   "note": ""
+  },
+  {
+   "at": "2026-10-16T11:43Z",
+   "stage": "local-test",
+   "note": "P_NOGOLD 0 on study27-economy"
+  },
+  {
+   "at": "2026-10-16T11:45Z",
+   "stage": "local-test",
+   "note": "gate farm: FAIL (fresh maps); fresh 2-15 p=0.0023",
+   "result": "out/gate/nmB_vs_study27-economy/result.json"
+  },
+  {
+   "at": "2026-10-16T11:59Z",
+   "stage": "rejected",
+   "note": "P_NOGOLD 0 everywhere: gate FAIL 2-15 fresh maps p=0.002, gems/100r 165.1 vs 167.2. Gold kept only on jackpot maps (I042)"
+  }
+ ],
+ "updated": "2026-10-16T11:59Z",
+ "bot": "bots/nmB",
+ "branch": "claude/new-maps-study-q11x2y"
+}

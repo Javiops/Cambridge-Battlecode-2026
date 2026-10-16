@@ -1,0 +1,41 @@
+{
+ "id": "I040",
+ "title": "Caster core draft on every map: Cassi&Issac + Stellar (+ Varg, Tavi, Ren with 5)",
+ "kind": "fight",
+ "source": "new-maps study 2026-10-16 (analysis/new-maps-2026-10-16)",
+ "owner": "Javi",
+ "hypothesis": "top-10 winners draft C&I on 14/14 maps today and Stellar on ~85%; we draft Vendetta/Varg/C&I/Ryth/Tavi on stampede, pilgrimage, ambush, eight. Expect fewer deaths on eight/pilgrimage/stampede",
+ "stage": "rejected",
+ "created": "2026-10-16T11:43Z",
+ "history": [
+  {
+   "at": "2026-10-16T11:43Z",
+   "stage": "idea",
+   "note": ""
+  },
+  {
+   "at": "2026-10-16T11:43Z",
+   "stage": "local-test",
+   "note": "P_DRAFTUNI 1 + P_DRAFT5 1 on study27-economy"
+  },
+  {
+   "at": "2026-10-16T11:47Z",
+   "stage": "local-test",
+   "note": "gate fight: FAIL (fresh maps); fresh 37-57 p=0.0495",
+   "result": "out/gate/nmA_vs_study27-economy/result.json"
+  },
+  {
+   "at": "2026-10-16T11:47Z",
+   "stage": "local-test",
+   "note": "P_DRAFTUNI 1 + P_DRAFT5 1 (caster draft everywhere): gate FAIL 37-57 fresh maps p=0.049, gems/100r 164.5 vs 168.4; now testing P_DRAFT5 alone (5-champ fight maps only)"
+  },
+  {
+   "at": "2026-10-16T11:59Z",
+   "stage": "rejected",
+   "note": "caster draft on every map (P_DRAFTUNI 1 + P_DRAFT5 1): gate FAIL 37-57 fresh maps p=0.049, gems/100r 164.5 vs 168.4. P_DRAFT5 alone (5-champ fight maps only): PASS fight, 14-8 p=0.29, corners lost both sides; not proposed for upload"
+  }
+ ],
+ "updated": "2026-10-16T11:59Z",
+ "bot": "bots/nmA",
+ "branch": "claude/new-maps-study-q11x2y"
+}

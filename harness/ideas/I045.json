@@ -1,0 +1,38 @@
+{
+ "id": "I045",
+ "title": "Whole team (P_JACKN) commits to the stampede jackpot from round P_JACKGO",
+ "kind": "macro",
+ "source": "online check 2026-10-16 13:50 batch: top teams took the centre r305-650 with 2-6 champs, we had 0-1",
+ "owner": "new-maps-thread",
+ "hypothesis": "stampede online: from 0-10 vs top-24 to some wins; no change elsewhere",
+ "stage": "online",
+ "created": "2026-10-16T15:02Z",
+ "history": [
+  {
+   "at": "2026-10-16T15:02Z",
+   "stage": "idea",
+   "note": ""
+  },
+  {
+   "at": "2026-10-16T15:03Z",
+   "stage": "local-ok",
+   "note": "zip /mnt/project-files/bot/mybot_online1252_jackgo.zip = 12:52 online bot + P_JACKGO 350 + P_JACKN 3; variants: N5 at 350 10/14 and lost both sides to the online bot, N5 at 450 12/14, N3 at 450 12/14, N5 at 600 12/14",
+   "result": "stampede vs 6 local rivals + online bot, both sides: 12/14 (online bot 11/12); vs online bot 1-1; same games as online bot on the other 16 maps (--fuel 1e8); local rivals never contest the centre, so online is the judge"
+  },
+  {
+   "at": "2026-10-16T15:10Z",
+   "stage": "online",
+   "note": "uploaded 15:09:52 UTC; judge on stampede only (im_a changes the other 16 maps)"
+  },
+  {
+   "at": "2026-10-16T15:20Z",
+   "stage": "online",
+   "note": "15:20 UTC replaced the im_a combo; judge I045 on stampede games from the 15:46 batch"
+  }
+ ],
+ "updated": "2026-10-16T15:20Z",
+ "bot": "bots/study27-economy",
+ "branch": "claude/new-maps-study-q11x2y",
+ "pr": "26",
+ "version": "online1252 + I045 + im_p (mybot_online1252_jackgo_imp.zip, 15:20 UTC)"
+}

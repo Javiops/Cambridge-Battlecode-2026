@@ -1,0 +1,32 @@
+{
+ "id": "I033",
+ "title": "Fuel guard: no more turns cut off by fuel (same decisions, cheaper start-up and capture checks)",
+ "kind": "bug",
+ "source": "user 2026-10-16 09:40: in recent matches our champions sometimes input nothing (fuel ran out); harness scorecard 28 fuel-exhausted turns/game vs 1 for rivals",
+ "owner": "Javi",
+ "hypothesis": "fuel-exhausted turns (replay step kind 26) from ~11/game to ~1/game on the site maps with identical decisions when fuel is unlimited; fewer games changed by a no-op rebuild",
+ "stage": "local-ok",
+ "bot": "bots/study27-economy",
+ "branch": "claude/fuel-skipped-turns-004urj",
+ "created": "2026-10-16T10:40Z",
+ "history": [
+  {
+   "at": "2026-10-16T10:45Z",
+   "stage": "local-test",
+   "note": "gate farm: FAIL (fresh maps); fresh 59-54 p=0.7069",
+   "result": "out/gate/study27-economy_vs_study27-economy@a0c0fa2f22/result.json"
+  },
+  {
+   "at": "2026-10-16T10:56Z",
+   "stage": "local-ok",
+   "note": "gate fight: PASS; fresh 59-54 p=0.7069; panel 26/18",
+   "result": "out/gate/study27-economy_vs_study27-economy@a0c0fa2f22/result.json"
+  },
+  {
+   "at": "2026-10-16T11:05Z",
+   "stage": "local-ok",
+   "note": "P_FUELGUARD 1. Fuel-exhausted turns/game (fuelscan, --release, vs v30 side A): 17 site maps 11.5 -> 1.1, hold60 5.9 -> 0.1; online bot measured 10.3/game in 38 games (lanes 63). Unlimited fuel: identical games on 154/154 sides. No-op rebuild changes 15/154 sides (base 24/154). gate vs main: farm undecided 59-54 p=0.71; fight PASS (panel flips 26-18). Zip /mnt/project-files/bot/mybot_study27_economy_fuelguard.zip (= main + guard, includes P_MONO). Doc docs/I033-fuel-guard.md"
+  }
+ ],
+ "updated": "2026-10-16T11:05Z"
+}

@@ -9,3 +9,4 @@
 | 6 | 12 | 1336 | 1.7 | +0.367 | d32754aaed (+0.167) | bddcca4e27 (+0.091, 6) | {"P_ENGAGE2": 99, "P_FRONT_ZONE": 2, "P_VOLLEY": 31, "P_CHASE_GEMS": 166, "P_DANGER_T": 47, "P_DANGER_R": 4} |
 | 7 | 12 | 1304 | 1.8 | +0.410 | 2000ceba0b (+0.192) | bddcca4e27 (+0.098, 7) | {"P_ENGAGE2": 99, "P_FRONT_ZONE": 2, "P_VOLLEY": 31, "P_CHASE_GEMS": 166, "P_DANGER_T": 47, "P_DANGER_R": 4} |
 | 8 | 12 | 1304 | 1.6 | +0.603 | 55ac51e65b (+0.150) | 84b6c6552c (+0.084, 4) | {"P_RECALL_NEAR": 6, "P_AVOID_DIST": 6, "P_ENGAGE2": 95, "P_LOWHP": 34, "P_KITE_ZONE": 5, "P_KITE_OUT": 1, "P_GA_KITE_HP": 129, "P_VOLLEY": 51, "P_DANGER_T": 36, "P_DANGER_R": 4} |
+| 9 | 12 | 1320 | 1.8 | +0.607 | 84b6c6552c (+0.062) | 84b6c6552c (+0.080, 5) | {"P_RECALL_NEAR": 6, "P_AVOID_DIST": 6, "P_ENGAGE2": 95, "P_LOWHP": 34, "P_KITE_ZONE": 5, "P_KITE_OUT": 1, "P_GA_KITE_HP": 129, "P_VOLLEY": 51, "P_DANGER_T": 36, "P_DANGER_R": 4} |

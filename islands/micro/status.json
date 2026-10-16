@@ -4,14 +4,14 @@
  "scope": "micro",
  "start": "ga65a6",
  "jobs": 4,
- "gen": 34,
- "games": 55552,
- "gps": 7.09,
+ "gen": 36,
+ "games": 59070,
+ "gps": 6.73,
  "base": "7c2d0330e54e",
  "best": {
   "cid": "5f9da0c758",
-  "shrunk": 0.1091,
-  "n": 5,
+  "shrunk": 0.0975,
+  "n": 7,
   "describe": {
    "P_VOLLEY": 40,
    "P_CHASE_GEMS": 157,
@@ -30,9 +30,9 @@
    "nn": "0 hidden, 2 links, outputs used: farm, kite"
   }
  },
- "exported": 35,
- "imported": 87,
- "updated": "2026-10-16 15:42:15 UTC",
+ "exported": 36,
+ "imported": 91,
+ "updated": "2026-10-16 15:51:42 UTC",
  "code": "HEAD@4dde634",
  "home": "/mnt/project-files/ga-farm/islands/micro",
  "transport": "shared"

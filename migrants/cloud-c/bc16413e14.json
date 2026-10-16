@@ -1,0 +1,150 @@
+{
+ "island": "cloud-c",
+ "cid": "bc16413e14",
+ "base": "7c2d0330e54e",
+ "genome": {
+  "sc": {
+   "P_FLEE_PCT": 29,
+   "P_UNI_FLEE": 44,
+   "P_RECALL_PCT": 54,
+   "P_RECALL_NEAR": 7,
+   "P_BAIL_PCT": 12,
+   "P_GA_AVOID_HP": 36,
+   "P_ENGAGE2": 74,
+   "P_GA_FAV": 83,
+   "P_GA_KILL_X": 5,
+   "P_GA_SPAWN_HEAL": 87,
+   "P_FRONT_OUT": 145,
+   "P_GA_KITE_HP": 84,
+   "P_VOLLEY": 43,
+   "P_CHASE_GEMS": 94,
+   "P_DANGER": 4,
+   "P_DANGER_T": 45,
+   "P_DANGER_R": 5,
+   "P_FRONT": 0,
+   "P_SAFESTEP": 0,
+   "P_NOCHASE": 0,
+   "P_ALLYDUTY": 1,
+   "P_R_AVOIDLOW": 0,
+   "P_O_AVOIDLOW": 81,
+   "P_O_RECALLSHOP": 110,
+   "P_NN_ON": 1,
+   "P_SHAREEXP": 72,
+   "P_TRIBUTE_NEAR": 10,
+   "P_CHAIN": 45,
+   "P_TELE": 5,
+   "P_GA_SS_ALLY": 19,
+   "P_GA_SS_HOME": 0,
+   "P_PAIR_STICK": 1
+  },
+  "nn": {
+   "nodes": {
+    "1000": {
+     "bias": 1.0,
+     "depth": 1.0
+    },
+    "1001": {
+     "bias": 0.0,
+     "depth": 1.0
+    },
+    "1002": {
+     "bias": 0.0,
+     "depth": 1.0
+    },
+    "1003": {
+     "bias": 0.0,
+     "depth": 1.0
+    },
+    "1004": {
+     "bias": 0.0,
+     "depth": 1.0
+    },
+    "1005": {
+     "bias": 0.0,
+     "depth": 1.0
+    },
+    "1006": {
+     "bias": -1.0,
+     "depth": 1.0
+    }
+   },
+   "conns": {
+    "7": [
+     16,
+     1006,
+     4.0,
+     true
+    ]
+   }
+  },
+  "nn_from": "pc"
+ },
+ "describe": {
+  "P_FLEE_PCT": 29,
+  "P_UNI_FLEE": 44,
+  "P_RECALL_PCT": 54,
+  "P_RECALL_NEAR": 7,
+  "P_BAIL_PCT": 12,
+  "P_GA_AVOID_HP": 36,
+  "P_ENGAGE2": 74,
+  "P_GA_FAV": 83,
+  "P_GA_KILL_X": 5,
+  "P_GA_SPAWN_HEAL": 87,
+  "P_FRONT_OUT": 145,
+  "P_GA_KITE_HP": 84,
+  "P_VOLLEY": 43,
+  "P_CHASE_GEMS": 94,
+  "P_DANGER": 4,
+  "P_DANGER_T": 45,
+  "P_DANGER_R": 5,
+  "P_FRONT": 0,
+  "P_SAFESTEP": 0,
+  "P_NOCHASE": 0,
+  "P_ALLYDUTY": 1,
+  "P_R_AVOIDLOW": 0,
+  "P_NN_ON": 1,
+  "P_SHAREEXP": 72,
+  "P_TRIBUTE_NEAR": 10,
+  "P_CHAIN": 45,
+  "P_TELE": 5,
+  "P_GA_SS_ALLY": 19,
+  "P_GA_SS_HOME": 0,
+  "P_PAIR_STICK": 1,
+  "order": "FLEE>NEARRECALL>FM>KITE>FRONT>AVOID>ENGAGE>AVOIDLOW>WALKHOME>RECALLSHOP",
+  "nn": "0 hidden, 1 links, outputs used: farm"
+ },
+ "vs_start": {
+  "P_GA_AVOID_HP": 36,
+  "P_GA_KITE_HP": 84,
+  "P_CHASE_GEMS": 94,
+  "P_FRONT": 0,
+  "P_SAFESTEP": 0,
+  "P_NOCHASE": 0,
+  "P_ALLYDUTY": 1,
+  "P_R_AVOIDLOW": 0,
+  "P_NN_ON": 1,
+  "P_SHAREEXP": 72,
+  "P_TRIBUTE_NEAR": 10,
+  "P_CHAIN": 45,
+  "P_TELE": 5,
+  "P_GA_SS_ALLY": 19,
+  "P_GA_SS_HOME": 0,
+  "P_PAIR_STICK": 1,
+  "order": "FLEE>NEARRECALL>FM>KITE>FRONT>AVOID>ENGAGE>AVOIDLOW>WALKHOME>RECALLSHOP",
+  "nn": "0 hidden, 1 links, outputs used: farm"
+ },
+ "fitness": {
+  "shrunk": 0.1579,
+  "n": 3,
+  "deltas": [
+   0.22317,
+   0.26061,
+   0.14799
+  ]
+ },
+ "gen": 33,
+ "scope": "micro",
+ "start": "ga65a6",
+ "time": "2026-10-16 15:53:47 UTC",
+ "transport": "shared"
+}

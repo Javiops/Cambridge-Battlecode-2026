@@ -4,14 +4,14 @@
  "scope": "micro,structure,gp",
  "start": "online1520",
  "jobs": 4,
- "gen": 1,
- "games": 1296,
- "gps": 2.89,
+ "gen": 2,
+ "games": 2636,
+ "gps": 4.66,
  "base": "7c2d0330e54e",
  "best": {
   "cid": "8161284fa4",
-  "shrunk": 0.1512,
-  "n": 1,
+  "shrunk": 0.1293,
+  "n": 2,
   "describe": {
    "P_UNI_FLEE": 43,
    "P_DANGER_R": 4,
@@ -28,9 +28,9 @@
   }
  },
  "exported": 0,
- "imported": 2,
- "updated": "2026-10-16 15:45:39 UTC",
- "code": "claude/ga-farm-d37xlq@a6bc6ab",
+ "imported": 4,
+ "updated": "2026-10-16 15:54:35 UTC",
+ "code": "claude/ga-farm-d37xlq@4fa99e8",
  "home": "/mnt/project-files/ga-farm/islands/cloud-a2",
  "transport": "shared"
 }

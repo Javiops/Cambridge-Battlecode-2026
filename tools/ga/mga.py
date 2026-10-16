@@ -10,9 +10,10 @@ usage (from the repo root, after `cambc init --yes`):
   python3 tools/ga/mga.py export --id ID --out bots/NAME
 
 Every ga.py command and option works; only the defaults differ: genome = macro_genome, work dir out/mga,
-base bots/ga65a6 (the bot online as v44), opponents = the base itself (weight 2: farming speed against our own
-online bot is what self-play judges well) plus the caster sparring spar11/spar16 (a macro change that gets us
-killed shows there), training pool = ga.py's plus the generated cousins of the site maps (tools/ga/cousins.py).
+base bots/ga65a6 (the bot online as v44; MGA_BASE overrides, e.g. bots/v44x = the online zip with fuel guard and
+jackpot), opponents = the base itself (weight 3: farming speed against our own online bot is what self-play judges
+well) plus the caster sparring spar16 (weight 1: a macro change that gets us killed shows there; with more weight
+the first run learned to beat the casters while losing to the base on sealed maps), training pool = ga.py's plus the generated cousins of the site maps (tools/ga/cousins.py).
 """
 import json, os, subprocess, sys
 
@@ -24,7 +25,7 @@ import ga
 import genome as fight_genome
 import macro_genome
 
-BASE = 'bots/ga65a6'
+BASE = os.environ.get('MGA_BASE', 'bots/ga65a6')
 # The fight genome of ga65a6 (GA micro genome 65a6d152b6, online as v44 since 16 Oct 10:46).
 GA65A6 = {'P_FLEE_PCT': 29, 'P_UNI_FLEE': 44, 'P_RECALL_PCT': 54, 'P_RECALL_NEAR': 7, 'P_BAIL_PCT': 12,
           'P_AVOID_DIST': 4, 'P_GA_AVOID_HP': 60, 'P_ENGAGE2': 74, 'P_GA_FAV': 83, 'P_GA_KILL_X': 5, 'P_LOWHP': 50,
@@ -74,7 +75,7 @@ def main():
     ga.subprocess = _Subprocess()
     ga.json = _Json()
     ga.G = macro_genome
-    ga.OPPS = f'{BASE},bots/spar11,bots/spar16'
+    ga.OPPS = f'{BASE},bots/spar16'
     ga.TRAIN = ga.TRAIN + [os.path.join(COUSINS, '*.map26a')]
     argv = sys.argv[1:]
     if argv and argv[0] == 'base':
@@ -88,7 +89,7 @@ def main():
             cmd_base()
         argv += ['--base', BASE]
     if cmd == 'run' and '--weights' not in argv and '--opps' not in argv:
-        argv += ['--weights', '2,1,1']
+        argv += ['--weights', '3,1']
     sys.argv = [sys.argv[0]] + argv
     ga.main()
 

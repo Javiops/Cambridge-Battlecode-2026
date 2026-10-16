@@ -63,6 +63,7 @@ GENES = {
     'P_SHOP_PLAN':     (3, 0, 3,        'item plan: 0 own, 1 top teams, 2 tank, 3 top-10 winners'),
     'P_SHOPUNI':       (1, 0, 1,        'casters buy power-f like the #1'),
     'P_NE_POWER_OPEN': (1, 0, 1,        'melee opens with a power emblem'),
+    'P_JACKPOT':       (350, 0, 900,    'hold off a jackpot group (half the map gems, contested) until this round (I042)'),
     # draft
     'P_UNI_PATH':      (45, 0, 120,     'caster draft when the spawn-to-spawn walk is at most this'),
     'P_GA_DRAFT_FARM': (0, 0, 2,        'draft on the other maps: 0 own list, 1 Cassi&Issac + Stellar first, '

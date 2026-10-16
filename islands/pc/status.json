@@ -4,14 +4,14 @@
  "scope": "all",
  "start": "ga65a6",
  "jobs": 16,
- "gen": 40,
- "games": 48432,
- "gps": 15.65,
+ "gen": 41,
+ "games": 50126,
+ "gps": 17.55,
  "base": "7c2d0330e54e",
  "best": {
   "cid": "ceae84d4a3",
-  "shrunk": 0.1477,
-  "n": 2,
+  "shrunk": 0.1201,
+  "n": 3,
   "describe": {
    "P_CHASE_GEMS": 118,
    "P_FRONT": 0,
@@ -33,9 +33,9 @@
    "nn": "0 hidden, 1 links, outputs used: farm"
   }
  },
- "exported": 36,
- "imported": 22,
- "updated": "2026-10-16 13:22:21 UTC",
+ "exported": 37,
+ "imported": 24,
+ "updated": "2026-10-16 13:24:02 UTC",
  "code": "ga-farm-pr@d84d598",
  "home": "C:\\Users\\Javier\\Cambc2026\\repo\\out\\islands\\pc",
  "transport": "git"

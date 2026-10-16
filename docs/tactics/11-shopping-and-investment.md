@@ -17,6 +17,8 @@ How gold becomes useful power for each champion.
 
 **Evidence and status.** These are **planned tactics**. The [shopping research](shopping-research-2026-10-16.md) separates official mechanics, confirmed elite transactions, our source audit and original proposals. An observed strong team's build is a candidate to test, not proof of an optimal order or a causal win-rate improvement. No bot code is changed by this chapter.
 
+**Current source reference (16 October 2026):** The intended tactics below are preserved. Current implementation is checked against [`bots/study27-economy` at `a0c0fa2`](reference-snapshot-2026-10-16.md), which supersedes the older source audit for present-code claims. The screenshot identifies upload v43; its exact source identity is not yet confirmed. Historical research and its limits remain unchanged.
+
 ## 1. Purchase timing
 
 Decide when spending accumulated gold improves performance enough to justify the interruption.
@@ -37,7 +39,7 @@ Separate **buying at an available shop** from **leaving a useful task to reach o
 
 An elective trip uses **incremental cost**: required recall/spawn time plus travel to the next useful action and missed team opportunities, minus recovery/repositioning time already needed anyway. A purchase during a necessary heal can be cheap incrementally; a healthy remote farmer returning to the same region can pay heavily. Use walkable routes and actual movement abilities.
 
-**Current behavior:** The audited cleaned study27 combat derivative at [`e72cec8`](https://github.com/Javiops/Cambridge-Battlecode-2026/commit/e72cec84391cf0623d15c2eb3f2f864e2b0bddea) uses fixed build overrides and healthy-shopping gates including 180 gold and 40-round spacing. It does not estimate a mission-specific upgrade/trip payoff. The [source audit](shopping-research-2026-10-16.md#our-existing-bot) describes the active branches; these planned rules require implementation.
+**Current behavior:** The [pinned reference](https://github.com/Javiops/Cambridge-Battlecode-2026/blob/a0c0fa2f222557483d665a9f7fce6f64a30b94ba/bots/study27-economy/src/main.cpp#L997-L1074) still uses fixed champion build overrides and ordinary shopping-trip gates including 180 gold and more than 40 world rounds since the last shopping recall. It now prices the **extra capture-and-recall opportunity** by return walking distance `d`: heal threshold `clamp(0.90 - 0.006*d, 0.65, 0.90)` of max HP, or non-Tavi gold threshold `90 + 3*min(d,50)` with shop-spacing/failure gates (which do not themselves prove a legal useful purchase). An unavailable return path rejects that extra opportunity; Tavi's gold alone does not justify it. This [bounded heuristic](https://github.com/Javiops/Cambridge-Battlecode-2026/blob/a0c0fa2f222557483d665a9f7fce6f64a30b94ba/bots/study27-economy/src/main.cpp#L2686-L2737) does not replace ordinary recovery/recall branches or evaluate a mission-specific equipment payoff. The fuller policy above remains Planned. See [10.1](10-recall-and-recovery.md#1-recall-timing) for recall priority and the [historical audit](shopping-research-2026-10-16.md#our-existing-bot).
 
 **Related decisions:** [Recall](10-recall-and-recovery.md), [Farming and capture](08-farming-and-capture.md), [Gems and objectives](09-gems-and-objectives.md).
 
@@ -149,7 +151,7 @@ Reserve or spend 10 gold only for a named plausible use before the next resupply
 - Do not automatically buy both on every visit. A 10-gold purchase can delay a 30-gold shard or a fifth-shard passive; account for that timing.
 - Tavi can buy equipment remotely, **not consumables**. Dead/on-spawn opportunities may replenish a justified consumable. Ordinary wards are free and do not need a shop budget; legacy consumable slots are not valid substitutes.
 
-**Current behavior:** There is no general strategic gold reserve. The enabled helper buys a missing lock for a living, non-channeling body on own spawn with 10–29 gold, purchase permission, no consumable restriction and sufficient fuel. It buys before checking for a useful nearby altar and makes no shopping detour. This convenience rule is different from the use-based budget above. [Current plans and limits](shopping-research-2026-10-16.md#our-existing-bot).
+**Current behavior:** In the [pinned reference](https://github.com/Javiops/Cambridge-Battlecode-2026/blob/a0c0fa2f222557483d665a9f7fce6f64a30b94ba/bots/study27-economy/src/utility.h#L83-L104) there is no general strategic gold reserve. The enabled helper buys a missing lock for a living, non-channeling body on own spawn with 10–29 gold, purchase permission, no consumable restriction and sufficient fuel. It buys before checking for a useful nearby altar and makes no shopping detour. This convenience rule is different from the use-based budget above. [Current plans and limits](shopping-research-2026-10-16.md#our-existing-bot).
 
 ## 7. Adaptive builds
 
@@ -190,7 +192,7 @@ Handle Tavi's field purchases and selling, spawn purchase healing, and each cham
 - Home is an inventory-dependent timing exception. Use the actual capture phase and remaining recall timer before relying on capture-and-recall overlap. A teammate handoff must be real, not assumed.
 - Bound catalogue queries and purchases, reserve fuel for the mission action, and handle failures once. Repeated invalid batches, direct emblem purchases and unavailable legacy consumables must not create loops.
 
-**Current behavior and validation:** The [audited source and research](shopping-research-2026-10-16.md#our-existing-bot) describe its enabled fixed plans, disabled alternatives, 12-iteration purchase bound and missing mission telemetry. Planned validation records gold/inventory before and after, reason/threshold, alternatives, reserve purpose, successful use, recall absence and missed bank/capture opportunities. Keep status **Planned** until code and evidence match these decisions.
+**Current behavior and validation:** The [pinned source](https://github.com/Javiops/Cambridge-Battlecode-2026/blob/a0c0fa2f222557483d665a9f7fce6f64a30b94ba/bots/study27-economy/src/main.cpp#L1297-L1338) retains fixed plans, a 12-iteration purchase bound and failure/fuel exits. The newer capture-recall counters describe opportunity/skip/start counts, not mission payoff or actual consumable usefulness. The [historical research](shopping-research-2026-10-16.md#our-existing-bot) remains the evidence for its older audit and mechanics probes. Planned validation records gold/inventory before and after, reason/threshold, alternatives, reserve purpose, successful use, recall absence and missed bank/capture opportunities. Keep status **Planned** until code and evidence match these decisions.
 
 ---
 

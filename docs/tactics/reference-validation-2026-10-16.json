@@ -1,0 +1,112 @@
+{
+  "chapters": 12,
+  "topics": 96,
+  "statuses": {
+    "Planned": 77,
+    "Implemented": 19
+  },
+  "chapter_coverage": [
+    {
+      "file": "01-overall-strategy.md",
+      "topics": 8,
+      "statuses": {
+        "Planned": 6,
+        "Implemented": 2
+      }
+    },
+    {
+      "file": "02-map-understanding.md",
+      "topics": 8,
+      "statuses": {
+        "Planned": 5,
+        "Implemented": 3
+      }
+    },
+    {
+      "file": "03-champion-selection.md",
+      "topics": 8,
+      "statuses": {
+        "Implemented": 3,
+        "Planned": 5
+      }
+    },
+    {
+      "file": "04-vision-and-information.md",
+      "topics": 8,
+      "statuses": {
+        "Planned": 8
+      }
+    },
+    {
+      "file": "05-pathfinding-and-movement.md",
+      "topics": 8,
+      "statuses": {
+        "Implemented": 3,
+        "Planned": 5
+      }
+    },
+    {
+      "file": "06-team-coordination.md",
+      "topics": 8,
+      "statuses": {
+        "Planned": 8
+      }
+    },
+    {
+      "file": "07-combat-and-survival.md",
+      "topics": 8,
+      "statuses": {
+        "Planned": 6,
+        "Implemented": 2
+      }
+    },
+    {
+      "file": "08-farming-and-capture.md",
+      "topics": 8,
+      "statuses": {
+        "Implemented": 3,
+        "Planned": 5
+      }
+    },
+    {
+      "file": "09-gems-and-objectives.md",
+      "topics": 8,
+      "statuses": {
+        "Implemented": 1,
+        "Planned": 7
+      }
+    },
+    {
+      "file": "10-recall-and-recovery.md",
+      "topics": 8,
+      "statuses": {
+        "Planned": 8
+      }
+    },
+    {
+      "file": "11-shopping-and-investment.md",
+      "topics": 8,
+      "statuses": {
+        "Planned": 8
+      }
+    },
+    {
+      "file": "12-execution-and-validation.md",
+      "topics": 8,
+      "statuses": {
+        "Implemented": 2,
+        "Planned": 6
+      }
+    }
+  ],
+  "relative_links_checked": 288,
+  "pinned_source_refs_checked": 238,
+  "protected_policy_chapters_unchanged": [
+    "04-vision-and-information.md",
+    "06-team-coordination.md",
+    "11-shopping-and-investment.md"
+  ],
+  "source_manifest_files_checked": 6,
+  "scope": "Documentation checks and static source audit; no build, simulations or competitive results.",
+  "errors": []
+}

@@ -1,0 +1,723 @@
+{
+  "scope": "Read-only early rendezvous activation audit; joins accepted markers to native moves.\n\nThis does not infer a squad from co-damage or treat a wait marker as movement.\nThe existing separately validated clear/capture/bank evidence remains unchanged.\n",
+  "runner_sha256": "09b171e47cda298d5bf13e3790546395aaed1c2e1070f352da6aa43e62ba87d8",
+  "games": [
+    {
+      "id": "a20m3-three-pick-hole-bend-side0",
+      "module": "78f3d89e9fbf7ea4167ad91bd36af8c49eb3fa353a3fa58f71729e04790776bc",
+      "map_sha256": "46114501daf8373fac8cb8ea8163d910726be9aed791ab5522a9f158def3cb14",
+      "actual_early_moves": 1,
+      "unmatched_accepted_markers": [],
+      "early_waits": 1,
+      "first_actual_moves": [
+        {
+          "production": {
+            "round": 94,
+            "owner": 0,
+            "phase": "assemble",
+            "kind": 1,
+            "outcome": 2,
+            "error": 0,
+            "reason": "assembly-early-funded-rendezvous-move",
+            "context": {
+              "round": 94,
+              "owner": 0,
+              "serial": 103,
+              "group_index": 0,
+              "target": -1,
+              "x": 12,
+              "y": 12,
+              "gems": 0,
+              "gold": 0,
+              "fuel": 31044
+            }
+          },
+          "native_move": {
+            "r": 94,
+            "seq": 6982,
+            "input": 876,
+            "kind": 4,
+            "actor": 0,
+            "team": 0,
+            "type": 3,
+            "slot": 4294967295,
+            "abilityType": 0,
+            "from": [
+              12,
+              11
+            ],
+            "to": [
+              12,
+              12
+            ],
+            "before": [
+              0,
+              12,
+              11,
+              700,
+              700,
+              1,
+              0,
+              0,
+              0
+            ],
+            "after": [
+              0,
+              12,
+              12,
+              700,
+              700,
+              1,
+              0,
+              0,
+              0
+            ],
+            "near": [
+              3,
+              0,
+              4,
+              0,
+              4,
+              0
+            ],
+            "losses": []
+          }
+        }
+      ],
+      "first_waits": [
+        {
+          "round": 164,
+          "owner": 0,
+          "group_index": 0,
+          "reason": "assembly-early-funded-rendezvous-wait"
+        }
+      ],
+      "later_coclear_associations": [],
+      "strict_clear_capture_bank": true
+    },
+    {
+      "id": "a20m3-three-pick-hole-bend-side1",
+      "module": "78f3d89e9fbf7ea4167ad91bd36af8c49eb3fa353a3fa58f71729e04790776bc",
+      "map_sha256": "46114501daf8373fac8cb8ea8163d910726be9aed791ab5522a9f158def3cb14",
+      "actual_early_moves": 13,
+      "unmatched_accepted_markers": [],
+      "early_waits": 0,
+      "first_actual_moves": [
+        {
+          "production": {
+            "round": 94,
+            "owner": 6,
+            "phase": "assemble",
+            "kind": 1,
+            "outcome": 2,
+            "error": 0,
+            "reason": "assembly-early-funded-rendezvous-move",
+            "context": {
+              "round": 94,
+              "owner": 6,
+              "serial": 101,
+              "group_index": 1,
+              "target": -1,
+              "x": 26,
+              "y": 11,
+              "gems": 0,
+              "gold": 0,
+              "fuel": 37776
+            }
+          },
+          "native_move": {
+            "r": 94,
+            "seq": 7030,
+            "input": 883,
+            "kind": 4,
+            "actor": 6,
+            "team": 1,
+            "type": 5,
+            "slot": 4294967295,
+            "abilityType": 0,
+            "from": [
+              25,
+              10
+            ],
+            "to": [
+              26,
+              11
+            ],
+            "before": [
+              6,
+              25,
+              10,
+              750,
+              750,
+              1,
+              0,
+              0,
+              0
+            ],
+            "after": [
+              6,
+              26,
+              11,
+              750,
+              750,
+              1,
+              0,
+              0,
+              0
+            ],
+            "near": [
+              1,
+              0,
+              1,
+              0,
+              1,
+              0
+            ],
+            "losses": []
+          }
+        },
+        {
+          "production": {
+            "round": 197,
+            "owner": 6,
+            "phase": "assemble",
+            "kind": 1,
+            "outcome": 2,
+            "error": 0,
+            "reason": "assembly-early-funded-rendezvous-move",
+            "context": {
+              "round": 197,
+              "owner": 6,
+              "serial": 247,
+              "group_index": 1,
+              "target": -1,
+              "x": 28,
+              "y": 13,
+              "gems": 0,
+              "gold": 0,
+              "fuel": 43158
+            }
+          },
+          "native_move": {
+            "r": 197,
+            "seq": 14551,
+            "input": 1692,
+            "kind": 4,
+            "actor": 6,
+            "team": 1,
+            "type": 5,
+            "slot": 4294967295,
+            "abilityType": 0,
+            "from": [
+              27,
+              13
+            ],
+            "to": [
+              28,
+              13
+            ],
+            "before": [
+              6,
+              27,
+              13,
+              750,
+              750,
+              1,
+              0,
+              0,
+              0
+            ],
+            "after": [
+              6,
+              28,
+              13,
+              750,
+              750,
+              1,
+              0,
+              0,
+              0
+            ],
+            "near": [
+              1,
+              0,
+              1,
+              0,
+              1,
+              0
+            ],
+            "losses": []
+          }
+        },
+        {
+          "production": {
+            "round": 293,
+            "owner": 6,
+            "phase": "assemble",
+            "kind": 1,
+            "outcome": 2,
+            "error": 0,
+            "reason": "assembly-early-funded-rendezvous-move",
+            "context": {
+              "round": 293,
+              "owner": 6,
+              "serial": 381,
+              "group_index": 1,
+              "target": -1,
+              "x": 28,
+              "y": 13,
+              "gems": 0,
+              "gold": 0,
+              "fuel": 43459
+            }
+          },
+          "native_move": {
+            "r": 293,
+            "seq": 21561,
+            "input": 2438,
+            "kind": 4,
+            "actor": 6,
+            "team": 1,
+            "type": 5,
+            "slot": 4294967295,
+            "abilityType": 0,
+            "from": [
+              27,
+              13
+            ],
+            "to": [
+              28,
+              13
+            ],
+            "before": [
+              6,
+              27,
+              13,
+              750,
+              750,
+              1,
+              0,
+              0,
+              0
+            ],
+            "after": [
+              6,
+              28,
+              13,
+              750,
+              750,
+              1,
+              0,
+              0,
+              0
+            ],
+            "near": [
+              1,
+              0,
+              1,
+              0,
+              1,
+              0
+            ],
+            "losses": []
+          }
+        },
+        {
+          "production": {
+            "round": 389,
+            "owner": 6,
+            "phase": "assemble",
+            "kind": 1,
+            "outcome": 2,
+            "error": 0,
+            "reason": "assembly-early-funded-rendezvous-move",
+            "context": {
+              "round": 389,
+              "owner": 6,
+              "serial": 515,
+              "group_index": 1,
+              "target": -1,
+              "x": 28,
+              "y": 13,
+              "gems": 0,
+              "gold": 0,
+              "fuel": 43352
+            }
+          },
+          "native_move": {
+            "r": 389,
+            "seq": 28560,
+            "input": 3173,
+            "kind": 4,
+            "actor": 6,
+            "team": 1,
+            "type": 5,
+            "slot": 4294967295,
+            "abilityType": 0,
+            "from": [
+              27,
+              13
+            ],
+            "to": [
+              28,
+              13
+            ],
+            "before": [
+              6,
+              27,
+              13,
+              750,
+              750,
+              1,
+              0,
+              0,
+              0
+            ],
+            "after": [
+              6,
+              28,
+              13,
+              750,
+              750,
+              1,
+              0,
+              0,
+              0
+            ],
+            "near": [
+              1,
+              0,
+              1,
+              0,
+              1,
+              0
+            ],
+            "losses": []
+          }
+        },
+        {
+          "production": {
+            "round": 485,
+            "owner": 6,
+            "phase": "assemble",
+            "kind": 1,
+            "outcome": 2,
+            "error": 0,
+            "reason": "assembly-early-funded-rendezvous-move",
+            "context": {
+              "round": 485,
+              "owner": 6,
+              "serial": 649,
+              "group_index": 1,
+              "target": -1,
+              "x": 28,
+              "y": 13,
+              "gems": 0,
+              "gold": 0,
+              "fuel": 43295
+            }
+          },
+          "native_move": {
+            "r": 485,
+            "seq": 35559,
+            "input": 3908,
+            "kind": 4,
+            "actor": 6,
+            "team": 1,
+            "type": 5,
+            "slot": 4294967295,
+            "abilityType": 0,
+            "from": [
+              27,
+              13
+            ],
+            "to": [
+              28,
+              13
+            ],
+            "before": [
+              6,
+              27,
+              13,
+              750,
+              750,
+              1,
+              0,
+              0,
+              0
+            ],
+            "after": [
+              6,
+              28,
+              13,
+              750,
+              750,
+              1,
+              0,
+              0,
+              0
+            ],
+            "near": [
+              1,
+              0,
+              1,
+              0,
+              1,
+              0
+            ],
+            "losses": []
+          }
+        },
+        {
+          "production": {
+            "round": 581,
+            "owner": 6,
+            "phase": "assemble",
+            "kind": 1,
+            "outcome": 2,
+            "error": 0,
+            "reason": "assembly-early-funded-rendezvous-move",
+            "context": {
+              "round": 581,
+              "owner": 6,
+              "serial": 783,
+              "group_index": 1,
+              "target": -1,
+              "x": 28,
+              "y": 13,
+              "gems": 0,
+              "gold": 0,
+              "fuel": 43237
+            }
+          },
+          "native_move": {
+            "r": 581,
+            "seq": 42558,
+            "input": 4643,
+            "kind": 4,
+            "actor": 6,
+            "team": 1,
+            "type": 5,
+            "slot": 4294967295,
+            "abilityType": 0,
+            "from": [
+              27,
+              13
+            ],
+            "to": [
+              28,
+              13
+            ],
+            "before": [
+              6,
+              27,
+              13,
+              750,
+              750,
+              1,
+              0,
+              0,
+              0
+            ],
+            "after": [
+              6,
+              28,
+              13,
+              750,
+              750,
+              1,
+              0,
+              0,
+              0
+            ],
+            "near": [
+              1,
+              0,
+              1,
+              0,
+              1,
+              0
+            ],
+            "losses": []
+          }
+        },
+        {
+          "production": {
+            "round": 677,
+            "owner": 6,
+            "phase": "assemble",
+            "kind": 1,
+            "outcome": 2,
+            "error": 0,
+            "reason": "assembly-early-funded-rendezvous-move",
+            "context": {
+              "round": 677,
+              "owner": 6,
+              "serial": 917,
+              "group_index": 1,
+              "target": -1,
+              "x": 28,
+              "y": 13,
+              "gems": 0,
+              "gold": 0,
+              "fuel": 43180
+            }
+          },
+          "native_move": {
+            "r": 677,
+            "seq": 49557,
+            "input": 5378,
+            "kind": 4,
+            "actor": 6,
+            "team": 1,
+            "type": 5,
+            "slot": 4294967295,
+            "abilityType": 0,
+            "from": [
+              27,
+              13
+            ],
+            "to": [
+              28,
+              13
+            ],
+            "before": [
+              6,
+              27,
+              13,
+              750,
+              750,
+              1,
+              0,
+              0,
+              0
+            ],
+            "after": [
+              6,
+              28,
+              13,
+              750,
+              750,
+              1,
+              0,
+              0,
+              0
+            ],
+            "near": [
+              1,
+              0,
+              1,
+              0,
+              1,
+              0
+            ],
+            "losses": []
+          }
+        },
+        {
+          "production": {
+            "round": 773,
+            "owner": 6,
+            "phase": "assemble",
+            "kind": 1,
+            "outcome": 2,
+            "error": 0,
+            "reason": "assembly-early-funded-rendezvous-move",
+            "context": {
+              "round": 773,
+              "owner": 6,
+              "serial": 1051,
+              "group_index": 1,
+              "target": -1,
+              "x": 28,
+              "y": 13,
+              "gems": 0,
+              "gold": 0,
+              "fuel": 43136
+            }
+          },
+          "native_move": {
+            "r": 773,
+            "seq": 56556,
+            "input": 6113,
+            "kind": 4,
+            "actor": 6,
+            "team": 1,
+            "type": 5,
+            "slot": 4294967295,
+            "abilityType": 0,
+            "from": [
+              27,
+              13
+            ],
+            "to": [
+              28,
+              13
+            ],
+            "before": [
+              6,
+              27,
+              13,
+              750,
+              750,
+              1,
+              0,
+              0,
+              0
+            ],
+            "after": [
+              6,
+              28,
+              13,
+              750,
+              750,
+              1,
+              0,
+              0,
+              0
+            ],
+            "near": [
+              1,
+              0,
+              1,
+              0,
+              1,
+              0
+            ],
+            "losses": []
+          }
+        }
+      ],
+      "first_waits": [],
+      "later_coclear_associations": [],
+      "strict_clear_capture_bank": true
+    },
+    {
+      "id": "a20m5-five-pick-elk-courtyard-spawn4-side0",
+      "module": "78f3d89e9fbf7ea4167ad91bd36af8c49eb3fa353a3fa58f71729e04790776bc",
+      "map_sha256": "ba2ba5e2797d5bdc97e8c1e58bbcb54e4de5b13fb9d96cef2cdad9cb1244b20e",
+      "actual_early_moves": 0,
+      "unmatched_accepted_markers": [],
+      "early_waits": 0,
+      "first_actual_moves": [],
+      "first_waits": [],
+      "later_coclear_associations": [],
+      "strict_clear_capture_bank": true
+    },
+    {
+      "id": "a20m5-five-pick-elk-courtyard-spawn4-side1",
+      "module": "78f3d89e9fbf7ea4167ad91bd36af8c49eb3fa353a3fa58f71729e04790776bc",
+      "map_sha256": "ba2ba5e2797d5bdc97e8c1e58bbcb54e4de5b13fb9d96cef2cdad9cb1244b20e",
+      "actual_early_moves": 0,
+      "unmatched_accepted_markers": [],
+      "early_waits": 0,
+      "first_actual_moves": [],
+      "first_waits": [],
+      "later_coclear_associations": [],
+      "strict_clear_capture_bank": false
+    }
+  ],
+  "total_actual_early_moves": 14,
+  "total_early_waits": 1,
+  "all_accepted_moves_native_verified": true
+}

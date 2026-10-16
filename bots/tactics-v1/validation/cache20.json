@@ -1,0 +1,285 @@
+{
+  "bots": {
+    "before": {
+      "path": "C:\\Users\\frans\\Documents\\Codex\\2026-10-14\\v\\work\\tactics-bot-v1\\testing\\improvement-v2\\rank20\\before",
+      "build": {
+        "created_utc": "2026-10-16T22:24:42.933566+00:00",
+        "runtime": {
+          "cli_sha256": "a4262675695e4716ec5355712d21d2ec71e78cc8371dca28990bf1de84480da3",
+          "sdk_header_sha256": "76664dc7c4ab764243a7530eb97be12d9c20518b7bd2601a962fb0669d1da4a4",
+          "official_reference_engine_sha256": "e123b59d9dea198762ab7a04db9b3cb6d06dfa991088e41c24750fc4cb88b947",
+          "project_config_sha256": "afaadf58883877c0bb8879694126f7d918366cacc9f66e75d086d4f7386f872a",
+          "sdk_version": "2.2.2",
+          "engine_version": "0.0.2",
+          "release": true,
+          "fuel": "official CLI default; no override",
+          "scope": "local matches only"
+        },
+        "bot": "C:\\Users\\frans\\Documents\\Codex\\2026-10-14\\v\\work\\tactics-bot-v1\\testing\\improvement-v2\\rank20\\before",
+        "source_sha256": {
+          "actions.h": "f62e94acec71929553e0f76429fea462b67a79fda06f2f8c319a15fe94646d61",
+          "assembly.h": "30c40911b371c65cb612c0fd5c2197f24a2570113929e20a63fc92abd2ee4b1c",
+          "camp_actions.h": "0fd8f78951d8a3f6e6c2f4d77344aa283d9374b9fcace149d39c1a9b1a936696",
+          "camp_basic.h": "7eba57ca81b56f493f937e75fbc3927425eea53a920da677cf4b31419d5ac397",
+          "camp_collateral.h": "69b29ad70768f3bad399f3f3a1fb576deb076e89b74d5c33670e52afefae17d2",
+          "combat.h": "6105139b6db7c023c75fa5582da9e754656f95f86c37f0daa368900e2ef8b592",
+          "coordination.h": "5deb200f4ce384154a16c83358cbf83775180b61b95a280c8164464c509b7e1f",
+          "coordinator.h": "8548311f31da57a61e451024b22eb5de535a6d22834b9cc9a004616f39895ef9",
+          "crew_sequence.h": "b51c519d632a0aed96bfbee5b73f756f2666fbdfbe375cb09025f07d179ff5c0",
+          "cycles.h": "957d9754a3233cb3920f0f7c95d030b4f0e41309d2ac2d9298ab85815273f661",
+          "deny.h": "34766bcdc919400e2bcb821541a6aa6d560d88df1ab855b674d5c0d56e467872",
+          "draft.h": "4aacfd6fe0c9d8867f551ad54c2394cfbf1a984ce2c1d6cdd339582165f8346a",
+          "economy.h": "4f986169ce5f0dfee59646519e4658d9e77e12ce8cec4e51d49f7a9b109874d6",
+          "farm_readiness.h": "440153f3982e535832654f90ba9099cd7053bb8e5365b3f698952acf27c61c99",
+          "geometry.h": "1e247a48f232b300e9cfbd8944368d50e6b644fdd1793ed57418da0213e354f2",
+          "information.h": "ae1a681040a444c1bd3470a6fa7c06b725c1318429dbcfd7cefb8554f38483d2",
+          "log.h": "bd93aec4806ef14eba825578c53ed15f37798467ba3ad8db36cef859f3995fbe",
+          "main.cpp": "0bcd654392643a560cb05a8f5e1ebfd1d4171f4ee50b0b020f9169c598e87d19",
+          "ranking.h": "201400083dec5db6fc5ee298ceb6d8ba17a989b361b40677d50fe9dc3c70c5a5",
+          "resource.h": "aecc6dbd349f520d7b4167c68cd1abf5217a33698696678277d614f7da232c3e",
+          "sdk_world.h": "d98a87de11a72d4814f29c6e48e651b6b3d276b618ced2339d88da583961ee41",
+          "shopping.h": "cdbe7ebaf5d34f820eea2ed5544aca6edb9f0578857e2185b37933c987968a79",
+          "solo.h": "09ac7d34421e4bb2186a12f7ed9384401947d889cb56fdaa663a35eb582e3ef4",
+          "solo_bounds.h": "37848f2d951b318f00bd6a197edd89b827080edd0900e34b99f3111d4280fc77",
+          "squads.h": "f2075e3b0c5b5a977b04b00e6f24c6a1b5952d8b0da707ee8e8a715f2e96faa2",
+          "strategic.h": "c2f67e403ce8d591e99e016aaf156b69dfca92070cdf84502411633b86e1fb01",
+          "types.h": "5fb56558e4d558876b94a4199914bb05b1f07752e8989f816878128e2169f51a",
+          "vision.h": "6cea9e058fe56bbc7b5ac85ff316270760e7f2be7ad84888a7dab55eb3012abf"
+        },
+        "wasm": "C:\\Users\\frans\\Documents\\Codex\\2026-10-14\\v\\work\\tactics-bot-v1\\testing\\improvement-v2\\rank20\\before\\.cambc\\build-release\\bot-injected.wasm",
+        "wasm_sha256": "1bff98a0db0058bbd7d288631cc3cf35cef8f02e235878c7e70e0a1c518e48ba",
+        "commands": [
+          {
+            "command": [
+              "C:\\Users\\frans\\Documents\\Codex\\2026-10-14\\v\\work\\combat-research\\acquisition\\cli-2.2.2\\cambc-2.2.2.data\\scripts\\cambc.exe",
+              "build",
+              "C:\\Users\\frans\\Documents\\Codex\\2026-10-14\\v\\work\\tactics-bot-v1\\testing\\improvement-v2\\rank20\\before"
+            ],
+            "returncode": 0,
+            "seconds": 29.764999999984866,
+            "log": "logs\\build-before-normal.log",
+            "log_sha256": "3d4615651146c1eb822d4852f02352ccd94d52c3281f57bd1e57e2a4dd06540c"
+          },
+          {
+            "command": [
+              "C:\\Users\\frans\\Documents\\Codex\\2026-10-14\\v\\work\\combat-research\\acquisition\\cli-2.2.2\\cambc-2.2.2.data\\scripts\\cambc.exe",
+              "build",
+              "C:\\Users\\frans\\Documents\\Codex\\2026-10-14\\v\\work\\tactics-bot-v1\\testing\\improvement-v2\\rank20\\before",
+              "--release"
+            ],
+            "returncode": 0,
+            "seconds": 23.375,
+            "log": "logs\\build-before-release.log",
+            "log_sha256": "00bd0d16e5310967c3906e464da9f131c4d671f2f1f0c2cb32caa21f47269e0c"
+          }
+        ],
+        "release_first_build_workaround": "Normal compile database generated first; only release bytes used for matches",
+        "frozen_build": "frozen-builds\\1bff98a0db0058bbd7d288631cc3cf35cef8f02e235878c7e70e0a1c518e48ba"
+      },
+      "source_sha256": {
+        "actions.h": "f62e94acec71929553e0f76429fea462b67a79fda06f2f8c319a15fe94646d61",
+        "assembly.h": "30c40911b371c65cb612c0fd5c2197f24a2570113929e20a63fc92abd2ee4b1c",
+        "camp_actions.h": "0fd8f78951d8a3f6e6c2f4d77344aa283d9374b9fcace149d39c1a9b1a936696",
+        "camp_basic.h": "7eba57ca81b56f493f937e75fbc3927425eea53a920da677cf4b31419d5ac397",
+        "camp_collateral.h": "69b29ad70768f3bad399f3f3a1fb576deb076e89b74d5c33670e52afefae17d2",
+        "combat.h": "6105139b6db7c023c75fa5582da9e754656f95f86c37f0daa368900e2ef8b592",
+        "coordination.h": "5deb200f4ce384154a16c83358cbf83775180b61b95a280c8164464c509b7e1f",
+        "coordinator.h": "8548311f31da57a61e451024b22eb5de535a6d22834b9cc9a004616f39895ef9",
+        "crew_sequence.h": "b51c519d632a0aed96bfbee5b73f756f2666fbdfbe375cb09025f07d179ff5c0",
+        "cycles.h": "957d9754a3233cb3920f0f7c95d030b4f0e41309d2ac2d9298ab85815273f661",
+        "deny.h": "34766bcdc919400e2bcb821541a6aa6d560d88df1ab855b674d5c0d56e467872",
+        "draft.h": "4aacfd6fe0c9d8867f551ad54c2394cfbf1a984ce2c1d6cdd339582165f8346a",
+        "economy.h": "4f986169ce5f0dfee59646519e4658d9e77e12ce8cec4e51d49f7a9b109874d6",
+        "farm_readiness.h": "440153f3982e535832654f90ba9099cd7053bb8e5365b3f698952acf27c61c99",
+        "geometry.h": "1e247a48f232b300e9cfbd8944368d50e6b644fdd1793ed57418da0213e354f2",
+        "information.h": "ae1a681040a444c1bd3470a6fa7c06b725c1318429dbcfd7cefb8554f38483d2",
+        "log.h": "bd93aec4806ef14eba825578c53ed15f37798467ba3ad8db36cef859f3995fbe",
+        "ranking.h": "201400083dec5db6fc5ee298ceb6d8ba17a989b361b40677d50fe9dc3c70c5a5",
+        "resource.h": "aecc6dbd349f520d7b4167c68cd1abf5217a33698696678277d614f7da232c3e",
+        "sdk_world.h": "d98a87de11a72d4814f29c6e48e651b6b3d276b618ced2339d88da583961ee41",
+        "shopping.h": "cdbe7ebaf5d34f820eea2ed5544aca6edb9f0578857e2185b37933c987968a79",
+        "solo.h": "09ac7d34421e4bb2186a12f7ed9384401947d889cb56fdaa663a35eb582e3ef4",
+        "solo_bounds.h": "37848f2d951b318f00bd6a197edd89b827080edd0900e34b99f3111d4280fc77",
+        "squads.h": "f2075e3b0c5b5a977b04b00e6f24c6a1b5952d8b0da707ee8e8a715f2e96faa2",
+        "strategic.h": "c2f67e403ce8d591e99e016aaf156b69dfca92070cdf84502411633b86e1fb01",
+        "types.h": "5fb56558e4d558876b94a4199914bb05b1f07752e8989f816878128e2169f51a",
+        "vision.h": "6cea9e058fe56bbc7b5ac85ff316270760e7f2be7ad84888a7dab55eb3012abf"
+      }
+    },
+    "after": {
+      "path": "C:\\Users\\frans\\Documents\\Codex\\2026-10-14\\v\\work\\tactics-bot-v1\\testing\\improvement-v2\\rank20\\after",
+      "build": {
+        "created_utc": "2026-10-16T22:25:22.022880+00:00",
+        "runtime": {
+          "cli_sha256": "a4262675695e4716ec5355712d21d2ec71e78cc8371dca28990bf1de84480da3",
+          "sdk_header_sha256": "76664dc7c4ab764243a7530eb97be12d9c20518b7bd2601a962fb0669d1da4a4",
+          "official_reference_engine_sha256": "e123b59d9dea198762ab7a04db9b3cb6d06dfa991088e41c24750fc4cb88b947",
+          "project_config_sha256": "afaadf58883877c0bb8879694126f7d918366cacc9f66e75d086d4f7386f872a",
+          "sdk_version": "2.2.2",
+          "engine_version": "0.0.2",
+          "release": true,
+          "fuel": "official CLI default; no override",
+          "scope": "local matches only"
+        },
+        "bot": "C:\\Users\\frans\\Documents\\Codex\\2026-10-14\\v\\work\\tactics-bot-v1\\testing\\improvement-v2\\rank20\\after",
+        "source_sha256": {
+          "actions.h": "f62e94acec71929553e0f76429fea462b67a79fda06f2f8c319a15fe94646d61",
+          "assembly.h": "30c40911b371c65cb612c0fd5c2197f24a2570113929e20a63fc92abd2ee4b1c",
+          "camp_actions.h": "0fd8f78951d8a3f6e6c2f4d77344aa283d9374b9fcace149d39c1a9b1a936696",
+          "camp_basic.h": "7eba57ca81b56f493f937e75fbc3927425eea53a920da677cf4b31419d5ac397",
+          "camp_collateral.h": "69b29ad70768f3bad399f3f3a1fb576deb076e89b74d5c33670e52afefae17d2",
+          "combat.h": "6105139b6db7c023c75fa5582da9e754656f95f86c37f0daa368900e2ef8b592",
+          "coordination.h": "5deb200f4ce384154a16c83358cbf83775180b61b95a280c8164464c509b7e1f",
+          "coordinator.h": "8548311f31da57a61e451024b22eb5de535a6d22834b9cc9a004616f39895ef9",
+          "crew_sequence.h": "b51c519d632a0aed96bfbee5b73f756f2666fbdfbe375cb09025f07d179ff5c0",
+          "cycles.h": "957d9754a3233cb3920f0f7c95d030b4f0e41309d2ac2d9298ab85815273f661",
+          "deny.h": "34766bcdc919400e2bcb821541a6aa6d560d88df1ab855b674d5c0d56e467872",
+          "draft.h": "4aacfd6fe0c9d8867f551ad54c2394cfbf1a984ce2c1d6cdd339582165f8346a",
+          "economy.h": "a423c751ba111bb31adc83293bcd8e612207215926ca63309221911784ff2a33",
+          "farm_readiness.h": "440153f3982e535832654f90ba9099cd7053bb8e5365b3f698952acf27c61c99",
+          "geometry.h": "1e247a48f232b300e9cfbd8944368d50e6b644fdd1793ed57418da0213e354f2",
+          "information.h": "ae1a681040a444c1bd3470a6fa7c06b725c1318429dbcfd7cefb8554f38483d2",
+          "log.h": "bd93aec4806ef14eba825578c53ed15f37798467ba3ad8db36cef859f3995fbe",
+          "main.cpp": "2de7a7bb7b8e53f29791ab6dbb7a5527fba66c65948f01fa9abaab7af6615956",
+          "ranking.h": "201400083dec5db6fc5ee298ceb6d8ba17a989b361b40677d50fe9dc3c70c5a5",
+          "resource.h": "e31de4cb4db5011b507df3f7932fc27a4b583f1c94c9b4850c88032c1c1ba59b",
+          "sdk_world.h": "d104f1f7523edd5375d8ed1d69d18293ef12971e699d752392ba14f03efa1278",
+          "shopping.h": "cdbe7ebaf5d34f820eea2ed5544aca6edb9f0578857e2185b37933c987968a79",
+          "solo.h": "09ac7d34421e4bb2186a12f7ed9384401947d889cb56fdaa663a35eb582e3ef4",
+          "solo_bounds.h": "37848f2d951b318f00bd6a197edd89b827080edd0900e34b99f3111d4280fc77",
+          "squads.h": "f2075e3b0c5b5a977b04b00e6f24c6a1b5952d8b0da707ee8e8a715f2e96faa2",
+          "strategic.h": "c2f67e403ce8d591e99e016aaf156b69dfca92070cdf84502411633b86e1fb01",
+          "types.h": "5fb56558e4d558876b94a4199914bb05b1f07752e8989f816878128e2169f51a",
+          "vision.h": "6cea9e058fe56bbc7b5ac85ff316270760e7f2be7ad84888a7dab55eb3012abf"
+        },
+        "wasm": "C:\\Users\\frans\\Documents\\Codex\\2026-10-14\\v\\work\\tactics-bot-v1\\testing\\improvement-v2\\rank20\\after\\.cambc\\build-release\\bot-injected.wasm",
+        "wasm_sha256": "44452ed325e4d5ceef13c0b78a59f3023795f9b90f2bcdf6b50edbf21e2b989f",
+        "commands": [
+          {
+            "command": [
+              "C:\\Users\\frans\\Documents\\Codex\\2026-10-14\\v\\work\\combat-research\\acquisition\\cli-2.2.2\\cambc-2.2.2.data\\scripts\\cambc.exe",
+              "build",
+              "C:\\Users\\frans\\Documents\\Codex\\2026-10-14\\v\\work\\tactics-bot-v1\\testing\\improvement-v2\\rank20\\after"
+            ],
+            "returncode": 0,
+            "seconds": 18.812000000005355,
+            "log": "logs\\build-after-normal.log",
+            "log_sha256": "160ff3d12411ee35bcc7549ea96f4d61dae17b97d9b95a89e72d75c0e55b2d6c"
+          },
+          {
+            "command": [
+              "C:\\Users\\frans\\Documents\\Codex\\2026-10-14\\v\\work\\combat-research\\acquisition\\cli-2.2.2\\cambc-2.2.2.data\\scripts\\cambc.exe",
+              "build",
+              "C:\\Users\\frans\\Documents\\Codex\\2026-10-14\\v\\work\\tactics-bot-v1\\testing\\improvement-v2\\rank20\\after",
+              "--release"
+            ],
+            "returncode": 0,
+            "seconds": 19.85899999999674,
+            "log": "logs\\build-after-release.log",
+            "log_sha256": "f8be1dee683d22aee4ed3cbdd1124e1754e46f88ab9124222914f71e1b06ea6f"
+          }
+        ],
+        "release_first_build_workaround": "Normal compile database generated first; only release bytes used for matches",
+        "frozen_build": "frozen-builds\\44452ed325e4d5ceef13c0b78a59f3023795f9b90f2bcdf6b50edbf21e2b989f"
+      },
+      "source_sha256": {
+        "actions.h": "f62e94acec71929553e0f76429fea462b67a79fda06f2f8c319a15fe94646d61",
+        "assembly.h": "30c40911b371c65cb612c0fd5c2197f24a2570113929e20a63fc92abd2ee4b1c",
+        "camp_actions.h": "0fd8f78951d8a3f6e6c2f4d77344aa283d9374b9fcace149d39c1a9b1a936696",
+        "camp_basic.h": "7eba57ca81b56f493f937e75fbc3927425eea53a920da677cf4b31419d5ac397",
+        "camp_collateral.h": "69b29ad70768f3bad399f3f3a1fb576deb076e89b74d5c33670e52afefae17d2",
+        "combat.h": "6105139b6db7c023c75fa5582da9e754656f95f86c37f0daa368900e2ef8b592",
+        "coordination.h": "5deb200f4ce384154a16c83358cbf83775180b61b95a280c8164464c509b7e1f",
+        "coordinator.h": "8548311f31da57a61e451024b22eb5de535a6d22834b9cc9a004616f39895ef9",
+        "crew_sequence.h": "b51c519d632a0aed96bfbee5b73f756f2666fbdfbe375cb09025f07d179ff5c0",
+        "cycles.h": "957d9754a3233cb3920f0f7c95d030b4f0e41309d2ac2d9298ab85815273f661",
+        "deny.h": "34766bcdc919400e2bcb821541a6aa6d560d88df1ab855b674d5c0d56e467872",
+        "draft.h": "4aacfd6fe0c9d8867f551ad54c2394cfbf1a984ce2c1d6cdd339582165f8346a",
+        "economy.h": "a423c751ba111bb31adc83293bcd8e612207215926ca63309221911784ff2a33",
+        "farm_readiness.h": "440153f3982e535832654f90ba9099cd7053bb8e5365b3f698952acf27c61c99",
+        "geometry.h": "1e247a48f232b300e9cfbd8944368d50e6b644fdd1793ed57418da0213e354f2",
+        "information.h": "ae1a681040a444c1bd3470a6fa7c06b725c1318429dbcfd7cefb8554f38483d2",
+        "log.h": "bd93aec4806ef14eba825578c53ed15f37798467ba3ad8db36cef859f3995fbe",
+        "ranking.h": "201400083dec5db6fc5ee298ceb6d8ba17a989b361b40677d50fe9dc3c70c5a5",
+        "resource.h": "e31de4cb4db5011b507df3f7932fc27a4b583f1c94c9b4850c88032c1c1ba59b",
+        "sdk_world.h": "d104f1f7523edd5375d8ed1d69d18293ef12971e699d752392ba14f03efa1278",
+        "shopping.h": "cdbe7ebaf5d34f820eea2ed5544aca6edb9f0578857e2185b37933c987968a79",
+        "solo.h": "09ac7d34421e4bb2186a12f7ed9384401947d889cb56fdaa663a35eb582e3ef4",
+        "solo_bounds.h": "37848f2d951b318f00bd6a197edd89b827080edd0900e34b99f3111d4280fc77",
+        "squads.h": "f2075e3b0c5b5a977b04b00e6f24c6a1b5952d8b0da707ee8e8a715f2e96faa2",
+        "strategic.h": "c2f67e403ce8d591e99e016aaf156b69dfca92070cdf84502411633b86e1fb01",
+        "types.h": "5fb56558e4d558876b94a4199914bb05b1f07752e8989f816878128e2169f51a",
+        "vision.h": "6cea9e058fe56bbc7b5ac85ff316270760e7f2be7ad84888a7dab55eb3012abf"
+      }
+    }
+  },
+  "games": [
+    {
+      "record": "games\\rank20-ab-5ac31e9be3f65478\\record.json",
+      "sides": [
+        "before",
+        "after"
+      ],
+      "logs": {
+        "before": [
+          "RANK19_CACHE_COLD 0 89972 47387 9 9",
+          "RANK19_CACHE_WARM 0 3 91772 91700 10 10",
+          "RANK19_FARM 0 3 49988 28420 10 10 -1 -1 -1 none",
+          "RANK19_CACHE_WARM 0 4 91778 91706 11 11",
+          "RANK19_FARM 0 4 86516 35343 11 11 15 12 1 farm-reversible-fresh-observation",
+          "RANK19_LAZY 0 5 56482 56410 12 12",
+          "RANK19_LAZY 0 6 56482 56410 13 13",
+          "RANK19_LAZY 0 7 56485 56413 14 14",
+          "RANK19_LAZY 0 8 56483 56411 15 15",
+          "RANK19_PASS 0 7"
+        ],
+        "after": [
+          "RANK19_CACHE_COLD 1 89972 70883 8 8",
+          "RANK19_CACHE_WARM 1 3 91772 91645 9 9",
+          "RANK19_FARM 1 3 49990 28840 9 9 -1 -1 -1 none",
+          "RANK19_CACHE_WARM 1 4 91778 91651 10 10",
+          "RANK19_FARM 1 4 86506 35695 10 10 15 12 1 farm-reversible-fresh-observation",
+          "RANK19_LAZY 1 5 62069 58969 11 11",
+          "RANK19_LAZY 1 6 65190 62130 12 12",
+          "RANK19_LAZY 1 7 65193 62114 13 13",
+          "RANK19_LAZY 1 8 65191 62112 14 14",
+          "RANK19_PASS 1 7"
+        ]
+      }
+    },
+    {
+      "record": "games\\rank20-ba-51e45656b3513bfa\\record.json",
+      "sides": [
+        "after",
+        "before"
+      ],
+      "logs": {
+        "after": [
+          "RANK19_CACHE_COLD 0 89972 70688 9 9",
+          "RANK19_CACHE_WARM 0 3 91772 91645 10 10",
+          "RANK19_FARM 0 3 49987 28837 10 10 -1 -1 -1 none",
+          "RANK19_CACHE_WARM 0 4 91778 91651 11 11",
+          "RANK19_FARM 0 4 86461 35544 11 11 15 12 1 farm-reversible-fresh-observation",
+          "RANK19_LAZY 0 5 62002 58902 12 12",
+          "RANK19_LAZY 0 6 65190 62130 13 13",
+          "RANK19_LAZY 0 7 65193 62114 14 14",
+          "RANK19_LAZY 0 8 65191 62112 15 15",
+          "RANK19_PASS 0 7"
+        ],
+        "before": [
+          "RANK19_CACHE_COLD 1 89972 47582 8 8",
+          "RANK19_CACHE_WARM 1 3 91772 91700 9 9",
+          "RANK19_FARM 1 3 49973 28405 9 9 -1 -1 -1 none",
+          "RANK19_CACHE_WARM 1 4 91778 91706 10 10",
+          "RANK19_FARM 1 4 86561 35409 10 10 15 12 1 farm-reversible-fresh-observation",
+          "RANK19_LAZY 1 5 56482 56410 11 11",
+          "RANK19_LAZY 1 6 56482 56410 12 12",
+          "RANK19_LAZY 1 7 56485 56413 13 13",
+          "RANK19_LAZY 1 8 56483 56411 14 14",
+          "RANK19_PASS 1 7"
+        ]
+      }
+    }
+  ],
+  "scope": "Projected native128-group ranking regression and cold/warm cost; no future HP/income."
+}

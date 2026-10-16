@@ -127,20 +127,21 @@
   "nn": "0 hidden, 2 links, outputs used: farm, kite"
  },
  "fitness": {
-  "shrunk": 0.1434,
-  "n": 6,
+  "shrunk": 0.1289,
+  "n": 7,
   "deltas": [
    0.31706,
    0.09071,
    0.23161,
    -0.04356,
    0.10822,
-   0.30004
+   0.30004,
+   0.02738
   ]
  },
- "gen": 30,
+ "gen": 31,
  "scope": "micro,structure,gp",
  "start": "ga65a6",
- "time": "2026-10-16 14:26:12 UTC",
+ "time": "2026-10-16 14:35:29 UTC",
  "transport": "shared"
 }

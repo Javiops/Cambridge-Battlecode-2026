@@ -528,6 +528,7 @@ def cmd_migrate(A):
                'scalars': dict(zip(T.SCALARS, ints[:n])), 'blocks': ints[n:] if A.level > 1 else [],
                'genotype': d['geno'], 'describe': rep.describe(d['geno']),
                'train': {'deltas_vs_control': [round(x, 4) for x in d['deltas']], 'shrunk': round(ga.shrunk(d), 4)},
+               'fitness': {'shrunk': round(ga.shrunk(d), 4)},
                'validation': lines[-1] if lines else '', 'extra': A.note,
                'time': time.strftime('%Y-%m-%dT%H:%MZ', time.gmtime())}
         path = os.path.join(A.dir, 'structL%d_%s.json' % (A.level, i))

@@ -1,7 +1,7 @@
 #!/bin/bash
 # Checkpoint the structure GA (out/sga) to the shared folder every few minutes, so a container restart loses
 # at most one generation. Usage: nohup tools/ga/island_sync.sh [DEST] &
-DEST=${1:-/mnt/project-files/ga-farm/islands/structure}
+DEST=${1:-/mnt/project-files/ga-farm/islands/structure-sga}
 mkdir -p "$DEST"
 while true; do
   for f in out/sga/meta.json out/sga/template.wasm out/sga/*.json; do [ -e "$f" ] && cp -u "$f" "$DEST/"; done

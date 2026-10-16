@@ -2,7 +2,7 @@
 # Rebuild a fresh cloud container for the structure GA and resume from the shared checkpoint.
 # Usage (repo root): tools/ga/island_restore.sh [SRC]; then restart the level that was running (see run.log there).
 set -e
-SRC=${1:-/mnt/project-files/ga-farm/islands/structure}
+SRC=${1:-/mnt/project-files/ga-farm/islands/structure-sga}
 export SSL_CERT_FILE=/root/.ccr/ca-bundle.crt CAMBC_NO_UPDATE_CHECK=1
 command -v cambc >/dev/null || pip install -q cambc
 C=/root/.cache/cambc; mkdir -p $C

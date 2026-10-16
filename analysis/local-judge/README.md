@@ -230,6 +230,24 @@ casterh/centre, even against the caster team (castera, the best online fit). Fin
 gain** over the 15:20 bot online (expect within noise on the six fight maps, worse on stampede without the jackpot rule);
 **the im_p graft adds nothing** on top of b672 (57-46 for b672 alone without sp_farm).
 
+### Pre-registered prediction: v51 (teammate_fixes1, online since 18:01) vs v49 (the 15:20 bot), written 18:20 UTC
+
+v51 = `mybot_teammate_fixes1.zip` (teammate bot + P_CAMPFOE, P_BACKHOME, P_NEEDHEAL, P_KITEALLY, P_NOCHASE2, P_TWIN),
+now recorded with its zip in versions.jsonl. The online loop measures v51 (B) against v49 (A) from 18:46.
+
+**Site maps (headline), 17 maps x 2 sides x 5 specialists, `panel_17_v51.json`:** games that flip 28-20 for v49
+(58%), p=0.31. By specialist: caster team (castera, the best online fit) 9-3 for v49, casterh 4-4, hunt 3-3, centre 3-5,
+farm 9-5. v51 dies more against the caster team (14.1 vs 9.0 per game).
+Per site map (flips v49-v51): elkring 5-0, swirl 5-0, contest 3-2, fragment 3-2, rows 2-0, eight 1-0, lanes 1-0,
+interlock 4-4, stampede 2-2, collision 1-1, ambush/packs 0-0, corners 0-1, expanse 0-1, rushbait-v2 1-2, pilgrimage 0-2,
+monolith 0-3.
+
+Generated maps (secondary, 60): 75-52 for v49, p=0.05 (castera 17-8). All 77: 103-72, p=0.02.
+
+Call: **v51 no better than v49 on the site maps, likely slightly worse**, most visibly on elkring and swirl and against
+caster teams; v51 ahead only on monolith and pilgrimage. Caveat: the specialists are built on the 12:52 code, the same
+lineage as v49, and the panel has shown a home edge for that code (part 2), so this leans against v51 by an unknown amount.
+
 ## 3. How to spend the online quota
 
 What the calibration says about online information:

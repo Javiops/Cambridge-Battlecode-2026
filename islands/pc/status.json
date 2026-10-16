@@ -4,14 +4,14 @@
  "scope": "all",
  "start": "ga65a6",
  "jobs": 16,
- "gen": 101,
- "games": 149077,
- "gps": 16.89,
+ "gen": 102,
+ "games": 150691,
+ "gps": 12.61,
  "base": "7c2d0330e54e",
  "best": {
   "cid": "2d8a27cb04",
-  "shrunk": 0.1166,
-  "n": 2,
+  "shrunk": 0.1411,
+  "n": 3,
   "describe": {
    "P_UNI_FLEE": 43,
    "P_GA_AVOID_HP": 44,
@@ -30,9 +30,9 @@
    "nn": "0 hidden, 1 links, outputs used: recall"
   }
  },
- "exported": 67,
- "imported": 214,
- "updated": "2026-10-16 15:14:42 UTC",
+ "exported": 69,
+ "imported": 217,
+ "updated": "2026-10-16 15:16:54 UTC",
  "code": "ga-farm-pr@a667ff7",
  "home": "C:\\Users\\Javier\\Cambc2026\\repo\\out\\islands\\pc",
  "transport": "git"

@@ -16,6 +16,7 @@ import hashlib, os, shutil, struct, subprocess, sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import genome as G
+import macro as M
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 
@@ -71,7 +72,7 @@ NN_LEN = 2 + NN_NODES + 3 * NN_CONN  # GA_NN_LEN
 ACTIONS = ['default', 'engage', 'kite', 'back off', 'flee', 'recall', 'farm']
 BLOCKS = [('GA_GP0', PROG_LEN), ('GA_GP1', PROG_LEN), ('GA_NN', NN_LEN)]
 
-SCALARS = list(G.NAMES) + list(SWITCHES)
+SCALARS = list(G.NAMES) + list(SWITCHES) + list(M.NAMES)  # macro genes appended (island.py, 16 Oct)
 MAGIC = (0x31534147, 0x5EED5678)  # 'GAS1', then a second word
 HEADER = [MAGIC[0], MAGIC[1], len(SCALARS), sum(n for _, n in BLOCKS)]
 LENGTH = len(SCALARS) + sum(n for _, n in BLOCKS)
@@ -81,6 +82,9 @@ def spec(name):
     if name in G.GENES:
         d, lo, hi, _ = G.GENES[name]
         return d, lo, hi, 'int'
+    if name in M.MACRO:
+        d, lo, hi, kind, _ = M.MACRO[name]
+        return d, lo, hi, kind
     d, lo, hi, kind, _ = SWITCHES[name]
     return d, lo, hi, kind
 
@@ -115,19 +119,32 @@ def write_src(base, dst, ints):
     if os.path.exists(dst):
         shutil.rmtree(dst)
     shutil.copytree(os.path.join(base, 'src'), src)
+    for fname in os.listdir(src):  # LF everywhere, so the patch applies whatever git's autocrlf did on Windows
+        p = os.path.join(src, fname)
+        if os.path.isfile(p):
+            b = open(p, 'rb').read()
+            if b'\r\n' in b:
+                open(p, 'wb').write(b.replace(b'\r\n', b'\n'))
     for fname, old, new in G.LITERALS:
         p = os.path.join(src, fname)
-        text = open(p).read()
+        text = open(p, newline='').read()
         if text.count(old) != 1:
             sys.exit(f'{fname}: expected exactly one "{old}", found {text.count(old)}')
-        open(p, 'w').write(text.replace(old, new))
-    r = subprocess.run(['patch', '-s', '-p1', '-d', src, '-i', os.path.join(HERE, 'struct.patch')],
-                       capture_output=True, text=True)
+        open(p, 'w', newline='\n').write(text.replace(old, new))
+    patch = os.path.join(dst, 'struct.patch')
+    open(patch, 'wb').write(open(os.path.join(HERE, 'struct.patch'), 'rb').read().replace(b'\r\n', b'\n'))
+    patch = os.path.abspath(patch)
+    if shutil.which('patch'):
+        r = subprocess.run(['patch', '-s', '-p1', '-d', src, '-i', patch], capture_output=True, text=True)
+    else:  # Windows: no `patch`; git apply outside any repository (the ceiling stops it finding ours) works the same
+        env = {**os.environ, 'GIT_CEILING_DIRECTORIES': os.path.dirname(os.path.abspath(src))}
+        r = subprocess.run(['git', 'apply', '-p1', patch], cwd=src, capture_output=True, text=True, env=env)
     if r.returncode != 0:
         sys.exit('struct.patch does not apply to %s: %s%s' % (base, r.stdout, r.stderr))
+    os.remove(patch)
     shutil.copy(os.path.join(HERE, 'ga_struct.h'), src)
     p = os.path.join(src, 'params.h')
-    lines = open(p).read().split('\n') if os.path.exists(p) else []
+    lines = open(p, newline='').read().split('\n') if os.path.exists(p) else []
     keep = [l for l in lines if not (l.strip().startswith('#define ') and l.split()[1] in SCALARS)]
     vals = HEADER + list(ints)
     out = keep + ['', '// ---- genetic algorithm genome (tools/ga/structure.py): weights, structure, programs, net ----',
@@ -140,7 +157,7 @@ def write_src(base, dst, ints):
     for name, n in BLOCKS:
         out.append('#define %s ((const volatile int*)(ga_s + %d))' % (name, off))
         off += n
-    open(p, 'w').write('\n'.join(out) + '\n')
+    open(p, 'w', newline='\n').write('\n'.join(out) + '\n')
 
 
 def find_genome(wasm_bytes):

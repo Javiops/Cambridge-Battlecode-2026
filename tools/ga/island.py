@@ -524,9 +524,15 @@ def running(home):
         d = json.load(open(p))
     except ValueError:
         return None
-    if d.get('host') == socket.gethostname() and d.get('boot', '') == boot_id() and pid_alive(d['pid']):
-        return d
-    return None
+    if d.get('host') != socket.gethostname() or not pid_alive(d['pid']):
+        return None
+    if 'boot' not in d:  # pid.json of an island started before the boot check: alive if that pid runs island.py
+        try:
+            cmd = open('/proc/%d/cmdline' % d['pid'], 'rb').read().split(b'\0')
+            return d if any(c.endswith(b'island.py') for c in cmd) and b'run' in cmd else None
+        except OSError:
+            return d if WIN else None
+    return d if d['boot'] == boot_id() else None
 
 
 def lower_priority():

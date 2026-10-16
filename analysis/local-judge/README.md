@@ -187,6 +187,36 @@ Small samples: these are direction calls, firmed up by the 77-map run below.
 Final calls: **im_p build = no change vs 12:52** (online paired should be within noise); **d20281a41e = no better than
 12:52, worse against the caster team** (its deficit is mostly sp_farm and sp_castera; even against the rest).
 
+### Pre-registered predictions for farm champion b672ef97f6 (= a9a87ec5ce), written 16:01 UTC
+
+The farm's 15:52 confirmation replaced d20281a41e (level with v44 on 100 fresh maps, as called above) with b672ef97f6
+from cloud-d (`mybot_a9a87ec5ce.zip`): no kiting, attacks foes next to an ally, no early low-hp retreat. Two builds:
+`bots/v_a9a87ec5ce` = the farm zip as is; `bots/v_a9_imp` = the same plus the im_p paired-retreat rule (33/40/45/2 with an
+ally within 2 tiles, the genome's own 44/50/54/4 alone). Base = the 15:20 online bot (`mybot_online1252_jackgo_imp.zip`).
+Note: the farm zip has no P_JACKPOT/P_JACKGO stampede code (its genome layout predates them), so on stampede it plays
+like v44.
+
+17 site maps x 2 sides x 5 specialists (170 games per bot, `panel_17_imp_a9.json`):
+
+| bot | castera | casterh | hunt | centre | farm | all |
+|---|---|---|---|---|---|---|
+| 15:20 online bot | 68% d9.0 | 59% d13.9 | 74% d12.4 | 82% d10.4 | 82% d5.6 | 72.9% |
+| b672ef97f6 | 59% d11.1 | 71% d12.7 | 82% d13.5 | 85% d9.2 | 59% d8.7 | 71.2% |
+| b672ef97f6 + im_p | 68% d11.8 | 65% d13.0 | 71% d15.4 | 76% d13.1 | 68% d7.9 | 69.4% |
+
+| pair | games that flip | weighted (castera x2, casterh x2, centre x1, hunt x0.5, farm 0) | stampede |
+|---|---|---|---|
+| online vs b672ef97f6 | 22-19, p=0.76 | 19.5-24 | 4-1 for online |
+| online vs b672 + im_p | 26-20, p=0.46 | 23-29 | 3-1 for online |
+| b672 vs b672 + im_p | 24-21, p=0.77 | | |
+
+Calls vs the 15:20 online bot, paired online: **b672ef97f6 = no change** overall (a split by specialist: better against
+the caster-hunter, worse against the caster team and the farmer); **worse on stampede** (no jackpot rule: 10% vs 40% of
+panel games there). **b672 + im_p = no change**, no better than b672 alone. The farm's 100-48 vs its control and 34-10 vs
+v44 come from self-play-like rivals, which overstated every fight change since study27 (part 1). It dies more than the
+online bot against every specialist except casterh/centre. Neither is worth an upload slot over the 15:20 bot on this
+evidence; if one is tested online, use b672 with the jackpot rule restored, or leave stampede out of the comparison.
+
 ## 3. How to spend the online quota
 
 What the calibration says about online information:

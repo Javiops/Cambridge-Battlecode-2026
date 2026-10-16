@@ -1,0 +1,147 @@
+{
+ "island": "cloud-e",
+ "cid": "8cc32998bb",
+ "base": "7c2d0330e54e",
+ "genome": {
+  "sc": {
+   "P_FLEE_PCT": 29,
+   "P_UNI_FLEE": 44,
+   "P_RECALL_PCT": 54,
+   "P_RECALL_NEAR": 7,
+   "P_BAIL_PCT": 12,
+   "P_ENGAGE2": 74,
+   "P_GA_FAV": 83,
+   "P_GA_KILL_X": 5,
+   "P_GA_SPAWN_HEAL": 87,
+   "P_FRONT_OUT": 145,
+   "P_GA_KITE_HP": 128,
+   "P_VOLLEY": 43,
+   "P_CHASE_GEMS": 144,
+   "P_DANGER": 4,
+   "P_DANGER_T": 45,
+   "P_DANGER_R": 5,
+   "P_O_AVOIDLOW": 61,
+   "P_GP1_ON": 1
+  },
+  "gp0": [
+   "AND",
+   [
+    "AND",
+    [
+     "NOT",
+     [
+      "VAR",
+      8
+     ]
+    ],
+    [
+     "NOT",
+     [
+      "VAR",
+      9
+     ]
+    ]
+   ],
+   [
+    "MUL",
+    [
+     "OR",
+     [
+      "LT",
+      [
+       "VAR",
+       0
+      ],
+      [
+       "CONST",
+       60
+      ]
+     ],
+     [
+      "NOT",
+      [
+       "VAR",
+       18
+      ]
+     ]
+    ],
+    [
+     "NOT",
+     [
+      "VAR",
+      16
+     ]
+    ]
+   ]
+  ],
+  "gp1": [
+   "OR",
+   [
+    "AND",
+    [
+     "VAR",
+     21
+    ],
+    [
+     "LT",
+     [
+      "VAR",
+      15
+     ],
+     [
+      "CONST",
+      255
+     ]
+    ]
+   ],
+   [
+    "AND",
+    [
+     "VAR",
+     10
+    ],
+    [
+     "VAR",
+     8
+    ]
+   ]
+  ]
+ },
+ "describe": {
+  "P_FLEE_PCT": 29,
+  "P_UNI_FLEE": 44,
+  "P_RECALL_PCT": 54,
+  "P_RECALL_NEAR": 7,
+  "P_BAIL_PCT": 12,
+  "P_ENGAGE2": 74,
+  "P_GA_FAV": 83,
+  "P_GA_KILL_X": 5,
+  "P_GA_SPAWN_HEAL": 87,
+  "P_FRONT_OUT": 145,
+  "P_GA_KITE_HP": 128,
+  "P_VOLLEY": 43,
+  "P_CHASE_GEMS": 144,
+  "P_DANGER": 4,
+  "P_DANGER_T": 45,
+  "P_DANGER_R": 5,
+  "P_GP1_ON": 1,
+  "gp1": "((HIT and (DANGER < 255)) or (REACH and FAV))"
+ },
+ "vs_start": {
+  "P_GP1_ON": 1,
+  "gp1": "((HIT and (DANGER < 255)) or (REACH and FAV))"
+ },
+ "fitness": {
+  "shrunk": 0.0306,
+  "n": 2,
+  "deltas": [
+   0.0422,
+   0.04974
+  ]
+ },
+ "gen": 6,
+ "scope": "gp",
+ "start": "ga65a6",
+ "time": "2026-10-16 13:18:36 UTC",
+ "transport": "shared"
+}

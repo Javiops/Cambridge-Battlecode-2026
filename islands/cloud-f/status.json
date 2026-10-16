@@ -4,14 +4,14 @@
  "scope": "neat",
  "start": "ga65a6",
  "jobs": 4,
- "gen": 51,
- "games": 85337,
- "gps": 5.18,
+ "gen": 53,
+ "games": 89165,
+ "gps": 4.04,
  "base": "7c2d0330e54e",
  "best": {
-  "cid": "150107f60e",
-  "shrunk": 0.1236,
-  "n": 8,
+  "cid": "1bd34728cd",
+  "shrunk": 0.1121,
+  "n": 3,
   "describe": {
    "P_FLEE_PCT": 27,
    "P_RECALL_NEAR": 9,
@@ -30,12 +30,12 @@
    "P_TELE": 5,
    "P_NE_POWER_OPEN": 0,
    "order": "FLEE>NEARRECALL>FM>KITE>FRONT>AVOID>ENGAGE>AVOIDLOW>RECALLSHOP>WALKHOME",
-   "nn": "0 hidden, 3 links, outputs used: back off, farm, kite"
+   "nn": "0 hidden, 4 links, outputs used: back off, farm, kite, recall"
   }
  },
- "exported": 37,
- "imported": 140,
- "updated": "2026-10-16 17:21:39 UTC",
+ "exported": 39,
+ "imported": 146,
+ "updated": "2026-10-16 17:34:54 UTC",
  "code": "claude/project-thread-cmudgp@cae2273",
  "home": "/mnt/project-files/ga-farm/islands/cloud-f",
  "transport": "shared"

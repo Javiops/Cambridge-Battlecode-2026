@@ -194,17 +194,18 @@
   "nn": "0 hidden, 1 links, outputs used: recall"
  },
  "fitness": {
-  "shrunk": 0.1133,
-  "n": 3,
+  "shrunk": 0.1165,
+  "n": 4,
   "deltas": [
    0.19303,
    0.16249,
-   0.09771
+   0.09771,
+   0.12919
   ]
  },
- "gen": 46,
+ "gen": 47,
  "scope": "gp",
  "start": "ga65a6",
- "time": "2026-10-16 17:23:29 UTC",
+ "time": "2026-10-16 17:33:49 UTC",
  "transport": "shared"
 }

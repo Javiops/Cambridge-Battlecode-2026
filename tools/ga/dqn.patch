@@ -15,7 +15,7 @@
 +    dq_load(s.name.c_str());
  
      if (!me.is_alive()) {
-+        dq_trace(round, false, 0, 0, 0, static_cast<int>(me.gold_count()));
++        dq_trace(round, false, 0, 0, 0, static_cast<int>(me.gold_count()), s.my, s.en);
          g_mode = "dead";
          shop(s, me);  // dead champions can still shop
          drop_target(s);
@@ -23,7 +23,7 @@
      s.last_gold = static_cast<int>(me.gold_count());
      float hp = me.health();
      float hpr = hp / mhp;
-+    dq_trace(round, true, hp, mhp, gems, gold);
++    dq_trace(round, true, hp, mhp, gems, gold, s.my, s.en);
      if (s.last_hp >= 0 && hp < s.last_hp - 1.0f) s.hit_round = round;
      s.last_hp = hp;
  

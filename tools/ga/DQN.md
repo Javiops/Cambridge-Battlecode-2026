@@ -59,3 +59,11 @@ python3 tools/ga/dqn.py --work out/dqn2 eval --net out/fightval/die_ours_g.json 
 
 Note: a change to `dqn.h` needs a new `prepare` in a new `--work` folder (the game cache is keyed by genome, not by
 template).
+
+## PPO (`ppo.py`)
+
+dqn.h mode 4 samples from softmax(outputs) over the valid actions and logs `greedy = 10 + sampled action`; `[dt]` lines
+also carry both team scores. `python3 tools/ga/ppo.py run --iters 15 --games 600 --lr 1e-3 --batch 1024` (work
+`out/ppo`, after `dqn.py --work out/ppo prepare`): per iteration 600 on-policy games (~4 min), PPO clipped update
+with a Python-only critic and GAE. Judge with `dqn.py --work out/ppo eval --net out/ppo/pol_K.json --mode 4` (sampled)
+or `--mode 1` (greedy).

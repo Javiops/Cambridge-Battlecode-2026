@@ -222,8 +222,8 @@ def parse_log(path):
         st = streams.setdefault(f[1], ([], []))
         if f[0] == '[dq]' and len(v) == 4 + N_IN:
             st[0].append(v)
-        elif f[0] == '[dt]' and len(v) == 6:
-            st[1].append(v)
+        elif f[0] == '[dt]' and len(v) in (6, 8):  # 8: + team scores (ours, theirs), since the PPO build
+            st[1].append(v if len(v) == 8 else v + [-1, -1])
     return list(streams.values())
 
 

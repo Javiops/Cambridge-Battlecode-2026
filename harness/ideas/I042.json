@@ -1,0 +1,20 @@
+{
+ "id": "I042",
+ "title": "PPO on the micro hook (stochastic 25-32-7 policy, on-policy, critic + GAE)",
+ "kind": "fight",
+ "source": "thread 'Deep Q-learning', 16 Oct (user: y si probamos un PPO)",
+ "owner": "Javi",
+ "hypothesis": "on-policy PPO starting from the rules learns deviations that beat the control on v100",
+ "stage": "rejected",
+ "bot": "tools/ga/ppo.py",
+ "branch": "claude/dqn-micro-suual7",
+ "created": "2026-10-16T14:30Z",
+ "history": [
+  {
+   "at": "2026-10-16T14:30Z",
+   "stage": "rejected",
+   "note": "15 iterations x 600 games. Learned kite 4->11%, back off 4->9%, engage 3->0%, deaths/game 4.15->3.21. v100 vs control: sampled 58-95 p=0.003, greedy 51-67 p=0.17 (fewer deaths 1596 vs 1830, fewer maps). Report /mnt/project-files/analysis/dqn-2026-10-16/README.md"
+  }
+ ],
+ "updated": "2026-10-16T14:30Z"
+}

@@ -13,6 +13,7 @@
 #include <cstdint>
 #include <cstdio>
 #include <cmath>
+#include <optional>
 
 #define DQ_IN GF_N
 #define DQ_H 32
@@ -31,7 +32,7 @@ static const int dq_zero[DQ_LEN] = {0};
 struct DqState {
     bool init = false;
     bool on = false, log = false;
-    int mode = 0;  // 1 Q-network argmax; 2 / 3 death-risk value: back off / flee when p(die) > margin per mille
+    int mode = 0;  // 1 Q-network argmax; 4 PPO policy (softmax sample over the outputs as logits); 2 / 3 death-risk value: back off / flee when p(die) > margin per mille
     int eps = 0, hid = 0, margin = 0;
     uint32_t rng = 1;
     float w1[DQ_H][DQ_IN], b1[DQ_H], w2[DQ_OUT][DQ_H], b2[DQ_OUT];
@@ -104,6 +105,24 @@ inline int dq_act(const int* feat, int valid, int* greedy) {
     if (d.hid <= 0) return 0;
     float q[DQ_OUT];
     dq_q(feat, q);
+    if (d.mode == 4) {  // PPO: sample from softmax(Q as logits) over the valid actions; greedy = 10 + the sampled action
+        float mx = -1e30f, p[DQ_OUT], sum = 0;
+        for (int a = 0; a < DQ_OUT; ++a)
+            if ((valid >> a & 1) && q[a] > mx) mx = q[a];
+        for (int a = 0; a < DQ_OUT; ++a) {
+            p[a] = (valid >> a & 1) ? std::exp(q[a] - mx) : 0.0f;
+            sum += p[a];
+        }
+        float u = (dq_rand() % 1000000) / 1000000.0f * sum;
+        int a = 0;
+        for (; a < DQ_OUT - 1; ++a) {
+            if (u < p[a]) break;
+            u -= p[a];
+        }
+        while (a > 0 && !(valid >> a & 1)) --a;
+        *greedy = 10 + a;
+        return a;
+    }
     if (d.mode >= 2) {  // q[0] = logit of dying within 10 rounds (tools/ga/fightval.py)
         float p = 1.0f / (1.0f + std::exp(-q[0]));
         return p * 1000.0f > d.margin ? (d.mode == 2 ? 3 : 4) : 0;
@@ -120,12 +139,21 @@ inline int dq_act(const int* feat, int valid, int* greedy) {
 
 // Per-turn trace while a contact lasts (from the first decision until 15 rounds after the last one), dead turns
 // included, so dqn.py sees hp, gems and gold move and sees the death.
-inline void dq_trace(int round, bool alive, float hp, float mhp, int gems, int gold) {
+inline void dq_trace(int round, bool alive, float hp, float mhp, int gems, int gold,
+                     const std::optional<cambc::team>& my, const std::optional<cambc::team>& en) {
     DqState& d = g_dq;
     if (!d.log || round - d.last_dec > 15) return;
+    int ours = -1, theirs = -1;  // team scores (gems submitted): the reward can follow the real objective
+    try {
+        if (my && en) {
+            ours = static_cast<int>(cambc::global_submitted_gems(*my));
+            theirs = static_cast<int>(cambc::global_submitted_gems(*en));
+        }
+    } catch (...) {
+    }
     // flushed at once: output still buffered when the turn ends is lost
-    std::printf("[dt] %s %d %d %d %d %d %d\n", d.name, round, alive ? 1 : 0, static_cast<int>(hp), static_cast<int>(mhp),
-                gems, gold);
+    std::printf("[dt] %s %d %d %d %d %d %d %d %d\n", d.name, round, alive ? 1 : 0, static_cast<int>(hp),
+                static_cast<int>(mhp), gems, gold, ours, theirs);
     std::fflush(stdout);
 }
 

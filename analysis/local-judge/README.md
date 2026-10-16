@@ -161,6 +161,22 @@ mybot_online1252_jackgo_imitation.zip. Written down at 15:50 UTC, before its onl
 The online paired result for im_a vs the 12:52 build settles which judge to trust (the jackgo stampede rule rides along,
 so compare on non-stampede maps).
 
+### Pre-registered predictions for the 15:20 upload and the farm champion (written 15:47 UTC)
+
+im_a was online only 15:09-15:20 with no clean batch, so it cannot be scored. The 15:20 upload is
+mybot_online1252_jackgo_imp.zip (12:52 + stampede centre rule + im_p). Panel on the five fight maps the loop now uses
+(collision, interlock, lanes, elkring, corners; both sides x 5 specialists = 50 games per bot; `panel_f5.json`):
+
+| pair | panel: games that flip | prediction for online, paired on those 5 maps |
+|---|---|---|
+| jackgo vs 12:52 | 0-0 (identical off stampede) | equal |
+| **im_p build vs 12:52** | 2-6 (25%), p=0.29; deaths vs casterh 11.6 vs 6.6 | **no gain, slightly worse** |
+| **im_p build vs study27-economy** | 12-4 (75%), p=0.08 | **better** |
+| **d20281a41e (farm champion) vs 12:52** | 3-10 (23%), p=0.09 | **worse** |
+| im_p build vs d20281a41e | 8-5 | im_p build ahead |
+
+Small samples: these are direction calls, firmed up by the 77-map run below.
+
 ## 3. How to spend the online quota
 
 What the calibration says about online information:

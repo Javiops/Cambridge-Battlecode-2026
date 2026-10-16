@@ -1,0 +1,452 @@
+[
+ {
+  "a": "study27",
+  "b": "study26",
+  "pairs": 125,
+  "flips_a": 15,
+  "flips_b": 18,
+  "p": 0.728,
+  "by_map": {
+   "interlock": [
+    12,
+    2,
+    3
+   ],
+   "packs": [
+    19,
+    4,
+    3
+   ],
+   "lanes": [
+    15,
+    2,
+    2
+   ],
+   "corners": [
+    15,
+    3,
+    2
+   ],
+   "collision": [
+    15,
+    2,
+    2
+   ],
+   "expanse": [
+    14,
+    0,
+    3
+   ],
+   "elkring": [
+    12,
+    1,
+    1
+   ],
+   "monolith": [
+    9,
+    0,
+    2
+   ],
+   "rows": [
+    14,
+    1,
+    0
+   ]
+  }
+ },
+ {
+  "a": "study28",
+  "b": "study27",
+  "pairs": 137,
+  "flips_a": 12,
+  "flips_b": 10,
+  "p": 0.832,
+  "by_map": {
+   "packs": [
+    15,
+    3,
+    1
+   ],
+   "interlock": [
+    12,
+    3,
+    3
+   ],
+   "lanes": [
+    14,
+    0,
+    1
+   ],
+   "collision": [
+    20,
+    2,
+    1
+   ],
+   "corners": [
+    12,
+    2,
+    1
+   ],
+   "expanse": [
+    18,
+    0,
+    0
+   ],
+   "monolith": [
+    15,
+    1,
+    0
+   ],
+   "elkring": [
+    14,
+    0,
+    3
+   ],
+   "rows": [
+    17,
+    1,
+    0
+   ]
+  }
+ },
+ {
+  "a": "overnight",
+  "b": "study27",
+  "pairs": 313,
+  "flips_a": 39,
+  "flips_b": 39,
+  "p": 1.0,
+  "by_map": {
+   "interlock": [
+    37,
+    4,
+    6
+   ],
+   "packs": [
+    32,
+    3,
+    7
+   ],
+   "lanes": [
+    35,
+    3,
+    5
+   ],
+   "collision": [
+    35,
+    10,
+    6
+   ],
+   "elkring": [
+    31,
+    4,
+    6
+   ],
+   "corners": [
+    36,
+    6,
+    4
+   ],
+   "expanse": [
+    38,
+    1,
+    1
+   ],
+   "monolith": [
+    32,
+    7,
+    1
+   ],
+   "rows": [
+    37,
+    1,
+    3
+   ]
+  }
+ },
+ {
+  "a": "ga65a6",
+  "b": "overnight",
+  "pairs": 209,
+  "flips_a": 27,
+  "flips_b": 20,
+  "p": 0.382,
+  "by_map": {
+   "packs": [
+    16,
+    2,
+    3
+   ],
+   "ambush": [
+    9,
+    0,
+    1
+   ],
+   "interlock": [
+    14,
+    1,
+    4
+   ],
+   "corners": [
+    13,
+    5,
+    0
+   ],
+   "pilgrimage": [
+    13,
+    0,
+    1
+   ],
+   "eight": [
+    9,
+    0,
+    0
+   ],
+   "collision": [
+    15,
+    0,
+    1
+   ],
+   "elkring": [
+    14,
+    4,
+    1
+   ],
+   "lanes": [
+    14,
+    5,
+    1
+   ],
+   "rushbait_v2": [
+    10,
+    3,
+    0
+   ],
+   "expanse": [
+    17,
+    3,
+    2
+   ],
+   "swirl": [
+    13,
+    1,
+    1
+   ],
+   "contest": [
+    10,
+    0,
+    0
+   ],
+   "fragment": [
+    12,
+    1,
+    2
+   ],
+   "monolith": [
+    11,
+    0,
+    3
+   ],
+   "rows": [
+    13,
+    1,
+    0
+   ],
+   "stampede": [
+    6,
+    1,
+    0
+   ]
+  }
+ },
+ {
+  "a": "combined",
+  "b": "ga65a6",
+  "pairs": 79,
+  "flips_a": 7,
+  "flips_b": 4,
+  "p": 0.549,
+  "by_map": {
+   "packs": [
+    7,
+    2,
+    0
+   ],
+   "ambush": [
+    5,
+    0,
+    1
+   ],
+   "lanes": [
+    4,
+    1,
+    0
+   ],
+   "rows": [
+    7,
+    0,
+    0
+   ],
+   "interlock": [
+    5,
+    1,
+    0
+   ],
+   "contest": [
+    6,
+    1,
+    0
+   ],
+   "corners": [
+    4,
+    0,
+    1
+   ],
+   "collision": [
+    5,
+    1,
+    1
+   ],
+   "pilgrimage": [
+    7,
+    0,
+    0
+   ],
+   "swirl": [
+    4,
+    0,
+    0
+   ],
+   "rushbait_v2": [
+    5,
+    0,
+    1
+   ],
+   "fragment": [
+    5,
+    1,
+    0
+   ],
+   "monolith": [
+    1,
+    0,
+    0
+   ],
+   "expanse": [
+    3,
+    0,
+    0
+   ],
+   "stampede": [
+    5,
+    0,
+    0
+   ],
+   "eight": [
+    2,
+    0,
+    0
+   ],
+   "elkring": [
+    4,
+    0,
+    0
+   ]
+  }
+ },
+ {
+  "a": "combined",
+  "b": "overnight",
+  "pairs": 127,
+  "flips_a": 19,
+  "flips_b": 16,
+  "p": 0.736,
+  "by_map": {
+   "packs": [
+    11,
+    2,
+    2
+   ],
+   "ambush": [
+    7,
+    1,
+    2
+   ],
+   "interlock": [
+    10,
+    0,
+    5
+   ],
+   "collision": [
+    7,
+    1,
+    2
+   ],
+   "lanes": [
+    7,
+    3,
+    0
+   ],
+   "swirl": [
+    7,
+    1,
+    0
+   ],
+   "fragment": [
+    9,
+    1,
+    2
+   ],
+   "monolith": [
+    5,
+    1,
+    1
+   ],
+   "eight": [
+    8,
+    0,
+    0
+   ],
+   "contest": [
+    6,
+    1,
+    0
+   ],
+   "corners": [
+    6,
+    2,
+    0
+   ],
+   "pilgrimage": [
+    6,
+    0,
+    0
+   ],
+   "rows": [
+    9,
+    2,
+    0
+   ],
+   "rushbait_v2": [
+    5,
+    1,
+    1
+   ],
+   "elkring": [
+    10,
+    2,
+    0
+   ],
+   "stampede": [
+    9,
+    1,
+    1
+   ],
+   "expanse": [
+    5,
+    0,
+    0
+   ]
+  }
+ }
+]

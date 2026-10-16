@@ -1,0 +1,941 @@
+{
+ "maps": 17,
+ "site_maps": 17,
+ "opps": [
+  "bots/sp51_castera",
+  "bots/sp51_casterh",
+  "bots/sp51_hunt",
+  "bots/sp51_centre",
+  "bots/sp51_farm"
+ ],
+ "pairs": [
+  {
+   "a": "bots/v_anti_feed",
+   "b": "bots/v_capture_fix",
+   "flips": [
+    20,
+    20
+   ],
+   "p": 1.0,
+   "by_opp": {
+    "sp51_castera": [
+     5,
+     4
+    ],
+    "sp51_casterh": [
+     4,
+     3
+    ],
+    "sp51_hunt": [
+     3,
+     6
+    ],
+    "sp51_centre": [
+     0,
+     2
+    ],
+    "sp51_farm": [
+     8,
+     5
+    ]
+   }
+  },
+  {
+   "a": "bots/v_anti_feed",
+   "b": "bots/v_v51",
+   "flips": [
+    20,
+    23
+   ],
+   "p": 0.7607916425613439,
+   "by_opp": {
+    "sp51_castera": [
+     5,
+     4
+    ],
+    "sp51_casterh": [
+     5,
+     2
+    ],
+    "sp51_hunt": [
+     3,
+     5
+    ],
+    "sp51_centre": [
+     2,
+     5
+    ],
+    "sp51_farm": [
+     5,
+     7
+    ]
+   }
+  },
+  {
+   "a": "bots/v_anti_feed",
+   "b": "bots/v_v51_mapdraft",
+   "flips": [
+    21,
+    27
+   ],
+   "p": 0.4708790136217118,
+   "by_opp": {
+    "sp51_castera": [
+     5,
+     6
+    ],
+    "sp51_casterh": [
+     5,
+     2
+    ],
+    "sp51_hunt": [
+     4,
+     6
+    ],
+    "sp51_centre": [
+     2,
+     7
+    ],
+    "sp51_farm": [
+     5,
+     6
+    ]
+   }
+  },
+  {
+   "a": "bots/v_anti_feed",
+   "b": "bots/v_fixes2",
+   "flips": [
+    24,
+    26
+   ],
+   "p": 0.887724827340783,
+   "by_opp": {
+    "sp51_castera": [
+     4,
+     5
+    ],
+    "sp51_casterh": [
+     6,
+     3
+    ],
+    "sp51_hunt": [
+     5,
+     7
+    ],
+    "sp51_centre": [
+     2,
+     6
+    ],
+    "sp51_farm": [
+     7,
+     5
+    ]
+   }
+  },
+  {
+   "a": "bots/v_anti_feed",
+   "b": "bots/v_fixes3",
+   "flips": [
+    19,
+    28
+   ],
+   "p": 0.24296021728332562,
+   "by_opp": {
+    "sp51_castera": [
+     3,
+     7
+    ],
+    "sp51_casterh": [
+     6,
+     3
+    ],
+    "sp51_hunt": [
+     4,
+     7
+    ],
+    "sp51_centre": [
+     1,
+     7
+    ],
+    "sp51_farm": [
+     5,
+     4
+    ]
+   }
+  },
+  {
+   "a": "bots/v_capture_fix",
+   "b": "bots/v_v51",
+   "flips": [
+    21,
+    24
+   ],
+   "p": 0.765991824244793,
+   "by_opp": {
+    "sp51_castera": [
+     3,
+     3
+    ],
+    "sp51_casterh": [
+     4,
+     2
+    ],
+    "sp51_hunt": [
+     5,
+     4
+    ],
+    "sp51_centre": [
+     3,
+     4
+    ],
+    "sp51_farm": [
+     6,
+     11
+    ]
+   }
+  },
+  {
+   "a": "bots/v_capture_fix",
+   "b": "bots/v_v51_mapdraft",
+   "flips": [
+    20,
+    26
+   ],
+   "p": 0.4613911821367651,
+   "by_opp": {
+    "sp51_castera": [
+     3,
+     5
+    ],
+    "sp51_casterh": [
+     4,
+     2
+    ],
+    "sp51_hunt": [
+     4,
+     3
+    ],
+    "sp51_centre": [
+     2,
+     5
+    ],
+    "sp51_farm": [
+     7,
+     11
+    ]
+   }
+  },
+  {
+   "a": "bots/v_capture_fix",
+   "b": "bots/v_fixes2",
+   "flips": [
+    22,
+    24
+   ],
+   "p": 0.8829959121223965,
+   "by_opp": {
+    "sp51_castera": [
+     4,
+     6
+    ],
+    "sp51_casterh": [
+     5,
+     3
+    ],
+    "sp51_hunt": [
+     5,
+     4
+    ],
+    "sp51_centre": [
+     2,
+     4
+    ],
+    "sp51_farm": [
+     6,
+     7
+    ]
+   }
+  },
+  {
+   "a": "bots/v_capture_fix",
+   "b": "bots/v_fixes3",
+   "flips": [
+    21,
+    30
+   ],
+   "p": 0.2624375357110438,
+   "by_opp": {
+    "sp51_castera": [
+     4,
+     9
+    ],
+    "sp51_casterh": [
+     5,
+     3
+    ],
+    "sp51_hunt": [
+     5,
+     5
+    ],
+    "sp51_centre": [
+     1,
+     5
+    ],
+    "sp51_farm": [
+     6,
+     8
+    ]
+   }
+  },
+  {
+   "a": "bots/v_v51",
+   "b": "bots/v_v51_mapdraft",
+   "flips": [
+    2,
+    5
+   ],
+   "p": 0.453125,
+   "by_opp": {
+    "sp51_castera": [
+     0,
+     2
+    ],
+    "sp51_hunt": [
+     1,
+     1
+    ],
+    "sp51_centre": [
+     0,
+     2
+    ],
+    "sp51_farm": [
+     1,
+     0
+    ]
+   }
+  },
+  {
+   "a": "bots/v_v51",
+   "b": "bots/v_fixes2",
+   "flips": [
+    17,
+    16
+   ],
+   "p": 1.0,
+   "by_opp": {
+    "sp51_castera": [
+     2,
+     4
+    ],
+    "sp51_casterh": [
+     3,
+     3
+    ],
+    "sp51_hunt": [
+     3,
+     3
+    ],
+    "sp51_centre": [
+     3,
+     4
+    ],
+    "sp51_farm": [
+     6,
+     2
+    ]
+   }
+  },
+  {
+   "a": "bots/v_v51",
+   "b": "bots/v_fixes3",
+   "flips": [
+    14,
+    20
+   ],
+   "p": 0.39152830513194203,
+   "by_opp": {
+    "sp51_castera": [
+     2,
+     7
+    ],
+    "sp51_casterh": [
+     3,
+     3
+    ],
+    "sp51_hunt": [
+     2,
+     3
+    ],
+    "sp51_centre": [
+     2,
+     5
+    ],
+    "sp51_farm": [
+     5,
+     2
+    ]
+   }
+  },
+  {
+   "a": "bots/v_v51_mapdraft",
+   "b": "bots/v_fixes2",
+   "flips": [
+    19,
+    15
+   ],
+   "p": 0.6075913612730801,
+   "by_opp": {
+    "sp51_castera": [
+     4,
+     4
+    ],
+    "sp51_casterh": [
+     3,
+     3
+    ],
+    "sp51_hunt": [
+     2,
+     2
+    ],
+    "sp51_centre": [
+     4,
+     3
+    ],
+    "sp51_farm": [
+     6,
+     3
+    ]
+   }
+  },
+  {
+   "a": "bots/v_v51_mapdraft",
+   "b": "bots/v_fixes3",
+   "flips": [
+    14,
+    17
+   ],
+   "p": 0.720100131817162,
+   "by_opp": {
+    "sp51_castera": [
+     3,
+     6
+    ],
+    "sp51_casterh": [
+     3,
+     3
+    ],
+    "sp51_hunt": [
+     2,
+     3
+    ],
+    "sp51_centre": [
+     2,
+     3
+    ],
+    "sp51_farm": [
+     4,
+     2
+    ]
+   }
+  },
+  {
+   "a": "bots/v_fixes2",
+   "b": "bots/v_fixes3",
+   "flips": [
+    2,
+    9
+   ],
+   "p": 0.0654296875,
+   "by_opp": {
+    "sp51_castera": [
+     0,
+     3
+    ],
+    "sp51_casterh": [
+     1,
+     1
+    ],
+    "sp51_hunt": [
+     0,
+     1
+    ],
+    "sp51_centre": [
+     0,
+     2
+    ],
+    "sp51_farm": [
+     1,
+     2
+    ]
+   }
+  }
+ ],
+ "sets": {
+  "site": {
+   "pairs": [
+    {
+     "a": "bots/v_anti_feed",
+     "b": "bots/v_capture_fix",
+     "flips": [
+      20,
+      20
+     ],
+     "p": 1.0,
+     "by_opp": {
+      "sp51_castera": [
+       5,
+       4
+      ],
+      "sp51_casterh": [
+       4,
+       3
+      ],
+      "sp51_hunt": [
+       3,
+       6
+      ],
+      "sp51_centre": [
+       0,
+       2
+      ],
+      "sp51_farm": [
+       8,
+       5
+      ]
+     }
+    },
+    {
+     "a": "bots/v_anti_feed",
+     "b": "bots/v_v51",
+     "flips": [
+      20,
+      23
+     ],
+     "p": 0.7607916425613439,
+     "by_opp": {
+      "sp51_castera": [
+       5,
+       4
+      ],
+      "sp51_casterh": [
+       5,
+       2
+      ],
+      "sp51_hunt": [
+       3,
+       5
+      ],
+      "sp51_centre": [
+       2,
+       5
+      ],
+      "sp51_farm": [
+       5,
+       7
+      ]
+     }
+    },
+    {
+     "a": "bots/v_anti_feed",
+     "b": "bots/v_v51_mapdraft",
+     "flips": [
+      21,
+      27
+     ],
+     "p": 0.4708790136217118,
+     "by_opp": {
+      "sp51_castera": [
+       5,
+       6
+      ],
+      "sp51_casterh": [
+       5,
+       2
+      ],
+      "sp51_hunt": [
+       4,
+       6
+      ],
+      "sp51_centre": [
+       2,
+       7
+      ],
+      "sp51_farm": [
+       5,
+       6
+      ]
+     }
+    },
+    {
+     "a": "bots/v_anti_feed",
+     "b": "bots/v_fixes2",
+     "flips": [
+      24,
+      26
+     ],
+     "p": 0.887724827340783,
+     "by_opp": {
+      "sp51_castera": [
+       4,
+       5
+      ],
+      "sp51_casterh": [
+       6,
+       3
+      ],
+      "sp51_hunt": [
+       5,
+       7
+      ],
+      "sp51_centre": [
+       2,
+       6
+      ],
+      "sp51_farm": [
+       7,
+       5
+      ]
+     }
+    },
+    {
+     "a": "bots/v_anti_feed",
+     "b": "bots/v_fixes3",
+     "flips": [
+      19,
+      28
+     ],
+     "p": 0.24296021728332562,
+     "by_opp": {
+      "sp51_castera": [
+       3,
+       7
+      ],
+      "sp51_casterh": [
+       6,
+       3
+      ],
+      "sp51_hunt": [
+       4,
+       7
+      ],
+      "sp51_centre": [
+       1,
+       7
+      ],
+      "sp51_farm": [
+       5,
+       4
+      ]
+     }
+    },
+    {
+     "a": "bots/v_capture_fix",
+     "b": "bots/v_v51",
+     "flips": [
+      21,
+      24
+     ],
+     "p": 0.765991824244793,
+     "by_opp": {
+      "sp51_castera": [
+       3,
+       3
+      ],
+      "sp51_casterh": [
+       4,
+       2
+      ],
+      "sp51_hunt": [
+       5,
+       4
+      ],
+      "sp51_centre": [
+       3,
+       4
+      ],
+      "sp51_farm": [
+       6,
+       11
+      ]
+     }
+    },
+    {
+     "a": "bots/v_capture_fix",
+     "b": "bots/v_v51_mapdraft",
+     "flips": [
+      20,
+      26
+     ],
+     "p": 0.4613911821367651,
+     "by_opp": {
+      "sp51_castera": [
+       3,
+       5
+      ],
+      "sp51_casterh": [
+       4,
+       2
+      ],
+      "sp51_hunt": [
+       4,
+       3
+      ],
+      "sp51_centre": [
+       2,
+       5
+      ],
+      "sp51_farm": [
+       7,
+       11
+      ]
+     }
+    },
+    {
+     "a": "bots/v_capture_fix",
+     "b": "bots/v_fixes2",
+     "flips": [
+      22,
+      24
+     ],
+     "p": 0.8829959121223965,
+     "by_opp": {
+      "sp51_castera": [
+       4,
+       6
+      ],
+      "sp51_casterh": [
+       5,
+       3
+      ],
+      "sp51_hunt": [
+       5,
+       4
+      ],
+      "sp51_centre": [
+       2,
+       4
+      ],
+      "sp51_farm": [
+       6,
+       7
+      ]
+     }
+    },
+    {
+     "a": "bots/v_capture_fix",
+     "b": "bots/v_fixes3",
+     "flips": [
+      21,
+      30
+     ],
+     "p": 0.2624375357110438,
+     "by_opp": {
+      "sp51_castera": [
+       4,
+       9
+      ],
+      "sp51_casterh": [
+       5,
+       3
+      ],
+      "sp51_hunt": [
+       5,
+       5
+      ],
+      "sp51_centre": [
+       1,
+       5
+      ],
+      "sp51_farm": [
+       6,
+       8
+      ]
+     }
+    },
+    {
+     "a": "bots/v_v51",
+     "b": "bots/v_v51_mapdraft",
+     "flips": [
+      2,
+      5
+     ],
+     "p": 0.453125,
+     "by_opp": {
+      "sp51_castera": [
+       0,
+       2
+      ],
+      "sp51_hunt": [
+       1,
+       1
+      ],
+      "sp51_centre": [
+       0,
+       2
+      ],
+      "sp51_farm": [
+       1,
+       0
+      ]
+     }
+    },
+    {
+     "a": "bots/v_v51",
+     "b": "bots/v_fixes2",
+     "flips": [
+      17,
+      16
+     ],
+     "p": 1.0,
+     "by_opp": {
+      "sp51_castera": [
+       2,
+       4
+      ],
+      "sp51_casterh": [
+       3,
+       3
+      ],
+      "sp51_hunt": [
+       3,
+       3
+      ],
+      "sp51_centre": [
+       3,
+       4
+      ],
+      "sp51_farm": [
+       6,
+       2
+      ]
+     }
+    },
+    {
+     "a": "bots/v_v51",
+     "b": "bots/v_fixes3",
+     "flips": [
+      14,
+      20
+     ],
+     "p": 0.39152830513194203,
+     "by_opp": {
+      "sp51_castera": [
+       2,
+       7
+      ],
+      "sp51_casterh": [
+       3,
+       3
+      ],
+      "sp51_hunt": [
+       2,
+       3
+      ],
+      "sp51_centre": [
+       2,
+       5
+      ],
+      "sp51_farm": [
+       5,
+       2
+      ]
+     }
+    },
+    {
+     "a": "bots/v_v51_mapdraft",
+     "b": "bots/v_fixes2",
+     "flips": [
+      19,
+      15
+     ],
+     "p": 0.6075913612730801,
+     "by_opp": {
+      "sp51_castera": [
+       4,
+       4
+      ],
+      "sp51_casterh": [
+       3,
+       3
+      ],
+      "sp51_hunt": [
+       2,
+       2
+      ],
+      "sp51_centre": [
+       4,
+       3
+      ],
+      "sp51_farm": [
+       6,
+       3
+      ]
+     }
+    },
+    {
+     "a": "bots/v_v51_mapdraft",
+     "b": "bots/v_fixes3",
+     "flips": [
+      14,
+      17
+     ],
+     "p": 0.720100131817162,
+     "by_opp": {
+      "sp51_castera": [
+       3,
+       6
+      ],
+      "sp51_casterh": [
+       3,
+       3
+      ],
+      "sp51_hunt": [
+       2,
+       3
+      ],
+      "sp51_centre": [
+       2,
+       3
+      ],
+      "sp51_farm": [
+       4,
+       2
+      ]
+     }
+    },
+    {
+     "a": "bots/v_fixes2",
+     "b": "bots/v_fixes3",
+     "flips": [
+      2,
+      9
+     ],
+     "p": 0.0654296875,
+     "by_opp": {
+      "sp51_castera": [
+       0,
+       3
+      ],
+      "sp51_casterh": [
+       1,
+       1
+      ],
+      "sp51_hunt": [
+       0,
+       1
+      ],
+      "sp51_centre": [
+       0,
+       2
+      ],
+      "sp51_farm": [
+       1,
+       2
+      ]
+     }
+    }
+   ]
+  }
+ }
+}

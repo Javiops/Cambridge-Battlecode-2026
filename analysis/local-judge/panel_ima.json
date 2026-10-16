@@ -1,0 +1,43 @@
+{
+ "maps": 77,
+ "opps": [
+  "bots/sp_castera",
+  "bots/sp_casterh",
+  "bots/sp_hunt",
+  "bots/sp_centre",
+  "bots/sp_farm"
+ ],
+ "pairs": [
+  {
+   "a": "bots/online",
+   "b": "bots/v_im_a",
+   "flips": [
+    68,
+    46
+   ],
+   "p": 0.048724686398681945,
+   "by_opp": {
+    "sp_castera": [
+     22,
+     14
+    ],
+    "sp_casterh": [
+     13,
+     6
+    ],
+    "sp_hunt": [
+     11,
+     5
+    ],
+    "sp_centre": [
+     15,
+     10
+    ],
+    "sp_farm": [
+     7,
+     11
+    ]
+   }
+  }
+ ]
+}

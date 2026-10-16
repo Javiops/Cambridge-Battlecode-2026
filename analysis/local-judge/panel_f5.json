@@ -1,0 +1,301 @@
+{
+ "maps": 5,
+ "opps": [
+  "bots/sp_castera",
+  "bots/sp_casterh",
+  "bots/sp_hunt",
+  "bots/sp_centre",
+  "bots/sp_farm"
+ ],
+ "pairs": [
+  {
+   "a": "bots/online",
+   "b": "bots/v_jackgo",
+   "flips": [
+    0,
+    0
+   ],
+   "p": 1.0,
+   "by_opp": {}
+  },
+  {
+   "a": "bots/online",
+   "b": "bots/v_online1252_jackgo_imp",
+   "flips": [
+    6,
+    2
+   ],
+   "p": 0.2890625,
+   "by_opp": {
+    "sp_castera": [
+     0,
+     2
+    ],
+    "sp_casterh": [
+     2,
+     0
+    ],
+    "sp_hunt": [
+     1,
+     0
+    ],
+    "sp_centre": [
+     1,
+     0
+    ],
+    "sp_farm": [
+     2,
+     0
+    ]
+   }
+  },
+  {
+   "a": "bots/online",
+   "b": "bots/v_d20281a41e",
+   "flips": [
+    10,
+    3
+   ],
+   "p": 0.09228515625,
+   "by_opp": {
+    "sp_castera": [
+     1,
+     2
+    ],
+    "sp_casterh": [
+     2,
+     0
+    ],
+    "sp_hunt": [
+     2,
+     1
+    ],
+    "sp_centre": [
+     2,
+     0
+    ],
+    "sp_farm": [
+     3,
+     0
+    ]
+   }
+  },
+  {
+   "a": "bots/online",
+   "b": "bots/v_study27_economy",
+   "flips": [
+    14,
+    2
+   ],
+   "p": 0.004180908203125,
+   "by_opp": {
+    "sp_castera": [
+     2,
+     0
+    ],
+    "sp_casterh": [
+     3,
+     1
+    ],
+    "sp_hunt": [
+     1,
+     1
+    ],
+    "sp_centre": [
+     3,
+     0
+    ],
+    "sp_farm": [
+     5,
+     0
+    ]
+   }
+  },
+  {
+   "a": "bots/v_jackgo",
+   "b": "bots/v_online1252_jackgo_imp",
+   "flips": [
+    6,
+    2
+   ],
+   "p": 0.2890625,
+   "by_opp": {
+    "sp_castera": [
+     0,
+     2
+    ],
+    "sp_casterh": [
+     2,
+     0
+    ],
+    "sp_hunt": [
+     1,
+     0
+    ],
+    "sp_centre": [
+     1,
+     0
+    ],
+    "sp_farm": [
+     2,
+     0
+    ]
+   }
+  },
+  {
+   "a": "bots/v_jackgo",
+   "b": "bots/v_d20281a41e",
+   "flips": [
+    10,
+    3
+   ],
+   "p": 0.09228515625,
+   "by_opp": {
+    "sp_castera": [
+     1,
+     2
+    ],
+    "sp_casterh": [
+     2,
+     0
+    ],
+    "sp_hunt": [
+     2,
+     1
+    ],
+    "sp_centre": [
+     2,
+     0
+    ],
+    "sp_farm": [
+     3,
+     0
+    ]
+   }
+  },
+  {
+   "a": "bots/v_jackgo",
+   "b": "bots/v_study27_economy",
+   "flips": [
+    14,
+    2
+   ],
+   "p": 0.004180908203125,
+   "by_opp": {
+    "sp_castera": [
+     2,
+     0
+    ],
+    "sp_casterh": [
+     3,
+     1
+    ],
+    "sp_hunt": [
+     1,
+     1
+    ],
+    "sp_centre": [
+     3,
+     0
+    ],
+    "sp_farm": [
+     5,
+     0
+    ]
+   }
+  },
+  {
+   "a": "bots/v_online1252_jackgo_imp",
+   "b": "bots/v_d20281a41e",
+   "flips": [
+    8,
+    5
+   ],
+   "p": 0.5810546875,
+   "by_opp": {
+    "sp_castera": [
+     2,
+     1
+    ],
+    "sp_casterh": [
+     2,
+     2
+    ],
+    "sp_hunt": [
+     2,
+     2
+    ],
+    "sp_centre": [
+     1,
+     0
+    ],
+    "sp_farm": [
+     1,
+     0
+    ]
+   }
+  },
+  {
+   "a": "bots/v_online1252_jackgo_imp",
+   "b": "bots/v_study27_economy",
+   "flips": [
+    12,
+    4
+   ],
+   "p": 0.076812744140625,
+   "by_opp": {
+    "sp_castera": [
+     4,
+     0
+    ],
+    "sp_casterh": [
+     3,
+     3
+    ],
+    "sp_hunt": [
+     0,
+     1
+    ],
+    "sp_centre": [
+     2,
+     0
+    ],
+    "sp_farm": [
+     3,
+     0
+    ]
+   }
+  },
+  {
+   "a": "bots/v_d20281a41e",
+   "b": "bots/v_study27_economy",
+   "flips": [
+    10,
+    5
+   ],
+   "p": 0.3017578125,
+   "by_opp": {
+    "sp_castera": [
+     4,
+     1
+    ],
+    "sp_casterh": [
+     1,
+     1
+    ],
+    "sp_hunt": [
+     1,
+     2
+    ],
+    "sp_centre": [
+     1,
+     0
+    ],
+    "sp_farm": [
+     3,
+     1
+    ]
+   }
+  }
+ ]
+}

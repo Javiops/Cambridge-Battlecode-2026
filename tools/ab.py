@@ -166,11 +166,15 @@ def main():
 
     per = {}  # (set, map) -> {side: result}
     lines = []
+    failed = []; faults = [0, 0]  # games with no stats (left out of every count below); bot faults [candidate, base]
     for (s, name, side), r in zip(index, results):
         per.setdefault((s, name), {})[side] = r
         if not r.get('ok'):
+            failed.append(f'{s}/{name} {side}')
             print('FAIL', s, name, side, r.get('log', '').strip().splitlines()[-1:]); continue
         me = 0 if side == 'A' else 1
+        if r.get('faults'):
+            faults[0] += r['faults'][me]; faults[1] += r['faults'][1 - me]
         won = r['outcome'] == ('teamA' if me == 0 else 'teamB')
         lost = r['outcome'] in ('teamA', 'teamB') and not won
         r['res'] = 'WIN' if won else 'LOSS' if lost else 'DRAW'
@@ -210,6 +214,12 @@ def main():
     tot_w = sum(fresh_wl[s][0] for s in fresh); tot_l = sum(fresh_wl[s][1] for s in fresh)
     n = tot_w + tot_l
     pv = sign_p(tot_w, n)
+    if failed:
+        print(f"WARNING: {len(failed)} games did not finish and their maps are left out of every count above "
+              f"({', '.join(failed[:6])}{' ...' if len(failed) > 6 else ''}). The verdict below is INCOMPLETE.")
+    if faults[0] or faults[1]:
+        print(f"Bot faults: candidate {faults[0]}, base {faults[1]}" +
+              (" -> the candidate faults more: do not trust a win until that is fixed." if faults[0] > faults[1] else ''))
     print(f"Verdict on {'+'.join(fresh)} ({tot_w} won both sides, {tot_l} lost both):")
     if n == 0:
         print('  no decisive maps (every map split 1-1). The change does nothing measurable.')

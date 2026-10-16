@@ -1,0 +1,20 @@
+{
+ "id": "I070",
+ "title": "Fix the local judge: calibration vs online, specialist sparring panel, gate/ab/online_base fixes",
+ "kind": "infra",
+ "source": "user 16 Oct 14:49: local wins since the GA genomes did not show online",
+ "owner": "Javi",
+ "hypothesis": "a panel of specialists built like the top teams ranks candidates closer to the online paired result than self-play",
+ "stage": "local-test",
+ "bot": "tools/panel",
+ "branch": "claude/local-judge-1mgyqy",
+ "created": "2026-10-16T15:40Z",
+ "history": [
+  {
+   "at": "2026-10-16T15:40Z",
+   "stage": "local-test",
+   "note": "calibration: no version change since 15 Oct decided online (p>=0.38), local overstated fight changes (study28 83% local -> 55% online). Online vs top 30: we die 14.1/game (top 10: 2.9), died10 14.9% vs 2.8%. Panel (sp_castera/casterh/hunt/centre/farm): caster specialists closest (our win 53-71%, per-map win corr +0.5); ranks ga65a6>economy 63% (online 57%, self-play 69%). PR #29, analysis/local-judge/README.md"
+  }
+ ],
+ "updated": "2026-10-16T15:40Z"
+}

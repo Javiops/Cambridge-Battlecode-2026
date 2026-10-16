@@ -1,0 +1,105 @@
+{
+ "maps": 77,
+ "opps": [
+  "bots/sp_castera",
+  "bots/sp_casterh",
+  "bots/sp_hunt",
+  "bots/sp_centre",
+  "bots/sp_farm"
+ ],
+ "pairs": [
+  {
+   "a": "bots/v_online1252_jackgo_imp",
+   "b": "bots/v_a9a87ec5ce",
+   "flips": [
+    69,
+    82
+   ],
+   "p": 0.32880860932627676,
+   "by_opp": {
+    "sp_castera": [
+     17,
+     17
+    ],
+    "sp_casterh": [
+     9,
+     18
+    ],
+    "sp_hunt": [
+     8,
+     10
+    ],
+    "sp_centre": [
+     9,
+     19
+    ],
+    "sp_farm": [
+     26,
+     18
+    ]
+   }
+  },
+  {
+   "a": "bots/v_online1252_jackgo_imp",
+   "b": "bots/v_a9_imp",
+   "flips": [
+    69,
+    76
+   ],
+   "p": 0.618445466038815,
+   "by_opp": {
+    "sp_castera": [
+     18,
+     23
+    ],
+    "sp_casterh": [
+     10,
+     14
+    ],
+    "sp_hunt": [
+     11,
+     10
+    ],
+    "sp_centre": [
+     14,
+     16
+    ],
+    "sp_farm": [
+     16,
+     13
+    ]
+   }
+  },
+  {
+   "a": "bots/v_a9a87ec5ce",
+   "b": "bots/v_a9_imp",
+   "flips": [
+    69,
+    63
+   ],
+   "p": 0.6635853603383616,
+   "by_opp": {
+    "sp_castera": [
+     17,
+     22
+    ],
+    "sp_casterh": [
+     13,
+     8
+    ],
+    "sp_hunt": [
+     12,
+     9
+    ],
+    "sp_centre": [
+     15,
+     7
+    ],
+    "sp_farm": [
+     12,
+     17
+    ]
+   }
+  }
+ ]
+}

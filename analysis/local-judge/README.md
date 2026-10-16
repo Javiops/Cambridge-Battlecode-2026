@@ -1,0 +1,307 @@
+# Fixing the local judge (2026-10-16)
+
+Problem (user, 14:49 UTC): since the GA genomes reached main, local wins have not shown up online. Online gives
+~30 challenge groups an hour; locally we tune to beat our own bot instead of the top teams.
+
+Three parts: (1) how well local verdicts predicted online, (2) a panel of specialist sparring opponents, one per
+way we lose, validated against replay statistics, (3) how to spend the online quota.
+
+## 1. Calibration: local verdict vs paired online result
+
+Online side: `calib_online.py` (reads `/mnt/project-files/online/data/games.jsonl`, unranked games only). For each
+version change it keeps the latest game of each (opponent, map, side) per version and counts the pairings that flip
+(won with one version, lost with the other). Version windows are in the script (from `versions.jsonl` / `hourly.md`).
+
+| change (new vs old) | kind | local verdict | local share | online shared pairings | online flips new-old | online share | p (sign) | P(online this low if local were right) |
+|---|---|---|---|---|---|---|---|---|
+| study27 vs study26 (stack on 3000+ hp camps) | farm | 154-106 maps won both sides, every set | 59% | 125 | 15-18 | 45% | 0.73 | 0.08 |
+| study28 vs study27 (cancel doomed tributes) | fight | dev200 24-5 | 83% | 137 | 12-10 | 55% | 0.83 | **0.002** |
+| corners fix vs study27 (fires on corners only) | fight | corners panel 16-0 (vs study27 itself 2-0) | - | 313 (corners 41) | 39-39 (corners 6-4) | 50% | 1.00 | - |
+| ga65a6 vs overnight bot (GA fight weights, v44) | fight | sealed 560 maps 180-79 | 69% | 209 | 27-20 | 57% | 0.38 | 0.05 |
+| 12:52 combined vs ga65a6 (P_MONO + fuel guard + jackpot) | bug/farm | fresh 71-56, site maps 23-11, contest and stampede won both sides | 56% | 79 | 7-4 | 64% | 0.55 | 0.79 |
+| 12:52 combined vs overnight bot | | | | 127 | 19-16 | 54% | 0.74 | |
+
+"Overnight bot" = 15 Oct 17:09 to 16 Oct 07:47: study27 + corners fix, then study27-economy from an unknown time
+(the source matched Fran's branch at 08:05). Online numbers for the combined version are the 13:5x batch only.
+
+Per map, the GA change (ga65a6) moved where the GA was trained on fights: corners 5-0, lanes 5-1, elkring 4-1,
+rushbait 3-0 for; interlock 1-4, monolith 0-3 against. The combined version's target maps did not move online:
+contest 1 flip in 14 pairings (still 0-7 raw), stampede 1-1.
+
+### What the table says
+
+- **No version change since 15 Oct was decided online** (every p >= 0.38), while local called four of them clear wins.
+- **Local overstates the size of fight changes.** If study28's local 83% had been true, seeing 12-10 online has a 0.2%
+  chance; for ga65a6 (69% locally) 27-20 has 5%. Local self-play magnifies fight changes because both sides run our
+  code: a fight tweak that exploits our own fight rules wins big against us and barely registers against Mite or Univardisty.
+- **Farm and bug fixes predict better.** Stacking and the fuel guard came out at local 56-59%, online 45-64%: consistent
+  within the online noise. The farm side of the local judge is not the problem; the fight side is.
+- **Half of the online flips are not the bot.** The same version, replayed on the same (opponent, map, side) an hour later,
+  changes result 8% (study27) to 13% (overnight) of the time, because rivals upload new bots. Version changes flip
+  14-26% of pairings, so roughly half of every online A/B is rival drift.
+
+### How much an online hour can tell (feeds part 3)
+
+Pairings that flip at all, over every (opponent, map, side) played by two or more versions:
+
+| map | pairings | ever flipped | our win % |
+|---|---|---|---|
+| collision | 39 | 54% | 62% |
+| interlock | 41 | 54% | 50% |
+| packs | 42 | 52% | 36% |
+| lanes | 43 | 44% | 31% |
+| elkring | 40 | 42% | 34% |
+| corners | 41 | 41% | 43% |
+| rushbait_v2 | 16 | 31% | 40% |
+| monolith | 40 | 30% | 41% |
+| fragment | 16 | 25% | 26% |
+| expanse | 46 | 24% | 43% |
+| rows | 44 | 20% | 33% |
+| ambush | 15 | 20% | 30% |
+| swirl | 18 | 17% | 36% |
+| stampede | 12 | 17% | 18% |
+| pilgrimage | 14 | 7% | 11% |
+| contest | 14 | 7% | 2% |
+| eight | 15 | 0% | 0% |
+
+| rival rank | pairings | ever flipped | our win % |
+|---|---|---|---|
+| top 10 | 139 | 28% | 19% |
+| 11-30 | 228 | 41% | 38% |
+| 31+ | 129 | 29% | 53% |
+
+The six fight maps (collision, interlock, packs, lanes, elkring, corners) flip about twice as often as the rest;
+eight, contest and pilgrimage almost never flip (we lose them whatever the version). Rivals ranked 11-30 flip most;
+the top 10 mostly beat every version we have uploaded.
+
+## 2. What online actually looks like: 153 of our games vs the top 30, decoded
+
+`tools/panel/gamestats.py` on 153 replays of our bot (ga65a6 and the 12:52 build, 16 Oct 10:46-15:00, rivals ranked 1-30,
+18 per map) and on the 101 Mite/Univardisty games of 15 Oct. Same definitions for every row: a contact turn = alive
+with an enemy within 8; died10 = dead within 10 rounds of a contact turn; retreat share = steps that increase the distance
+to the nearest enemy, among steps with an enemy within 5. Rows: `online_rows.jsonl`, `top2_rows.jsonl`.
+
+| team | games | win% | deaths/game | deaths before r500 | kills/game | gems/100 rounds | gems carried at death | died10 | retreat share at hp 30-40 / 40-50 / 50-60 / 60-70 / 90-100 |
+|---|---|---|---|---|---|---|---|---|---|
+| us vs top 30 | 153 | 29 | **14.1** | 8.0 | 4.8 | 92 | **81** | **14.9%** | 0.45 0.42 0.30 0.24 0.20 |
+| top 10 vs us | 63 | 84 | 2.9 | 1.9 | 14.4 | 143 | 22 | 2.8% | 0.38 0.33 0.25 0.21 0.17 |
+| rivals 11-30 vs us | 90 | 62 | 6.1 | 3.4 | 13.9 | 117 | 72 | 5.6% | 0.39 0.35 0.28 0.25 0.17 |
+| Mite (15 Oct, vs top 20) | 54 | 63 | 4.9 | 4.1 | 4.9 | 189 | 54 | 7.3% | 0.54 0.31 0.22 0.18 0.10 |
+| Univardisty (15 Oct) | 54 | 48 | 6.1 | 4.5 | 6.4 | 156 | 106 | 8.2% | 0.44 0.36 0.31 0.28 0.15 |
+
+What costs games online is one symptom far above the others: **we die, 14 times a game, carrying 81 gems each time,
+and kill 5.** Retreat decisions are close to theirs (a few points more cautious); farming is not the gap where we live
+(rows, lanes, monolith, expanse: 0-3 deaths, 215-250 gems/100 rounds). The deaths pile up on contest (62/game), stampede
+(37), swirl (28), eight (19), fragment (17), pilgrimage (15).
+
+### The specialist panel
+
+The user's direction: one local opponent per way we lose. Each specialist is the online bot (12:52 zip) with switches
+(`tools/panel/specialists.txt`, built by `tools/panel/build_panel.sh`); the hunter adds `hunt.h` (P_HUNT, sparring-only,
+off = the online bot unchanged; `patch_hunt.py` inserts it). Every fight specialist uses the top teams' retreat cut at
+~40% hp and no chase limit.
+
+| specialist | symptom it covers | what it does |
+|---|---|---|
+| sp_castera | loses team fights | Univardisty caster draft on every map (5-champ variant too), moves as a ball, prefers squishy targets, gangs lone foes, calls fights at worse odds |
+| sp_casterh | dies while farming + team fights | caster draft + 2 hunters that patrol our camps nearest our spawn and our altars, chase the foe with most gems |
+| sp_hunt | dies carrying gems / intercepted at camps and altars | our draft + the 2 hunters |
+| sp_centre | too defensive / objective fights | holds the centre altar with its camps (P_HOLD 400, radius 8), farms the enemy half (P_HALF 250), never leaves when grouped |
+| sp_farm | farms too slowly | avoids every fight, pure race |
+| (new maps) | loses on new maps | a map set, not an opponent: the 17 site maps + generated cousins + sealed fresh sets, as today |
+
+Our online bot against each, 17 site maps both sides (34 games), next to online (153 games vs the top 30):
+
+| opponent | our win% | our deaths/game | our kills/game | per-map correlation with online: deaths / win% |
+|---|---|---|---|---|
+| **online, vs the top 30** | **29%** | **14.1** | **4.8** | |
+| sp_castera | 53% | 11.3 | 6.2 | +0.97 / **+0.50** |
+| sp_caster (calls fewer fights) | 56% | 11.4 | 6.6 | +0.96 / +0.50 |
+| sp_casterh | 71% | 12.8 | 11.3 | +0.96 / **+0.53** |
+| sp_centre | 82% | 10.3 | 15.0 | +0.41 / +0.41 |
+| sp_hunt | 82% | 12.9 | 11.7 | +0.97 / +0.06 |
+| spar16 (old caster sparring) | 91% | 4.6 | 9.1 | +0.48 / +0.22 |
+| sp_farm | 88% | 4.7 | 6.6 | +0.90 / -0.50 |
+| our own bot (self-play) | 59% | 8.2 | 8.1 | +0.91 / +0.29 |
+
+- The caster specialists are the closest thing to the top teams we can build: they kill us almost as often as online
+  (11-13 deaths a game vs 14) and their map-by-map results follow online's (win% correlation +0.5, self-play +0.3, the
+  old caster panel +0.2).
+- **No specialist is as lethal as the real top teams.** They trade kills with us (6-15 kills for us a game) where the top
+  10 lose 2.9 champions a game. Every specialist is built from our own fight code, and our fight execution is what
+  loses online; the gap is execution (spell damage, focus), not decisions: our retreat curve is already within a few
+  points of theirs.
+- sp_farm is not informative (negative correlation, we beat it everywhere but on race maps); keep it only as a farm-speed
+  check.
+
+### Does the panel rank versions the way online did?
+
+`tools/panel/panel.py` played the three last online versions against sp_castera, sp_casterh, sp_hunt, sp_centre and
+sp_farm on the 17 site maps + hold60 (77 maps, both sides, 2,310 games; `panel_versions.json`).
+
+| pair | self-play local | panel: games that flip | online: pairings that flip |
+|---|---|---|---|
+| ga65a6 vs study27-economy | 180-79 maps (69%) | 114-67 (63%), p=0.001 | 27-20 (57%), p=0.38 |
+| 12:52 build vs ga65a6 | 71-56 fresh (56%) | 79-50 (61%), p=0.01 | 7-4 (64%), p=0.55 |
+| 12:52 build vs study27-economy | | 126-50 (72%) | 19-16 (54%), p=0.74 |
+
+The panel's direction agrees with online on all three and its size is closer than self-play for ga65a6 (63% vs 57%
+online, self-play said 69%), but it still overstates, most for the 12:52 build. Expected: the specialists are built
+from the 12:52 build's own code, so that build has a home advantage against them (sp_farm alone gives it 28-12).
+**Use the panel to rank candidates that share the online bot's code, never to compare against an older code base.**
+
+### Pre-registered prediction: im_a (online since 15:09)
+
+im_a (imitation thread: P_UNI_FLEE 33, P_LOWHP 40, P_GA_AVOID_HP 45, P_AVOID_DIST 2) went online at 15:09 inside
+mybot_online1252_jackgo_imitation.zip. Written down at 15:50 UTC, before its online batches:
+- self-play gate: im_a better, 63-38 maps (p=0.017)
+- the imitation thread's caster check (spar11+16, 36 games): our deaths 89 vs 34, wins 32 vs 34
+- **specialist panel: im_a worse, games that flip 46-68 (40%, p=0.049)**; it dies more against every fight specialist
+  (castera 6.4 vs 5.4 deaths, centre 9.9 vs 7.5)
+The online paired result for im_a vs the 12:52 build settles which judge to trust (the jackgo stampede rule rides along,
+so compare on non-stampede maps).
+
+### Pre-registered predictions for the 15:20 upload and the farm champion (written 15:47 UTC)
+
+im_a was online only 15:09-15:20 with no clean batch, so it cannot be scored. The 15:20 upload is
+mybot_online1252_jackgo_imp.zip (12:52 + stampede centre rule + im_p). Panel on the five fight maps the loop now uses
+(collision, interlock, lanes, elkring, corners; both sides x 5 specialists = 50 games per bot; `panel_f5.json`):
+
+| pair | panel: games that flip | prediction for online, paired on those 5 maps |
+|---|---|---|
+| jackgo vs 12:52 | 0-0 (identical off stampede) | equal |
+| **im_p build vs 12:52** | 2-6 (25%), p=0.29; deaths vs casterh 11.6 vs 6.6 | **no gain, slightly worse** |
+| **im_p build vs study27-economy** | 12-4 (75%), p=0.08 | **better** |
+| **d20281a41e (farm champion) vs 12:52** | 3-10 (23%), p=0.09 | **worse** |
+| im_p build vs d20281a41e | 8-5 | im_p build ahead |
+
+Small samples: these are direction calls, firmed up by the 77-map run below.
+
+77-map run (17 site maps + hold60, 770 games per bot, `panel_77_imp_d2.json`), written 16:00 UTC:
+
+| pair | all specialists | without sp_farm (no information) | sp_castera alone |
+|---|---|---|---|
+| im_p build vs 12:52 | 51-63 (45%), p=0.30 | 37-44 | 11-14 |
+| d20281a41e vs 12:52 | 70-100 (41%), p=0.03 | 54-60 | 10-21 |
+
+Final calls: **im_p build = no change vs 12:52** (online paired should be within noise); **d20281a41e = no better than
+12:52, worse against the caster team** (its deficit is mostly sp_farm and sp_castera; even against the rest).
+
+### Pre-registered predictions for farm champion b672ef97f6 (= a9a87ec5ce), written 16:01 UTC
+
+The farm's 15:52 confirmation replaced d20281a41e (level with v44 on 100 fresh maps, as called above) with b672ef97f6
+from cloud-d (`mybot_a9a87ec5ce.zip`): no kiting, attacks foes next to an ally, no early low-hp retreat. Two builds:
+`bots/v_a9a87ec5ce` = the farm zip as is; `bots/v_a9_imp` = the same plus the im_p paired-retreat rule (33/40/45/2 with an
+ally within 2 tiles, the genome's own 44/50/54/4 alone). Base = the 15:20 online bot (`mybot_online1252_jackgo_imp.zip`).
+Note: the farm zip has no P_JACKPOT/P_JACKGO stampede code (its genome layout predates them), so on stampede it plays
+like v44.
+
+17 site maps x 2 sides x 5 specialists (170 games per bot, `panel_17_imp_a9.json`):
+
+| bot | castera | casterh | hunt | centre | farm | all |
+|---|---|---|---|---|---|---|
+| 15:20 online bot | 68% d9.0 | 59% d13.9 | 74% d12.4 | 82% d10.4 | 82% d5.6 | 72.9% |
+| b672ef97f6 | 59% d11.1 | 71% d12.7 | 82% d13.5 | 85% d9.2 | 59% d8.7 | 71.2% |
+| b672ef97f6 + im_p | 68% d11.8 | 65% d13.0 | 71% d15.4 | 76% d13.1 | 68% d7.9 | 69.4% |
+
+| pair | games that flip | weighted (castera x2, casterh x2, centre x1, hunt x0.5, farm 0) | stampede |
+|---|---|---|---|
+| online vs b672ef97f6 | 22-19, p=0.76 | 19.5-24 | 4-1 for online |
+| online vs b672 + im_p | 26-20, p=0.46 | 23-29 | 3-1 for online |
+| b672 vs b672 + im_p | 24-21, p=0.77 | | |
+
+Calls vs the 15:20 online bot, paired online: **b672ef97f6 = no change** overall (a split by specialist: better against
+the caster-hunter, worse against the caster team and the farmer); **worse on stampede** (no jackpot rule: 10% vs 40% of
+panel games there). **b672 + im_p = no change**, no better than b672 alone. The farm's 100-48 vs its control and 34-10 vs
+v44 come from self-play-like rivals, which overstated every fight change since study27 (part 1). It dies more than the
+online bot against every specialist except casterh/centre. Neither is worth an upload slot over the 15:20 bot on this
+evidence; if one is tested online, use b672 with the jackpot rule restored, or leave stampede out of the comparison.
+
+77-map run (17 site maps + hold60, 770 games per bot, `panel_77_imp_a9.json`), written 16:03 UTC:
+
+| pair | all specialists | without sp_farm | castera | casterh | centre |
+|---|---|---|---|---|---|
+| online vs b672ef97f6 | 69-82 (46%), p=0.33 | 43-64, p=0.05 | 17-17 | 9-18 | 9-19 |
+| online vs b672 + im_p | 69-76 (48%), p=0.62 | 53-63, p=0.40 | 18-23 | 10-14 | 14-16 |
+| b672 vs b672 + im_p | 69-63 | 57-46 | 17-22 | 13-8 | 15-7 |
+
+The edge for b672 is on the generated hold60 maps (47-63 there, 22-19 against it on the site maps) and against
+casterh/centre, even against the caster team (castera, the best online fit). Final calls: **b672ef97f6 = at most a small
+gain** over the 15:20 bot online (expect within noise on the six fight maps, worse on stampede without the jackpot rule);
+**the im_p graft adds nothing** on top of b672 (57-46 for b672 alone without sp_farm).
+
+### Pre-registered prediction: v51 (teammate_fixes1, online since 18:01) vs im_p (the 15:20 bot, site v48), written 18:20 UTC
+
+**Correction 19:15 UTC:** this section first called the 15:20 im_p bot "v49". The site labels say im_p was v48 (15:20-15:50); v49 was the teammate's capture_recall_fix and v50 the teammate's anti_feed (16:25-18:05). So the online loop compared v51 with v50, not with im_p, and this prediction used the wrong control. The adjudication section below uses v50 (anti_feed).
+
+v51 = `mybot_teammate_fixes1.zip` (teammate bot + P_CAMPFOE, P_BACKHOME, P_NEEDHEAL, P_KITEALLY, P_NOCHASE2, P_TWIN),
+now recorded with its zip in versions.jsonl. The online loop measured v51 (B) against v50 (A), not against im_p.
+
+**Site maps (headline), 17 maps x 2 sides x 5 specialists, `panel_17_v51.json`:** games that flip 28-20 for im_p
+(58%), p=0.31. By specialist: caster team (castera, the best online fit) 9-3 for im_p, casterh 4-4, hunt 3-3, centre 3-5,
+farm 9-5. v51 dies more against the caster team (14.1 vs 9.0 per game).
+Per site map (flips im_p-v51): elkring 5-0, swirl 5-0, contest 3-2, fragment 3-2, rows 2-0, eight 1-0, lanes 1-0,
+interlock 4-4, stampede 2-2, collision 1-1, ambush/packs 0-0, corners 0-1, expanse 0-1, rushbait-v2 1-2, pilgrimage 0-2,
+monolith 0-3.
+
+Generated maps (secondary, 60): 75-52 for im_p, p=0.05 (castera 17-8). All 77: 103-72, p=0.02.
+
+Call: **v51 no better than im_p on the site maps, likely slightly worse**, most visibly on elkring and swirl and against
+caster teams; v51 ahead only on monolith and pilgrimage. Caveat: the specialists are built on the 12:52 code, the same
+lineage as im_p, and the panel has shown a home edge for that code (part 2), so this leans against v51 by an unknown amount.
+
+### Adjudication 19:40 UTC: v51, v51 + draft rule, fixes2, fixes3 (site maps first)
+
+Games won of 170 (17 site maps x 2 sides x 5 specialists). Canonical panel = specialists built on the 12:52 code (`bots/sp_*`);
+v51 panel = the same five switch sets built on the v51 zip (`bots/sp51_*`, as the new-maps thread did at 18:17).
+v49 (capture_fix) and v50 (anti_feed) are the teammate's folders in commit 3a2d263 (Salvador, 16:20 UTC, branch
+claude/fix-teammate-behaviours), not the site zips; v51-v52 are the zips in /mnt/project-files/bot/.
+
+| bot | canonical panel, site | v51 panel, site | canonical, generated (of 600) | online |
+|---|---|---|---|---|
+| v50 anti_feed | 124 | 115 | 484 | level with v52 (pairs 24-29 for v52) |
+| v49 capture_fix | 121 | 115 | 490 | not compared here |
+| v51 = fixes1 | 116 | 118 | 473 | 26% (22-63) |
+| v51 + draft rule | 120 | 121 | 480 | not online |
+| fixes2 | 130 | 117 | 476 | not online |
+| v52 = fixes3 | **133** | **124** | 480 | 39% (29-46) |
+
+**Noise floor** (`panel_noise_v51.json`): four do-nothing rebuilds of v51 (an empty loop of 40-160 steps at turn start, so
+only fuel use changes) scored 116, 117, 120, 120, 124 of 170 on the canonical site panel, and a pair of them flips up to
+20 games (6-14). Identical source rebuilds to the identical wasm, so the noise is any code change moving fuel, not the
+compiler. **A gap under ~10 of 170, or a flip split under about 2:1 on 30+ flipped games, is noise.**
+
+Site-map head-to-heads (games that flip, canonical / v51 panel): fixes3 vs v51 27-10 (p=0.008) / 20-14 (p=0.39);
+fixes2 vs v51 22-8 (p=0.016) / 16-17; v51+draft vs v51 8-4 / 5-2; fixes3 vs fixes2 7-4 / 9-2; fixes3 vs anti_feed 26-17 / 28-19.
+
+Reading: **fixes3 is the only one ahead of v51 on both panels**, by more than the floor on the canonical one (+17) and
+inside it on the v51 one (+6). fixes2's +14 over v51 exists only on the canonical panel (v51 panel: -1), so the
+new-maps thread's reading is right about fixes2 and the fixes thread's is right about fixes3. The draft rule is a small
+plus on both (+4, +3), below the floor. Online agrees with the order v52 > v51 and with v52 not beating v50.
+Why the panels differ: (1) build base: the specialists share the code of whatever zip they are built from, so a switch
+the bot under test shares with them (ally duty, retreat thresholds) plays differently against them; (2) fuel noise of
+±4-8 games per build, which is the same size as most of the gaps the two threads reported; (3) not maps or seeds: both
+used the same 17 site maps and the engine is deterministic.
+
+## 3. How to spend the online quota
+
+What the calibration says about online information:
+- A version change flips 14-26% of the shared (opponent, map, side) pairings, and 8-13% flip anyway between hours
+  with the same version (rivals upload new bots). With today's mix of maps and rivals an hour yields ~100 shared
+  pairings and ~20 flips, half of them drift.
+- To call a real 60/40 split of flips at p<0.05 with 80% power needs ~190 flips; 65/35 needs ~85. At ~20 flips an
+  hour that is 9-10 hours per comparison, which is why no change since 15 Oct was decided.
+
+Recommendation (for the Dissect thread, which owns the loop):
+1. **Fixed design, every game a pairing.** Challenge the same 30 rivals every hour with explicit `mapIds`, so every
+   game of hour B repeats a game of hour A. Today only 50-80% of games pair up.
+2. **Flippable games only.** Use the six fight maps (collision, interlock, packs, lanes, elkring, corners: 41-54% of
+   pairings ever flip) and rivals ranked 11-30 (41%), plus a few top-10. Drop eight, contest and pilgrimage (0-7% flip)
+   and the race maps rows, expanse, swirl (17-24%) from A/B hours: a fix there is checked deterministically on the
+   local copy of the site map, and one online group on those maps only confirms the uploaded build behaves as locally.
+   This roughly doubles flips per hour (~45-60), so a 65/35 effect shows in ~2 hours per version, 60/40 in ~4.
+3. **ABAB, then stop.** Alternate hour by hour A, B, A, B. The two A hours measure rival drift on the same pairings;
+   subtract it before judging. Decide at p<0.05 on flips; if after 2 hours each the flip share is under 57%, call it a
+   tie and move on (the effect is too small to matter or to measure before 3 Nov).
+4. **Only send what the specialist panel ranks above the online bot.** Self-play local wins have been worth nothing
+   online for fight changes (part 1).

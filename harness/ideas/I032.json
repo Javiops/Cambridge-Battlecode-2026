@@ -1,0 +1,24 @@
+{
+ "id": "I032",
+ "title": "Structure evolution of the micro: rule switches/order genes, GP back-off/engage conditions, NEAT action net",
+ "kind": "fight",
+ "source": "user 2026-10-16 09:54: evolve the structure, not only the weights",
+ "owner": "Javi",
+ "hypothesis": "",
+ "stage": "dev",
+ "created": "2026-10-16T10:14Z",
+ "history": [
+  {
+   "at": "2026-10-16T10:14Z",
+   "stage": "idea",
+   "note": ""
+  },
+  {
+   "at": "2026-10-16T10:14Z",
+   "stage": "dev",
+   "note": "tools/ga/sga.py levels 1-3; seeds = base (68/68 identical games, unlimited fuel)"
+  }
+ ],
+ "updated": "2026-10-16T10:14Z",
+ "branch": "claude/ga-structure-054bwb"
+}

@@ -23,11 +23,16 @@
    "at": "2026-10-16T15:10Z",
    "stage": "online",
    "note": "uploaded 15:09:52 UTC; judge on stampede only (im_a changes the other 16 maps)"
+  },
+  {
+   "at": "2026-10-16T15:20Z",
+   "stage": "online",
+   "note": "15:20 UTC replaced the im_a combo; judge I045 on stampede games from the 15:46 batch"
   }
  ],
- "updated": "2026-10-16T15:10Z",
+ "updated": "2026-10-16T15:20Z",
  "bot": "bots/study27-economy",
  "branch": "claude/new-maps-study-q11x2y",
  "pr": "26",
- "version": "online1252 + I045 + im_a (mybot_online1252_jackgo_imitation.zip)"
+ "version": "online1252 + I045 + im_p (mybot_online1252_jackgo_imp.zip, 15:20 UTC)"
 }

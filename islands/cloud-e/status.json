@@ -4,14 +4,14 @@
  "scope": "gp",
  "start": "ga65a6",
  "jobs": 4,
- "gen": 9,
- "games": 12720,
- "gps": 6.09,
+ "gen": 10,
+ "games": 14450,
+ "gps": 5.94,
  "base": "7c2d0330e54e",
  "best": {
   "cid": "806a4297ec",
-  "shrunk": 0.0749,
-  "n": 1,
+  "shrunk": 0.093,
+  "n": 2,
   "describe": {
    "P_FRONT_LOCAL": 0,
    "P_ALLYDUTY": 1,
@@ -21,9 +21,9 @@
    "gp0": "((not FAV and not KILL) and (((HP < 50) or not (NEAR > (4 and (F8 > 3)))) and not SPAWN))"
   }
  },
- "exported": 10,
- "imported": 19,
- "updated": "2026-10-16 13:50:43 UTC",
+ "exported": 11,
+ "imported": 22,
+ "updated": "2026-10-16 13:55:35 UTC",
  "code": "claude/project-thread-om45ra@d84d598",
  "home": "/mnt/project-files/ga-farm/islands/cloud-e",
  "transport": "shared"

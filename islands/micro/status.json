@@ -4,14 +4,14 @@
  "scope": "micro",
  "start": "ga65a6",
  "jobs": 4,
- "gen": 37,
- "games": 60744,
- "gps": 3.98,
+ "gen": 38,
+ "games": 62346,
+ "gps": 3.66,
  "base": "7c2d0330e54e",
  "best": {
   "cid": "5f9da0c758",
-  "shrunk": 0.0868,
-  "n": 8,
+  "shrunk": 0.0789,
+  "n": 9,
   "describe": {
    "P_VOLLEY": 40,
    "P_CHASE_GEMS": 157,
@@ -31,8 +31,8 @@
   }
  },
  "exported": 37,
- "imported": 93,
- "updated": "2026-10-16 15:58:45 UTC",
+ "imported": 97,
+ "updated": "2026-10-16 16:06:04 UTC",
  "code": "HEAD@4dde634",
  "home": "/mnt/project-files/ga-farm/islands/micro",
  "transport": "shared"

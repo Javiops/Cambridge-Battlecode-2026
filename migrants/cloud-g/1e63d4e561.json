@@ -1,0 +1,196 @@
+{
+ "island": "cloud-g",
+ "cid": "1e63d4e561",
+ "base": "7c2d0330e54e",
+ "genome": {
+  "sc": {
+   "P_FLEE_PCT": 22,
+   "P_UNI_FLEE": 49,
+   "P_RECALL_PCT": 54,
+   "P_RECALL_NEAR": 7,
+   "P_BAIL_PCT": 12,
+   "P_ENGAGE2": 74,
+   "P_GA_FAV": 83,
+   "P_GA_KILL_X": 5,
+   "P_GA_SPAWN_HEAL": 87,
+   "P_FRONT_OUT": 145,
+   "P_GA_KITE_HP": 128,
+   "P_VOLLEY": 43,
+   "P_CHASE_GEMS": 118,
+   "P_DANGER": 4,
+   "P_DANGER_T": 45,
+   "P_DANGER_R": 4,
+   "P_FRONT": 0,
+   "P_NOCHASE": 0,
+   "P_FRONT_LOCAL": 0,
+   "P_ALLYDUTY": 1,
+   "P_R_AVOIDLOW": 0,
+   "P_O_FLEE": 0,
+   "P_O_AVOIDLOW": 81,
+   "P_O_RECALLSHOP": 99,
+   "P_NN_ON": 1,
+   "P_SHAREEXP": 72,
+   "P_TRIBUTE_GEMS": 16,
+   "P_GA_SS_HOME": 0,
+   "P_PAIR_N": 1
+  },
+  "gp1": [
+   "OR",
+   [
+    "OR",
+    [
+     "OR",
+     [
+      "VAR",
+      9
+     ],
+     [
+      "GT",
+      [
+       "NOT",
+       [
+        "VAR",
+        23
+       ]
+      ],
+      [
+       "VAR",
+       5
+      ]
+     ]
+    ],
+    [
+     "VAR",
+     17
+    ]
+   ],
+   [
+    "OR",
+    [
+     "AND",
+     [
+      "VAR",
+      10
+     ],
+     [
+      "VAR",
+      8
+     ]
+    ],
+    [
+     "VAR",
+     18
+    ]
+   ]
+  ],
+  "nn": {
+   "nodes": {
+    "1000": {
+     "bias": 1.0,
+     "depth": 1.0
+    },
+    "1001": {
+     "bias": -0.07777508493380329,
+     "depth": 1.0
+    },
+    "1002": {
+     "bias": 0.22596733234523617,
+     "depth": 1.0
+    },
+    "1003": {
+     "bias": 0.0,
+     "depth": 1.0
+    },
+    "1004": {
+     "bias": 0.0,
+     "depth": 1.0
+    },
+    "1005": {
+     "bias": 0.055678241434159,
+     "depth": 1.0
+    },
+    "1006": {
+     "bias": -1.0,
+     "depth": 1.0
+    }
+   },
+   "conns": {
+    "18": [
+     16,
+     1006,
+     4.367391525343738,
+     false
+    ],
+    "21": [
+     12,
+     1005,
+     -1.02730222008465,
+     true
+    ]
+   }
+  },
+  "nn_from": "structure"
+ },
+ "describe": {
+  "P_FLEE_PCT": 22,
+  "P_UNI_FLEE": 49,
+  "P_RECALL_PCT": 54,
+  "P_RECALL_NEAR": 7,
+  "P_BAIL_PCT": 12,
+  "P_ENGAGE2": 74,
+  "P_GA_FAV": 83,
+  "P_GA_KILL_X": 5,
+  "P_GA_SPAWN_HEAL": 87,
+  "P_FRONT_OUT": 145,
+  "P_GA_KITE_HP": 128,
+  "P_VOLLEY": 43,
+  "P_CHASE_GEMS": 118,
+  "P_DANGER": 4,
+  "P_DANGER_T": 45,
+  "P_DANGER_R": 4,
+  "P_FRONT": 0,
+  "P_NOCHASE": 0,
+  "P_FRONT_LOCAL": 0,
+  "P_ALLYDUTY": 1,
+  "P_R_AVOIDLOW": 0,
+  "P_NN_ON": 1,
+  "P_SHAREEXP": 72,
+  "P_TRIBUTE_GEMS": 16,
+  "P_GA_SS_HOME": 0,
+  "P_PAIR_N": 1,
+  "order": "FLEE>NEARRECALL>FM>KITE>FRONT>AVOID>ENGAGE>AVOIDLOW>RECALLSHOP>WALKHOME",
+  "nn": "0 hidden, 1 links, outputs used: recall"
+ },
+ "vs_start": {
+  "P_FLEE_PCT": 22,
+  "P_UNI_FLEE": 49,
+  "P_CHASE_GEMS": 118,
+  "P_DANGER_R": 4,
+  "P_FRONT": 0,
+  "P_NOCHASE": 0,
+  "P_FRONT_LOCAL": 0,
+  "P_ALLYDUTY": 1,
+  "P_R_AVOIDLOW": 0,
+  "P_NN_ON": 1,
+  "P_SHAREEXP": 72,
+  "P_TRIBUTE_GEMS": 16,
+  "P_GA_SS_HOME": 0,
+  "P_PAIR_N": 1,
+  "order": "FLEE>NEARRECALL>FM>KITE>FRONT>AVOID>ENGAGE>AVOIDLOW>RECALLSHOP>WALKHOME",
+  "nn": "0 hidden, 1 links, outputs used: recall"
+ },
+ "fitness": {
+  "shrunk": 0.1231,
+  "n": 3,
+  "deltas": [
+   0.2427,
+   0.24837,
+   0.00123
+  ]
+ },
+ "gen": 42,
+ "scope": "all",
+ "start": "ga65a6",
+ "time": "2026-10-16 16:06:33 UTC",
+ "transport": "shared"
+}

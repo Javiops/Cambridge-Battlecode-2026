@@ -17,6 +17,9 @@ The map features that shape routes, compositions, and objectives.
 
 **Source scope:** The [reference snapshot](reference-snapshot-2026-10-16.md) pins the inspected bot at `a0c0fa2`, including its checked-in `params.h`, and explains the unconfirmed live-upload identity. **Implemented** means the stated reachable source behavior; **Planned** retains material policy work. This completion adds no build, simulation or performance validation.
 
+
+**Unknown-map requirement:** Tournament maps may be unseen. Build decisions from walking times to legal contribution/capture/altar tiles, relative opposing arrival, camp damage/reward composition, capture-region tile count, choke/exit geometry, and recovery-to-work cost. Official map names remain descriptive evidence only; inherited named-map source overrides are not the new tactic. A new map is not automatically unsafe: retain unknown timing/vision explicitly and reduce it through useful reversible observation. Use the [geometry contract](cycle-decision-contract.md#3-geometry-and-bounded-candidate-construction); validate policy on untouched generated geometries, without tuning to their outcomes.
+
 ## 1. Map connectivity
 
 Identify connected regions, isolated areas, and routes requiring special movement.

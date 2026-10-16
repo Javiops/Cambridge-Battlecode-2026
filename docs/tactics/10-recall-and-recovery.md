@@ -4,7 +4,10 @@
 
 How we recall, teleport, recover, and rejoin productive play.
 
-**Reference:** Current behavior uses the [pinned reference snapshot](reference-snapshot-2026-10-16.md) at [`a0c0fa2`](https://github.com/Javiops/Cambridge-Battlecode-2026/commit/a0c0fa2f222557483d665a9f7fce6f64a30b94ba), `bots/study27-economy/src`, with its [active parameters][c10-flags]. Its identity with the live v43 upload remains unverified. The planned decisions below have not been implemented or competitively validated by this documentation work. Use personal observations and actual channel/action state; do not assume a teammate's hidden position, HP, or intent.
+**Reference:** Current behavior uses the [pinned reference snapshot](reference-snapshot-2026-10-16.md) at [`dee0fe7`](https://github.com/Javiops/Cambridge-Battlecode-2026/commit/dee0fe7bf464d9f7b281af81f9650135fc541321), `bots/study27-economy/src`, with its [active parameters][c10-flags]. Its identity with the live v43 upload remains unverified. The planned decisions below have not been implemented or competitively validated by this documentation work. Use personal observations and actual channel/action state; do not assume a teammate's hidden position, HP, or intent.
+
+
+**Common decision authority:** The [resource-cycle contract](cycle-decision-contract.md) chooses between compatible proposals from chapters 04/06/07/11 and the cycle below. All new intended rules are **Planned**. Current-source heuristics and their flags are retained as evidence, not measured improvements. Geometry/route features apply to unknown maps; a map name is descriptive context only.
 
 ## Contents
 
@@ -23,7 +26,9 @@ Compare the benefit of healing, shopping, or repositioning with channel time and
 
 **Status:** Planned
 
-**Tactic:** Separate necessary survival recovery from an elective shopping/reposition trip. For the elective trip, identify the HP or affordable upgrade that changes the next useful action, and compare it with channel time, spawn recovery, a walkable return route, missed capture/bank work, and team absence. Use the [shopping decision](11-shopping-and-investment.md#1-purchase-timing) as the authority for upgrade payoff. Gold or elapsed rounds alone does not establish that leaving is worthwhile; Tavi's ordinary field-shopping permission further reduces the reason to return just to spend.
+**Tactic:** Construct one recovery-and-re-entry proposal alongside field continuation and delivery. Separate necessary survival recovery from an elective purchase/reposition trip. Name the HP/legal purchase under [11](11-shopping-and-investment.md) that changes the next useful mission, then include channel ticks, spawn healing, installed power, return walking/action ETA and work forfeited. Only incremental time counts when recovery is already needed. Tavi's gold alone never justifies returning. Unknown return data declines the elective extra trip while necessary recovery remains available. Existing 55%/shop-gold heuristics below are fallbacks, not the deciding comparison.
+
+**Policy detail:** Separate necessary survival recovery from an elective shopping/reposition trip. For the elective trip, identify the HP or affordable upgrade that changes the next useful action, and compare it with channel time, spawn recovery, a walkable return route, missed capture/bank work, and team absence. Use the [shopping decision](11-shopping-and-investment.md#1-purchase-timing) as the authority for upgrade payoff. Gold or elapsed rounds alone does not establish that leaving is worthwhile; Tavi's ordinary field-shopping permission further reduces the reason to return just to spend.
 
 Preserve a nearly completed useful capture/tribute unless safety forces an abort. Bank first when a genuinely reachable safe altar secures the bag at acceptable delay. Begin a necessary recall once the [full-channel safety check](#2-recall-safety) passes. End the trip when the required heal/purchase is installed and a productive re-entry route is available; do not remain on spawn simply because more health would be possible.
 
@@ -37,7 +42,9 @@ Estimate whether enemies or monsters can interrupt the channel before it complet
 
 **Status:** Planned
 
-**Tactic:** Before starting, compare the actual remaining recall duration with visible enemy attack, spell, dash and control opportunities, acting order, and any awake monster that can damage the body. A safe tile now can be reachable before recall finishes. Use a real holder/cover plan if another body is expected to preserve the objective while we leave. Do not treat a ward's remote view as teammate vision or permission to assume an unseen route is clear.
+**Tactic:** Check whether the selected tile/channel survives every credible relevant visible enemy/monster action until actual recall completion, accounting for move/dash, cast/control readiness, action order and the shorter Home duration. Keep unknown approaches/timing explicit. If the concrete start fails, choose a lower-threat legal movement/control/dash and re-evaluate; do not repeatedly recall on the same punished tile. A ward under [04](04-vision-and-information.md) may improve warning, but grants only personal sight. Active channels use [the typed channel comparison](cycle-decision-contract.md#6-channels-deadlines-and-exact-outcomes), not a generic damage/distance rule.
+
+**Policy detail:** Before starting, compare the actual remaining recall duration with visible enemy attack, spell, dash and control opportunities, acting order, and any awake monster that can damage the body. A safe tile now can be reachable before recall finishes. Use a real holder/cover plan if another body is expected to preserve the objective while we leave. Do not treat a ward's remote view as teammate vision or permission to assume an unseen route is clear.
 
 If the channel cannot survive, first take a legal lower-threat move/control/dash action and reassess from the new state. If no safe start exists, continue escape or useful protection rather than repeatedly issuing recall in place. Recheck a pending recall after new information; continue it when finishing remains better than the legal cancellation alternative. Use actual permissions rather than a generic cancel-every-channel action.
 
@@ -51,7 +58,9 @@ Decide when recalling during capture saves time without losing rewards or creati
 
 **Status:** Planned
 
-**Tactic:** Recall on the capture region only when the reward will complete before our departure, or an actual replacement holder preserves all remaining capture phases. Read the real capture state, recall duration, inventory effects and phase order. Extra occupants do not accelerate the capture timer. Preserve the last holder until payout or a real overlapping handoff unless survival explicitly aborts the capture.
+**Tactic:** Preserve capture/recall overlap when its actual timing and continuity guards pass. Current controlled mechanics require one prior hold interval for normal five-tick recall, or three for Home three-tick recall, in the uncontested setup. For v1 a single-spawn-tile group's uninterrupted living physical hold can supply the no-ordinary-contest condition, together with full channel survival, fresh reward/position, actual duration and mission benefit. A multi-tile region needs an explicit supported continuity/contest bound or an actually present replacement under the acyclic handoff rule; an enemy can reset another tile while recall remains uninterrupted. The API supplies no capture owner/countdown getter. If continuity is unknown, finish payout first or use the real handoff; survival can explicitly abort collection. This conservative fallback can delay departure by five normal or three Home intervals and is not claimed better universally. Use [the authoritative overlap guard](cycle-decision-contract.md#6-channels-deadlines-and-exact-outcomes) and [12 current cases/97 assertions](cycle-timing-current-002.md), not a fixed one-round cap_start rule for every inventory.
+
+**Policy detail:** Recall on the capture region only when the reward will complete before our departure, or an actual replacement holder preserves all remaining capture phases. Read the real capture state, recall duration, inventory effects and phase order. Extra occupants do not accelerate the capture timer. Preserve the last holder until payout or a real overlapping handoff unless survival explicitly aborts the capture.
 
 Normal recall uses five owner-turn-end ticks; Home uses three. The existing controlled example starts capture timer five in round two: normal recall then completes after the round-seven reward, while identical Home timing leaves at round five and loses the capture. Therefore do not reuse a fixed one-round delay or the five-tick overlap assumption after Home. Delay the shorter recall until reward precedes departure, or hand off to an actually present suitable ally. This is a confirmed timing exception, not evidence that every Home purchase is bad.
 
@@ -65,7 +74,9 @@ Decide whether to retry, retreat farther, fight, or change objectives after inte
 
 **Status:** Planned
 
-**Tactic:** Distinguish a rejected start, a channel still in progress, a completed arrival, and an interrupted channel. Requery current position, HP, channel state, threat and available actions before choosing the response. Do not mark a failed start as successful recovery or consume the rest of the decision merely because a recall command was attempted.
+**Tactic:** Classify rejected start, active channel, completed arrival and interruption from actual engine state. On failure refresh position, threat, action flags and resource state; a failed attempt never advances to recovered. Make at most one channel start attempt per owner decision, then choose a legal remaining escape/protection/route action. Retry later from the same tile only after a relevant observed condition changes. The two-alternative movement cap is an initial test value in [the common failure budget](cycle-decision-contract.md#7-fuel-eight-bytes-and-failure-behavior). Update collection/support intentions when recovery ETA changes.
+
+**Policy detail:** Distinguish a rejected start, a channel still in progress, a completed arrival, and an interrupted channel. Requery current position, HP, channel state, threat and available actions before choosing the response. Do not mark a failed start as successful recovery or consume the rest of the decision merely because a recall command was attempted.
 
 After an interruption by a reachable threat, first change the condition that caused it: reposition out of its useful action window, disable it, regroup with a real protector, or fight only if the bounded response supports that choice. Retry from the same tile only when fresh information establishes a meaningful change, such as the threatening ability becoming unavailable. Make at most one start attempt per decision pass, and use a legal remaining action on rejection where available. A finite retry history belongs in local state; a remote retry protocol is unnecessary for the first prototype.
 
@@ -79,7 +90,9 @@ Remain on spawn long enough to receive the required healing before leaving again
 
 **Status:** Planned
 
-**Tactic:** After shopping, re-read current HP, maximum HP, equipment, restrictions and ready actions. Stay for the healing needed to survive and perform the next mission; use the current 95% threshold as an initial fallback when no mission estimate is available, not a required optimum. Depart when that requirement is met and the chosen route/action is legal. A threatened spawn can require protection or an urgent safe exit instead of a routine wait.
+**Tactic:** After purchases read current HP and current maximum HP together. Stay through the spawn end phase when its full heal is required for the next mission, or depart earlier only when current stats already pass the mission's legal survival/action requirement. Use 95% as the inherited fallback when no mission estimate exists, not an exact current implementation guarantee. A same-turn purchased-heal exception follows [11.8](11-shopping-and-investment.md#8-shopping-exceptions), including Tavi's bounded buy/sell guards. Re-entry chooses a current useful job; completed shopping alone does not make the body timely remote support.
+
+**Policy detail:** After shopping, re-read current HP, maximum HP, equipment, restrictions and ready actions. Stay for the healing needed to survive and perform the next mission; use the current 95% threshold as an initial fallback when no mission estimate is available, not a required optimum. Depart when that requirement is met and the chosen route/action is legal. A threatened spawn can require protection or an urgent safe exit instead of a routine wait.
 
 Shopping during an already necessary heal is permitted when legal. Do not infer an immediate field heal from buying Health: the established mechanics distinguish field max-HP growth from the own-spawn current-HP increase. The bounded Tavi Health-shard buy/sell healing exception is a separately verified mechanic and a **planned** capability; the audited bot does not implement it. Follow its inventory/refund/fuel guards in [11.8](11-shopping-and-investment.md#8-shopping-exceptions) before considering same-turn recovery.
 
@@ -93,7 +106,9 @@ Decide when its channel, destination, and purchase cost justify crossing terrain
 
 **Status:** Planned
 
-**Tactic:** Consider a crystal only for a named useful crossing or relocation. It costs ten gold, carries at most one, and uses a three-turn-end channel to a legal destination within three Chebyshev tiles. Compare that delay, landing/interruption risk and gold opportunity cost with walking or a ready champion movement ability. The crystal can bypass intervening terrain, but the destination must satisfy actual legality; it is not an instantaneous escape or map-wide teleport.
+**Tactic:** Request a crystal proposal only for a named useful crossing/relocation, with actual legal destination within three Chebyshev tiles, available inventory and safe three-turn-end channel/landing. Compare walking or a ready kit movement action and the 10-gold opportunity cost under [11.6](11-shopping-and-investment.md#6-consumable-budgeting). A true return confirms channel start, not teleport completion. On a hidden-occupancy false result refresh and use a bounded different landing/route; the same unchanged invalid destination is not retried forever. An active crystal cannot be manually cancelled. The first cycle implementation may omit this optional proposal while retaining correct channel-state handling.
+
+**Policy detail:** Consider a crystal only for a named useful crossing or relocation. It costs ten gold, carries at most one, and uses a three-turn-end channel to a legal destination within three Chebyshev tiles. Compare that delay, landing/interruption risk and gold opportunity cost with walking or a ready champion movement ability. The crystal can bypass intervening terrain, but the destination must satisfy actual legality; it is not an instantaneous escape or map-wide teleport.
 
 Before buying or using, check the personal inventory and budget, actual action restrictions, legal destination/occupancy, and whether the channel can finish before the relevant threat or objective deadline. Choose the destination for the next useful action and an exit, not solely for shorter straight-line distance. Refresh state after starting and on the next opportunity; treat rejection or interruption as a new route decision.
 
@@ -107,7 +122,9 @@ Handle recall, tribute, and teleport separately because their interruption and c
 
 **Status:** Planned
 
-**Tactic:** Keep explicit channel type, destination/objective, remaining duration, and completion/abort condition. Recall transfers us home and can lose a camp hold on departure; tribute converts carried value and has different damage-interruption behavior; TP crystal reserves a landing and has its own action rules. Read actual state and permitted operations before reacting. A generic “in combat, cancel channel” policy is invalid.
+**Tactic:** Keep engine-confirmed type, objective/destination, remaining ticks and completion/abort evidence in local state. Recall and tribute have typed manual cancellation; crystal does not. Damage interrupts recall, while ordinary damage alone does not interrupt tribute or crystal in the retained rules; use the confirmed stun/death/lock exceptions. Compare completion timing before cancelling a valuable channel. Perform only a useful policy-authorized ward before start, not an assumed during-channel deployment. On accepted cancellation or actual completion/interruption, refresh all dependent action/role assumptions under [the common channel contract](cycle-decision-contract.md#6-channels-deadlines-and-exact-outcomes).
+
+**Policy detail:** Keep explicit channel type, destination/objective, remaining duration, and completion/abort condition. Recall transfers us home and can lose a camp hold on departure; tribute converts carried value and has different damage-interruption behavior; TP crystal reserves a landing and has its own action rules. Read actual state and permitted operations before reacting. A generic “in combat, cancel channel” policy is invalid.
 
 For recall, use [safety](#2-recall-safety) and [interruption response](#4-recall-interruption-response). For tribute, prioritize securing the bag under [chapter 09](09-gems-and-objectives.md) and the confirmed engine rules; do not assume ordinary damage interrupts it like recall. For crystal, use [10.6](#6-teleport-crystal-usage) and recheck the legal landing and channel outcome. Perform a useful free ward placement before beginning a channel when the [ward policy](04-vision-and-information.md) authorizes it; do not assume deployment remains legal during a channel.
 
@@ -121,7 +138,9 @@ Account for lost gems, respawn downtime, shopping while dead, and safe routes ba
 
 **Status:** Planned
 
-**Tactic:** On death, clear the body's active farm/collector contribution and stop promising imminent support. Retain the actual personal gold, equipment and consumable inventory; carried-gem loss and respawn absence still make death costly. Cassi and Issac are separate resource owners with linked death risk, so update both availability and each body's real inventory rather than treating them as one wallet.
+**Tactic:** On death release our camp/collector/support contribution and stop counting as ready help. Retain only actual personal inventory/gold and valid immutable map caches; linked Cassi/Issac death availability does not merge wallets. Shop legally under 11, then on respawn refresh stats/actions/threat/lifecycle and compare the old job with its new arrival window. Re-enter only a still-useful reachable mission; if the old target no longer works, select safe productive work or an actual bounded regroup. Update the local epoch so a resumed pre-death computation cannot execute a stale action after respawn.
+
+**Policy detail:** On death, clear the body's active farm/collector contribution and stop promising imminent support. Retain the actual personal gold, equipment and consumable inventory; carried-gem loss and respawn absence still make death costly. Cassi and Issac are separate resource owners with linked death risk, so update both availability and each body's real inventory rather than treating them as one wallet.
 
 Buy while dead only through legal permissions and the [current investment priority](11-shopping-and-investment.md), using the next mission rather than an assumed old route. On respawn, refresh HP/max HP, ready abilities, objective availability and personally visible threats. Reassign from the current position: return to a still-useful job only when it survives the new travel deadline; otherwise take safe productive work or the minimum useful regroup. Do not automatically walk back into the fight that killed the body.
 
@@ -133,12 +152,12 @@ Buy while dead only through legal permissions and the [current investment priori
 
 [← Gems and altar control](09-gems-and-objectives.md) · [Tactics index](README.md) · [Shopping and resource investment →](11-shopping-and-investment.md)
 
-[c10-flags]: https://github.com/Javiops/Cambridge-Battlecode-2026/blob/a0c0fa2f222557483d665a9f7fce6f64a30b94ba/bots/study27-economy/src/params.h#L1-L82
-[c10-optional]: https://github.com/Javiops/Cambridge-Battlecode-2026/blob/a0c0fa2f222557483d665a9f7fce6f64a30b94ba/bots/study27-economy/src/main.cpp#L2686-L2737
-[c10-recalls]: https://github.com/Javiops/Cambridge-Battlecode-2026/blob/a0c0fa2f222557483d665a9f7fce6f64a30b94ba/bots/study27-economy/src/main.cpp#L3092-L3140
-[c10-safety]: https://github.com/Javiops/Cambridge-Battlecode-2026/blob/a0c0fa2f222557483d665a9f7fce6f64a30b94ba/bots/study27-economy/src/main.cpp#L2862-L2948
-[c10-entry]: https://github.com/Javiops/Cambridge-Battlecode-2026/blob/a0c0fa2f222557483d665a9f7fce6f64a30b94ba/bots/study27-economy/src/main.cpp#L2740-L2787
-[c10-spawn]: https://github.com/Javiops/Cambridge-Battlecode-2026/blob/a0c0fa2f222557483d665a9f7fce6f64a30b94ba/bots/study27-economy/src/main.cpp#L2910-L2915
-[c10-tele]: https://github.com/Javiops/Cambridge-Battlecode-2026/blob/a0c0fa2f222557483d665a9f7fce6f64a30b94ba/bots/study27-economy/src/main.cpp#L3185-L3198
-[c10-sweep]: https://github.com/Javiops/Cambridge-Battlecode-2026/blob/a0c0fa2f222557483d665a9f7fce6f64a30b94ba/bots/study27-economy/src/main.cpp#L3381-L3388
-[c10-utility]: https://github.com/Javiops/Cambridge-Battlecode-2026/blob/a0c0fa2f222557483d665a9f7fce6f64a30b94ba/bots/study27-economy/src/utility.h#L11-L102
+[c10-flags]: https://github.com/Javiops/Cambridge-Battlecode-2026/blob/dee0fe7bf464d9f7b281af81f9650135fc541321/bots/study27-economy/src/params.h#L1-L82
+[c10-optional]: https://github.com/Javiops/Cambridge-Battlecode-2026/blob/dee0fe7bf464d9f7b281af81f9650135fc541321/bots/study27-economy/src/main.cpp#L2686-L2737
+[c10-recalls]: https://github.com/Javiops/Cambridge-Battlecode-2026/blob/dee0fe7bf464d9f7b281af81f9650135fc541321/bots/study27-economy/src/main.cpp#L3092-L3140
+[c10-safety]: https://github.com/Javiops/Cambridge-Battlecode-2026/blob/dee0fe7bf464d9f7b281af81f9650135fc541321/bots/study27-economy/src/main.cpp#L2862-L2948
+[c10-entry]: https://github.com/Javiops/Cambridge-Battlecode-2026/blob/dee0fe7bf464d9f7b281af81f9650135fc541321/bots/study27-economy/src/main.cpp#L2740-L2787
+[c10-spawn]: https://github.com/Javiops/Cambridge-Battlecode-2026/blob/dee0fe7bf464d9f7b281af81f9650135fc541321/bots/study27-economy/src/main.cpp#L2910-L2915
+[c10-tele]: https://github.com/Javiops/Cambridge-Battlecode-2026/blob/dee0fe7bf464d9f7b281af81f9650135fc541321/bots/study27-economy/src/main.cpp#L3185-L3198
+[c10-sweep]: https://github.com/Javiops/Cambridge-Battlecode-2026/blob/dee0fe7bf464d9f7b281af81f9650135fc541321/bots/study27-economy/src/main.cpp#L3381-L3388
+[c10-utility]: https://github.com/Javiops/Cambridge-Battlecode-2026/blob/dee0fe7bf464d9f7b281af81f9650135fc541321/bots/study27-economy/src/utility.h#L11-L102

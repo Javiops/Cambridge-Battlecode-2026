@@ -5,7 +5,7 @@ Each topic starts with a short description and grows into a concrete tactic: whe
 what the champion does, and how it interacts with the rest of the team.
 
 > [!NOTE]
-> All **96 topics across 12 chapters** now contain a concrete baseline or intended tactic. Chapters 04 (vision), 06 (coordination), 07 (combat) and 11 (shopping) retain their detailed researched policies.
+> All **96 topics across 12 chapters** now contain a concrete baseline or intended tactic. Chapters 04 (vision), 06 (coordination), 07 (combat), 08–10 (the resource cycle) and 11 (shopping) contain detailed researched policies.
 > **Planned** and **Implemented** distinguish intended improvements from behavior present in the pinned source. Complete documentation does not mean every tactic has been implemented or shown to improve results.
 > The current code reference is `bots/study27-economy` at `a0c0fa2` (16 October 2026). Its identity with the supplied live-v43 screenshot remains unconfirmed. See the [reference snapshot, configuration and feedback mapping](reference-snapshot-2026-10-16.md).
 
@@ -57,6 +57,12 @@ This completion is a **documentation and source audit**. It does not change the 
 ## Combat research update — 16 October 2026
 
 [Chapter 07](07-combat-and-survival.md) now details legal action sequences, focus, control, protection and disengagement, with an [evidence appendix](combat-research-2026-10-16.md) comparing the reference source with current top-ten opponents, especially the current top-four head-to-head. Historical and current patches are analyzed separately. These are intended policy improvements; the bot source has not changed in this documentation update.
+
+## Resource-cycle research update — 16 October 2026
+
+Read the [single decision contract](cycle-decision-contract.md) first: farming, collection, delivery, recovery, combat, wards and investment must share one action budget and one explicit next mission. [08](08-farming-and-capture.md), [09](09-gems-and-objectives.md) and [10](10-recall-and-recovery.md) now give the detailed transitions, continuity guards, endgame deadlines and return-to-work policy. Map adaptation uses route/resource/contest features, including capture-region geometry, rather than map-name rules.
+
+The [research appendix](resource-cycle-research-2026-10-16.md) covers 2,588 unique replay streams, especially 150 current-patch games between the current top four, with completed resource flows, eleven bounded episodes and a [source audit](cycle-source-audit.md). [Twelve controlled current-engine cases](cycle-timing-current-002.md) verify capture/recall/tribute timing. All new decision policies remain **Planned**; replay descriptions and mechanics checks do not establish a stronger implemented bot.
 
 ## Keeping the specification current
 

@@ -23,7 +23,12 @@
    "at": "2026-10-16T12:54Z",
    "stage": "local-ok",
    "note": "variants vs online zip: im_b (im_a + P_ENGAGE2 60) PASS 56-27 p=0.002, panel 16/23 p=0.34; im_c milder (38/44/50/3) FAIL panel veto 10/27 p=0.008 (fresh 47-41 ns). Candidate = im_a, zip /mnt/project-files/bot/mybot_ga65a6_imitation.zip (v44 + 4 params, no P_MONO). Local cannot judge fights: online A/B decides."
+  },
+  {
+   "at": "2026-10-16T15:13Z",
+   "stage": "local-ok",
+   "note": "14:21 rebuilt on the 12:52 online bot (bots/online2 = mybot_ga65a6_mono_fuelguard_jackpot.zip): im_a PASS 63-38 p=0.017 panel 17/20; im_d (28/32/38/1) 50-37 ns; im_e (im_a + P_FLEE_PCT 24) 75-49 p=0.024. Behaviour check 36 games vs spar11+spar16: im_a retreat curve now = Mite's, but our deaths 89 vs 34 (online2), wins 32 vs 34. Pair genes (tools/ga/pair.py) on im_a all FAIL: 5-19, 4-21, 16-33. Zip mybot_ga65a6_mono_fuelguard_jackpot_imitation.zip"
   }
  ],
- "updated": "2026-10-16T12:54Z"
+ "updated": "2026-10-16T15:13Z"
 }

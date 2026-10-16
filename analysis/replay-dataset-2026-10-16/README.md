@@ -116,3 +116,36 @@ P_GA_AVOID_HP 60% or whenever a foe is within P_AVOID_DIST 4).
 `died10`/`died20` and `gem_swing20` are the outcome labels for a fight/flee value; the features list above is the input
 schema. `bc/model_lr_engage_retreat.json` holds `mean`, `scale`, `coef`, `intercept` for P(retreat) on the feature order in
 `features` (with the log transforms listed in `transforms`), 29 multiplies per turn.
+
+## Round 2 (14:10-15:20 UTC): on the 12:52 online bot
+
+Base = `mybot_ga65a6_mono_fuelguard_jackpot.zip` (v44 + contest fix + fuel guard + jackpot). Gate kind fight, 260 maps.
+
+| candidate | change | fresh maps won/lost both sides | caster panel flips | verdict |
+|---|---|---|---|---|
+| im_a | P_UNI_FLEE 33, P_LOWHP 40, P_GA_AVOID_HP 45, P_AVOID_DIST 2 | 63-38, p=0.017 | 17/20 | PASS |
+| im_d | stronger: 28 / 32 / 38 / 1 | 50-37, p=0.20 | 21/11 | PASS |
+| im_e | im_a + P_FLEE_PCT 24 | 75-49, p=0.024 | 16/15 | PASS |
+| im_p (I062) | im_a's thresholds only with an ally within 2, v44's alone (`im_p.diff`) | 38-49, p=0.28 | 22/11, p=0.08 | PASS |
+| pair a/b/c | im_a + farm pair genes (P_PAIR_N 2/3, STICK, ENGAGE) vs im_a | 5-19, 4-21, 16-33 | | FAIL |
+| tgt DW 150 / 400 (I061) | im_a + target score distance weight 40 -> 150 / 400 (`tgt_dw.diff`) vs im_a | 8-6 / 16-6 (p=0.052) | 3/4, 8/6 | PASS (small) |
+
+New columns `near_ally_dist` (any distance) and `ally_delta` (own step toward(-)/away(+) from the nearest ally).
+Mite fights with an ally within 2 tiles on 59% of contact turns, Univardisty 41%, v44 39% (`bc/ally.txt`). Mite's retreat
+curve hardly depends on that (`bc/ally_curve.txt`), but deaths do: at 30-50% hp alone we die 27% within 10 rounds (Mite
+20%), paired only 8.5% (Mite 11%).
+
+Behaviour check (`bc/beh_cmp.txt`, `bc/deaths_check.txt`): 36 local games each (9 official maps x 2 sides x spar11 and
+spar16, the caster bots). im_a's retreat curve now matches Mite's (40-50% hp: 0.36 vs online bot 0.70), but:
+
+| bot | wins of 36 | our deaths | their deaths |
+|---|---|---|---|
+| online bot | 34 | 34 | 302 |
+| im_a | 32 | 89 | 299 |
+| im_e | 32 | 91 | 303 |
+| im_p | 36 | 56 | 285 |
+
+Reading: im_a beats the online bot in self-play by fighting more, but against the caster bots (the local rivals that kill
+like online teams) it dies 2.6x more for the same kills. im_p keeps the commitment only when paired: it loses a little in
+self-play and does best against the casters. Zips (not uploaded): `bot/mybot_ga65a6_mono_fuelguard_jackpot_imitation.zip`
+(im_a) and `bot/mybot_ga65a6_mono_fuelguard_jackpot_imitation_paired.zip` (im_p).

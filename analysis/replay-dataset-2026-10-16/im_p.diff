@@ -1,0 +1,59 @@
+diff -ru online2/src/main.cpp im2_p/src/main.cpp
+--- online2/src/main.cpp	2026-10-16 14:08:11.216852179 +0000
++++ im2_p/src/main.cpp	2026-10-16 14:42:13.702643439 +0000
+@@ -77,6 +77,17 @@
+ // (used by the arena to compile parameter variants; the uploaded bot has none).
+ #if __has_include("params.h")
+ #include "params.h"
++// P_IM_PAIRED (I062, replay imitation): Mite's lower retreat thresholds only with an ally within 2 tiles; alone we keep
++// v44's. In the top-2 replays we die alone at 30-50% hp 27% of the time (Mite 20%) but paired only 8.5% (Mite 11%).
++static bool g_paired = false;
++#undef P_UNI_FLEE
++#define P_UNI_FLEE (g_paired ? 33 : 44)
++#undef P_LOWHP
++#define P_LOWHP (g_paired ? 40 : 50)
++#undef P_GA_AVOID_HP
++#define P_GA_AVOID_HP (g_paired ? 45 : 60)
++#undef P_AVOID_DIST
++#define P_AVOID_DIST (g_paired ? 2 : 4)
+ #endif
+ #ifndef P_TRIBUTE_GEMS
+ #define P_TRIBUTE_GEMS 20
+@@ -2994,6 +3005,13 @@
+     s.last_gold = static_cast<int>(me.gold_count());
+     float hp = me.health();
+     float hpr = hp / mhp;
++    g_paired = false;
++    attempt([&] {
++        vec2 mp = me.position();
++        for (auto& a : bc::vision::champions(*s.my))
++            if (!(a == me) && a.is_alive() && dist(a.position(), mp) <= 2) { g_paired = true; break; }
++        return true;
++    });
+     if (s.last_hp >= 0 && hp < s.last_hp - 1.0f) s.hit_round = round;
+     s.last_hp = hp;
+ 
+diff -ru online2/src/params.h im2_p/src/params.h
+--- online2/src/params.h	2026-10-16 14:08:11.211643891 +0000
++++ im2_p/src/params.h	2026-10-16 14:42:13.683692013 +0000
+@@ -73,16 +73,16 @@
+ #define P_FUELGUARD 1
+ // ---- genetic algorithm genome (tools/ga): fight parameters ----
+ #define P_FLEE_PCT 29
+-#define P_UNI_FLEE 44
++#define P_UNI_FLEE 33
+ #define P_RECALL_PCT 54
+ #define P_RECALL_NEAR 7
+ #define P_BAIL_PCT 12
+-#define P_AVOID_DIST 4
+-#define P_GA_AVOID_HP 60
++#define P_AVOID_DIST 2
++#define P_GA_AVOID_HP 45
+ #define P_ENGAGE2 74
+ #define P_GA_FAV 83
+ #define P_GA_KILL_X 5
+-#define P_LOWHP 50
++#define P_LOWHP 40
+ #define P_GA_SPAWN_HEAL 87
+ #define P_FRONT_ZONE 3
+ #define P_FRONT_OUT 145

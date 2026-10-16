@@ -186,6 +186,15 @@ def process(args):
             delta = cheb(npos_walk, nep) - cheb(pos, nep)
             # mean change over all visible enemies (smoother)
             dmean = sum(cheb(npos_walk, (pre[j][3], pre[j][4])) - d(j) for j in ens) / len(ens)
+            # nearest living ally anywhere (the bot knows allies' positions only when in its vision; here: any distance)
+            allall = [j for j in alive if team[j] == t and j != i]
+            if allall:
+                na = min(allall, key=lambda j: d(j))
+                near_ally_dist = d(na)
+                ally_delta = cheb(npos_walk, (pre[na][3], pre[na][4])) - near_ally_dist
+            else:
+                near_ally_dist, ally_delta = 99, 0
+            # number of ally champions damaging an enemy this round (team focus / joining the fight)
             if K_RECALL in ks and pos not in info['sp'][t]:
                 act = 'recall'
             elif K_TRIB in ks:
@@ -249,6 +258,7 @@ def process(args):
                 # labels
                 action=act, action3=act3, attacked_champ=int(bool(hit)), cast=int(K_CAST in ks),
                 hit_camp=hit_camp, moved_delta=delta, moved_delta_mean=round(dmean, 3), target=tgt,
+                near_ally_dist=near_ally_dist, ally_delta=ally_delta,
                 # outcomes
                 died5=died(5), died10=died(10), died20=died(20),
                 dmg_taken5=sumw(taken, 5), dmg_taken10=sumw(taken, 10), dmg_dealt10=sumw(dealt, 10),

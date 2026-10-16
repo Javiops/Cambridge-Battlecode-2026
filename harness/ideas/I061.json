@@ -1,0 +1,23 @@
+{
+ "id": "I061",
+ "title": "Mite targeting: nearest foe first (P_TGT_DW)",
+ "kind": "fight",
+ "source": "replay imitation",
+ "owner": "Claude",
+ "hypothesis": "Mite hits the nearest foe 85%, our score is mostly lowest hp; distance weight 400 per tile makes nearest win",
+ "stage": "local-test",
+ "created": "2026-10-16T15:13Z",
+ "history": [
+  {
+   "at": "2026-10-16T15:13Z",
+   "stage": "idea",
+   "note": "on im_a: DW 150 8-6 ns; DW 400 16-6 p=0.052, panel 8/6; bots/im2_t2 (local only)"
+  },
+  {
+   "at": "2026-10-16T15:13Z",
+   "stage": "local-test",
+   "note": "borderline 16-6 p=0.052 on im_a, not combined yet"
+  }
+ ],
+ "updated": "2026-10-16T15:13Z"
+}

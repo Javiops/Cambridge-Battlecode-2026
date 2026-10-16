@@ -1,0 +1,12 @@
+('im2_a', 'both') {'games': 36, 'our_deaths': 89, 'their_deaths': 299, 'win': 32, 'rounds': 19806}
+('im2_a', 'spar11') {'games': 18, 'our_deaths': 48, 'their_deaths': 151, 'win': 16, 'rounds': 9890}
+('im2_a', 'spar16') {'games': 18, 'our_deaths': 41, 'their_deaths': 148, 'win': 16, 'rounds': 9916}
+('im2_e', 'both') {'games': 36, 'our_deaths': 91, 'their_deaths': 303, 'win': 32, 'rounds': 19768}
+('im2_e', 'spar11') {'games': 18, 'our_deaths': 49, 'their_deaths': 153, 'win': 16, 'rounds': 9871}
+('im2_e', 'spar16') {'games': 18, 'our_deaths': 42, 'their_deaths': 150, 'win': 16, 'rounds': 9897}
+('im2_p', 'both') {'games': 36, 'our_deaths': 56, 'their_deaths': 285, 'win': 36, 'rounds': 20001}
+('im2_p', 'spar11') {'games': 18, 'our_deaths': 29, 'their_deaths': 146, 'win': 18, 'rounds': 9986}
+('im2_p', 'spar16') {'games': 18, 'our_deaths': 27, 'their_deaths': 139, 'win': 18, 'rounds': 10015}
+('online2', 'both') {'games': 36, 'our_deaths': 34, 'their_deaths': 302, 'win': 34, 'rounds': 19269}
+('online2', 'spar11') {'games': 18, 'our_deaths': 18, 'their_deaths': 158, 'win': 17, 'rounds': 9651}
+('online2', 'spar16') {'games': 18, 'our_deaths': 16, 'their_deaths': 144, 'win': 17, 'rounds': 9618}

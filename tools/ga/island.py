@@ -39,7 +39,11 @@ FAMILIES = {'micro': list(G.NAMES), 'structure': list(T.L1_GENES), 'macro': list
 SHARED = '/mnt/project-files'
 TRAIN = ga.TRAIN + ['maps_train/*/*.map26a']
 VALID = ['maps_v100/*.map26a', ga.VALID]
-DEFAULT_OPPS = 'genome:start,genome:default,genome:9872f93cac,bots/spar11,bots/spar16'
+# v44 self-play is one rival of many: the caster sparring panel and the ghosts of real top-10 games weigh more
+GHOSTS = [('gh_cabbage_corners', 'corners'), ('gh_tip_corners', 'corners'), ('gh_hinana_corners', 'corners'),
+          ('gh_cabbage_collision', 'collision'), ('gh_antifreeze_collision', 'collision'), ('gh_cabbage_lanes', 'lanes')]
+DEFAULT_OPPS = ','.join(['genome:start', 'bots/spar11', 'bots/spar12', 'bots/spar16'] +
+                        ['bots/%s@maps_ghost/%s.map26a:0' % g for g in GHOSTS])
 WIN = platform.system() == 'Windows'
 
 
@@ -615,7 +619,8 @@ def cmd_run(A):
         if imported:
             st['pop'] = st['pop'][:max(0, A.pop - 1 - len(imported))] + imported
         # rivals: the fixed list plus the hall of fame (best migrant of the most recently active other islands)
-        opps = [o for o in A.opps.split(',') if o]
+        opps = [o for o in A.opps.split(',') if o and '@' not in o]
+        pins = pinned(A.opps)
         hof = []
         if A.hof:
             best = {}
@@ -630,6 +635,12 @@ def cmd_run(A):
                 key = 'genome:hof:%s/%s' % (m['island'], m['cid'])
                 B.genomes[key] = norm(m['genome'])
                 hof.append(key)
+        # our own past champions stay rivals, so the population does not cycle against one opponent
+        cur = ranked_ids(st)[:1]
+        for c in [c for c in st.get('champions', []) if c not in cur][-A.own_hof:] if A.own_hof else []:
+            key = 'genome:own:%s' % c
+            B.genomes[key] = st['inds'][c]['geno']
+            hof.append(key)
         opps += hof
         maps = rng.sample(pool, A.maps)
         bid = st['base']
@@ -638,11 +649,16 @@ def cmd_run(A):
         n0 = len(B.cache)
         # racing: everyone plays the first part of the maps; the worst part of the population stops there
         cut = max(1, int(math.ceil(len(maps) * A.race))) if A.race < 1 else len(maps)
+        pin_games(B, [wasm[i] for i in ids], pins)
+
+        def fit(i, ms):  # random-map rivals and pinned (ghost) games, each rival weighs the same
+            f = B.score(i, opps, ms)[0]
+            return (f * len(opps) + pin_fit(B, i, pins) * len(pins)) / (len(opps) + len(pins))
         B.games([wasm[i] for i in ids], opps, maps[:cut])
         played_maps = {i: maps for i in ids}
         if cut < len(maps):
-            c1 = B.score(bid, opps, maps[:cut])[0]
-            d1 = {i: B.score(i, opps, maps[:cut])[0] - c1 for i in st['pop']}
+            c1 = fit(bid, maps[:cut])
+            d1 = {i: fit(i, maps[:cut]) - c1 for i in st['pop']}
             elite = set(ranked_ids(st)[:A.elite])
             keep = set(sorted(st['pop'], key=lambda i: -d1[i])[:int(math.ceil(len(st['pop']) * A.keep))]) | elite
             B.games([wasm[i] for i in [bid] + [i for i in st['pop'] if i in keep]], opps, maps[cut:])
@@ -651,24 +667,28 @@ def cmd_run(A):
                     played_maps[i] = maps[:cut]
         played = len(B.cache) - n0
         st['games'] = st.get('games', 0) + played
-        cfit_all = B.score(bid, opps, maps)[0]
-        cfit_cut = B.score(bid, opps, maps[:cut])[0]
+        cfit_all = fit(bid, maps)
+        cfit_cut = fit(bid, maps[:cut])
         deltas = {}
         for i in st['pop']:
             ms = played_maps[i]
-            deltas[i] = B.score(i, opps, ms)[0] - (cfit_all if ms is maps else cfit_cut)
+            deltas[i] = fit(i, ms) - (cfit_all if ms is maps else cfit_cut)
             st['inds'][i]['deltas'].append(round(deltas[i], 5))
             flt = sum(B.cache.get(f'{i}|{B.opp(o)[0]}|{B.mkey(m)}|{s}', {}).get('flt', 0)
                       for o in opps for m in ms for s in (0, 1))
             if flt:
                 st['inds'][i]['faults'] = st['inds'][i].get('faults', 0) + flt
         ranked = ranked_ids(st)
+        if ranked and len(st['inds'][ranked[0]]['deltas']) >= 3 and ga.shrunk(st['inds'][ranked[0]]) > 0 and \
+                ranked[0] not in st.setdefault('champions', []):
+            st['champions'].append(ranked[0])
         best_new = max(st['pop'], key=lambda i: deltas[i])
         top = ranked[0] if ranked else best_new
         bt = st['inds'][top]
         secs = time.time() - t0
         h = {'gen': gen, 'maps': [os.path.basename(m) for m in maps], 'games': played, 'secs': round(secs),
-             'rivals': [os.path.basename(o) for o in opps], 'control': round(cfit_all, 4),
+             'rivals': [os.path.basename(o) for o in opps] + ['%s@%s' % (os.path.basename(r), os.path.basename(m)) for r, m, _ in pins],
+             'control': round(cfit_all, 4),
              'mean_delta': round(sum(deltas.values()) / len(deltas), 4), 'best_new': best_new,
              'best_new_delta': round(deltas[best_new], 4), 'top': top, 'top_shrunk': round(ga.shrunk(bt), 4),
              'top_n': len(bt['deltas']), 'imported': imported, 'raced': sum(1 for i in st['pop'] if played_maps[i] is not maps)}
@@ -685,6 +705,49 @@ def cmd_run(A):
               f"mean {h['mean_delta']:+.3f} best new {h['best_new_delta']:+.3f} top {top} {h['top_shrunk']:+.3f} "
               f"n={h['top_n']} in {len(imported)} raced {h['raced']}", flush=True)
         publish(A, st, home, bh, played / max(1.0, secs), ranked, start)
+
+
+def pinned(spec):
+    """Rivals tied to one map and side: 'bots/gh_x@maps_ghost/corners.map26a:0' (we play side 0 = team A).
+    Ghost bots replay a top team's recorded route, so they only make sense on the map and side they were made on."""
+    out = []
+    for o in spec.split(','):
+        if '@' not in o:
+            continue
+        rival, rest = o.split('@', 1)
+        m, _, side = rest.rpartition(':') if rest.rsplit(':', 1)[-1] in ('0', '1') else (rest, '', '0')
+        if os.path.exists(m) and (rival.startswith('genome:') or os.path.exists(rival)):
+            out.append((rival, m, int(side)))
+    return out
+
+
+def pin_games(B, cands, pins):
+    from concurrent.futures import ThreadPoolExecutor
+    jobs = []
+    for cid, cw in cands:
+        for rival, m, side in pins:
+            oh, ow = B.opp(rival)
+            k = f'{cid}|{oh}|{B.mkey(m)}|{side}'
+            if k not in B.cache:
+                jobs.append((k,) + ((cw, ow) if side == 0 else (ow, cw)) + (m, side))
+    jobs = list({j[0]: j for j in jobs}.values())
+    if jobs:
+        with ThreadPoolExecutor(B.jobs) as ex, open(B.cache_path, 'a') as log:
+            for res in ex.map(B.play, jobs):
+                if res['ok']:
+                    B.cache[res['key']] = res
+                    log.write(json.dumps(res) + '\n')
+
+
+def pin_fit(B, cid, pins):
+    if not pins:
+        return 0.0
+    tot = 0.0
+    for rival, m, side in pins:
+        x = B.cache.get(f'{cid}|{B.opp(rival)[0]}|{B.mkey(m)}|{side}')
+        if x:
+            tot += x['r'] + 0.1 * x['gm'] / 1000.0
+    return tot / len(pins)
 
 
 def rekey(st):
@@ -811,7 +874,7 @@ def cmd_validate(A):
     meta = json.load(open(os.path.join(home, 'meta.json')))
     B = Bench(home, os.path.join(A.scratch, A.name), A.jobs, meta)
     B.genomes = {'genome:start': st['inds'][st['base']]['geno'], 'genome:default': norm({})}
-    opps = A.opps.split(',')
+    opps = [o for o in A.opps.split(',') if '@' not in o]
     for o in opps:
         if o.startswith('genome:') and o not in B.genomes:
             B.genomes[o] = resolve(o[len('genome:'):])
@@ -884,7 +947,7 @@ def main():
         s.add_argument('--start', default='ga65a6', help='start genome = control (default ga65a6 = v44 online)')
         s.add_argument('--gens', type=int, default=100000)
         s.add_argument('--pop', type=int, default=16)
-        s.add_argument('--maps', type=int, default=10, help='maps per generation, each played both sides vs every rival')
+        s.add_argument('--maps', type=int, default=8, help='maps per generation, each played both sides vs every rival')
         s.add_argument('--race', type=float, default=0.5, help='share of the maps every candidate plays (1 = no racing)')
         s.add_argument('--keep', type=float, default=0.5, help='share of the population that plays the rest')
         s.add_argument('--elite', type=int, default=4)
@@ -894,6 +957,7 @@ def main():
         s.add_argument('--export-top', type=int, default=3)
         s.add_argument('--min-n', type=int, default=2, help='generations evaluated before a genome may migrate')
         s.add_argument('--fuel', type=int, default=0, help='cambc --fuel for training games (0 = the real budget)')
+        s.add_argument('--own-hof', type=int, default=2, help='our own past champions kept as rivals')
         s.add_argument('--hof', type=int, default=2, help='rivals taken from other islands\' best (hall of fame)')
     s = sub.add_parser('stop'); common(s)
     s = sub.add_parser('board'); common(s)

@@ -62,3 +62,56 @@ python tools/tactics-v1-validation/run_native_farming.py --cli C:/path/to/cambc.
 ```
 
 The native capture/recall/tribute timing regression is documented in [NATIVE-CYCLE.md](NATIVE-CYCLE.md). Its scripted owner loop and the full competitive bot are separate modules. Preserve that distinction when interpreting its assertions.
+
+
+The native shopping regression physically earns 315 gold, buys a real initial item,
+then calls the production elective-return planner with 65,000 remaining fuel. Two
+bounded advisory opportunities prepare immutable geometry; the funded plan names
+one actual affordable bundle and a gem job separate from its original gold job.
+It recalls, buys the exact bundle, verifies the private wallet and installed power,
+then physically clears the newly certified 2400 HP resource, captures and banks 36 gems,
+and returns to full spawn health. Both sides require zero faults and fuel pauses.
+
+```powershell
+python tools/tactics-v1-validation/run_native_shopping_gem.py --cli C:/path/to/cambc.exe --project C:/path/to/cambc-project --source bots/tactics-v1/src --output work/tactics-v1-shopping-gem
+```
+
+This uses a scripted tactical loop with actual production shopping, solo forecast,
+World and mutation gateway. It does not run the full production arbiter or establish
+competitive strength. The old same-camp reserve certificate rejects the old kit;
+that is a model-scoped policy decision, not proof that every possible tactic fails.
+The future quiet resource schedule is revalidated on actual arrival. Pure suites
+`shopping-gem` and `shopping-investment` separately check the same projection,
+completed-trip pricing, strict deadlines and exact successful/failed receipts.
+
+
+Lethal-peel eligibility and native budget regression
+---------------------------------------------------
+
+`combat-peel` checks the production eligibility helper against the former per-ally predicate, including ready rights, actual range boundaries, control immunity/extension and reflected self-lethal casts. The native reproducer extracts the exact production peel block and its `take` callback while retaining production World/risk/action code:
+
+```powershell
+python run_native_peel.py --cli /path/to/cambc --project /path/to/arena --source ../../bots/tactics-v1/src --output /path/to/new-results
+```
+
+Add `--baseline-source /path/to/frozen/old/src` for the same-scenario section-cost comparison. The physical scenario earns an actual 20HP threatened ally through native attacks, checks the out-of-range SDK rejection, and executes the legal control cast. Empty-enemy and immune-enemy cases are explicitly marked World projections. This isolates the peel subsection and does not establish full-arbiter activation or match strength. Output pins source/module/map/SDK/replay bytes, and reports all native faults and fuel exhaustion.
+
+
+Finite zero-wallet investment regression
+----------------------------------------
+
+`shopping-cash` runs31 exact finite itinerary and wallet/capture-receipt checks. `shopping-cash-hint` runs12 exact route-cache contract checks: a contribution-stage field cannot replace the actual cash-camp-rooted field required by the consumer.
+
+```powershell
+python run_native_cash_investment.py --cli /path/to/cambc --project /path/to/arena --source ../../bots/tactics-v1/src --output /path/to/new-results
+```
+
+The producer uses actual65k entry, official cash35/Wolf22 rewards, and no sandbox income. The separate full-main scenario calls production `Bot::turn` for Cassi while Issac idles at spawn, then requires actual cash capture -> exact30gold Health purchase from wallet35 -> named Wolf capture -> actual22gem bank. The main fixture is48tiles wide to keep the initial quiet investment separate from enemy contact. Later play may encounter opposition; the first finite conversion is the assertion, not match strength. Both fixtures use one draft pick to isolate this native contract and are not tournament map samples. All failed development records are retained separately.
+
+Native survival-budget caller regression:
+
+```powershell
+python tools/tactics-v1-validation/run_native_survival_budget.py --cli <cambc.exe> --project <project-with-pinned-sdk> --source bots/tactics-v1/src --output <new-output-folder>
+```
+
+This runs the actual production `choose_mission` with explicit projected personal HP/bag/threat/mission inputs under the native SDK. Fifteen cases per side cover wounded threatened carriers, healthy lethal-contact carriers and capture holders at47k/51k, safe immediate/winning Tribute, unsafe Tribute, spawn healing, live holder retention, harmless raw exposure after mitigation, an affordable current singleton, and shield-bearing owners whose actual HP loss is lethal. The runner requires all30 markers, same owner epoch, a remaining execution reserve and zero native faults/fuel events. No projected action is executed; full-main matches and physical payout are separate evidence. Current shield is subtracted once; multi-owner forecasts credit it only when its known duration covers the horizon.

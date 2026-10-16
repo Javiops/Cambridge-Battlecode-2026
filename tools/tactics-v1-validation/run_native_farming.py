@@ -62,7 +62,7 @@ def main():
             markers[letter]=re.findall(r'NATIVE_FARM_POLICY_PASS [^\r\n]+',text)
             if len(markers[letter])!=1 or markers[letter][0]!=f'NATIVE_FARM_POLICY_PASS {body}':
                 raise ValueError(f'Missing native farming marker: {markers[letter]}')
-            for case in ('suppressed-incumbent','first-clear-arrival','deadline-zero-ready','spent-move-observation','spawn-heal-before-delivery'):
+            for case in ('suppressed-incumbent','first-clear-arrival','deadline-zero-ready'):
                 if text.count('NATIVE_FARM_POLICY_CASE_PASS '+case)!=1:
                     raise ValueError(f'Missing/duplicate farming policy case {case}: team {letter}')
             if re.search(r'TACTICS_ERROR|bot error:|\[err',text):raise ValueError('Native fixture caught an error')

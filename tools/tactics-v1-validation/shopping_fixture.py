@@ -13,11 +13,13 @@ def extract_shopping_investment(source):
             end += 1
         return text[start:end] + (";" if text[end:end+1] == ";" else "")
 
-    types = "\n".join(block(text.index(token)) for token in
-                      ("enum class ShopFamily", "enum class ShopStat", "struct ShopInventory",
-                       "struct ShoppingState", "struct UpgradeDelta", "struct ReturnPayoff"))
+    tokens = ["enum class ShopFamily", "enum class ShopStat", "struct ShopInventory"]
+    if "struct CashInvestment" in text:
+        tokens.append("struct CashInvestment")
+    tokens += ["struct ShoppingState", "struct UpgradeDelta", "struct ReturnPayoff"]
+    types = "\n".join(block(text.index(token)) for token in tokens)
     functions = "\n".join(block(text.rfind("inline ", 0, text.index(name))) for name in
-                          ("upgrade_delta(", "named_return_payoff(", "clear_investment(",
+                          ("upgrade_delta(", "upgrade_mission_value(", "named_return_payoff(", "clear_investment(",
                            "investment_plan_invalid(", "shopping_after_action("))
     return types, functions
 

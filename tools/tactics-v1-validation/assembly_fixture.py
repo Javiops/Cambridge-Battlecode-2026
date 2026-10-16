@@ -24,6 +24,7 @@ def extract_assembly_arrival(source):
 def extract_assembly_policy(source):
     text = (Path(source) / 'assembly.h').read_text(encoding='utf8')
     return '\n'.join((_block(text, 'struct Arrival {', True),
+        _block(text, 'inline bool basic_coverage(') if 'inline bool basic_coverage(' in text else '',
         extract_assembly_arrival(source),_block(text,'inline std::optional<Pos> assembly_step('),
         _block(text,'inline std::uint64_t fingerprint(')))
 
@@ -32,7 +33,8 @@ def generate_assembly_arrival_fixture(source, output):
     fixture = Path(output) / 'assembly-arrival.generated.cpp'
     text = (Path(source) / 'assembly.h').read_text(encoding='utf8')
     fixture.write_text(template.read_text(encoding='utf8').replace(
-        '// EXACT_ASSEMBLY_ARRIVAL_TYPE', _block(text,'struct Arrival {',True)).replace(
+        '// EXACT_ASSEMBLY_ARRIVAL_TYPE', _block(text,'struct Arrival {',True)+'\n'+
+        (_block(text,'inline bool basic_coverage(') if 'inline bool basic_coverage(' in text else '')).replace(
         '// EXACT_ASSEMBLY_ARRIVAL', extract_assembly_arrival(source)).replace(
         '// EXACT_ASSEMBLY_FINGERPRINT', _block(text,'inline std::uint64_t fingerprint(')).replace(
         '// EXACT_ASSEMBLY_STEP', _block(text,'inline std::optional<Pos> assembly_step(')), encoding='utf8')

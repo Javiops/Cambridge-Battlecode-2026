@@ -65,6 +65,8 @@ GENES = {
     'P_NE_POWER_OPEN': (1, 0, 1,        'melee opens with a power emblem'),
     # draft
     'P_UNI_PATH':      (45, 0, 120,     'caster draft when the spawn-to-spawn walk is at most this'),
+    'P_GA_DRAFT_FARM': (0, 0, 2,        'draft on the other maps: 0 own list, 1 Cassi&Issac + Stellar first, '
+                                        '2 Stellar, Cassi&Issac, Ren, Tavi (the top-10 winners)'),
 }
 
 _RETARGET_OLD = """#if defined(P_E_RETARGET) && P_E_RETARGET > 0
@@ -88,6 +90,15 @@ _POWER_NEW = """    // One offensive opening emblem, then the complete original 
 # Literal constants (and two preprocessor switches) of the base code turned into genes: (file, old, new).
 # Each old text must occur exactly once in the base source.
 LITERALS = [
+    ('main.cpp', '''        std::printf("[draft] uni ts=%d spawn_path=%d fight=%d\\n", ts, sp, fight_map ? 1 : 0);
+        if (fight_map) {''',
+                 '''        std::printf("[draft] uni ts=%d spawn_path=%d fight=%d\\n", ts, sp, fight_map ? 1 : 0);
+        if (!fight_map && P_GA_DRAFT_FARM) {
+            if (P_GA_DRAFT_FARM == 1) prefs = {"cassi", "stellar"};
+            else prefs = {"stellar", "cassi", "ren", "tavi"};
+            for (const char* p : PREFS) prefs.push_back(p);
+        }
+        if (fight_map) {'''),
     ('main.cpp', 'double gold_w = (round < 600 ?', 'double gold_w = (round < P_GA_GOLD_ROUND ?'),
     ('main.cpp', 'if (needed > 1 + claimers) score *= 0.7;', 'if (needed > 1 + claimers) score *= P_GA_NEEDCO / 100.0;'),
     ('main.cpp', 'score *= pack ? 1.0 : 0.3;  // clusters are a solo job',

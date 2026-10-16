@@ -7,7 +7,7 @@ Second front of the genetic plan, next to the fight GA (I030, `tools/ga/ga.py`) 
 
 - **Base = `bots/ga65a6`** = `bots/study27-economy` (main, with P_MONO) + the evolved fight params of genome 65a6d152b6,
   i.e. the bot online as v44. Built by `python3 tools/ga/mga.py base` (only P_MONO differs from the uploaded zip).
-- **48 genes** in `tools/ga/macro_genome.py`: 33 existing `P_*` macros plus 15 hard-coded constants of the macro code
+- **49 genes** in `tools/ga/macro_genome.py`: 33 existing `P_*` macros plus 16 hard-coded constants of the macro code
   turned into `P_GA_*` genes (and two preprocessor switches made runtime). The default genome equals the base: with
   unlimited fuel it plays the 102 check games (17 site maps x spar11/spar16/base x 2 sides) identically to the base build.
 - Fight genes (flee, engage, kite, danger spots, bail) stay with the fight GA. No per-map hard-coding is added; the
@@ -65,6 +65,9 @@ Second front of the genetic plan, next to the fight GA (I030, `tools/ga/ga.py`) 
 | `P_SHOPUNI` | 1 | 0..1 | casters buy power-f like the #1 |
 | `P_NE_POWER_OPEN` | 1 | 0..1 | melee opens with a power emblem |
 | `P_UNI_PATH` | 45 | 0..120 | caster draft when the spawn-to-spawn walk is at most this |
+| `P_GA_DRAFT_FARM` | 0 | 0..2 | draft on the other maps: 0 own list, 1 Cassi&Issac + Stellar first, 2 Stellar, Cassi&Issac, Ren, Tavi (the top-10 winners) |
+
+Planned: `P_JACKPOT` (I042, farm gold before taking the central group) becomes a gene once it is on main.
 
 ## Fitness
 

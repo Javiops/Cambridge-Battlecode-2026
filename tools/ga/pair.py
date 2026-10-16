@@ -11,6 +11,8 @@ the base bot as it is (P_PAIR_N 0 turns the two pair rules off).
 - P_PAIR_STICK: alone with a foe within P_PAIR_FOE and a visible ally: step toward that ally (fewest threats first)
   instead of backing off or fighting, unless the target is killable. Runs at the start of the AVOID rule.
 - P_PAIR_ENGAGE: do not engage alone, unless the target is killable or channeling.
+- P_PAIR_LOWHP: alone, the low-hp back-off threshold (P_LOWHP) is this much higher. The imitation thread measured
+  that at 30-50% hp we die 27% of the time alone and 8.5% next to an ally.
 """
 
 GENES = {
@@ -20,6 +22,7 @@ GENES = {
     'P_PAIR_FOE':   (6, 2, 10, 'int',   'pair stick: only with a foe within this many tiles'),
     'P_PAIR_STICK': (0, 0, 1, 'bool',   'alone in contact: step toward the nearest ally first'),
     'P_PAIR_ENGAGE': (0, 0, 1, 'bool',  'alone: do not engage unless the target is killable or channeling'),
+    'P_PAIR_LOWHP': (0, 0, 40, 'int',   'alone: back off from a foe within 6 this many % hp earlier (0 = as paired)'),
 }
 NAMES = list(GENES)
 
@@ -57,17 +60,22 @@ LITERALS = [
                 'return threats_at(t, foes, reaches) * 1000 + ally * P_GA_SS_ALLY + dist(t, s.spawn_center) * P_GA_SS_HOME;'),
     ('fight.h', '// Backing off: optionally hit first, then step (safe tile, retreat or flee), then hit if we have not yet.',
                 PAIR_STEP + '// Backing off: optionally hit first, then step (safe tile, retreat or flee), then hit if we have not yet.'),
-    ('main.cpp', '''    auto r_avoid = [&]() -> bool {
-        g_mode = "fight";
-        if (foes.empty()) return false;
-        if (fight_ctx()) return true;''',
+    ('main.cpp', '''    // The fight block's shared reading of the situation, computed once by the first rule (or the net) needing it.''',
                  '''    // P_PAIR_N (tools/ga/pair.py): the nearest ally, and whether we are alone (no ally within P_PAIR_N)
     int pair_d = 99;
     vec2 pair_p = pos;
     for (auto& ap : allies)
         if (dist(ap, pos) < pair_d) { pair_d = dist(ap, pos); pair_p = ap; }
     const bool alone = P_PAIR_N > 0 && pair_d > P_PAIR_N;
-    auto r_avoid = [&]() -> bool {
+    // The fight block's shared reading of the situation, computed once by the first rule (or the net) needing it.'''),
+    ('main.cpp', '''        cx.low_pct = (P_CASSI_PCT && starts_with(s.name, "cassi")) ? P_CASSI_PCT : P_LOWHP;''',
+                 '''        cx.low_pct = (P_CASSI_PCT && starts_with(s.name, "cassi")) ? P_CASSI_PCT : P_LOWHP;
+        if (alone && cx.low_pct) cx.low_pct += P_PAIR_LOWHP;'''),
+    ('main.cpp', '''    auto r_avoid = [&]() -> bool {
+        g_mode = "fight";
+        if (foes.empty()) return false;
+        if (fight_ctx()) return true;''',
+                 '''    auto r_avoid = [&]() -> bool {
         g_mode = "fight";
         if (foes.empty()) return false;
         if (fight_ctx()) return true;

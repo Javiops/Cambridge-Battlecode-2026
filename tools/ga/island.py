@@ -1124,8 +1124,8 @@ def cmd_champion(A):
             B.opp_wasm[o] = ga.md5(ga.wasm_of(out)), ga.wasm_of(out)
     pins = pinned(A.opps)
     maps = ga.map_pool(A.maps.split(','))
-    if A.max_maps and len(maps) > A.max_maps:
-        maps = random.Random(7).sample(maps, A.max_maps)
+    if A.max_maps and len(maps) > A.max_maps:  # --map-offset 60: the next maps of the same shuffle (a fresh check)
+        maps = random.Random(7).sample(maps, len(maps))[A.map_offset:A.map_offset + A.max_maps]
     cl = [(bots[k][0], bots[k][1]) for k in [ctl] + finalists]
     print(f'{len(cl)} bots x {len(opps)} rivals x {len(maps)} maps x 2 sides + {len(pins)} ghost games', flush=True)
     pin_games(B, cl, pins)
@@ -1154,7 +1154,9 @@ def cmd_champion(A):
         rows.append({'cid': k, 'island': cands.get(k, {}).get('island', ''), 'delta': fit(h) - cf,
                      'better': better, 'worse': worse, 'p': ga.sign_p(better, worse), 'v44': (vb, vw),
                      'per': {os.path.basename(o): '%d-%d' % (v['won2'], v['lost2']) for o, v in per.items()},
-                     'ghosts': pin_fit(B, h, pins), 'describe': describe(genos[k], start)})
+                     'ghosts': pin_fit(B, h, pins), 'describe': describe(genos[k], start),
+                     'dth': sum(v['dth'] for o, v in per.items() if rival_weight(o, A) == A.w_spar) /
+                            max(1, sum(1 for o in per if rival_weight(o, A) == A.w_spar))})
     rows.sort(key=lambda r: -r['delta'])
     lines = ['# GA farm champion', '', f'Tournament {now()}: {len(finalists)} finalists (top {A.per_island} of each '
              f'island), built as uploaded (overlay `{A.overlay_ref or "none"}`), vs {", ".join(opps)} on {len(maps)} '
@@ -1163,10 +1165,12 @@ def cmd_champion(A):
              f', ghosts {pin_fit(B, ch, pins):+.2f}.', '',
              f'Fitness weights: v44 x{A.w_base:g}, each sparring bot x{A.w_spar:g}, ghost games together x{A.w_ghosts:g}, '
              'other rivals x1. A champion needs delta > 0 and pairs vs v44 not worse.', '',
-             '| rank | genome | island | delta vs control | pairs better-worse (p) | pairs vs v44 | maps won-lost both sides per rival | ghosts | changes vs control |',
-             '|---|---|---|---|---|---|---|---|---|']
+             f'Deaths per game vs the caster sparring bots: control '
+             f'{sum(v["dth"] for o, v in cper.items() if rival_weight(o, A) == A.w_spar) / max(1, sum(1 for o in cper if rival_weight(o, A) == A.w_spar)):.2f}.', '',
+             '| rank | genome | island | delta vs control | pairs better-worse (p) | pairs vs v44 | deaths vs casters | maps won-lost both sides per rival | ghosts | changes vs control |',
+             '|---|---|---|---|---|---|---|---|---|---|']
     for n, r in enumerate(rows, 1):
-        lines.append(f"| {n} | {r['cid']} | {r['island']} | {r['delta']:+.3f} | {r['better']}-{r['worse']} ({r['p']:.3f}) | {r['v44'][0]}-{r['v44'][1]} | "
+        lines.append(f"| {n} | {r['cid']} | {r['island']} | {r['delta']:+.3f} | {r['better']}-{r['worse']} ({r['p']:.3f}) | {r['v44'][0]}-{r['v44'][1]} | {r['dth']:.2f} | "
                      f"{' '.join(f'{a} {b}' for a, b in r['per'].items())} | {r['ghosts']:+.2f} | {json.dumps(r['describe'])} |")
     ok = [r for r in rows if r['delta'] > 0 and r['v44'][0] >= r['v44'][1]]
     if ok:
@@ -1246,6 +1250,7 @@ def main():
     s.add_argument('--ids', default='', help='finalists by cid instead of the islands\' best')
     s.add_argument('--maps', default='maps_hold60/*.map26a,maps_dev200/*.map26a', help='sealed map globs')
     s.add_argument('--min-n', type=int, default=4, help='finalists: generations evaluated on their island (>= 32 maps)')
+    s.add_argument('--map-offset', type=int, default=0, help='skip this many maps of the shuffled sealed set')
     s.add_argument('--max-maps', type=int, default=120)
     s.add_argument('--overlay-ref', default=FUELGUARD_REF, help='git ref whose base bot the zip is built on ('' = none)')
     s.add_argument('--zip-dir', default=os.path.join(SHARED, 'bot') if os.path.isdir(SHARED) else os.path.join('out', 'bot'))

@@ -49,6 +49,24 @@ LITERALS = [
 ]
 
 NAMES = list(GENES)
+
+# Known genomes that can replace the defaults as the centre of the search (`ga.py prepare --center NAME`).
+PRESETS = {
+    # v44, online since 16 Oct 10:46 (exported genome 65a6d152b6)
+    'ga65a6': {"P_FLEE_PCT": 29, "P_UNI_FLEE": 44, "P_RECALL_PCT": 54, "P_RECALL_NEAR": 7, "P_BAIL_PCT": 12,
+               "P_AVOID_DIST": 4, "P_GA_AVOID_HP": 60, "P_ENGAGE2": 74, "P_GA_FAV": 83, "P_GA_KILL_X": 5,
+               "P_LOWHP": 50, "P_GA_SPAWN_HEAL": 87, "P_FRONT_ZONE": 3, "P_FRONT_OUT": 145, "P_KITE_ZONE": 4,
+               "P_KITE_OUT": 2, "P_GA_KITE_HP": 128, "P_VOLLEY": 43, "P_CHASE_GEMS": 144, "P_DANGER": 4,
+               "P_DANGER_T": 45, "P_DANGER_R": 5},
+}
+
+
+def set_center(g):
+    """Make genome g the default (= the control and the centre of the search). Literal defaults in LITERALS stay
+    those of the base source; the instrumented build patches them at run time anyway."""
+    for k, v in g.items():
+        d, lo, hi, what = GENES[k]
+        GENES[k] = (v, lo, hi, what)
 MAGIC = (0x314D4147, 0x5EED1234)  # 'GAM1', then a second word: marks the genome array inside the wasm
 
 

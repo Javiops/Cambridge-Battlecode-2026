@@ -25,6 +25,8 @@ from concurrent.futures import ThreadPoolExecutor
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import genome as G
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), '..'))
+from ab import RUN_FLAGS, load_stats  # noqa: E402  (cambc 2.2+: --json and the nested summary)
 
 CLI = os.environ.get('CAMBC_CLI', 'cambc')
 ENV = {**os.environ, 'CAMBC_NO_UPDATE_CHECK': '1'}
@@ -156,11 +158,11 @@ class Bench:
         key, a, b, m, side = job
         tmp = tempfile.mkdtemp(prefix='g', dir=os.path.join(self.work, 'tmp'))
         stats = os.path.join(tmp, 's.json')
-        r = subprocess.run([CLI, 'run', a, b, '--map', m, '-o', tmp, '--statistics', stats],
+        r = subprocess.run([CLI, 'run', a, b, '--map', m, '-o', tmp, '--statistics', stats] + RUN_FLAGS,
                            capture_output=True, text=True, env=ENV)
         res = {'key': key, 'ok': False}
         if os.path.exists(stats):
-            d = json.load(open(stats))
+            d = load_stats(stats)
             me, op = side, 1 - side
             won = d['outcome'] == ('teamA' if me == 0 else 'teamB')
             lost = d['outcome'] in ('teamA', 'teamB') and not won
@@ -232,6 +234,8 @@ class Bench:
 def cmd_prepare(A):
     work = A.work
     os.makedirs(work, exist_ok=True)
+    if A.center:
+        G.set_center(G.PRESETS[A.center] if A.center in G.PRESETS else json.load(open(A.center)))
     bot = os.path.join(work, 'gabot')
     write_src(A.base, bot, G.default(), runtime=True)
     build(bot)
@@ -239,7 +243,8 @@ def cmd_prepare(A):
     off = find_genome(open(w, 'rb').read())
     tmpl = os.path.join(work, 'template.wasm')
     shutil.copy(w, tmpl)
-    json.dump({'base': A.base, 'wasm': tmpl, 'offset': off, 'genes': G.GENES}, open(os.path.join(work, 'meta.json'), 'w'),
+    json.dump({'base': A.base, 'wasm': tmpl, 'offset': off, 'genes': G.GENES,
+               'center': G.default() if A.center else None}, open(os.path.join(work, 'meta.json'), 'w'),
               indent=1)
     print(f'instrumented bot built, genome at byte {off} of {tmpl}; {len(G.NAMES)} genes')
 
@@ -451,6 +456,7 @@ def main():
     p.add_argument('--jobs', type=int, default=os.cpu_count() or 4)
     sub = p.add_subparsers(dest='cmd', required=True)
     s = sub.add_parser('prepare'); s.add_argument('--base', default='bots/study27-economy')
+    s.add_argument('--center', default='', help='preset name (genome.PRESETS) or genome json: the control and start')
     s = sub.add_parser('check'); s.add_argument('--n', type=int, default=17); s.add_argument('--opps', default=OPPS)
     s = sub.add_parser('run')
     s.add_argument('--gens', type=int, default=10); s.add_argument('--pop', type=int, default=20)
@@ -463,6 +469,9 @@ def main():
     s.add_argument('--ids', default=''); s.add_argument('--maps', default=VALID); s.add_argument('--opps', default=OPPS)
     s = sub.add_parser('export'); s.add_argument('--id', default=''); s.add_argument('--out', required=True)
     A = p.parse_args()
+    meta = os.path.join(A.work, 'meta.json')
+    if A.cmd != 'prepare' and os.path.exists(meta) and json.load(open(meta)).get('center'):
+        G.set_center(json.load(open(meta))['center'])
     {'prepare': cmd_prepare, 'check': cmd_check, 'run': cmd_run, 'validate': cmd_validate, 'export': cmd_export}[A.cmd](A)
 
 

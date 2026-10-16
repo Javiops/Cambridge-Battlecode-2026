@@ -1,0 +1,26 @@
+{
+ "name": "pc",
+ "host": "DESKTOP-N35CN0S",
+ "scope": "all",
+ "start": "ga65a6",
+ "jobs": 16,
+ "gen": 1,
+ "games": 896,
+ "gps": 11.2,
+ "base": "7c2d0330e54e",
+ "best": {
+  "cid": "3f2ac6b9ff",
+  "shrunk": 0.0136,
+  "n": 1,
+  "describe": {
+   "P_FRONT": 0,
+   "P_NOCHASE": 0
+  }
+ },
+ "exported": 0,
+ "imported": 0,
+ "updated": "2026-10-16 12:13:24 UTC",
+ "code": "ga-farm-pr@4467d04",
+ "home": "C:\\Users\\Javier\\Cambc2026\\repo\\out\\islands\\pc",
+ "transport": "git"
+}

@@ -1,0 +1,18 @@
+{
+ "id": "I043",
+ "title": "Fight-map reading beyond spawn path: eight (46) and pilgrimage/ambush (123) fail the <=45 test",
+ "kind": "macro",
+ "source": "new-maps study 2026-10-16 (analysis/new-maps-2026-10-16)",
+ "owner": "Javi",
+ "hypothesis": "top teams fight on eight (14 kills/game) with path 46; a contact-based or camp-overlap feature should mark it. Expect the caster/fight settings to switch on eight",
+ "stage": "idea",
+ "created": "2026-10-16T11:43Z",
+ "history": [
+  {
+   "at": "2026-10-16T11:43Z",
+   "stage": "idea",
+   "note": ""
+  }
+ ],
+ "updated": "2026-10-16T11:43Z"
+}

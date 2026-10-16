@@ -80,3 +80,4 @@
 #define P_CASTSAFE 0         // skip a rooting cast when we should escape: lost 15-30 (hp only) and 12-29 (70%), off
 #define P_KITEFRONT 0        // 1 = front line before kite, 2 = kite shoots the team focus: both noise, off
 #define P_R5_WARD 0          // wards: 55-58 maps won/lost both sides, noise again, off
+#define P_JACKPOT 350  // I042: a contested group with half the map gems waits until r350; gold first (stampede)

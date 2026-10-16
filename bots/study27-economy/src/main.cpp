@@ -308,6 +308,17 @@ namespace {
 #ifndef P_DRAFTDIVE
 #define P_DRAFTDIVE 0
 #endif
+// P_DRAFT5 1: with 5 champions the caster draft is Cassi&Issac, Stellar, Varg, Tavi, Ren (what the top 10 won with on
+// the 2026-10-16 maps), instead of Ryth, Stellar, Prism, Ren, Tavi.
+// P_JACKPOT R: a group holding half the map's gems or more that is about as far from both spawns (stampede's centre)
+// is left alone before round R, and gold clusters are farmed even with P_NOGOLD: the top teams buy ~9000 gold of
+// items first and take it by force from r350-475; we walked in at r50 and died 27 times a game.
+#ifndef P_JACKPOT
+#define P_JACKPOT 0
+#endif
+#ifndef P_DRAFT5
+#define P_DRAFT5 0
+#endif
 #ifndef P_UNI_PATH
 #define P_UNI_PATH 45
 #endif
@@ -668,6 +679,7 @@ void write_plan(const std::vector<std::uint8_t>& roster) {
         if (fight_map) {
             if (ts <= 3) prefs = {"cassi", "ren", "stellar"};
             else if (ts == 4) prefs = {"cassi", "ren", "stellar", "tavi"};
+            else if (P_DRAFT5) prefs = {"cassi", "stellar", "varg", "tavi", "ren"};  // top-10 winners' 5-champion draft on the new maps
             else prefs = {"ryth", "stellar", "prism", "ren", "tavi"};
             for (const char* p : PREFS) prefs.push_back(p);  // fallbacks
         }
@@ -733,6 +745,7 @@ struct Group {
     int reward_seen = -1;  // round in which we last saw its reward available
     std::optional<bc::map::camp_group> obj;  // live handle for state() queries
     int spawn_pd = -1, altar_pd = -1;        // P_PATHD: walking distance from our spawn / from the nearest altar
+    bool jackpot = false;                    // P_JACKPOT: most of the map's gems, about as far from both spawns
 };
 
 struct Shard {
@@ -909,6 +922,7 @@ struct State {
     vec2 spawn_center, en_center;
     std::vector<Group> groups;
     bool mono_only = false;  // P_MONO: every gem on the map sits in a monolith group
+    bool jackpot_map = false;  // P_JACKPOT: a jackpot group exists, so gold clusters are worth farming before it
     std::vector<Shard> shards;
     std::vector<bc::item_type> fallback_items;
     std::vector<Step> plan;
@@ -1176,6 +1190,25 @@ void init(State& s, bc::champion& me) {
                 }
                 g.spawn_pd = bs < (1 << 20) ? bs : -1;
                 g.altar_pd = ba < (1 << 20) ? ba : -1;
+            }
+            return true;
+        });
+    if (P_JACKPOT)  // a jackpot: one group with half the map's gems or more, contested (as far from both spawns)
+        attempt([&] {
+            bc::bitboard wall = bc::map::walls() | bc::map::holes() | s.my_spawn;
+            bc::distance_field fe;
+            bc::bitboard ve;
+            fe.compute(wall, s.en_spawn & ~wall, ve);
+            int total = 0;
+            for (auto& g : s.groups) total += g.gems;
+            for (auto& g : s.groups) {
+                if (g.monolith || g.gems * 2 < total || g.spawn_pd < 0) continue;
+                int be = 1 << 20;
+                for (auto t : g.tiles)
+                    if (ve.is_set(t)) be = std::min(be, static_cast<int>(fe.get(t)));
+                g.jackpot = be < (1 << 20) && std::abs(be - g.spawn_pd) <= 6;
+                if (g.jackpot) s.jackpot_map = true;
+                if (g.jackpot) std::printf("[jackpot] gems=%d of %d, from us %d, from them %d\n", g.gems, total, g.spawn_pd, be);
             }
             return true;
         });
@@ -1872,7 +1905,8 @@ int choose_target(State& s, bc::champion& me, int round) {
         int gd = walk(g);
         if (wait > 0 && (!P_RESPAWN || g.monolith || wait > gd + P_RESPAWN)) continue;
         if (g.gems + g.gold <= 0) continue;
-        if (P_NOGOLD && g.gems <= 0 && !s.mono_only) continue;  // gold-only clusters give no gems (but gold is the tiebreak where only monoliths give gems)
+        if (P_JACKPOT && g.jackpot && round < P_JACKPOT) continue;  // farm gold and buy first, as the top teams do (stampede: first visit r350-475)
+        if (P_NOGOLD && g.gems <= 0 && !s.mono_only && !s.jackpot_map) continue;  // gold-only clusters give no gems (but gold is the tiebreak where only monoliths give gems)
         int claimers = count_claimers(s, sm, i);
         bool free_reward = g.reward_seen >= 0 && round - g.reward_seen < 30;
         double afford = std::max(1.0, mhp * (1.0 - P_RESERVE_PCT / 100.0));

@@ -1,0 +1,29 @@
+{
+ "id": "I042",
+ "title": "Jackpot rule: a gem group only the whole team can take, about as far from both spawns, waits until we out-buy them",
+ "kind": "macro",
+ "source": "new-maps study 2026-10-16 (analysis/new-maps-2026-10-16)",
+ "owner": "Javi",
+ "hypothesis": "stampede: winners touch the central 360-gem group first at r512 after ~9000 gold; we walk in from r60 and die 27 times. Expect fewer deaths, gems from the jackpot after the gold phase",
+ "stage": "local-ok",
+ "created": "2026-10-16T11:43Z",
+ "history": [
+  {
+   "at": "2026-10-16T11:43Z",
+   "stage": "idea",
+   "note": ""
+  },
+  {
+   "at": "2026-10-16T11:54Z",
+   "stage": "local-ok",
+   "note": "gate fight: PASS; fresh 33-31 p=0.9007; panel 12/8",
+   "result": "out/gate/nmD_vs_study27-economy/result.json"
+  },
+  {
+   "at": "2026-10-16T11:59Z",
+   "stage": "local-ok",
+   "note": "P_JACKPOT 350 (fires only on stampede among the 17 site maps): gate vs main PASS fight 33-31, site stampede won both sides (1080-0 r886, 1080-360); on top of the online bot ga65a6 + P_MONO: PASS fight 29-43 p=0.125 (code chaos, the rule never fires on fresh maps), contest + and stampede + both sides. Zip /mnt/project-files/bot/mybot_ga65a6_mono_jackpot.zip, not uploaded"
+  }
+ ],
+ "updated": "2026-10-16T11:59Z"
+}

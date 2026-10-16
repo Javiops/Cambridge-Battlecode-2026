@@ -34,8 +34,9 @@ sys.path.insert(0, os.path.dirname(HERE))
 import ga, gp, neat, sga, structure as T
 import genome as G
 import macro as M
+import pair as PR
 
-FAMILIES = {'micro': list(G.NAMES), 'structure': list(T.L1_GENES), 'macro': list(M.NAMES)}
+FAMILIES = {'micro': list(G.NAMES) + list(PR.NAMES), 'structure': list(T.L1_GENES), 'macro': list(M.NAMES)}
 SHARED = '/mnt/project-files'
 TRAIN = ga.TRAIN + ['maps_train/*/*.map26a']
 VALID = ['maps_v100/*.map26a', ga.VALID]

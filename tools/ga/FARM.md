@@ -12,7 +12,7 @@ plays exactly like `bots/study27-economy`.
 
 | family (`--scope`) | genes | file |
 |---|---|---|
-| `micro` | 22 fight weights (flee/recall %, engage ratio, kite, volley, chase, danger spots) | `genome.py` |
+| `micro` | 22 fight weights (flee/recall %, engage ratio, kite, volley, chase, danger spots), plus 6 pair genes (retreat toward an ally, step to an ally when alone, do not engage alone) | `genome.py`, `pair.py` |
 | `structure` | micro rules on/off and their order, 12 fight switches | `structure.py` |
 | `macro` | 37 economy genes: tributes, shop, item plan, camp choice and sharing, recall trips, draft, centre hold | `macro.py` |
 | `gp` | the evolved "back off" and "engage" conditions (expression trees) | `gp.py` |

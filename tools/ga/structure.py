@@ -17,6 +17,7 @@ import hashlib, os, shutil, struct, subprocess, sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import genome as G
 import macro as M
+import pair as PR
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 
@@ -72,7 +73,7 @@ NN_LEN = 2 + NN_NODES + 3 * NN_CONN  # GA_NN_LEN
 ACTIONS = ['default', 'engage', 'kite', 'back off', 'flee', 'recall', 'farm']
 BLOCKS = [('GA_GP0', PROG_LEN), ('GA_GP1', PROG_LEN), ('GA_NN', NN_LEN)]
 
-SCALARS = list(G.NAMES) + list(SWITCHES) + list(M.NAMES)  # macro genes appended (island.py, 16 Oct)
+SCALARS = list(G.NAMES) + list(SWITCHES) + list(M.NAMES) + list(PR.NAMES)  # macro, then pair genes appended (16 Oct)
 MAGIC = (0x31534147, 0x5EED5678)  # 'GAS1', then a second word
 HEADER = [MAGIC[0], MAGIC[1], len(SCALARS), sum(n for _, n in BLOCKS)]
 LENGTH = len(SCALARS) + sum(n for _, n in BLOCKS)
@@ -84,6 +85,9 @@ def spec(name):
         return d, lo, hi, 'int'
     if name in M.MACRO:
         d, lo, hi, kind, _ = M.MACRO[name]
+        return d, lo, hi, kind
+    if name in PR.GENES:
+        d, lo, hi, kind, _ = PR.GENES[name]
         return d, lo, hi, kind
     d, lo, hi, kind, _ = SWITCHES[name]
     return d, lo, hi, kind
@@ -162,7 +166,7 @@ def write_src(base, dst, ints):
     if r.returncode != 0:
         sys.exit('struct.patch does not apply to %s: %s%s' % (base, r.stdout, r.stderr))
     os.remove(patch)
-    for fname, old, new in M.LITERALS:  # after the patch: some sit in the code the patch moved into rules
+    for fname, old, new in M.LITERALS + PR.LITERALS:  # after the patch: some sit in the code the patch moved into rules
         p = os.path.join(src, fname)
         text = open(p, newline='').read()
         open(p, 'w', newline='\n').write(replace_reindented(text, old, new, fname))

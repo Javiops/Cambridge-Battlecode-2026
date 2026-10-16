@@ -64,7 +64,10 @@ def metrics(d, t):
     cz = [0, 0, 0]
     for c in caps: cz[zone((c[4], c[5]), own, en)] += 1
     stc = [c for c in S.get('champions', []) if c['team'] == t]
-    return dict(occ=occ, deaths=deaths, banks=banks, caps=cz, spread=st.mean(spread) if spread else 0,
+    sub = [x[1 + t] for x in R]
+    at = lambda rr: sub[min(rr, len(sub) - 1)]
+    reach = next((R[k][0] for k in range(len(R)) if sub[k] >= 1000), None)
+    return dict(g300=at(300), g500=at(500), reach=reach, occ=occ, deaths=deaths, banks=banks, caps=cz, spread=st.mean(spread) if spread else 0,
                 gold=sum(c.get('earnedGold', 0) for c in stc), kills=sum(c.get('kills', 0) for c in stc),
                 route=''.join('OME'[zone((c[4], c[5]), own, en)] + ('g' if c[2] == 0 else '') for c in caps[:6]),
                 gems=(d['meta'] or {}).get('submittedGems', [0, 0])[t], ogems=(d['meta'] or {}).get('submittedGems', [0, 0])[1 - t])
@@ -84,24 +87,34 @@ def run(job):
 
 if __name__ == '__main__':
     p = argparse.ArgumentParser(); p.add_argument('bots', nargs='+'); p.add_argument('--opps', default='sp_castera,sp_casterh')
-    p.add_argument('--maps', default='eight'); p.add_argument('--jobs', type=int, default=4); A = p.parse_args()
+    p.add_argument('--maps', default='eight'); p.add_argument('--jobs', type=int, default=4); p.add_argument('--summary', action='store_true'); A = p.parse_args()
     opps = ['bots/' + o for o in A.opps.split(',')]
     jobs, idx = [], []
     for b in A.bots:
         b = b.rstrip('/')
         for o in opps:
             for mn in A.maps.split(','):
-                m = f'maps/{mn}.map26a'
+                m = mn if mn.endswith('.map26a') else f'maps/{mn}.map26a'
+                mn = os.path.basename(m)[:-7]
                 for side in 'AB':
                     x, y = (b, o) if side == 'A' else (o, b)
                     h = ab.sha(ab.wasm_of(x)) + ab.sha(ab.wasm_of(y))
                     jobs.append((x, y, m, f'out/lz/{mn}_{h}')); idx.append((b, o, mn, side))
+    import glob as _g
     with ThreadPoolExecutor(A.jobs) as ex: res = list(ex.map(run, jobs))
     agg = collections.defaultdict(list)
     for (b, o, mn, side), d in zip(idx, res):
         if d: agg[(mn, b)].append(metrics(d, 0 if side == 'A' else 1))
-    print('| map | bot | n | time own/mid/enemy r0-150 | r150-400 | r400+ | caps o/m/e | deaths o/m/e | banks o/m/e | spread | gold | kills | gems us-them | openings |')
-    print('|---|---|---|---|---|---|---|---|---|---|---|---|---|---|')
+    if A.summary:
+        tot = collections.defaultdict(list)
+        for (b, o, mn, side), d in zip(idx, res):
+            if d: tot[b].append(metrics(d, 0 if side == 'A' else 1))
+        for b, L in tot.items():
+            print(f"{os.path.basename(b):16s} n={len(L)} g300={st.mean(x['g300'] for x in L):.0f} g500={st.mean(x['g500'] for x in L):.0f} "
+                  f"reach1000(median)={st.median([x['reach'] or 2000 for x in L])} won={sum(x['gems'] > x['ogems'] for x in L)} deaths={st.mean(sum(x['deaths']) for x in L):.1f}")
+        sys.exit()
+    print('| map | bot | n | time own/mid/enemy r0-150 | r150-400 | r400+ | caps o/m/e | deaths o/m/e | banks o/m/e | spread | gold | kills | gems us-them | g300/g500 | reach1000 | openings |')
+    print('|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|')
     for (mn, b), L in sorted(agg.items()):
         n = len(L)
         def pct(ph):
@@ -111,4 +124,4 @@ if __name__ == '__main__':
         rt = collections.Counter(x['route'] for x in L).most_common(2)
         print(f"| {mn} | {os.path.basename(b)} | {n} | {pct(0)} | {pct(1)} | {pct(2)} | {f('caps')} | {f('deaths')} | {f('banks')} | "
               f"{st.mean(x['spread'] for x in L):.1f} | {st.median(x['gold'] for x in L):.0f} | {st.mean(x['kills'] for x in L):.1f} | "
-              f"{st.mean(x['gems'] for x in L):.0f}-{st.mean(x['ogems'] for x in L):.0f} | {', '.join(f'{r} x{c}' for r, c in rt)} |")
+              f"{st.mean(x['gems'] for x in L):.0f}-{st.mean(x['ogems'] for x in L):.0f} | {st.mean(x['g300'] for x in L):.0f}/{st.mean(x['g500'] for x in L):.0f} | {st.median([x['reach'] or 9999 for x in L])} | {', '.join(f'{r} x{c}' for r, c in rt)} |")

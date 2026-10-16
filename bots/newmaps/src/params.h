@@ -104,6 +104,6 @@
 #define P_KITEALLY 12
 #define P_NOCHASE2 1
 #define P_TWIN 1
-
-// new-maps thread (mapplan.h): the map plan read from map features
+#define P_ALLYDUTY 1
+#define P_AVOIDFIRST 1
 #define P_MAPPLAN 1

@@ -135,6 +135,40 @@ namespace {
 #ifndef P_ALTAR_SAFE
 #define P_ALTAR_SAFE 0
 #endif
+// Review fixes, 16 Oct (ideas I019-I022). Each is a switch, 0 = study28 behaviour.
+#ifndef P_ALTARPICK
+#define P_ALTARPICK 0     // I019: altar = walking distance + foes near it + allies near it + walk home from it
+#endif
+#ifndef P_ALTARPICK_EN
+#define P_ALTARPICK_EN 12 // I019: extra tiles per visible enemy champion within 5 of the altar
+#endif
+#ifndef P_ALTARPICK_AL
+#define P_ALTARPICK_AL 3  // I019: tiles saved per visible ally within 4 of the altar (at most two)
+#endif
+#ifndef P_ALTARPICK_HOME
+#define P_ALTARPICK_HOME 25  // I019: % of the altar's walk home added to its cost
+#endif
+#ifndef P_RECALLCOST
+#define P_RECALLCOST 0    // I020: a recall only for gold needs gold >= P_SHOP_RECALL + P_RECALLCOST x (walk back from home)
+#endif
+#ifndef P_LOGRECALL
+#define P_LOGRECALL 0     // I020: print the reason, gold and walk home of every recall, and the gold spent after it
+#endif
+#ifndef P_LOGCAMP
+#define P_LOGCAMP 0       // I021: print predicted vs actual damage of every camp fight
+#endif
+#ifndef P_CAMPMODEL
+#define P_CAMPMODEL 0     // I021: 1 = the champion in front takes the camp's whole strength (n, not n^2); 2 = only at the camp (engage or rally); 3 = old model at the camp with reserve P_CAMPRESERVE
+#endif
+#ifndef P_CAMPRESERVE
+#define P_CAMPRESERVE 0   // I021 with P_CAMPMODEL: % of max hp a camp may never take (replaces the negative P_RESERVE_PCT)
+#endif
+#ifndef P_WALKFIELDS
+#define P_WALKFIELDS 0    // test only: compute the I019-I022 walking fields with every switch off (fuel check)
+#endif
+#ifndef P_CHAINWALK
+#define P_CHAINWALK 0     // I022: 1 = chain camp vs altar by walking distance, 2 = also count clear + capture time
+#endif
 #ifndef P_DBGT_ALL
 #define P_DBGT_ALL 0
 #endif
@@ -953,8 +987,68 @@ struct State {
     int tele_sa = -1;                // P_TELE: walking distance spawn -> nearest altar
     bc::bitboard pdv;
     int thr_r = -1;
+    std::vector<bc::distance_field> alt_f;  // I019/I022: walking distance from each altar
+    std::vector<bc::bitboard> alt_v;
+    std::vector<int> alt_home;              // I019: walking distance altar -> our spawn
+    bc::distance_field home_f;              // I020: walking distance from our spawn
+    bc::bitboard home_v;
+    bool walk_ready = false;                // home field done
+    std::vector<char> alt_ready;
+    int walk_next = 0;                      // next field to compute: 0 = home, 1.. = altars
+    int rc_r = -1, rc_gold = 0, rc_spent_logged = 1;  // P_LOGRECALL: last recall round and gold then
+    int cl_g = -1, cl_r0 = 0, cl_last = 0, cl_n = 0;  // P_LOGCAMP: camp fight in progress
+    double cl_hp0 = 0, cl_hp = 0, cl_old = 0, cl_tank = 0, cl_hpmax = 0;
     int de_map = 0;
 };
+
+// I019-I022: walking distances (walls and holes block); straight-line x 1.5 where the field does not reach.
+// The fields are built one per turn with spare fuel (all at init cost turns on big maps); until then, straight line.
+int walk_altar(const State& s, std::size_t i, vec2 p) {
+    if (i < s.alt_ready.size() && s.alt_ready[i]) return s.alt_v[i].is_set(p) ? static_cast<int>(s.alt_f[i].get(p)) : dist(s.altars[i], p) * 3 / 2;
+    return dist(s.altars[i], p);
+}
+int walk_home(const State& s, vec2 p) {
+    if (s.walk_ready) return s.home_v.is_set(p) ? static_cast<int>(s.home_f.get(p)) : dist(s.spawn_center, p) * 3 / 2;
+    return dist(s.spawn_center, p);
+}
+void walk_fields_step(State& s) {
+    if (!(P_WALKFIELDS || P_ALTARPICK || P_CHAINWALK || P_RECALLCOST)) return;
+    if (s.walk_next > static_cast<int>(s.altars.size()) || !fuel_ok(60000)) return;
+#ifdef P_FUELPROBE
+    std::uint64_t f0 = bc::fuel_remaining();
+#endif
+    attempt([&] {
+        bc::bitboard wall = bc::map::walls() | bc::map::holes() | s.en_spawn;
+        if (s.walk_next == 0) {
+            s.home_f.compute(wall, s.my_spawn & ~wall, s.home_v);
+            s.alt_f.resize(s.altars.size());
+            s.alt_v.resize(s.altars.size());
+            s.alt_ready.assign(s.altars.size(), 0);
+            s.alt_home.assign(s.altars.size(), -1);
+            s.walk_ready = true;
+        } else {
+            std::size_t i = static_cast<std::size_t>(s.walk_next - 1);
+            if (s.altar_ok[i]) {
+                bc::bitboard r;
+                r.set(s.altars[i]);
+                s.alt_f[i].compute(wall, r, s.alt_v[i]);
+                if (s.home_v.is_set(s.altars[i])) s.alt_home[i] = static_cast<int>(s.home_f.get(s.altars[i]));
+                s.alt_ready[i] = 1;
+            }
+        }
+        return true;
+    });
+#ifdef P_FUELPROBE
+    std::printf("[wf] %d cost=%llu left=%llu\n", s.walk_next, (unsigned long long)(f0 - bc::fuel_remaining()), (unsigned long long)bc::fuel_remaining());
+#endif
+    ++s.walk_next;
+}
+
+int altar_index(const State& s, vec2 a) {
+    for (std::size_t i = 0; i < s.altars.size(); ++i)
+        if (s.altars[i] == a) return static_cast<int>(i);
+    return -1;
+}
 
 Slot classify(const bc::ability& a) {
     if (!a.info().has_value()) return Slot::None;
@@ -1721,10 +1815,10 @@ double my_dps(State& s, bc::champion& me) {
 // Smallest squad that can clear `hp_g` health of `str_g` total strength when each
 // member deals `dps` and can afford to lose `afford` health: with n members the
 // fight lasts hp_g/(dps*n) rounds and each takes str_g/n per round.
-int squad_needed(double hp_g, double str_g, double dps, double afford) {
+int squad_needed(double hp_g, double str_g, double dps, double afford, bool tank = P_CAMPMODEL == 1) {
     if (str_g <= 0) return 1;
-    for (int n = 1; n <= 5; ++n)
-        if (hp_g * str_g / (dps * n * n) <= afford) return n;
+    for (int n = 1; n <= 5; ++n)  // P_CAMPMODEL (I021): camps hit the nearest champion, so the front one takes it all
+        if (hp_g * str_g / (dps * n * (tank ? 1 : n)) <= afford) return n;
     return 6;
 }
 
@@ -1842,7 +1936,7 @@ int choose_target(State& s, bc::champion& me, int round) {
         if (P_NOGOLD && g.gems <= 0) continue;  // gold-only clusters give no gems
         int claimers = count_claimers(s, sm, i);
         bool free_reward = g.reward_seen >= 0 && round - g.reward_seen < 30;
-        double afford = std::max(1.0, mhp * (1.0 - P_RESERVE_PCT / 100.0));
+        double afford = std::max(1.0, mhp * (1.0 - (P_CAMPMODEL == 1 ? P_CAMPRESERVE : P_RESERVE_PCT) / 100.0));
         int needed = free_reward ? 1 : squad_needed(g.hp, g.str, dps, afford);
         if (needed > s.roster) continue;  // not with this team, not with these stats
         int cap = g.str > 0 ? std::max(needed, P_MAX_SHARE) : 1;
@@ -1894,8 +1988,19 @@ std::optional<vec2> best_altar(State& s, vec2 pos, int round) {
             });
             s.lock_until[i] = locked ? round + 40 : 0;
         }
-        int d = dist(a, pos);
+        int d = P_ALTARPICK ? walk_altar(s, i, pos) : dist(a, pos);
         if (s.lock_until[i] > round) d += 40;
+        if (P_ALTARPICK && s.vis.is_set(a))  // I019: foes near it cost tiles, allies near it save a few
+            attempt([&] {
+                for (auto& e : bc::vision::champions(*s.en))
+                    if (e.is_alive() && dist(e.position(), a) <= 5) d += P_ALTARPICK_EN;
+                int al = 0;
+                for (auto& c : bc::vision::champions(*s.my))
+                    if (c.is_alive() && dist(c.position(), a) <= 4 && dist(c.position(), pos) > 0) ++al;
+                d -= P_ALTARPICK_AL * std::min(al, 2);
+                return true;
+            });
+        if (P_ALTARPICK && P_ALTARPICK_HOME && i < s.alt_home.size() && s.alt_home[i] >= 0) d += s.alt_home[i] * P_ALTARPICK_HOME / 100;
         if (P_ALTAR_SAFE && s.vis.is_set(a))  // an enemy champion next to the altar: prefer another one
             attempt([&] {
                 for (auto& e : bc::vision::champions(*s.en))
@@ -2115,6 +2220,17 @@ void drop_target(State& s) {
     write_claim(s, -1);
 }
 
+// P_LOGCAMP (I021): one line per camp fight: group, rounds, champions near at most, max hp, hp at the start,
+// damage predicted by the old model (spread over n) and by the tank model (front champion takes it all), actual hp lost.
+void camp_log_end(State& s, int round, double hp, const char* how) {
+    const Group& g = s.groups[s.cl_g];
+    std::printf("[camp] r%d %s g%d ghp=%.0f gstr=%.0f n=%d rounds=%d maxhp=%.0f hp0=%.0f old=%.0f tank=%.0f lost=%.0f end=%s\n", s.cl_r0,
+                s.name.c_str(), s.cl_g, g.hp, g.str, s.cl_n, s.cl_last - s.cl_r0 + 1, s.cl_hpmax, s.cl_hp0, s.cl_old, s.cl_tank,
+                s.cl_hp0 - hp, how);
+    s.cl_g = -1;
+    (void)round;
+}
+
 void farm(State& s, bc::champion& me, int round, const std::vector<bc::camp>& camps) {
     vec2 pos = me.position();
     double hp = me.health();
@@ -2184,6 +2300,7 @@ void farm(State& s, bc::champion& me, int round, const std::vector<bc::camp>& ca
     for (auto& c : camps)
         if (g.mask.is_set(c.spawn_position()) && attempt([&] { return c.health() > 0; })) live.push_back(&c);
 
+    if (P_LOGCAMP && live.empty() && s.cl_g == s.target) camp_log_end(s, round, hp, "cleared");
     if (!live.empty()) {
         s.cap_start = -1;
         s.probe_fail = 0;
@@ -2198,12 +2315,13 @@ void farm(State& s, bc::champion& me, int round, const std::vector<bc::camp>& ca
             });
         }
         double dps = my_dps(s, me);
-        double afford = std::max(1.0, hp - mhp * P_RESERVE_PCT / 100.0);
-        int needed = squad_needed(rem, str, dps, afford);
+        double afford = std::max(1.0, hp - mhp * (P_CAMPMODEL ? P_CAMPRESERVE : P_RESERVE_PCT) / 100.0);
+        // P_CAMPMODEL 2: the camp choice keeps the old model; only the engage-or-rally check at the camp uses the tank model
+        int needed = squad_needed(rem, str, dps, afford, P_CAMPMODEL == 1 || P_CAMPMODEL == 2);
         int here = 1 + allies_near(s, me, g.center, 7);
         int coming = 1 + count_claimers(s, read_sm(), s.target);
         if (!engaged && needed > here) {
-            if (needed > std::max(coming, s.roster) || needed > squad_needed(rem, str, dps, mhp * 0.75)) {
+            if (needed > std::max(coming, s.roster) || needed > squad_needed(rem, str, dps, mhp * 0.75, P_CAMPMODEL == 1 || P_CAMPMODEL == 2)) {
                 g_farm = "too-strong";  // not even a full-health squad would do it
                 g.bad_until = round + 60;
                 drop_target(s);
@@ -2224,6 +2342,21 @@ void farm(State& s, bc::champion& me, int round, const std::vector<bc::camp>& ca
             return;
         }
         g_farm = "fight-camp";
+        if (P_LOGCAMP) {  // I021: what the model predicted for this fight, to compare with what it cost
+            if (s.cl_g >= 0 && s.cl_g != s.target) camp_log_end(s, round, s.cl_hp, "switched");
+            if (s.cl_g != s.target) {
+                s.cl_g = s.target;
+                s.cl_r0 = round;
+                s.cl_hp0 = hp;
+                s.cl_n = here;
+                s.cl_old = rem * str / (dps * here * here);
+                s.cl_tank = rem * str / (dps * here);
+                s.cl_hpmax = mhp;
+            }
+            s.cl_last = round;
+            s.cl_hp = hp;
+            s.cl_n = std::max(s.cl_n, here);
+        }
         if (hp < mhp * P_BAIL_PCT / 100.0) {
             g_farm = "bail";
             g.bad_until = round + 30;
@@ -2355,6 +2488,19 @@ bool cancel_doomed_channel(State& s, bc::champion& me, float hp) {
 // ---------------------------------------------------------------------------
 // One turn
 // ---------------------------------------------------------------------------
+bool g_rshop = false;  // P_LOGRECALL: this turn's recall is (also) a shop trip
+// P_LOGRECALL (I020): one line per recall with its reason, then one line with the gold it spent at home.
+void log_recall(State& s, bc::champion& me, int round) {
+    if (!P_LOGRECALL) return;
+    vec2 p = me.position();
+    std::printf("[recall] r%d %s %s%s hp=%.0f%% gold=%d gems=%d home=%d\n", round, s.name.c_str(), g_mode, g_rshop ? "+shop" : "",
+                100.0 * me.health() / std::max(1.0f, static_cast<float>(me.max_health())), static_cast<int>(me.gold_count()),
+                static_cast<int>(me.gem_count()), walk_home(s, p));
+    s.rc_r = round;
+    s.rc_gold = static_cast<int>(me.gold_count());
+    s.rc_spent_logged = 0;
+}
+
 void play_turn(State& s) {
     bc::champion& me = bc::self();
     if (!s.ready) {
@@ -2363,6 +2509,11 @@ void play_turn(State& s) {
     }
     const int round = static_cast<int>(bc::round_number());
 
+    g_rshop = false;
+    if (P_LOGCAMP && s.cl_g >= 0) {
+        if (!me.is_alive()) camp_log_end(s, round, 0.0, "died");
+        else if (round - s.cl_last > 2) camp_log_end(s, round, s.cl_hp, "left");
+    }
     if (!me.is_alive()) {
         g_mode = "dead";
         shop(s, me);  // dead champions can still shop
@@ -2390,6 +2541,10 @@ void play_turn(State& s) {
     if (gold >= 30) {
         shop(s, me);  // only succeeds on spawn / dead (or anywhere for Tavi)
         if (P_SHOPFIX && on_spawn && me.gold_count() >= 30 && static_cast<int>(me.gold_count()) == gold) s.shop_fail = round;
+    }
+    if (P_LOGRECALL && !s.rc_spent_logged && on_spawn) {
+        s.rc_spent_logged = 1;
+        std::printf("[spent] r%d %s after=%d gold %d -> %d\n", round, s.name.c_str(), round - s.rc_r, s.rc_gold, static_cast<int>(me.gold_count()));
     }
     s.last_gold = static_cast<int>(me.gold_count());
     float hp = me.health();
@@ -2516,6 +2671,7 @@ void play_turn(State& s) {
         if (hpr < 0.9f) {
             if (safe && attempt([&] {
                     me.recall();
+                    log_recall(s, me, round);
                     return true;
                 }))
                 return;
@@ -2546,6 +2702,7 @@ void play_turn(State& s) {
         bool recalled = false;
         if (rsafe) recalled = attempt([&] {
             me.recall();
+            log_recall(s, me, round);
             return true;
         });
         if (!rsafe || (P_U34_FAILED_CHANNELS && !recalled)) {
@@ -2560,6 +2717,7 @@ void play_turn(State& s) {
         g_mode = "near-recall";  // the #1: hurt, out of the fight by 4-6 tiles: recall now, come back whole
         if (attempt([&] {
                 me.recall();
+                log_recall(s, me, round);
                 return true;
             }))
             return;
@@ -2766,11 +2924,17 @@ void play_turn(State& s) {
         shop_trip = false;
         want_recall = hpr * 100 < P.flee_pct + 10;
     }
+    if (P_RECALLCOST && shop_trip && !want_recall) {  // I020: a gold-only trip must pay for the walk back from home
+        int back = walk_home(s, pos);
+        if (gold < P_SHOP_RECALL + P_RECALLCOST * back) shop_trip = false;
+    }
+    g_rshop = shop_trip;
     want_recall = want_recall || shop_trip;
     // P_CAPRECALL: capture first and recall on the capture tiles, so the 5-round recall overlaps the 5-round
     // capture (procless on rows: it captures and arrives home healed in the same turn).
     // P_CAPRECALL 2: also take the free trip home whenever it heals or shops something (hp < 90%, 90+ gold).
-    bool cap_want = want_recall || (!endgame && ((s.de_map == v34de::Lanes) ? 1 : P_CAPRECALL) >= 2 && (hpr < 0.9f || gold >= 90));
+    bool cap_gold = gold >= 90 + (P_RECALLCOST ? P_RECALLCOST * walk_home(s, pos) : 0);  // I020: the gold reason pays for the walk back
+    bool cap_want = want_recall || (!endgame && ((s.de_map == v34de::Lanes) ? 1 : P_CAPRECALL) >= 2 && (hpr < 0.9f || cap_gold));
     if (((s.de_map == v34de::Lanes) ? 1 : P_CAPRECALL) && cap_want && safe && s.target >= 0 && s.target < static_cast<int>(s.groups.size())) {
         Group& g = s.groups[s.target];
         if (g.reward_seen == round && !other_captures(s, me, g, s.target)) {
@@ -2778,6 +2942,7 @@ void play_turn(State& s) {
                 g_mode = "cap-recall";
                 if (attempt([&] {
                         me.recall();
+                        log_recall(s, me, round);
                         return true;
                     }) && shop_trip)
                     s.shop_recall = round;
@@ -2797,6 +2962,7 @@ void play_turn(State& s) {
         }
         bool recalled = attempt([&] {
             me.recall();
+            log_recall(s, me, round);
             return true;
         });
         if (recalled && shop_trip) s.shop_recall = round;
@@ -2822,11 +2988,38 @@ void play_turn(State& s) {
         if (((s.de_map == v34de::Rows) ? 60 : P_CHAIN) && gems < ((s.de_map == v34de::Rows) ? 60 : P_CHAIN) && !late && ad > 2) {
             auto sm = read_sm();
             int gi = -1, gd = 99;
+            // P_CHAINWALK (I022): the altar and the camp both by walking distance (the geometric camp distance picked camps
+            // behind walls); 2 = the bag's delay (walk + clear + capture + camp->altar - walk to the altar now) is what counts.
+            int adw = ad;
+            bool have_w = false;
+            if (P_CHAINWALK) {
+                int ai = a ? altar_index(s, *a) : -1;
+                adw = ai >= 0 ? walk_altar(s, static_cast<std::size_t>(ai), pos) : 99;
+                have_w = attempt([&] {
+                    bc::bitboard roots, wall = s.static_block;
+                    roots.set(pos);
+                    wall.set(pos, false);
+                    s.pdf.compute(wall, roots, s.pdv, static_cast<std::uint16_t>(P_CHAIN_R * 3));
+                    return true;
+                });
+            }
             for (int i = 0; i < static_cast<int>(s.groups.size()); ++i) {
                 Group& g = s.groups[i];
                 if (g.gems <= 0 || g.monolith || g.next_ok > round || g.bad_until > round) continue;
                 int d = dist(pos, g.center);
-                if (d > P_CHAIN_R || d >= ad || d >= gd) continue;
+                if (P_CHAINWALK) {
+                    if (d > P_CHAIN_R || !have_w) continue;  // walking is never shorter than the straight line
+                    int w = 1 << 20;
+                    for (auto t : g.tiles)
+                        if (s.pdv.is_set(t)) w = std::min(w, static_cast<int>(s.pdf.get(t)));
+                    if (w > P_CHAIN_R || w >= gd) continue;
+                    if (P_CHAINWALK >= 2) {
+                        double clear = g.str > 0 ? g.hp / std::max(1.0, my_dps(s, me)) : 0.0;
+                        int back = g.altar_pd >= 0 ? g.altar_pd : w;
+                        if (w + clear + static_cast<double>(bc::constants::capture_time) + back - adw > 2.0 * P_CHAIN_R) continue;
+                    } else if (w >= adw) continue;
+                    d = w;
+                } else if (d > P_CHAIN_R || d >= ad || d >= gd) continue;
                 if (count_claimers(s, sm, i) > 0 && i != s.target) continue;
                 if (squad_needed(g.hp, g.str, my_dps(s, me), std::max(1.0f, hp - mhp * 0.3f)) > 1) continue;
                 gi = i;
@@ -2853,6 +3046,7 @@ void play_turn(State& s) {
                 g_mode = "tele-bank";
                 if (attempt([&] {
                         me.recall();
+                        log_recall(s, me, round);
                         return true;
                     }))
                     s.shop_recall = round;
@@ -3291,6 +3485,7 @@ void shoot_rooted(State& s) {
             }
 #endif
             if (s.sweep && s.sweep < 3) spell_sweep(s);
+            if (s.ready) walk_fields_step(s);  // I019-I022: one walking field per turn while fuel is left
 #ifdef P_CDPROBE
             attempt([&] {  // can we read enemy spell cooldowns?
                 bc::champion& me = bc::self();

@@ -1,0 +1,26 @@
+{
+ "id": "I021",
+ "title": "Camp-survival model: log predicted vs actual camp damage, then test a tank model (nearest champion takes the hits, no negative reserve) (P_LOGCAMP, P_CAMPMODEL)",
+ "kind": "farm",
+ "source": "Javi's review of the study27-economy branch, 16 Oct 07:00 UTC",
+ "owner": "Javi",
+ "hypothesis": "step 1: the logged actual damage of the front champion is above the old prediction; step 2: fewer camp deaths and bails, farm speed not worse",
+ "stage": "rejected",
+ "created": "2026-10-16T07:04Z",
+ "history": [
+  {
+   "at": "2026-10-16T07:04Z",
+   "stage": "idea",
+   "note": ""
+  },
+  {
+   "at": "2026-10-16T07:32Z",
+   "stage": "rejected",
+   "note": "P_LOGCAMP kept; docs/I019-I022-review-fixes.md",
+   "result": "data: front takes 67-81% and beats the old prediction in 35-42% of squads; every cautious model loses (tank 4-21, tank at camp 15-36, reserve -30 10-25)"
+  }
+ ],
+ "updated": "2026-10-16T07:32Z",
+ "bot": "bots/study28",
+ "branch": "claude/four-fixes-harness-dulpj2"
+}

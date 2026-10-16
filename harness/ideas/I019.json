@@ -1,0 +1,26 @@
+{
+ "id": "I019",
+ "title": "Altar choice by walking distance, enemies near it, allies near it and distance home (P_ALTARPICK)",
+ "kind": "farm",
+ "source": "Javi's review of the study27-economy branch, 16 Oct 07:00 UTC",
+ "owner": "Javi",
+ "hypothesis": "fewer rounds walking to bank and fewer tributes started with an enemy within 5; farm maps won both sides on hold60+dev200 in favour p<0.05",
+ "stage": "rejected",
+ "created": "2026-10-16T07:04Z",
+ "history": [
+  {
+   "at": "2026-10-16T07:04Z",
+   "stage": "idea",
+   "note": ""
+  },
+  {
+   "at": "2026-10-16T07:32Z",
+   "stage": "rejected",
+   "note": "P_ALTARPICK 1; altar picked today is almost always right; docs/I019-I022-review-fixes.md",
+   "result": "gate 86-103 on 710 fresh maps (p=0.24), 35-32 on hold60+dev200"
+  }
+ ],
+ "updated": "2026-10-16T07:32Z",
+ "bot": "bots/study28",
+ "branch": "claude/four-fixes-harness-dulpj2"
+}

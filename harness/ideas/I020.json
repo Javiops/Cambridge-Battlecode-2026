@@ -1,0 +1,26 @@
+{
+ "id": "I020",
+ "title": "Gold-only recalls check the walk back from home against the gold to spend; log the reason of every recall (P_RECALLCOST, P_LOGRECALL)",
+ "kind": "farm",
+ "source": "Javi's review of the study27-economy branch, 16 Oct 07:00 UTC",
+ "owner": "Javi",
+ "hypothesis": "fewer shop recalls far from home with the same items bought by round 600; maps won both sides in favour p<0.05",
+ "stage": "paused",
+ "created": "2026-10-16T07:04Z",
+ "history": [
+  {
+   "at": "2026-10-16T07:04Z",
+   "stage": "idea",
+   "note": ""
+  },
+  {
+   "at": "2026-10-16T07:32Z",
+   "stage": "paused",
+   "note": "P_RECALLCOST 2; gold-only recalls are 7% of 4351; P_LOGRECALL kept; docs/I019-I022-review-fixes.md",
+   "result": "gate 117-104 on 710 fresh maps (p=0.42): in favour, undecided"
+  }
+ ],
+ "updated": "2026-10-16T07:32Z",
+ "bot": "bots/study28",
+ "branch": "claude/four-fixes-harness-dulpj2"
+}

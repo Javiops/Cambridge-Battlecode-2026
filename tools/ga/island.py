@@ -507,6 +507,14 @@ def pid_alive(pid):
         return False
 
 
+def boot_id():
+    """Changes when the machine (or a cloud container) restarts: a pid from an earlier boot means nothing."""
+    try:
+        return open('/proc/sys/kernel/random/boot_id').read().strip()
+    except OSError:
+        return ''
+
+
 def running(home):
     p = os.path.join(home, 'pid.json')
     if not os.path.exists(p):
@@ -515,7 +523,7 @@ def running(home):
         d = json.load(open(p))
     except ValueError:
         return None
-    if d.get('host') == socket.gethostname() and pid_alive(d['pid']):
+    if d.get('host') == socket.gethostname() and d.get('boot', '') == boot_id() and pid_alive(d['pid']):
         return d
     return None
 
@@ -542,7 +550,8 @@ def cmd_run(A):
     other = running(home)
     if other and other['pid'] != os.getpid():
         sys.exit(f'island {A.name} already runs (pid {other["pid"]} since {other["started"]})')
-    write_json(os.path.join(home, 'pid.json'), {'pid': os.getpid(), 'host': socket.gethostname(), 'started': now(),
+    write_json(os.path.join(home, 'pid.json'), {'pid': os.getpid(), 'host': socket.gethostname(), 'boot': boot_id(),
+                                                'started': now(),
                                                 'args': sys.argv[1:]})
     if A.git_branch:
         git_setup(A)

@@ -145,17 +145,18 @@
   "nn": "0 hidden, 4 links, outputs used: back off, farm, kite, recall"
  },
  "fitness": {
-  "shrunk": 0.1401,
-  "n": 3,
+  "shrunk": 0.1165,
+  "n": 4,
   "deltas": [
    0.3244,
    0.0994,
-   0.13644
+   0.13644,
+   0.02249
   ]
  },
- "gen": 23,
+ "gen": 25,
  "scope": "micro,structure,gp",
  "start": "online1520",
- "time": "2026-10-16 18:38:38 UTC",
+ "time": "2026-10-16 18:47:28 UTC",
  "transport": "shared"
 }

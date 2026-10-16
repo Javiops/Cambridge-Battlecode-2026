@@ -1156,7 +1156,9 @@ def cmd_champion(A):
                      'per': {os.path.basename(o): '%d-%d' % (v['won2'], v['lost2']) for o, v in per.items()},
                      'ghosts': pin_fit(B, h, pins), 'describe': describe(genos[k], start),
                      'dth': sum(v['dth'] for o, v in per.items() if rival_weight(o, A) == A.w_spar) /
-                            max(1, sum(1 for o in per if rival_weight(o, A) == A.w_spar))})
+                            max(1, sum(1 for o in per if rival_weight(o, A) == A.w_spar)),
+                     'dth44': per.get('genome:start', {}).get('dth', 0.0),
+                     'cast': (better - vb, worse - vw)})
     rows.sort(key=lambda r: -r['delta'])
     lines = ['# GA farm champion', '', f'Tournament {now()}: {len(finalists)} finalists (top {A.per_island} of each '
              f'island), built as uploaded (overlay `{A.overlay_ref or "none"}`), vs {", ".join(opps)} on {len(maps)} '
@@ -1166,11 +1168,12 @@ def cmd_champion(A):
              f'Fitness weights: v44 x{A.w_base:g}, each sparring bot x{A.w_spar:g}, ghost games together x{A.w_ghosts:g}, '
              'other rivals x1. A champion needs delta > 0 and pairs vs v44 not worse.', '',
              f'Deaths per game vs the caster sparring bots: control '
-             f'{sum(v["dth"] for o, v in cper.items() if rival_weight(o, A) == A.w_spar) / max(1, sum(1 for o in cper if rival_weight(o, A) == A.w_spar)):.2f}.', '',
-             '| rank | genome | island | delta vs control | pairs better-worse (p) | pairs vs v44 | deaths vs casters | maps won-lost both sides per rival | ghosts | changes vs control |',
-             '|---|---|---|---|---|---|---|---|---|---|']
+             f'{sum(v["dth"] for o, v in cper.items() if rival_weight(o, A) == A.w_spar) / max(1, sum(1 for o in cper if rival_weight(o, A) == A.w_spar)):.2f}, '
+             f'vs v44 {cper.get("genome:start", {}).get("dth", 0.0):.2f}.', '',
+             '| rank | genome | island | delta vs control | pairs better-worse (p) | pairs vs v44 | pairs vs others | deaths vs casters / v44 | maps won-lost both sides per rival | ghosts | changes vs control |',
+             '|---|---|---|---|---|---|---|---|---|---|---|']
     for n, r in enumerate(rows, 1):
-        lines.append(f"| {n} | {r['cid']} | {r['island']} | {r['delta']:+.3f} | {r['better']}-{r['worse']} ({r['p']:.3f}) | {r['v44'][0]}-{r['v44'][1]} | {r['dth']:.2f} | "
+        lines.append(f"| {n} | {r['cid']} | {r['island']} | {r['delta']:+.3f} | {r['better']}-{r['worse']} ({r['p']:.3f}) | {r['v44'][0]}-{r['v44'][1]} | {r['cast'][0]}-{r['cast'][1]} | {r['dth']:.2f} / {r['dth44']:.2f} | "
                      f"{' '.join(f'{a} {b}' for a, b in r['per'].items())} | {r['ghosts']:+.2f} | {json.dumps(r['describe'])} |")
     ok = [r for r in rows if r['delta'] > 0 and r['v44'][0] >= r['v44'][1]]
     if ok:

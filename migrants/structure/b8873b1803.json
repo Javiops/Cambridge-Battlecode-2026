@@ -67,18 +67,19 @@
   "P_R_AVOIDLOW": 0
  },
  "fitness": {
-  "shrunk": 0.072,
-  "n": 4,
+  "shrunk": 0.0714,
+  "n": 5,
   "deltas": [
    0.09047,
    0.19254,
    0.03721,
-   0.03957
+   0.03957,
+   0.06855
   ]
  },
- "gen": 18,
+ "gen": 19,
  "scope": "structure,gp,neat",
  "start": "ga65a6",
- "time": "2026-10-16 14:12:38 UTC",
+ "time": "2026-10-16 14:18:23 UTC",
  "transport": "shared"
 }

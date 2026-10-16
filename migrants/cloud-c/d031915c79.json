@@ -1,0 +1,126 @@
+{
+ "island": "cloud-c",
+ "cid": "d031915c79",
+ "base": "7c2d0330e54e",
+ "genome": {
+  "sc": {
+   "P_UNI_FLEE": 44,
+   "P_RECALL_PCT": 54,
+   "P_RECALL_NEAR": 9,
+   "P_BAIL_PCT": 12,
+   "P_ENGAGE2": 50,
+   "P_GA_FAV": 69,
+   "P_GA_KILL_X": 5,
+   "P_GA_SPAWN_HEAL": 87,
+   "P_FRONT_OUT": 145,
+   "P_KITE_ZONE": 3,
+   "P_GA_KITE_HP": 146,
+   "P_VOLLEY": 20,
+   "P_CHASE_GEMS": 144,
+   "P_DANGER": 4,
+   "P_DANGER_T": 25,
+   "P_DANGER_R": 5,
+   "P_SAFESTEP": 0,
+   "P_NOCHASE": 0,
+   "P_O_AVOIDLOW": 81,
+   "P_SHAREEXP": 72
+  },
+  "nn": {
+   "nodes": {
+    "1000": {
+     "bias": 1.0,
+     "depth": 1.0
+    },
+    "1001": {
+     "bias": 0.0,
+     "depth": 1.0
+    },
+    "1002": {
+     "bias": 0.0,
+     "depth": 1.0
+    },
+    "1003": {
+     "bias": 0.1301911287279806,
+     "depth": 1.0
+    },
+    "1004": {
+     "bias": 0.0,
+     "depth": 1.0
+    },
+    "1005": {
+     "bias": 0.0,
+     "depth": 1.0
+    },
+    "1006": {
+     "bias": -1.0,
+     "depth": 1.0
+    }
+   },
+   "conns": {
+    "7": [
+     16,
+     1006,
+     4.0,
+     true
+    ],
+    "23": [
+     12,
+     1002,
+     -0.5927179470373768,
+     true
+    ]
+   }
+  },
+  "nn_from": "pc"
+ },
+ "describe": {
+  "P_UNI_FLEE": 44,
+  "P_RECALL_PCT": 54,
+  "P_RECALL_NEAR": 9,
+  "P_BAIL_PCT": 12,
+  "P_ENGAGE2": 50,
+  "P_GA_FAV": 69,
+  "P_GA_KILL_X": 5,
+  "P_GA_SPAWN_HEAL": 87,
+  "P_FRONT_OUT": 145,
+  "P_KITE_ZONE": 3,
+  "P_GA_KITE_HP": 146,
+  "P_VOLLEY": 20,
+  "P_CHASE_GEMS": 144,
+  "P_DANGER": 4,
+  "P_DANGER_T": 25,
+  "P_DANGER_R": 5,
+  "P_SAFESTEP": 0,
+  "P_NOCHASE": 0,
+  "P_SHAREEXP": 72,
+  "order": "FLEE>NEARRECALL>FM>KITE>FRONT>AVOID>ENGAGE>AVOIDLOW>RECALLSHOP>WALKHOME"
+ },
+ "vs_start": {
+  "P_RECALL_NEAR": 9,
+  "P_ENGAGE2": 50,
+  "P_GA_FAV": 69,
+  "P_KITE_ZONE": 3,
+  "P_GA_KITE_HP": 146,
+  "P_VOLLEY": 20,
+  "P_DANGER_T": 25,
+  "P_SAFESTEP": 0,
+  "P_NOCHASE": 0,
+  "P_SHAREEXP": 72,
+  "order": "FLEE>NEARRECALL>FM>KITE>FRONT>AVOID>ENGAGE>AVOIDLOW>RECALLSHOP>WALKHOME",
+  "P_FLEE_PCT": 25
+ },
+ "fitness": {
+  "shrunk": 0.0877,
+  "n": 3,
+  "deltas": [
+   0.19688,
+   0.06108,
+   0.09281
+  ]
+ },
+ "gen": 14,
+ "scope": "micro",
+ "start": "ga65a6",
+ "time": "2026-10-16 14:24:41 UTC",
+ "transport": "shared"
+}

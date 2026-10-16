@@ -17,6 +17,7 @@ describe the previous bot; they do not override the new **Tactic** paragraphs.
 | `geometry.h` | Immutable terrain, legal altar rings and bounded walking-field cache |
 | `sdk_world.h` | Personally observed state and fresh SDK observations |
 | `actions.h` | The sole gateway for gameplay mutations and explicit action outcomes |
+| `log.h` | Bounded, allocation-free audit records that preserve the action budget |
 | `coordinator.h` | Mission arbitration, channel continuity and confirmed progress |
 | `economy.h` | Clear/collect/deliver/recover cycles, safety and one-extra-reward comparison |
 | `squads.h` | Bounded minimum sufficient locally ready crew selection |
@@ -41,7 +42,8 @@ The two spell slots share one cast budget. Readiness does not imply movement com
 6. Compare needed recovery, bank now, and at most one extra feasible reward then bank.
 7. Clear only with real readiness and a safe reply. Stage without waking the camp when help
    is missing; expire failed assemblies. Vacate original tiles while a camp is respawning.
-8. Admit compatible shopping/ward proposals under the same owner and fuel budget.
+8. Admit compatible shopping under the same owner and fuel budget. Evaluate an optional
+   ward after useful core actions are exhausted, with an explicit budget for setup and scoring.
 9. Reobserve affected state before another action. If the remaining fuel cannot fund a
    correct new observation/decision, end the owner opportunity instead of reusing old facts.
 
@@ -87,6 +89,7 @@ On Windows, the first normal build creates the compile database that this CLI re
 looks up during its first release build. Only the release module is used in recorded matches.
 The submission ZIP must contain `src/main.cpp` and its headers at the ZIP root's `src/` path.
 
-See `validation/` for production-helper fixtures, source coverage and final integration evidence.
+See `validation/` for source coverage and final integration evidence, and
+[`tools/tactics-v1-validation`](../../tools/tactics-v1-validation/README.md) for production-helper fixtures.
 Local match results measure this frozen artifact on the recorded opponents/maps; they do not
 prove ladder strength or certify every tactical edge case.

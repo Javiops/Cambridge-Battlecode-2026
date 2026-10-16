@@ -1,0 +1,84 @@
+
+## power_ratio
+                n  lost  died   won
+power_ratio                        
+(0.0, 0.25]    63  0.51  0.51  0.02
+(0.25, 0.5]    69  0.42  0.48  0.04
+(0.5, 0.8]    101  0.33  0.35  0.06
+(0.8, 1.25]   155  0.21  0.25  0.15
+(1.25, 2.0]   173  0.25  0.28  0.17
+(2.0, 4.0]    351  0.19  0.23  0.19
+(4.0, 100.0]  922  0.14  0.17  0.23
+
+## hp_frac
+                n  lost  died   won
+hp_frac                            
+(0.0, 0.3]     48  0.54  0.54  0.00
+(0.3, 0.45]    47  0.13  0.13  0.09
+(0.45, 0.6]    83  0.18  0.19  0.16
+(0.6, 0.8]    232  0.18  0.19  0.19
+(0.8, 1.01]  1433  0.19  0.24  0.20
+
+## n_ally3
+           n  lost  died   won
+n_ally3                       
+(-1, 0]  817  0.23  0.27  0.16
+(0, 1]   698  0.17  0.21  0.19
+(1, 5]   328  0.18  0.19  0.27
+
+## num_diff
+            n  lost  died   won
+num_diff                       
+(-6, -2]   15  0.33  0.33  0.07
+(-2, -1]   71  0.42  0.48  0.06
+(-1, 0]   413  0.24  0.28  0.14
+(0, 1]    622  0.20  0.23  0.18
+(1, 2]    448  0.17  0.19  0.24
+(2, 6]    274  0.13  0.16  0.26
+
+## first
+         n  lost   won
+first                 
+none   224  0.01  0.13
+them   529  0.31  0.14
+tie    115  0.26  0.15
+us     975  0.18  0.24
+
+## ready_me
+            n  lost   won
+ready_me                 
+0         955  0.17  0.20
+1         888  0.23  0.18
+
+## melee
+         n  lost   won
+melee                 
+0      926  0.24  0.20
+1      917  0.16  0.19
+
+## same table for top (mite+uni)
+
+## power_ratio
+                 n  lost  died   won
+power_ratio                         
+(0.0, 0.25]     83  0.37  0.40  0.08
+(0.25, 0.5]     96  0.29  0.31  0.10
+(0.5, 0.8]     126  0.19  0.24  0.17
+(0.8, 1.25]    194  0.20  0.21  0.25
+(1.25, 2.0]    210  0.22  0.25  0.23
+(2.0, 4.0]     391  0.20  0.23  0.24
+(4.0, 100.0]  1327  0.11  0.18  0.41
+          n  lost   won
+first                  
+none    214  0.00  0.15
+them    745  0.23  0.23
+tie     195  0.25  0.28
+us     1289  0.13  0.41
+us AUC lost-at-first-contact 0.708 n 1843
+ p>=0.3: 339 episodes (18%), lost 41%, covers 38% of lost; engaged share 0.37 retreat 0.24
+ p>=0.4: 174 episodes (9%), lost 53%, covers 25% of lost; engaged share 0.37 retreat 0.23
+ p>=0.5: 90 episodes (5%), lost 59%, covers 14% of lost; engaged share 0.34 retreat 0.23
+ p<0.15: 822 lost 10%
+top AUC lost-at-first-contact 0.67 n 2443
+all AUC lost-at-first-contact 0.679 n 8340
+[('lpr', np.float64(-0.54)), ('team_alive', np.float64(-0.4)), ('opp_alive', np.float64(0.25)), ('lhr', np.float64(-0.22)), ('num_diff', np.float64(0.18)), ('maxhp', np.float64(-0.17)), ('n_ally6', np.float64(0.15)), ('gems', np.float64(-0.15)), ('melee', np.float64(-0.13)), ('n_en6', np.float64(-0.1)), ('n_ally3', np.float64(-0.08)), ('dist', np.float64(0.08)), ('hp_frac', np.float64(-0.06)), ('n_ally2', np.float64(0.06)), ('ready_me', np.float64(-0.05)), ('n_en4', np.float64(-0.03)), ('ally_ready', np.float64(0.03)), ('en_ready', np.float64(-0.02))]

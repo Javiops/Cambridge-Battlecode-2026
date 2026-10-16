@@ -1,0 +1,4 @@
+sp_hunt|#define P_HUNT 1\n#define P_HUNT_N 2\n$TOP
+sp_caster|#define P_DRAFTUNI 1\n#define P_DRAFT5 1\n#define P_BALL 5\n#define P_SQUISHY 300\n#define P_GANG 2\n$TOP
+sp_centre|#define P_HOLD 400\n#define P_HOLD_R 8\n#define P_HALF 250\n#define P_DANGER 0\n#define P_GROUP_R 4\n$TOP
+sp_farm|#define P_ENGAGE2 400\n#define P_AVOID_DIST 7\n#define P_GA_AVOID_HP 100\n#define P_DANGER 2

@@ -22,3 +22,8 @@ replays/
 online/data/
 online/__pycache__/
 __pycache__/
+
+# local copies built by tools/panel/build_panel.sh (the online zip + switches)
+bots/online/
+bots/sp_*/
+bots/v_*/

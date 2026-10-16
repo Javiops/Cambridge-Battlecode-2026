@@ -4,14 +4,14 @@
  "scope": "structure",
  "start": "ga65a6",
  "jobs": 4,
- "gen": 5,
- "games": 5786,
- "gps": 5.01,
+ "gen": 6,
+ "games": 7052,
+ "gps": 6.66,
  "base": "7c2d0330e54e",
  "best": {
   "cid": "a6e9c99bc3",
-  "shrunk": 0.0816,
-  "n": 3,
+  "shrunk": 0.0609,
+  "n": 4,
   "describe": {
    "P_KITE": 0,
    "P_FRONT_LOCAL": 0,
@@ -19,9 +19,9 @@
    "order": "FLEE>NEARRECALL>FM>KITE>AVOIDLOW>AVOID>FRONT>ENGAGE>WALKHOME>RECALLSHOP"
   }
  },
- "exported": 6,
- "imported": 11,
- "updated": "2026-10-16 13:16:48 UTC",
+ "exported": 7,
+ "imported": 13,
+ "updated": "2026-10-16 13:19:59 UTC",
  "code": "HEAD@d84d598",
  "home": "/mnt/project-files/ga-farm/islands/cloud-d",
  "transport": "shared"

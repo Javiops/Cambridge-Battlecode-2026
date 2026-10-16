@@ -4,14 +4,14 @@
  "scope": "structure,gp,neat",
  "start": "ga65a6",
  "jobs": 4,
- "gen": 13,
- "games": 18502,
- "gps": 4.35,
+ "gen": 14,
+ "games": 20122,
+ "gps": 3.76,
  "base": "7c2d0330e54e",
  "best": {
   "cid": "cb699afaab",
-  "shrunk": 0.0749,
-  "n": 1,
+  "shrunk": 0.0738,
+  "n": 2,
   "describe": {
    "P_UNI_FLEE": 43,
    "P_DANGER_T": 47,
@@ -24,9 +24,9 @@
    "order": "FLEE>NEARRECALL>FM>KITE>FRONT>AVOIDLOW>ENGAGE>AVOID>RECALLSHOP>WALKHOME"
   }
  },
- "exported": 10,
- "imported": 29,
- "updated": "2026-10-16 13:15:17 UTC",
+ "exported": 11,
+ "imported": 34,
+ "updated": "2026-10-16 13:22:29 UTC",
  "code": "HEAD@5132c9d",
  "home": "/mnt/project-files/ga-farm/islands/structure",
  "transport": "shared"

@@ -15,8 +15,8 @@ number has to come out to move on, and where what it produces is kept.
 ## House rules
 
 1. **One idea, one branch, one change.** Branch `idea/I012-short-name`, editing the current bot in place
-   (`bots/study28/src`, never a new copy under `bots/`: the PR diff is the change and nothing else). To test the
-   idea against the base, `gate.py` exports the `main` version by itself (`python3 tools/gate.py bots/study28 main ...`).
+   (`bots/study27-economy/src`, never a new copy under `bots/`: the PR diff is the change and nothing else). To test the
+   idea against the base, `gate.py` exports the `main` version by itself (`python3 tools/gate.py bots/study27-economy main ...`).
 2. **The online bot only changes with an idea in stage `local-ok`**, recorded on the board, and at most once an hour
    (each online hour is a 150-game sample; two changes in the same hour cannot be told apart).
 3. **The gate decides, not the feeling.** A result without its `gate.txt` (local) or its `lfl.py` output (online) is
@@ -58,8 +58,8 @@ stay inside it: make **their** idea work, not improve the bot in general.
 ```bash
 git checkout -b idea/I012-two-per-camp main
 python3 tools/idea.py set I012 --stage dev --branch idea/I012-two-per-camp --owner Javi
-#   ... edit bots/study28/src (a P_* switch in params.h if it is a threshold: tools/variante.sh helps try values)
-python3 tools/gate.py bots/study28 main --kind fight --idea I012        # the gate; ~1-3 min on 4 cores
+#   ... edit bots/study27-economy/src (a P_* switch in params.h if it is a threshold: tools/variante.sh helps try values)
+python3 tools/gate.py bots/study27-economy main --kind fight --idea I012        # the gate; ~1-3 min on 4 cores
 ```
 
 `gate.py` runs in phases, cheapest first, and stops as soon as the result is clear:
@@ -105,7 +105,7 @@ Only an idea in `local-ok` goes in. A person always does the upload (uploading a
 action): bundle, upload, activate and register the version in the same minute.
 
 ```bash
-cambc bundle bots/study28 --output /mnt/project-files/bot/mybot_I012.zip   # 1. the zip (in the repo, on the idea's branch)
+cambc bundle bots/study27-economy --output /mnt/project-files/bot/mybot_I012.zip   # 1. the zip (in the repo, on the idea's branch)
 #   2. upload and ACTIVATE on 2026a.battlecode.co.uk (a person)
 python3 online/version.py "v38 = I012 two per camp"                         # 3. games from that minute belong to I012
 python3 tools/idea.py set I012 --stage online --version "v38"
@@ -172,7 +172,7 @@ For finer questions (why we die on corners, what the rival does on lanes) the wo
 | what | where |
 |---|---|
 | ideas board | `harness/ideas/I###.json` (one file per idea, merges without conflicts) and `harness/IDEAS.md` (generated: `idea.py board`) |
-| current bot | `bots/study28/src` on `main`; online version in `online/data/versions.jsonl` |
+| current bot | `bots/study27-economy/src` on `main`; online version in `online/data/versions.jsonl` |
 | local gate | `tools/gate.py`, results in `out/gate/<cand>_vs_<base>/` (gate.txt, result.json, counterexamples.md); loose A/B: `tools/ab.py` |
 | maps | `maps/` official (cambc init), `maps_gen` (training), `maps_hold60` + `maps_dev200` (sealed, they decide), `/mnt/project-files/arena/maps/fresh300` (`--extra`) |
 | panel rivals | `bots/spar11`, `spar12`, `spar16` |
@@ -187,8 +187,8 @@ For finer questions (why we die on corners, what the rival does on lanes) the wo
 
 ```bash
 pip install cambc && cambc init --yes          # SDK, toolchain, the 9 official maps in maps/
-cambc build bots/study28 && cambc build bots/spar11 bots/spar12 bots/spar16
-python3 tools/gate.py bots/study28 bots/study25 --kind farm --max-maps 40   # smoke test: ~40 s, should say "in favour but undecided"
+cambc build bots/study27-economy && cambc build bots/spar11 bots/spar12 bots/spar16
+python3 tools/gate.py bots/study27-economy bots/study25 --kind farm --max-maps 40   # smoke test: ~40 s, should say "in favour but undecided"
 ```
 In the cloud, when `cambc init` cannot download the toolchain (certificate), fetch it by hand into `~/.cache/cambc/`
 (`wasi-sdk-33`, `cmake-3.31.8-linux-x86_64`, `ninja-1.12.1-linux-x86_64`) and run it again.

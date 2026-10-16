@@ -31,6 +31,11 @@ There are no map-name or map-signature strategy branches. Public map design may 
 positions, HP, actions, targets, inventory and channels are observations with an owner epoch.
 The two spell slots share one cast budget. Readiness does not imply movement compatibility.
 
+`sdk_world.h` isolates a version-pinned SDK 2.2.2 adapter for the official imported
+champion/camp snapshot records. Reading each accessor separately repeats the same host query
+and can starve later decisions. The adapter preserves the host's personal-visibility and
+dead-state checks; upgrade it together with the pinned SDK and native regressions.
+
 ## Decision flow
 
 1. Observe the current owner epoch. A resumed computation cannot act on its old epoch.

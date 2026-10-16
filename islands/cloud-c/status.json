@@ -4,14 +4,14 @@
  "scope": "micro",
  "start": "ga65a6",
  "jobs": 4,
- "gen": 7,
- "games": 9498,
- "gps": 6.13,
+ "gen": 8,
+ "games": 10844,
+ "gps": 5.57,
  "base": "7c2d0330e54e",
  "best": {
   "cid": "a3acc3dcf4",
-  "shrunk": 0.0476,
-  "n": 1,
+  "shrunk": 0.0578,
+  "n": 2,
   "describe": {
    "P_FLEE_PCT": 30,
    "P_GA_AVOID_HP": 81,
@@ -22,9 +22,9 @@
    "P_PAIR_N": 2
   }
  },
- "exported": 8,
- "imported": 16,
- "updated": "2026-10-16 13:28:23 UTC",
+ "exported": 9,
+ "imported": 19,
+ "updated": "2026-10-16 13:40:40 UTC",
  "code": "claude/project-thread-rkjugw@d84d598",
  "home": "/mnt/project-files/ga-farm/islands/cloud-c",
  "transport": "shared"

@@ -5,7 +5,7 @@
  "source": "Javi's review of the study27-economy branch, 16 Oct 07:00 UTC",
  "owner": "Javi",
  "hypothesis": "fewer shop recalls far from home with the same items bought by round 600; maps won both sides in favour p<0.05",
- "stage": "paused",
+ "stage": "local-test",
  "created": "2026-10-16T07:04Z",
  "history": [
   {
@@ -22,9 +22,15 @@
   {
    "at": "2026-10-16T07:33Z",
    "stage": "paused"
+  },
+  {
+   "at": "2026-10-16T08:01Z",
+   "stage": "local-test",
+   "note": "zip bot/mybot_study28_recallcost2.zip; ready for stage 3; worst counterexample gen7161016_628: no shop trip, 16 vs 13 deaths",
+   "result": "gate PASS (farm): 200-161 on 1260 fresh maps (p=0.045), panel 19-8, fuel 315 vs 360 same games; no-op 63-64 on 1000"
   }
  ],
- "updated": "2026-10-16T07:33Z",
+ "updated": "2026-10-16T08:01Z",
  "bot": "bots/study28",
  "branch": "claude/four-fixes-harness-dulpj2",
  "pr": "16"

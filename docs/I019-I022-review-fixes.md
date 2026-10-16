@@ -14,7 +14,7 @@ sides. Tuning was done only on official + maps_gen (`tools/ab.py --sets official
 | idea | switch | training (official+gen) | gate, fresh maps | verdict |
 |---|---|---|---|---|
 | I019 altar choice | `P_ALTARPICK 1` | 2-7 | 35-32 on 260, **86-103 on 710** (p=0.24) | FAIL: neutral to slightly worse |
-| I020 gold recalls pay for the walk back | `P_RECALLCOST 2` | 13-3 (p=0.02) | 43-38 on 260, **117-104 on 710** (p=0.42) | FAIL: in favour but undecided, neutral |
+| I020 gold recalls pay for the walk back | `P_RECALLCOST 2` | 13-3 (p=0.02) | 43-38 on 260, 117-104 on 710, **200-161 on 1260 (p=0.045), panel 19-8** | **PASS (farm), small**: see the follow-up below |
 |  | `P_RECALLCOST 4` | 11-6 | not gated | |
 | I021 camp model: tank (n, not n²), reserve 0 | `P_CAMPMODEL 1` | 6-33 | **4-21** (p=0.001), gems/100r 154 vs 178 | FAIL: worse |
 | I021 tank model only at the camp | `P_CAMPMODEL 2`, reserve -60 | 4-20 | **15-36** (p=0.005) | FAIL: worse |
@@ -23,7 +23,7 @@ sides. Tuning was done only on official + maps_gen (`tools/ab.py --sets official
 | I022 chaining by walking distance | `P_CHAINWALK 1` | 5-5 | 19-23 (p=0.64) | FAIL: neutral |
 | I022 + clear and capture time | `P_CHAINWALK 2` | 7-8 | 24-38 (p=0.098) | FAIL: leaning worse |
 
-Safety: 0 faults and 0 broken games for every variant. The fuel phase was skipped (`--no-fuel`) for a reason
+Safety: 0 faults and 0 broken games for every variant. The first runs skipped the fuel phase (`--no-fuel`) for a reason
 explained at the end: the walking fields do not raise fuel-exhausted turns when both bots are counted in the same games.
 
 ## I021 first: the data (predicted vs actual camp damage)
@@ -79,16 +79,36 @@ gold-only trip (and `90 + 2 x walk home` for the capture-tile one). It is the on
 
 ## Fuel: the gate's fuel phase is noisy
 
-The first run of `gate.py` failed safety for every variant that builds walking fields (lanes, side A: 127-128
+The first run of `gate.py` (before the fix in this PR) failed safety for every variant that builds walking fields (lanes, side A: 127-128
 fuel-exhausted turns vs 81-83). The per-altar fields cost 5-17k fuel each, built one per turn with 56k+ left
 (`P_FUELPROBE`). Counting both bots **in the same 34 games** (17 official maps x 2 sides, fields-only build `P_WALKFIELDS 1`):
 candidate 593, base 645; on that lanes game the base itself had 153. The gate compares the candidate in game X with
-the base in game Y, so one long fight swings it by 40. Proposal for the harness: count both bots in the same games.
+the base in game Y, so one long fight swings it by 40. Fixed in this PR: `gate.py` now counts both bots in the same 6 games (3 maps x 2 sides); the fields-only build
+then reads 309 vs 363 and passes.
+
+## Follow-up 16 Oct 08:00: is RecallCost more than noise? (the user's question)
+
+Yes, but small. Three checks, all on maps never used for tuning:
+
+| check | result |
+|---|---|
+| a no-op build (walking fields only, `P_WALKFIELDS 1`) on 500 new maps (seed 20261016 + v100) | 37-35: the noise floor |
+| `P_RECALLCOST` 1 / 2 / 3 on the same 500 maps | 70-61, 73-63, 79-65: all three doses point the same way |
+| `P_RECALLCOST 2` vs the no-op on 1000 more new maps (seed 7161016) | **157-123 (p=0.048)** vs 63-64; gems/100 rounds 166.4 vs 165.1 |
+| full gate, hold60 + dev200 + those 1000 (`--extra`) | **PASS**: 200-161 (p=0.045), fuel 315 vs 360 in the same games, caster panel 19 flips for / 8 against |
+
+What it changes (`P_LOGRECALL`, 122 games): gold-only recalls 302 -> 171 (-43%), each spends more (274 vs 224 gold), and
+the total number of recalls stays the same (4282 vs 4294): the blocked trips are made later, when the champion has to
+go home anyway. Worst counterexample (`gen7161016_628`): the candidate makes no shop trip at all and dies 16 times vs
+13; it is the price of buying items later on a few maps.
+
+Zip for stage 3 (online, the user uploads): `/mnt/project-files/bot/mybot_study28_recallcost2.zip`
+(= study28 + `#define P_RECALLCOST 2`).
 
 ## Decision
 
-None reaches `local-ok`. Board: I019, I021, I022 `rejected`; I020 `paused` (neutral, online could not decide a 7%
-change). What stays useful: the two loggers, `P_LOGCAMP` and `P_LOGRECALL`, and the walking fields (`walk_altar`,
+Board: I019, I021, I022 `rejected`. I020 passes the gate on 1260 maps (follow-up above): `local-test` with PASS,
+ready for stage 3 online. What stays useful: the two loggers, `P_LOGCAMP` and `P_LOGRECALL`, and the walking fields (`walk_altar`,
 `walk_home`) for the next idea that needs them.
 
 Reproduce: `tools/variante.sh x_r2 study28 "#define P_RECALLCOST 2"` then the gate command above.

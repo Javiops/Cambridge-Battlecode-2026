@@ -27,11 +27,20 @@ import genome as G
 from ab import load_stats
 
 GA_GENOMES = '/mnt/project-files/analysis/ga-micro-2026-10-16/genomes'
-OPPS = ','.join(['bots/study27-economy', 'bots/spar11', 'bots/spar16'] +
-                [os.path.join(GA_GENOMES, w) for w in ('opp_9872f93cac.wasm', 'opp_78880781f7.wasm')
+# v44 (online since 16 Oct 10:46) = the weight GA's genome 65a6d152b6 = /mnt/project-files/bot/mybot_ga65a6.zip,
+# unzipped into bots/ga65a6 (untracked). Rivals: v44, the previous online bot, the caster panel's two strongest,
+# one earlier weight-GA genome.
+OPPS = ','.join(['bots/ga65a6', 'bots/study27-economy', 'bots/spar11', 'bots/spar16'] +
+                [os.path.join(GA_GENOMES, w) for w in ('opp_9872f93cac.wasm',)
                  if os.path.exists(os.path.join(GA_GENOMES, w))])
 # the two best weight genomes of the weight GA (thread "Algoritmo genético para la micro", v100 validation 09:50)
 PRESETS = {
+    # v44 online (P_MONO stays on here: the contest fix, which v44 lacks, only changes the contest map)
+    'ga65a6': {"P_FLEE_PCT": 29, "P_UNI_FLEE": 44, "P_RECALL_PCT": 54, "P_RECALL_NEAR": 7, "P_BAIL_PCT": 12,
+               "P_AVOID_DIST": 4, "P_GA_AVOID_HP": 60, "P_ENGAGE2": 74, "P_GA_FAV": 83, "P_GA_KILL_X": 5, "P_LOWHP": 50,
+               "P_GA_SPAWN_HEAL": 87, "P_FRONT_ZONE": 3, "P_FRONT_OUT": 145, "P_KITE_ZONE": 4, "P_KITE_OUT": 2,
+               "P_GA_KITE_HP": 128, "P_VOLLEY": 43, "P_CHASE_GEMS": 144, "P_DANGER": 4, "P_DANGER_T": 45,
+               "P_DANGER_R": 5},
     '9872f93cac': {"P_FLEE_PCT": 29, "P_RECALL_NEAR": 4, "P_BAIL_PCT": 11, "P_ENGAGE2": 72, "P_GA_FAV": 89,
                    "P_VOLLEY": 52, "P_CHASE_GEMS": 149, "P_DANGER": 4, "P_DANGER_R": 5},
     '78880781f7': {"P_FLEE_PCT": 29, "P_UNI_FLEE": 43, "P_RECALL_PCT": 54, "P_RECALL_NEAR": 6, "P_BAIL_PCT": 7,
@@ -125,6 +134,7 @@ class Level1:
         self.base = load_base(A.base)
         self.genes = list(T.L1_GENES) + (list(G.NAMES) if A.evolve_weights else [])
         self.sigma = A.sigma
+        self.init = [p for p in A.init.split(',') if p]
 
     def control(self):
         return {k: self.base[k] for k in self.genes}
@@ -154,7 +164,11 @@ class Level1:
 
     def initial(self, n, rng):
         c = self.control()
-        return [self.mutate(c, rng, 3.0 / len(self.genes)) for _ in range(n)]
+        out = []
+        for path in self.init:  # structure of earlier winners (export JSONs) on top of this base
+            sc = json.load(open(path))['scalars']
+            out.append({k: sc[k] if k in T.L1_GENES else c[k] for k in self.genes})
+        return out + [self.mutate(c, rng, 3.0 / len(self.genes)) for _ in range(n - len(out))]
 
     def describe(self, geno):
         sc = dict(self.base)
@@ -502,6 +516,7 @@ def main():
         s.add_argument('--sigma', type=float, default=0.15)
         s.add_argument('--programs', default='0,1', help='level 2: which programs evolve (0 back off, 1 engage)')
         s.add_argument('--opps', default=OPPS)
+        s.add_argument('--init', default='', help='level 1: export JSONs whose structure genes join generation 0')
     s = sub.add_parser('prepare'); s.add_argument('--base-bot', default='bots/study27-economy')
     s = sub.add_parser('check'); common(s)
     s.add_argument('--n', type=int, default=17); s.add_argument('--fuel', type=int, default=10000000)

@@ -44,7 +44,11 @@ VALID = ['maps_v100/*.map26a', ga.VALID]
 # v44 self-play is one rival of many: the caster sparring panel and the ghosts of real top-10 games weigh more
 GHOSTS = [('gh_cabbage_corners', 'corners'), ('gh_tip_corners', 'corners'), ('gh_hinana_corners', 'corners'),
           ('gh_cabbage_collision', 'collision'), ('gh_antifreeze_collision', 'collision'), ('gh_cabbage_lanes', 'lanes')]
-DEFAULT_OPPS = ','.join(['genome:start', 'bots/spar11', 'bots/spar12', 'bots/spar16'] +
+# The specialist panel of the "local judge" thread (16 Oct, analysis/local-judge-2026-10-16/README.md): the online
+# 12:52 bot + switches; its per-map wins track our online results (+0.50 / +0.53 for the two casters) where the old
+# caster sparring bots spar11/12/16 do not (+0.2, we beat them 85-95%). sp_farm carries no information: left out.
+PANEL = {'sp_castera': 2.0, 'sp_casterh': 2.0, 'sp_centre': 1.0, 'sp_hunt': 0.5}
+DEFAULT_OPPS = ','.join(['genome:start'] + ['bots/' + b for b in PANEL] +
                         ['bots/%s@maps_ghost/%s.map26a:0' % g for g in GHOSTS])
 WIN = platform.system() == 'Windows'
 
@@ -778,9 +782,18 @@ def rival_weight(o, A):
     crowned a genome that only beat the caster sparring bots and lost the sealed gate vs v44 6-19."""
     if o == 'genome:start':
         return A.w_base
-    if os.path.basename(o.rstrip('/\\')).startswith('spar'):
+    name = os.path.basename(o.rstrip('/\\'))
+    if name in PANEL:
+        return PANEL[name]
+    if name.startswith('spar'):
         return A.w_spar
     return 1.0
+
+
+def is_caster(o):
+    """The caster rivals (deaths against them are reported apart): the panel's casters, or the old spar bots."""
+    name = os.path.basename(o.rstrip('/\\'))
+    return name.startswith(('sp_caster', 'spar'))
 
 
 def wfit(B, h, opps, maps, pins, A):
@@ -1184,8 +1197,8 @@ def cmd_champion(A):
                      'better': better, 'worse': worse, 'p': ga.sign_p(better, worse), 'v44': (vb, vw),
                      'per': {os.path.basename(o): '%d-%d' % (v['won2'], v['lost2']) for o, v in per.items()},
                      'ghosts': pin_fit(B, h, pins), 'describe': describe(genos[k], start),
-                     'dth': sum(v['dth'] for o, v in per.items() if rival_weight(o, A) == A.w_spar) /
-                            max(1, sum(1 for o in per if rival_weight(o, A) == A.w_spar)),
+                     'dth': sum(v['dth'] for o, v in per.items() if is_caster(o)) /
+                            max(1, sum(1 for o in per if is_caster(o))),
                      'dth44': per.get('genome:start', {}).get('dth', 0.0),
                      'cast': (better - vb, worse - vw)})
     rows.sort(key=lambda r: -r['delta'])
@@ -1197,7 +1210,7 @@ def cmd_champion(A):
              f'Fitness weights: start bot x{A.w_base:g}, each sparring bot x{A.w_spar:g}, ghost games together x{A.w_ghosts:g}, '
              'other rivals x1. A champion needs delta > 0 and pairs vs the start bot not worse.', '',
              f'Deaths per game vs the caster sparring bots: control '
-             f'{sum(v["dth"] for o, v in cper.items() if rival_weight(o, A) == A.w_spar) / max(1, sum(1 for o in cper if rival_weight(o, A) == A.w_spar)):.2f}, '
+             f'{sum(v["dth"] for o, v in cper.items() if is_caster(o)) / max(1, sum(1 for o in cper if is_caster(o))):.2f}, '
              f'vs the start bot {cper.get("genome:start", {}).get("dth", 0.0):.2f}.', '',
              '| rank | genome | island | delta vs control | pairs better-worse (p) | pairs vs the start bot | pairs vs others | deaths vs casters / start bot | maps won-lost both sides per rival | ghosts | changes vs control |',
              '|---|---|---|---|---|---|---|---|---|---|---|']

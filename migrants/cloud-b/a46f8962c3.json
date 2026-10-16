@@ -106,17 +106,18 @@
   "P_GA_SS_ALLY": 7
  },
  "fitness": {
-  "shrunk": 0.0786,
-  "n": 3,
+  "shrunk": 0.1136,
+  "n": 4,
   "deltas": [
    0.2714,
    -0.05945,
-   0.10244
+   0.10244,
+   0.2536
   ]
  },
- "gen": 12,
+ "gen": 13,
  "scope": "micro",
  "start": "ga65a6",
- "time": "2026-10-16 13:45:43 UTC",
+ "time": "2026-10-16 13:51:15 UTC",
  "transport": "shared"
 }

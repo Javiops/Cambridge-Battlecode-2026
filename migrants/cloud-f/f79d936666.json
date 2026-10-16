@@ -144,17 +144,18 @@
   "nn": "0 hidden, 4 links, outputs used: back off, farm, kite, recall"
  },
  "fitness": {
-  "shrunk": 0.1858,
-  "n": 3,
+  "shrunk": 0.191,
+  "n": 4,
   "deltas": [
    0.21126,
    0.38233,
-   0.14972
+   0.14972,
+   0.21154
   ]
  },
- "gen": 59,
+ "gen": 60,
  "scope": "neat",
  "start": "ga65a6",
- "time": "2026-10-16 18:10:27 UTC",
+ "time": "2026-10-16 18:15:32 UTC",
  "transport": "shared"
 }

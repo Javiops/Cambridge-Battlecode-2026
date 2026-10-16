@@ -59,13 +59,35 @@ def episodes(decs, trace):
             prev = t
             if died:
                 break
-        cur.append((d[4:], d[2] - 10, d[3], rew))
+        cur.append((d[4:], d[2] - 10, d[3], rew, GAMMA))
         if died or nxt is None:
             out.append(cur)
             cur = []
     if cur:
         out.append(cur)
     return out
+
+
+def episodes_gems(decs, trace, gamma_round=0.99):
+    """--reward gems (the user's objective: gems per turn): one episode per champion for the whole game, reward of a
+    decision = change of (our team's submitted gems + this champion's bag) until its next decision, discounted per
+    round. A death shows up as the lost bag and as the gems the team does not earn while it is dead; no hp or death
+    shaping."""
+    tr = {t[0]: t for t in trace}
+    decs = [d for d in sorted(decs, key=lambda d: d[0]) if d[2] >= 10 and d[0] in tr and tr[d[0]][6] >= 0]
+
+    def val(t):
+        return t[6] + (t[4] if t[1] else 0)
+    ep = []
+    for i, d in enumerate(decs):
+        t0 = tr[d[0]]
+        if i + 1 < len(decs):
+            t1 = tr[decs[i + 1][0]]
+            ep.append((d[4:], d[2] - 10, d[3], float(val(t1) - val(t0)), gamma_round ** (decs[i + 1][0] - d[0])))
+        else:
+            last = max(tr)  # the trace stops 15 rounds after the last decision
+            ep.append((d[4:], d[2] - 10, d[3], float(val(tr[last]) - val(t0)), 0.0))
+    return [ep] if ep else []
 
 
 def mlp_init(rng, hid, nout, zero_out=True):
@@ -114,11 +136,12 @@ def masked_logp(logits, valid):
 
 
 def ppo_update(pol, crit, eps_data, A, rng, log):
-    S, Act, V, R, done_idx = [], [], [], [], []
+    S, Act, V, R, done_idx, GM = [], [], [], [], [], []
     for ep in eps_data:
-        for k, (s, a, v, r) in enumerate(ep):
-            S.append(s); Act.append(a); V.append(v); R.append(r)
+        for k, (s, a, v, r, g) in enumerate(ep):
+            S.append(s); Act.append(a); V.append(v); R.append(r); GM.append(g)
             done_idx.append(k == len(ep) - 1)
+    GM = np.array(GM, np.float32)
     S = np.array(S, np.float32); Act = np.array(Act); V = np.array(V); R = np.array(R, np.float32)
     done = np.array(done_idx)
     n = len(Act)
@@ -128,8 +151,8 @@ def ppo_update(pol, crit, eps_data, A, rng, log):
     last = 0.0
     for i in range(n - 1, -1, -1):
         nv = 0.0 if done[i] else vals[i + 1]
-        delta = R[i] + GAMMA * nv - vals[i]
-        last = delta + GAMMA * LAM * (0.0 if done[i] else last)
+        delta = R[i] + GM[i] * nv - vals[i]
+        last = delta + GM[i] * LAM * (0.0 if done[i] else last)
         adv[i] = last
     ret = adv + vals
     advn = (adv - adv.mean()) / (adv.std() + 1e-8)
@@ -221,7 +244,7 @@ def cmd_run(A):
         eps_data = []
         for p in glob.glob(os.path.join(ddir, '*.log')):
             for decs, trace in dqn.parse_log(p):
-                eps_data += episodes(decs, trace)
+                eps_data += episodes_gems(decs, trace) if A.reward == 'gems' else episodes(decs, trace)
         log(f'iter {it}: {len(ok)} games in {time.time() - t0:.0f}s, won {sum(r["r"] > 0 for r in ok)} lost '
             f'{sum(r["r"] < 0 for r in ok)}, deaths/game {sum(r["dth"] for r in ok) / max(1, len(ok)):.2f}, '
             f'gems/game {sum(r["gems"] for r in ok) / max(1, len(ok)):.0f}')
@@ -247,6 +270,8 @@ def main():
     s.add_argument('--lr', type=float, default=3e-4); s.add_argument('--clip', type=float, default=0.2)
     s.add_argument('--ent', type=float, default=0.01); s.add_argument('--bias0', type=float, default=3.0)
     s.add_argument('--opps', default=dqn.OPPS); s.add_argument('--seed', type=int, default=1)
+    s.add_argument('--reward', choices=('shaped', 'gems'), default='shaped',
+                   help="shaped: per-contact gems/hp/gold/death + team margin; gems: our team's gems per round over the whole game")
     A = p.parse_args()
     {'run': cmd_run}[A.cmd](A)
 

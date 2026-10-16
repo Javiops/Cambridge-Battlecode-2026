@@ -4,14 +4,14 @@
  "scope": "micro",
  "start": "ga65a6",
  "jobs": 4,
- "gen": 9,
- "games": 12198,
- "gps": 3.97,
+ "gen": 10,
+ "games": 13794,
+ "gps": 4.67,
  "base": "7c2d0330e54e",
  "best": {
   "cid": "8a8b0af8ec",
-  "shrunk": 0.1347,
-  "n": 1,
+  "shrunk": 0.202,
+  "n": 2,
   "describe": {
    "P_CHASE_GEMS": 118,
    "P_FRONT": 0,
@@ -26,9 +26,9 @@
    "nn": "0 hidden, 2 links, outputs used: farm, kite"
   }
  },
- "exported": 11,
- "imported": 25,
- "updated": "2026-10-16 13:26:24 UTC",
+ "exported": 12,
+ "imported": 27,
+ "updated": "2026-10-16 13:32:07 UTC",
  "code": "claude/project-thread-s7k3jc@d84d598",
  "home": "/mnt/project-files/ga-farm/islands/cloud-b",
  "transport": "shared"

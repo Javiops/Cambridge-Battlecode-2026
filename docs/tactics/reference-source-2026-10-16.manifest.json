@@ -1,0 +1,51 @@
+{
+  "date": "2026-10-16",
+  "repository": "Javiops/Cambridge-Battlecode-2026",
+  "commit": "a0c0fa2f222557483d665a9f7fce6f64a30b94ba",
+  "retrieved_archive": {
+    "sha256": "5d187b989238d457cf08347c70386313cf4dc8ac83a53849c2f90b861f2e30c4",
+    "bytes": 34262134,
+    "github_zip_comment_commit": "a0c0fa2f222557483d665a9f7fce6f64a30b94ba"
+  },
+  "reference_bot": "bots/study27-economy",
+  "src_sha": "06e02e5342a8bac48a216b7407a3551d30190385fdd501d1195a74704392f22a",
+  "src_sha_algorithm": "tools/online_base.py convention: sorted relative src paths, UTF-8 name + NUL + binary SHA256(file bytes), accumulated with SHA256",
+  "files": [
+    {
+      "path": "bots/study27-economy/src/de_rules.h",
+      "bytes": 4921,
+      "sha256": "3e50429c96765f325ea3804c2bbb5c13ce26a4119fc7b8694f58def60531221b"
+    },
+    {
+      "path": "bots/study27-economy/src/fight.h",
+      "bytes": 39921,
+      "sha256": "5fb073f23ce41a5f6d07fba3aa55a016582a46ac54c4f8316ee6c96ebe92a7bb"
+    },
+    {
+      "path": "bots/study27-economy/src/main.cpp",
+      "bytes": 159145,
+      "sha256": "9872dbba42d7c16e795b16b8c273d3e0a7cae1742d0fbd39e7614340849ba14e"
+    },
+    {
+      "path": "bots/study27-economy/src/opening_replace.h",
+      "bytes": 1760,
+      "sha256": "ca6680bae82b74b89fd0bb65573904246df8761d8b22e3ce8cb6bd93207207e7"
+    },
+    {
+      "path": "bots/study27-economy/src/params.h",
+      "bytes": 3037,
+      "sha256": "d99ef2cecff65f7851efb491bb4691d40ddeaaa6a96499e13eddec814fdc1372"
+    },
+    {
+      "path": "bots/study27-economy/src/utility.h",
+      "bytes": 4791,
+      "sha256": "5e48af1229195c4b356a617fd7323f49efe2af3a09728f6eda91ed4975c2b580"
+    }
+  ],
+  "battlecode_upload": {
+    "reported_version": 43,
+    "note": "same as v42 just without trolling mono",
+    "identity_match": "unconfirmed; screenshot has no source hash and uploaded source was not retrieved"
+  },
+  "scope": "Documentation and static source audit only; no bot code changed and no new compilation, simulation or competitive tests."
+}

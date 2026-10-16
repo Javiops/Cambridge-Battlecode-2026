@@ -17,6 +17,8 @@ How champions divide work, support each other, and move as a team.
 
 **Evidence and status.** These tactics are **Planned**, not implemented by this document. The [coordination research](coordination-research-2026-10-16.md) separates replay behavior, mechanics, source-derived failure hypotheses, LoL inspiration and original proposals. We cannot recover a private opponent's decision algorithm or establish a causal win-rate benefit from its replay. Our working principle is **concentrate the smallest sufficient ready group on a valuable job, then release it when the job ends**.
 
+**Current source reference (16 October 2026):** The intended tactics below are preserved. Current implementation is checked against [`bots/study27-economy` at `a0c0fa2`](reference-snapshot-2026-10-16.md), which supersedes the older source audit for present-code claims. The screenshot identifies upload v43; its exact source identity is not yet confirmed. Historical research and its limits remain unchanged.
+
 ## 1. Role assignment
 
 Assign farming, scouting, fighting, capturing, escorting, and defending responsibilities.
@@ -40,7 +42,7 @@ One body can do compatible jobs; one cast cannot provide two mutually exclusive 
 
 **Reassign** after a role completes or a relevant death, recall, new sighting, blocked route or missed deadline. Emergency survival can revoke a job immediately. Unassigned bodies continue useful safe work; they do not follow the largest group without a reason.
 
-**Current behavior:** The [audited study27 derivative](coordination-research-2026-10-16.md#our-existing-bot) shares camp intentions and makes local combat decisions. Its explicit group/help/twin routines are disabled. A claim is not an acceptance or readiness promise.
+**Current behavior:** The [pinned reference](https://github.com/Javiops/Cambridge-Battlecode-2026/blob/a0c0fa2f222557483d665a9f7fce6f64a30b94ba/bots/study27-economy/src/main.cpp) shares camp intentions and makes local combat decisions. Its explicit group/help/twin routines remain disabled. A claim is not an acceptance or readiness promise. The newer reward-release helper adds a limited actual-holder check; see 06.8. The full mission roles above are still Planned.
 
 **Related decisions:** [Farming and capture](08-farming-and-capture.md), [Gems and objectives](09-gems-and-objectives.md), [Shopping](11-shopping-and-investment.md).
 
@@ -168,7 +170,7 @@ For combat, align the earliest relevant action with a common **reachable target 
 
 **First implementation boundary:** begin with local readiness, finite assembly and real capture handoff while retaining the existing memory allocation. Test common local focus and commit/reset separately and together. A richer remote contract is a later experiment after a complete byte budget; none is implemented by these instructions.
 
-**Current behavior:** the pinned source can count a channeling or recalling body's stale claim as coming, and its handoff heuristic can nominate a claimed ally still approaching. Its pre-sweep, kite and front-line target choices are local and can disagree. These are source-derived risks, not proof of a particular replay failure. See the [source audit and evaluation plan](coordination-research-2026-10-16.md#our-existing-bot).
+**Current behavior:** the pinned reference adds [`cf_evac_reward`](https://github.com/Javiops/Cambridge-Battlecode-2026/blob/a0c0fa2f222557483d665a9f7fce6f64a30b94ba/bots/study27-economy/src/main.cpp#L2360-L2431): an extra holder leaves only when another visible, living ally with at least 35% HP is already on the reward, is not recalling/teleporting/tributing, and a legal productive exit does not increase the local danger estimate or enter a visible damaging monster's attack range. This is a useful partial implementation, not a phase-overlap guarantee. The separate [`other_captures`](https://github.com/Javiops/Cambridge-Battlecode-2026/blob/a0c0fa2f222557483d665a9f7fce6f64a30b94ba/bots/study27-economy/src/main.cpp#L2299-L2334) arbitration still considers claims within four tiles; a stale claim can also count as incoming camp support. Pre-sweep, kite and front-line target choices remain local and may disagree. The intended protocol above stays Planned. These are source-derived limitations, not proof of a particular replay failure. See the [historical source audit and evaluation plan](coordination-research-2026-10-16.md#our-existing-bot).
 
 **Validation:** compare timely contribution and first-to-last arrival, legal focus conditional on shared visibility, completed captures/banks, waiting, forgone split work, stale help and serial re-entry losses. Keep draft size, body count, champion, map, opponent and time period visible. More proximity or fewer reversals alone does not prove a better policy. No competitive outcome tests were run for this research.
 

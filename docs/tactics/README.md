@@ -5,8 +5,9 @@ Each topic starts with a short description and grows into a concrete tactic: whe
 what the champion does, and how it interacts with the rest of the team.
 
 > [!NOTE]
-> This first edition contains 96 topics across 12 chapters. Tactical details are ready to be filled in.
-> **Unspecified** means the behavior has not been documented here; it makes no claim about whether the bot already implements it.
+> All **96 topics across 12 chapters** now contain a concrete baseline or intended tactic. Chapters 04 (vision), 06 (coordination) and 11 (shopping) retain their detailed researched policies.
+> **Planned** and **Implemented** distinguish intended improvements from behavior present in the pinned source. Complete documentation does not mean every tactic has been implemented or shown to improve results.
+> The current code reference is `bots/study27-economy` at `a0c0fa2` (16 October 2026). Its identity with the supplied live-v43 screenshot remains unconfirmed. See the [reference snapshot, configuration and feedback mapping](reference-snapshot-2026-10-16.md).
 
 ## Chapters
 
@@ -43,6 +44,15 @@ its **Status** shows how that description relates to the code.
 
 Verification records the behavior checked and the limits of the evidence. Competitive improvement
 requires comparative results; the status alone does not establish a stronger bot.
+
+
+## Where to start
+
+Read [01 Overall strategy](01-overall-strategy.md) for priorities, then the chapter governing the next decision. Each topic identifies its trigger, action, stop/yield condition, exceptions and fallback. Current behavior explains any material gap between the intended rule and the reference bot; unresolved thresholds are experiment parameters, not claimed optima.
+
+The supplied team feedback makes **combat micro**, **secure farming under pressure**, and **completed capture/collection** the next implementation priorities. Those planned requirements are linked to their chapters in the [feedback mapping](reference-snapshot-2026-10-16.md#how-the-supplied-team-feedback-was-used). Keep the existing ward, coordination and investment research as the starting specification while implementing one coherent change at a time and testing useful combinations.
+
+This completion is a **documentation and source audit**. It does not change the bot, upload a new version, run simulations, or prove a stronger strategy. [Chapter 12](12-execution-and-validation.md) defines the separate implementation and validation work.
 
 ## Keeping the specification current
 

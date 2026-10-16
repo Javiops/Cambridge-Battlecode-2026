@@ -5,6 +5,7 @@ usage (from the repo root, after `cambc init --yes`):
   python3 tools/gate.py bots/CAND bots/BASE --kind farm          # a farming / macro change
   python3 tools/gate.py bots/CAND main --kind fight              # a fight change; the base is the same bot folder as on main
   python3 tools/gate.py bots/CAND bots/BASE --kind farm --idea I017 --extra '/mnt/project-files/arena/maps/fresh300/*.map26a'
+  python3 tools/gate.py bots/CAND online --kind farm             # the base is the zip that is online (online/version.py --zip)
 
 Runs in phases, cheapest first, and stops as soon as the result is clear:
   1. safety     9 official maps x 2 sides: no bot fault (botFaults), no broken game, and the fuel-exhausted turns
@@ -28,6 +29,7 @@ from concurrent.futures import ThreadPoolExecutor
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import ab  # noqa: E402  (reuses build, play, sign_p, the result cache and the wasmtime cache variable)
+import online_base  # noqa: E402  (which source is online; `online` as the base)
 
 PANEL = ['bots/spar11', 'bots/spar12', 'bots/spar16']
 FUEL_MAPS = ['lanes', 'corners', 'collision']
@@ -98,7 +100,7 @@ def fuel_check(cand, base, ha, hb, ver, jobs):
         if os.path.exists(cf):
             return who, json.load(open(cf))
         os.makedirs(od, exist_ok=True)
-        subprocess.run([ab.CLI, 'run', x, y, '--map', m, '-o', od], capture_output=True, env=ab.ENV)
+        subprocess.run([ab.CLI, 'run', x, y, '--map', m, '-o', od] + [f for f in ab.RUN_FLAGS if f != '--json'], capture_output=True, env=ab.ENV)
         reps = glob.glob(os.path.join(od, '*.repl26a'))
         if not reps:
             return who, None
@@ -125,8 +127,20 @@ def fuel_check(cand, base, ha, hb, ver, jobs):
     return tot
 
 
+def online_maps_line(per):
+    """Per-map result on the site's own maps (maps/ = the pool `cambc init` pulls), named, so a loss there is seen."""
+    n = len(per)
+    marks = []
+    for m, d in sorted(per.items()):
+        if len(d) < 2: continue
+        ra, rb = score(d['A'], 0), score(d['B'], 1)
+        marks.append(os.path.splitext(os.path.basename(m))[0] + {('WIN', 'WIN'): ' +', ('LOSS', 'LOSS'): ' -'}.get((ra, rb), ' ='))
+    stale = '' if n >= 17 else f' (only {n} maps in maps/: run `cambc init --yes` to pull the current site pool)'
+    return f'site maps ({n}, + won both sides, - lost both, = split): ' + ', '.join(marks) + stale
+
+
 def export_ref(ref, cand):
-    """`gate.py bots/study28 main`: the base is the candidate's folder as it is in git ref `ref` (main, origin/main, a sha).
+    """`gate.py bots/study27-economy main`: the base is the candidate's folder as it is in git ref `ref` (main, origin/main, a sha).
     A bare branch name means the branch on origin (fetched first), so a stale local `main` never becomes the base."""
     def rev(r):
         x = subprocess.run(['git', 'rev-parse', '--verify', '--quiet', r + '^{commit}'], capture_output=True, text=True)
@@ -161,8 +175,11 @@ def main():
     p.add_argument('--jobs', type=int, default=os.cpu_count() or 4)
     A = p.parse_args()
     cand, base = A.cand.rstrip('/\\'), A.base.rstrip('/\\')
-    if not os.path.isdir(base):
+    if base == 'online':
+        base = online_base.export()
+    elif not os.path.isdir(base):
         base = export_ref(base, cand)
+    base_online, base_msg = online_base.check(base)
     tag = os.path.basename(cand) + '_vs_' + os.path.basename(base)
     outdir = os.path.join('out', 'gate', tag); os.makedirs(outdir, exist_ok=True)
     cache = os.path.join('out', 'ab-cache'); os.makedirs(cache, exist_ok=True)
@@ -179,6 +196,8 @@ def main():
     verdict = {'cand': cand, 'base': base, 'kind': A.kind, 'cand_wasm': hc, 'base_wasm': hb,
                'at': time.strftime('%Y-%m-%dT%H:%M:%SZ', time.gmtime())}
     say(f'{cand} (candidate) vs {base} (base), kind {A.kind}   [built in {time.time() - t0:.0f}s]')
+    say(('   ' if base_online else '   WARNING: ') + base_msg)
+    verdict['base_online'] = base_online
     if hc == hb:
         say('The candidate compiles to the same wasm as the base: it changes nothing. FAIL.')
         return finish(A, verdict | {'pass': False, 'why': 'same wasm'}, outdir, log)
@@ -192,6 +211,9 @@ def main():
     w, l, sp, _ = tally(per)
     say(f'\n1. safety: official maps {w} won both sides, {l} lost both, {sp} split; '
         f'candidate faults {faults}, broken games {len(broken)}   [{time.time() - t:.0f}s]')
+    say(f'   {online_maps_line(per)}')
+    verdict['online_maps'] = {os.path.splitext(os.path.basename(m))[0]: [score(d['A'], 0), score(d['B'], 1)]
+                              for m, d in sorted(per.items()) if len(d) == 2}
     ok = not broken and faults == 0
     fuel = None
     if ok and not A.no_fuel:
@@ -276,6 +298,8 @@ def main():
             say('FAIL: the caster panel beats it more (the only local rival that kills like online teams).')
             return finish(A, verdict | {'pass': False, 'why': 'panel'}, outdir, log)
 
+    if not base_online:
+        say('\nNote: the base is not (or not known to be) the online bot, so this result does not clear an upload.')
     say(f'\nPASS ({A.kind}). ' + ('Upload it and measure in stage 3 (online/lfl.py).' if A.kind == 'fight' else
                                   'Clear farming gain: upload it and confirm online that it does not get worse (stage 3).'))
     say(f'Total {time.time() - t0:.0f}s')

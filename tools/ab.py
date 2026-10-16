@@ -21,6 +21,39 @@ import argparse, glob, hashlib, json, math, os, subprocess, sys, time, zipfile
 from concurrent.futures import ThreadPoolExecutor
 
 CLI = os.environ.get('CAMBC_CLI', 'cambc')
+
+
+def _run_flags():
+    """Extra `cambc run` flags this CLI needs: from cambc 2.2.0 --statistics is binary unless --json (2.1.x has no
+    --json). Not --release (plays as on the platform): on 16 Oct its CMake build failed on our bot folders."""
+    try:
+        h = subprocess.run([CLI, 'run', '--help'], capture_output=True, text=True,
+                           env={**os.environ, 'CAMBC_NO_UPDATE_CHECK': '1'}).stdout
+    except OSError:
+        return []
+    return [f for f in ('--json',) if f in h]
+
+
+RUN_FLAGS = _run_flags()
+
+
+def load_stats(path):
+    """A `--statistics` file in the old flat shape (cambc 2.1.x), whichever CLI wrote it.
+
+    cambc 2.2 (--json) nests the summary: match.outcome / match.roundsCompleted, diagnostics.botFaults by team name,
+    numbers as strings, per-champion numbers under metrics and the champion name instead of its type id."""
+    d = json.load(open(path))
+    if 'outcome' in d:
+        return d
+    team = {'teamA': 0, 'teamB': 1}
+    num = lambda v: float(v) if isinstance(v, str) and '.' in v else int(v) if isinstance(v, str) else v
+    teams = sorted(d['teams'], key=lambda t: team[t['team']])
+    bf = d.get('diagnostics', {}).get('botFaults', {})
+    return {'outcome': d['match']['outcome'], 'round': d['match']['roundsCompleted'],
+            'teams': [{'submittedGems': num(t['submittedGems'])} for t in teams],
+            'botFaults': [bf.get('teamA', 0), bf.get('teamB', 0)],
+            'champions': [dict({k: num(v) for k, v in c['metrics'].items()}, team=team[c['team']], type=c['name'])
+                          for c in d['champions']]}
 SETS = {'official': 'maps/*.map26a', 'gen': 'maps_gen/*.map26a', 'hold': 'maps_hold60/*.map26a',
         'dev': 'maps_dev200/*.map26a'}
 ENV = {**os.environ, 'CAMBC_NO_UPDATE_CHECK': '1'}
@@ -56,11 +89,11 @@ def play(job):
             pass
     os.makedirs(outdir, exist_ok=True)
     stats = os.path.join(outdir, 'stats.json')
-    r = subprocess.run([CLI, 'run', a, b, '--map', m, '-o', outdir, '--statistics', stats],
+    r = subprocess.run([CLI, 'run', a, b, '--map', m, '-o', outdir, '--statistics', stats] + RUN_FLAGS,
                        capture_output=True, text=True, env=ENV)
     if not os.path.exists(stats):
         return {'ok': False, 'log': (r.stdout + r.stderr)[-500:]}
-    d = json.load(open(stats))
+    d = load_stats(stats)
     res = {'ok': True, 'outcome': d['outcome'], 'round': d['round'],
            'gems': [t['submittedGems'] for t in d['teams']],
            'deaths': [sum(c['deaths'] for c in d['champions'] if c['team'] == t) for t in (0, 1)],

@@ -6,6 +6,8 @@ Prints one line per match and a summary (win rate for BOT_A, mean gems, gems per
 import argparse, glob, json, os, shutil, subprocess, sys, zipfile
 from concurrent.futures import ThreadPoolExecutor
 CLI = os.environ.get('CAMBC_CLI', 'cambc')
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from ab import RUN_FLAGS, load_stats  # noqa: E402  (cambc 2.2+: --json and the nested summary)
 # compile each bot once and reuse it: without this every game spends ~1.5 s of CPU compiling both wasm bots
 os.environ.setdefault('CAMBC_WASMTIME_CACHE', os.path.abspath(os.path.join('out', 'wasmtime-cache')))
 def build(bot):
@@ -16,12 +18,12 @@ def one(job):
     a, b, m, outdir, rounds, keep = job
     os.makedirs(outdir, exist_ok=True)
     stats = os.path.join(outdir, 'stats.json')
-    cmd = [CLI, 'run', a, b, '--map', m, '-o', outdir, '--statistics', stats]
+    cmd = [CLI, 'run', a, b, '--map', m, '-o', outdir, '--statistics', stats] + RUN_FLAGS
     if rounds: cmd += ['--rounds', str(rounds)]
     r = subprocess.run(cmd, capture_output=True, text=True, env={**os.environ, 'CAMBC_NO_UPDATE_CHECK': '1'})
     res = {'a': a, 'b': b, 'map': m, 'ok': os.path.exists(stats), 'log': r.stdout[-1500:] + r.stderr[-800:]}
     if res['ok']:
-        d = json.load(open(stats))
+        d = load_stats(stats)
         res.update(outcome=d['outcome'], round=d['round'], gems=[t['submittedGems'] for t in d['teams']],
                    faults=d['botFaults'],
                    champs=[{k: c[k] for k in ('team', 'type', 'collectedGems', 'submittedGems', 'earnedGold', 'spentGold', 'kills', 'deaths', 'monsterDamageDone', 'championDamageDone')} for c in d['champions']])

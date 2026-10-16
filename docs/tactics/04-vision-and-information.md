@@ -17,6 +17,8 @@ What each champion and ward reveals and how the team uses that knowledge.
 
 **Evidence and status.** These are **planned tactics**, informed by official rules, engine probes, elite replays and LoL coaching principles. They are not an implemented or proven stronger bot. The [ward research](ward-research-2026-10-16.md) separates mechanics, observed behavior, original proposals, source revisions and validation limits.
 
+**Current source reference (16 October 2026):** The intended tactics below are preserved. Current implementation is checked against [`bots/study27-economy` at `a0c0fa2`](reference-snapshot-2026-10-16.md), which supersedes the older source audit for present-code claims. The screenshot identifies upload v43; its exact source identity is not yet confirmed. Historical research and its limits remain unchanged.
+
 ## 1. Ward placement
 
 Decide where, when, and how often each champion should place its ward.
@@ -55,7 +57,7 @@ Give the ward a concrete observation job before scoring a tile. Protect the next
 4. Compare the candidate with retaining the existing ward under 04.2. Allow another placement next owner turn if the job has changed enough. There is no chosen fixed four/eight-round wait and no requirement to cast every round.
 5. Bound queries and reserve fuel for movement, combat and ending the turn. If rescoring cannot finish, keep the old observer and take the safest available mission action while retaining an escape option.
 
-**Current behavior:** The audited cleaned study27 combat source at `e72cec8` has `P_R5_WARD=0`. Its dormant helper is a late, bush-only geometric heuristic. This specification requires a separate implementation; merely enabling that helper does not implement it. [Source audit and historical test limits](ward-research-2026-10-16.md#our-existing-bot).
+**Current behavior:** The pinned reference still has [`P_R5_WARD=0`](https://github.com/Javiops/Cambridge-Battlecode-2026/blob/a0c0fa2f222557483d665a9f7fce6f64a30b94ba/bots/study27-economy/src/params.h#L82), so the late ward call does not execute. Its [dormant bush-only helper](https://github.com/Javiops/Cambridge-Battlecode-2026/blob/a0c0fa2f222557483d665a9f7fce6f64a30b94ba/bots/study27-economy/src/utility.h#L9-L81) is not the mission-aware policy above. The existing danger-byte protocol is active, but no new ward/report protocol is introduced here. This specification still requires implementation. [Historical source audit and test limits](ward-research-2026-10-16.md#our-existing-bot).
 
 **Related decisions:** [Relocation](#2-ward-relocation), [Threat estimation](#6-threat-estimation), [Farming](08-farming-and-capture.md), [Gems and objectives](09-gems-and-objectives.md), [Recall](10-recall-and-recovery.md).
 

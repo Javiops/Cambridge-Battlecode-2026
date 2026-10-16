@@ -1,0 +1,29 @@
+{
+ "id": "I060",
+ "title": "Commit like Mite: retreat curve from behaviour cloning",
+ "kind": "fight",
+ "source": "replay imitation (thread Imitation learning from top replays)",
+ "owner": "Claude",
+ "hypothesis": "in contact at 40-60% hp v44 retreats 29-42% of turns vs Mite 15-24%; lowering P_UNI_FLEE/P_LOWHP/P_GA_AVOID_HP/P_AVOID_DIST to Mite's curve cuts deaths while fleeing; online deaths per game down, win rate vs top 30 up",
+ "stage": "local-ok",
+ "created": "2026-10-16T12:37Z",
+ "history": [
+  {
+   "at": "2026-10-16T12:37Z",
+   "stage": "idea",
+   "note": "bots/im_a = v44 + P_UNI_FLEE 33, P_LOWHP 40, P_GA_AVOID_HP 45, P_AVOID_DIST 2; im_b = im_a + P_ENGAGE2 60; im_c milder (38/44/50/3)"
+  },
+  {
+   "at": "2026-10-16T12:43Z",
+   "stage": "local-ok",
+   "note": "gate fight: PASS; fresh 54-25 p=0.0015; panel 11/19",
+   "result": "out/gate/im_a_vs_online@9d426f2649/result.json"
+  },
+  {
+   "at": "2026-10-16T12:54Z",
+   "stage": "local-ok",
+   "note": "variants vs online zip: im_b (im_a + P_ENGAGE2 60) PASS 56-27 p=0.002, panel 16/23 p=0.34; im_c milder (38/44/50/3) FAIL panel veto 10/27 p=0.008 (fresh 47-41 ns). Candidate = im_a, zip /mnt/project-files/bot/mybot_ga65a6_imitation.zip (v44 + 4 params, no P_MONO). Local cannot judge fights: online A/B decides."
+  }
+ ],
+ "updated": "2026-10-16T12:54Z"
+}

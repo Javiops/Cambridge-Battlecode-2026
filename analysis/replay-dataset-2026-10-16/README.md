@@ -1,0 +1,118 @@
+# Replay decision dataset and behaviour cloning (2026-10-16)
+
+Thread "Imitation learning from top replays". Goal: learn the top teams' fight decisions from their replays, in features
+our bot can compute itself, and turn what is learned into GA seeds or a rule test.
+
+## Files
+
+| file | rows | what |
+|---|---|---|
+| `turns_top101.parquet` / `.csv` | 115,133 | one row per champion per round in contact, 101 ladder games of #1 Mite and #2 Univardisty (both sides; the other side is a top-20 team, tag `opp`) |
+| `targets_top101.parquet` / `.csv` | 23,807 | one row per (turn that hit an enemy champion, candidate enemy within 4): which candidate was chosen |
+| `turns_us_v44.parquet` / `.csv` | 24,345 | the same rows for 27 of our online v44 games vs top-10 teams (16 Oct 10:46-11:00, known maps only); our side `us_v44`, the rival `opp` |
+| `targets_us_v44.parquet` | 3,699 | target rows for those games |
+| `games_top101.json`, `games_us_v44.json` | | game lists (match id, map, side, team, result) |
+| `bc/metrics.json`, `bc/coefs_engage_vs_retreat.csv`, `bc/model_lr_engage_retreat.json` | | behaviour-cloning results and the fitted logistic model (standardisation + weights, ready to embed) |
+| `bc/compare_us_vs_top.txt` | | our decisions vs theirs in the same situations |
+| `scripts/build_dataset.py` | | builder: `build_dataset.py STEPS_DIR GAMES_JSON MAPS_DIR OUT_DIR` (11 s for 101 games) |
+| `scripts/bc.py` | | behaviour cloning: `bc.py turns.csv OUT_DIR` |
+| `scripts/fetch_ours.sh` | | download + decode our games (needs the visualiser wasm v0_0_2: run `cambc view <any zip>` once so it lands in ~/.cache/cambc/assets) |
+
+Sources: top games = `analysis/top2-dissection-2026-10-15/data/steps.tgz` (decoded every step, format in its `DATA.md`);
+maps = that folder's `mapsj/`. Our games = `online/data/games.jsonl` rows since 08:00 vs rank <= 10 (85 games, 42 on the 9
+known maps, 27 decoded completely; the rest failed to decode or are on new maps without a map json).
+
+## One row (turns)
+
+A champion that is alive at the start of round R, is not in the middle of a recall/tribute channel, and has at least one
+living enemy champion within Chebyshev 8. Features are the state at the start of R (end-of-round R-1 snapshot); labels are
+what the champion did during R; outcomes look ahead from R.
+
+Identity: `match, map, round, champ, team (0 = side a), team_tag (mite|uni|opp|us_v44), type, melee`.
+
+Features (all computable by our bot at its turn; distances Chebyshev unless noted):
+`hp, maxhp, hp_frac, gems, gold, d_altar` (BFS to nearest altar), `d_spawn` (BFS to own spawn), `own_casts_last8`
+(own casts in the last 8 rounds, a proxy for spells on cooldown), `dmg_taken_last1, dmg_taken_last3` (from anything),
+`n_ally8, n_ally4, ally_hp8, ally_lowfrac8` (lowest ally hp fraction within 8), `n_en8, n_en4, n_en3, n_en1, en_hp8,
+en_maxhp8, near_en_dist, near_en_hpfrac, near_en_melee, min_en_hp, min_en_hpfrac, en_gems8, en_casts_last8`
+(enemy casts in the last 8 rounds = their spells likely on cooldown), `en_ranged8, hp_ratio8` = (own + allies hp within 8) /
+enemies hp within 8, `en_dmg_last1` (damage our team did to those enemies last round), `round`.
+
+Labels: `action` = recall | tribute | kite (hit an enemy champion and stepped away) | hit | advance (stepped closer to the
+nearest enemy) | retreat (stepped away) | hold (no step relative to the nearest enemy; includes farming a camp in place);
+`action3` = engage (kite, hit, advance) | hold (hold, tribute) | retreat (retreat, recall); `attacked_champ, cast, hit_camp,
+moved_delta` (change of distance to the nearest enemy from its own step), `moved_delta_mean` (mean over visible enemies),
+`target` (global index of the enemy it damaged most, -1 none).
+
+Outcomes: `died5, died10, died20` (dead at any point in the next N rounds), `dmg_taken5, dmg_taken10, dmg_dealt10`
+(own damage to enemy champions), `en_died10` (enemies visible now that die within 10), `gem_swing20` = (our team carried +
+tributed gems change) - (theirs) over 20 rounds.
+
+Targets: `cand, cand_type, chosen, n_cands, dist, hp, hp_frac, gems, melee, is_lowest_hp, is_nearest, hit_by_team_last1,
+cand_casts_last8`.
+
+Caveats: vision is approximated as Chebyshev 8 (no shadowcasting, so enemies in bushes count as seen); the state is the
+start of the round, so enemies acting earlier in the same round moved up to 1 tile; spell readiness is inferred from casts
+(the bot can read real cooldowns); recall start = step kind 11 off the own spawn (some bots spam kind 11 on spawn, ignored);
+"retreat" is a step away from the nearest enemy, which also catches walking to the next camp, so the labels are noisy.
+
+## Behaviour cloning (Mite + Univardisty turns, 5-fold CV grouped by game)
+
+| task | rows | majority class | hp threshold only | logistic regression | MLP 16 |
+|---|---|---|---|---|---|
+| engage vs retreat | 41,463 | 62.6% | 72.4% (retreat below 42% hp) | 74.0% | 74.2% |
+| engage / hold / retreat | 61,966 | 41.9% | | 53.1% | 54.4% |
+
+In plain words: their fight-or-flee choice is mostly one number, their own health. A single cut at 42% hp explains 72% of
+it; the other 28 features (allies, enemies, spells, gems, distance to altar) add only 1.6 points, and a small neural net adds
+nothing on top of the linear model. After health, the features that matter are distance to the nearest enemy (further away
+= more likely to back off), an enemy in melee contact (stay and fight), own max hp (tanks stay), own spells used recently
+(back off while on cooldown), and allies close by (stay). The model fitted on the top two predicts Mite best (77.5%),
+Univardisty 71%, the other top-20 teams 69%: Mite is the most consistent player.
+
+Targeting: the chosen target is the nearest candidate 85% of the time for Mite (76% Univardisty), the one the team hit
+last round 59% (base rate 38%), the lowest-hp one only 50% (random would be 44%); Univardisty picks the target carrying
+most gems 84% of the time.
+
+## Where we differ (v44 online vs top-10, same features)
+
+Share of turns that retreat, among engage-or-retreat turns with an enemy within 5:
+
+| own hp | Mite | Univardisty | top-20 | v44 (us) |
+|---|---|---|---|---|
+| 30-40% | 0.64 | 0.61 | 0.62 | 0.76 |
+| 40-50% | 0.42 | 0.50 | 0.55 | 0.68 |
+| 50-60% | 0.27 | 0.46 | 0.45 | 0.49 |
+| 60-70% | 0.20 | 0.37 | 0.34 | 0.40 |
+| 90-100% | 0.15 | 0.21 | 0.29 | 0.24 |
+
+Over all contact turns (enemy within 8) we hit an enemy champion on 10% of turns (Mite 12%) and hold more (38% vs 33%).
+Backing off earlier does not keep us alive: dead within 10 rounds from a contact turn at 20-30% hp = 35% for us vs 16%
+for Mite, and over all contact turns 14.8% vs 11.7% (the top-10 teams in the same games: 5.4%). This matches the
+2026-10-15 finding that 2/3 of our deaths happen while fleeing. v44's curve comes from P_UNI_FLEE 44 (caster draft flees
+below 44%), P_LOWHP 50 (back off below 50% with a foe within 6) and the "unfavourable group" rule (back off below
+P_GA_AVOID_HP 60% or whenever a foe is within P_AVOID_DIST 4).
+
+## What was done with it
+
+- GA seeds: three genomes in `/mnt/project-files/ga-farm/migrants/imitation_*.json` (v44 + the changes below, no fitness yet):
+  `im_a` 9aee4f367f = P_UNI_FLEE 33, P_LOWHP 40, P_GA_AVOID_HP 45, P_AVOID_DIST 2 (Mite's curve);
+  `im_b` cebb64a4a6 = im_a + P_ENGAGE2 60 (call more fights favourable);
+  `im_c` 8634a1118b = milder, 38 / 44 / 50 / 3.
+- Rule test: idea I060, `bots/im_a` gated against the online zip with tools/gate.py (kind fight; standard map set hold60 +
+  dev200 = 260 maps both sides, declared before the run). Results against the v44 zip:
+
+  | candidate | fresh maps won/lost both sides | caster panel flips for/against | verdict |
+  |---|---|---|---|
+  | im_a | 54-25, p=0.001 (gems/100 rounds 168.2 vs 164.9) | 11/19, p=0.20 | PASS (fight) |
+  | im_b | 56-27, p=0.002 | 16/23, p=0.34 | PASS (fight) |
+  | im_c (milder) | 47-41, p=0.59 | 10/27, p=0.008 | FAIL (panel veto) |
+
+  Candidate to upload: im_a, `/mnt/project-files/bot/mybot_ga65a6_imitation.zip` (v44 + the 4 params, no P_MONO). Fight
+  rules that won locally have failed online before, so only the online A/B (online/lfl.py) decides.
+
+## For the Q-learning thread
+
+`died10`/`died20` and `gem_swing20` are the outcome labels for a fight/flee value; the features list above is the input
+schema. `bc/model_lr_engage_retreat.json` holds `mean`, `scale`, `coef`, `intercept` for P(retreat) on the feature order in
+`features` (with the log transforms listed in `transforms`), 29 multiplies per turn.

@@ -70,19 +70,25 @@ def main():
             if len(replay) != 1:
                 raise ValueError("Expected one replay bundle")
             caught = {}
+            action_errors = {}
             with zipfile.ZipFile(replay[0]) as archive:
                 if archive.testzip() is not None:
                     raise ValueError("Replay CRC failed")
                 for letter in ("a", "b"):
                     text = archive.read("team-" + letter + ".stdout").decode("utf8", errors="replace").replace("\0", "")
                     caught[letter] = re.findall(r"(?:TACTICS_ERROR|bot error:|\[err[^\]]*\])[^\r\n]*", text)
+                    action_errors[letter] = [line for line in text.splitlines()
+                                             if (match := re.match(r"^T1 \d+ \d+ \S+ \d+ \d+ (\d+) ", line))
+                                             and int(match.group(1)) != 0]
             native_faults = data["diagnostics"]["botFaults"]
             own_side = "teamA" if side == 0 else "teamB"
             games.append({"map_sha256": sha(map_path), "candidate_side": side, "actual_match": data["match"],
                           "scores": data["teams"], "native_faults": native_faults,
                           "caught_errors_by_side": caught,
+                          "action_api_error_lines_by_side": action_errors,
                           "candidate_no_native_faults": native_faults[own_side] == 0,
                           "candidate_no_caught_errors": not caught["a" if side == 0 else "b"],
+                          "candidate_no_action_api_errors": not action_errors["a" if side == 0 else "b"],
                           "statistics_sha256": sha(stats), "replay_sha256": sha(replay[0]), "command": command})
     for label, bot in (("candidate", candidate), ("opponent", opponent)):
         if source_pins[label] != {str(f.relative_to(bot / "src")): sha(f) for f in sorted((bot / "src").rglob("*")) if f.is_file()}:

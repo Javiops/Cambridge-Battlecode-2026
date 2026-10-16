@@ -31,7 +31,11 @@ python tools/tactics-v1-validation/run_native_dash.py --cli C:/path/to/cambc.exe
 
 It checks an SDK range mask that includes a wall-separated target, rejection by
 the production gateway before an invalid SDK action, a subsequent legal dash,
-hole crossing, and a legal bent path around a single wall. Both sides must pass,
+hole crossing, and a legal bent path around a single wall. A fourth game uses
+Cassi and Issac: Cassi occupies the unique diagonal midpoint, Issac's blocked
+dash preserves position and cooldown, and an alternative dash still succeeds.
+Cassi also reduces actual remaining fuel to 11,000 and verifies that the final
+mutation gate declines Recall without publishing a channel attempt. Both sides must pass,
 with zero faults and zero fuel exhaustion. SDK `ability.valid_tiles()` is a
 range mask; it does not certify a dash path or legal landing.
 
@@ -50,3 +54,11 @@ The native ward regression supplies a scripted Travel mission to the actual prod
 ```powershell
 python tools/tactics-v1-validation/run_native_ward.py --cli C:/path/to/cambc.exe --project C:/path/to/cambc-project --source bots/tactics-v1/src --output work/tactics-v1-native-ward
 ```
+
+The farming-policy regression runs the actual production farming function with explicit World projections under initialized native SDK geometry. It checks that a suppressed incumbent cannot displace a productive alternative, that a first clear arrival after long travel is not classified as existing attack stagnation, and that a ready gem job with zero deadline value cannot erase an unready positive-value job. It does not execute the projected camp attack or claim a physical payout:
+
+```powershell
+python tools/tactics-v1-validation/run_native_farming.py --cli C:/path/to/cambc.exe --project C:/path/to/cambc-project --source bots/tactics-v1/src --output work/tactics-v1-farming-policy
+```
+
+The native capture/recall/tribute timing regression is documented in [NATIVE-CYCLE.md](NATIVE-CYCLE.md). Its scripted owner loop and the full competitive bot are separate modules. Preserve that distinction when interpreting its assertions.

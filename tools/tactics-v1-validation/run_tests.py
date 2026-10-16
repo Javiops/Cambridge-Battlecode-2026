@@ -14,6 +14,8 @@ import re
 import shutil
 import subprocess
 from datetime import datetime, timezone
+from channel_fixture import generate_channel_fixture, extract_channel_function
+from economy_fixtures import generate_economy_fixture, extract_economy_policy
 
 HERE = Path(__file__).resolve().parent
 EXPECTED_SDK_SHA256 = "76664dc7c4ab764243a7530eb97be12d9c20518b7bd2601a962fb0669d1da4a4"
@@ -78,8 +80,14 @@ def main():
     suites = []
     for name, pattern in (("policy", r"policy acceptance: (\d+) checks passed"),
                           ("combat", r"(\d+) combat checks passed"),
-                          ("squads", r"squad checks passed: (\d+)")):
-        fixture = HERE / "fixtures" / f"{name}.cpp"
+                          ("squads", r"squad checks passed: (\d+)"),
+                          ("camp-affordability", r"(\d+) camp affordability checks passed"),
+                          ("channel", r"(\d+) channel-risk checks passed"),
+                          ("recovery", r"(\d+) recovery checks passed"),
+                          ("delivery", r"(\d+) delivery checks passed")):
+        template = HERE / "fixtures" / f"{name}.cpp"
+        fixture = (generate_channel_fixture(source, output) if name == "channel" else
+                   generate_economy_fixture(name, source, output) if name in ("recovery", "delivery") else template)
         wasm = output / f"{name}.wasm"
         command = [compiler, "-std=c++20", "-O1", "-fwasm-exceptions", "-mllvm",
                    "-wasm-use-legacy-eh=false", "-I", source, fixture, "-lunwind", "-o", wasm]
@@ -90,6 +98,11 @@ def main():
             raise RuntimeError(f"Missing successful check marker: {name}")
         suites.append({"name": name, "checks": int(matched[1]), "stdout": execution.stdout.strip(),
                        "fixture_sha256": sha(fixture), "wasm_sha256": sha(wasm),
+                       "template_sha256": sha(template),
+                       "production_function_sha256": hashlib.sha256(
+                           (extract_channel_function(source) if name == "channel" else
+                            extract_economy_policy(name, source)).encode()).hexdigest()
+                           if name in ("channel", "recovery", "delivery") else None,
                        "compile_command": [str(x) for x in command]})
     header_checks = []
     sdk_hash = None

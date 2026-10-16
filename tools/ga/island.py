@@ -672,9 +672,8 @@ def cmd_run(A):
         cut = max(1, int(math.ceil(len(maps) * A.race))) if A.race < 1 else len(maps)
         pin_games(B, [wasm[i] for i in ids], pins)
 
-        def fit(i, ms):  # random-map rivals and pinned (ghost) games, each rival weighs the same
-            f = B.score(i, opps, ms)[0]
-            return (f * len(opps) + pin_fit(B, i, pins) * len(pins)) / (len(opps) + len(pins))
+        def fit(i, ms):  # random-map rivals by weight (v44 up, sparring bots down) and the ghost games
+            return wfit(B, i, opps, ms, pins, A)
         B.games([wasm[i] for i in ids], opps, maps[:cut])
         played_maps = {i: maps for i in ids}
         if cut < len(maps):
@@ -769,6 +768,25 @@ def pin_fit(B, cid, pins):
         if x:
             tot += x['r'] + 0.1 * x['gm'] / 1000.0
     return tot / len(pins)
+
+
+def rival_weight(o, A):
+    """Weight of one random-map rival in the fitness. v44 (genome:start) weighs most: the macro GA thread (16 Oct)
+    crowned a genome that only beat the caster sparring bots and lost the sealed gate vs v44 6-19."""
+    if o == 'genome:start':
+        return A.w_base
+    if os.path.basename(o.rstrip('/\\')).startswith('spar'):
+        return A.w_spar
+    return 1.0
+
+
+def wfit(B, h, opps, maps, pins, A):
+    """Weighted fitness: random-map rivals by rival_weight, the pinned ghost games together weigh --w-ghosts."""
+    w = {o: rival_weight(o, A) for o in opps}
+    f = B.score(h, opps, maps, w)[0]
+    wo = sum(w.values())
+    wg = A.w_ghosts if pins else 0.0
+    return (f * wo + pin_fit(B, h, pins) * wg) / max(1e-9, wo + wg)
 
 
 def rekey(st):
@@ -1112,14 +1130,13 @@ def cmd_champion(A):
     B.games(cl, opps, maps)
 
     def fit(h):
-        f = B.score(h, opps, maps)[0]
-        return (f * len(opps) + pin_fit(B, h, pins) * len(pins)) / (len(opps) + len(pins))
+        return wfit(B, h, opps, maps, pins, A)
     ch = bots[ctl][0]
     cf, cper = fit(ch), B.score(ch, opps, maps)[1]
     rows = []
     for k in finalists:
         h = bots[k][0]
-        better = worse = 0
+        better = worse = vb = vw = 0
         for ob in opps:
             oh = B.opp(ob)[0]
             for m in maps:
@@ -1128,9 +1145,12 @@ def cmd_champion(A):
                 b = sum(B.cache.get(f'{ch}|{oh}|{mk}|{s}', {}).get('r', 0) for s in (0, 1))
                 better += a > b
                 worse += a < b
+                if ob == 'genome:start':  # head to head vs v44: a winner must not be worse here
+                    vb += a > b
+                    vw += a < b
         per = B.score(h, opps, maps)[1]
         rows.append({'cid': k, 'island': cands.get(k, {}).get('island', ''), 'delta': fit(h) - cf,
-                     'better': better, 'worse': worse, 'p': ga.sign_p(better, worse),
+                     'better': better, 'worse': worse, 'p': ga.sign_p(better, worse), 'v44': (vb, vw),
                      'per': {os.path.basename(o): '%d-%d' % (v['won2'], v['lost2']) for o, v in per.items()},
                      'ghosts': pin_fit(B, h, pins), 'describe': describe(genos[k], start)})
     rows.sort(key=lambda r: -r['delta'])
@@ -1139,13 +1159,17 @@ def cmd_champion(A):
              f'sealed maps both sides, plus {len(pins)} ghost games. Control = {A.start} built the same way: fit '
              f'{cf:+.3f}, ' + ', '.join(f'{os.path.basename(o)} {v["won2"]}-{v["lost2"]}' for o, v in cper.items()) +
              f', ghosts {pin_fit(B, ch, pins):+.2f}.', '',
-             '| rank | genome | island | delta vs control | pairs better-worse (p) | maps won-lost both sides per rival | ghosts | changes vs control |',
-             '|---|---|---|---|---|---|---|---|']
+             f'Fitness weights: v44 x{A.w_base:g}, each sparring bot x{A.w_spar:g}, ghost games together x{A.w_ghosts:g}, '
+             'other rivals x1. A champion needs delta > 0 and pairs vs v44 not worse.', '',
+             '| rank | genome | island | delta vs control | pairs better-worse (p) | pairs vs v44 | maps won-lost both sides per rival | ghosts | changes vs control |',
+             '|---|---|---|---|---|---|---|---|---|']
     for n, r in enumerate(rows, 1):
-        lines.append(f"| {n} | {r['cid']} | {r['island']} | {r['delta']:+.3f} | {r['better']}-{r['worse']} ({r['p']:.3f}) | "
+        lines.append(f"| {n} | {r['cid']} | {r['island']} | {r['delta']:+.3f} | {r['better']}-{r['worse']} ({r['p']:.3f}) | {r['v44'][0]}-{r['v44'][1]} | "
                      f"{' '.join(f'{a} {b}' for a, b in r['per'].items())} | {r['ghosts']:+.2f} | {json.dumps(r['describe'])} |")
-    if rows and rows[0]['delta'] > 0:
-        top = rows[0]['cid']
+    ok = [r for r in rows if r['delta'] > 0 and r['v44'][0] >= r['v44'][1]]
+    if ok:
+        win = ok[0]
+        top = win['cid']
         z = os.path.join(A.zip_dir, 'mybot_%s.zip' % top)
         os.makedirs(A.zip_dir, exist_ok=True)
         import zipfile
@@ -1153,12 +1177,13 @@ def cmd_champion(A):
             src = os.path.join(scratch, 'bot_' + top, 'src')
             for f in sorted(os.listdir(src)):
                 zf.write(os.path.join(src, f), 'src/' + f)
-        write_json(os.path.join(home, 'champion.json'), {'cid': top, 'genome': genos[top], 'zip': z, 'row': rows[0],
+        write_json(os.path.join(home, 'champion.json'), {'cid': top, 'genome': genos[top], 'zip': z, 'row': win,
                                                          'time': now()})
-        lines += ['', f'Champion: **{top}** ({rows[0]["island"]}), zip `{z}` (not uploaded). '
-                  f'{"Significant" if rows[0]["p"] < 0.05 else "Not significant"} vs the control (p={rows[0]["p"]:.3f}).']
+        lines += ['', f'Champion: **{top}** ({win["island"]}), zip `{z}` (not uploaded). '
+                  f'{"Significant" if win["p"] < 0.05 else "Not significant"} vs the control (p={win["p"]:.3f}), '
+                  f'pairs vs v44 {win["v44"][0]}-{win["v44"][1]}.']
     else:
-        lines += ['', 'No finalist beats the control: no zip.']
+        lines += ['', 'No finalist beats the control without losing to v44: no zip.']
     txt = '\n'.join(lines) + '\n'
     with open(os.path.join(farm, 'CHAMPION.md'), 'w', newline='\n') as f:
         f.write(txt)
@@ -1176,6 +1201,9 @@ def main():
         s.add_argument('--git-dir', default=os.path.join('out', 'farm-git'), help='local clone of that branch')
         s.add_argument('--git-remote', default='', help='remote URL (default: origin of this checkout)')
         s.add_argument('--git-readonly', action='store_true', help='only read the branch (import), never push')
+        s.add_argument('--w-base', type=float, default=3.0, help='fitness weight of v44 (genome:start)')
+        s.add_argument('--w-spar', type=float, default=0.5, help='fitness weight of each sparring bot (we beat them 2:1)')
+        s.add_argument('--w-ghosts', type=float, default=1.0, help='fitness weight of all ghost games together')
         s.add_argument('--low', type=int, default=1, help='1 = run at low priority (the machine stays usable)')
         s.add_argument('--legacy-branch', default='', help='bridge: read the old PC weights GA from this branch '
                                                            '(pc-island, islands/pc/best.json) into the farm')

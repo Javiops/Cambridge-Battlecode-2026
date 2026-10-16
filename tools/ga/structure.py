@@ -162,7 +162,10 @@ def write_src(base, dst, ints):
         r = subprocess.run(['patch', '-s', '-p1', '-d', src, '-i', patch], capture_output=True, text=True)
     else:  # Windows: no `patch`; git apply outside any repository (the ceiling stops it finding ours) works the same
         env = {**os.environ, 'GIT_CEILING_DIRECTORIES': os.path.dirname(os.path.abspath(src))}
-        r = subprocess.run(['git', 'apply', '-p1', patch], cwd=src, capture_output=True, text=True, env=env)
+        # core.autocrlf=false: with the usual Windows autocrlf=true, git apply writes CRLF back and the multi-line
+        # literals applied after the patch (macro_genome, pair) no longer match (PC island, 16 Oct)
+        r = subprocess.run(['git', '-c', 'core.autocrlf=false', 'apply', '-p1', patch], cwd=src, capture_output=True,
+                           text=True, env=env)
     if r.returncode != 0:
         sys.exit('struct.patch does not apply to %s: %s%s' % (base, r.stdout, r.stderr))
     os.remove(patch)

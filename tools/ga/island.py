@@ -91,11 +91,12 @@ def cid_of(geno):
 
 def describe(geno, ref=None):
     """What the genome changes: vs the base bot, or vs `ref` (e.g. the island's start genome)."""
-    d = T.describe_scalars(scalars(geno))
+    full = T.describe_scalars(scalars(geno))
+    d = full
     if ref is not None:
         r = T.describe_scalars(scalars(ref))
-        d = {k: v for k, v in d.items() if r.get(k) != v}
-        d.update({k: DEF[k] for k in r if k not in d and k in DEF})  # changes of ref the genome undid
+        d = {k: v for k, v in full.items() if r.get(k) != v}
+        d.update({k: DEF[k] for k in r if k not in full and k in DEF})  # changes of ref the genome undid
     for k in ('gp0', 'gp1'):
         if geno.get(k) is not None and d.get('P_%s_ON' % k.upper()):
             d[k] = gp.text(geno[k])
@@ -279,7 +280,9 @@ def farm_dirs(A):
     return out
 
 
-def read_migrants(d):
+def read_migrants(d, bh=None):
+    """Island migrants (migrants/<island>/<cid>.json), plus the flat files other GA threads drop in migrants/
+    (micro_<id>.json with a weights 'genome', structL1_<id>.json with 'scalars'): read as island <prefix>."""
     out = []
     for p in glob.glob(os.path.join(d, 'migrants', '*', '*.json')):
         try:
@@ -287,6 +290,20 @@ def read_migrants(d):
             m['_path'] = p
             out.append(m)
         except (ValueError, OSError):
+            pass
+    for p in glob.glob(os.path.join(d, 'migrants', '*.json')):
+        try:
+            x = json.load(open(p))
+            sc = x.get('scalars') or x.get('genome')
+            if not isinstance(sc, dict) or not all(isinstance(v, int) for v in sc.values()):
+                continue
+            geno = norm({'sc': sc})
+            fit = x.get('fitness') if isinstance(x.get('fitness'), dict) else {}
+            out.append({'island': os.path.basename(p).split('_')[0], 'cid': cid_of(geno), 'base': bh,
+                        'genome': geno, 'fitness': {'shrunk': fit.get('shrunk', 0.0)},
+                        'time': time.strftime('%Y-%m-%d %H:%M:%S UTC', time.gmtime(os.path.getmtime(p))),
+                        '_path': p})
+        except (ValueError, OSError, KeyError):
             pass
     return out
 
@@ -545,6 +562,8 @@ def cmd_run(A):
                  'use a new --name')
     st['scope'] = A.scope
     B = Bench(home, scratch, A.jobs, meta)
+    if A.fuel:  # e.g. 10000000: no fuel chaos, identical decisions give identical games (the macro GA's choice)
+        B.extra = ['--fuel', str(A.fuel)]
     B.genomes = {'genome:start': start, 'genome:default': norm({})}
     for o in A.opps.split(','):
         if o.startswith('genome:') and o not in B.genomes:
@@ -574,7 +593,7 @@ def cmd_run(A):
         if A.imports:
             cands = []
             for d in farm_dirs(A):
-                for m in read_migrants(d):
+                for m in read_migrants(d, bh):
                     tag = '%s/%s' % (m.get('island'), m.get('cid'))
                     if m.get('island') == A.name or m.get('base') != bh or tag in st['imported']:
                         continue
@@ -599,7 +618,7 @@ def cmd_run(A):
         if A.hof:
             best = {}
             for d in farm_dirs(A):
-                for m in read_migrants(d):
+                for m in read_migrants(d, bh):
                     if m.get('island') == A.name or m.get('base') != bh:
                         continue
                     k = m.get('island')
@@ -860,6 +879,7 @@ def main():
         s.add_argument('--imports', type=int, default=2, help='migrants taken in per generation')
         s.add_argument('--export-top', type=int, default=3)
         s.add_argument('--min-n', type=int, default=2, help='generations evaluated before a genome may migrate')
+        s.add_argument('--fuel', type=int, default=0, help='cambc --fuel for training games (0 = the real budget)')
         s.add_argument('--hof', type=int, default=2, help='rivals taken from other islands\' best (hall of fame)')
     s = sub.add_parser('stop'); common(s)
     s = sub.add_parser('board'); common(s)

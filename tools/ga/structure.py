@@ -112,6 +112,26 @@ def cid_of(ints):
     return hashlib.sha1(struct.pack('<%di' % len(ints), *ints)).hexdigest()[:10]
 
 
+def replace_reindented(text, old, new, fname):
+    """text.replace(old, new) for a literal that must occur once; a multi-line literal may sit deeper (the patch
+    moved it into a rule), then it is matched whatever its indent and `new` gets the same extra indent."""
+    if text.count(old) == 1:
+        return text.replace(old, new)
+    lines = old.split('\n')
+    if len(lines) > 1:
+        import re
+        ind0 = len(lines[0]) - len(lines[0].lstrip())
+        pat = '\n'.join('([ \t]*)' + re.escape(l.lstrip()) if i == 0 else '[ \t]*' + re.escape(l.lstrip())
+                         for i, l in enumerate(lines))
+        found = list(re.finditer('(?m)^' + pat, text))
+        if len(found) == 1:
+            extra = len(found[0].group(1)) - ind0
+            pad = ' ' * max(0, extra)
+            rep = '\n'.join(pad + l if l.strip() else l for l in new.split('\n'))
+            return text[:found[0].start()] + rep + text[found[0].end():]
+    sys.exit(f'{fname}: expected exactly one "{old[:60]}", found {text.count(old)}')
+
+
 def write_src(base, dst, ints):
     """base/src -> dst/src: weight literals (genome.LITERALS), the rule-list patch, ga_struct.h and a params.h holding
     the genome as the patchable volatile array `ga_s`."""
@@ -142,6 +162,10 @@ def write_src(base, dst, ints):
     if r.returncode != 0:
         sys.exit('struct.patch does not apply to %s: %s%s' % (base, r.stdout, r.stderr))
     os.remove(patch)
+    for fname, old, new in M.LITERALS:  # after the patch: some sit in the code the patch moved into rules
+        p = os.path.join(src, fname)
+        text = open(p, newline='').read()
+        open(p, 'w', newline='\n').write(replace_reindented(text, old, new, fname))
     shutil.copy(os.path.join(HERE, 'ga_struct.h'), src)
     p = os.path.join(src, 'params.h')
     lines = open(p, newline='').read().split('\n') if os.path.exists(p) else []

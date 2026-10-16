@@ -1,0 +1,54 @@
+{
+ "island": "pc",
+ "cid": "aefcf7cf7f",
+ "base": "7c2d0330e54e",
+ "genome": {
+  "sc": {
+   "P_FLEE_PCT": 24,
+   "P_UNI_FLEE": 42,
+   "P_RECALL_PCT": 54,
+   "P_RECALL_NEAR": 7,
+   "P_BAIL_PCT": 16,
+   "P_ENGAGE2": 109,
+   "P_GA_FAV": 83,
+   "P_GA_KILL_X": 5,
+   "P_LOWHP": 40,
+   "P_GA_SPAWN_HEAL": 90,
+   "P_FRONT_OUT": 160,
+   "P_GA_KITE_HP": 128,
+   "P_VOLLEY": 52,
+   "P_CHASE_GEMS": 155,
+   "P_DANGER": 4,
+   "P_DANGER_T": 45,
+   "P_DANGER_R": 5
+  }
+ },
+ "describe": {
+  "P_FLEE_PCT": 24,
+  "P_UNI_FLEE": 42,
+  "P_RECALL_PCT": 54,
+  "P_RECALL_NEAR": 7,
+  "P_BAIL_PCT": 16,
+  "P_ENGAGE2": 109,
+  "P_GA_FAV": 83,
+  "P_GA_KILL_X": 5,
+  "P_LOWHP": 40,
+  "P_GA_SPAWN_HEAL": 90,
+  "P_FRONT_OUT": 160,
+  "P_GA_KITE_HP": 128,
+  "P_VOLLEY": 52,
+  "P_CHASE_GEMS": 155,
+  "P_DANGER": 4,
+  "P_DANGER_T": 45,
+  "P_DANGER_R": 5
+ },
+ "fitness": {
+  "shrunk": 0.062,
+  "n": 3
+ },
+ "gen": 10,
+ "scope": "micro",
+ "start": "ga65a6",
+ "time": "2026-10-16T12:07:53Z",
+ "transport": "legacy"
+}

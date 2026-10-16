@@ -140,16 +140,17 @@
   "nn": "1 hidden, 5 links, outputs used: back off, engage"
  },
  "fitness": {
-  "shrunk": 0.0676,
-  "n": 2,
+  "shrunk": 0.0725,
+  "n": 3,
   "deltas": [
    0.14228,
-   0.06058
+   0.06058,
+   0.08698
   ]
  },
- "gen": 21,
+ "gen": 24,
  "scope": "neat",
  "start": "ga65a6",
- "time": "2026-10-16 14:16:20 UTC",
+ "time": "2026-10-16 14:42:31 UTC",
  "transport": "shared"
 }

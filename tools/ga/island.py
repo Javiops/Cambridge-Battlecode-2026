@@ -472,7 +472,7 @@ def prepare(A, home, scratch):
         if meta.get('header') == T.HEADER and meta.get('scalars') == T.SCALARS:
             return meta
         print('genome layout changed: rebuilding the template (genotypes are kept, only cached games are lost)')
-    bot = os.path.join(scratch, 'gabot')
+    bot = os.path.join(scratch, 'gabot_%d' % os.getpid())  # per process: two runs never edit the same copy
     T.write_src(A.base_bot, bot, T.to_ints(DEF, {}))
     ga.build(bot)
     w = ga.wasm_of(bot)
@@ -484,6 +484,7 @@ def prepare(A, home, scratch):
             'scalars': T.SCALARS, 'built': now(), 'host': socket.gethostname()}
     write_json(mp, meta)
     shutil.rmtree(os.path.join(scratch, 'cands'), ignore_errors=True)
+    shutil.rmtree(bot, ignore_errors=True)
     print(f'template built: genome {T.LENGTH} ints ({len(T.SCALARS)} scalars) at byte {off}')
     return meta
 
@@ -496,8 +497,9 @@ def code_version():
 
 def pid_alive(pid):
     if WIN:
-        r = subprocess.run(['tasklist', '/FI', 'PID eq %d' % pid, '/NH'], capture_output=True, text=True)
-        return str(pid) in r.stdout
+        r = subprocess.run(['tasklist', '/FI', 'PID eq %d' % pid, '/NH'], capture_output=True, text=True,
+                           errors='replace')  # tasklist prints in the OEM code page
+        return str(pid) in (r.stdout or '')
     try:
         os.kill(pid, 0)
         return True

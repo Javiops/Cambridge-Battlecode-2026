@@ -17,6 +17,13 @@ inline int distance(Pos a, Pos b) {
     return std::max(std::abs(a.x - b.x), std::abs(a.y - b.y));
 }
 inline constexpr int unreachable = 65535;
+inline bool packed_bit(const std::vector<std::uint8_t> &bytes, int index) {
+    // SDK2.2.2 linear_buffer_size()/native export use packed row-major LSB bits.
+    // Some export comments incorrectly say one byte per tile. The native
+    // all-tile equivalence fixture, not those comments, pins this contract.
+    return index >= 0 && index / 8 < static_cast<int>(bytes.size()) &&
+           (bytes[index / 8] & (1u << (index % 8))) != 0;
+}
 enum class Phase {
     Unassigned,
     Travel,
@@ -34,6 +41,7 @@ enum class Phase {
 };
 enum class Channel { None, Recall, Tribute, Teleport };
 enum class Lifecycle { Unknown, Alive, Reward, Respawning };
+enum class Intent { Farm, Convert, Recover, Contest, Deny, Invade, Escort };
 enum class Kind {
     None,
     Move,
@@ -63,8 +71,8 @@ struct Action {
     const char *reason = "no-action";
 };
 struct Spell {
-    int kind = 0, slot = -1, cooldown = -1, range = 0, radius = 0, duration = 0;
-    double amount = 0;
+    int kind = 0, slot = -1, cooldown = -1, recharge = -1, range = 0, radius = 0, duration = 0;
+    double amount = 0, scale = 0;
     bool ready = false, exclusive = false, camps = false, enemies = false, allies = false,
          self = false, ground = false;
 };
@@ -77,7 +85,7 @@ struct Actor {
     bool alive = false, can_move = false, can_attack = false, can_cast = false, stunned = false,
          enhanced = false, completed = false;
     Channel channel = Channel::None;
-    int channel_ticks = -1;
+    int channel_ticks = -1, stun_ticks = -1;
     std::array<Spell, 2> spells{};
     double health_fraction() const {
         return hp / std::max(1.0, max_hp);
@@ -87,6 +95,7 @@ struct Spawn {
     int id = -1, type = -1;
     Pos pos{};
     double hp = 0, strength = 0;
+    int range = 1;
 };
 struct Group {
     int id = -1, index = -1, gold = 0, gems = 0, respawn = 0;
@@ -109,12 +118,42 @@ struct GroupView {
         return seen == round;
     }
 };
+// Conservative earliest contact: one possible dash and the widest plausible
+// damage/control reach. Combining them can be optimistic for the enemy (one
+// cast budget), which is safe for a warning/commit veto, never proof of safety.
+inline int possible_contact_reach(const Actor &enemy, int horizon = 8) {
+    int reach = enemy.range, dash = 0;
+    for (const auto &s : enemy.spells)
+        if (s.cooldown < 0 || s.cooldown <= horizon) {
+            if (s.kind == 6)
+                dash = std::max(dash, s.range);
+            if (s.kind == 2 || s.kind == 3 || s.kind == 4)
+                reach = std::max(reach, s.range + s.radius);
+        }
+    return reach + dash;
+}
 struct Mission {
     Phase phase = Phase::Unassigned;
+    Intent intent = Intent::Farm;
     int group = -1, start = -1, expiry = -1, latest = -1, stagnant = 0, last_progress = -1;
     Pos target{}, last_pos{};
     double rate = 0, last_camp_hp = -1;
+    double completion_cost = 0;
+    double sortie_floor = 0;
+    std::array<Pos, 5> sortie_path{};
+    int sortie_length = 0;
+    bool sortie_exiting = false;
+    bool assembly_pending = false;
+    std::uint64_t assembly_signature = 0;
+    int assembly_anchor = -1, assembly_helper = -1;
+    std::array<Pos, 25> assembly_route{};
+    int assembly_route_length = 0;
     bool chain_used = false, bank_after_reward = false;
+    // Named continuation survives a bank START; it is entered only after an
+    // observed completed conversion, then revalidated by the normal farm gate.
+    int bank_altar = -1, bank_reentry_group = -1;
+    Pos bank_reentry_target{};
+    double bank_reentry_rate = 0;
 };
 struct Proposal {
     Action action{};
@@ -135,6 +174,19 @@ struct Memory {
     double last_hp = 0;
     Channel prior_channel = Channel::None;
     bool prior_alive = false;
+    // Owner-local route history never certifies another body's future action.
+    std::array<Pos, 4> route_history{};
+    Pos route_goal{};
+    int route_samples = 0, route_round = -1, route_best = unreachable, route_stall = 0;
+    int failed_altar = -1, failed_altar_until = -1;
+    int failed_bank_altar = -1, failed_bank_until = -1;
+    Pos failed_bank_window{};
+    std::uint64_t failed_bank_power = 0;
+    double upgrade_gain = 0, upgrade_absence = 0;
+    bool upgrade_gem_unlock = false;
+    int assembly_failed_group = -1;
+    std::uint64_t assembly_failed_signature = 0;
+    int assembly_probe_group = -1, assembly_probe_round = -1000;
 };
 struct Settings {
     // Declared v1 fallbacks/test settings, not fitted performance optima.
@@ -202,6 +254,20 @@ inline bool choose_new_job(const Mission &old, const Mission &next, int round, b
     if (round < old.expiry)
         return false;
     return next.rate > old.rate * Settings::switch_margin;
+}
+inline Mission bank_completion_reentry(const Mission &bank, int round, bool completed) {
+    Mission next;
+    if (!completed || bank.bank_reentry_group < 0 || bank.bank_reentry_target.x < 0 ||
+        bank.bank_reentry_target.y < 0 || bank.bank_reentry_rate <= 0)
+        return next;
+    next.phase = Phase::Reenter;
+    next.intent = Intent::Farm;
+    next.group = bank.bank_reentry_group;
+    next.target = bank.bank_reentry_target;
+    next.rate = bank.bank_reentry_rate;
+    next.start = next.last_progress = round;
+    next.expiry = round + Settings::job_lease;
+    return next; // A fresh farm/route/crew check still owns the first action.
 }
 inline bool retains_channel(Channel channel, bool lethal_before_completion,
                             bool interrupt_before_completion, bool useful_cancel) {

@@ -1,6 +1,7 @@
 #pragma once
 
 #include "sdk_world.h"
+#include "solo.h"
 #include <algorithm>
 #include <array>
 #include <optional>
@@ -18,6 +19,15 @@ inline int shop_raw(ShopFamily family, ShopStat stat, bool emblem = false) {
 }
 inline cambc::item_type shop_item(int raw) {
     return cambc::item_type{static_cast<std::uint32_t>(raw)};
+}
+// Catalogue metadata is immutable for the pinned engine. Dynamic wallet,
+// inventory and can_buy remain fresh; only these public definitions are cached.
+inline const cambc::item_info &shop_info(int raw) {
+    static std::array<std::optional<cambc::item_info>, 42> catalogue;
+    auto &entry = catalogue.at(raw);
+    if (!entry)
+        entry = shop_item(raw).info();
+    return *entry;
 }
 inline bool shop_unique_family(ShopFamily f) {
     return f != ShopFamily::Power && f != ShopFamily::Bruiser;
@@ -56,6 +66,12 @@ inline ShopStat shop_role_stat(int physical_type) {
 }
 
 struct ShoppingState {
+    std::vector<Pos> own_spawn_positions; // Immutable public geometry; completed once.
+    std::array<int, 2> gem_route_group{-1, -1};
+    std::array<Pos, 2> gem_route_stage{};
+    std::array<std::array<int, 4>, 2> gem_route_lengths{};
+    int gem_route_next = 0;
+    std::optional<cambc::champion_stats> own_growth;
     int goal = -1, goal_group = -2;
     Phase goal_phase = Phase::Unassigned;
     int failed_round = -1, last_round = -1, heals_this_round = 0;
@@ -66,7 +82,134 @@ struct ShoppingState {
     int expected_useful_recalls = 0;
     int reserve_consumable = -1;
     const char *reserve_reason = "no-consumable-mission";
+    int forecast_group = -1;
+    double forecast_cycles = 0;
+    // Exact bundle behind an elective return; it survives the temporary
+    // Recover/Channel mission instead of silently changing to a generic build.
+    int investment_item = -1, investment_count = 0, investment_before = 0,
+        investment_emblem_before = 0, investment_round = -1, investment_buy_gold = 0;
+    double investment_gain = 0, investment_absence = 0;
+    Mission investment_mission{}, investment_origin{};
+    bool investment_gem_unlock = false;
 };
+
+struct UpgradeDelta {
+    double health = 0, strength = 0, focus = 0;
+    bool first_passive = false;
+    ShopFamily family = ShopFamily::Power;
+};
+inline UpgradeDelta upgrade_delta(int raw, const ShopInventory &inv,
+                                  const cambc::champion_stats &growth, int count = 1) {
+    const auto &item = shop_info(raw);
+    double hp = count * item.health_points, str = count * item.strength_points,
+           focus = count * item.focus_points;
+    const bool completes = inv.count[raw] + count == 5 && item.result.has_value();
+    if (completes) {
+        const auto &combined = shop_info(static_cast<int>(*item.result));
+        hp = combined.health_points - inv.count[raw] * item.health_points;
+        str = combined.strength_points - inv.count[raw] * item.strength_points;
+        focus = combined.focus_points - inv.count[raw] * item.focus_points;
+    }
+    const auto family = static_cast<ShopFamily>(raw / 6);
+    UpgradeDelta result{hp * growth.health_growth, str * growth.strength_growth,
+                        focus * growth.focus_growth, completes && !inv.has(family), family};
+    return result;
+}
+inline void forecast_investment(const World &w, const Mission &mission, ShoppingState &state) {
+    state.expected_base_gold = 0;
+    state.expected_useful_recalls = 0;
+    state.forecast_cycles = 0;
+    state.forecast_group = -1;
+    if (mission.group < 0 || mission.group >= static_cast<int>(w.geo.groups.size()) ||
+        !w.self.alive)
+        return;
+    const auto &group = w.geo.groups[mission.group];
+    const int remaining = std::max(0, static_cast<int>(cambc::constants::max_rounds) - w.round);
+    double damage = w.self.strength;
+    for (const auto &spell : w.spells)
+        if (spell.camps && (spell.kind == 2 || spell.kind == 3 || spell.kind == 4))
+            damage = std::max(damage, w.self.strength + spell.amount / std::max(1, spell.recharge));
+    const double clear = std::ceil(group.initial_hp / std::max(1.0, damage));
+    const double route = w.geo.estimate(w.self.pos, mission.target);
+    const double interval = std::max<double>(group.respawn, route + clear + 6);
+    const int recipients = std::max(
+        1, static_cast<int>(std::count_if(w.allies.begin(), w.allies.end(), [&](const Actor &a) {
+            return a.alive && w.matching_claim(a.id, mission.group);
+        })));
+    // A named repeat route forecast, capped to eight cycles. It is an estimate,
+    // not promised future income or a claim that every public camp stays ours.
+    state.forecast_cycles =
+        std::max(0.0, std::min(8.0, (remaining - route - clear - 6) / std::max(1.0, interval)));
+    if (!w.enemies.empty() || w.warning_near(mission.target, 4))
+        state.forecast_cycles = std::min(1.0, state.forecast_cycles);
+    state.forecast_group = mission.group;
+    state.expected_base_gold = state.forecast_cycles * group.gold / recipients;
+    if (group.initial_strength > 0 &&
+        clear * group.initial_strength * w.self.camp_mitigation > w.self.max_hp * .35)
+        state.expected_useful_recalls = static_cast<int>(std::floor(state.forecast_cycles));
+}
+inline double upgrade_mission_value(const World &w, const Mission &mission,
+                                    const UpgradeDelta &delta, const ShoppingState &state) {
+    const bool farm = mission.group >= 0 && mission.group < static_cast<int>(w.geo.groups.size());
+    double hp = 0, enemy_pressure = w.exposure(w.self.pos) * w.self.mitigation,
+           monster_pressure = 0, value = 1;
+    if (farm) {
+        const auto &g = w.geo.groups[mission.group];
+        hp = g.initial_hp;
+        value = g.gems + .25 * g.gold;
+        if (w.self.range <= 2)
+            monster_pressure = g.initial_strength * w.self.camp_mitigation;
+    } else
+        for (const auto &enemy : w.enemies)
+            hp = std::max(hp, enemy.hp + enemy.shield);
+    double added_strength = delta.strength + (w.self.type == 0 ? .01 * delta.health : 0);
+    double old_damage = w.self.strength, added_cast = 0;
+    for (const auto &spell : w.spells)
+        if ((farm ? spell.camps : spell.enemies) &&
+            (spell.kind == 2 || spell.kind == 3 || spell.kind == 4)) {
+            old_damage =
+                std::max(old_damage, w.self.strength + spell.amount / std::max(1, spell.recharge));
+            added_cast =
+                std::max(added_cast, delta.focus * spell.scale / std::max(1, spell.recharge));
+        }
+    double next_damage = old_damage + added_strength + added_cast;
+    if (farm && delta.first_passive && delta.family == ShopFamily::Monster)
+        next_damage *= 1.1;
+    const double old_turns = std::ceil(hp / std::max(1.0, old_damage));
+    const double new_turns = std::ceil(hp / std::max(1.0, next_damage));
+    double score = std::max(0.0, old_turns - new_turns) * value;
+    score += value * (next_damage - old_damage) / std::max(1.0, old_damage);
+    const double pressure = std::max(0.0, enemy_pressure + monster_pressure - w.self.shield);
+    double reduced_enemy = enemy_pressure, reduced_monster = monster_pressure;
+    if (delta.first_passive && delta.family == ShopFamily::Durability)
+        reduced_enemy *= .9, reduced_monster *= .9;
+    if (farm && delta.first_passive && delta.family == ShopFamily::Jungle)
+        reduced_monster *= .7;
+    const double reduced = std::max(0.0, reduced_enemy + reduced_monster - w.self.shield);
+    const double next_hp = w.self.hp + (w.in_spawn(w.self.pos) ? delta.health : 0);
+    if (pressure >= w.self.hp && reduced < next_hp)
+        score += 10000; // A concrete next-response survival breakpoint.
+    score += value * std::max(0.0, pressure - reduced) / std::max(1.0, w.self.max_hp);
+    score += value * delta.health / std::max(1.0, w.self.max_hp) * (pressure > 0 ? 1 : .05);
+    for (const auto &spell : w.spells)
+        if (spell.kind == 5 || spell.kind == 7) {
+            double effective = 0;
+            if (spell.kind == 5) {
+                for (const auto &ally : w.allies)
+                    if (distance(w.self.pos, ally.pos) <= spell.range)
+                        effective =
+                            std::max(effective, std::min(delta.focus * spell.scale,
+                                                         std::max(0.0, ally.max_hp - ally.hp)));
+            } else
+                effective = std::min(pressure, delta.focus * spell.scale);
+            score += value * effective / std::max(1.0, w.self.max_hp);
+        }
+    if (delta.first_passive && delta.family == ShopFamily::Treasure)
+        score += .25 * .2 * state.expected_base_gold;
+    if (delta.first_passive && delta.family == ShopFamily::Home)
+        score += 2 * state.expected_useful_recalls * std::max(0.0, mission.rate);
+    return score;
+}
 
 inline bool shop_farm_phase(const Mission &m) {
     return m.group >= 0 &&
@@ -140,6 +283,562 @@ inline int shop_choose_shard(const ShopInventory &inv, int type, const Mission &
     return fallback_raw;
 }
 
+struct ShopBundle {
+    int raw = -1, count = 0;
+    UpgradeDelta delta{};
+    double score = 0;
+    bool affordable = false;
+};
+inline ShopBundle select_shop_bundle(World &w, const Mission &mission,
+                                     const ShopInventory &inventory, const ShoppingState &state,
+                                     int reserve = 0) {
+    const bool farm = shop_farm_phase(mission);
+    bool pressure = false;
+    for (const auto &enemy : w.enemies)
+        pressure |= enemy.alive && distance(w.self.pos, enemy.pos) <= 8;
+    const bool damaging = farm && mission.group < static_cast<int>(w.geo.groups.size()) &&
+                          w.geo.groups[mission.group].initial_strength > 0 && w.self.range <= 2;
+    const int remaining = std::max(0, static_cast<int>(cambc::constants::max_rounds) - w.round);
+    int raw =
+        shop_choose_shard(inventory, w.self.type, mission, damaging, pressure, state, remaining);
+    auto bundle_count = [&](int candidate) {
+        const int cost = static_cast<int>(shop_info(candidate).cost);
+        return cost > 0 ? std::max(0, std::min(5 - inventory.count[candidate],
+                                               (w.gold - reserve) / cost))
+                        : 0;
+    };
+    ShopBundle result;
+    if (bundle_count(raw) <= 0)
+        return result;
+    result.raw = raw;
+    result.count = bundle_count(raw);
+    result.affordable = true;
+    if (!w.self.alive || cambc::fuel_remaining() <= 25000)
+        return result; // Explicit role-build fallback, never a priced return.
+    const auto growth = w.me.base_stats();
+    int completion = raw, most = 0;
+    for (int item = 0; item < 42; item += 2) {
+        const auto family = static_cast<ShopFamily>(item / 6);
+        if (inventory.count[item] > most &&
+            shop_family_useful(family, farm, damaging, pressure, state, remaining) &&
+            (!shop_unique_family(family) || !inventory.has(family))) {
+            most = inventory.count[item];
+            completion = item;
+        }
+    }
+    ShopFamily alternative = ShopFamily::Power;
+    ShopStat stat = shop_role_stat(w.self.type);
+    if (damaging && !inventory.has(ShopFamily::Jungle))
+        alternative = ShopFamily::Jungle;
+    else if (pressure && !inventory.has(ShopFamily::Durability)) {
+        alternative = ShopFamily::Durability;
+        stat = ShopStat::Health;
+    } else if (state.expected_base_gold >= 750 && !inventory.has(ShopFamily::Treasure))
+        alternative = ShopFamily::Treasure;
+    else if (state.expected_useful_recalls > 1 && !inventory.has(ShopFamily::Home))
+        alternative = ShopFamily::Home;
+    else if (farm && !inventory.has(ShopFamily::Monster))
+        alternative = ShopFamily::Monster;
+    result.delta = upgrade_delta(raw, inventory, growth, result.count);
+    result.score = upgrade_mission_value(w, mission, result.delta, state) / result.count;
+    for (int candidate : {completion, shop_raw(alternative, stat)}) {
+        const int count = bundle_count(candidate);
+        if (count <= 0)
+            continue;
+        const auto delta = upgrade_delta(candidate, inventory, growth, count);
+        const double score = upgrade_mission_value(w, mission, delta, state) / count;
+        if (score > result.score * 1.1 + .001) {
+            result.raw = candidate;
+            result.count = count;
+            result.delta = delta;
+            result.score = score;
+        }
+    }
+    return result;
+}
+struct ReturnPayoff {
+    double saved_turns = 0, absence = 0, cycles = 0;
+    bool known = false, worthwhile = false;
+};
+inline ReturnPayoff named_return_payoff(const Actor &body, const Group &group,
+                                        const UpgradeDelta &delta, int remaining, int return_walk,
+                                        int recall_ticks, double margin, int bank_walk = 0,
+                                        int bank_ticks = 1) {
+    ReturnPayoff out;
+    // A gold-only route lacks a named completed-bank continuation in this
+    // bounded model. It never manufactures one from equipment points.
+    if (group.gems <= 0 || group.initial_hp <= 0 || return_walk < 0 || return_walk == unreachable ||
+        bank_walk < 0 || bank_walk == unreachable || bank_ticks <= 0 || remaining <= 0 ||
+        recall_ticks <= 0)
+        return out;
+    double old_damage = body.strength;
+    const double strength =
+        body.strength + delta.strength + (body.type == 0 ? .01 * delta.health : 0);
+    double next_damage = strength;
+    for (const auto &spell : body.spells)
+        if (spell.camps && (spell.kind == 2 || spell.kind == 3 || spell.kind == 4)) {
+            const double interval = std::max(1, spell.recharge);
+            old_damage = std::max(old_damage, body.strength + spell.amount / interval);
+            next_damage = std::max(
+                next_damage, strength + (spell.amount + delta.focus * spell.scale) / interval);
+        }
+    if (delta.first_passive && delta.family == ShopFamily::Monster)
+        next_damage *= 1.1;
+    const double old_clear = std::ceil(group.initial_hp / std::max(1.0, old_damage));
+    const double new_clear = std::ceil(group.initial_hp / std::max(1.0, next_damage));
+    const int bank_travel =
+        (bank_walk + std::max(1, body.move_speed) - 1) / std::max(1, body.move_speed);
+    // Every counted repetition includes a completed bank and the next resource
+    // return leg. Counting a final extra return is conservative, not free income.
+    const double interval =
+        std::max<double>(group.respawn, old_clear + 6 + 2 * bank_travel + bank_ticks);
+    out.absence = recall_ticks + 1 + std::ceil(double(return_walk) / std::max(1, body.move_speed));
+    out.cycles = std::max(
+        0.0, std::min(8.0, std::floor((remaining - out.absence) / std::max(1.0, interval))));
+    const double injury = old_clear * group.initial_strength * body.camp_mitigation;
+    if (injury > 0)
+        out.cycles =
+            std::min(out.cycles, std::max(0.0, std::floor((body.hp - .25 * body.max_hp) / injury)));
+    out.saved_turns = std::max(0.0, old_clear - new_clear) * out.cycles;
+    out.known = std::isfinite(out.saved_turns) && std::isfinite(out.absence) && out.cycles > 0;
+    out.worthwhile = out.known && out.saved_turns > out.absence * margin;
+    return out;
+}
+// The future schedule assumes the currently observed quiet sleeping resource
+// remains available; actual arrival must revalidate it. This is a priced policy
+// assumption, never a future-visibility or uncontested-ownership guarantee.
+// One explicitly named completed gem cycle, not a conversion of gold or item
+// points into imaginary score. Every length is a completed static walking field.
+struct GemReturnLegs {
+    int direct_walk = unreachable, spawn_walk = unreachable, capture_walk = unreachable,
+        bank_walk = unreachable, home_walk = unreachable, capture_hold = 0, tribute = 0;
+};
+struct GemReturnPayoff {
+    double next_ticks = 0, old_ticks = 0, absence = 0, saved_turns = 0;
+    bool known = false, worthwhile = false, unlock = false;
+};
+inline Actor project_bundle_actor(Actor body, const UpgradeDelta &delta) {
+    body.max_hp += delta.health;
+    body.hp = body.max_hp; // Requires the explicitly priced spawn end/full heal.
+    body.strength += delta.strength + (body.type == 0 ? .01 * delta.health : 0);
+    body.focus += delta.focus;
+    body.shield = 0;
+    for (auto &spell : body.spells)
+        if (spell.kind == 2 || spell.kind == 3 || spell.kind == 4 || spell.kind == 5 ||
+            spell.kind == 7)
+            spell.amount += delta.focus * spell.scale;
+    if (delta.first_passive) {
+        if (delta.family == ShopFamily::Jungle)
+            body.camp_mitigation *= .7;
+        if (delta.family == ShopFamily::Durability) {
+            body.mitigation *= .9;
+            body.camp_mitigation *= .9;
+        }
+        if (delta.family == ShopFamily::Home)
+            body.home = true;
+        if (delta.family == ShopFamily::Monster)
+            body.monster = true; // The solo certificate applies camp damage once.
+    }
+    return body;
+}
+inline GemReturnPayoff completed_gem_return(const Actor &actual, const UpgradeDelta &delta,
+                                            const Camp &camp, Pos stage, const GemReturnLegs &legs,
+                                            int remaining, double margin) {
+    GemReturnPayoff out;
+    for (int length :
+         {legs.direct_walk, legs.spawn_walk, legs.capture_walk, legs.bank_walk, legs.home_walk})
+        if (length < 0 || length == unreachable)
+            return out;
+    if (!actual.alive || actual.gems != 0 || camp.awake || legs.capture_hold <= 0 ||
+        legs.tribute <= 0 || remaining <= 0 || actual.channel != Channel::None)
+        return out;
+    const auto turns = [&](int distance) {
+        return (distance + std::max(1, actual.move_speed) - 1) / std::max(1, actual.move_speed);
+    };
+    Actor old_full = actual;
+    old_full.hp = old_full.max_hp;
+    const Actor next = project_bundle_actor(actual, delta);
+    const int returning = (actual.home ? 3 : 5) + 1 + turns(legs.spawn_walk);
+    const auto before = certify_solo_clear(old_full, camp, stage, returning, false);
+    const auto after = certify_solo_clear(next, camp, stage, returning, false);
+    if (!before.known || !after.known || !after.feasible)
+        return out;
+    const auto completion = [&](const Actor &body, double clear) {
+        // Both alternatives finish banked and recovered at spawn. Counting the
+        // final heal even at high HP is a conservative complete-cycle bound.
+        const int recovery = std::min(turns(legs.home_walk), body.home ? 3 : 5) + 1;
+        return clear + turns(legs.capture_walk) + legs.capture_hold + turns(legs.bank_walk) +
+               legs.tribute + recovery;
+    };
+    out.absence = returning;
+    out.next_ticks = returning + completion(next, after.clear_ticks);
+    if (!std::isfinite(out.next_ticks) || out.next_ticks >= remaining)
+        return out;
+    out.known = true;
+    if (!before.feasible) {
+        // Explicit first-version unlock policy: a proven infeasible same camp
+        // becomes a real completed gem cycle. Continued origin gold farming is
+        // a zero-gem alternative, not an exchange rate from gold into gems.
+        out.unlock = out.worthwhile = true;
+        return out;
+    }
+    out.old_ticks = returning + completion(old_full, before.clear_ticks);
+    int direct_elapsed = turns(legs.direct_walk) + (actual.can_move ? 0 : 1);
+    const bool ready_now =
+        stage == actual.pos && !actual.completed && (actual.can_attack || actual.can_cast);
+    if (!ready_now)
+        direct_elapsed = std::max(1, direct_elapsed);
+    const auto direct = certify_solo_clear(actual, camp, stage, direct_elapsed, ready_now);
+    if (!direct.known)
+        return GemReturnPayoff{}; // Unknown current alternative is never free.
+    if (direct.feasible)
+        out.old_ticks =
+            std::min(out.old_ticks, direct_elapsed + completion(actual, direct.clear_ticks));
+    out.saved_turns = std::max(0.0, out.old_ticks - out.next_ticks);
+    out.worthwhile = out.saved_turns > out.absence * margin;
+    return out;
+}
+inline std::array<int, 2> gem_investment_groups(const World &w) {
+    std::array<int, 2> result{-1, -1};
+    std::array<int, 2> cost{unreachable, unreachable};
+    for (unsigned gi = 0; gi < w.groups.size(); ++gi) {
+        if (!assembly_detail::simple_sleeping(w, gi) || w.geo.groups[gi].gems <= 0 ||
+            w.warning_near(w.groups[gi].camps.front().pos, 4))
+            continue;
+        bool occupied = false;
+        for (const auto &ally : w.allies)
+            occupied |= ally.alive && ally.id != w.self.id &&
+                        (w.on_group(gi, ally.pos) || w.matching_claim(ally.id, gi));
+        if (occupied)
+            continue;
+        const int d = distance(w.self.pos, w.groups[gi].camps.front().pos);
+        if (d < cost[0]) {
+            result[1] = result[0];
+            cost[1] = cost[0];
+            result[0] = gi;
+            cost[0] = d;
+        } else if (d < cost[1]) {
+            result[1] = gi;
+            cost[1] = d;
+        }
+    }
+    return result;
+}
+inline std::optional<Pos> gem_investment_stage(const World &w, int gi,
+                                               const ShoppingState *state = nullptr) {
+    if (!assembly_detail::simple_sleeping(w, gi))
+        return std::nullopt;
+    const auto &camp = w.groups[gi].camps.front();
+    if (state)
+        for (int k = 0; k < 2; ++k) {
+            const Pos chosen = state->gem_route_stage[k];
+            if (state->gem_route_group[k] == gi && w.free(chosen) &&
+                packed_bit(w.visible_bytes, w.geo.index(chosen)) &&
+                distance(chosen, camp.pos) <= w.self.range)
+                return chosen; // Keep a still-legal already priced named endpoint.
+        }
+    const int range = std::min(4, w.self.range);
+    int best = unreachable;
+    std::optional<Pos> result;
+    for (int dy = -range; dy <= range; ++dy)
+        for (int dx = -range; dx <= range; ++dx) {
+            const Pos p{camp.pos.x + dx, camp.pos.y + dy};
+            if (!w.free(p) || !packed_bit(w.visible_bytes, w.geo.index(p)) ||
+                distance(p, camp.pos) > w.self.range)
+                continue;
+            const int d = w.home_distance(p);
+            if (d < best) {
+                best = d;
+                result = p;
+            }
+        }
+    return result;
+}
+// Advisory for main's next fresh-budget immutable field preparation. It does
+// not authorize the old observation, a clear, or a return on the next owner.
+inline std::optional<Pos> shopping_gem_route_hint(const World &w, const ShoppingState &state) {
+    if (!w.self.alive || w.gold < 30 || state.investment_item >= 0 || w.self.type == 11 ||
+        w.self.gems > 0 || w.memory.mission.group < 0 ||
+        w.memory.mission.group >= static_cast<int>(w.geo.groups.size()) ||
+        w.geo.groups[w.memory.mission.group].gems > 0 || !w.enemies.empty())
+        return std::nullopt;
+    for (int gi : gem_investment_groups(w))
+        if (gi >= 0)
+            if (auto stage = gem_investment_stage(w, gi, &state))
+                if (!w.geo.goal_cache.contains({w.geo.index(*stage), 0}))
+                    return stage;
+    return std::nullopt;
+}
+inline std::optional<GemReturnLegs> gem_return_legs(const World &w, ShoppingState &state, int gi,
+                                                    Pos stage, int floor = 40000) {
+    const auto field = w.geo.goal_cache.find({w.geo.index(stage), 0});
+    if (field == w.geo.goal_cache.end())
+        return std::nullopt;
+    GemReturnLegs legs;
+    legs.direct_walk = w.geo.at(field->second, w.self.pos);
+    int cached = -1;
+    for (int k = 0; k < 2; ++k)
+        if (state.gem_route_group[k] == gi && state.gem_route_stage[k] == stage)
+            cached = k;
+    if (cached >= 0) {
+        const auto &v = state.gem_route_lengths[cached];
+        legs.spawn_walk = v[0];
+        legs.capture_walk = v[1];
+        legs.bank_walk = v[2];
+        legs.home_walk = v[3];
+    } else {
+        legs.spawn_walk = 0;
+        if (state.own_spawn_positions.empty()) {
+            const auto native_spawn = w.geo.own_spawn.positions();
+            std::vector<Pos> complete;
+            complete.reserve(native_spawn.size());
+            for (const auto tile : native_spawn)
+                complete.push_back(position(tile));
+            state.own_spawn_positions = std::move(complete);
+            return std::nullopt; // Immutable setup is one bounded advisory opportunity.
+        }
+        for (const auto tile : state.own_spawn_positions) {
+            if (bc::fuel_remaining() < static_cast<unsigned>(floor + 2000))
+                return std::nullopt;
+            const int d = w.geo.at(field->second, tile);
+            if (d == unreachable)
+                return std::nullopt; // Every actual possible spawn, not only the nearest one.
+            legs.spawn_walk = std::max(legs.spawn_walk, d);
+        }
+        const Pos capture = w.geo.groups[gi].spawns.front().pos;
+        legs.capture_walk = w.geo.at(field->second, capture);
+        legs.bank_walk = unreachable;
+        for (const auto altar : w.geo.altars)
+            for (int dy = -1; dy <= 1; ++dy)
+                for (int dx = -1; dx <= 1; ++dx) {
+                    if (bc::fuel_remaining() < static_cast<unsigned>(floor + 2500))
+                        return std::nullopt;
+                    const Pos at{altar.x + dx, altar.y + dy};
+                    const int back = w.home_distance(at);
+                    const int forward = w.geo.at(field->second, at);
+                    if (back == unreachable || forward == unreachable)
+                        continue;
+                    // The altar itself is impassable. Price a real legal adjacent
+                    // bank tile via capture->certified stage->bank endpoint. This
+                    // completed cached walk is an upper bound, never a straight line.
+                    const int d = legs.capture_walk + forward;
+                    if (d < legs.bank_walk) {
+                        legs.bank_walk = d;
+                        legs.home_walk = back;
+                    }
+                }
+        if (legs.spawn_walk == unreachable || legs.capture_walk == unreachable ||
+            legs.bank_walk == unreachable || legs.home_walk == unreachable)
+            return std::nullopt;
+        const int slot = state.gem_route_next++ % 2;
+        state.gem_route_group[slot] = gi;
+        state.gem_route_stage[slot] = stage;
+        state.gem_route_lengths[slot] = {legs.spawn_walk, legs.capture_walk, legs.bank_walk,
+                                         legs.home_walk};
+        return std::nullopt; // Complete immutable quote legs are reused next owner.
+    }
+    legs.capture_hold = int(bc::constants::capture_time) + 1;
+    legs.tribute = tribute_ticks(
+        w.geo.groups[gi].gems, bc::constants::submit_gem_duration_multiplier,
+        bc::constants::submit_gem_base_duration, bc::constants::submit_gem_minimum_duration);
+    return legs;
+}
+
+inline void clear_investment(ShoppingState &state) {
+    state.investment_item = -1;
+    state.investment_count = 0;
+    state.investment_gain = state.investment_absence = 0;
+    state.investment_gem_unlock = false;
+}
+inline bool investment_plan_invalid(const ShoppingState &state, const Memory &memory, int round,
+                                    int group_count, bool alive, bool opposition, bool warning) {
+    const auto &job = state.investment_mission;
+    return !alive || state.investment_round < 0 || round - state.investment_round > 40 ||
+           (job.latest >= 0 && round >= job.latest) || job.group < 0 || job.group >= group_count ||
+           (memory.failed_group == job.group && round < memory.failed_until) || opposition ||
+           warning;
+}
+inline bool plan_gold_gem_return(World &w, Memory &memory, ShoppingState &state,
+                                 const ShopInventory &inventory, int floor) {
+    struct Candidate {
+        int group = -1;
+        Mission mission{};
+        ShopBundle bundle{};
+        GemReturnPayoff payoff{};
+        double rate = 0;
+    };
+    Candidate best;
+    double old_rate = 0;
+    int quotes = 0;
+    for (const auto &view : w.groups)
+        for (const auto &camp : view.camps)
+            if (camp.awake && camp.hp > 0)
+                return false; // This quote does not model a walk through an active camp fight.
+    for (int gi : gem_investment_groups(w)) {
+        if (gi < 0 || bc::fuel_remaining() < static_cast<unsigned>(floor + 10000))
+            continue;
+        const auto stage = gem_investment_stage(w, gi, &state);
+        if (!stage)
+            continue;
+        const auto legs = gem_return_legs(w, state, gi, *stage, floor);
+        if (!legs || bc::fuel_remaining() < static_cast<unsigned>(floor + 9000))
+            continue;
+        const auto &camp = w.groups[gi].camps.front();
+        int collateral = w.self.type == 10 ? 1 : 0;
+        for (const auto &spell : w.self.spells)
+            if (spell.kind == 3 && spell.camps)
+                collateral = std::max(collateral, spell.radius);
+        bool splash = false;
+        if (collateral > 0)
+            for (unsigned other = 0; other < w.geo.groups.size(); ++other)
+                if (other != static_cast<unsigned>(gi))
+                    for (const auto &spawn : w.geo.groups[other].spawns)
+                        splash |= distance(spawn.pos, camp.pos) <= collateral;
+        if (splash)
+            continue;
+        Mission next;
+        next.phase = Phase::Travel;
+        next.intent = Intent::Farm;
+        next.group = gi;
+        next.target = camp.pos;
+        next.start = next.last_progress = w.round;
+        next.expiry = w.round + Settings::job_lease;
+        if (!state.own_growth)
+            state.own_growth = w.me.base_stats(); // Immutable actual personal design.
+        const auto make_bundle = [&](int raw) {
+            ShopBundle bundle;
+            bundle.raw = raw;
+            const int cost = int(shop_info(raw).cost);
+            bundle.count =
+                cost > 0 ? std::max(0, std::min(5 - inventory.count[raw], w.gold / cost)) : 0;
+            bundle.affordable = bundle.count > 0;
+            if (bundle.affordable)
+                bundle.delta = upgrade_delta(raw, inventory, *state.own_growth, bundle.count);
+            return bundle;
+        };
+        const ShopFamily defense =
+            !inventory.has(ShopFamily::Jungle) ? ShopFamily::Jungle : ShopFamily::Durability;
+        ShopBundle defensive;
+        if (!inventory.has(defense))
+            defensive = make_bundle(shop_raw(defense, ShopStat::Health));
+        const ShopFamily offense = !inventory.has(ShopFamily::Jungle)    ? ShopFamily::Jungle
+                                   : !inventory.has(ShopFamily::Monster) ? ShopFamily::Monster
+                                                                         : ShopFamily::Power;
+        const auto role_bundle = make_bundle(shop_raw(offense, shop_role_stat(w.self.type)));
+        if (defensive.raw == role_bundle.raw)
+            defensive.affordable = false;
+        // A reserve unlock first needs a durable affordable kit. The normal
+        // role bundle remains the second exact alternative when budget permits.
+        for (const auto &bundle : {defensive, role_bundle}) {
+            if (quotes >= 2 || !bundle.affordable || bundle.raw < 0 ||
+                bc::fuel_remaining() < static_cast<unsigned>(floor + 6500))
+                continue;
+            ++quotes;
+            const auto payoff = completed_gem_return(w.self, bundle.delta, camp, *stage, *legs,
+                                                     int(bc::constants::max_rounds) - w.round,
+                                                     Settings::switch_margin);
+            if (w.round != int(bc::round_number()) ||
+                bc::fuel_remaining() < static_cast<unsigned>(floor))
+                return false;
+            if (!payoff.known)
+                continue;
+            const int gems = w.geo.groups[gi].gems;
+            if (payoff.old_ticks > 0)
+                old_rate = std::max(old_rate, gems / payoff.old_ticks);
+            const double rate = gems / std::max(1.0, payoff.next_ticks);
+            if (payoff.worthwhile && rate > best.rate) {
+                next.rate = rate;
+                next.latest = int(bc::constants::max_rounds) -
+                              int(std::ceil(payoff.next_ticks - payoff.absence));
+                best = {gi, next, bundle, payoff, rate};
+            }
+            if (payoff.worthwhile)
+                break; // Spend the other permitted quote on the next named alternative.
+        }
+    }
+    if (best.group < 0 || old_rate >= best.rate)
+        return false;
+    state.investment_origin = memory.mission;
+    state.investment_mission = best.mission;
+    state.investment_item = best.bundle.raw;
+    state.investment_count = best.bundle.count;
+    state.investment_before = inventory.count[best.bundle.raw];
+    state.investment_emblem_before = inventory.count[best.bundle.raw + 1];
+    state.investment_round = w.round;
+    state.investment_gem_unlock = memory.upgrade_gem_unlock = best.payoff.unlock;
+    state.investment_gain = memory.upgrade_gain = best.payoff.saved_turns;
+    state.investment_absence = memory.upgrade_absence = best.payoff.absence;
+    return true;
+}
+inline void plan_upgrade_return(World &w, Memory &memory, ShoppingState &state) {
+    const int planning_floor = std::max(40000, int(bc::fuel_remaining()) - 16000);
+    memory.upgrade_gain = memory.upgrade_absence = 0;
+    memory.upgrade_gem_unlock = false;
+    if (state.investment_item >= 0) {
+        if (investment_plan_invalid(state, memory, w.round, w.geo.groups.size(), w.self.alive,
+                                    !w.enemies.empty(),
+                                    w.warning_near(state.investment_mission.target, 4))) {
+            clear_investment(state);
+            return;
+        }
+        if (w.in_spawn(w.self.pos))
+            return; // Actual named bundle is installed by shopping_proposal first.
+        if (memory.mission.phase == Phase::Recover || memory.mission.phase == Phase::Channel ||
+            memory.prior_channel == Channel::Recall) {
+            memory.upgrade_gem_unlock = state.investment_gem_unlock;
+            memory.upgrade_gain = state.investment_gain;
+            memory.upgrade_absence = state.investment_absence;
+            return;
+        }
+        clear_investment(state); // An unrelated mission needs a fresh plan.
+    }
+    const auto &mission = memory.mission;
+    if (!w.self.alive || w.self.type == 11 || w.in_spawn(w.self.pos) || w.gold < 30 ||
+        w.self.channel != Channel::None || mission.group < 0 ||
+        mission.group >= static_cast<int>(w.geo.groups.size()) || cambc::fuel_remaining() < 60000 ||
+        !w.enemies.empty() || mission.bank_after_reward || mission.chain_used ||
+        w.own_score + w.self.gems >= static_cast<int>(cambc::constants::winning_gems))
+        return;
+    if (w.warning_near(mission.target, 4))
+        return;
+    const int home = w.home_distance(mission.target);
+    const int altar = w.altar_distance(mission.target);
+    if (home == unreachable || altar == unreachable ||
+        w.me.restrictions().contains(cambc::buff_restrictions::shop))
+        return;
+    const auto inventory = shop_inventory(w.me.item_count());
+    if (w.geo.groups[mission.group].gems == 0) {
+        for (const auto &sight : w.sightings)
+            if (sight.actor.alive && combat_detail::recent_sighting(w.round - sight.round))
+                return;
+        plan_gold_gem_return(w, memory, state, inventory, planning_floor);
+        return;
+    }
+    forecast_investment(w, mission, state);
+    const auto bundle = select_shop_bundle(w, mission, inventory, state);
+    if (!bundle.affordable || bundle.raw < 0)
+        return;
+    const int remaining = std::max(0, static_cast<int>(cambc::constants::max_rounds) - w.round);
+    const auto payoff = named_return_payoff(
+        w.self, w.geo.groups[mission.group], bundle.delta, remaining, home,
+        w.self.home ? 3 : cambc::constants::recall_time, Settings::switch_margin, altar,
+        tribute_ticks(w.self.gems + w.geo.groups[mission.group].gems,
+                      cambc::constants::submit_gem_duration_multiplier,
+                      cambc::constants::submit_gem_base_duration,
+                      cambc::constants::submit_gem_minimum_duration));
+    if (!payoff.worthwhile)
+        return;
+    state.investment_item = bundle.raw;
+    state.investment_count = bundle.count;
+    state.investment_before = inventory.count[bundle.raw];
+    state.investment_emblem_before = inventory.count[bundle.raw + 1];
+    state.investment_round = w.round;
+    state.investment_mission = state.investment_origin = mission;
+    state.investment_gem_unlock = false;
+    state.investment_gain = memory.upgrade_gain = payoff.saved_turns;
+    state.investment_absence = memory.upgrade_absence = payoff.absence;
+}
+
 inline std::optional<Action> shopping_proposal(World &w, const Mission &mission,
                                                ShoppingState &state) {
     if (state.last_round != w.round) {
@@ -150,7 +849,11 @@ inline std::optional<Action> shopping_proposal(World &w, const Mission &mission,
         w.self.channel != Channel::None ||
         (w.self.alive && w.me.restrictions().contains(cambc::buff_restrictions::shop)))
         return std::nullopt;
+    if (state.pending_heal < 0 && state.reserve_consumable < 0 &&
+        (w.gold < 30 || (w.self.alive && !w.in_spawn(w.self.pos) && w.self.type != 11)))
+        return std::nullopt;
     const auto inventory = shop_inventory(w.me.item_count());
+    forecast_investment(w, mission, state);
 
     if (state.pending_heal >= 0) {
         const int raw = state.pending_heal;
@@ -164,6 +867,35 @@ inline std::optional<Action> shopping_proposal(World &w, const Mission &mission,
         result.kind = Kind::Sell;
         result.item = raw;
         result.reason = "tavi-restore-heal-transaction";
+        return result;
+    }
+
+    if (state.investment_item >= 0 && w.self.alive && w.in_spawn(w.self.pos)) {
+        const int raw = state.investment_item, count = state.investment_count;
+        if (raw < 0 || raw >= 42 || (raw & 1) || count <= 0) {
+            clear_investment(state);
+            w.memory.upgrade_gain = w.memory.upgrade_absence = 0;
+            w.memory.upgrade_gem_unlock = false;
+            return std::nullopt;
+        }
+        const auto item = shop_item(raw);
+        const bool unchanged = raw >= 0 && raw < 42 && !(raw & 1) && count > 0 &&
+                               inventory.count[raw] == state.investment_before &&
+                               inventory.count[raw + 1] == state.investment_emblem_before;
+        if (!unchanged || w.gold < static_cast<int>(item.cost()) * count ||
+            !w.me.can_buy(item, count)) {
+            clear_investment(state);
+            w.memory.upgrade_gain = w.memory.upgrade_absence = 0;
+            w.memory.upgrade_gem_unlock = false;
+            // No blind substitution: get ordinary spawn recovery/new arbitration.
+            return std::nullopt;
+        }
+        state.investment_buy_gold = w.gold;
+        Action result;
+        result.kind = Kind::Buy;
+        result.item = raw;
+        result.count = count;
+        result.reason = "install-priced-return-bundle";
         return result;
     }
 
@@ -215,18 +947,17 @@ inline std::optional<Action> shopping_proposal(World &w, const Mission &mission,
         }
     }
     state.planned_heal = -1;
-    const int remaining = std::max(0, static_cast<int>(cambc::constants::max_rounds) - w.round);
-    const int raw =
-        shop_choose_shard(inventory, w.self.type, mission, damaging, pressure, state, remaining);
-    const auto item = shop_item(raw);
-    if (w.gold - reserve < static_cast<int>(item.cost()) || !w.me.can_buy(item))
+    const auto bundle = select_shop_bundle(w, mission, inventory, state, reserve);
+    if (!bundle.affordable || bundle.raw < 0 || !w.me.can_buy(shop_item(bundle.raw), bundle.count))
         return std::nullopt;
+    const int raw = bundle.raw;
     state.goal = raw;
     state.goal_group = mission.group;
     state.goal_phase = mission.phase;
     Action result;
     result.kind = Kind::Buy;
     result.item = raw;
+    result.count = bundle.count;
     result.reason = inventory.count[raw] == 4 ? "complete-useful-item-before-mission"
                                               : "useful-private-budget-component";
     return result;
@@ -239,6 +970,52 @@ inline void shopping_after_action(World &post, const Action &action, bool succes
     if (!success) {
         state.failed_round = post.round;
         state.pending_heal = -1;
+        if (std::string_view(action.reason) == "install-priced-return-bundle") {
+            const Mission fallback = state.investment_origin;
+            if (fallback.group >= 0 && fallback.group < static_cast<int>(post.geo.groups.size())) {
+                post.memory.mission = fallback;
+                post.memory.mission.phase = Phase::Reenter;
+                post.memory.mission.start = post.round;
+                post.memory.mission.expiry = post.round + Settings::job_lease;
+            }
+            clear_investment(state);
+            post.memory.upgrade_gain = post.memory.upgrade_absence = 0;
+            post.memory.upgrade_gem_unlock = false;
+        }
+        return;
+    }
+    if (std::string_view(action.reason) == "install-priced-return-bundle") {
+        const auto inventory = shop_inventory(post.me.item_count());
+        const int raw = state.investment_item, count = state.investment_count;
+        const bool completes = state.investment_before + count == 5;
+        const bool correct =
+            raw >= 0 && raw < 42 && action.item == raw && action.count == count &&
+            inventory.count[raw] == (completes ? 0 : state.investment_before + count) &&
+            inventory.count[raw + 1] == state.investment_emblem_before + (completes ? 1 : 0) &&
+            post.gold == state.investment_buy_gold - static_cast<int>(shop_info(raw).cost) * count;
+        const Mission original = state.investment_mission, fallback = state.investment_origin;
+        clear_investment(state);
+        post.memory.upgrade_gain = post.memory.upgrade_absence = 0;
+        post.memory.upgrade_gem_unlock = false;
+        if (!correct) {
+            state.failed_round = post.round;
+            if (fallback.group >= 0 && fallback.group < static_cast<int>(post.geo.groups.size())) {
+                post.memory.mission = fallback;
+                post.memory.mission.phase = Phase::Reenter;
+                post.memory.mission.start = post.round;
+                post.memory.mission.expiry = post.round + Settings::job_lease;
+            }
+            return; // A partial/changed result never certifies the predicted power.
+        }
+        if (original.group >= 0 && original.group < static_cast<int>(post.geo.groups.size()) &&
+            !(post.memory.failed_group == original.group &&
+              post.round < post.memory.failed_until)) {
+            post.memory.mission = original;
+            post.memory.mission.phase = Phase::Reenter;
+            post.memory.mission.start = post.round;
+            post.memory.mission.expiry = post.round + Settings::job_lease;
+            post.memory.mission.sortie_floor = 0;
+        }
         return;
     }
     if (std::string_view(action.reason) == "tavi-bounded-spawn-heal") {

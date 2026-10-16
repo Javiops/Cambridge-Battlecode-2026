@@ -90,6 +90,7 @@ inline Log L;
 #endif
 
 inline void update(State& s, bc::champion& me, const std::vector<Foe>& foes, vec2 pos, int round) {
+    if (!TRACK_ENEMIES && !P_TRACK_LOG) return;  // RET alone keeps its own memory in safe_step, no API calls here
 #if P_TRACK_LOG
     std::uint64_t f0 = bc::fuel_remaining();
 #endif
@@ -102,8 +103,6 @@ inline void update(State& s, bc::champion& me, const std::vector<Foe>& foes, vec
             return true;
         });
     M.round = round;
-    // RET alone only needs allies around fights: skip quiet turns (no foe in sight now or in the last 10 rounds)
-    if (!TRACK_ENEMIES && foes.empty() && round - s.foe_r > 10) return;
     if (TRACK_ENEMIES) {
     for (int k = 0; k < M.ne; ++k) {
         EnemyMem& e = M.en[k];
@@ -227,14 +226,23 @@ inline bool favourable(bc::champion& me, vec2 c, int round) {
     return us.power() * 100.0 >= P_TRACK_FAV * them.power();
 }
 
-// P_TRACK_RET: healthy (> 40% hp) allies we saw within P_TRACK_RET rounds and do not see now.
-inline void remembered_allies(bc::champion& me, std::vector<vec2>& out, int round) {
-    for (int k = 0; k < M.na; ++k) {
-        const AllyMem& a = M.al[k];
-        if (M.aroster[k] == me || a.seen_r == round || round - a.seen_r > P_TRACK_RET || a.hp <= 0.4f * a.mhp) continue;
-        bool alive = false;
-        attempt([&] { alive = M.aroster[k].is_alive(); return true; });
-        if (alive) out.push_back(a.p);
+// P_TRACK_RET: safe_step's healthy (> 40% hp) allies in sight are remembered with their round; on later back-offs
+// the ones seen within P_TRACK_RET rounds are added to the list (they may have walked out of our sight). Reuses the
+// positions safe_step already read, so it costs no API call.
+struct RetMem {
+    vec2 p[8];
+    int r[8] = {-1000, -1000, -1000, -1000, -1000, -1000, -1000, -1000};
+    int next = 0;
+};
+inline RetMem R;
+inline void remembered_allies(std::vector<vec2>& allies, int round) {
+    std::size_t now = allies.size();
+    for (int k = 0; k < 8; ++k)
+        if (R.r[k] < round && round - R.r[k] <= P_TRACK_RET) allies.push_back(R.p[k]);
+    for (std::size_t i = 0; i < now; ++i) {
+        R.p[R.next] = allies[i];
+        R.r[R.next] = round;
+        R.next = (R.next + 1) & 7;
     }
 }
 

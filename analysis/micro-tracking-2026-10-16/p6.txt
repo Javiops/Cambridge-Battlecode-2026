@@ -1,0 +1,12 @@
+17 maps x 2 sides x 5 specialists; 0 games did not finish
+
+bot                            sp_castera   sp_casterh      sp_hunt    sp_centre      sp_farm      all
+bots/v52                        65% d 9.7    71% d10.1    71% d12.2    85% d12.6    65% d 8.8    71.2%
+bots/fuelfix                    65% d10.6    62% d11.9    74% d13.3    74% d12.8    74% d 8.3    69.4%
+bots/fret                       65% d10.0    74% d10.3    71% d12.2    76% d12.1    76% d 7.7    72.4%
+
+bots/v52 vs bots/fuelfix: games that flip 17-14 (55% for v52), p=0.720; sp_castera 3-3, sp_casterh 4-1, sp_hunt 2-3, sp_centre 5-1, sp_farm 3-6
+
+bots/v52 vs bots/fret: games that flip 20-22 (48% for v52), p=0.878; sp_castera 4-4, sp_casterh 4-5, sp_hunt 3-3, sp_centre 5-2, sp_farm 4-8
+
+bots/fuelfix vs bots/fret: games that flip 8-13 (38% for fuelfix), p=0.383; sp_castera 2-2, sp_casterh 0-4, sp_hunt 3-2, sp_centre 2-3, sp_farm 1-2

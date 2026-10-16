@@ -66,3 +66,16 @@ Versión ligera (`track.h` actual): con solo P_TRACK_RET guarda solo aliados, y 
 - Panel de mapas del sitio: ligera **120/170** (v52 121, cambios 19-20): el +4 de la primera versión era ruido (`p3.txt`).
 
 Veredicto: no se fusiona. Más turnos perdidos por combustible y ninguna ganancia medible.
+
+## 5. 2026-10-16 20:30: arreglo de combustible de v52 (P_ROSTER + P_OCMEMO) y retirada sin coste
+
+Perfil (P_FUELPROF, 12 partidas): en los turnos que se quedaban sin combustible el culpable era `other_captures`
+(48k de media en los turnos pesados, hasta 4 llamadas por turno). Dentro, `bc::champions(team)` cuesta 3-23k por llamada.
+- **P_ROSTER 1**: las listas de campeones se leen una vez por partida (los identificadores no cambian).
+- **P_OCMEMO 1**: other_captures se calcula una vez por (ronda, grupo, casilla).
+- Con combustible ilimitado (`--fuel 100000000`) las partidas son **idénticas a v52 en 34/34** (resultado, ronda, gemas y muertes por campeón): mismas decisiones.
+- Turnos perdidos por combustible, 17 mapas × 2 lados contra sp_castera: **v52 106 → 12** (monolith 51 → 0, lanes 19 → 8, stampede 14 → 0, corners 8 → 2).
+- Retirada hacia aliados recordados reescrita sin coste: reutiliza las casillas que safe_step ya leyó (sin llamadas a la API): 105 turnos perdidos (= v52).
+- Panel de mapas del sitio (170): v52 121, arreglo 118 (cambios 14-17), arreglo + retirada **123** con **20** turnos perdidos. Todo dentro del ruido (±5-9).
+
+Ficheros: `fuelfix_on_v52.patch`, `fuelfix_ret_on_v52.patch` (incluye track.h); zips `bot/mybot_v52_fuelfix.zip`, `bot/mybot_v52_fuelfix_ret.zip`.

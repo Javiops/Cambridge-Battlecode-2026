@@ -1,0 +1,179 @@
+diff -ru -x '*.bak' bots/v52/src/fight.h bots/fuelfix/src/fight.h
+--- bots/v52/src/fight.h	2026-10-16 19:36:07.554280869 +0000
++++ bots/fuelfix/src/fight.h	2026-10-16 20:06:08.552219665 +0000
+@@ -187,7 +187,7 @@
+     if (!near || near->d > 4) return;
+     int idx = -1;
+     attempt([&] {
+-        auto roster = bc::champions(*s.en);
++        auto roster = en_roster(s);
+         for (std::size_t k = 0; k < roster.size(); ++k)
+             if (roster[k] == near->c) idx = static_cast<int>(k);
+         return true;
+@@ -204,7 +204,7 @@
+     if (idx < 0 || ((round - r) & 31) > 2) return nullptr;
+     Foe* out = nullptr;
+     attempt([&] {
+-        auto roster = bc::champions(*s.en);
++        auto roster = en_roster(s);
+         if (idx >= static_cast<int>(roster.size())) return false;
+         for (auto& f : foes)
+             if (f.c == roster[idx]) out = &f;
+diff -ru -x '*.bak' bots/v52/src/main.cpp bots/fuelfix/src/main.cpp
+--- bots/v52/src/main.cpp	2026-10-16 19:36:07.554317633 +0000
++++ bots/fuelfix/src/main.cpp	2026-10-16 20:10:44.652731605 +0000
+@@ -1167,9 +1167,33 @@
+     bc::bitboard br_risk_block;
+     int br_decisions = 0, br_fallbacks = 0, br_routes = 0, br_stops = 0;
+     int br_log_round = -1;
++    std::vector<bc::champion> roster_my, roster_en;  // P_ROSTER: the champion handles, read once
++    int oc_round = -1, oc_group = -1, oc_x = -1, oc_y = -1;  // P_OCMEMO: other_captures' answer this turn
++    bool oc_other = false, oc_on = false;
+ 
+ };
+ 
++// P_ROSTER (2026-10-16 fuel profile): bc::champions(team) cost 3k-23k fuel a call and the handles never change, so
++// read each roster once. P_OCMEMO: other_captures ran up to 4 times a turn (~15k each, the most expensive thing in
++// the turns that ran out of fuel on monolith, stampede, lanes and corners); within one turn its answer only depends
++// on the group and our tile, so it is computed once per (round, group, tile). Same decisions with unlimited fuel.
++#ifndef P_ROSTER
++#define P_ROSTER 0
++#endif
++#ifndef P_OCMEMO
++#define P_OCMEMO 0
++#endif
++inline std::vector<bc::champion> my_roster(State& s) {
++    if (!P_ROSTER) return bc::champions(*s.my);
++    if (s.roster_my.empty()) s.roster_my = bc::champions(*s.my);
++    return s.roster_my;
++}
++inline std::vector<bc::champion> en_roster(State& s) {
++    if (!P_ROSTER) return bc::champions(*s.en);
++    if (s.roster_en.empty()) s.roster_en = bc::champions(*s.en);
++    return s.roster_en;
++}
++
+ Slot classify(const bc::ability& a) {
+     if (!a.info().has_value()) return Slot::None;
+     if (a.is_dash()) return Slot::Dash;
+@@ -1431,7 +1455,7 @@
+     if (P_DRAFTUNI)  // kite/hold only with the #1's caster draft (it always has Stellar; Ren counts as melee)
+         attempt([&] {
+             bool st = false;
+-            for (auto& a : bc::champions(*s.my))
++            for (auto& a : my_roster(s))
+                 if (starts_with(norm(bc::to_string(a.champion_name())), "stellar")) st = true;
+             s.casters = st;
+             if (!st && P_SWEEP >= 3) s.sweep = 2;
+@@ -1454,7 +1478,7 @@
+     if (P_CASTGATE) {
+         int ranged = 0;  // the caster ball has 3+ ranged bodies; v19's melee draft has 2 (Cassi, Tavi)
+         attempt([&] {
+-            for (auto& a : bc::champions(*s.my))
++            for (auto& a : my_roster(s))
+                 try {
+                     if (a.attack_range() > 1) ++ranged;
+                 } catch (...) {
+@@ -1496,7 +1520,7 @@
+     }
+ 
+     attempt([&] {
+-        auto allies = bc::champions(*s.my);
++        auto allies = my_roster(s);
+         s.roster = static_cast<int>(allies.size());
+         for (std::size_t i = 0; i < allies.size(); ++i)
+             if (allies[i] == me) s.ally_idx = static_cast<int>(i);
+@@ -1959,7 +1983,7 @@
+     if (s.tank_bits >= 0) return s.tank_bits;
+     int bits = 0;
+     bool ok = attempt([&] {
+-        auto allies = bc::champions(*s.my);
++        auto allies = my_roster(s);
+         for (int k = 0; k < static_cast<int>(allies.size()) && k < 16; ++k) {
+             std::string n = norm(bc::to_string(allies[k].champion_name()));
+             bool ranged = !(starts_with(n, "issac") || starts_with(n, "vend") || starts_with(n, "varg") ||
+@@ -2171,7 +2195,7 @@
+     std::optional<vec2> lead_p;
+     if (ball_on(s, round) && s.ally_idx > 0)
+         attempt([&] {
+-            auto allies = bc::champions(*s.my);
++            auto allies = my_roster(s);
+             for (int k = 0; k < s.ally_idx && k < static_cast<int>(allies.size()); ++k) {
+                 if (!allies[k].is_alive()) continue;
+                 if (k < claim_slots(s)) {
+@@ -2666,7 +2690,21 @@
+ 
+ // One capturer per reward: among the allies on the reward or claiming it within 4 tiles,
+ // the nearest one (lowest index on ties) captures; everybody else leaves.
++bool other_captures_impl(State& s, bc::champion& me, const Group& g, int gi);
+ bool other_captures(State& s, bc::champion& me, const Group& g, int gi) {
++    if (!P_OCMEMO) return other_captures_impl(s, me, g, gi);
++    const int round = static_cast<int>(bc::round_number());
++    vec2 p = me.position();
++    if (s.oc_round == round && s.oc_group == gi && s.oc_x == X(p) && s.oc_y == Y(p)) {
++        g_cap_other_on = s.oc_on;
++        return s.oc_other;
++    }
++    bool o = other_captures_impl(s, me, g, gi);
++    s.oc_round = round; s.oc_group = gi; s.oc_x = X(p); s.oc_y = Y(p);
++    s.oc_other = o; s.oc_on = g_cap_other_on;
++    return o;
++}
++bool other_captures_impl(State& s, bc::champion& me, const Group& g, int gi) {
+     FP_SCOPE(24, "other_captures");
+     auto mask_dist = [&](vec2 p) {
+         int d = 99;
+@@ -2682,7 +2720,7 @@
+     std::vector<bc::champion> seen;  // P_FUELGUARD: allies in vision (position() of any other one throws)
+     if (P_FUELGUARD) attempt([&] { seen = bc::vision::champions(*s.my); return true; });
+     attempt([&] {
+-    auto allies = bc::champions(*s.my);
++    auto allies = my_roster(s);
+     for (std::size_t k = 0; k < allies.size() && !other; ++k) {
+         auto& a = allies[k];
+         if (P_FUELGUARD && std::find(seen.begin(), seen.end(), a) == seen.end()) continue;
+@@ -2829,7 +2867,7 @@
+         int best = -1, bd = 1 << 30, tb = tank_bits(s);
+         bool issac = starts_with(s.name, "issac");
+         attempt([&] {
+-            auto allies = bc::champions(*s.my);
++            auto allies = my_roster(s);
+             for (int k = 0; k < claim_slots(s) && k < static_cast<int>(allies.size()); ++k) {
+                 if (k == s.ally_idx || ((tb >> k) & 1) || !allies[k].is_alive()) continue;
+                 int c = static_cast<int>(claim_value(s, sm, k)) - 1;
+@@ -2866,7 +2904,7 @@
+         int ck = -1;
+         std::optional<vec2> cp;
+         attempt([&] {
+-            auto allies = bc::champions(*s.my);
++            auto allies = my_roster(s);
+             for (int k = 0; k < static_cast<int>(allies.size()); ++k) {
+                 if (!starts_with(norm(bc::to_string(allies[k].champion_name())), "cassi") || !allies[k].is_alive()) continue;
+                 ck = k;
+@@ -3476,7 +3514,7 @@
+         if (!skip && PR.cache && !carry) {  // tanks leave it to a carry: post it in the cache and move on
+             bool carry_alive = false, carry_near = false;
+             attempt([&] {
+-                for (auto& a : bc::champions(*s.my)) {
++                for (auto& a : my_roster(s)) {
+                     if (a == me || !a.is_alive()) continue;
+                     bool ar = false;
+                     try { ar = a.attack_range() > 1; } catch (...) {}
+@@ -3889,7 +3927,7 @@
+         vec2 lp{0, 0};
+         std::vector<vec2> fol;
+         attempt([&] {
+-            auto allies = bc::champions(*s.my);
++            auto allies = my_roster(s);
+             for (int k = 0; k < static_cast<int>(allies.size()); ++k) {
+                 auto& a = allies[k];
+                 try {
+diff -ru -x '*.bak' bots/v52/src/params.h bots/fuelfix/src/params.h
+--- bots/v52/src/params.h	2026-10-16 19:36:07.554531773 +0000
++++ bots/fuelfix/src/params.h	2026-10-16 20:06:21.809552941 +0000
+@@ -107,3 +107,5 @@
+ #define P_ALLYDUTY 1
+ #define P_AVOIDFIRST 1
+ #define P_MAPPLAN 1
++#define P_ROSTER 1
++#define P_OCMEMO 1

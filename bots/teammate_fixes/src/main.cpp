@@ -585,6 +585,7 @@ int g_nf = 99, g_nfoes = 0, g_nal = 0, g_rew = 0, g_tlive = -1;
 #ifndef P_TWINFARM
 #define P_TWINFARM 0
 #endif
+#include "profile.h"
 
 void note_error(const char* what) {
     ++g_errors;
@@ -1511,6 +1512,15 @@ void init_roles(State& s, bc::champion& me) {
     });
     s.last_gems = static_cast<int>(me.gem_count());
     s.last_gold = static_cast<int>(me.gold_count());
+
+    // the game plan for this map (profile.h)
+    MapFeatures mf;
+    mf.camps = static_cast<int>(s.groups.size());
+    mf.altars = static_cast<int>(s.altars.size());
+    mf.spawn_dist = dist(s.spawn_center, s.en_center);
+    attempt([&] { mf.team_size = static_cast<int>(bc::draft::team_size()); return true; });
+    attempt([&] { mf.area = static_cast<int>(bc::map::width() * bc::map::height()); return true; });
+    apply_profile(mf);
 }
 
 // true once start-up is complete. A part that throws is not retried (its stage is counted before it runs).
@@ -1945,7 +1955,7 @@ int tank_bits(State& s) {
     if (ok) s.tank_bits = bits;
     return bits;
 }
-inline bool i_am_tank(State& s) { return P_DPSFARM && s.ally_idx >= 0 && ((tank_bits(s) >> s.ally_idx) & 1); }
+inline bool i_am_tank(State& s) { return PR.dpsfarm && s.ally_idx >= 0 && ((tank_bits(s) >> s.ally_idx) & 1); }
 
 void broadcast_cooldown(int group, int ready_round) {
     if (group < 0 || group > 250) return;
@@ -1997,7 +2007,7 @@ inline int cap_rank(const std::string& n, bool ranged) {
 void refresh_groups(State& s, int round) {
     auto sm = read_sm();
     int bg = static_cast<int>(sm[SM_BC_GROUP]) - 1;
-    if (P_CACHE && bg >= 0 && bg < static_cast<int>(s.groups.size()) && sm[SM_BC_READY] >= 251) {
+    if (PR.cache && bg >= 0 && bg < static_cast<int>(s.groups.size()) && sm[SM_BC_READY] >= 251) {
         int stamp = sm[SM_BC_READY] - 251, now = (round / 16) & 3;
         Group& g = s.groups[bg];
         if ((stamp == now || stamp == ((now + 3) & 3)) && g.reward_seen < round - 1 && g.next_ok <= round &&
@@ -2204,7 +2214,7 @@ int choose_target_impl(State& s, bc::champion& me, int round) {
         if (P_JACKPOT && g.jackpot && round < P_JACKPOT) continue;  // farm gold and buy first, as the top teams do (stampede: first visit r350-475)
         if (P_NOGOLD && g.gems <= 0 && !s.mono_only && !s.jackpot_map) continue;  // gold-only clusters give no gems (but gold is the tiebreak where only monoliths give gems)
         int claimers = count_claimers(s, sm, i);
-        if (P_DPSFARM && !i_am_tank(s))
+        if (PR.dpsfarm && !i_am_tank(s))
             for (int k = 0; k < claim_slots(s); ++k)
                 if (k != s.ally_idx && ((tank_bits(s) >> k) & 1) && claim_value(s, sm, k) == i + 1) --claimers;
         bool free_reward = g.reward_seen >= 0 && round - g.reward_seen < 30;
@@ -2652,7 +2662,7 @@ bool other_captures(State& s, bc::champion& me, const Group& g, int gi) {
     bool other = false;
     g_cap_other_on = false;
     if (i_am_tank(s)) return true;  // P_DPSFARM: a tank never takes a reward
-    const int my_rank = P_CAPPRIO ? cap_rank(s.name, me.attack_range() > 1) : 0;
+    const int my_rank = PR.capprio ? cap_rank(s.name, me.attack_range() > 1) : 0;
     std::vector<bc::champion> seen;  // P_FUELGUARD: allies in vision (position() of any other one throws)
     if (P_FUELGUARD) attempt([&] { seen = bc::vision::champions(*s.my); return true; });
     attempt([&] {
@@ -2664,13 +2674,13 @@ bool other_captures(State& s, bc::champion& me, const Group& g, int gi) {
         // single attempt around the loop that aborted it, so nobody ever left the reward.
         try {
             if (a == me || !a.is_alive()) continue;
-            if (P_DPSFARM && ((tank_bits(s) >> k) & 1)) continue;  // tanks step off, they never capture
+            if (PR.dpsfarm && ((tank_bits(s) >> k) & 1)) continue;  // tanks step off, they never capture
             int d = mask_dist(a.position());
             bool claims = k < static_cast<std::size_t>(claim_slots(s)) && claim_value(s, sm, static_cast<int>(k)) == gi + 1;
-            if (P_CAPPRIO) {
+            if (PR.capprio) {
                 if (a.is_recalling() || a.is_teleporting()) continue;
                 int ar = cap_rank(norm(bc::to_string(a.champion_name())), a.attack_range() > 1);
-                bool counts = ar == 0 && my_rank > 0 ? ((claims && d <= P_CAPPRIO) || d <= 1) : ((claims && d <= 4) || d == 0);
+                bool counts = ar == 0 && my_rank > 0 ? ((claims && d <= PR.capprio) || d <= 1) : ((claims && d <= 4) || d == 0);
                 if (!counts) continue;
                 if (ar < my_rank || (ar == my_rank && (d < mine || (d == mine && static_cast<int>(k) < s.ally_idx)))) {
                     other = true;
@@ -2836,7 +2846,7 @@ void farm(State& s, bc::champion& me, int round, const std::vector<bc::camp>& ca
         }
         if (best >= 0) s.target_round = round;  // keep following: no periodic re-choice of our own
     }
-    if (P_TWINFARM && starts_with(s.name, "issac")) {
+    if (PR.twinfarm && starts_with(s.name, "issac")) {
         int ck = -1;
         std::optional<vec2> cp;
         attempt([&] {
@@ -2857,7 +2867,7 @@ void farm(State& s, bc::champion& me, int round, const std::vector<bc::camp>& ca
                     s.cap_start = -1;
                     write_claim(s, claim);
                 }
-            } else if (cp && dist(*cp, pos) > P_TWINFARM && !s.my_spawn.is_set(*cp)) {
+            } else if (cp && dist(*cp, pos) > PR.twinfarm && !s.my_spawn.is_set(*cp)) {
                 g_farm = "twin-join";
                 drop_target(s);
                 bc::bitboard ring;
@@ -2970,10 +2980,10 @@ void farm(State& s, bc::champion& me, int round, const std::vector<bc::camp>& ca
                 drop_target(s);
                 return;
             }
-            if (P_NEEDHEAL) {  // a wait that no recall or ally will end: take another camp
+            if (PR.needheal) {  // a wait that no recall or ally will end: take another camp
                 if (s.wait_group != s.target) { s.wait_group = s.target; s.wait_start = round; }
                 bool recall_next = needed > coming && hp < 0.8 * mhp && dist(pos, s.spawn_center) > 6;
-                if ((needed > coming && !recall_next) || round - s.wait_start > P_NEEDHEAL) {
+                if ((needed > coming && !recall_next) || round - s.wait_start > PR.needheal) {
                     g_farm = "wait-drop";
                     g.bad_until = round + 30;
                     s.wait_group = -1;
@@ -3039,7 +3049,7 @@ void farm(State& s, bc::champion& me, int round, const std::vector<bc::camp>& ca
     if (g.reward_seen == round) {  // the engine says the reward is waiting: stand on it
         g_farm = "capture";
         if (P_ONE_CAP && other_captures(s, me, g, s.target)) {
-            if (P_CAPPRIO && g.mask.is_set(pos)) {
+            if (PR.capprio && g.mask.is_set(pos)) {
                 if (!g_cap_other_on) return;  // keep the capture going until the champion that takes it arrives
                 g_farm = "cap-handoff";
                 g.bad_until = round + 12;
@@ -3257,7 +3267,7 @@ void play_turn(State& s) {
     if (s.last_hp >= 0 && hp < s.last_hp - 1.0f) s.hit_round = round;
     s.last_hp = hp;
 
-    if (P_BACKHOME) {
+    if (PR.backhome) {
         bool sub = me.is_submitting_gems();
         if (s.sub_prev && !sub) s.trib_end = round;
         s.sub_prev = sub;
@@ -3384,15 +3394,15 @@ void play_turn(State& s) {
 
     // P_CAPHOME: the reward of our camp waits within reach and we are its capturer.
     bool cap_home = false, cap_pend = false;
-    if (P_CAPHOME && s.target >= 0 && s.target < static_cast<int>(s.groups.size()) && !awake_camp_near &&
+    if (PR.caphome && s.target >= 0 && s.target < static_cast<int>(s.groups.size()) && !awake_camp_near &&
         s.groups[s.target].reward_seen == round && fuel_ok(18000)) {
         const Group& rg = s.groups[s.target];
         int nt = 99;
         for (auto tile : rg.tiles) nt = std::min(nt, dist(pos, tile));
-        if (nt <= P_CAPHOME && (!P_ONE_CAP || !other_captures(s, me, rg, s.target))) {
-            cap_pend = P_CAPHOME_TRIB && nt <= 2;
-            cap_home = P_CAPHOME_TRIB != 2 && hpr >= 0.1f && nearest_foe > (hpr * 100 < P.flee_pct ? 5 : 3) &&
-                       (!P_CAPHOME_RSAFE || rsafe);
+        if (nt <= PR.caphome && (!P_ONE_CAP || !other_captures(s, me, rg, s.target))) {
+            cap_pend = PR.caphome_trib && nt <= 2;
+            cap_home = PR.caphome_trib != 2 && hpr >= 0.1f && nearest_foe > (hpr * 100 < P.flee_pct ? 5 : 3) &&
+                       (!PR.caphome_rsafe || rsafe);
         }
     }
 
@@ -3432,7 +3442,7 @@ void play_turn(State& s) {
         s.still_n = 0;
     }
 
-    if (P_NOLEAVE && !awake_camp_near && hpr >= 0.15f && fuel_ok(25000)) {
+    if (PR.noleave && !awake_camp_near && hpr >= 0.15f && fuel_ok(25000)) {
         const bool carry = cap_rank(s.name, me.attack_range() > 1) <= 2;
         auto sm = read_sm();
         int gi = -1, gd = 99;
@@ -3441,13 +3451,13 @@ void play_turn(State& s) {
             if (g.reward_seen != round || g.monolith) continue;
             int d = 99;
             for (auto tile : g.tiles) d = std::min(d, dist(pos, tile));
-            if (d > P_NOLEAVE || d >= gd) continue;
+            if (d > PR.noleave || d >= gd) continue;
             if (i != s.target && count_claimers(s, sm, i) > 0) continue;  // another ally already went for it
             gi = i;
             gd = d;
         }
         bool skip = gi < 0;
-        if (!skip && P_CACHE && !carry) {  // tanks leave it to a carry: post it in the cache and move on
+        if (!skip && PR.cache && !carry) {  // tanks leave it to a carry: post it in the cache and move on
             bool carry_alive = false, carry_near = false;
             attempt([&] {
                 for (auto& a : bc::champions(*s.my)) {
@@ -3593,7 +3603,7 @@ void play_turn(State& s) {
     }
     if (!foes.empty()) {
         if (P_CALLHELP && round - s.hit_round <= 1) fight::call_help(s, foes, round);
-        if (P_TWIN && !on_spawn && (s.cap_start < 0 || round - s.cap_start > 10) && fight::twin_guard(s, me, foes)) {
+        if (PR.twin && !on_spawn && (s.cap_start < 0 || round - s.cap_start > 10) && fight::twin_guard(s, me, foes)) {
             g_mode = "twin";
             return;
         }
@@ -3685,15 +3695,15 @@ void play_turn(State& s) {
             fight::back_off(s, me, foes, round);
             return;
         }
-        if (P_OUTNUM && !on_spawn && !(killable && reachable) && nearest_foe <= P_OUTNUM) {
+        if (PR.outnum && !on_spawn && !(killable && reachable) && nearest_foe <= PR.outnum) {
             int nb = 1, eb = 0;
             attempt([&] {
                 for (auto& a : bc::vision::champions(*s.my))
-                    if (!(a == me) && a.is_alive() && !a.is_recalling() && dist(a.position(), pos) <= P_OUTNUM) ++nb;
+                    if (!(a == me) && a.is_alive() && !a.is_recalling() && dist(a.position(), pos) <= PR.outnum) ++nb;
                 return true;
             });
             for (auto& f : foes)
-                if (f.d <= P_OUTNUM && !s.en_spawn.is_set(f.p)) ++eb;
+                if (f.d <= PR.outnum && !s.en_spawn.is_set(f.p)) ++eb;
             if (eb >= nb + 2) {
                 g_mode = "outnumbered";
                 fight::back_off(s, me, foes, round);
@@ -3707,7 +3717,7 @@ void play_turn(State& s) {
         }
         if (tgt && carrying && !killable && !tgt->channeling) tgt = nullptr;
         // P_NOCHASE2: a low or channelling foe is no reason to walk after it, unless it carries a big bag
-        const bool close_enough = !P_NOCHASE2 || (tgt && (tgt->d <= me.attack_range() + 1 || tgt->gems >= P_CHASE_GEMS));
+        const bool close_enough = !PR.nochase2 || (tgt && (tgt->d <= me.attack_range() + 1 || tgt->gems >= P_CHASE_GEMS));
         if (tgt && (((killable || tgt->channeling) && close_enough) || (reachable && favourable) || helping ||
                     (P_ALLYDUTY && favourable && tgt->d <= 8 && g_ally_near_tgt))) {
             bool acted = engage(s, me, tgt->c, tgt->p, true, true);
@@ -3751,9 +3761,9 @@ void play_turn(State& s) {
             want_recall = false;  // step on the tiles first
         }
     }
-    if (P_BACKHOME && round - s.trib_end <= 2 && gems == 0 && home > 6) {
+    if (PR.backhome && round - s.trib_end <= 2 && gems == 0 && home > 6) {
         s.trib_end = -1000;
-        auto contested = [&](vec2 p) { return dist(p, s.spawn_center) - dist(p, s.en_center) >= -P_BACKHOME; };
+        auto contested = [&](vec2 p) { return dist(p, s.spawn_center) - dist(p, s.en_center) >= -PR.backhome; };
         if (contested(pos)) {
             int t = s.target;
             if (can_choose(s)) t = choose_target(s, me, round);
@@ -3893,13 +3903,13 @@ void play_turn(State& s) {
         }
     }
 
-    if (P_CAMPFOE && !on_spawn && !foes.empty()) {
+    if (PR.campfoe && !on_spawn && !foes.empty()) {
         int live = 99;
         for (auto& f : foes)
             if (!s.en_spawn.is_set(f.p) && !gone(f)) live = std::min(live, f.d);
         bool capturing = s.target >= 0 && s.target < static_cast<int>(s.groups.size()) &&
                          s.groups[s.target].reward_seen == round && s.groups[s.target].mask.is_set(pos);
-        if (!capturing && (live <= 3 || (live <= P_CAMPFOE && round - s.hit_round <= 2))) {
+        if (!capturing && (live <= 3 || (live <= PR.campfoe && round - s.hit_round <= 2))) {
             g_mode = "campfoe";  // a fight: hit the rival or leave, never the camp
             if (tgt && fight_fav && tgt->d <= me.attack_range() + 1 && engage(s, me, tgt->c, tgt->p, true, false)) return;
             fight::back_off(s, me, foes, round);

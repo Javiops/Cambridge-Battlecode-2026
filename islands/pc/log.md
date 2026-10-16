@@ -7,3 +7,4 @@
 | 4 | 12 | 1320 | 1.8 | +0.477 | bddcca4e27 (+0.170) | bddcca4e27 (+0.072, 4) | {"P_ENGAGE2": 99, "P_FRONT_ZONE": 2, "P_VOLLEY": 31, "P_CHASE_GEMS": 166, "P_DANGER_T": 47, "P_DANGER_R": 4} |
 | 5 | 12 | 1280 | 1.7 | +0.494 | 005ade4f16 (+0.189) | 005ade4f16 (+0.094, 1) | {"P_FLEE_PCT": 28, "P_UNI_FLEE": 41, "P_ENGAGE2": 101, "P_GA_FAV": 80, "P_LOWHP": 34, "P_FRONT_ZONE": 2, "P_KITE_ZONE": 5, "P_KITE_OUT": 1, "P_VOLLEY": 28, "P_CHASE_GEMS": 142, "P_DANGER_T": 46} |
 | 6 | 12 | 1336 | 1.7 | +0.367 | d32754aaed (+0.167) | bddcca4e27 (+0.091, 6) | {"P_ENGAGE2": 99, "P_FRONT_ZONE": 2, "P_VOLLEY": 31, "P_CHASE_GEMS": 166, "P_DANGER_T": 47, "P_DANGER_R": 4} |
+| 7 | 12 | 1304 | 1.8 | +0.410 | 2000ceba0b (+0.192) | bddcca4e27 (+0.098, 7) | {"P_ENGAGE2": 99, "P_FRONT_ZONE": 2, "P_VOLLEY": 31, "P_CHASE_GEMS": 166, "P_DANGER_T": 47, "P_DANGER_R": 4} |

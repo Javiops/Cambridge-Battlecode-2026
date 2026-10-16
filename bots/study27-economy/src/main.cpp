@@ -319,6 +319,18 @@ namespace {
 #ifndef P_DRAFT5
 #define P_DRAFT5 0
 #endif
+// P_JACKGO R: from round R the jackpot (P_JACKPOT) is a whole-team job, like P_MONO's monolith: P_JACKN champions
+// commit to it (no "too strong" bail), wait at it while it respawns, and value it P_JACKW times. Online at 13:50 the
+// top teams took it at r305-650 with 2-6 champions while we had 0-1 there (stampede 0-10).
+#ifndef P_JACKGO
+#define P_JACKGO 0
+#endif
+#ifndef P_JACKN
+#define P_JACKN 5
+#endif
+#ifndef P_JACKW
+#define P_JACKW 10
+#endif
 #ifndef P_UNI_PATH
 #define P_UNI_PATH 45
 #endif
@@ -1903,7 +1915,8 @@ int choose_target(State& s, bc::champion& me, int round) {
         if (!held && P_DANGER && round - s.danger_r <= P_DANGER_T && dist(g.center, s.danger_p) <= P_DANGER_R) continue;
         int wait = g.next_ok - round;  // > 0: respawning
         int gd = walk(g);
-        if (wait > 0 && (!P_RESPAWN || g.monolith || wait > gd + P_RESPAWN)) continue;
+        const bool jack_go = P_JACKGO && g.jackpot && round >= P_JACKGO;
+        if (wait > 0 && !(jack_go && wait <= gd + 40) && (!P_RESPAWN || g.monolith || wait > gd + P_RESPAWN)) continue;
         if (g.gems + g.gold <= 0) continue;
         if (P_JACKPOT && g.jackpot && round < P_JACKPOT) continue;  // farm gold and buy first, as the top teams do (stampede: first visit r350-475)
         if (P_NOGOLD && g.gems <= 0 && !s.mono_only && !s.jackpot_map) continue;  // gold-only clusters give no gems (but gold is the tiebreak where only monoliths give gems)
@@ -1913,9 +1926,12 @@ int choose_target(State& s, bc::champion& me, int round) {
         int needed = free_reward ? 1 : squad_needed(g.hp, g.str, dps, afford);
         bool mono_go = s.mono_only && g.monolith;  // its damage stays, so the team wears it down over several trips
         if (mono_go) needed = std::min(needed, s.roster);
+        const int jack_n = std::max(1, std::min(P_JACKN, s.roster));
+        if (jack_go) needed = std::min(needed, jack_n);
         if (needed > s.roster) continue;  // not with this team, not with these stats
         int cap = g.str > 0 ? std::max(needed, P_MAX_SHARE) : 1;
         if (mono_go) cap = free_reward ? 1 : s.roster;
+        if (jack_go) cap = jack_n;
         if (P_PAIR && g.str <= 0 && g.gems > 0) cap = P_PAIR;  // gem clusters: a pair kills twice as fast
         bool pot = P_POT && i < static_cast<int>(s.pot_group.size()) && s.pot_group[i];
         if (pot) cap = std::max(cap, 2);
@@ -1944,6 +1960,7 @@ int choose_target(State& s, bc::champion& me, int round) {
         if (lead) score *= (P_BALL && s.casters) ? P_BALL : P_GROUP_W;
         else if (lead_p && dist(g.center, *lead_p) > 8) score *= 0.3;
         if (i == s.target) score *= P_STICK / 100.0;          // hysteresis
+        if (jack_go) score *= P_JACKW;
 #ifdef P_DBGT
         if (round >= P_DBGT && round < P_DBGT + P_DBGT_LEN) std::printf("[dbgt] r%d %s g%d gems=%d gold=%d d=%d need=%d cl=%d wait=%d score=%.3f\n", round, s.name.c_str(), i, g.gems, g.gold, dist(pos, g.center), needed, claimers, wait, score);
 #endif
@@ -2552,8 +2569,8 @@ void farm(State& s, bc::champion& me, int round, const std::vector<bc::camp>& ca
         int needed = squad_needed(rem, str, dps, afford);
         int here = 1 + allies_near(s, me, g.center, 7);
         int coming = 1 + count_claimers(s, read_sm(), s.target);
-        const bool mono_go = s.mono_only && g.monolith;
-        if (mono_go) needed = std::min(needed, std::max(1, s.roster));
+        const bool mono_go = (s.mono_only && g.monolith) || (P_JACKGO && g.jackpot && round >= P_JACKGO);
+        if (mono_go) needed = std::min(needed, std::max(1, std::min(g.monolith ? s.roster : P_JACKN, s.roster)));
         if (!engaged && needed > here) {
             if (needed > std::max(coming, s.roster) || (!mono_go && needed > squad_needed(rem, str, dps, mhp * 0.75))) {
                 g_farm = "too-strong";  // not even a full-health squad would do it

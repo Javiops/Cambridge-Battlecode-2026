@@ -557,7 +557,9 @@ def cmd_run(A):
             cid = add(st, ev.mutate(start, rng), born=0, origin=A.name)
             if cid not in st['pop'] and cid != st['base']:
                 st['pop'].append(cid)
-    elif st['inds'][st['base']]['geno'] != start:
+    else:  # ids are hashes of the patched ints: re-key if the genome layout changed since the last run
+        st = rekey(st)
+    if st['inds'][st['base']]['geno'] != start:
         sys.exit(f'--start {A.start} differs from the control this island started with ({st["start"]}): '
                  'use a new --name')
     st['scope'] = A.scope
@@ -683,6 +685,18 @@ def cmd_run(A):
               f"mean {h['mean_delta']:+.3f} best new {h['best_new_delta']:+.3f} top {top} {h['top_shrunk']:+.3f} "
               f"n={h['top_n']} in {len(imported)} raced {h['raced']}", flush=True)
         publish(A, st, home, bh, played / max(1.0, secs), ranked, start)
+
+
+def rekey(st):
+    m = {i: cid_of(d['geno']) for i, d in st['inds'].items()}
+    if all(i == j for i, j in m.items()):
+        return st
+    st['inds'] = {m[i]: d for i, d in st['inds'].items()}
+    st['base'] = m[st['base']]
+    st['pop'] = [m[i] for i in st['pop']]
+    st['exported'] = {m.get(i, i): g for i, g in st['exported'].items()}
+    print('genome layout changed: %d genomes re-keyed' % len(m))
+    return st
 
 
 def add(st, geno, born, origin):

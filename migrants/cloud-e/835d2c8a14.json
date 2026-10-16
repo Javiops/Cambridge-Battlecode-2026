@@ -131,22 +131,22 @@
   "nn": "0 hidden, 2 links, outputs used: farm, kite"
  },
  "fitness": {
-  "shrunk": 0.0825,
-  "n": 10,
+  "shrunk": 0.0896,
+  "n": 12,
   "deltas": [
-   0.03414,
-   0.35604,
    0.09408,
    0.126,
    -0.0895,
    -0.04095,
    0.0902,
-   0.0656
+   0.0656,
+   0.13081,
+   0.12625
   ]
  },
- "gen": 40,
+ "gen": 42,
  "scope": "gp",
  "start": "ga65a6",
- "time": "2026-10-16 16:48:55 UTC",
+ "time": "2026-10-16 17:01:40 UTC",
  "transport": "shared"
 }

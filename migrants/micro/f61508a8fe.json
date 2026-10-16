@@ -47,18 +47,19 @@
   "P_GA_KILL_X": 6
  },
  "fitness": {
-  "shrunk": 0.0288,
-  "n": 4,
+  "shrunk": 0.0223,
+  "n": 5,
   "deltas": [
    0.04295,
    -0.00038,
    0.06317,
-   0.03806
+   0.03806,
+   -0.01013
   ]
  },
- "gen": 8,
+ "gen": 9,
  "scope": "micro",
  "start": "ga65a6",
- "time": "2026-10-16 13:05:41 UTC",
+ "time": "2026-10-16 13:09:44 UTC",
  "transport": "shared"
 }

@@ -4,24 +4,28 @@
  "scope": "micro",
  "start": "ga65a6",
  "jobs": 4,
- "gen": 4,
- "games": 5286,
- "gps": 5.2,
+ "gen": 6,
+ "games": 8088,
+ "gps": 6.08,
  "base": "7c2d0330e54e",
  "best": {
-  "cid": "456c9eb6e6",
-  "shrunk": 0.0414,
+  "cid": "90b9fb2146",
+  "shrunk": 0.0683,
   "n": 1,
   "describe": {
    "P_FLEE_PCT": 35,
+   "P_GA_AVOID_HP": 81,
+   "P_FRONT_OUT": 142,
    "P_GA_KITE_HP": 146,
-   "P_VOLLEY": 20
+   "P_VOLLEY": 20,
+   "P_GA_SS_ALLY": 6,
+   "P_PAIR_ENGAGE": 1
   }
  },
- "exported": 4,
- "imported": 8,
- "updated": "2026-10-16 12:58:19 UTC",
- "code": "claude/project-thread-rkjugw@ed0f505",
+ "exported": 7,
+ "imported": 14,
+ "updated": "2026-10-16 13:09:53 UTC",
+ "code": "claude/project-thread-rkjugw@4dde634",
  "home": "/mnt/project-files/ga-farm/islands/cloud-c",
  "transport": "shared"
 }

@@ -4,14 +4,14 @@
  "scope": "micro",
  "start": "ga65a6",
  "jobs": 4,
- "gen": 8,
- "games": 10834,
- "gps": 6.25,
+ "gen": 9,
+ "games": 12412,
+ "gps": 6.54,
  "base": "7c2d0330e54e",
  "best": {
   "cid": "11daa35986",
-  "shrunk": 0.0631,
-  "n": 1,
+  "shrunk": 0.0555,
+  "n": 2,
   "describe": {
    "P_RECALL_PCT": 44,
    "P_RECALL_NEAR": 9,
@@ -26,9 +26,9 @@
    "P_DANGER_T": 57
   }
  },
- "exported": 9,
- "imported": 17,
- "updated": "2026-10-16 13:05:41 UTC",
+ "exported": 10,
+ "imported": 19,
+ "updated": "2026-10-16 13:09:44 UTC",
  "code": "HEAD@4dde634",
  "home": "/mnt/project-files/ga-farm/islands/micro",
  "transport": "shared"

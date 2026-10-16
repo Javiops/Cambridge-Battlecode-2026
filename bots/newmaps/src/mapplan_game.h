@@ -176,6 +176,29 @@ inline bool mp_spread(const State& s) { return P_MAPPLAN && P_MP_SPREAD && s.mp_
 #endif
 inline bool mp_far_trip(const State& s, int gd) { return P_MAPPLAN && P_MP_COMPANY && s.mp_home_d >= P_MP_SPREAD_D && gd > P_MP_COMPANY_D; }
 
+// Rule 9, the squad moves on to the next camp. The top teams on ambush capture the 106-gem camp at r73-77; the carrier
+// goes home and the others walk 10 tiles to the 72-gem elks and take them at r96-111. v52 re-chooses alone every 6
+// rounds and takes the 72 camp at r190-243. With P_MP_CHAINPLAN, on maps whose gem camps are P_MP_SPREAD_D+ from home,
+// for P_MP_CHAIN_T rounds after a gem camp next to us was captured, a champion carrying no gems scores the gem camps
+// within P_MP_CHAIN_N tiles of it at P_MP_CHAINPLAN % (all the non-carriers there see the same camp, so they go together).
+#ifndef P_MP_CHAINPLAN
+#define P_MP_CHAINPLAN 0
+#endif
+#ifndef P_MP_CHAIN_T
+#define P_MP_CHAIN_T 30
+#endif
+#ifndef P_MP_CHAIN_N
+#define P_MP_CHAIN_N 15
+#endif
+inline bool mp_chain_next(const State& s, bc::champion& me, const Group& g, int i, int round) {
+    if (!P_MAPPLAN || !P_MP_CHAINPLAN || s.mp_home_d < P_MP_SPREAD_D || s.mp_last_g < 0 || i == s.mp_last_g) return false;
+    if (round - s.mp_last_r > P_MP_CHAIN_T || g.gems <= 0) return false;
+    if (dist(g.center, s.groups[s.mp_last_g].center) > P_MP_CHAIN_N) return false;
+    bool empty = false;
+    attempt([&] { empty = me.gem_count() == 0; return true; });
+    return empty;
+}
+
 // Called once, after init_paths. Fills s.mp_* from the map's features.
 inline void mp_game_plan(State& s) {
     std::vector<int> bank, home;

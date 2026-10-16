@@ -1078,7 +1078,8 @@ struct Seen {
 struct State {
     bc::bitboard mp_dashholes, mp_hvis, mp_hole_all;  // mapplan_game.h rule 5: hole tiles a dash crosses, and its field
     bc::distance_field mp_hdf;
-    int mp_bank_d = -1, mp_home_d = -1;  // mapplan_game.h: median walk from a gem group to its altar / to our spawn
+    int mp_bank_d = -1, mp_home_d = -1, mp_last_g = -1, mp_last_r = -1000;
+    vec2 self_pos;  // mapplan_game.h: median walk from a gem group to its altar / to our spawn
     bool ready = false;
 
     unsigned cf_reach = 0, cf_focus_wait = 0, cf_focus_exit = 0, cf_focus_hit = 0, cf_evac = 0;
@@ -1551,7 +1552,7 @@ bool init(State& s, bc::champion& me) {
         if (P_FUELGUARD && !fuel_ok(35000)) return false;
         s.init_stage = 2;
         init_paths(s);
-        if (P_MAPPLAN && (P_MP_FARHOME || P_MP_FOCUS_FAR || P_MP_SPREAD || P_MP_COMPANY)) mp_game_plan(s);  // only the rules that need it: off = v52 games
+        if (P_MAPPLAN && (P_MP_FARHOME || P_MP_FOCUS_FAR || P_MP_SPREAD || P_MP_COMPANY || P_MP_CHAINPLAN)) mp_game_plan(s);  // only the rules that need it: off = v52 games
     }
     if (s.init_stage == 2) {
         if (P_FUELGUARD && !fuel_ok(50000)) return false;
@@ -2072,6 +2073,7 @@ void refresh_groups(State& s, int round) {
             if (std::holds_alternative<bc::map::camp_group_respawning>(st)) {
                 int timer = std::get<bc::map::camp_group_respawning>(st).timer;
                 int ready = round + std::max(1, timer) + 1;
+                if (P_MAPPLAN && P_MP_CHAINPLAN && g.reward_seen >= round - 3 && g.gems > 0 && dist(s.self_pos, g.center) <= 6) { s.mp_last_g = i; s.mp_last_r = round; }  // rule 9: captured next to us
                 if (ready > g.next_ok + 4) broadcast_cooldown(i, ready);
                 g.next_ok = std::max(g.next_ok, ready);
                 g.reward_seen = -1;
@@ -2301,6 +2303,7 @@ int choose_target_impl(State& s, bc::champion& me, int round) {
         if (held) score *= P_HOLD / 100.0;
         if (lead) score *= (P_BALL && s.casters) ? P_BALL : P_GROUP_W;
         else if (lead_p && dist(g.center, *lead_p) > 8) score *= 0.3;
+        if (mp_chain_next(s, me, g, i, round)) score *= P_MP_CHAINPLAN / 100.0;  // rule 9: the squad moves on to the next camp
         if (i == s.target) score *= (P_MAPPLAN && P_MP_STICK && gd >= P_MP_STICK_D) ? P_MP_STICK / 100.0 : P_STICK / 100.0;  // hysteresis (mapplan_game.h rule 6)
         if (jack_go) score *= P_JACKW;
 #ifdef P_DBGT
@@ -3337,6 +3340,7 @@ void play_turn(State& s) {
         return true;
     });
     FP(4, "groups");
+    if (P_MAPPLAN && P_MP_CHAINPLAN) s.self_pos = pos;
     refresh_groups(s, round);
     FP(5, "foes");
 

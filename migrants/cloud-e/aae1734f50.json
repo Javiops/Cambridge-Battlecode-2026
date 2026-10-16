@@ -119,17 +119,19 @@
   "gp0": "((not FAV and not KILL) and (((HP < 56) or not (NEAR > 4)) and not SPAWN))"
  },
  "fitness": {
-  "shrunk": 0.0774,
-  "n": 3,
+  "shrunk": 0.0645,
+  "n": 5,
   "deltas": [
    0.14369,
    0.16681,
-   -0.00088
+   -0.00088,
+   -0.11257,
+   0.18991
   ]
  },
- "gen": 8,
+ "gen": 12,
  "scope": "gp",
  "start": "ga65a6",
- "time": "2026-10-16 13:46:31 UTC",
+ "time": "2026-10-16 14:05:32 UTC",
  "transport": "shared"
 }

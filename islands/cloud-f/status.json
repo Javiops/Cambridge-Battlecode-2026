@@ -4,14 +4,14 @@
  "scope": "neat",
  "start": "ga65a6",
  "jobs": 4,
- "gen": 17,
- "games": 24251,
- "gps": 6.93,
+ "gen": 18,
+ "games": 26025,
+ "gps": 5.49,
  "base": "7c2d0330e54e",
  "best": {
   "cid": "6335759bfa",
-  "shrunk": 0.1186,
-  "n": 4,
+  "shrunk": 0.0829,
+  "n": 5,
   "describe": {
    "P_CHASE_GEMS": 118,
    "P_FRONT": 0,
@@ -27,8 +27,8 @@
   }
  },
  "exported": 19,
- "imported": 42,
- "updated": "2026-10-16 13:57:59 UTC",
+ "imported": 45,
+ "updated": "2026-10-16 14:03:24 UTC",
  "code": "claude/project-thread-cmudgp@d84d598",
  "home": "/mnt/project-files/ga-farm/islands/cloud-f",
  "transport": "shared"

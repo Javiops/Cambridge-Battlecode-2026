@@ -56,16 +56,17 @@
   "P_PAIR_N": 2
  },
  "fitness": {
-  "shrunk": 0.0578,
-  "n": 2,
+  "shrunk": 0.036,
+  "n": 3,
   "deltas": [
    0.09525,
-   0.07815
+   0.07815,
+   -0.02943
   ]
  },
- "gen": 8,
+ "gen": 9,
  "scope": "micro",
  "start": "ga65a6",
- "time": "2026-10-16 13:40:40 UTC",
+ "time": "2026-10-16 14:04:27 UTC",
  "transport": "shared"
 }

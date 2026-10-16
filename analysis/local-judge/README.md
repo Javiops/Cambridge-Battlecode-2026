@@ -150,6 +150,17 @@ online, self-play said 69%), but it still overstates, most for the 12:52 build. 
 from the 12:52 build's own code, so that build has a home advantage against them (sp_farm alone gives it 28-12).
 **Use the panel to rank candidates that share the online bot's code, never to compare against an older code base.**
 
+### Pre-registered prediction: im_a (online since 15:09)
+
+im_a (imitation thread: P_UNI_FLEE 33, P_LOWHP 40, P_GA_AVOID_HP 45, P_AVOID_DIST 2) went online at 15:09 inside
+mybot_online1252_jackgo_imitation.zip. Written down at 15:50 UTC, before its online batches:
+- self-play gate: im_a better, 63-38 maps (p=0.017)
+- the imitation thread's caster check (spar11+16, 36 games): our deaths 89 vs 34, wins 32 vs 34
+- **specialist panel: im_a worse, games that flip 46-68 (40%, p=0.049)**; it dies more against every fight specialist
+  (castera 6.4 vs 5.4 deaths, centre 9.9 vs 7.5)
+The online paired result for im_a vs the 12:52 build settles which judge to trust (the jackgo stampede rule rides along,
+so compare on non-stampede maps).
+
 ## 3. How to spend the online quota
 
 What the calibration says about online information:

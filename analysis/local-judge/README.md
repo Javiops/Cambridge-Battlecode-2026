@@ -177,6 +177,16 @@ mybot_online1252_jackgo_imp.zip (12:52 + stampede centre rule + im_p). Panel on 
 
 Small samples: these are direction calls, firmed up by the 77-map run below.
 
+77-map run (17 site maps + hold60, 770 games per bot, `panel_77_imp_d2.json`), written 16:00 UTC:
+
+| pair | all specialists | without sp_farm (no information) | sp_castera alone |
+|---|---|---|---|
+| im_p build vs 12:52 | 51-63 (45%), p=0.30 | 37-44 | 11-14 |
+| d20281a41e vs 12:52 | 70-100 (41%), p=0.03 | 54-60 | 10-21 |
+
+Final calls: **im_p build = no change vs 12:52** (online paired should be within noise); **d20281a41e = no better than
+12:52, worse against the caster team** (its deficit is mostly sp_farm and sp_castera; even against the rest).
+
 ## 3. How to spend the online quota
 
 What the calibration says about online information:

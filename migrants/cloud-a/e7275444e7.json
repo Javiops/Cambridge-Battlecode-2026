@@ -145,16 +145,17 @@
   "gp0": "((not FAV and not (KILL or (RATIO > 147))) and (((HP < 60) or not (NEAR > 5)) and (not SPAWN or (RATIO > 178))))"
  },
  "fitness": {
-  "shrunk": 0.039,
-  "n": 2,
+  "shrunk": 0.0439,
+  "n": 3,
   "deltas": [
    0.0886,
-   0.02836
+   0.02836,
+   0.05863
   ]
  },
- "gen": 11,
+ "gen": 12,
  "scope": "micro,structure,gp",
  "start": "ga65a6",
- "time": "2026-10-16 13:02:30 UTC",
+ "time": "2026-10-16 13:05:54 UTC",
  "transport": "shared"
 }

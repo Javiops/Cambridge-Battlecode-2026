@@ -62,18 +62,19 @@
   "order": "FLEE>NEARRECALL>KITE>FM>FRONT>AVOIDLOW>ENGAGE>AVOID>RECALLSHOP>WALKHOME"
  },
  "fitness": {
-  "shrunk": 0.0484,
-  "n": 4,
+  "shrunk": 0.0479,
+  "n": 5,
   "deltas": [
    0.1259,
    0.08863,
    -0.02973,
-   0.05719
+   0.05719,
+   0.04523
   ]
  },
- "gen": 10,
+ "gen": 11,
  "scope": "structure,gp,neat",
  "start": "ga65a6",
- "time": "2026-10-16 12:56:56 UTC",
+ "time": "2026-10-16 13:02:44 UTC",
  "transport": "shared"
 }

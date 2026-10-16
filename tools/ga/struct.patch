@@ -1,0 +1,472 @@
+--- a/main.cpp	2026-10-16 10:04:21.263544328 +0000
++++ b/main.cpp	2026-10-16 10:06:17.378597744 +0000
+@@ -78,6 +78,7 @@
+ #if __has_include("params.h")
+ #include "params.h"
+ #endif
++#include "ga_struct.h"  // tools/ga structure genes (rule switches and order, evolved conditions, net)
+ #ifndef P_TRIBUTE_GEMS
+ #define P_TRIBUTE_GEMS 20
+ #endif
+@@ -2914,42 +2915,10 @@
+         return;
+     }
+ 
+-    // 2. Badly hurt: run, or recall if nobody can interrupt.
+-    g_mode = "flee/recall";
+-    // P_UNI_FLEE: with the caster draft, leave the fight earlier (the #1 walks away 58% of contact rounds below 30%
+-    // hp and 40% below 50%; v27 died in 20% of its contact rounds below 30%)
+-    if (hpr * 100 < ((P_UNI_FLEE && P_DRAFTUNI && s.casters) ? P_UNI_FLEE : P.flee_pct)) {
+-        if (gems > 0 && nearest_foe > 3) {
+-            auto a = best_altar(s, pos, round);
+-            if (a && dist(*a, pos) <= 1) {  // tribute is not interrupted by damage
+-                bool acted = go_tribute(s, me, round);
+-                if (acted || !P_U34_FAILED_CHANNELS) return;
+-            }
+-        }
+-        bool recalled = false;
+-        if (rsafe) recalled = attempt([&] {
+-            me.recall();
+-            return true;
+-        });
+-        if (!rsafe || (P_U34_FAILED_CHANNELS && !recalled)) {
+-            bool hit = P_HITFIRST && fight::hit_now(s, me, foes);
+-            flee(s, me);
+-            if (!hit) shoot_back(s, me, foes);
+-        }
+-        return;
+-    }
+-
+-    if (s.rnear && !safe && rsafe && !on_spawn && dist(pos, s.spawn_center) > 6 && hpr * 100 < P.recall_pct) {
+-        g_mode = "near-recall";  // the #1: hurt, out of the fight by 4-6 tiles: recall now, come back whole
+-        if (attempt([&] {
+-                me.recall();
+-                return true;
+-            }))
+-            return;
+-    }
+-
+-    // 3. Enemy champions: back away from a stronger group, fight an even or weaker one.
+-    g_mode = "fight";
++    // 2-4. The micro rules (tools/ga structure genes): each one can be switched off (P_R_*, P_FRONT, P_KITE,
++    // P_WALKHOME, P_FM) and they run in the order of their P_O_* genes; the first one that acts ends the turn.
++    // The defaults give the base bot's order: flee/recall, near-recall, fight mode, kite, front line, then the
++    // fight block (back off when low, back off from an unfavourable group, engage), recall/shop, walk home.
+     std::vector<vec2> allies;
+     for (auto& a : bc::vision::champions(*s.my))
+         attempt([&] {
+@@ -2967,29 +2936,25 @@
+                 }
+         }
+     }
+-    if (P_FM && !foes.empty() && !on_spawn && fight::fight_mode(s, me, foes, round)) {
+-        g_mode = s.fm == 1 ? "fm-engage" : "fm-retreat";
+-        return;
+-    }
+-    if (P_KITEFRONT == 1 && P_FRONT && !foes.empty() && !on_spawn && fight::front_line(s, me, foes, round)) {
+-        g_mode = "front";
+-        return;
+-    }
+-    if (P_KITE && s.casters && !foes.empty() && !on_spawn && (!s.melee || s.renkite) && fight::kite(s, me, foes, round)) {
+-        g_mode = "kite";
+-        return;
+-    }
+-    if (P_KITEFRONT != 1 && P_FRONT && !foes.empty() && !on_spawn && fight::front_line(s, me, foes, round)) {
+-        g_mode = "front";
+-        return;
+-    }
+-    if (!foes.empty()) {
++    const int home = dist(pos, s.spawn_center);
++
++    // The fight block's shared reading of the situation, computed once by the first rule (or the net) needing it.
++    struct FightCtx {
++        bool done = false, favourable = false, killable = false, reachable = false, carrying = false;
++        bool helping = false, pot_hold = false;
++        int low_pct = 0;
++        int feat[GF_N] = {0};
++    } cx;
++    auto fight_ctx = [&]() -> bool {  // true = the twin guard acted (the turn is over)
++        if (cx.done) return false;
++        cx.done = true;
+         if (P_CALLHELP && round - s.hit_round <= 1) fight::call_help(s, foes, round);
+         if (P_TWIN && !on_spawn && (s.cap_start < 0 || round - s.cap_start > 10) && fight::twin_guard(s, me, foes)) {
+             g_mode = "twin";
+-            return;
++            return true;
+         }
+         double ours = hp, theirs = 0;
++        int a4 = 0, a8 = 0, f4 = 0, f8 = 0;
+         for (auto& a : bc::vision::champions(*s.my))
+             attempt([&] {
+                 if (!(a == me) && a.is_alive() && dist(a.position(), pos) <= 6) ours += a.health();
+@@ -2998,9 +2963,9 @@
+         for (auto& f : foes)
+             if (f.d <= 8) theirs += f.hp;
+         bool favourable = ours * 100.0 >= P_GA_FAV * theirs;
++        int nb = 1, eb = 0;
++        double oh = hp, eh = 0;
+         if (P_ENGAGE2 && tgt) {
+-            int nb = 1, eb = 0;
+-            double oh = hp, eh = 0;
+             for (auto& ap : allies)
+                 if (dist(ap, tgt->p) <= 8) ++nb;
+             attempt([&] {
+@@ -3059,96 +3024,291 @@
+         if (tgt)
+             for (auto& ap : allies)
+                 if (dist(ap, tgt->p) <= 2) g_ally_near_tgt = true;
+-        bool killable = tgt && tgt->hp <= me.strength() * (P_GA_KILL_X / 10.0f);
+-        bool reachable = tgt && tgt->d <= me.attack_range() + 1;
+-        bool carrying = P_CARRY && gems >= P_CARRY;
+-        int low_pct = (P_CASSI_PCT && starts_with(s.name, "cassi")) ? P_CASSI_PCT : P_LOWHP;
+-        if (!killable && !on_spawn && !pot_hold && ((low_pct && hpr * 100 < low_pct && nearest_foe <= 6) ||
+-                                       (carrying && !favourable && nearest_foe <= 6))) {
++        cx.favourable = favourable;
++        cx.killable = tgt && tgt->hp <= me.strength() * (P_GA_KILL_X / 10.0f);
++        cx.reachable = tgt && tgt->d <= me.attack_range() + 1;
++        cx.carrying = P_CARRY && gems >= P_CARRY;
++        cx.helping = helping;
++        cx.pot_hold = pot_hold;
++        cx.low_pct = (P_CASSI_PCT && starts_with(s.name, "cassi")) ? P_CASSI_PCT : P_LOWHP;
++        if (P_GP0_ON || P_GP1_ON || P_NN_ON) {  // the features only the evolved conditions and the net read
++            for (auto& ap : allies) {
++                int d = dist(ap, pos);
++                a4 += d <= 4;
++                a8 += d <= 8;
++            }
++            for (auto& f : foes) {
++                f4 += f.d <= 4;
++                f8 += f.d <= 8;
++            }
++            auto cap = [](double v) { return static_cast<int>(v > 999 ? 999 : (v < -999 ? -999 : v)); };
++            int* F = cx.feat;
++            F[GF_HP] = static_cast<int>(hpr * 100);
++            F[GF_NEAR] = nearest_foe > 20 ? 20 : nearest_foe;
++            F[GF_F4] = f4;
++            F[GF_F8] = f8;
++            F[GF_A4] = a4;
++            F[GF_A8] = a8;
++            F[GF_RATIO] = theirs > 0 ? cap(ours * 100.0 / theirs) : 999;
++            F[GF_ERATIO] = !tgt ? F[GF_RATIO] : (eh > 0 ? cap(oh * 100.0 / eh) : 999);
++            F[GF_FAV] = favourable;
++            F[GF_KILL] = cx.killable;
++            F[GF_REACH] = cx.reachable;
++            F[GF_THP] = 100;
++            if (tgt)
++                attempt([&] {
++                    float mh = tgt->c.max_health();
++                    if (mh > 0) F[GF_THP] = static_cast<int>(tgt->hp * 100 / mh);
++                    return true;
++                });
++            F[GF_TDIST] = tgt ? (tgt->d > 20 ? 20 : tgt->d) : 20;
++            F[GF_GEMS] = gems;
++            F[GF_HOME] = home;
++            F[GF_DANGER] = (s.thr_r == round && hp > 0) ? cap(danger_at(s.thr, pos) * 100.0 / hp) : 0;
++            F[GF_SPAWN] = on_spawn;
++            F[GF_TCHAN] = tgt && tgt->channeling;
++            F[GF_HELP] = helping;
++            F[GF_CASTERS] = s.casters ? 1 : 0;
++            F[GF_ROUND] = round / 10;
++            F[GF_HIT] = round - s.hit_round <= 1;
++            F[GF_NB] = nb;
++            F[GF_EB] = eb;
++            F[GF_RANGED] = me.attack_range() > 1;
++        }
++        return false;
++    };
++
++    auto r_flee = [&]() -> bool {  // badly hurt: run, or recall if nobody can interrupt
++        g_mode = "flee/recall";
++        // P_UNI_FLEE: with the caster draft, leave the fight earlier (the #1 walks away 58% of contact rounds below
++        // 30% hp and 40% below 50%; v27 died in 20% of its contact rounds below 30%)
++        if (!(hpr * 100 < ((P_UNI_FLEE && P_DRAFTUNI && s.casters) ? P_UNI_FLEE : P.flee_pct))) return false;
++        if (gems > 0 && nearest_foe > 3) {
++            auto a = best_altar(s, pos, round);
++            if (a && dist(*a, pos) <= 1) {  // tribute is not interrupted by damage
++                bool acted = go_tribute(s, me, round);
++                if (acted || !P_U34_FAILED_CHANNELS) return true;
++            }
++        }
++        bool recalled = false;
++        if (rsafe) recalled = attempt([&] {
++            me.recall();
++            return true;
++        });
++        if (!rsafe || (P_U34_FAILED_CHANNELS && !recalled)) {
++            bool hit = P_HITFIRST && fight::hit_now(s, me, foes);
++            flee(s, me);
++            if (!hit) shoot_back(s, me, foes);
++        }
++        return true;
++    };
++    auto r_nearrecall = [&]() -> bool {
++        if (s.rnear && !safe && rsafe && !on_spawn && dist(pos, s.spawn_center) > 6 && hpr * 100 < P.recall_pct) {
++            g_mode = "near-recall";  // the #1: hurt, out of the fight by 4-6 tiles: recall now, come back whole
++            if (attempt([&] {
++                    me.recall();
++                    return true;
++                }))
++                return true;
++        }
++        return false;
++    };
++    auto r_fm = [&]() -> bool {
++        g_mode = "fight";
++        if (P_FM && !foes.empty() && !on_spawn && fight::fight_mode(s, me, foes, round)) {
++            g_mode = s.fm == 1 ? "fm-engage" : "fm-retreat";
++            return true;
++        }
++        return false;
++    };
++    auto r_kite = [&]() -> bool {
++        g_mode = "fight";
++        if (P_KITE && s.casters && !foes.empty() && !on_spawn && (!s.melee || s.renkite) && fight::kite(s, me, foes, round)) {
++            g_mode = "kite";
++            return true;
++        }
++        return false;
++    };
++    auto r_front = [&]() -> bool {
++        g_mode = "fight";
++        if (P_FRONT && !foes.empty() && !on_spawn && fight::front_line(s, me, foes, round)) {
++            g_mode = "front";
++            return true;
++        }
++        return false;
++    };
++    auto r_avoidlow = [&]() -> bool {
++        g_mode = "fight";
++        if (foes.empty()) return false;
++        if (fight_ctx()) return true;
++        if (!cx.killable && !on_spawn && !cx.pot_hold &&
++            ((cx.low_pct && hpr * 100 < cx.low_pct && nearest_foe <= 6) ||
++             (cx.carrying && !cx.favourable && nearest_foe <= 6))) {
+             g_mode = "avoid";
+-            if (carrying) {
++            if (cx.carrying) {
+                 auto a = best_altar(s, pos, round);
+                 if (a && dist(*a, pos) <= 1 && nearest_foe > 3) {
+                     bool acted = go_tribute(s, me, round);
+-                    if (acted || !P_U34_FAILED_CHANNELS) return;
++                    if (acted || !P_U34_FAILED_CHANNELS) return true;
+                 }
+             }
+             fight::back_off(s, me, foes, round);
+-            return;
++            return true;
+         }
+-        if (!favourable && !killable && (hpr * 100 < P_GA_AVOID_HP || nearest_foe <= P_AVOID_DIST) && !on_spawn) {
++        return false;
++    };
++    auto r_avoid = [&]() -> bool {
++        g_mode = "fight";
++        if (foes.empty()) return false;
++        if (fight_ctx()) return true;
++        bool want = P_GP0_ON ? ga_run(GA_GP0, cx.feat) > 0
++                             : (!cx.favourable && !cx.killable && (hpr * 100 < P_GA_AVOID_HP || nearest_foe <= P_AVOID_DIST) && !on_spawn);
++        if (want) {
+             g_mode = "avoid";
+             fight::back_off(s, me, foes, round);
+-            return;
++            return true;
+         }
+-        if (tgt && carrying && !killable && !tgt->channeling) tgt = nullptr;
+-        if (tgt && (killable || tgt->channeling || (reachable && favourable) || helping ||
+-                    (P_ALLYDUTY && favourable && tgt->d <= 8 && g_ally_near_tgt))) {
++        return false;
++    };
++    auto r_engage = [&]() -> bool {
++        g_mode = "fight";
++        if (foes.empty()) return false;
++        if (fight_ctx()) return true;
++        if (tgt && cx.carrying && !cx.killable && !tgt->channeling) tgt = nullptr;
++        if (!tgt) return false;
++        bool want = P_GP1_ON ? ga_run(GA_GP1, cx.feat) > 0
++                             : (cx.killable || tgt->channeling || (cx.reachable && cx.favourable) || cx.helping ||
++                                (P_ALLYDUTY && cx.favourable && tgt->d <= 8 && g_ally_near_tgt));
++        if (want) {
+             bool acted = engage(s, me, tgt->c, tgt->p, true, true);
+-            if (acted || !P_U34_ENGAGE_FALLBACK) return;
++            if (acted || !P_U34_ENGAGE_FALLBACK) return true;
+         }
+-    }
+-
++        return false;
++    };
+     // 4. Recall to heal / spend gold when safe; bank the bag first if an altar is close.
+-    g_mode = "recall-shop";
+-    int home = dist(pos, s.spawn_center);
+-    bool want_recall = hpr * 100 < P.recall_pct || (gold >= P_SHOP_GOLD && hpr < 0.5f) ||
+-                       (round - s.need_heal <= 2 && hpr < 0.8f);
+-    bool shop_trip = P_SHOP_RECALL && gold >= P_SHOP_RECALL && !starts_with(s.name, "tavi") &&
+-                     (!P_SHOPFIX || round - s.shop_fail > 150) &&
+-                     s.cap_start < 0 && round - s.shop_recall > 40;
+-    want_recall = want_recall || shop_trip;
+-    // P_CAPRECALL: capture first and recall on the capture tiles, so the 5-round recall overlaps the 5-round
+-    // capture (procless on rows: it captures and arrives home healed in the same turn).
+-    // P_CAPRECALL 2: also take the free trip home whenever it heals or shops something (hp < 90%, 90+ gold).
+-    // Preserve normal healing/shop recalls. Only the extra capture opportunity
+-    // weighs the cost of returning to productive territory.
+-    bool cap_want = want_recall || (((s.de_map == v34de::Lanes) ? 1 : P_CAPRECALL) >= 2 &&
+-                                   cr_capture_extra(s, me, hpr, gold, round));
+-    if (((s.de_map == v34de::Lanes) ? 1 : P_CAPRECALL) && cap_want && safe && s.target >= 0 && s.target < static_cast<int>(s.groups.size())) {
+-        Group& g = s.groups[s.target];
+-        if (g.reward_seen == round && !other_captures(s, me, g, s.target)) {
+-            if (g.mask.is_set(pos) && (P_CAPRECALL_DELAY == 0 || (s.cap_start >= 0 && round - s.cap_start >= P_CAPRECALL_DELAY))) {
+-                g_mode = "cap-recall";
+-                if (attempt([&] {
+-                        me.recall();
+-                        return true;
+-                    })) {
+-                    ++s.cr_started;
+-                    cr_trace(s, round);
+-                    if (shop_trip) s.shop_recall = round;
++    auto r_recallshop = [&]() -> bool {
++        g_mode = "recall-shop";
++        bool want_recall = hpr * 100 < P.recall_pct || (gold >= P_SHOP_GOLD && hpr < 0.5f) ||
++                           (round - s.need_heal <= 2 && hpr < 0.8f);
++        bool shop_trip = P_SHOP_RECALL && gold >= P_SHOP_RECALL && !starts_with(s.name, "tavi") &&
++                         (!P_SHOPFIX || round - s.shop_fail > 150) &&
++                         s.cap_start < 0 && round - s.shop_recall > 40;
++        want_recall = want_recall || shop_trip;
++        // P_CAPRECALL: capture first and recall on the capture tiles, so the 5-round recall overlaps the 5-round
++        // capture (procless on rows: it captures and arrives home healed in the same turn).
++        // P_CAPRECALL 2: also take the free trip home whenever it heals or shops something (hp < 90%, 90+ gold).
++        // Preserve normal healing/shop recalls. Only the extra capture opportunity
++        // weighs the cost of returning to productive territory.
++        bool cap_want = want_recall || (((s.de_map == v34de::Lanes) ? 1 : P_CAPRECALL) >= 2 &&
++                                       cr_capture_extra(s, me, hpr, gold, round));
++        if (((s.de_map == v34de::Lanes) ? 1 : P_CAPRECALL) && cap_want && safe && s.target >= 0 && s.target < static_cast<int>(s.groups.size())) {
++            Group& g = s.groups[s.target];
++            if (g.reward_seen == round && !other_captures(s, me, g, s.target)) {
++                if (g.mask.is_set(pos) && (P_CAPRECALL_DELAY == 0 || (s.cap_start >= 0 && round - s.cap_start >= P_CAPRECALL_DELAY))) {
++                    g_mode = "cap-recall";
++                    if (attempt([&] {
++                            me.recall();
++                            return true;
++                        })) {
++                        ++s.cr_started;
++                        cr_trace(s, round);
++                        if (shop_trip) s.shop_recall = round;
++                    }
++                    return true;
+                 }
+-                return;
++                want_recall = false;  // step on the tiles first
+             }
+-            want_recall = false;  // step on the tiles first
+         }
+-    }
+-    if (rsafe && home > 6 && want_recall) {
+-        if (gems >= 10) {
+-            auto a = best_altar(s, pos, round);
+-            if (a && br_altar_distance(s, *a, pos, round) <= std::min(home, 12)) {
+-                g_mode = "tribute";
+-                bool acted = go_tribute(s, me, round);
+-                if (acted || !P_U34_FAILED_CHANNELS) return;
++        if (rsafe && home > 6 && want_recall) {
++            if (gems >= 10) {
++                auto a = best_altar(s, pos, round);
++                if (a && br_altar_distance(s, *a, pos, round) <= std::min(home, 12)) {
++                    g_mode = "tribute";
++                    bool acted = go_tribute(s, me, round);
++                    if (acted || !P_U34_FAILED_CHANNELS) return true;
++                }
+             }
++            bool recalled = attempt([&] {
++                me.recall();
++                return true;
++            });
++            if (recalled && shop_trip) s.shop_recall = round;
++            if (recalled || !P_U34_FAILED_CHANNELS) return true;
+         }
+-        bool recalled = attempt([&] {
+-            me.recall();
+-            return true;
+-        });
+-        if (recalled && shop_trip) s.shop_recall = round;
+-        if (recalled || !P_U34_FAILED_CHANNELS) return;
+-    }
++        return false;
++    };
++    auto r_walkhome = [&]() -> bool {
++        if (P_WALKHOME && !safe && home > 6 && hpr * 100 < P.recall_pct && nearest_foe > 2) {
++            g_mode = "walk-home";
++            if (gems >= 10) {
++                auto a = best_altar(s, pos, round);
++                if (a && br_altar_distance(s, *a, pos, round) <= std::min(home, 8) && go_tribute(s, me, round)) return true;
++            }
++            if (flee(s, me)) return true;
++        }
++        return false;
++    };
+ 
+-    if (P_WALKHOME && !safe && home > 6 && hpr * 100 < P.recall_pct && nearest_foe > 2) {
+-        g_mode = "walk-home";
+-        if (gems >= 10) {
+-            auto a = best_altar(s, pos, round);
+-            if (a && br_altar_distance(s, *a, pos, round) <= std::min(home, 8) && go_tribute(s, me, round)) return;
++    // Level 3: the evolved net picks the action while enemies are in sight (0 = leave it to the rules).
++    bool skip_micro = false;
++    if (P_NN_ON && !foes.empty() && !on_spawn) {
++        if (fight_ctx()) return;
++        int act = ga_nn_act(GA_NN, cx.feat);
++        if (act == 1 && tgt) {
++            g_mode = "fight";
++            engage(s, me, tgt->c, tgt->p, true, true);
++            return;
++        }
++        if (act == 2) {
++            g_mode = "fight";
++            if (fight::kite(s, me, foes, round)) {
++                g_mode = "kite";
++                return;
++            }
++        }
++        if (act == 3) {
++            g_mode = "avoid";
++            fight::back_off(s, me, foes, round);
++            return;
++        }
++        if (act == 5 && rsafe && attempt([&] {
++                me.recall();
++                return true;
++            })) {
++            g_mode = "flee/recall";
++            return;
+         }
+-        if (flee(s, me)) return;
++        if (act == 4 || act == 5) {
++            g_mode = "flee/recall";
++            bool hit = P_HITFIRST && fight::hit_now(s, me, foes);
++            flee(s, me);
++            if (!hit) shoot_back(s, me, foes);
++            return;
++        }
++        if (act == 6) skip_micro = true;
+     }
+ 
++    if (!skip_micro) {
++        int order[GR_N];
++        ga_rule_order(order);
++        for (int k = 0; k < GR_N; ++k) {
++            bool done = false;
++            switch (order[k]) {
++                case GR_FLEE: done = P_R_FLEE && r_flee(); break;
++                case GR_NEARRECALL: done = P_R_NEARRECALL && r_nearrecall(); break;
++                case GR_FM: done = r_fm(); break;
++                case GR_KITE: done = r_kite(); break;
++                case GR_FRONT: done = r_front(); break;
++                case GR_AVOIDLOW: done = P_R_AVOIDLOW && r_avoidlow(); break;
++                case GR_AVOID: done = P_R_AVOID && r_avoid(); break;
++                case GR_ENGAGE: done = P_R_ENGAGE && r_engage(); break;
++                case GR_RECALLSHOP: done = P_R_RECALLSHOP && r_recallshop(); break;
++                case GR_WALKHOME: done = r_walkhome(); break;
++                default: break;
++            }
++            if (done) return;
++        }
++    }
+     // 5. Bank gems.
+     g_mode = "tribute";
+     bool late = round >= P.late_round;

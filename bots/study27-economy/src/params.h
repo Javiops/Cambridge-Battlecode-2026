@@ -80,3 +80,7 @@
 #define P_CASTSAFE 0         // skip a rooting cast when we should escape: lost 15-30 (hp only) and 12-29 (70%), off
 #define P_KITEFRONT 0        // 1 = front line before kite, 2 = kite shoots the team focus: both noise, off
 #define P_R5_WARD 0          // wards: 55-58 maps won/lost both sides, noise again, off
+
+// 2026-10-16 fuel guard: the same decisions for less fuel (turns that ran out were suspended and played a round
+// late). P_FUELPROF 1 + a debug build (`cambc run` without --release) prints fuel per turn section.
+#define P_FUELGUARD 1

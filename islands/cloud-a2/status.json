@@ -4,17 +4,18 @@
  "scope": "micro,structure,gp",
  "start": "online1520",
  "jobs": 4,
- "gen": 17,
- "games": 30182,
- "gps": 3.14,
+ "gen": 18,
+ "games": 32100,
+ "gps": 3.76,
  "base": "7c2d0330e54e",
  "best": {
-  "cid": "4a1104f279",
-  "shrunk": 0.1141,
-  "n": 6,
+  "cid": "b2b563efc2",
+  "shrunk": 0.1208,
+  "n": 5,
   "describe": {
    "P_CHASE_GEMS": 94,
    "P_FRONT": 0,
+   "P_KITE": 0,
    "P_SAFESTEP": 0,
    "P_NOCHASE": 0,
    "P_ALLYDUTY": 1,
@@ -28,9 +29,9 @@
    "nn": "0 hidden, 1 links, outputs used: farm"
   }
  },
- "exported": 12,
- "imported": 37,
- "updated": "2026-10-16 17:55:38 UTC",
+ "exported": 13,
+ "imported": 39,
+ "updated": "2026-10-16 18:04:16 UTC",
  "code": "claude/ga-farm-d37xlq@e2d1227",
  "home": "/mnt/project-files/ga-farm/islands/cloud-a2",
  "transport": "shared"

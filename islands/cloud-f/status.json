@@ -4,14 +4,14 @@
  "scope": "neat",
  "start": "ga65a6",
  "jobs": 4,
- "gen": 56,
- "games": 94899,
- "gps": 4.52,
+ "gen": 57,
+ "games": 96879,
+ "gps": 5.42,
  "base": "7c2d0330e54e",
  "best": {
   "cid": "8c6abfb7e1",
-  "shrunk": 0.2336,
-  "n": 1,
+  "shrunk": 0.2025,
+  "n": 2,
   "describe": {
    "P_FLEE_PCT": 27,
    "P_RECALL_NEAR": 9,
@@ -33,9 +33,9 @@
    "nn": "0 hidden, 5 links, outputs used: back off, engage, farm, kite, recall"
   }
  },
- "exported": 42,
- "imported": 154,
- "updated": "2026-10-16 17:52:38 UTC",
+ "exported": 43,
+ "imported": 158,
+ "updated": "2026-10-16 17:58:45 UTC",
  "code": "claude/project-thread-cmudgp@e2d1227",
  "home": "/mnt/project-files/ga-farm/islands/cloud-f",
  "transport": "shared"

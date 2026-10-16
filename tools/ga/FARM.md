@@ -76,8 +76,14 @@ python3 tools/ga/island.py ensure --name cloud-b --farm /mnt/project-files/ga-fa
 ```
 
 `ensure` starts `run` in the background unless this island already runs on this host. It resumes from the
-checkpoint, so it is also the restart command. Containers restart while a session is idle, so the thread that owns
-an island keeps a self-wake every 10-15 minutes (`send_later`) that runs the same `ensure` command.
+checkpoint, so it is also the restart command. Containers are recycled while a session is idle, so the thread that
+owns an island:
+- keeps a background Bash task alive while the island runs (run_in_background, timeout 7200000), which stops the
+  container from being recycled: `tail --pid=<island pid> -f /dev/null`, or
+  `while pgrep -f "island.py run --name <island>"; do sleep 60; done`. It ends when the island dies, which wakes the
+  thread. Start it again after `ensure` and after the 2 h timeout.
+- keeps a self-wake (`send_later`, every 30 minutes is enough with the task above) that runs the same `ensure`
+  command, in case the container was recycled anyway.
 
 Other commands use the same `--name` and `--farm`:
 - `stop` ends the island.

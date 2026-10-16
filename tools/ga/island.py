@@ -494,8 +494,23 @@ def running(home):
     return None
 
 
+def lower_priority():
+    """Below-normal priority for this process and the games it starts (they inherit it)."""
+    try:
+        if WIN:
+            import ctypes
+            k = ctypes.windll.kernel32
+            k.SetPriorityClass(k.GetCurrentProcess(), 0x00004000)  # BELOW_NORMAL_PRIORITY_CLASS
+        else:
+            os.nice(10)
+    except Exception as e:  # noqa: BLE001  (never fatal)
+        print('could not lower priority:', e)
+
+
 def cmd_run(A):
     home, scratch = home_of(A), os.path.join(A.scratch, A.name)
+    if A.low:
+        lower_priority()
     os.makedirs(home, exist_ok=True)
     os.makedirs(scratch, exist_ok=True)
     other = running(home)
@@ -719,7 +734,7 @@ def publish(A, st, home, bh, gps, ranked, start):
         board(d)
     if A.farm:
         write(A.farm)
-    if A.git_branch:
+    if A.git_branch and not A.git_readonly:
         git_push(A, write, f'island {A.name} gen {st["gen"]}')
 
 
@@ -818,6 +833,8 @@ def main():
         s.add_argument('--git-branch', default='', help='also exchange through this git branch (the PC: ga-farm)')
         s.add_argument('--git-dir', default=os.path.join('out', 'farm-git'), help='local clone of that branch')
         s.add_argument('--git-remote', default='', help='remote URL (default: origin of this checkout)')
+        s.add_argument('--git-readonly', action='store_true', help='only read the branch (import), never push')
+        s.add_argument('--low', type=int, default=1, help='1 = run at low priority (the machine stays usable)')
         s.add_argument('--legacy-branch', default='', help='bridge: read the old PC weights GA from this branch '
                                                            '(pc-island, islands/pc/best.json) into the farm')
         s.add_argument('--home', default='', help='checkpoint folder (default: <farm>/islands/<name> in the shared '

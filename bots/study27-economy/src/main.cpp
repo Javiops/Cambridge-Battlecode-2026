@@ -117,6 +117,9 @@ namespace {
 #ifndef P_NOGOLD
 #define P_NOGOLD 0
 #endif
+#ifndef P_MONO
+#define P_MONO 1  // maps whose only gems are monoliths (contest): farm gold, then the whole team on the monolith
+#endif
 #ifndef P_STEPOFF
 #define P_STEPOFF 0
 #endif
@@ -905,6 +908,7 @@ struct State {
     std::vector<vec2> altars, spawn_tiles;
     vec2 spawn_center, en_center;
     std::vector<Group> groups;
+    bool mono_only = false;  // P_MONO: every gem on the map sits in a monolith group
     std::vector<Shard> shards;
     std::vector<bc::item_type> fallback_items;
     std::vector<Step> plan;
@@ -1145,6 +1149,14 @@ void init(State& s, bc::champion& me) {
         s.groups.push_back(std::move(G));
         return true;
         });
+    }
+    if (P_MONO) {
+        bool other_gems = false, mono = false;
+        for (auto& g : s.groups) {
+            if (g.monolith) mono = mono || g.gems > 0;
+            else other_gems = other_gems || g.gems > 0;
+        }
+        s.mono_only = mono && !other_gems;
     }
 
     if (P_PATHD)  // walking distances that never change: our spawn and the altars to every camp group
@@ -1860,13 +1872,16 @@ int choose_target(State& s, bc::champion& me, int round) {
         int gd = walk(g);
         if (wait > 0 && (!P_RESPAWN || g.monolith || wait > gd + P_RESPAWN)) continue;
         if (g.gems + g.gold <= 0) continue;
-        if (P_NOGOLD && g.gems <= 0) continue;  // gold-only clusters give no gems
+        if (P_NOGOLD && g.gems <= 0 && !s.mono_only) continue;  // gold-only clusters give no gems (but gold is the tiebreak where only monoliths give gems)
         int claimers = count_claimers(s, sm, i);
         bool free_reward = g.reward_seen >= 0 && round - g.reward_seen < 30;
         double afford = std::max(1.0, mhp * (1.0 - P_RESERVE_PCT / 100.0));
         int needed = free_reward ? 1 : squad_needed(g.hp, g.str, dps, afford);
+        bool mono_go = s.mono_only && g.monolith;  // its damage stays, so the team wears it down over several trips
+        if (mono_go) needed = std::min(needed, s.roster);
         if (needed > s.roster) continue;  // not with this team, not with these stats
         int cap = g.str > 0 ? std::max(needed, P_MAX_SHARE) : 1;
+        if (mono_go) cap = free_reward ? 1 : s.roster;
         if (P_PAIR && g.str <= 0 && g.gems > 0) cap = P_PAIR;  // gem clusters: a pair kills twice as fast
         bool pot = P_POT && i < static_cast<int>(s.pot_group.size()) && s.pot_group[i];
         if (pot) cap = std::max(cap, 2);
@@ -2503,8 +2518,10 @@ void farm(State& s, bc::champion& me, int round, const std::vector<bc::camp>& ca
         int needed = squad_needed(rem, str, dps, afford);
         int here = 1 + allies_near(s, me, g.center, 7);
         int coming = 1 + count_claimers(s, read_sm(), s.target);
+        const bool mono_go = s.mono_only && g.monolith;
+        if (mono_go) needed = std::min(needed, std::max(1, s.roster));
         if (!engaged && needed > here) {
-            if (needed > std::max(coming, s.roster) || needed > squad_needed(rem, str, dps, mhp * 0.75)) {
+            if (needed > std::max(coming, s.roster) || (!mono_go && needed > squad_needed(rem, str, dps, mhp * 0.75))) {
                 g_farm = "too-strong";  // not even a full-health squad would do it
                 g.bad_until = round + 60;
                 drop_target(s);

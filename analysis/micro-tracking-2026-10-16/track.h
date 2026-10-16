@@ -36,6 +36,8 @@
 #ifndef P_TRACK_RET
 #define P_TRACK_RET 0     // >0: backing off steps toward healthy allies remembered within this many rounds, not only
 #endif                    //     the ones in sight (safe_step's tie-break toward an ally)
+// The enemy half of the memory is only kept when a use reads it (FAV, ISO); RET reads allies only.
+#define TRACK_ENEMIES (P_TRACK_FAV || P_TRACK_ISO)
 #ifndef P_TRACK_ALLYMEM
 #define P_TRACK_ALLYMEM 2 // rounds a remembered ally still counts at its last tile
 #endif
@@ -100,6 +102,9 @@ inline void update(State& s, bc::champion& me, const std::vector<Foe>& foes, vec
             return true;
         });
     M.round = round;
+    // RET alone only needs allies around fights: skip quiet turns (no foe in sight now or in the last 10 rounds)
+    if (!TRACK_ENEMIES && foes.empty() && round - s.foe_r > 10) return;
+    if (TRACK_ENEMIES) {
     for (int k = 0; k < M.ne; ++k) {
         EnemyMem& e = M.en[k];
         bool al = true;
@@ -133,6 +138,7 @@ inline void update(State& s, bc::champion& me, const std::vector<Foe>& foes, vec
                 return true;
             });
     }
+    }
     attempt([&] {
         for (auto& a : bc::vision::champions(*s.my)) {
             int k = -1;
@@ -155,7 +161,7 @@ inline void update(State& s, bc::champion& me, const std::vector<Foe>& foes, vec
         }
         return true;
     });
-    if (round % 4 == 0)
+    if (TRACK_ENEMIES && round % 4 == 0)  // RET checks is_alive only for the allies it is about to use
         for (int k = 0; k < M.na; ++k) attempt([&] { M.al[k].alive = M.aroster[k].is_alive(); return true; });
 
 #if P_TRACK_LOG
@@ -225,8 +231,10 @@ inline bool favourable(bc::champion& me, vec2 c, int round) {
 inline void remembered_allies(bc::champion& me, std::vector<vec2>& out, int round) {
     for (int k = 0; k < M.na; ++k) {
         const AllyMem& a = M.al[k];
-        if (M.aroster[k] == me || !a.alive || a.seen_r == round || round - a.seen_r > P_TRACK_RET) continue;
-        if (a.hp > 0.4f * a.mhp) out.push_back(a.p);
+        if (M.aroster[k] == me || a.seen_r == round || round - a.seen_r > P_TRACK_RET || a.hp <= 0.4f * a.mhp) continue;
+        bool alive = false;
+        attempt([&] { alive = M.aroster[k].is_alive(); return true; });
+        if (alive) out.push_back(a.p);
     }
 }
 

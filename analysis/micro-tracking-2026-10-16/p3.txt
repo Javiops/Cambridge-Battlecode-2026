@@ -1,0 +1,12 @@
+17 maps x 2 sides x 5 specialists; 0 games did not finish
+
+bot                            sp_castera   sp_casterh      sp_hunt    sp_centre      sp_farm      all
+bots/v52                        65% d 9.7    71% d10.1    71% d12.2    85% d12.6    65% d 8.8    71.2%
+bots/trk2                       65% d 9.7    71% d10.1    71% d12.2    85% d12.6    65% d 8.8    71.2%
+bots/lret                       68% d11.0    65% d12.6    71% d13.6    79% d13.3    71% d 7.2    70.6%
+
+bots/v52 vs bots/trk2: games that flip 0-0 (0% for v52), p=1.000; 
+
+bots/v52 vs bots/lret: games that flip 20-19 (51% for v52), p=1.000; sp_castera 3-4, sp_casterh 4-2, sp_hunt 5-5, sp_centre 5-3, sp_farm 3-5
+
+bots/trk2 vs bots/lret: games that flip 20-19 (51% for trk2), p=1.000; sp_castera 3-4, sp_casterh 4-2, sp_hunt 5-5, sp_centre 5-3, sp_farm 3-5

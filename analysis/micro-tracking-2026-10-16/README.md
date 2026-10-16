@@ -56,3 +56,13 @@ El rastreador solo cuesta 3 partidas (más muertes contra sp_casterh: 10,1 → 1
 
 Conclusión: la información que faltaba (enemigos fuera de visión) rara vez está cerca cuando morimos, así que tenerla
 no cambia las peleas. Lo que más prometía es usar la memoria de aliados para retirarse; solo se puede juzgar online.
+
+## 4. 2026-10-16 20:10: la versión "retirarse hacia aliados recordados", coste de combustible (el usuario pidió implementarla si no es cara)
+
+Versión ligera (`track.h` actual): con solo P_TRACK_RET guarda solo aliados, y solo en turnos con un enemigo a la vista o visto hace ≤10 rondas.
+- Coste del rastreador en esos turnos: ~3,3-4,4k de media, máx. 7,6k (de 100k); 0 en turnos tranquilos.
+- Turnos perdidos por quedarse sin combustible (paso 26), 17 mapas × 2 lados contra sp_castera: **v52 106, ligera 149 (+43, +40%)**;
+  sobre todo lanes 19→36, corners 8→24, rushbait-v2 2→9 (`fuel_k26.txt`).
+- Panel de mapas del sitio: ligera **120/170** (v52 121, cambios 19-20): el +4 de la primera versión era ruido (`p3.txt`).
+
+Veredicto: no se fusiona. Más turnos perdidos por combustible y ninguna ganancia medible.

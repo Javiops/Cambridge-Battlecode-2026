@@ -49,16 +49,17 @@
   "P_NOCHASE": 0
  },
  "fitness": {
-  "shrunk": 0.0134,
-  "n": 2,
+  "shrunk": 0.0195,
+  "n": 3,
   "deltas": [
    0.02726,
-   0.01301
+   0.01301,
+   0.03756
   ]
  },
- "gen": 2,
+ "gen": 3,
  "scope": "all",
  "start": "ga65a6",
- "time": "2026-10-16 12:14:24 UTC",
+ "time": "2026-10-16 12:15:28 UTC",
  "transport": "git"
 }

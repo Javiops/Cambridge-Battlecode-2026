@@ -1,0 +1,43 @@
+{
+ "id": "I020",
+ "title": "Gold-only recalls check the walk back from home against the gold to spend; log the reason of every recall (P_RECALLCOST, P_LOGRECALL)",
+ "kind": "farm",
+ "source": "Javi's review of the study27-economy branch, 16 Oct 07:00 UTC",
+ "owner": "Javi",
+ "hypothesis": "fewer shop recalls far from home with the same items bought by round 600; maps won both sides in favour p<0.05",
+ "stage": "paused",
+ "created": "2026-10-16T07:04Z",
+ "history": [
+  {
+   "at": "2026-10-16T07:04Z",
+   "stage": "idea",
+   "note": ""
+  },
+  {
+   "at": "2026-10-16T07:32Z",
+   "stage": "paused",
+   "note": "P_RECALLCOST 2; gold-only recalls are 7% of 4351; P_LOGRECALL kept; docs/I019-I022-review-fixes.md",
+   "result": "gate 117-104 on 710 fresh maps (p=0.42): in favour, undecided"
+  },
+  {
+   "at": "2026-10-16T07:33Z",
+   "stage": "paused"
+  },
+  {
+   "at": "2026-10-16T08:01Z",
+   "stage": "local-test",
+   "note": "zip bot/mybot_study28_recallcost2.zip; ready for stage 3; worst counterexample gen7161016_628: no shop trip, 16 vs 13 deaths",
+   "result": "gate PASS (farm): 200-161 on 1260 fresh maps (p=0.045), panel 19-8, fuel 315 vs 360 same games; no-op 63-64 on 1000"
+  },
+  {
+   "at": "2026-10-16T08:22Z",
+   "stage": "paused",
+   "note": "no upload: no gain on the online bot",
+   "result": "on study28 PASS 200-161/1260 (p=0.045); on the online bot study27-economy (shop trips only, its own capture-recall check already there) null: 1/2/3 = 123-130, 131-132, 132-129 on 1000 fresh maps"
+  }
+ ],
+ "updated": "2026-10-16T08:22Z",
+ "bot": "bots/study28",
+ "branch": "claude/four-fixes-harness-dulpj2",
+ "pr": "16"
+}

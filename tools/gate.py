@@ -8,7 +8,8 @@ usage (from the repo root, after `cambc init --yes`):
 
 Runs in phases, cheapest first, and stops as soon as the result is clear:
   1. safety     9 official maps x 2 sides: no bot fault (botFaults), no broken game, and the fuel-exhausted turns
-                (step kind 26) on lanes/corners/collision do not rise more than 30 over the base.
+                (step kind 26) on lanes/corners/collision, both bots counted in the same games (both sides), do not rise
+                more than 30 over the base.
   2. fresh maps hold60 + dev200 (+ --extra) shuffled in chunks of 40 maps, counting maps won on both sides. Stops early
                 when it already looks worse (p<0.05 against) or, for farm, already better (p<0.01).
   3. panel      against spar11/12/16 (the rivals that kill like online teams) on official + gen: the candidate and
@@ -83,45 +84,51 @@ def tally(per):
 
 
 def fuel_check(cand, base, ha, hb, ver, jobs):
-    """k26 (fuel-exhausted turn ends) of each bot on the big official maps, side A vs the other bot."""
+    """k26 (fuel-exhausted turn ends) of each bot on the big official maps, both bots counted IN THE SAME GAMES.
+
+    Each map is played from both sides (cand vs base, base vs cand) and both teams' k26 are counted in every game.
+    Counting the candidate in one game and the base in another (the old check) let one long fight in either game
+    swing the total by 40+ turns: a candidate that only adds data structures failed with 127 vs 81 on lanes, while in
+    that same game the base had 153."""
     maps = [f'maps/{n}.map26a' for n in FUEL_MAPS if os.path.exists(f'maps/{n}.map26a')]
-    tag = 'fuel_' + ha + '_' + hb
+    tag = 'fuel2_' + ha + '_' + hb
     todo = []
-    for who, (x, y) in (('cand', (cand, base)), ('base', (base, cand))):
+    for side, (x, y) in (('A', (cand, base)), ('B', (base, cand))):
         for m in maps:
-            od = os.path.join('out', 'gate', tag, who + '_' + os.path.basename(m))
-            todo.append((who, m, od, x, y))
+            od = os.path.join('out', 'gate', tag, side + '_' + os.path.basename(m))
+            todo.append((side, m, od, x, y))
 
     def one(t):
-        who, m, od, x, y = t
+        side, m, od, x, y = t
         cf = os.path.join(od, 'k26.json')
         if os.path.exists(cf):
-            return who, json.load(open(cf))
+            return side, json.load(open(cf))
         os.makedirs(od, exist_ok=True)
         subprocess.run([ab.CLI, 'run', x, y, '--map', m, '-o', od], capture_output=True, env=ab.ENV)
         reps = glob.glob(os.path.join(od, '*.repl26a'))
         if not reps:
-            return who, None
+            return side, None
         p = subprocess.run(['node', 'tools/replaydump.js', reps[0], '--every-step'], capture_output=True, text=True)
-        k, team = 0, {}
+        k, team = [0, 0], {}
         for line in p.stdout.splitlines():
             try: d = json.loads(line)
             except ValueError: continue
             if 'step' not in d: continue
             if not team: team = {c['index']: c['team'] for c in d.get('champions', [])}
             st = d['step']
-            if st.get('kind') == 26 and st.get('actorKind') == 1 and team.get(st.get('actorIndex')) == 0:
-                k += 1
+            if st.get('kind') == 26 and st.get('actorKind') == 1 and team.get(st.get('actorIndex')) in (0, 1):
+                k[team[st['actorIndex']]] += 1
         for f in reps: os.remove(f)
         json.dump(k, open(cf, 'w'))
-        return who, k
+        return side, k
 
     with ThreadPoolExecutor(jobs) as ex:
         res = list(ex.map(one, todo))
     tot = {'cand': 0, 'base': 0}
-    for who, k in res:
+    for side, k in res:
         if k is None: return None
-        tot[who] += k
+        c, b = (k[0], k[1]) if side == 'A' else (k[1], k[0])  # side A: candidate is team 0
+        tot['cand'] += c; tot['base'] += b
     return tot
 
 
@@ -200,7 +207,7 @@ def main():
         if fuel is None:
             say('   fuel: could not measure (node or the visualiser wasm missing?); going on without this check')
         else:
-            say(f'   fuel-exhausted turns on {"/".join(FUEL_MAPS)} (side A): candidate {fuel["cand"]}, base {fuel["base"]}'
+            say(f'   fuel-exhausted turns on {"/".join(FUEL_MAPS)} (same 6 games, both sides): candidate {fuel["cand"]}, base {fuel["base"]}'
                 f'   [{time.time() - t:.0f}s]')
             if fuel['cand'] > fuel['base'] + 30:
                 ok = False; say('   the candidate runs out of fuel more than the base: look for per-turn loops')

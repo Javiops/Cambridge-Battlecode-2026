@@ -63,11 +63,34 @@ inline bc::bitboard mp_awake_camp_zone(State& s, vec2 pos) {
 #ifndef P_MP_DASHHOLE
 #define P_MP_DASHHOLE 0
 #endif
+// P_MP_DH_FAST 1 (fuel, 2026-10-16): the tile-by-tile scan below ran 100k+ fuel at start-up on ambush (2 champions
+// lost rounds 2-9, 32 fuel-exhausted turns a game); the same set comes from four board shifts, and only holes on the
+// map border (where a shift reads outside the map) still go through the scan.
+#ifndef P_MP_DH_FAST
+#define P_MP_DH_FAST 0
+#endif
 inline void mp_find_dashholes(State& s) {
     s.mp_hole_all = bc::map::holes();
     bc::bitboard bad = bc::map::walls() | s.mp_hole_all | bc::map::altars();
+    bc::bitboard todo = s.mp_hole_all;
+    if (P_MP_DH_FAST && attempt([&] {
+            const int w = static_cast<int>(bc::map::width()), h = static_cast<int>(bc::map::height());
+            bc::bitboard border;
+            for (int x = 0; x < w; ++x) { border.set(vec2(x, 0)); border.set(vec2(x, h - 1)); }
+            for (int y = 0; y < h; ++y) { border.set(vec2(0, y)); border.set(vec2(w - 1, y)); }
+            bc::bitboard ok = ~bad;
+            const int dir[4][2] = {{1, 0}, {0, 1}, {1, 1}, {1, -1}};
+            for (auto& d : dir)
+                s.mp_dashholes |= s.mp_hole_all & ~border & ok.shift_right(d[0]).shift_up(d[1]) &
+                                  ok.shift_right(-d[0]).shift_up(-d[1]);
+            todo = s.mp_hole_all & border;
+            return true;
+        }) == false) {
+        s.mp_dashholes = bc::bitboard();
+        todo = s.mp_hole_all;
+    }
     attempt([&] {
-        for (auto h : bc::map::holes().positions())
+        for (auto h : todo.positions())
             for (int dx = -1; dx <= 1; ++dx)
                 for (int dy = -1; dy <= 1; ++dy) {
                     if (!dx && !dy) continue;

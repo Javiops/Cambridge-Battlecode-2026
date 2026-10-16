@@ -141,9 +141,9 @@ class Bench:
 
     def opp(self, bot):
         if bot not in self.opp_wasm:
-            if not os.path.exists(wasm_of(bot)):
+            w = bot if bot.endswith('.wasm') else wasm_of(bot)  # a bot folder, or a wasm (e.g. an evolved genome)
+            if not os.path.exists(w):
                 build(bot)
-            w = wasm_of(bot)
             self.opp_wasm[bot] = (md5(w), w)
         return self.opp_wasm[bot]
 

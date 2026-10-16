@@ -1,6 +1,7 @@
 #pragma once
 #include "geometry.h"
 #include "information.h"
+#include "resource.h"
 #include <cambc.h>
 #include <string>
 namespace tactics {
@@ -120,8 +121,11 @@ inline Actor read_actor(const bc::champion &c, const bc::detail::champion_info &
     if (a.stunned)
         a.stun_ticks = buffs.get<bc::buff_stun>().duration;
     a.enhanced = buffs.has_enhanced_attack();
-    if (buffs.has_shield())
-        a.shield = buffs.get<bc::buff_shield>().value;
+    if (buffs.has_shield()) {
+        const auto shield = buffs.get<bc::buff_shield>();
+        a.shield = shield.value;
+        a.shield_ticks = shield.duration;
+    }
     const auto inventory = c.item_count();
     static_assert(static_cast<unsigned>(bc::item_type::count) == 42);
     const auto has_emblem = [&](unsigned family) {
@@ -180,38 +184,71 @@ struct World {
     struct FarmGeometryScore {
         int distance = unreachable;
         double alive = 0, reward = 0, damage = 0;
+        bool prepared = false;
     };
     std::vector<FarmGeometryScore> farm_geometry_scores;
+    std::size_t farm_geometry_cursor = 0;
+    std::vector<int> farm_geometry_original_groups;
     Pos farm_geometry_origin{};
     double farm_geometry_strength = -1, farm_geometry_mitigation = -1;
+    bool prepare_farm_geometry_row(int gi) {
+        if (gi < 0 || gi >= int(geo.groups.size()) || farm_geometry_scores[gi].prepared)
+            return true;
+        if (bc::fuel_remaining() < 28000)
+            return false;
+        const auto &group = geo.groups[gi];
+        FarmGeometryScore value;
+        for (const auto &spawn : group.spawns)
+            if (home_distance(spawn.pos) != unreachable)
+                value.distance = std::min(value.distance, distance(self.pos, spawn.pos));
+        if (value.distance != unreachable) {
+            const double ticks = std::ceil(group.initial_hp / std::max(1.0, self.strength));
+            const double reward = group.gems + .25 * group.gold;
+            value.alive =
+                reward / (1 + value.distance + group.initial_hp / std::max(1.0, self.strength) + 6);
+            value.reward = reward / (1 + value.distance + 6);
+            value.damage = ticks * group.initial_strength * self.camp_mitigation + 1;
+        }
+        value.prepared = true;
+        farm_geometry_scores[gi] = value;
+        return true;
+    }
     bool prepare_farm_geometry_scores() {
         if (farm_geometry_origin != self.pos || farm_geometry_strength != self.strength ||
             farm_geometry_mitigation != self.camp_mitigation) {
             farm_geometry_scores.clear();
+            farm_geometry_cursor = 0;
+            farm_geometry_original_groups.clear();
             farm_geometry_origin = self.pos;
             farm_geometry_strength = self.strength;
             farm_geometry_mitigation = self.camp_mitigation;
         }
-        // Only immutable map geometry and current own power are cached. Fresh
-        // lifecycle, HP reserve, failures and holder state are applied later.
-        while (farm_geometry_scores.size() < geo.groups.size()) {
+        // Scan immutable score candidates once per position/power key. Keeping
+        // the cursor at the end matters: re-testing all skipped gold rows on
+        // every warm call cost more than the original complete-cache check.
+        farm_geometry_scores.resize(geo.groups.size());
+        while (farm_geometry_cursor < geo.groups.size()) {
             if (bc::fuel_remaining() < 28000)
                 return false;
-            const auto &group = geo.groups[farm_geometry_scores.size()];
-            FarmGeometryScore value;
-            for (const auto &spawn : group.spawns)
-                if (home_distance(spawn.pos) != unreachable)
-                    value.distance = std::min(value.distance, distance(self.pos, spawn.pos));
-            if (value.distance != unreachable) {
-                const double ticks = std::ceil(group.initial_hp / std::max(1.0, self.strength));
-                const double reward = group.gems + .25 * group.gold;
-                value.alive = reward / (1 + value.distance +
-                                        group.initial_hp / std::max(1.0, self.strength) + 6);
-                value.reward = reward / (1 + value.distance + 6);
-                value.damage = ticks * group.initial_strength * self.camp_mitigation + 1;
-            }
-            farm_geometry_scores.push_back(value);
+            const int gi = int(farm_geometry_cursor);
+            const auto &group = geo.groups[gi];
+            if ((group.gems > 0 || geo.monolith_only) && !prepare_farm_geometry_row(gi))
+                return false;
+            if (on_group(gi, self.pos))
+                farm_geometry_original_groups.push_back(gi);
+            ++farm_geometry_cursor;
         }
+        // These few dynamic exceptions can become relevant without moving or
+        // changing stats. They request only their own previously skipped row.
+        if (!prepare_farm_geometry_row(memory.mission.group))
+            return false;
+        const int cash = memory.cash_investment_group;
+        if (priced_cash_investment(memory, cash, round) && !prepare_farm_geometry_row(cash))
+            return false;
+        for (const int gi : farm_geometry_original_groups)
+            if (groups[gi].fresh(round) && groups[gi].state == Lifecycle::Reward &&
+                !prepare_farm_geometry_row(gi))
+                return false;
         return true;
     }
     std::vector<GroupView> groups;

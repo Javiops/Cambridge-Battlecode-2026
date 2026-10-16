@@ -1,4 +1,8 @@
 #pragma once
+#include "camp_actions.h"
+#include "camp_basic.h"
+#include "camp_collateral.h"
+#include "farm_readiness.h"
 #include "resource.h"
 #include "solo_bounds.h"
 #include "types.h"
@@ -22,27 +26,51 @@ struct CampRollout {
     std::vector<double> remaining_hp, damage_taken;
     double ticks = 0, opportunity_cost = 0;
     bool ready = false, complete = false, uncertain = false;
+    ClearProofKind proof = ClearProofKind::None;
 };
+template <class Budget = CampBasicBudget>
+inline std::optional<CampRollout> basic_clear_rollout(std::span<const CampClearBody> crew,
+                                                      std::span<const CampClearMonster> monsters,
+                                                      int self_id, Budget funded = {}) {
+    if (!funded() || crew.size() > 6 || monsters.size() > 8)
+        return std::nullopt;
+    std::array<BasicCampBody, 6> bodies{};
+    std::array<BasicCampMonster, 8> camps{};
+    for (unsigned i = 0; i < crew.size(); ++i) {
+        if (crew[i].alternative_known && !std::isfinite(crew[i].alternative_value))
+            return std::nullopt;
+        bodies[i] = {&crew[i].actor, crew[i].enemy_reply};
+    }
+    for (unsigned i = 0; i < monsters.size(); ++i)
+        camps[i] = {&monsters[i].camp, monsters[i].observed};
+    const auto proof =
+        sufficient_basic_clear(std::span(bodies.data(), crew.size()),
+                               std::span(camps.data(), monsters.size()), self_id, funded);
+    if (!proof.ready)
+        return std::nullopt;
+    CampRollout out;
+    out.ready = out.complete = true;
+    out.proof = ClearProofKind::BasicOnly;
+    out.ticks = proof.ticks;
+    out.selected_ids.assign(proof.selected_ids.begin(), proof.selected_ids.begin() + proof.count);
+    out.remaining_hp.assign(proof.remaining_hp.begin(), proof.remaining_hp.begin() + proof.count);
+    out.damage_taken.assign(proof.damage_taken.begin(), proof.damage_taken.begin() + proof.count);
+    for (const auto &body : crew)
+        if (body.alternative_known)
+            out.opportunity_cost += std::max(0.0, body.alternative_value) * proof.ticks;
+    return out;
+}
 namespace coordination_detail {
 inline bool damage_spell(const Spell &s) {
-    return s.camps && s.amount > 0 && (s.kind == 2 || s.kind == 3 || s.kind == 4);
+    return camp_damage_ability(s);
 }
-inline bool useful_now(const Actor &a, std::span<const CampClearMonster> monsters) {
-    if (!a.alive || a.stunned || a.completed || a.channel != Channel::None)
-        return false;
+inline bool useful_now(const Actor &a, std::span<const CampClearMonster> monsters,
+                       bool exclusive_allowed = true) {
     for (const auto &m : monsters) {
         if (!m.observed || m.camp.hp <= 0)
             continue;
-        const int d = distance(a.pos, m.camp.pos);
-        if (a.can_attack && a.strength > 0 && d <= a.range)
+        if (current_camp_contribution(a, std::span(&m.camp, 1), exclusive_allowed).ready)
             return true;
-        for (const auto &s : a.spells)
-            if (a.can_cast && s.ready && s.kind == 1 && s.self && a.strength > 0 && d <= a.range)
-                return true;
-        for (const auto &s : a.spells)
-            if (a.can_cast && s.ready && damage_spell(s) &&
-                d <= s.range + (s.kind == 3 && s.ground ? s.radius : 0))
-                return true;
     }
     return false;
 }
@@ -82,198 +110,231 @@ inline std::array<double, 6> pressure(std::span<const Actor> bodies,
 }
 } // namespace coordination_detail
 
-// Bounded local forecast: at most six bodies and 32 living members, with at
-// most six rounds per member. No paths, SDK calls, or hypothetical movement.
+// Bounded local forecast: at most six bodies, 32 living members and 128 owner
+// opportunities. No paths, SDK calls, or hypothetical movement.
 // One cast/body/round competes with heal/shield; a reset restores one basic.
-// Camp responses are charged before the forecasted allied round, deliberately
-// allowing enemy/camp interleaving rather than assuming a free combined burst.
+// Current HP includes this round's camp phase. Later phases attack the actual
+// nearest body (every distance tie), with only explicitly modeled control skipped.
+struct CampRolloutBudget {
+    bool operator()() const {
+        return true;
+    }
+};
+template <class Budget = CampRolloutBudget>
 inline CampRollout rollout_camp_clear(std::span<const CampClearBody> crew,
                                       std::span<const CampClearMonster> monsters, int self_id,
-                                      int max_work = 512) {
+                                      int max_work = 512, Budget funded = {}) {
     CampRollout out;
-    if (crew.empty() || crew.size() > 6 || monsters.size() > 32)
+    bool capped = false;
+    int work = 0;
+    const auto step = [&] {
+        if (capped || ++work > max_work || !funded()) {
+            capped = true;
+            out.uncertain = true;
+            return false;
+        }
+        return true;
+    };
+    if (!step() || crew.empty() || crew.size() > 6 || monsters.size() > 32)
         return out;
     std::array<Actor, 6> bodies{};
-    std::array<double, 6> shields{}, injury{}, enemy{};
+    std::array<double, 6> injury{}, enemy{};
+    std::array<int, 6> shield_ticks{};
     std::array<std::array<int, 2>, 6> cooldown{};
     int self = -1;
     for (unsigned i = 0; i < crew.size(); ++i) {
-        if (!coordination_detail::finite_body(crew[i]))
+        if (!step() || !coordination_detail::finite_body(crew[i]))
             return out;
         bodies[i] = crew[i].actor;
-        for (unsigned k = 0; k < i; ++k)
-            if (bodies[k].id == bodies[i].id)
+        for (unsigned j = 0; j < i; ++j)
+            if (bodies[i].id == bodies[j].id)
                 return out;
         self = bodies[i].id == self_id ? static_cast<int>(i) : self;
-        shields[i] = std::max(0.0, bodies[i].shield);
+        // Native camp phases precede champion-start zero-timer expiry. A
+        // personally observed shield with D remaining owner-end ticks therefore
+        // covers D future camp phases. Unknown/zero duration supplies no credit.
+        if (std::isfinite(bodies[i].shield) && bodies[i].shield > 0 && bodies[i].shield_ticks > 0)
+            shield_ticks[i] = bodies[i].shield_ticks;
+        else
+            bodies[i].shield = 0;
         enemy[i] = crew[i].enemy_reply;
-        for (int k = 0; k < 2; ++k) {
-            const auto &sp = bodies[i].spells[k];
-            cooldown[i][k] = sp.cooldown >= 0 ? sp.cooldown : (sp.ready ? 0 : unreachable);
+        if (bodies[i].hp <= enemy[i] + .25 * bodies[i].max_hp + 1) {
+            out.uncertain = true;
+            return out;
+        }
+        for (int slot = 0; slot < 2; ++slot) {
+            const auto &spell = bodies[i].spells[slot];
+            cooldown[i][slot] =
+                spell.cooldown >= 0 ? spell.cooldown : (spell.ready ? 0 : unreachable);
         }
         out.selected_ids.push_back(bodies[i].id);
     }
     if (self < 0)
         return out;
-    std::vector<double> hp;
+    std::vector<Camp> camps;
+    std::vector<int> control(monsters.size());
     int living = 0;
-    for (const auto &m : monsters) {
-        if (!std::isfinite(m.camp.hp) || m.camp.hp < 0 || !std::isfinite(m.camp.strength) ||
-            m.camp.strength < 0 || m.camp.range < 0)
-            return CampRollout{};
-        hp.push_back(m.camp.hp);
-        living += m.camp.hp > 0;
-        out.uncertain |= !m.observed && m.camp.hp > 0;
+    for (const auto &monster : monsters) {
+        if (!step() || !std::isfinite(monster.camp.hp) || monster.camp.hp < 0 ||
+            !std::isfinite(monster.camp.strength) || monster.camp.strength < 0 ||
+            monster.camp.range < 0)
+            return out;
+        camps.push_back(monster.camp);
+        living += monster.camp.hp > 0;
+        out.uncertain |= !monster.observed && monster.camp.hp > 0;
     }
-    int work = 0;
-    bool capped = false;
-    auto target_for = [&](const Actor &a, int range) {
-        int target = -1;
-        double best = 1e30;
-        for (unsigned j = 0; j < hp.size(); ++j) {
-            if (++work > max_work) {
-                capped = true;
-                return -1;
-            }
-            if (hp[j] <= 0 || distance(a.pos, monsters[j].camp.pos) > range)
-                continue;
-            const double score = hp[j] / std::max(1.0, monsters[j].camp.strength);
-            if (score < best ||
-                (score == best && (target < 0 || monsters[j].camp.id < monsters[target].camp.id))) {
-                best = score;
-                target = j;
-            }
-        }
-        return target;
+    if (out.uncertain)
+        return out;
+    const auto fail_health = [&] {
+        // This bounded policy may omit useful movement, future purchases or
+        // kill-triggered cooldown resets. Failure is never a global necessity
+        // proof; a larger positively certified coalition may still be useful.
+        out.uncertain = true;
     };
-    double total_hp = 0, basic_dps = 0;
-    for (const auto &m : monsters)
-        total_hp += m.camp.hp;
-    for (const auto &body : crew)
-        basic_dps += body.actor.strength;
-    const int horizon = std::min(
-        128,
-        std::max(6 * living, 2 + static_cast<int>(std::ceil(total_hp / std::max(1.0, basic_dps)))));
-    for (int tick = 0; tick < horizon && living; ++tick) {
-        const auto raw = coordination_detail::pressure(std::span(bodies.data(), crew.size()),
-                                                       monsters, hp, self);
-        // Reserve one real enemy reply separately for every selected body. A
-        // larger headcount never divides away either monsters or enemy damage.
-        for (unsigned i = 0; i < crew.size(); ++i) {
-            auto &a = bodies[i];
-            double harm = raw[i] * a.camp_mitigation;
-            const double absorbed = std::min(harm, shields[i]);
-            shields[i] -= absorbed;
-            harm -= absorbed;
-            a.hp -= harm;
-            injury[i] += harm;
-            if (a.hp + shields[i] <= enemy[i] + 1)
-                return out;
-        }
-        bool acted = false;
-        for (unsigned i = 0; i < crew.size(); ++i) {
-            auto &a = bodies[i];
-            const bool basic_ready = tick > 0 || (a.can_attack && !a.completed);
-            const bool cast_ready = tick > 0 || (a.can_cast && !a.completed);
-            int slot = -1, cast_target = -1, heal_target = -1;
-            double cast_value = 0;
-            if (cast_ready)
-                for (int k = 0; k < 2; ++k) {
-                    const auto &sp = a.spells[k];
-                    if (cooldown[i][k] != 0 || (tick == 0 && !sp.ready))
+    for (int tick = 0; tick < 128 && living; ++tick) {
+        if (!step())
+            return out;
+        if (tick > 0) {
+            for (unsigned i = 0; i < crew.size(); ++i) {
+                if (shield_ticks[i] <= 0)
+                    bodies[i].shield = 0;
+                else
+                    --shield_ticks[i];
+            }
+            // Current HP already includes this round's camp phase. A new
+            // first hit cannot incur an extra pre-hit monster response.
+            for (unsigned j = 0; j < camps.size(); ++j) {
+                if (!step())
+                    return out;
+                auto &camp = camps[j];
+                if (control[j] > 0) {
+                    --control[j];
+                    continue;
+                }
+                if (camp.hp <= 0 || camp.strength <= 0)
+                    continue;
+                int nearest = unreachable;
+                for (unsigned i = 0; i < crew.size(); ++i)
+                    nearest = std::min(nearest, distance(bodies[i].pos, camp.pos));
+                if (nearest > camp.range)
+                    continue;
+                for (unsigned i = 0; i < crew.size(); ++i) {
+                    auto &body = bodies[i];
+                    if (distance(body.pos, camp.pos) != nearest)
                         continue;
-                    const int range = sp.range + (sp.kind == 3 && sp.ground ? sp.radius : 0);
-                    const int target =
-                        coordination_detail::damage_spell(sp) ? target_for(a, range) : -1;
-                    double value = target >= 0 ? std::min(hp[target], sp.amount) : 0;
-                    if (sp.kind == 1 && target_for(a, a.range) >= 0)
-                        value = a.strength; // One extra legal basic after the ordinary basic.
-                    if (value > cast_value) {
-                        cast_value = value;
-                        slot = k;
-                        cast_target = target;
-                        heal_target = -1;
+                    double harm = camp.strength * body.camp_mitigation;
+                    const double absorbed = std::min(harm, body.shield);
+                    body.shield -= absorbed;
+                    harm -= absorbed;
+                    body.hp -= harm;
+                    injury[i] += harm;
+                    // Native Ren returns 0.2Focus to each actual attacking
+                    // camp. No unverified Monster multiplier is added here.
+                    if (body.type == 9 && harm > 0 && camp.hp > 0) {
+                        const double before = camp.hp;
+                        camp.hp = std::max(0.0, camp.hp - .2 * body.focus);
+                        if (before > 0 && camp.hp == 0)
+                            --living;
                     }
-                    if ((sp.kind != 5 && sp.kind != 7) || sp.amount <= 0)
-                        continue;
-                    for (unsigned b = 0; b < crew.size(); ++b) {
-                        if ((b == i ? !sp.self : !sp.allies) ||
-                            distance(a.pos, bodies[b].pos) > sp.range)
-                            continue;
-                        const double next = raw[b] * bodies[b].camp_mitigation + enemy[b] + 1;
-                        if (bodies[b].hp + shields[b] > next)
-                            continue;
-                        const double benefit =
-                            sp.kind == 5 ? std::min(sp.amount,
-                                                    std::max(0.0, bodies[b].max_hp - bodies[b].hp))
-                                         : std::max(0.0, sp.amount - shields[b]);
-                        if (benefit > 0) {
-                            // A necessary survival cast takes precedence over
-                            // optional offense. It does not supply both actions.
-                            slot = k;
-                            cast_target = -1;
-                            heal_target = b;
-                            cast_value = 1e30;
-                        }
+                    if (body.hp + body.shield <= enemy[i] + .25 * body.max_hp + 1) {
+                        fail_health();
+                        return out;
                     }
                 }
-            bool reset = false;
-            auto hit = [&](int target, double amount) {
-                if (target < 0 || amount <= 0)
-                    return;
-                acted = true;
-                const bool alive = hp[target] > 0;
-                hp[target] = std::max(0.0, hp[target] - amount);
-                if (alive && hp[target] == 0)
-                    --living;
-            };
-            if (slot >= 0) {
-                const auto &sp = a.spells[slot];
-                if (heal_target >= 0) {
-                    if (sp.kind == 5)
-                        bodies[heal_target].hp = std::min(bodies[heal_target].max_hp,
-                                                          bodies[heal_target].hp + sp.amount);
-                    else
-                        shields[heal_target] = std::max(shields[heal_target], sp.amount);
-                    acted = true;
-                } else if (sp.kind == 1)
-                    reset = true;
-                else
-                    hit(cast_target, sp.amount);
-                cooldown[i][slot] = sp.recharge > 0 ? sp.recharge : unreachable;
             }
-            // A cast kill never wastes the basic on the dead former target.
-            if (basic_ready)
-                hit(target_for(a, a.range), a.strength);
-            if (reset)
-                hit(target_for(a, a.range), a.strength);
-            for (int k = 0; k < 2; ++k)
-                if (cooldown[i][k] > 0 && cooldown[i][k] != unreachable)
-                    --cooldown[i][k];
+        }
+        if (!living) {
+            ++out.ticks; // A real camp-phase retaliation kill precedes this turn.
+            break;
+        }
+        for (unsigned i = 0; i < crew.size(); ++i) {
+            if (!step())
+                return out;
+            auto &body = bodies[i];
+            if (tick > 0) {
+                body.completed = false;
+                body.can_attack = body.can_cast = true;
+                for (int slot = 0; slot < 2; ++slot)
+                    body.spells[slot].ready = cooldown[i][slot] == 0;
+            }
+            // One ordinary basic, at most one successful cast, and only the
+            // basic restored by that cast. Live continuation uses this selector.
+            for (int action_index = 0; action_index < 3 && living; ++action_index) {
+                if (!step())
+                    return out;
+                Action action = stationary_camp_support(
+                    body, std::span<const Actor>(bodies.data(), crew.size()), camps, true, step);
+                if (action.kind == Kind::None)
+                    action = stationary_camp_action(body, camps, true, step);
+                if (capped)
+                    return out;
+                if (action.kind == Kind::None)
+                    break;
+                if ((action.kind == Kind::CastSelf || action.kind == Kind::CastChampion) &&
+                    action.slot >= 0 && body.spells[action.slot].kind != 1) {
+                    const auto &spell = body.spells[action.slot];
+                    for (unsigned target = 0; target < crew.size(); ++target)
+                        if (bodies[target].id == action.target) {
+                            if (spell.kind == 5)
+                                bodies[target].hp = std::min(bodies[target].max_hp,
+                                                             bodies[target].hp + spell.amount);
+                            else if (spell.kind == 7 && spell.duration > 0) {
+                                bodies[target].shield =
+                                    std::max(bodies[target].shield, spell.amount);
+                                shield_ticks[target] = spell.duration;
+                            }
+                        }
+                } else if (action.kind == Kind::CastSelf) {
+                    body.can_attack = true;
+                    if (body.type == 7)
+                        body.enhanced = true;
+                } else {
+                    for (unsigned j = 0; j < camps.size(); ++j) {
+                        if (!step())
+                            return out;
+                        auto &camp = camps[j];
+                        const double amount = camp_action_damage(body, action, camps, camp);
+                        if (amount <= 0)
+                            continue;
+                        control[j] =
+                            std::max(control[j], camp_action_control(body, action, camps, camp));
+                        const double before = camp.hp;
+                        camp.hp = std::max(0.0, camp.hp - amount);
+                        if (before > 0 && camp.hp == 0)
+                            --living;
+                    }
+                }
+                if (action.kind == Kind::BasicCamp) {
+                    body.can_attack = false;
+                    body.enhanced = false;
+                } else {
+                    body.can_cast = false;
+                    const auto &spell = body.spells[action.slot];
+                    cooldown[i][action.slot] = spell.recharge > 0 ? spell.recharge : unreachable;
+                    body.spells[action.slot].ready = false;
+                }
+            }
+            for (int slot = 0; slot < 2; ++slot)
+                if (cooldown[i][slot] > 0 && cooldown[i][slot] != unreachable)
+                    --cooldown[i][slot];
         }
         ++out.ticks;
-        if (capped) {
-            out.uncertain = true;
-            return out;
-        }
         for (unsigned i = 0; i < crew.size(); ++i)
             out.opportunity_cost +=
                 crew[i].alternative_known ? std::max(0.0, crew[i].alternative_value) : 0;
-        if (!acted) {
-            out.uncertain = true; // Approach/expired readiness cannot become free DPS.
-            return out;
-        }
+        // Spent current permissions and known cooldown waits may consume real
+        // owner turns. No action this tick does not prove a future clear impossible.
     }
-    if (living) {
-        out.uncertain = true; // Horizon exhausted means unknown, not impossible.
+    if (living || capped || !funded()) {
+        out.uncertain = true;
         return out;
     }
     for (unsigned i = 0; i < crew.size(); ++i) {
         out.remaining_hp.push_back(bodies[i].hp);
         out.damage_taken.push_back(injury[i]);
     }
-    out.complete = true;
-    out.ready = !out.uncertain;
+    out.complete = out.ready = true;
+    out.proof = ClearProofKind::DetailedBundle;
     return out;
 }
 
@@ -289,6 +350,40 @@ struct LocalAssignment {
     bool alternative_bank = false;
     CampRollout rollout{};
 };
+inline bool current_crew_support_actionable(const Actor &self, std::span<const Actor> crew,
+                                            std::span<const Camp> camps, bool exclusive_allowed) {
+    return stationary_camp_support(self, crew, camps, exclusive_allowed).kind != Kind::None;
+}
+// Name only the freshly certified current physical crew. Proposal metadata
+// becomes an active mission only after the ordinary action gateway accepts it.
+inline bool name_current_crew(Mission &job, const LocalAssignment &assignment, int self_id) {
+    if (!assignment.ready || !assignment.self_selected || !assignment.locally_accepted ||
+        assignment.rollout.proof == ClearProofKind::None || assignment.selected_ids.empty() ||
+        assignment.selected_ids.size() > 6)
+        return false;
+    bool self = false;
+    for (unsigned i = 0; i < assignment.selected_ids.size(); ++i) {
+        const int id = assignment.selected_ids[i];
+        if (id < 0)
+            return false;
+        self |= id == self_id;
+        for (unsigned j = 0; j < i; ++j)
+            if (assignment.selected_ids[j] == id)
+                return false;
+    }
+    if (!self)
+        return false;
+    job.assembly_count = assignment.selected_ids.size();
+    std::copy(assignment.selected_ids.begin(), assignment.selected_ids.end(),
+              job.assembly_ids.begin());
+    job.assembly_anchor =
+        *std::min_element(assignment.selected_ids.begin(), assignment.selected_ids.end());
+    job.assembly_helper = -1;
+    for (int id : assignment.selected_ids)
+        if (id != self_id && (job.assembly_helper < 0 || id < job.assembly_helper))
+            job.assembly_helper = id;
+    return true;
+}
 inline bool prefer_local_crew(const CampRollout &current, const CampRollout &next,
                               double current_value, double next_value,
                               bool added_alternatives_known) {
@@ -417,6 +512,28 @@ inline double alternative(const World &w, const Actor &a, int excluded, bool &kn
     return best;
 }
 } // namespace coordination_detail
+inline bool quiet_fixed_camp_window(const World &w, std::span<const CampClearBody> selected,
+                                    int horizon) {
+    for (const auto &enemy : w.enemies)
+        if (enemy.alive)
+            for (const auto &body : selected)
+                if (distance(enemy.pos, body.actor.pos) <= camp_enemy_contact(enemy, horizon))
+                    return false;
+    for (const auto &seen : w.sightings) {
+        const int age = w.round - seen.round;
+        if (!seen.actor.alive || !combat_detail::recent_sighting(age))
+            continue;
+        bool visible = false;
+        for (const auto &enemy : w.enemies)
+            visible |= enemy.id == seen.actor.id;
+        if (!visible)
+            for (const auto &body : selected)
+                if (distance(seen.actor.pos, body.actor.pos) <=
+                    camp_enemy_contact(seen.actor, horizon + age))
+                    return false;
+    }
+    return true;
+}
 inline LocalAssignment propose_local_assignment(World &w, int group) {
     LocalAssignment out;
     if (bc::fuel_remaining() < 48000 || w.round != static_cast<int>(bc::round_number())) {
@@ -448,9 +565,20 @@ inline LocalAssignment propose_local_assignment(World &w, int group) {
             }
         }
     std::vector<CampClearBody> crew;
+    const auto &accepted = w.memory.mission;
+    const bool named_entry = (accepted.assembly_pending || accepted.phase == Phase::Clear) &&
+                             accepted.group == group && accepted.assembly_count > 0 &&
+                             w.round < accepted.expiry;
     auto add = [&](const Actor &a) {
         CampClearBody b;
         b.actor = a;
+        const bool exclusive_allowed =
+            a.id == w.self.id ? w.memory.moved_round != w.round : a.can_move;
+        for (auto &spell : b.actor.spells)
+            if (spell.exclusive && !exclusive_allowed && spell.ready) {
+                spell.ready = false;
+                spell.cooldown = std::max(1, spell.cooldown);
+            }
         double raw = 0;
         for (const auto &e : w.enemies)
             raw += combat_detail::long_window_reply_upper(e, e.pos, a.pos, 1);
@@ -465,15 +593,50 @@ inline LocalAssignment propose_local_assignment(World &w, int group) {
                 raw += combat_detail::coarse_remembered_reply(sight.actor, age, a.pos, 1);
         }
         b.enemy_reply = raw * a.mitigation; // Shield is a single shared budget in the rollout.
-        b.alternative_value =
-            coordination_detail::alternative(w, a, group, b.alternative_known, b.alternative_group,
-                                             b.alternative_target, b.alternative_bank);
+        if (named_entry) {
+            // This is the already accepted current job's safety certificate,
+            // not a new helper purchase or a free-zero alternative assumption.
+            b.alternative_known = true;
+        } else
+            b.alternative_value = coordination_detail::alternative(
+                w, a, group, b.alternative_known, b.alternative_group, b.alternative_target,
+                b.alternative_bank);
         crew.push_back(b);
+    };
+    const auto named_member = [&](int id) {
+        return named_entry &&
+               std::find(accepted.assembly_ids.begin(),
+                         accepted.assembly_ids.begin() + accepted.assembly_count,
+                         id) != accepted.assembly_ids.begin() + accepted.assembly_count;
+    };
+    const auto current_support = [&](const Actor &a) {
+        if (!a.alive || a.stunned || a.completed || !a.can_cast || a.channel != Channel::None)
+            return false;
+        for (const auto &spell : a.spells)
+            if (spell.ready && (spell.kind == 5 || spell.kind == 7) && spell.allies &&
+                distance(a.pos, w.self.pos) <= spell.range)
+                return true;
+        return false;
+    };
+    const auto named_station = [&](const Actor &a) {
+        if (!named_member(a.id) || !a.alive || a.stunned || a.channel != Channel::None)
+            return false;
+        for (const auto &monster : monsters)
+            if (monster.observed && monster.camp.hp > 0) {
+                if (distance(a.pos, monster.camp.pos) <= a.range)
+                    return true;
+                for (const auto &spell : a.spells)
+                    if (camp_damage_ability(spell) && (spell.ready || spell.cooldown >= 0) &&
+                        distance(a.pos, monster.camp.pos) <= spell.range)
+                        return true;
+            }
+        return current_support(a);
     };
     add(w.self);
     for (const auto &a : w.allies)
         if (a.id != w.self.id && w.matching_claim(a.id, group) &&
-            coordination_detail::useful_now(a, monsters) && crew.size() < 6)
+            (coordination_detail::useful_now(a, monsters, a.can_move) || named_station(a)) &&
+            crew.size() < 6)
             add(a);
     out.alternative_value = crew.front().alternative_value;
     out.alternative_known = crew.front().alternative_known;
@@ -488,15 +651,45 @@ inline LocalAssignment propose_local_assignment(World &w, int group) {
     // Required cached crew/alternative setup has its own bounded cost. Reserve
     // the unchanged rollout slice AFTER that setup; otherwise it can consume
     // the entire slice before the first physically present pair is considered.
-    const int planning_floor = std::max(32000, static_cast<int>(bc::fuel_remaining()) - 12000);
-    auto consider = [&](const std::vector<CampClearBody> &selected) {
+    const auto &pending = w.memory.mission;
+    const bool committed_assembly = (pending.assembly_pending || named_entry) &&
+                                    pending.group == group && pending.start >= 0 &&
+                                    w.round < pending.expiry;
+    // A real accepted rendezvous has already paid its travel/opportunity cost.
+    // Give its fresh current-position certificate the available budget down to
+    // the same hard action reserve. Ordinary uncommitted searches keep12k.
+    // This changes funding only; no old projected crew is reused as readiness.
+    const int planning_floor =
+        committed_assembly ? 32000
+                           : std::max(32000, static_cast<int>(bc::fuel_remaining()) - 12000);
+    auto consider = [&](const std::vector<CampClearBody> &selected, int max_work = 48) {
         if (bc::fuel_remaining() < static_cast<unsigned>(planning_floor + 6000)) {
             out.uncertain = true;
             return;
         }
-        auto r = rollout_camp_clear(selected, monsters, w.self.id, 48);
+        for (const auto &body : selected)
+            if (external_camp_collateral(body.actor, v.camps, w.geo.groups, group, w.groups,
+                                         w.round)) {
+                out.uncertain = true;
+                return;
+            }
+        auto fast = basic_clear_rollout(selected, monsters, w.self.id, [&] {
+            return bc::fuel_remaining() >= static_cast<unsigned>(planning_floor + 3000) &&
+                   w.round == static_cast<int>(bc::round_number());
+        });
+        if (fast && !quiet_fixed_camp_window(w, selected, int(std::ceil(fast->ticks)) + 3))
+            fast.reset();
+        auto r = fast ? std::move(*fast)
+                      : rollout_camp_clear(selected, monsters, w.self.id, max_work, [&] {
+                            return bc::fuel_remaining() >= static_cast<unsigned>(planning_floor) &&
+                                   w.round == static_cast<int>(bc::round_number());
+                        });
         if (!r.ready) {
             out.uncertain |= r.uncertain;
+            return;
+        }
+        if (named_entry && !quiet_fixed_camp_window(w, selected, int(std::ceil(r.ticks)) + 3)) {
+            out.uncertain = true;
             return;
         }
         // Team reward is priced once. Extra clearers are justified by the
@@ -525,17 +718,42 @@ inline LocalAssignment propose_local_assignment(World &w, int group) {
     const bool solo_impossible =
         monsters.size() == 1 && monsters.front().observed &&
         optimistic_solo_impossibility(w.self, monsters.front().camp, w.self.shield).impossible;
-    if (!solo_impossible)
-        consider({crew.front()});
-    for (unsigned i = 1; i < crew.size(); ++i)
-        consider({crew.front(), crew[i]});
-    if (crew.size() > 2)
-        consider(crew);
+    if (named_entry) {
+        // The finite accepted coalition gets the fresh actual certificate first.
+        // No future member/DPS is imported: every named body must be personally
+        // useful now and hold the current claim before this authorizes a hit.
+        bool complete = true;
+        std::vector<CampClearBody> named;
+        for (int i = 0; i < accepted.assembly_count; ++i) {
+            auto body = std::find_if(crew.begin(), crew.end(), [&](const CampClearBody &b) {
+                return b.actor.id == accepted.assembly_ids[i];
+            });
+            if (body == crew.end()) {
+                complete = false;
+                break;
+            }
+            named.push_back(*body);
+        }
+        if (complete)
+            consider(named, 4096);
+        else
+            out.uncertain = true;
+    } else {
+        if (!solo_impossible)
+            consider({crew.front()});
+        for (unsigned i = 1; i < crew.size(); ++i)
+            consider({crew.front(), crew[i]});
+        if (crew.size() > 2)
+            consider(crew);
+    }
     out.self_selected = out.ready;
-    if (out.ready && crew.size() > 1 && out.alternative_known &&
+    if (!named_entry && out.ready && crew.size() > 1 && out.alternative_known &&
         bc::fuel_remaining() >= static_cast<unsigned>(planning_floor + 6000)) {
         std::vector<CampClearBody> remaining(crew.begin() + 1, crew.end());
-        auto without = rollout_camp_clear(remaining, monsters, remaining.front().actor.id, 48);
+        auto without = rollout_camp_clear(remaining, monsters, remaining.front().actor.id, 48, [&] {
+            return bc::fuel_remaining() >= static_cast<unsigned>(planning_floor) &&
+                   w.round == static_cast<int>(bc::round_number());
+        });
         const double other_value = reward / std::max(1.0, without.ticks + 6) -
                                    without.opportunity_cost / std::max(1.0, without.ticks + 6);
         if (without.ready && stable_split_order(w.self.id, without.selected_ids) &&
@@ -547,8 +765,23 @@ inline LocalAssignment propose_local_assignment(World &w, int group) {
             out.self_role = LocalRole::Split;
         }
     }
-    out.locally_accepted = out.ready && (!out.self_selected || monsters.empty() ||
-                                         coordination_detail::useful_now(w.self, monsters));
+    bool action_now = monsters.empty() || coordination_detail::useful_now(
+                                              w.self, monsters, w.memory.moved_round != w.round);
+    if (out.ready && out.self_selected && !action_now && bc::fuel_remaining() >= 38000 &&
+        w.round == static_cast<int>(bc::round_number())) {
+        std::vector<Actor> actual;
+        actual.reserve(out.selected_ids.size());
+        for (int id : out.selected_ids)
+            for (const auto &body : crew)
+                if (body.actor.id == id) {
+                    actual.push_back(body.actor);
+                    break;
+                }
+        if (actual.size() == out.selected_ids.size())
+            action_now = current_crew_support_actionable(w.self, actual, v.camps,
+                                                         w.memory.moved_round != w.round);
+    }
+    out.locally_accepted = out.ready && (!out.self_selected || action_now);
     if (out.self_selected) {
         out.self_role = out.locally_accepted ? LocalRole::Clear : LocalRole::Observe;
         for (unsigned i = 0; i < out.rollout.selected_ids.size(); ++i)
@@ -617,7 +850,7 @@ inline LocalAssignment propose_local_assignment(World &w, int group) {
     for (const auto &a : w.allies)
         if (a.id != w.self.id && w.matching_claim(a.id, group) &&
             (!a.alive || a.channel != Channel::None || a.stunned ||
-             !coordination_detail::useful_now(a, monsters)))
+             (!named_entry && !coordination_detail::useful_now(a, monsters, a.can_move))))
             lost_local_help = true;
     // Only personally observed loss of an intended local participant is an
     // essential-role loss. A hidden/distant claim is not proof of death/arrival.

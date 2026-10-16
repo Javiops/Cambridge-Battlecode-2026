@@ -7,7 +7,8 @@
 #include <optional>
 #include <vector>
 
-// Policy data deliberately has no SDK dependency. Tests exercise the same rules.
+// Policy data deliberately has no SDK dependency. Tests exercise the same
+// rules.
 namespace tactics {
 struct Pos {
     int x = -1, y = -1;
@@ -41,6 +42,9 @@ enum class Phase {
 };
 enum class Channel { None, Recall, Tribute, Teleport };
 enum class Lifecycle { Unknown, Alive, Reward, Respawning };
+// Snapshot-local proof dependency. A sufficient basic-only certificate never
+// borrows a heal/cast/reset that happens to be available in the current kit.
+enum class ClearProofKind { None, BasicOnly, DetailedBundle };
 enum class Intent { Farm, Convert, Recover, Contest, Deny, Invade, Escort };
 enum class Kind {
     None,
@@ -85,7 +89,7 @@ struct Actor {
     bool alive = false, can_move = false, can_attack = false, can_cast = false, stunned = false,
          enhanced = false, completed = false;
     Channel channel = Channel::None;
-    int channel_ticks = -1, stun_ticks = -1;
+    int channel_ticks = -1, stun_ticks = -1, shield_ticks = -1;
     std::array<Spell, 2> spells{};
     double health_fraction() const {
         return hp / std::max(1.0, max_hp);
@@ -148,6 +152,10 @@ struct Mission {
     int assembly_anchor = -1, assembly_helper = -1;
     std::array<Pos, 25> assembly_route{};
     int assembly_route_length = 0;
+    std::array<int, 6> assembly_ids{};
+    int assembly_count = 0;
+    std::array<Pos, 25> assembly_exit{};
+    int assembly_exit_length = 0;
     bool chain_used = false, bank_after_reward = false;
     // Named continuation survives a bank START; it is entered only after an
     // observed completed conversion, then revalidated by the normal farm gate.
@@ -161,6 +169,20 @@ struct Proposal {
     Priority priority = Priority::Routine;
     double value = 0;
     bool valid = false;
+    // Set only by a paid fresh fixed-position solo-clear certificate. This
+    // carries its next basic's proof through one accepted native mutation.
+    bool solo_clear_certified = false;
+    bool crew_clear_certified = false;
+    ClearProofKind crew_clear_proof = ClearProofKind::None;
+    int crew_proof_owner = -1, crew_proof_round = -1, crew_proof_serial = -1;
+};
+// Geometry only: no HP, cooldown, quote or future readiness survives here.
+struct AssemblyPathHint {
+    int actor = -1, range = 0, speed = 0, kind = 0, seen = -1000;
+    Pos origin{}, goal{}, start{};
+    std::array<Pos, 25> route{};
+    int length = 0, touched = 0;
+    std::uint32_t borrowed_generation = 0;
 };
 struct Memory {
     Mission mission{};
@@ -184,9 +206,14 @@ struct Memory {
     std::uint64_t failed_bank_power = 0;
     double upgrade_gain = 0, upgrade_absence = 0;
     bool upgrade_gem_unlock = false;
+    int cash_investment_group = -1, cash_investment_until = -1;
+    double cash_investment_rate = 0;
     int assembly_failed_group = -1;
     std::uint64_t assembly_failed_signature = 0;
     int assembly_probe_group = -1, assembly_probe_round = -1000;
+    std::array<AssemblyPathHint, 12> assembly_paths{};
+    int assembly_path_clock = 0;
+    std::uint32_t assembly_path_generation = 0;
 };
 struct Settings {
     // Declared v1 fallbacks/test settings, not fitted performance optima.

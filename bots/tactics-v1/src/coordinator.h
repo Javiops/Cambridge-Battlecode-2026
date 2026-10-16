@@ -157,6 +157,69 @@ inline Proposal channel_decision(World &w, Memory &m) {
     }
     return economic(a, job, Priority::ActiveChannel, 10000);
 }
+// A prospective quote authorizes only its checked rendezvous move/wait.
+// Actual first hits still use farming's fresh current-crew certificate.
+inline std::optional<Proposal>
+assembly_handshake_proposal(World &w, Memory &m,
+                            std::optional<double> external_alternative = std::nullopt,
+                            unsigned entry_fuel = 65000) {
+    if (!m.mission.assembly_pending && !m.mission.chain_used && !m.mission.bank_after_reward &&
+        m.mission.group >= 0 &&
+        (m.mission.rate > 0 || m.mission.phase == Phase::Observe ||
+         m.mission.phase == Phase::Assemble) &&
+        m.mission.expiry >= w.round && bc::fuel_remaining() >= std::max(56000u, entry_fuel) &&
+        w.round == static_cast<int>(bc::round_number()))
+        if (auto gi = nearby_assembly_group(w, m)) {
+            const bool probed =
+                m.assembly_probe_group == *gi && w.round - m.assembly_probe_round < 3;
+            std::optional<AssemblyCandidate> quote;
+            if (!probed) {
+                double alternative = std::max(m.mission.rate, external_alternative.value_or(0.0));
+                bool alternative_known =
+                    m.mission.rate > 0 || (external_alternative && *external_alternative > 0);
+                if (!alternative_known) {
+                    int other = -1;
+                    Pos target;
+                    bool bank_job = false;
+                    alternative = coordination_detail::alternative(
+                        w, w.self, *gi, alternative_known, other, target, bank_job);
+                }
+                m.assembly_probe_group = *gi;
+                m.assembly_probe_round = w.round;
+                quote = local_assembly_candidate(w, m, *gi, alternative, alternative_known);
+            }
+            if (quote) {
+                Mission job;
+                job.phase = Phase::Assemble;
+                job.group = quote->group;
+                job.target = quote->target;
+                job.start = quote->start;
+                job.expiry = quote->expiry;
+                job.last_progress = w.round;
+                job.last_pos = w.self.pos;
+                job.rate = quote->rate;
+                job.assembly_pending = true;
+                job.assembly_signature = quote->signature;
+                job.assembly_anchor = quote->anchor_id;
+                job.assembly_helper = quote->helper_id;
+                job.assembly_ids = quote->selected_ids;
+                job.assembly_count = quote->selected_count;
+                job.assembly_exit = quote->exit_route;
+                job.assembly_exit_length = quote->exit_length;
+                job.assembly_route = quote->route;
+                job.assembly_route_length = quote->route_length;
+                Action action;
+                action.reason = "assembly-finite-local-handshake";
+                if (w.self.can_move && w.self.pos != quote->stage) {
+                    if (auto step = assembly_step(w, job))
+                        if (incoming_damage(w, *step) < w.self.hp * .65)
+                            action = moving(*step, "assembly-join-observed-local-crew");
+                }
+                return economic(action, job, Priority::Incumbent, quote->rate);
+            }
+        }
+    return std::nullopt;
+}
 inline std::optional<Proposal> choose_mission(World &w, Memory &m) {
     if (!w.self.alive)
         return std::nullopt;
@@ -205,6 +268,80 @@ inline std::optional<Proposal> choose_mission(World &w, Memory &m) {
                 return return_now;
         }
     }
+    // A wounded carrier or an actually lethal contact must fund survival
+    // before a complete two-altar comparison. Native delivery can cost38-42k.
+    // The cheap contact warning is confirmed by the cached actual reply;
+    // terrain, mitigation and shield can make a raw exposure warning harmless.
+    // Ordinary non-lethal holders and running channels keep their contracts.
+    const bool contact_warning = w.exposure(w.self.pos) >= w.self.hp + w.self.shield;
+    // The exact reply is HP loss after the present shield has been absorbed.
+    const bool lethal_contact = contact_warning && incoming_damage(w, w.self.pos) >= w.self.hp;
+    const bool mandatory_health =
+        m.hold_group < 0 && w.self.health_fraction() < Settings::ordinary_heal;
+    if (mandatory_health || lethal_contact) {
+        // Preserve a ready safe (including winning) Tribute. Only the actual
+        // adjacent altar is considered; no route/continuation/ring search runs
+        // before the recovery reserve. The second check in delivery_at uses
+        // the same current World and cached damage forecast.
+        if (w.self.gems > 0 && !w.self.stunned && bc::fuel_remaining() >= 40000)
+            for (unsigned i = 0; i < w.geo.altars.size(); ++i) {
+                const Pos altar = w.geo.altars[i];
+                if (distance(w.self.pos, altar) > bc::constants::submit_gems_range ||
+                    !w.visible.is_set(sdk(altar)) || w.enemy_lock(altar))
+                    continue;
+                const int ticks = current_tribute_ticks(w.self.gems);
+                if (safe_channel(w, ticks, true)) {
+                    const AltarPlan ready{static_cast<int>(i), 0, 0, double(ticks), false};
+                    if (auto convert = delivery_at(w, m, ready))
+                        if (convert->action.kind == Kind::Tribute &&
+                            (m.hold_group < 0 || convert->priority == Priority::Deciding))
+                            return convert;
+                }
+                break; // At most one immediate, physically adjacent window.
+            }
+        // An immediate legal defense keeps its first funded opportunity.
+        // This is the existing lethal-contact trigger, before optional banking.
+        if (bc::fuel_remaining() >= 32000 && contact_warning)
+            if (auto urgent =
+                    combat_proposal(w, m, false, std::max(24000, int(bc::fuel_remaining()) - 8000)))
+                if (urgent->priority >= Priority::Survival)
+                    return urgent;
+        // Do not abandon a freshly certified fixed-position singleton merely
+        // because an ordinary healing fallback fired. This optional proof is
+        // admitted only while a complete recovery/action reserve remains.
+        if (!lethal_contact && m.mission.phase == Phase::Clear && bc::fuel_remaining() >= 60000) {
+            const int group = m.mission.group;
+            const auto quote = quote_solo_farm(w, group);
+            if (quote.known && quote.feasible && quote.stage == w.self.pos &&
+                current_solo_quote(w, quote, group))
+                if (auto finish = solo_clear_followup(w, m, &quote))
+                    if (finish->mission.group == group && finish->mission.phase == Phase::Clear)
+                        return finish;
+        }
+        if (bc::fuel_remaining() >= 30000)
+            if (auto heal = recovery(w, m, true)) {
+                note_failed_bank_window(w, m);
+                return heal;
+            }
+        // If Recall/homeward progress was rejected, try a bounded actual
+        // escape rather than a second altar comparison. No illegal or unknown
+        // response becomes a pretend action when every safe option declines.
+        if (bc::fuel_remaining() >= 24000)
+            if (auto exit = escape_action(w, std::max(18000, int(bc::fuel_remaining()) - 6000))) {
+                Mission job = m.mission;
+                job.phase = Phase::Escape;
+                job.group = -1;
+                return economic(*exit, job, Priority::Survival, 1000);
+            }
+        Mission job = m.mission;
+        job.phase = Phase::Recover;
+        job.intent = Intent::Recover;
+        job.group = -1;
+        job.target = {};
+        Action hold;
+        hold.reason = "recovery-reserve-no-legal-response";
+        return economic(hold, job, Priority::Survival, 1);
+    }
     auto bank = delivery(w, m);
     if (bank && bank->priority == Priority::Deciding && bank->action.kind != Kind::None)
         return bank;
@@ -227,27 +364,6 @@ inline std::optional<Proposal> choose_mission(World &w, Memory &m) {
                     return timely;
             }
         return recovery(w, m, true);
-    }
-    if (m.hold_group < 0 && w.self.health_fraction() < Settings::ordinary_heal &&
-        (!bank || bank->action.kind != Kind::Tribute)) {
-        // The ordinary healing threshold is a fallback, not a mid-clear
-        // cancellation of a freshly certified affordable singleton. Finish
-        // only the actual incumbent at its current contribution tile, with
-        // full reserve and hard next-reply safety; never use a future route.
-        if (m.mission.phase == Phase::Clear && (!bank || bank->priority != Priority::Deciding) &&
-            bc::fuel_remaining() >= 48000) {
-            const int group = m.mission.group;
-            const auto quote = quote_solo_farm(w, group);
-            if (quote.known && quote.feasible && quote.stage == w.self.pos &&
-                current_solo_quote(w, quote, group))
-                if (auto finish = solo_clear_followup(w, m, &quote))
-                    if (finish->mission.group == group && finish->mission.phase == Phase::Clear)
-                        return finish;
-        }
-        if (auto heal = recovery(w, m, true)) {
-            note_failed_bank_window(w, m);
-            return heal;
-        }
     }
     bool immediate_deciding_enemy = false;
     for (const auto &enemy : w.enemies)
@@ -313,48 +429,9 @@ inline std::optional<Proposal> choose_mission(World &w, Memory &m) {
         return bank; // Ready safe conversion before a discretionary volley.
     if (!fuel(34000))
         return fight ? fight : bank;
-    // Price one local rendezvous before the global farm scan spends its
-    // allowance. The quote is prospective; only farming's fresh, actual crew
-    // check can authorize a first hit after the handshake.
-    if (!m.mission.assembly_pending && !m.mission.chain_used && !m.mission.bank_after_reward &&
-        m.mission.group >= 0 && m.mission.rate > 0 && m.mission.expiry >= w.round &&
-        bc::fuel_remaining() >= 65000)
-        if (auto gi = nearby_assembly_group(w, m)) {
-            const bool probed =
-                m.assembly_probe_group == *gi && w.round - m.assembly_probe_round < 3;
-            const double alternative = std::max(m.mission.rate, bank ? bank->mission.rate : 0.0);
-            std::optional<AssemblyCandidate> quote;
-            if (!probed) {
-                m.assembly_probe_group = *gi;
-                m.assembly_probe_round = w.round;
-                quote = local_assembly_candidate(w, m, *gi, alternative);
-            }
-            if (quote) {
-                Mission job;
-                job.phase = Phase::Assemble;
-                job.group = quote->group;
-                job.target = quote->target;
-                job.start = quote->start;
-                job.expiry = quote->expiry;
-                job.last_progress = w.round;
-                job.last_pos = w.self.pos;
-                job.rate = quote->rate;
-                job.assembly_pending = true;
-                job.assembly_signature = quote->signature;
-                job.assembly_anchor = quote->anchor_id;
-                job.assembly_helper = quote->helper_id;
-                job.assembly_route = quote->route;
-                job.assembly_route_length = quote->route_length;
-                Action action;
-                action.reason = "assembly-finite-local-handshake";
-                if (w.self.can_move && w.self.pos != quote->stage) {
-                    if (auto step = assembly_step(w, job))
-                        if (incoming_damage(w, *step) < w.self.hp * .65)
-                            action = moving(*step, "assembly-join-observed-local-crew");
-                }
-                return economic(action, job, Priority::Incumbent, quote->rate);
-            }
-        }
+    if (auto assembly = assembly_handshake_proposal(
+            w, m, bank ? std::optional<double>(bank->mission.rate) : std::nullopt))
+        return assembly;
     auto farm = farming(w, m);
     if (auto deny = denial_proposal(w, m, fight, bank, farm))
         return deny;

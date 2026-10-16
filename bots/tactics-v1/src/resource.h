@@ -1,4 +1,5 @@
 #pragma once
+#include "types.h"
 namespace tactics {
 // A gold-only capture is not a completed score cycle. Named investment must
 // carry a separately priced upgrade -> useful gem job -> bank itinerary.
@@ -10,6 +11,11 @@ enum class ResourcePurpose {
     MonolithFallback,
     Investment
 };
+inline bool priced_cash_investment(const Memory &memory, int group, int round) {
+    return group >= 0 && memory.cash_investment_group == group &&
+           round < memory.cash_investment_until && std::isfinite(memory.cash_investment_rate) &&
+           memory.cash_investment_rate > 0;
+}
 inline ResourcePurpose resource_job_purpose(int new_gems, int current_bag, bool monolith_only,
                                             bool actual_holder = false,
                                             bool priced_investment = false) {
@@ -43,6 +49,13 @@ inline bool resource_new_job_eligible(int new_gems, int current_bag, bool monoli
 }
 inline bool resource_has_bank(int new_gems, int current_bag) {
     return new_gems > 0 || current_bag > 0;
+}
+// A cheap superset of every eligible NEW job. Pure cash cannot become a
+// scoreable detour merely because a body already carries gems. Existing
+// commitments, real holders and named investment receipts stay candidates.
+inline bool farm_scan_relevant(int new_gems, bool monolith_only, bool incumbent, bool actual_holder,
+                               bool priced_investment) {
+    return new_gems > 0 || monolith_only || incumbent || actual_holder || priced_investment;
 }
 inline double score_resource_gold(int new_gems, double new_gold) {
     return new_gems > 0 ? new_gold : 0;

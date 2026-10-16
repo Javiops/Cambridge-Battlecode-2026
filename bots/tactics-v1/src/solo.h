@@ -27,6 +27,17 @@ struct SoloResetReceipt {
     Camp camp{};
 };
 
+// Carries a paid current-clear certificate across exactly its selected basic.
+// Only a quiet singleton whose schedule has no competing ready damage cast
+// can spend this proof on the already priced immediate reset/basic pair.
+struct SoloBasicReceipt {
+    bool valid = false;
+    int owner = -1, round = -1, serial = -1, group = -1, slot = -1;
+    double expected_damage = 0;
+    Actor actor{};
+    Camp camp{};
+};
+
 // A prospective quote is not a first-hit permission. Only known elapsed owner
 // ends restore cooldowns; arrival never adds a free cast to the current turn.
 inline SoloClearCertificate certify_solo_clear(Actor actual, const Camp &camp, Pos stage,
@@ -87,7 +98,13 @@ inline SoloClearCertificate certify_solo_clear(Actor actual, const Camp &camp, P
     double hp = camp.hp;
     for (int tick = 0; tick < std::clamp(max_work, 0, 128); ++tick) {
         ++out.clear_ticks;
-        out.damage_taken += pressure; // All responses, including cooldown waits.
+        // The current personal snapshot is after this global camp phase.
+        // Sleeping camps awaken only from our first real hit; awake camps'
+        // current-phase damage is already reflected in actual.hp. Subsequent
+        // owner opportunities pay every intervening response/cooldown wait.
+        // An awake delayed arrival was charged separately above.
+        if (tick > 0)
+            out.damage_taken += pressure;
         out.remaining_hp = initial_hp - out.damage_taken;
         if (out.damage_taken + enemy_reply + 1 >= .75 * initial_hp) {
             out.known = true; // A monotonic reserve failure, not a work-cap guess.
@@ -152,7 +169,8 @@ inline SoloFarmQuote quote_solo_farm(World &w, int gi) {
     out.origin = w.self.pos;
     const bool incumbent = gi == w.memory.mission.group && w.memory.mission.phase == Phase::Clear;
     if (gi < 0 || gi >= static_cast<int>(w.geo.groups.size()) ||
-        !resource_has_bank(w.geo.groups[gi].gems, w.self.gems))
+        (!resource_has_bank(w.geo.groups[gi].gems, w.self.gems) &&
+         !priced_cash_investment(w.memory, gi, w.round)))
         return out; // Gold-only growth needs a named complete investment itinerary.
     const bool single = gi >= 0 && gi < static_cast<int>(w.groups.size()) &&
                         gi < static_cast<int>(w.geo.groups.size()) && w.groups[gi].fresh(w.round) &&
@@ -263,9 +281,11 @@ inline SoloFarmQuote quote_solo_farm(World &w, int gi) {
     out.remaining_hp = certificate.remaining_hp;
     out.total_ticks =
         elapsed + out.clear_ticks + out.capture_ticks + out.bank_ticks + out.recovery_ticks;
-    out.rate =
-        (w.self.gems + gems + (w.round < 600 ? .25 : .24) * score_resource_gold(group.gems, gold)) /
-        std::max(1.0, out.total_ticks);
+    out.rate = priced_cash_investment(w.memory, gi, w.round)
+                   ? w.memory.cash_investment_rate
+                   : (w.self.gems + gems +
+                      (w.round < 600 ? .25 : .24) * score_resource_gold(group.gems, gold)) /
+                         std::max(1.0, out.total_ticks);
     if (w.round + out.total_ticks >= bc::constants::max_rounds ||
         w.round != static_cast<int>(bc::round_number()))
         return SoloFarmQuote{};
@@ -281,6 +301,8 @@ inline SoloFarmQuote quote_current_solo_clear(World &w, int gi) {
     SoloFarmQuote out;
     if (bc::fuel_remaining() < 24000 || w.round != static_cast<int>(bc::round_number()) || gi < 0 ||
         gi >= static_cast<int>(w.groups.size()) || gi >= static_cast<int>(w.geo.groups.size()) ||
+        (!resource_has_bank(w.geo.groups[gi].gems, w.self.gems) &&
+         !priced_cash_investment(w.memory, gi, w.round)) ||
         w.memory.mission.phase != Phase::Clear || w.memory.mission.group != gi || !w.self.alive ||
         w.self.stunned || w.self.channel != Channel::None || !w.enemies.empty())
         return out;

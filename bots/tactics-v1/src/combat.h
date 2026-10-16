@@ -10,6 +10,58 @@ namespace tactics {
 namespace combat_detail {
 inline constexpr int ren_type = 9, marcella_type = 7, cassi_type = 3, issac_type = 4;
 
+// Both linked bodies die atomically when either is killed. Only currently
+// observed living actors can contribute a removable reply source; control on
+// one body alone never disables its partner.
+inline bool linked_partners(const Actor &a, const Actor &b) {
+    return a.alive && b.alive && a.id != b.id &&
+           ((a.type == cassi_type && b.type == issac_type) ||
+            (a.type == issac_type && b.type == cassi_type));
+}
+inline bool immediate_effect_removes(const Actor &target, const Actor &source, bool killed,
+                                     bool controlled) {
+    return target.alive && source.alive &&
+           ((target.id == source.id && (killed || controlled)) ||
+            (killed && linked_partners(target, source)));
+}
+struct ImmediateRemoval {
+    const Actor *target = nullptr;
+    bool killed = false, controlled = false;
+};
+inline bool source_removed_by(std::span<const ImmediateRemoval> effects, const Actor &source) {
+    for (const auto &effect : effects)
+        if (effect.target &&
+            immediate_effect_removes(*effect.target, source, effect.killed, effect.controlled))
+            return true;
+    return false;
+}
+inline bool killed_directly_by(std::span<const ImmediateRemoval> effects, const Actor &source) {
+    for (const auto &effect : effects)
+        if (effect.target && effect.target->id == source.id && effect.killed)
+            return true;
+    return false;
+}
+inline bool killed_by_effects(std::span<const ImmediateRemoval> effects, const Actor &source) {
+    for (const auto &effect : effects)
+        if (effect.target && effect.killed &&
+            immediate_effect_removes(*effect.target, source, true, false))
+            return true;
+    return false;
+}
+inline bool basic_splash_hits(const Actor &self, const Actor &primary, const Actor &other) {
+    return self.type == 10 && other.alive && primary.id != other.id &&
+           distance(primary.pos, other.pos) <= 1;
+}
+inline double linked_only_removal_value(std::span<const ImmediateRemoval> effects,
+                                        const Actor &source) {
+    if (killed_directly_by(effects, source))
+        return 0;
+    for (const auto &effect : effects)
+        if (effect.target && effect.killed && linked_partners(*effect.target, source))
+            return 300 + source.gems * 2;
+    return 0;
+}
+
 inline bool offensive(const Spell &s) {
     return s.kind == 2 || s.kind == 3 || s.kind == 4;
 }
@@ -52,6 +104,13 @@ inline int added_control_windows(const Actor &target, int duration) {
     // owner's next start. Unknown remaining timing cannot certify an extension.
     return target.stun_ticks >= 0 ? std::max(0, duration - target.stun_ticks) : 0;
 }
+// Eligibility depends only on the observed caster, spell and enemy, not on
+// which ally is threatened. Filter it once before expensive ally forecasts.
+inline bool peel_target_eligible(const Actor &caster, const Spell &spell, const Actor &enemy) {
+    return caster.can_cast && spell.ready && spell.enemies &&
+           distance(caster.pos, enemy.pos) <= spell.range &&
+           added_control_windows(enemy, spell.duration) > 0 && direct_hit_survives(caster, enemy);
+}
 inline bool applies_control(const Actor &caster, const Spell &spell) {
     // Ryth's native area-stun is exposed by the SDK as area damage, not kind4.
     // A generic lasting damage area is not assumed to stun its recipients.
@@ -88,6 +147,17 @@ struct ShortSequence {
     Exchange exchange{};
     int actions = 1, control_windows = 0;
 };
+inline bool immediate_sequence_kill(const ShortSequence &sequence, bool movement_first) {
+    return !movement_first && sequence.actions == 1 && sequence.exchange.lethal;
+}
+inline bool immediate_sequence_control(const Actor &self, const ShortSequence &sequence,
+                                       bool movement_first) {
+    if (movement_first || sequence.control_windows <= 0)
+        return false;
+    const auto kind = sequence.first.kind;
+    return kind == Kind::CastChampion || kind == Kind::CastGround ||
+           (kind == Kind::BasicChampion && self.type == marcella_type && self.enhanced);
+}
 inline std::vector<ShortSequence> stationary_sequences(const Actor &self, const Actor &target) {
     std::vector<ShortSequence> result;
     if (!self.alive || !target.alive || self.stunned || self.channel != Channel::None)
@@ -134,8 +204,9 @@ inline std::vector<ShortSequence> stationary_sequences(const Actor &self, const 
             auto exchange =
                 sequence_exchange(self, target, spell.amount, basic ? self.strength : 0);
             const bool cast_kills = sequence_exchange(self, target, spell.amount).lethal;
-            result.push_back({a, exchange, basic && !cast_kills ? 2 : 1,
-                              spell.kind == 4 ? added_control_windows(target, spell.duration) : 0});
+            result.push_back(
+                {a, exchange, basic && !cast_kills ? 2 : 1,
+                 applies_control(self, spell) ? added_control_windows(target, spell.duration) : 0});
         }
     }
     return result;
@@ -478,6 +549,25 @@ inline constexpr double unknown_reply_upper() {
 inline bool known_reply(double value) {
     return std::isfinite(value) && value >= 0 && value < unknown_reply_upper();
 }
+// Ordinary aggression cannot turn a surviving hold into a lethal reply.
+// Only an already deciding stop or a known lethal hold retains the existing
+// desperate-trade policy. A budget/visibility unknown is not forced death.
+inline bool combat_trade_allowed(double holding, double after, double hp, bool deciding = false) {
+    if (!std::isfinite(hp) || hp <= 0 || !std::isfinite(after) || after < 0)
+        return false;
+    if (deciding || (known_reply(after) && after < hp))
+        return true;
+    return known_reply(holding) && holding >= hp;
+}
+inline double forecast_shield(const Actor &victim, int horizon) {
+    // Current response keeps the actually present shield. Across several
+    // phases it is only safe to subtract value which cannot expire before
+    // the requested endpoint; later casts are never promised here.
+    return std::isfinite(victim.shield) && victim.shield > 0 &&
+                   (horizon <= 1 || victim.shield_ticks >= horizon)
+               ? victim.shield
+               : 0;
+}
 inline bool preserves_ready_walk(const Actor &self, const Action &first,
                                  bool movement_first = false) {
     if (movement_first || first.kind == Kind::Move)
@@ -763,7 +853,7 @@ inline double incoming_for(World &w, const Actor &victim, Pos at, int horizon = 
                 }
     }
     const double raw = enemy * victim.mitigation + monster * victim.camp_mitigation;
-    const double result = std::max(0.0, raw - victim.shield);
+    const double result = std::max(0.0, raw - forecast_shield(victim, horizon));
     if (w.combat_damage_cache.size() < 128)
         w.combat_damage_cache.emplace(key, result);
     return result;
@@ -786,16 +876,17 @@ inline bool can_cast_at(const World &w, const Spell &s, const Actor &target) {
 inline double target_importance(const Actor &e) {
     return 1.0 + std::min(1.0, e.gems / 50.0) + (e.channel == Channel::Tribute ? 1.0 : 0.0);
 }
-inline double basic_splash_value(const World &w, const Actor &primary) {
+inline double basic_splash_value(const World &w, const Actor &primary, bool primary_killed) {
     if (w.self.type != 10)
         return 0;
     double value = 0;
     for (const auto &other : w.enemies)
-        if (other.id != primary.id && other.alive && distance(other.pos, primary.pos) <= 1) {
+        if (basic_splash_hits(w.self, primary, other) &&
+            !(primary_killed && linked_partners(primary, other))) {
             // Secondary splash is not another selected direct target, and in this
             // engine it does not add Ren's direct-hit retaliation.
             const double hit = basic_hp_damage(w.self, other);
-            value += hit + (hit >= other.hp - .001 ? 300 + other.gems * 2 : 0);
+            value += hit;
         }
     return value;
 }
@@ -1100,16 +1191,13 @@ combat_proposal(World &w, Memory &memory, bool farming_context = false, int plan
     };
     auto offer = [&](const ShortSequence &sequence, const Actor &target, Pos from, double reply,
                      const Action *first_override = nullptr) {
-        const auto &effect = sequence.exchange;
+        auto effect = sequence.exchange;
         if (effect.returned >= w.self.hp)
             return;
         const Action action = first_override ? *first_override : sequence.first;
         const bool immediate_control =
-            sequence.control_windows > 0 &&
-            (action.kind == Kind::CastChampion || action.kind == Kind::CastGround ||
-             (action.kind == Kind::BasicChampion && w.self.type == marcella_type &&
-              w.self.enhanced));
-        bool immediate_kill = sequence.actions == 1 && effect.lethal;
+            immediate_sequence_control(w.self, sequence, first_override != nullptr);
+        bool immediate_kill = immediate_sequence_kill(sequence, first_override != nullptr);
         if (immediate_kill && action.kind == Kind::CastChampion &&
             (endangered || target.channel == Channel::Tribute)) {
             // Only a selected useful lethal needs the native target predictor;
@@ -1117,27 +1205,54 @@ combat_proposal(World &w, Memory &memory, bool farming_context = false, int plan
             immediate_kill = action.slot >= 0 && action.slot < 2 && bc::fuel_remaining() >= 24000 &&
                              spell_hp_damage(w, w.spells[action.slot], target) >= target.hp - .001;
         }
+        std::vector<ImmediateRemoval> removals;
+        removals.reserve(w.enemies.size() + 1);
+        if (immediate_control || immediate_kill)
+            removals.push_back({&target, immediate_kill, immediate_control});
+        const bool splash_basic = action.kind == Kind::BasicChampion && w.self.type == 10;
+        const bool primary_basic_killed =
+            splash_basic && basic_hp_damage(w.self, target) >= target.hp - .001;
+        if (splash_basic) {
+            for (const auto &other : w.enemies)
+                if (basic_splash_hits(w.self, target, other) &&
+                    basic_hp_damage(w.self, other) >= other.hp - .001)
+                    removals.push_back({&other, true, false});
+            if (!immediate_kill && killed_by_effects(removals, target)) {
+                // A linked secondary's death already ends the primary's life.
+                // A planned reset cannot damage that dead primary again.
+                effect = sequence_exchange(w.self, target, w.self.strength);
+                immediate_kill = true;
+            }
+        }
         const double source = enemy_raw(w, target, from) * w.self.mitigation;
         const double raw_return =
             target.type == ren_type ? effect.hits * .2 * target.focus * w.self.mitigation : 0;
-        const double after = std::max(
-            0.0, reply - ((immediate_control || immediate_kill) ? source : 0) + raw_return);
+        double removed = 0;
+        for (const auto &other : w.enemies)
+            if (source_removed_by(removals, other))
+                removed +=
+                    other.id == target.id ? source : enemy_raw(w, other, from) * w.self.mitigation;
+        const double after = std::max(0.0, reply - removed + raw_return);
         const bool deciding =
             target.channel == Channel::Tribute &&
             w.enemy_score + target.gems >= static_cast<int>(bc::constants::winning_gems) &&
             (immediate_control || immediate_kill);
+        if (!combat_trade_allowed(incoming, after, w.self.hp, deciding))
+            return;
         Priority priority = source > 0 ? Priority::Incumbent : Priority::Routine;
         if (endangered && (immediate_control || immediate_kill) && after < w.self.hp)
             priority = Priority::Survival;
         if (deciding)
             priority = Priority::Deciding;
         double value = effect.hp_damage + .5 * effect.shield_damage - effect.returned;
-        if (effect.lethal)
-            value += 300 + target.gems * 2 + linked_removal_value(w, target, target.hp);
+        for (const auto &other : w.enemies)
+            if ((effect.lethal && immediate_effect_removes(target, other, true, false)) ||
+                killed_by_effects(removals, other))
+                value += 300 + other.gems * 2;
         if (sequence.control_windows > 0)
             value += std::min(200.0, source) + (target.channel != Channel::None ? 200 : 0);
-        if (sequence.first.kind == Kind::BasicChampion && !first_override)
-            value += basic_splash_value(w, target);
+        if (splash_basic)
+            value += basic_splash_value(w, target, primary_basic_killed);
         // Unchanged holding pressure is paid by both alternatives. Only a
         // currently ready walk consumed by this first action loses an escape.
         value -= reply_cost(action, after, first_override != nullptr);
@@ -1220,6 +1335,8 @@ combat_proposal(World &w, Memory &memory, bool farming_context = false, int plan
                     const auto center = centers[i].center;
                     const Actor *anchor = nullptr;
                     double gain = 0, raw_return = 0, removed = 0;
+                    std::vector<ImmediateRemoval> removals;
+                    removals.reserve(w.enemies.size());
                     bool deciding = false;
                     for (const auto &recipient : w.enemies)
                         if (recipient.alive && distance(recipient.pos, center) <= spell.radius) {
@@ -1231,15 +1348,12 @@ combat_proposal(World &w, Memory &memory, bool farming_context = false, int plan
                             const double source =
                                 enemy_raw(w, recipient, w.self.pos) * w.self.mitigation;
                             gain += effect.hp_damage + .5 * effect.shield_damage +
-                                    (effect.lethal
-                                         ? 300 + recipient.gems * 2 +
-                                               linked_removal_value(w, recipient, recipient.hp)
-                                         : 0);
+                                    (effect.lethal ? 300 + recipient.gems * 2 : 0);
                             if (control)
                                 gain += std::min(200.0, source) +
                                         (recipient.channel != Channel::None ? 200 : 0);
                             if (effect.lethal || control)
-                                removed += source;
+                                removals.push_back({&recipient, effect.lethal, control > 0});
                             if (recipient.type == ren_type)
                                 raw_return += .2 * recipient.focus * w.self.mitigation;
                             bool stops = recipient.channel == Channel::Tribute &&
@@ -1251,10 +1365,19 @@ combat_proposal(World &w, Memory &memory, bool farming_context = false, int plan
                                 anchor = &recipient;
                             deciding |= stops;
                         }
+                    // A linked body may die outside the area, or both may be
+                    // direct recipients. Count each observed reply/value once.
+                    for (const auto &other : w.enemies)
+                        if (source_removed_by(removals, other)) {
+                            removed += enemy_raw(w, other, w.self.pos) * w.self.mitigation;
+                            gain += linked_only_removal_value(removals, other);
+                        }
                     const double returned = std::max(0.0, raw_return - w.self.shield);
                     if (!anchor || returned >= w.self.hp)
                         continue;
                     const double after = std::max(0.0, incoming - removed + raw_return);
+                    if (!combat_trade_allowed(incoming, after, w.self.hp, deciding))
+                        continue;
                     Priority priority = removed > 0 ? Priority::Incumbent : Priority::Routine;
                     if (endangered && removed > 0 && after < w.self.hp)
                         priority = Priority::Survival;
@@ -1306,7 +1429,13 @@ combat_proposal(World &w, Memory &memory, bool farming_context = false, int plan
         }
     if (w.self.can_cast && incoming < w.self.hp && optional_work())
         for (const auto &spell : w.spells)
-            if (spell.ready && spell.kind == 4 && spell.enemies)
+            if (spell.ready && spell.kind == 4 && spell.enemies) {
+                std::vector<const Actor *> eligible;
+                for (const auto &enemy : w.enemies)
+                    if (peel_target_eligible(w.self, spell, enemy))
+                        eligible.push_back(&enemy);
+                if (eligible.empty())
+                    continue;
                 for (const auto &ally : w.allies) {
                     if (!optional_work())
                         break;
@@ -1315,17 +1444,20 @@ combat_proposal(World &w, Memory &memory, bool farming_context = false, int plan
                     const double danger = incoming_for(w, ally, ally.pos);
                     if (danger < ally.hp)
                         continue;
-                    for (const auto &enemy : w.enemies)
-                        if (can_cast_at(w, spell, enemy) &&
-                            added_control_windows(enemy, spell.duration) > 0 &&
-                            direct_hit_survives(w.self, enemy)) {
-                            const double removed = enemy_raw(w, enemy, ally.pos) * ally.mitigation;
-                            if (removed > 0 && danger - removed < ally.hp)
-                                take(cast_unit(spell, enemy.id, "protect-lethal-peel"),
-                                     Phase::Protect, Priority::Survival,
-                                     10000 + ally.gems + removed, &enemy);
-                        }
+                    for (const auto *enemy : eligible) {
+                        const double removed = enemy_raw(w, *enemy, ally.pos) * ally.mitigation;
+                        const double own_source =
+                            enemy_raw(w, *enemy, w.self.pos) * w.self.mitigation;
+                        const double returned =
+                            enemy->type == ren_type ? .2 * enemy->focus * w.self.mitigation : 0;
+                        const double own_after = std::max(0.0, incoming - own_source + returned);
+                        if (removed > 0 && danger - removed < ally.hp &&
+                            combat_trade_allowed(incoming, own_after, w.self.hp))
+                            take(cast_unit(spell, enemy->id, "protect-lethal-peel"), Phase::Protect,
+                                 Priority::Survival, 10000 + ally.gems + removed, enemy);
+                    }
                 }
+            }
     if (best && best->priority >= Priority::Survival)
         return best;
     if (endangered) {

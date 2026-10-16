@@ -1,5 +1,6 @@
 #include "actions.h"
 #include "coordinator.h"
+#include "crew_sequence.h"
 #include "draft.h"
 #include "shopping.h"
 #include "vision.h"
@@ -26,9 +27,9 @@ class Bot {
             const bool holder =
                 gi < static_cast<int>(w.groups.size()) && w.groups[gi].fresh(w.round) &&
                 w.groups[gi].state == Lifecycle::Reward && w.on_group(gi, w.self.pos);
-            return resource_new_job_eligible(geometry_.groups[gi].gems, w.self.gems,
-                                             geometry_.monolith_only, holder,
-                                             gi == memory_.mission.group);
+            return resource_new_job_eligible(
+                geometry_.groups[gi].gems, w.self.gems, geometry_.monolith_only, holder,
+                gi == memory_.mission.group, priced_cash_investment(memory_, gi, w.round));
         };
         if (memory_.mission.group >= 0 && !resource_eligible(memory_.mission.group) &&
             memory_.mission.phase != Phase::Deliver && memory_.mission.phase != Phase::Recover &&
@@ -46,7 +47,8 @@ class Bot {
                     const auto &group = geometry_.groups[gi];
                     if (!resource_eligible(gi))
                         continue;
-                    const int tier = resource_has_bank(group.gems, w.self.gems) ? 1 : 0;
+                    const bool priced = priced_cash_investment(memory_, gi, w.round);
+                    const int tier = resource_has_bank(group.gems, w.self.gems) || priced ? 1 : 0;
                     for (const auto &spawn : group.spawns) {
                         const double clear = group.initial_hp / std::max(1.0, w.self.strength);
                         const bool affordable =
@@ -56,9 +58,10 @@ class Bot {
                             tier ? group.gems + w.self.gems +
                                        .25 * score_resource_gold(group.gems, group.gold)
                                  : group.gold;
-                        const double value = reward /
-                                             (6 + distance(w.self.pos, spawn.pos) + clear) *
-                                             (affordable ? 1 : .1);
+                        const double value =
+                            priced ? memory_.cash_investment_rate
+                                   : reward / (6 + distance(w.self.pos, spawn.pos) + clear) *
+                                         (affordable ? 1 : .1);
                         if (tier > best_tier || (tier == best_tier && value > best)) {
                             best_tier = tier;
                             best = value;
@@ -88,7 +91,8 @@ class Bot {
                 return false;
             remember(w, memory_);
             if (action.kind == Kind::CastSelf && memory_.mission.phase == Phase::Clear &&
-                std::string_view(action.reason) == "farm-certified-solo-live-reset")
+                (std::string_view(action.reason) == "farm-certified-solo-live-reset" ||
+                 std::string_view(action.reason) == "crew-paid-reset-with-basic"))
                 return fuel(10000);
             return fuel(30000);
         }
@@ -176,16 +180,65 @@ class Bot {
             return;
         observe_progress(w, memory_);
         w.publish_warning();
-        prepare_route(w);
+        std::optional<Proposal> preselected;
+        bool hostile = !w.enemies.empty();
+        for (const auto &seen : w.sightings)
+            hostile |= seen.actor.alive && combat_detail::recent_sighting(w.round - seen.round);
+        const bool transaction = shopping_.cash.group >= 0 || shopping_.investment_item >= 0 ||
+                                 shopping_.pending_heal >= 0;
+        if (bc::fuel_remaining() >= 56000 &&
+            early_assembly_eligible(w.self, memory_.mission, w.round, memory_.hold_group >= 0,
+                                    hostile, transaction))
+            preselected = assembly_handshake_proposal(w, memory_, std::nullopt, 56000);
         if (w.round != static_cast<int>(bc::round_number()))
             return;
-        plan_upgrade_return(w, memory_, shopping_);
+        if (preselected)
+            preselected->action.reason = preselected->action.kind == Kind::Move
+                                             ? "assembly-early-funded-rendezvous-move"
+                                             : "assembly-early-funded-rendezvous-wait";
+        if (!preselected)
+            prepare_route(w);
         if (w.round != static_cast<int>(bc::round_number()))
             return;
+        const int incumbent_group = memory_.mission.group;
+        const bool deciding_bag =
+            w.self.gems > 0 && w.own_score + w.self.gems >= int(bc::constants::winning_gems);
+        const bool current_clear =
+            !deciding_bag && memory_.mission.phase == Phase::Clear && incumbent_group >= 0 &&
+            incumbent_group < static_cast<int>(w.groups.size()) && w.self.alive &&
+            w.self.channel == Channel::None && w.groups[incumbent_group].fresh(w.round) &&
+            w.groups[incumbent_group].state == Lifecycle::Alive &&
+            w.groups[incumbent_group].camps.size() == 1 &&
+            geometry_.groups[incumbent_group].spawns.size() == 1;
+        // A live incumbent's paid fixed-position certificate gets its fresh
+        // owner budget before optional investment/ranking work. It still
+        // declines threats, collateral, changed position and unsafe reserves.
+        // Existing cash receipts must be refreshed even during their Clear
+        // leg: sharing, wallet or the named gem endpoint may have invalidated
+        // the investment since the previous owner. This is maintenance, not
+        // an elective replacement of a still-valid current gem clear.
+        const bool current_crew_clear =
+            !deciding_bag && w.self.alive && w.self.channel == Channel::None &&
+            memory_.mission.phase == Phase::Clear && memory_.mission.assembly_count > 0 &&
+            incumbent_group >= 0 && incumbent_group < static_cast<int>(w.groups.size()) &&
+            assembly_detail::observed_group(w, incumbent_group);
+        bool upgrade_deferred =
+            preselected || ((current_clear || current_crew_clear) && shopping_.cash.group < 0);
+        if (!upgrade_deferred) {
+            plan_upgrade_return(w, memory_, shopping_);
+            if (w.round != static_cast<int>(bc::round_number()))
+                return;
+        }
         int shops = 0, failures = 0, moves_failed = 0;
-        bool clear_followup = false;
-        SoloResetReceipt reset_receipt;
+        bool clear_followup = current_clear || current_crew_clear;
+        // Disengaged storage does not initialize the large actor/camp receipt
+        // payloads before a paid rendezvous can spend its ordinary move.
+        std::optional<SoloBasicReceipt> basic_receipt;
+        bool basic_accepted = false;
+        std::optional<SoloResetReceipt> reset_receipt;
         bool reset_accepted = false;
+        std::optional<CrewTurnReceipt> crew_receipt;
+        bool crew_accepted = false;
         for (int iteration = 0; iteration < Settings::max_actions && fuel(10000); ++iteration) {
             if (w.round != static_cast<int>(bc::round_number())) {
                 w.refresh();
@@ -200,15 +253,33 @@ class Bot {
             // Only an accepted stationary camp action opens this cheap path.
             // It recertifies the actual refreshed singleton and its whole clear
             // reserve; lower budgets never enter global arbitration or shopping.
-            std::optional<Proposal> chosen;
-            if (reset_receipt.valid)
-                chosen = solo_reset_basic_followup(w, memory_, reset_receipt, reset_accepted);
+            std::optional<Proposal> chosen = std::move(preselected);
+            preselected.reset();
+            if (!chosen && crew_receipt && crew_receipt->valid)
+                chosen = crew_turn_followup(w, memory_, *crew_receipt, crew_accepted);
+            crew_accepted = false;
+            if (!chosen && reset_receipt && reset_receipt->valid)
+                chosen = solo_reset_basic_followup(w, memory_, *reset_receipt, reset_accepted);
             reset_accepted = false;
+            if (!chosen && basic_receipt && basic_receipt->valid)
+                chosen = solo_basic_reset_followup(w, memory_, *basic_receipt, basic_accepted);
+            basic_accepted = false;
+            if (!chosen && clear_followup && memory_.mission.phase == Phase::Clear &&
+                memory_.mission.assembly_count > 0 && fuel(48000))
+                chosen = farming(w, memory_); // Current named coalition before unrelated planners.
             if (!chosen && clear_followup && memory_.mission.phase == Phase::Clear && fuel(18000))
                 chosen = solo_clear_followup(w, memory_);
             if (!chosen) {
                 if (!fuel(30000))
                     break;
+                if (upgrade_deferred) {
+                    upgrade_deferred = false;
+                    plan_upgrade_return(w, memory_, shopping_);
+                    if (w.round != static_cast<int>(bc::round_number()))
+                        return;
+                    if (!fuel(30000))
+                        break;
+                }
                 // Buying is free of gameplay allowances, but not of computation.
                 // Use the incumbent mission before one expensive arbitration, and
                 // refresh actual stats/inventory after each bounded bundle.
@@ -239,6 +310,12 @@ class Bot {
             }
             if (w.round != static_cast<int>(bc::round_number()))
                 return;
+            // A planner may exhaust its optional slice while still returning
+            // a proposal. Receipt construction, mission copies, the mutation
+            // gateway and final bookkeeping need the ordinary action reserve
+            // too. Never spend that reserve on an unfunded returned proposal.
+            if (!fuel(10000))
+                return;
             if (chosen)
                 intended = chosen->mission;
             if (!chosen)
@@ -246,15 +323,24 @@ class Bot {
             const bool certified_reset =
                 chosen->action.kind == Kind::CastSelf &&
                 std::string_view(chosen->action.reason) == "farm-certified-solo-live-reset";
+            const bool crew_reset =
+                chosen->crew_clear_certified && chosen->action.kind == Kind::CastSelf &&
+                chosen->action.slot >= 0 && w.spells[chosen->action.slot].kind == 1;
             const bool receipt_basic =
                 chosen->action.kind == Kind::BasicCamp &&
                 std::string_view(chosen->action.reason) == "farm-certified-reset-receipt-basic";
             // An offensive reset is useful only if the charged extra basic can
             // still run during this owner opportunity, before every optional job.
+            if (certified_reset && bc::fuel_remaining() < 34000)
+                break;
             if (certified_reset && iteration + 1 >= Settings::max_actions)
                 break;
+            if (crew_reset &&
+                (bc::fuel_remaining() < 36000 || iteration + 1 >= Settings::max_actions))
+                break;
             // Never insert ward placement before a required survival response.
-            if (!certified_reset && !receipt_basic && bc::fuel_remaining() >= 70000 &&
+            if (!certified_reset && !receipt_basic && !chosen->solo_clear_certified &&
+                !chosen->crew_clear_certified && bc::fuel_remaining() >= 70000 &&
                 ward_opportunity(w, intended, chosen->action) &&
                 chosen->priority < Priority::Survival && iteration < Settings::max_actions - 1) {
                 if (auto ward = ward_proposal(w, intended, ward_)) {
@@ -286,14 +372,52 @@ class Bot {
                 // An intentional hold is already the selected job. An attempted
                 // action, however, must not advertise a job it fails to enter.
                 w.publish_claim(camp_job ? memory_.mission.group : -1);
+                if (std::string_view(chosen->action.reason) ==
+                    "assembly-early-funded-rendezvous-wait")
+                    LogLine("T1H")
+                        .field(w.round)
+                        .field(w.self.id)
+                        .field(memory_.mission.group)
+                        .field(chosen->action.reason)
+                        .emit();
                 break;
             }
-            reset_receipt = make_solo_reset_receipt(w, chosen->mission, chosen->action);
-            if (certified_reset && !reset_receipt.valid)
+            if (certified_reset)
+                reset_receipt = make_solo_reset_receipt(w, chosen->mission, chosen->action);
+            else
+                reset_receipt.reset();
+            if (chosen->solo_clear_certified && chosen->action.kind == Kind::BasicCamp)
+                basic_receipt = make_solo_basic_receipt(w, *chosen);
+            else
+                basic_receipt.reset();
+            bool crew_admission_failed = false;
+            if (chosen->crew_clear_certified &&
+                chosen->crew_clear_proof == ClearProofKind::BasicOnly) {
+                // This fresh proof needs only the ordinary hit. Optional kit
+                // availability must not impose a detailed bundle's62k budget.
+                crew_receipt.reset();
+                crew_admission_failed = !crew_basic_first_action_valid(w, *chosen);
+            } else if (chosen->crew_clear_certified)
+                crew_receipt = make_crew_turn_receipt(w, *chosen);
+            else {
+                // No paid coalition proof can be consumed for this action.
+                // Avoid reconstructing the large unused actor/camp payload.
+                crew_receipt.reset();
+            }
+            if (certified_reset && (!reset_receipt || !reset_receipt->valid))
                 break;
+            if (crew_admission_failed ||
+                (chosen->crew_clear_certified && crew_receipt && crew_receipt->required &&
+                 (!crew_receipt->valid ||
+                  iteration + crew_receipt->continuations >= Settings::max_actions))) {
+                memory_.mission = prior;
+                break;
+            }
             remember(w, memory_);
             auto result = execute(w, chosen->action);
             reset_accepted = certified_reset && result.success;
+            basic_accepted = basic_receipt && basic_receipt->valid && result.success;
+            crew_accepted = crew_receipt && crew_receipt->valid && result.success;
             if (result.outcome == Outcome::Stale) {
                 memory_.mission = prior;
                 return;
@@ -302,7 +426,8 @@ class Bot {
                 w.publish_claim(camp_job ? memory_.mission.group : -1);
                 const auto &a = chosen->action;
                 clear_followup = memory_.mission.phase == Phase::Clear &&
-                                 (a.kind == Kind::BasicCamp || a.kind == Kind::CastCamp ||
+                                 (chosen->crew_clear_certified || a.kind == Kind::BasicCamp ||
+                                  a.kind == Kind::CastCamp ||
                                   (a.kind == Kind::CastSelf &&
                                    std::string_view(a.reason) == "farm-certified-solo-live-reset"));
                 if (a.kind == Kind::Move) {
@@ -334,6 +459,27 @@ class Bot {
                 return;
             if (w.self.channel != Channel::None)
                 break;
+            if (clear_followup && (!reset_receipt || !reset_receipt->valid) &&
+                (!crew_receipt || !crew_receipt->valid) && memory_.mission.phase == Phase::Clear &&
+                memory_.mission.group >= 0 &&
+                memory_.mission.group < static_cast<int>(w.groups.size())) {
+                const auto &camps = w.groups[memory_.mission.group].camps;
+                const auto contribution = current_camp_contribution(
+                    w.self, std::span<const Camp>(camps), memory_.moved_round != w.round);
+                if (!contribution.ready || contribution.dps <= 0) {
+                    // Spent permissions do not turn a real completed hit into
+                    // missing help. End this safe owner opportunity; threats
+                    // still return to central survival arbitration when funded.
+                    if (bc::fuel_remaining() < 32000)
+                        break;
+                    const double next_reply = incoming_damage(w, w.self.pos);
+                    if (w.round != static_cast<int>(bc::round_number()))
+                        return;
+                    if (combat_detail::known_reply(next_reply) &&
+                        next_reply + .25 * w.self.max_hp < w.self.hp)
+                        break;
+                }
+            }
         }
         remember(w, memory_);
     }

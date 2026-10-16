@@ -106,3 +106,4 @@
 #define P_TWIN 1
 #define P_ALLYDUTY 1
 #define P_AVOIDFIRST 1
+#define P_MAPPLAN 1

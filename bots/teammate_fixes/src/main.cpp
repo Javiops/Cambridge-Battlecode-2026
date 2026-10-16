@@ -712,6 +712,8 @@ void write_plan(const std::vector<std::uint8_t>& roster) {
     });
 }
 
+#include "mapplan.h"
+
 [[noreturn]] void run_draft() {
     struct Opt {
         std::string name;
@@ -835,6 +837,16 @@ void write_plan(const std::vector<std::uint8_t>& roster) {
             else if (ts == 4) prefs = {"cassi", "ren", "stellar", "tavi"};
             else if (P_DRAFT5) prefs = {"cassi", "stellar", "varg", "tavi", "ren"};  // top-10 winners' 5-champion draft on the new maps
             else prefs = {"ryth", "stellar", "prism", "ren", "tavi"};
+            for (const char* p : PREFS) prefs.push_back(p);  // fallbacks
+        }
+    }
+    if (P_MAPPLAN) {  // mapplan.h: the draft read from map features
+        MpDraftFeat f = mp_draft_features();
+        auto chosen = mp_draft(f);
+        std::printf("[mapplan] ts=%d altars=%d walls=%d %dx%d path=%d far_fight=%d\n", f.ts, f.altars, f.walls, f.w, f.h, f.path,
+                    mp_far_fight(f) ? 1 : 0);
+        if (!chosen.empty()) {
+            prefs = std::move(chosen);
             for (const char* p : PREFS) prefs.push_back(p);  // fallbacks
         }
     }

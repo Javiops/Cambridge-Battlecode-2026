@@ -492,6 +492,19 @@ inline bool kite(State& s, bc::champion& me, std::vector<Foe>& foes, int round) 
     for (auto* f : near)
         if (f->d <= 6) { ++fc; tc += f->hp; }
     if (fc > mc + P_KITE_OUT && tc * 100.0 > oc * P_GA_KITE_HP) return false;
+    if (P_OUTNUM && fc >= mc + 2) return false;  // outnumbered: the fight step backs off
+    std::vector<vec2> pull;  // P_KITEALLY: allies we kite toward
+    if (P_KITEALLY)
+        attempt([&] {
+            for (auto& a : bc::vision::champions(*s.my))
+                try {
+                    if (a == me || !a.is_alive() || a.is_recalling()) continue;
+                    vec2 p = a.position();
+                    if (dist(p, pos) <= P_KITEALLY && !s.my_spawn.is_set(p)) pull.push_back(p);
+                } catch (...) {
+                }
+            return true;
+        });
     std::vector<int> reaches;
     for (auto* f : near) reaches.push_back(reach(*f));
 
@@ -529,7 +542,11 @@ inline bool kite(State& s, bc::champion& me, std::vector<Foe>& foes, int round) 
             int df = dist(t, focus->p);
             double sc = -1000.0 * thr + (df <= SPELL_RANGE ? 300.0 : 0.0) + (df <= range ? 100.0 : 0.0);
             if (!P_NOCHASE || focus->gems >= P_CHASE_GEMS) sc -= 10.0 * std::max(0, df - SPELL_RANGE);  // walk after it
-            if (!mates.empty()) {
+            if (P_KITEALLY) {
+                int ad = 99;
+                for (auto& m : pull) ad = std::min(ad, dist(t, m));
+                if (ad < 99 && ad > 2) sc -= 60.0 * (ad - 2);
+            } else if (!mates.empty()) {
                 int ad = 99;
                 for (auto& m : mates) ad = std::min(ad, dist(t, m));
                 if (ad > 4) sc -= 50.0 * (ad - 4);

@@ -98,3 +98,9 @@
 #define P_JACKPOT 350  // I042
 #define P_JACKGO 350  // I045: from r350 the jackpot is a team job for P_JACKN champions (stampede)
 #define P_JACKN 3
+#define P_CAMPFOE 5
+#define P_BACKHOME 6
+#define P_NEEDHEAL 8
+#define P_KITEALLY 12
+#define P_NOCHASE2 1
+#define P_TWIN 1

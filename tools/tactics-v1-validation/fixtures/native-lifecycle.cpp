@@ -11,7 +11,7 @@ int main(){
  int gold_group=-1,elk_group=-1;
  while(true){
   if(bc::is_draft()){bc::draft::pick(bc::champion_draft::ryth);bc::end_turn();continue;}
-  geometry.initialize();
+  geometry.initialize();if(!geometry.initialized){bc::end_turn();continue;}
   if(!world){
    world=std::make_unique<World>(geometry,memory);
    check(world->kit_ready.size()==1,"fixture requires only self kit initially ready");

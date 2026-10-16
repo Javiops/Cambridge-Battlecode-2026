@@ -18,7 +18,7 @@ int main() {
             bc::end_turn();
             continue;
         }
-        geometry.initialize();
+        geometry.initialize();if(!geometry.initialized){bc::end_turn();continue;}
         if (!world)
             world = std::make_unique<World>(geometry, memory);
         World &w = *world;

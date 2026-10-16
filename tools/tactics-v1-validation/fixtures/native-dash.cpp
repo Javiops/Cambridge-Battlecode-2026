@@ -8,7 +8,7 @@ int main(){
     Geometry geometry;Memory memory;std::unique_ptr<World> world;bool done=false;
     while(true){
         if(bc::is_draft()){bc::draft::pick(bc::champion_draft::ren);bc::end_turn();continue;}
-        geometry.initialize();if(!world)world=std::make_unique<World>(geometry,memory);
+        geometry.initialize();if(!geometry.initialized){bc::end_turn();continue;}if(!world)world=std::make_unique<World>(geometry,memory);
         World& w=*world;w.refresh();
         if(done){bc::end_turn();continue;}
         check(w.self.alive && w.self.type==9,"fixture requires actual living Ren");

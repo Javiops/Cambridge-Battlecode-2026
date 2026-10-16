@@ -10,6 +10,8 @@ struct SpawnMask {
 struct Geometry {
     SpawnMask own_spawn;
     int route_requests = 0;
+    std::map<std::pair<int,int>,int> distances;
+    int estimate(Pos,Pos p) const { auto it=distances.find({p.x,p.y}); return it==distances.end()?unreachable:it->second; }
     void ensure_route(Pos) { ++route_requests; }
 };
 struct World {
@@ -21,12 +23,11 @@ struct World {
     double landing_damage = 0;
     Pos step{}, requested_target{};
     std::vector<Pos> occupied;
-    std::map<std::pair<int,int>,int> distances;
     bool in_spawn(Pos p) const {
         return std::find(geo.own_spawn.points.begin(),geo.own_spawn.points.end(),p)!=geo.own_spawn.points.end();
     }
     int home_distance(Pos p) const { return p==self.pos ? home : after; }
-    int walk(Pos,Pos target) { auto it=distances.find({target.x,target.y});return it==distances.end()?unreachable:it->second; }
+    int walk(Pos,Pos target) { return geo.estimate(self.pos,target); }
     bool free(Pos p) const { return std::find(occupied.begin(),occupied.end(),p)==occupied.end(); }
     std::optional<Pos> toward(Pos p,int,bool) { requested_target=p;return step.x>=0?std::optional(step):std::nullopt; }
 };
@@ -47,7 +48,7 @@ void check(bool value,const char* message) { ++checks;if(!value){std::fprintf(st
 World example(int home=1) {
     World w;w.self.id=1;w.self.alive=true;w.self.pos={5,5};w.self.hp=400;w.self.max_hp=1000;w.self.can_move=true;
     w.self.move_speed=1;w.home=home;w.after=std::max(0,home-1);w.geo.own_spawn.points={{4,5}};
-    w.distances[{4,5}]=home;w.step={4,5};return w;
+    w.geo.distances[{4,5}]=home;w.step={4,5};return w;
 }
 int main() {
     Memory m;World w=example();auto p=recovery(w,m);
@@ -67,13 +68,13 @@ int main() {
     check(p&&p->action.kind==Kind::Recall,"exact-lethal walking landing rejected in favor of safe recall");
     w=example();w.safe_recall=false;w.landing_damage=w.self.hp;p=recovery(w,m);
     check(!p,"neither unsafe path is fabricated as safe recovery");
-    w=example(unreachable);w.distances.clear();w.step={};p=recovery(w,m);
+    w=example(unreachable);w.geo.distances.clear();w.step={};p=recovery(w,m);
     check(p&&p->action.kind==Kind::Recall,"disconnected walking region does not veto legal safe recall");
-    w=example(3);w.geo.own_spawn.points={{4,5},{7,5}};w.distances[{4,5}]=20;w.distances[{7,5}]=3;
+    w=example(3);w.geo.own_spawn.points={{4,5},{7,5}};w.geo.distances[{4,5}]=20;w.geo.distances[{7,5}]=3;
     w.step={6,5};p=recovery(w,m);
     check(p&&p->action.kind==Kind::Move&&p->mission.target==Pos{7,5},"spawn destination uses geodesic path rather than nearer center through wall");
-    check(w.geo.route_requests==1,"spawn endpoint scoring initializes only one source-rooted route field");
-    w=example(2);w.geo.own_spawn.points={{4,5},{7,5}};w.distances[{4,5}]=1;w.distances[{7,5}]=2;
+    check(w.geo.route_requests==0,"spawn recovery reuses immutable home field without rebuilding a source field");
+    w=example(2);w.geo.own_spawn.points={{4,5},{7,5}};w.geo.distances[{4,5}]=1;w.geo.distances[{7,5}]=2;
     w.occupied={{4,5}};w.step={6,5};p=recovery(w,m);
     check(p&&p->mission.target==Pos{7,5},"currently occupied closest spawn endpoint skipped");
     w=example();w.after=w.home;w.step={5,4};p=recovery(w,m);
@@ -85,5 +86,10 @@ int main() {
     w=example();w.self.pos={4,5};p=recovery(w,m);
     check(p&&p->action.kind==Kind::None,"on-spawn needed heal remains a hold");
     w.self.hp=1000;p=recovery(w,m);check(!p,"ready spawn body does not keep recovering");
+    m={};w=example(9);w.self.hp=w.self.max_hp;
+    p=recovery(w,m);check(!p,"healthy body with no certified investment does not return");
+    m.upgrade_gem_unlock=true;
+    p=recovery(w,m);check(p&&p->mission.phase==Phase::Recover,
+        "certified completed-gem unlock permits elective return without invented saved turns");
     std::printf("%d recovery checks passed\n",checks);
 }

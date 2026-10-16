@@ -11,7 +11,7 @@ int main(){
  bool immediate_started=false,overlap_started=false,bank_started=false;
  while(true){
   if(bc::is_draft()){bc::draft::pick(bc::champion_draft::ryth);bc::end_turn();continue;}
-  geometry.initialize();if(!world)world=std::make_unique<World>(geometry,memory);
+  geometry.initialize();if(!geometry.initialized){bc::end_turn();continue;}if(!world)world=std::make_unique<World>(geometry,memory);
   World&w=*world;w.refresh();observe_progress(w,memory);
   check(w.self.alive,"native cycle fixture must stay alive");
   if(group<0){

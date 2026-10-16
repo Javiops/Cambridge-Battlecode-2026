@@ -6,9 +6,11 @@ using namespace tactics;
 int main(){Geometry geometry;Memory memory;WardState state;std::unique_ptr<World> world;bool done=false;
  while(true){
   if(bc::is_draft()){bc::draft::pick(bc::champion_draft::ryth);bc::end_turn();continue;}
-  geometry.initialize();if(!world)world=std::make_unique<World>(geometry,memory);World&w=*world;w.refresh();
+  geometry.initialize();if(!geometry.initialized){bc::end_turn();continue;}if(!world)world=std::make_unique<World>(geometry,memory);World&w=*world;w.refresh();
   if(!done&&w.self.alive){
    Mission mission;mission.phase=Phase::Travel;mission.target={15,15};
+   geometry.goal_field(mission.target,0);
+   if(bc::fuel_remaining()<65000){bc::end_turn();continue;}
    if(auto ward=ward_proposal(w,mission,state)){
     auto result=execute(w,*ward);if(!result.success)throw std::runtime_error("native ward rejected");
     w.refresh();ward_after_action(w,*ward,true,state);

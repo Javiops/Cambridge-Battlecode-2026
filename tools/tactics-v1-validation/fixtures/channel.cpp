@@ -8,6 +8,7 @@
 #include <span>
 #include <tuple>
 namespace tactics {
+bool sufficient_fuel = true;
 struct Sighting { Actor actor; int round; };
 struct World {
     Actor self;
@@ -16,8 +17,11 @@ struct World {
     std::vector<Sighting> sightings;
     std::map<std::pair<int, int>, std::vector<Pos>> visible_regions;
     std::map<std::tuple<int, int, bool>, std::vector<Pos>> missing_regions;
+    bool blocked_route = false;
+    int enemy_steps(Pos from, Pos to, int range) {
+        return blocked_route && sufficient_fuel ? unreachable : std::max(0, distance(from, to) - range);
+    }
 };
-bool sufficient_fuel = true;
 bool fuel(int) { return sufficient_fuel; }
 namespace combat_detail {
 const std::vector<Pos>& enemy_positions(World& w, const Actor& e, int horizon) {
@@ -123,5 +127,17 @@ int main() {
     e.pos = {100,100}; w = hidden_world(e,1);
     check(channel_interruption_risk(w,1,true),false,"low-fuel temporal envelope does not invent distant contact");
     sufficient_fuel = true;
+    e = control_enemy(); w = visible_world(e); w.blocked_route = true;
+    check(channel_interruption_risk(w,2,true),false,"exact disconnected walking approach excludes impossible control");
+    sufficient_fuel = false;
+    check(channel_interruption_risk(w,2,true),true,"unknown low-budget route retains possibility rather than claiming disconnected");
+    sufficient_fuel = true;
+    w = visible_world(e); w.enemies[0].type = 0; w.enemies[0].spells[0].kind = 3;
+    w.enemies[0].spells[0].duration = 2;
+    check(channel_interruption_risk(w,2,true),true,"native Ryth AoE stun interrupts tribute");
+    e=control_enemy();w=visible_world(e);w.self.pos={12,5};
+    check(channel_interruption_risk(w,1,true),false,"actual distant owner has no immediate control contact");
+    check(channel_interruption_risk(w,1,true,Pos{4,5}),true,"explicit projected ring position drives control forecast");
+    check(w.self.pos==Pos{12,5},true,"projected channel forecast never mutates World owner position");
     std::printf("%d channel-risk checks passed\n",checks);
 }

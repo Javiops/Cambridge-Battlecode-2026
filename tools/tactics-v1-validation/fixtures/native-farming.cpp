@@ -8,10 +8,10 @@ static void check(bool value,const char*message){if(!value){std::printf("NATIVE_
 int main(){Geometry geometry;Memory memory;std::unique_ptr<World> world;int stage=0;std::vector<Group> original;
  while(true){
   if(bc::is_draft()){bc::draft::pick(bc::champion_draft::ryth);bc::end_turn();continue;}
-  if(stage>=3){bc::end_turn();continue;}
-  geometry.initialize();if(!world){world=std::make_unique<World>(geometry,memory);original=geometry.groups;}
+  if(stage>=5){bc::end_turn();continue;}
+  geometry.initialize();if(!geometry.initialized){bc::end_turn();continue;}if(!world){world=std::make_unique<World>(geometry,memory);original=geometry.groups;}
   World&w=*world;w.refresh();
-  if(stage<3){
+  if(stage<5){
    geometry.groups=original;memory={};w.round=100;w.enemies.clear();w.sightings.clear();w.allies.clear();
    w.self.hp=w.self.max_hp=1200;w.self.strength=100;w.self.camp_mitigation=w.self.mitigation=1;w.self.shield=0;w.self.alive=true;w.self.stunned=false;w.self.channel=Channel::None;w.self.can_move=w.self.can_attack=true;w.self.range=1;w.self.move_speed=1;w.self.can_cast=false;w.self.gems=0;w.spells={};
    int gold=-1,elk=-1;
@@ -43,8 +43,22 @@ int main(){Geometry geometry;Memory memory;std::unique_ptr<World> world;int stag
     check(result.has_value()&&result->mission.group==gold,"zero-rate readiness cannot erase positive farm job");
     check(result->mission.phase==Phase::Assemble,"positive unready alternative gets assembly lease");
     std::puts("NATIVE_FARM_POLICY_CASE_PASS deadline-zero-ready");
+   }else if(stage==3){
+    memory.mission.group=elk;memory.mission.phase=Phase::Observe;memory.mission.start=1;
+    memory.mission.expiry=200;memory.mission.last_progress=99;memory.mission.target=target;
+    w.groups[elk].seen=99;w.self.can_move=false;
+    auto result=farming(w,memory);
+    check(result&&result->mission.phase==Phase::Observe&&result->action.kind==Kind::None,"spent move is a useful observe hold, not a route failure");
+    check(memory.failed_group!=elk,"successful earlier travel cannot be suppressed on second arbitration");
+    std::puts("NATIVE_FARM_POLICY_CASE_PASS spent-move-observation");
+   }else if(stage==4){
+    w.self.pos=position(geometry.own_spawn.positions().front());w.self.hp=100;
+    w.self.gems=22;w.own_score=0;memory.mission.phase=Phase::Deliver;
+    auto result=choose_mission(w,memory);
+    check(result&&result->mission.phase==Phase::Recover&&result->action.kind==Kind::None,"spawn heal completes before resuming ordinary bank commitment");
+    std::puts("NATIVE_FARM_POLICY_CASE_PASS spawn-heal-before-delivery");
    }
-   ++stage;if(stage==3)std::printf("NATIVE_FARM_POLICY_PASS %d\n",w.self.id);
+   ++stage;if(stage==5)std::printf("NATIVE_FARM_POLICY_PASS %d\n",w.self.id);
   }
   bc::end_turn();
  }

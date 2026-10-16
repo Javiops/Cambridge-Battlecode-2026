@@ -166,3 +166,21 @@ the top two (v44 60%, Univardisty 51%, Mite 43%, random 44%). No gap.
 
 So the clearest remaining gap is formation: Mite has an ally within 2 tiles on 59% of contact turns, we 39%. im_p only
 changes what we do once paired; getting paired more often (moving as a pair between camps) is the next lever.
+
+## Round 4 (15:35-17:00 UTC): pairing up between camps (I063, rejected)
+
+Rule P_BUDDY (`buddy_b4.diff`, on im_p): when choosing a camp on the frontier (no more than P_BUDDY_F tiles closer to our
+spawn than to theirs), a camp an ally claims (or within 4 of one) is boosted and may be shared by two; a camp with no ally
+claim nearby is discounted. Variants and results (gate vs im_p, then 36 games vs spar11+spar16, `bc/behaviour_summary.txt`):
+
+| variant | fresh maps vs im_p | gems/100 rounds (cand vs im_p) | wins/36 | deaths | ally within 2 on contact turns |
+|---|---|---|---|---|---|
+| im_p (reference) | | | 36 | 56 | 44% |
+| b1 alone x0.5, join x1.5 | 1-16 FAIL | 173 vs 186 | 31 | 43 | 52% |
+| b2 alone x0.3, join x2 | 2-18 FAIL | 170 vs 188 | 32 | 40 | 48% |
+| b3 b1 only within 40 rounds of seeing a foe | 6-18 FAIL | 168 vs 171 | 33 | 59 | 53% |
+| b4 b3 + frontier = enemy half only | 40-46 PASS (panel 10/20) | 169 vs 168 | 32 | 62 | 49% |
+
+Pairing up for camps either costs farming (b1, b2) or does not lower deaths (b3, b4), and every variant wins fewer games
+against the casters than im_p. Locally the bots are already paired on ~50% of contact turns against the casters (online
+39%), so the pairing gap is something the online rivals produce. Rejected, like the ball and pack variants before it.

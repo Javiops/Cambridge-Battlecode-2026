@@ -137,22 +137,22 @@
   "nn": "1 hidden, 3 links, outputs used: engage"
  },
  "fitness": {
-  "shrunk": 0.1,
-  "n": 9,
+  "shrunk": 0.0951,
+  "n": 10,
   "deltas": [
-   0.04642,
    0.22339,
    0.00593,
    0.34047,
    0.20122,
    0.00018,
    -0.04321,
-   0.0359
+   0.0359,
+   0.04582
   ]
  },
- "gen": 40,
+ "gen": 42,
  "scope": "neat",
  "start": "ga65a6",
- "time": "2026-10-16 16:15:26 UTC",
+ "time": "2026-10-16 16:26:40 UTC",
  "transport": "shared"
 }

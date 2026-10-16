@@ -149,3 +149,6 @@ Reading: im_a beats the online bot in self-play by fighting more, but against th
 like online teams) it dies 2.6x more for the same kills. im_p keeps the commitment only when paired: it loses a little in
 self-play and does best against the casters. Zips (not uploaded): `bot/mybot_ga65a6_mono_fuelguard_jackpot_imitation.zip`
 (im_a) and `bot/mybot_ga65a6_mono_fuelguard_jackpot_imitation_paired.zip` (im_p).
+
+**15:45 UTC:** im_p + nearest-first targeting (P_TGT_DW 400) vs im_p: fresh 14-8 (p=0.29), panel 2/6; vs the caster bots 36/36
+wins, 54 deaths, 268 kills (im_p 56 and 285). No clear gain, so I061 is paused and im_p stays the candidate.

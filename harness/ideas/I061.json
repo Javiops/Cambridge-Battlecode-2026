@@ -5,7 +5,7 @@
  "source": "replay imitation",
  "owner": "Claude",
  "hypothesis": "Mite hits the nearest foe 85%, our score is mostly lowest hp; distance weight 400 per tile makes nearest win",
- "stage": "local-test",
+ "stage": "paused",
  "created": "2026-10-16T15:13Z",
  "history": [
   {
@@ -17,7 +17,12 @@
    "at": "2026-10-16T15:13Z",
    "stage": "local-test",
    "note": "borderline 16-6 p=0.052 on im_a, not combined yet"
+  },
+  {
+   "at": "2026-10-16T15:29Z",
+   "stage": "paused",
+   "note": "on im_p (I062): vs im_p 14-8 p=0.29, panel 2/6; vs spar11+16 36 games 36 wins, deaths 54 (im_p 56), kills 268 (im_p 285). No clear gain; not combined."
   }
  ],
- "updated": "2026-10-16T15:13Z"
+ "updated": "2026-10-16T15:29Z"
 }

@@ -125,8 +125,8 @@
   "nn": "0 hidden, 1 links, outputs used: farm"
  },
  "fitness": {
-  "shrunk": 0.1446,
-  "n": 7,
+  "shrunk": 0.1365,
+  "n": 8,
   "deltas": [
    0.24172,
    0.11544,
@@ -134,12 +134,13 @@
    0.0239,
    0.19513,
    0.29833,
-   0.13369
+   0.13369,
+   0.0714
   ]
  },
- "gen": 20,
+ "gen": 21,
  "scope": "micro,structure,gp",
  "start": "online1520",
- "time": "2026-10-16 18:19:28 UTC",
+ "time": "2026-10-16 18:29:59 UTC",
  "transport": "shared"
 }

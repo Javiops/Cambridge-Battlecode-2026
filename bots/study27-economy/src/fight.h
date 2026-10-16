@@ -62,6 +62,24 @@ inline bool gone(const Foe& f, bc::champion& me) {
 constexpr std::size_t SM_HELP = 7;
 
 // How far a foe can hit next round: melee 2 (3 with a dash), ranged its range + 1.
+
+// Combat-moves experiment: cooldown uses owner turn-end ticks. Treat <=1 as
+// potentially ready at the next opportunity rather than asserting an exact
+// initiative forecast. Missing/unreadable metadata keeps the original reach.
+inline bool combat_moves_dash_soon(const bc::champion& c) {
+    try {
+        bool found = false;
+        for (const auto& ab : c.abilities()) {
+            if (!ab.is_dash()) continue;
+            found = true;
+            if (ab.cooldown() <= 1) return true;
+        }
+        return !found;
+    } catch (...) {
+        return true;
+    }
+}
+
 inline int reach(const Foe& f) {
     int r = 1;
     attempt([&] {
@@ -77,7 +95,8 @@ inline int reach(const Foe& f) {
         // Melee champions with a dash: Vendetta, Issac and Ren (Cassi is ranged and has none; the old list said
         // "cassi", so Issac's dash was missed). P_DASHFIX 0 keeps the old list for measuring.
         bool dash = starts_with(n, "vend") || starts_with(n, P_DASHFIX ? "issac" : "cassi") || starts_with(n, "ren");
-        return dash ? 3 : 2;
+        if (!dash) return 2;
+        return combat_moves_dash_soon(f.c) ? 3 : 2;
     }
     return r + 1;
 }
@@ -263,37 +282,6 @@ struct Mate {
     bool ranged;
 };
 
-// P_CASTDIST: a ranged champion that stands at 1-2 from its target trades like a melee (online 35% of our ranged hits
-// came from 1-2 tiles, 8% from 5+; theirs 24%). With nobody about to reach us, step to a neighbour that keeps the target
-// in range at P_CASTDIST+ and is farthest from the foes. Returns true if we moved.
-inline bool space_out(State& s, bc::champion& me, const std::vector<Foe>& foes, vec2 focus, vec2 anchor) {
-    int range = static_cast<int>(me.attack_range());
-    if (range <= 1 || !me.can_move()) return false;
-    int cd = std::min(P_CASTDIST, range);
-    vec2 pos = me.position();
-    int d = dist(pos, focus);
-    if (d >= cd || d > range) return false;
-    for (auto& f : foes)
-        if (f.d <= reach(f) - 1) return false;  // threatened: the kite rules decide
-    auto score = [&](vec2 t) {
-        int dd = dist(t, focus), close = 99;
-        for (auto& f : foes) close = std::min(close, dist(t, f.p));
-        return ((dd >= cd && dd <= range) ? 1000 : 0) + close * 10 - dist(t, anchor);
-    };
-    std::optional<vec2> bt;
-    int bs = score(pos);
-    for (int dx = -1; dx <= 1; ++dx)
-        for (int dy = -1; dy <= 1; ++dy) {
-            if (!dx && !dy) continue;
-            vec2 t = pos + vec2(dx, dy);
-            if (!bc::map::is_in_bounds(t) || s.blocked.is_set(t)) continue;
-            int sc = score(t);
-            if (sc > bs) { bs = sc; bt = t; }
-        }
-    if (!bt) return false;
-    return attempt([&] { return me.move_absolute(*bt); });
-}
-
 inline bool hit_any(State& s, bc::champion& me, const std::vector<Foe*>& near) {
     const Foe* best = nullptr;
     vec2 pos = me.position();
@@ -353,15 +341,6 @@ inline bool front_line(State& s, bc::champion& me, std::vector<Foe>& foes, int r
             return true;
         });
         if (tc * 100.0 > oc * P_FRONT_OUT) return false;
-    }
-    if (P_OPENNUM && round - s.hit_round > 3) {  // opening (nobody hit us): only with numbers, or on a channelling foe
-        int mc = 1, fc = 0;
-        bool busy = false;
-        for (auto& m : mates)
-            if (dist(m.p, pos) <= 6) ++mc;
-        for (auto* f : near)
-            if (!gone(*f, me)) { ++fc; if (f->channeling) busy = true; }
-        if (fc > mc && !busy) return false;
     }
 
     long sx = X(pos), sy = Y(pos);
@@ -437,9 +416,8 @@ inline bool front_line(State& s, bc::champion& me, std::vector<Foe>& foes, int r
         auto score = [&](vec2 t) {
             int close = 99;
             for (auto* f : near) close = std::min(close, dist(t, f->p));
-            int dd = dist(t, focus->p);
-            int inr = dd > range ? 0 : (!P_CASTDIST || dd >= std::min(P_CASTDIST, range)) ? 1000 : 600;  // P_CASTDIST: 1-2 is a melee trade
-            return inr + close * 10 - dist(t, anchor);
+            bool inr = dist(t, focus->p) <= range;
+            return (inr ? 1000 : 0) + close * 10 - dist(t, anchor);
         };
         std::optional<vec2> bt;
         int bs = score(pos);
@@ -454,7 +432,6 @@ inline bool front_line(State& s, bc::champion& me, std::vector<Foe>& foes, int r
         if (bt) attempt([&] { return me.move_absolute(*bt); });
         pos = me.position();
     }
-    if (P_CASTDIST && !threatened && space_out(s, me, foes, focus->p, anchor)) pos = me.position();
     if (P_FRONT_CAST && dist(pos, focus->p) <= SPELL_RANGE) cast_offense(s, me, focus->c, focus->p, true);
     if (dist(pos, focus->p) <= range) {
         cast_offense(s, me, focus->c, focus->p, true);
@@ -551,7 +528,6 @@ inline bool kite(State& s, bc::champion& me, std::vector<Foe>& foes, int round) 
                 if (dist(t, near[i]->p) <= reaches[i]) ++thr;
             int df = dist(t, focus->p);
             double sc = -1000.0 * thr + (df <= SPELL_RANGE ? 300.0 : 0.0) + (df <= range ? 100.0 : 0.0);
-            if (P_CASTDIST && df >= std::min(P_CASTDIST, range)) sc += 80.0;  // P_CASTDIST
             if (!P_NOCHASE || focus->gems >= P_CHASE_GEMS) sc -= 10.0 * std::max(0, df - SPELL_RANGE);  // walk after it
             if (!mates.empty()) {
                 int ad = 99;

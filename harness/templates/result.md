@@ -2,7 +2,7 @@
 
 **Hypothesis:** <which number it moves, from what to what, on which maps>. Source: <scorecard / study / brainstorm>.
 
-**Change:** <one sentence>. Switch: `P_XXX <value>` (base <value>). Files: `bots/study28/src/...`.
+**Change:** <one sentence>. Switch: `P_XXX <value>` (base <value>). Files: `bots/study27-economy/src/...`.
 
 ## Local gate (`tools/gate.py ... --kind <kind>`)
 

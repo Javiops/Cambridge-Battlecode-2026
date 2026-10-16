@@ -1,0 +1,22 @@
+P(retreat) contact <=5, local games vs spar16+spar11
+bot          im2_a  online2
+hb                         
+(0.0, 0.3]    0.76     0.83
+(0.3, 0.4]    0.58     0.82
+(0.4, 0.5]    0.36     0.70
+(0.5, 0.6]    0.31     0.42
+(0.6, 0.8]    0.30     0.36
+(0.8, 1.01]   0.26     0.28
+         died10  attacked_champ
+bot                            
+im2_a     0.063           0.160
+online2   0.017           0.153 bot
+im2_a      7445
+online2    7058
+dtype: int64
+bot      opp   
+im2_a    spar11    0.049
+         spar16    0.042
+online2  spar11    0.015
+         spar16    0.012
+Name: died10, dtype: float64

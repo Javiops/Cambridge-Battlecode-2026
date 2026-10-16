@@ -1,0 +1,44 @@
+share of contact turns by nearest-ally distance
+team_tag   mite    opp  top10_vs_us    uni  us_v44
+ally                                              
+<=2       0.591  0.480        0.425  0.410   0.392
+3-4       0.192  0.215        0.193  0.204   0.259
+5-8       0.112  0.157        0.197  0.189   0.174
+>8        0.104  0.148        0.185  0.196   0.175
+died10 by nearest-ally distance
+team_tag   mite    opp  top10_vs_us    uni  us_v44
+ally                                              
+<=2       0.092  0.095        0.043  0.104   0.104
+3-4       0.131  0.128        0.052  0.118   0.155
+5-8       0.165  0.139        0.052  0.129   0.178
+>8        0.176  0.190        0.085  0.179   0.208
+retreat turns: mean change in distance to nearest ally (neg = toward ally)
+team_tag
+mite          -0.067
+opp           -0.032
+top10_vs_us   -0.172
+uni           -0.133
+us_v44        -0.114
+Name: ally_delta, dtype: float64
+retreat turns: share stepping toward ally / away
+ally_delta      -1      0      1
+team_tag                        
+mite         0.406  0.256  0.339
+opp          0.390  0.254  0.356
+top10_vs_us  0.473  0.228  0.299
+uni          0.453  0.226  0.320
+us_v44       0.450  0.216  0.334
+died10 for retreat turns by ally step
+team_tag     mite    opp  top10_vs_us    uni  us_v44
+ally_delta                                          
+-1          0.145  0.148        0.056  0.159   0.213
+ 0          0.109  0.152        0.056  0.134   0.118
+ 1          0.076  0.116        0.024  0.118   0.120
+hp<50% contact: share alone (ally>4)
+team_tag
+mite           0.297
+opp            0.340
+top10_vs_us    0.408
+uni            0.409
+us_v44         0.372
+Name: near_ally_dist, dtype: float64

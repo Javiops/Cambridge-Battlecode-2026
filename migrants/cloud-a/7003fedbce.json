@@ -191,17 +191,18 @@
   "nn": "0 hidden, 1 links, outputs used: farm"
  },
  "fitness": {
-  "shrunk": 0.0495,
-  "n": 3,
+  "shrunk": 0.0624,
+  "n": 4,
   "deltas": [
    0.06062,
    0.04036,
-   0.09694
+   0.09694,
+   0.11427
   ]
  },
- "gen": 16,
+ "gen": 17,
  "scope": "micro,structure,gp",
  "start": "ga65a6",
- "time": "2026-10-16 13:22:49 UTC",
+ "time": "2026-10-16 13:26:44 UTC",
  "transport": "shared"
 }

@@ -4,13 +4,13 @@
  "scope": "micro",
  "start": "ga65a6",
  "jobs": 4,
- "gen": 8,
- "games": 10558,
- "gps": 3.9,
+ "gen": 9,
+ "games": 12198,
+ "gps": 3.97,
  "base": "7c2d0330e54e",
  "best": {
-  "cid": "26ace046f1",
-  "shrunk": 0.0469,
+  "cid": "8a8b0af8ec",
+  "shrunk": 0.1347,
   "n": 1,
   "describe": {
    "P_CHASE_GEMS": 118,
@@ -20,13 +20,15 @@
    "P_ALLYDUTY": 1,
    "P_NN_ON": 1,
    "P_SHAREEXP": 72,
+   "P_HOLD_R": 7,
    "P_TELE": 5,
+   "order": "FLEE>NEARRECALL>FM>KITE>FRONT>AVOID>ENGAGE>AVOIDLOW>RECALLSHOP>WALKHOME",
    "nn": "0 hidden, 2 links, outputs used: farm, kite"
   }
  },
- "exported": 8,
- "imported": 22,
- "updated": "2026-10-16 13:19:29 UTC",
+ "exported": 11,
+ "imported": 25,
+ "updated": "2026-10-16 13:26:24 UTC",
  "code": "claude/project-thread-s7k3jc@d84d598",
  "home": "/mnt/project-files/ga-farm/islands/cloud-b",
  "transport": "shared"

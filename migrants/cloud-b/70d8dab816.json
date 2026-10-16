@@ -52,17 +52,18 @@
   "P_DANGER": 3
  },
  "fitness": {
-  "shrunk": 0.0561,
-  "n": 3,
+  "shrunk": 0.049,
+  "n": 4,
   "deltas": [
    0.16138,
    0.0318,
-   0.03141
+   0.03141,
+   0.02021
   ]
  },
- "gen": 6,
+ "gen": 7,
  "scope": "micro",
  "start": "ga65a6",
- "time": "2026-10-16 13:09:12 UTC",
+ "time": "2026-10-16 13:13:22 UTC",
  "transport": "shared"
 }

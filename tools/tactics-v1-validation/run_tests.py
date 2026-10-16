@@ -16,6 +16,14 @@ import subprocess
 from datetime import datetime, timezone
 from channel_fixture import generate_channel_fixture, extract_channel_function
 from economy_fixtures import generate_economy_fixture, extract_economy_policy
+from shopping_fixture import generate_shopping_investment_fixture, extract_shopping_investment
+from shopping_gem_fixture import generate_shopping_gem_fixture, extract_shopping_gem
+from deny_fixture import generate_denial_fixture, extract_denial_proposal
+from ward_exit_fixtures import generate_ward_exit_fixture, extract_ward_exit_policy
+from vision_fixture import generate_vision_fixture, extract_vision_policy
+from coordination_fixture import generate_squad_position_fixture, extract_squad_position
+from assembly_fixture import generate_assembly_arrival_fixture, extract_assembly_policy
+from solo_receipt_fixture import generate_solo_receipt_fixture, extract_solo_receipt_policy
 
 HERE = Path(__file__).resolve().parent
 EXPECTED_SDK_SHA256 = "76664dc7c4ab764243a7530eb97be12d9c20518b7bd2601a962fb0669d1da4a4"
@@ -80,13 +88,60 @@ def main():
     suites = []
     for name, pattern in (("policy", r"policy acceptance: (\d+) checks passed"),
                           ("combat", r"(\d+) combat checks passed"),
+                          ("combat-sequence", r"(\d+) combat sequence checks passed"),
+                          ("combat-reply", r"(\d+) common-endpoint checks passed"),
+                          ("combat-reach", r"(\d+) local reach checks passed"),
                           ("squads", r"squad checks passed: (\d+)"),
                           ("camp-affordability", r"(\d+) camp affordability checks passed"),
+                          ("solo-certificate", r"(\d+) solo certificate checks passed"),
+                          ("solo-equivalence", r"(\d+) scalar singleton checks passed"),
+                          ("solo-receipt", r"(\d+) solo receipt checks passed"),
+                          ("resource", r"(\d+) resource eligibility checks passed"),
+                          ("ranking", r"(\d+) ranking checks passed"),
+                          ("assembly", r"(\d+) assembly checks passed"),
+                          ("assembly-arrival", r"(\d+) assembly-arrival checks passed"),
                           ("channel", r"(\d+) channel-risk checks passed"),
                           ("recovery", r"(\d+) recovery checks passed"),
-                          ("delivery", r"(\d+) delivery checks passed")):
+                          ("delivery", r"(\d+) delivery checks passed"),
+                          ("coordination", r"(\d+) coordination checks passed"),
+                          ("squad-position", r"(\d+) squad-position checks passed"),
+                          ("vision", r"(\d+) vision checks passed"),
+                          ("ward-exit", r"(\d+) ward/exit checks passed"),
+                          ("information", r"(\d+) information checks passed"),
+                          ("cycles", r"(\d+) cycle checks passed"),
+                          ("shopping-investment", r"(\d+) shopping-investment checks passed"),
+                          ("shopping-gem", r"(\d+) shopping-gem checks passed"),
+                          ("deny", r"(\d+) deny checks passed")):
+        if name in ("combat-sequence", "coordination", "squad-position", "vision") and not (source / "coordination.h").is_file():
+            continue  # Historical v12 does not contain the new model contracts.
+        if name == "combat-reply" and "marginal_reply_cost" not in (source / "combat.h").read_text(encoding="utf8"):
+            continue
+        if name == "combat-reach" and "ordinary_reachable_region" not in (source / "combat.h").read_text(encoding="utf8"):
+            continue
+        if name == "shopping-investment" and "named_return_payoff" not in (source / "shopping.h").read_text(encoding="utf8"):
+            continue
+        if name == "shopping-gem" and "completed_gem_return" not in (source / "shopping.h").read_text(encoding="utf8"):
+            continue
+        if name == "deny" and not (source / "deny.h").is_file():
+            continue
+        if name == "ranking" and not (source / "ranking.h").is_file():
+            continue
+        if name in ("assembly", "assembly-arrival") and not (source / "assembly.h").is_file():
+            continue
+        if name in ("solo-certificate", "solo-equivalence", "solo-receipt") and not (source / "solo.h").is_file():
+            continue
+        if name == "resource" and not (source / "resource.h").is_file():
+            continue
         template = HERE / "fixtures" / f"{name}.cpp"
         fixture = (generate_channel_fixture(source, output) if name == "channel" else
+                   generate_solo_receipt_fixture(source, output) if name == "solo-receipt" else
+                   generate_assembly_arrival_fixture(source, output) if name == "assembly-arrival" else
+                   generate_ward_exit_fixture(source, output) if name == "ward-exit" else
+                   generate_shopping_investment_fixture(source, output) if name == "shopping-investment" else
+                   generate_shopping_gem_fixture(source, output) if name == "shopping-gem" else
+                   generate_denial_fixture(source, output) if name == "deny" else
+                   generate_vision_fixture(source, output) if name == "vision" else
+                   generate_squad_position_fixture(source, output) if name == "squad-position" else
                    generate_economy_fixture(name, source, output) if name in ("recovery", "delivery") else template)
         wasm = output / f"{name}.wasm"
         command = [compiler, "-std=c++20", "-O1", "-fwasm-exceptions", "-mllvm",
@@ -101,8 +156,16 @@ def main():
                        "template_sha256": sha(template),
                        "production_function_sha256": hashlib.sha256(
                            (extract_channel_function(source) if name == "channel" else
+                            extract_solo_receipt_policy(source) if name == "solo-receipt" else
+                            extract_assembly_policy(source) if name == "assembly-arrival" else
+                            extract_ward_exit_policy(source) if name == "ward-exit" else
+                            extract_vision_policy(source) if name == "vision" else
+                            extract_squad_position(source) if name == "squad-position" else
+                            "\n".join(extract_shopping_investment(source)) if name == "shopping-investment" else
+                            extract_shopping_gem(source) if name == "shopping-gem" else
+                            extract_denial_proposal(source) if name == "deny" else
                             extract_economy_policy(name, source)).encode()).hexdigest()
-                           if name in ("channel", "recovery", "delivery") else None,
+                           if name in ("channel", "recovery", "delivery", "vision", "ward-exit", "squad-position", "shopping-investment", "shopping-gem", "solo-receipt", "deny", "assembly-arrival") else None,
                        "compile_command": [str(x) for x in command]})
     header_checks = []
     sdk_hash = None

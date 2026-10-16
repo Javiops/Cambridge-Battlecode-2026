@@ -1,0 +1,163 @@
+{
+ "base": "bots/study27-economy",
+ "wasm": "out/ga-pc\\template.wasm",
+ "offset": 267655,
+ "genes": {
+  "P_FLEE_PCT": [
+   29,
+   5,
+   50,
+   "run/recall below this % hp (non-caster drafts)"
+  ],
+  "P_UNI_FLEE": [
+   44,
+   5,
+   70,
+   "run/recall below this % hp (caster draft)"
+  ],
+  "P_RECALL_PCT": [
+   54,
+   20,
+   85,
+   "recall below this % hp when safe / out of the fight"
+  ],
+  "P_RECALL_NEAR": [
+   7,
+   2,
+   10,
+   "recall allowed with the nearest foe this many tiles away (caster draft)"
+  ],
+  "P_BAIL_PCT": [
+   12,
+   0,
+   45,
+   "abandon a camp fight below this % hp"
+  ],
+  "P_AVOID_DIST": [
+   4,
+   0,
+   9,
+   "back away from an unfavourable group this close"
+  ],
+  "P_GA_AVOID_HP": [
+   60,
+   20,
+   95,
+   "back away from an unfavourable group below this % hp"
+  ],
+  "P_ENGAGE2": [
+   74,
+   50,
+   250,
+   "favourable fight = our hp near the target >= this % of theirs"
+  ],
+  "P_GA_FAV": [
+   83,
+   50,
+   160,
+   "favourable fight without a target = our hp >= this % of theirs within 8"
+  ],
+  "P_GA_KILL_X": [
+   5,
+   5,
+   40,
+   "killable target = its hp <= our strength x this / 10 (always engage)"
+  ],
+  "P_LOWHP": [
+   50,
+   0,
+   85,
+   "below this % hp with a foe within 6: back off"
+  ],
+  "P_GA_SPAWN_HEAL": [
+   87,
+   50,
+   100,
+   "stay on spawn healing until this % hp"
+  ],
+  "P_FRONT_ZONE": [
+   3,
+   1,
+   6,
+   "front line: a foe this close means we are in the fight"
+  ],
+  "P_FRONT_OUT": [
+   145,
+   60,
+   260,
+   "front line: give up when their hp is above this % of ours"
+  ],
+  "P_KITE_ZONE": [
+   4,
+   2,
+   8,
+   "kite: nobody within this many tiles and not hit = keep farming"
+  ],
+  "P_KITE_OUT": [
+   2,
+   0,
+   4,
+   "kite: give up when they outnumber us by more than this..."
+  ],
+  "P_GA_KITE_HP": [
+   128,
+   60,
+   250,
+   "...and their hp is above this % of ours"
+  ],
+  "P_VOLLEY": [
+   43,
+   20,
+   160,
+   "pathing avoids tiles where ready enemy damage >= this % of our hp"
+  ],
+  "P_CHASE_GEMS": [
+   144,
+   30,
+   400,
+   "chase a foe only when it carries this many gems"
+  ],
+  "P_DANGER": [
+   4,
+   2,
+   5,
+   "this many enemy champions together mark a danger spot"
+  ],
+  "P_DANGER_T": [
+   45,
+   8,
+   120,
+   "a danger spot lasts this many rounds"
+  ],
+  "P_DANGER_R": [
+   5,
+   2,
+   12,
+   "camps within this of a danger spot are skipped"
+  ]
+ },
+ "center": {
+  "P_FLEE_PCT": 29,
+  "P_UNI_FLEE": 44,
+  "P_RECALL_PCT": 54,
+  "P_RECALL_NEAR": 7,
+  "P_BAIL_PCT": 12,
+  "P_AVOID_DIST": 4,
+  "P_GA_AVOID_HP": 60,
+  "P_ENGAGE2": 74,
+  "P_GA_FAV": 83,
+  "P_GA_KILL_X": 5,
+  "P_LOWHP": 50,
+  "P_GA_SPAWN_HEAL": 87,
+  "P_FRONT_ZONE": 3,
+  "P_FRONT_OUT": 145,
+  "P_KITE_ZONE": 4,
+  "P_KITE_OUT": 2,
+  "P_GA_KITE_HP": 128,
+  "P_VOLLEY": 43,
+  "P_CHASE_GEMS": 144,
+  "P_DANGER": 4,
+  "P_DANGER_T": 45,
+  "P_DANGER_R": 5
+ }
+}

@@ -420,7 +420,7 @@ def cmd_run(A):
         cfit = fits[bid][0]
         for i in st['pop']:
             st['inds'][i]['deltas'].append(fits[i][0] - cfit)
-            flt = sum(B.cache[f'{i}|{B.opp(o)[0]}|{B.mkey(m)}|{s}'].get('flt', 0) for o in opps for m in maps for s in (0, 1))
+            flt = sum(B.cache.get(f'{i}|{B.opp(o)[0]}|{B.mkey(m)}|{s}', {}).get('flt', 0) for o in opps for m in maps for s in (0, 1))
             if flt:
                 st['inds'][i]['faults'] = st['inds'][i].get('faults', 0) + flt
         evald = [i for i, d in st['inds'].items() if d['deltas'] and i != bid and not d.get('faults')]
@@ -473,8 +473,12 @@ def cmd_validate(A):
             oh = B.opp(ob)[0]
             for m in maps:
                 k = B.mkey(m)
-                a = sum(B.cache[f'{i}|{oh}|{k}|{s}']['r'] for s in (0, 1))
-                b = sum(B.cache[f'{bid}|{oh}|{k}|{s}']['r'] for s in (0, 1))
+                ga_ = [B.cache.get(f'{i}|{oh}|{k}|{s}') for s in (0, 1)]
+                gb_ = [B.cache.get(f'{bid}|{oh}|{k}|{s}') for s in (0, 1)]
+                if not all(ga_ + gb_):
+                    continue
+                a = sum(x['r'] for x in ga_)
+                b = sum(x['r'] for x in gb_)
                 better += a > b
                 worse += a < b
         out.append(f"{i}: fit {f:+.3f} (delta {f - cf:+.3f}) " + ' '.join(

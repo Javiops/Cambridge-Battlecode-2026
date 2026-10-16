@@ -1,9 +1,9 @@
 # GA farm board
 
-Regenerated 2026-10-16 12:57:21 UTC by the islands (tools/ga/island.py). Fitness = margin over the island's own control (its start genome) on the same games, shrunk mean over generations (n = generations evaluated).
+Regenerated 2026-10-16 12:59:04 UTC by the islands (tools/ga/island.py). Fitness = margin over the island's own control (its start genome) on the same games, shrunk mean over generations (n = generations evaluated).
 
 | island | host | scope | start | jobs | gen | games | games/s | best (shrunk, n) | best changes vs start | out/in | updated |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| pc | DESKTOP-N35CN0S | all | ga65a6 | 16 | 31 | 35258 | 16.9 | adb542c419 (+0.070, 3) | {"P_CHASE_GEMS": 94, "P_FRONT": 0, "P_SAFESTEP": 0, "P_NOCHASE": 0, "P_ALLYDUTY": 1, "P_NN_ON": 1, "P_SHAREEXP": 72, "P_TRIBUTE_NEAR": 10, "P_TELE": 5, "orde... | 31/0 | 2026-10-16 12:57:20 UTC |
+| pc | DESKTOP-N35CN0S | all | ga65a6 | 16 | 32 | 36588 | 13.4 | 0227a5bb94 (+0.062, 2) | {"P_CHASE_GEMS": 118, "P_FRONT": 0, "P_SAFESTEP": 0, "P_NOCHASE": 0, "P_ALLYDUTY": 1, "P_GP0_ON": 1, "P_NN_ON": 1, "P_SHAREEXP": 72, "P_TRIBUTE_NEAR": 10, "P... | 32/0 | 2026-10-16 12:59:02 UTC |
 
 Code: branch `ga-farm-pr@cf1032f`. Migrants: `migrants/<island>/<cid>.json` (full genome + fitness); state: `islands/<island>/`.

@@ -99,6 +99,8 @@ def check(base):
     a = active()
     if not a:
         return None, 'no online/data/versions.jsonl here: cannot tell whether the base is the online bot'
+    if not a.get('src_sha') and a.get('zip') and os.path.exists(a['zip']):
+        a = dict(a, src_sha=src_hash(a['zip']))  # a row with the zip path but no hash: hash the zip as it is now
     if not a.get('src_sha'):
         return None, (f'the online version "{a.get("version")}" was recorded without --zip: cannot tell whether the base '
                       'is the online bot (record it again with online/version.py --zip)')

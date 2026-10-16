@@ -1,0 +1,583 @@
+{
+ "maps": 17,
+ "site_maps": 17,
+ "opps": [
+  "bots/sp_castera",
+  "bots/sp_casterh",
+  "bots/sp_hunt",
+  "bots/sp_centre",
+  "bots/sp_farm"
+ ],
+ "pairs": [
+  {
+   "a": "bots/v_v51",
+   "b": "bots/v_v51_noop1",
+   "flips": [
+    1,
+    2
+   ],
+   "p": 1.0,
+   "by_opp": {
+    "sp_castera": [
+     0,
+     1
+    ],
+    "sp_hunt": [
+     0,
+     1
+    ],
+    "sp_centre": [
+     1,
+     0
+    ]
+   }
+  },
+  {
+   "a": "bots/v_v51",
+   "b": "bots/v_v51_noop2",
+   "flips": [
+    6,
+    10
+   ],
+   "p": 0.454498291015625,
+   "by_opp": {
+    "sp_castera": [
+     1,
+     4
+    ],
+    "sp_casterh": [
+     1,
+     2
+    ],
+    "sp_hunt": [
+     0,
+     1
+    ],
+    "sp_centre": [
+     3,
+     2
+    ],
+    "sp_farm": [
+     1,
+     1
+    ]
+   }
+  },
+  {
+   "a": "bots/v_v51",
+   "b": "bots/v_v51_noop3",
+   "flips": [
+    7,
+    11
+   ],
+   "p": 0.480682373046875,
+   "by_opp": {
+    "sp_castera": [
+     0,
+     4
+    ],
+    "sp_casterh": [
+     0,
+     2
+    ],
+    "sp_centre": [
+     4,
+     3
+    ],
+    "sp_farm": [
+     3,
+     2
+    ]
+   }
+  },
+  {
+   "a": "bots/v_v51",
+   "b": "bots/v_v51_noop4",
+   "flips": [
+    6,
+    14
+   ],
+   "p": 0.11531829833984375,
+   "by_opp": {
+    "sp_castera": [
+     0,
+     4
+    ],
+    "sp_casterh": [
+     0,
+     3
+    ],
+    "sp_hunt": [
+     0,
+     1
+    ],
+    "sp_centre": [
+     3,
+     4
+    ],
+    "sp_farm": [
+     3,
+     2
+    ]
+   }
+  },
+  {
+   "a": "bots/v_v51_noop1",
+   "b": "bots/v_v51_noop2",
+   "flips": [
+    5,
+    8
+   ],
+   "p": 0.5810546875,
+   "by_opp": {
+    "sp_castera": [
+     1,
+     3
+    ],
+    "sp_casterh": [
+     1,
+     2
+    ],
+    "sp_centre": [
+     2,
+     2
+    ],
+    "sp_farm": [
+     1,
+     1
+    ]
+   }
+  },
+  {
+   "a": "bots/v_v51_noop1",
+   "b": "bots/v_v51_noop3",
+   "flips": [
+    7,
+    10
+   ],
+   "p": 0.629058837890625,
+   "by_opp": {
+    "sp_castera": [
+     0,
+     3
+    ],
+    "sp_casterh": [
+     0,
+     2
+    ],
+    "sp_hunt": [
+     1,
+     0
+    ],
+    "sp_centre": [
+     3,
+     3
+    ],
+    "sp_farm": [
+     3,
+     2
+    ]
+   }
+  },
+  {
+   "a": "bots/v_v51_noop1",
+   "b": "bots/v_v51_noop4",
+   "flips": [
+    5,
+    12
+   ],
+   "p": 0.143463134765625,
+   "by_opp": {
+    "sp_castera": [
+     0,
+     3
+    ],
+    "sp_casterh": [
+     0,
+     3
+    ],
+    "sp_centre": [
+     2,
+     4
+    ],
+    "sp_farm": [
+     3,
+     2
+    ]
+   }
+  },
+  {
+   "a": "bots/v_v51_noop2",
+   "b": "bots/v_v51_noop3",
+   "flips": [
+    5,
+    5
+   ],
+   "p": 1.0,
+   "by_opp": {
+    "sp_castera": [
+     0,
+     1
+    ],
+    "sp_casterh": [
+     1,
+     2
+    ],
+    "sp_hunt": [
+     1,
+     0
+    ],
+    "sp_centre": [
+     1,
+     1
+    ],
+    "sp_farm": [
+     2,
+     1
+    ]
+   }
+  },
+  {
+   "a": "bots/v_v51_noop2",
+   "b": "bots/v_v51_noop4",
+   "flips": [
+    7,
+    11
+   ],
+   "p": 0.480682373046875,
+   "by_opp": {
+    "sp_castera": [
+     0,
+     1
+    ],
+    "sp_casterh": [
+     1,
+     3
+    ],
+    "sp_centre": [
+     2,
+     4
+    ],
+    "sp_farm": [
+     4,
+     3
+    ]
+   }
+  },
+  {
+   "a": "bots/v_v51_noop3",
+   "b": "bots/v_v51_noop4",
+   "flips": [
+    4,
+    8
+   ],
+   "p": 0.3876953125,
+   "by_opp": {
+    "sp_casterh": [
+     0,
+     1
+    ],
+    "sp_hunt": [
+     0,
+     1
+    ],
+    "sp_centre": [
+     1,
+     3
+    ],
+    "sp_farm": [
+     3,
+     3
+    ]
+   }
+  }
+ ],
+ "sets": {
+  "site": {
+   "pairs": [
+    {
+     "a": "bots/v_v51",
+     "b": "bots/v_v51_noop1",
+     "flips": [
+      1,
+      2
+     ],
+     "p": 1.0,
+     "by_opp": {
+      "sp_castera": [
+       0,
+       1
+      ],
+      "sp_hunt": [
+       0,
+       1
+      ],
+      "sp_centre": [
+       1,
+       0
+      ]
+     }
+    },
+    {
+     "a": "bots/v_v51",
+     "b": "bots/v_v51_noop2",
+     "flips": [
+      6,
+      10
+     ],
+     "p": 0.454498291015625,
+     "by_opp": {
+      "sp_castera": [
+       1,
+       4
+      ],
+      "sp_casterh": [
+       1,
+       2
+      ],
+      "sp_hunt": [
+       0,
+       1
+      ],
+      "sp_centre": [
+       3,
+       2
+      ],
+      "sp_farm": [
+       1,
+       1
+      ]
+     }
+    },
+    {
+     "a": "bots/v_v51",
+     "b": "bots/v_v51_noop3",
+     "flips": [
+      7,
+      11
+     ],
+     "p": 0.480682373046875,
+     "by_opp": {
+      "sp_castera": [
+       0,
+       4
+      ],
+      "sp_casterh": [
+       0,
+       2
+      ],
+      "sp_centre": [
+       4,
+       3
+      ],
+      "sp_farm": [
+       3,
+       2
+      ]
+     }
+    },
+    {
+     "a": "bots/v_v51",
+     "b": "bots/v_v51_noop4",
+     "flips": [
+      6,
+      14
+     ],
+     "p": 0.11531829833984375,
+     "by_opp": {
+      "sp_castera": [
+       0,
+       4
+      ],
+      "sp_casterh": [
+       0,
+       3
+      ],
+      "sp_hunt": [
+       0,
+       1
+      ],
+      "sp_centre": [
+       3,
+       4
+      ],
+      "sp_farm": [
+       3,
+       2
+      ]
+     }
+    },
+    {
+     "a": "bots/v_v51_noop1",
+     "b": "bots/v_v51_noop2",
+     "flips": [
+      5,
+      8
+     ],
+     "p": 0.5810546875,
+     "by_opp": {
+      "sp_castera": [
+       1,
+       3
+      ],
+      "sp_casterh": [
+       1,
+       2
+      ],
+      "sp_centre": [
+       2,
+       2
+      ],
+      "sp_farm": [
+       1,
+       1
+      ]
+     }
+    },
+    {
+     "a": "bots/v_v51_noop1",
+     "b": "bots/v_v51_noop3",
+     "flips": [
+      7,
+      10
+     ],
+     "p": 0.629058837890625,
+     "by_opp": {
+      "sp_castera": [
+       0,
+       3
+      ],
+      "sp_casterh": [
+       0,
+       2
+      ],
+      "sp_hunt": [
+       1,
+       0
+      ],
+      "sp_centre": [
+       3,
+       3
+      ],
+      "sp_farm": [
+       3,
+       2
+      ]
+     }
+    },
+    {
+     "a": "bots/v_v51_noop1",
+     "b": "bots/v_v51_noop4",
+     "flips": [
+      5,
+      12
+     ],
+     "p": 0.143463134765625,
+     "by_opp": {
+      "sp_castera": [
+       0,
+       3
+      ],
+      "sp_casterh": [
+       0,
+       3
+      ],
+      "sp_centre": [
+       2,
+       4
+      ],
+      "sp_farm": [
+       3,
+       2
+      ]
+     }
+    },
+    {
+     "a": "bots/v_v51_noop2",
+     "b": "bots/v_v51_noop3",
+     "flips": [
+      5,
+      5
+     ],
+     "p": 1.0,
+     "by_opp": {
+      "sp_castera": [
+       0,
+       1
+      ],
+      "sp_casterh": [
+       1,
+       2
+      ],
+      "sp_hunt": [
+       1,
+       0
+      ],
+      "sp_centre": [
+       1,
+       1
+      ],
+      "sp_farm": [
+       2,
+       1
+      ]
+     }
+    },
+    {
+     "a": "bots/v_v51_noop2",
+     "b": "bots/v_v51_noop4",
+     "flips": [
+      7,
+      11
+     ],
+     "p": 0.480682373046875,
+     "by_opp": {
+      "sp_castera": [
+       0,
+       1
+      ],
+      "sp_casterh": [
+       1,
+       3
+      ],
+      "sp_centre": [
+       2,
+       4
+      ],
+      "sp_farm": [
+       4,
+       3
+      ]
+     }
+    },
+    {
+     "a": "bots/v_v51_noop3",
+     "b": "bots/v_v51_noop4",
+     "flips": [
+      4,
+      8
+     ],
+     "p": 0.3876953125,
+     "by_opp": {
+      "sp_casterh": [
+       0,
+       1
+      ],
+      "sp_hunt": [
+       0,
+       1
+      ],
+      "sp_centre": [
+       1,
+       3
+      ],
+      "sp_farm": [
+       3,
+       3
+      ]
+     }
+    }
+   ]
+  }
+ }
+}

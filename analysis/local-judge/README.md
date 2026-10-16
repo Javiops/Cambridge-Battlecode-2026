@@ -230,23 +230,58 @@ casterh/centre, even against the caster team (castera, the best online fit). Fin
 gain** over the 15:20 bot online (expect within noise on the six fight maps, worse on stampede without the jackpot rule);
 **the im_p graft adds nothing** on top of b672 (57-46 for b672 alone without sp_farm).
 
-### Pre-registered prediction: v51 (teammate_fixes1, online since 18:01) vs v49 (the 15:20 bot), written 18:20 UTC
+### Pre-registered prediction: v51 (teammate_fixes1, online since 18:01) vs im_p (the 15:20 bot, site v48), written 18:20 UTC
+
+**Correction 19:15 UTC:** this section first called the 15:20 im_p bot "v49". The site labels say im_p was v48 (15:20-15:50); v49 was the teammate's capture_recall_fix and v50 the teammate's anti_feed (16:25-18:05). So the online loop compared v51 with v50, not with im_p, and this prediction used the wrong control. The adjudication section below uses v50 (anti_feed).
 
 v51 = `mybot_teammate_fixes1.zip` (teammate bot + P_CAMPFOE, P_BACKHOME, P_NEEDHEAL, P_KITEALLY, P_NOCHASE2, P_TWIN),
-now recorded with its zip in versions.jsonl. The online loop measures v51 (B) against v49 (A) from 18:46.
+now recorded with its zip in versions.jsonl. The online loop measured v51 (B) against v50 (A), not against im_p.
 
-**Site maps (headline), 17 maps x 2 sides x 5 specialists, `panel_17_v51.json`:** games that flip 28-20 for v49
-(58%), p=0.31. By specialist: caster team (castera, the best online fit) 9-3 for v49, casterh 4-4, hunt 3-3, centre 3-5,
+**Site maps (headline), 17 maps x 2 sides x 5 specialists, `panel_17_v51.json`:** games that flip 28-20 for im_p
+(58%), p=0.31. By specialist: caster team (castera, the best online fit) 9-3 for im_p, casterh 4-4, hunt 3-3, centre 3-5,
 farm 9-5. v51 dies more against the caster team (14.1 vs 9.0 per game).
-Per site map (flips v49-v51): elkring 5-0, swirl 5-0, contest 3-2, fragment 3-2, rows 2-0, eight 1-0, lanes 1-0,
+Per site map (flips im_p-v51): elkring 5-0, swirl 5-0, contest 3-2, fragment 3-2, rows 2-0, eight 1-0, lanes 1-0,
 interlock 4-4, stampede 2-2, collision 1-1, ambush/packs 0-0, corners 0-1, expanse 0-1, rushbait-v2 1-2, pilgrimage 0-2,
 monolith 0-3.
 
-Generated maps (secondary, 60): 75-52 for v49, p=0.05 (castera 17-8). All 77: 103-72, p=0.02.
+Generated maps (secondary, 60): 75-52 for im_p, p=0.05 (castera 17-8). All 77: 103-72, p=0.02.
 
-Call: **v51 no better than v49 on the site maps, likely slightly worse**, most visibly on elkring and swirl and against
+Call: **v51 no better than im_p on the site maps, likely slightly worse**, most visibly on elkring and swirl and against
 caster teams; v51 ahead only on monolith and pilgrimage. Caveat: the specialists are built on the 12:52 code, the same
-lineage as v49, and the panel has shown a home edge for that code (part 2), so this leans against v51 by an unknown amount.
+lineage as im_p, and the panel has shown a home edge for that code (part 2), so this leans against v51 by an unknown amount.
+
+### Adjudication 19:40 UTC: v51, v51 + draft rule, fixes2, fixes3 (site maps first)
+
+Games won of 170 (17 site maps x 2 sides x 5 specialists). Canonical panel = specialists built on the 12:52 code (`bots/sp_*`);
+v51 panel = the same five switch sets built on the v51 zip (`bots/sp51_*`, as the new-maps thread did at 18:17).
+v49 (capture_fix) and v50 (anti_feed) are the teammate's folders in commit 3a2d263 (Salvador, 16:20 UTC, branch
+claude/fix-teammate-behaviours), not the site zips; v51-v52 are the zips in /mnt/project-files/bot/.
+
+| bot | canonical panel, site | v51 panel, site | canonical, generated (of 600) | online |
+|---|---|---|---|---|
+| v50 anti_feed | 124 | 115 | 484 | level with v52 (pairs 24-29 for v52) |
+| v49 capture_fix | 121 | 115 | 490 | not compared here |
+| v51 = fixes1 | 116 | 118 | 473 | 26% (22-63) |
+| v51 + draft rule | 120 | 121 | 480 | not online |
+| fixes2 | 130 | 117 | 476 | not online |
+| v52 = fixes3 | **133** | **124** | 480 | 39% (29-46) |
+
+**Noise floor** (`panel_noise_v51.json`): four do-nothing rebuilds of v51 (an empty loop of 40-160 steps at turn start, so
+only fuel use changes) scored 116, 117, 120, 120, 124 of 170 on the canonical site panel, and a pair of them flips up to
+20 games (6-14). Identical source rebuilds to the identical wasm, so the noise is any code change moving fuel, not the
+compiler. **A gap under ~10 of 170, or a flip split under about 2:1 on 30+ flipped games, is noise.**
+
+Site-map head-to-heads (games that flip, canonical / v51 panel): fixes3 vs v51 27-10 (p=0.008) / 20-14 (p=0.39);
+fixes2 vs v51 22-8 (p=0.016) / 16-17; v51+draft vs v51 8-4 / 5-2; fixes3 vs fixes2 7-4 / 9-2; fixes3 vs anti_feed 26-17 / 28-19.
+
+Reading: **fixes3 is the only one ahead of v51 on both panels**, by more than the floor on the canonical one (+17) and
+inside it on the v51 one (+6). fixes2's +14 over v51 exists only on the canonical panel (v51 panel: -1), so the
+new-maps thread's reading is right about fixes2 and the fixes thread's is right about fixes3. The draft rule is a small
+plus on both (+4, +3), below the floor. Online agrees with the order v52 > v51 and with v52 not beating v50.
+Why the panels differ: (1) build base: the specialists share the code of whatever zip they are built from, so a switch
+the bot under test shares with them (ally duty, retreat thresholds) plays differently against them; (2) fuel noise of
+±4-8 games per build, which is the same size as most of the gaps the two threads reported; (3) not maps or seeds: both
+used the same 17 site maps and the engine is deterministic.
 
 ## 3. How to spend the online quota
 

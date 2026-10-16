@@ -1,0 +1,20 @@
+{
+ "id": "I030",
+ "title": "Genetic algorithm over the fight parameters (macro fixed)",
+ "kind": "fight",
+ "source": "user, 16 Oct: RL for micro as a genetic algorithm; thread 'Is RL viable' verdict route A",
+ "owner": "Javi",
+ "hypothesis": "an evolved set of 22 fight/back-off parameters on study27-economy beats the base vs the caster panel + base on unseen maps (v100), then online",
+ "stage": "dev",
+ "created": "2026-10-16T08:55Z",
+ "history": [
+  {
+   "at": "2026-10-16T08:55Z",
+   "stage": "dev",
+   "note": "tools/ga (branch claude/ga-micro-vujyq0): genome patched into the wasm, 16 per generation x 12 maps x 4 opponents x 2 sides"
+  }
+ ],
+ "branch": "claude/ga-micro-vujyq0",
+ "bot": "bots/study27-economy + tools/ga export",
+ "updated": "2026-10-16T08:55Z"
+}

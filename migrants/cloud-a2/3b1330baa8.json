@@ -137,18 +137,19 @@
   "nn": "0 hidden, 1 links, outputs used: recall"
  },
  "fitness": {
-  "shrunk": 0.1181,
-  "n": 4,
+  "shrunk": 0.1114,
+  "n": 5,
   "deltas": [
    0.16407,
    0.25791,
    0.13416,
-   0.03428
+   0.03428,
+   0.07798
   ]
  },
- "gen": 16,
+ "gen": 17,
  "scope": "micro,structure,gp",
  "start": "online1520",
- "time": "2026-10-16 17:45:12 UTC",
+ "time": "2026-10-16 17:55:38 UTC",
  "transport": "shared"
 }

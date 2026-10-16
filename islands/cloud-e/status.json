@@ -4,14 +4,14 @@
  "scope": "gp",
  "start": "ga65a6",
  "jobs": 4,
- "gen": 23,
- "games": 36048,
- "gps": 5.87,
+ "gen": 25,
+ "games": 39460,
+ "gps": 5.31,
  "base": "7c2d0330e54e",
  "best": {
-  "cid": "6f9cb00aff",
-  "shrunk": 0.098,
-  "n": 2,
+  "cid": "52fec11234",
+  "shrunk": 0.1621,
+  "n": 1,
   "describe": {
    "P_FLEE_PCT": 27,
    "P_RECALL_NEAR": 9,
@@ -30,14 +30,14 @@
    "P_TELE": 5,
    "P_NE_POWER_OPEN": 0,
    "order": "FLEE>NEARRECALL>FM>KITE>FRONT>AVOID>ENGAGE>AVOIDLOW>RECALLSHOP>WALKHOME",
-   "gp1": "(((KILL or (not EB > A8)) or TCHAN) or ((REACH and FAV) or HELP))",
+   "gp1": "((((KILL or (not EB > A8)) or TCHAN) or (EB < 5)) or ((REACH and FAV) or not HELP))",
    "nn": "0 hidden, 2 links, outputs used: farm, kite"
   }
  },
- "exported": 16,
- "imported": 58,
- "updated": "2026-10-16 15:10:51 UTC",
- "code": "claude/project-thread-om45ra@a667ff7",
+ "exported": 17,
+ "imported": 62,
+ "updated": "2026-10-16 15:21:04 UTC",
+ "code": "claude/project-thread-om45ra@ef19483",
  "home": "/mnt/project-files/ga-farm/islands/cloud-e",
  "transport": "shared"
 }

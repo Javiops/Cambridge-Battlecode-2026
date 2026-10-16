@@ -131,18 +131,20 @@
   "nn": "0 hidden, 1 links, outputs used: recall"
  },
  "fitness": {
-  "shrunk": 0.0622,
-  "n": 4,
+  "shrunk": 0.0546,
+  "n": 6,
   "deltas": [
    0.15733,
    0.05449,
    0.06471,
-   0.0347
+   0.0347,
+   0.02421,
+   0.04657
   ]
  },
- "gen": 27,
+ "gen": 29,
  "scope": "micro",
  "start": "ga65a6",
- "time": "2026-10-16 15:08:24 UTC",
+ "time": "2026-10-16 15:19:47 UTC",
  "transport": "shared"
 }

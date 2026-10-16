@@ -145,6 +145,37 @@ inline int mp_dash_hole_step(State& s, bc::champion& me, const bc::bitboard& goa
 #define P_MP_STICK_D 15
 #endif
 
+// Rule 7, spread the team on far farm maps. On ambush the top 10 split up: the 106-gem camp at r73-77 and the 72-gem elks
+// 10 tiles away at r96-111 on the same trip, then the 120-gem camps at (56,34) and (43,65) from r200. v52 stacks 3-5
+// champions on the 106 camp (gems / team^0.75 keeps it the best score with 3 claimers: 1.36 vs 0.5 for the 120 camp),
+// takes the 72 camp 100-150 rounds later, never the 120 camps before r640, and reaches 1000 gems at r800-1066 vs
+// r534-667. The far 120 camp also loses 70% of its score to P_HALF (6+ tiles nearer their spawn), but no enemy comes there.
+// With P_MP_SPREAD, where the gem camps are a long walk from our spawn (median >= P_MP_SPREAD_D; ambush 73), a monster
+// camp takes only the champions it needs and is valued at an even split; P_MP_HALFOFF also drops the half penalty there.
+#ifndef P_MP_SPREAD
+#define P_MP_SPREAD 0
+#endif
+#ifndef P_MP_SPREAD_D
+#define P_MP_SPREAD_D 60
+#endif
+#ifndef P_MP_HALFOFF
+#define P_MP_HALFOFF 0
+#endif
+inline bool mp_spread(const State& s) { return P_MAPPLAN && P_MP_SPREAD && s.mp_home_d >= P_MP_SPREAD_D; }
+
+// Rule 8, do not walk alone to a camp that needs a squad on far maps. After the first capture on ambush two healthy
+// champions left the 72 camp for the 120-gem camp at (56,34) (needs 3-4), walked 35 rounds, found nobody coming and
+// walked back (v52 trace r96-150); the top teams go there three at a time from r240. The base keeps 70% of the score
+// for a camp that still needs company; with P_MP_COMPANY, on maps whose gem camps are P_MP_SPREAD_D+ from home, a
+// camp more than P_MP_COMPANY_D tiles away that still needs company keeps P_MP_COMPANY % instead.
+#ifndef P_MP_COMPANY
+#define P_MP_COMPANY 0
+#endif
+#ifndef P_MP_COMPANY_D
+#define P_MP_COMPANY_D 15
+#endif
+inline bool mp_far_trip(const State& s, int gd) { return P_MAPPLAN && P_MP_COMPANY && s.mp_home_d >= P_MP_SPREAD_D && gd > P_MP_COMPANY_D; }
+
 // Called once, after init_paths. Fills s.mp_* from the map's features.
 inline void mp_game_plan(State& s) {
     std::vector<int> bank, home;

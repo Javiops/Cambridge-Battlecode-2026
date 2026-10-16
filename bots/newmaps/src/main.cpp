@@ -1551,7 +1551,7 @@ bool init(State& s, bc::champion& me) {
         if (P_FUELGUARD && !fuel_ok(35000)) return false;
         s.init_stage = 2;
         init_paths(s);
-        if (P_MAPPLAN && (P_MP_FARHOME || P_MP_FOCUS_FAR)) mp_game_plan(s);  // only the rules that need it: off = v52 games
+        if (P_MAPPLAN && (P_MP_FARHOME || P_MP_FOCUS_FAR || P_MP_SPREAD || P_MP_COMPANY)) mp_game_plan(s);  // only the rules that need it: off = v52 games
     }
     if (s.init_stage == 2) {
         if (P_FUELGUARD && !fuel_ok(50000)) return false;
@@ -2271,6 +2271,7 @@ int choose_target_impl(State& s, bc::champion& me, int round) {
         if (jack_go) needed = std::min(needed, jack_n);
         if (needed > s.roster) continue;  // not with this team, not with these stats
         int cap = g.str > 0 ? std::max(needed, P_MAX_SHARE) : 1;
+        if (g.str > 0 && mp_spread(s)) cap = needed;  // mapplan_game.h rule 7: no stacking past what the camp needs
         if (mono_go) cap = free_reward ? 1 : s.roster;
         if (jack_go) cap = jack_n;
         if (P_PAIR && g.str <= 0 && g.gems > 0) cap = P_PAIR;  // gem clusters: a pair kills twice as fast
@@ -2290,13 +2291,13 @@ int choose_target_impl(State& s, bc::champion& me, int round) {
         if (P_R34_BANKCOST && (s.de_map == v34de::Expanse || s.de_map == v34de::Monolith) && g.gems > 0 && g.altar_pd >= 0)
             rounds += ((s.de_map == v34de::Monolith ? 100 : P_R34_BANKCOST) / 100.0) * 2.0 * std::max(0, g.altar_pd - 1) / team;
         bool pack = P_PACKOPEN && round < P_PACKOPEN;  // opening: everybody on the best camp together
-        double value = (g.gems + gold_w * g.gold) / (pack ? 1.0 : std::pow(static_cast<double>(team), ((g.monolith || g.hp < P_STACK_HP) ? 100 : P_SHAREEXP) / 100.0));  // big camps (P_STACK_HP+): a joiner keeps more of the value, so champions stack there
+        double value = (g.gems + gold_w * g.gold) / (pack ? 1.0 : std::pow(static_cast<double>(team), ((g.monolith || g.hp < P_STACK_HP || mp_spread(s)) ? 100 : P_SHAREEXP) / 100.0));  // big camps (P_STACK_HP+): a joiner keeps more of the value, so champions stack there
         double score = value / std::max(1.0, rounds);
-        if (needed > 1 + claimers) score *= 0.7;              // still needs company
+        if (needed > 1 + claimers) score *= (mp_far_trip(s, gd) && P_MP_COMPANY) ? P_MP_COMPANY / 100.0 : 0.7;  // still needs company (rule 8)
         if (claimers > 0 && g.str == 0 && !(P_PAIR && g.gems > 0 && claimers < P_PAIR) && !(pot && claimers < 2)) score *= pack ? 1.0 : 0.3;  // clusters are a solo job
         if (pot) score *= P_POT / 100.0;  // the centre pot pays 48 a pair next to the altar
         if (dist(g.center, s.en_center) < 8) score *= 0.6;    // stay off their doorstep
-        if (P_HALF && dist(g.center, s.spawn_center) - dist(g.center, s.en_center) > 6) score *= P_HALF / 100.0;
+        if (P_HALF && !(mp_spread(s) && P_MP_HALFOFF) && dist(g.center, s.spawn_center) - dist(g.center, s.en_center) > 6) score *= P_HALF / 100.0;
         if (held) score *= P_HOLD / 100.0;
         if (lead) score *= (P_BALL && s.casters) ? P_BALL : P_GROUP_W;
         else if (lead_p && dist(g.center, *lead_p) > 8) score *= 0.3;

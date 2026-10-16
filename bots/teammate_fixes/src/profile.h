@@ -35,11 +35,17 @@ struct Profile {
     int kiteally;      // P_KITEALLY
     int outnum;        // P_OUTNUM
     int twin;          // P_TWIN
+    int caphit;        // P_CAPHIT
+    int waitsafe;      // P_WAITSAFE
+    int farmfoe;       // P_FARMFOE
+    int campbail;      // P_CAMPBAIL
+    int capfirst;      // P_CAPFIRST
+    int campcheck;     // P_CAMPCHECK
 };
 
 inline Profile default_profile() {
     return {P_CAPPRIO, P_DPSFARM, P_CACHE,    P_NOLEAVE,  P_TWINFARM, P_CAPHOME, P_CAPHOME_RSAFE, P_CAPHOME_TRIB,
-            P_NEEDHEAL, P_BACKHOME, P_CAMPFOE, P_NOCHASE2, P_KITEALLY, P_OUTNUM,  P_TWIN};
+            P_NEEDHEAL, P_BACKHOME, P_CAMPFOE, P_NOCHASE2, P_KITEALLY, P_OUTNUM,  P_TWIN, P_CAPHIT, P_WAITSAFE, P_FARMFOE, P_CAMPBAIL, P_CAPFIRST, P_CAMPCHECK};
 }
 
 inline Profile PR = default_profile();
@@ -64,9 +70,9 @@ struct FamilyRow {
 };
 constexpr int K = -1;
 inline const FamilyRow kFamilies[FAM_COUNT] = {
-    {"rush", {K, K, K, K, K, K, K, K, K, K, K, K, K, K, K}},
-    {"mid", {K, K, K, K, K, K, K, K, K, K, K, K, K, K, K}},
-    {"long", {K, K, K, K, K, K, K, K, K, K, K, K, K, K, K}},
+    {"rush", {K, K, K, K, K, K, K, K, K, K, K, K, K, K, K, K, K, K, K, K, K}},
+    {"mid", {K, K, K, K, K, K, K, K, K, K, K, K, K, K, K, K, K, K, K, K, K}},
+    {"long", {K, K, K, K, K, K, K, K, K, K, K, K, K, K, K, K, K, K, K, K, K}},
 };
 
 inline Family pick_family(const MapFeatures& f) {

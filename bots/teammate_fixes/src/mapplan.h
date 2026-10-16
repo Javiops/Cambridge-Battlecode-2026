@@ -27,9 +27,14 @@
 #ifndef P_MP_TS
 #define P_MP_TS 5
 #endif
+// ...unless the map is so open that the teams need not meet (P_MP_OPEN: reachable tiles per champion on the map, both
+// teams; ambush 756, the others it fires on 117-259). 0 = no cap.
+#ifndef P_MP_OPEN
+#define P_MP_OPEN 0
+#endif
 
 struct MpDraftFeat {
-    int ts = 0, altars = 0, walls = 0, w = 0, h = 0, path = -1;
+    int ts = 0, altars = 0, walls = 0, w = 0, h = 0, path = -1, open = 0;
 };
 
 inline MpDraftFeat mp_draft_features() {
@@ -47,6 +52,7 @@ inline MpDraftFeat mp_draft_features() {
         for (auto p : bc::map::spawn_region(bc::team::enemy).positions())
             if (va.is_set(p)) ab = std::min(ab, static_cast<int>(da.get(p)));
         if (ab < (1 << 30)) f.path = ab;
+        f.open = static_cast<int>(va.positions().size());
         return true;
     });
     return f;
@@ -54,7 +60,7 @@ inline MpDraftFeat mp_draft_features() {
 
 // far apart but few altars: the teams meet where they bank
 inline bool mp_far_fight(const MpDraftFeat& f) {
-    return f.ts >= P_MP_TS && f.path > P_UNI_PATH && f.altars <= P_MP_ALTARS;
+    return f.ts >= P_MP_TS && f.path > P_UNI_PATH && f.altars <= P_MP_ALTARS && (!P_MP_OPEN || f.open <= P_MP_OPEN * 2 * f.ts);
 }
 
 inline std::vector<const char*> mp_draft(const MpDraftFeat& f) {
@@ -62,3 +68,9 @@ inline std::vector<const char*> mp_draft(const MpDraftFeat& f) {
     if (P_MP_DRAFT == 1) return {"cassi", "stellar", "varg", "tavi", "ren"};
     return {"ryth", "stellar", "prism", "ren", "tavi"};
 }
+
+// P_MP_FOCUS_FAR 1: the elk-camp squad rule (P_MP_FOCUS, main.cpp squad_needed) only on the far-fight maps of rule 1.
+#ifndef P_MP_FOCUS_FAR
+#define P_MP_FOCUS_FAR 0
+#endif
+inline bool g_mp_far = false;  // set in game by mp_game_plan (mapplan_game.h)

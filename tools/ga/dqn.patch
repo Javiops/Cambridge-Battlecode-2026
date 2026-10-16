@@ -1,0 +1,93 @@
+--- a/main.cpp
++++ b/main.cpp
+@@ -79,6 +79,7 @@
+ #include "params.h"
+ #endif
+ #include "ga_struct.h"  // tools/ga structure genes (rule switches and order, evolved conditions, net)
++#include "dqn.h"        // tools/ga/dqn.py: deep Q-network over the same features and actions
+ #ifndef P_TRIBUTE_GEMS
+ #define P_TRIBUTE_GEMS 20
+ #endif
+@@ -2746,8 +2747,10 @@
+     }
+     const int round = static_cast<int>(bc::round_number());
+     cf_observe(s, me, round);
++    dq_load(s.name.c_str());
+ 
+     if (!me.is_alive()) {
++        dq_trace(round, false, 0, 0, 0, static_cast<int>(me.gold_count()), s.my, s.en);
+         g_mode = "dead";
+         shop(s, me);  // dead champions can still shop
+         drop_target(s);
+@@ -2779,6 +2782,7 @@
+     s.last_gold = static_cast<int>(me.gold_count());
+     float hp = me.health();
+     float hpr = hp / mhp;
++    dq_trace(round, true, hp, mhp, gems, gold, s.my, s.en);
+     if (s.last_hp >= 0 && hp < s.last_hp - 1.0f) s.hit_round = round;
+     s.last_hp = hp;
+ 
+@@ -3031,7 +3035,7 @@
+         cx.helping = helping;
+         cx.pot_hold = pot_hold;
+         cx.low_pct = (P_CASSI_PCT && starts_with(s.name, "cassi")) ? P_CASSI_PCT : P_LOWHP;
+-        if (P_GP0_ON || P_GP1_ON || P_NN_ON) {  // the features only the evolved conditions and the net read
++        if (P_GP0_ON || P_GP1_ON || P_NN_ON || g_dq.on) {  // the features only the evolved conditions and the net read
+             for (auto& ap : allies) {
+                 int d = dist(ap, pos);
+                 a4 += d <= 4;
+@@ -3251,11 +3255,18 @@
+ 
+     // Level 3: the evolved net picks the action while enemies are in sight (0 = leave it to the rules).
+     bool skip_micro = false;
+-    if (P_NN_ON && !foes.empty() && !on_spawn) {
++    if ((P_NN_ON || g_dq.on) && !foes.empty() && !on_spawn) {
+         if (fight_ctx()) return;
+-        int act = ga_nn_act(GA_NN, cx.feat);
++        // DQN: the chosen action and the one that really ran (engage without a target, a kite that does not act
++        // or a recall that cannot start fall back to the rules / to fleeing) are logged for dqn.py
++        int greedy = 1, valid = 1 | (tgt ? 2 : 0) | 4 | 8 | 16 | (rsafe ? 32 : 0) | 64;
++        int act = g_dq.on ? dq_act(cx.feat, valid, &greedy) : ga_nn_act(GA_NN, cx.feat);
++        auto dlog = [&](int eff) {
++            if (g_dq.on) dq_log_decision(round, eff, greedy, valid, cx.feat);
++        };
+         if (act == 1 && tgt) {
+             g_mode = "fight";
++            dlog(1);
+             engage(s, me, tgt->c, tgt->p, true, true);
+             return;
+         }
+@@ -3263,11 +3274,13 @@
+             g_mode = "fight";
+             if (fight::kite(s, me, foes, round)) {
+                 g_mode = "kite";
++                dlog(2);
+                 return;
+             }
+         }
+         if (act == 3) {
+             g_mode = "avoid";
++            dlog(3);
+             fight::back_off(s, me, foes, round);
+             return;
+         }
+@@ -3276,16 +3289,19 @@
+                 return true;
+             })) {
+             g_mode = "flee/recall";
++            dlog(5);
+             return;
+         }
+         if (act == 4 || act == 5) {
+             g_mode = "flee/recall";
++            dlog(4);
+             bool hit = P_HITFIRST && fight::hit_now(s, me, foes);
+             flee(s, me);
+             if (!hit) shoot_back(s, me, foes);
+             return;
+         }
+         if (act == 6) skip_micro = true;
++        dlog(act == 6 ? 6 : 0);
+     }
+ 
+     if (!skip_micro) {

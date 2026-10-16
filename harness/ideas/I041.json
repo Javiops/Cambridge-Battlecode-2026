@@ -1,0 +1,20 @@
+{
+ "id": "I041",
+ "title": "Learned fight value: p(die within 10 rounds) from top-2 replays / our logs, back off above a threshold",
+ "kind": "fight",
+ "source": "thread 'Deep Q-learning', 16 Oct",
+ "owner": "Javi",
+ "hypothesis": "backing off when the learned death risk is high cuts deaths without losing maps",
+ "stage": "rejected",
+ "bot": "tools/ga/dqn.py",
+ "branch": "claude/dqn-micro-suual7",
+ "created": "2026-10-16T13:20Z",
+ "history": [
+  {
+   "at": "2026-10-16T13:20Z",
+   "stage": "rejected",
+   "note": "AUC 0.79 (top 2) / 0.82 (ours). Back off at p>30%: top model 50-38 p=0.24, our model 53-45 p=0.48; cloned top-2 steps 37-40. Noise. Finding: same spots, we die 7.0% vs 4.0% for the top 2; with an ally within 4 they halve it, we do not. Report /mnt/project-files/analysis/dqn-2026-10-16/README.md"
+  }
+ ],
+ "updated": "2026-10-16T13:20Z"
+}

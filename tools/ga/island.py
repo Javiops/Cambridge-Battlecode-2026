@@ -938,19 +938,20 @@ def cmd_validate(A):
     maps = ga.map_pool(A.maps.split(',') if A.maps else VALID)
     ids = A.ids.split(',') if A.ids else [i for i in ranked_ids(st) if len(st['inds'][i]['deltas']) >= A.min_n][:A.top]
     bid = st['base']
-    B.games([B.cand(st['inds'][i]['geno']) for i in [bid] + ids], opps, maps)
+    wc = {i: B.cand(st['inds'][i]['geno']) for i in [bid] + ids}  # games are keyed by the wasm cid, which differs
+    B.games(list(wc.values()), opps, maps)                         # from the state id after a layout change
     out = [f'island {A.name} validation {now()} on {len(maps)} maps, both sides, vs {", ".join(opps)}']
-    cf, cper = B.score(bid, opps, maps)
+    cf, cper = B.score(wc[bid][0], opps, maps)
     out.append(f"control {bid}: fit {cf:+.3f} " + ' '.join(f"{os.path.basename(o)} {v['won2']}-{v['lost2']}" for o, v in cper.items()))
     for i in ids:
-        f, per = B.score(i, opps, maps)
+        f, per = B.score(wc[i][0], opps, maps)
         better = worse = 0
         for ob in opps:
             oh = B.opp(ob)[0]
             for m in maps:
                 k = B.mkey(m)
-                a = sum(B.cache[f'{i}|{oh}|{k}|{s}']['r'] for s in (0, 1))
-                b = sum(B.cache[f'{bid}|{oh}|{k}|{s}']['r'] for s in (0, 1))
+                a = sum(B.cache[f'{wc[i][0]}|{oh}|{k}|{s}']['r'] for s in (0, 1))
+                b = sum(B.cache[f'{wc[bid][0]}|{oh}|{k}|{s}']['r'] for s in (0, 1))
                 better += a > b
                 worse += a < b
         out.append(f"{i}: fit {f:+.3f} (delta {f - cf:+.3f}) " + ' '.join(

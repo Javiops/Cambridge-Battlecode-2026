@@ -51,17 +51,18 @@
   "order": "NEARRECALL>FM>FLEE>KITE>FRONT>AVOIDLOW>AVOID>ENGAGE>RECALLSHOP>WALKHOME"
  },
  "fitness": {
-  "shrunk": 0.0452,
-  "n": 3,
+  "shrunk": 0.0327,
+  "n": 4,
   "deltas": [
    0.13917,
    0.02479,
-   0.01703
+   0.01703,
+   -0.01763
   ]
  },
- "gen": 3,
+ "gen": 4,
  "scope": "micro,structure,gp",
  "start": "online1520",
- "time": "2026-10-16 15:58:56 UTC",
+ "time": "2026-10-16 16:02:35 UTC",
  "transport": "shared"
 }

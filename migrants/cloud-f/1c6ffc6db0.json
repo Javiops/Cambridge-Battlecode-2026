@@ -135,19 +135,20 @@
   "nn": "1 hidden, 1 links, outputs used: none"
  },
  "fitness": {
-  "shrunk": 0.1333,
-  "n": 5,
+  "shrunk": 0.1079,
+  "n": 6,
   "deltas": [
    0.16418,
    0.33884,
    -0.05997,
    0.24318,
-   0.11368
+   0.11368,
+   -0.04484
   ]
  },
- "gen": 37,
+ "gen": 38,
  "scope": "neat",
  "start": "ga65a6",
- "time": "2026-10-16 15:58:00 UTC",
+ "time": "2026-10-16 16:02:27 UTC",
  "transport": "shared"
 }

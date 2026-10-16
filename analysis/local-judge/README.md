@@ -217,6 +217,19 @@ v44 come from self-play-like rivals, which overstated every fight change since s
 online bot against every specialist except casterh/centre. Neither is worth an upload slot over the 15:20 bot on this
 evidence; if one is tested online, use b672 with the jackpot rule restored, or leave stampede out of the comparison.
 
+77-map run (17 site maps + hold60, 770 games per bot, `panel_77_imp_a9.json`), written 16:03 UTC:
+
+| pair | all specialists | without sp_farm | castera | casterh | centre |
+|---|---|---|---|---|---|
+| online vs b672ef97f6 | 69-82 (46%), p=0.33 | 43-64, p=0.05 | 17-17 | 9-18 | 9-19 |
+| online vs b672 + im_p | 69-76 (48%), p=0.62 | 53-63, p=0.40 | 18-23 | 10-14 | 14-16 |
+| b672 vs b672 + im_p | 69-63 | 57-46 | 17-22 | 13-8 | 15-7 |
+
+The edge for b672 is on the generated hold60 maps (47-63 there, 22-19 against it on the site maps) and against
+casterh/centre, even against the caster team (castera, the best online fit). Final calls: **b672ef97f6 = at most a small
+gain** over the 15:20 bot online (expect within noise on the six fight maps, worse on stampede without the jackpot rule);
+**the im_p graft adds nothing** on top of b672 (57-46 for b672 alone without sp_farm).
+
 ## 3. How to spend the online quota
 
 What the calibration says about online information:

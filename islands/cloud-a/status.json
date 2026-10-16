@@ -4,14 +4,14 @@
  "scope": "micro,structure,gp",
  "start": "ga65a6",
  "jobs": 4,
- "gen": 27,
- "games": 40648,
- "gps": 7.47,
+ "gen": 28,
+ "games": 42314,
+ "gps": 6.2,
  "base": "7c2d0330e54e",
  "best": {
   "cid": "5648baa8db",
-  "shrunk": 0.1598,
-  "n": 3,
+  "shrunk": 0.1192,
+  "n": 4,
   "describe": {
    "P_RECALL_NEAR": 9,
    "P_ENGAGE2": 62,
@@ -33,8 +33,8 @@
   }
  },
  "exported": 25,
- "imported": 67,
- "updated": "2026-10-16 14:10:14 UTC",
+ "imported": 69,
+ "updated": "2026-10-16 14:14:49 UTC",
  "code": "claude/ga-farm-d37xlq@d2420cb",
  "home": "/mnt/project-files/ga-farm/islands/cloud-a",
  "transport": "shared"

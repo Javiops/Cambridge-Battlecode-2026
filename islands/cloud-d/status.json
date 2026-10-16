@@ -4,14 +4,14 @@
  "scope": "structure",
  "start": "ga65a6",
  "jobs": 4,
- "gen": 71,
- "games": 124126,
- "gps": 5.31,
+ "gen": 72,
+ "games": 125918,
+ "gps": 5.25,
  "base": "7c2d0330e54e",
  "best": {
   "cid": "c9490ad43d",
-  "shrunk": 0.0989,
-  "n": 14,
+  "shrunk": 0.094,
+  "n": 15,
   "describe": {
    "P_FLEE_PCT": 27,
    "P_UNI_FLEE": 39,
@@ -37,8 +37,8 @@
   }
  },
  "exported": 37,
- "imported": 202,
- "updated": "2026-10-16 18:46:14 UTC",
+ "imported": 204,
+ "updated": "2026-10-16 18:51:57 UTC",
  "code": "HEAD@4fa99e8",
  "home": "/mnt/project-files/ga-farm/islands/cloud-d",
  "transport": "shared"

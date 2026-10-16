@@ -773,6 +773,7 @@ def rekey(st):
     st['base'] = m[st['base']]
     st['pop'] = [m[i] for i in st['pop']]
     st['exported'] = {m.get(i, i): g for i, g in st['exported'].items()}
+    st['champions'] = [m[c] for c in st.get('champions', []) if c in m]
     print('genome layout changed: %d genomes re-keyed' % len(m))
     return st
 

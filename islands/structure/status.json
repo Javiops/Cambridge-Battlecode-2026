@@ -4,14 +4,14 @@
  "scope": "structure,gp,neat",
  "start": "ga65a6",
  "jobs": 4,
- "gen": 15,
- "games": 21836,
- "gps": 3.18,
+ "gen": 16,
+ "games": 23548,
+ "gps": 4.57,
  "base": "7c2d0330e54e",
  "best": {
   "cid": "8abd827dcb",
-  "shrunk": 0.0943,
-  "n": 2,
+  "shrunk": 0.0801,
+  "n": 3,
   "describe": {
    "P_UNI_FLEE": 43,
    "P_FRONT_OUT": 161,
@@ -25,9 +25,9 @@
    "P_R_AVOIDLOW": 0
   }
  },
- "exported": 13,
- "imported": 36,
- "updated": "2026-10-16 13:31:30 UTC",
+ "exported": 14,
+ "imported": 38,
+ "updated": "2026-10-16 13:37:46 UTC",
  "code": "HEAD@d84d598",
  "home": "/mnt/project-files/ga-farm/islands/structure",
  "transport": "shared"

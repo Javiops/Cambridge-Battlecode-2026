@@ -4,14 +4,14 @@
  "scope": "micro,structure,gp",
  "start": "ga65a6",
  "jobs": 4,
- "gen": 19,
- "games": 27060,
- "gps": 7.45,
+ "gen": 20,
+ "games": 28808,
+ "gps": 7.48,
  "base": "7c2d0330e54e",
  "best": {
-  "cid": "3fca84d1ba",
-  "shrunk": 0.1791,
-  "n": 1,
+  "cid": "2d44fc6f82",
+  "shrunk": 0.1616,
+  "n": 2,
   "describe": {
    "P_AVOID_DIST": 3,
    "P_GA_KITE_HP": 122,
@@ -24,13 +24,12 @@
    "P_SHAREEXP": 72,
    "P_TELE": 5,
    "order": "FLEE>NEARRECALL>FM>KITE>FRONT>AVOID>AVOIDLOW>ENGAGE>RECALLSHOP>WALKHOME",
-   "P_BAIL_PCT": 18,
    "nn": "0 hidden, 1 links, outputs used: farm"
   }
  },
- "exported": 22,
- "imported": 47,
- "updated": "2026-10-16 13:36:39 UTC",
+ "exported": 23,
+ "imported": 49,
+ "updated": "2026-10-16 13:40:36 UTC",
  "code": "claude/ga-farm-d37xlq@d84d598",
  "home": "/mnt/project-files/ga-farm/islands/cloud-a",
  "transport": "shared"

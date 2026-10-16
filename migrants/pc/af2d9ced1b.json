@@ -1,0 +1,76 @@
+{
+ "island": "pc",
+ "cid": "af2d9ced1b",
+ "base": "7c2d0330e54e",
+ "genome": {
+  "sc": {
+   "P_FLEE_PCT": 29,
+   "P_UNI_FLEE": 44,
+   "P_RECALL_PCT": 54,
+   "P_RECALL_NEAR": 7,
+   "P_BAIL_PCT": 12,
+   "P_ENGAGE2": 74,
+   "P_GA_FAV": 83,
+   "P_GA_KILL_X": 5,
+   "P_GA_SPAWN_HEAL": 87,
+   "P_FRONT_OUT": 145,
+   "P_GA_KITE_HP": 128,
+   "P_VOLLEY": 43,
+   "P_CHASE_GEMS": 144,
+   "P_DANGER": 4,
+   "P_DANGER_T": 45,
+   "P_DANGER_R": 5,
+   "P_FRONT": 0,
+   "P_RETREAT": 1,
+   "P_NOCHASE": 0,
+   "P_FRONT_LOCAL": 0,
+   "P_HOLD": 187,
+   "P_GA_SHOP_HP": 60
+  }
+ },
+ "describe": {
+  "P_FLEE_PCT": 29,
+  "P_UNI_FLEE": 44,
+  "P_RECALL_PCT": 54,
+  "P_RECALL_NEAR": 7,
+  "P_BAIL_PCT": 12,
+  "P_ENGAGE2": 74,
+  "P_GA_FAV": 83,
+  "P_GA_KILL_X": 5,
+  "P_GA_SPAWN_HEAL": 87,
+  "P_FRONT_OUT": 145,
+  "P_GA_KITE_HP": 128,
+  "P_VOLLEY": 43,
+  "P_CHASE_GEMS": 144,
+  "P_DANGER": 4,
+  "P_DANGER_T": 45,
+  "P_DANGER_R": 5,
+  "P_FRONT": 0,
+  "P_RETREAT": 1,
+  "P_NOCHASE": 0,
+  "P_FRONT_LOCAL": 0,
+  "P_HOLD": 187,
+  "P_GA_SHOP_HP": 60
+ },
+ "vs_start": {
+  "P_FRONT": 0,
+  "P_RETREAT": 1,
+  "P_NOCHASE": 0,
+  "P_FRONT_LOCAL": 0,
+  "P_HOLD": 187,
+  "P_GA_SHOP_HP": 60
+ },
+ "fitness": {
+  "shrunk": 0.0256,
+  "n": 2,
+  "deltas": [
+   0.05059,
+   0.02613
+  ]
+ },
+ "gen": 5,
+ "scope": "all",
+ "start": "ga65a6",
+ "time": "2026-10-16 12:20:11 UTC",
+ "transport": "git"
+}

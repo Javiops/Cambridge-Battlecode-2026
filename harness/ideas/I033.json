@@ -1,0 +1,24 @@
+{
+ "id": "I033",
+ "title": "ALLYDUTY + AVOIDFIRST on the teammate fixes (from GA genome b672)",
+ "kind": "fight",
+ "source": "teammate-fixes thread 2026-10-16",
+ "owner": "Javi",
+ "hypothesis": "",
+ "stage": "local-ok",
+ "created": "2026-10-16T18:28Z",
+ "history": [
+  {
+   "at": "2026-10-16T18:28Z",
+   "stage": "idea",
+   "note": ""
+  },
+  {
+   "at": "2026-10-16T18:28Z",
+   "stage": "local-ok",
+   "note": "zip mybot_teammate_fixes2.zip; 17 site maps x2 sides x5 specialists: 131/170 vs 113 for fixes1, flips 28-10 p=.005; CALLHELP, NOCHASE 0, LOWHP 0, AVOID_HP 54 alone = noise"
+  }
+ ],
+ "updated": "2026-10-16T18:28Z",
+ "bot": "bots/teammate_fixes"
+}

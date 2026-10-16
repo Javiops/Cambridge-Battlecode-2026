@@ -585,6 +585,10 @@ int g_nf = 99, g_nfoes = 0, g_nal = 0, g_rew = 0, g_tlive = -1;
 #ifndef P_TWINFARM
 #define P_TWINFARM 0
 #endif
+// P_AVOIDFIRST 1 (GA genome b672ef97f6, the user 18:11 idea 6): decide to back off before taking the front line.
+#ifndef P_AVOIDFIRST
+#define P_AVOIDFIRST 0
+#endif
 #include "profile.h"
 
 void note_error(const char* what) {
@@ -3597,7 +3601,7 @@ void play_turn(State& s) {
         g_mode = "kite";
         return;
     }
-    if (P_KITEFRONT != 1 && P_FRONT && !foes.empty() && !on_spawn && fight::front_line(s, me, foes, round)) {
+    if (P_KITEFRONT != 1 && P_FRONT && !P_AVOIDFIRST && !foes.empty() && !on_spawn && fight::front_line(s, me, foes, round)) {
         g_mode = "front";
         return;
     }
@@ -3713,6 +3717,11 @@ void play_turn(State& s) {
         if (!favourable && !killable && (hpr * 100 < P_GA_AVOID_HP || nearest_foe <= P_AVOID_DIST) && !on_spawn) {
             g_mode = "avoid";
             fight::back_off(s, me, foes, round);
+            return;
+        }
+        // P_AVOIDFIRST: the front line is taken only once the back-off checks above said stay
+        if (P_AVOIDFIRST && P_KITEFRONT != 1 && P_FRONT && !on_spawn && fight::front_line(s, me, foes, round)) {
+            g_mode = "front";
             return;
         }
         if (tgt && carrying && !killable && !tgt->channeling) tgt = nullptr;

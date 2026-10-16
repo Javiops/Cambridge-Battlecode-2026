@@ -1117,8 +1117,14 @@ def cmd_champion(A):
     start = resolve(A.start)
     ctl = cid_of(start)
     finalists = [k for k in finalists if k != ctl]
-    if A.ids:
-        finalists = A.ids.split(',')
+    if A.ids:  # migrant cids, or any genome spec (a preset such as ga65a6, a JSON file)
+        finalists = []
+        for k in A.ids.split(','):
+            if k not in cands:
+                g = resolve(k)
+                cands[cid_of(g)] = {'geno': g, 'fit': 0, 'island': k}
+                k = cid_of(g)
+            finalists.append(k)
     print(f'{len(finalists)} finalists from {len(by_isl)} islands, control {A.start} ({ctl})', flush=True)
     overlay = overlay_src(A, scratch)
     genos = dict({k: cands[k]['geno'] for k in finalists if k in cands}, **{ctl: start})
@@ -1208,8 +1214,8 @@ def cmd_champion(A):
              f'sealed maps both sides, plus {len(pins)} ghost games. Control = {A.start} built the same way: fit '
              f'{cf:+.3f}, ' + ', '.join(f'{os.path.basename(o)} {v["won2"]}-{v["lost2"]}' for o, v in cper.items()) +
              f', ghosts {pin_fit(B, ch, pins):+.2f}.', '',
-             f'Fitness weights: start bot x{A.w_base:g}, each sparring bot x{A.w_spar:g}, ghost games together x{A.w_ghosts:g}, '
-             'other rivals x1. A champion needs delta > 0 and pairs vs the start bot not worse.', '',
+             f'Fitness weights: start bot x{A.w_base:g}, ' + ', '.join('%s x%g' % (k, v) for k, v in PANEL.items()) +
+             f', old spar bots x{A.w_spar:g}, ghost games together x{A.w_ghosts:g}, other rivals x1. A champion needs delta > 0 and pairs vs the start bot not worse.', '',
              f'Deaths per game vs the caster sparring bots: control '
              f'{sum(v["dth"] for o, v in cper.items() if is_caster(o)) / max(1, sum(1 for o in cper if is_caster(o))):.2f}, '
              f'vs the start bot {cper.get("genome:start", {}).get("dth", 0.0):.2f}.', '',

@@ -4,14 +4,14 @@
  "scope": "micro",
  "start": "ga65a6",
  "jobs": 4,
- "gen": 46,
- "games": 77092,
- "gps": 5.62,
+ "gen": 47,
+ "games": 79050,
+ "gps": 4.36,
  "base": "7c2d0330e54e",
  "best": {
   "cid": "6c41b87c04",
-  "shrunk": 0.1068,
-  "n": 1,
+  "shrunk": 0.1373,
+  "n": 2,
   "describe": {
    "P_FRONT_ZONE": 2,
    "P_KITE_OUT": 0,
@@ -32,8 +32,8 @@
   }
  },
  "exported": 33,
- "imported": 126,
- "updated": "2026-10-16 17:35:01 UTC",
+ "imported": 128,
+ "updated": "2026-10-16 17:42:32 UTC",
  "code": "claude/project-thread-s7k3jc@4fa99e8",
  "home": "/mnt/project-files/ga-farm/islands/cloud-b",
  "transport": "shared"

@@ -141,8 +141,8 @@
   "nn": "0 hidden, 1 links, outputs used: recall"
  },
  "fitness": {
-  "shrunk": 0.1798,
-  "n": 7,
+  "shrunk": 0.1738,
+  "n": 8,
   "deltas": [
    0.27223,
    0.34044,
@@ -150,12 +150,13 @@
    0.27683,
    0.08286,
    0.26578,
-   0.07849
+   0.07849,
+   0.12624
   ]
  },
- "gen": 146,
+ "gen": 147,
  "scope": "all",
  "start": "ga65a6",
- "time": "2026-10-16 16:53:54 UTC",
+ "time": "2026-10-16 16:56:26 UTC",
  "transport": "git"
 }

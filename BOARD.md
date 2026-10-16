@@ -1,6 +1,6 @@
 # GA farm board
 
-Regenerated 2026-10-16 16:11:29 UTC by the islands (tools/ga/island.py). Fitness = margin over the island's own control (its start genome) on the same games, shrunk mean over generations (n = generations evaluated).
+Regenerated 2026-10-16 16:13:28 UTC by the islands (tools/ga/island.py). Fitness = margin over the island's own control (its start genome) on the same games, shrunk mean over generations (n = generations evaluated).
 
 | island | host | scope | start | jobs | gen | games | games/s | best (shrunk, n) | best changes vs start | out/in | updated |
 |---|---|---|---|---|---|---|---|---|---|---|---|
@@ -13,7 +13,7 @@ Regenerated 2026-10-16 16:11:29 UTC by the islands (tools/ga/island.py). Fitness
 | cloud-f | vm | neat | ga65a6 | 4 | 39 | 61715 | 5.9 | 1c6ffc6db0 (+0.108, 6) | {"P_BAIL_PCT": 13, "P_CHASE_GEMS": 118, "P_DANGER_T": 47, "P_FRONT": 0, "P_SAFESTEP": 0, "P_ALLYDUTY": 1, "P_U34_ENGAGE_FALLBACK": 1, "P_R_AVOIDLOW": 0, "P_N... | 32/105 | 2026-10-16 16:08:14 UTC |
 | cloud-g | vm | all | ga65a6 | 4 | 42 | 67661 | 3.1 | b5ff18510e (+0.171, 9) | {"P_FLEE_PCT": 22, "P_UNI_FLEE": 43, "P_DANGER_R": 4, "P_FRONT": 0, "P_NOCHASE": 0, "P_FRONT_LOCAL": 0, "P_ALLYDUTY": 1, "P_R_AVOIDLOW": 0, "P_NN_ON": 1, "P_... | 37/251 | 2026-10-16 16:06:33 UTC |
 | micro | vm | micro | ga65a6 | 4 | 39 | 63966 | 6.0 | 314e9672aa (+0.108, 2) | {"P_FLEE_PCT": 26, "P_UNI_FLEE": 43, "P_CHASE_GEMS": 126, "P_DANGER_R": 4, "P_FRONT": 0, "P_NOCHASE": 0, "P_FRONT_LOCAL": 0, "P_ALLYDUTY": 1, "P_R_AVOIDLOW":... | 40/99 | 2026-10-16 16:10:34 UTC |
-| pc | DESKTOP-N35CN0S | all | ga65a6 | 16 | 127 | 196189 | 12.8 | 137994c5d9 (+0.122, 12) | {"P_FLEE_PCT": 27, "P_RECALL_NEAR": 9, "P_AVOID_DIST": 2, "P_GA_KILL_X": 8, "P_VOLLEY": 40, "P_CHASE_GEMS": 118, "P_DANGER": 5, "P_FRONT": 0, "P_SAFESTEP": 0... | 79/323 | 2026-10-16 16:11:27 UTC |
+| pc | DESKTOP-N35CN0S | all | ga65a6 | 16 | 128 | 198183 | 17.3 | 137994c5d9 (+0.114, 13) | {"P_FLEE_PCT": 27, "P_RECALL_NEAR": 9, "P_AVOID_DIST": 2, "P_GA_KILL_X": 8, "P_VOLLEY": 40, "P_CHASE_GEMS": 118, "P_DANGER": 5, "P_FRONT": 0, "P_SAFESTEP": 0... | 79/326 | 2026-10-16 16:13:27 UTC |
 | structure | vm | structure,gp,neat | ga65a6 | 4 | 39 | 62934 | 4.0 | c1d63b6631 (+0.143, 5) | {"P_UNI_FLEE": 43, "P_DANGER_R": 4, "P_NOCHASE": 0, "P_FRONT_LOCAL": 0, "P_ALLYDUTY": 1, "P_R_AVOIDLOW": 0, "P_GP1_ON": 1, "P_NN_ON": 1, "P_SHAREEXP": 72, "o... | 31/99 | 2026-10-16 16:00:58 UTC |
 
 Code: branch `claude/ga-farm-d37xlq@4fa99e8`. Migrants: `migrants/<island>/<cid>.json` (full genome + fitness); state: `islands/<island>/`.

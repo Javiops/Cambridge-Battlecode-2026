@@ -26,6 +26,16 @@ inline Execution execute(World &w, const Action &a) {
         result.outcome = Outcome::Stale;
         return result;
     }
+    // Queries can consume an owner budget and resume in a later round. Check
+    // again immediately before each SDK mutation, funding the atomic action
+    // and compact audit records without making cheap actions pay dash costs.
+    auto mutation_ready = [&]() {
+        if (bc::fuel_remaining() < 12000 || w.round != static_cast<int>(bc::round_number())) {
+            result.outcome = Outcome::Stale;
+            return false;
+        }
+        return true;
+    };
     try {
         const bool alive = w.me.is_alive();
         if (!alive && a.kind != Kind::Buy && a.kind != Kind::Sell && a.kind != Kind::BuyConsumable)
@@ -37,6 +47,8 @@ inline Execution execute(World &w, const Action &a) {
         case Kind::Move:
             if (!w.me.can_move() || !w.free(a.at))
                 return result;
+            if (!mutation_ready())
+                return result;
             ok = w.me.move_absolute(sdk(a.at));
             if (ok)
                 w.memory.moved_round = w.round;
@@ -46,6 +58,8 @@ inline Execution execute(World &w, const Action &a) {
             if (!c || !c->is_alive() || !w.me.can_attack() ||
                 distance(position(w.me.position()), position(c->position())) > w.me.attack_range())
                 return result;
+            if (!mutation_ready())
+                return result;
             w.me.attack(*c);
             break;
         }
@@ -53,6 +67,8 @@ inline Execution execute(World &w, const Action &a) {
             auto c = w.camp(a.target);
             if (!c || !w.me.can_attack() ||
                 distance(position(w.me.position()), position(c->position())) > w.me.attack_range())
+                return result;
+            if (!mutation_ready())
                 return result;
             w.me.attack(*c);
             break;
@@ -65,6 +81,8 @@ inline Execution execute(World &w, const Action &a) {
                 return result;
             if (distance(position(w.me.position()), position(lock->position())) >
                 w.me.attack_range())
+                return result;
+            if (!mutation_ready())
                 return result;
             w.me.attack(*lock);
             result.outcome = Outcome::LockHit;
@@ -83,22 +101,33 @@ inline Execution execute(World &w, const Action &a) {
                 return result;
             if (spell.is_attack_reset() && !any_basic_target(w))
                 return result;
-            if (a.kind == Kind::CastSelf)
+            if (a.kind == Kind::CastSelf) {
+                if (!mutation_ready())
+                    return result;
                 ok = spell.use();
-            else if (a.kind == Kind::CastChampion) {
+            } else if (a.kind == Kind::CastChampion) {
                 auto c = w.champion(a.target);
                 if (!c || !c->is_alive())
+                    return result;
+                if (!mutation_ready())
                     return result;
                 ok = spell.use(*c);
             } else if (a.kind == Kind::CastCamp) {
                 auto c = w.camp(a.target);
                 if (!c)
                     return result;
+                if (!mutation_ready())
+                    return result;
                 ok = spell.use(*c);
             } else {
                 if (!w.geo.valid(a.at))
                     return result;
                 if (spell.is_dash()) {
+                    if (bc::fuel_remaining() < 24000 ||
+                        w.round != static_cast<int>(bc::round_number())) {
+                        result.outcome = Outcome::Stale;
+                        return result;
+                    }
                     // Dash traversal is distinct from legal landing. Keep
                     // ground AoE casts free to target their normal terrain.
                     if (!w.free(a.at) || !spell.valid_tiles().is_set(sdk(a.at)))
@@ -107,18 +136,31 @@ inline Execution execute(World &w, const Action &a) {
                     const auto *dash = info ? std::get_if<bc::ability_dash>(&*info) : nullptr;
                     if (!dash)
                         return result;
-                    const auto path_blockers = bc::map::walls() | w.geo.enemy_spawn;
+                    // A two-step diagonal has one unique intermediate tile.
+                    // Visible units block that path even with an empty landing.
+                    // Native range masks alone do not express this constraint.
+                    const auto origin = w.me.position();
+                    const auto occupied = bc::vision::champion_tiles() | bc::vision::camp_tiles() |
+                                          bc::vision::teleport_tiles();
+                    if (occupied.is_set(sdk(a.at)))
+                        return result;
+                    auto path_blockers = bc::map::walls() | w.geo.enemy_spawn | occupied;
+                    path_blockers.set(origin, false);
                     const auto reachable = path_blockers.reachable_tiles(
-                        w.me.position(), static_cast<std::uint16_t>(dash->range));
+                        origin, static_cast<std::uint16_t>(dash->range));
                     if (!reachable.is_set(sdk(a.at)))
                         return result;
                 }
+                if (!mutation_ready())
+                    return result;
                 ok = spell.use(sdk(a.at));
             }
             break;
         }
         case Kind::Recall:
             if (w.memory.channel_attempt_round == w.round)
+                return result;
+            if (!mutation_ready())
                 return result;
             w.memory.channel_attempt_round = w.round;
             w.me.recall();
@@ -128,8 +170,10 @@ inline Execution execute(World &w, const Action &a) {
         case Kind::Tribute: {
             if (w.memory.channel_attempt_round == w.round || w.me.gem_count() == 0)
                 return result;
-            w.memory.channel_attempt_round = w.round;
             const bool lock_hit_possible = w.me.can_attack() && w.enemy_lock(a.at).has_value();
+            if (!mutation_ready())
+                return result;
+            w.memory.channel_attempt_round = w.round;
             w.me.submit_gems(sdk(a.at));
             result.outcome = w.me.is_submitting_gems() ? Outcome::Started : Outcome::Rejected;
             if (result.outcome != Outcome::Started && lock_hit_possible && !w.me.can_attack())
@@ -140,11 +184,15 @@ inline Execution execute(World &w, const Action &a) {
         case Kind::CancelRecall:
             if (!w.me.is_recalling())
                 return result;
+            if (!mutation_ready())
+                return result;
             w.me.cancel_recall();
             result.outcome = Outcome::Interrupted;
             break;
         case Kind::CancelTribute:
             if (!w.me.is_submitting_gems())
+                return result;
+            if (!mutation_ready())
                 return result;
             w.me.cancel_submit_gems();
             result.outcome = Outcome::Interrupted;
@@ -152,11 +200,15 @@ inline Execution execute(World &w, const Action &a) {
         case Kind::Ward:
             if (w.me.ward_cooldown() > 0)
                 return result;
+            if (!mutation_ready())
+                return result;
             ok = w.me.place_ward(sdk(a.at));
             break;
         case Kind::Buy: {
             auto item = static_cast<bc::item_type>(a.item);
             if (!w.me.can_buy(item, a.count))
+                return result;
+            if (!mutation_ready())
                 return result;
             w.me.buy(item, a.count);
             break;
@@ -164,16 +216,22 @@ inline Execution execute(World &w, const Action &a) {
         case Kind::Sell:
             if (!w.me.can_sell())
                 return result;
+            if (!mutation_ready())
+                return result;
             w.me.sell(static_cast<bc::item_type>(a.item), a.count);
             break;
         case Kind::BuyConsumable: {
             auto item = static_cast<bc::consumable_type>(a.item);
             if (!w.me.can_buy(item))
                 return result;
+            if (!mutation_ready())
+                return result;
             w.me.buy(item);
             break;
         }
         case Kind::UseConsumable:
+            if (!mutation_ready())
+                return result;
             ok = w.me.consumables()[static_cast<bc::consumable_type>(a.item)].use(sdk(a.at));
             break;
         default:

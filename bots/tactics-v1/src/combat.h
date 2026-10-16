@@ -521,10 +521,12 @@ inline std::optional<Action> escape_action(World &w) {
                     if (!fuel(24000))
                         continue;
                     // Native 0.0.2 permits bending around a wall and crossing
-                    // holes, altars or units, but walls/enemy spawn block the
+                    // holes and altars, but walls, units and enemy spawn block the
                     // traversal. valid_tiles() supplies RANGE ONLY; landing
                     // and the actual short dash path are separate checks.
-                    const auto path_blockers = bc::map::walls() | w.geo.enemy_spawn;
+                    auto path_blockers = bc::map::walls() | w.geo.enemy_spawn | w.occupied |
+                                         bc::vision::teleport_tiles();
+                    path_blockers.set(sdk(w.self.pos), false);
                     auto destinations = path_blockers.reachable_tiles(sdk(w.self.pos), s.range);
                     destinations &= w.me.abilities()[s.slot].valid_tiles();
                     destinations &= ~(w.geo.static_blocked | w.occupied);

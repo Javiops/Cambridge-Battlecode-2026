@@ -357,6 +357,7 @@ struct FarmCandidate {
     bool ready = false;
 };
 inline std::vector<Contributor> helpers_for(World &w, int gi, Pos target) {
+    (void)target; // Group membership, rather than one preferred spawn, defines useful help.
     double dps = std::max(1.0, w.self.strength);
     for (const auto &s : w.spells)
         if (s.kind == 2 || s.kind == 3 || s.kind == 4)
@@ -367,19 +368,40 @@ inline std::vector<Contributor> helpers_for(World &w, int gi, Pos target) {
         if (a.id != w.self.id && a.alive && a.channel == Channel::None && !a.stunned &&
             w.matching_claim(a.id, gi)) {
             // Ready actual local bodies, not a distant intention or a raw radius count.
-            const bool basic = a.can_attack && distance(a.pos, target) <= a.range;
+            bool basic = false;
             bool cast = false;
             double useful = 0;
-            for (const auto &s : a.spells)
-                if (s.ready && s.camps && distance(a.pos, target) <= s.range) {
-                    cast = true;
-                    useful = std::max(useful, s.amount);
+            for (const auto &camp : w.groups[gi].camps)
+                if (camp.hp > 0) {
+                    basic |= a.can_attack && distance(a.pos, camp.pos) <= a.range;
+                    for (const auto &s : a.spells)
+                        if (s.ready && s.camps && (s.kind == 2 || s.kind == 3 || s.kind == 4) &&
+                            s.amount > 0 && distance(a.pos, camp.pos) <= s.range) {
+                            cast = true;
+                            useful = std::max(useful, s.amount);
+                        }
                 }
             if (basic || cast) {
                 crew.push_back({a.id, (basic ? a.strength : 0) + useful / 6, 1, true});
             }
         }
     return crew;
+}
+inline double coarse_farm_enemy_reply(const World &w, const Actor &body) {
+    double raw = 0;
+    for (const auto &enemy : w.enemies)
+        raw += combat_detail::long_window_reply_upper(enemy, enemy.pos, body.pos, 1);
+    for (const auto &sight : w.sightings) {
+        const int age = w.round - sight.round;
+        if (!combat_detail::recent_sighting(age))
+            continue;
+        bool visible = false;
+        for (const auto &enemy : w.enemies)
+            visible |= enemy.id == sight.actor.id;
+        if (!visible)
+            raw += combat_detail::coarse_remembered_reply(sight.actor, age, body.pos, 1);
+    }
+    return std::max(0.0, raw * body.mitigation - body.shield);
 }
 inline FarmCandidate evaluate_farm(World &w, int gi) {
     FarmCandidate out;
@@ -428,10 +450,31 @@ inline FarmCandidate evaluate_farm(World &w, int gi) {
     }
     const double enemy_reply = incoming_damage(w, w.self.pos, 1, false);
     auto crew = helpers_for(w, gi, target);
-    const double safe_ticks = strength > 0 ? std::max(0.0, (w.self.hp * .75 - enemy_reply - 1) /
-                                                               (strength * w.self.camp_mitigation))
-                                           : 1e9;
-    auto squad = minimum_ready_squad(crew, w.self.id, hp, safe_ticks);
+    std::vector<CampContributor> contributors;
+    for (const auto &body : crew) {
+        const Actor *actor = body.id == w.self.id ? &w.self : nullptr;
+        for (const auto &ally : w.allies)
+            if (ally.id == body.id)
+                actor = &ally;
+        if (actor)
+            contributors.push_back(
+                {body, actor->pos.x, actor->pos.y, actor->hp, actor->camp_mitigation,
+                 actor->id == w.self.id ? enemy_reply : coarse_farm_enemy_reply(w, *actor)});
+    }
+    std::vector<CampPressure> monsters;
+    if (!(live.fresh(w.round) && live.state == Lifecycle::Reward))
+        for (const auto &spawn : g.spawns) {
+            if (live.fresh(w.round) && std::find(live.known_dead.begin(), live.known_dead.end(),
+                                                 spawn.id) != live.known_dead.end())
+                continue;
+            const auto seen = std::find_if(live.camps.begin(), live.camps.end(),
+                                           [&](const Camp &c) { return c.id == spawn.id; });
+            if (live.fresh(w.round) && seen != live.camps.end())
+                monsters.push_back({seen->pos.x, seen->pos.y, seen->range, seen->strength, true});
+            else
+                monsters.push_back({spawn.pos.x, spawn.pos.y, 0, spawn.strength, false});
+        }
+    auto squad = minimum_ready_camp_squad(contributors, w.self.id, hp, monsters);
     double dps = 0;
     for (const auto &body : crew)
         dps += body.dps;
@@ -556,6 +599,20 @@ inline std::optional<Proposal> farming(World &w, Memory &m) {
                 shortlist.push_back(c.gi);
             break;
         }
+    // A rich but unaffordable group must not hide every feasible startup job.
+    // Reserve one bounded shortlist slot for a conservative solo alternative;
+    // the detailed observed-crew check still decides whether it is actionable.
+    for (auto c : candidates) {
+        const auto &g = w.geo.groups[c.gi];
+        const double ticks = std::ceil(g.initial_hp / std::max(1.0, w.self.strength));
+        const bool affordable =
+            ticks * g.initial_strength * w.self.camp_mitigation + 1 < w.self.hp * .75;
+        if (affordable) {
+            if (std::find(shortlist.begin(), shortlist.end(), c.gi) == shortlist.end())
+                shortlist.push_back(c.gi);
+            break;
+        }
+    }
     for (auto c : candidates)
         if (shortlist.size() < 3 &&
             std::find(shortlist.begin(), shortlist.end(), c.gi) == shortlist.end())
@@ -566,10 +623,11 @@ inline std::optional<Proposal> farming(World &w, Memory &m) {
             auto c = evaluate_farm(w, gi);
             if (gi == m.mission.group)
                 incumbent = c;
-            if (c.rate > best.rate)
+            if (c.rate > 0 &&
+                ((c.ready && !best.ready) || (c.ready == best.ready && c.rate > best.rate)))
                 best = c;
         }
-    if (!incumbent_suppressed && incumbent.rate > 0 &&
+    if (!incumbent_suppressed && incumbent.rate > 0 && (incumbent.ready || !best.ready) &&
         (w.round < m.mission.expiry || best.rate <= incumbent.rate * Settings::switch_margin))
         best = incumbent;
     // An expiring lease requests a new continuity check; it never releases the
@@ -670,22 +728,13 @@ inline std::optional<Proposal> farming(World &w, Memory &m) {
             m.failed_until = w.round + Settings::job_lease;
             return std::nullopt;
         }
-        // Sleeping monsters are friendly until hit. Enter an actual contribution
-        // tile without attacking, otherwise every helper waits outside its own
-        // range and the ready-crew condition can never become true. An already
-        // awake camp still requires a staging tile outside its real reply reach.
+        // Enter an actual contribution tile without attacking. An awake camp
+        // does not create an absolute geometric exclusion zone: joining a
+        // useful range is allowed only when its real next reply is affordable.
         int stage_range = std::max(1, w.self.range);
-        for (const auto &monster : view.camps)
-            if (monster.awake && monster.strength > 0)
-                stage_range = std::max(stage_range, monster.range + 2);
         if (distance(w.self.pos, best.target) > stage_range)
             if (auto step = w.toward(best.target, stage_range)) {
-                bool outside = true;
-                for (const auto &monster : view.camps)
-                    if (monster.awake && monster.strength > 0 &&
-                        distance(*step, monster.pos) <= monster.range + 1)
-                        outside = false;
-                if (outside && incoming_damage(w, *step) < w.self.hp * .65)
+                if (incoming_damage(w, *step) < w.self.hp * .65)
                     a = moving(*step, "farm-stage-for-real-ready-help");
             }
         return economic(a, job, Priority::Routine, best.rate);

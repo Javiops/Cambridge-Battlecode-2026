@@ -1,0 +1,5 @@
+Traceback (most recent call last):
+  File "/tmp/claude-0/-home-user-cambridge-battlecode-2026/ced05b84-7c17-5c1d-a2b0-95481178be83/scratchpad/recalls.py", line 48, in <module>
+    us=json.load(open('ours/selected_us_ok.json'))
+                 ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'ours/selected_us_ok.json'

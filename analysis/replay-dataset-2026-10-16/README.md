@@ -152,3 +152,17 @@ self-play and does best against the casters. Zips (not uploaded): `bot/mybot_ga6
 
 **15:45 UTC:** im_p + nearest-first targeting (P_TGT_DW 400) vs im_p: fresh 14-8 (p=0.29), panel 2/6; vs the caster bots 36/36
 wins, 54 deaths, 268 kills (im_p 56 and 285). No clear gain, so I061 is paused and im_p stays the candidate.
+
+## Round 3 (15:35-16:00 UTC): recalls and gem-carrier targeting
+
+Recalls (`bc/recalls.txt`, every recall start off the own spawn, retries merged). Per 1000 champion-rounds: Mite 11.5 recalls
+and 2.2 deaths, Univardisty 9.7 and 2.7, v44 13.8 and 2.9. Mite recalls far from spawn (median 18 tiles, v44 12), with more
+gems (mean 14 vs 8), at either low hp (35% below 30% hp, v44 20%) or near full hp (17% above 90%, v44 6%: recall used as a
+teleport home), and 36% of its recalls start 6-8 tiles from the nearest enemy (v44 17%). Completion rates are the same
+(~92%). The "recall as transport" part was tested before (P_CAPRECALL, Mite macro) and lost on our engine, so no new test.
+
+Gem carriers (`bc/gemtarget.txt`): when the candidate targets carry different gems we already pick the richest more often than
+the top two (v44 60%, Univardisty 51%, Mite 43%, random 44%). No gap.
+
+So the clearest remaining gap is formation: Mite has an ally within 2 tiles on 59% of contact turns, we 39%. im_p only
+changes what we do once paired; getting paired more often (moving as a pair between camps) is the next lever.

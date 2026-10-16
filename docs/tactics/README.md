@@ -5,7 +5,7 @@ Each topic starts with a short description and grows into a concrete tactic: whe
 what the champion does, and how it interacts with the rest of the team.
 
 > [!NOTE]
-> All **96 topics across 12 chapters** now contain a concrete baseline or intended tactic. Chapters 04 (vision), 06 (coordination) and 11 (shopping) retain their detailed researched policies.
+> All **96 topics across 12 chapters** now contain a concrete baseline or intended tactic. Chapters 04 (vision), 06 (coordination), 07 (combat) and 11 (shopping) retain their detailed researched policies.
 > **Planned** and **Implemented** distinguish intended improvements from behavior present in the pinned source. Complete documentation does not mean every tactic has been implemented or shown to improve results.
 > The current code reference is `bots/study27-economy` at `a0c0fa2` (16 October 2026). Its identity with the supplied live-v43 screenshot remains unconfirmed. See the [reference snapshot, configuration and feedback mapping](reference-snapshot-2026-10-16.md).
 
@@ -53,6 +53,10 @@ Read [01 Overall strategy](01-overall-strategy.md) for priorities, then the chap
 The supplied team feedback makes **combat micro**, **secure farming under pressure**, and **completed capture/collection** the next implementation priorities. Those planned requirements are linked to their chapters in the [feedback mapping](reference-snapshot-2026-10-16.md#how-the-supplied-team-feedback-was-used). Keep the existing ward, coordination and investment research as the starting specification while implementing one coherent change at a time and testing useful combinations.
 
 This completion is a **documentation and source audit**. It does not change the bot, upload a new version, run simulations, or prove a stronger strategy. [Chapter 12](12-execution-and-validation.md) defines the separate implementation and validation work.
+
+## Combat research update — 16 October 2026
+
+[Chapter 07](07-combat-and-survival.md) now details legal action sequences, focus, control, protection and disengagement, with an [evidence appendix](combat-research-2026-10-16.md) comparing the reference source with current top-ten opponents, especially the current top-four head-to-head. Historical and current patches are analyzed separately. These are intended policy improvements; the bot source has not changed in this documentation update.
 
 ## Keeping the specification current
 

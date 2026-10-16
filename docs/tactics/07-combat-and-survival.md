@@ -4,7 +4,25 @@
 
 When we fight, how we execute, and when we leave.
 
-**Reference:** Source behavior below uses the [pinned reference snapshot](reference-snapshot-2026-10-16.md) at [`a0c0fa2`](https://github.com/Javiops/Cambridge-Battlecode-2026/commit/a0c0fa2f222557483d665a9f7fce6f64a30b94ba), `bots/study27-economy/src`, with its [active parameters][c07-flags]. Its identity with the live v43 upload is unverified. **Implemented** means the active source implements the stated baseline; no new gameplay tests or improvement measurements accompany this chapter. Proposed changes remain **Planned**. Distances below are Chebyshev tiles unless a walking route is specified.
+**Evidence and status:** Current behavior is the pinned repository source at [`dee0fe7`](https://github.com/Javiops/Cambridge-Battlecode-2026/commit/dee0fe7bf464d9f7b281af81f9650135fc541321), whose six bot source files match `a0c0fa2` byte for byte. A live-v43 source match remains unconfirmed. See the [research, measured opponent behavior and exact episodes](combat-research-2026-10-16.md) for the evidence supporting this revision. The fuller micro rules below are **Planned**; source inspection, legal native sequences and observed opponent actions do not prove that our bot implements them or that they improve results. The same 27 controlled cases and 85 assertions pass on both pinned 0.0.1 and official 0.0.2 engines, with no differences in the retained bounded observations. This is not exhaustive engine equivalence or a strategy-strength test.
+
+## The decision loop
+
+**Choose the mission → compare legal short sequences → price the next reply → execute one action → refresh → continue or leave.**
+
+```mermaid
+flowchart TD
+    A[Fresh local state and mission] --> B[Small set of kit-legal sequences]
+    B --> C{Useful result and viable reply?}
+    C -->|Yes| D[Execute one legal action]
+    C -->|No| E[Protect, escape or take safe productive work]
+    D --> F[Refresh state and remaining allowances]
+    F --> G{Mission still useful and feasible?}
+    G -->|Yes| B
+    G -->|No| E
+```
+
+The opponent study supports persistent recipient pressure, kit-specific sequencing and attention to control/protection effects. It does not justify one universal “always move first”, “always focus the weakest” or “always fight as five” rule. The [research appendix](combat-research-2026-10-16.md) separates measured patterns, exact exchanges and our design choices.
 
 ## Contents
 
@@ -23,13 +41,13 @@ Decide whether engaging is worthwhile given the objective, likely outcome, and c
 
 **Status:** Planned
 
-**Tactic:** Give an immediate champion threat priority over a discretionary camp action. Select a short exchange with a concrete result: remove a threat, stop a channel, protect a carrier, secure a capture, or create a safe exit. Before closing distance, check the participants who can act before the opponent's response, the damage/control actually ready, and the exit after the exchange. Apply [local strength assessment](#2-local-strength-assessment); a nearby ally or a camp claim alone does not establish support.
+**Tactic:** When an observed enemy can affect the next useful action, resolve the combat decision before spending health, movement or an essential ability on a discretionary camp hit. Name the result sought: survive, remove an immediate threat, stop a deciding channel, protect a carrier, secure collection, or create a short favourable exchange. A kill without a useful conversion is not automatically the best mission.
 
-Decline or abort when the required action cannot arrive in time, survival fails, or the objective disappears. Use a safer useful task; if the same enemy still threatens the farm, reposition or hold the camp action rather than spending the reserved health or ability there. This is the planned interpretation of the team's reported micro/secure-farming priority, not a ban on farming whenever any enemy is visible.
+Compare a bounded legal sequence with the credible reply and the next productive alternative. Start only when the required participants/actions arrive before the window closes. Keep only actual ready contribution; a body in a radius or a shared camp claim is not an accepted helper. A private remote target is not a legal unit target for us.
 
-**Current behavior:** After a possible pre-turn spell sweep, the main body handles spawn recovery, emergency escape and near-enemy recall before caster kite, front-line combat, and fallback combat. These branches can return before recall, banking, and farming. The fallback permits engagement for a target deemed killable, channeling, or reachable in a favourable fight. These are heuristics: `killable` is HP at most twice our Strength, not a complete lethal sequence. `P_FM=0` leaves the larger fight-mode model disabled. See [branch order and engagement gates][c07-mainfight].
+**Stop and fallback:** Abort or change the sequence when survival fails, the useful action becomes unavailable, support is late, or the mission disappears. Reposition, protect, recover, or take safe productive work. Do not fall back to the same unsafe camp expenditure merely because the champion fight was declined. Preserve a useful active channel unless an actual permitted cancellation improves the outcome; micro priority does not mean cancel every delivery.
 
-**Fallback:** Use current legal escape/positioning with personal observations when readiness cannot be established. Do not invent remote teammate health or future damage. The first prototype is a local threat-and-readiness gate; a remote team contract remains the separate [coordination plan](06-team-coordination.md).
+**Current behavior:** A pre-turn spell sweep may act before the emergency decision. Spawn/emergency/near-recall branches precede ordinary kite/front/fallback combat, while ordinary recall, banking and farming follow it. These are distinct heuristics, not one fight-value model. The generic “killable” check is target HP at most twice Strength, which does not establish a legal lethal sequence. [Current branch order](https://github.com/Javiops/Cambridge-Battlecode-2026/blob/dee0fe7bf464d9f7b281af81f9650135fc541321/bots/study27-economy/src/main.cpp#L2910-L3089).
 
 ## 2. Local strength assessment
 
@@ -37,13 +55,15 @@ Compare usable damage, health, shields, abilities, positioning, and reinforcemen
 
 **Status:** Planned
 
-**Tactic:** Count a participant only if it can reach a legal useful action before the exchange or escape is decided. Include movement/attack exclusivity, current ability cooldowns, stuns/channels, legal approach tiles, and the interleaved acting order. Estimate damage and protection over that bounded window, including incoming monster damage if the camp is awake. Keep unknown enemies and unavailable allied observations explicit; hidden health is unknown, not zero.
+**Tactic:** Begin with our own legal actions and observable participants who can contribute before the next deciding response. Include actual order, movement/attack sharing, the single successful-cast allowance, cooldown progression, stuns/channels, approach tiles and monster attacks. Compare sequences the kit can really perform: do not add an attack-reset double basic to another cast that spends the same allowance, or combine a required walk with an exclusive stationary spell.
 
-Start with our own actions and currently observable nearby participants. Use a proposed engage only if it survives the conservative response estimate and achieves the mission before support expires. Recheck after a move, cast, death, new sighting, or failed action. Do not keep engaging because an earlier headcount was favourable. Exact uncertainty margins beyond the existing source thresholds remain experiment parameters; they are not optimized constants.
+Use effective target-aware damage and visible shields/mitigation, plus returned damage and linked-death consequences. In the controlled checks on both engines, Ren returns 0.2 × his effective Focus even when the triggering direct hit is shielded or lethal; killing him can still kill the attacker. The separate Varg splash checks do not trigger that return when Ren is only the secondary recipient. Use verified effect semantics rather than adding return damage for every AoE/splash recipient. A zero-HP-loss hit may consume a shield or apply control, so HP alone is not a complete exchange measure. Recheck the engine pin when the game patch changes.
 
-**Current behavior:** Front-line combat uses ally HP within nine tiles, enemy HP within eight, and a 130% enemy/ally HP ceiling. Its local gate also requires another ally within four, no more enemies within five than local allied bodies including us, and the same HP ceiling. Caster kite instead declines only when enemies exceed allied count by more than two **and** enemy HP exceeds 130% of allied HP. Fallback `P_ENGAGE2=120` requires allied count at least enemy count and allied HP at least 120% of enemy HP around the target. These checks neither synchronize cooldowns nor prove timely contribution. See [front-line assessment][c07-front] and [fallback assessment][c07-mainfight].
+Requery available stats and restrictions after purchases/actions. A buff showing duration 0 can remain active until the appropriate owner-start phase; use actual state rather than subtracting a world round by intuition. Unknown remote ally health, enemy position or cooldown remains uncertainty. Do not convert it to zero threat or ready power.
 
-**Related decisions:** [Group size](06-team-coordination.md#3-group-size), [Camp combat positioning](08-farming-and-capture.md#3-camp-combat-positioning).
+**Stop/fallback:** Reassess after new sight, a move/cast, a failed action, a death, an expired window or a missed participant. With incomplete information, retain a legal conservative local sequence rather than pretending to know the team future. The first prototype uses a short local horizon; wider multi-turn margins remain explicit experiment parameters.
+
+**Current behavior:** Front and kite mostly compare nearby HP/counts; fallback uses count and 120% HP. The volley heuristic can combine reset and another spell, omit relevant dash/return effects, and count incompatible action reaches. It is not a guaranteed damage bound. [Threat sum](https://github.com/Javiops/Cambridge-Battlecode-2026/blob/dee0fe7bf464d9f7b281af81f9650135fc541321/bots/study27-economy/src/main.cpp#L751-L881). Use [timely group contribution](06-team-coordination.md#3-group-size).
 
 ## 3. Target selection and focus fire
 
@@ -51,39 +71,43 @@ Choose valuable, reachable enemies and coordinate damage when concentrating atta
 
 **Status:** Planned
 
-**Tactic:** Select a personally visible, living target outside enemy spawn that the assigned action can legally affect. Prioritize preventing an immediate loss or interrupting a decisive channel; then compare a secured lethal sequence, a valuable carrier, and the reachable threat blocking the mission. Concentrate only the damage needed within the useful window. A protector may instead disable a diver or heal the threatened ally.
+**Tactic:** Choose a legal reachable target for the assigned mission. Prefer an action that prevents an immediate loss, secures a valuable lethal sequence, or interrupts a deciding channel. Retain the local focus while its useful action remains feasible; use deterministic ties so bodies sharing the same genuine observations can make compatible decisions. This does not create an omniscient team controller.
 
-Keep the focus while the useful action remains reachable and the mission remains valid. Requery target visibility, HP, position, and legal action availability after each successful action. Retarget if it dies, becomes unavailable, or a more urgent threat invalidates the old plan. Do not spend a reset or movement on a vanished target. A common remote focus requires the implemented communication and freshness rules described in [Shared commitments](06-team-coordination.md#8-shared-commitments); personal visibility still controls damage legality.
+Count only follow-up already observable or supplied by an implemented fresh protocol, with timing and legality. Avoid committing extra damage after the target will already be removed within that verified window. Allow a protector to control a diver or a healer to save the required actor instead of forcing every body onto one recipient. Area damage can affect several enemies without those enemies being selected primary targets.
 
-**Current behavior:** Focus differs by branch. Pre-sweep prefers low HP, channeling, and gems; kite minimizes `HP − 300 if channeling + 20 × distance` among eligible targets within five, falling back to the nearest enemy in its within-seven observation list when that scoring finds none. Front-line uses a local allied centroid, with large-bag and melee-peel exceptions. Fallback minimizes `HP − 300 if channeling − 5 × gems + 40 × distance` within six. With `P_KITEFRONT=0`, kite runs before front-line combat and does not use its common-focus alternative. Thus the source does not implement one synchronized team focus. See [kite focus][c07-kite], [front-line focus][c07-front], and [fallback focus][c07-mainfight].
+**Stop/fallback:** Requery the selected unit after each action. If it dies, becomes hidden/out of useful reach, or a more urgent threat appears, select another legal useful action or release the fight. Do not spend a reset solely on the dead original target, but consider a different living target when the cast/attack budget really remains. A planned ground cast can use an evidence-based predicted area; it needs a legal centre rather than a visible unit handle. Never use the host's hidden coordinates as bot knowledge.
+
+**Current behavior:** Sweep, kite, front and fallback use different local scores. `P_KITEFRONT=0` lets successful caster kite return before front's focus rule, and no enabled shared focus protocol resolves the difference. The alive-target reset guard preserves the cooldown after a kill but does not deliberately continue onto another target. [Kite focus](https://github.com/Javiops/Cambridge-Battlecode-2026/blob/dee0fe7bf464d9f7b281af81f9650135fc541321/bots/study27-economy/src/fight.h#L498-L519), [reset guard](https://github.com/Javiops/Cambridge-Battlecode-2026/blob/dee0fe7bf464d9f7b281af81f9650135fc541321/bots/study27-economy/src/main.cpp#L1527-L1547). Remote commitments require [06.8](06-team-coordination.md#8-shared-commitments); all eight bytes already have uses.
 
 ## 4. Range control and kiting
 
 Maintain useful attack distances while accounting for the tradeoff between movement and attacking.
 
-**Status:** Implemented
+**Status:** Planned
 
-**Tactic:** With `P_KITE=1`, a team containing Stellar sets the source's `casters` flag. Eligible ranged bodies try caster kite before front-line combat; ordinary Ren is excluded because `P_UNI_RENKITE=0`. Kite considers enemies within seven, but yields when none is within four and we have not been hit in the last two rounds. It also yields when the no-chase rule finds no continuing nearby fight or the source's count/HP rejection applies.
+**Tactic:** Compare a deliberate hold with legal neighbouring positions before moving. Preserve the action that matters: a safe stationary exclusive cast plus basic, a ranged reposition plus a compatible control/support action, a ranged move-reset-shot when that reset is ready and worth its cast, or a melee move/basic sequence. An attack reset restores attack rather than movement in the controlled checks on both engines; do not spend a ranged basic expecting the reset to reopen escape walking.
 
-Score our tile and legal neighbouring tiles by fewest predicted enemy reaches first, then keeping the focus within spell/basic range, then avoiding separation beyond four from the nearest visible ally. Move only for a strictly better score. After moving, try control on an enemy predicted to reach us, then an area spell covering at least two enemies, other damage/control, and finally a basic attack in range. If the focus is unavailable to the basic attack, try another in-range enemy.
+Choose a position that survives the credible next reply, preserves the mission's useful range, and leaves a usable exit or actual protection. Include current dash/control readiness and order. Do not maximize distance so far that all useful damage is lost, or step closer solely to maintain a target that has ceased to be worthwhile. Ranges use actual kit metadata; a legal area centre can affect a recipient beyond the unit-target cast radius.
 
-Enemy basic reach is a heuristic: ranged range plus one; ordinary melee two; supported dash melee three when its dash may be ready by the next opportunity. Cooldown at most one is treated conservatively, not as a complete initiative forecast. Occupied/illegal movement still falls back through action rejection. Front-line combat handles its own ranged positioning if kite declines; neither branch guarantees safety against hidden enemies or all spell effects.
+**Stop/fallback:** Hold when moving sacrifices the better legal sequence and the reply is survivable. Exit when no useful safe action remains. If a tile is occupied/revealed or an action fails, refresh and use a bounded alternative; do not repeatedly score the same stale tile. Unseen approaches remain uncertainty under [chapter 04](04-vision-and-information.md).
 
-**Implementation:** [Caster activation][c07-casters], [kite and reach][c07-kite], [reach metadata][c07-reach]. The planned stronger readiness assessment is in [07.2](#2-local-strength-assessment).
+**Current behavior:** Caster kite uses a local threat-count/range/team-distance score, moves before its own spell pass, and yields at distant quiet contact. Front has a different ranged positioning rule. These are implemented baselines, but they do not compare all the legal stationary/reset/escape sequences above. [Kite sequence](https://github.com/Javiops/Cambridge-Battlecode-2026/blob/dee0fe7bf464d9f7b281af81f9650135fc541321/bots/study27-economy/src/fight.h#L458-L589).
 
 ## 5. Ability selection and timing
 
 Choose between damage, control, healing, shields, resets, and mobility according to the immediate situation.
 
-**Status:** Implemented
+**Status:** Planned
 
-**Tactic:** The active baseline uses a champion spell sweep before the main decision when the team contains Stellar (`s.sweep=3`); without Stellar it switches to a post-decision fight-gated sweep (`s.sweep=2`). Sweep excludes dead/channeling bodies and enemies on their spawn. It first tries control on a threatening enemy, then a ready ground area spell hitting at least two, then non-control damage on its weak target, then control. A legal area centre may hit a visible enemy five tiles away when cast range four plus radius one reaches it; the spell centre itself must remain in range. This edge-area fallback requires sweep mode at least three, so it is not available in the no-Stellar mode-two branch.
+**Tactic:** Treat the successful cast as one shared budget across both slots. Compare the immediate mission result of damage, stun, shield, heal, dash and attack reset before using it. Prefer a needed save/escape/interrupt over discretionary damage; prefer a secured useful kill over decorative area coverage. Area damage's extra recipients matter only if their actual damage/control improves the bounded outcome. Do not choose it solely because it hits two units.
 
-The main support pass tries a ready shield below 85% HP during local combat, or the first visible legal ally heal that can restore at least half the ability's nominal heal. General offense scans the two ability slots in order. Basic-attack reset is used only after a successful first hit leaves the selected target alive and visible (`P_U34_RESET_LIVE=2`). Stop when an action succeeds or readiness/legality prevents it; failed SDK actions are caught.
+For control, check target immunity and existing restrictions, plus whether the new duration changes a future action window. Marcella's stun immunity removes stun value without necessarily removing the damaging component. Refreshing existing control may extend a useful window, but a cast before the victim acts is not automatically wasted or automatically optimal. For support, identify the body and action saved, actual missing HP/expected damage, and competing use of the cast. A shield depletion or heal is useful evidence even without opposing HP loss.
 
-**Limits:** `P_SAVECC=0` does not reserve control for a recently seen champion, and `P_CASTSAFE=0` does not protect an urgent escape from a movement-exclusive pre-sweep cast. This describes current behavior; [07.6](#6-action-sequencing) plans the priority correction. Multiple-target geometry is not proof that area damage is always the best tactical choice.
+For resets, use current cast/attack state and a living reachable follow-up target. A Vendetta cooldown refresh does not itself refund an already-spent cast in the controlled checks on both engines. Query actual effective stats after gems/purchases and current metadata for scaling; field Health does not imply an immediate heal.
 
-**Implementation:** [Offense, resets and support][c07-helpers], [sweep priorities][c07-sweep], [area-edge fallback][c07-edge].
+**Stop/fallback:** Recheck after the preceding action and stop when the needed effect is achieved, the cast is spent, or legality/value disappears. If metadata or timing is missing, use the established legal local fallback without claiming a proc, stun or reset that has not occurred. Preserve a needed control/mobility budget from unsafe [camp spending](08-farming-and-capture.md#5-camp-commitment-and-abandonment).
+
+**Current behavior:** Sweep tries threat-control, 2+ area hits, weak-target damage/control and an area-edge fallback. Support tries a low-HP shield or the first sufficiently useful ally heal; general offense scans slots in order. `P_SAVECC=0` does not reserve control for a nearby enemy. [Support/offense](https://github.com/Javiops/Cambridge-Battlecode-2026/blob/dee0fe7bf464d9f7b281af81f9650135fc541321/bots/study27-economy/src/main.cpp#L1504-L1588), [sweep](https://github.com/Javiops/Cambridge-Battlecode-2026/blob/dee0fe7bf464d9f7b281af81f9650135fc541321/bots/study27-economy/src/main.cpp#L3474-L3566).
 
 ## 6. Action sequencing
 
@@ -91,13 +115,21 @@ Order movement, attacks, and abilities so one action does not prevent a more imp
 
 **Status:** Planned
 
-**Tactic:** Before any action that removes movement or another useful action, decide whether the body must escape, complete a critical channel/hold, or execute a stationary damage sequence. For a necessary escape, choose the legal move/dash/control sequence first; allow a stationary lethal cast only if the freshly checked kill removes the relevant danger without losing to the remaining response. For a safe stationary exchange, cast the movement-exclusive spell before spending movement. For a ranged reposition, preserve the move until it is taken, then use only compatible remaining actions. Requery state between actions and stop once the intended result or an emergency abort is reached.
+**Tactic:** Decide the legal short sequence before its first irreversible expenditure. Start from fresh position, target, health/max health, buffs/restrictions, cooldowns, action flags and the current owner-turn order. Bound candidate sequences by the kit's actual action budget; do not build a broad unbounded combat optimizer.
 
-**Current behavior:** `run_game` can pre-sweep **before** `play_turn` calculates the emergency response. Within `play_turn`: initialize/dead-shop; detect a reward gain; shop; return for any active channel; refresh observations; support; unsticking; spawn recovery; emergency escape; near recall; kite/front/fallback combat; ordinary recall; bank; farm; possible spare basic. A post-sweep runs for mode two; altar lock runs afterward; ordinary ward placement is disabled. General `engage` tries a nearby offense spell, basic attack/reset, movement if out of basic range, then basic attack. Caster kite moves before its own spells. Disabled `P_CASTSAFE`, `P_KITEFRONT`, and `P_U34_POST_FREE` must not be described as active fixes.
+| Need | Sequence to consider, when legal | Recheck before follow-up |
+| --- | --- | --- |
+| Safe stationary damage | Exclusive cast, then basic; or basic/reset/basic | Target survival/shields, counter-damage, cast/attack availability |
+| Ranged useful reposition | Move, then compatible cast; or move/reset/basic | Actual landing, new sight, reset value and no restored movement |
+| Melee access | Move or dash to a legal action tile, then basic/control if budget permits | Dash and another ability compete for the cast; enemy reply/exit |
+| Protection | Required heal/shield/control before the threatened event | Real recipient, effect, timing and remaining movement |
+| Escape | Legal lower-threat move/dash/control, then only compatible useful damage | Remaining threats, linked death and returned damage |
 
-**Fallback:** If a preferred action fails, refresh its cause and use a remaining legal action that preserves the higher priority. Do not let “attempted combat” silently consume the whole turn while safe work remains. This fallback requires implementation: `P_U34_ENGAGE_FALLBACK=0` and `P_U34_FAILED_CHANNELS=0` still allow several current branches to return after a failed attempt.
+Requery after each accepted action and distinguish false/rejected commands from success. A kill can alter cooldowns without reopening cast availability; a new observation can reveal a blocker or invalidate the target. End the sequence at its result or hard safety abort. Continue to a remaining legal useful action after rejection when it does not violate the higher priority.
 
-**Implementation gap:** [Outer action order][c07-order], [main branch order][c07-mainfight], [engage order][c07-helpers].
+**Current behavior:** Pre-sweep can precede survival and shopping; `P_CASTSAFE=0` leaves its escape guard disabled. The generic helper resets only after a successful basic, so cannot deliberately unlock the first post-move ranged basic. Support and offense may already spend that cast. `P_U34_ENGAGE_FALLBACK=0` and `P_U34_FAILED_CHANNELS=0` allow attempted but rejected branches to return without a useful fallback. [Outer ordering](https://github.com/Javiops/Cambridge-Battlecode-2026/blob/dee0fe7bf464d9f7b281af81f9650135fc541321/bots/study27-economy/src/main.cpp#L3594-L3697), [engage](https://github.com/Javiops/Cambridge-Battlecode-2026/blob/dee0fe7bf464d9f7b281af81f9650135fc541321/bots/study27-economy/src/main.cpp#L1551-L1566).
+
+**First implementation boundary:** legal short-sequence coverage and fresh-state checks first; survival/counter-damage second; local focus/protection third. Test credible combinations later. A new remote protocol or team-wide optimizer is outside this first change.
 
 ## 7. Escape decisions
 
@@ -105,13 +137,13 @@ Decide when to flee, where to go, and whether walking, control, dashing, or reca
 
 **Status:** Planned
 
-**Tactic:** Trigger an escape when the bounded incoming response threatens survival or the mission can no longer be completed safely. Retain the current source's 25% HP emergency threshold, or 35% on its Stellar-containing team, as initial fallback thresholds rather than proof of optimal timing. Do not wait to cross them when a visible ready sequence is already lethal. Protect Cassi/Issac's linked life when choosing the risk.
+**Tactic:** Escape before the next credible sequence kills the body or destroys the mission, including Ren return and Cassi/Issac linked loss. Keep 25% HP, or 35% for the source's Stellar-containing team, only as initial emergency fallbacks; a visible lethal reply can require leaving earlier. A healthy percentage is not proof of safety and must use current post-purchase maximum HP.
 
-Compare reachable escape tiles and ready mobility with damage/control that can actually prevent the response. Use a legal lower-threat tile toward a useful ally or recovery route; do not dash into an unobserved occupied landing assumption. Recall only when its full remaining channel is survivable, not because the current tile is momentarily outside basic range. An adjacent useful tribute may take priority when it can secure the carried gems without a survival error; its distinct interruption rules matter.
+Compare legal lower-threat movement, a ready dash, a control/protection cast, and full-channel recall safety. Use a stationary lethal cast only when its returned damage and remaining enemies leave the intended survival outcome viable. Do not spend movement on a basic or an exclusive spell and then discover that the planned escape is unavailable. A protector can open an exit through real control or damage; ordinary occupied-tile rejection does not prove projectile interception.
 
-**Current behavior:** Emergency low HP recalls if `rsafe`; otherwise it tries a permitted hit, routes toward spawn with dash allowed, and shoots afterward if it did not hit. Ordinary avoidance uses `P_SAFESTEP=1`: minimize the number of enemies predicted to reach the tile, then proximity to an ally above 40% HP, then home distance; if that fails, route home. Ranged hit-first yields while movement remains available. `P_VOLLEY=70` adds local ready-damage avoidance to ordinary pathing, but this is a heuristic and its low-fuel fallback is weaker. See [emergency and recall][c07-emergency], [back-off][c07-backoff], and [volley pathing][c07-volley].
+**Stop/fallback:** Finish escape when a useful safe action/recovery channel is established; re-evaluate if that condition changes. If recall is rejected or interrupted, refresh the cause and use a legal remaining escape/protection action rather than returning after the attempt. If escape is impossible, spend the legal remaining budget to preserve the most useful secured value or protect another required body. Do not chase a doomed extra hit while losing a recoverable carrier.
 
-**Stop/fallback:** End escape when a useful safe action or recovery channel is available. If no escape is viable, spend remaining legal control/damage to improve survival or protect secured value; do not retry an impossible move indefinitely. See [Recall safety](10-recall-and-recovery.md#2-recall-safety).
+**Current behavior:** Emergency and generic avoid branches use different gates and movement helpers. HITFIRST avoids a ranged basic while it can still move; safe-step minimizes predicted reach count then healthy-ally/home distance, while emergency flee routes home. Volley pathing is a local heuristic with weaker low-fuel fallback; near-recall uses distance/damage proxies, not a full enemy action schedule. See [recall safety](10-recall-and-recovery.md#2-recall-safety) and [current retreat helpers](https://github.com/Javiops/Cambridge-Battlecode-2026/blob/dee0fe7bf464d9f7b281af81f9650135fc541321/bots/study27-economy/src/fight.h#L111-L179).
 
 ## 8. Chasing and disengagement
 
@@ -119,27 +151,14 @@ Decide when pursuing a kill remains worthwhile and when to return to productive 
 
 **Status:** Planned
 
-**Tactic:** Keep the existing no-chase observation as a default stop signal, then require a fresh mission and reachable action window for any exception. A valuable carrier or channel can justify a short intercept, but its value does not remove safety, travel-time, or reinforcement checks. Stop when the target leaves legal useful reach, a response erases the advantage, the target dies, or the opportunity deadline passes. Release the combat commitment and resume a useful camp, capture, bank, protection, or recovery task; do not spend reserved combat resources on the farm while the same threat remains immediate.
+**Tactic:** Continue pursuit only for a named mission with a feasible next useful action and a survivable response/exit. A channel or valuable bag can justify an intercept, but does not waive readiness, route or opportunity-cost checks. Prefer the earliest legal useful action over following the target's old centre. Keep the target's last observation separate from current personal knowledge.
 
-**Current behavior:** A continuously observed enemy that moves farther from our previous position, or toward its spawn without coming closer, is marked away for three rounds; entering distance two clears the mark. `P_NOCHASE=1` usually excludes an away target outside our basic range unless it is channeling or has at least 150 gems. Front-line has a large-bag chase exception. These are local observations and exceptions, not a pursuit distance/time budget or proof of profitable pursuit. Caster kite's distant-contact gate also releases otherwise idle standoffs. See [away tracking and target exclusion][c07-away] and [front-line exceptions][c07-front].
+**Stop:** Disengage when the target dies, its useful action window closes, it leaves credible reach/sight, new support changes the risk, or a safer productive objective becomes better. Release the old commitment and select actual safe farming, capture, banking, protection or recovery. A new high-priority threat can interrupt immediately; minor score changes do not require oscillation between equivalent targets.
 
-**Fallback:** Lost sight does not authorize chasing into fog. Keep the target's last observation distinct from current knowledge and route to the next safe mission unless an implemented scout/ward decision supplies actionable information.
+**Fallback:** Lost sight does not authorize an omniscient pursuit. Obtain useful personal information under [chapter 04](04-vision-and-information.md) or take a reversible useful route. For the first local prototype, require a credible near-term useful action and re-evaluate after the next action/opportunity; wider pursuit deadlines and uncertainty margins remain explicit planned parameters, not optimized distances.
+
+**Current behavior:** NOCHASE marks observed outward/homeward movement away for 3 rounds and clears within 2. It generally excludes an away target outside basic range unless channeling or holding at least 150 gems; caster quiet-distance gates also release standoffs. These are useful defaults, not a complete pursuit budget or proof that a particular chase was good. [Current observation/exclusion](https://github.com/Javiops/Cambridge-Battlecode-2026/blob/dee0fe7bf464d9f7b281af81f9650135fc541321/bots/study27-economy/src/main.cpp#L2821-L2887).
 
 ---
 
 [← Team coordination and group movement](06-team-coordination.md) · [Tactics index](README.md) · [Farming and camp capture →](08-farming-and-capture.md)
-
-[c07-mainfight]: https://github.com/Javiops/Cambridge-Battlecode-2026/blob/a0c0fa2f222557483d665a9f7fce6f64a30b94ba/bots/study27-economy/src/main.cpp#L2951-L3089
-[c07-front]: https://github.com/Javiops/Cambridge-Battlecode-2026/blob/a0c0fa2f222557483d665a9f7fce6f64a30b94ba/bots/study27-economy/src/fight.h#L295-L455
-[c07-kite]: https://github.com/Javiops/Cambridge-Battlecode-2026/blob/a0c0fa2f222557483d665a9f7fce6f64a30b94ba/bots/study27-economy/src/fight.h#L458-L589
-[c07-casters]: https://github.com/Javiops/Cambridge-Battlecode-2026/blob/a0c0fa2f222557483d665a9f7fce6f64a30b94ba/bots/study27-economy/src/main.cpp#L1194-L1203
-[c07-reach]: https://github.com/Javiops/Cambridge-Battlecode-2026/blob/a0c0fa2f222557483d665a9f7fce6f64a30b94ba/bots/study27-economy/src/fight.h#L64-L101
-[c07-helpers]: https://github.com/Javiops/Cambridge-Battlecode-2026/blob/a0c0fa2f222557483d665a9f7fce6f64a30b94ba/bots/study27-economy/src/main.cpp#L1504-L1588
-[c07-sweep]: https://github.com/Javiops/Cambridge-Battlecode-2026/blob/a0c0fa2f222557483d665a9f7fce6f64a30b94ba/bots/study27-economy/src/main.cpp#L3381-L3566
-[c07-edge]: https://github.com/Javiops/Cambridge-Battlecode-2026/blob/a0c0fa2f222557483d665a9f7fce6f64a30b94ba/bots/study27-economy/src/main.cpp#L2647-L2683
-[c07-order]: https://github.com/Javiops/Cambridge-Battlecode-2026/blob/a0c0fa2f222557483d665a9f7fce6f64a30b94ba/bots/study27-economy/src/main.cpp#L3594-L3697
-[c07-emergency]: https://github.com/Javiops/Cambridge-Battlecode-2026/blob/a0c0fa2f222557483d665a9f7fce6f64a30b94ba/bots/study27-economy/src/main.cpp#L2862-L2948
-[c07-backoff]: https://github.com/Javiops/Cambridge-Battlecode-2026/blob/a0c0fa2f222557483d665a9f7fce6f64a30b94ba/bots/study27-economy/src/fight.h#L111-L179
-[c07-volley]: https://github.com/Javiops/Cambridge-Battlecode-2026/blob/a0c0fa2f222557483d665a9f7fce6f64a30b94ba/bots/study27-economy/src/main.cpp#L1350-L1487
-[c07-away]: https://github.com/Javiops/Cambridge-Battlecode-2026/blob/a0c0fa2f222557483d665a9f7fce6f64a30b94ba/bots/study27-economy/src/main.cpp#L2821-L2887
-[c07-flags]: https://github.com/Javiops/Cambridge-Battlecode-2026/blob/a0c0fa2f222557483d665a9f7fce6f64a30b94ba/bots/study27-economy/src/params.h#L1-L82

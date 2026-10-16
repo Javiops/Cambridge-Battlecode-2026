@@ -1,0 +1,170 @@
+{
+  "schema": "combat-evidence-1",
+  "cutoff_utc": "2026-10-16T11:41:43.755965+00:00",
+  "canonical_streams": 2498,
+  "selected_source_ids": 3422,
+  "maps": 17,
+  "patches": {
+    "0.0.2": 730,
+    "0.0.1": 1768
+  },
+  "current_top4_h2h": {
+    "all_patches": 893,
+    "0.0.1": 801,
+    "0.0.2": 92
+  },
+  "engines": [
+    {
+      "file": "C:\\Users\\frans\\Documents\\Codex\\2026-10-14\\v\\work\\combat-research\\acquisition\\runtime\\v0_0_1-ctH8uuEb.wasm",
+      "bytes": 616952,
+      "sha256": "ce302dc6666ae43592f6936e572bc4baca92a345bff13ef7f986609ac666a0dc"
+    },
+    {
+      "file": "C:\\Users\\frans\\Documents\\Codex\\2026-10-14\\v\\work\\combat-research\\acquisition\\runtime\\v0_0_2-DFj19m76.wasm",
+      "bytes": 627412,
+      "sha256": "e123b59d9dea198762ab7a04db9b3cb6d06dfa991088e41c24750fc4cb88b947"
+    }
+  ],
+  "source_reference": {
+    "commit": "dee0fe7bf464d9f7b281af81f9650135fc541321",
+    "archive_sha256": "a21aa4920844734b7749a079d88b5e6005a03086e4f32b34338ec5a388b14cd8",
+    "files": [
+      {
+        "name": "de_rules.h",
+        "sha256": "3e50429c96765f325ea3804c2bbb5c13ce26a4119fc7b8694f58def60531221b",
+        "same_as_a0c0fa2": true
+      },
+      {
+        "name": "fight.h",
+        "sha256": "5fb073f23ce41a5f6d07fba3aa55a016582a46ac54c4f8316ee6c96ebe92a7bb",
+        "same_as_a0c0fa2": true
+      },
+      {
+        "name": "main.cpp",
+        "sha256": "9872dbba42d7c16e795b16b8c273d3e0a7cae1742d0fbd39e7614340849ba14e",
+        "same_as_a0c0fa2": true
+      },
+      {
+        "name": "opening_replace.h",
+        "sha256": "ca6680bae82b74b89fd0bb65573904246df8761d8b22e3ce8cb6bd93207207e7",
+        "same_as_a0c0fa2": true
+      },
+      {
+        "name": "params.h",
+        "sha256": "d99ef2cecff65f7851efb491bb4691d40ddeaaa6a96499e13eddec814fdc1372",
+        "same_as_a0c0fa2": true
+      },
+      {
+        "name": "utility.h",
+        "sha256": "5e48af1229195c4b356a617fd7323f49efe2af3a09728f6eda91ed4975c2b580",
+        "same_as_a0c0fa2": true
+      }
+    ]
+  },
+  "native_decode_report": {
+    "seconds": 535.6633083820343,
+    "jobs": [
+      {
+        "patch": "0.0.2",
+        "worker": 0,
+        "exit_code": 0
+      },
+      {
+        "patch": "0.0.2",
+        "worker": 1,
+        "exit_code": 0
+      },
+      {
+        "patch": "0.0.2",
+        "worker": 2,
+        "exit_code": 0
+      },
+      {
+        "patch": "0.0.2",
+        "worker": 4,
+        "exit_code": 0
+      },
+      {
+        "patch": "0.0.2",
+        "worker": 3,
+        "exit_code": 0
+      },
+      {
+        "patch": "0.0.2",
+        "worker": 5,
+        "exit_code": 0
+      },
+      {
+        "patch": "0.0.1",
+        "worker": 1,
+        "exit_code": 0
+      },
+      {
+        "patch": "0.0.1",
+        "worker": 0,
+        "exit_code": 0
+      },
+      {
+        "patch": "0.0.1",
+        "worker": 4,
+        "exit_code": 0
+      },
+      {
+        "patch": "0.0.1",
+        "worker": 3,
+        "exit_code": 0
+      },
+      {
+        "patch": "0.0.1",
+        "worker": 2,
+        "exit_code": 0
+      },
+      {
+        "patch": "0.0.1",
+        "worker": 5,
+        "exit_code": 0
+      }
+    ],
+    "completed": 2498,
+    "scanner_sha256": "3bc44793a7191fcda5618af2e1ced7288b15ff29a8f4a5e10495b8117a745bf6",
+    "manifest_sha256": "ee4221279ffda2308f23007992fbe3d361713af4728b598ed9c15826c991a46d"
+  },
+  "aggregate_report": {
+    "workers": 4,
+    "seconds": 204.45006227493286,
+    "streams": 2498,
+    "bodyWindowRows": 50886,
+    "teamWindowRows": 9992,
+    "errors": 0,
+    "summary_sha256": "d975253d16e9005ab7c058da3be36b4669b8557414554acca9f8a61b85ceff15"
+  },
+  "aggregate_errors": [],
+  "artifact": {
+    "path": "combat-evidence-2026-10-16.zip",
+    "bytes": 22406348,
+    "sha256": "5a2f5eae51d00a80919778ae2aadef1aed9fa144363d8e6a20aa7f2594b67b13",
+    "members": 279
+  },
+  "key_files": [
+    {
+      "path": "quant/current/publication-tables.json",
+      "sha256": "acdbb9ef03aed4bf480695a5fdde98a3b2fb79f730146d8764487c217afaa4d7"
+    },
+    {
+      "path": "quant/patch002/publication-tables.json",
+      "sha256": "2ee306b229cfcb2173b16b19e416032cc4748848b59c1b791b52dd04990591f0"
+    },
+    {
+      "path": "policy/native-combat-mechanics-002.json",
+      "sha256": "9340451b7626d7c878e00f230a1f1f855da41f8b01f41f6084eeb941d7fa2114"
+    },
+    {
+      "path": "policy/native-version-comparison.json",
+      "sha256": "0a764e0fd6bf82111c63b94f497acb70faa0a7f521ea32b6d21113b3adb05a3a"
+    },
+    {
+      "path": "episodes/index.json",
+      "sha256": "1da605bfecca75f3ebb935959371c48e298b067f44acddcdc9fc183f8c162f48"
+    }
+  ]
+}

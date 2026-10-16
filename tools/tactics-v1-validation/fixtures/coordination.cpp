@@ -3,6 +3,11 @@
 #include <cstdlib>
 #include <iostream>
 using namespace tactics;
+#if __has_include("camp_actions.h")
+static constexpr bool actual_camp_clock=true;
+#else
+static constexpr bool actual_camp_clock=false;
+#endif
 static int checks = 0;
 static void check(bool ok) {
     ++checks;
@@ -26,6 +31,7 @@ static CampClearMonster monster(int id, double hp, double strength, Pos pos={1,0
 static Spell spell(int kind, double amount, int recharge=6) {
     Spell s;s.kind=kind;s.amount=amount;s.range=5;s.camps=true;s.ready=true;
     s.cooldown=0;s.recharge=recharge;
+    if(kind==1)s.self=true;
     return s;
 }
 int main() {
@@ -33,8 +39,8 @@ int main() {
     std::vector<CampClearMonster> two{monster(10,10,10),monster(11,100,1)};
     auto r=rollout_camp_clear(std::vector{a},two,1);
     check(r.ready && r.complete && r.ticks==11);
-    check(r.damage_taken==std::vector<double>{21}); // Dead first member stops attacking.
-    check(r.remaining_hp==std::vector<double>{29});
+    check(r.damage_taken==std::vector<double>{actual_camp_clock?10.:21.}); // No extra pre-hit camp phase in actual clock.
+    check(r.remaining_hp==std::vector<double>{actual_camp_clock?40.:29.});
     auto b=body(2);
     r=rollout_camp_clear(std::vector{body(1),b},
                          std::vector{monster(10,10,0),monster(11,10,0),monster(12,10,0)},1);
@@ -56,7 +62,7 @@ int main() {
     check(rollout_camp_clear(std::vector{a},std::vector{monster(10,10,0)},1).ready);
     a=body(1,30,10,{3,0});b=body(2,100,10,{1,0});
     r=rollout_camp_clear(std::vector{a,b},std::vector{monster(10,100,10,{0,0},3)},1);
-    check(r.ready && r.ticks==5 && r.damage_taken[0]==0 && r.damage_taken[1]==50);
+    check(r.ready && r.ticks==5 && r.damage_taken[0]==0 && r.damage_taken[1]==(actual_camp_clock?40:50));
     a.actor.pos={-1,0};a.actor.hp=40;
     check(!rollout_camp_clear(std::vector{a,b},std::vector{monster(10,100,10,{0,0},3)},1).ready);
     a=body(1);a.enemy_reply=95;
@@ -94,6 +100,28 @@ int main() {
     small.ready=false;check(prefer_local_crew(small,large,1,10,false));
     check(stable_split_order(2,std::vector<int>{1,3}));
     check(!stable_split_order(1,std::vector<int>{2,3}));
+    r=rollout_camp_clear(std::vector{body(1)},std::vector{monster(10,10,0)},1,512,[]{return false;});
+    check(r.uncertain&&!r.ready&&!r.complete); // No admitted budget is unknown, not infeasible.
+    for(int allowance:{3,8,15,25}){
+        int left=allowance;
+        r=rollout_camp_clear(std::vector{body(1)},std::vector{monster(10,1000,0)},1,512,[&]{return --left>=0;});
+        check(r.uncertain&&!r.ready&&!r.complete&&left<0);
+    }
+    const auto unbounded=rollout_camp_clear(std::vector{body(1)},std::vector{monster(10,30,0)},1);
+    r=rollout_camp_clear(std::vector{body(1)},std::vector{monster(10,30,0)},1,512,[]{return true;});
+    check(r.ready&&r.ticks==unbounded.ticks&&r.remaining_hp==unbounded.remaining_hp);
+    a=body(1);a.actor.can_attack=false;a.actor.pos={3,0};a.actor.spells[0]=spell(3,20);
+    a.actor.spells[0].range=2;a.actor.spells[0].radius=2;a.actor.spells[0].ground=true;
+    check(!coordination_detail::useful_now(a.actor,std::vector{monster(10,100,0,{0,0})}));
+    a.actor.pos={2,0};check(coordination_detail::useful_now(a.actor,std::vector{monster(10,100,0,{0,0})}));
+    a.actor.spells[0].exclusive=true;
+    check(!coordination_detail::useful_now(a.actor,std::vector{monster(10,100,0,{0,0})},false));
+#if __has_include("camp_actions.h")
+    Spell ground;ground.kind=3;ground.ground=true;ground.amount=100;
+    check(coordination_detail::damage_spell(ground));
+    ground.ground=false;ground.kind=2;
+    check(!coordination_detail::damage_spell(ground));
+#endif
     std::cout << checks << " coordination checks passed\n";
 }
 

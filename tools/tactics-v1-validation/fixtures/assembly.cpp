@@ -3,15 +3,122 @@
 #include <cstdio>
 #include <cstdlib>
 using namespace tactics;
+template<class F, class Check> void observed_group_contract(Check check) {
+    if constexpr (requires(F f) { f.fresh_observed; }) {
+        F f; f.group=2; f.self_id=0; f.now=20; f.horizon=500;
+        f.fresh_observed=f.safe_stage=f.hypothesis_affordable=f.priced_crew=true;
+        f.alternative_known=true; f.alternative_rate=.1; f.reward_once=90; f.cycle_ticks=20;
+        std::array<AssemblyMember,3> crew{{
+            {0,1,true,true,true,true,false,true,true,.1},
+            {1,2,true,true,true,true,false,true,true,.1},
+            {2,3,true,true,true,true,false,true,true,.1}}};
+        const auto quote=price_assembly(f,crew);
+        check(quote.known,"observed multi-member group can price three-body staging without sleeping label");
+        check(!quote.clear_ready,"observed awake quote grants no actual current attack permission");
+        auto changed=f;changed.hypothesis_affordable=false;
+        check(!price_assembly(changed,crew).known,"awake observation does not bypass movement/clear affordability");
+        auto bodies=crew;bodies[2].arrival=4;
+        check(!price_assembly(f,bodies).known,"essential third participant misses bounded arrival");
+        bodies=crew;bodies[2].route_known=false;
+        check(!price_assembly(f,bodies).known,"third-body headcount cannot substitute known useful route");
+        bodies=crew;bodies[2].alternative_known=false;
+        check(!price_assembly(f,bodies).known,"new third helper's unknown task is not free zero");
+        changed=f;changed.fresh_observed=false;
+        check(!price_assembly(changed,crew).known,"partial/unobserved group cannot receive an entry certificate");
+        check(price_assembly(f,std::span(crew.data(),1)).known,"certified observed solo approach does not require fictional partner");
+    }
+}
 int main() {
     int checks = 0;
     auto check = [&](bool ok, const char *name) {
         ++checks;
         if (!ok) { std::fprintf(stderr, "FAIL %s\n", name); std::exit(1); }
     };
+    observed_group_contract<AssemblyFacts>(check);
+    AssemblyPathHint hint;
+    hint.actor=7;hint.origin=hint.start={1,1};hint.goal={5,5};hint.range=2;hint.speed=1;hint.kind=0;hint.seen=10;hint.length=3;
+    hint.route[0]={1,1};hint.route[1]={2,2};hint.route[2]={3,3};
+    check(assembly_hint_matches(hint,7,{1,1},{5,5},{1,1},2,1,0,42),"geometry lifetime is bounded and inclusive");
+    check(!assembly_hint_matches(hint,7,{1,1},{5,5},{1,1},2,1,0,43),"expired route cannot promise current movement");
+    check(!assembly_hint_matches(hint,7,{2,1},{5,5},{1,1},2,1,0,12),"changed actual body position invalidates geometry key");
+    check(!assembly_hint_matches(hint,7,{1,1},{5,5},{1,1},3,1,0,12),"changed true action range requires a different stance");
+    check(!assembly_hint_matches(hint,7,{1,1},{5,5},{1,1},2,2,0,12),"changed actual speed invalidates geometry key");
+    check(!assembly_hint_matches(hint,7,{1,1},{5,5},{1,1},2,1,1,12),"exit path cannot be reused as entry");
+    check(assembly_hint_legal(hint,[](Pos){return true;}),"validated unit-step cached path is reusable geometry");
+    check(!assembly_hint_legal(hint,[](Pos p){return p!=Pos{2,2};}),"new current wall occupancy reservation or missing vision vetoes path");
+    auto broken=hint;broken.route[1]={8,8};
+    check(!assembly_hint_legal(broken,[](Pos){return true;}),"cached path cannot skip legal adjacency");
+    broken=hint;broken.route[0]={0,0};
+    check(!assembly_hint_legal(broken,[](Pos){return true;}),"cached route start must match actual keyed start");
+    {
+        std::array<Camp,3> threats;
+        for(auto &c:threats){c.hp=20;c.strength=5;c.range=3;}
+        threats[0].pos={24,24};threats[1].pos={24,25};threats[2].pos={23,24};
+        Pos at{22,25};int steps=0;
+        auto home=[](Pos p){return distance(p,{29,29});};
+        const auto outside=[&](Pos p){return std::all_of(threats.begin(),threats.end(),[&](const Camp&c){return distance(p,c.pos)>c.range;});};
+        while(!outside(at)&&steps<3){auto next=assembly_exit_step(at,threats,[](Pos){return true;},home);if(!next)break;at=*next;++steps;}
+        check(outside(at)&&steps<=3,"far-side helper exits actual camp pressure even when home gradient crosses camp");
+        check(!assembly_exit_step(Pos{22,25},threats,[](Pos){return false;},home),"no exit through walls missing vision occupancy or reservation");
+        auto next=assembly_exit_step(Pos{22,25},threats,[](Pos p){return p.x!=21;},home);
+        check(next&&next->x!=21,"currently reserved preferred exit uses another actual legal reducing step");
+        threats[0].hp=threats[1].hp=threats[2].hp=0;
+        check(!assembly_exit_step(Pos{22,25},threats,[](Pos){return true;},home),"cleared camps do not invent exit movement");
+    }
+    {
+        std::array<AssemblyPathHint,12> hints;
+        for(unsigned k=0;k<hints.size();++k){hints[k].borrowed_generation=9;hints[k].touched=k;}
+        check(assembly_unborrowed_slot(hints,9)<0,"twelve active spans cannot be silently evicted");
+        hints[7].borrowed_generation=8;hints[10].borrowed_generation=8;
+        check(assembly_unborrowed_slot(hints,9)==7,"deterministic eviction considers only unborrowed geometry");
+    }
+    {
+        Actor enemy;enemy.alive=true;enemy.pos={0,0};enemy.range=1;enemy.move_speed=1;
+        for(auto &spell:enemy.spells){spell.kind=6;spell.range=3;spell.cooldown=0;spell.recharge=2;}
+        std::array<Pos,1> near{{{20,0}}},far{{{32,0}}};
+        check(!assembly_quiet_path(near,enemy,6),"two distinct future dash slots can threaten a real approach tile");
+        check(assembly_quiet_path(far,enemy,6),"bounded full-window contact preserves a genuinely distant route");
+        for(auto &spell:enemy.spells)spell.cooldown=7;
+        check(assembly_quiet_path(near,enemy,6),"known dash cooldown beyond actual approach window is not invented ready");
+        check(!assembly_quiet_path(near,enemy,9),"missing sighting age enlarges the complete approach contact window");
+        std::array<Pos,3> route{{{2,2},{3,3},{4,4}}};
+        std::array<Pos,2> stages{{{2,2},{3,3}}};
+        check(!assembly_exit_unreserved(route,{2,2},stages),"earlier body's exit cannot cross later helper's future stage");
+        stages[1]={5,5};check(assembly_exit_unreserved(route,{2,2},stages),"known exit outside all other future stage slots remains valid");
+        check(!assembly_exit_unreserved({},Pos{2,2},stages),"missing abort path is not a certified exit");
+    }
+    {
+        Mission clear;clear.phase=Phase::Clear;clear.group=1;clear.assembly_count=3;
+        clear.expiry=6;clear.last_camp_hp=1000;clear.last_progress=0;
+        bool leased=true;
+        for(int now=1;now<=17;++now){renew_crew_clear_lease(clear,now,now,true,1000-10*now);leased&=now<clear.expiry;}
+        check(leased&&clear.last_progress==17&&clear.expiry==23,"seventeen-tick real clear retains finite renewed lease before expiry gate");
+        auto still=clear;still.expiry=6;still.last_progress=0;still.last_camp_hp=1000;
+        for(int now=1;now<=17;++now)renew_crew_clear_lease(still,now,now,true,1000);
+        check(still.expiry==6&&still.last_progress==0,"movement forecasts claims and unchanged HP cannot renew clear indefinitely");
+        auto test=still;check(!renew_crew_clear_lease(test,6,5,true,900)&&test.expiry==6,"stale observed damage cannot resurrect expired clear lease");
+        test=still;check(!renew_crew_clear_lease(test,6,6,false,900),"partial missing group HP is not real clear progress");
+        test=still;test.phase=Phase::Observe;check(!renew_crew_clear_lease(test,6,6,true,900),"prospective assembly cannot renew from a quote");
+        test=still;test.last_camp_hp=-1;check(!renew_crew_clear_lease(test,6,6,true,900),"first unobserved HP reference is not accepted work");
+        test=still;test.assembly_count=0;check(!renew_crew_clear_lease(test,6,6,true,900),"unnamed bodies cannot create a paid crew lease");
+        test=still;check(renew_crew_clear_lease(test,6,6,true,900)&&test.expiry==12,"actual observed progress at first expired owner renews before gate");
+    }
+    {
+        Actor actor;actor.id=1;actor.type=2;actor.alive=true;actor.hp=actor.max_hp=700;actor.strength=40;actor.range=3;actor.pos={3,4};
+        Camp camp;camp.id=8;camp.pos={5,5};camp.hp=camp.max_hp=500;camp.strength=20;
+        std::array<const Actor*,1> one{{&actor}};std::array<Camp,1> target{{camp}};
+        const auto base=assembly_group_signature(2,one,target);
+        check(base==assembly_group_signature(2,one,target),"unchanged single-body failed signature remains excluded without round-only retry");
+        actor.hp+=1;check(base!=assembly_group_signature(2,one,target),"single-body actual healing invalidates old failed signature");actor.hp-=1;
+        actor.strength+=1;check(base!=assembly_group_signature(2,one,target),"single-body actual upgrade invalidates old failed signature");actor.strength-=1;
+        actor.pos.x+=1;check(base!=assembly_group_signature(2,one,target),"single-body actual reposition invalidates old failed signature");actor.pos.x-=1;
+        actor.can_attack=true;check(base!=assembly_group_signature(2,one,target),"real current permission change is part of single-body proof");actor.can_attack=false;
+        target[0].hp-=1;check(base!=assembly_group_signature(2,one,target),"actual monster damage invalidates old single-body failure");target[0].hp+=1;
+        actor.spells[0].cooldown=2;check(base!=assembly_group_signature(2,one,target),"known actual cooldown changes alter failed opportunity");
+    }
     AssemblyFacts f;
     f.group=2; f.self_id=2; f.now=20; f.horizon=500;
-    f.fresh_sleeping=f.safe_stage=f.hypothesis_affordable=f.minimal_crew=true;
+    f.fresh_sleeping=f.safe_stage=f.hypothesis_affordable=f.priced_crew=true;
     f.alternative_known=true; f.alternative_rate=.36;
     f.reward_once=80; f.cycle_ticks=35;
     AssemblyMember leader{1,0,true,true,true,true,true,true,true,.20};
@@ -54,8 +161,8 @@ int main() {
     check(!price_assembly(changed,crew).known,"actual ready crew uses real clear policy");
     changed=f; changed.hypothesis_affordable=false;
     check(!price_assembly(changed,crew).known,"unaffordable hypothetical pair declines");
-    changed=f; changed.minimal_crew=false;
-    check(!price_assembly(changed,crew).known,"unneeded surplus member never forced into group");
+    changed=f; changed.priced_crew=false;
+    check(!price_assembly(changed,crew).known,"an unpriced crew cannot manufacture a profitable entry");
     changed=f; changed.existing_group=2; changed.existing_start=14; changed.last_progress=20;
     check(!price_assembly(changed,crew).known,"absolute expiry cannot renew via motion");
     changed.existing_start=18; changed.last_progress=17;

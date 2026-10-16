@@ -1,4 +1,7 @@
 #include "types.h"
+#if __has_include("camp_actions.h")
+#include "camp_actions.h"
+#endif
 #include <cstdlib>
 #include <iostream>
 #include <string_view>
@@ -20,7 +23,14 @@ inline const ItemInfo &shop_info(int raw){return catalog[raw];}
 inline ShopInventory shop_inventory(const ShopInventory&i){return i;}
 struct MockMe {ShopInventory inventory;ShopInventory item_count()const{return inventory;}};
 struct MockGeo {std::vector<Group>groups=std::vector<Group>(2);};
-struct World {Actor self;MockMe me;MockGeo geo;Memory memory;int gold=0,round=20;};
+struct World {
+    Actor self;MockMe me;MockGeo geo;Memory memory;int gold=0,round=20;
+    std::vector<Actor> allies,enemies;
+    std::array<Spell,2> spells{};
+    double pressure=0;
+    double exposure(Pos)const{return pressure;}
+    bool in_spawn(Pos)const{return true;}
+};
 // EXACT_SHOP_FUNCTIONS
 static int checks=0;
 static void check(bool ok){++checks;if(!ok){std::cerr<<"FAIL shopping-investment "<<checks<<'\n';std::exit(1);}}
@@ -94,5 +104,33 @@ int main(){
     shopping_after_action(w,action,true,state);check(w.memory.mission.group==0&&state.failed_round==20&&!w.memory.upgrade_gem_unlock);
     w=World{};state=plan();state.investment_mission.group=1;state.investment_origin.group=0;w.memory.upgrade_gem_unlock=true;
     shopping_after_action(w,action,false,state);check(w.memory.mission.group==0&&state.investment_item<0&&!w.memory.upgrade_gem_unlock);
+#if __has_include("camp_actions.h")
+    a=Actor{};a.type=0;a.strength=10;a.hp=a.max_hp=1000;a.move_speed=1;
+    a.spells[0].kind=3;a.spells[0].ground=true;a.spells[0].amount=80;
+    a.spells[0].scale=1;a.spells[0].recharge=8;
+    UpgradeDelta ground_focus{};ground_focus.focus=80;
+    g.gems=24;g.initial_hp=1000;g.initial_strength=0;g.respawn=100;
+    auto ground_return=named_return_payoff(a,g,ground_focus,2000,1,5,1.25);
+    check(ground_return.known&&ground_return.worthwhile&&ground_return.saved_turns>0);
+    a.spells[0].ground=false;a.spells[0].kind=2;
+    check(!named_return_payoff(a,g,ground_focus,2000,1,5,1.25).worthwhile);
+    a.spells={};a.type=2;a.strength=100;a.monster=true;g.initial_hp=1100;
+    UpgradeDelta small_strength{};small_strength.strength=10;
+    check(named_return_payoff(a,g,small_strength,2000,1,5,1.25).saved_turns==0);
+    UpgradeDelta repeated_passive{};repeated_passive.family=ShopFamily::Monster;
+    repeated_passive.first_passive=true;g.initial_hp=1000;
+    check(named_return_payoff(a,g,repeated_passive,2000,1,5,1.25).saved_turns==0);
+    w=World{};w.self.strength=10;w.self.hp=w.self.max_hp=1000;
+    w.spells[0].kind=3;w.spells[0].ground=true;w.spells[0].amount=80;
+    w.spells[0].scale=1;w.spells[0].recharge=8;
+    w.geo.groups[0]=g;w.geo.groups[0].initial_hp=1000;
+    Mission farm;farm.group=0;
+    check(upgrade_mission_value(w,farm,ground_focus,ShoppingState{})>=384);
+    w.spells[0].ground=false;w.spells[0].kind=2;
+    check(upgrade_mission_value(w,farm,ground_focus,ShoppingState{})==0);
+    w.self.strength=100;w.self.monster=true;w.spells={};
+    w.geo.groups[0].initial_hp=1100;
+    check(upgrade_mission_value(w,farm,small_strength,ShoppingState{})<10);
+#endif
     std::cout<<checks<<" shopping-investment checks passed\n";
 }

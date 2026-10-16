@@ -11,8 +11,11 @@ struct Geometry {
     SpawnMask own_spawn;
     int route_requests = 0;
     std::map<std::pair<int,int>,int> distances;
-    int estimate(Pos,Pos p) const { auto it=distances.find({p.x,p.y}); return it==distances.end()?unreachable:it->second; }
     void ensure_route(Pos) { ++route_requests; }
+    int estimate(Pos, Pos target) const {
+        auto it=distances.find({target.x,target.y});
+        return it==distances.end()?unreachable:it->second;
+    }
 };
 struct World {
     Actor self;
@@ -27,7 +30,7 @@ struct World {
         return std::find(geo.own_spawn.points.begin(),geo.own_spawn.points.end(),p)!=geo.own_spawn.points.end();
     }
     int home_distance(Pos p) const { return p==self.pos ? home : after; }
-    int walk(Pos,Pos target) { return geo.estimate(self.pos,target); }
+    int walk(Pos from,Pos target) { return geo.estimate(from,target); }
     bool free(Pos p) const { return std::find(occupied.begin(),occupied.end(),p)==occupied.end(); }
     std::optional<Pos> toward(Pos p,int,bool) { requested_target=p;return step.x>=0?std::optional(step):std::nullopt; }
 };
@@ -73,7 +76,7 @@ int main() {
     w=example(3);w.geo.own_spawn.points={{4,5},{7,5}};w.geo.distances[{4,5}]=20;w.geo.distances[{7,5}]=3;
     w.step={6,5};p=recovery(w,m);
     check(p&&p->action.kind==Kind::Move&&p->mission.target==Pos{7,5},"spawn destination uses geodesic path rather than nearer center through wall");
-    check(w.geo.route_requests==0,"spawn recovery reuses immutable home field without rebuilding a source field");
+    check(w.geo.route_requests==0,"spawn endpoint scoring reuses existing distance fields without a costly per-turn source field");
     w=example(2);w.geo.own_spawn.points={{4,5},{7,5}};w.geo.distances[{4,5}]=1;w.geo.distances[{7,5}]=2;
     w.occupied={{4,5}};w.step={6,5};p=recovery(w,m);
     check(p&&p->mission.target==Pos{7,5},"currently occupied closest spawn endpoint skipped");
@@ -86,10 +89,5 @@ int main() {
     w=example();w.self.pos={4,5};p=recovery(w,m);
     check(p&&p->action.kind==Kind::None,"on-spawn needed heal remains a hold");
     w.self.hp=1000;p=recovery(w,m);check(!p,"ready spawn body does not keep recovering");
-    m={};w=example(9);w.self.hp=w.self.max_hp;
-    p=recovery(w,m);check(!p,"healthy body with no certified investment does not return");
-    m.upgrade_gem_unlock=true;
-    p=recovery(w,m);check(p&&p->mission.phase==Phase::Recover,
-        "certified completed-gem unlock permits elective return without invented saved turns");
     std::printf("%d recovery checks passed\n",checks);
 }

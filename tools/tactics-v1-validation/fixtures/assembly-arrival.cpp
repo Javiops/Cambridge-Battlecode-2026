@@ -107,5 +107,17 @@ int main(){
     Camp changed_camp=monster;changed_camp.hp-=.01;check(differs(a,changed_camp),"subinteger camp HP breakpoint invalidates old failure");
     changed_camp=monster;changed_camp.strength+=.01;check(differs(a,changed_camp),"camp pressure changes invalidate old certificate");
     check(assembly_detail::fingerprint(1,a,b,monster,true)==hash,"unchanged actual inputs keep stable identity");
+    reset();a.pos={2,4};a.range=3;a.move_speed=1;Pos anchor{6,4};
+    std::vector<std::uint16_t> ring(w.geo.width*w.geo.height,unreachable);
+    for(int x=0;x<=8;++x)ring[w.geo.index({x,4})]=std::abs(x-6);
+    w.geo.goal_cache[{w.geo.index(anchor),0}]=ring;
+    std::array<Camp,2> covered;covered[0].pos=anchor;covered[1].pos={8,4};for(auto&c:covered)c.hp=100;
+    auto ordinary=assembly_detail::contribution_arrival(w,a,anchor);
+    auto coverage=assembly_detail::contribution_arrival(w,a,anchor,{},covered);
+    check(ordinary.known&&ordinary.at==Pos{3,4}&&coverage.known&&coverage.at==Pos{5,4},"full basic coverage continues past anchor-only nearest ring to actual all-member tile");
+    check(coverage.turns==3&&coverage.route_length==4,"all-target stage prices actual additional walking");
+    set(w.occupied_bytes,{4,4},true);
+    check(!assembly_detail::contribution_arrival(w,a,anchor,{},covered).known,"all-target stage never invents passage through occupied corridor");set(w.occupied_bytes,{4,4},false);
+    covered[1].pos={8,0};check(!assembly_detail::contribution_arrival(w,a,anchor,{},covered).known,"unreachable basic intersection remains unknown rather than borrowing spell range");
     std::printf("%d assembly-arrival checks passed\n",checks);
 }

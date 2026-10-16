@@ -10,7 +10,7 @@ static void drain(unsigned target){volatile unsigned n=7;while(bc::fuel_remainin
 int main(){Geometry geo;Memory m;std::unique_ptr<World>world;int stage=0,elk=-1,gold=-1,helper=-1;Mission pending;
  while(true){
   if(bc::is_draft()){bc::draft::pick(bc::champion_draft::cassi_and_issac);bc::end_turn();continue;}
-  if(stage>=8){bc::end_turn();continue;}geo.initialize();if(!geo.initialized){bc::end_turn();continue;}
+  if(stage>=10){bc::end_turn();continue;}geo.initialize();if(!geo.initialized){bc::end_turn();continue;}
   if(!world){world=std::make_unique<World>(geo,m);for(unsigned i=0;i<geo.groups.size();++i)for(const auto&s:geo.groups[i].spawns){if(s.type==1&&geo.groups[i].spawns.size()==1&&elk<0)elk=i;if(s.type==3&&gold<0)gold=i;}for(const auto&c:world->ally_handles)if(identity(c)!=identity(world->me))helper=identity(c);check(elk>=0&&gold>=0&&helper>=0,"actual typed groups and two public allied handles");world->self.id=identity(world->me);}
   World&w=*world;const Pos target=geo.groups[elk].spawns[0].pos,other=geo.groups[gold].spawns[0].pos;
   if(!geo.goal_cache.contains({geo.index(target),0})){geo.goal_field(target,0);bc::end_turn();continue;}
@@ -73,13 +73,31 @@ int main(){Geometry geo;Memory m;std::unique_ptr<World>world;int stage=0,elk=-1,
    g.gems=0;w.self.gems=0;w.geo.monolith_only=true;drain(65000);
    check(!local_assembly_candidate(w,m,elk,.001),"unpriced gold-only monolith fallback cannot request scored crew");
    std::printf("NATIVE_ASSEMBLY_BUDGET_CASE_PASS gold-only-declines %d\n",w.self.id);
+  }else if(stage==8||stage==9){
+   occupy(w.self.pos,false);w.self.pos={target.x-1,target.y};occupy(w.self.pos,true);
+   w.self.hp=w.self.max_hp=900;w.self.strength=70;w.allies[0]=w.self;
+   w.allies[1].type=8;w.allies[1].range=3;w.allies[1].pos={target.x-2,target.y-1};w.allies[1].hp=w.allies[1].max_hp=700;w.allies[1].strength=45;
+   w.allies[1].spells[1]=w.self.spells[0];
+   w.allies[1].spells[0].kind=5;w.allies[1].spells[0].self=false;w.allies[1].spells[0].allies=true;w.allies[1].spells[0].amount=315;w.allies[1].spells[0].range=4;
+   g.initial_hp=2400;v.camps[0].hp=v.camps[0].max_hp=2400;
+   if(stage==9){
+    m.mission=pending;m.mission.expiry=w.round+3;m.mission.last_progress=w.round;
+    drain(65000);const auto before=bc::fuel_remaining();auto chosen=choose_mission(w,m);const auto after=bc::fuel_remaining();
+    check((!chosen||chosen->mission.group!=elk||chosen->action.kind!=Kind::BasicCamp)&&after>12000&&w.round==int(bc::round_number()),"65k committed long coordinator may decline unknown without spending mutation reserve");
+    std::printf("NATIVE_ASSEMBLY_BUDGET_CASE_PASS pending-long-coordinator %d %u %u phase=%d kind=%d\n",w.self.id,unsigned(before),unsigned(after),chosen?int(chosen->mission.phase):-1,chosen?int(chosen->action.kind):-1);
+    ++stage;bc::end_turn();continue;
+   }
+   drain(65000);const auto before=bc::fuel_remaining();auto ready=propose_local_assignment(w,elk);const auto after=bc::fuel_remaining();
+   std::printf("NATIVE_ASSEMBLY_BUDGET_DETAIL long_ready=%d uncertain=%d before=%u after=%u\n",ready.ready,ready.uncertain,unsigned(before),unsigned(after));
+   check(!ready.ready&&ready.uncertain&&after>32000&&w.round==int(bc::round_number()),"long forecast stops unknown before consuming useful action reserve");
+   std::printf("NATIVE_ASSEMBLY_BUDGET_CASE_PASS long-rollout-budget %d %u %u\n",w.self.id,unsigned(before),unsigned(after));
   }else{
    w.self.spells[0].kind=7;w.self.spells[0].amount=100;w.spells=w.self.spells;w.allies[0]=w.self;drain(65000);
    check(!local_assembly_candidate(w,m,elk,.001),"unsupported defensive kit does not call unfunded generic solo rollout");
    check(w.round==int(bc::round_number())&&bc::fuel_remaining()>24000,"unsupported case preserves owner budget as unknown");
    std::printf("NATIVE_ASSEMBLY_BUDGET_CASE_PASS unsupported-declines %d\n",w.self.id);std::printf("NATIVE_ASSEMBLY_BUDGET_PASS %d\n",w.self.id);
   }
-  } catch(const std::exception&){stage=8;bc::end_turn();continue;}
+  } catch(const std::exception&){stage=10;bc::end_turn();continue;}
   ++stage;bc::end_turn();
  }
 }

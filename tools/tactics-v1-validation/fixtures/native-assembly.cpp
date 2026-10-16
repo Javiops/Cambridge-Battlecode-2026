@@ -45,26 +45,36 @@ int main(){Geometry g;Memory m;std::unique_ptr<World> world;int elk=-1,gold=-1,o
   // Complete immutable public fields before a fresh native observation/planner.
   bool fields=true;for(const Pos p:{e,g.groups[other].spawns.front().pos})if(!g.goal_cache.contains({g.index(p),0})){g.goal_field(p,0);fields=false;break;}if(!fields){bc::end_turn();continue;}
   if(stage==2){
-   const auto other_job=evaluate_farm(w,other);m.mission={};m.mission.group=other;m.mission.phase=Phase::Travel;m.mission.target=g.groups[other].spawns.front().pos;m.mission.rate=other_job.rate;m.mission.start=w.round;m.mission.expiry=w.round+10;m.mission.last_progress=w.round;
+   const auto other_job=evaluate_farm(w,other);m.mission={};m.mission.group=other;m.mission.phase=other_job.ready?Phase::Travel:Phase::Observe;m.mission.target=g.groups[other].spawns.front().pos;m.mission.rate=other_job.rate;m.mission.start=w.round;m.mission.expiry=w.round+10;m.mission.last_progress=w.round;
    std::printf("NATIVE_ASSEMBLY_DETAIL actual-alternative rate=%.5f ready=%d fuel=%u\n",other_job.rate,other_job.ready,unsigned(bc::fuel_remaining()));
    stage=20;bc::end_turn();continue;
   }
   if(stage==20){
-   if(bc::fuel_remaining()>=65000){auto q=local_assembly_candidate(w,m,elk,std::max(.001,m.mission.rate));if(q){
-    producer=true;std::printf("NATIVE_ASSEMBLY_CASE_PASS physical-priced-producer %d %.5f\n",w.self.id,q->rate);
-    Mission job;job.phase=Phase::Assemble;job.group=q->group;job.target=q->target;job.start=q->start;job.expiry=q->expiry;job.last_progress=w.round;job.last_pos=w.self.pos;job.rate=q->rate;job.assembly_pending=true;job.assembly_signature=q->signature;job.assembly_anchor=q->anchor_id;job.assembly_helper=q->helper_id;job.assembly_route=q->route;job.assembly_route_length=q->route_length;
-    if(auto p=assembly_step(w,job)){act(w,moving(*p,"fixture-actual-priced-rally"));m.mission=job;std::printf("NATIVE_ASSEMBLY_CASE_PASS actual-priced-rally-move %d %d %d\n",w.self.id,p->x,p->y);}
-   }}
-   // A declined price is recorded, never converted into fictional acceptance.
+   const auto before=bc::fuel_remaining();auto chosen=choose_mission(w,m);const auto after=bc::fuel_remaining();
+   std::printf("NATIVE_ASSEMBLY_DETAIL producer phase=%d group=%d pending=%d kind=%d fuel=%u,%u\n",chosen?int(chosen->mission.phase):-1,chosen?chosen->mission.group:-1,chosen?chosen->mission.assembly_pending:-1,chosen?int(chosen->action.kind):-1,unsigned(before),unsigned(after));
+   require(chosen&&chosen->mission.group==elk&&chosen->mission.assembly_pending&&chosen->action.kind==Kind::Move,"actual coordinator resolves priced observed alternative and proposes rally");
+   producer=true;std::printf("NATIVE_ASSEMBLY_CASE_PASS physical-priced-producer %d %.5f\n",w.self.id,chosen->mission.rate);
+   act(w,chosen->action);m.mission=chosen->mission;std::printf("NATIVE_ASSEMBLY_CASE_PASS actual-priced-rally-move %d %d %d\n",w.self.id,chosen->action.at.x,chosen->action.at.y);
    stage=3;bc::end_turn();continue;
   }
   if(stage==3){if(distance(w.self.pos,e)>w.self.range){walk(w,e,w.self.range);bc::end_turn();continue;}stage=4;}
   if(stage==4){
+#ifdef TACTICS_FIXTURE_BUDGET_LIMITED
+   // Explicit local-policy negative: these real bodies have no committed lease.
+   // World, kit, HP, positions, claims and every executed action remain native.
+   m.mission={};
    const auto before=bc::fuel_remaining();auto ready=propose_local_assignment(w,elk);const auto after=bc::fuel_remaining();
-   if(!ready.ready||!ready.self_selected||!ready.locally_accepted){std::printf("NATIVE_ASSEMBLY_WAIT ready=%d uncertain=%d fuel=%u,%u round=%d\n",ready.ready,ready.uncertain,unsigned(before),unsigned(after),w.round);bc::end_turn();continue;}
+   require(!ready.ready&&ready.uncertain&&after>32000&&w.round==int(bc::round_number()),"long actual crew quote preserves budget as unknown");
+   std::printf("NATIVE_ASSEMBLY_CASE_PASS actual-budget-limited %d %u %u\n",w.self.id,unsigned(before),unsigned(after));
+   std::printf("NATIVE_ASSEMBLY_PASS %d producer=%d budget_limited=1\n",w.self.id,producer);stage=99;bc::end_turn();continue;
+#else
+   const auto before=bc::fuel_remaining();auto chosen=choose_mission(w,m);const auto after=bc::fuel_remaining();
+   std::printf("NATIVE_ASSEMBLY_DETAIL consumer phase=%d group=%d pending=%d kind=%d fuel=%u,%u\n",chosen?int(chosen->mission.phase):-1,chosen?chosen->mission.group:-1,chosen?chosen->mission.assembly_pending:-1,chosen?int(chosen->action.kind):-1,unsigned(before),unsigned(after));
+   require(chosen&&chosen->mission.group==elk&&!chosen->mission.assembly_pending&&chosen->mission.phase==Phase::Clear&&chosen->action.kind==Kind::BasicCamp,"actual coordinator converts fresh real crew to first basic");
    std::printf("NATIVE_ASSEMBLY_CASE_PASS actual-claimed-pair-ready %d %u %u\n",w.self.id,unsigned(before),unsigned(after));
-   require(w.groups[elk].fresh(w.round)&&!w.groups[elk].camps.empty(),"fresh personally observed monster");const auto&c=w.groups[elk].camps.front();hp_before=c.hp;Action a;a.kind=Kind::BasicCamp;a.target=c.id;a.reason="fixture-production-ready-first-hit";act(w,a);first_hit=true;stage=5;
+   require(w.groups[elk].fresh(w.round)&&!w.groups[elk].camps.empty(),"fresh personally observed monster");const auto&c=w.groups[elk].camps.front();hp_before=c.hp;act(w,chosen->action);m.mission=chosen->mission;first_hit=true;stage=5;
    std::printf("NATIVE_ASSEMBLY_CASE_PASS actual-first-hit %d %.0f\n",w.self.id,hp_before);bc::end_turn();continue;
+#endif
   }
   if(stage==5){
    if(w.groups[elk].fresh(w.round)&&w.groups[elk].state==Lifecycle::Reward){stage=6;std::printf("NATIVE_ASSEMBLY_CASE_PASS actual-clear %d\n",w.self.id);}

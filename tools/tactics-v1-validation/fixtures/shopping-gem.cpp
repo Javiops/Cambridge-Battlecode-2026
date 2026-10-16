@@ -106,9 +106,14 @@ int main(){
 {Actor a;a.alive=true;a.type=9;a.hp=900;a.max_hp=900;a.strength=40;a.focus=100;UpgradeDelta d;d.health=500;d.strength=0;d.focus=0;d.family=ShopFamily(5);d.first_passive=true;auto n=project_bundle_actor(a,d);check(std::abs(n.max_hp-1400)<.003);check(std::abs(n.strength-40)<.003);check(std::abs(n.focus-100)<.003);check(n.hp==n.max_hp);}
 
  Actor a;a.alive=true;a.hp=a.max_hp=1000;a.strength=50;a.range=1;a.pos={1,1};a.can_move=a.can_attack=a.can_cast=true;
- Camp camp;camp.hp=500;camp.strength=80;camp.pos={2,1};camp.range=1;
+ Camp camp;camp.hp=500;camp.strength=85;camp.pos={2,1};camp.range=1;
  GemReturnLegs legs{0,5,1,4,4,6,3};UpgradeDelta jungle;jungle.first_passive=true;jungle.family=ShopFamily::Jungle;
  auto q=completed_gem_return(a,jungle,camp,a.pos,legs,1000,1.25);check(q.known&&q.unlock&&q.worthwhile&&q.next_ticks>q.absence&&q.saved_turns==0);
+ // Correct current-phase accounting makes the old80STR boundary already
+ // affordable: ten attacks incur nine replies. Do not force its old unlock.
+ auto old_boundary=camp;old_boundary.strength=80;
+ check(certify_solo_clear(a,old_boundary,a.pos,1,false).feasible);
+ check(!completed_gem_return(a,jungle,old_boundary,a.pos,legs,1000,1.25).unlock);
  check(!completed_gem_return(a,UpgradeDelta{},camp,a.pos,legs,1000,1.25).worthwhile);
  check(!completed_gem_return(a,jungle,camp,a.pos,legs,int(q.next_ticks),1.25).known);
  auto bad=legs;bad.spawn_walk=unreachable;check(!completed_gem_return(a,jungle,camp,a.pos,bad,1000,1.25).known);

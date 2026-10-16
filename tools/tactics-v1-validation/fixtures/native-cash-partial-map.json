@@ -1,0 +1,17 @@
+{
+  "scope": "Single approved refined native starting prelude: actual sixGold35 receipts=210, actual4JungleHealth+3PowerHealth purchases=210, real emptywallet. Then unchangedfrozen20 Bot::turn independently chooses finiteGold35\u2192Jungle5th\u2192Elk36\u2192actualbank. No stats/income/goal overrides afterprelude. Original4-shard preview fails honestly; refined7-shard pureknownpreview beforeinfeasible andafterfeasible.",
+  "map_sha256": "9c5d0b697f28f8e542d3f8a2eb5ab14a91a24d260c974f66c192b90cab515243",
+  "fixture_sha256": "4d667e6a4af0f681de193ce61b57702e8f38fc2b100bb2bfca4ec66cc636150f",
+  "publickit_expected": {
+    "beforeHP": 1900,
+    "beforeSTR": 57,
+    "nextHP": 2000,
+    "nextSTR": 58,
+    "nextCampMitigation": 0.7,
+    "expectedDamage": 1260,
+    "expectedClearOwners": 31
+  },
+  "native_map_roundtrip": 0,
+  "scripted_prelude": "Six actual35gold singleton payouts; vacate spawn to allow each respawn. Recall and buy4JungleHealth plus3PowerHealth using exactly210gold. Wait for natural Gold respawn. Only then unchanged production Bot::turn controls all actions, items and missions.",
+  "scope_limit": "One quiet1pick native caller case with actualprelude and projected scalar previews. Different wrappermodule from competitive main. No strength/tournament/general applicability claim."
+}

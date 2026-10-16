@@ -8,12 +8,15 @@ usage (from the repo root, after `cambc init --yes`):
   python3 tools/gate.py bots/CAND online --kind farm             # the base is the zip that is online (online/version.py --zip)
 
 Runs in phases, cheapest first, and stops as soon as the result is clear:
-  1. safety     9 official maps x 2 sides: no bot fault (botFaults), no broken game, and the fuel-exhausted turns
-                (step kind 26) on lanes/corners/collision do not rise more than 30 over the base.
+  1. safety + site maps   the 17 site maps (maps/, the official pool) x 2 sides: no bot fault (botFaults), no broken
+                game, the fuel-exhausted turns (step kind 26) on lanes/corners/collision do not rise more than 30 over
+                the base, and the site-map head to head is the HEADLINE of the verdict (user rule 2026-10-16: big wins
+                on the official maps come first): FAIL if it loses --site-veto (3) more maps on both sides than it wins.
   2. fresh maps hold60 + dev200 (+ --extra) shuffled in chunks of 40 maps, counting maps won on both sides. Stops early
                 when it already looks worse (p<0.05 against) or, for farm, already better (p<0.01).
   3. panel      against spar11/12/16 (the rivals that kill like online teams) on official + gen: the candidate and
-                the base play the same games; veto if the games that flip go against with p<0.05.
+                the base play the same games; veto if the games that flip go against with p<0.05, on all maps or on
+                the site maps alone (so the site maps weigh more than the generated ones).
   4. counterexamples  the fresh maps lost on both sides, worst first, with the command to reproduce them.
 
 Verdict:
@@ -187,6 +190,7 @@ def main():
     p.add_argument('--kind', choices=['farm', 'fight'], required=True)
     p.add_argument('--idea', default='', help='tracker id (I001...): record the result there')
     p.add_argument('--extra', default='', help='glob of additional fresh maps (e.g. fresh300)')
+    p.add_argument('--site-veto', type=int, default=3, help='FAIL when the site maps are lost on both sides this many more times than won')
     p.add_argument('--max-maps', type=int, default=0, help='cap on fresh maps (0 = all)')
     p.add_argument('--no-panel', action='store_true'); p.add_argument('--no-fuel', action='store_true')
     p.add_argument('--jobs', type=int, default=os.cpu_count() or 4)
@@ -253,9 +257,14 @@ def main():
             if fuel['cand'] > fuel['base'] + 30:
                 ok = False; say('   the candidate runs out of fuel more than the base: look for per-turn loops')
     verdict['safety'] = {'broken': broken, 'faults': faults, 'fuel': fuel, 'official': [w, l, sp]}
+    verdict['site'] = {'maps': len(per), 'won': w, 'lost': l, 'split': sp}
+    say(f'   SITE MAPS (headline): {w} won both sides, {l} lost both, {sp} split')
     if not ok:
         say('FAIL on safety.' + (f' Broken: {broken[:5]}' if broken else ''))
         return finish(A, verdict | {'pass': False, 'why': 'safety'}, outdir, log)
+    if l - w >= A.site_veto:
+        say(f'FAIL on the site maps: {l} lost both sides vs {w} won (veto at {A.site_veto} net); the official maps come first.')
+        return finish(A, verdict | {'pass': False, 'why': 'site maps'}, outdir, log)
 
     # 2. fresh maps with early stopping -----------------------------------------------------------------------
     fresh = maps_of(ab.SETS['hold']) + maps_of(ab.SETS['dev']) + (maps_of(A.extra) if A.extra else [])
@@ -309,7 +318,8 @@ def main():
     # 3. caster panel (veto) ----------------------------------------------------------------------------------
     if panel:
         t = time.time(); maps = maps_of(ab.SETS['official']) + maps_of(ab.SETS['gen'])
-        up = down = 0; wc = wb = 0; panel_bad = []
+        up = down = 0; wc = wb = 0; panel_bad = []; sup = sdown = 0
+        site = {m for m in maps if os.path.dirname(os.path.abspath(m)) == os.path.abspath('maps')}
         for sp_bot in panel:
             ab.build(sp_bot); hs = ab.sha(ab.wasm_of(sp_bot))
             pc = run(jobs_for(cand, sp_bot, hc, hs, maps, tag + '_' + os.path.basename(sp_bot) + '_c', ver, cache), A.jobs)
@@ -324,14 +334,16 @@ def main():
                     me = 0 if s == 'A' else 1
                     xc, xb = score(pc[m][s], me) == 'WIN', score(pb[m][s], me) == 'WIN'
                     c1 += xc; b1 += xb; up += xc and not xb; down += xb and not xc
+                    if m in site: sup += xc and not xb; sdown += xb and not xc
             wc += c1; wb += b1
             say(f'   {os.path.basename(sp_bot)}: candidate wins {c1}, base wins {b1} (of {2 * len(pc)})')
         pv3 = ab.sign_p(up, up + down)
-        veto = down > up and pv3 < 0.05
-        say(f'3. panel: games that flip {up} for, {down} against, p={pv3:.3f}'
-            f'{" -> VETO" if veto else ""}   [{time.time() - t:.0f}s]')
+        pvs = ab.sign_p(sup, sup + sdown)
+        veto = (down > up and pv3 < 0.05) or (sdown > sup and pvs < 0.05)
+        say(f'3. panel: SITE MAPS games that flip {sup} for, {sdown} against, p={pvs:.3f}; all maps {up} for, {down} against, '
+            f'p={pv3:.3f}{" -> VETO" if veto else ""}   [{time.time() - t:.0f}s]')
         verdict['panel'] = {'cand_wins': wc, 'base_wins': wb, 'flips_up': up, 'flips_down': down, 'p': round(pv3, 4), 'veto': veto,
-                            'problems': panel_bad}
+                            'site_flips': [sup, sdown], 'site_p': round(pvs, 4), 'problems': panel_bad}
         if panel_bad:
             say('FAIL: panel games incomplete or the candidate faults: ' + '; '.join(panel_bad))
             return finish(A, verdict | {'pass': False, 'why': 'panel broken/faults'}, outdir, log)
@@ -346,7 +358,9 @@ def main():
         verdict['partial'] = True
     if not base_online:
         say('\nNote: the base is not (or not known to be) the online bot, so this result does not clear an upload.')
-    say(f'\n{"PARTIAL PASS" if verdict.get("partial") else "PASS"} ({A.kind}). ' + ('Upload it and measure in stage 3 (online/lfl.py).' if A.kind == 'fight' else
+    st = verdict['site']
+    say(f'\nSite maps (headline): {st["won"]}-{st["lost"]} won/lost on both sides ({st["split"]} split) of {st["maps"]}.')
+    say(f'{"PARTIAL PASS" if verdict.get("partial") else "PASS"} ({A.kind}). ' + ('Upload it and measure in stage 3 (online/lfl.py).' if A.kind == 'fight' else
                                   'Clear farming gain: upload it and confirm online that it does not get worse (stage 3).'))
     say(f'Total {time.time() - t0:.0f}s')
     return finish(A, verdict | {'pass': True}, outdir, log)
@@ -359,7 +373,8 @@ def finish(A, verdict, outdir, log):
         import idea
         fr = verdict.get('fresh') or {}
         note = (f"gate {A.kind}: {('PARTIAL PASS' if verdict.get('partial') else 'PASS') if verdict['pass'] else 'FAIL (' + verdict.get('why', '') + ')'}; "
-                f"fresh {fr.get('won', '?')}-{fr.get('lost', '?')} p={fr.get('p', '?')}"
+                + (f"site {verdict['site']['won']}-{verdict['site']['lost']}; " if 'site' in verdict else '')
+                + f"fresh {fr.get('won', '?')}-{fr.get('lost', '?')} p={fr.get('p', '?')}"
                 + (f"; panel {verdict['panel']['flips_up']}/{verdict['panel']['flips_down']}" if 'panel' in verdict else ''))
         idea.record(A.idea, stage='local-ok' if verdict['pass'] else 'local-test', note=note,
                     result=os.path.join(outdir, 'result.json'))

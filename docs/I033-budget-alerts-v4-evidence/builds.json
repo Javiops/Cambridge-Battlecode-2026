@@ -1,0 +1,250 @@
+{
+  "v60-cohort-view-v4": {
+    "name": "v60-cohort-view-v4",
+    "created_utc": "2026-10-17T17:48:19.404004+00:00",
+    "source_sha256": {
+      "alert_fuel.h": "94ea139aa3115812ac3183087eb135f9d939ec1584559798e8b0f04e4a896c38",
+      "combat_cohort.h": "45b84e1ed2dcb788339f4198744bb6c52d67101919525f850a781f7f30f7fc40",
+      "combat_identity.h": "a9251577fdf5977285feb6631128ea9a5ad4c03c1e0aa9df9c7b74d930f847f6",
+      "de_rules.h": "3e50429c96765f325ea3804c2bbb5c13ce26a4119fc7b8694f58def60531221b",
+      "draft_choice_policy.h": "ef05ac879a01e67c3b284bb04d48e9a87c4d51ac3e10e1ad9c3c14660b833767",
+      "draft_plan.h": "d6f1ed51fbbd0773984e933b6dd32ea5b50c5ec7a62a412fc69741c4208b1914",
+      "fight.h": "c4053d3d5b5f5f7bee48410c48cd316424774f68d9680152f0f7c5816f8ed19e",
+      "main.cpp": "1ce3dff4d02910d5e3c32f13cfbd185186b12170b3967c9871d7385b54023ee0",
+      "mapplan.h": "7b01346e46a21d2339533095a21655c3f83d3f4ef28efaa7d142fb7609df247e",
+      "mapplan_game.h": "167f85bf357b70d797e8612f447b7719f956a974af269286fa32f53569948fb6",
+      "opening_replace.h": "ca6680bae82b74b89fd0bb65573904246df8761d8b22e3ce8cb6bd93207207e7",
+      "params.h": "488cfd850b0e7ef51572330160bf3d5a145f776c24caf6e3f9b9573bf56177e5",
+      "profile.h": "fe7e170baa2f69e3beba2fe344c19ade35bfd3cad5516307d2b6e2575571f551",
+      "track.h": "c42448671f1a23f4987182648fd131e3182a7fee47970b20baaf0444ca7f5a0a",
+      "utility.h": "2327653910762d79a0b2ca9aba5b25255bf1d9033c2d39e18a44e4e365afe378",
+      "verdict.h": "ccda1831c4c9bdc2635a9bcef16bc0f631e2018a4cbd36afe1322e332441b24f"
+    },
+    "source_fingerprint": "821f162b9c56acfff6d3d644b961e3b8846227f190b9bd570c1a6dfc2f333297",
+    "wasm_sha256": "47d988a6219fce3d5fe4008e0d2becb2c5600f6c487d786c7e173f8438bb80da",
+    "runtime": {
+      "cli_sha256": "e2a87c920a7a3545ae605eedbc6d97a23c92f65406f82d8ac2bdca66b8fd93c6",
+      "sdk_header_sha256": "ee131e2981c16f696cb82cd6b04dc1871f45323057e51f7bb676a893ab72e264",
+      "reference_engine_sha256": "1919c5a6f2ea039041071166aef38f6f1ede8d5c29b062db8c2e028109e3f96f",
+      "project_config_sha256": "4bdc8e5f3866b5d42f75b170d31ea021bfcc7f1ce14f665c486da7d9b42e2400",
+      "sdk_version": "2.2.5",
+      "engine_version": "0.0.3",
+      "expected_engine_build": "d7e29ae3546357b011419c764204b7b9e2232bdb1b07868250c6b35d4c18d2a5",
+      "fuel": "official default; no override",
+      "release": true,
+      "seed_control": "CLI run has no seed option; statistics seed is recorded",
+      "reference_engine_binding": "Bundled official 2.2.5 editor WASM; actual CLI engine version/build asserted separately on every statistics file."
+    }
+  },
+  "diagnosis-v59": {
+    "name": "diagnosis-v59",
+    "created_utc": "2026-10-17T16:15:28.539251+00:00",
+    "source_sha256": {
+      "de_rules.h": "3e50429c96765f325ea3804c2bbb5c13ce26a4119fc7b8694f58def60531221b",
+      "draft_plan.h": "4908ee64a900aed17bc587b95e19ba148692d6c4d3efc56d0640c5c6ebdb00c3",
+      "fight.h": "2eaa9a671c634d499029f251a6eef66dbd6be052927d3cc8ca8012f4ecc35014",
+      "main.cpp": "042fc970c76e3ca35679d6002a3e6bb6f6cbccf5d9b275602a8e72d34ed3fb71",
+      "mapplan.h": "7b01346e46a21d2339533095a21655c3f83d3f4ef28efaa7d142fb7609df247e",
+      "mapplan_game.h": "167f85bf357b70d797e8612f447b7719f956a974af269286fa32f53569948fb6",
+      "opening_replace.h": "ca6680bae82b74b89fd0bb65573904246df8761d8b22e3ce8cb6bd93207207e7",
+      "params.h": "76327d5c5356a1524ea13d7aecd09f3230fa407049d56c0ba9e393d2e553ae03",
+      "profile.h": "fe7e170baa2f69e3beba2fe344c19ade35bfd3cad5516307d2b6e2575571f551",
+      "track.h": "c42448671f1a23f4987182648fd131e3182a7fee47970b20baaf0444ca7f5a0a",
+      "utility.h": "5904961939c2ff51d931b94f7b96884258395477c0ae377ca2a8e3436a5cfeb8",
+      "verdict.h": "cea061699b7b7a10e81d5484633dbcb51c100516f8b80e29854bba4f6701e5ee"
+    },
+    "source_fingerprint": "c19f85c9c7d9cf94bb77a253546b9c4012983a83a326e5f784efa2a845832f29",
+    "wasm_sha256": "e9dc3e4dd2c35aa67306569432b42d053cb6d6e8340273c966aeee0b55f7b946",
+    "runtime": {
+      "cli_sha256": "e2a87c920a7a3545ae605eedbc6d97a23c92f65406f82d8ac2bdca66b8fd93c6",
+      "sdk_header_sha256": "ee131e2981c16f696cb82cd6b04dc1871f45323057e51f7bb676a893ab72e264",
+      "reference_engine_sha256": "1919c5a6f2ea039041071166aef38f6f1ede8d5c29b062db8c2e028109e3f96f",
+      "project_config_sha256": "4bdc8e5f3866b5d42f75b170d31ea021bfcc7f1ce14f665c486da7d9b42e2400",
+      "sdk_version": "2.2.5",
+      "engine_version": "0.0.3",
+      "expected_engine_build": "d7e29ae3546357b011419c764204b7b9e2232bdb1b07868250c6b35d4c18d2a5",
+      "fuel": "official default; no override",
+      "release": true,
+      "seed_control": "CLI run has no seed option; statistics seed is recorded",
+      "reference_engine_binding": "Bundled official 2.2.5 editor WASM; actual CLI engine version/build asserted separately on every statistics file."
+    }
+  },
+  "spar11": {
+    "name": "spar11",
+    "created_utc": "2026-10-17T14:15:22.993046+00:00",
+    "source_sha256": {
+      "fight.h": "40e22492d61a9a79907b20e26ae536787952759d2fe4333771aa2415a461b362",
+      "main.cpp": "0bf959d3143110e3e6c29bae8c8bb035b60131230dd8d92912ed5fa8d3769684",
+      "params.h": "73e598fae85e7f68e127543bc358b10715c234e8887d0966fdd84569f06b20d5"
+    },
+    "source_fingerprint": "e8eec0b3d38b3a969f86bc503ea4275675da2ec5d498636ab9f55628606a3c2b",
+    "wasm_sha256": "58000233da20912b8392c6ddb9850c1aad34207ab167ccd328cbba0bbb4b1450",
+    "runtime": {
+      "cli_sha256": "e2a87c920a7a3545ae605eedbc6d97a23c92f65406f82d8ac2bdca66b8fd93c6",
+      "sdk_header_sha256": "ee131e2981c16f696cb82cd6b04dc1871f45323057e51f7bb676a893ab72e264",
+      "reference_engine_sha256": "1919c5a6f2ea039041071166aef38f6f1ede8d5c29b062db8c2e028109e3f96f",
+      "project_config_sha256": "4bdc8e5f3866b5d42f75b170d31ea021bfcc7f1ce14f665c486da7d9b42e2400",
+      "sdk_version": "2.2.5",
+      "engine_version": "0.0.3",
+      "expected_engine_build": "d7e29ae3546357b011419c764204b7b9e2232bdb1b07868250c6b35d4c18d2a5",
+      "fuel": "official default; no override",
+      "release": true,
+      "seed_control": "CLI run has no seed option; statistics seed is recorded",
+      "reference_engine_binding": "Bundled official 2.2.5 editor WASM; actual CLI engine version/build asserted separately on every statistics file."
+    }
+  },
+  "spar12": {
+    "name": "spar12",
+    "created_utc": "2026-10-17T14:15:22.991034+00:00",
+    "source_sha256": {
+      "fight.h": "40e22492d61a9a79907b20e26ae536787952759d2fe4333771aa2415a461b362",
+      "main.cpp": "0bf959d3143110e3e6c29bae8c8bb035b60131230dd8d92912ed5fa8d3769684",
+      "params.h": "0c8fdf62cabab7d1aa462d791f9680405c00132d6d324dbeb59f1749a7d003cf"
+    },
+    "source_fingerprint": "8603cd5f2fa7f909864ebcabb6144d772604871ef01ff24488efff23231da83c",
+    "wasm_sha256": "fece053441315d8f1f594aea33e7336be3cf2fe1a81f402ab6291ea97eba4b5e",
+    "runtime": {
+      "cli_sha256": "e2a87c920a7a3545ae605eedbc6d97a23c92f65406f82d8ac2bdca66b8fd93c6",
+      "sdk_header_sha256": "ee131e2981c16f696cb82cd6b04dc1871f45323057e51f7bb676a893ab72e264",
+      "reference_engine_sha256": "1919c5a6f2ea039041071166aef38f6f1ede8d5c29b062db8c2e028109e3f96f",
+      "project_config_sha256": "4bdc8e5f3866b5d42f75b170d31ea021bfcc7f1ce14f665c486da7d9b42e2400",
+      "sdk_version": "2.2.5",
+      "engine_version": "0.0.3",
+      "expected_engine_build": "d7e29ae3546357b011419c764204b7b9e2232bdb1b07868250c6b35d4c18d2a5",
+      "fuel": "official default; no override",
+      "release": true,
+      "seed_control": "CLI run has no seed option; statistics seed is recorded",
+      "reference_engine_binding": "Bundled official 2.2.5 editor WASM; actual CLI engine version/build asserted separately on every statistics file."
+    }
+  },
+  "spar16": {
+    "name": "spar16",
+    "created_utc": "2026-10-17T14:15:22.991034+00:00",
+    "source_sha256": {
+      "fight.h": "82eac085aa0eef23f311ff49972709801e5b009ee5b495710ddd20d0ea8c5169",
+      "main.cpp": "56c1771b6fcc83eafbf6afd237b15741738958f2b4e0d8eaa4732e410e8dcc25",
+      "params.h": "f9b7b55d7958bd012accf0e18aaef5fba91ed3d21fc06330094844b57bb9ccaf"
+    },
+    "source_fingerprint": "82c8c42bbc070de45b8c36c538ad38b6db9a42d5b5576e7932a79785aa4d8b4b",
+    "wasm_sha256": "d3d96ac62e36a7e88362854c814282175455c2394f7eadd0a750547117f28bb4",
+    "runtime": {
+      "cli_sha256": "e2a87c920a7a3545ae605eedbc6d97a23c92f65406f82d8ac2bdca66b8fd93c6",
+      "sdk_header_sha256": "ee131e2981c16f696cb82cd6b04dc1871f45323057e51f7bb676a893ab72e264",
+      "reference_engine_sha256": "1919c5a6f2ea039041071166aef38f6f1ede8d5c29b062db8c2e028109e3f96f",
+      "project_config_sha256": "4bdc8e5f3866b5d42f75b170d31ea021bfcc7f1ce14f665c486da7d9b42e2400",
+      "sdk_version": "2.2.5",
+      "engine_version": "0.0.3",
+      "expected_engine_build": "d7e29ae3546357b011419c764204b7b9e2232bdb1b07868250c6b35d4c18d2a5",
+      "fuel": "official default; no override",
+      "release": true,
+      "seed_control": "CLI run has no seed option; statistics seed is recorded",
+      "reference_engine_binding": "Bundled official 2.2.5 editor WASM; actual CLI engine version/build asserted separately on every statistics file."
+    }
+  },
+  "diagnosis-v59-swap-cassi-v2": {
+    "name": "diagnosis-v59-swap-cassi-v2",
+    "created_utc": "2026-10-17T16:35:45.840858+00:00",
+    "source_sha256": {
+      "de_rules.h": "3e50429c96765f325ea3804c2bbb5c13ce26a4119fc7b8694f58def60531221b",
+      "draft_choice_policy.h": "ef05ac879a01e67c3b284bb04d48e9a87c4d51ac3e10e1ad9c3c14660b833767",
+      "draft_plan.h": "d6f1ed51fbbd0773984e933b6dd32ea5b50c5ec7a62a412fc69741c4208b1914",
+      "fight.h": "2eaa9a671c634d499029f251a6eef66dbd6be052927d3cc8ca8012f4ecc35014",
+      "main.cpp": "9137166afc335a4246394db501c5d10d24127d94c98b0c8bf0f19948fc9eee1d",
+      "mapplan.h": "7b01346e46a21d2339533095a21655c3f83d3f4ef28efaa7d142fb7609df247e",
+      "mapplan_game.h": "167f85bf357b70d797e8612f447b7719f956a974af269286fa32f53569948fb6",
+      "opening_replace.h": "ca6680bae82b74b89fd0bb65573904246df8761d8b22e3ce8cb6bd93207207e7",
+      "params.h": "ce79d0ad47b92394513b67a447d55508b40eeeac1906e6db7f1223dfec382fd9",
+      "profile.h": "fe7e170baa2f69e3beba2fe344c19ade35bfd3cad5516307d2b6e2575571f551",
+      "track.h": "c42448671f1a23f4987182648fd131e3182a7fee47970b20baaf0444ca7f5a0a",
+      "utility.h": "2327653910762d79a0b2ca9aba5b25255bf1d9033c2d39e18a44e4e365afe378",
+      "verdict.h": "cea061699b7b7a10e81d5484633dbcb51c100516f8b80e29854bba4f6701e5ee"
+    },
+    "source_fingerprint": "cbf13f235526e67efc581db004e2d667be978d8ee84a79f393d97b28d0e96845",
+    "wasm_sha256": "f9c072e68c0e910664eb1bcb9c41b4b67d00a0fe0a8a2f2e91d6fdb82eee3ed0",
+    "runtime": {
+      "cli_sha256": "e2a87c920a7a3545ae605eedbc6d97a23c92f65406f82d8ac2bdca66b8fd93c6",
+      "sdk_header_sha256": "ee131e2981c16f696cb82cd6b04dc1871f45323057e51f7bb676a893ab72e264",
+      "reference_engine_sha256": "1919c5a6f2ea039041071166aef38f6f1ede8d5c29b062db8c2e028109e3f96f",
+      "project_config_sha256": "4bdc8e5f3866b5d42f75b170d31ea021bfcc7f1ce14f665c486da7d9b42e2400",
+      "sdk_version": "2.2.5",
+      "engine_version": "0.0.3",
+      "expected_engine_build": "d7e29ae3546357b011419c764204b7b9e2232bdb1b07868250c6b35d4c18d2a5",
+      "fuel": "official default; no override",
+      "release": true,
+      "seed_control": "CLI run has no seed option; statistics seed is recorded",
+      "reference_engine_binding": "Bundled official 2.2.5 editor WASM; actual CLI engine version/build asserted separately on every statistics file."
+    }
+  },
+  "v60-fuel-alerts": {
+    "name": "v60-fuel-alerts",
+    "created_utc": "2026-10-17T17:08:23.801731+00:00",
+    "source_sha256": {
+      "alert_fuel.h": "94ea139aa3115812ac3183087eb135f9d939ec1584559798e8b0f04e4a896c38",
+      "de_rules.h": "3e50429c96765f325ea3804c2bbb5c13ce26a4119fc7b8694f58def60531221b",
+      "draft_choice_policy.h": "ef05ac879a01e67c3b284bb04d48e9a87c4d51ac3e10e1ad9c3c14660b833767",
+      "draft_plan.h": "d6f1ed51fbbd0773984e933b6dd32ea5b50c5ec7a62a412fc69741c4208b1914",
+      "fight.h": "2eaa9a671c634d499029f251a6eef66dbd6be052927d3cc8ca8012f4ecc35014",
+      "main.cpp": "d01a3b3dcc46dc1e045e669b5aa7f1523865fe179aed4f0a8a575508140ba8ee",
+      "mapplan.h": "7b01346e46a21d2339533095a21655c3f83d3f4ef28efaa7d142fb7609df247e",
+      "mapplan_game.h": "167f85bf357b70d797e8612f447b7719f956a974af269286fa32f53569948fb6",
+      "opening_replace.h": "ca6680bae82b74b89fd0bb65573904246df8761d8b22e3ce8cb6bd93207207e7",
+      "params.h": "453316fb0c07d2fea4482d1cbb855c96b9538a230d0b54664023631d15869017",
+      "profile.h": "fe7e170baa2f69e3beba2fe344c19ade35bfd3cad5516307d2b6e2575571f551",
+      "track.h": "c42448671f1a23f4987182648fd131e3182a7fee47970b20baaf0444ca7f5a0a",
+      "utility.h": "2327653910762d79a0b2ca9aba5b25255bf1d9033c2d39e18a44e4e365afe378",
+      "verdict.h": "cea061699b7b7a10e81d5484633dbcb51c100516f8b80e29854bba4f6701e5ee"
+    },
+    "source_fingerprint": "b2b1b32d9bc0fc2fafe7422a92f8d1b784ec07643f967a164b91115d50d2ccaa",
+    "wasm_sha256": "f831480f3cb4aad42b1d23fd360a981e30dbb4a6cb5cc4d7c7e2cd3f546d7090",
+    "runtime": {
+      "cli_sha256": "e2a87c920a7a3545ae605eedbc6d97a23c92f65406f82d8ac2bdca66b8fd93c6",
+      "sdk_header_sha256": "ee131e2981c16f696cb82cd6b04dc1871f45323057e51f7bb676a893ab72e264",
+      "reference_engine_sha256": "1919c5a6f2ea039041071166aef38f6f1ede8d5c29b062db8c2e028109e3f96f",
+      "project_config_sha256": "4bdc8e5f3866b5d42f75b170d31ea021bfcc7f1ce14f665c486da7d9b42e2400",
+      "sdk_version": "2.2.5",
+      "engine_version": "0.0.3",
+      "expected_engine_build": "d7e29ae3546357b011419c764204b7b9e2232bdb1b07868250c6b35d4c18d2a5",
+      "fuel": "official default; no override",
+      "release": true,
+      "seed_control": "CLI run has no seed option; statistics seed is recorded",
+      "reference_engine_binding": "Bundled official 2.2.5 editor WASM; actual CLI engine version/build asserted separately on every statistics file."
+    }
+  },
+  "v60-budget-v3": {
+    "name": "v60-budget-v3",
+    "created_utc": "2026-10-17T17:30:17.092094+00:00",
+    "source_sha256": {
+      "alert_fuel.h": "94ea139aa3115812ac3183087eb135f9d939ec1584559798e8b0f04e4a896c38",
+      "combat_cohort.h": "c6dcc9bf04bbe59042e1a4dc00b3775ef48789c5836511976486f6c2817f7cdc",
+      "combat_identity.h": "a9251577fdf5977285feb6631128ea9a5ad4c03c1e0aa9df9c7b74d930f847f6",
+      "de_rules.h": "3e50429c96765f325ea3804c2bbb5c13ce26a4119fc7b8694f58def60531221b",
+      "draft_choice_policy.h": "ef05ac879a01e67c3b284bb04d48e9a87c4d51ac3e10e1ad9c3c14660b833767",
+      "draft_plan.h": "d6f1ed51fbbd0773984e933b6dd32ea5b50c5ec7a62a412fc69741c4208b1914",
+      "fight.h": "c4053d3d5b5f5f7bee48410c48cd316424774f68d9680152f0f7c5816f8ed19e",
+      "main.cpp": "275a30d4a16824cf7cd318f9c28d516491f3fb31046de137801644f5c699d19e",
+      "mapplan.h": "7b01346e46a21d2339533095a21655c3f83d3f4ef28efaa7d142fb7609df247e",
+      "mapplan_game.h": "167f85bf357b70d797e8612f447b7719f956a974af269286fa32f53569948fb6",
+      "opening_replace.h": "ca6680bae82b74b89fd0bb65573904246df8761d8b22e3ce8cb6bd93207207e7",
+      "params.h": "488cfd850b0e7ef51572330160bf3d5a145f776c24caf6e3f9b9573bf56177e5",
+      "profile.h": "fe7e170baa2f69e3beba2fe344c19ade35bfd3cad5516307d2b6e2575571f551",
+      "track.h": "c42448671f1a23f4987182648fd131e3182a7fee47970b20baaf0444ca7f5a0a",
+      "utility.h": "2327653910762d79a0b2ca9aba5b25255bf1d9033c2d39e18a44e4e365afe378",
+      "verdict.h": "ccda1831c4c9bdc2635a9bcef16bc0f631e2018a4cbd36afe1322e332441b24f"
+    },
+    "source_fingerprint": "b67b3f1ae71cbbad0ff46725fd63aa9510173b1c2afaa69300633e5c4f9898d5",
+    "wasm_sha256": "7fb9ad7dc0ec42c761a0d5f24395256c5e0056715801812c92c58e4d5ad26ab0",
+    "runtime": {
+      "cli_sha256": "e2a87c920a7a3545ae605eedbc6d97a23c92f65406f82d8ac2bdca66b8fd93c6",
+      "sdk_header_sha256": "ee131e2981c16f696cb82cd6b04dc1871f45323057e51f7bb676a893ab72e264",
+      "reference_engine_sha256": "1919c5a6f2ea039041071166aef38f6f1ede8d5c29b062db8c2e028109e3f96f",
+      "project_config_sha256": "4bdc8e5f3866b5d42f75b170d31ea021bfcc7f1ce14f665c486da7d9b42e2400",
+      "sdk_version": "2.2.5",
+      "engine_version": "0.0.3",
+      "expected_engine_build": "d7e29ae3546357b011419c764204b7b9e2232bdb1b07868250c6b35d4c18d2a5",
+      "fuel": "official default; no override",
+      "release": true,
+      "seed_control": "CLI run has no seed option; statistics seed is recorded",
+      "reference_engine_binding": "Bundled official 2.2.5 editor WASM; actual CLI engine version/build asserted separately on every statistics file."
+    }
+  }
+}

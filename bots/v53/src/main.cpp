@@ -1674,10 +1674,21 @@ bool greedy_step(State& s, bc::champion& me, vec2 to) {
     return best && attempt([&] { return me.move_absolute(*best); });
 }
 
+// P_DASHCALM (2026-10-17, swirl vs Nameless: Ren dashed to the centre at r4 and met all five; 32 of our 66 dashes
+// ended closer to an enemy): while farming, no dash toward a camp in the first P_DASHCALM_OPEN rounds or within
+// P_DASHCALM rounds of seeing an enemy champion. Fleeing and fights keep their dash.
+#ifndef P_DASHCALM
+#define P_DASHCALM 0
+#endif
+#ifndef P_DASHCALM_OPEN
+#define P_DASHCALM_OPEN 40
+#endif
+inline bool g_farm_nodash = false;
 bc::bitboard mp_awake_camp_zone(State& s, vec2 pos);
 int mp_dash_hole_step(State& s, bc::champion& me, const bc::bitboard& goals, const bc::bitboard& vblock, vec2 pos);
 bool step_towards(State& s, bc::champion& me, const bc::bitboard& goals_in, bool use_dash) {
     FP_SCOPE(16, "step_towards");
+    if (g_farm_nodash) use_dash = false;
     vec2 pos = me.position();
     bc::bitboard goals = goals_in & ~s.blocked;
     if (goals.is_empty() || goals.is_set(pos)) return false;
@@ -1839,6 +1850,9 @@ vec2 aoe_centre(State& s, bc::champion& me, int k, vec2 tp, int* hits = nullptr)
 // pilgrimage r481-491 with Ren and Varg at 6 tiles.
 #ifndef P_CAMPHOLD
 #define P_CAMPHOLD 0
+#endif
+#ifndef P_TRIBSAFE
+#define P_TRIBSAFE 0
 #endif
 inline bool camp_hold(const State& s, bool champ) {
     return P_CAMPHOLD && !champ && s.nf_r == static_cast<int>(bc::round_number()) && s.nf_d <= P_CAMPHOLD;
@@ -2576,6 +2590,9 @@ bool go_tribute(State& s, bc::champion& me, int round) {
     auto a = best_altar(s, pos, round);
     if (!a) return false;
     const int length = br_altar_distance(s, *a, pos, round);
+    // P_TRIBSAFE (2026-10-17, monolith r110-125 vs Nameless: Varg tributed 5 rounds with their Ryth hitting him,
+    // 900 -> 420 hp, then lost the trade and died): no tribute starts with an enemy champion within P_TRIBSAFE.
+    if (P_TRIBSAFE && dist(pos, *a) <= 1 && s.nf_r == round && s.nf_d <= P_TRIBSAFE) return false;
     if (dist(pos, *a) <= 1) {
         bool acted = attempt([&] { me.submit_gems(*a); return true; });
         br_note(s, round, length, false);
@@ -2592,7 +2609,7 @@ bool go_tribute(State& s, bc::champion& me, int round) {
         ring.draw_chebyshev(*a, 1.0f);
         moved = step_towards(s, me, ring, true);
     }
-    if (dist(me.position(), *a) <= 1)
+    if (dist(me.position(), *a) <= 1 && !(P_TRIBSAFE && s.nf_r == round && s.nf_d <= P_TRIBSAFE))
         attempt([&] { me.submit_gems(*a); return true; });
     br_note(s, round, length, used_safe);
     return moved;
@@ -2907,6 +2924,10 @@ bool cf_evac_reward(State& s, bc::champion& me, Group& g, int round, const std::
 }
 
 void farm(State& s, bc::champion& me, int round, const std::vector<bc::camp>& camps) {
+    struct NoDash {
+        ~NoDash() { g_farm_nodash = false; }
+    } nodash_reset;
+    g_farm_nodash = P_DASHCALM && (round < P_DASHCALM_OPEN || round - s.foe_r <= P_DASHCALM);
     vec2 pos = me.position();
     double hp = me.health();
     double mhp = std::max(1.0, static_cast<double>(me.max_health()));

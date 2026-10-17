@@ -51,7 +51,7 @@ struct World {
 int current_tribute_ticks(int) {return 1;}
 bool safe_channel(World&w,int,bool){return w.safe;}
 bool safe_channel_at(World&w,Pos p,int,bool){auto it=w.safe_at.find({p.x,p.y});return it==w.safe_at.end()?w.safe:it->second;}
-int observed_contact_eta(const World&w,Pos p,int){auto it=w.contact.find({p.x,p.y});return it==w.contact.end()?unreachable:it->second;}
+int observed_contact_eta(const World&w,Pos p,int,bool=true){auto it=w.contact.find({p.x,p.y});return it==w.contact.end()?unreachable:it->second;}
 ExitGradient known_exit_prefix(const World&,Pos,bool){return {};}
 int current_recall_ticks(const Actor&a){return a.home?3:5;}
 double incoming_damage(World&w,Pos p){return w.damage[{p.x,p.y}];}
@@ -130,5 +130,14 @@ int main(){
     w=example();m={};w.own_score=0;w.self.gems=12;w.self.pos={3,0};m.mission.phase=Phase::Deliver;m.mission.target={5,0};note_failed_bank_window(w,m);w.memory=m;p=delivery(w,m);
     check(p&&p->mission.target==Pos{0,5},"unchanged failed window reopens the bounded alternative altar choice");
     w.own_score=995;p=delivery(w,m);check(p&&p->mission.target==Pos{5,0},"deciding delivery bypasses an ordinary uncertainty backoff");
+    w=example();m={};w.contact[{5,0}]=0;auto plans=altar_plans(w,&m.mission);
+    check(plans.size()==2&&plans[0].index==1,"observed earlier spell/movement contact reprices bounded altar choice");
+    w.contact[{5,0}]=unreachable;plans=altar_plans(w,&m.mission);
+    check(plans[0].index==0,"absent contact does not manufacture an exposure penalty");
+    w.contact[{5,0}]=100;plans=altar_plans(w,&m.mission);
+    check(plans[0].index==0,"contact after completion does not alter ordinary ranking");
+    w.contact[{5,0}]=5;plans=altar_plans(w,&m.mission);
+    auto found=std::find_if(plans.begin(),plans.end(),[](const AltarPlan&p){return p.index==0;});
+    check(found!=plans.end()&&found->cost==6,"contact at final completion phase charges one exposure unit");
     std::printf("%d delivery checks passed\n",checks);
 }

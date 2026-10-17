@@ -206,5 +206,37 @@ int main() {
     check(!optimistic_solo_impossibility(body,c).impossible,"generous direct cast upper bound protects a possible burst kill");
     body.spells[0].cooldown=100;check(!optimistic_solo_impossibility(body,c).impossible,"proof ignores cooldown in favor of solo rather than manufacturing failure");
     body=a;body.strength=std::numeric_limits<double>::quiet_NaN();check(!optimistic_solo_impossibility(body,c).impossible,"nonfinite kit rejects lower-bound certificate");
+
+    {
+        check(assembly_crew_sizes(1)==std::array<int,3>{1,0,0},"singleton availability is priced once");
+        check(assembly_crew_sizes(2)==std::array<int,3>{2,1,0},"pair availability has no duplicate full-pair quote");
+        check(assembly_crew_sizes(5)==std::array<int,3>{5,1,2},"single target may compare available five-body crew solo and pair");
+        check(assembly_crew_sizes(0)==std::array<int,3>{},"empty crew has no fabricated candidate");
+        check(assembly_crew_sizes(7)==std::array<int,3>{},"unsupported seventh participant is not silently truncated");
+        AssemblyFacts q;q.group=4;q.self_id=0;q.now=20;q.horizon=500;
+        q.fresh_sleeping=q.fresh_observed=q.safe_stage=q.hypothesis_affordable=q.priced_crew=true;
+        q.alternative_known=true;q.alternative_rate=.1;q.reward_once=90;q.cycle_ticks=20;
+        std::array<AssemblyMember,3> bodies{{{0,0,true,true,true,true,false,true,true,.1},
+            {1,0,true,true,true,true,false,true,true,.1},{2,0,true,true,true,true,false,true,true,.1}}};
+        auto solo=price_assembly(q,std::span(bodies.data(),1));solo.selected_count=1;
+        q.cycle_ticks=12;auto pair=price_assembly(q,std::span(bodies.data(),2));pair.selected_count=2;
+        q.cycle_ticks=8;auto three=price_assembly(q,bodies);three.selected_count=3;
+        check(solo.known&&pair.known&&three.known,"sleeping single target can have three independently priced complete options");
+        check(prefer_assembly_candidate(pair,solo),"faster pair may beat a feasible slow solo after helper opportunity charge");
+        check(prefer_assembly_candidate(three,pair),"third body can justify its actual added completed-cycle value");
+        auto unknown=solo;unknown.known=false;
+        check(prefer_assembly_candidate(pair,unknown),"unknown solo cannot blanket-veto independently known paid pair");
+        check(!prefer_assembly_candidate(unknown,pair),"unknown smaller crew cannot displace known paid itinerary");
+        auto expensive=pair;expensive.rate=solo.rate/2;
+        check(!prefer_assembly_candidate(expensive,solo),"positive feasible cooperation still loses to better completed solo alternative");
+        auto tie=three;tie.rate=pair.rate;
+        check(prefer_assembly_candidate(pair,tie),"equal completed value releases unnecessary third participant");
+        auto faster=pair;faster.total_ticks-=1;
+        check(prefer_assembly_candidate(faster,pair),"equal crew and rate use earlier actual conversion deterministically");
+        auto bad=three;bad.rate=std::numeric_limits<double>::quiet_NaN();
+        check(!prefer_assembly_candidate(bad,pair),"nonfinite quote cannot gain control");
+        q.cycle_ticks=8;bodies[2].alternative_known=false;
+        check(!price_assembly(q,bodies).known,"third body requires known abandoned job even for single target");
+    }
     std::printf("%d assembly checks passed\n",checks);
 }

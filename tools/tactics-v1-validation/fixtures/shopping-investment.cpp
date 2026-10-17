@@ -6,6 +6,7 @@
 #include <iostream>
 #include <string_view>
 using namespace tactics;
+namespace bc {namespace constants {inline constexpr int max_rounds=2000;}}
 namespace cambc {struct champion_stats{double health_growth=1,strength_growth=1,focus_growth=1;};}
 // EXACT_SHOP_TYPES
 struct ItemInfo;
@@ -22,7 +23,7 @@ inline Item shop_item(int raw){return {raw};}
 inline const ItemInfo &shop_info(int raw){return catalog[raw];}
 inline ShopInventory shop_inventory(const ShopInventory&i){return i;}
 struct MockMe {ShopInventory inventory;ShopInventory item_count()const{return inventory;}};
-struct MockGeo {std::vector<Group>groups=std::vector<Group>(2);};
+struct MockGeo {std::vector<Group>groups=std::vector<Group>(2);std::optional<int>path=6;std::optional<int>cached_steps(Pos,Pos)const{return path;}};
 struct World {
     Actor self;MockMe me;MockGeo geo;Memory memory;int gold=0,round=20;
     std::vector<Actor> allies,enemies;
@@ -104,6 +105,22 @@ int main(){
     shopping_after_action(w,action,true,state);check(w.memory.mission.group==0&&state.failed_round==20&&!w.memory.upgrade_gem_unlock);
     w=World{};state=plan();state.investment_mission.group=1;state.investment_origin.group=0;w.memory.upgrade_gem_unlock=true;
     shopping_after_action(w,action,false,state);check(w.memory.mission.group==0&&state.investment_item<0&&!w.memory.upgrade_gem_unlock);
+    auto named_plan=[&]{auto s=plan();s.investment_gem_unlock=true;s.investment_mission.group=1;s.investment_mission.latest=1900;s.investment_mission.rate=.3;s.gem_route_group[0]=1;s.gem_route_stage[0]={7,7};return s;};
+    action.count=1;w=World{};w.me.inventory.count[13]=1;state=named_plan();
+    shopping_after_action(w,action,true,state);
+    check(state.installed_gem.group==1&&state.installed_gem.stage==Pos{7,7});
+    check(state.installed_gem.installed==20&&state.installed_gem.until==38&&state.installed_gem.remaining_cycle==100);
+    check(w.memory.mission.phase==Phase::Reenter&&w.memory.mission.group==1);
+    w=World{};w.me.inventory.count[13]=1;w.gold=1;state=named_plan();shopping_after_action(w,action,true,state);
+    check(state.installed_gem.group==-1&&state.failed_round==20);
+    w=World{};state=named_plan();shopping_after_action(w,action,false,state);check(state.installed_gem.group==-1);
+    w=World{};w.me.inventory.count[13]=1;w.geo.path=std::nullopt;state=named_plan();shopping_after_action(w,action,true,state);
+    check(state.installed_gem.group==-1&&w.memory.mission.phase==Phase::Reenter);
+    auto named=plan().investment_mission;named.latest=1900;named.rate=.3;
+    check(make_installed_reentry(named,{7,7},6,1,20,2000).until==38);
+    check(make_installed_reentry(named,{7,7},unreachable,1,20,2000).group==-1);
+    check(make_installed_reentry(named,{7,7},6,1,1900,2000).group==-1);
+    named.rate=0;check(make_installed_reentry(named,{7,7},6,1,20,2000).group==-1);
 #if __has_include("camp_actions.h")
     a=Actor{};a.type=0;a.strength=10;a.hp=a.max_hp=1000;a.move_speed=1;
     a.spells[0].kind=3;a.spells[0].ground=true;a.spells[0].amount=80;

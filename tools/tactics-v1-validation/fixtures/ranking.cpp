@@ -1,3 +1,6 @@
+#define TACTICS_SOLO_MODEL_ONLY
+#define TACTICS_COORDINATION_MODEL_ONLY
+#include "solo.h"
 #include "ranking.h"
 #include <algorithm>
 #include <cstdio>
@@ -5,7 +8,7 @@
 #include <vector>
 
 using namespace tactics;
-struct Entry { CampRank rank; bool reward, affordable; };
+struct Entry { CampRank rank; bool reward, singleton; };
 static unsigned checks = 0;
 static void require(bool value, const char *message) {
     ++checks;
@@ -13,8 +16,8 @@ static void require(bool value, const char *message) {
 }
 static void compare(std::vector<Entry> entries, int incumbent) {
     CampRanking bounded;
-    for (auto row : entries) bounded.offer(row.rank, row.reward, row.affordable);
-    // Independent reference preserves the exact removed full-sort algorithm.
+    for (auto row : entries) bounded.offer(row.rank, row.reward, row.singleton);
+    // Independent full-sort reference implements the bounded hypothesis policy.
     std::sort(entries.begin(), entries.end(), [](auto a, auto b) {
         return a.rank.score > b.rank.score ||
             (a.rank.score == b.rank.score && a.rank.gi < b.rank.gi);
@@ -26,7 +29,7 @@ static void compare(std::vector<Entry> entries, int incumbent) {
     };
     add(incumbent);
     for (auto row : entries) if (row.reward) { add(row.rank.gi); break; }
-    for (auto row : entries) if (row.affordable) { add(row.rank.gi); break; }
+    for (auto row : entries) if (row.singleton) { add(row.rank.gi); break; }
     for (auto row : entries) if (reference.size() < 3) add(row.rank.gi);
     const auto shortlist = bounded.shortlist(incumbent);
     require(reference.size() == shortlist.size(), "shortlist length");
@@ -55,6 +58,26 @@ int main() {
              {{3, 1}, true, false}, {{4, 0}, false, true}}, 99);
     compare({{{9, 4}, true, true}, {{3, 4}, false, true}, {{6, 4}, true, false},
              {{1, 4}, false, false}, {{2, 4}, false, false}}, -1);
+    // The observed normal22 Issac had900HP/40STR. Basic-only damage681
+    // mislabeled every Wolf unsafe against675, though his reset kit is safe.
+    Actor a; a.id=3; a.type=4; a.alive=true; a.pos={16,34}; a.hp=a.max_hp=900;
+    a.strength=40; a.range=1; a.can_attack=a.can_cast=true;
+    auto& reset=a.spells[0]; reset.kind=1; reset.self=reset.ready=true;
+    reset.cooldown=0; reset.recharge=8; reset.slot=0;
+    Camp wolf; wolf.id=6; wolf.pos={17,34}; wolf.hp=1350; wolf.strength=20; wolf.range=3;
+    const auto proof=certify_solo_clear(a,wolf,a.pos,0,true);
+    require(std::ceil(wolf.hp/a.strength)*wolf.strength+1>=.75*a.hp&&
+            proof.known&&proof.feasible&&proof.clear_ticks==30&&proof.remaining_hp==320,
+            "false basic-only affordability does not represent actual reset kit");
+    CampRanking hypotheses;
+    for(auto row:{CampRank{5,1.282051},CampRank{9,1.282051},CampRank{1,1.219512}})
+        hypotheses.offer(row,false,false);
+    hypotheses.offer({6,.656827},false,true);
+    auto selected=hypotheses.shortlist();
+    require(selected.size()==3&&selected.values[0]==6&&selected.values[1]==5&&selected.values[2]==9,
+            "lower coarse singleton receives one hypothesis slot without ready or safety credit");
+    require(hypotheses.shortlist(9).values[0]==9,
+            "actual incumbent continuity remains ahead of singleton hypothesis");
     for (int iteration = 0; iteration < 20000; ++iteration) {
         const unsigned count = random_value() % (iteration % 7 == 0 ? 513 : 65);
         std::vector<Entry> entries;
@@ -70,5 +93,25 @@ int main() {
             iteration % 4 == 0 ? 100000 : entries[random_value() % count].rank.gi;
         compare(entries, incumbent);
     }
+    // A bounded quote cutoff may give the next hypothesis another owner's
+    // budget. No outcome, income or readiness is inferred from the cursor.
+    for(int n=0;n<=3;++n){
+        BoundedRanks<int,3>s;s.count=n;for(int k=0;k<n;++k)s.values[k]=10+k;
+        for(int last=-1;last<=13;++last){
+            auto out=rotate_candidates_after(s,last);
+            require(out.count==s.count,"rotation preserves bounded slot count");
+            auto a=s.values,b=out.values;std::sort(a.begin(),a.begin()+n);std::sort(b.begin(),b.begin()+n);
+            require(a==b,"rotation preserves exact candidate membership");
+            if(n>1&&last>=10&&last<10+n)
+                require(out.values[0]==10+(last-10+1)%n,"last attempted slot yields first budget to successor");
+        }
+        if(n){int last=-1;bool visited[3]={};
+            for(int owner=0;owner<n;++owner){auto out=rotate_candidates_after(s,last);last=out.values[0];visited[last-10]=true;}
+            for(int k=0;k<n;++k)require(visited[k],"every fixed bounded hypothesis gets a funded first position");
+        }
+    }
+    BoundedRanks<int,3> witness;witness.count=3;witness.values={3,1,5};
+    require(rotate_candidates_after(witness,3).values==std::array<int,3>{1,5,3},"actual R60 first-slot monopoly can advance");
+    require(rotate_candidates_after(witness,1).values==std::array<int,3>{5,3,1},"next bounded hypothesis is not silently dropped");
     std::printf("%u ranking checks passed\n", checks);
 }

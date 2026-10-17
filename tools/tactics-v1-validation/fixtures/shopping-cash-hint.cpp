@@ -4,8 +4,8 @@
 #include <cstdlib>
 namespace tactics {
 struct HintGeometry {std::vector<Group>groups{Group{},Group{}};std::map<std::pair<int,int>,int>goal_cache;std::map<int,int>route_cache;int index(Pos p)const{return p.y*32+p.x;}};
-struct World {Actor self{};int gold=0;Memory memory{};std::vector<Actor>enemies;HintGeometry geo;};
-struct ShoppingState {struct Receipt{int group=-1;Pos capture{};}cash;int investment_item=-1;};
+struct World {Actor self{};int gold=0,round=20;Memory memory{};std::vector<Actor>enemies;HintGeometry geo;};
+struct ShoppingState {struct Receipt{int group=-1;Pos capture{};}cash;struct Installed{int group=-1,until=-1;Pos stage{};}installed_gem;int investment_item=-1;};
 inline int cash_investment_group(const World&){return -1;}
 inline std::optional<Pos> cash_contribution_stage(const World&,int,ShoppingState&){return std::nullopt;}
 inline std::array<int,2>gem_investment_groups(const World&){return{-1,-1};}
@@ -25,4 +25,8 @@ w.enemies.push_back(Actor{});check(!shopping_gem_route_hint(w,s),"current hostil
 w.self.type=11;check(!shopping_gem_route_hint(w,s),"field shop champion does not get spawn investment route");w.self.type=3;
 w.gold=35;check(shopping_gem_route_hint(w,s)==std::optional<Pos>(s.cash.capture),"existing receipt root precedes generic wallet fallback");
 w.geo.goal_cache.clear();check(shopping_gem_route_hint(w,s)==std::optional<Pos>(s.cash.capture),"empty unrelated caches still request exact consumer root");
+s.installed_gem.group=1;s.installed_gem.stage={7,7};s.installed_gem.until=50;
+check(shopping_gem_route_hint(w,s)==std::optional<Pos>(Pos{7,7}),"real installed named return gets its completed-field preparation before another gold hypothesis");
+w.geo.goal_cache[{w.geo.index({7,7}),0}]=1;check(!shopping_gem_route_hint(w,s),"known installed-stage field is reused without a duplicate search");
+w.geo.goal_cache.clear();w.round=50;check(!shopping_gem_route_hint(w,s),"expired installed travel window cannot request continuing field work");
 std::printf("%d cash route-hint checks passed\n",checks);}

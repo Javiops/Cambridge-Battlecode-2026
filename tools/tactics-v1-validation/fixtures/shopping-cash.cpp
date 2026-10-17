@@ -54,5 +54,22 @@ int main(){
  receipt.gold_before=5;check(!cash_reward_paid(receipt,35,30,true,Lifecycle::Respawning,true),"partial unexpected wallet delta invalidates expected payout");
  check(cash_reward_paid(receipt,40,30,true,Lifecycle::Respawning,true),"actual prior wallet plus sole payout funds exact purchase");
  receipt.expected_gold=0;check(!cash_reward_paid(receipt,40,30,true,Lifecycle::Respawning,true),"zero-income receipt cannot manufacture investment");
+ check(q.post_arrival_ticks==q.cash_ticks,"current-stage quote retains actual clear plus capture work, without a fabricated arrival");
+ {auto traveler=a;traveler.pos={-5,0};auto legs=cl;legs.walk=5;const auto future=price(traveler,cash,legs);check(future.known&&future.cash_ticks==5+future.post_arrival_ticks,"receipt separates five real future walking owners from remaining clear and capture");}
+ Actor traveler=a;traveler.id=0;Mission observe;observe.phase=Phase::Observe;
+ CashInvestment lease;lease.group=0;lease.rate=.3;lease.created=15;lease.validated_round=20;lease.until=50;lease.post_arrival_ticks=12;
+ check(cash_acquisition_eligible(traveler,observe,lease,20,true,false,false),"current personally validated named investment may replace an unpriced observation with travel");
+ check(cash_acquisition_fits(lease,20,5,lease.post_arrival_ticks),"finite five-owner stage path fits fixed receipt deadline without widening local solo quote");
+ check(!cash_acquisition_fits(lease,38,0,12),"arrival plus real post-arrival capture work must complete strictly before receipt expiry");
+ check(!cash_acquisition_fits(lease,20,-1,12),"unknown approach does not become zero-cost travel");
+ check(!cash_acquisition_fits(lease,20,1,0),"unpriced remaining capture work cannot authorize stage movement");
+ {auto stale=lease;stale.validated_round=19;check(!cash_acquisition_eligible(traveler,observe,stale,20,true,false,false),"previous-owner receipt must be refreshed before its travel controller");}
+ check(!cash_acquisition_eligible(traveler,observe,lease,20,false,false,false),"raw gold or mission rate is not an authorized finite itinerary");
+ check(!cash_acquisition_eligible(traveler,observe,lease,20,true,true,false),"last actual holder is not taken by an elective cash prefix");
+ check(!cash_acquisition_eligible(traveler,observe,lease,20,true,false,true),"credible hostile contact preempts cash travel");
+ for(Phase phase:{Phase::Clear,Phase::Collect,Phase::Recover,Phase::Channel}){auto job=observe;job.phase=phase;check(!cash_acquisition_eligible(traveler,job,lease,20,true,false,false),"paid current work capture recovery and channel precede new travel");}
+ {auto job=observe;job.assembly_count=2;check(!cash_acquisition_eligible(traveler,job,lease,20,true,false,false),"an essential actual crew role is not silently abandoned");}
+ {auto carrying=traveler;carrying.gems=1;check(!cash_acquisition_eligible(carrying,observe,lease,20,true,false,false),"a real carried bag uses its scoring contract first");}
+ {auto hurt=traveler;hurt.hp=.74*hurt.max_hp;check(!cash_acquisition_eligible(hurt,observe,lease,20,true,false,false),"elective prefix never precedes necessary health maintenance");}
  std::printf("%d finite cash investment checks passed\n",checks);
 }

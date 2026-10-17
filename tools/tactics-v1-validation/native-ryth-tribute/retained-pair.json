@@ -1,0 +1,106 @@
+{
+  "scope": "Paired real native Ryth/capture/Tribute with only deciding score projected. These retained source snapshots precede the optional-retaliation and linked-removal repairs; they are not exact final integration19 or whole Bot main/strength proof. Actual bag24 and actual score0; projected score976.",
+  "one_header_expression_difference_verified": true,
+  "positive": {
+    "passed": true,
+    "fuel": 0,
+    "faults": {
+      "teamA": 0,
+      "teamB": 0
+    },
+    "module_sha256": "fec90ddfc78df517b8c2497d02dc8f60e8b7dd55fb039faf2c3e127e338232d7",
+    "map_sha256": "cde94ecd5af315799b997c0bc249bcfd3b1446fe8cb6c28fa59375cc0d04eea2",
+    "sdk_sha256": "76664dc7c4ab764243a7530eb97be12d9c20518b7bd2601a962fb0669d1da4a4",
+    "statistics_sha256": "29e118e3a16684c189f47e0b2188e07911308eb49d7d332e2056c43695c167fc",
+    "replay_sha256": "54e7a5d7731e1cfb1af4e758d158a3e18df0b26787c30439a3a54754335e47e5",
+    "source_sha256": {
+      "actions.h": "f62e94acec71929553e0f76429fea462b67a79fda06f2f8c319a15fe94646d61",
+      "assembly.h": "30c40911b371c65cb612c0fd5c2197f24a2570113929e20a63fc92abd2ee4b1c",
+      "camp_actions.h": "d25d6a951b98b41e07ce84a2c53b21e0d2e6438f8aed865602cb212f778d6447",
+      "camp_basic.h": "7eba57ca81b56f493f937e75fbc3927425eea53a920da677cf4b31419d5ac397",
+      "camp_collateral.h": "69b29ad70768f3bad399f3f3a1fb576deb076e89b74d5c33670e52afefae17d2",
+      "combat.h": "50cb65822bd08c243e7d972cb4207e8e08cfc973ca8dfd58df39672a2757ba8b",
+      "coordination.h": "ae4ab41b87b139fc1b01118d89208fd4a43ae012e157792cbd6dd1e10e5463ac",
+      "coordinator.h": "8548311f31da57a61e451024b22eb5de535a6d22834b9cc9a004616f39895ef9",
+      "crew_sequence.h": "55adf3b75b3ed99a8ac94f4f9a8fb871ea846a6dcf65c312388d97154a25ede6",
+      "cycles.h": "957d9754a3233cb3920f0f7c95d030b4f0e41309d2ac2d9298ab85815273f661",
+      "deny.h": "34766bcdc919400e2bcb821541a6aa6d560d88df1ab855b674d5c0d56e467872",
+      "draft.h": "4aacfd6fe0c9d8867f551ad54c2394cfbf1a984ce2c1d6cdd339582165f8346a",
+      "economy.h": "346424eda33dd4bba5108ad1ed164b6598cee75de8ae7acff902bc03d562b269",
+      "farm_readiness.h": "440153f3982e535832654f90ba9099cd7053bb8e5365b3f698952acf27c61c99",
+      "geometry.h": "1e247a48f232b300e9cfbd8944368d50e6b644fdd1793ed57418da0213e354f2",
+      "information.h": "ae1a681040a444c1bd3470a6fa7c06b725c1318429dbcfd7cefb8554f38483d2",
+      "log.h": "bd93aec4806ef14eba825578c53ed15f37798467ba3ad8db36cef859f3995fbe",
+      "main.cpp": "66a922d51a1ef04c4ed3d0f77cc1fbf62a9b058f3f67a1c790dd9bb35f03b76b",
+      "ranking.h": "201400083dec5db6fc5ee298ceb6d8ba17a989b361b40677d50fe9dc3c70c5a5",
+      "resource.h": "aecc6dbd349f520d7b4167c68cd1abf5217a33698696678277d614f7da232c3e",
+      "sdk_world.h": "d98a87de11a72d4814f29c6e48e651b6b3d276b618ced2339d88da583961ee41",
+      "shopping.h": "cdbe7ebaf5d34f820eea2ed5544aca6edb9f0578857e2185b37933c987968a79",
+      "solo.h": "09ac7d34421e4bb2186a12f7ed9384401947d889cb56fdaa663a35eb582e3ef4",
+      "solo_bounds.h": "37848f2d951b318f00bd6a197edd89b827080edd0900e34b99f3111d4280fc77",
+      "squads.h": "f2075e3b0c5b5a977b04b00e6f24c6a1b5952d8b0da707ee8e8a715f2e96faa2",
+      "strategic.h": "c2f67e403ce8d591e99e016aaf156b69dfca92070cdf84502411633b86e1fb01",
+      "types.h": "724ab07415864d16a42649e8fca9b8e8dddbf031cfd5d5ef2042d197f2c907de",
+      "vision.h": "6cea9e058fe56bbc7b5ac85ff316270760e7f2be7ad84888a7dab55eb3012abf"
+    },
+    "markers": {
+      "a": [
+        "RYTH_TRIBUTE_PASS mode=1 round=36 actualScore=0 projectedScore=976 bag=24 entry=39915 exit=32018 priority=3"
+      ],
+      "b": [
+        "RYTH_TRIBUTE_STARTED round=35 bag=24"
+      ]
+    }
+  },
+  "old_expression_control": {
+    "passed": true,
+    "fuel": 0,
+    "faults": {
+      "teamA": 0,
+      "teamB": 0
+    },
+    "module_sha256": "341a7281f96456d1505d4817716f6929e73ab96f8537c0c53db39278af53ebf9",
+    "map_sha256": "cde94ecd5af315799b997c0bc249bcfd3b1446fe8cb6c28fa59375cc0d04eea2",
+    "sdk_sha256": "76664dc7c4ab764243a7530eb97be12d9c20518b7bd2601a962fb0669d1da4a4",
+    "statistics_sha256": "e22f589ab482d0549be21eb4e7a73d6bb6b7a47eea36d806cc2bb2c34b8844f5",
+    "replay_sha256": "6ed44cc2d529ee60529b41b238e44d6ad41fdb94f035ca3ba16bd9ce21ab7d0b",
+    "source_sha256": {
+      "actions.h": "f62e94acec71929553e0f76429fea462b67a79fda06f2f8c319a15fe94646d61",
+      "assembly.h": "30c40911b371c65cb612c0fd5c2197f24a2570113929e20a63fc92abd2ee4b1c",
+      "camp_actions.h": "37236ab64f4de26c39beb493f3875fabcc1155b66770582d569d3e608bc4f5fa",
+      "camp_basic.h": "7eba57ca81b56f493f937e75fbc3927425eea53a920da677cf4b31419d5ac397",
+      "camp_collateral.h": "69b29ad70768f3bad399f3f3a1fb576deb076e89b74d5c33670e52afefae17d2",
+      "combat.h": "6105139b6db7c023c75fa5582da9e754656f95f86c37f0daa368900e2ef8b592",
+      "coordination.h": "89ee59fe4cdf7d9d3236b75659983f0849944a01d2f5aaabac84b4c7391d6942",
+      "coordinator.h": "8548311f31da57a61e451024b22eb5de535a6d22834b9cc9a004616f39895ef9",
+      "crew_sequence.h": "2653242cf67f926c62faac1f59f514465e483afb59448726014909b8995543bb",
+      "cycles.h": "957d9754a3233cb3920f0f7c95d030b4f0e41309d2ac2d9298ab85815273f661",
+      "deny.h": "34766bcdc919400e2bcb821541a6aa6d560d88df1ab855b674d5c0d56e467872",
+      "draft.h": "4aacfd6fe0c9d8867f551ad54c2394cfbf1a984ce2c1d6cdd339582165f8346a",
+      "economy.h": "81cfbe59dcae922442ea51a1c8a1ff4bb396fc77eed0d171a2703105705d000b",
+      "farm_readiness.h": "440153f3982e535832654f90ba9099cd7053bb8e5365b3f698952acf27c61c99",
+      "geometry.h": "1e247a48f232b300e9cfbd8944368d50e6b644fdd1793ed57418da0213e354f2",
+      "information.h": "ae1a681040a444c1bd3470a6fa7c06b725c1318429dbcfd7cefb8554f38483d2",
+      "log.h": "bd93aec4806ef14eba825578c53ed15f37798467ba3ad8db36cef859f3995fbe",
+      "main.cpp": "ff0b3418986413213f195087e2b0acc3a580c5b632547f31e6d8bc0149dfcf51",
+      "ranking.h": "201400083dec5db6fc5ee298ceb6d8ba17a989b361b40677d50fe9dc3c70c5a5",
+      "resource.h": "aecc6dbd349f520d7b4167c68cd1abf5217a33698696678277d614f7da232c3e",
+      "sdk_world.h": "d98a87de11a72d4814f29c6e48e651b6b3d276b618ced2339d88da583961ee41",
+      "shopping.h": "cdbe7ebaf5d34f820eea2ed5544aca6edb9f0578857e2185b37933c987968a79",
+      "solo.h": "09ac7d34421e4bb2186a12f7ed9384401947d889cb56fdaa663a35eb582e3ef4",
+      "solo_bounds.h": "37848f2d951b318f00bd6a197edd89b827080edd0900e34b99f3111d4280fc77",
+      "squads.h": "f2075e3b0c5b5a977b04b00e6f24c6a1b5952d8b0da707ee8e8a715f2e96faa2",
+      "strategic.h": "c2f67e403ce8d591e99e016aaf156b69dfca92070cdf84502411633b86e1fb01",
+      "types.h": "69addc9bb4544f1f09ed51e4dd3813965358cfefe6929df91e17f7d1a9add4bd",
+      "vision.h": "6cea9e058fe56bbc7b5ac85ff316270760e7f2be7ad84888a7dab55eb3012abf"
+    },
+    "markers": {
+      "a": [
+        "RYTH_TRIBUTE_PASS mode=0 round=36 actualScore=0 projectedScore=976 bag=24 entry=39915 exit=31915 priority=0"
+      ],
+      "b": [
+        "RYTH_TRIBUTE_STARTED round=35 bag=24"
+      ]
+    }
+  }
+}

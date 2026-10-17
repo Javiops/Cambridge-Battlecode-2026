@@ -1,0 +1,2404 @@
+{
+  "passed": true,
+  "created_utc": "2026-10-16T22:27:34.263907+00:00",
+  "scope": "Autonomous normal-main assembly activation on two predeclared native maps.\n\nThis is a local integration test, not a strength benchmark. Every allied owner\nuses the byte-identical production main and headers. Only the opponent is inert.\nNo mission, allied action, visibility, wallet, claim or World is scripted.",
+  "freeze": {
+    "created_utc": "2026-10-16T22:27:16.674580+00:00",
+    "source": "C:\\Users\\frans\\Documents\\Codex\\2026-10-14\\v\\work\\tactics-bot-v1\\testing\\improvement-v2\\candidates\\integration20\\src",
+    "source_sha256": {
+      "actions.h": "f62e94acec71929553e0f76429fea462b67a79fda06f2f8c319a15fe94646d61",
+      "assembly.h": "d2b36d4cb4d2dcf2a2344df6017eee76cbfd58c384aed65975641cc7d3f4e842",
+      "camp_actions.h": "37236ab64f4de26c39beb493f3875fabcc1155b66770582d569d3e608bc4f5fa",
+      "camp_basic.h": "7bf89b67e929472e4a760a5a1f91858f622ca6b44c9ae06cd9a1908f788efd44",
+      "camp_collateral.h": "69b29ad70768f3bad399f3f3a1fb576deb076e89b74d5c33670e52afefae17d2",
+      "combat.h": "1d6bb5eaebd38e8c65770c52107101b00bfb8261d6512caae85f0cef3625f2a1",
+      "coordination.h": "6413b7af8d0c6e085c222e74f87e40d647758edd643ff6d1cef40395ad763cfa",
+      "coordinator.h": "73b207373ea610b998c9c4346c44c7298b38ed6a635dad4b068a696d7bfd0b72",
+      "crew_sequence.h": "5b0549469e508383de382afe4e6a7a73b1688592dada1ed86f6fc2ab43602b1d",
+      "cycles.h": "957d9754a3233cb3920f0f7c95d030b4f0e41309d2ac2d9298ab85815273f661",
+      "deny.h": "34766bcdc919400e2bcb821541a6aa6d560d88df1ab855b674d5c0d56e467872",
+      "draft.h": "4aacfd6fe0c9d8867f551ad54c2394cfbf1a984ce2c1d6cdd339582165f8346a",
+      "economy.h": "7b6d469ecfcde83ad77e6b69b7d0ec6d01996d327bab1aa5d9dbefb838d0420f",
+      "farm_readiness.h": "440153f3982e535832654f90ba9099cd7053bb8e5365b3f698952acf27c61c99",
+      "geometry.h": "1e247a48f232b300e9cfbd8944368d50e6b644fdd1793ed57418da0213e354f2",
+      "information.h": "ae1a681040a444c1bd3470a6fa7c06b725c1318429dbcfd7cefb8554f38483d2",
+      "log.h": "bd93aec4806ef14eba825578c53ed15f37798467ba3ad8db36cef859f3995fbe",
+      "main.cpp": "3e190d9376950854a6507ca621af169b814cc88636cc16cf725fb1173853457d",
+      "ranking.h": "201400083dec5db6fc5ee298ceb6d8ba17a989b361b40677d50fe9dc3c70c5a5",
+      "resource.h": "e31de4cb4db5011b507df3f7932fc27a4b583f1c94c9b4850c88032c1c1ba59b",
+      "sdk_world.h": "d104f1f7523edd5375d8ed1d69d18293ef12971e699d752392ba14f03efa1278",
+      "shopping.h": "cdbe7ebaf5d34f820eea2ed5544aca6edb9f0578857e2185b37933c987968a79",
+      "solo.h": "0f1515a3707171b1ac495fb1e93ae7eb114bb6dbe3692de1657ff80e2636a6a0",
+      "solo_bounds.h": "37848f2d951b318f00bd6a197edd89b827080edd0900e34b99f3111d4280fc77",
+      "squads.h": "f2075e3b0c5b5a977b04b00e6f24c6a1b5952d8b0da707ee8e8a715f2e96faa2",
+      "strategic.h": "c2f67e403ce8d591e99e016aaf156b69dfca92070cdf84502411633b86e1fb01",
+      "types.h": "69addc9bb4544f1f09ed51e4dd3813965358cfefe6929df91e17f7d1a9add4bd",
+      "vision.h": "6cea9e058fe56bbc7b5ac85ff316270760e7f2be7ad84888a7dab55eb3012abf"
+    },
+    "runtime": {
+      "cli_sha256": "a4262675695e4716ec5355712d21d2ec71e78cc8371dca28990bf1de84480da3",
+      "sdk_header_sha256": "76664dc7c4ab764243a7530eb97be12d9c20518b7bd2601a962fb0669d1da4a4",
+      "official_reference_engine_sha256": "e123b59d9dea198762ab7a04db9b3cb6d06dfa991088e41c24750fc4cb88b947",
+      "project_config_sha256": "afaadf58883877c0bb8879694126f7d918366cacc9f66e75d086d4f7386f872a",
+      "sdk_version": "2.2.2",
+      "engine_version": "0.0.2",
+      "release": true,
+      "fuel": "official CLI default; no override",
+      "scope": "local matches only"
+    },
+    "map_manifest": {
+      "created_utc": "2026-10-16T21:13:22.277Z",
+      "engine_sha256": "e123b59d9dea198762ab7a04db9b3cb6d06dfa991088e41c24750fc4cb88b947",
+      "generator_sha256": "fd0bb0e5f12084a9f2cf8004e1976cb36d51a9aa011dd3b616f11704ed97383e",
+      "scope": "Two predeclared local autonomous integration activation maps. No candidate results used in selection. Not holdout/strength samples. Official map/camp definitions and native integrity verification only.",
+      "candidate_policy": "All production main/header bytes copied unchanged. No scripted allied movement, mission, claim, World, stats or wallet edits. Quiet opponent only drafts/yields.",
+      "required_evidence": "Accepted production crew-paid camp damage, at least two autonomous allied damage contributors to the same native group, actual group clear then gem receipt then a bank by a recipient with no intervening gem loss.",
+      "maps": [
+        {
+          "id": "three-pick-hole-bend",
+          "width": 40,
+          "height": 32,
+          "picks": 3,
+          "spawn": [
+            2,
+            14,
+            5,
+            18
+          ],
+          "altars": [
+            [
+              6,
+              14
+            ],
+            [
+              15,
+              25
+            ]
+          ],
+          "holes": [
+            [
+              1,
+              12
+            ],
+            [
+              2,
+              12
+            ],
+            [
+              3,
+              12
+            ],
+            [
+              4,
+              12
+            ],
+            [
+              5,
+              12
+            ],
+            [
+              6,
+              12
+            ],
+            [
+              7,
+              12
+            ],
+            [
+              8,
+              12
+            ],
+            [
+              9,
+              12
+            ],
+            [
+              10,
+              12
+            ],
+            [
+              11,
+              12
+            ]
+          ],
+          "camps": [
+            {
+              "type": 2,
+              "pos": [
+                8,
+                16
+              ],
+              "role": "primary"
+            },
+            {
+              "type": 2,
+              "pos": [
+                9,
+                16
+              ],
+              "role": "primary"
+            },
+            {
+              "type": 2,
+              "pos": [
+                8,
+                10
+              ],
+              "role": "farther-singleton-alternative"
+            },
+            {
+              "type": 0,
+              "pos": [
+                12,
+                24
+              ],
+              "role": "other-resource"
+            },
+            {
+              "type": 1,
+              "pos": [
+                13,
+                5
+              ],
+              "role": "other-resource"
+            }
+          ],
+          "purpose": "Autonomous multi-monster crew, real capture and small split-bag conversion. Non-opaque hole detour makes the visible singleton alternative longer to walk. Production draft may create four physical bodies from three picks.",
+          "file": "three-pick-hole-bend.map26a",
+          "sha256": "46114501daf8373fac8cb8ea8163d910726be9aed791ab5522a9f158def3cb14",
+          "builder_groups": [
+            {
+              "builder_index": 0,
+              "builder_handle": "0",
+              "gems": 48,
+              "gold": 0,
+              "respawn": 50,
+              "members": [
+                {
+                  "type": 2,
+                  "pos": [
+                    8,
+                    16
+                  ]
+                },
+                {
+                  "type": 2,
+                  "pos": [
+                    9,
+                    16
+                  ]
+                }
+              ]
+            },
+            {
+              "builder_index": 1,
+              "builder_handle": "65536",
+              "gems": 24,
+              "gold": 0,
+              "respawn": 50,
+              "members": [
+                {
+                  "type": 2,
+                  "pos": [
+                    8,
+                    10
+                  ]
+                }
+              ]
+            },
+            {
+              "builder_index": 2,
+              "builder_handle": "131072",
+              "gems": 22,
+              "gold": 90,
+              "respawn": 40,
+              "members": [
+                {
+                  "type": 0,
+                  "pos": [
+                    12,
+                    24
+                  ]
+                }
+              ]
+            },
+            {
+              "builder_index": 3,
+              "builder_handle": "196608",
+              "gems": 36,
+              "gold": 160,
+              "respawn": 60,
+              "members": [
+                {
+                  "type": 1,
+                  "pos": [
+                    13,
+                    5
+                  ]
+                }
+              ]
+            }
+          ],
+          "symmetry": "HORIZONTAL/X mirror",
+          "primary_physical_positions": [
+            [
+              8,
+              16
+            ],
+            [
+              9,
+              16
+            ],
+            [
+              31,
+              16
+            ],
+            [
+              30,
+              16
+            ]
+          ]
+        }
+      ],
+      "selection_note": "Original predeclared three-pick case only; paired corrected five-pick spawn4 case is run from its retained independent manifest. No map byte changed or target changed."
+    },
+    "quiet_source_sha256": "3d2da52a4d4418ca4c3650299364859a581f429600fcb05d1cffee5caa074c7c",
+    "local_build_match_harness_sha256": "565fe1cfbd9c0cb77fdb9f87cc65a354555badca40ec5aca29acdbc3a556c8c0",
+    "runner_sha256": "e8b98d4ee8e695b915ec29ac8290efcb175728e535f3a97b72a60f22242c4cb3",
+    "decoder_sha256": "3bc44793a7191fcda5618af2e1ced7288b15ff29a8f4a5e10495b8117a745bf6",
+    "decoder_engine_binding_sha256": "3776b2965b93ffd6508a9863a233539048900a564572ce60e699d5e2b12db791",
+    "no_projected_allied_state_or_scripted_actions": true,
+    "production_action_kind_codes": {
+      "None": 0,
+      "Move": 1,
+      "BasicChampion": 2,
+      "BasicCamp": 3,
+      "BasicLock": 4,
+      "CastSelf": 5,
+      "CastChampion": 6,
+      "CastCamp": 7,
+      "CastGround": 8,
+      "Recall": 9,
+      "Tribute": 10,
+      "CancelRecall": 11,
+      "CancelTribute": 12,
+      "Ward": 13,
+      "Buy": 14,
+      "Sell": 15,
+      "BuyConsumable": 16,
+      "UseConsumable": 17
+    },
+    "prebuilt_production_report_sha256": "5bbc199b1b12b5d1420eaf0c077d4bb602a6d08c664df247e8e6a4c3515ca70a",
+    "production_recompiled_by_this_runner": false
+  },
+  "modules": {
+    "candidate": "78f3d89e9fbf7ea4167ad91bd36af8c49eb3fa353a3fa58f71729e04790776bc",
+    "quiet": "9e4b47f8bacdd0bb5efeda2e7a02b7ec2a7add2865e7142755eecf629ba7d148"
+  },
+  "games": [
+    {
+      "id": "a20m3-three-pick-hole-bend-side0",
+      "map": {
+        "id": "three-pick-hole-bend",
+        "width": 40,
+        "height": 32,
+        "picks": 3,
+        "spawn": [
+          2,
+          14,
+          5,
+          18
+        ],
+        "altars": [
+          [
+            6,
+            14
+          ],
+          [
+            15,
+            25
+          ]
+        ],
+        "holes": [
+          [
+            1,
+            12
+          ],
+          [
+            2,
+            12
+          ],
+          [
+            3,
+            12
+          ],
+          [
+            4,
+            12
+          ],
+          [
+            5,
+            12
+          ],
+          [
+            6,
+            12
+          ],
+          [
+            7,
+            12
+          ],
+          [
+            8,
+            12
+          ],
+          [
+            9,
+            12
+          ],
+          [
+            10,
+            12
+          ],
+          [
+            11,
+            12
+          ]
+        ],
+        "camps": [
+          {
+            "type": 2,
+            "pos": [
+              8,
+              16
+            ],
+            "role": "primary"
+          },
+          {
+            "type": 2,
+            "pos": [
+              9,
+              16
+            ],
+            "role": "primary"
+          },
+          {
+            "type": 2,
+            "pos": [
+              8,
+              10
+            ],
+            "role": "farther-singleton-alternative"
+          },
+          {
+            "type": 0,
+            "pos": [
+              12,
+              24
+            ],
+            "role": "other-resource"
+          },
+          {
+            "type": 1,
+            "pos": [
+              13,
+              5
+            ],
+            "role": "other-resource"
+          }
+        ],
+        "purpose": "Autonomous multi-monster crew, real capture and small split-bag conversion. Non-opaque hole detour makes the visible singleton alternative longer to walk. Production draft may create four physical bodies from three picks.",
+        "file": "three-pick-hole-bend.map26a",
+        "sha256": "46114501daf8373fac8cb8ea8163d910726be9aed791ab5522a9f158def3cb14",
+        "builder_groups": [
+          {
+            "builder_index": 0,
+            "builder_handle": "0",
+            "gems": 48,
+            "gold": 0,
+            "respawn": 50,
+            "members": [
+              {
+                "type": 2,
+                "pos": [
+                  8,
+                  16
+                ]
+              },
+              {
+                "type": 2,
+                "pos": [
+                  9,
+                  16
+                ]
+              }
+            ]
+          },
+          {
+            "builder_index": 1,
+            "builder_handle": "65536",
+            "gems": 24,
+            "gold": 0,
+            "respawn": 50,
+            "members": [
+              {
+                "type": 2,
+                "pos": [
+                  8,
+                  10
+                ]
+              }
+            ]
+          },
+          {
+            "builder_index": 2,
+            "builder_handle": "131072",
+            "gems": 22,
+            "gold": 90,
+            "respawn": 40,
+            "members": [
+              {
+                "type": 0,
+                "pos": [
+                  12,
+                  24
+                ]
+              }
+            ]
+          },
+          {
+            "builder_index": 3,
+            "builder_handle": "196608",
+            "gems": 36,
+            "gold": 160,
+            "respawn": 60,
+            "members": [
+              {
+                "type": 1,
+                "pos": [
+                  13,
+                  5
+                ]
+              }
+            ]
+          }
+        ],
+        "symmetry": "HORIZONTAL/X mirror",
+        "primary_physical_positions": [
+          [
+            8,
+            16
+          ],
+          [
+            9,
+            16
+          ],
+          [
+            31,
+            16
+          ],
+          [
+            30,
+            16
+          ]
+        ]
+      },
+      "own_side": 0,
+      "record": "games\\a20m3-three-pick-hole-bend-side0-737b6d185bc9de7a\\record.json",
+      "statistics": "C:\\Users\\frans\\Documents\\Codex\\2026-10-14\\v\\work\\tactics-bot-v1\\testing\\games\\a20m3-three-pick-hole-bend-side0-737b6d185bc9de7a\\statistics.json",
+      "candidate_module": "78f3d89e9fbf7ea4167ad91bd36af8c49eb3fa353a3fa58f71729e04790776bc",
+      "strict_failures": [],
+      "own_validity": {
+        "no_native_faults": true,
+        "no_caught_errors": true,
+        "fuel_exhausted_events": 0
+      },
+      "scores": [
+        1020,
+        0
+      ],
+      "actual_engine": {
+        "engineBuildHash": "02c4624c8c9b8bcaf9d906f407c0b1d932d5b5bce6e8ea7e222e08065dd9cede",
+        "engineVersion": "0.0.2",
+        "finalInput": 9547,
+        "finalRoundPartial": true,
+        "finalSubstep": 7,
+        "height": 32,
+        "mapHash": "46114501daf8373fac8cb8ea8163d910726be9aed791ab5522a9f158def3cb14",
+        "metricSemanticsVersion": 1,
+        "outcome": "teamA",
+        "roundsCompleted": 1183,
+        "roundsStarted": 1184,
+        "seed": "4835950773802612629",
+        "width": 40
+      },
+      "reasons": {
+        "farm-useful-ready-damage": 47,
+        "farm-stage-outside-unpriced-camp-pressure": 129,
+        "escape-walk": 12,
+        "recovery-safe-return-walk": 2,
+        "farm-live-in-range-basic": 14,
+        "farm-reversible-fresh-observation": 196,
+        "escape-dash": 2,
+        "farm-certified-solo-live-basic": 67,
+        "farm-certified-solo-useful-damage": 15,
+        "crew-paid-pressure-removing-basic": 284,
+        "capture-enter-original-region": 286,
+        "delivery-legal-approach": 145,
+        "delivery-start-verified-channel": 28,
+        "assembly-early-funded-rendezvous-move": 1,
+        "crew-paid-useful-camp-cast": 1,
+        "farm-certified-solo-stage-only": 22,
+        "farm-vacate-respawn-region": 2,
+        "recovery-needed-safe-channel": 1,
+        "recovery-faster-safe-return-walk": 2,
+        "recovery-priced-private-upgrade-return": 1,
+        "install-priced-return-bundle": 1,
+        "delivery-winning-bank": 1
+      },
+      "activation": {
+        "passed": true,
+        "cycles": [
+          {
+            "native_group": 0,
+            "physical_camp_ids": [
+              0,
+              2
+            ],
+            "actual_damage_contributors": [
+              0,
+              2,
+              3
+            ],
+            "production_paid_marker": {
+              "production": {
+                "round": 14,
+                "owner": 0,
+                "phase": "clear",
+                "kind": 3,
+                "outcome": 2,
+                "error": 0,
+                "reason": "crew-paid-pressure-removing-basic",
+                "context": {
+                  "round": 14,
+                  "owner": 0,
+                  "serial": 14,
+                  "group_index": 0,
+                  "target": 2,
+                  "x": -1,
+                  "y": -1,
+                  "gems": 0,
+                  "gold": 0,
+                  "fuel": 27225
+                }
+              },
+              "actual_native_damage": [
+                {
+                  "round": 14,
+                  "input": 145,
+                  "seq": 1002,
+                  "owner": 0,
+                  "camp": 2,
+                  "group": 0,
+                  "hp_loss": 30,
+                  "hp_before": 360,
+                  "hp_after": 330
+                }
+              ]
+            },
+            "actual_native_damage": [
+              {
+                "round": 1,
+                "input": 11,
+                "seq": 55,
+                "owner": 2,
+                "camp": 0,
+                "group": 0,
+                "hp_loss": 125,
+                "hp_before": 500,
+                "hp_after": 375
+              },
+              {
+                "round": 4,
+                "input": 38,
+                "seq": 255,
+                "owner": 0,
+                "camp": 0,
+                "group": 0,
+                "hp_loss": 140,
+                "hp_before": 375,
+                "hp_after": 235
+              },
+              {
+                "round": 4,
+                "input": 46,
+                "seq": 298,
+                "owner": 3,
+                "camp": 0,
+                "group": 0,
+                "hp_loss": 200,
+                "hp_before": 235,
+                "hp_after": 35
+              },
+              {
+                "round": 5,
+                "input": 57,
+                "seq": 373,
+                "owner": 3,
+                "camp": 0,
+                "group": 0,
+                "hp_loss": 35,
+                "hp_before": 35,
+                "hp_after": 0
+              },
+              {
+                "round": 5,
+                "input": 57,
+                "seq": 373,
+                "owner": 3,
+                "camp": 2,
+                "group": 0,
+                "hp_loss": 140,
+                "hp_before": 500,
+                "hp_after": 360
+              },
+              {
+                "round": 14,
+                "input": 145,
+                "seq": 1002,
+                "owner": 0,
+                "camp": 2,
+                "group": 0,
+                "hp_loss": 30,
+                "hp_before": 360,
+                "hp_after": 330
+              },
+              {
+                "round": 15,
+                "input": 155,
+                "seq": 1069,
+                "owner": 0,
+                "camp": 2,
+                "group": 0,
+                "hp_loss": 30,
+                "hp_before": 330,
+                "hp_after": 300
+              },
+              {
+                "round": 16,
+                "input": 167,
+                "seq": 1152,
+                "owner": 0,
+                "camp": 2,
+                "group": 0,
+                "hp_loss": 30,
+                "hp_before": 300,
+                "hp_after": 270
+              },
+              {
+                "round": 17,
+                "input": 177,
+                "seq": 1219,
+                "owner": 0,
+                "camp": 2,
+                "group": 0,
+                "hp_loss": 30,
+                "hp_before": 270,
+                "hp_after": 240
+              },
+              {
+                "round": 18,
+                "input": 189,
+                "seq": 1302,
+                "owner": 0,
+                "camp": 2,
+                "group": 0,
+                "hp_loss": 30,
+                "hp_before": 240,
+                "hp_after": 210
+              },
+              {
+                "round": 19,
+                "input": 199,
+                "seq": 1369,
+                "owner": 0,
+                "camp": 2,
+                "group": 0,
+                "hp_loss": 30,
+                "hp_before": 210,
+                "hp_after": 180
+              },
+              {
+                "round": 19,
+                "input": 208,
+                "seq": 1420,
+                "owner": 3,
+                "camp": 2,
+                "group": 0,
+                "hp_loss": 35,
+                "hp_before": 180,
+                "hp_after": 145
+              },
+              {
+                "round": 20,
+                "input": 211,
+                "seq": 1452,
+                "owner": 0,
+                "camp": 2,
+                "group": 0,
+                "hp_loss": 30,
+                "hp_before": 145,
+                "hp_after": 115
+              },
+              {
+                "round": 20,
+                "input": 219,
+                "seq": 1495,
+                "owner": 3,
+                "camp": 2,
+                "group": 0,
+                "hp_loss": 35,
+                "hp_before": 115,
+                "hp_after": 80
+              },
+              {
+                "round": 21,
+                "input": 221,
+                "seq": 1519,
+                "owner": 0,
+                "camp": 2,
+                "group": 0,
+                "hp_loss": 30,
+                "hp_before": 80,
+                "hp_after": 50
+              },
+              {
+                "round": 21,
+                "input": 230,
+                "seq": 1570,
+                "owner": 3,
+                "camp": 2,
+                "group": 0,
+                "hp_loss": 35,
+                "hp_before": 50,
+                "hp_after": 15
+              },
+              {
+                "round": 22,
+                "input": 233,
+                "seq": 1602,
+                "owner": 0,
+                "camp": 2,
+                "group": 0,
+                "hp_loss": 15,
+                "hp_before": 15,
+                "hp_after": 0
+              }
+            ],
+            "actual_clear": {
+              "owner": 0,
+              "amount": 0.0,
+              "context": "0",
+              "target": {
+                "id": 0,
+                "kind": "campGroup"
+              },
+              "timestamp": {
+                "input": 233,
+                "ordinal": 2663,
+                "phase": "champions",
+                "round": 22,
+                "substep": 0
+              },
+              "value": "1",
+              "x": 9,
+              "y": 16
+            },
+            "actual_capture": {
+              "round": 30,
+              "input": 309,
+              "recipient": {
+                "id": 0,
+                "team": 0,
+                "gold": 0,
+                "gems": 24,
+                "position": [
+                  8,
+                  16
+                ]
+              },
+              "recipient_prior_state": [
+                0,
+                8,
+                16,
+                700,
+                700,
+                1,
+                0,
+                0,
+                0
+              ]
+            },
+            "actual_bank": {
+              "owner": 0,
+              "amount": 0.0,
+              "context": "0",
+              "target": 0,
+              "timestamp": {
+                "input": 341,
+                "ordinal": 3997,
+                "phase": "championStartTurn",
+                "round": 33,
+                "substep": 23
+              },
+              "value": "24",
+              "x": 6,
+              "y": 14
+            },
+            "native_score_transition": {
+              "r": 33,
+              "seq": 2419,
+              "input": 341,
+              "delta": [
+                24,
+                0
+              ],
+              "step": [
+                14,
+                18,
+                1,
+                0,
+                23
+              ],
+              "c": [
+                [
+                  0,
+                  7,
+                  15,
+                  700,
+                  700,
+                  1,
+                  0,
+                  24,
+                  0
+                ],
+                [
+                  1,
+                  7,
+                  14,
+                  900,
+                  900,
+                  1,
+                  0,
+                  24,
+                  0
+                ],
+                [
+                  2,
+                  8,
+                  13,
+                  900,
+                  900,
+                  1,
+                  0,
+                  0,
+                  0
+                ],
+                [
+                  3,
+                  11,
+                  13,
+                  750,
+                  750,
+                  1,
+                  0,
+                  0,
+                  0
+                ],
+                [
+                  4,
+                  37,
+                  14,
+                  1200,
+                  1200,
+                  1,
+                  0,
+                  0,
+                  0
+                ],
+                [
+                  5,
+                  36,
+                  14,
+                  800,
+                  800,
+                  1,
+                  0,
+                  0,
+                  0
+                ],
+                [
+                  6,
+                  35,
+                  14,
+                  750,
+                  750,
+                  1,
+                  0,
+                  0,
+                  0
+                ]
+              ],
+              "after": [
+                [
+                  0,
+                  7,
+                  15,
+                  700,
+                  700,
+                  1,
+                  0,
+                  0,
+                  0
+                ],
+                [
+                  1,
+                  7,
+                  14,
+                  900,
+                  900,
+                  1,
+                  0,
+                  24,
+                  0
+                ],
+                [
+                  2,
+                  8,
+                  13,
+                  900,
+                  900,
+                  1,
+                  0,
+                  0,
+                  0
+                ],
+                [
+                  3,
+                  11,
+                  13,
+                  750,
+                  750,
+                  1,
+                  0,
+                  0,
+                  0
+                ],
+                [
+                  4,
+                  37,
+                  14,
+                  1200,
+                  1200,
+                  1,
+                  0,
+                  0,
+                  0
+                ],
+                [
+                  5,
+                  36,
+                  14,
+                  800,
+                  800,
+                  1,
+                  0,
+                  0,
+                  0
+                ],
+                [
+                  6,
+                  35,
+                  14,
+                  750,
+                  750,
+                  1,
+                  0,
+                  0,
+                  0
+                ]
+              ]
+            },
+            "no_intervening_gem_loss": true,
+            "scope": "Group receipt retained through a completed bank; no claim about gem token identity when bags mix."
+          }
+        ],
+        "diagnostics": {
+          "primary_camps": [
+            {
+              "id": 0,
+              "team": 2,
+              "type": 2,
+              "x": 8,
+              "y": 16,
+              "hp": 500,
+              "max": 500,
+              "group": 0
+            },
+            {
+              "id": 1,
+              "team": 2,
+              "type": 2,
+              "x": 31,
+              "y": 16,
+              "hp": 500,
+              "max": 500,
+              "group": 1
+            },
+            {
+              "id": 2,
+              "team": 2,
+              "type": 2,
+              "x": 9,
+              "y": 16,
+              "hp": 500,
+              "max": 500,
+              "group": 0
+            },
+            {
+              "id": 3,
+              "team": 2,
+              "type": 2,
+              "x": 30,
+              "y": 16,
+              "hp": 500,
+              "max": 500,
+              "group": 1
+            }
+          ],
+          "primary_native_groups": [
+            0,
+            1
+          ],
+          "crew_paid_damage_markers": 285,
+          "primary_group_matched_markers": 284,
+          "primary_contributors": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "primary_hp_damage": 15000,
+          "primary_clear_events": [
+            {
+              "owner": 0,
+              "amount": 0.0,
+              "context": "0",
+              "target": {
+                "id": 0,
+                "kind": "campGroup"
+              },
+              "timestamp": {
+                "input": 233,
+                "ordinal": 2663,
+                "phase": "champions",
+                "round": 22,
+                "substep": 0
+              },
+              "value": "1",
+              "x": 9,
+              "y": 16
+            },
+            {
+              "owner": 0,
+              "amount": 0.0,
+              "context": "0",
+              "target": {
+                "id": 0,
+                "kind": "campGroup"
+              },
+              "timestamp": {
+                "input": 886,
+                "ordinal": 11503,
+                "phase": "champions",
+                "round": 95,
+                "substep": 0
+              },
+              "value": "1",
+              "x": 9,
+              "y": 16
+            },
+            {
+              "owner": 3,
+              "amount": 0.0,
+              "context": "0",
+              "target": {
+                "id": 0,
+                "kind": "campGroup"
+              },
+              "timestamp": {
+                "input": 1637,
+                "ordinal": 20345,
+                "phase": "champions",
+                "round": 168,
+                "substep": 0
+              },
+              "value": "1",
+              "x": 9,
+              "y": 16
+            },
+            {
+              "owner": 3,
+              "amount": 0.0,
+              "context": "0",
+              "target": {
+                "id": 1,
+                "kind": "campGroup"
+              },
+              "timestamp": {
+                "input": 2252,
+                "ordinal": 29065,
+                "phase": "champions",
+                "round": 240,
+                "substep": 0
+              },
+              "value": "1",
+              "x": 31,
+              "y": 16
+            },
+            {
+              "owner": 0,
+              "amount": 0.0,
+              "context": "0",
+              "target": {
+                "id": 0,
+                "kind": "campGroup"
+              },
+              "timestamp": {
+                "input": 2412,
+                "ordinal": 31487,
+                "phase": "champions",
+                "round": 260,
+                "substep": 0
+              },
+              "value": "1",
+              "x": 9,
+              "y": 16
+            },
+            {
+              "owner": 0,
+              "amount": 0.0,
+              "context": "0",
+              "target": {
+                "id": 0,
+                "kind": "campGroup"
+              },
+              "timestamp": {
+                "input": 3116,
+                "ordinal": 42504,
+                "phase": "champions",
+                "round": 351,
+                "substep": 0
+              },
+              "value": "1",
+              "x": 9,
+              "y": 16
+            },
+            {
+              "owner": 0,
+              "amount": 0.0,
+              "context": "0",
+              "target": {
+                "id": 0,
+                "kind": "campGroup"
+              },
+              "timestamp": {
+                "input": 3820,
+                "ordinal": 53521,
+                "phase": "champions",
+                "round": 442,
+                "substep": 0
+              },
+              "value": "1",
+              "x": 9,
+              "y": 16
+            },
+            {
+              "owner": 0,
+              "amount": 0.0,
+              "context": "0",
+              "target": {
+                "id": 0,
+                "kind": "campGroup"
+              },
+              "timestamp": {
+                "input": 4522,
+                "ordinal": 64538,
+                "phase": "champions",
+                "round": 533,
+                "substep": 0
+              },
+              "value": "1",
+              "x": 9,
+              "y": 16
+            },
+            {
+              "owner": 0,
+              "amount": 0.0,
+              "context": "0",
+              "target": {
+                "id": 0,
+                "kind": "campGroup"
+              },
+              "timestamp": {
+                "input": 5226,
+                "ordinal": 75555,
+                "phase": "champions",
+                "round": 624,
+                "substep": 0
+              },
+              "value": "1",
+              "x": 9,
+              "y": 16
+            },
+            {
+              "owner": 0,
+              "amount": 0.0,
+              "context": "0",
+              "target": {
+                "id": 0,
+                "kind": "campGroup"
+              },
+              "timestamp": {
+                "input": 5928,
+                "ordinal": 86572,
+                "phase": "champions",
+                "round": 715,
+                "substep": 0
+              },
+              "value": "1",
+              "x": 9,
+              "y": 16
+            },
+            {
+              "owner": 0,
+              "amount": 0.0,
+              "context": "0",
+              "target": {
+                "id": 0,
+                "kind": "campGroup"
+              },
+              "timestamp": {
+                "input": 6632,
+                "ordinal": 97589,
+                "phase": "champions",
+                "round": 806,
+                "substep": 0
+              },
+              "value": "1",
+              "x": 9,
+              "y": 16
+            },
+            {
+              "owner": 0,
+              "amount": 0.0,
+              "context": "0",
+              "target": {
+                "id": 0,
+                "kind": "campGroup"
+              },
+              "timestamp": {
+                "input": 7334,
+                "ordinal": 108606,
+                "phase": "champions",
+                "round": 897,
+                "substep": 0
+              },
+              "value": "1",
+              "x": 9,
+              "y": 16
+            },
+            {
+              "owner": 0,
+              "amount": 0.0,
+              "context": "0",
+              "target": {
+                "id": 0,
+                "kind": "campGroup"
+              },
+              "timestamp": {
+                "input": 8038,
+                "ordinal": 119623,
+                "phase": "champions",
+                "round": 988,
+                "substep": 0
+              },
+              "value": "1",
+              "x": 9,
+              "y": 16
+            },
+            {
+              "owner": 0,
+              "amount": 0.0,
+              "context": "0",
+              "target": {
+                "id": 0,
+                "kind": "campGroup"
+              },
+              "timestamp": {
+                "input": 8740,
+                "ordinal": 130640,
+                "phase": "champions",
+                "round": 1079,
+                "substep": 0
+              },
+              "value": "1",
+              "x": 9,
+              "y": 16
+            },
+            {
+              "owner": 0,
+              "amount": 0.0,
+              "context": "0",
+              "target": {
+                "id": 0,
+                "kind": "campGroup"
+              },
+              "timestamp": {
+                "input": 9444,
+                "ordinal": 141657,
+                "phase": "champions",
+                "round": 1170,
+                "substep": 0
+              },
+              "value": "1",
+              "x": 9,
+              "y": 16
+            }
+          ],
+          "native_captures": 56,
+          "candidate_bank_events": 29
+        }
+      },
+      "native_decoder_api_errors": []
+    },
+    {
+      "id": "a20m3-three-pick-hole-bend-side1",
+      "map": {
+        "id": "three-pick-hole-bend",
+        "width": 40,
+        "height": 32,
+        "picks": 3,
+        "spawn": [
+          2,
+          14,
+          5,
+          18
+        ],
+        "altars": [
+          [
+            6,
+            14
+          ],
+          [
+            15,
+            25
+          ]
+        ],
+        "holes": [
+          [
+            1,
+            12
+          ],
+          [
+            2,
+            12
+          ],
+          [
+            3,
+            12
+          ],
+          [
+            4,
+            12
+          ],
+          [
+            5,
+            12
+          ],
+          [
+            6,
+            12
+          ],
+          [
+            7,
+            12
+          ],
+          [
+            8,
+            12
+          ],
+          [
+            9,
+            12
+          ],
+          [
+            10,
+            12
+          ],
+          [
+            11,
+            12
+          ]
+        ],
+        "camps": [
+          {
+            "type": 2,
+            "pos": [
+              8,
+              16
+            ],
+            "role": "primary"
+          },
+          {
+            "type": 2,
+            "pos": [
+              9,
+              16
+            ],
+            "role": "primary"
+          },
+          {
+            "type": 2,
+            "pos": [
+              8,
+              10
+            ],
+            "role": "farther-singleton-alternative"
+          },
+          {
+            "type": 0,
+            "pos": [
+              12,
+              24
+            ],
+            "role": "other-resource"
+          },
+          {
+            "type": 1,
+            "pos": [
+              13,
+              5
+            ],
+            "role": "other-resource"
+          }
+        ],
+        "purpose": "Autonomous multi-monster crew, real capture and small split-bag conversion. Non-opaque hole detour makes the visible singleton alternative longer to walk. Production draft may create four physical bodies from three picks.",
+        "file": "three-pick-hole-bend.map26a",
+        "sha256": "46114501daf8373fac8cb8ea8163d910726be9aed791ab5522a9f158def3cb14",
+        "builder_groups": [
+          {
+            "builder_index": 0,
+            "builder_handle": "0",
+            "gems": 48,
+            "gold": 0,
+            "respawn": 50,
+            "members": [
+              {
+                "type": 2,
+                "pos": [
+                  8,
+                  16
+                ]
+              },
+              {
+                "type": 2,
+                "pos": [
+                  9,
+                  16
+                ]
+              }
+            ]
+          },
+          {
+            "builder_index": 1,
+            "builder_handle": "65536",
+            "gems": 24,
+            "gold": 0,
+            "respawn": 50,
+            "members": [
+              {
+                "type": 2,
+                "pos": [
+                  8,
+                  10
+                ]
+              }
+            ]
+          },
+          {
+            "builder_index": 2,
+            "builder_handle": "131072",
+            "gems": 22,
+            "gold": 90,
+            "respawn": 40,
+            "members": [
+              {
+                "type": 0,
+                "pos": [
+                  12,
+                  24
+                ]
+              }
+            ]
+          },
+          {
+            "builder_index": 3,
+            "builder_handle": "196608",
+            "gems": 36,
+            "gold": 160,
+            "respawn": 60,
+            "members": [
+              {
+                "type": 1,
+                "pos": [
+                  13,
+                  5
+                ]
+              }
+            ]
+          }
+        ],
+        "symmetry": "HORIZONTAL/X mirror",
+        "primary_physical_positions": [
+          [
+            8,
+            16
+          ],
+          [
+            9,
+            16
+          ],
+          [
+            31,
+            16
+          ],
+          [
+            30,
+            16
+          ]
+        ]
+      },
+      "own_side": 1,
+      "record": "games\\a20m3-three-pick-hole-bend-side1-bdb3e41871530dff\\record.json",
+      "statistics": "C:\\Users\\frans\\Documents\\Codex\\2026-10-14\\v\\work\\tactics-bot-v1\\testing\\games\\a20m3-three-pick-hole-bend-side1-bdb3e41871530dff\\statistics.json",
+      "candidate_module": "78f3d89e9fbf7ea4167ad91bd36af8c49eb3fa353a3fa58f71729e04790776bc",
+      "strict_failures": [],
+      "own_validity": {
+        "no_native_faults": true,
+        "no_caught_errors": true,
+        "fuel_exhausted_events": 0
+      },
+      "scores": [
+        0,
+        1008
+      ],
+      "actual_engine": {
+        "engineBuildHash": "02c4624c8c9b8bcaf9d906f407c0b1d932d5b5bce6e8ea7e222e08065dd9cede",
+        "engineVersion": "0.0.2",
+        "finalInput": 10223,
+        "finalRoundPartial": true,
+        "finalSubstep": 7,
+        "height": 32,
+        "mapHash": "46114501daf8373fac8cb8ea8163d910726be9aed791ab5522a9f158def3cb14",
+        "metricSemanticsVersion": 1,
+        "outcome": "teamB",
+        "roundsCompleted": 1308,
+        "roundsStarted": 1309,
+        "seed": "4835950773802612629",
+        "width": 40
+      },
+      "reasons": {
+        "farm-useful-ready-damage": 63,
+        "farm-stage-outside-unpriced-camp-pressure": 109,
+        "escape-walk": 15,
+        "recovery-needed-safe-channel": 1,
+        "escape-dash": 2,
+        "farm-certified-solo-stage-only": 27,
+        "farm-live-in-range-basic": 38,
+        "recovery-safe-return-walk": 2,
+        "farm-certified-solo-live-basic": 59,
+        "farm-certified-solo-useful-damage": 27,
+        "capture-enter-original-region": 175,
+        "crew-paid-pressure-removing-basic": 152,
+        "delivery-legal-approach": 142,
+        "delivery-start-verified-channel": 28,
+        "farm-reversible-fresh-observation": 175,
+        "assembly-early-funded-rendezvous-move": 13,
+        "assembly-follow-priced-contribution-route": 2,
+        "assembly-join-observed-local-crew": 24,
+        "delivery-winning-bank": 1
+      },
+      "activation": {
+        "passed": true,
+        "cycles": [
+          {
+            "native_group": 1,
+            "physical_camp_ids": [
+              1,
+              3
+            ],
+            "actual_damage_contributors": [
+              3,
+              5,
+              6
+            ],
+            "production_paid_marker": {
+              "production": {
+                "round": 27,
+                "owner": 3,
+                "phase": "clear",
+                "kind": 3,
+                "outcome": 2,
+                "error": 0,
+                "reason": "crew-paid-pressure-removing-basic",
+                "context": {
+                  "round": 27,
+                  "owner": 3,
+                  "serial": 36,
+                  "group_index": 1,
+                  "target": 3,
+                  "x": -1,
+                  "y": -1,
+                  "gems": 0,
+                  "gold": 0,
+                  "fuel": 27133
+                }
+              },
+              "actual_native_damage": [
+                {
+                  "round": 27,
+                  "input": 272,
+                  "seq": 1970,
+                  "owner": 3,
+                  "camp": 3,
+                  "group": 1,
+                  "hp_loss": 30,
+                  "hp_before": 235,
+                  "hp_after": 205
+                }
+              ]
+            },
+            "actual_native_damage": [
+              {
+                "round": 1,
+                "input": 12,
+                "seq": 63,
+                "owner": 5,
+                "camp": 1,
+                "group": 1,
+                "hp_loss": 125,
+                "hp_before": 500,
+                "hp_after": 375
+              },
+              {
+                "round": 4,
+                "input": 40,
+                "seq": 292,
+                "owner": 6,
+                "camp": 1,
+                "group": 1,
+                "hp_loss": 200,
+                "hp_before": 375,
+                "hp_after": 175
+              },
+              {
+                "round": 6,
+                "input": 57,
+                "seq": 437,
+                "owner": 6,
+                "camp": 1,
+                "group": 1,
+                "hp_loss": 140,
+                "hp_before": 175,
+                "hp_after": 35
+              },
+              {
+                "round": 6,
+                "input": 57,
+                "seq": 437,
+                "owner": 6,
+                "camp": 3,
+                "group": 1,
+                "hp_loss": 140,
+                "hp_before": 500,
+                "hp_after": 360
+              },
+              {
+                "round": 9,
+                "input": 81,
+                "seq": 619,
+                "owner": 3,
+                "camp": 1,
+                "group": 1,
+                "hp_loss": 35,
+                "hp_before": 35,
+                "hp_after": 0
+              },
+              {
+                "round": 17,
+                "input": 171,
+                "seq": 1255,
+                "owner": 5,
+                "camp": 3,
+                "group": 1,
+                "hp_loss": 125,
+                "hp_before": 360,
+                "hp_after": 235
+              },
+              {
+                "round": 27,
+                "input": 272,
+                "seq": 1970,
+                "owner": 3,
+                "camp": 3,
+                "group": 1,
+                "hp_loss": 30,
+                "hp_before": 235,
+                "hp_after": 205
+              },
+              {
+                "round": 28,
+                "input": 282,
+                "seq": 2037,
+                "owner": 3,
+                "camp": 3,
+                "group": 1,
+                "hp_loss": 30,
+                "hp_before": 205,
+                "hp_after": 175
+              },
+              {
+                "round": 29,
+                "input": 294,
+                "seq": 2120,
+                "owner": 3,
+                "camp": 3,
+                "group": 1,
+                "hp_loss": 30,
+                "hp_before": 175,
+                "hp_after": 145
+              },
+              {
+                "round": 29,
+                "input": 300,
+                "seq": 2154,
+                "owner": 5,
+                "camp": 3,
+                "group": 1,
+                "hp_loss": 125,
+                "hp_before": 145,
+                "hp_after": 20
+              },
+              {
+                "round": 30,
+                "input": 304,
+                "seq": 2188,
+                "owner": 3,
+                "camp": 3,
+                "group": 1,
+                "hp_loss": 20,
+                "hp_before": 20,
+                "hp_after": 0
+              }
+            ],
+            "actual_clear": {
+              "owner": 3,
+              "amount": 0.0,
+              "context": "0",
+              "target": {
+                "id": 1,
+                "kind": "campGroup"
+              },
+              "timestamp": {
+                "input": 304,
+                "ordinal": 3631,
+                "phase": "champions",
+                "round": 30,
+                "substep": 0
+              },
+              "value": "1",
+              "x": 30,
+              "y": 16
+            },
+            "actual_capture": {
+              "round": 38,
+              "input": 378,
+              "recipient": {
+                "id": 3,
+                "team": 1,
+                "gold": 0,
+                "gems": 24,
+                "position": [
+                  30,
+                  16
+                ]
+              },
+              "recipient_prior_state": [
+                3,
+                30,
+                16,
+                700,
+                700,
+                1,
+                0,
+                0,
+                0
+              ]
+            },
+            "actual_bank": {
+              "owner": 3,
+              "amount": 0.0,
+              "context": "0",
+              "target": 0,
+              "timestamp": {
+                "input": 418,
+                "ordinal": 5087,
+                "phase": "championStartTurn",
+                "round": 42,
+                "substep": 24
+              },
+              "value": "24",
+              "x": 33,
+              "y": 14
+            },
+            "native_score_transition": {
+              "r": 42,
+              "seq": 3094,
+              "input": 418,
+              "delta": [
+                0,
+                24
+              ],
+              "step": [
+                14,
+                18,
+                1,
+                3,
+                24
+              ],
+              "c": [
+                [
+                  0,
+                  2,
+                  14,
+                  1200,
+                  1200,
+                  1,
+                  0,
+                  0,
+                  0
+                ],
+                [
+                  1,
+                  3,
+                  14,
+                  800,
+                  800,
+                  1,
+                  0,
+                  0,
+                  0
+                ],
+                [
+                  2,
+                  4,
+                  14,
+                  750,
+                  750,
+                  1,
+                  0,
+                  0,
+                  0
+                ],
+                [
+                  3,
+                  32,
+                  14,
+                  700,
+                  700,
+                  1,
+                  0,
+                  24,
+                  0
+                ],
+                [
+                  4,
+                  27,
+                  12,
+                  900,
+                  900,
+                  1,
+                  0,
+                  24,
+                  0
+                ],
+                [
+                  5,
+                  32,
+                  15,
+                  900,
+                  900,
+                  1,
+                  0,
+                  24,
+                  0
+                ],
+                [
+                  6,
+                  31,
+                  13,
+                  750,
+                  750,
+                  1,
+                  0,
+                  0,
+                  0
+                ]
+              ],
+              "after": [
+                [
+                  0,
+                  2,
+                  14,
+                  1200,
+                  1200,
+                  1,
+                  0,
+                  0,
+                  0
+                ],
+                [
+                  1,
+                  3,
+                  14,
+                  800,
+                  800,
+                  1,
+                  0,
+                  0,
+                  0
+                ],
+                [
+                  2,
+                  4,
+                  14,
+                  750,
+                  750,
+                  1,
+                  0,
+                  0,
+                  0
+                ],
+                [
+                  3,
+                  32,
+                  14,
+                  700,
+                  700,
+                  1,
+                  0,
+                  0,
+                  0
+                ],
+                [
+                  4,
+                  27,
+                  12,
+                  900,
+                  900,
+                  1,
+                  0,
+                  24,
+                  0
+                ],
+                [
+                  5,
+                  32,
+                  15,
+                  900,
+                  900,
+                  1,
+                  0,
+                  24,
+                  0
+                ],
+                [
+                  6,
+                  31,
+                  13,
+                  750,
+                  750,
+                  1,
+                  0,
+                  0,
+                  0
+                ]
+              ]
+            },
+            "no_intervening_gem_loss": true,
+            "scope": "Group receipt retained through a completed bank; no claim about gem token identity when bags mix."
+          }
+        ],
+        "diagnostics": {
+          "primary_camps": [
+            {
+              "id": 0,
+              "team": 2,
+              "type": 2,
+              "x": 8,
+              "y": 16,
+              "hp": 500,
+              "max": 500,
+              "group": 0
+            },
+            {
+              "id": 1,
+              "team": 2,
+              "type": 2,
+              "x": 31,
+              "y": 16,
+              "hp": 500,
+              "max": 500,
+              "group": 1
+            },
+            {
+              "id": 2,
+              "team": 2,
+              "type": 2,
+              "x": 9,
+              "y": 16,
+              "hp": 500,
+              "max": 500,
+              "group": 0
+            },
+            {
+              "id": 3,
+              "team": 2,
+              "type": 2,
+              "x": 30,
+              "y": 16,
+              "hp": 500,
+              "max": 500,
+              "group": 1
+            }
+          ],
+          "primary_native_groups": [
+            0,
+            1
+          ],
+          "crew_paid_damage_markers": 152,
+          "primary_group_matched_markers": 152,
+          "primary_contributors": [
+            3,
+            5,
+            6
+          ],
+          "primary_hp_damage": 15000,
+          "primary_clear_events": [
+            {
+              "owner": 3,
+              "amount": 0.0,
+              "context": "0",
+              "target": {
+                "id": 1,
+                "kind": "campGroup"
+              },
+              "timestamp": {
+                "input": 304,
+                "ordinal": 3631,
+                "phase": "champions",
+                "round": 30,
+                "substep": 0
+              },
+              "value": "1",
+              "x": 30,
+              "y": 16
+            },
+            {
+              "owner": 6,
+              "amount": 0.0,
+              "context": "0",
+              "target": {
+                "id": 1,
+                "kind": "campGroup"
+              },
+              "timestamp": {
+                "input": 1032,
+                "ordinal": 13560,
+                "phase": "champions",
+                "round": 112,
+                "substep": 0
+              },
+              "value": "1",
+              "x": 31,
+              "y": 16
+            },
+            {
+              "owner": 3,
+              "amount": 0.0,
+              "context": "0",
+              "target": {
+                "id": 0,
+                "kind": "campGroup"
+              },
+              "timestamp": {
+                "input": 1704,
+                "ordinal": 24093,
+                "phase": "champions",
+                "round": 199,
+                "substep": 0
+              },
+              "value": "1",
+              "x": 9,
+              "y": 16
+            },
+            {
+              "owner": 6,
+              "amount": 0.0,
+              "context": "0",
+              "target": {
+                "id": 1,
+                "kind": "campGroup"
+              },
+              "timestamp": {
+                "input": 1782,
+                "ordinal": 25183,
+                "phase": "champions",
+                "round": 208,
+                "substep": 0
+              },
+              "value": "1",
+              "x": 31,
+              "y": 16
+            },
+            {
+              "owner": 6,
+              "amount": 0.0,
+              "context": "0",
+              "target": {
+                "id": 1,
+                "kind": "campGroup"
+              },
+              "timestamp": {
+                "input": 2527,
+                "ordinal": 36806,
+                "phase": "champions",
+                "round": 304,
+                "substep": 0
+              },
+              "value": "1",
+              "x": 31,
+              "y": 16
+            },
+            {
+              "owner": 6,
+              "amount": 0.0,
+              "context": "0",
+              "target": {
+                "id": 1,
+                "kind": "campGroup"
+              },
+              "timestamp": {
+                "input": 3262,
+                "ordinal": 48428,
+                "phase": "champions",
+                "round": 400,
+                "substep": 0
+              },
+              "value": "1",
+              "x": 31,
+              "y": 16
+            },
+            {
+              "owner": 6,
+              "amount": 0.0,
+              "context": "0",
+              "target": {
+                "id": 1,
+                "kind": "campGroup"
+              },
+              "timestamp": {
+                "input": 3997,
+                "ordinal": 60050,
+                "phase": "champions",
+                "round": 496,
+                "substep": 0
+              },
+              "value": "1",
+              "x": 31,
+              "y": 16
+            },
+            {
+              "owner": 6,
+              "amount": 0.0,
+              "context": "0",
+              "target": {
+                "id": 1,
+                "kind": "campGroup"
+              },
+              "timestamp": {
+                "input": 4732,
+                "ordinal": 71672,
+                "phase": "champions",
+                "round": 592,
+                "substep": 0
+              },
+              "value": "1",
+              "x": 31,
+              "y": 16
+            },
+            {
+              "owner": 6,
+              "amount": 0.0,
+              "context": "0",
+              "target": {
+                "id": 1,
+                "kind": "campGroup"
+              },
+              "timestamp": {
+                "input": 5467,
+                "ordinal": 83294,
+                "phase": "champions",
+                "round": 688,
+                "substep": 0
+              },
+              "value": "1",
+              "x": 31,
+              "y": 16
+            },
+            {
+              "owner": 6,
+              "amount": 0.0,
+              "context": "0",
+              "target": {
+                "id": 1,
+                "kind": "campGroup"
+              },
+              "timestamp": {
+                "input": 6202,
+                "ordinal": 94916,
+                "phase": "champions",
+                "round": 784,
+                "substep": 0
+              },
+              "value": "1",
+              "x": 31,
+              "y": 16
+            },
+            {
+              "owner": 6,
+              "amount": 0.0,
+              "context": "0",
+              "target": {
+                "id": 1,
+                "kind": "campGroup"
+              },
+              "timestamp": {
+                "input": 6937,
+                "ordinal": 106538,
+                "phase": "champions",
+                "round": 880,
+                "substep": 0
+              },
+              "value": "1",
+              "x": 31,
+              "y": 16
+            },
+            {
+              "owner": 6,
+              "amount": 0.0,
+              "context": "0",
+              "target": {
+                "id": 1,
+                "kind": "campGroup"
+              },
+              "timestamp": {
+                "input": 7672,
+                "ordinal": 118160,
+                "phase": "champions",
+                "round": 976,
+                "substep": 0
+              },
+              "value": "1",
+              "x": 31,
+              "y": 16
+            },
+            {
+              "owner": 6,
+              "amount": 0.0,
+              "context": "0",
+              "target": {
+                "id": 1,
+                "kind": "campGroup"
+              },
+              "timestamp": {
+                "input": 8407,
+                "ordinal": 129782,
+                "phase": "champions",
+                "round": 1072,
+                "substep": 0
+              },
+              "value": "1",
+              "x": 31,
+              "y": 16
+            },
+            {
+              "owner": 6,
+              "amount": 0.0,
+              "context": "0",
+              "target": {
+                "id": 1,
+                "kind": "campGroup"
+              },
+              "timestamp": {
+                "input": 9142,
+                "ordinal": 141404,
+                "phase": "champions",
+                "round": 1168,
+                "substep": 0
+              },
+              "value": "1",
+              "x": 31,
+              "y": 16
+            },
+            {
+              "owner": 6,
+              "amount": 0.0,
+              "context": "0",
+              "target": {
+                "id": 1,
+                "kind": "campGroup"
+              },
+              "timestamp": {
+                "input": 9877,
+                "ordinal": 153026,
+                "phase": "champions",
+                "round": 1264,
+                "substep": 0
+              },
+              "value": "1",
+              "x": 31,
+              "y": 16
+            }
+          ],
+          "native_captures": 56,
+          "candidate_bank_events": 29
+        }
+      },
+      "native_decoder_api_errors": []
+    }
+  ],
+  "failures": [],
+  "interpretation": "Four local both-side activation fixtures. No claim of strength, aggregate winrate or new-map generalization."
+}

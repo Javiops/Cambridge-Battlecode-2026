@@ -1,0 +1,85 @@
+{
+  "passed": true,
+  "created_utc": "2026-10-16T15:40:06.897955+00:00",
+  "source_headers_sha256": {
+    "actions.h": "f62e94acec71929553e0f76429fea462b67a79fda06f2f8c319a15fe94646d61",
+    "combat.h": "39109c2ca19172930c17a214e0b37811be964e87dc40dc805d93cedae24a2e0b",
+    "coordinator.h": "bd142c1a81cd1410333c7b3e88adc3060dc8e24df70768a9a493ec88e081c973",
+    "draft.h": "4aacfd6fe0c9d8867f551ad54c2394cfbf1a984ce2c1d6cdd339582165f8346a",
+    "economy.h": "b7a2844eec9d9a2682ca5236223e2eb7ea745b5db9160f8d06a21d67bf550a16",
+    "geometry.h": "ee49033fa06c47f363287b5d18af7f53f7ad198afccada1f1e03dfa2ca6a92ff",
+    "log.h": "bd93aec4806ef14eba825578c53ed15f37798467ba3ad8db36cef859f3995fbe",
+    "sdk_world.h": "f1b8b1b9df13be28be60435c85632b34708027db48b6a6dffcbfa06e049a3218",
+    "shopping.h": "1e1e17049184436606803419bd8f8084302785a4257ae6996314191eb8877162",
+    "squads.h": "f2075e3b0c5b5a977b04b00e6f24c6a1b5952d8b0da707ee8e8a715f2e96faa2",
+    "types.h": "787f95a3ea85773556472e0d6df2c46a3cf4160b2865fa05c9f00b757d351812",
+    "vision.h": "addbaa795d65edf3f7997e630244dd61719f6fd5bc73be0acec9414b92e192aa"
+  },
+  "cli_sha256": "a4262675695e4716ec5355712d21d2ec71e78cc8371dca28990bf1de84480da3",
+  "sdk_header_sha256": "76664dc7c4ab764243a7530eb97be12d9c20518b7bd2601a962fb0669d1da4a4",
+  "fixture_sha256": "d08bc84772bab7968875531cada7b9e02e43562a21d2e7688e97c1683a5ee50f",
+  "module_sha256": "ee97a6a8c5334fbd484f930d960b0c69a26ff9173282fe8f323041de8f81a0b6",
+  "map_sha256": "3d4e8b24031865270e054076a6665b192b88ad0291dc93462da9fb4d0576fb70",
+  "replay_sha256": "3ada1ea4cedc3c3bc1a7c006f1a6976f61b2f984eb2d4f9fa97d0b4cb62aa0b4",
+  "statistics_sha256": "b1f582bbb59d4c6eeedc4ba941d5ab1fc9c383416ee525cef69c2e9492e6bbcb",
+  "actual_engine": {
+    "engineBuildHash": "02c4624c8c9b8bcaf9d906f407c0b1d932d5b5bce6e8ea7e222e08065dd9cede",
+    "engineVersion": "0.0.2",
+    "finalInput": 4064,
+    "finalRoundPartial": false,
+    "finalSubstep": 6,
+    "height": 32,
+    "mapHash": "3d4e8b24031865270e054076a6665b192b88ad0291dc93462da9fb4d0576fb70",
+    "metricSemanticsVersion": 1,
+    "outcome": "teamB",
+    "roundsCompleted": 2000,
+    "roundsStarted": 2000,
+    "seed": "2231688041423637075",
+    "width": 32
+  },
+  "native_faults": {
+    "teamA": 0,
+    "teamB": 0
+  },
+  "fuel_exhausted": 0,
+  "markers": {
+    "a": [
+      "NATIVE_FIRST_VISIBLE_KIT_PASS 0",
+      "NATIVE_DEAD_SHOP_PASS 0 5",
+      "NATIVE_RESPAWN_PASS 0"
+    ],
+    "b": [
+      "NATIVE_FIRST_VISIBLE_KIT_PASS 1",
+      "NATIVE_DEAD_SHOP_PASS 1 5",
+      "NATIVE_RESPAWN_PASS 1"
+    ]
+  },
+  "commands": [
+    [
+      "<workspace>\\work\\combat-research\\acquisition\\cli-2.2.2\\cambc-2.2.2.data\\scripts\\cambc.exe",
+      "build",
+      "<workspace>\\work\\tactics-bot-v1\\testing\\portable\\results-native-lifecycle-v12\\native-lifecycle"
+    ],
+    [
+      "<workspace>\\work\\combat-research\\acquisition\\cli-2.2.2\\cambc-2.2.2.data\\scripts\\cambc.exe",
+      "build",
+      "<workspace>\\work\\tactics-bot-v1\\testing\\portable\\results-native-lifecycle-v12\\native-lifecycle",
+      "--release"
+    ],
+    [
+      "<workspace>\\work\\combat-research\\acquisition\\cli-2.2.2\\cambc-2.2.2.data\\scripts\\cambc.exe",
+      "run",
+      "<workspace>\\work\\tactics-bot-v1\\testing\\portable\\results-native-lifecycle-v12\\native-lifecycle",
+      "<workspace>\\work\\tactics-bot-v1\\testing\\portable\\results-native-lifecycle-v12\\native-lifecycle",
+      "--map",
+      "<workspace>\\work\\tactics-bot-v1\\testing\\portable\\fixtures\\native-lifecycle.map26a",
+      "--release",
+      "--json",
+      "-o",
+      "<workspace>\\work\\tactics-bot-v1\\testing\\portable\\results-native-lifecycle-v12\\game",
+      "--statistics",
+      "<workspace>\\work\\tactics-bot-v1\\testing\\portable\\results-native-lifecycle-v12\\game\\statistics.json"
+    ]
+  ],
+  "scope": "Actual SDK/engine visibility transition, collection, death, private dead purchase and respawn. Scripted integration fixture, not a strength comparison."
+}

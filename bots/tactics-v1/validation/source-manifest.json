@@ -1,0 +1,40 @@
+{
+  "checkpoint": "integration15",
+  "module_sha256": "91bc4d0c1b9325303e80515c973eae81eb5ac63778de3371586087c36d9ca22d",
+  "source_sha256": {
+    "actions.h": "f62e94acec71929553e0f76429fea462b67a79fda06f2f8c319a15fe94646d61",
+    "assembly.h": "a9e3ec05aae1be8dc2840398b84bf72b71500d2ddeea8c68840cb43688f33157",
+    "combat.h": "f30a901c843fb1f00e32bc49422dfaab9d36e3511ad2cbe157913435a5f5b4af",
+    "coordination.h": "94f38df621791fba50213d9954119991a90bc32e40d907df94d905a566ea8f2e",
+    "coordinator.h": "892388d433e177690362a19a38aee554d721776bb7b6fab7e853cc25c2ba4a76",
+    "cycles.h": "957d9754a3233cb3920f0f7c95d030b4f0e41309d2ac2d9298ab85815273f661",
+    "deny.h": "34766bcdc919400e2bcb821541a6aa6d560d88df1ab855b674d5c0d56e467872",
+    "draft.h": "4aacfd6fe0c9d8867f551ad54c2394cfbf1a984ce2c1d6cdd339582165f8346a",
+    "economy.h": "3812c48dd38d2f41e046223f0e547b601a970604cdd5f1702f2907a4717d74c4",
+    "geometry.h": "1e247a48f232b300e9cfbd8944368d50e6b644fdd1793ed57418da0213e354f2",
+    "information.h": "ae1a681040a444c1bd3470a6fa7c06b725c1318429dbcfd7cefb8554f38483d2",
+    "log.h": "bd93aec4806ef14eba825578c53ed15f37798467ba3ad8db36cef859f3995fbe",
+    "main.cpp": "db432c3e1f9bde378e1fa06e7250ceb3482b436fdd88e34c5810a0dc80c343d4",
+    "ranking.h": "201400083dec5db6fc5ee298ceb6d8ba17a989b361b40677d50fe9dc3c70c5a5",
+    "resource.h": "a4c015f487574d37459b0483fb7704ff1feb71fd672ba87c5c0a070d4cd1ce9a",
+    "sdk_world.h": "1b8a5b0283b954cd2074ff51adddfc9a9a7a5f30a4668d641b488cce06808b79",
+    "shopping.h": "55476c719c17a657e66568cdffb193268da0b5de53129b2a8a3c64e87f7a053f",
+    "solo.h": "8ae7c528704cc86e1fc2f14f490c4cf902a7ac7beeb228a53e219138dab2e0f6",
+    "solo_bounds.h": "37848f2d951b318f00bd6a197edd89b827080edd0900e34b99f3111d4280fc77",
+    "squads.h": "f2075e3b0c5b5a977b04b00e6f24c6a1b5952d8b0da707ee8e8a715f2e96faa2",
+    "strategic.h": "c2f67e403ce8d591e99e016aaf156b69dfca92070cdf84502411633b86e1fb01",
+    "types.h": "97f37cc3e7c027ae282c7a5d966ef1e9e2171151983311c1e2dc6eb9dca2a5e1",
+    "vision.h": "6cea9e058fe56bbc7b5ac85ff316270760e7f2be7ad84888a7dab55eb3012abf"
+  },
+  "runtime": {
+    "cli_sha256": "a4262675695e4716ec5355712d21d2ec71e78cc8371dca28990bf1de84480da3",
+    "sdk_header_sha256": "76664dc7c4ab764243a7530eb97be12d9c20518b7bd2601a962fb0669d1da4a4",
+    "official_reference_engine_sha256": "e123b59d9dea198762ab7a04db9b3cb6d06dfa991088e41c24750fc4cb88b947",
+    "project_config_sha256": "afaadf58883877c0bb8879694126f7d918366cacc9f66e75d086d4f7386f872a",
+    "sdk_version": "2.2.2",
+    "engine_version": "0.0.2",
+    "release": true,
+    "fuel": "official CLI default; no override",
+    "scope": "local matches only"
+  }
+}

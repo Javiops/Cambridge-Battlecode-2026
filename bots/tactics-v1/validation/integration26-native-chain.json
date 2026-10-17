@@ -1,0 +1,388 @@
+{
+  "passed": true,
+  "results": [
+    {
+      "map": "visible-hole-chain",
+      "passed": true,
+      "checks": {
+        "completed_game": true,
+        "no_faults": true,
+        "no_fuel": true,
+        "no_caught_errors": true,
+        "actual_earned_handoff": true,
+        "no_loss": true,
+        "new_early_marker": true,
+        "accepted_early_stage": true,
+        "single_extra": true,
+        "single_combined_bank": true,
+        "strict_actual_order": true,
+        "no_abort": true
+      },
+      "assertions": 12,
+      "score": 48,
+      "counts": {
+        "death": 0,
+        "kill": 0,
+        "assist": 0,
+        "wardPlacement": 0,
+        "buyItem": 0,
+        "buyConsumable": 0,
+        "sellItem": 0,
+        "campClear": 2,
+        "gemSubmission": 1,
+        "gemCollection": 2,
+        "gemLoss": 0,
+        "itemCombination": 0,
+        "botFault": 0,
+        "fuelExhausted": 0,
+        "resignation": 0
+      },
+      "fuel": 0,
+      "faults": {
+        "teamA": 0,
+        "teamB": 0
+      },
+      "caught_api_error": false,
+      "handoff": [
+        "18"
+      ],
+      "early_marker": [
+        [
+          "21",
+          "2"
+        ]
+      ],
+      "accepted_early_stage": true,
+      "aborts": [],
+      "timeline_events": {
+        "campClear": [
+          {
+            "amount": 0.0,
+            "context": "0",
+            "target": {
+              "id": 0,
+              "kind": "campGroup"
+            },
+            "timestamp": {
+              "input": 33,
+              "ordinal": 396,
+              "phase": "champions",
+              "round": 11,
+              "substep": 0
+            },
+            "value": "1",
+            "x": 5,
+            "y": 12
+          },
+          {
+            "amount": 0.0,
+            "context": "0",
+            "target": {
+              "id": 2,
+              "kind": "campGroup"
+            },
+            "timestamp": {
+              "input": 80,
+              "ordinal": 1010,
+              "phase": "champions",
+              "round": 28,
+              "substep": 0
+            },
+            "value": "1",
+            "x": 5,
+            "y": 9
+          }
+        ],
+        "gemSubmission": [
+          {
+            "amount": 0.0,
+            "context": "0",
+            "target": 0,
+            "timestamp": {
+              "input": 139,
+              "ordinal": 1840,
+              "phase": "championStartTurn",
+              "round": 51,
+              "substep": 18
+            },
+            "value": "48",
+            "x": 11,
+            "y": 12
+          }
+        ],
+        "gemCollection": [
+          {
+            "amount": 0.0,
+            "context": "campGroup",
+            "target": {
+              "id": 0,
+              "kind": "campGroup"
+            },
+            "timestamp": {
+              "input": 48,
+              "ordinal": 649,
+              "phase": "campCaptures",
+              "round": 18,
+              "substep": 10
+            },
+            "value": "24",
+            "x": 5,
+            "y": 12
+          },
+          {
+            "amount": 0.0,
+            "context": "campGroup",
+            "target": {
+              "id": 2,
+              "kind": "campGroup"
+            },
+            "timestamp": {
+              "input": 94,
+              "ordinal": 1263,
+              "phase": "campCaptures",
+              "round": 35,
+              "substep": 11
+            },
+            "value": "24",
+            "x": 5,
+            "y": 9
+          }
+        ]
+      },
+      "map_sha256": "8508309be9d372eb1dd6f1f1c2be5bd140704de9bcf9d9e2db7561fb1fd6f614",
+      "replay_sha256": "f27dc7c4b1c29d145f0e8c2391aa2bc2ad557a7b7629a0330371f7770d5cc9a8",
+      "statistics_sha256": "4303f86056a9062ea5a177ecea8767869c337ae8155c50eef510a069236efcd9",
+      "actual_engine": {
+        "engineBuildHash": "02c4624c8c9b8bcaf9d906f407c0b1d932d5b5bce6e8ea7e222e08065dd9cede",
+        "engineVersion": "0.0.2",
+        "finalInput": 5895,
+        "finalRoundPartial": false,
+        "finalSubstep": 6,
+        "height": 32,
+        "mapHash": "8508309be9d372eb1dd6f1f1c2be5bd140704de9bcf9d9e2db7561fb1fd6f614",
+        "metricSemanticsVersion": 1,
+        "outcome": "teamA",
+        "roundsCompleted": 2000,
+        "roundsStarted": 2000,
+        "seed": "13626514900188033092",
+        "width": 40
+      }
+    },
+    {
+      "map": "open-bank-control",
+      "passed": true,
+      "checks": {
+        "completed_game": true,
+        "no_faults": true,
+        "no_fuel": true,
+        "no_caught_errors": true,
+        "actual_earned_handoff": true,
+        "no_loss": true,
+        "new_chain_declined": true,
+        "no_extra": true,
+        "ordinary_bank": true
+      },
+      "assertions": 9,
+      "score": 24,
+      "counts": {
+        "death": 0,
+        "kill": 0,
+        "assist": 0,
+        "wardPlacement": 0,
+        "buyItem": 0,
+        "buyConsumable": 0,
+        "sellItem": 0,
+        "campClear": 1,
+        "gemSubmission": 1,
+        "gemCollection": 1,
+        "gemLoss": 0,
+        "itemCombination": 0,
+        "botFault": 0,
+        "fuelExhausted": 0,
+        "resignation": 0
+      },
+      "fuel": 0,
+      "faults": {
+        "teamA": 0,
+        "teamB": 0
+      },
+      "caught_api_error": false,
+      "handoff": [
+        "18"
+      ],
+      "early_marker": [],
+      "accepted_early_stage": false,
+      "aborts": [],
+      "timeline_events": {
+        "campClear": [
+          {
+            "amount": 0.0,
+            "context": "0",
+            "target": {
+              "id": 0,
+              "kind": "campGroup"
+            },
+            "timestamp": {
+              "input": 33,
+              "ordinal": 396,
+              "phase": "champions",
+              "round": 11,
+              "substep": 0
+            },
+            "value": "1",
+            "x": 5,
+            "y": 12
+          }
+        ],
+        "gemSubmission": [
+          {
+            "amount": 0.0,
+            "context": "0",
+            "target": 0,
+            "timestamp": {
+              "input": 75,
+              "ordinal": 1010,
+              "phase": "championStartTurn",
+              "round": 28,
+              "substep": 7
+            },
+            "value": "24",
+            "x": 11,
+            "y": 12
+          }
+        ],
+        "gemCollection": [
+          {
+            "amount": 0.0,
+            "context": "campGroup",
+            "target": {
+              "id": 0,
+              "kind": "campGroup"
+            },
+            "timestamp": {
+              "input": 48,
+              "ordinal": 649,
+              "phase": "campCaptures",
+              "round": 18,
+              "substep": 10
+            },
+            "value": "24",
+            "x": 5,
+            "y": 12
+          }
+        ]
+      },
+      "map_sha256": "b36ef4ded795a356a7a0e1fd0a76f4229453c710e894f2505c2f657b80ffd931",
+      "replay_sha256": "375f97902149ef57e10800066c715a1f4bb8be010ee959f8aa3e44cd32896630",
+      "statistics_sha256": "a406ccc567a7e6355ca3f14d2e0fb318aaedf1e55061df28661428ef1d641197",
+      "actual_engine": {
+        "engineBuildHash": "02c4624c8c9b8bcaf9d906f407c0b1d932d5b5bce6e8ea7e222e08065dd9cede",
+        "engineVersion": "0.0.2",
+        "finalInput": 5454,
+        "finalRoundPartial": false,
+        "finalSubstep": 6,
+        "height": 32,
+        "mapHash": "b36ef4ded795a356a7a0e1fd0a76f4229453c710e894f2505c2f657b80ffd931",
+        "metricSemanticsVersion": 1,
+        "outcome": "teamA",
+        "roundsCompleted": 2000,
+        "roundsStarted": 2000,
+        "seed": "13381408545547171710",
+        "width": 40
+      }
+    }
+  ],
+  "source_sha256": {
+    "actions.h": "c0855f91cd2f7081961ae32680c5e5ba07cbedb6ff18ca77dfd70ff282cc673a",
+    "assembly.h": "da161935fe87245e1966095f1cb1235fb33f62723d179a483fd9f055ce9923c8",
+    "awake_entry.h": "e1f43a2c25fd4dcabe6839efc233407f200429e26e642135027c3e945ca9edc9",
+    "camp_actions.h": "37236ab64f4de26c39beb493f3875fabcc1155b66770582d569d3e608bc4f5fa",
+    "camp_basic.h": "7bf89b67e929472e4a760a5a1f91858f622ca6b44c9ae06cd9a1908f788efd44",
+    "camp_collateral.h": "69b29ad70768f3bad399f3f3a1fb576deb076e89b74d5c33670e52afefae17d2",
+    "chain.h": "679749f1cf0c6827edafab2efbf8a99c02ad0e94c1f5b7a53a00baf1339fb79d",
+    "combat.h": "1d6bb5eaebd38e8c65770c52107101b00bfb8261d6512caae85f0cef3625f2a1",
+    "coordination.h": "99d54b94c9a712a68b690bbcce732958cad18cd96072e2f8087b8fa9b4294089",
+    "coordinator.h": "6b0dd3fc95deb2c7cecaf1a210dd2e0b65ce69a79fa3c26e688622cdc78cd287",
+    "crew_sequence.h": "5b0549469e508383de382afe4e6a7a73b1688592dada1ed86f6fc2ab43602b1d",
+    "cycles.h": "957d9754a3233cb3920f0f7c95d030b4f0e41309d2ac2d9298ab85815273f661",
+    "deny.h": "34766bcdc919400e2bcb821541a6aa6d560d88df1ab855b674d5c0d56e467872",
+    "draft.h": "4aacfd6fe0c9d8867f551ad54c2394cfbf1a984ce2c1d6cdd339582165f8346a",
+    "economy.h": "faac6b644652e487f37ed31a63516d7e373cbbf718683dee4535243b7993271e",
+    "farm_observation.h": "9d76f1f9d9f152100bb6f3a0a60d07299643c773695907fe37d78df8299b194c",
+    "farm_readiness.h": "440153f3982e535832654f90ba9099cd7053bb8e5365b3f698952acf27c61c99",
+    "geometry.h": "1e247a48f232b300e9cfbd8944368d50e6b644fdd1793ed57418da0213e354f2",
+    "information.h": "ae1a681040a444c1bd3470a6fa7c06b725c1318429dbcfd7cefb8554f38483d2",
+    "log.h": "bd93aec4806ef14eba825578c53ed15f37798467ba3ad8db36cef859f3995fbe",
+    "main.cpp": "18c5fa09fd796b5a4a62576dabd52811d8a9c38a2d28ea7ae21e34cfe2619689",
+    "observation_detour.h": "99ad6d3e6b3b42c81c1979c58a571593fa419111f0d53e8c6d035c4bbb8e18a7",
+    "ranking.h": "760ab19f9af723faef6082b3ae13158d754dbdd7d554f3f2491ec804d530f85c",
+    "resizing.h": "a0d8e243604e827ed87839d6087cc5c99b966fb09728374e3dd03c430bcae05a",
+    "resizing_policy.h": "ccfb37740ee28e365dcb0e8c988492e71a54f64e2907fd36b3760576729cbc3c",
+    "resource.h": "e31de4cb4db5011b507df3f7932fc27a4b583f1c94c9b4850c88032c1c1ba59b",
+    "sdk_world.h": "ee7757075c183f0704b2d575c408c56fa725f228a905566c01e1e0d7e254f1b4",
+    "shopping.h": "f81da81acb14639befe63a5c39eb6b6d6b331884477433de6295a276fb634552",
+    "solo.h": "f4fe4cb0b9a1d13ec17cbd4c89e4631f8f9f4b1ce59870ee5acf36821e287b69",
+    "solo_bounds.h": "37848f2d951b318f00bd6a197edd89b827080edd0900e34b99f3111d4280fc77",
+    "solo_poke.h": "c37ca6ad467d67ec390a7bd637c4dcc1b3ee8467f96181a8f03ee34535c8a253",
+    "solo_routes.h": "98edc9f7fce8aa8d2625c3b030075bc3c79d03df76ba2540ba3ff17d873bc9b4",
+    "squads.h": "7dcfa36091ef0631cf7af4bb4d291d2219369a3dbf3710a35965fc071f767fe3",
+    "strategic.h": "c2f67e403ce8d591e99e016aaf156b69dfca92070cdf84502411633b86e1fb01",
+    "types.h": "f4c46830e1ea75cee85485a1de33509cc783f84e27e1b8c36388334e06c7ade7",
+    "vision.h": "6cea9e058fe56bbc7b5ac85ff316270760e7f2be7ad84888a7dab55eb3012abf"
+  },
+  "fixture_sha256": "a85df5dcfb32e833106c512cd76963e983975718129302f7095fcf0a41e81d0b",
+  "module_sha256": "f011b149c45c9cc2aff95d0b3268b3122ab6275c39cc8e375e4a8d6ed4d3ccde",
+  "commands": [
+    [
+      "C:\\Users\\frans\\Documents\\Codex\\2026-10-14\\v\\work\\combat-research\\acquisition\\cli-2.2.2\\cambc-2.2.2.data\\scripts\\cambc.exe",
+      "build",
+      "C:\\Users\\frans\\Documents\\Codex\\2026-10-14\\v\\work\\tactics-bot-v1\\testing\\improvement-v2\\native-final-integration26-chain\\bot"
+    ],
+    [
+      "C:\\Users\\frans\\Documents\\Codex\\2026-10-14\\v\\work\\combat-research\\acquisition\\cli-2.2.2\\cambc-2.2.2.data\\scripts\\cambc.exe",
+      "build",
+      "C:\\Users\\frans\\Documents\\Codex\\2026-10-14\\v\\work\\tactics-bot-v1\\testing\\improvement-v2\\native-final-integration26-chain\\bot",
+      "--release"
+    ],
+    [
+      "C:\\Users\\frans\\Documents\\Codex\\2026-10-14\\v\\work\\combat-research\\acquisition\\cli-2.2.2\\cambc-2.2.2.data\\scripts\\cambc.exe",
+      "build",
+      "C:\\Users\\frans\\Documents\\Codex\\2026-10-14\\v\\work\\tactics-bot-v1\\testing\\improvement-v2\\native-final-integration26-chain\\quiet"
+    ],
+    [
+      "C:\\Users\\frans\\Documents\\Codex\\2026-10-14\\v\\work\\combat-research\\acquisition\\cli-2.2.2\\cambc-2.2.2.data\\scripts\\cambc.exe",
+      "build",
+      "C:\\Users\\frans\\Documents\\Codex\\2026-10-14\\v\\work\\tactics-bot-v1\\testing\\improvement-v2\\native-final-integration26-chain\\quiet",
+      "--release"
+    ],
+    [
+      "C:\\Users\\frans\\Documents\\Codex\\2026-10-14\\v\\work\\combat-research\\acquisition\\cli-2.2.2\\cambc-2.2.2.data\\scripts\\cambc.exe",
+      "run",
+      "C:\\Users\\frans\\Documents\\Codex\\2026-10-14\\v\\work\\tactics-bot-v1\\testing\\improvement-v2\\native-final-integration26-chain\\bot",
+      "C:\\Users\\frans\\Documents\\Codex\\2026-10-14\\v\\work\\tactics-bot-v1\\testing\\improvement-v2\\native-final-integration26-chain\\quiet",
+      "--map",
+      "C:\\Users\\frans\\Documents\\Codex\\2026-10-14\\v\\work\\tactics-bot-v1\\testing\\improvement-v2\\candidates\\integration26\\validation-tools\\fixtures\\native-chain\\visible-hole-chain.map26a",
+      "--release",
+      "--json",
+      "-o",
+      "C:\\Users\\frans\\Documents\\Codex\\2026-10-14\\v\\work\\tactics-bot-v1\\testing\\improvement-v2\\native-final-integration26-chain\\visible-hole-chain",
+      "--statistics",
+      "C:\\Users\\frans\\Documents\\Codex\\2026-10-14\\v\\work\\tactics-bot-v1\\testing\\improvement-v2\\native-final-integration26-chain\\visible-hole-chain\\statistics.json"
+    ],
+    [
+      "C:\\Users\\frans\\Documents\\Codex\\2026-10-14\\v\\work\\combat-research\\acquisition\\cli-2.2.2\\cambc-2.2.2.data\\scripts\\cambc.exe",
+      "run",
+      "C:\\Users\\frans\\Documents\\Codex\\2026-10-14\\v\\work\\tactics-bot-v1\\testing\\improvement-v2\\native-final-integration26-chain\\bot",
+      "C:\\Users\\frans\\Documents\\Codex\\2026-10-14\\v\\work\\tactics-bot-v1\\testing\\improvement-v2\\native-final-integration26-chain\\quiet",
+      "--map",
+      "C:\\Users\\frans\\Documents\\Codex\\2026-10-14\\v\\work\\tactics-bot-v1\\testing\\improvement-v2\\candidates\\integration26\\validation-tools\\fixtures\\native-chain\\open-bank-control.map26a",
+      "--release",
+      "--json",
+      "-o",
+      "C:\\Users\\frans\\Documents\\Codex\\2026-10-14\\v\\work\\tactics-bot-v1\\testing\\improvement-v2\\native-final-integration26-chain\\open-bank-control",
+      "--statistics",
+      "C:\\Users\\frans\\Documents\\Codex\\2026-10-14\\v\\work\\tactics-bot-v1\\testing\\improvement-v2\\native-final-integration26-chain\\open-bank-control\\statistics.json"
+    ]
+  ],
+  "scope": "Lawful actual Vendetta basic attacks/capture earn first24Gem, then a fresh production Bot controls every subsequent decision. No actor/World/wallet/permission/mission injection. Quiet fixed-map controller integration, not autonomous opening or competitive-strength evidence. Ordinary-walking comparator only."
+}

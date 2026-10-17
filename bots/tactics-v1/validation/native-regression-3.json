@@ -1,0 +1,187 @@
+{
+  "passed": true,
+  "created_utc": "2026-10-16T15:39:02.877542+00:00",
+  "source_headers_sha256": {
+    "actions.h": "f62e94acec71929553e0f76429fea462b67a79fda06f2f8c319a15fe94646d61",
+    "combat.h": "39109c2ca19172930c17a214e0b37811be964e87dc40dc805d93cedae24a2e0b",
+    "coordinator.h": "bd142c1a81cd1410333c7b3e88adc3060dc8e24df70768a9a493ec88e081c973",
+    "draft.h": "4aacfd6fe0c9d8867f551ad54c2394cfbf1a984ce2c1d6cdd339582165f8346a",
+    "economy.h": "b7a2844eec9d9a2682ca5236223e2eb7ea745b5db9160f8d06a21d67bf550a16",
+    "geometry.h": "ee49033fa06c47f363287b5d18af7f53f7ad198afccada1f1e03dfa2ca6a92ff",
+    "log.h": "bd93aec4806ef14eba825578c53ed15f37798467ba3ad8db36cef859f3995fbe",
+    "sdk_world.h": "f1b8b1b9df13be28be60435c85632b34708027db48b6a6dffcbfa06e049a3218",
+    "shopping.h": "1e1e17049184436606803419bd8f8084302785a4257ae6996314191eb8877162",
+    "squads.h": "f2075e3b0c5b5a977b04b00e6f24c6a1b5952d8b0da707ee8e8a715f2e96faa2",
+    "types.h": "787f95a3ea85773556472e0d6df2c46a3cf4160b2865fa05c9f00b757d351812",
+    "vision.h": "addbaa795d65edf3f7997e630244dd61719f6fd5bc73be0acec9414b92e192aa"
+  },
+  "current_source_headers_match": true,
+  "cli_sha256": "a4262675695e4716ec5355712d21d2ec71e78cc8371dca28990bf1de84480da3",
+  "sdk_header_sha256": "76664dc7c4ab764243a7530eb97be12d9c20518b7bd2601a962fb0669d1da4a4",
+  "fixture_sha256": "286ae47c6bb1b380ff17e6f9c015ce16f8057a80009bf11ec0310abcb5bb414c",
+  "module_sha256": "e1d8eed97de0bab6e7bce41901aa64fc488a9202f83514c5b05cf07486854379",
+  "map_sha256": "486eb1577ee0dc27aec5e9162e75123cfee96d597d317c3c6f3966bc69dfe967",
+  "replay_sha256": "59d267725d1fb4fe0e36414ca4a1df6202e371f3c44bdfc8cea40499a5f2669f",
+  "statistics_sha256": "9c050feee3306882811bde7d0a72a9285790a29810eeafcc94bc5804505c0a89",
+  "actual_engine": {
+    "engineBuildHash": "02c4624c8c9b8bcaf9d906f407c0b1d932d5b5bce6e8ea7e222e08065dd9cede",
+    "engineVersion": "0.0.2",
+    "finalInput": 4099,
+    "finalRoundPartial": false,
+    "finalSubstep": 6,
+    "height": 32,
+    "mapHash": "486eb1577ee0dc27aec5e9162e75123cfee96d597d317c3c6f3966bc69dfe967",
+    "metricSemanticsVersion": 1,
+    "outcome": "teamB",
+    "roundsCompleted": 2000,
+    "roundsStarted": 2000,
+    "seed": "3243472965466261528",
+    "width": 32
+  },
+  "native_faults": {
+    "teamA": 0,
+    "teamB": 0
+  },
+  "fuel_exhausted": 0,
+  "markers": {
+    "a": [
+      "NATIVE_IMMEDIATE_RECALL_STARTED 0 34 5 34",
+      "NATIVE_EARLY_DEPARTURE_NO_PAYOUT 0 39",
+      "NATIVE_GUARDED_OVERLAP_STARTED 0 46 5 45",
+      "NATIVE_CAPTURE_BEFORE_RECALL_DEPARTURE 0 51 22",
+      "NATIVE_TRIBUTE_STARTED_NOT_BANKED 0 57 22 3",
+      "NATIVE_ACTUAL_BANK_COMPLETED 0 60 22"
+    ],
+    "b": [
+      "NATIVE_IMMEDIATE_RECALL_STARTED 1 33 5 33",
+      "NATIVE_EARLY_DEPARTURE_NO_PAYOUT 1 38",
+      "NATIVE_GUARDED_OVERLAP_STARTED 1 45 5 44",
+      "NATIVE_CAPTURE_BEFORE_RECALL_DEPARTURE 1 50 22",
+      "NATIVE_TRIBUTE_STARTED_NOT_BANKED 1 56 22 3",
+      "NATIVE_ACTUAL_BANK_COMPLETED 1 59 22"
+    ]
+  },
+  "economic_events": {
+    "teamA": {
+      "gemCollection": [
+        {
+          "amount": 0.0,
+          "context": "campGroup",
+          "target": {
+            "id": 0,
+            "kind": "campGroup"
+          },
+          "timestamp": {
+            "input": 185,
+            "ordinal": 1839,
+            "phase": "campCaptures",
+            "round": 51,
+            "substep": 11
+          },
+          "value": "22",
+          "x": 7,
+          "y": 7
+        }
+      ],
+      "gemSubmission": [
+        {
+          "amount": 0.0,
+          "context": "0",
+          "target": 0,
+          "timestamp": {
+            "input": 218,
+            "ordinal": 2165,
+            "phase": "championStartTurn",
+            "round": 60,
+            "substep": 7
+          },
+          "value": "22",
+          "x": 8,
+          "y": 7
+        }
+      ]
+    },
+    "teamB": {
+      "gemCollection": [
+        {
+          "amount": 0.0,
+          "context": "campGroup",
+          "target": {
+            "id": 1,
+            "kind": "campGroup"
+          },
+          "timestamp": {
+            "input": 183,
+            "ordinal": 1802,
+            "phase": "campCaptures",
+            "round": 50,
+            "substep": 11
+          },
+          "value": "22",
+          "x": 24,
+          "y": 7
+        }
+      ],
+      "gemSubmission": [
+        {
+          "amount": 0.0,
+          "context": "0",
+          "target": 0,
+          "timestamp": {
+            "input": 216,
+            "ordinal": 2128,
+            "phase": "championStartTurn",
+            "round": 59,
+            "substep": 7
+          },
+          "value": "22",
+          "x": 23,
+          "y": 7
+        }
+      ]
+    }
+  },
+  "production_helpers": [
+    "overlap_hold",
+    "current_recall_ticks",
+    "current_tribute_ticks",
+    "observe_progress",
+    "observe_hold",
+    "remember",
+    "execute",
+    "World.refresh"
+  ],
+  "scope": "Actual native single-holder capture/normal-recall/tribute regression.\n\nUses a scripted fixture main plus unchanged copied production policy headers.\nThis validates timing/observation helpers and actual SDK outcomes, not the full\nproduction arbiter, all Home/contest cases or competitive strategy strength.",
+  "limitations": [
+    "Normal recall only; Home timing remains covered by separate mechanics/unit evidence, not this native fixture.",
+    "Single occupied spawn tile, no enemy contest or damage interruption in this scenario.",
+    "Fixture main uses actual production helpers/observer/gateway; it is not full production arbiter activation or a final competitive bot module."
+  ],
+  "commands": [
+    [
+      "<workspace>\\work\\combat-research\\acquisition\\cli-2.2.2\\cambc-2.2.2.data\\scripts\\cambc.exe",
+      "build",
+      "<workspace>\\work\\tactics-bot-v1\\audit\\native-cycle-v12\\native-cycle"
+    ],
+    [
+      "<workspace>\\work\\combat-research\\acquisition\\cli-2.2.2\\cambc-2.2.2.data\\scripts\\cambc.exe",
+      "build",
+      "<workspace>\\work\\tactics-bot-v1\\audit\\native-cycle-v12\\native-cycle",
+      "--release"
+    ],
+    [
+      "<workspace>\\work\\combat-research\\acquisition\\cli-2.2.2\\cambc-2.2.2.data\\scripts\\cambc.exe",
+      "run",
+      "<workspace>\\work\\tactics-bot-v1\\audit\\native-cycle-v12\\native-cycle",
+      "<workspace>\\work\\tactics-bot-v1\\audit\\native-cycle-v12\\native-cycle",
+      "--map",
+      "<workspace>\\work\\tactics-bot-v1\\repo\\tools\\tactics-v1-validation\\fixtures\\native-cycle.map26a",
+      "--release",
+      "--json",
+      "-o",
+      "<workspace>\\work\\tactics-bot-v1\\audit\\native-cycle-v12\\game",
+      "--statistics",
+      "<workspace>\\work\\tactics-bot-v1\\audit\\native-cycle-v12\\game\\statistics.json"
+    ]
+  ]
+}

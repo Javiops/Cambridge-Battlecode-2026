@@ -1,0 +1,9 @@
+# Native Ryth deciding-channel regression
+
+Run `run_native.py --cli PATH_TO_CAMBC --project PATH_TO_ARENA --source PATH_TO_BOT_SRC --output NEW_DIRECTORY`. Run the same command with a different output directory and `--old-expression` for the paired control. This option restores only the former cheap-sequence control expression in the copied production header. The source tree is never modified. Use official CLI/SDK 2.2.2 and its matching engine; the runner verifies the SDK hash.
+
+Actual Vendetta farms and captures an actual cluster, carries the resulting 24 gems to an actual altar and starts Tribute. Actual Ryth waits within cast range and reads the target’s native HP, bag, channel and position. Only `World.enemy_score` is projected, from zero to 976, to make this real bag a deciding delivery. This is a controlled policy test, not an actual winning-score game or a whole Bot main test.
+
+The production combat proposal starts with about 40,000 fuel and an optional-search floor of 60,000. The fixed cheap stationary sequence must recognize the native Ryth area spell’s one-round stun, choose Deciding priority, execute a nonlethal native cast and interrupt the actual Tribute. The old-expression control must produce no Deciding proposal and leave the channel running without casting. Both runs require one unchanged owner epoch, zero fuel pauses and zero bot faults. Native API errors and fixture failures are rejected.
+
+Each output includes exact copied source, module, map, SDK, statistics and replay hashes. `retained-pair.json` records the first passing pair: policy cost was 7,897 fuel fixed and 8,000 fuel control; only the control expression differs between their combat headers. Those retained snapshots precede the later retaliation and linked-reply fixes, so they are not labeled as an exact final integration19 run. Reproduce against the chosen immutable source freeze to establish that version’s result.

@@ -1,0 +1,12 @@
+{
+  "map_sha256": "e64df5a1832f02d00b26e4a7af84935d655131ff7379bc4f57299e608dfd7c6f",
+  "width": 32,
+  "height": 32,
+  "draft_picks_per_team": 1,
+  "physical_bodies_per_team": 2,
+  "actual_native_types": [
+    "gold_cluster500HP/35gold",
+    "wolf1350HP/20STR/90gold/22gems"
+  ],
+  "scope": "Scripted singleton fixture: Cassi uses actual whole Bot turn, Issac idle at spawn. This draft-cap fixture is not a tournament map sample."
+}

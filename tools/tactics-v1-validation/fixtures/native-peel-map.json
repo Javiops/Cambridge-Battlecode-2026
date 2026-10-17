@@ -1,0 +1,9 @@
+{
+  "map_sha256": "19074a83bf7b53659bd6a4f1d740396dceed5b20e5e5785ed158a19f3c0a088f",
+  "width": 32,
+  "height": 32,
+  "num_draft_picks_per_team": 3,
+  "physical_bodies_per_team": 4,
+  "scenario": "Actual Cassi allied20HP preparation, no eligible range4 enemy, empty/immune policy projections, actual positive lethal control.",
+  "scope": "Scripted native scenario, exact production peel block extraction, not full combat arbiter strength."
+}

@@ -1,0 +1,12 @@
+{
+  "map_sha256": "6deb122badc224045d4e1b0fb2afd1cc6c02ce13151a4da81b34ba411c30c78e",
+  "width": 48,
+  "height": 48,
+  "draft_picks_per_team": 1,
+  "physical_bodies_per_team": 2,
+  "actual_native_types": [
+    "gold_cluster500HP/35gold",
+    "wolf1350HP/20STR/90gold/22gems"
+  ],
+  "scope": "First cash/item/gem conversion separated from early enemy contact; later whole-main play can reach opposition. One-pick fixture is not a tournament map sample."
+}

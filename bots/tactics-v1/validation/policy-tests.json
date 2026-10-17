@@ -1,0 +1,435 @@
+{
+  "passed": true,
+  "created_utc": "2026-10-16T15:44:00.850426+00:00",
+  "scope": "Actual pure policy helpers and optional SDK syntax checks. Native action activation, fuel, channels and captures require separate integration evidence.",
+  "source_headers_sha256": {
+    "actions.h": "f62e94acec71929553e0f76429fea462b67a79fda06f2f8c319a15fe94646d61",
+    "combat.h": "39109c2ca19172930c17a214e0b37811be964e87dc40dc805d93cedae24a2e0b",
+    "coordinator.h": "bd142c1a81cd1410333c7b3e88adc3060dc8e24df70768a9a493ec88e081c973",
+    "draft.h": "4aacfd6fe0c9d8867f551ad54c2394cfbf1a984ce2c1d6cdd339582165f8346a",
+    "economy.h": "b7a2844eec9d9a2682ca5236223e2eb7ea745b5db9160f8d06a21d67bf550a16",
+    "geometry.h": "ee49033fa06c47f363287b5d18af7f53f7ad198afccada1f1e03dfa2ca6a92ff",
+    "log.h": "bd93aec4806ef14eba825578c53ed15f37798467ba3ad8db36cef859f3995fbe",
+    "sdk_world.h": "f1b8b1b9df13be28be60435c85632b34708027db48b6a6dffcbfa06e049a3218",
+    "shopping.h": "1e1e17049184436606803419bd8f8084302785a4257ae6996314191eb8877162",
+    "squads.h": "f2075e3b0c5b5a977b04b00e6f24c6a1b5952d8b0da707ee8e8a715f2e96faa2",
+    "types.h": "787f95a3ea85773556472e0d6df2c46a3cf4160b2865fa05c9f00b757d351812",
+    "vision.h": "addbaa795d65edf3f7997e630244dd61719f6fd5bc73be0acec9414b92e192aa"
+  },
+  "compiler_sha256": "6d9b6b13a9d6c0e64765fe85c4ba86b605f9b65e49a0c28703c85ba66038a1df",
+  "node_sha256": "3602f2bb1a10f2cbab4c36886218a33c1ab3db87290e73b033c46c77147d0237",
+  "sdk_header_sha256": "76664dc7c4ab764243a7530eb97be12d9c20518b7bd2601a962fb0669d1da4a4",
+  "suites": [
+    {
+      "name": "policy",
+      "checks": 9556,
+      "stdout": "policy acceptance: 9556 checks passed",
+      "fixture_sha256": "c0c6e50c6a92c7e72b5938491f80537b9ef0b82301a2de4e8ddc8ca0f27a84bf",
+      "wasm_sha256": "9756fb7f0338f9818feda9bcd5192bc638adb681cdd3a9398fad6ce35af77c10",
+      "template_sha256": "c0c6e50c6a92c7e72b5938491f80537b9ef0b82301a2de4e8ddc8ca0f27a84bf",
+      "production_function_sha256": null,
+      "compile_command": [
+        "<user>\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\cambc\\wasi-sdk-33\\bin\\clang++.exe",
+        "-std=c++20",
+        "-O1",
+        "-fwasm-exceptions",
+        "-mllvm",
+        "-wasm-use-legacy-eh=false",
+        "-I",
+        "<workspace>\\work\\tactics-bot-v1\\repo\\bots\\tactics-v1\\src",
+        "<workspace>\\work\\tactics-bot-v1\\repo\\tools\\tactics-v1-validation\\fixtures\\policy.cpp",
+        "-lunwind",
+        "-o",
+        "<workspace>\\work\\tactics-bot-v1\\testing\\published-final-v12\\policy.wasm"
+      ]
+    },
+    {
+      "name": "combat",
+      "checks": 58,
+      "stdout": "58 combat checks passed",
+      "fixture_sha256": "5bd1ef8da39e52ac9621f506244e82911208014ad61812333ba1cbb0b9a433ee",
+      "wasm_sha256": "9b6e18975f235f9fbb0669061b5da4b5e502d09fd99bb9e260484472a5f6fe01",
+      "template_sha256": "5bd1ef8da39e52ac9621f506244e82911208014ad61812333ba1cbb0b9a433ee",
+      "production_function_sha256": null,
+      "compile_command": [
+        "<user>\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\cambc\\wasi-sdk-33\\bin\\clang++.exe",
+        "-std=c++20",
+        "-O1",
+        "-fwasm-exceptions",
+        "-mllvm",
+        "-wasm-use-legacy-eh=false",
+        "-I",
+        "<workspace>\\work\\tactics-bot-v1\\repo\\bots\\tactics-v1\\src",
+        "<workspace>\\work\\tactics-bot-v1\\repo\\tools\\tactics-v1-validation\\fixtures\\combat.cpp",
+        "-lunwind",
+        "-o",
+        "<workspace>\\work\\tactics-bot-v1\\testing\\published-final-v12\\combat.wasm"
+      ]
+    },
+    {
+      "name": "squads",
+      "checks": 16,
+      "stdout": "squad checks passed: 16",
+      "fixture_sha256": "0ba67135ef5318cd4bed93bb53fd55fbc6687cbd06cbe55fa5d58468dc6b7fa7",
+      "wasm_sha256": "1cc9b2adaca44f1cd31072abbf9b01c3ab2098f2f77cb2344b7eb1edcf045ce5",
+      "template_sha256": "0ba67135ef5318cd4bed93bb53fd55fbc6687cbd06cbe55fa5d58468dc6b7fa7",
+      "production_function_sha256": null,
+      "compile_command": [
+        "<user>\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\cambc\\wasi-sdk-33\\bin\\clang++.exe",
+        "-std=c++20",
+        "-O1",
+        "-fwasm-exceptions",
+        "-mllvm",
+        "-wasm-use-legacy-eh=false",
+        "-I",
+        "<workspace>\\work\\tactics-bot-v1\\repo\\bots\\tactics-v1\\src",
+        "<workspace>\\work\\tactics-bot-v1\\repo\\tools\\tactics-v1-validation\\fixtures\\squads.cpp",
+        "-lunwind",
+        "-o",
+        "<workspace>\\work\\tactics-bot-v1\\testing\\published-final-v12\\squads.wasm"
+      ]
+    },
+    {
+      "name": "camp-affordability",
+      "checks": 11,
+      "stdout": "11 camp affordability checks passed",
+      "fixture_sha256": "6d42cb66b30cdda7d246b2681cc091114add0db2a3b8f33f11d4f1712c4d1942",
+      "wasm_sha256": "c407a0cd14f87834a45382ba38195872b804e36e6204a0a8d4c6ec08c6f54ac2",
+      "template_sha256": "6d42cb66b30cdda7d246b2681cc091114add0db2a3b8f33f11d4f1712c4d1942",
+      "production_function_sha256": null,
+      "compile_command": [
+        "<user>\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\cambc\\wasi-sdk-33\\bin\\clang++.exe",
+        "-std=c++20",
+        "-O1",
+        "-fwasm-exceptions",
+        "-mllvm",
+        "-wasm-use-legacy-eh=false",
+        "-I",
+        "<workspace>\\work\\tactics-bot-v1\\repo\\bots\\tactics-v1\\src",
+        "<workspace>\\work\\tactics-bot-v1\\repo\\tools\\tactics-v1-validation\\fixtures\\camp-affordability.cpp",
+        "-lunwind",
+        "-o",
+        "<workspace>\\work\\tactics-bot-v1\\testing\\published-final-v12\\camp-affordability.wasm"
+      ]
+    },
+    {
+      "name": "channel",
+      "checks": 27,
+      "stdout": "27 channel-risk checks passed",
+      "fixture_sha256": "d84e8cefd2890e62a06547112aaf90d0ff567f8b7257608a00bd78e3714a02ba",
+      "wasm_sha256": "f5e7ffa6dc71b9236195be0a3bfc505841467ff9ea4385ba15ab379c1f4ffe8f",
+      "template_sha256": "3eadf78c04835c07e5eea8f50899e19553942765286106850a39493c733a4d0c",
+      "production_function_sha256": "539a219cae56b66056deaef0281b853ea17e5808483ed76ffa8a3c27d62a02ac",
+      "compile_command": [
+        "<user>\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\cambc\\wasi-sdk-33\\bin\\clang++.exe",
+        "-std=c++20",
+        "-O1",
+        "-fwasm-exceptions",
+        "-mllvm",
+        "-wasm-use-legacy-eh=false",
+        "-I",
+        "<workspace>\\work\\tactics-bot-v1\\repo\\bots\\tactics-v1\\src",
+        "<workspace>\\work\\tactics-bot-v1\\testing\\published-final-v12\\channel.generated.cpp",
+        "-lunwind",
+        "-o",
+        "<workspace>\\work\\tactics-bot-v1\\testing\\published-final-v12\\channel.wasm"
+      ]
+    },
+    {
+      "name": "recovery",
+      "checks": 18,
+      "stdout": "18 recovery checks passed",
+      "fixture_sha256": "6645078733f24112bfa24fd07e224586a55f2fbe76b4d98e49f607f78e787cfa",
+      "wasm_sha256": "f3ae2a4c153018913559c2caea2887d2650588b6a10e8713fd6d2e79a1e4773c",
+      "template_sha256": "1d722c7924eba1d10e2759b1387737da9083c959faf6bee9fee1b492c2960912",
+      "production_function_sha256": "49b207c5b206c88705fd3d0eefb9c920fb48b3a3848833919cacdbd361b129c1",
+      "compile_command": [
+        "<user>\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\cambc\\wasi-sdk-33\\bin\\clang++.exe",
+        "-std=c++20",
+        "-O1",
+        "-fwasm-exceptions",
+        "-mllvm",
+        "-wasm-use-legacy-eh=false",
+        "-I",
+        "<workspace>\\work\\tactics-bot-v1\\repo\\bots\\tactics-v1\\src",
+        "<workspace>\\work\\tactics-bot-v1\\testing\\published-final-v12\\recovery.generated.cpp",
+        "-lunwind",
+        "-o",
+        "<workspace>\\work\\tactics-bot-v1\\testing\\published-final-v12\\recovery.wasm"
+      ]
+    },
+    {
+      "name": "delivery",
+      "checks": 13,
+      "stdout": "13 delivery checks passed",
+      "fixture_sha256": "4a3d2048472efcea076fad785762ec7b1c83a268453a10d3d2102a87d058280e",
+      "wasm_sha256": "b151c14e6de45775d59866bd3a9082dfe5df52e353489cbf0c6114948ecbb9d2",
+      "template_sha256": "13c56d597afcfcfef680ad16e4853d1c35cc43718f2391d08a14f74eeee630cc",
+      "production_function_sha256": "8184ee4a688b393c6e48d56b7bac9dfacbe68bb9abe14c7a08b970d5ad3e14e3",
+      "compile_command": [
+        "<user>\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\cambc\\wasi-sdk-33\\bin\\clang++.exe",
+        "-std=c++20",
+        "-O1",
+        "-fwasm-exceptions",
+        "-mllvm",
+        "-wasm-use-legacy-eh=false",
+        "-I",
+        "<workspace>\\work\\tactics-bot-v1\\repo\\bots\\tactics-v1\\src",
+        "<workspace>\\work\\tactics-bot-v1\\testing\\published-final-v12\\delivery.generated.cpp",
+        "-lunwind",
+        "-o",
+        "<workspace>\\work\\tactics-bot-v1\\testing\\published-final-v12\\delivery.wasm"
+      ]
+    }
+  ],
+  "header_checks": [
+    {
+      "header": "all",
+      "returncode": 0,
+      "stderr": "",
+      "command": [
+        "<user>\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\cambc\\wasi-sdk-33\\bin\\clang++.exe",
+        "-std=c++20",
+        "-fsyntax-only",
+        "-fwasm-exceptions",
+        "-mllvm",
+        "-wasm-use-legacy-eh=false",
+        "-msimd128",
+        "-I",
+        "<workspace>\\work\\tactics-bot-v1\\testing\\arena\\sdk\\cpp",
+        "-I",
+        "<workspace>\\work\\tactics-bot-v1\\repo\\bots\\tactics-v1\\src",
+        "<workspace>\\work\\tactics-bot-v1\\testing\\published-final-v12\\header-all.cpp"
+      ]
+    },
+    {
+      "header": "actions.h",
+      "returncode": 0,
+      "stderr": "",
+      "command": [
+        "<user>\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\cambc\\wasi-sdk-33\\bin\\clang++.exe",
+        "-std=c++20",
+        "-fsyntax-only",
+        "-fwasm-exceptions",
+        "-mllvm",
+        "-wasm-use-legacy-eh=false",
+        "-msimd128",
+        "-I",
+        "<workspace>\\work\\tactics-bot-v1\\testing\\arena\\sdk\\cpp",
+        "-I",
+        "<workspace>\\work\\tactics-bot-v1\\repo\\bots\\tactics-v1\\src",
+        "<workspace>\\work\\tactics-bot-v1\\testing\\published-final-v12\\header-actions.h.cpp"
+      ]
+    },
+    {
+      "header": "combat.h",
+      "returncode": 0,
+      "stderr": "",
+      "command": [
+        "<user>\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\cambc\\wasi-sdk-33\\bin\\clang++.exe",
+        "-std=c++20",
+        "-fsyntax-only",
+        "-fwasm-exceptions",
+        "-mllvm",
+        "-wasm-use-legacy-eh=false",
+        "-msimd128",
+        "-I",
+        "<workspace>\\work\\tactics-bot-v1\\testing\\arena\\sdk\\cpp",
+        "-I",
+        "<workspace>\\work\\tactics-bot-v1\\repo\\bots\\tactics-v1\\src",
+        "<workspace>\\work\\tactics-bot-v1\\testing\\published-final-v12\\header-combat.h.cpp"
+      ]
+    },
+    {
+      "header": "coordinator.h",
+      "returncode": 0,
+      "stderr": "",
+      "command": [
+        "<user>\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\cambc\\wasi-sdk-33\\bin\\clang++.exe",
+        "-std=c++20",
+        "-fsyntax-only",
+        "-fwasm-exceptions",
+        "-mllvm",
+        "-wasm-use-legacy-eh=false",
+        "-msimd128",
+        "-I",
+        "<workspace>\\work\\tactics-bot-v1\\testing\\arena\\sdk\\cpp",
+        "-I",
+        "<workspace>\\work\\tactics-bot-v1\\repo\\bots\\tactics-v1\\src",
+        "<workspace>\\work\\tactics-bot-v1\\testing\\published-final-v12\\header-coordinator.h.cpp"
+      ]
+    },
+    {
+      "header": "draft.h",
+      "returncode": 0,
+      "stderr": "",
+      "command": [
+        "<user>\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\cambc\\wasi-sdk-33\\bin\\clang++.exe",
+        "-std=c++20",
+        "-fsyntax-only",
+        "-fwasm-exceptions",
+        "-mllvm",
+        "-wasm-use-legacy-eh=false",
+        "-msimd128",
+        "-I",
+        "<workspace>\\work\\tactics-bot-v1\\testing\\arena\\sdk\\cpp",
+        "-I",
+        "<workspace>\\work\\tactics-bot-v1\\repo\\bots\\tactics-v1\\src",
+        "<workspace>\\work\\tactics-bot-v1\\testing\\published-final-v12\\header-draft.h.cpp"
+      ]
+    },
+    {
+      "header": "economy.h",
+      "returncode": 0,
+      "stderr": "",
+      "command": [
+        "<user>\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\cambc\\wasi-sdk-33\\bin\\clang++.exe",
+        "-std=c++20",
+        "-fsyntax-only",
+        "-fwasm-exceptions",
+        "-mllvm",
+        "-wasm-use-legacy-eh=false",
+        "-msimd128",
+        "-I",
+        "<workspace>\\work\\tactics-bot-v1\\testing\\arena\\sdk\\cpp",
+        "-I",
+        "<workspace>\\work\\tactics-bot-v1\\repo\\bots\\tactics-v1\\src",
+        "<workspace>\\work\\tactics-bot-v1\\testing\\published-final-v12\\header-economy.h.cpp"
+      ]
+    },
+    {
+      "header": "geometry.h",
+      "returncode": 0,
+      "stderr": "",
+      "command": [
+        "<user>\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\cambc\\wasi-sdk-33\\bin\\clang++.exe",
+        "-std=c++20",
+        "-fsyntax-only",
+        "-fwasm-exceptions",
+        "-mllvm",
+        "-wasm-use-legacy-eh=false",
+        "-msimd128",
+        "-I",
+        "<workspace>\\work\\tactics-bot-v1\\testing\\arena\\sdk\\cpp",
+        "-I",
+        "<workspace>\\work\\tactics-bot-v1\\repo\\bots\\tactics-v1\\src",
+        "<workspace>\\work\\tactics-bot-v1\\testing\\published-final-v12\\header-geometry.h.cpp"
+      ]
+    },
+    {
+      "header": "log.h",
+      "returncode": 0,
+      "stderr": "",
+      "command": [
+        "<user>\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\cambc\\wasi-sdk-33\\bin\\clang++.exe",
+        "-std=c++20",
+        "-fsyntax-only",
+        "-fwasm-exceptions",
+        "-mllvm",
+        "-wasm-use-legacy-eh=false",
+        "-msimd128",
+        "-I",
+        "<workspace>\\work\\tactics-bot-v1\\testing\\arena\\sdk\\cpp",
+        "-I",
+        "<workspace>\\work\\tactics-bot-v1\\repo\\bots\\tactics-v1\\src",
+        "<workspace>\\work\\tactics-bot-v1\\testing\\published-final-v12\\header-log.h.cpp"
+      ]
+    },
+    {
+      "header": "sdk_world.h",
+      "returncode": 0,
+      "stderr": "",
+      "command": [
+        "<user>\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\cambc\\wasi-sdk-33\\bin\\clang++.exe",
+        "-std=c++20",
+        "-fsyntax-only",
+        "-fwasm-exceptions",
+        "-mllvm",
+        "-wasm-use-legacy-eh=false",
+        "-msimd128",
+        "-I",
+        "<workspace>\\work\\tactics-bot-v1\\testing\\arena\\sdk\\cpp",
+        "-I",
+        "<workspace>\\work\\tactics-bot-v1\\repo\\bots\\tactics-v1\\src",
+        "<workspace>\\work\\tactics-bot-v1\\testing\\published-final-v12\\header-sdk_world.h.cpp"
+      ]
+    },
+    {
+      "header": "shopping.h",
+      "returncode": 0,
+      "stderr": "",
+      "command": [
+        "<user>\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\cambc\\wasi-sdk-33\\bin\\clang++.exe",
+        "-std=c++20",
+        "-fsyntax-only",
+        "-fwasm-exceptions",
+        "-mllvm",
+        "-wasm-use-legacy-eh=false",
+        "-msimd128",
+        "-I",
+        "<workspace>\\work\\tactics-bot-v1\\testing\\arena\\sdk\\cpp",
+        "-I",
+        "<workspace>\\work\\tactics-bot-v1\\repo\\bots\\tactics-v1\\src",
+        "<workspace>\\work\\tactics-bot-v1\\testing\\published-final-v12\\header-shopping.h.cpp"
+      ]
+    },
+    {
+      "header": "squads.h",
+      "returncode": 0,
+      "stderr": "",
+      "command": [
+        "<user>\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\cambc\\wasi-sdk-33\\bin\\clang++.exe",
+        "-std=c++20",
+        "-fsyntax-only",
+        "-fwasm-exceptions",
+        "-mllvm",
+        "-wasm-use-legacy-eh=false",
+        "-msimd128",
+        "-I",
+        "<workspace>\\work\\tactics-bot-v1\\testing\\arena\\sdk\\cpp",
+        "-I",
+        "<workspace>\\work\\tactics-bot-v1\\repo\\bots\\tactics-v1\\src",
+        "<workspace>\\work\\tactics-bot-v1\\testing\\published-final-v12\\header-squads.h.cpp"
+      ]
+    },
+    {
+      "header": "types.h",
+      "returncode": 0,
+      "stderr": "",
+      "command": [
+        "<user>\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\cambc\\wasi-sdk-33\\bin\\clang++.exe",
+        "-std=c++20",
+        "-fsyntax-only",
+        "-fwasm-exceptions",
+        "-mllvm",
+        "-wasm-use-legacy-eh=false",
+        "-msimd128",
+        "-I",
+        "<workspace>\\work\\tactics-bot-v1\\testing\\arena\\sdk\\cpp",
+        "-I",
+        "<workspace>\\work\\tactics-bot-v1\\repo\\bots\\tactics-v1\\src",
+        "<workspace>\\work\\tactics-bot-v1\\testing\\published-final-v12\\header-types.h.cpp"
+      ]
+    },
+    {
+      "header": "vision.h",
+      "returncode": 0,
+      "stderr": "",
+      "command": [
+        "<user>\\AppData\\Local\\Packages\\OpenAI.Codex_2p2nqsd0c76g0\\LocalCache\\Local\\cambc\\wasi-sdk-33\\bin\\clang++.exe",
+        "-std=c++20",
+        "-fsyntax-only",
+        "-fwasm-exceptions",
+        "-mllvm",
+        "-wasm-use-legacy-eh=false",
+        "-msimd128",
+        "-I",
+        "<workspace>\\work\\tactics-bot-v1\\testing\\arena\\sdk\\cpp",
+        "-I",
+        "<workspace>\\work\\tactics-bot-v1\\repo\\bots\\tactics-v1\\src",
+        "<workspace>\\work\\tactics-bot-v1\\testing\\published-final-v12\\header-vision.h.cpp"
+      ]
+    }
+  ],
+  "interpretation": "Most policy check count is exhaustive packed-field boundaries, not independent game scenarios."
+}

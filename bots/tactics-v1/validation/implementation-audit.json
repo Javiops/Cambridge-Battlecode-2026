@@ -1,0 +1,3428 @@
+{
+  "schema": 1,
+  "scope": "Independent source implementation audit; scoped unit evidence separately identified.",
+  "source_files": [
+    {
+      "path": "docs/tactics/01-overall-strategy.md",
+      "sha256": "dbc8eb4ea979cf31fbbc90bf4d3979049dcf4ad4c38d4370e4b4e0a57b7f678c"
+    },
+    {
+      "path": "docs/tactics/02-map-understanding.md",
+      "sha256": "a20c9edd055c57a521fd68fd853da30a6fb3cb79f53db4e2f1ebb37da16e1a4b"
+    },
+    {
+      "path": "docs/tactics/08-farming-and-capture.md",
+      "sha256": "ece059f3c4bd93059186d243f0dc7f057c42ca7bcdb266f80634d175123c8ad7"
+    },
+    {
+      "path": "docs/tactics/09-gems-and-objectives.md",
+      "sha256": "e579e4b815991741372af1b61f1260d19240524dd58d0462e4f1ba96668e4d99"
+    },
+    {
+      "path": "docs/tactics/10-recall-and-recovery.md",
+      "sha256": "e3e800496b56aba4c9d3a6321c5dd44bd93f6f73a80f434db35fde8346bf5c21"
+    },
+    {
+      "path": "docs/tactics/12-execution-and-validation.md",
+      "sha256": "1ac5005db03c73b598fafa58f9d3e96c0be5f08a0d5256c6227759a944f3b348"
+    },
+    {
+      "path": "docs/tactics/cycle-decision-contract.md",
+      "sha256": "ba5c480ec833e6692081aabe2f1472cef63b4f5886aeb8e2433ddd4a6830bbc1"
+    },
+    {
+      "path": "docs/tactics/cycle-timing-current-002.md",
+      "sha256": "11a4322c69266503d0dc1bbde4aa6ac0ebfb9692aa14f0ea5176a903630ebbba"
+    },
+    {
+      "path": "docs/tactics/03-champion-selection.md",
+      "sha256": "1e43fbbb267ac6ca225004aa66f023a54f91c6ce41b6112f577a5898afb4d46b"
+    },
+    {
+      "path": "docs/tactics/04-vision-and-information.md",
+      "sha256": "9dbfef0c6a82dcc1ca4b78ddb32f8e4b717b425b362ad762294e60efbb1738a7"
+    },
+    {
+      "path": "docs/tactics/05-pathfinding-and-movement.md",
+      "sha256": "cbc798dc1e9d90f6c2187e3d297b744baebb95016688653ea09a0a67479b8f98"
+    },
+    {
+      "path": "docs/tactics/06-team-coordination.md",
+      "sha256": "d4798427182785339ba949cefa2a2a10354c153c1f473914f45275b5697104a7"
+    },
+    {
+      "path": "docs/tactics/07-combat-and-survival.md",
+      "sha256": "9e7d5cffe0e0e0beb613215b18355c4b7d407a7ec061591ac1880cb4618be905"
+    },
+    {
+      "path": "docs/tactics/11-shopping-and-investment.md",
+      "sha256": "bef73e835d0485c2dfc5ab9fca943b0350e1925c72f40260d91024c3f4adb064"
+    }
+  ],
+  "topics": [
+    {
+      "id": "01.1",
+      "title": "Win condition",
+      "source": "docs/tactics/01-overall-strategy.md",
+      "handbook_status_before_implementation": "Planned",
+      "required_behavior": "Make feasible completed tribute reaching 1000, then completed deadline score, outrank discretionary work.",
+      "permitted_bounded_fallback_or_optional_scope": "Unknown opposing future events remain unknown; use actual public score and our legal route.",
+      "edge_acceptance_scenario": "A 4-gem winning bank must beat an attractive camp; a channel starting before limit but finishing after cannot count.",
+      "cross_cutting_bounds": [
+        "score",
+        "timing"
+      ],
+      "implementation_status": "IMPLEMENTED",
+      "implementation_evidence": [
+        {
+          "file": "bots/tactics-v1/src/coordinator.h",
+          "symbol": "choose_mission",
+          "line": 116,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        },
+        {
+          "file": "bots/tactics-v1/src/economy.h",
+          "symbol": "delivery",
+          "line": 267,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        }
+      ],
+      "validation_evidence": [
+        {
+          "report": "delivery-tests.json",
+          "scope": "Exact production two-altar shortlist/planning/dispatch functions with fixture path and safety inputs; native pathfinding/timing remain separate.",
+          "evidence_status": "EARLIER_SOURCE_ONLY",
+          "passed_in_recorded_report": true,
+          "checks": 13,
+          "recorded_scoped_headers_sha256": {
+            "types.h": "787f95a3ea85773556472e0d6df2c46a3cf4160b2865fa05c9f00b757d351812",
+            "economy.h": "812268292c12b0b7526592542350ebdab427c28998cfa1ce9f4594d8a43650d1"
+          },
+          "current_scoped_headers_match": false,
+          "final_native_module_claim": false,
+          "provenance_note": "A match covers only the reported source/helper scope. It does not credit an earlier native game, entire bot source, compiled release module or fuel profile as the final artifact."
+        }
+      ],
+      "limitations": "Deciding legal bank now precedes ordinary 95% spawn-heal fallback; prospective delivery movement rejects an actual lethal next reply. Public score/horizon used, no enemy-future guarantee."
+    },
+    {
+      "id": "01.2",
+      "title": "Score awareness",
+      "source": "docs/tactics/01-overall-strategy.md",
+      "handbook_status_before_implementation": "Planned",
+      "required_behavior": "Refresh both public banked scores and our/visible credible bags after changes; protect our finish or feasible visible winning interruption.",
+      "permitted_bounded_fallback_or_optional_scope": "Ordinary income/risk policy if evidence does not identify a deciding event.",
+      "edge_acceptance_scenario": "Enemy hidden bag is never fabricated; score change invalidates an old ordinary farm proposal.",
+      "cross_cutting_bounds": [
+        "score",
+        "vision"
+      ],
+      "implementation_status": "IMPLEMENTED",
+      "implementation_evidence": [
+        {
+          "file": "bots/tactics-v1/src/sdk_world.h",
+          "symbol": "refresh",
+          "line": 337,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        },
+        {
+          "file": "bots/tactics-v1/src/combat.h",
+          "symbol": "combat_proposal",
+          "line": 576,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        },
+        {
+          "file": "bots/tactics-v1/src/economy.h",
+          "symbol": "delivery",
+          "line": 267,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        }
+      ],
+      "validation_evidence": [],
+      "limitations": "Uses public scores and visible bags; unseen enemy events are not invented. Interception remains bounded local control."
+    },
+    {
+      "id": "01.3",
+      "title": "Gems versus gold",
+      "source": "docs/tactics/01-overall-strategy.md",
+      "handbook_status_before_implementation": "Implemented",
+      "required_behavior": "Keep existing bag separate from new personal rewards; camp value includes legal travel, clear, collect, bank and incremental recovery.",
+      "permitted_bounded_fallback_or_optional_scope": "Inherited gold weights 0.25 before600/0.24 afterward are explicit heuristic defaults, not optima.",
+      "edge_acceptance_scenario": "Compare bag24+reward24 with bank24: no numerator may count existing24 twice; private share cannot give every helper full reward.",
+      "cross_cutting_bounds": [
+        "economy"
+      ],
+      "implementation_status": "FALLBACK",
+      "implementation_evidence": [
+        {
+          "file": "bots/tactics-v1/src/economy.h",
+          "symbol": "cycle_rate",
+          "line": 9,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        },
+        {
+          "file": "bots/tactics-v1/src/economy.h",
+          "symbol": "evaluate_farm",
+          "line": 406,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        }
+      ],
+      "validation_evidence": [],
+      "limitations": "Common endpoint/coarse clear+recovery model with inherited gold weights; no optimal private investment valuation."
+    },
+    {
+      "id": "01.4",
+      "title": "Aggression level",
+      "source": "docs/tactics/01-overall-strategy.md",
+      "handbook_status_before_implementation": "Planned",
+      "required_behavior": "Choose a named fight/objective only when a bounded legal sequence survives credible reply and protects bag/exit.",
+      "permitted_bounded_fallback_or_optional_scope": "Conservative useful local sequence when uncertain, rather than unsafe camp fallback.",
+      "edge_acceptance_scenario": "Declined losing fight cannot proceed to the camp hit whose cooldown/health made it losing.",
+      "cross_cutting_bounds": [
+        "combat"
+      ],
+      "implementation_status": "FALLBACK",
+      "implementation_evidence": [
+        {
+          "file": "bots/tactics-v1/src/combat.h",
+          "symbol": "combat_proposal",
+          "line": 576,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        },
+        {
+          "file": "bots/tactics-v1/src/combat.h",
+          "symbol": "farm_safe",
+          "line": 452,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        }
+      ],
+      "validation_evidence": [],
+      "limitations": "Conservative one-opportunity reply and HP margins; no exact multi-agent exchange simulator or calibrated risk probability."
+    },
+    {
+      "id": "01.5",
+      "title": "Game phases",
+      "source": "docs/tactics/01-overall-strategy.md",
+      "handbook_status_before_implementation": "Implemented",
+      "required_behavior": "Opening and late-game priorities follow observed feasibility and deciding completion; time weights may remain configured baselines.",
+      "permitted_bounded_fallback_or_optional_scope": "Round600 weight and1850 fallback bank are retained explicitly; named-map bag overrides removed.",
+      "edge_acceptance_scenario": "On unseen geometry, deadline overrides ordinary lease/chain; fixed phase label cannot force an unsafe fight.",
+      "cross_cutting_bounds": [
+        "score",
+        "geometry"
+      ],
+      "implementation_status": "IMPLEMENTED",
+      "implementation_evidence": [
+        {
+          "file": "bots/tactics-v1/src/coordinator.h",
+          "symbol": "choose_mission",
+          "line": 116,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        },
+        {
+          "file": "bots/tactics-v1/src/economy.h",
+          "symbol": "delivery",
+          "line": 267,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        }
+      ],
+      "validation_evidence": [],
+      "limitations": "Geometry and finish feasibility replace named-map bag overrides;600/1850 remain declared fallback constants."
+    },
+    {
+      "id": "01.6",
+      "title": "Power spikes",
+      "source": "docs/tactics/01-overall-strategy.md",
+      "handbook_status_before_implementation": "Planned",
+      "required_behavior": "A purchase/readiness/ally arrival changes actual legal action potential only after verified state refresh.",
+      "permitted_bounded_fallback_or_optional_scope": "No global spike schedule required; select the current legal local mission.",
+      "edge_acceptance_scenario": "Health purchase changes maxHP; stale pre-buy HP denominator cannot trigger a false engage/recall.",
+      "cross_cutting_bounds": [
+        "freshness",
+        "shop"
+      ],
+      "implementation_status": "IMPLEMENTED",
+      "implementation_evidence": [
+        {
+          "file": "bots/tactics-v1/src/main.cpp",
+          "symbol": "gameplay_turn",
+          "line": 67,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        },
+        {
+          "file": "bots/tactics-v1/src/sdk_world.h",
+          "symbol": "refresh",
+          "line": 337,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        }
+      ],
+      "validation_evidence": [],
+      "limitations": "Post-purchase/action state refresh changes actual legal choices; no team-wide spike schedule claimed."
+    },
+    {
+      "id": "01.7",
+      "title": "Opportunity cost",
+      "source": "docs/tactics/01-overall-strategy.md",
+      "handbook_status_before_implementation": "Planned",
+      "required_behavior": "Compare tasks through one completed-bank endpoint and next useful work, charging only incremental absence/recovery.",
+      "permitted_bounded_fallback_or_optional_scope": "If next-bank estimate unsupported retain useful incumbent or threshold fallback; no fictitious probability.",
+      "edge_acceptance_scenario": "Necessary heal not charged twice; elective healthy recall cannot receive fictitious gems for healing.",
+      "cross_cutting_bounds": [
+        "economy"
+      ],
+      "implementation_status": "FALLBACK",
+      "implementation_evidence": [
+        {
+          "file": "bots/tactics-v1/src/economy.h",
+          "symbol": "evaluate_farm",
+          "line": 406,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        },
+        {
+          "file": "bots/tactics-v1/src/economy.h",
+          "symbol": "recovery",
+          "line": 291,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        },
+        {
+          "file": "bots/tactics-v1/src/coordinator.h",
+          "symbol": "choose_mission",
+          "line": 116,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        }
+      ],
+      "validation_evidence": [],
+      "limitations": "Farm/one-reward-bank compared on coarse endpoint; recovery still uses explicit HP fallback, not full mission-payoff optimization."
+    },
+    {
+      "id": "01.8",
+      "title": "Playing ahead or behind",
+      "source": "docs/tactics/01-overall-strategy.md",
+      "handbook_status_before_implementation": "Planned",
+      "required_behavior": "Use public score/time and feasible conversion to protect lead or seek a credible rate/order change from behind.",
+      "permitted_bounded_fallback_or_optional_scope": "Conservative productive choice when comeback estimation lacks evidence.",
+      "edge_acceptance_scenario": "Behind on kills but ahead in banked score must not induce blind aggression; no hopeless chase when small safe bank decides.",
+      "cross_cutting_bounds": [
+        "score"
+      ],
+      "implementation_status": "FALLBACK",
+      "implementation_evidence": [
+        {
+          "file": "bots/tactics-v1/src/coordinator.h",
+          "symbol": "choose_mission",
+          "line": 116,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        },
+        {
+          "file": "bots/tactics-v1/src/economy.h",
+          "symbol": "delivery",
+          "line": 267,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        }
+      ],
+      "validation_evidence": [],
+      "limitations": "Feasible deciding score and conservative productive fallback; no general lead-dependent/comeback risk model."
+    },
+    {
+      "id": "02.1",
+      "title": "Map connectivity",
+      "source": "docs/tactics/02-map-understanding.md",
+      "handbook_status_before_implementation": "Planned",
+      "required_behavior": "Represent ordinary walk connectivity separately from ready legal dash/TP transitions; objectives need connected useful tiles.",
+      "permitted_bounded_fallback_or_optional_scope": "Failed geometry is unknown, not proven isolation; use legal local movement/other reachable task.",
+      "edge_acceptance_scenario": "Island camp cannot appear reachable through a hole merely because dash exists but is unavailable.",
+      "cross_cutting_bounds": [
+        "geometry"
+      ],
+      "implementation_status": "IMPLEMENTED",
+      "implementation_evidence": [
+        {
+          "file": "bots/tactics-v1/src/geometry.h",
+          "symbol": "initialize",
+          "line": 77,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        },
+        {
+          "file": "bots/tactics-v1/src/geometry.h",
+          "symbol": "walk",
+          "line": 56,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        }
+      ],
+      "validation_evidence": [],
+      "limitations": "Native walking connectivity and reachable useful goals; optional special-route planning omitted rather than pretending ordinary reachability."
+    },
+    {
+      "id": "02.2",
+      "title": "Actual travel distances",
+      "source": "docs/tactics/02-map-understanding.md",
+      "handbook_status_before_implementation": "Implemented",
+      "required_behavior": "Measure path to useful attack/capture/tribute tiles with terrain+dynamic legality, not center-line distance.",
+      "permitted_bounded_fallback_or_optional_scope": "Approximate distance is an explicitly uncertain ranking, never reachability proof.",
+      "edge_acceptance_scenario": "Near altar behind wall loses to farther legal approach; altar tile itself blocked; field failure not zero ETA.",
+      "cross_cutting_bounds": [
+        "geometry"
+      ],
+      "implementation_status": "IMPLEMENTED",
+      "implementation_evidence": [
+        {
+          "file": "bots/tactics-v1/src/geometry.h",
+          "symbol": "field",
+          "line": 42,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        },
+        {
+          "file": "bots/tactics-v1/src/economy.h",
+          "symbol": "altar_plans",
+          "line": 173,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        },
+        {
+          "file": "bots/tactics-v1/src/sdk_world.h",
+          "symbol": "toward",
+          "line": 294,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        }
+      ],
+      "validation_evidence": [],
+      "limitations": "Actual static fields plus dynamic legal runtime movement; not exact action ETA for every future ability."
+    },
+    {
+      "id": "02.3",
+      "title": "Chokepoints and escape routes",
+      "source": "docs/tactics/02-map-understanding.md",
+      "handbook_status_before_implementation": "Planned",
+      "required_behavior": "Before exposed commitment preserve an actual escape/reversible side and consider enemy cutoff arrival.",
+      "permitted_bounded_fallback_or_optional_scope": "Known legal retreat plus relevant personal sight when detailed slack unavailable.",
+      "edge_acceptance_scenario": "A narrow one-exit objective with earlier enemy cutoff must be rejected/staged despite short approach distance.",
+      "cross_cutting_bounds": [
+        "geometry",
+        "combat"
+      ],
+      "implementation_status": "FALLBACK",
+      "implementation_evidence": [
+        {
+          "file": "bots/tactics-v1/src/combat.h",
+          "symbol": "escape_action",
+          "line": 473,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        },
+        {
+          "file": "bots/tactics-v1/src/sdk_world.h",
+          "symbol": "toward",
+          "line": 294,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        }
+      ],
+      "validation_evidence": [],
+      "limitations": "Legal lower-threat/homeward alternatives and personal observation implement the conservative local fallback; no explicit global choke/cutoff slack optimization."
+    },
+    {
+      "id": "02.4",
+      "title": "Walls and holes",
+      "source": "docs/tactics/02-map-understanding.md",
+      "handbook_status_before_implementation": "Planned",
+      "required_behavior": "Separate walking blockers, exact sight masks and ability/item landing rules; verify landing and follow-up.",
+      "permitted_bounded_fallback_or_optional_scope": "Unknown special transition falls back to ordinary reachable goal.",
+      "edge_acceptance_scenario": "Hole blocks walk not sight; wall affects sight; ability crossing never permits illegal landing or assumed walkback.",
+      "cross_cutting_bounds": [
+        "geometry",
+        "vision"
+      ],
+      "implementation_status": "IMPLEMENTED",
+      "implementation_evidence": [
+        {
+          "file": "bots/tactics-v1/src/geometry.h",
+          "symbol": "initialize",
+          "line": 77,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        },
+        {
+          "file": "bots/tactics-v1/src/vision.h",
+          "symbol": "ward_proposal",
+          "line": 121,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        },
+        {
+          "file": "bots/tactics-v1/src/combat.h",
+          "symbol": "escape_action",
+          "line": 473,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        }
+      ],
+      "validation_evidence": [],
+      "limitations": "Walking, dash traversal and optional teleport are distinct. Dash proposals and the gateway check a bounded path with walls, enemy spawn, visible units/camps and teleport reservations, plus a free legal landing. The SDK valid_tiles mask supplies range only, not a complete path/landing certificate; unseen blockers remain unknown and actual rejection is handled."
+    },
+    {
+      "id": "02.5",
+      "title": "Bush geometry",
+      "source": "docs/tactics/02-map-understanding.md",
+      "handbook_status_before_implementation": "Planned",
+      "required_behavior": "Treat concealed bush approaches and stale absence as uncertainty; inspect useful sight before expensive commitment.",
+      "permitted_bounded_fallback_or_optional_scope": "Reversible approach or other objective if relevant sight unavailable.",
+      "edge_acceptance_scenario": "An empty unrelated bush cannot certify the target bush clear; sight loss invalidates a targeted follow-up.",
+      "cross_cutting_bounds": [
+        "vision"
+      ],
+      "implementation_status": "IMPLEMENTED",
+      "implementation_evidence": [
+        {
+          "file": "bots/tactics-v1/src/vision.h",
+          "symbol": "ward_proposal",
+          "line": 121,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        },
+        {
+          "file": "bots/tactics-v1/src/combat.h",
+          "symbol": "remembered_raw",
+          "line": 276,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        }
+      ],
+      "validation_evidence": [],
+      "limitations": "Actual shadowcast/visibility and recent possible regions; not omniscient bush absence."
+    },
+    {
+      "id": "02.6",
+      "title": "Resource distribution",
+      "source": "docs/tactics/02-map-understanding.md",
+      "handbook_status_before_implementation": "Implemented",
+      "required_behavior": "Cache public group geometry/reward/threat metadata; refresh lifecycle from legal observations; derive monolith-only feature.",
+      "permitted_bounded_fallback_or_optional_scope": "Unknown inventory is not empty map; stage/recover from legal known features.",
+      "edge_acceptance_scenario": "Only-monolith gems allows useful gold economy; gold-only cluster cannot be accidentally excluded everywhere.",
+      "cross_cutting_bounds": [
+        "economy",
+        "geometry"
+      ],
+      "implementation_status": "IMPLEMENTED",
+      "implementation_evidence": [
+        {
+          "file": "bots/tactics-v1/src/geometry.h",
+          "symbol": "initialize",
+          "line": 77,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        },
+        {
+          "file": "bots/tactics-v1/src/sdk_world.h",
+          "symbol": "refresh",
+          "line": 337,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        },
+        {
+          "file": "bots/tactics-v1/src/economy.h",
+          "symbol": "evaluate_farm",
+          "line": 406,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        }
+      ],
+      "validation_evidence": [],
+      "limitations": "Public inventory and independently visible wandering camps; known dead members and conservative original stats prevent hidden-group undercount; monolith-only economy feature."
+    },
+    {
+      "id": "02.7",
+      "title": "Altar accessibility",
+      "source": "docs/tactics/02-map-understanding.md",
+      "handbook_status_before_implementation": "Implemented",
+      "required_behavior": "Select reachable legal altar ring by completion, locks, threat/exit and next mission; dynamic rejection refreshes.",
+      "permitted_bounded_fallback_or_optional_scope": "Legacy route estimate only as labeled uncertain fallback, with final SDK checks.",
+      "edge_acceptance_scenario": "Unchecked altar after startup exception must not be certified reachable; locked shortest versus usable alternative.",
+      "cross_cutting_bounds": [
+        "geometry",
+        "timing"
+      ],
+      "implementation_status": "FALLBACK",
+      "implementation_evidence": [
+        {
+          "file": "bots/tactics-v1/src/economy.h",
+          "symbol": "altar_plans",
+          "line": 173,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        },
+        {
+          "file": "bots/tactics-v1/src/economy.h",
+          "symbol": "delivery",
+          "line": 267,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        }
+      ],
+      "validation_evidence": [
+        {
+          "report": "delivery-tests.json",
+          "scope": "Exact production two-altar shortlist/planning/dispatch functions with fixture path and safety inputs; native pathfinding/timing remain separate.",
+          "evidence_status": "EARLIER_SOURCE_ONLY",
+          "passed_in_recorded_report": true,
+          "checks": 13,
+          "recorded_scoped_headers_sha256": {
+            "types.h": "787f95a3ea85773556472e0d6df2c46a3cf4160b2865fa05c9f00b757d351812",
+            "economy.h": "812268292c12b0b7526592542350ebdab427c28998cfa1ce9f4594d8a43650d1"
+          },
+          "current_scoped_headers_match": false,
+          "final_native_module_claim": false,
+          "provenance_note": "A match covers only the reported source/helper scope. It does not credit an earlier native game, entire bot source, compiled release module or fuel profile as the final artifact."
+        }
+      ],
+      "limitations": "Two geodesic-shortlist altar proposals each test actual legal nonlethal approach; a blocked or lethal first choice cannot erase the second. Enemy-arrival ranking remains a coarse geometric penalty, not a route-safety certificate."
+    },
+    {
+      "id": "02.8",
+      "title": "Map-dependent planning",
+      "source": "docs/tactics/02-map-understanding.md",
+      "handbook_status_before_implementation": "Planned",
+      "required_behavior": "Use measured connectivity/resource/return/contact/exit features for draft and missions; no map-name rules.",
+      "permitted_bounded_fallback_or_optional_scope": "Generic geometry and legal baseline draft on unfamiliar/failed signature.",
+      "edge_acceptance_scenario": "Renaming map leaves decisions unchanged; held-out generated long/compact/choke maps remain functional.",
+      "cross_cutting_bounds": [
+        "geometry"
+      ],
+      "implementation_status": "IMPLEMENTED",
+      "implementation_evidence": [
+        {
+          "file": "bots/tactics-v1/src/geometry.h",
+          "symbol": "initialize",
+          "line": 77,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        },
+        {
+          "file": "bots/tactics-v1/src/draft.h",
+          "symbol": "draft_preferences",
+          "line": 11,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        },
+        {
+          "file": "bots/tactics-v1/src/economy.h",
+          "symbol": "farming",
+          "line": 527,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        }
+      ],
+      "validation_evidence": [],
+      "limitations": "No named-map/signature strategy branches; measured geometry and generic fallback."
+    },
+    {
+      "id": "03.1",
+      "title": "Champion selection",
+      "source": "docs/tactics/03-champion-selection.md",
+      "handbook_status_before_implementation": "Implemented",
+      "required_behavior": "Enumerate legal named choices, try each at most once, use deterministic recipe conditioned only on measured path/team size.",
+      "permitted_bounded_fallback_or_optional_scope": "Existing fixed legal recipe is explicitly allowed first implementation.",
+      "edge_acceptance_scenario": "Invalid sentinel/rejected shared choice proceeds to next candidate without duplicate retry or invented roster.",
+      "cross_cutting_bounds": [
+        "draft"
+      ],
+      "implementation_status": "FALLBACK",
+      "implementation_evidence": [
+        {
+          "file": "bots/tactics-v1/src/draft.h",
+          "symbol": "draft_preferences",
+          "line": 11,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        },
+        {
+          "file": "bots/tactics-v1/src/main.cpp",
+          "symbol": "draft_turn",
+          "line": 37,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        }
+      ],
+      "validation_evidence": [],
+      "limitations": "Known pinned SDK legal-choice recipe with rejection fallback; not runtime discovery of every future champion choice."
+    },
+    {
+      "id": "03.2",
+      "title": "Pick order",
+      "source": "docs/tactics/03-champion-selection.md",
+      "handbook_status_before_implementation": "Implemented",
+      "required_behavior": "Serialize prospective plan before final successful pick can transfer control; accepted/rejected tracked separately.",
+      "permitted_bounded_fallback_or_optional_scope": "Yield with insufficient fuel/no legal choice; no forced selection.",
+      "edge_acceptance_scenario": "Final pick memory contains prospective choice; failed pick does not add physical body or loop.",
+      "cross_cutting_bounds": [
+        "draft",
+        "fuel"
+      ],
+      "implementation_status": "IMPLEMENTED",
+      "implementation_evidence": [
+        {
+          "file": "bots/tactics-v1/src/main.cpp",
+          "symbol": "draft_turn",
+          "line": 37,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        }
+      ],
+      "validation_evidence": [],
+      "limitations": "Prospective final pick serialized before accepting API call; failed choices tracked separately."
+    },
+    {
+      "id": "03.3",
+      "title": "Draft adaptation",
+      "source": "docs/tactics/03-champion-selection.md",
+      "handbook_status_before_implementation": "Planned",
+      "required_behavior": "Use only actually revealed draft info; preserve accepted choices and legal availability.",
+      "permitted_bounded_fallback_or_optional_scope": "Fixed recipe is explicitly permitted until matchup weights implemented; label fallback, no counterdraft claim.",
+      "edge_acceptance_scenario": "Simultaneous hidden enemy selection cannot be read/inferred; rejected pick is availability fallback.",
+      "cross_cutting_bounds": [
+        "draft",
+        "vision"
+      ],
+      "implementation_status": "FALLBACK",
+      "implementation_evidence": [
+        {
+          "file": "bots/tactics-v1/src/draft.h",
+          "symbol": "draft_preferences",
+          "line": 11,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        },
+        {
+          "file": "bots/tactics-v1/src/main.cpp",
+          "symbol": "draft_turn",
+          "line": 37,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        }
+      ],
+      "validation_evidence": [],
+      "limitations": "Explicit permitted fixed recipe; does not consume/reorder from enemy revealed draft."
+    },
+    {
+      "id": "03.4",
+      "title": "Team composition",
+      "source": "docs/tactics/03-champion-selection.md",
+      "handbook_status_before_implementation": "Planned",
+      "required_behavior": "Realized composition must cover reachable clear/damage/control/bank/recovery tasks; account linked pair/private income.",
+      "permitted_bounded_fallback_or_optional_scope": "Size-specific recipe as transparent baseline where richer coverage unresolved.",
+      "edge_acceptance_scenario": "Rejected control candidate updates realized coverage; Cassi+Issac not treated as two draft picks.",
+      "cross_cutting_bounds": [
+        "draft"
+      ],
+      "implementation_status": "FALLBACK",
+      "implementation_evidence": [
+        {
+          "file": "bots/tactics-v1/src/draft.h",
+          "symbol": "draft_preferences",
+          "line": 11,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        }
+      ],
+      "validation_evidence": [],
+      "limitations": "Explicit permitted size-specific recipe; no computed whole-composition job coverage optimizer."
+    },
+    {
+      "id": "03.5",
+      "title": "Team size",
+      "source": "docs/tactics/03-champion-selection.md",
+      "handbook_status_before_implementation": "Implemented",
+      "required_behavior": "Read pick cap separately from actual physical roster; all live per-body handling supports Cassi/Issac six-body teams.",
+      "permitted_bounded_fallback_or_optional_scope": "Explicit degraded claim mapping if group count/body format cannot encode all; no silent dropped actor.",
+      "edge_acceptance_scenario": "5 picks with Cassi generates6 controlled bodies, independent positions/wards/wallets; dead roster member not ready help.",
+      "cross_cutting_bounds": [
+        "identity",
+        "memory"
+      ],
+      "implementation_status": "IMPLEMENTED",
+      "implementation_evidence": [
+        {
+          "file": "bots/tactics-v1/src/sdk_world.h",
+          "symbol": "refresh",
+          "line": 337,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        },
+        {
+          "file": "bots/tactics-v1/src/types.h",
+          "symbol": "decode_claim",
+          "line": 146,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        },
+        {
+          "file": "bots/tactics-v1/src/types.h",
+          "symbol": "encode_claim",
+          "line": 159,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        }
+      ],
+      "validation_evidence": [],
+      "limitations": "Actual physical body roster, six-body encoding and explicit unsupported sixth-slot degrade; dead body not ready contributor."
+    },
+    {
+      "id": "03.6",
+      "title": "Champion and map fit",
+      "source": "docs/tactics/03-champion-selection.md",
+      "handbook_status_before_implementation": "Planned",
+      "required_behavior": "Fit kit to legal useful positions, resource/return cycle and actual movement restrictions using geometry.",
+      "permitted_bounded_fallback_or_optional_scope": "Existing45-step spawn-path split allowed as coarse fallback, no named-family draft recipe.",
+      "edge_acceptance_scenario": "Short spawn path with inaccessible target cannot claim caster superiority; unknown geometry legal fallback.",
+      "cross_cutting_bounds": [
+        "draft",
+        "geometry"
+      ],
+      "implementation_status": "FALLBACK",
+      "implementation_evidence": [
+        {
+          "file": "bots/tactics-v1/src/draft.h",
+          "symbol": "draft_preferences",
+          "line": 11,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        },
+        {
+          "file": "bots/tactics-v1/src/geometry.h",
+          "symbol": "initialize",
+          "line": 77,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        }
+      ],
+      "validation_evidence": [],
+      "limitations": "45-step coarse path recipe only, explicitly permitted; no per-kit topology utility model."
+    },
+    {
+      "id": "03.7",
+      "title": "Scaling and investment needs",
+      "source": "docs/tactics/03-champion-selection.md",
+      "handbook_status_before_implementation": "Planned",
+      "required_behavior": "Treat future private income/equipment breakpoints as time-dependent tasks, not pooled free scaling.",
+      "permitted_bounded_fallback_or_optional_scope": "Fixed documented builds allowed when draft-investment model unresolved.",
+      "edge_acceptance_scenario": "Two equipment-dependent bodies cannot both be funded by the same indivisible collector income estimate.",
+      "cross_cutting_bounds": [
+        "draft",
+        "economy"
+      ],
+      "implementation_status": "FALLBACK",
+      "implementation_evidence": [
+        {
+          "file": "bots/tactics-v1/src/shopping.h",
+          "symbol": "shop_role_stat",
+          "line": 42,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        },
+        {
+          "file": "bots/tactics-v1/src/shopping.h",
+          "symbol": "shop_choose_shard",
+          "line": 97,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        }
+      ],
+      "validation_evidence": [],
+      "limitations": "Role build fallback, no future private income/draft scaling schedule."
+    },
+    {
+      "id": "03.8",
+      "title": "Champion-specific rules",
+      "source": "docs/tactics/03-champion-selection.md",
+      "handbook_status_before_implementation": "Planned",
+      "required_behavior": "Handle relevant kit exceptions: linked loss, Prism gemFocus, Ren returned damage, Varg secondary splash, immunity, reset cast budget, Tavi permission.",
+      "permitted_bounded_fallback_or_optional_scope": "When exact effect metadata missing use conservative legal basic/position, never imaginary proc/reset/stun.",
+      "edge_acceptance_scenario": "Lethal/shielded Ren direct hit returns damage; Varg secondary splash differs; Vendetta reset does not refund cast.",
+      "cross_cutting_bounds": [
+        "combat",
+        "shop"
+      ],
+      "implementation_status": "FALLBACK",
+      "implementation_evidence": [
+        {
+          "file": "bots/tactics-v1/src/combat.h",
+          "symbol": "returned_damage",
+          "line": 23,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        },
+        {
+          "file": "bots/tactics-v1/src/combat.h",
+          "symbol": "basic_splash_value",
+          "line": 388,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        },
+        {
+          "file": "bots/tactics-v1/src/combat.h",
+          "symbol": "linked_removal_value",
+          "line": 401,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        },
+        {
+          "file": "bots/tactics-v1/src/shopping.h",
+          "symbol": "shopping_proposal",
+          "line": 143,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        }
+      ],
+      "validation_evidence": [],
+      "limitations": "Critical Ren return, Varg splash, observed linked-removal, actual gem/stat refresh, immunity and reset cast budget implemented. General conservative-kit fallback remains for effects not represented in metadata."
+    },
+    {
+      "id": "04.1",
+      "title": "Ward placement",
+      "source": "docs/tactics/04-vision-and-information.md",
+      "handbook_status_before_implementation": "Planned",
+      "required_behavior": "Ward has a named immediate-warning or persistent future observation job; no detour/delay of required escape/channel; refresh after placement.",
+      "permitted_bounded_fallback_or_optional_scope": "Keep existing observer if fuel/confidence insufficient; evaluate only a few mission waypoints.",
+      "edge_acceptance_scenario": "Open-field fresh ward adds no immediate range; ward across wall can reveal hidden threat before spending camp cast.",
+      "cross_cutting_bounds": [
+        "vision",
+        "action"
+      ],
+      "implementation_status": "IMPLEMENTED",
+      "implementation_evidence": [
+        {
+          "file": "bots/tactics-v1/src/vision.h",
+          "symbol": "ward_proposal",
+          "line": 121,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        },
+        {
+          "file": "bots/tactics-v1/src/main.cpp",
+          "symbol": "gameplay_turn",
+          "line": 67,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        }
+      ],
+      "validation_evidence": [],
+      "limitations": "Bounded own-mission ward scoring uses exact engine visibility masks and keep-versus-replace margin. The current arbiter admits placement only on idle/hold proposals (Action::None), with at least 45000 fuel; active useful actions are not preceded by ward search. This is a conservative timing prototype, not complete opportunistic ward scheduling."
+    },
+    {
+      "id": "04.2",
+      "title": "Ward relocation",
+      "source": "docs/tactics/04-vision-and-information.md",
+      "handbook_status_before_implementation": "Planned",
+      "required_behavior": "Compare retained old ward and new candidates for same mission/future owner positions with a switching margin; ties keep.",
+      "permitted_bounded_fallback_or_optional_scope": "Lexicographic imminent-information/approach-warning/future-monitoring priority is allowed untuned prototype.",
+      "edge_acceptance_scenario": "Old remote watcher protecting return path must not be erased for redundant local open-field pixels.",
+      "cross_cutting_bounds": [
+        "vision"
+      ],
+      "implementation_status": "IMPLEMENTED",
+      "implementation_evidence": [
+        {
+          "file": "bots/tactics-v1/src/vision.h",
+          "symbol": "ward_observer_score",
+          "line": 78,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        },
+        {
+          "file": "bots/tactics-v1/src/vision.h",
+          "symbol": "ward_proposal",
+          "line": 121,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        }
+      ],
+      "validation_evidence": [],
+      "limitations": "Keep-versus-replace on same mission/future owner mask with tie/switch margin, persistent old observer counted."
+    },
+    {
+      "id": "04.3",
+      "title": "Personal vision",
+      "source": "docs/tactics/04-vision-and-information.md",
+      "handbook_status_before_implementation": "Planned",
+      "required_behavior": "Use actual owner effective mask and official hypothetical masks; personal sight changes require target/camp refresh.",
+      "permitted_bounded_fallback_or_optional_scope": "Static geometry is known, dynamic enemy-free status remains unknown.",
+      "edge_acceptance_scenario": "Ally ward sight cannot authorize our targeted cast; Cassi/Issac personal masks remain separate; bush component masks exact.",
+      "cross_cutting_bounds": [
+        "vision"
+      ],
+      "implementation_status": "IMPLEMENTED",
+      "implementation_evidence": [
+        {
+          "file": "bots/tactics-v1/src/vision.h",
+          "symbol": "ward_proposal",
+          "line": 121,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        },
+        {
+          "file": "bots/tactics-v1/src/sdk_world.h",
+          "symbol": "refresh",
+          "line": 337,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        }
+      ],
+      "validation_evidence": [],
+      "limitations": "Owner personal natural/effective masks; reports never used for targeting; exact candidate shadowcasting."
+    },
+    {
+      "id": "04.4",
+      "title": "Scouting responsibility",
+      "source": "docs/tactics/04-vision-and-information.md",
+      "handbook_status_before_implementation": "Planned",
+      "required_behavior": "Observer normally serves its own next information-dependent action; remote scout reports uncertainty without granting sight.",
+      "permitted_bounded_fallback_or_optional_scope": "No dedicated unsafe scout trip or new protocol required; local observer jobs suffice.",
+      "edge_acceptance_scenario": "Dead body keeps useful ward observation but cannot place new ward or contribute combat readiness.",
+      "cross_cutting_bounds": [
+        "vision",
+        "identity"
+      ],
+      "implementation_status": "FALLBACK",
+      "implementation_evidence": [
+        {
+          "file": "bots/tactics-v1/src/vision.h",
+          "symbol": "ward_future_waypoint",
+          "line": 30,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        },
+        {
+          "file": "bots/tactics-v1/src/vision.h",
+          "symbol": "ward_proposal",
+          "line": 121,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        }
+      ],
+      "validation_evidence": [],
+      "limitations": "Own-mission observer prototype; no distributed remote scouting-role protocol or dead-body warning publication."
+    },
+    {
+      "id": "04.5",
+      "title": "Enemy tracking",
+      "source": "docs/tactics/04-vision-and-information.md",
+      "handbook_status_before_implementation": "Planned",
+      "required_behavior": "Store local last-seen identity/location/round/source and expand plausible reachable routes with age; never stale exact targeting.",
+      "permitted_bounded_fallback_or_optional_scope": "Few timestamped plausible routes explicitly allowed instead of full probabilistic tracking.",
+      "edge_acceptance_scenario": "Lost-sight enemy cannot remain exact ground truth; seeing one exit empty only constrains that exit/time.",
+      "cross_cutting_bounds": [
+        "vision",
+        "freshness"
+      ],
+      "implementation_status": "IMPLEMENTED",
+      "implementation_evidence": [
+        {
+          "file": "bots/tactics-v1/src/sdk_world.h",
+          "symbol": "refresh",
+          "line": 337,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        },
+        {
+          "file": "bots/tactics-v1/src/combat.h",
+          "symbol": "remembered_positions",
+          "line": 244,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        },
+        {
+          "file": "bots/tactics-v1/src/combat.h",
+          "symbol": "remembered_raw",
+          "line": 276,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        }
+      ],
+      "validation_evidence": [
+        {
+          "report": "combat-policy-tests.json",
+          "scope": "Production pure-function unit checks only. SDK-dependent World/native reach and complete topic behavior require separate integration validation.",
+          "evidence_status": "EARLIER_SOURCE_ONLY",
+          "passed_in_recorded_report": true,
+          "checks": 58,
+          "recorded_scoped_headers_sha256": {
+            "combat.h": "0fb98d290fe876218246b118847ed4c3c0cd410f1c0fff81fb26a2ae805fbf3c",
+            "types.h": "787f95a3ea85773556472e0d6df2c46a3cf4160b2865fa05c9f00b757d351812"
+          },
+          "current_scoped_headers_match": false,
+          "final_native_module_claim": false,
+          "provenance_note": "A match covers only the reported source/helper scope. It does not credit an earlier native game, entire bot source, compiled release module or fuel profile as the final artifact."
+        }
+      ],
+      "limitations": "One-to-three-round personally observed identity/location/age is retained and never used as a legal stale target. Exact possible regions with visible-absence pruning are admitted only for uncertainty extent<=2 and sufficient fuel; larger or lower-budget cases use a conservative scalar geometry bound that can preserve impossible through-wall danger. Three rounds and extent two are initial bounded settings, not optima."
+    },
+    {
+      "id": "04.6",
+      "title": "Threat estimation",
+      "source": "docs/tactics/04-vision-and-information.md",
+      "handbook_status_before_implementation": "Planned",
+      "required_behavior": "Estimate fastest credible dangerous contact against finish/escape/cancel window, including movement/dash/order and blind flank.",
+      "permitted_bounded_fallback_or_optional_scope": "Preserve escape or lower-commitment choice under uncertainty; no zero-threat default.",
+      "edge_acceptance_scenario": "Wall-separated nearby enemy cannot force blanket farm veto; long covered approach cannot hide short unknown flank.",
+      "cross_cutting_bounds": [
+        "vision",
+        "combat"
+      ],
+      "implementation_status": "FALLBACK",
+      "implementation_evidence": [
+        {
+          "file": "bots/tactics-v1/src/combat.h",
+          "symbol": "incoming_for",
+          "line": 351,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        },
+        {
+          "file": "bots/tactics-v1/src/combat.h",
+          "symbol": "enemy_raw",
+          "line": 304,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        },
+        {
+          "file": "bots/tactics-v1/src/vision.h",
+          "symbol": "ward_proposal",
+          "line": 121,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        }
+      ],
+      "validation_evidence": [],
+      "limitations": "Contact-aware bounded response plus mission approach ring; ward placement does not explicitly optimize fastest uncovered-route warning slack."
+    },
+    {
+      "id": "04.7",
+      "title": "Opponent intent",
+      "source": "docs/tactics/04-vision-and-information.md",
+      "handbook_status_before_implementation": "Planned",
+      "required_behavior": "Infer intent conditionally from sequences of fresh observations and choose observations discriminating useful alternatives.",
+      "permitted_bounded_fallback_or_optional_scope": "Mission threatened approaches if no credible intent differentiation.",
+      "edge_acceptance_scenario": "Single enemy champion/ward coordinate never establishes guaranteed invade/tribute path.",
+      "cross_cutting_bounds": [
+        "vision"
+      ],
+      "implementation_status": "FALLBACK",
+      "implementation_evidence": [
+        {
+          "file": "bots/tactics-v1/src/vision.h",
+          "symbol": "ward_proposal",
+          "line": 121,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        },
+        {
+          "file": "bots/tactics-v1/src/combat.h",
+          "symbol": "remembered_raw",
+          "line": 276,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        }
+      ],
+      "validation_evidence": [],
+      "limitations": "Explicit uncertain mission-approach fallback; no multiframe farm/invade/tribute intent classifier."
+    },
+    {
+      "id": "04.8",
+      "title": "Information sharing",
+      "source": "docs/tactics/04-vision-and-information.md",
+      "handbook_status_before_implementation": "Planned",
+      "required_behavior": "Respect allocated8-byte layout, deterministic writer rules/age bounds; distinguish local observation from compact report.",
+      "permitted_bounded_fallback_or_optional_scope": "Retain existing layout/danger alert with documented wrap ambiguity; richer fresh remote protocol deferred.",
+      "edge_acceptance_scenario": "Competing writers, modulo timestamp wrap, six bodies, dead observer: no report grants sight or promises readiness.",
+      "cross_cutting_bounds": [
+        "memory",
+        "vision"
+      ],
+      "implementation_status": "PARTIAL",
+      "implementation_evidence": [
+        {
+          "file": "bots/tactics-v1/src/sdk_world.h",
+          "symbol": "publish_claim",
+          "line": 260,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        },
+        {
+          "file": "bots/tactics-v1/src/types.h",
+          "symbol": "encode_claim",
+          "line": 159,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        }
+      ],
+      "validation_evidence": [],
+      "limitations": "Claim layout retained, local observations correct; no implemented fresh strategic warning sharing/danger-byte reader-writer. Bytes5-7 not repurposed."
+    },
+    {
+      "id": "05.1",
+      "title": "Route selection",
+      "source": "docs/tactics/05-pathfinding-and-movement.md",
+      "handbook_status_before_implementation": "Implemented",
+      "required_behavior": "Route chosen mission to legal useful goals with fresh blockers and response-aware local steps.",
+      "permitted_bounded_fallback_or_optional_scope": "Bounded SDK local fallback allowed but cannot ignore already-established hard danger veto.",
+      "edge_acceptance_scenario": "Low-fuel route never sends unsafe camp fallback; wall/hole/altar/enemyspawn remain blocked.",
+      "cross_cutting_bounds": [
+        "geometry",
+        "fuel"
+      ],
+      "implementation_status": "IMPLEMENTED",
+      "implementation_evidence": [
+        {
+          "file": "bots/tactics-v1/src/sdk_world.h",
+          "symbol": "toward",
+          "line": 294,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        },
+        {
+          "file": "bots/tactics-v1/src/geometry.h",
+          "symbol": "walk",
+          "line": 56,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        }
+      ],
+      "validation_evidence": [],
+      "limitations": "Selected legal task route with fresh dynamic occupancy and local threat filter; conservative finite failure if no route/fuel."
+    },
+    {
+      "id": "05.2",
+      "title": "Destination selection",
+      "source": "docs/tactics/05-pathfinding-and-movement.md",
+      "handbook_status_before_implementation": "Implemented",
+      "required_behavior": "Goal set matches interaction: attack/cast legal region, capture spawn, tribute ring, safe staging or ownspawn.",
+      "permitted_bounded_fallback_or_optional_scope": "Empty goals returns failure/replan; never substitute occupied target center.",
+      "edge_acceptance_scenario": "Already on altar ring means ready to try tribute, not completed score; hidden group probe cannot self-goal false-success.",
+      "cross_cutting_bounds": [
+        "geometry",
+        "action"
+      ],
+      "implementation_status": "IMPLEMENTED",
+      "implementation_evidence": [
+        {
+          "file": "bots/tactics-v1/src/sdk_world.h",
+          "symbol": "toward",
+          "line": 294,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        },
+        {
+          "file": "bots/tactics-v1/src/economy.h",
+          "symbol": "delivery",
+          "line": 267,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        },
+        {
+          "file": "bots/tactics-v1/src/economy.h",
+          "symbol": "farming",
+          "line": 527,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        }
+      ],
+      "validation_evidence": [],
+      "limitations": "Attack range, altar ring, capture region and spawn interaction goals; arrival does not claim success."
+    },
+    {
+      "id": "05.3",
+      "title": "Immediate step selection",
+      "source": "docs/tactics/05-pathfinding-and-movement.md",
+      "handbook_status_before_implementation": "Planned",
+      "required_behavior": "Compare hold and legal neighbor/landing positions using actual reply, follow-up action and exit/readiness.",
+      "permitted_bounded_fallback_or_optional_scope": "Existing legal local heuristic when richer comparison unavailable, with hard survival checks.",
+      "edge_acceptance_scenario": "Ranged hold preserves exclusive cast+basic; moving first can invalidate cast; refreshed target after displacement.",
+      "cross_cutting_bounds": [
+        "combat",
+        "action"
+      ],
+      "implementation_status": "FALLBACK",
+      "implementation_evidence": [
+        {
+          "file": "bots/tactics-v1/src/combat.h",
+          "symbol": "combat_proposal",
+          "line": 576,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        },
+        {
+          "file": "bots/tactics-v1/src/combat.h",
+          "symbol": "escape_action",
+          "line": 473,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        },
+        {
+          "file": "bots/tactics-v1/src/sdk_world.h",
+          "symbol": "toward",
+          "line": 294,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        }
+      ],
+      "validation_evidence": [],
+      "limitations": "Short legal hold/cast/basic/escape/approach alternatives; no exhaustive position-and-sequence optimizer."
+    },
+    {
+      "id": "05.4",
+      "title": "Dynamic obstacles",
+      "source": "docs/tactics/05-pathfinding-and-movement.md",
+      "handbook_status_before_implementation": "Implemented",
+      "required_behavior": "Dynamic occupancy refreshes after relevant action/failure; jam field ignoring bodies is direction hint only.",
+      "permitted_bounded_fallback_or_optional_scope": "Bounded legal alternate neighbor or replan; do not discard hard danger exclusions.",
+      "edge_acceptance_scenario": "Occupied choke cannot be walked through; unjam may plan beyond actor but actual SDK rejection respected.",
+      "cross_cutting_bounds": [
+        "geometry",
+        "action"
+      ],
+      "implementation_status": "IMPLEMENTED",
+      "implementation_evidence": [
+        {
+          "file": "bots/tactics-v1/src/sdk_world.h",
+          "symbol": "refresh",
+          "line": 337,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        },
+        {
+          "file": "bots/tactics-v1/src/sdk_world.h",
+          "symbol": "toward",
+          "line": 294,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        },
+        {
+          "file": "bots/tactics-v1/src/actions.h",
+          "symbol": "execute",
+          "line": 23,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        }
+      ],
+      "validation_evidence": [],
+      "limitations": "Refresh blockers and bounded distinct alternatives. No command walks through an occupied tile."
+    },
+    {
+      "id": "05.5",
+      "title": "Hidden blockers",
+      "source": "docs/tactics/05-pathfinding-and-movement.md",
+      "handbook_status_before_implementation": "Planned",
+      "required_behavior": "On failed move distinguish unavailability/new blocker; refresh position/vision/actions and at most bounded changed alternative.",
+      "permitted_bounded_fallback_or_optional_scope": "One new-information replan and at most2 distinct alternatives under common budget; no unchanged retries.",
+      "edge_acceptance_scenario": "Hidden occupant revealed by rejection updates route; failure neither proves identity nor universally preserves action.",
+      "cross_cutting_bounds": [
+        "vision",
+        "action"
+      ],
+      "implementation_status": "IMPLEMENTED",
+      "implementation_evidence": [
+        {
+          "file": "bots/tactics-v1/src/actions.h",
+          "symbol": "execute",
+          "line": 23,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        },
+        {
+          "file": "bots/tactics-v1/src/main.cpp",
+          "symbol": "gameplay_turn",
+          "line": 67,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        },
+        {
+          "file": "bots/tactics-v1/src/sdk_world.h",
+          "symbol": "free",
+          "line": 207,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        }
+      ],
+      "validation_evidence": [],
+      "limitations": "Rejected movement records tile and refreshes; two failed-move cap. Failure not identified as a particular hidden enemy."
+    },
+    {
+      "id": "05.6",
+      "title": "Unsticking and loop prevention",
+      "source": "docs/tactics/05-pathfinding-and-movement.md",
+      "handbook_status_before_implementation": "Planned",
+      "required_behavior": "Track task progress, not tile motion; detect A-B-A/stall while exempting useful capture/channel/heal/combat.",
+      "permitted_bounded_fallback_or_optional_scope": "Two owner turns without useful clear progress triggers replan; thresholds initial test values.",
+      "edge_acceptance_scenario": "Kiting reversal does not falsely trigger loop; repeated same blocked farm edge eventually releases task.",
+      "cross_cutting_bounds": [
+        "state"
+      ],
+      "implementation_status": "PARTIAL",
+      "implementation_evidence": [
+        {
+          "file": "bots/tactics-v1/src/economy.h",
+          "symbol": "farming",
+          "line": 527,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        },
+        {
+          "file": "bots/tactics-v1/src/types.h",
+          "symbol": "Mission",
+          "line": 112,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        }
+      ],
+      "validation_evidence": [],
+      "limitations": "Clear stagnation starts from actual clear entry rather than old travel time; first arrival receives its own progress interval, and failed incumbents are suppressed. General route A-B-A/task-progress detection and exclusion remain absent."
+    },
+    {
+      "id": "05.7",
+      "title": "Dash usage",
+      "source": "docs/tactics/05-pathfinding-and-movement.md",
+      "handbook_status_before_implementation": "Planned",
+      "required_behavior": "Spend dash only for useful travel/combat/escape deadline, actual legal landing and cast/move budget.",
+      "permitted_bounded_fallback_or_optional_scope": "Walk/hold when unknown or cooldown reserved for credible threat; optional travel dash may be omitted.",
+      "edge_acceptance_scenario": "Dash over hole with no safe follow-up rejected; dash cannot coexist with second cast; spent ranged basic no restored movement.",
+      "cross_cutting_bounds": [
+        "combat",
+        "action"
+      ],
+      "implementation_status": "FALLBACK",
+      "implementation_evidence": [
+        {
+          "file": "bots/tactics-v1/src/combat.h",
+          "symbol": "escape_action",
+          "line": 473,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        }
+      ],
+      "validation_evidence": [],
+      "limitations": "Ready legal dash considered for escape only; travel/engage dash optional fallback walks/holds."
+    },
+    {
+      "id": "05.8",
+      "title": "Arrival timing",
+      "source": "docs/tactics/05-pathfinding-and-movement.md",
+      "handbook_status_before_implementation": "Planned",
+      "required_behavior": "Use action-tile ETA and actual window/order for assembly/respawn/support; stage outside camp/enemy reach.",
+      "permitted_bounded_fallback_or_optional_scope": "Finite local rally/respawn fallback; unknown remote readiness not zero ETA.",
+      "edge_acceptance_scenario": "Early waiter off spawn avoids blocking respawn; late helper cannot satisfy already-expired clear gate.",
+      "cross_cutting_bounds": [
+        "timing",
+        "state"
+      ],
+      "implementation_status": "FALLBACK",
+      "implementation_evidence": [
+        {
+          "file": "bots/tactics-v1/src/economy.h",
+          "symbol": "helpers_for",
+          "line": 359,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        },
+        {
+          "file": "bots/tactics-v1/src/economy.h",
+          "symbol": "farming",
+          "line": 527,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        }
+      ],
+      "validation_evidence": [],
+      "limitations": "Helpers qualify by an actual ready hit/cast on any live member of the group, not only a preferred spawn. Finite assembly may approach awake camps when the next reply is affordable; respawn tiles are vacated and waiting jobs excluded. No full turn-order ETA/rendezvous model."
+    },
+    {
+      "id": "06.1",
+      "title": "Role assignment",
+      "source": "docs/tactics/06-team-coordination.md",
+      "handbook_status_before_implementation": "Planned",
+      "required_behavior": "Every actor has finite mission objective/role/completion/next task; roles use actual capabilities/resources.",
+      "permitted_bounded_fallback_or_optional_scope": "Local derived roles allowed; no permanent tank/support identity or remote omniscient assignment.",
+      "edge_acceptance_scenario": "Clearer becomes sole holder then carrier; death/recall revokes readiness; linked bodies separate but coupled risk.",
+      "cross_cutting_bounds": [
+        "state",
+        "identity"
+      ],
+      "implementation_status": "IMPLEMENTED",
+      "implementation_evidence": [
+        {
+          "file": "bots/tactics-v1/src/types.h",
+          "symbol": "Mission",
+          "line": 112,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        },
+        {
+          "file": "bots/tactics-v1/src/coordinator.h",
+          "symbol": "choose_mission",
+          "line": 116,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        },
+        {
+          "file": "bots/tactics-v1/src/economy.h",
+          "symbol": "farming",
+          "line": 527,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        },
+        {
+          "file": "bots/tactics-v1/src/combat.h",
+          "symbol": "combat_proposal",
+          "line": 576,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        }
+      ],
+      "validation_evidence": [],
+      "limitations": "Per-body mission/phase/target/lease with local clear/hold/bank/protect/escape jobs; no permanent class role."
+    },
+    {
+      "id": "06.2",
+      "title": "Grouping versus splitting",
+      "source": "docs/tactics/06-team-coordination.md",
+      "handbook_status_before_implementation": "Planned",
+      "required_behavior": "Join only when timely added secured outcome beats helper alternative/absence; release excess clearers after job.",
+      "permitted_bounded_fallback_or_optional_scope": "Keep incumbent if join value unresolved; productive split instead of largest-group following.",
+      "edge_acceptance_scenario": "Third helper after safe clear cannot receive full reward numerator or speed capture; 2v1 late arrival declined.",
+      "cross_cutting_bounds": [
+        "economy",
+        "timing"
+      ],
+      "implementation_status": "PARTIAL",
+      "implementation_evidence": [
+        {
+          "file": "bots/tactics-v1/src/economy.h",
+          "symbol": "helpers_for",
+          "line": 359,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        },
+        {
+          "file": "bots/tactics-v1/src/economy.h",
+          "symbol": "evaluate_farm",
+          "line": 406,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        }
+      ],
+      "validation_evidence": [],
+      "limitations": "Actual local helper contributions/sharing modeled; no explicit marginal join value versus helper's best alternative or deliberate split assignment."
+    },
+    {
+      "id": "06.3",
+      "title": "Group size",
+      "source": "docs/tactics/06-team-coordination.md",
+      "handbook_status_before_implementation": "Planned",
+      "required_behavior": "Compare solo/pair/available larger group; minimum sufficient actual ready contributors; finite safe assembly.",
+      "permitted_bounded_fallback_or_optional_scope": "Local personally observed readiness; richer remote contract deferred explicitly.",
+      "edge_acceptance_scenario": "Behind-wall/channeling/dead/staleclaim helper not ready; first entrant must survive until second relevant action.",
+      "cross_cutting_bounds": [
+        "combat",
+        "timing"
+      ],
+      "implementation_status": "IMPLEMENTED",
+      "implementation_evidence": [
+        {
+          "file": "bots/tactics-v1/src/economy.h",
+          "symbol": "helpers_for",
+          "line": 359,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        },
+        {
+          "file": "bots/tactics-v1/src/economy.h",
+          "symbol": "evaluate_farm",
+          "line": 406,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        },
+        {
+          "file": "bots/tactics-v1/src/squads.h",
+          "symbol": "minimum_ready_camp_squad",
+          "line": 42,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        }
+      ],
+      "validation_evidence": [
+        {
+          "report": "results-functional-v12/report.json",
+          "checks": 11,
+          "scope": "Production pure minimum_ready_camp_squad allocation, full ties, tank HP, hidden members, mitigation, duplicate bodies and availability fixtures only; World caller, multi-turn execution and full game activity remain separate.",
+          "evidence_status": "EXACT_SCOPED_HEADERS",
+          "current_scoped_headers_match": true,
+          "final_native_module_claim": false
+        }
+      ],
+      "limitations": "minimum_ready_camp_squad is wired into evaluate_farm: enumerate self-containing ready subsets, charge each observed monster to its nearest selected body (full damage to every tie), charge hidden members conservatively to self, and check every selected body over the coarse full clear duration. Choose the smallest affordable crew with deterministic ties; never divide damage by a nearby headcount. The separate monolith-only attrition fallback can proceed without a fully affordable whole-clear squad; no remote readiness or future tank swap is inferred."
+    },
+    {
+      "id": "06.4",
+      "title": "Formation and spacing",
+      "source": "docs/tactics/06-team-coordination.md",
+      "handbook_status_before_implementation": "Planned",
+      "required_behavior": "Assign distinct legal action positions preserving support/exit and reducing observedAoE exposure.",
+      "permitted_bounded_fallback_or_optional_scope": "Alternate useful slot/approach or decline engage if ideal formation unavailable.",
+      "edge_acceptance_scenario": "All followers cannot target leader occupied tile; backline cannot use frontline personal vision.",
+      "cross_cutting_bounds": [
+        "geometry",
+        "vision"
+      ],
+      "implementation_status": "FALLBACK",
+      "implementation_evidence": [
+        {
+          "file": "bots/tactics-v1/src/sdk_world.h",
+          "symbol": "toward",
+          "line": 294,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        },
+        {
+          "file": "bots/tactics-v1/src/combat.h",
+          "symbol": "escape_action",
+          "line": 473,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        }
+      ],
+      "validation_evidence": [],
+      "limitations": "Distinct legal occupancy-aware useful positions; no coordinated support-slot/AoE spacing allocation."
+    },
+    {
+      "id": "06.5",
+      "title": "Group travel",
+      "source": "docs/tactics/06-team-coordination.md",
+      "handbook_status_before_implementation": "Planned",
+      "required_behavior": "Group travels toward objective/rendezvous+window, not endless leader chasing; actual contribution ETAs.",
+      "permitted_bounded_fallback_or_optional_scope": "Optional late member cannot hold feasible group hostage; bounded safe staging then smaller mission.",
+      "edge_acceptance_scenario": "Blocked choke changes arrival; missed rally expires; priority changes affect next round rather than allied consecutive burst.",
+      "cross_cutting_bounds": [
+        "timing",
+        "state"
+      ],
+      "implementation_status": "FALLBACK",
+      "implementation_evidence": [
+        {
+          "file": "bots/tactics-v1/src/economy.h",
+          "symbol": "farming",
+          "line": 527,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        },
+        {
+          "file": "bots/tactics-v1/src/types.h",
+          "symbol": "Mission",
+          "line": 112,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        }
+      ],
+      "validation_evidence": [],
+      "limitations": "Stable objective/lease and finite local camp assembly; no explicit group rendezvous/crossing-order protocol."
+    },
+    {
+      "id": "06.6",
+      "title": "Reinforcement decisions",
+      "source": "docs/tactics/06-team-coordination.md",
+      "handbook_status_before_implementation": "Planned",
+      "required_behavior": "Help must arrive before outcome and first actor survive interval; compare task abandoned and threatened value.",
+      "permitted_bounded_fallback_or_optional_scope": "Decline stale/late aid; meet retreat/protect next bank/take other work.",
+      "edge_acceptance_scenario": "Carrier already dead before helper arrival releases help target instead of pathing forever.",
+      "cross_cutting_bounds": [
+        "timing",
+        "memory"
+      ],
+      "implementation_status": "FALLBACK",
+      "implementation_evidence": [
+        {
+          "file": "bots/tactics-v1/src/combat.h",
+          "symbol": "combat_proposal",
+          "line": 576,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        }
+      ],
+      "validation_evidence": [],
+      "limitations": "Immediate visible useful heal/peel and unknown help declined; no remote reinforcement travel/acceptance contract."
+    },
+    {
+      "id": "06.7",
+      "title": "Collective retreat and regrouping",
+      "source": "docs/tactics/06-team-coordination.md",
+      "handbook_status_before_implementation": "Planned",
+      "required_behavior": "Hard invalidation aborts/cover-exits/regroups; new readiness check before reentry; lease only suppresses minor oscillation.",
+      "permitted_bounded_fallback_or_optional_scope": "Safe split work/recovery when no group needed, no simultaneous recall requirement.",
+      "edge_acceptance_scenario": "Losing required protector aborts immediately despite6-round lease; three serial solo reentries prevented.",
+      "cross_cutting_bounds": [
+        "state",
+        "combat"
+      ],
+      "implementation_status": "FALLBACK",
+      "implementation_evidence": [
+        {
+          "file": "bots/tactics-v1/src/combat.h",
+          "symbol": "escape_action",
+          "line": 473,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        },
+        {
+          "file": "bots/tactics-v1/src/coordinator.h",
+          "symbol": "choose_mission",
+          "line": 116,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        }
+      ],
+      "validation_evidence": [],
+      "limitations": "Local fresh survival/claim release and readiness replan prevent stale promised help; explicit remote group abort/cover/regroup protocol is deferred under local-only v1 boundary."
+    },
+    {
+      "id": "06.8",
+      "title": "Shared commitments",
+      "source": "docs/tactics/06-team-coordination.md",
+      "handbook_status_before_implementation": "Planned",
+      "required_behavior": "Distinguish intent/acceptance/readiness/execution; actual holder overlap and shared-visibility local focus.",
+      "permitted_bounded_fallback_or_optional_scope": "Retain8-byte layout; local finite assembly + acyclic physical handoff explicitly allowed v1.",
+      "edge_acceptance_scenario": "Claim within4 not handoff; reciprocal two-holder yield cannot empty capture; no private remote damage presumed committed.",
+      "cross_cutting_bounds": [
+        "memory",
+        "state"
+      ],
+      "implementation_status": "FALLBACK",
+      "implementation_evidence": [
+        {
+          "file": "bots/tactics-v1/src/sdk_world.h",
+          "symbol": "publish_claim",
+          "line": 260,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        },
+        {
+          "file": "bots/tactics-v1/src/types.h",
+          "symbol": "may_yield_holder",
+          "line": 212,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        },
+        {
+          "file": "bots/tactics-v1/src/economy.h",
+          "symbol": "farming",
+          "line": 527,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        }
+      ],
+      "validation_evidence": [],
+      "limitations": "Allowed v1 local readiness and actual acyclic holder overlap; richer remote accepted readiness/lease protocol intentionally deferred."
+    },
+    {
+      "id": "07.1",
+      "title": "Fight selection",
+      "source": "docs/tactics/07-combat-and-survival.md",
+      "handbook_status_before_implementation": "Planned",
+      "required_behavior": "Resolve relevant enemy reply before discretionary farm spend; select named useful combat outcome with alternatives.",
+      "permitted_bounded_fallback_or_optional_scope": "Legal reposition/protect/recover/safe work; declined fight never unsafe farm fallback.",
+      "edge_acceptance_scenario": "Visible distant blocked enemy permits safe farming; nearby punishable cast forces reserve or exit.",
+      "cross_cutting_bounds": [
+        "combat",
+        "economy"
+      ],
+      "implementation_status": "IMPLEMENTED",
+      "implementation_evidence": [
+        {
+          "file": "bots/tactics-v1/src/combat.h",
+          "symbol": "combat_proposal",
+          "line": 576,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        },
+        {
+          "file": "bots/tactics-v1/src/combat.h",
+          "symbol": "farm_safe",
+          "line": 452,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        },
+        {
+          "file": "bots/tactics-v1/src/coordinator.h",
+          "symbol": "choose_mission",
+          "line": 116,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        }
+      ],
+      "validation_evidence": [
+        {
+          "report": "combat-policy-tests.json",
+          "scope": "Production pure-function unit checks only. SDK-dependent World/native reach and complete topic behavior require separate integration validation.",
+          "evidence_status": "EARLIER_SOURCE_ONLY",
+          "passed_in_recorded_report": true,
+          "checks": 58,
+          "recorded_scoped_headers_sha256": {
+            "combat.h": "0fb98d290fe876218246b118847ed4c3c0cd410f1c0fff81fb26a2ae805fbf3c",
+            "types.h": "787f95a3ea85773556472e0d6df2c46a3cf4160b2865fa05c9f00b757d351812"
+          },
+          "current_scoped_headers_match": false,
+          "final_native_module_claim": false,
+          "provenance_note": "A match covers only the reported source/helper scope. It does not credit an earlier native game, entire bot source, compiled release module or fuel profile as the final artifact."
+        }
+      ],
+      "limitations": "Relevant local reply handled before discretionary camp expenditure; unsafe farm veto cannot call old unsafe helper."
+    },
+    {
+      "id": "07.2",
+      "title": "Local strength assessment",
+      "source": "docs/tactics/07-combat-and-survival.md",
+      "handbook_status_before_implementation": "Planned",
+      "required_behavior": "Use legal actual action sequences, target-aware damage/shields/mitigation, returned damage, linked loss and monsters.",
+      "permitted_bounded_fallback_or_optional_scope": "Bounded short local horizon; unknown cooldown/support remains uncertainty.",
+      "edge_acceptance_scenario": "Ren lethal/shielded hit can kill attacker; victimHP loss0 can still consume shield/control; no double-count cast.",
+      "cross_cutting_bounds": [
+        "combat"
+      ],
+      "implementation_status": "FALLBACK",
+      "implementation_evidence": [
+        {
+          "file": "bots/tactics-v1/src/combat.h",
+          "symbol": "reply_raw",
+          "line": 41,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        },
+        {
+          "file": "bots/tactics-v1/src/combat.h",
+          "symbol": "incoming_for",
+          "line": 351,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        }
+      ],
+      "validation_evidence": [
+        {
+          "report": "combat-policy-tests.json",
+          "scope": "Production pure-function unit checks only. SDK-dependent World/native reach and complete topic behavior require separate integration validation.",
+          "evidence_status": "EARLIER_SOURCE_ONLY",
+          "passed_in_recorded_report": true,
+          "checks": 58,
+          "recorded_scoped_headers_sha256": {
+            "combat.h": "0fb98d290fe876218246b118847ed4c3c0cd410f1c0fff81fb26a2ae805fbf3c",
+            "types.h": "787f95a3ea85773556472e0d6df2c46a3cf4160b2865fa05c9f00b757d351812"
+          },
+          "current_scoped_headers_match": false,
+          "final_native_module_claim": false,
+          "provenance_note": "A match covers only the reported source/helper scope. It does not credit an earlier native game, entire bot source, compiled release module or fuel profile as the final artifact."
+        }
+      ],
+      "limitations": "One-cast legal alternatives, shields/mitigation/return and monsters; conservative coarse horizon, no exact opponent schedule or active-field simulator."
+    },
+    {
+      "id": "07.3",
+      "title": "Target selection and focus fire",
+      "source": "docs/tactics/07-combat-and-survival.md",
+      "handbook_status_before_implementation": "Planned",
+      "required_behavior": "Select personally legal reachable mission target with deterministic ties/local focus; refresh after every action.",
+      "permitted_bounded_fallback_or_optional_scope": "Different living target or useful protect/position when previous target dies/hides; no omniscient focus.",
+      "edge_acceptance_scenario": "Dead reset target not attacked; visible alternative may be used; ground center legal independently from unit targeting.",
+      "cross_cutting_bounds": [
+        "combat",
+        "vision"
+      ],
+      "implementation_status": "IMPLEMENTED",
+      "implementation_evidence": [
+        {
+          "file": "bots/tactics-v1/src/combat.h",
+          "symbol": "combat_proposal",
+          "line": 576,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        },
+        {
+          "file": "bots/tactics-v1/src/main.cpp",
+          "symbol": "gameplay_turn",
+          "line": 67,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        },
+        {
+          "file": "bots/tactics-v1/src/actions.h",
+          "symbol": "execute",
+          "line": 23,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        }
+      ],
+      "validation_evidence": [],
+      "limitations": "Personally legal target, deterministic ties, local focus persistence, living reset follow-up; no omniscient committed allied damage."
+    },
+    {
+      "id": "07.4",
+      "title": "Range control and kiting",
+      "source": "docs/tactics/07-combat-and-survival.md",
+      "handbook_status_before_implementation": "Planned",
+      "required_behavior": "Evaluate stationary and move-compatible sequences; retain useful range and survivable exit.",
+      "permitted_bounded_fallback_or_optional_scope": "Hold for better legal cast/basic or exit when no useful safe action.",
+      "edge_acceptance_scenario": "Ranged reset restores attack not movement; move-reset-shot legality differs from attack-reset-move.",
+      "cross_cutting_bounds": [
+        "combat",
+        "action"
+      ],
+      "implementation_status": "FALLBACK",
+      "implementation_evidence": [
+        {
+          "file": "bots/tactics-v1/src/combat.h",
+          "symbol": "combat_proposal",
+          "line": 576,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        },
+        {
+          "file": "bots/tactics-v1/src/combat.h",
+          "symbol": "escape_action",
+          "line": 473,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        }
+      ],
+      "validation_evidence": [
+        {
+          "report": "combat-policy-tests.json",
+          "scope": "Production pure-function unit checks only. SDK-dependent World/native reach and complete topic behavior require separate integration validation.",
+          "evidence_status": "EARLIER_SOURCE_ONLY",
+          "passed_in_recorded_report": true,
+          "checks": 58,
+          "recorded_scoped_headers_sha256": {
+            "combat.h": "0fb98d290fe876218246b118847ed4c3c0cd410f1c0fff81fb26a2ae805fbf3c",
+            "types.h": "787f95a3ea85773556472e0d6df2c46a3cf4160b2865fa05c9f00b757d351812"
+          },
+          "current_scoped_headers_match": false,
+          "final_native_module_claim": false,
+          "provenance_note": "A match covers only the reported source/helper scope. It does not credit an earlier native game, entire bot source, compiled release module or fuel profile as the final artifact."
+        }
+      ],
+      "limitations": "Stationary cast/basic versus reset/move-compatible approach/escape; no full healthy kiting/spacing optimization."
+    },
+    {
+      "id": "07.5",
+      "title": "Ability selection and timing",
+      "source": "docs/tactics/07-combat-and-survival.md",
+      "handbook_status_before_implementation": "Planned",
+      "required_behavior": "One successful cast across both slots: compare save/escape/interrupt/useful kill/AoE with actual effect value.",
+      "permitted_bounded_fallback_or_optional_scope": "Conservative legal sequence if metadata unavailable; no assumed cooldown/cast refund.",
+      "edge_acceptance_scenario": "Marcella stun immunity value0 but damage may count; overheal0; Vendetta kill refresh no second successful cast.",
+      "cross_cutting_bounds": [
+        "combat",
+        "action"
+      ],
+      "implementation_status": "FALLBACK",
+      "implementation_evidence": [
+        {
+          "file": "bots/tactics-v1/src/combat.h",
+          "symbol": "combat_proposal",
+          "line": 576,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        }
+      ],
+      "validation_evidence": [],
+      "limitations": "One cast, actual effective spells, lethal heal/peel, primary Ren return/Varg splash boundary; not complete all-passive taxonomy/control refresh optimization."
+    },
+    {
+      "id": "07.6",
+      "title": "Action sequencing",
+      "source": "docs/tactics/07-combat-and-survival.md",
+      "handbook_status_before_implementation": "Planned",
+      "required_behavior": "Plan a short legal sequence, execute one action, refresh/recheck and stop at result/hard abort.",
+      "permitted_bounded_fallback_or_optional_scope": "Rejected command can use fresh useful remaining action; no unbounded optimizer needed.",
+      "edge_acceptance_scenario": "Exclusive cast/basic, move-compatible support, melee move/basic, reset sequence all tested from real action flags.",
+      "cross_cutting_bounds": [
+        "combat",
+        "freshness"
+      ],
+      "implementation_status": "IMPLEMENTED",
+      "implementation_evidence": [
+        {
+          "file": "bots/tactics-v1/src/combat.h",
+          "symbol": "combat_proposal",
+          "line": 576,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        },
+        {
+          "file": "bots/tactics-v1/src/main.cpp",
+          "symbol": "gameplay_turn",
+          "line": 67,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        },
+        {
+          "file": "bots/tactics-v1/src/actions.h",
+          "symbol": "execute",
+          "line": 23,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        }
+      ],
+      "validation_evidence": [],
+      "limitations": "Short sequence valuation, accepted ordinary-move tracking and exclusive-cast mask/gateway are present; after a world-changing action the next decision refreshes or ends the owner turn. Exact final native behavior is separately validated."
+    },
+    {
+      "id": "07.7",
+      "title": "Escape decisions",
+      "source": "docs/tactics/07-combat-and-survival.md",
+      "handbook_status_before_implementation": "Planned",
+      "required_behavior": "Escape based on credible lethal reply/linked loss, with currentHP/maxHP; preserve required mobility/control.",
+      "permitted_bounded_fallback_or_optional_scope": "Inherited25/35% emergency floor as fallback, not proof above it is safe.",
+      "edge_acceptance_scenario": "Failed recall still allows legal escape; Ren-return suicide avoided even on lethal outgoing hit.",
+      "cross_cutting_bounds": [
+        "combat",
+        "timing"
+      ],
+      "implementation_status": "IMPLEMENTED",
+      "implementation_evidence": [
+        {
+          "file": "bots/tactics-v1/src/combat.h",
+          "symbol": "escape_action",
+          "line": 473,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        },
+        {
+          "file": "bots/tactics-v1/src/combat.h",
+          "symbol": "combat_proposal",
+          "line": 576,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        },
+        {
+          "file": "bots/tactics-v1/src/economy.h",
+          "symbol": "safe_channel",
+          "line": 146,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        }
+      ],
+      "validation_evidence": [],
+      "limitations": "Reply-based escape, current HP/maxHP, return damage and useful rejected-start alternative; conservatively bounded model."
+    },
+    {
+      "id": "07.8",
+      "title": "Chasing and disengagement",
+      "source": "docs/tactics/07-combat-and-survival.md",
+      "handbook_status_before_implementation": "Planned",
+      "required_behavior": "Pursuit has named mission, near-term legal action, survivable reply/exit and opportunity bound.",
+      "permitted_bounded_fallback_or_optional_scope": "After sight/range/window loss choose reversible info or productive new task.",
+      "edge_acceptance_scenario": "Enemy vanishes behind bush: stale target not chased as known; minor score noise retains useful focus only.",
+      "cross_cutting_bounds": [
+        "combat",
+        "state"
+      ],
+      "implementation_status": "IMPLEMENTED",
+      "implementation_evidence": [
+        {
+          "file": "bots/tactics-v1/src/combat.h",
+          "symbol": "combat_proposal",
+          "line": 576,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        }
+      ],
+      "validation_evidence": [
+        {
+          "report": "combat-policy-tests.json",
+          "scope": "Production pure-function unit checks only. SDK-dependent World/native reach and complete topic behavior require separate integration validation.",
+          "evidence_status": "EARLIER_SOURCE_ONLY",
+          "passed_in_recorded_report": true,
+          "checks": 58,
+          "recorded_scoped_headers_sha256": {
+            "combat.h": "0fb98d290fe876218246b118847ed4c3c0cd410f1c0fff81fb26a2ae805fbf3c",
+            "types.h": "787f95a3ea85773556472e0d6df2c46a3cf4160b2865fa05c9f00b757d351812"
+          },
+          "current_scoped_headers_match": false,
+          "final_native_module_claim": false,
+          "provenance_note": "A match covers only the reported source/helper scope. It does not credit an earlier native game, entire bot source, compiled release module or fuel profile as the final artifact."
+        }
+      ],
+      "limitations": "Only near-term useful approach; no pursuit of hidden old target, local focus expires after2 rounds."
+    },
+    {
+      "id": "08.1",
+      "title": "Camp selection",
+      "source": "docs/tactics/08-farming-and-capture.md",
+      "handbook_status_before_implementation": "Planned",
+      "required_behavior": "Construct at most 3 camp candidates using legal route, timely squad and collect/bank/recover endpoint; count each group reward once.",
+      "permitted_bounded_fallback_or_optional_scope": "Unknown endpoint keeps useful job or explicit threshold/reversible observation fallback.",
+      "edge_acceptance_scenario": "An unreachable or unbankable reward cannot outrank a legal whole-cycle alternative; no map-name score.",
+      "cross_cutting_bounds": [
+        "economy",
+        "geometry"
+      ],
+      "implementation_status": "FALLBACK",
+      "implementation_evidence": [
+        {
+          "file": "bots/tactics-v1/src/economy.h",
+          "symbol": "farming",
+          "line": 527,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        },
+        {
+          "file": "bots/tactics-v1/src/economy.h",
+          "symbol": "evaluate_farm",
+          "line": 406,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        }
+      ],
+      "validation_evidence": [],
+      "limitations": "Three-camp shortlist, coarse completed-bank endpoint/sharing; not exact legal clear/next-work payoff optimizer."
+    },
+    {
+      "id": "08.2",
+      "title": "Opening farming allocation",
+      "source": "docs/tactics/08-farming-and-capture.md",
+      "handbook_status_before_implementation": "Planned",
+      "required_behavior": "Opening uses the same minimum ready squad, collector and exit checks; publish intent but verify physical help.",
+      "permitted_bounded_fallback_or_optional_scope": "Stage outside reach for at most 6 world rounds, shortened by latest start, then choose smaller safe work.",
+      "edge_acceptance_scenario": "Dead or late claimant cannot justify waking a camp through presumed support; competing wishes are not promises.",
+      "cross_cutting_bounds": [
+        "state",
+        "timing"
+      ],
+      "implementation_status": "FALLBACK",
+      "implementation_evidence": [
+        {
+          "file": "bots/tactics-v1/src/economy.h",
+          "symbol": "helpers_for",
+          "line": 359,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        },
+        {
+          "file": "bots/tactics-v1/src/economy.h",
+          "symbol": "farming",
+          "line": 527,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        }
+      ],
+      "validation_evidence": [
+        {
+          "report": "results-functional-v12/report.json",
+          "checks": 11,
+          "scope": "Production pure minimum_ready_camp_squad allocation, full ties, tank HP, hidden members, mitigation, duplicate bodies and availability fixtures only; World caller, multi-turn execution and full game activity remain separate.",
+          "evidence_status": "EXACT_SCOPED_HEADERS",
+          "current_scoped_headers_match": true,
+          "final_native_module_claim": false
+        }
+      ],
+      "limitations": "Smallest affordable ready local subset and per-camp current-nearest tank exposure are modeled. Sleeping/awake assembly can enter a useful actual range under a survivable next reply; one bounded shortlist slot preserves a feasible solo alternative, and an unaffordable incumbent cannot suppress a ready alternative. Team-wide accepted assignment, marginal helper alternatives and future tank rotation remain unresolved."
+    },
+    {
+      "id": "08.3",
+      "title": "Camp combat positioning",
+      "source": "docs/tactics/08-farming-and-capture.md",
+      "handbook_status_before_implementation": "Planned",
+      "required_behavior": "Before waking and after actions, inspect the exposed participant's actual next monster/enemy reply; preserve survival cast/move.",
+      "permitted_bounded_fallback_or_optional_scope": "Stage outside actual reach, protect or abandon when no safe legal action exists.",
+      "edge_acceptance_scenario": "Three nearby allies do not split monster damage evenly; vulnerable ranged helper is not forced onto tank tile.",
+      "cross_cutting_bounds": [
+        "combat",
+        "economy"
+      ],
+      "implementation_status": "FALLBACK",
+      "implementation_evidence": [
+        {
+          "file": "bots/tactics-v1/src/combat.h",
+          "symbol": "farm_safe",
+          "line": 452,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        },
+        {
+          "file": "bots/tactics-v1/src/combat.h",
+          "symbol": "incoming_for",
+          "line": 351,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        }
+      ],
+      "validation_evidence": [
+        {
+          "report": "results-functional-v12/report.json",
+          "checks": 11,
+          "scope": "Production pure minimum_ready_camp_squad allocation, full ties, tank HP, hidden members, mitigation, duplicate bodies and availability fixtures only; World caller, multi-turn execution and full game activity remain separate.",
+          "evidence_status": "EXACT_SCOPED_HEADERS",
+          "current_scoped_headers_match": true,
+          "final_native_module_claim": false
+        }
+      ],
+      "limitations": "Candidate readiness allocates observed camp pressure by nearest selected subset with full ties and hidden-member self exposure. The separate immediate farm_safe veto still charges all reachable camp replies to self and can reject some otherwise tanked cooperation. No equal headcount division, exact multi-turn aggro simulation or tank-rotation promise."
+    },
+    {
+      "id": "08.4",
+      "title": "Monster targeting",
+      "source": "docs/tactics/08-farming-and-capture.md",
+      "handbook_status_before_implementation": "Planned",
+      "required_behavior": "Use only selected-group personally visible living monsters; prefer useful threat reduction/finish with refreshed budgets.",
+      "permitted_bounded_fallback_or_optional_scope": "Lowest-HP in-range basic fallback when richer choice unresolved; explicitly query waiting-reward state.",
+      "edge_acceptance_scenario": "Spell kills selected monster: no stale basic/reset. No visible member is not proof of reward availability.",
+      "cross_cutting_bounds": [
+        "combat",
+        "vision"
+      ],
+      "implementation_status": "IMPLEMENTED",
+      "implementation_evidence": [
+        {
+          "file": "bots/tactics-v1/src/economy.h",
+          "symbol": "farming",
+          "line": 527,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        },
+        {
+          "file": "bots/tactics-v1/src/actions.h",
+          "symbol": "execute",
+          "line": 23,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        }
+      ],
+      "validation_evidence": [],
+      "limitations": "Visible living selected-group targets, lowest-HP in-range fallback, refreshed reset/live target. Cast/kill transition rechecked."
+    },
+    {
+      "id": "08.5",
+      "title": "Camp commitment and abandonment",
+      "source": "docs/tactics/08-farming-and-capture.md",
+      "handbook_status_before_implementation": "Planned",
+      "required_behavior": "Use 6-world-round travel lease/25% rate switching margin; hard invalidations immediate; replan after 2 idle owner clear turns.",
+      "permitted_bounded_fallback_or_optional_scope": "Release intent then safe job/recovery; productive finite staging if pause justified. Values are initial settings.",
+      "edge_acceptance_scenario": "Unsafe farming veto cannot call old farm as fallback; sunk damage never overrides missing collector/exit.",
+      "cross_cutting_bounds": [
+        "state",
+        "combat"
+      ],
+      "implementation_status": "IMPLEMENTED",
+      "implementation_evidence": [
+        {
+          "file": "bots/tactics-v1/src/economy.h",
+          "symbol": "farming",
+          "line": 527,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        },
+        {
+          "file": "bots/tactics-v1/src/coordinator.h",
+          "symbol": "choose_mission",
+          "line": 116,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        }
+      ],
+      "validation_evidence": [],
+      "limitations": "Finite lease/switch margin/clear stall and hard farm safety veto; rejected attack never unlocks unsafe fallback hit."
+    },
+    {
+      "id": "08.6",
+      "title": "Capture ownership and continuity",
+      "source": "docs/tactics/08-farming-and-capture.md",
+      "handbook_status_before_implementation": "Planned",
+      "required_behavior": "Keep a viable sole physical holder until payout, actual overlap or safety abort; never invent capture timer API.",
+      "permitted_bounded_fallback_or_optional_scope": "Lower stable ID eligible same-camp physical claimant gives acyclic handoff; unresolved transfer keeps holder.",
+      "edge_acceptance_scenario": "Two holders cannot both yield; claim four tiles away is not replacement; progress becomes unknown after missed/contested interval.",
+      "cross_cutting_bounds": [
+        "state",
+        "vision"
+      ],
+      "implementation_status": "IMPLEMENTED",
+      "implementation_evidence": [
+        {
+          "file": "bots/tactics-v1/src/coordinator.h",
+          "symbol": "observe_hold",
+          "line": 6,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        },
+        {
+          "file": "bots/tactics-v1/src/economy.h",
+          "symbol": "farming",
+          "line": 527,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        },
+        {
+          "file": "bots/tactics-v1/src/types.h",
+          "symbol": "may_yield_holder",
+          "line": 212,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        }
+      ],
+      "validation_evidence": [],
+      "limitations": "Actual sole holder retained, acyclic physical replacement, narrow guarded overlap; missed/contested interval must reset unsupported hold history."
+    },
+    {
+      "id": "08.7",
+      "title": "Reward distribution",
+      "source": "docs/tactics/08-farming-and-capture.md",
+      "handbook_status_before_implementation": "Planned",
+      "required_behavior": "Clearers/protectors remain only for useful work; compare personal allocation without remote wallets; verify lifecycle/balances.",
+      "permitted_bounded_fallback_or_optional_scope": "Retain viable holder if transfer benefit unresolved; keep attribution ambiguous if unsupported.",
+      "edge_acceptance_scenario": "Gold from unrelated kill is not automatic capture proof; each clearer cannot receive the full reward numerator.",
+      "cross_cutting_bounds": [
+        "economy",
+        "state"
+      ],
+      "implementation_status": "FALLBACK",
+      "implementation_evidence": [
+        {
+          "file": "bots/tactics-v1/src/economy.h",
+          "symbol": "farming",
+          "line": 527,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        },
+        {
+          "file": "bots/tactics-v1/src/coordinator.h",
+          "symbol": "observe_progress",
+          "line": 29,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        }
+      ],
+      "validation_evidence": [],
+      "limitations": "Retain viable holder/actual sharing; richer personal-upgrade collector transfer deferred. Lifecycle/balance log is bounded attribution, not perfect provenance."
+    },
+    {
+      "id": "08.8",
+      "title": "Respawn cycling",
+      "source": "docs/tactics/08-farming-and-capture.md",
+      "handbook_status_before_implementation": "Planned",
+      "required_behavior": "Fresh lifecycle separate from cached/broadcast time; compare wait with whole cycle; stage outside spawn/threat.",
+      "permitted_bounded_fallback_or_optional_scope": "Bounded fresh probe, other job or recovery; timer expiry permits observation, never assumed live state.",
+      "edge_acceptance_scenario": "Unseen monsters do not imply cleared camp; spawn occupancy delays respawn; failed probe cannot repeat forever.",
+      "cross_cutting_bounds": [
+        "state",
+        "geometry"
+      ],
+      "implementation_status": "FALLBACK",
+      "implementation_evidence": [
+        {
+          "file": "bots/tactics-v1/src/sdk_world.h",
+          "symbol": "refresh",
+          "line": 337,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        },
+        {
+          "file": "bots/tactics-v1/src/economy.h",
+          "symbol": "farming",
+          "line": 527,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        }
+      ],
+      "validation_evidence": [],
+      "limitations": "Fresh lifecycle, immediate safe vacating of respawn tiles and excluding waiting candidates avoid capture-site stalls. Full wait-versus-other-cycle optimizer is deferred; take productive live work instead."
+    },
+    {
+      "id": "09.1",
+      "title": "Tribute timing",
+      "source": "docs/tactics/09-gems-and-objectives.md",
+      "handbook_status_before_implementation": "Planned",
+      "required_behavior": "Compare bank now with exactly one further feasible reward then bank; deciding delivery first; chain expires after reward.",
+      "permitted_bounded_fallback_or_optional_scope": "Inherited bag 12/10 within8/5 within2 and round1850 fallback if unresolved; no map-name target.",
+      "edge_acceptance_scenario": "Replanning every turn cannot renew the chain indefinitely; extra reward that misses deadline rejected.",
+      "cross_cutting_bounds": [
+        "economy",
+        "timing"
+      ],
+      "implementation_status": "IMPLEMENTED",
+      "implementation_evidence": [
+        {
+          "file": "bots/tactics-v1/src/coordinator.h",
+          "symbol": "choose_mission",
+          "line": 116,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        },
+        {
+          "file": "bots/tactics-v1/src/coordinator.h",
+          "symbol": "observe_progress",
+          "line": 29,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        }
+      ],
+      "validation_evidence": [],
+      "limitations": "Bank-now versus one reward under finite latest time; cannot renew chain onto another reward after completion; common threshold fallback."
+    },
+    {
+      "id": "09.2",
+      "title": "Bag size and exposure",
+      "source": "docs/tactics/09-gems-and-objectives.md",
+      "handbook_status_before_implementation": "Planned",
+      "required_behavior": "Calculate actual starting-bag tribute duration and exposure; protect current bag separately from new reward.",
+      "permitted_bounded_fallback_or_optional_scope": "Common bag fallback under uncertainty; deciding finish overrides preserving Prism's gem Focus.",
+      "edge_acceptance_scenario": "Bag31 starts4 ticks; reward added during channel does not extend initial duration; bank refreshes Prism Focus.",
+      "cross_cutting_bounds": [
+        "economy",
+        "timing"
+      ],
+      "implementation_status": "IMPLEMENTED",
+      "implementation_evidence": [
+        {
+          "file": "bots/tactics-v1/src/economy.h",
+          "symbol": "current_tribute_ticks",
+          "line": 17,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        },
+        {
+          "file": "bots/tactics-v1/src/economy.h",
+          "symbol": "evaluate_farm",
+          "line": 406,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        }
+      ],
+      "validation_evidence": [],
+      "limitations": "Actual starting-bag ticks and carried value once; Prism/equipment refreshed after actual bag changes."
+    },
+    {
+      "id": "09.3",
+      "title": "Altar selection",
+      "source": "docs/tactics/09-gems-and-objectives.md",
+      "handbook_status_before_implementation": "Planned",
+      "required_behavior": "Shortlist at most 2 reachable legal altar rings by completion, lock, threat, exit and next work; reopen on changes.",
+      "permitted_bounded_fallback_or_optional_scope": "Preserve bag through useful reversible route if no feasible known bank.",
+      "edge_acceptance_scenario": "Compare three lock hits plus exposure with reroute; shortest geometric altar cannot win on distance despite impossible completion.",
+      "cross_cutting_bounds": [
+        "geometry",
+        "timing"
+      ],
+      "implementation_status": "FALLBACK",
+      "implementation_evidence": [
+        {
+          "file": "bots/tactics-v1/src/economy.h",
+          "symbol": "altar_plans",
+          "line": 173,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        },
+        {
+          "file": "bots/tactics-v1/src/economy.h",
+          "symbol": "delivery",
+          "line": 267,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        }
+      ],
+      "validation_evidence": [],
+      "limitations": "Two walking approach candidates and lock-removal cost; threat/next destination scoring remains coarse, not optimal or certified safe."
+    },
+    {
+      "id": "09.4",
+      "title": "Tribute positioning and protection",
+      "source": "docs/tactics/09-gems-and-objectives.md",
+      "handbook_status_before_implementation": "Planned",
+      "required_behavior": "Channel on legal adjacent tile with warning/exit; protector must actually contribute in time; useful ward before start.",
+      "permitted_bounded_fallback_or_optional_scope": "Independent viable bank, other altar or purposeful delay if no protector available.",
+      "edge_acceptance_scenario": "Ward cannot deploy during channel; reserve needed protector cast before optional damage; release after bank/abort.",
+      "cross_cutting_bounds": [
+        "combat",
+        "timing"
+      ],
+      "implementation_status": "FALLBACK",
+      "implementation_evidence": [
+        {
+          "file": "bots/tactics-v1/src/vision.h",
+          "symbol": "ward_proposal",
+          "line": 121,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        },
+        {
+          "file": "bots/tactics-v1/src/economy.h",
+          "symbol": "delivery",
+          "line": 267,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        },
+        {
+          "file": "bots/tactics-v1/src/combat.h",
+          "symbol": "combat_proposal",
+          "line": 576,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        }
+      ],
+      "validation_evidence": [],
+      "limitations": "Useful personal warning and independent safe window/local protection; no remote escort acceptance. Deciding priority currently suppresses pre-bank ward insertion."
+    },
+    {
+      "id": "09.5",
+      "title": "Channel continuation or cancellation",
+      "source": "docs/tactics/09-gems-and-objectives.md",
+      "handbook_status_before_implementation": "Planned",
+      "required_behavior": "Read actual typed channel and remaining ticks; continue if completion beats credible loss, cancel once only for better legal alternative.",
+      "permitted_bounded_fallback_or_optional_scope": "One start attempt then useful fresh fallback; ordinary damage alone is not interruption reason.",
+      "edge_acceptance_scenario": "Damage alone preserves tribute; stun/death/enemy lock cancel; movement-only helper is neither STARTED nor COMPLETED.",
+      "cross_cutting_bounds": [
+        "action",
+        "timing"
+      ],
+      "implementation_status": "IMPLEMENTED",
+      "implementation_evidence": [
+        {
+          "file": "bots/tactics-v1/src/coordinator.h",
+          "symbol": "channel_decision",
+          "line": 92,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        },
+        {
+          "file": "bots/tactics-v1/src/actions.h",
+          "symbol": "execute",
+          "line": 23,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        }
+      ],
+      "validation_evidence": [],
+      "limitations": "Typed channel start/remaining time/cancel, explicit lock-hit outcome and bounded attempts present. Completion logs are observational proxies, not perfect resource attribution."
+    },
+    {
+      "id": "09.6",
+      "title": "Altar locks",
+      "source": "docs/tactics/09-gems-and-objectives.md",
+      "handbook_status_before_implementation": "Planned",
+      "required_behavior": "Lock is a named timely prevention/removal proposal with 10-gold equipment opportunity cost; verify disappearance.",
+      "permitted_bounded_fallback_or_optional_scope": "Smarter optional placement may be deferred; correct lock-hit handling, removal/reroute remains required.",
+      "edge_acceptance_scenario": "Tribute into enemy lock is LOCK_HIT, not STARTED; third successful hit removes it; failed hit not progress.",
+      "cross_cutting_bounds": [
+        "action",
+        "economy"
+      ],
+      "implementation_status": "FALLBACK",
+      "implementation_evidence": [
+        {
+          "file": "bots/tactics-v1/src/economy.h",
+          "symbol": "altar_plans",
+          "line": 173,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        },
+        {
+          "file": "bots/tactics-v1/src/economy.h",
+          "symbol": "delivery",
+          "line": 267,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        },
+        {
+          "file": "bots/tactics-v1/src/actions.h",
+          "symbol": "execute",
+          "line": 23,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        }
+      ],
+      "validation_evidence": [],
+      "limitations": "Existing enemy lock removal versus reroute implemented; optional owned-lock acquisition/placement mission omitted."
+    },
+    {
+      "id": "09.7",
+      "title": "Territory and resource denial",
+      "source": "docs/tactics/09-gems-and-objectives.md",
+      "handbook_status_before_implementation": "Planned",
+      "required_behavior": "Territory uses relative walking/return/resource/contact/exit; contest only secured or prevented conversion with minimum ready group.",
+      "permitted_bounded_fallback_or_optional_scope": "Trade or defend reachable income if contest unsupported; no map/monolith label rallies everyone.",
+      "edge_acceptance_scenario": "Release excess clearers after reward; infeasible return invalidates invasion despite central position.",
+      "cross_cutting_bounds": [
+        "geometry",
+        "economy"
+      ],
+      "implementation_status": "PARTIAL",
+      "implementation_evidence": [
+        {
+          "file": "bots/tactics-v1/src/economy.h",
+          "symbol": "evaluate_farm",
+          "line": 406,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        },
+        {
+          "file": "bots/tactics-v1/src/geometry.h",
+          "symbol": "initialize",
+          "line": 77,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        }
+      ],
+      "validation_evidence": [],
+      "limitations": "Resource/return geometry and local contest guard; no explicit territorial defend/deny/invade mission generator or enemy reinforcement-route economy comparison."
+    },
+    {
+      "id": "09.8",
+      "title": "Finishing and deadlines",
+      "source": "docs/tactics/09-gems-and-objectives.md",
+      "handbook_status_before_implementation": "Planned",
+      "required_behavior": "Public score, real horizon, route/actions/lock/channel and owner-start completion determine finish priority.",
+      "permitted_bounded_fallback_or_optional_scope": "Unavailable enemy future/tiebreak facts remain unknown; gold/kills support income or actual tiebreak only.",
+      "edge_acceptance_scenario": "Late channel start is not completion by2000; keep winning channel completing before threat despite generic HP floor.",
+      "cross_cutting_bounds": [
+        "score",
+        "timing"
+      ],
+      "implementation_status": "IMPLEMENTED",
+      "implementation_evidence": [
+        {
+          "file": "bots/tactics-v1/src/economy.h",
+          "symbol": "delivery",
+          "line": 267,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        },
+        {
+          "file": "bots/tactics-v1/src/coordinator.h",
+          "symbol": "choose_mission",
+          "line": 116,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        },
+        {
+          "file": "bots/tactics-v1/src/types.h",
+          "symbol": "deadline_allows",
+          "line": 184,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        }
+      ],
+      "validation_evidence": [],
+      "limitations": "Public winning threshold and finish horizon are checked; both shortlisted altar approaches are considered and farm candidates require positive feasible rate before readiness can promote them. A deadline-ineligible ready job cannot erase a convertible alternative. Unavailable tiebreak/future facts are not invented."
+    },
+    {
+      "id": "10.1",
+      "title": "Recall timing",
+      "source": "docs/tactics/10-recall-and-recovery.md",
+      "handbook_status_before_implementation": "Planned",
+      "required_behavior": "Compare field/bank/recovery plus re-entry using named HP/upgrade benefit and incremental trip/absence.",
+      "permitted_bounded_fallback_or_optional_scope": "Necessary recovery remains; unknown return declines elective trip; inherited55% fallback explicit.",
+      "edge_acceptance_scenario": "Tavi gold alone never recalls; full-HP post-bank recall can serve a proven route; necessary heal not charged twice.",
+      "cross_cutting_bounds": [
+        "economy",
+        "shop"
+      ],
+      "implementation_status": "FALLBACK",
+      "implementation_evidence": [
+        {
+          "file": "bots/tactics-v1/src/economy.h",
+          "symbol": "needs_recovery",
+          "line": 287,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        },
+        {
+          "file": "bots/tactics-v1/src/economy.h",
+          "symbol": "recovery",
+          "line": 291,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        }
+      ],
+      "validation_evidence": [
+        {
+          "report": "recovery-tests.json",
+          "scope": "Exact production recovery function with fixture walking/channel/landing-safety inputs; route and safety implementations are tested separately.",
+          "evidence_status": "EARLIER_SOURCE_ONLY",
+          "passed_in_recorded_report": true,
+          "checks": 18,
+          "recorded_scoped_headers_sha256": {
+            "types.h": "787f95a3ea85773556472e0d6df2c46a3cf4160b2865fa05c9f00b757d351812",
+            "economy.h": "812268292c12b0b7526592542350ebdab427c28998cfa1ce9f4594d8a43650d1"
+          },
+          "current_scoped_headers_match": false,
+          "final_native_module_claim": false,
+          "provenance_note": "A match covers only the reported source/helper scope. It does not credit an earlier native game, entire bot source, compiled release module or fuel profile as the final artifact."
+        }
+      ],
+      "limitations": "Necessary recovery compares a safe progressing walk ETA from actual speed/geodesic reachable unoccupied spawn endpoint with actual recall duration; disconnected ordinary walking does not veto recall. Elective mission-priced recovery and exact future route risk remain deferred under the documented conservative fallback."
+    },
+    {
+      "id": "10.2",
+      "title": "Recall safety",
+      "source": "docs/tactics/10-recall-and-recovery.md",
+      "handbook_status_before_implementation": "Planned",
+      "required_behavior": "Recall start requires actual duration to survive credible visible monster/enemy approach and actions, including order.",
+      "permitted_bounded_fallback_or_optional_scope": "Unknown timing selects better observed escape or retains productive elective job; no fixed safe-radius certificate.",
+      "edge_acceptance_scenario": "Enemy outside range but able to dash/attack before completion blocks recall; rejected start may still move/control.",
+      "cross_cutting_bounds": [
+        "combat",
+        "timing"
+      ],
+      "implementation_status": "FALLBACK",
+      "implementation_evidence": [
+        {
+          "file": "bots/tactics-v1/src/economy.h",
+          "symbol": "safe_channel",
+          "line": 146,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        },
+        {
+          "file": "bots/tactics-v1/src/economy.h",
+          "symbol": "channel_interruption_risk",
+          "line": 22,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        }
+      ],
+      "validation_evidence": [
+        {
+          "report": "channel-risk-tests.json",
+          "scope": "Exact production interruption function with fixture reach sets, plus production pure combat helpers. Not a native route or complete action-order guarantee.",
+          "evidence_status": "EARLIER_SOURCE_ONLY",
+          "passed_in_recorded_report": true,
+          "checks": 27,
+          "recorded_scoped_headers_sha256": {
+            "combat.h": "0fb98d290fe876218246b118847ed4c3c0cd410f1c0fff81fb26a2ae805fbf3c",
+            "types.h": "787f95a3ea85773556472e0d6df2c46a3cf4160b2865fa05c9f00b757d351812",
+            "economy.h": "812268292c12b0b7526592542350ebdab427c28998cfa1ce9f4594d8a43650d1"
+          },
+          "current_scoped_headers_match": false,
+          "final_native_module_claim": false,
+          "provenance_note": "A match covers only the reported source/helper scope. It does not credit an earlier native game, entire bot source, compiled release module or fuel profile as the final artifact."
+        }
+      ],
+      "limitations": "Visible and one-to-three-round personally observed missing enemies contribute separate zero-damage control/enhanced-basic interruption risk; known cooldowns, immunity and earlier walking before exclusive cast are handled. Long or low-fuel windows widen to conservative geometric risk; no exact global action-order proof."
+    },
+    {
+      "id": "10.3",
+      "title": "Capture and recall overlap",
+      "source": "docs/tactics/10-recall-and-recovery.md",
+      "handbook_status_before_implementation": "Planned",
+      "required_behavior": "Overlap requires verified hold timing, continuity and survival: normal prior hold1/Home3 plus guarded single tile or real replacement.",
+      "permitted_bounded_fallback_or_optional_scope": "Payout-first explicitly permitted for unverified continuity; survival may abort. No public capture progress assumed.",
+      "edge_acceptance_scenario": "Immediate normal/one-hold Home loses capture; multi-tile contest resets without recall interruption; host timer is test oracle only.",
+      "cross_cutting_bounds": [
+        "timing",
+        "vision"
+      ],
+      "implementation_status": "IMPLEMENTED",
+      "implementation_evidence": [
+        {
+          "file": "bots/tactics-v1/src/economy.h",
+          "symbol": "farming",
+          "line": 527,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        },
+        {
+          "file": "bots/tactics-v1/src/coordinator.h",
+          "symbol": "observe_hold",
+          "line": 6,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        },
+        {
+          "file": "bots/tactics-v1/src/types.h",
+          "symbol": "overlap_hold",
+          "line": 181,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        }
+      ],
+      "validation_evidence": [],
+      "limitations": "Narrow single-tile continuous-hold normal/Home overlap with fallback payout-first; no host capture progress query."
+    },
+    {
+      "id": "10.4",
+      "title": "Recall interruption response",
+      "source": "docs/tactics/10-recall-and-recovery.md",
+      "handbook_status_before_implementation": "Planned",
+      "required_behavior": "Classify rejected start, active channel, interruption and arrival; refresh then change failed condition/use remaining action.",
+      "permitted_bounded_fallback_or_optional_scope": "At most1 start attempt per decision; later retry only after relevant change; at most2 distinct movement alternatives.",
+      "edge_acceptance_scenario": "Repeated recall on same punished unchanged tile forbidden; interrupted channel is not successful recovery.",
+      "cross_cutting_bounds": [
+        "action",
+        "state"
+      ],
+      "implementation_status": "IMPLEMENTED",
+      "implementation_evidence": [
+        {
+          "file": "bots/tactics-v1/src/actions.h",
+          "symbol": "execute",
+          "line": 23,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        },
+        {
+          "file": "bots/tactics-v1/src/main.cpp",
+          "symbol": "gameplay_turn",
+          "line": 67,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        },
+        {
+          "file": "bots/tactics-v1/src/economy.h",
+          "symbol": "recovery",
+          "line": 291,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        }
+      ],
+      "validation_evidence": [],
+      "limitations": "One channel start per owner round, semantic refresh and bounded useful movement fallback; actual completion separate from command."
+    },
+    {
+      "id": "10.5",
+      "title": "Spawn recovery",
+      "source": "docs/tactics/10-recall-and-recovery.md",
+      "handbook_status_before_implementation": "Planned",
+      "required_behavior": "After shopping read current HP and current maxHP; wait for spawn heal only as needed for next mission; fresh useful re-entry.",
+      "permitted_bounded_fallback_or_optional_scope": "95% inherited fallback if mission requirement unknown; ordinary spawn heal after optional purchase failure.",
+      "edge_acceptance_scenario": "Field Health raises maxHP without heal; spawn Health heals growth; stale denominator cannot report false full health.",
+      "cross_cutting_bounds": [
+        "shop",
+        "state"
+      ],
+      "implementation_status": "FALLBACK",
+      "implementation_evidence": [
+        {
+          "file": "bots/tactics-v1/src/economy.h",
+          "symbol": "recovery",
+          "line": 291,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        },
+        {
+          "file": "bots/tactics-v1/src/shopping.h",
+          "symbol": "shopping_after_action",
+          "line": 235,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        },
+        {
+          "file": "bots/tactics-v1/src/sdk_world.h",
+          "symbol": "refresh",
+          "line": 337,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        }
+      ],
+      "validation_evidence": [],
+      "limitations": "Post-shop HP/maxHP refresh and95% spawn fallback; not a complete mission-specific minimum heal calculation."
+    },
+    {
+      "id": "10.6",
+      "title": "Teleport crystal usage",
+      "source": "docs/tactics/10-recall-and-recovery.md",
+      "handbook_status_before_implementation": "Planned",
+      "required_behavior": "Optional TP requires named useful crossing within3, safe3-tick channel/landing and10-gold opportunity cost.",
+      "permitted_bounded_fallback_or_optional_scope": "Explicitly optional in v1; omit proposal while retaining correct handling of an existing TP channel.",
+      "edge_acceptance_scenario": "Hidden-occupied landing false result is not completed relocation; no manual TP cancel; no instant/free route edge.",
+      "cross_cutting_bounds": [
+        "action",
+        "timing"
+      ],
+      "implementation_status": "OMITTED_OPTIONAL",
+      "implementation_evidence": [
+        {
+          "file": "bots/tactics-v1/src/actions.h",
+          "symbol": "execute",
+          "line": 23,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        },
+        {
+          "file": "bots/tactics-v1/src/coordinator.h",
+          "symbol": "channel_decision",
+          "line": 92,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        }
+      ],
+      "validation_evidence": [],
+      "limitations": "No TP purchase/use proposal. Explicitly optional under contract; already active TP correctly retained and no manual cancel attempted."
+    },
+    {
+      "id": "10.7",
+      "title": "Channel-specific behavior",
+      "source": "docs/tactics/10-recall-and-recovery.md",
+      "handbook_status_before_implementation": "Planned",
+      "required_behavior": "Track actual type, remaining time and outcome; recall/tribute cancellation typed, TP not cancellable; distinct interruption rules.",
+      "permitted_bounded_fallback_or_optional_scope": "Keep valuable channel without a permitted better alternative; refresh after completion/cancel/interruption.",
+      "edge_acceptance_scenario": "Recall damage interrupts; ordinary damage does not interrupt tribute/TP; timer0 remains pending until next owner start.",
+      "cross_cutting_bounds": [
+        "action",
+        "timing"
+      ],
+      "implementation_status": "IMPLEMENTED",
+      "implementation_evidence": [
+        {
+          "file": "bots/tactics-v1/src/coordinator.h",
+          "symbol": "channel_decision",
+          "line": 92,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        },
+        {
+          "file": "bots/tactics-v1/src/economy.h",
+          "symbol": "channel_interruption_risk",
+          "line": 22,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        },
+        {
+          "file": "bots/tactics-v1/src/actions.h",
+          "symbol": "execute",
+          "line": 23,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        }
+      ],
+      "validation_evidence": [],
+      "limitations": "Three typed channels; permitted cancels, interruption distinctions and pending completion. Not generic damage cancellation."
+    },
+    {
+      "id": "10.8",
+      "title": "Death and re-entry",
+      "source": "docs/tactics/10-recall-and-recovery.md",
+      "handbook_status_before_implementation": "Planned",
+      "required_behavior": "Death releases claim/collector/ready contribution; retain actual inventory/gold/map; respawn creates fresh epoch and mission window.",
+      "permitted_bounded_fallback_or_optional_scope": "Legal dead shopping; old target only if still useful, otherwise productive safe work/bounded regroup.",
+      "edge_acceptance_scenario": "Resumed pre-death computation cannot execute old plan; Cassi/Issac coupled availability with separate wallets.",
+      "cross_cutting_bounds": [
+        "identity",
+        "freshness"
+      ],
+      "implementation_status": "IMPLEMENTED",
+      "implementation_evidence": [
+        {
+          "file": "bots/tactics-v1/src/coordinator.h",
+          "symbol": "observe_progress",
+          "line": 29,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        },
+        {
+          "file": "bots/tactics-v1/src/main.cpp",
+          "symbol": "gameplay_turn",
+          "line": 67,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        },
+        {
+          "file": "bots/tactics-v1/src/sdk_world.h",
+          "symbol": "refresh",
+          "line": 337,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        }
+      ],
+      "validation_evidence": [],
+      "limitations": "Dead contribution/claims released, legal shopping, fresh current roster/state on return. No assumed ready remote actor."
+    },
+    {
+      "id": "11.1",
+      "title": "Purchase timing",
+      "source": "docs/tactics/11-shopping-and-investment.md",
+      "handbook_status_before_implementation": "Planned",
+      "required_behavior": "Buy relevant affordable components at available legal shop; elective trip needs named mission benefit and full absence cost.",
+      "permitted_bounded_fallback_or_optional_scope": "Established useful role build allowed; unresolved elective benefit retains mission.",
+      "edge_acceptance_scenario": "Dead buy equips but does not resurrect; no passive-gold wait; deciding capture/tribute cannot be delayed by arbitrary shop.",
+      "cross_cutting_bounds": [
+        "shop",
+        "economy"
+      ],
+      "implementation_status": "FALLBACK",
+      "implementation_evidence": [
+        {
+          "file": "bots/tactics-v1/src/shopping.h",
+          "symbol": "shopping_proposal",
+          "line": 143,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        },
+        {
+          "file": "bots/tactics-v1/src/main.cpp",
+          "symbol": "gameplay_turn",
+          "line": 67,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        }
+      ],
+      "validation_evidence": [],
+      "limitations": "Legal useful components/private budget and no unsupported elective trip; role selector fallback rather than measured upgrade absence payoff."
+    },
+    {
+      "id": "11.2",
+      "title": "Stat selection",
+      "source": "docs/tactics/11-shopping-and-investment.md",
+      "handbook_status_before_implementation": "Planned",
+      "required_behavior": "Compare primary/survival stat using actual kit growth and useful-action breakpoint; refresh after purchase.",
+      "permitted_bounded_fallback_or_optional_scope": "Established per-body build if bounded comparison unresolved.",
+      "edge_acceptance_scenario": "Ryth Health also adds Strength; Prism before/after bag differs; Willow overheal has no value; Focus not generic cooldown reduction.",
+      "cross_cutting_bounds": [
+        "shop",
+        "combat"
+      ],
+      "implementation_status": "FALLBACK",
+      "implementation_evidence": [
+        {
+          "file": "bots/tactics-v1/src/shopping.h",
+          "symbol": "shop_role_stat",
+          "line": 42,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        },
+        {
+          "file": "bots/tactics-v1/src/shopping.h",
+          "symbol": "shop_choose_shard",
+          "line": 97,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        }
+      ],
+      "validation_evidence": [],
+      "limitations": "Primary-role/mission-pressure stat fallback; no all-kit exact next-action breakpoint optimizer."
+    },
+    {
+      "id": "11.3",
+      "title": "Emblem family selection",
+      "source": "docs/tactics/11-shopping-and-investment.md",
+      "handbook_status_before_implementation": "Planned",
+      "required_behavior": "Count passive once per family across stat variants; value actual future job; shards30/five identical complete150.",
+      "permitted_bounded_fallback_or_optional_scope": "Fixed role fallback if mission comparison unresolved; no requirement to buy every family.",
+      "edge_acceptance_scenario": "Duplicate Monster stats have no second10%; Treasure+Vesper1.4 not1.44; Home3 changes capture overlap.",
+      "cross_cutting_bounds": [
+        "shop",
+        "economy"
+      ],
+      "implementation_status": "FALLBACK",
+      "implementation_evidence": [
+        {
+          "file": "bots/tactics-v1/src/shopping.h",
+          "symbol": "shop_inventory",
+          "line": 33,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        },
+        {
+          "file": "bots/tactics-v1/src/shopping.h",
+          "symbol": "shop_family_useful",
+          "line": 76,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        }
+      ],
+      "validation_evidence": [],
+      "limitations": "Unique family saturation and mission-relevant first-passive fallback; Home/Treasure excluded without explicit caller forecast, no invented payback."
+    },
+    {
+      "id": "11.4",
+      "title": "Purchase order",
+      "source": "docs/tactics/11-shopping-and-investment.md",
+      "handbook_status_before_implementation": "Planned",
+      "required_behavior": "Compare at most3 paths: role fallback, useful partial completion, one mission alternative; requery after each buy and retain useful goal.",
+      "permitted_bounded_fallback_or_optional_scope": "Insufficient funds, restriction, fuel or failure stops bounded buying; failed batch never assumed partial success.",
+      "edge_acceptance_scenario": "Four Jungle shards plus30 completion compared against first unrelated shard; failed batch cannot advance inventory/queue.",
+      "cross_cutting_bounds": [
+        "shop",
+        "action"
+      ],
+      "implementation_status": "FALLBACK",
+      "implementation_evidence": [
+        {
+          "file": "bots/tactics-v1/src/shopping.h",
+          "symbol": "shop_choose_shard",
+          "line": 97,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        },
+        {
+          "file": "bots/tactics-v1/src/shopping.h",
+          "symbol": "shopping_after_action",
+          "line": 235,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        }
+      ],
+      "validation_evidence": [],
+      "limitations": "Useful partial completion/role fallback, stable goal and per-buy refresh; no full numerical three-path counterfactual comparison."
+    },
+    {
+      "id": "11.5",
+      "title": "Completion and stacking rules",
+      "source": "docs/tactics/11-shopping-and-investment.md",
+      "handbook_status_before_implementation": "Planned",
+      "required_behavior": "Separate item stat points from unique passive set; only identical family/stat combines; no six-slot inventory model.",
+      "permitted_bounded_fallback_or_optional_scope": "Read actual inventory/stats if accounting uncertain; never guess duplicate effect.",
+      "edge_acceptance_scenario": "Mixed3 Strength+2 Focus do not combine; Durability+Jungle100->63; Power6; Bruiser offstats; selling removes passive.",
+      "cross_cutting_bounds": [
+        "shop"
+      ],
+      "implementation_status": "IMPLEMENTED",
+      "implementation_evidence": [
+        {
+          "file": "bots/tactics-v1/src/shopping.h",
+          "symbol": "shop_inventory",
+          "line": 33,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        },
+        {
+          "file": "bots/tactics-v1/src/shopping.h",
+          "symbol": "shop_raw",
+          "line": 16,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        },
+        {
+          "file": "bots/tactics-v1/src/sdk_world.h",
+          "symbol": "read_actor",
+          "line": 75,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        }
+      ],
+      "validation_evidence": [],
+      "limitations": "Actual catalogue/inventory, identical-completion identity and family-once mitigation; actual engine stats read after combination."
+    },
+    {
+      "id": "11.6",
+      "title": "Consumable budgeting",
+      "source": "docs/tactics/11-shopping-and-investment.md",
+      "handbook_status_before_implementation": "Planned",
+      "required_behavior": "Reserve10 only for named plausible TP/lock use; capacity/permission personal and separate from equipment.",
+      "permitted_bounded_fallback_or_optional_scope": "No automatic buying both consumables; omit optional items without valid plan.",
+      "edge_acceptance_scenario": "Tavi field equipment legal but field consumables illegal; reserved10 delays30 shard; ward free, never purchased.",
+      "cross_cutting_bounds": [
+        "shop",
+        "economy"
+      ],
+      "implementation_status": "OMITTED_OPTIONAL",
+      "implementation_evidence": [
+        {
+          "file": "bots/tactics-v1/src/shopping.h",
+          "symbol": "shopping_proposal",
+          "line": 143,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        }
+      ],
+      "validation_evidence": [],
+      "limitations": "Named reserve hook/permissions exist but coordinator never requests consumable mission. TP/owned-lock strategic acquisition intentionally omitted."
+    },
+    {
+      "id": "11.7",
+      "title": "Adaptive builds",
+      "source": "docs/tactics/11-shopping-and-investment.md",
+      "handbook_status_before_implementation": "Planned",
+      "required_behavior": "Adapt bounded build candidates to mission route/threat/body role, unique passives and post-bag stats; no map-name lookup.",
+      "permitted_bounded_fallback_or_optional_scope": "Retain role build and decline unproved detour if comparison unresolved.",
+      "edge_acceptance_scenario": "Harmless clusters give no Jungle tanking benefit; long walk raises elective recall cost; avoid partial-family oscillation.",
+      "cross_cutting_bounds": [
+        "shop",
+        "geometry"
+      ],
+      "implementation_status": "FALLBACK",
+      "implementation_evidence": [
+        {
+          "file": "bots/tactics-v1/src/shopping.h",
+          "symbol": "shopping_proposal",
+          "line": 143,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        },
+        {
+          "file": "bots/tactics-v1/src/shopping.h",
+          "symbol": "shop_choose_shard",
+          "line": 97,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        }
+      ],
+      "validation_evidence": [],
+      "limitations": "Selected damaging-route/pressure/body role, no map names; keep role build if richer adjustment unresolved."
+    },
+    {
+      "id": "11.8",
+      "title": "Shopping exceptions",
+      "source": "docs/tactics/11-shopping-and-investment.md",
+      "handbook_status_before_implementation": "Planned",
+      "required_behavior": "Separate wallets; Tavi field equipment/sales restrictions; Health spawn heals, field does not; refresh after exceptions.",
+      "permitted_bounded_fallback_or_optional_scope": "Bounded Tavi buy/sell heal only with full guards and needed pre-heal action; ordinary spawn heal fallback.",
+      "edge_acceptance_scenario": "At most3 loose Health before buy prevents accidental combine; require30 gold and verified refund; dead purchase cannot heal living body.",
+      "cross_cutting_bounds": [
+        "shop",
+        "action"
+      ],
+      "implementation_status": "IMPLEMENTED",
+      "implementation_evidence": [
+        {
+          "file": "bots/tactics-v1/src/shopping.h",
+          "symbol": "shopping_proposal",
+          "line": 143,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        },
+        {
+          "file": "bots/tactics-v1/src/shopping.h",
+          "symbol": "shopping_after_action",
+          "line": 235,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        },
+        {
+          "file": "bots/tactics-v1/src/sdk_world.h",
+          "symbol": "refresh",
+          "line": 337,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        }
+      ],
+      "validation_evidence": [],
+      "limitations": "Private budgets, exact SDK permissions, field/spawn Health distinction and checked bounded Tavi buy/sell heal pair."
+    },
+    {
+      "id": "12.1",
+      "title": "Decision priorities",
+      "source": "docs/tactics/12-execution-and-validation.md",
+      "handbook_status_before_implementation": "Planned",
+      "required_behavior": "Exactly one arbiter owns mission/action proposals including ward/shop/support/locks; no independent pre/post sweep mutations.",
+      "permitted_bounded_fallback_or_optional_scope": "Local factual shortlist fallback accepted; no new shared bytes/global optimizer required.",
+      "edge_acceptance_scenario": "Deciding bank not preempted by decorative cast; rejected fight never invokes unsafe farm helper.",
+      "cross_cutting_bounds": [
+        "action",
+        "state"
+      ],
+      "implementation_status": "IMPLEMENTED",
+      "implementation_evidence": [
+        {
+          "file": "bots/tactics-v1/src/coordinator.h",
+          "symbol": "choose_mission",
+          "line": 116,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        },
+        {
+          "file": "bots/tactics-v1/src/main.cpp",
+          "symbol": "gameplay_turn",
+          "line": 67,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        },
+        {
+          "file": "bots/tactics-v1/src/actions.h",
+          "symbol": "execute",
+          "line": 23,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        }
+      ],
+      "validation_evidence": [],
+      "limitations": "Single arbiter/mutation gateway, compatible shop/ward refresh, no independent pre-/post-sweep."
+    },
+    {
+      "id": "12.2",
+      "title": "Fuel management",
+      "source": "docs/tactics/12-execution-and-validation.md",
+      "handbook_status_before_implementation": "Planned",
+      "required_behavior": "Immutable caches separate from live epoch; budget planning+refresh+execute+end; revalidate after suspension.",
+      "permitted_bounded_fallback_or_optional_scope": "Inherited6000 reserve is starting guard; low fuel retains valid channel/holder or validated lower-threat action.",
+      "edge_acceptance_scenario": "World/owner epoch changes between planning/action cause refresh; native replay speed does not prove guest fuel budget.",
+      "cross_cutting_bounds": [
+        "fuel",
+        "freshness"
+      ],
+      "implementation_status": "FALLBACK",
+      "implementation_evidence": [
+        {
+          "file": "bots/tactics-v1/src/geometry.h",
+          "symbol": "fuel",
+          "line": 13,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        },
+        {
+          "file": "bots/tactics-v1/src/actions.h",
+          "symbol": "execute",
+          "line": 23,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        },
+        {
+          "file": "bots/tactics-v1/src/main.cpp",
+          "symbol": "gameplay_turn",
+          "line": 67,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        }
+      ],
+      "validation_evidence": [],
+      "limitations": "Fuel reserve/round epoch guard/cache separation; reserve not measured worst-case guarantee, actual guest suspensions require integration evidence."
+    },
+    {
+      "id": "12.3",
+      "title": "Turn order and timing",
+      "source": "docs/tactics/12-execution-and-validation.md",
+      "handbook_status_before_implementation": "Planned",
+      "required_behavior": "Use actual interleaved owner order and capture/channel phases; priority change only for concrete next-round effect.",
+      "permitted_bounded_fallback_or_optional_scope": "Advanced priority optimization not necessary if state legality and timing remain conservative.",
+      "edge_acceptance_scenario": "Timer0 pending until next owner start; two nearby allies cannot assume consecutive burst before enemy response.",
+      "cross_cutting_bounds": [
+        "timing"
+      ],
+      "implementation_status": "FALLBACK",
+      "implementation_evidence": [
+        {
+          "file": "bots/tactics-v1/src/types.h",
+          "symbol": "tribute_ticks",
+          "line": 178,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        },
+        {
+          "file": "bots/tactics-v1/src/types.h",
+          "symbol": "overlap_hold",
+          "line": 181,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        },
+        {
+          "file": "bots/tactics-v1/src/coordinator.h",
+          "symbol": "channel_decision",
+          "line": 92,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        }
+      ],
+      "validation_evidence": [],
+      "limitations": "Actual SDK action flags and verified channel/capture phases; no joint next-round priority/initiative optimizer."
+    },
+    {
+      "id": "12.4",
+      "title": "Memory and coordination limits",
+      "source": "docs/tactics/12-execution-and-validation.md",
+      "handbook_status_before_implementation": "Planned",
+      "required_behavior": "Explicit8-byte ownership/layout/age rules and6-body/63-group packed bounds with deliberate degrade; draft frozen in play.",
+      "permitted_bounded_fallback_or_optional_scope": "Retain existing claims/lifecycle/danger layout; richer remote protocol deferred.",
+      "edge_acceptance_scenario": "Modulo alert wrap is not absolute expiry; two writes not atomic acknowledgement; resumed read-modify-write not fresh promise.",
+      "cross_cutting_bounds": [
+        "memory",
+        "freshness"
+      ],
+      "implementation_status": "IMPLEMENTED",
+      "implementation_evidence": [
+        {
+          "file": "bots/tactics-v1/src/types.h",
+          "symbol": "encode_claim",
+          "line": 159,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        },
+        {
+          "file": "bots/tactics-v1/src/types.h",
+          "symbol": "decode_claim",
+          "line": 146,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        },
+        {
+          "file": "bots/tactics-v1/src/sdk_world.h",
+          "symbol": "publish_claim",
+          "line": 260,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        }
+      ],
+      "validation_evidence": [],
+      "limitations": "Eight-byte layout retained,6-body/63-group packed case and explicit unsupported degrade; remote commitment protocol not claimed."
+    },
+    {
+      "id": "12.5",
+      "title": "Action validation and fallbacks",
+      "source": "docs/tactics/12-execution-and-validation.md",
+      "handbook_status_before_implementation": "Planned",
+      "required_behavior": "Validate immediately before dependent action and classify attempt/accept/move/start/interruption/completion; bounded rejection fallback.",
+      "permitted_bounded_fallback_or_optional_scope": "One channel start plus changed movement alternatives; useful remaining action after failure.",
+      "edge_acceptance_scenario": "Rejected start with move available gets legal fallback; target dying between first/second action invalidates stale follow-up.",
+      "cross_cutting_bounds": [
+        "action",
+        "freshness"
+      ],
+      "implementation_status": "IMPLEMENTED",
+      "implementation_evidence": [
+        {
+          "file": "bots/tactics-v1/src/actions.h",
+          "symbol": "execute",
+          "line": 23,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        },
+        {
+          "file": "bots/tactics-v1/src/main.cpp",
+          "symbol": "gameplay_turn",
+          "line": 67,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        }
+      ],
+      "validation_evidence": [],
+      "limitations": "Current target/action checks, ordinary-move/exclusive-cast guard, explicit LockHit and bounded failures are present. After legality queries, every mutation expression rechecks the input epoch and at least 12000 actual fuel; dash-path work separately requires 24000 actual fuel. Recall/tribute attempt bookkeeping follows this final gate. Planning/full refresh have their own bounds, and self-only refresh is limited to own same-epoch transactions/self casts. These source guards are not a native final-module fuel pass."
+    },
+    {
+      "id": "12.6",
+      "title": "Behavior diagnostics",
+      "source": "docs/tactics/12-execution-and-validation.md",
+      "handbook_status_before_implementation": "Planned",
+      "required_behavior": "Bounded actor/epoch/mission/reason/action-result/transition evidence; attempts/completions separate; keep adverse activations.",
+      "permitted_bounded_fallback_or_optional_scope": "Throttle compact logs by fuel/storage; counter increment alone not activation/completion proof.",
+      "edge_acceptance_scenario": "Lost bag or recall before payout explainable; avoid huge per-action logs; failed start not completed counter.",
+      "cross_cutting_bounds": [
+        "diagnostics"
+      ],
+      "implementation_status": "FALLBACK",
+      "implementation_evidence": [
+        {
+          "file": "bots/tactics-v1/src/actions.h",
+          "symbol": "execute",
+          "line": 23,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        },
+        {
+          "file": "bots/tactics-v1/src/coordinator.h",
+          "symbol": "observe_progress",
+          "line": 29,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        }
+      ],
+      "validation_evidence": [],
+      "limitations": "Bounded 512-byte LogLine records replace locale-heavy per-field iostream output and include objective/target/position/serial/bag/gold/fuel. Detailed per-opportunity rate/last-seen evidence-age aggregation remains external; logging source changes alone do not prove a fuel pass."
+    },
+    {
+      "id": "12.7",
+      "title": "Representative testing",
+      "source": "docs/tactics/12-execution-and-validation.md",
+      "handbook_status_before_implementation": "Implemented",
+      "required_behavior": "Pin source/build/engine; no-fault games both sides, varied geometry/opponents, untouched generated cases; report actual omissions.",
+      "permitted_bounded_fallback_or_optional_scope": "User prioritizes correctness/modest matchups now; no improvement claim from few games.",
+      "edge_acceptance_scenario": "ZIP root src/*.cpp recognized; distinct candidate binary; source/seed hashes, halt/fuel and runner limit recorded.",
+      "cross_cutting_bounds": [
+        "validation"
+      ],
+      "implementation_status": "IMPLEMENTED",
+      "implementation_evidence": [
+        {
+          "file": "bots/tactics-v1/src/main.cpp",
+          "symbol": "main",
+          "line": 190,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        }
+      ],
+      "validation_evidence": [],
+      "limitations": "Separate testing harness builds/hashes/scenarios/maps/sides. Source audit alone verifies no run; final execution report must remain separate."
+    },
+    {
+      "id": "12.8",
+      "title": "Interactions between changes",
+      "source": "docs/tactics/12-execution-and-validation.md",
+      "handbook_status_before_implementation": "Planned",
+      "required_behavior": "Test interacting feature boundaries together; actual activation/mechanics coverage before comparative games.",
+      "permitted_bounded_fallback_or_optional_scope": "Baseline versus combined v1 acceptable with limited causal claim; tuning and full four-arm study later.",
+      "edge_acceptance_scenario": "Ward reveal->safety->capture->Home->bank->shop->re-entry test; isolated passes cannot hide combined shared-cast budget violation.",
+      "cross_cutting_bounds": [
+        "validation"
+      ],
+      "implementation_status": "FALLBACK",
+      "implementation_evidence": [
+        {
+          "file": "bots/tactics-v1/src/coordinator.h",
+          "symbol": "choose_mission",
+          "line": 116,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        },
+        {
+          "file": "bots/tactics-v1/src/main.cpp",
+          "symbol": "gameplay_turn",
+          "line": 67,
+          "scope": "Source presence/review, not full-topic behavioral verification"
+        }
+      ],
+      "validation_evidence": [],
+      "limitations": "One integrated v1 and targeted interaction fixtures; user deprioritized full isolated performance tuning/four-arm promotion for this first implementation."
+    }
+  ],
+  "audit_utc": "2026-10-16T15:40:18.639843+00:00",
+  "audit_scope": "Independent source audit at the final functional freeze. Final integration execution results are separate. No topic is marked Verified.",
+  "status_meaning": {
+    "IMPLEMENTED": "Concrete bounded v1 behavior present in reviewed source, validation separate.",
+    "FALLBACK": "Explicitly permitted narrower prototype/fallback; named limitation retained.",
+    "PARTIAL": "Material requirement or integration correction remains; must not describe full topic as implemented.",
+    "OMITTED_OPTIONAL": "Explicit first-implementation optional proposal intentionally absent."
+  },
+  "status_counts": {
+    "IMPLEMENTED": 44,
+    "FALLBACK": 46,
+    "PARTIAL": 4,
+    "OMITTED_OPTIONAL": 2
+  },
+  "source_sha256": {
+    "actions.h": "f62e94acec71929553e0f76429fea462b67a79fda06f2f8c319a15fe94646d61",
+    "combat.h": "39109c2ca19172930c17a214e0b37811be964e87dc40dc805d93cedae24a2e0b",
+    "coordinator.h": "bd142c1a81cd1410333c7b3e88adc3060dc8e24df70768a9a493ec88e081c973",
+    "draft.h": "4aacfd6fe0c9d8867f551ad54c2394cfbf1a984ce2c1d6cdd339582165f8346a",
+    "economy.h": "b7a2844eec9d9a2682ca5236223e2eb7ea745b5db9160f8d06a21d67bf550a16",
+    "geometry.h": "ee49033fa06c47f363287b5d18af7f53f7ad198afccada1f1e03dfa2ca6a92ff",
+    "log.h": "bd93aec4806ef14eba825578c53ed15f37798467ba3ad8db36cef859f3995fbe",
+    "main.cpp": "8d2b275daf1f0fb2dfeaecd46741e28a6e1062fad06c8c337819667111f096d1",
+    "sdk_world.h": "f1b8b1b9df13be28be60435c85632b34708027db48b6a6dffcbfa06e049a3218",
+    "shopping.h": "1e1e17049184436606803419bd8f8084302785a4257ae6996314191eb8877162",
+    "squads.h": "f2075e3b0c5b5a977b04b00e6f24c6a1b5952d8b0da707ee8e8a715f2e96faa2",
+    "types.h": "787f95a3ea85773556472e0d6df2c46a3cf4160b2865fa05c9f00b757d351812",
+    "vision.h": "addbaa795d65edf3f7997e630244dd61719f6fd5bc73be0acec9414b92e192aa"
+  },
+  "independent_unit_reports": [
+    "combat-policy-tests.json",
+    "channel-risk-tests.json",
+    "recovery-tests.json",
+    "delivery-tests.json"
+  ],
+  "current_portable_suite": {
+    "recorded_report_sha256": "75dbdef88e113c39b6eeb81ea84c168e4738b3adf9dc705e1cfeea7c93605f80",
+    "report_version": "results-functional-v12",
+    "passed_in_recorded_report": true,
+    "recorded_headers_sha256": {
+      "actions.h": "f62e94acec71929553e0f76429fea462b67a79fda06f2f8c319a15fe94646d61",
+      "combat.h": "39109c2ca19172930c17a214e0b37811be964e87dc40dc805d93cedae24a2e0b",
+      "coordinator.h": "bd142c1a81cd1410333c7b3e88adc3060dc8e24df70768a9a493ec88e081c973",
+      "draft.h": "4aacfd6fe0c9d8867f551ad54c2394cfbf1a984ce2c1d6cdd339582165f8346a",
+      "economy.h": "b7a2844eec9d9a2682ca5236223e2eb7ea745b5db9160f8d06a21d67bf550a16",
+      "geometry.h": "ee49033fa06c47f363287b5d18af7f53f7ad198afccada1f1e03dfa2ca6a92ff",
+      "log.h": "bd93aec4806ef14eba825578c53ed15f37798467ba3ad8db36cef859f3995fbe",
+      "sdk_world.h": "f1b8b1b9df13be28be60435c85632b34708027db48b6a6dffcbfa06e049a3218",
+      "shopping.h": "1e1e17049184436606803419bd8f8084302785a4257ae6996314191eb8877162",
+      "squads.h": "f2075e3b0c5b5a977b04b00e6f24c6a1b5952d8b0da707ee8e8a715f2e96faa2",
+      "types.h": "787f95a3ea85773556472e0d6df2c46a3cf4160b2865fa05c9f00b757d351812",
+      "vision.h": "addbaa795d65edf3f7997e630244dd61719f6fd5bc73be0acec9414b92e192aa"
+    },
+    "current_headers_match": true,
+    "suites": [
+      {
+        "name": "policy",
+        "checks": 9556
+      },
+      {
+        "name": "combat",
+        "checks": 58
+      },
+      {
+        "name": "squads",
+        "checks": 16
+      },
+      {
+        "name": "camp-affordability",
+        "checks": 11
+      },
+      {
+        "name": "channel",
+        "checks": 27
+      },
+      {
+        "name": "recovery",
+        "checks": 18
+      },
+      {
+        "name": "delivery",
+        "checks": 13
+      }
+    ],
+    "sdk_header_checks": 13,
+    "scope": "Current matching production headers/pure policy functions and SDK syntax checks only. main.cpp execution, compiled release-module behavior and native fuel results are separate. Most policy checks exhaust claim-codec boundaries, not independent game scenarios.",
+    "final_native_module_claim": false
+  },
+  "current_native_cycle_fixture": {
+    "recorded_report_sha256": "4006812f8fb14d7fba6edbcadcf71c4a2b3b53b7b4c24d2847a404a29205b0cf",
+    "report_version": "native-cycle-v12",
+    "passed_in_recorded_report": true,
+    "recorded_headers_sha256": {
+      "actions.h": "f62e94acec71929553e0f76429fea462b67a79fda06f2f8c319a15fe94646d61",
+      "combat.h": "39109c2ca19172930c17a214e0b37811be964e87dc40dc805d93cedae24a2e0b",
+      "coordinator.h": "bd142c1a81cd1410333c7b3e88adc3060dc8e24df70768a9a493ec88e081c973",
+      "draft.h": "4aacfd6fe0c9d8867f551ad54c2394cfbf1a984ce2c1d6cdd339582165f8346a",
+      "economy.h": "b7a2844eec9d9a2682ca5236223e2eb7ea745b5db9160f8d06a21d67bf550a16",
+      "geometry.h": "ee49033fa06c47f363287b5d18af7f53f7ad198afccada1f1e03dfa2ca6a92ff",
+      "log.h": "bd93aec4806ef14eba825578c53ed15f37798467ba3ad8db36cef859f3995fbe",
+      "sdk_world.h": "f1b8b1b9df13be28be60435c85632b34708027db48b6a6dffcbfa06e049a3218",
+      "shopping.h": "1e1e17049184436606803419bd8f8084302785a4257ae6996314191eb8877162",
+      "squads.h": "f2075e3b0c5b5a977b04b00e6f24c6a1b5952d8b0da707ee8e8a715f2e96faa2",
+      "types.h": "787f95a3ea85773556472e0d6df2c46a3cf4160b2865fa05c9f00b757d351812",
+      "vision.h": "addbaa795d65edf3f7997e630244dd61719f6fd5bc73be0acec9414b92e192aa"
+    },
+    "current_headers_match": true,
+    "fixture_module_sha256": "e1d8eed97de0bab6e7bce41901aa64fc488a9202f83514c5b05cf07486854379",
+    "actual_engine_version": "0.0.2",
+    "native_faults": {
+      "teamA": 0,
+      "teamB": 0
+    },
+    "fuel_exhausted": 0,
+    "production_helpers": [
+      "overlap_hold",
+      "current_recall_ticks",
+      "current_tribute_ticks",
+      "observe_progress",
+      "observe_hold",
+      "remember",
+      "execute",
+      "World.refresh"
+    ],
+    "scope": "Scripted native single-tile normal-recall overlap and actual tribute completion on both mirrored bodies, using copied production timing/observer/gateway helpers. Its fixture main/module differs from the competitive bot.",
+    "limitations": [
+      "Normal recall only; Home timing remains covered by separate mechanics/unit evidence, not this native fixture.",
+      "Single occupied spawn tile, no enemy contest or damage interruption in this scenario.",
+      "Fixture main uses actual production helpers/observer/gateway; it is not full production arbiter activation or a final competitive bot module."
+    ],
+    "final_competitive_module_claim": false
+  },
+  "native_validation": {
+    "status": "SEPARATE_FINAL_MODULE_REPORT_REQUIRED",
+    "claim": "This source audit records no native final-module pass. Release gameplay/fuel results must identify the exact final source/module hash. Earlier versions and repaired failures remain development evidence with their own provenance."
+  },
+  "fuel_bounds": [
+    "Current remembered-origin cache keys are shared across horizon checks; native walking regions are cached per actor/horizon/snapshot.",
+    "Exact hidden origin expansion is optional only at uncertainty extent<=2 with reserve+50000 fuel; larger cases retain a conservative scalar threat. Walking blockers/packed terrain are cached; no per-neighbor public host lookup is used.",
+    "Low-fuel missing-threat and channel checks widen to a conservative scalar/geometric risk; budget exhaustion never silently erases a possible recent enemy.",
+    "The gameplay planning loop requires reserve+30000 fuel. After accepted world-changing actions a full refresh requires reserve+44000, otherwise the owner turn stops without another decision. Same-epoch self-only refresh is limited to own transactions/self casts.",
+    "The channel-cancel alternative loop stops below reserve+18000 fuel; stopping that search does not by itself cancel a channel or certify an escape.",
+    "Coordinator phases require reserve+26000 before falling through to additional combat/recovery/farm planning. Idle/hold-only ward search requires 45000 fuel, scores at most four legal anchors and has its own floor.",
+    "Current visible actor/camp refresh uses official SDK 2.2.2 imported bulk records with host personal-visibility guards; actual move speed comes from the fresh record. The adapter is explicitly pinned and must be reviewed on SDK upgrade.",
+    "The action gateway rechecks epoch and at least 12000 actual fuel after legality queries before each mutation expression. Dash path eligibility requires 24000 actual fuel separately. Attempt bookkeeping follows the final gate; a stale return does not advertise a successful attempt.",
+    "Ward candidate search, actor state/metadata reads and route caches are bounded. These source facts require the final gameplay fuel profile; they are not a no-exhaustion guarantee."
+  ],
+  "release_assessment": {
+    "summary": "Source contains fixes for audited channel, visibility, action-budget, staging and timing errors. Earlier full-bot versions still had fuel/idle failures and are development evidence. Four strategy/coordination scope gaps remain explicit; this is a bounded first architecture, not all 96 topics fully implemented. Final full-production-module activity/fuel evidence is separate from the passing scoped unit and scripted native fixtures.",
+    "required_correction": [],
+    "required_validation": [
+      "Final frozen full-production module must be checked for native faults, caught errors, fuel exhaustion and actual useful action activation; earlier repaired failures and scripted fixture modules are not final-bot proof."
+    ],
+    "explicit_remaining_scope": [
+      "05.6 general A-B-A route loop guard absent; clear HP stagnation and rejected tile bounds only.",
+      "06.2 explicit marginal helper alternative and accepted assignment not implemented; smallest ready crew is implemented.",
+      "04.8 fresh strategic warning sharing absent; local-only v1 retains memory allocation without a richer protocol.",
+      "09.7 explicit territory/denial mission planning is partial; current actions choose safe local resource cycles.",
+      "Full mission-priced elective recovery, exact shop breakpoints, counterdraft and advanced formation use expressly documented conservative fallbacks."
+    ]
+  }
+}

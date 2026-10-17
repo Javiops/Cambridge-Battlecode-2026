@@ -1,0 +1,109 @@
+{
+  "passed": true,
+  "created_utc": "2026-10-16T19:46:19.847931+00:00",
+  "source_headers_sha256": {
+    "actions.h": "f62e94acec71929553e0f76429fea462b67a79fda06f2f8c319a15fe94646d61",
+    "assembly.h": "a9e3ec05aae1be8dc2840398b84bf72b71500d2ddeea8c68840cb43688f33157",
+    "combat.h": "f30a901c843fb1f00e32bc49422dfaab9d36e3511ad2cbe157913435a5f5b4af",
+    "coordination.h": "94f38df621791fba50213d9954119991a90bc32e40d907df94d905a566ea8f2e",
+    "coordinator.h": "892388d433e177690362a19a38aee554d721776bb7b6fab7e853cc25c2ba4a76",
+    "cycles.h": "957d9754a3233cb3920f0f7c95d030b4f0e41309d2ac2d9298ab85815273f661",
+    "deny.h": "34766bcdc919400e2bcb821541a6aa6d560d88df1ab855b674d5c0d56e467872",
+    "draft.h": "4aacfd6fe0c9d8867f551ad54c2394cfbf1a984ce2c1d6cdd339582165f8346a",
+    "economy.h": "3812c48dd38d2f41e046223f0e547b601a970604cdd5f1702f2907a4717d74c4",
+    "geometry.h": "1e247a48f232b300e9cfbd8944368d50e6b644fdd1793ed57418da0213e354f2",
+    "information.h": "ae1a681040a444c1bd3470a6fa7c06b725c1318429dbcfd7cefb8554f38483d2",
+    "log.h": "bd93aec4806ef14eba825578c53ed15f37798467ba3ad8db36cef859f3995fbe",
+    "ranking.h": "201400083dec5db6fc5ee298ceb6d8ba17a989b361b40677d50fe9dc3c70c5a5",
+    "resource.h": "a4c015f487574d37459b0483fb7704ff1feb71fd672ba87c5c0a070d4cd1ce9a",
+    "sdk_world.h": "1b8a5b0283b954cd2074ff51adddfc9a9a7a5f30a4668d641b488cce06808b79",
+    "shopping.h": "55476c719c17a657e66568cdffb193268da0b5de53129b2a8a3c64e87f7a053f",
+    "solo.h": "8ae7c528704cc86e1fc2f14f490c4cf902a7ac7beeb228a53e219138dab2e0f6",
+    "solo_bounds.h": "37848f2d951b318f00bd6a197edd89b827080edd0900e34b99f3111d4280fc77",
+    "squads.h": "f2075e3b0c5b5a977b04b00e6f24c6a1b5952d8b0da707ee8e8a715f2e96faa2",
+    "strategic.h": "c2f67e403ce8d591e99e016aaf156b69dfca92070cdf84502411633b86e1fb01",
+    "types.h": "97f37cc3e7c027ae282c7a5d966ef1e9e2171151983311c1e2dc6eb9dca2a5e1",
+    "vision.h": "6cea9e058fe56bbc7b5ac85ff316270760e7f2be7ad84888a7dab55eb3012abf"
+  },
+  "fixture_sha256": "0232154e3d956c1369bc07eef9e8e26a826a85938856d1854e8e85f77e931a87",
+  "sdk_header_sha256": "76664dc7c4ab764243a7530eb97be12d9c20518b7bd2601a962fb0669d1da4a4",
+  "module_sha256": "1b40763ffd5073206d8a6e64f191cc0daa2213c7142e9798005c4772e41cdcfc",
+  "map_sha256": "1ba7731349d9e84cbb02943c00537c20671e9cb75933bd3156b550006c8475a9",
+  "replay_sha256": "f070b5ab0acbe8f92707458782f381c3ab13ff94f350d6df12db9d5ab257e38a",
+  "statistics_sha256": "aabaf9a1eae24149790d3322e59bc597a6fac72e9ab2a12d3889e3cf7b5b0480",
+  "actual_engine": {
+    "engineBuildHash": "02c4624c8c9b8bcaf9d906f407c0b1d932d5b5bce6e8ea7e222e08065dd9cede",
+    "engineVersion": "0.0.2",
+    "finalInput": 8154,
+    "finalRoundPartial": false,
+    "finalSubstep": 6,
+    "height": 32,
+    "mapHash": "1ba7731349d9e84cbb02943c00537c20671e9cb75933bd3156b550006c8475a9",
+    "metricSemanticsVersion": 1,
+    "outcome": "teamB",
+    "roundsCompleted": 2000,
+    "roundsStarted": 2000,
+    "seed": "945453568603156659",
+    "width": 32
+  },
+  "native_faults": {
+    "teamA": 0,
+    "teamB": 0
+  },
+  "fuel_exhausted": 0,
+  "failures": [],
+  "markers": {
+    "a": [
+      "NATIVE_ASSEMBLY_CASE_PASS physical-helper-stage 1 5 6",
+      "NATIVE_ASSEMBLY_CASE_PASS real-upgrade-healed 0 900",
+      "NATIVE_ASSEMBLY_DETAIL actual-alternative rate=0.61538 ready=1 fuel=77159",
+      "NATIVE_ASSEMBLY_CASE_PASS physical-priced-producer 0 1.11746",
+      "NATIVE_ASSEMBLY_CASE_PASS actual-priced-rally-move 0 6 6",
+      "NATIVE_ASSEMBLY_CASE_PASS actual-claimed-pair-ready 0 89218 46665",
+      "NATIVE_ASSEMBLY_CASE_PASS actual-first-hit 0 2400",
+      "NATIVE_ASSEMBLY_CASE_PASS actual-clear 0",
+      "NATIVE_ASSEMBLY_CASE_PASS actual-capture-payout 0 36",
+      "NATIVE_ASSEMBLY_PASS 0 producer=1"
+    ],
+    "b": [
+      "NATIVE_ASSEMBLY_CASE_PASS physical-helper-stage 3 26 6",
+      "NATIVE_ASSEMBLY_CASE_PASS real-upgrade-healed 2 900",
+      "NATIVE_ASSEMBLY_DETAIL actual-alternative rate=0.61538 ready=1 fuel=77220",
+      "NATIVE_ASSEMBLY_CASE_PASS physical-priced-producer 2 1.11746",
+      "NATIVE_ASSEMBLY_CASE_PASS actual-priced-rally-move 2 25 6",
+      "NATIVE_ASSEMBLY_CASE_PASS actual-claimed-pair-ready 2 89264 46763",
+      "NATIVE_ASSEMBLY_CASE_PASS actual-first-hit 2 2400",
+      "NATIVE_ASSEMBLY_CASE_PASS actual-clear 2",
+      "NATIVE_ASSEMBLY_CASE_PASS actual-capture-payout 2 36",
+      "NATIVE_ASSEMBLY_PASS 2 producer=1"
+    ]
+  },
+  "commands": [
+    [
+      "C:\\Users\\frans\\Documents\\Codex\\2026-10-14\\v\\work\\combat-research\\acquisition\\cli-2.2.2\\cambc-2.2.2.data\\scripts\\cambc.exe",
+      "build",
+      "C:\\Users\\frans\\Documents\\Codex\\2026-10-14\\v\\work\\tactics-bot-v1\\testing\\improvement-v2\\audit-current\\native-assembly-physical15c\\native-assembly"
+    ],
+    [
+      "C:\\Users\\frans\\Documents\\Codex\\2026-10-14\\v\\work\\combat-research\\acquisition\\cli-2.2.2\\cambc-2.2.2.data\\scripts\\cambc.exe",
+      "build",
+      "C:\\Users\\frans\\Documents\\Codex\\2026-10-14\\v\\work\\tactics-bot-v1\\testing\\improvement-v2\\audit-current\\native-assembly-physical15c\\native-assembly",
+      "--release"
+    ],
+    [
+      "C:\\Users\\frans\\Documents\\Codex\\2026-10-14\\v\\work\\combat-research\\acquisition\\cli-2.2.2\\cambc-2.2.2.data\\scripts\\cambc.exe",
+      "run",
+      "C:\\Users\\frans\\Documents\\Codex\\2026-10-14\\v\\work\\tactics-bot-v1\\testing\\improvement-v2\\audit-current\\native-assembly-physical15c\\native-assembly",
+      "C:\\Users\\frans\\Documents\\Codex\\2026-10-14\\v\\work\\tactics-bot-v1\\testing\\improvement-v2\\audit-current\\native-assembly-physical15c\\native-assembly",
+      "--map",
+      "C:\\Users\\frans\\Documents\\Codex\\2026-10-14\\v\\work\\tactics-bot-v1\\testing\\portable\\fixtures\\native-assembly.map26a",
+      "--release",
+      "--json",
+      "-o",
+      "C:\\Users\\frans\\Documents\\Codex\\2026-10-14\\v\\work\\tactics-bot-v1\\testing\\improvement-v2\\audit-current\\native-assembly-physical15c\\game",
+      "--statistics",
+      "C:\\Users\\frans\\Documents\\Codex\\2026-10-14\\v\\work\\tactics-bot-v1\\testing\\improvement-v2\\audit-current\\native-assembly-physical15c\\game\\statistics.json"
+    ]
+  ],
+  "scope": "Actual Vendetta/Willow bodies, legal harmless gold capture, one real Health shard, spawn heal, physical staging and shared claims; production current local readiness authorizes actual gateway first hit; scripted actual teammate heal/damage then clear and capture payout. Optional actual priced producer reported separately. No World projections. Macro strength and global production farming arbitration not established."
+}

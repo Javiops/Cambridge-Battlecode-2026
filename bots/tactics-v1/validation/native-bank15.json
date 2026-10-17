@@ -1,0 +1,103 @@
+{
+  "passed": true,
+  "created_utc": "2026-10-16T19:10:22.836969+00:00",
+  "source_headers_sha256": {
+    "actions.h": "f62e94acec71929553e0f76429fea462b67a79fda06f2f8c319a15fe94646d61",
+    "assembly.h": "d0ac1424f74f5e99c8491daa5f17ade8cda215f3947dba43c87080d2e3b384c6",
+    "combat.h": "f30a901c843fb1f00e32bc49422dfaab9d36e3511ad2cbe157913435a5f5b4af",
+    "coordination.h": "3e499802d0cc521c9323cdfdc3c328e5988ee7a73b822b202914fd64782457e6",
+    "coordinator.h": "246316e379c24d9084644c22984ad8962cceac90d42f1a28c89c6d749a49ca9d",
+    "cycles.h": "957d9754a3233cb3920f0f7c95d030b4f0e41309d2ac2d9298ab85815273f661",
+    "deny.h": "098e13c25a5db982841f04c759cf123672662088f134e86cbffb1ca666eb5b6e",
+    "draft.h": "4aacfd6fe0c9d8867f551ad54c2394cfbf1a984ce2c1d6cdd339582165f8346a",
+    "economy.h": "ac99cd999863978099868886536039388df4f520160c26d6ac07de346f704b16",
+    "geometry.h": "1e247a48f232b300e9cfbd8944368d50e6b644fdd1793ed57418da0213e354f2",
+    "information.h": "ae1a681040a444c1bd3470a6fa7c06b725c1318429dbcfd7cefb8554f38483d2",
+    "log.h": "bd93aec4806ef14eba825578c53ed15f37798467ba3ad8db36cef859f3995fbe",
+    "ranking.h": "201400083dec5db6fc5ee298ceb6d8ba17a989b361b40677d50fe9dc3c70c5a5",
+    "sdk_world.h": "1b8a5b0283b954cd2074ff51adddfc9a9a7a5f30a4668d641b488cce06808b79",
+    "shopping.h": "05eae078fa849ae880046ec41f850f6159366e4a2221331cbb39c4e1e89f9ac8",
+    "solo.h": "3293545e48ace16445d902e5cfcdef1b69c7c27f675d9466847f4f0e2191b880",
+    "squads.h": "f2075e3b0c5b5a977b04b00e6f24c6a1b5952d8b0da707ee8e8a715f2e96faa2",
+    "strategic.h": "c2f67e403ce8d591e99e016aaf156b69dfca92070cdf84502411633b86e1fb01",
+    "types.h": "3cf3b2ae8f8aecfb051ea9bbfb1a74ad2a966a264357db6a70c21ae783fdc31d",
+    "vision.h": "6cea9e058fe56bbc7b5ac85ff316270760e7f2be7ad84888a7dab55eb3012abf"
+  },
+  "fixture_sha256": "36b247b26dc250ce5926a5bd29cae0abdd8f2c4d02743c185ae06a08728e494a",
+  "sdk_header_sha256": "76664dc7c4ab764243a7530eb97be12d9c20518b7bd2601a962fb0669d1da4a4",
+  "module_sha256": "d6ed3c7b0b18f302b607fc5b3ce2fca38f578f17bc97c5928cfd9a646d02f8ee",
+  "map_sha256": "a444150d223c708d73963cc8a4134229c80ba94ebe6900232323d6d38f62d896",
+  "replay_sha256": "05ab3993b2176d691ef58391d48c605311e4f960c43e6a52d265dac616b5b11f",
+  "statistics_sha256": "5992c3905447f1d78f26d044a394d9ba7d7aa46f3760d63a58c482563ab6aaa4",
+  "actual_engine": {
+    "engineBuildHash": "02c4624c8c9b8bcaf9d906f407c0b1d932d5b5bce6e8ea7e222e08065dd9cede",
+    "engineVersion": "0.0.2",
+    "finalInput": 4002,
+    "finalRoundPartial": false,
+    "finalSubstep": 6,
+    "height": 32,
+    "mapHash": "a444150d223c708d73963cc8a4134229c80ba94ebe6900232323d6d38f62d896",
+    "metricSemanticsVersion": 1,
+    "outcome": "teamB",
+    "roundsCompleted": 2000,
+    "roundsStarted": 2000,
+    "seed": "855864932897239901",
+    "width": 32
+  },
+  "native_faults": {
+    "teamA": 0,
+    "teamB": 0
+  },
+  "fuel_exhausted": 0,
+  "failures": [],
+  "markers": {
+    "a": [
+      "NATIVE_BANK_CASE_PASS ring-coordinator 0 9 6",
+      "NATIVE_BANK_CASE_PASS recovery-hook 0",
+      "NATIVE_BANK_CASE_PASS healed-backoff 0",
+      "NATIVE_BANK_CASE_PASS accepted-start-not-complete 0",
+      "NATIVE_BANK_CASE_PASS completed-bank-reentry 0",
+      "NATIVE_BANK_COST 0 64980 57039 epoch=9,9",
+      "NATIVE_BANK_CASE_PASS bounded-cost 0 64980 57039 189486847",
+      "NATIVE_BANK_PASS 0"
+    ],
+    "b": [
+      "NATIVE_BANK_CASE_PASS ring-coordinator 1 9 6",
+      "NATIVE_BANK_CASE_PASS recovery-hook 1",
+      "NATIVE_BANK_CASE_PASS healed-backoff 1",
+      "NATIVE_BANK_CASE_PASS accepted-start-not-complete 1",
+      "NATIVE_BANK_CASE_PASS completed-bank-reentry 1",
+      "NATIVE_BANK_COST 1 64980 57022 epoch=9,9",
+      "NATIVE_BANK_CASE_PASS bounded-cost 1 64980 57022 189486847",
+      "NATIVE_BANK_PASS 1"
+    ]
+  },
+  "commands": [
+    [
+      "C:\\Users\\frans\\Documents\\Codex\\2026-10-14\\v\\work\\combat-research\\acquisition\\cli-2.2.2\\cambc-2.2.2.data\\scripts\\cambc.exe",
+      "build",
+      "C:\\Users\\frans\\Documents\\Codex\\2026-10-14\\v\\work\\tactics-bot-v1\\testing\\improvement-v2\\audit-current\\native-bank14c\\native-bank"
+    ],
+    [
+      "C:\\Users\\frans\\Documents\\Codex\\2026-10-14\\v\\work\\combat-research\\acquisition\\cli-2.2.2\\cambc-2.2.2.data\\scripts\\cambc.exe",
+      "build",
+      "C:\\Users\\frans\\Documents\\Codex\\2026-10-14\\v\\work\\tactics-bot-v1\\testing\\improvement-v2\\audit-current\\native-bank14c\\native-bank",
+      "--release"
+    ],
+    [
+      "C:\\Users\\frans\\Documents\\Codex\\2026-10-14\\v\\work\\combat-research\\acquisition\\cli-2.2.2\\cambc-2.2.2.data\\scripts\\cambc.exe",
+      "run",
+      "C:\\Users\\frans\\Documents\\Codex\\2026-10-14\\v\\work\\tactics-bot-v1\\testing\\improvement-v2\\audit-current\\native-bank14c\\native-bank",
+      "C:\\Users\\frans\\Documents\\Codex\\2026-10-14\\v\\work\\tactics-bot-v1\\testing\\improvement-v2\\audit-current\\native-bank14c\\native-bank",
+      "--map",
+      "C:\\Users\\frans\\Documents\\Codex\\2026-10-14\\v\\work\\tactics-bot-v1\\testing\\portable\\fixtures\\native-bank.map26a",
+      "--release",
+      "--json",
+      "-o",
+      "C:\\Users\\frans\\Documents\\Codex\\2026-10-14\\v\\work\\tactics-bot-v1\\testing\\improvement-v2\\audit-current\\native-bank14c\\game",
+      "--statistics",
+      "C:\\Users\\frans\\Documents\\Codex\\2026-10-14\\v\\work\\tactics-bot-v1\\testing\\improvement-v2\\audit-current\\native-bank14c\\game\\statistics.json"
+    ]
+  ],
+  "scope": "Actual production choose_mission/delivery/observe_progress under explicit World threat/position/life/bag projections. SDK initialized and actual public terrain/altars; no projected action executed. Confirms coordinator ring priority, actual recovery-selection hook, finite uncertainty backoff and accepted-start versus completed-bank observation input. Does not prove real payout, physical movement or strength; separate actual cycle fixture/integration required."
+}

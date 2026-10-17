@@ -1,0 +1,218 @@
+{
+  "passed": true,
+  "game": {
+    "created_utc": "2026-10-16T19:04:27.157063+00:00",
+    "key": "27a91ffc786b4f49b360cf5d0e04465051adea6cd172b255119b46304a94b1be",
+    "identity": {
+      "a": "17b824d85ae385b94e4606ac4e8a247eba4210d5d279606d1f15b85019874828",
+      "b": "17b824d85ae385b94e4606ac4e8a247eba4210d5d279606d1f15b85019874828",
+      "map": "a98b6c03e1861d1222d11baffd627bccc654e9bf506f34a0be31731ce8b0d74b",
+      "runtime": {
+        "cli_sha256": "a4262675695e4716ec5355712d21d2ec71e78cc8371dca28990bf1de84480da3",
+        "sdk_header_sha256": "76664dc7c4ab764243a7530eb97be12d9c20518b7bd2601a962fb0669d1da4a4",
+        "official_reference_engine_sha256": "e123b59d9dea198762ab7a04db9b3cb6d06dfa991088e41c24750fc4cb88b947",
+        "project_config_sha256": "afaadf58883877c0bb8879694126f7d918366cacc9f66e75d086d4f7386f872a",
+        "sdk_version": "2.2.2",
+        "engine_version": "0.0.2",
+        "release": true,
+        "fuel": "official CLI default; no override",
+        "scope": "local matches only"
+      }
+    },
+    "label": "native-geometry14-blocked-origin",
+    "map_name_descriptive_only": "geometry",
+    "summary": {
+      "outcome": "teamB",
+      "rounds": 2000,
+      "scores": [
+        0,
+        0
+      ],
+      "faults": [
+        0,
+        0
+      ],
+      "engine_build": "02c4624c8c9b8bcaf9d906f407c0b1d932d5b5bce6e8ea7e222e08065dd9cede",
+      "actual_seed": "5337003625823242352",
+      "physical_roster": [
+        {
+          "draftPick": 0,
+          "id": 0,
+          "name": "Ryth",
+          "team": "teamA"
+        },
+        {
+          "draftPick": 1,
+          "id": 1,
+          "name": "Ryth",
+          "team": "teamB"
+        }
+      ],
+      "draft": [
+        {
+          "champion": "Ryth",
+          "team": "teamA"
+        },
+        {
+          "champion": "Ryth",
+          "team": "teamB"
+        }
+      ],
+      "metrics": {
+        "kills": [
+          0.0,
+          0.0
+        ],
+        "deaths": [
+          0.0,
+          0.0
+        ],
+        "collectedGems": [
+          0.0,
+          0.0
+        ],
+        "submittedGems": [
+          0.0,
+          0.0
+        ],
+        "earnedGold": [
+          0.0,
+          0.0
+        ],
+        "spentGold": [
+          0.0,
+          0.0
+        ],
+        "championDamageDone": [
+          0.0,
+          0.0
+        ],
+        "monsterDamageDone": [
+          0.0,
+          0.0
+        ]
+      },
+      "diagnostic_codes": [],
+      "event_counts": {
+        "teamA": {
+          "death": 0,
+          "kill": 0,
+          "assist": 0,
+          "wardPlacement": 0,
+          "buyItem": 0,
+          "buyConsumable": 0,
+          "sellItem": 0,
+          "campClear": 0,
+          "gemSubmission": 0,
+          "gemCollection": 0,
+          "gemLoss": 0,
+          "itemCombination": 0,
+          "botFault": 0,
+          "fuelExhausted": 0,
+          "resignation": 0
+        },
+        "teamB": {
+          "death": 0,
+          "kill": 0,
+          "assist": 0,
+          "wardPlacement": 0,
+          "buyItem": 0,
+          "buyConsumable": 0,
+          "sellItem": 0,
+          "campClear": 0,
+          "gemSubmission": 0,
+          "gemCollection": 0,
+          "gemLoss": 0,
+          "itemCombination": 0,
+          "botFault": 0,
+          "fuelExhausted": 0,
+          "resignation": 0
+        }
+      },
+      "event_gems": {
+        "teamA": {
+          "gemSubmission": 0,
+          "gemCollection": 0,
+          "gemLoss": 0
+        },
+        "teamB": {
+          "gemSubmission": 0,
+          "gemCollection": 0,
+          "gemLoss": 0
+        }
+      }
+    },
+    "stdout": {
+      "a": {
+        "bytes": 815,
+        "sha256": "8950179d2f73b9b1b4879f7d30164548c9823fbe0f76c46bf14fa1ac9978eac4",
+        "caught_errors": [],
+        "decision_rows": 0,
+        "decision_phases": {},
+        "decision_action_kinds": {},
+        "decision_outcomes": {},
+        "decision_error_codes": {},
+        "decision_reasons": {},
+        "tail": "GEOMETRY14_PASS 0 260 256 128 768\n"
+      },
+      "b": {
+        "bytes": 814,
+        "sha256": "c4cac889e03f920592bdf6feb20154690ba3594d8bd9f1a5eccb55b136108838",
+        "caught_errors": [],
+        "decision_rows": 0,
+        "decision_phases": {},
+        "decision_action_kinds": {},
+        "decision_outcomes": {},
+        "decision_error_codes": {},
+        "decision_reasons": {},
+        "tail": "GEOMETRY14_PASS 1 260 256 128 768\n"
+      }
+    },
+    "statistics_sha256": "f026e8a53d2d28f0da33e4417898af834c147339336ca94f33fa483fbce9ece8",
+    "replay_sha256": "100d9eb2ce6ddcb2a263a3570525d7234ecbe785f68ef7337eb534dd98cc4df1",
+    "execution": {
+      "command": [
+        "C:\\Users\\frans\\Documents\\Codex\\2026-10-14\\v\\work\\combat-research\\acquisition\\cli-2.2.2\\cambc-2.2.2.data\\scripts\\cambc.exe",
+        "run",
+        "C:\\Users\\frans\\Documents\\Codex\\2026-10-14\\v\\work\\tactics-bot-v1\\testing\\improvement-v2\\native-geometry14\\bot",
+        "C:\\Users\\frans\\Documents\\Codex\\2026-10-14\\v\\work\\tactics-bot-v1\\testing\\improvement-v2\\native-geometry14\\bot",
+        "--map",
+        "C:\\Users\\frans\\Documents\\Codex\\2026-10-14\\v\\work\\tactics-bot-v1\\testing\\improvement-v2\\native-geometry14\\geometry.map26a",
+        "--release",
+        "--json",
+        "-o",
+        "C:\\Users\\frans\\Documents\\Codex\\2026-10-14\\v\\work\\tactics-bot-v1\\testing\\games\\native-geometry14-blocked-origin-27a91ffc786b4f49",
+        "--statistics",
+        "C:\\Users\\frans\\Documents\\Codex\\2026-10-14\\v\\work\\tactics-bot-v1\\testing\\games\\native-geometry14-blocked-origin-27a91ffc786b4f49\\statistics.json"
+      ],
+      "returncode": 0,
+      "seconds": 0.25,
+      "log": "logs\\match-native-geometry14-blocked-origin-27a91ffc786b4f49.log",
+      "log_sha256": "251bfb64effcd2c8fd494d69953249d6908deda5790892236aa25be8e80b3ed6"
+    },
+    "side_validity": {
+      "a": {
+        "no_native_faults": true,
+        "no_caught_errors": true,
+        "fuel_exhausted_events": 0
+      },
+      "b": {
+        "no_native_faults": true,
+        "no_caught_errors": true,
+        "fuel_exhausted_events": 0
+      }
+    },
+    "valid": true,
+    "interpretation": "Bounded local integration smoke result; not evidence of ladder superiority or optimal thresholds"
+  },
+  "record": "games\\native-geometry14-blocked-origin-27a91ffc786b4f49\\record.json",
+  "markers": {
+    "a": [
+      "GEOMETRY14_PASS 0 260 256 128 768"
+    ],
+    "b": [
+      "GEOMETRY14_PASS 1 260 256 128 768"
+    ]
+  },
+  "scope": "256 exact native speed1 effective legal sets/order +actual production toward result,128 old/new coarse cases plus4 partial-prefix cases per side."
+}

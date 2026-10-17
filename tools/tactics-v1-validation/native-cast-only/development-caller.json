@@ -1,0 +1,70 @@
+{
+  "passed": true,
+  "scope": "Development evidence: Shared production quote, common typed consumer and native action gateway; full native stationary clear.",
+  "failures": [],
+  "fuel": 0,
+  "faults": {
+    "teamA": 0,
+    "teamB": 0
+  },
+  "markers": {
+    "a": [],
+    "b": [
+      "CAST_ONLY_CERT round=28 shots=18 owners=137 hp=700 total=161 rate=0.472050",
+      "CAST_ONLY_PASS owners=137 casts=18 hp=700 round=164"
+    ]
+  },
+  "source_sha256": {
+    "actions.h": "f62e94acec71929553e0f76429fea462b67a79fda06f2f8c319a15fe94646d61",
+    "assembly.h": "da161935fe87245e1966095f1cb1235fb33f62723d179a483fd9f055ce9923c8",
+    "camp_actions.h": "37236ab64f4de26c39beb493f3875fabcc1155b66770582d569d3e608bc4f5fa",
+    "camp_basic.h": "7bf89b67e929472e4a760a5a1f91858f622ca6b44c9ae06cd9a1908f788efd44",
+    "camp_collateral.h": "69b29ad70768f3bad399f3f3a1fb576deb076e89b74d5c33670e52afefae17d2",
+    "combat.h": "1d6bb5eaebd38e8c65770c52107101b00bfb8261d6512caae85f0cef3625f2a1",
+    "coordination.h": "6413b7af8d0c6e085c222e74f87e40d647758edd643ff6d1cef40395ad763cfa",
+    "coordinator.h": "73b207373ea610b998c9c4346c44c7298b38ed6a635dad4b068a696d7bfd0b72",
+    "crew_sequence.h": "5b0549469e508383de382afe4e6a7a73b1688592dada1ed86f6fc2ab43602b1d",
+    "cycles.h": "957d9754a3233cb3920f0f7c95d030b4f0e41309d2ac2d9298ab85815273f661",
+    "deny.h": "34766bcdc919400e2bcb821541a6aa6d560d88df1ab855b674d5c0d56e467872",
+    "draft.h": "4aacfd6fe0c9d8867f551ad54c2394cfbf1a984ce2c1d6cdd339582165f8346a",
+    "economy.h": "47e7cd13bfd00b49e7a8e803a0b1549e1ae0e7eef434e54827bef0a7a68f5c44",
+    "farm_readiness.h": "440153f3982e535832654f90ba9099cd7053bb8e5365b3f698952acf27c61c99",
+    "geometry.h": "1e247a48f232b300e9cfbd8944368d50e6b644fdd1793ed57418da0213e354f2",
+    "information.h": "ae1a681040a444c1bd3470a6fa7c06b725c1318429dbcfd7cefb8554f38483d2",
+    "log.h": "bd93aec4806ef14eba825578c53ed15f37798467ba3ad8db36cef859f3995fbe",
+    "main.cpp": "47bb48a0569ea21610ecc33f147c67f6ca5e78d592ce206afab4d47db6cb2b79",
+    "ranking.h": "201400083dec5db6fc5ee298ceb6d8ba17a989b361b40677d50fe9dc3c70c5a5",
+    "resource.h": "e31de4cb4db5011b507df3f7932fc27a4b583f1c94c9b4850c88032c1c1ba59b",
+    "sdk_world.h": "d104f1f7523edd5375d8ed1d69d18293ef12971e699d752392ba14f03efa1278",
+    "shopping.h": "cdbe7ebaf5d34f820eea2ed5544aca6edb9f0578857e2185b37933c987968a79",
+    "solo.h": "2c237d42f6fbe2989ed38b4c7987e8dbe4befa7889bfa3acd0869aa2871e2592",
+    "solo_bounds.h": "37848f2d951b318f00bd6a197edd89b827080edd0900e34b99f3111d4280fc77",
+    "solo_poke.h": "3d90fb758717cae48eda0597e8f80ae54fbd7dee42117fe01cbc1a57951c5975",
+    "solo_routes.h": "f88d504f7efc341d230d3e8ed5982995c6c935a98f60f276e3c6346067d6b0f2",
+    "squads.h": "f2075e3b0c5b5a977b04b00e6f24c6a1b5952d8b0da707ee8e8a715f2e96faa2",
+    "strategic.h": "c2f67e403ce8d591e99e016aaf156b69dfca92070cdf84502411633b86e1fb01",
+    "types.h": "3446007363803a811938148ebe480368eb3749d9954db1776f5e63c5deabd203",
+    "vision.h": "6cea9e058fe56bbc7b5ac85ff316270760e7f2be7ad84888a7dab55eb3012abf"
+  },
+  "module_sha256": "86335b37369eaba0b2d58ec40973ecc27dd9330a7b919c0a07939c41b62ab683",
+  "map_sha256": "95a4e64280dfd13f8d00b58b2ea651335c1203a08df1ef6d53ded8ab990cdb90",
+  "sdk_sha256": "76664dc7c4ab764243a7530eb97be12d9c20518b7bd2601a962fb0669d1da4a4",
+  "statistics_sha256": "61bc36339fa8c8f2556116bbf5651b3bef8bc435602797e297565c2695ce1736",
+  "replay_sha256": "f3819d1132fc409144fe20a806fdb5127f4809128afebb9c26dc136386864be2",
+  "engine": {
+    "engineBuildHash": "02c4624c8c9b8bcaf9d906f407c0b1d932d5b5bce6e8ea7e222e08065dd9cede",
+    "engineVersion": "0.0.2",
+    "finalInput": 16042,
+    "finalRoundPartial": false,
+    "finalSubstep": 6,
+    "height": 80,
+    "mapHash": "95a4e64280dfd13f8d00b58b2ea651335c1203a08df1ef6d53ded8ab990cdb90",
+    "metricSemanticsVersion": 1,
+    "outcome": "teamB",
+    "roundsCompleted": 2000,
+    "roundsStarted": 2000,
+    "seed": "9034535677490032927",
+    "width": 80
+  },
+  "final_source_status": "Predates final controller-ownership cleanup/format; final frozen package must be rerun. No strength claim."
+}

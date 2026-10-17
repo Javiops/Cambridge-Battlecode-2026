@@ -1,0 +1,81 @@
+{
+  "passed": true,
+  "created_utc": "2026-10-16T15:42:28.792991+00:00",
+  "source_headers_sha256": {
+    "actions.h": "f62e94acec71929553e0f76429fea462b67a79fda06f2f8c319a15fe94646d61",
+    "combat.h": "39109c2ca19172930c17a214e0b37811be964e87dc40dc805d93cedae24a2e0b",
+    "coordinator.h": "bd142c1a81cd1410333c7b3e88adc3060dc8e24df70768a9a493ec88e081c973",
+    "draft.h": "4aacfd6fe0c9d8867f551ad54c2394cfbf1a984ce2c1d6cdd339582165f8346a",
+    "economy.h": "b7a2844eec9d9a2682ca5236223e2eb7ea745b5db9160f8d06a21d67bf550a16",
+    "geometry.h": "ee49033fa06c47f363287b5d18af7f53f7ad198afccada1f1e03dfa2ca6a92ff",
+    "log.h": "bd93aec4806ef14eba825578c53ed15f37798467ba3ad8db36cef859f3995fbe",
+    "sdk_world.h": "f1b8b1b9df13be28be60435c85632b34708027db48b6a6dffcbfa06e049a3218",
+    "shopping.h": "1e1e17049184436606803419bd8f8084302785a4257ae6996314191eb8877162",
+    "squads.h": "f2075e3b0c5b5a977b04b00e6f24c6a1b5952d8b0da707ee8e8a715f2e96faa2",
+    "types.h": "787f95a3ea85773556472e0d6df2c46a3cf4160b2865fa05c9f00b757d351812",
+    "vision.h": "addbaa795d65edf3f7997e630244dd61719f6fd5bc73be0acec9414b92e192aa"
+  },
+  "cli_sha256": "a4262675695e4716ec5355712d21d2ec71e78cc8371dca28990bf1de84480da3",
+  "sdk_header_sha256": "76664dc7c4ab764243a7530eb97be12d9c20518b7bd2601a962fb0669d1da4a4",
+  "fixture_sha256": "fd0c2e50b32c5e127434a582f801469d3fb5d77ad3e28f534eb03cd88618fa44",
+  "module_sha256": "412c3f62c6618e5d6cc97b3845230811c8d60d8986e255c9ac28b8edbfa982cb",
+  "map_sha256": "3d4e8b24031865270e054076a6665b192b88ad0291dc93462da9fb4d0576fb70",
+  "replay_sha256": "c967670c92a5ac03238e1b062ef878d63370d4a4131cad7f65fac74777853fee",
+  "statistics_sha256": "4a0ad3078377056d4320a122734575e67cd6669db6ba093760f70314bc6f9a5a",
+  "actual_engine": {
+    "engineBuildHash": "02c4624c8c9b8bcaf9d906f407c0b1d932d5b5bce6e8ea7e222e08065dd9cede",
+    "engineVersion": "0.0.2",
+    "finalInput": 4002,
+    "finalRoundPartial": false,
+    "finalSubstep": 6,
+    "height": 32,
+    "mapHash": "3d4e8b24031865270e054076a6665b192b88ad0291dc93462da9fb4d0576fb70",
+    "metricSemanticsVersion": 1,
+    "outcome": "teamB",
+    "roundsCompleted": 2000,
+    "roundsStarted": 2000,
+    "seed": "2231688041423637075",
+    "width": 32
+  },
+  "native_faults": {
+    "teamA": 0,
+    "teamB": 0
+  },
+  "fuel_exhausted": 0,
+  "markers": {
+    "a": [
+      "NATIVE_FARM_POLICY_PASS 0"
+    ],
+    "b": [
+      "NATIVE_FARM_POLICY_PASS 1"
+    ]
+  },
+  "commands": [
+    [
+      "<workspace>\\work\\combat-research\\acquisition\\cli-2.2.2\\cambc-2.2.2.data\\scripts\\cambc.exe",
+      "build",
+      "<workspace>\\work\\tactics-bot-v1\\testing\\portable\\results-native-farming-v12-r3\\native-farming"
+    ],
+    [
+      "<workspace>\\work\\combat-research\\acquisition\\cli-2.2.2\\cambc-2.2.2.data\\scripts\\cambc.exe",
+      "build",
+      "<workspace>\\work\\tactics-bot-v1\\testing\\portable\\results-native-farming-v12-r3\\native-farming",
+      "--release"
+    ],
+    [
+      "<workspace>\\work\\combat-research\\acquisition\\cli-2.2.2\\cambc-2.2.2.data\\scripts\\cambc.exe",
+      "run",
+      "<workspace>\\work\\tactics-bot-v1\\testing\\portable\\results-native-farming-v12-r3\\native-farming",
+      "<workspace>\\work\\tactics-bot-v1\\testing\\portable\\results-native-farming-v12-r3\\native-farming",
+      "--map",
+      "<workspace>\\work\\tactics-bot-v1\\testing\\portable\\fixtures\\native-lifecycle.map26a",
+      "--release",
+      "--json",
+      "-o",
+      "<workspace>\\work\\tactics-bot-v1\\testing\\portable\\results-native-farming-v12-r3\\game",
+      "--statistics",
+      "<workspace>\\work\\tactics-bot-v1\\testing\\portable\\results-native-farming-v12-r3\\game\\statistics.json"
+    ]
+  ],
+  "scope": "Actual production farming policy with explicit projected World inputs under initialized native SDK. Failed-incumbent suppression, first-clear arrival, and deadline-zero-ready ranking assertions; not physical camp clear/payout or strength evidence."
+}

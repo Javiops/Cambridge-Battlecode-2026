@@ -1,0 +1,140 @@
+{
+  "maps": [
+    {
+      "id": "visible-hole-chain",
+      "width": 40,
+      "height": 32,
+      "picks": 1,
+      "spawn": [
+        1,
+        10,
+        4,
+        14
+      ],
+      "altars": [
+        [
+          11,
+          12
+        ]
+      ],
+      "camps": [
+        {
+          "type": 2,
+          "pos": [
+            5,
+            12
+          ]
+        },
+        {
+          "type": 2,
+          "pos": [
+            5,
+            9
+          ]
+        }
+      ],
+      "holes": [
+        [
+          8,
+          5
+        ],
+        [
+          8,
+          6
+        ],
+        [
+          8,
+          7
+        ],
+        [
+          8,
+          8
+        ],
+        [
+          8,
+          9
+        ],
+        [
+          8,
+          10
+        ],
+        [
+          8,
+          11
+        ],
+        [
+          8,
+          12
+        ],
+        [
+          8,
+          13
+        ],
+        [
+          8,
+          14
+        ],
+        [
+          8,
+          15
+        ],
+        [
+          8,
+          16
+        ],
+        [
+          8,
+          17
+        ],
+        [
+          8,
+          18
+        ],
+        [
+          8,
+          19
+        ]
+      ],
+      "sha256": "8508309be9d372eb1dd6f1f1c2be5bd140704de9bcf9d9e2db7561fb1fd6f614",
+      "native_creation_checked": true
+    },
+    {
+      "id": "open-bank-control",
+      "width": 40,
+      "height": 32,
+      "picks": 1,
+      "spawn": [
+        1,
+        10,
+        4,
+        14
+      ],
+      "altars": [
+        [
+          11,
+          12
+        ]
+      ],
+      "camps": [
+        {
+          "type": 2,
+          "pos": [
+            5,
+            12
+          ]
+        },
+        {
+          "type": 2,
+          "pos": [
+            5,
+            9
+          ]
+        }
+      ],
+      "holes": [],
+      "sha256": "b36ef4ded795a356a7a0e1fd0a76f4229453c710e894f2505c2f657b80ffd931",
+      "native_creation_checked": true
+    }
+  ],
+  "scope": "Fixed public-native maps for positive/control completed-cycle comparison. Actual official Gem clusters; no actor/camp HP/stat/wallet/mission changes. Holes are nonopaque but require a walking detour; no outcome used to tune policy thresholds."
+}

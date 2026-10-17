@@ -1,0 +1,403 @@
+{
+  "passed": true,
+  "scope": "Lawful native prelude, then exact production Bot::turn, on both sides.\n\nThe wrapper module differs from the competitive main. It physically wakes a\nsingleton and moves outside basic range, without editing production World,\nstats, inventory, claims, mission, or Bot memory. Boundary mode waits for real\ncamp damage before handoff. Read-only native reconstruction verifies actual\nHP below .75 at the paid-current consumer, plus the same owner's native\nclear/capture/bank. This is scoped activation/correctness, not strength proof.\n",
+  "mode": "boundary",
+  "created_utc": "2026-10-17T02:24:47.843813+00:00",
+  "source_sha256": {
+    "actions.h": "c0855f91cd2f7081961ae32680c5e5ba07cbedb6ff18ca77dfd70ff282cc673a",
+    "assembly.h": "da161935fe87245e1966095f1cb1235fb33f62723d179a483fd9f055ce9923c8",
+    "awake_entry.h": "e1f43a2c25fd4dcabe6839efc233407f200429e26e642135027c3e945ca9edc9",
+    "camp_actions.h": "37236ab64f4de26c39beb493f3875fabcc1155b66770582d569d3e608bc4f5fa",
+    "camp_basic.h": "7bf89b67e929472e4a760a5a1f91858f622ca6b44c9ae06cd9a1908f788efd44",
+    "camp_collateral.h": "69b29ad70768f3bad399f3f3a1fb576deb076e89b74d5c33670e52afefae17d2",
+    "chain.h": "679749f1cf0c6827edafab2efbf8a99c02ad0e94c1f5b7a53a00baf1339fb79d",
+    "combat.h": "1d6bb5eaebd38e8c65770c52107101b00bfb8261d6512caae85f0cef3625f2a1",
+    "coordination.h": "99d54b94c9a712a68b690bbcce732958cad18cd96072e2f8087b8fa9b4294089",
+    "coordinator.h": "6b0dd3fc95deb2c7cecaf1a210dd2e0b65ce69a79fa3c26e688622cdc78cd287",
+    "crew_sequence.h": "5b0549469e508383de382afe4e6a7a73b1688592dada1ed86f6fc2ab43602b1d",
+    "cycles.h": "957d9754a3233cb3920f0f7c95d030b4f0e41309d2ac2d9298ab85815273f661",
+    "deny.h": "34766bcdc919400e2bcb821541a6aa6d560d88df1ab855b674d5c0d56e467872",
+    "draft.h": "4aacfd6fe0c9d8867f551ad54c2394cfbf1a984ce2c1d6cdd339582165f8346a",
+    "economy.h": "faac6b644652e487f37ed31a63516d7e373cbbf718683dee4535243b7993271e",
+    "farm_observation.h": "9d76f1f9d9f152100bb6f3a0a60d07299643c773695907fe37d78df8299b194c",
+    "farm_readiness.h": "440153f3982e535832654f90ba9099cd7053bb8e5365b3f698952acf27c61c99",
+    "geometry.h": "1e247a48f232b300e9cfbd8944368d50e6b644fdd1793ed57418da0213e354f2",
+    "information.h": "ae1a681040a444c1bd3470a6fa7c06b725c1318429dbcfd7cefb8554f38483d2",
+    "log.h": "bd93aec4806ef14eba825578c53ed15f37798467ba3ad8db36cef859f3995fbe",
+    "main.cpp": "18c5fa09fd796b5a4a62576dabd52811d8a9c38a2d28ea7ae21e34cfe2619689",
+    "observation_detour.h": "99ad6d3e6b3b42c81c1979c58a571593fa419111f0d53e8c6d035c4bbb8e18a7",
+    "ranking.h": "760ab19f9af723faef6082b3ae13158d754dbdd7d554f3f2491ec804d530f85c",
+    "resizing.h": "a0d8e243604e827ed87839d6087cc5c99b966fb09728374e3dd03c430bcae05a",
+    "resizing_policy.h": "ccfb37740ee28e365dcb0e8c988492e71a54f64e2907fd36b3760576729cbc3c",
+    "resource.h": "e31de4cb4db5011b507df3f7932fc27a4b583f1c94c9b4850c88032c1c1ba59b",
+    "sdk_world.h": "ee7757075c183f0704b2d575c408c56fa725f228a905566c01e1e0d7e254f1b4",
+    "shopping.h": "f81da81acb14639befe63a5c39eb6b6d6b331884477433de6295a276fb634552",
+    "solo.h": "f4fe4cb0b9a1d13ec17cbd4c89e4631f8f9f4b1ce59870ee5acf36821e287b69",
+    "solo_bounds.h": "37848f2d951b318f00bd6a197edd89b827080edd0900e34b99f3111d4280fc77",
+    "solo_poke.h": "c37ca6ad467d67ec390a7bd637c4dcc1b3ee8467f96181a8f03ee34535c8a253",
+    "solo_routes.h": "98edc9f7fce8aa8d2625c3b030075bc3c79d03df76ba2540ba3ff17d873bc9b4",
+    "squads.h": "7dcfa36091ef0631cf7af4bb4d291d2219369a3dbf3710a35965fc071f767fe3",
+    "strategic.h": "c2f67e403ce8d591e99e016aaf156b69dfca92070cdf84502411633b86e1fb01",
+    "types.h": "f4c46830e1ea75cee85485a1de33509cc783f84e27e1b8c36388334e06c7ade7",
+    "vision.h": "6cea9e058fe56bbc7b5ac85ff316270760e7f2be7ad84888a7dab55eb3012abf"
+  },
+  "sdk_header_sha256": "76664dc7c4ab764243a7530eb97be12d9c20518b7bd2601a962fb0669d1da4a4",
+  "cli_sha256": "a4262675695e4716ec5355712d21d2ec71e78cc8371dca28990bf1de84480da3",
+  "engine_module_sha256": "e123b59d9dea198762ab7a04db9b3cb6d06dfa991088e41c24750fc4cb88b947",
+  "native_engine": {
+    "engineBuildHash": "02c4624c8c9b8bcaf9d906f407c0b1d932d5b5bce6e8ea7e222e08065dd9cede",
+    "engineVersion": "0.0.2",
+    "finalInput": 4094,
+    "finalRoundPartial": false,
+    "finalSubstep": 6,
+    "height": 32,
+    "mapHash": "486eb1577ee0dc27aec5e9162e75123cfee96d597d317c3c6f3966bc69dfe967",
+    "metricSemanticsVersion": 1,
+    "outcome": "teamB",
+    "roundsCompleted": 2000,
+    "roundsStarted": 2000,
+    "seed": "3243472965466261528",
+    "width": 32
+  },
+  "module_sha256": "976da48aaa42b5a79d8f73f55c27913b9d735aadca30c1a0a9d0c3541c4fa370",
+  "fixture_template_sha256": "3cf0811f4020e91c69c2b385038cf034c45400898fd36411622066678f1ca1bc",
+  "actual_wrapper_sha256": "a5319b15e52225841d5629996affbed93733ea10d06e9854a2717e82b7bf0200",
+  "decoder_sha256": "ae13cd9978c5965b3978e93b288f8190b09b3a6308e1d94bce5d3b2310d7eaff",
+  "map_sha256": "486eb1577ee0dc27aec5e9162e75123cfee96d597d317c3c6f3966bc69dfe967",
+  "statistics_sha256": "956035948f799de7d75743d1810c87a418c58331a04a827a44fa87c3901f7718",
+  "replay_sha256": "292e5fa6497b1188620a256c9a929d51738d1443cd78ac3060214ea7a1938eaa",
+  "native_trace_sha256": "f23b8007eb1b3dc88cf9ddbca3c46e463c8fc72b10abd0ff15d53866019d0400",
+  "native_faults": {
+    "teamA": 0,
+    "teamB": 0
+  },
+  "fuel_exhausted": 0,
+  "cases": {
+    "a": {
+      "owner": 0,
+      "handoff_round": 18,
+      "original_actual_camp_position": [
+        7,
+        7
+      ],
+      "stage_move": {
+        "round": 20,
+        "input": 57,
+        "owner": 0,
+        "kind": 4,
+        "from": [
+          5,
+          6
+        ],
+        "to": [
+          6,
+          6
+        ],
+        "before": {
+          "id": 0,
+          "team": 0,
+          "x": 5,
+          "y": 6,
+          "hp": 760,
+          "max_hp": 1000,
+          "alive": true
+        },
+        "after": {
+          "id": 0,
+          "team": 0,
+          "x": 6,
+          "y": 6,
+          "hp": 760,
+          "max_hp": 1000,
+          "alive": true
+        }
+      },
+      "actual_paid_current_owner": {
+        "round": 21,
+        "input": 58,
+        "id": 0,
+        "team": 0,
+        "x": 6,
+        "y": 6,
+        "hp": 740,
+        "max_hp": 1000,
+        "alive": true
+      },
+      "actual_first_basic": {
+        "round": 21,
+        "input": 59,
+        "owner": 0,
+        "kind": 5,
+        "from": [
+          6,
+          6
+        ],
+        "to": [
+          7,
+          7
+        ],
+        "before": {
+          "id": 0,
+          "team": 0,
+          "x": 6,
+          "y": 6,
+          "hp": 740,
+          "max_hp": 1000,
+          "alive": true
+        },
+        "after": {
+          "id": 0,
+          "team": 0,
+          "x": 6,
+          "y": 6,
+          "hp": 740,
+          "max_hp": 1000,
+          "alive": true
+        }
+      },
+      "actual_current_below_three_quarter_hp": true,
+      "actual_clear": [
+        {
+          "amount": 0.0,
+          "context": "0",
+          "target": {
+            "id": 0,
+            "kind": "campGroup"
+          },
+          "timestamp": {
+            "input": 159,
+            "ordinal": 1548,
+            "phase": "champions",
+            "round": 43,
+            "substep": 0
+          },
+          "value": "1",
+          "x": 7,
+          "y": 7
+        }
+      ],
+      "actual_capture": [
+        {
+          "amount": 0.0,
+          "context": "campGroup",
+          "target": {
+            "id": 0,
+            "kind": "campGroup"
+          },
+          "timestamp": {
+            "input": 212,
+            "ordinal": 2198,
+            "phase": "campCaptures",
+            "round": 61,
+            "substep": 10
+          },
+          "value": "22",
+          "x": 7,
+          "y": 7
+        }
+      ],
+      "actual_bank": [
+        {
+          "amount": 0.0,
+          "context": "0",
+          "target": 0,
+          "timestamp": {
+            "input": 221,
+            "ordinal": 2309,
+            "phase": "championStartTurn",
+            "round": 64,
+            "substep": 7
+          },
+          "value": "22",
+          "x": 8,
+          "y": 7
+        }
+      ],
+      "ordered": true,
+      "entry_followed_next_owner_by_current_certificate": true
+    },
+    "b": {
+      "owner": 1,
+      "handoff_round": 18,
+      "original_actual_camp_position": [
+        24,
+        7
+      ],
+      "stage_move": {
+        "round": 20,
+        "input": 55,
+        "owner": 1,
+        "kind": 4,
+        "from": [
+          26,
+          6
+        ],
+        "to": [
+          25,
+          6
+        ],
+        "before": {
+          "id": 1,
+          "team": 1,
+          "x": 26,
+          "y": 6,
+          "hp": 760,
+          "max_hp": 1000,
+          "alive": true
+        },
+        "after": {
+          "id": 1,
+          "team": 1,
+          "x": 25,
+          "y": 6,
+          "hp": 760,
+          "max_hp": 1000,
+          "alive": true
+        }
+      },
+      "actual_paid_current_owner": {
+        "round": 21,
+        "input": 62,
+        "id": 1,
+        "team": 1,
+        "x": 25,
+        "y": 6,
+        "hp": 740,
+        "max_hp": 1000,
+        "alive": true
+      },
+      "actual_first_basic": {
+        "round": 21,
+        "input": 63,
+        "owner": 1,
+        "kind": 5,
+        "from": [
+          25,
+          6
+        ],
+        "to": [
+          24,
+          7
+        ],
+        "before": {
+          "id": 1,
+          "team": 1,
+          "x": 25,
+          "y": 6,
+          "hp": 740,
+          "max_hp": 1000,
+          "alive": true
+        },
+        "after": {
+          "id": 1,
+          "team": 1,
+          "x": 25,
+          "y": 6,
+          "hp": 740,
+          "max_hp": 1000,
+          "alive": true
+        }
+      },
+      "actual_current_below_three_quarter_hp": true,
+      "actual_clear": [
+        {
+          "amount": 0.0,
+          "context": "0",
+          "target": {
+            "id": 1,
+            "kind": "campGroup"
+          },
+          "timestamp": {
+            "input": 161,
+            "ordinal": 1549,
+            "phase": "champions",
+            "round": 43,
+            "substep": 0
+          },
+          "value": "1",
+          "x": 24,
+          "y": 7
+        }
+      ],
+      "actual_capture": [
+        {
+          "amount": 0.0,
+          "context": "campGroup",
+          "target": {
+            "id": 1,
+            "kind": "campGroup"
+          },
+          "timestamp": {
+            "input": 212,
+            "ordinal": 2199,
+            "phase": "campCaptures",
+            "round": 61,
+            "substep": 11
+          },
+          "value": "22",
+          "x": 24,
+          "y": 7
+        }
+      ],
+      "actual_bank": [
+        {
+          "amount": 0.0,
+          "context": "0",
+          "target": 0,
+          "timestamp": {
+            "input": 220,
+            "ordinal": 2308,
+            "phase": "championStartTurn",
+            "round": 64,
+            "substep": 16
+          },
+          "value": "22",
+          "x": 23,
+          "y": 7
+        }
+      ],
+      "ordered": true,
+      "entry_followed_next_owner_by_current_certificate": true
+    }
+  },
+  "failures": [],
+  "commands": [
+    [
+      "C:\\Users\\frans\\Documents\\Codex\\2026-10-14\\v\\work\\combat-research\\acquisition\\cli-2.2.2\\cambc-2.2.2.data\\scripts\\cambc.exe",
+      "build",
+      "C:\\Users\\frans\\Documents\\Codex\\2026-10-14\\v\\work\\tactics-bot-v1\\testing\\improvement-v2\\native-final-integration26-awake-boundary\\bot"
+    ],
+    [
+      "C:\\Users\\frans\\Documents\\Codex\\2026-10-14\\v\\work\\combat-research\\acquisition\\cli-2.2.2\\cambc-2.2.2.data\\scripts\\cambc.exe",
+      "build",
+      "C:\\Users\\frans\\Documents\\Codex\\2026-10-14\\v\\work\\tactics-bot-v1\\testing\\improvement-v2\\native-final-integration26-awake-boundary\\bot",
+      "--release"
+    ],
+    [
+      "C:\\Users\\frans\\Documents\\Codex\\2026-10-14\\v\\work\\combat-research\\acquisition\\cli-2.2.2\\cambc-2.2.2.data\\scripts\\cambc.exe",
+      "run",
+      "C:\\Users\\frans\\Documents\\Codex\\2026-10-14\\v\\work\\tactics-bot-v1\\testing\\improvement-v2\\native-final-integration26-awake-boundary\\bot",
+      "C:\\Users\\frans\\Documents\\Codex\\2026-10-14\\v\\work\\tactics-bot-v1\\testing\\improvement-v2\\native-final-integration26-awake-boundary\\bot",
+      "--map",
+      "C:\\Users\\frans\\Documents\\Codex\\2026-10-14\\v\\work\\tactics-bot-v1\\testing\\improvement-v2\\candidates\\integration26\\validation-tools\\fixtures\\native-cycle.map26a",
+      "--release",
+      "--json",
+      "-o",
+      "C:\\Users\\frans\\Documents\\Codex\\2026-10-14\\v\\work\\tactics-bot-v1\\testing\\improvement-v2\\native-final-integration26-awake-boundary\\game",
+      "--statistics",
+      "C:\\Users\\frans\\Documents\\Codex\\2026-10-14\\v\\work\\tactics-bot-v1\\testing\\improvement-v2\\native-final-integration26-awake-boundary\\game\\statistics.json"
+    ],
+    [
+      "C:\\Users\\frans\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe",
+      "C:\\Users\\frans\\Documents\\Codex\\2026-10-14\\v\\work\\tactics-bot-v1\\testing\\improvement-v2\\candidates\\integration26\\validation-tools\\native_awake_trace.mjs",
+      "--engine",
+      "C:\\Users\\frans\\Documents\\Codex\\2026-10-14\\v\\work\\combat-research\\acquisition\\runtime\\v0_0_2-DFj19m76.wasm",
+      "--replay",
+      "C:\\Users\\frans\\Documents\\Codex\\2026-10-14\\v\\work\\tactics-bot-v1\\testing\\improvement-v2\\native-final-integration26-awake-boundary\\native.repl26a",
+      "--output",
+      "C:\\Users\\frans\\Documents\\Codex\\2026-10-14\\v\\work\\tactics-bot-v1\\testing\\improvement-v2\\native-final-integration26-awake-boundary\\native-trace.json"
+    ]
+  ],
+  "reused_existing_local_game": false,
+  "existing_game": null
+}

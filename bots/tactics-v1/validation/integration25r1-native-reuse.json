@@ -1,0 +1,291 @@
+{
+  "label": "integration25r1",
+  "passed": true,
+  "created_utc": "2026-10-17T00:51:19.411025+00:00",
+  "scope": "Reuses six already completed frozen25 scoped native reports for source-identical25r1. Not new or independent games. The package-only lifecycle fixture repair does not affect these runners, decoders, maps or guest source. Controlled/native evidence is not a strength benchmark.",
+  "new_games_run": 0,
+  "retained_report_count": 6,
+  "retained_game_count": 7,
+  "from_bundle_identity_sha256": "1fa5bbabf8052f157067dc1c3ecf974c13fabe4e2e5522cd6c06d2fe422131dc",
+  "to_bundle_identity_sha256": "a3e5b094313dc6c74f731c34db3a46c1c289e825c2df9f213d1a6f55e25640a9",
+  "changed_payload_files": [
+    "validation-tools/fixtures/assembly-lifecycle.cpp"
+  ],
+  "all32_headers_and_production_main_byte_identical": true,
+  "source_sha256": {
+    "actions.h": "f62e94acec71929553e0f76429fea462b67a79fda06f2f8c319a15fe94646d61",
+    "assembly.h": "da161935fe87245e1966095f1cb1235fb33f62723d179a483fd9f055ce9923c8",
+    "awake_entry.h": "e1f43a2c25fd4dcabe6839efc233407f200429e26e642135027c3e945ca9edc9",
+    "camp_actions.h": "37236ab64f4de26c39beb493f3875fabcc1155b66770582d569d3e608bc4f5fa",
+    "camp_basic.h": "7bf89b67e929472e4a760a5a1f91858f622ca6b44c9ae06cd9a1908f788efd44",
+    "camp_collateral.h": "69b29ad70768f3bad399f3f3a1fb576deb076e89b74d5c33670e52afefae17d2",
+    "chain.h": "679749f1cf0c6827edafab2efbf8a99c02ad0e94c1f5b7a53a00baf1339fb79d",
+    "combat.h": "1d6bb5eaebd38e8c65770c52107101b00bfb8261d6512caae85f0cef3625f2a1",
+    "coordination.h": "e84e209e7316e84e2d80bb7480e6a68a2bb4db3886720590c29a1e3fe8998c1d",
+    "coordinator.h": "6b0dd3fc95deb2c7cecaf1a210dd2e0b65ce69a79fa3c26e688622cdc78cd287",
+    "crew_sequence.h": "5b0549469e508383de382afe4e6a7a73b1688592dada1ed86f6fc2ab43602b1d",
+    "cycles.h": "957d9754a3233cb3920f0f7c95d030b4f0e41309d2ac2d9298ab85815273f661",
+    "deny.h": "34766bcdc919400e2bcb821541a6aa6d560d88df1ab855b674d5c0d56e467872",
+    "draft.h": "4aacfd6fe0c9d8867f551ad54c2394cfbf1a984ce2c1d6cdd339582165f8346a",
+    "economy.h": "4c1cb36d3118597fcf5123aea99f8042ae81c5fd90edbbdc701382e78b0c5599",
+    "farm_observation.h": "9d76f1f9d9f152100bb6f3a0a60d07299643c773695907fe37d78df8299b194c",
+    "farm_readiness.h": "440153f3982e535832654f90ba9099cd7053bb8e5365b3f698952acf27c61c99",
+    "geometry.h": "1e247a48f232b300e9cfbd8944368d50e6b644fdd1793ed57418da0213e354f2",
+    "information.h": "ae1a681040a444c1bd3470a6fa7c06b725c1318429dbcfd7cefb8554f38483d2",
+    "log.h": "bd93aec4806ef14eba825578c53ed15f37798467ba3ad8db36cef859f3995fbe",
+    "main.cpp": "3dbfe7679786338367e1761cb535d181bd3c9c8f43ca33638c650664b1584c72",
+    "ranking.h": "760ab19f9af723faef6082b3ae13158d754dbdd7d554f3f2491ec804d530f85c",
+    "resource.h": "e31de4cb4db5011b507df3f7932fc27a4b583f1c94c9b4850c88032c1c1ba59b",
+    "sdk_world.h": "186c929bdb17c35f0fe67726996e0ac77f3fd89715a1649dcf9caa1a3bb87d4b",
+    "shopping.h": "f81da81acb14639befe63a5c39eb6b6d6b331884477433de6295a276fb634552",
+    "solo.h": "c385ca045cbc29ecf1f57e8658e5e25d75fa7877c63bae4fe3170d309af02202",
+    "solo_bounds.h": "37848f2d951b318f00bd6a197edd89b827080edd0900e34b99f3111d4280fc77",
+    "solo_poke.h": "3d90fb758717cae48eda0597e8f80ae54fbd7dee42117fe01cbc1a57951c5975",
+    "solo_routes.h": "98edc9f7fce8aa8d2625c3b030075bc3c79d03df76ba2540ba3ff17d873bc9b4",
+    "squads.h": "7dcfa36091ef0631cf7af4bb4d291d2219369a3dbf3710a35965fc071f767fe3",
+    "strategic.h": "c2f67e403ce8d591e99e016aaf156b69dfca92070cdf84502411633b86e1fb01",
+    "types.h": "2a70f1d59a565b5a09ea563055a1e2a781d68a660192216648a229cdadc72749",
+    "vision.h": "6cea9e058fe56bbc7b5ac85ff316270760e7f2be7ad84888a7dab55eb3012abf"
+  },
+  "runtime_sdk_cli_pins": {
+    "sdk_sha256": "76664dc7c4ab764243a7530eb97be12d9c20518b7bd2601a962fb0669d1da4a4",
+    "cli_sha256": "a4262675695e4716ec5355712d21d2ec71e78cc8371dca28990bf1de84480da3",
+    "runtime_sha256": "e123b59d9dea198762ab7a04db9b3cb6d06dfa991088e41c24750fc4cb88b947",
+    "engine_version": "0.0.2",
+    "engine_build": "02c4624c8c9b8bcaf9d906f407c0b1d932d5b5bce6e8ea7e222e08065dd9cede"
+  },
+  "reused_reports": [
+    {
+      "suffix": "cash-partial",
+      "path": "native-final25-cash-partial\\report.json",
+      "report_sha256": "8cacf15d670cfdf04a82c5186832f1850a97309b2d49850bcad8d5127b1afae3",
+      "passed": true,
+      "same_production_headers": true,
+      "same_production_main": true,
+      "main_binding_verified": true,
+      "main_exercised": true,
+      "main_binding_scope": "Exact retained production main and32headers.",
+      "module_sha256": "07a06742f0fbe4c650ae982f49c52f341ccaea3e1839d9142dbba3ff90ab2c09",
+      "wrapper_sha256": "4d667e6a4af0f681de193ce61b57702e8f38fc2b100bb2bfca4ec66cc636150f",
+      "relevant_tool_sha256": {
+        "run_native_cash_partial.py": "d4ae34d702476ec1b5989cc8bbc2fc3be7c85dd843329611da662a280e404f26",
+        "fixtures/native-cash-partial.cpp": "4d667e6a4af0f681de193ce61b57702e8f38fc2b100bb2bfca4ec66cc636150f",
+        "fixtures/native-cash-partial.map26a": "9c5d0b697f28f8e542d3f8a2eb5ab14a91a24d260c974f66c192b90cab515243",
+        "fixtures/native-cash-partial-map.json": "f2995d7e2ca85262d897c23b4ad093fb697c2eeb364e125db108a37bd3569c3f"
+      },
+      "retained_games": [
+        {
+          "statistics_path": "native-final25-cash-partial\\game\\statistics.json",
+          "statistics_sha256": "269632cfd2a1d3e0f6357dd9cd11bafc6c04dd4bdc585c47296a6d9991af6bff",
+          "replay_path": "native-final25-cash-partial\\game\\bot-vs-bot-1792197904858.repl26a",
+          "replay_sha256": "0df76e90c02012adb8d4d52e2024fd4b0fbb612a6bc5f7cbe118d452827b78a5",
+          "map_sha256": "9c5d0b697f28f8e542d3f8a2eb5ab14a91a24d260c974f66c192b90cab515243",
+          "engine_version": "0.0.2",
+          "engine_build": "02c4624c8c9b8bcaf9d906f407c0b1d932d5b5bce6e8ea7e222e08065dd9cede",
+          "native_faults": {
+            "teamA": 0,
+            "teamB": 0
+          },
+          "fuel": 0
+        }
+      ],
+      "original_scope": "Real partial-emblem prelude, then unchanged production cash\u2192shop\u2192Elk\u2192bank caller.\n\nThis native activation fixture earns every coin and physically buys its starting\ninventory. It never projects a wallet/Actor into production World. The scalar\nbefore/after preview is explicitly hypothetical and installs nothing. Quiet one\npick setup; wrapper module differs from the competitive module; no strength claim.\n"
+    },
+    {
+      "suffix": "chain",
+      "path": "native-final25-chain\\report.json",
+      "report_sha256": "c4d8eafdbe497f93a371f81a1f9e7b986f692aa5e44181c8d2634b979d1c370c",
+      "passed": true,
+      "same_production_headers": true,
+      "same_production_main": true,
+      "main_binding_verified": true,
+      "main_exercised": true,
+      "main_binding_scope": "Exact retained production main and32headers.",
+      "module_sha256": "6202160c99542205d45e11aa99e41a73221a90be02c9adeb93a42111fe16ed62",
+      "wrapper_sha256": "a85df5dcfb32e833106c512cd76963e983975718129302f7095fcf0a41e81d0b",
+      "relevant_tool_sha256": {
+        "run_native_chain.py": "f22af0981ebf7fb94a17debfc42b1beac83f6b210b4d19a7548bb9bb59b0c587",
+        "fixtures/native-chain/native-chain.cpp": "a85df5dcfb32e833106c512cd76963e983975718129302f7095fcf0a41e81d0b",
+        "fixtures/native-chain/quiet.cpp": "3d2da52a4d4418ca4c3650299364859a581f429600fcb05d1cffee5caa074c7c",
+        "fixtures/native-chain/visible-hole-chain.map26a": "8508309be9d372eb1dd6f1f1c2be5bd140704de9bcf9d9e2db7561fb1fd6f614",
+        "fixtures/native-chain/open-bank-control.map26a": "b36ef4ded795a356a7a0e1fd0a76f4229453c710e894f2505c2f657b80ffd931",
+        "fixtures/native-chain/maps.json": "0ee461772ef08a424de240745969d5f578518354939f180a9bcced682ba18dd5"
+      },
+      "retained_games": [
+        {
+          "statistics_path": "native-final25-chain\\visible-hole-chain\\statistics.json",
+          "statistics_sha256": "7d6a385e8588ff841f92c03c820e91635438a02bf1339baed68ba04f8623de3b",
+          "replay_path": "native-final25-chain\\visible-hole-chain\\bot-vs-quiet-1792197912911.repl26a",
+          "replay_sha256": "6dcae14bf900be72a2f40f3c74540834a68cef7d243f246170720021537e4ed5",
+          "map_sha256": "8508309be9d372eb1dd6f1f1c2be5bd140704de9bcf9d9e2db7561fb1fd6f614",
+          "engine_version": "0.0.2",
+          "engine_build": "02c4624c8c9b8bcaf9d906f407c0b1d932d5b5bce6e8ea7e222e08065dd9cede",
+          "native_faults": {
+            "teamA": 0,
+            "teamB": 0
+          },
+          "fuel": 0
+        },
+        {
+          "statistics_path": "native-final25-chain\\open-bank-control\\statistics.json",
+          "statistics_sha256": "a406ccc567a7e6355ca3f14d2e0fb318aaedf1e55061df28661428ef1d641197",
+          "replay_path": "native-final25-chain\\open-bank-control\\bot-vs-quiet-1792197913316.repl26a",
+          "replay_sha256": "4440322d92fc6c066fc12f1900efa1ad0380f3204d295e88c4eebc731353d71f",
+          "map_sha256": "b36ef4ded795a356a7a0e1fd0a76f4229453c710e894f2505c2f657b80ffd931",
+          "engine_version": "0.0.2",
+          "engine_build": "02c4624c8c9b8bcaf9d906f407c0b1d932d5b5bce6e8ea7e222e08065dd9cede",
+          "native_faults": {
+            "teamA": 0,
+            "teamB": 0
+          },
+          "fuel": 0
+        }
+      ],
+      "original_scope": "Lawful actual Vendetta basic attacks/capture earn first24Gem, then a fresh production Bot controls every subsequent decision. No actor/World/wallet/permission/mission injection. Quiet fixed-map controller integration, not autonomous opening or competitive-strength evidence. Ordinary-walking comparator only."
+    },
+    {
+      "suffix": "cast-main",
+      "path": "native-final25-cast-main\\report.json",
+      "report_sha256": "7379e6e52db123277b7e09431697742daa7bab864dd3b2f86d6b4bc5cb6c5bd9",
+      "passed": true,
+      "same_production_headers": true,
+      "same_production_main": true,
+      "main_binding_verified": true,
+      "main_exercised": true,
+      "main_binding_scope": "Exact retained production main and32headers.",
+      "module_sha256": "7be03121eb9e70712e5045b9bd2912e46a7584f2b9e09244fd1bb1cb76b59d5d",
+      "wrapper_sha256": "b14c83729372389b003d3a13a60bc4aa24d7cfde60d9e78cecbb7e134486931b",
+      "relevant_tool_sha256": {
+        "native-cast-only/run_native.py": "7faec8aa6a707e7f3a3ae5fd438536c9593ec55403cfb3ca7586d8b308fb6307",
+        "native-cast-only/full-main.cpp": "b14c83729372389b003d3a13a60bc4aa24d7cfde60d9e78cecbb7e134486931b",
+        "native-cast-only/fixture.map26a": "95a4e64280dfd13f8d00b58b2ea651335c1203a08df1ef6d53ded8ab990cdb90"
+      },
+      "retained_games": [
+        {
+          "statistics_path": "native-final25-cast-main\\game\\statistics.json",
+          "statistics_sha256": "25f41bb82cec1983e7119c9f6c609313889f8a3160cdc279e076ad64ddd4daea",
+          "replay_path": "native-final25-cast-main\\game\\bot-vs-bot-1792197908804.repl26a",
+          "replay_sha256": "e2fc651aada79d82cf7aa1ab1b1654380838e777e004b96c61354d7ce8e6f624",
+          "map_sha256": "95a4e64280dfd13f8d00b58b2ea651335c1203a08df1ef6d53ded8ab990cdb90",
+          "engine_version": "0.0.2",
+          "engine_build": "02c4624c8c9b8bcaf9d906f407c0b1d932d5b5bce6e8ea7e222e08065dd9cede",
+          "native_faults": {
+            "teamA": 0,
+            "teamB": 0
+          },
+          "fuel": 0
+        }
+      ],
+      "original_scope": "Exact production Bot::turn after a lawful movement prelude clears, captures and banks36gems; other bodies idle. Original native Expanse geometry, actual metadata/HP/actions. No World/mission/stat/wallet/claim/score projections. Controlled integration, not strength evidence."
+    },
+    {
+      "suffix": "cast-cooldown",
+      "path": "native-final25-cast-cooldown\\report.json",
+      "report_sha256": "62b2b635583f1cbe5b70e26fa45e3d32d1aa757b8c00a57a9a90bc08e02b15af",
+      "passed": true,
+      "same_production_headers": true,
+      "same_production_main": true,
+      "main_binding_verified": false,
+      "main_exercised": false,
+      "main_binding_scope": "All32 production headers match;25 and25r1 production main are identical, but cooldown fixture does not include or execute main.",
+      "module_sha256": "81f9b604d8a1b56b61bed6e4956b16ab322d0930abc5850ca6a1029ad97bddbb",
+      "wrapper_sha256": "e85a21983212a361e6fbcfffcf23fe37beafcf4f951e6ba543a4ddbe131c87ff",
+      "relevant_tool_sha256": {
+        "native-cast-only/run_native.py": "7faec8aa6a707e7f3a3ae5fd438536c9593ec55403cfb3ca7586d8b308fb6307",
+        "native-cast-only/cooldown.cpp": "e85a21983212a361e6fbcfffcf23fe37beafcf4f951e6ba543a4ddbe131c87ff",
+        "native-cast-only/fixture.map26a": "95a4e64280dfd13f8d00b58b2ea651335c1203a08df1ef6d53ded8ab990cdb90"
+      },
+      "retained_games": [
+        {
+          "statistics_path": "native-final25-cast-cooldown\\game\\statistics.json",
+          "statistics_sha256": "222742bf35d36aacacc480097cda9f572c1c4123fa9ba4da677ca53e4e49216b",
+          "replay_path": "native-final25-cast-cooldown\\game\\bot-vs-bot-1792197878641.repl26a",
+          "replay_sha256": "b09a7551f73cb097c54d938c42b2d4ce3ab5ccb84c9e881a12b8f9e28ca19175",
+          "map_sha256": "95a4e64280dfd13f8d00b58b2ea651335c1203a08df1ef6d53ded8ab990cdb90",
+          "engine_version": "0.0.2",
+          "engine_build": "02c4624c8c9b8bcaf9d906f407c0b1d932d5b5bce6e8ea7e222e08065dd9cede",
+          "native_faults": {
+            "teamA": 0,
+            "teamB": 0
+          },
+          "fuel": 0
+        }
+      ],
+      "original_scope": "A lawful priming cast and three real owner ends create initial cooldown5. The shared controller waits then clears. Original native Expanse geometry, actual metadata/HP/actions. No World/mission/stat/wallet/claim/score projections. Controlled integration, not strength evidence."
+    },
+    {
+      "suffix": "awake-ordinary",
+      "path": "native-final25-awake-ordinary\\report.json",
+      "report_sha256": "a1cc2e7c7e073e4f9c6e1e628ccfa4b225d388f4e1cab039413e76b23b07dff7",
+      "passed": true,
+      "same_production_headers": true,
+      "same_production_main": true,
+      "main_binding_verified": true,
+      "main_exercised": true,
+      "main_binding_scope": "Exact retained production main and32headers.",
+      "module_sha256": "277870907415bd13e6d7b6fc1dcc29f4f8c35267602bdb86113698e3e4b8fa0e",
+      "wrapper_sha256": "3cf0811f4020e91c69c2b385038cf034c45400898fd36411622066678f1ca1bc",
+      "relevant_tool_sha256": {
+        "run_native_awake_entry.py": "06fa9a4a2a8cdae8b6292611fb07dca9a5fbd5490556cbc69099aef29b765ab9",
+        "native_awake_trace.mjs": "ae13cd9978c5965b3978e93b288f8190b09b3a6308e1d94bce5d3b2310d7eaff",
+        "fixtures/native-awake-entry.cpp": "3cf0811f4020e91c69c2b385038cf034c45400898fd36411622066678f1ca1bc",
+        "fixtures/native-cycle.map26a": "486eb1577ee0dc27aec5e9162e75123cfee96d597d317c3c6f3966bc69dfe967",
+        "fixtures/native-cycle-map.json": "87a8d5aa7cffc320516fd47abf618b8f0f75fed6b3c31dbb908a49aa0c642a40"
+      },
+      "retained_games": [
+        {
+          "statistics_path": "native-final25-awake-ordinary\\game\\statistics.json",
+          "statistics_sha256": "5de5715db5dbda5088fe712250e293b3082ef34543f790245c806aea052a2778",
+          "replay_path": "native-final25-awake-ordinary\\game\\bot-vs-bot-1792197886831.repl26a",
+          "replay_sha256": "ef4bcf223a6ab20f874b26be1d8eecfb483a72947a87fea31854cbc3e9742db4",
+          "map_sha256": "486eb1577ee0dc27aec5e9162e75123cfee96d597d317c3c6f3966bc69dfe967",
+          "engine_version": "0.0.2",
+          "engine_build": "02c4624c8c9b8bcaf9d906f407c0b1d932d5b5bce6e8ea7e222e08065dd9cede",
+          "native_faults": {
+            "teamA": 0,
+            "teamB": 0
+          },
+          "fuel": 0
+        }
+      ],
+      "original_scope": "Lawful native prelude, then exact production Bot::turn, on both sides.\n\nThe wrapper module differs from the competitive main. It physically wakes a\nsingleton and moves outside basic range, without editing production World,\nstats, inventory, claims, mission, or Bot memory. Boundary mode waits for real\ncamp damage before handoff. Read-only native reconstruction verifies actual\nHP below .75 at the paid-current consumer, plus the same owner's native\nclear/capture/bank. This is scoped activation/correctness, not strength proof.\n"
+    },
+    {
+      "suffix": "awake-boundary",
+      "path": "native-final25-awake-boundary\\report.json",
+      "report_sha256": "7537f1189109eda83748b9a1c6f31f17bfb59ce98f12a944315ea33a9d822a5a",
+      "passed": true,
+      "same_production_headers": true,
+      "same_production_main": true,
+      "main_binding_verified": true,
+      "main_exercised": true,
+      "main_binding_scope": "Exact retained production main and32headers.",
+      "module_sha256": "125a7ad63ccb3ae755c3cf6ce6674304dcf5db8806323a6e205c74a558a9599c",
+      "wrapper_sha256": "a5319b15e52225841d5629996affbed93733ea10d06e9854a2717e82b7bf0200",
+      "relevant_tool_sha256": {
+        "run_native_awake_entry.py": "06fa9a4a2a8cdae8b6292611fb07dca9a5fbd5490556cbc69099aef29b765ab9",
+        "native_awake_trace.mjs": "ae13cd9978c5965b3978e93b288f8190b09b3a6308e1d94bce5d3b2310d7eaff",
+        "fixtures/native-awake-entry.cpp": "3cf0811f4020e91c69c2b385038cf034c45400898fd36411622066678f1ca1bc",
+        "fixtures/native-cycle.map26a": "486eb1577ee0dc27aec5e9162e75123cfee96d597d317c3c6f3966bc69dfe967",
+        "fixtures/native-cycle-map.json": "87a8d5aa7cffc320516fd47abf618b8f0f75fed6b3c31dbb908a49aa0c642a40"
+      },
+      "retained_games": [
+        {
+          "statistics_path": "native-final25-awake-boundary\\game\\statistics.json",
+          "statistics_sha256": "956035948f799de7d75743d1810c87a418c58331a04a827a44fa87c3901f7718",
+          "replay_path": "native-final25-awake-boundary\\game\\bot-vs-bot-1792197885119.repl26a",
+          "replay_sha256": "581a2dbd4b843221d555300795145414d21e42833865c2374f55daff1dcbe445",
+          "map_sha256": "486eb1577ee0dc27aec5e9162e75123cfee96d597d317c3c6f3966bc69dfe967",
+          "engine_version": "0.0.2",
+          "engine_build": "02c4624c8c9b8bcaf9d906f407c0b1d932d5b5bce6e8ea7e222e08065dd9cede",
+          "native_faults": {
+            "teamA": 0,
+            "teamB": 0
+          },
+          "fuel": 0
+        }
+      ],
+      "original_scope": "Lawful native prelude, then exact production Bot::turn, on both sides.\n\nThe wrapper module differs from the competitive main. It physically wakes a\nsingleton and moves outside basic range, without editing production World,\nstats, inventory, claims, mission, or Bot memory. Boundary mode waits for real\ncamp damage before handoff. Read-only native reconstruction verifies actual\nHP below .75 at the paid-current consumer, plus the same owner's native\nclear/capture/bank. This is scoped activation/correctness, not strength proof.\n"
+    }
+  ]
+}

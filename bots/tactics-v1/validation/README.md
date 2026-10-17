@@ -1,36 +1,13 @@
-# Integration20 review evidence
+# Current review evidence
 
-This directory records failed strength results as well as successful correctness checks.
-It is not a submission recommendation. Source hashes match the built release module;
-the README is updated after testing and does not change the compiled code.
+The current combined bot is **not stronger than the original**. Its 28 fixed development games are 1W/27L (original1W/15L; sparring0W/12L). Total own score falls from6,492 in24r1 to4,405 here; this adverse result is retained. Runtime correctness does not establish a good macro policy.
 
-The tools README retains older source-scoped native scenarios. In particular, do not use
-the old `run_native_cash_investment.py` Wolf-unlock expectation as a passing assertion
-for integration20: after the phase-clock fix Cassi can already clear that Wolf without
-the Health purchase. The pure `shopping-cash` suite has 33 corrected checks. The separate
-partial-emblem case below is the current positive native investment evidence.
+`integration25r1-results.json` joins exact source/build/pure/development/audit evidence. `integration25r1-native-reuse.json` verifies source-identical reuse of six successful scoped reports (seven retained games, zero new games): actual cash/item/gem/bank, one-extra-camp chain, cast-only full controller, realCD5, ordinary awake entry and760→740HP boundary entry. The cooldown fixture does not execute production main; other wrappers execute Bot after lawful preparation. Their module hashes differ from the competitive module.
 
-- `strength20.json`: every predeclared development slot, both sides, all adverse results.
-- `pure20.json`: actual production helpers and standalone SDK header compilation.
-- `autonomous20-*.json`: all allies run the exact production module against an inert opponent;
-  strict primary crew-cycle evidence passes3/4. Score alone never substitutes for that assertion.
-- `early-assembly20.json`: accepted early moves joined to actual native movement.
-- `cache20.json`: explicitly projected identical registries for old/fixed cache cost and eligibility.
-- `cash-partial20.json`: a real scripted income/shopping prelude, followed by unchanged autonomous
-  main earning its next cash, completing the named emblem, clearing and banking the actual Elk.
-  This is a different positive scenario; the old Wolf-unlock contract remains obsolete.
-- `handbook20.json`: source-level96-topic reconciliation. Source presence is not native verification;
-  required partials and bounded/optional tactics remain explicit.
+All49 pure suites,32 standalone headers and the combined include check pass. Frozen25's failed lifecycle package is preserved;25r1 changes only the test template, including the actual awake maintenance dependency and an explicit fake native epoch. Production bytes are unchanged. This repairs test execution, not gameplay strength.
 
-Earlier integration directories retain their own source affinity. No failed cohort is overwritten
-or relabeled as passing.18 final holdout games remain unopened. Validation runner/tool paths
-are local examples; SDK/CLI/engine hashes, source bytes and module hashes are authoritative.
+Required partials remain in06.2 grouping/splitting (including valid-current-job resizing),06.5 group travel,08.1 camp selection and08.2 opening farming allocation. See the96-topic handbook audit; no topic is marked Verified.
 
-The four-file native cash supplement is pinned separately in
-`cash-tools20-supplement.json`; it was replay-validated against exact retained
-integration20 source/module/engine/map bytes after the pure package was frozen.
-It is not relabeled as part of the 38-suite run. To reproduce physically from scratch:
+integration25r1: 1W/27L; 49 pure suites, 32 standalone headers and their combined include check pass. Candidate events: 0 fuel pauses, 0 native faults, 0 caught errors, 0 action/API errors.
 
-```powershell
-python tools/tactics-v1-validation/run_native_cash_partial.py --cli C:/path/to/cambc.exe --project C:/path/to/arena --source bots/tactics-v1/src --output work/native-cash-partial
-```
+Every predeclared development result, including adverse results and legacy opponent errors, is retained. Source presence is not implementation completion. The handbook audit reports required partials and bounded/optional scope. Pure cases, controlled native activation and full competitive games are different evidence scopes. Separate native reports retain their own source/module/map affinity; they do not certify all paths in this combined source. Older checkpoint files remain historical evidence. No failed result is relabeled as passing.

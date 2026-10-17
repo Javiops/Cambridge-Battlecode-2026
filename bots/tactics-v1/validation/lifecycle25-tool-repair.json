@@ -1,0 +1,97 @@
+{
+  "passed": true,
+  "scope": "Test package repair only; exact frozen25 production source unchanged. Do not reinterpret original frozen25 failed package as passing.",
+  "changed": [
+    "fixtures/assembly-lifecycle.cpp"
+  ],
+  "unchanged": [
+    "lifecycle_fixture.py exact extraction",
+    "all production source",
+    "run_tests.py registry"
+  ],
+  "old_frozen_template_sha256": "9aa0817c67ee0d806aa806eab4b6856f3c46b4b08f87431b7be87b7e82d54ddd",
+  "repaired_live_template_sha256": "511a0c7faed6cab66a903869366801559fdd2e6b1f85d941e6bd911efd798898",
+  "actual_generated_fixture_sha256": "f47e4d54b076ea82011c1893955977c13bda02eb3c51057a2934ca660afdacc7",
+  "module_sha256": "d21cfbe76d6d49f75435deb97cd3dd3b75878fccc2c8e1101a239bab07b24803",
+  "lifecycle_checks": 40,
+  "retained_existing_checks": 35,
+  "new_exact_maintenance_cases": [
+    "fresh next-owner receipt",
+    "stale native epoch",
+    "fixed expiry before same-owner shortcut",
+    "fresh missing named camp",
+    "actual Reward protected continuity"
+  ],
+  "stdout": "40 assembly lifecycle checks passed\n",
+  "focused_awake": [
+    {
+      "name": "awake-entry",
+      "source": "C:\\Users\\frans\\Documents\\Codex\\2026-10-14\\v\\work\\tactics-bot-v1\\testing\\improvement-v2\\candidates\\integration25\\src",
+      "fixture_sha256": "7bd6d6ca6e0c30e256191b3657bf6c453a08910fac7b6acb812f45d2eded6b17",
+      "module_sha256": "8e47263e60106b595e1ddbaf37d0ab026df200f1aa07624ae6ea9ac3677edd8d",
+      "stdout": "35 awake entry lease checks passed\n",
+      "command": [
+        "C:/Users/frans/AppData/Local/cambc/wasi-sdk-33/bin/clang++.exe",
+        "-std=c++20",
+        "-O1",
+        "-fwasm-exceptions",
+        "-mllvm",
+        "-wasm-use-legacy-eh=false",
+        "-I",
+        "C:\\Users\\frans\\Documents\\Codex\\2026-10-14\\v\\work\\tactics-bot-v1\\testing\\improvement-v2\\candidates\\integration25\\src",
+        "C:\\Users\\frans\\Documents\\Codex\\2026-10-14\\v\\work\\tactics-bot-v1\\repo\\tools\\tactics-v1-validation\\fixtures\\awake-entry.cpp",
+        "-lunwind",
+        "-o",
+        "C:\\Users\\frans\\Documents\\Codex\\2026-10-14\\v\\work\\tactics-bot-v1\\testing\\improvement-v2\\awake24\\lifecycle25-tool-repair\\awake-entry.wasm"
+      ]
+    },
+    {
+      "name": "awake-arrival",
+      "source": "C:\\Users\\frans\\Documents\\Codex\\2026-10-14\\v\\work\\tactics-bot-v1\\testing\\improvement-v2\\candidates\\integration25\\src",
+      "fixture_sha256": "5e079dba21a61ee3aec24c2f289a5307667cdbbc7480d4470c4ef25de6e6653d",
+      "module_sha256": "8f54db0df79d6d04b4c02f570d8abc4502283c7da47494983e1a2db5247141a0",
+      "stdout": "21 awake arrival checks passed\n",
+      "command": [
+        "C:/Users/frans/AppData/Local/cambc/wasi-sdk-33/bin/clang++.exe",
+        "-std=c++20",
+        "-O1",
+        "-fwasm-exceptions",
+        "-mllvm",
+        "-wasm-use-legacy-eh=false",
+        "-I",
+        "C:\\Users\\frans\\Documents\\Codex\\2026-10-14\\v\\work\\tactics-bot-v1\\testing\\improvement-v2\\candidates\\integration25\\src",
+        "C:\\Users\\frans\\Documents\\Codex\\2026-10-14\\v\\work\\tactics-bot-v1\\repo\\tools\\tactics-v1-validation\\fixtures\\awake-arrival.cpp",
+        "-lunwind",
+        "-o",
+        "C:\\Users\\frans\\Documents\\Codex\\2026-10-14\\v\\work\\tactics-bot-v1\\testing\\improvement-v2\\awake24\\lifecycle25-tool-repair\\awake-arrival.wasm"
+      ]
+    },
+    {
+      "name": "awake-entry-caller",
+      "source": "C:\\Users\\frans\\Documents\\Codex\\2026-10-14\\v\\work\\tactics-bot-v1\\testing\\improvement-v2\\candidates\\integration25\\src",
+      "fixture_sha256": "dc8d3527ed49439f76467e21c5c6500efe8f2c809dac4e38b6b957f4629f2091",
+      "module_sha256": "d4be77004aa5f93b2efcaef5369fe06640edf0a7adbf06e997cdd97ee06f7062",
+      "stdout": "19 pending awake caller checks passed\n",
+      "command": [
+        "C:/Users/frans/AppData/Local/cambc/wasi-sdk-33/bin/clang++.exe",
+        "-std=c++20",
+        "-O1",
+        "-fwasm-exceptions",
+        "-mllvm",
+        "-wasm-use-legacy-eh=false",
+        "-I",
+        "C:\\Users\\frans\\Documents\\Codex\\2026-10-14\\v\\work\\tactics-bot-v1\\testing\\improvement-v2\\candidates\\integration25\\src",
+        "C:\\Users\\frans\\Documents\\Codex\\2026-10-14\\v\\work\\tactics-bot-v1\\testing\\improvement-v2\\awake24\\lifecycle25-tool-repair\\awake-entry-caller.cpp",
+        "-lunwind",
+        "-o",
+        "C:\\Users\\frans\\Documents\\Codex\\2026-10-14\\v\\work\\tactics-bot-v1\\testing\\improvement-v2\\awake24\\lifecycle25-tool-repair\\awake-entry-caller.wasm"
+      ]
+    }
+  ],
+  "historical_source23": {
+    "compile_succeeded": true,
+    "policy_passed": false,
+    "reason": "Existing newer personal-payout chain assertion correctly rejects old23 implementation. Not attributed to the include/epoch repair.",
+    "log": "C:\\Users\\frans\\Documents\\Codex\\2026-10-14\\v\\work\\tactics-bot-v1\\testing\\improvement-v2\\awake24\\lifecycle25-tool-repair\\historical23-run.log"
+  }
+}

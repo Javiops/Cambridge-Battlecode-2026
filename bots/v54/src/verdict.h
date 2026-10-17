@@ -57,6 +57,9 @@
 #ifndef P_PV_REJUDGE
 #define P_PV_REJUDGE 0  // 1 = a "no verdict" engagement is re-judged every round: leave if the ratio drops under P_PV_LEAVE x 0.75
 #endif
+#ifndef P_PV_NEWFOE
+#define P_PV_NEWFOE 0  // 1 = judged again (both ways, same cuts) whenever more foes are within P_PV_ER than at the last judgement
+#endif
 #ifndef P_PV_KEEPCAP
 #define P_PV_KEEPCAP 0  // 1 = a "leave" verdict does not pull a champion off a capture unless a foe is within 3
 #endif
@@ -67,6 +70,7 @@ namespace pv {
 inline int g_verdict = 0;    // 0 none (v52 rules), 1 fight, 2 leave
 inline int g_last = -100;    // last round with an enemy champion within 8
 inline bool g_judged = false;
+inline int g_nth = 0;        // P_PV_NEWFOE: foes within P_PV_ER at the last judgement
 
 // P_PVSP (2026-10-17, user: "ten en cuenta el daño real de los hechizos"): unit_dps counts 1.5 x focus every
 // 8 rounds for everyone, but Stellar, Tavi and Cassi hit 2.0-2.2 x focus, an attack reset adds a basic attack, and
@@ -340,6 +344,13 @@ inline double judge(State& s, bc::champion& me, const std::vector<Foe>& foes) {
     return P_PVSIM ? sim_ratio(s, me, foes) : power_ratio(s, me, foes);
 }
 
+inline int count_near(State& s, const std::vector<Foe>& foes) {
+    int n = 0;
+    for (auto& f : foes)
+        if (f.d <= P_PV_ER && !s.en_spawn.is_set(f.p)) ++n;
+    return n;
+}
+
 inline int verdict(State& s, bc::champion& me, const std::vector<Foe>& foes, int round, bool on_spawn) {
     int nearest = 99;
     for (auto& f : foes)
@@ -373,7 +384,17 @@ inline int verdict(State& s, bc::champion& me, const std::vector<Foe>& foes, int
                         power_ratio(s, me, foes, false), power_ratio(s, me, foes, true), sim_ratio(s, me, foes));
         }
         g_verdict = r < P_PV_LEAVE ? 2 : (P_PV >= 2 && r >= P_PV_FIGHT ? 1 : 0);
+        if (P_PV_NEWFOE) g_nth = count_near(s, foes);
         return g_verdict;
+    }
+    if (P_PV_NEWFOE) {  // user 2026-10-17: a fight judged 2v2 is not the same fight once a third enemy walks in
+        int n = count_near(s, foes);
+        if (n > g_nth) {
+            g_nth = n;
+            double r = judge(s, me, foes) * 100.0;
+            g_verdict = r < P_PV_LEAVE ? 2 : (P_PV >= 2 && r >= P_PV_FIGHT ? 1 : 0);
+            return g_verdict;
+        }
     }
     if (P_PV_REJUDGE && !g_verdict && nearest <= P_PV_R) {  // packs r110-120: judged 2.6 at contact, then 0.1, never re-judged
         double r = judge(s, me, foes) * 100.0;

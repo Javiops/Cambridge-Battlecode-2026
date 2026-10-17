@@ -387,6 +387,9 @@ namespace {
 #ifndef P_CALLHELP
 #define P_CALLHELP 0
 #endif
+#ifndef P_PVCOMMIT
+#define P_PVCOMMIT 0  // >0 (tiles): with P_PV 2, a "fight" verdict sends us at the weakest foe within this many tiles
+#endif
 #ifndef P_PVKITE
 #define P_PVKITE 0  // fight.h: kite and call for help on a leave verdict
 #endif
@@ -3735,7 +3738,8 @@ void play_turn(State& s) {
                 return;
             }
             g_mode = "pv-leave";
-            fight::back_off(s, me, foes, round);
+            if (P_PVOUT) fight::pv_out(s, me, foes, round);
+            else fight::back_off(s, me, foes, round);
             return;
         }
         pv_fight = v == 1;
@@ -3834,6 +3838,15 @@ void play_turn(State& s) {
                 }
         if (pot_hold) favourable = true;
         if (pv_fight) favourable = true;
+        bool commit = false;  // P_PVCOMMIT: a clearly won verdict (P_PV 2, ratio >= P_PV_FIGHT): all of us on the weakest foe
+        if (P_PVCOMMIT && pv_fight && !helping && hpr > 0.25f) {
+            Foe* best = nullptr;
+            for (auto& f : foes) {
+                if (f.d > P_PVCOMMIT || s.en_spawn.is_set(f.p) || gone(f)) continue;
+                if (!best || f.hp < best->hp) best = &f;
+            }
+            if (best) { tgt = best; commit = true; }
+        }
         g_ally_near_tgt = false;
         if (tgt)
             for (auto& ap : allies)
@@ -3843,7 +3856,7 @@ void play_turn(State& s) {
         bool reachable = tgt && tgt->d <= me.attack_range() + 1;
         bool carrying = P_CARRY && gems >= P_CARRY;
         int low_pct = (P_CASSI_PCT && starts_with(s.name, "cassi")) ? P_CASSI_PCT : P_LOWHP;
-        if (!killable && !on_spawn && !pot_hold && ((low_pct && hpr * 100 < low_pct && nearest_foe <= 6) ||
+        if (!killable && !commit && !on_spawn && !pot_hold && ((low_pct && hpr * 100 < low_pct && nearest_foe <= 6) ||
                                        (carrying && !favourable && nearest_foe <= 6))) {
             g_mode = "avoid";
             if (carrying) {
@@ -3856,7 +3869,7 @@ void play_turn(State& s) {
             fight::back_off(s, me, foes, round);
             return;
         }
-        if (PR.outnum && !on_spawn && !(killable && reachable) && nearest_foe <= PR.outnum) {
+        if (PR.outnum && !commit && !on_spawn && !(killable && reachable) && nearest_foe <= PR.outnum) {
             int nb = 1, eb = 0;
             attempt([&] {
                 for (auto& a : bc::vision::champions(*s.my))
@@ -3881,10 +3894,10 @@ void play_turn(State& s) {
             g_mode = "front";
             return;
         }
-        if (tgt && carrying && !killable && !tgt->channeling) tgt = nullptr;
+        if (tgt && carrying && !commit && !killable && !tgt->channeling) tgt = nullptr;
         // P_NOCHASE2: a low or channelling foe is no reason to walk after it, unless it carries a big bag
         const bool close_enough = !PR.nochase2 || (tgt && (tgt->d <= me.attack_range() + 1 || tgt->gems >= P_CHASE_GEMS));
-        if (tgt && (((killable || tgt->channeling) && close_enough) || (reachable && favourable) || helping ||
+        if (tgt && (((killable || tgt->channeling) && close_enough) || (reachable && favourable) || helping || commit ||
                     (P_ALLYDUTY && favourable && tgt->d <= 8 && g_ally_near_tgt))) {
             bool acted = engage(s, me, tgt->c, tgt->p, true, true);
             if (acted || !P_U34_ENGAGE_FALLBACK) return;

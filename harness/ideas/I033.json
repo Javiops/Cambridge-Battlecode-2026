@@ -9,7 +9,7 @@
   "bot": "bots/team_baseline",
   "branch": "fran/v59-replay-fixes",
   "created": "2026-10-17T16:44Z",
-  "updated": "2026-10-17T18:31Z",
+  "updated": "2026-10-17T19:19Z",
   "history": [
     {
       "at": "2026-10-17T16:44Z",
@@ -28,6 +28,12 @@
       "stage": "local-test",
       "note": "Confirmed six-body sentinel correction selected for draft review. 37-37 vs v4 on 37 locked maps; 19-21 on 20 diagnostic maps; 36-0 sparring. 31-43 vs v59, identical outcomes to unchanged-v4 matched control. No strength gain demonstrated.",
       "result": "720,086 actual-function assertions and SDK on/off builds pass. Broader concentrated camp-damage/tanking model remains open; current-engine replay evidence in I035. All sources and comparisons remain separate. No full gate, online A/B or live activation."
+    },
+    {
+      "at": "2026-10-17T19:19Z",
+      "stage": "local-test",
+      "note": "I036 causal diagnostics: corrected camp lifecycle exposes unsafe recall; bounded escape fixes the first step but later legacy retreat re-enters camp range. Compositions remain unselected; I035 stays the review source.",
+      "result": "Triple composition: 25-15 vs raw v59 on 20 diagnostic maps, then 36-38 vs raw v59 and 36-38 vs selected base on the fixed 37-map confirmation. 36-0 sparring. Native faults 0; caught SDK errors remain. No demonstrated superiority, full promotion gate, online activation or upload recommendation."
     }
   ],
   "evidence": {
@@ -35,7 +41,8 @@
     "bundle": "docs/I033-budget-alerts-v4-evidence/",
     "panel_ledger": "docs/I033-budget-alerts-v4-evidence/final-games.csv",
     "postkill_study": "docs/I034-postkill-study.md",
-    "camp_roster_study": "docs/I035-camp-roster-bound.md"
+    "camp_roster_study": "docs/I035-camp-roster-bound.md",
+    "camp_lifecycle_diagnostics": "docs/I036-camp-lifecycle-diagnostics.md"
   },
   "pr": "35"
 }

@@ -64,6 +64,7 @@
 #include <variant>
 #include <cstdio>
 #include <exception>
+#include "channel_safety.h"
 
 namespace bc = cambc;
 using bc::vec2;
@@ -86,6 +87,9 @@ namespace {
 #endif
 #ifndef P_SHOP_GOLD
 #define P_SHOP_GOLD 300       // recall to shop (when below half health) from this much gold
+#endif
+#ifndef P_DP_CHANNEL_FIX
+#define P_DP_CHANNEL_FIX 1
 #endif
 #ifndef P_LEAN_CAMPS
 #define P_LEAN_CAMPS 1
@@ -713,11 +717,15 @@ void write_plan(const std::vector<std::uint8_t>& roster) {
     buf[26] = static_cast<std::byte>(P.flee_pct);
     buf[27] = static_cast<std::byte>(P.late_round / 10);
     draftplan::copy_to(buf);
+#if P_DP_MEMORY_FIX
+    draftplan::submit_plan(buf);
+#else
     attempt([&] {
         bc::draft_memory_buffer dm;
         dm = std::span<const std::byte>(buf.data(), buf.size());
         return true;
     });
+#endif
 }
 
 #include "mapplan.h"
@@ -1160,6 +1168,12 @@ struct State {
     std::uint64_t ct_cost = 20000;   // P_FUELGUARD: the dearest choose_target so far
     int init_stage = 0;              // start-up parts done (init)
     int thr_r = -1;
+    int ch_round = -1;
+    vec2 ch_pos{-1,-1};
+    bool ch_complete = false;
+    bool ch_camps_complete = false;
+    std::vector<vec2> ch_foes;
+    std::vector<bc::camp> ch_camps;
     // Capture-recall optional economy policy. Static return-trip distances.
     bc::distance_field cr_home_df;
     bc::bitboard cr_home_seen;
@@ -1543,6 +1557,16 @@ void init_roles(State& s, bc::champion& me) {
 
     attempt([&] {
         bc::draft_memory_buffer dm;
+#if P_DP_MEMORY_FIX
+        // Optional cache errors must not suppress the independent legacy settings.
+        attempt([&] { draftplan::load(dm); return true; });
+        const auto legacy=draftplan::read_legacy_settings(dm);
+        if (P_D34_FAMILY && legacy.family>=v34de::Unknown && legacy.family<=v34de::Rows) s.de_map=legacy.family;
+        if (legacy.tribute>=0) P.tribute_gems=legacy.tribute;
+        if (legacy.recall>=0) P.recall_pct=legacy.recall;
+        if (legacy.flee>=0) P.flee_pct=legacy.flee;
+        if (legacy.late>=0) P.late_round=legacy.late;
+#else
         draftplan::load(dm);
         if (dm.size() >= 28 && dm[0] == std::byte{'C'} && dm[1] == std::byte{'M'} &&
             dm[2] == std::byte{'B'} && dm[3] == std::byte{'1'}) {
@@ -1557,6 +1581,7 @@ void init_roles(State& s, bc::champion& me) {
             if (fl >= 5 && fl <= 80) P.flee_pct = fl;
             if (lr >= 500 && lr <= 2000) P.late_round = lr;
         }
+#endif
         return true;
     });
 
@@ -2069,12 +2094,16 @@ void broadcast_cooldown(int group, int ready_round) {
 // Camps of the live groups around us, through the group handles (cheap) instead of the
 // vision scan (very expensive). Only camps whose spawn area is in view are returned, so the
 // callers' health() queries do not throw.
-std::vector<bc::camp> near_camps(State& s, vec2 pos) {
+std::vector<bc::camp> near_camps(State& s, vec2 pos, bool* complete = nullptr) {
+    if (complete) *complete=true;
     // Cheap replacement for bc::vision::camps(): only groups near us, and only camps the
     // engine says are in vision (is_visible() reports hidden camps without throwing).
     std::vector<bc::camp> out;
     bc::bitboard tv;  // the engine's own "effective vision", the one state() checks
-    if (!attempt([&] { bc::vision::visible_tiles_into(tv); return true; })) return out;
+    if (!attempt([&] { bc::vision::visible_tiles_into(tv); return true; })) {
+        if (complete) *complete=false;
+        return out;
+    }
     for (auto& g : s.groups) {
         if (!g.obj || dist(g.center, pos) > P_LEAN_RADIUS) continue;
         bool seen = false;  // the engine refuses group queries when no camp spawn tile is in vision
@@ -2089,11 +2118,12 @@ std::vector<bc::camp> near_camps(State& s, vec2 pos) {
             });
             if (resp) continue;
         }
-        attempt([&] {
+        const bool known=attempt([&] {
             for (auto& c : g.obj->camps())
                 if (c.is_visible()) out.push_back(c);
             return true;
         });
+        if (!known && complete) *complete=false;
     }
     return out;
 }
@@ -2595,6 +2625,88 @@ void br_note(State& s, int round, int length, bool used_safe) {
 }
 
 
+// Local channel guard: baseline recall policy plus currently observed exposure.
+// It does not project a hypothetical stationary fight over the entire channel.
+bool channel_eligible(State& s, bc::champion& me, int round, bool recall) {
+    if (!P_DP_CHANNEL_FIX) return true;
+    if (static_cast<int>(bc::round_number())!=round || s.ch_round!=round || !s.ch_complete ||
+        (recall && !s.ch_camps_complete)) return false;
+    const vec2 p=me.position();
+    int nearest=99;
+    for (auto fp:s.ch_foes) nearest=std::min(nearest,dist(p,fp));
+    std::vector<bc::camp> moved_camps;
+    const auto* camps=&s.ch_camps;
+    bool unknown_near=false;
+    if (!(p==s.ch_pos)) {
+        // A move may reveal bodies absent from the pre-move snapshot. Only read
+        // positions here; never build another ability/stat observer.
+        if (!fuel_ok(7000)) return false;
+        if (!attempt([&] {
+            for (auto c:bc::vision::champions(*s.en)) {
+                if (!c.is_alive()) continue;
+                const vec2 cp=c.position();
+                nearest=std::min(nearest,dist(p,cp));
+                bool known=false;
+                for (auto fp:s.ch_foes) if (fp==cp) { known=true; break; }
+                if (!known && dist(p,cp)<=8) unknown_near=true;
+            }
+            return true;
+        })) return false;
+        if (recall) {
+            bool complete=true;
+            moved_camps=near_camps(s,p,&complete);
+            if (!complete) return false;
+            camps=&moved_camps;
+        }
+    }
+    if (!recall && P_TRIBSAFE && nearest<=P_TRIBSAFE) return false;
+    bool camp_near=false;
+    if (recall) for (auto c:*camps) {
+        if ((!c.is_wolf() && !c.is_elk() && !c.is_monolith()) || dist(c.spawn_position(),p)>CAMP_RANGE+1) continue;
+        if (!fuel_ok(5000)) return false;
+        if (!attempt([&] {
+            const int range=c.attack_range();
+            if (range<=0 || !c.is_awake()) return true;
+            const int d=dist(c.position(),p);
+            camp_near|=d<=range+1;
+            return true;
+        })) return false;
+    }
+    double enemy_damage=0;
+    bool control=false;
+    if (!s.ch_foes.empty()) {
+        if (s.thr_r!=round) return false;
+        enemy_damage=danger_at(s.thr,p);
+        for (const auto& t:s.thr) if (t.sr>=0 && dist(p,t.p)<=t.sr+1) control=true;
+    }
+    bool safe=nearest>7;
+    if (P_SAFE_RECALL) safe=safe && nearest>8 && round-s.hit_round>2;
+    const bool near_safe=s.rnear && nearest>=s.rnear && round-s.hit_round>=1;
+    const bool capture=s.target>=0 && s.target<static_cast<int>(s.groups.size()) &&
+        s.groups[s.target].reward_seen==round && s.groups[s.target].mask.is_set(p) && nearest>8;
+    const bool allowed=channel_safety::local_allowed(recall,safe||near_safe||capture,
+        camp_near,enemy_damage,me.health(),control,unknown_near);
+    return allowed && static_cast<int>(bc::round_number())==round;
+}
+bool start_recall(State& s, bc::champion& me, int round) {
+    if (P_DP_CHANNEL_FIX && !attempt([&] { return channel_eligible(s,me,round,true); })) return false;
+    return attempt([&] {
+        if (P_DP_CHANNEL_FIX && static_cast<int>(bc::round_number())!=round) return false;
+        const bool was_outside = P_DP_CHANNEL_FIX && !s.my_spawn.is_set(me.position());
+        me.recall();
+        return !P_DP_CHANNEL_FIX || me.is_recalling() || (was_outside && s.my_spawn.is_set(me.position()));
+    });
+}
+bool start_submission(State& s, bc::champion& me, vec2 altar, int round) {
+    if (P_DP_CHANNEL_FIX && !attempt([&] { return channel_eligible(s,me,round,false); })) return false;
+    return attempt([&] {
+        if (P_DP_CHANNEL_FIX && static_cast<int>(bc::round_number())!=round) return false;
+        const auto before = P_DP_CHANNEL_FIX ? me.gem_count() : 0;
+        me.submit_gems(altar);
+        return !P_DP_CHANNEL_FIX || me.is_submitting_gems() || me.gem_count()<before;
+    });
+}
+
 bool go_tribute(State& s, bc::champion& me, int round) {
     FP_SCOPE(20, "go_tribute");
     vec2 pos = me.position();
@@ -2605,7 +2717,7 @@ bool go_tribute(State& s, bc::champion& me, int round) {
     // 900 -> 420 hp, then lost the trade and died): no tribute starts with an enemy champion within P_TRIBSAFE.
     if (P_TRIBSAFE && dist(pos, *a) <= 1 && s.nf_r == round && s.nf_d <= P_TRIBSAFE) return false;
     if (dist(pos, *a) <= 1) {
-        bool acted = attempt([&] { me.submit_gems(*a); return true; });
+        bool acted = start_submission(s, me, *a, round);
         br_note(s, round, length, false);
         return acted;
     }
@@ -2620,10 +2732,11 @@ bool go_tribute(State& s, bc::champion& me, int round) {
         ring.draw_chebyshev(*a, 1.0f);
         moved = step_towards(s, me, ring, true);
     }
+    bool submitted = false;
     if (dist(me.position(), *a) <= 1 && !(P_TRIBSAFE && s.nf_r == round && s.nf_d <= P_TRIBSAFE))
-        attempt([&] { me.submit_gems(*a); return true; });
+        submitted = start_submission(s, me, *a, round);
     br_note(s, round, length, used_safe);
-    return moved;
+    return moved || (P_DP_CHANNEL_FIX && submitted);
 }
 
 // Step (and dash) to the reachable neighbour that is farthest from the enemies,
@@ -2791,7 +2904,7 @@ bool dp_finish_bank(State& s, bc::champion& me, const std::vector<Foe>& foes,
 
     if (!on_spawn && hpr * 100 < P_DP_FINISH_RECALL_HP && nearest > 8) {
         g_mode = "finish-recall";
-        if (attempt([&] { me.recall(); return true; })) return true;
+        if (start_recall(s, me, round)) return true;
     }
 
     const vec2 pos = me.position();
@@ -2828,7 +2941,7 @@ bool dp_finish_bank(State& s, bc::champion& me, const std::vector<Foe>& foes,
         const vec2 altar = s.altars[best];
         if (dist(pos, altar) <= 1 && nearest >= 5) {
             g_mode = "finish-submit";
-            return attempt([&] { me.submit_gems(altar); return true; });
+            return start_submission(s, me, altar, round);
         }
         s.br_risk_block = risk;
         g_mode = "finish-safe";
@@ -2837,7 +2950,7 @@ bool dp_finish_bank(State& s, bc::champion& me, const std::vector<Foe>& foes,
                 int now_near = 99;
                 for (auto& f : foes) now_near = std::min(now_near, dist(me.position(), f.p));
                 if (now_near >= 5)
-                    attempt([&] { me.submit_gems(altar); return true; });
+                    start_submission(s, me, altar, round);
             }
             return true;
         }
@@ -3523,9 +3636,11 @@ void play_turn(State& s) {
     FP(5, "foes");
 
     std::vector<Foe> foes;
+    bool channel_foes_complete=true;
     for (auto& c : bc::vision::champions(*s.en)) {
+        bool inspected=false;
         attempt([&] {
-            if (!c.is_alive()) return false;
+            if (!c.is_alive()) { inspected=true; return false; }
             Foe f{c, c.position(), c.health(), 0, 0, false};
             f.d = dist(f.p, pos);
             attempt([&] {
@@ -3537,8 +3652,10 @@ void play_turn(State& s) {
                 return true;
             });
             foes.push_back(f);
+            inspected=true;
             return true;
         });
+        if (!inspected) channel_foes_complete=false;
     }
     if (P_NOCHASE) {
         // Away: it stepped farther from where we stood, or toward its spawn without coming closer to us;
@@ -3581,7 +3698,8 @@ void play_turn(State& s) {
     }
     if (!foes.empty()) s.foe_r = round;
     FP(6, "camps");
-    std::vector<bc::camp> camps = P_LEAN_CAMPS ? near_camps(s, pos) : bc::vision::camps();
+    bool channel_camps_complete=true;
+    std::vector<bc::camp> camps = P_LEAN_CAMPS ? near_camps(s,pos,P_DP_CHANNEL_FIX?&channel_camps_complete:nullptr) : bc::vision::camps();
 
     bool awake_camp_near = false;
     for (auto& c : camps)
@@ -3604,6 +3722,14 @@ void play_turn(State& s) {
     if (P_SAFE_RECALL) safe = safe && nearest_foe > 8 && round - s.hit_round > 2;
     // P_RECALL_NEAR: a recall only needs nobody to hit us while it channels, not an empty screen
     bool rsafe = safe || (s.rnear && nearest_foe >= s.rnear && round - s.hit_round >= 1 && !awake_camp_near);
+    if (P_DP_CHANNEL_FIX) {
+        s.ch_round=round; s.ch_pos=pos;
+        s.ch_complete=channel_foes_complete;
+        s.ch_camps_complete=channel_camps_complete;
+        s.ch_foes.clear();
+        for (const auto& f:foes) s.ch_foes.push_back(f.p);
+        s.ch_camps=camps;
+    }
 
     if (P_DP_FINISH && dp_finish_bank(s, me, foes, round, gems, hpr, on_spawn)) return;
 
@@ -3665,10 +3791,7 @@ void play_turn(State& s) {
         }
         if (gems > 0 && go_tribute(s, me, round)) return;
         if (hpr < 0.9f) {
-            if (safe && attempt([&] {
-                    me.recall();
-                    return true;
-                }))
+            if (safe && start_recall(s, me, round))
                 return;
             if (flee(s, me)) return;
         }
@@ -3729,10 +3852,7 @@ void play_turn(State& s) {
                     if (s.cap_start < 0) s.cap_start = round;
                     bool want_home = hpr * 100 < P.recall_pct || (round - s.need_heal <= 2 && hpr < 0.8f);
                     if (want_home && rsafe && round - s.cap_start >= P_CAPRECALL_DELAY)
-                        attempt([&] {
-                            me.recall();
-                            return true;
-                        });
+                        start_recall(s, me, round);
                 }
                 if (!me.is_recalling()) shoot_back(s, me, foes);
                 return;
@@ -3753,12 +3873,9 @@ void play_turn(State& s) {
         if (!g.mask.is_set(pos)) step_towards(s, me, g.mask, true);
         if (g.mask.is_set(me.position())) {
             if (s.cap_start < 0) s.cap_start = round;
-            attempt([&] {
-                me.recall();
-                return true;
-            });
+            if (start_recall(s, me, round)) return;
         }
-        return;
+        if (!P_DP_CHANNEL_FIX) return;
     }
 
     // 2. Badly hurt: run, or recall if nobody can interrupt.
@@ -3771,15 +3888,12 @@ void play_turn(State& s) {
             auto a = best_altar(s, pos, round);
             if (a && dist(*a, pos) <= 1) {  // tribute is not interrupted by damage
                 bool acted = go_tribute(s, me, round);
-                if (acted || !P_U34_FAILED_CHANNELS) return;
+                if (acted || !(P_U34_FAILED_CHANNELS || P_DP_CHANNEL_FIX)) return;
             }
         }
         bool recalled = false;
-        if (rsafe) recalled = attempt([&] {
-            me.recall();
-            return true;
-        });
-        if (!rsafe || (P_U34_FAILED_CHANNELS && !recalled)) {
+        if (rsafe) recalled = start_recall(s, me, round);
+        if (!rsafe || ((P_U34_FAILED_CHANNELS || P_DP_CHANNEL_FIX) && !recalled)) {
             bool hit = P_HITFIRST && fight::hit_now(s, me, foes);
             flee(s, me);
             if (!hit) shoot_back(s, me, foes);
@@ -3790,10 +3904,7 @@ void play_turn(State& s) {
     if (!capture_before_recall && s.rnear && !safe && rsafe && !on_spawn &&
         dist(pos, s.spawn_center) > 6 && hpr * 100 < P.recall_pct) {
         g_mode = "near-recall";  // the #1: hurt, out of the fight by 4-6 tiles: recall now, come back whole
-        if (attempt([&] {
-                me.recall();
-                return true;
-            }))
+        if (start_recall(s, me, round))
             return;
     }
 
@@ -3960,7 +4071,7 @@ void play_turn(State& s) {
                 auto a = best_altar(s, pos, round);
                 if (a && dist(*a, pos) <= 1 && nearest_foe > 3) {
                     bool acted = go_tribute(s, me, round);
-                    if (acted || !P_U34_FAILED_CHANNELS) return;
+                    if (acted || !(P_U34_FAILED_CHANNELS || P_DP_CHANNEL_FIX)) return;
                 }
             }
             fight::back_off(s, me, foes, round);
@@ -4024,15 +4135,13 @@ void play_turn(State& s) {
         if (g.reward_seen == round && !other_captures(s, me, g, s.target)) {
             if (g.mask.is_set(pos) && (P_CAPRECALL_DELAY == 0 || (s.cap_start >= 0 && round - s.cap_start >= P_CAPRECALL_DELAY))) {
                 g_mode = "cap-recall";
-                if (attempt([&] {
-                        me.recall();
-                        return true;
-                    })) {
+                const bool recalled = start_recall(s, me, round);
+                if (recalled) {
                     ++s.cr_started;
                     cr_trace(s, round);
                     if (shop_trip) s.shop_recall = round;
                 }
-                return;
+                if (recalled || !P_DP_CHANNEL_FIX) return;
             }
             want_recall = false;  // step on the tiles first
         }
@@ -4047,10 +4156,7 @@ void play_turn(State& s) {
             if (go) {
                 g_mode = "back-home";
                 drop_target(s);
-                if (rsafe && attempt([&] {
-                        me.recall();
-                        return true;
-                    }))
+                if (rsafe && start_recall(s, me, round))
                     return;
                 if (flee(s, me)) return;
             } else if (t != s.target) {
@@ -4067,15 +4173,12 @@ void play_turn(State& s) {
             if (a && br_altar_distance(s, *a, pos, round) <= std::min(home, 12)) {
                 g_mode = "tribute";
                 bool acted = go_tribute(s, me, round);
-                if (acted || !P_U34_FAILED_CHANNELS) return;
+                if (acted || !(P_U34_FAILED_CHANNELS || P_DP_CHANNEL_FIX)) return;
             }
         }
-        bool recalled = attempt([&] {
-            me.recall();
-            return true;
-        });
+        bool recalled = start_recall(s, me, round);
         if (recalled && shop_trip) s.shop_recall = round;
-        if (recalled || !P_U34_FAILED_CHANNELS) return;
+        if (recalled || !(P_U34_FAILED_CHANNELS || P_DP_CHANNEL_FIX)) return;
     }
 
     if (P_WALKHOME && !safe && home > 6 && hpr * 100 < P.recall_pct && nearest_foe > 2) {
@@ -4129,15 +4232,12 @@ void play_turn(State& s) {
             if (P_TELE && safe && s.tele_sa >= 0 && s.tele_va.is_set(pos) && !s.my_spawn.is_set(pos) &&
                 static_cast<int>(s.tele_fa.get(pos)) > 5 + s.tele_sa + P_TELE) {
                 g_mode = "tele-bank";
-                if (attempt([&] {
-                        me.recall();
-                        return true;
-                    }))
-                    s.shop_recall = round;
-                return;
+                const bool recalled = start_recall(s, me, round);
+                if (recalled) s.shop_recall = round;
+                if (recalled || !P_DP_CHANNEL_FIX) return;
             }
             bool acted = go_tribute(s, me, round);
-            if (acted || !P_U34_FAILED_CHANNELS) return;
+            if (acted || !(P_U34_FAILED_CHANNELS || P_DP_CHANNEL_FIX)) return;
         }
     }
 

@@ -127,3 +127,9 @@
 #define P_DP_BANK 1
 #define P_DP_WARDS 1
 #define P_DP_FINISH 1
+
+#define P_DP_MEMORY_FIX 1
+
+#define P_DP_ANCHOR_FIX 1
+
+#define P_DP_CHANNEL_FIX 1

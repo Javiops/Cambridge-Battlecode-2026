@@ -60,6 +60,9 @@
 #ifndef P_PV_NEWFOE
 #define P_PV_NEWFOE 0  // 1 = judged again (both ways, same cuts) whenever more foes are within P_PV_ER than at the last judgement
 #endif
+#ifndef P_PVFUEL
+#define P_PVFUEL 0  // >0: re-judging an engagement after first contact (hysteresis, P_PV_NEWFOE, P_PV_REJUDGE) needs this much fuel left
+#endif
 #ifndef P_PV_KEEPCAP
 #define P_PV_KEEPCAP 0  // 1 = a "leave" verdict does not pull a champion off a capture unless a foe is within 3
 #endif
@@ -387,6 +390,7 @@ inline int verdict(State& s, bc::champion& me, const std::vector<Foe>& foes, int
         if (P_PV_NEWFOE) g_nth = count_near(s, foes);
         return g_verdict;
     }
+    if (P_PVFUEL && !fuel_ok(P_PVFUEL)) return g_verdict;  // lanes 2026-10-17: re-judging every round cost fuel-out turns
     if (P_PV_NEWFOE) {  // user 2026-10-17: a fight judged 2v2 is not the same fight once a third enemy walks in
         int n = count_near(s, foes);
         if (n > g_nth) {

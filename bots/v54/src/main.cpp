@@ -387,6 +387,9 @@ namespace {
 #ifndef P_CALLHELP
 #define P_CALLHELP 0
 #endif
+#ifndef P_GREF_R
+#define P_GREF_R 0  // >0: refresh_groups reads far groups' state one round in 4 (fuel, lanes 2026-10-17)
+#endif
 #ifndef P_PVCOMMIT
 #define P_PVCOMMIT 0  // >0 (tiles): with P_PV 2, a "fight" verdict sends us at the weakest foe within this many tiles
 #endif
@@ -2121,6 +2124,8 @@ void refresh_groups(State& s, int round) {
     for (int i = 0; i < static_cast<int>(s.groups.size()); ++i) {
         Group& g = s.groups[i];
         if (!g.obj) continue;
+        // P_GREF_R: groups farther than this (wards and allies show many) are read one round in 4, our target always
+        if (P_GREF_R && i != s.target && ((round + i) & 3) && dist(g.center, s.self_pos) > P_GREF_R) continue;
         bool visible = false;
         for (auto t : g.tiles)
             if (s.vis.is_set(t)) { visible = true; break; }
@@ -3423,7 +3428,7 @@ void play_turn(State& s) {
         return true;
     });
     FP(4, "groups");
-    if (P_MAPPLAN && P_MP_CHAINPLAN) s.self_pos = pos;
+    if ((P_MAPPLAN && P_MP_CHAINPLAN) || P_GREF_R) s.self_pos = pos;
     refresh_groups(s, round);
     FP(5, "foes");
 
@@ -3738,7 +3743,7 @@ void play_turn(State& s) {
                 return;
             }
             g_mode = "pv-leave";
-            if (P_PVOUT) fight::pv_out(s, me, foes, round);
+            if (P_PVOUT && (!P_PVFUEL || fuel_ok(P_PVFUEL))) fight::pv_out(s, me, foes, round);
             else fight::back_off(s, me, foes, round);
             return;
         }
@@ -4561,6 +4566,7 @@ void shoot_rooted(State& s) {
             if (P_U34_POST_FREE && s.sweep >= 3 && s.sweep != 5 && fuel_ok(12000))
                 spell_sweep(s, false, true);
             if (P_R5_LOCK) r5_altar_lock(s);
+            FP(30, "ward");
             if (P_R5_WARD) r5_personal_ward(s);
         } catch (const std::exception& e) {
             note_error(e.what());

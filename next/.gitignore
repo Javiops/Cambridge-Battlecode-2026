@@ -14,3 +14,5 @@ bots/*/.clangd
 __pycache__/
 .pytest_cache/
 sdk/
+results/bundles/
+results/dashboard.html

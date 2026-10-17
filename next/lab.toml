@@ -14,11 +14,17 @@ confirm = ["pilgrimage", "rows", "rushbait-v2", "stampede", "swirl"]
 [league]
 # The frozen panel: fixed, versioned opponents that every new version plays.
 # When this list changes, bump panel_version, so old and new reports are never mixed.
-panel_version = 1
-panel = ["dummy-v1", "starter-v1"]
+panel_version = 2
+panel = ["dummy-v1", "starter-v1", "calib-seed-v1"]
+# Two versions of equal strength. Their gap is printed in every report as the noise band:
+# a difference smaller than this between any two versions is not a result.
+noise_pair = ["starter-v1", "calib-seed-v1"]
 # The current best version. Every new version starts from it (copy, change one thing).
 champion = "starter-v1"
-jobs = 4
+jobs = 0             # parallel games; 0 = one per CPU core
+# Carson's stopping rule (cb-bc ABLATION_PROMPT.md): stop a line of work when the best rating
+# gains less than this for two league runs in a row.
+plateau_points = 20
 
 [gate]
 # Promotion gate, after Carson's kaggriculture finalist gates (>= 0.5 vs the best, >= 0.9 vs starter).

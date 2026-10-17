@@ -31,7 +31,8 @@ def round_reaching(snap_rounds: list[int], snap_gems: list[int], target: int = 1
     return None
 
 
-def build(games: list[dict], title: str, panel_version: int, champion: str) -> tuple[str, dict]:
+def build(games: list[dict], title: str, cfg: dict, history: list[dict] | None = None) -> tuple[str, dict]:
+    panel_version, champion = cfg["league"]["panel_version"], cfg["league"]["champion"]
     ok = [g for g in games if "error" not in g]
     errors = [g for g in games if "error" in g]
     by_map = defaultdict(list)
@@ -71,6 +72,15 @@ def build(games: list[dict], title: str, panel_version: int, champion: str) -> t
         r, lo, hi = ratings.get(v, (float("nan"),) * 3)
         sc = mean(x[0] for x in per[v])
         lines.append(f"| {i} | `{v}` | {r:.0f} | {lo:.0f}–{hi:.0f} | {len(per[v])} | {100 * sc:.0f}% | {meta[v].get('changelog', '')} |")
+
+    pair = cfg["league"].get("noise_pair", [])
+    if len(pair) == 2 and all(p in ratings for p in pair):
+        x, y = pair
+        gap = abs(ratings[x][0] - ratings[y][0])
+        h2h = matrix.get((x, y), [])
+        lines += ["", f"**Noise band:** `{x}` and `{y}` have the same strength by construction. Here they differ by "
+                  f"**{gap:.0f} points**" + (f" and score {100 * mean(h2h):.0f}% head to head over {len(h2h)} games" if h2h else "")
+                  + ". A gap between two versions smaller than this is not a result."]
 
     lines += ["", "## Win matrix", "", "Score of the row against the column, both sides, all maps.", "",
               "| row \\ col | " + " | ".join(f"`{c}`" for c in names) + " |",
@@ -126,6 +136,42 @@ def build(games: list[dict], title: str, panel_version: int, champion: str) -> t
         top = "; ".join(f"{d} ({100 * n / len(per[v]):.0f}%)" for d, n in drafts.most_common(2))
         lines.append(f"| `{v}` | {len(drafts)} | {top} | " + ", ".join(f"{k} ×{n}" for k, n in items.most_common(3)) + " |")
 
+    if True:
+        runs = [h for h in (history or []) if h.get("panel_version") == panel_version][-8:]
+        if ratings:
+            lines += ["", "## Best rating per league run", "",
+                      f"Carson's stopping rule: when the best rating gains less than {cfg['league'].get('plateau_points', 20)} "
+                      "points for two runs in a row, the current idea has plateaued; change direction.", "",
+                      "| run | best version | rating | gain |", "|---|---|---|---|"]
+            prev = None
+            gains = []
+            for h in runs + [{"time": time.time(), "ratings": {v: ratings[v][0] for v in names if v in ratings}}]:
+                if not h["ratings"]:
+                    continue
+                best = max(h["ratings"], key=h["ratings"].get)
+                r = h["ratings"][best]
+                gain = "" if prev is None else f"{r - prev:+.0f}"
+                if prev is not None:
+                    gains.append(r - prev)
+                lines.append(f"| {time.strftime('%m-%d %H:%M', time.gmtime(h['time']))} | `{best}` | {r:.0f} | {gain} |")
+                prev = r
+            pp = cfg["league"].get("plateau_points", 20)
+            if len(gains) >= 2 and all(g < pp for g in gains[-2:]):
+                lines += ["", f"**Plateau:** the last two runs gained less than {pp} points each."]
+
+    lines += ["", "## Lineage", "", "Each version and the version it was copied from, with its changelog line.", "", "```"]
+    kids = defaultdict(list)
+    for v in names:
+        kids[meta[v].get("parent", "")].append(v)
+    def render(v, depth):
+        lines.append("  " * depth + f"{v}  ({meta[v].get('changelog', '')[:90]})")
+        for k in sorted(kids.get(v, [])):
+            if k != v:
+                render(k, depth + 1)
+    for root in sorted(v for v in names if meta[v].get("parent") not in names or meta[v].get("parent") == v):
+        render(root, 0)
+    lines.append("```")
+
     if errors:
         lines += ["", "## Games that did not finish", ""]
         for g in errors[:20]:
@@ -133,4 +179,13 @@ def build(games: list[dict], title: str, panel_version: int, champion: str) -> t
 
     summary = {"time": time.time(), "panel_version": panel_version, "champion": champion,
                "ratings": {v: ratings[v][0] for v in names if v in ratings}}
+    curves = {}
+    for v in names:  # mean banked gems at each snapshot round, for the dashboard
+        acc = defaultdict(list)
+        for x in per[v]:
+            pts = list(zip(x[3]["snap_rounds"], x[1]["snap_gems"]))
+            for r in range(100, 2001, 100):  # banked gems never go away: hold the last value after the game ends
+                acc[r].append(max([gm for rr, gm in pts if rr <= r], default=0))
+        curves[v] = [(r, mean(acc[r])) for r in sorted(acc)]
+    summary["_curves"] = curves
     return "\n".join(lines) + "\n", summary

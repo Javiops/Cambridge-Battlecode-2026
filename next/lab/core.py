@@ -16,6 +16,8 @@ import os
 import shutil
 import subprocess
 import tempfile
+import time
+import zipfile
 import tomllib
 from concurrent.futures import ThreadPoolExecutor
 from dataclasses import dataclass
@@ -64,7 +66,7 @@ def changelog_line(src: Path) -> str:
     return ""
 
 
-def freeze(bot_dir: str, name: str, note: str = "") -> Version:
+def freeze(bot_dir: str, name: str, note: str = "", parent: str | None = None) -> Version:
     """Build `bot_dir` in release mode (as on the platform) and store it as version `name`."""
     bot = (ROOT / bot_dir).resolve() if not Path(bot_dir).is_absolute() else Path(bot_dir)
     dest = ARCHIVE / name
@@ -82,7 +84,10 @@ def freeze(bot_dir: str, name: str, note: str = "") -> Version:
                            capture_output=True, text=True).stdout.strip()
     meta = {"name": name, "bot_dir": str(bot.relative_to(ROOT)) if bot.is_relative_to(ROOT) else str(bot),
             "wasm_sha256": sha(dest / "bot.wasm"), "git": git.stdout.strip() + ("+dirty" if dirty else ""),
-            "changelog": note or changelog_line(bot / "src"), "cli": cli_version()}
+            "changelog": note or changelog_line(bot / "src"), "cli": cli_version(),
+            # the version this one was copied from: by default the champion of the day (lineage tree)
+            "parent": config()["league"]["champion"] if parent is None else parent,
+            "frozen_at": time.strftime("%Y-%m-%d %H:%M UTC", time.gmtime())}
     (dest / "meta.json").write_text(json.dumps(meta, indent=2) + "\n")
     return Version(name, dest / "bot.wasm", meta)
 
@@ -112,6 +117,23 @@ def game_key(a: Version, b: Version, mp: Path, cli: str) -> str:
     return h[:24]
 
 
+TIMEOUT = 300  # seconds per game; a hung bot must not hang the league (Carson's elo.py uses 300 too)
+
+
+def run_game(a: Version, b: Version, mp: Path, out_dir: str, logs: bool = False) -> tuple[dict | None, str]:
+    """Run one game with cambc. Returns (match summary or None, error text)."""
+    stats = Path(out_dir) / "stats.json"
+    cmd = [CLI, "run", str(a.wasm), str(b.wasm), "--map", str(mp), "-o", out_dir,
+           "--statistics", str(stats), "--json", "--release"] + ([] if logs else ["--log-limit", "0"])
+    try:
+        r = subprocess.run(cmd, capture_output=True, text=True, env=ENV, timeout=TIMEOUT)
+    except subprocess.TimeoutExpired:
+        return None, f"timeout after {TIMEOUT} s"
+    if not stats.exists():
+        return None, (r.stdout[-1500:] + r.stderr[-1500:]).strip() or f"exit code {r.returncode}"
+    return json.loads(stats.read_text()), ""
+
+
 def play_one(a: Version, b: Version, map_name: str, cli: str) -> dict:
     """Play a (side A) vs b (side B) on one map, or return the stored game."""
     mp = map_path(map_name)
@@ -121,20 +143,18 @@ def play_one(a: Version, b: Version, map_name: str, cli: str) -> dict:
         rec = json.loads(out.read_text())
     else:
         with tempfile.TemporaryDirectory() as tmp:
-            stats = Path(tmp) / "stats.json"
-            r = subprocess.run([CLI, "run", str(a.wasm), str(b.wasm), "--map", str(mp), "-o", tmp,
-                                "--statistics", str(stats), "--json", "--release", "--log-limit", "0"],
-                               capture_output=True, text=True, env=ENV)
-            if not stats.exists():
-                # A game that does not finish is a result too: it is a crash we must see, never skip.
-                rec = {"error": (r.stdout[-1500:] + r.stderr[-1500:]).strip()}
-            else:
-                rec = summarize(json.loads(stats.read_text()))
+            summary, err = run_game(a, b, mp, tmp)
+            # A game that does not finish is a result too: it is a crash we must see, never skip.
+            rec = summarize(summary) if summary else {"error": err}
         rec.update(key=key, a=a.meta["wasm_sha256"], b=b.meta["wasm_sha256"], map=map_name, cli=cli)
         RESULTS.mkdir(parents=True, exist_ok=True)
         out.write_text(json.dumps(rec) + "\n")
     # names are not part of the key (a renamed copy is the same bot), so attach them after loading
     return {**rec, "name_a": a.name, "name_b": b.name}
+
+
+def default_jobs() -> int:
+    return config()["league"].get("jobs") or os.cpu_count() or 4
 
 
 def play(pairs: list[tuple[str, str]], map_names: list[str], jobs: int, progress=print) -> list[dict]:
@@ -161,3 +181,40 @@ def score_a(rec: dict) -> float | None:
     if "error" in rec:
         return None
     return {"teamA": 1.0, "teamB": 0.0}.get(rec["outcome"], 0.5)
+
+
+def watch(a_name: str, b_name: str, map_name: str, out_dir: Path) -> Path:
+    """Replay one game with logs kept and return the replay bundle (open it with `cambc view`).
+
+    Games are deterministic, so this reproduces exactly the game the league stored.
+    """
+    out_dir.mkdir(parents=True, exist_ok=True)
+    summary, err = run_game(version(a_name), version(b_name), map_path(map_name), str(out_dir), logs=True)
+    if summary is None:
+        raise SystemExit(f"game did not finish: {err}")
+    return max(out_dir.glob("*.repl26a"), key=lambda p: p.stat().st_mtime)
+
+
+def bundle(name: str, out: Path) -> tuple[Path, bool]:
+    """Zip a frozen version for upload, then rebuild the zip and check it gives the same wasm.
+
+    After kaggriculture: the file you upload must be the bytes that passed the gate, proven by hash.
+    """
+    v = version(name)
+    out.parent.mkdir(parents=True, exist_ok=True)
+    r = subprocess.run([CLI, "bundle", str(ARCHIVE / name), "--output", str(out)], capture_output=True, text=True, env=ENV)
+    if r.returncode != 0 or not out.exists():
+        raise SystemExit(f"bundle failed:\n{r.stdout[-2000:]}\n{r.stderr[-2000:]}")
+    with tempfile.TemporaryDirectory() as tmp:
+        bot = Path(tmp) / name
+        with zipfile.ZipFile(out) as z:
+            z.extractall(bot)
+        if not (bot / "src").exists():  # some bundles put the files at the root
+            (bot / "src").mkdir()
+            for f in list(bot.iterdir()):
+                if f.name != "src":
+                    shutil.move(str(f), bot / "src" / f.name)
+        b = subprocess.run([CLI, "build", "--release", str(bot)], capture_output=True, text=True, env=ENV)
+        built = bot / ".cambc" / "build-release" / "bot-injected.wasm"
+        same = b.returncode == 0 and built.exists() and sha(built) == v.meta["wasm_sha256"]
+    return out, same

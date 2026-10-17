@@ -1,0 +1,59 @@
+{
+  "audit_status": "PASS",
+  "current_records": 5246,
+  "unique_physical_games": 5246,
+  "historical_excluded": 392,
+  "audit_issues": 0,
+  "native_faults_all_teams": 0,
+  "global_fuel": {
+    "team_observations": 10492,
+    "wins": 5246,
+    "losses": 5246,
+    "native_faults": 0,
+    "fuel_events": 19746,
+    "fuel_gameplay_rounds1_2": 10518,
+    "fuel_gameplay_round3plus": 9228,
+    "potential_completed_body_rounds": 35025717,
+    "fuel_per10000_potential_body_rounds": 5.637571958912361
+  },
+  "light_all_vs_original": {
+    "team_observations": 194,
+    "wins": 92,
+    "losses": 102,
+    "native_faults": 0,
+    "fuel_events": 188,
+    "fuel_gameplay_rounds1_2": 33,
+    "fuel_gameplay_round3plus": 155,
+    "potential_completed_body_rounds": 622576,
+    "fuel_per10000_potential_body_rounds": 3.019711649662049
+  },
+  "light_all_vs_spars": {
+    "team_observations": 582,
+    "wins": 526,
+    "losses": 56,
+    "native_faults": 0,
+    "fuel_events": 695,
+    "fuel_gameplay_rounds1_2": 103,
+    "fuel_gameplay_round3plus": 592,
+    "potential_completed_body_rounds": 1850551,
+    "fuel_per10000_potential_body_rounds": 3.7556381855998566
+  },
+  "original_vs_spars": {
+    "team_observations": 582,
+    "wins": 520,
+    "losses": 62,
+    "native_faults": 0,
+    "fuel_events": 644,
+    "fuel_gameplay_rounds1_2": 103,
+    "fuel_gameplay_round3plus": 541,
+    "potential_completed_body_rounds": 1853284,
+    "fuel_per10000_potential_body_rounds": 3.4749126415595235
+  },
+  "caveats": [
+    "Physical games count is deduplicated, not a sum of overlapping stages.",
+    "Potential body-rounds = physical champion-body count times roundsCompleted; dead time is included and final partial round excluded.",
+    "All recorded fuel phases are literal champion/gameplay phase; lack of draft events is not a claim of zero draft suspension.",
+    "SDK stdout errors are selective/capped markers, not native faults.",
+    "Full local formal gate NOT RUN; strength improvement UNPROVEN."
+  ]
+}

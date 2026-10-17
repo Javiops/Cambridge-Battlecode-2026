@@ -1,0 +1,371 @@
+{
+  "all": {
+    "family": "full forecast v2",
+    "wasm_sha256": "35eb0f644230fe9a7b1a5109498b3f263ca47240cd071549db761d2d3831a047",
+    "source_fingerprint": "10a81996f2921d29291b9fbcb3c521e2247f13558aad251f9eefc3a53ac2300e",
+    "source_sha256": {
+      "channel_safety.h": "c77b8b3bba864e45b420284f3c5fe3641c9da263eb43d960a2570a9944f3d934",
+      "de_rules.h": "3e50429c96765f325ea3804c2bbb5c13ce26a4119fc7b8694f58def60531221b",
+      "draft_plan.h": "00c5ba5b8767dfb4a766d0e177f639b8c0b4f353bfdb1ac353f6b1f80863af8e",
+      "fight.h": "2eaa9a671c634d499029f251a6eef66dbd6be052927d3cc8ca8012f4ecc35014",
+      "main.cpp": "fbd9eb0491f43e8a0f83ba668a085d39b9e9e6f9a06337a806df5f49d5d8af83",
+      "mapplan.h": "7b01346e46a21d2339533095a21655c3f83d3f4ef28efaa7d142fb7609df247e",
+      "mapplan_game.h": "167f85bf357b70d797e8612f447b7719f956a974af269286fa32f53569948fb6",
+      "opening_replace.h": "ca6680bae82b74b89fd0bb65573904246df8761d8b22e3ce8cb6bd93207207e7",
+      "params.h": "b911f3d0771ac06044a7b99afc34b37dbd790de510f6541e771559e6f3065115",
+      "profile.h": "fe7e170baa2f69e3beba2fe344c19ade35bfd3cad5516307d2b6e2575571f551",
+      "track.h": "c42448671f1a23f4987182648fd131e3182a7fee47970b20baaf0444ca7f5a0a",
+      "utility.h": "db726b9f6ef344cd2b78612ddc906b5712e752c12ec3d010c1701b1943b6a362",
+      "verdict.h": "cea061699b7b7a10e81d5484633dbcb51c100516f8b80e29854bba4f6701e5ee"
+    }
+  },
+  "anchors": {
+    "family": "full forecast v2",
+    "wasm_sha256": "cd9704ff88d461ee83b8a3d093b2bb48b20ec939a5b4ff973b8f088af243bda9",
+    "source_fingerprint": "fa61a5f53d6984d8e243dc369132aff3f4eafb7379503be000902fbc7c3f2c9f",
+    "source_sha256": {
+      "channel_safety.h": "c77b8b3bba864e45b420284f3c5fe3641c9da263eb43d960a2570a9944f3d934",
+      "de_rules.h": "3e50429c96765f325ea3804c2bbb5c13ce26a4119fc7b8694f58def60531221b",
+      "draft_plan.h": "00c5ba5b8767dfb4a766d0e177f639b8c0b4f353bfdb1ac353f6b1f80863af8e",
+      "fight.h": "2eaa9a671c634d499029f251a6eef66dbd6be052927d3cc8ca8012f4ecc35014",
+      "main.cpp": "fbd9eb0491f43e8a0f83ba668a085d39b9e9e6f9a06337a806df5f49d5d8af83",
+      "mapplan.h": "7b01346e46a21d2339533095a21655c3f83d3f4ef28efaa7d142fb7609df247e",
+      "mapplan_game.h": "167f85bf357b70d797e8612f447b7719f956a974af269286fa32f53569948fb6",
+      "opening_replace.h": "ca6680bae82b74b89fd0bb65573904246df8761d8b22e3ce8cb6bd93207207e7",
+      "params.h": "e1322f8c60dbd4ea762fc71957031de0d875b52e1cdacec26399f9316af89987",
+      "profile.h": "fe7e170baa2f69e3beba2fe344c19ade35bfd3cad5516307d2b6e2575571f551",
+      "track.h": "c42448671f1a23f4987182648fd131e3182a7fee47970b20baaf0444ca7f5a0a",
+      "utility.h": "db726b9f6ef344cd2b78612ddc906b5712e752c12ec3d010c1701b1943b6a362",
+      "verdict.h": "cea061699b7b7a10e81d5484633dbcb51c100516f8b80e29854bba4f6701e5ee"
+    }
+  },
+  "anchors-channels": {
+    "family": "full forecast v2",
+    "wasm_sha256": "4dc815f724c67e39655ccc90d7524dce6b4929a68fca29165aed1c8e4da5a164",
+    "source_fingerprint": "6ef4edfc242de3e69509a82e79bd167c0298135c0acc854df22007d4ff3d0fd0",
+    "source_sha256": {
+      "channel_safety.h": "c77b8b3bba864e45b420284f3c5fe3641c9da263eb43d960a2570a9944f3d934",
+      "de_rules.h": "3e50429c96765f325ea3804c2bbb5c13ce26a4119fc7b8694f58def60531221b",
+      "draft_plan.h": "00c5ba5b8767dfb4a766d0e177f639b8c0b4f353bfdb1ac353f6b1f80863af8e",
+      "fight.h": "2eaa9a671c634d499029f251a6eef66dbd6be052927d3cc8ca8012f4ecc35014",
+      "main.cpp": "fbd9eb0491f43e8a0f83ba668a085d39b9e9e6f9a06337a806df5f49d5d8af83",
+      "mapplan.h": "7b01346e46a21d2339533095a21655c3f83d3f4ef28efaa7d142fb7609df247e",
+      "mapplan_game.h": "167f85bf357b70d797e8612f447b7719f956a974af269286fa32f53569948fb6",
+      "opening_replace.h": "ca6680bae82b74b89fd0bb65573904246df8761d8b22e3ce8cb6bd93207207e7",
+      "params.h": "0a664635a19804ea3c9ada41c0106d16aa11aa943ef9b1414e8892c399b38ca3",
+      "profile.h": "fe7e170baa2f69e3beba2fe344c19ade35bfd3cad5516307d2b6e2575571f551",
+      "track.h": "c42448671f1a23f4987182648fd131e3182a7fee47970b20baaf0444ca7f5a0a",
+      "utility.h": "db726b9f6ef344cd2b78612ddc906b5712e752c12ec3d010c1701b1943b6a362",
+      "verdict.h": "cea061699b7b7a10e81d5484633dbcb51c100516f8b80e29854bba4f6701e5ee"
+    }
+  },
+  "channels": {
+    "family": "full forecast v2",
+    "wasm_sha256": "58fe046bcfe454f7c54beb0802d3287565ec712de7c7741185dc91d79a0041ec",
+    "source_fingerprint": "357ad3fee9feed9d16f6f6b2a3e5e5426d209ac931f6350effca34d8abd69b0e",
+    "source_sha256": {
+      "channel_safety.h": "c77b8b3bba864e45b420284f3c5fe3641c9da263eb43d960a2570a9944f3d934",
+      "de_rules.h": "3e50429c96765f325ea3804c2bbb5c13ce26a4119fc7b8694f58def60531221b",
+      "draft_plan.h": "00c5ba5b8767dfb4a766d0e177f639b8c0b4f353bfdb1ac353f6b1f80863af8e",
+      "fight.h": "2eaa9a671c634d499029f251a6eef66dbd6be052927d3cc8ca8012f4ecc35014",
+      "main.cpp": "fbd9eb0491f43e8a0f83ba668a085d39b9e9e6f9a06337a806df5f49d5d8af83",
+      "mapplan.h": "7b01346e46a21d2339533095a21655c3f83d3f4ef28efaa7d142fb7609df247e",
+      "mapplan_game.h": "167f85bf357b70d797e8612f447b7719f956a974af269286fa32f53569948fb6",
+      "opening_replace.h": "ca6680bae82b74b89fd0bb65573904246df8761d8b22e3ce8cb6bd93207207e7",
+      "params.h": "04c5ec19dfdfcdbeda2c29abdabced42b2b547add93cbf6302db778cd62ec3e6",
+      "profile.h": "fe7e170baa2f69e3beba2fe344c19ade35bfd3cad5516307d2b6e2575571f551",
+      "track.h": "c42448671f1a23f4987182648fd131e3182a7fee47970b20baaf0444ca7f5a0a",
+      "utility.h": "db726b9f6ef344cd2b78612ddc906b5712e752c12ec3d010c1701b1943b6a362",
+      "verdict.h": "cea061699b7b7a10e81d5484633dbcb51c100516f8b80e29854bba4f6701e5ee"
+    }
+  },
+  "control": {
+    "family": "full forecast v2",
+    "wasm_sha256": "689b5d987fadb02e835b27f3e09ff493217d0ed225446db41358f79999f5569c",
+    "source_fingerprint": "f76eebd57fa12ffe557dbffc2f0e27cc9efa85e795c14af551afe779de3771d1",
+    "source_sha256": {
+      "channel_safety.h": "c77b8b3bba864e45b420284f3c5fe3641c9da263eb43d960a2570a9944f3d934",
+      "de_rules.h": "3e50429c96765f325ea3804c2bbb5c13ce26a4119fc7b8694f58def60531221b",
+      "draft_plan.h": "00c5ba5b8767dfb4a766d0e177f639b8c0b4f353bfdb1ac353f6b1f80863af8e",
+      "fight.h": "2eaa9a671c634d499029f251a6eef66dbd6be052927d3cc8ca8012f4ecc35014",
+      "main.cpp": "fbd9eb0491f43e8a0f83ba668a085d39b9e9e6f9a06337a806df5f49d5d8af83",
+      "mapplan.h": "7b01346e46a21d2339533095a21655c3f83d3f4ef28efaa7d142fb7609df247e",
+      "mapplan_game.h": "167f85bf357b70d797e8612f447b7719f956a974af269286fa32f53569948fb6",
+      "opening_replace.h": "ca6680bae82b74b89fd0bb65573904246df8761d8b22e3ce8cb6bd93207207e7",
+      "params.h": "d7d7e1fb182da7e804cef02fddbc9f2f269309a4e524310ff35dc6320e5e5052",
+      "profile.h": "fe7e170baa2f69e3beba2fe344c19ade35bfd3cad5516307d2b6e2575571f551",
+      "track.h": "c42448671f1a23f4987182648fd131e3182a7fee47970b20baaf0444ca7f5a0a",
+      "utility.h": "db726b9f6ef344cd2b78612ddc906b5712e752c12ec3d010c1701b1943b6a362",
+      "verdict.h": "cea061699b7b7a10e81d5484633dbcb51c100516f8b80e29854bba4f6701e5ee"
+    }
+  },
+  "light-all": {
+    "family": "LIGHT/stable ties",
+    "wasm_sha256": "293b60b0dda78e64b15fae9d930f66cd103c57afbf15919528909751c2144d5e",
+    "source_fingerprint": "9928d220a1a18cde069ea654d744ef48a8515b7a9e16ce56fc7cb35f5cfb0b5e",
+    "source_sha256": {
+      "channel_safety.h": "b3cf7afb8684e9b56e44889e2b8846400056e1fcdf8865c5b6b41ecb481f1706",
+      "de_rules.h": "3e50429c96765f325ea3804c2bbb5c13ce26a4119fc7b8694f58def60531221b",
+      "draft_plan.h": "5f58794a17b59f85eedc486855c828b7f2ed6f666f37c09bef4b7458f585977e",
+      "fight.h": "2eaa9a671c634d499029f251a6eef66dbd6be052927d3cc8ca8012f4ecc35014",
+      "main.cpp": "1a20906b684c87993425d947166a9e75322dd5fc58e53c3e94dc2af9f3dbb7c2",
+      "mapplan.h": "7b01346e46a21d2339533095a21655c3f83d3f4ef28efaa7d142fb7609df247e",
+      "mapplan_game.h": "167f85bf357b70d797e8612f447b7719f956a974af269286fa32f53569948fb6",
+      "opening_replace.h": "ca6680bae82b74b89fd0bb65573904246df8761d8b22e3ce8cb6bd93207207e7",
+      "params.h": "b911f3d0771ac06044a7b99afc34b37dbd790de510f6541e771559e6f3065115",
+      "profile.h": "fe7e170baa2f69e3beba2fe344c19ade35bfd3cad5516307d2b6e2575571f551",
+      "track.h": "c42448671f1a23f4987182648fd131e3182a7fee47970b20baaf0444ca7f5a0a",
+      "utility.h": "db726b9f6ef344cd2b78612ddc906b5712e752c12ec3d010c1701b1943b6a362",
+      "verdict.h": "cea061699b7b7a10e81d5484633dbcb51c100516f8b80e29854bba4f6701e5ee"
+    }
+  },
+  "light-anchors": {
+    "family": "LIGHT/stable ties",
+    "wasm_sha256": "77845333db86cea776f540a91c156625f0a2763f932f63381e0492b9c5f7278f",
+    "source_fingerprint": "92747368311db91fc3eee487d6b82ff70b3395d40e4bc83cbfe5c10a70abbac5",
+    "source_sha256": {
+      "channel_safety.h": "b3cf7afb8684e9b56e44889e2b8846400056e1fcdf8865c5b6b41ecb481f1706",
+      "de_rules.h": "3e50429c96765f325ea3804c2bbb5c13ce26a4119fc7b8694f58def60531221b",
+      "draft_plan.h": "5f58794a17b59f85eedc486855c828b7f2ed6f666f37c09bef4b7458f585977e",
+      "fight.h": "2eaa9a671c634d499029f251a6eef66dbd6be052927d3cc8ca8012f4ecc35014",
+      "main.cpp": "1a20906b684c87993425d947166a9e75322dd5fc58e53c3e94dc2af9f3dbb7c2",
+      "mapplan.h": "7b01346e46a21d2339533095a21655c3f83d3f4ef28efaa7d142fb7609df247e",
+      "mapplan_game.h": "167f85bf357b70d797e8612f447b7719f956a974af269286fa32f53569948fb6",
+      "opening_replace.h": "ca6680bae82b74b89fd0bb65573904246df8761d8b22e3ce8cb6bd93207207e7",
+      "params.h": "e1322f8c60dbd4ea762fc71957031de0d875b52e1cdacec26399f9316af89987",
+      "profile.h": "fe7e170baa2f69e3beba2fe344c19ade35bfd3cad5516307d2b6e2575571f551",
+      "track.h": "c42448671f1a23f4987182648fd131e3182a7fee47970b20baaf0444ca7f5a0a",
+      "utility.h": "db726b9f6ef344cd2b78612ddc906b5712e752c12ec3d010c1701b1943b6a362",
+      "verdict.h": "cea061699b7b7a10e81d5484633dbcb51c100516f8b80e29854bba4f6701e5ee"
+    }
+  },
+  "light-anchors-channels": {
+    "family": "LIGHT/stable ties",
+    "wasm_sha256": "296456f0639a3fc3bf8cf8caf78c79491fb498e920cb0ae926707b2c96f0f790",
+    "source_fingerprint": "10104a74d881c661f68c84ca29736b4253e97e8dd7e3de4176411d2923c25f97",
+    "source_sha256": {
+      "channel_safety.h": "b3cf7afb8684e9b56e44889e2b8846400056e1fcdf8865c5b6b41ecb481f1706",
+      "de_rules.h": "3e50429c96765f325ea3804c2bbb5c13ce26a4119fc7b8694f58def60531221b",
+      "draft_plan.h": "5f58794a17b59f85eedc486855c828b7f2ed6f666f37c09bef4b7458f585977e",
+      "fight.h": "2eaa9a671c634d499029f251a6eef66dbd6be052927d3cc8ca8012f4ecc35014",
+      "main.cpp": "1a20906b684c87993425d947166a9e75322dd5fc58e53c3e94dc2af9f3dbb7c2",
+      "mapplan.h": "7b01346e46a21d2339533095a21655c3f83d3f4ef28efaa7d142fb7609df247e",
+      "mapplan_game.h": "167f85bf357b70d797e8612f447b7719f956a974af269286fa32f53569948fb6",
+      "opening_replace.h": "ca6680bae82b74b89fd0bb65573904246df8761d8b22e3ce8cb6bd93207207e7",
+      "params.h": "0a664635a19804ea3c9ada41c0106d16aa11aa943ef9b1414e8892c399b38ca3",
+      "profile.h": "fe7e170baa2f69e3beba2fe344c19ade35bfd3cad5516307d2b6e2575571f551",
+      "track.h": "c42448671f1a23f4987182648fd131e3182a7fee47970b20baaf0444ca7f5a0a",
+      "utility.h": "db726b9f6ef344cd2b78612ddc906b5712e752c12ec3d010c1701b1943b6a362",
+      "verdict.h": "cea061699b7b7a10e81d5484633dbcb51c100516f8b80e29854bba4f6701e5ee"
+    }
+  },
+  "light-channels": {
+    "family": "LIGHT/stable ties",
+    "wasm_sha256": "07afcc74c9184a6fbe1b04faa940b3a5beee1aacc8a01c5696208a55461cce80",
+    "source_fingerprint": "767103943ce5271f3b4f3ba254e435b981ccb15f76489a8796d7654981dcf0ee",
+    "source_sha256": {
+      "channel_safety.h": "b3cf7afb8684e9b56e44889e2b8846400056e1fcdf8865c5b6b41ecb481f1706",
+      "de_rules.h": "3e50429c96765f325ea3804c2bbb5c13ce26a4119fc7b8694f58def60531221b",
+      "draft_plan.h": "5f58794a17b59f85eedc486855c828b7f2ed6f666f37c09bef4b7458f585977e",
+      "fight.h": "2eaa9a671c634d499029f251a6eef66dbd6be052927d3cc8ca8012f4ecc35014",
+      "main.cpp": "1a20906b684c87993425d947166a9e75322dd5fc58e53c3e94dc2af9f3dbb7c2",
+      "mapplan.h": "7b01346e46a21d2339533095a21655c3f83d3f4ef28efaa7d142fb7609df247e",
+      "mapplan_game.h": "167f85bf357b70d797e8612f447b7719f956a974af269286fa32f53569948fb6",
+      "opening_replace.h": "ca6680bae82b74b89fd0bb65573904246df8761d8b22e3ce8cb6bd93207207e7",
+      "params.h": "04c5ec19dfdfcdbeda2c29abdabced42b2b547add93cbf6302db778cd62ec3e6",
+      "profile.h": "fe7e170baa2f69e3beba2fe344c19ade35bfd3cad5516307d2b6e2575571f551",
+      "track.h": "c42448671f1a23f4987182648fd131e3182a7fee47970b20baaf0444ca7f5a0a",
+      "utility.h": "db726b9f6ef344cd2b78612ddc906b5712e752c12ec3d010c1701b1943b6a362",
+      "verdict.h": "cea061699b7b7a10e81d5484633dbcb51c100516f8b80e29854bba4f6701e5ee"
+    }
+  },
+  "light-control": {
+    "family": "LIGHT/stable ties",
+    "wasm_sha256": "9b249594fd65df4919afda79ae6354e312dc994d4a8b25a2d069773856dd8acd",
+    "source_fingerprint": "296696ab0611326f1af197d013860bf17c5a9d78646221c6c78c2227977f5614",
+    "source_sha256": {
+      "channel_safety.h": "b3cf7afb8684e9b56e44889e2b8846400056e1fcdf8865c5b6b41ecb481f1706",
+      "de_rules.h": "3e50429c96765f325ea3804c2bbb5c13ce26a4119fc7b8694f58def60531221b",
+      "draft_plan.h": "5f58794a17b59f85eedc486855c828b7f2ed6f666f37c09bef4b7458f585977e",
+      "fight.h": "2eaa9a671c634d499029f251a6eef66dbd6be052927d3cc8ca8012f4ecc35014",
+      "main.cpp": "1a20906b684c87993425d947166a9e75322dd5fc58e53c3e94dc2af9f3dbb7c2",
+      "mapplan.h": "7b01346e46a21d2339533095a21655c3f83d3f4ef28efaa7d142fb7609df247e",
+      "mapplan_game.h": "167f85bf357b70d797e8612f447b7719f956a974af269286fa32f53569948fb6",
+      "opening_replace.h": "ca6680bae82b74b89fd0bb65573904246df8761d8b22e3ce8cb6bd93207207e7",
+      "params.h": "d7d7e1fb182da7e804cef02fddbc9f2f269309a4e524310ff35dc6320e5e5052",
+      "profile.h": "fe7e170baa2f69e3beba2fe344c19ade35bfd3cad5516307d2b6e2575571f551",
+      "track.h": "c42448671f1a23f4987182648fd131e3182a7fee47970b20baaf0444ca7f5a0a",
+      "utility.h": "db726b9f6ef344cd2b78612ddc906b5712e752c12ec3d010c1701b1943b6a362",
+      "verdict.h": "cea061699b7b7a10e81d5484633dbcb51c100516f8b80e29854bba4f6701e5ee"
+    }
+  },
+  "light-memory": {
+    "family": "LIGHT/stable ties",
+    "wasm_sha256": "7f9a2eb7bf84f4e3b5200da4b8b9569c93a876c41c05e96de2cd7c5ede3d0dfa",
+    "source_fingerprint": "ffb545b7d872ba7498e6f4c6748c2ebabf36598f951b09ce2c4ece82a1a92224",
+    "source_sha256": {
+      "channel_safety.h": "b3cf7afb8684e9b56e44889e2b8846400056e1fcdf8865c5b6b41ecb481f1706",
+      "de_rules.h": "3e50429c96765f325ea3804c2bbb5c13ce26a4119fc7b8694f58def60531221b",
+      "draft_plan.h": "5f58794a17b59f85eedc486855c828b7f2ed6f666f37c09bef4b7458f585977e",
+      "fight.h": "2eaa9a671c634d499029f251a6eef66dbd6be052927d3cc8ca8012f4ecc35014",
+      "main.cpp": "1a20906b684c87993425d947166a9e75322dd5fc58e53c3e94dc2af9f3dbb7c2",
+      "mapplan.h": "7b01346e46a21d2339533095a21655c3f83d3f4ef28efaa7d142fb7609df247e",
+      "mapplan_game.h": "167f85bf357b70d797e8612f447b7719f956a974af269286fa32f53569948fb6",
+      "opening_replace.h": "ca6680bae82b74b89fd0bb65573904246df8761d8b22e3ce8cb6bd93207207e7",
+      "params.h": "c7b615dca8bdc5558113b084c4fbb8058dff49070f04660e52ffbc264b1df92e",
+      "profile.h": "fe7e170baa2f69e3beba2fe344c19ade35bfd3cad5516307d2b6e2575571f551",
+      "track.h": "c42448671f1a23f4987182648fd131e3182a7fee47970b20baaf0444ca7f5a0a",
+      "utility.h": "db726b9f6ef344cd2b78612ddc906b5712e752c12ec3d010c1701b1943b6a362",
+      "verdict.h": "cea061699b7b7a10e81d5484633dbcb51c100516f8b80e29854bba4f6701e5ee"
+    }
+  },
+  "light-memory-anchors": {
+    "family": "LIGHT/stable ties",
+    "wasm_sha256": "149fd0b7f36e6a408c2541a3a6632c5ab26f9eacaceaca8a357a69acea69fd7d",
+    "source_fingerprint": "d0d294a072c5de482433e7ea3049e110a53c4f72719009ecdff82449369ea17e",
+    "source_sha256": {
+      "channel_safety.h": "b3cf7afb8684e9b56e44889e2b8846400056e1fcdf8865c5b6b41ecb481f1706",
+      "de_rules.h": "3e50429c96765f325ea3804c2bbb5c13ce26a4119fc7b8694f58def60531221b",
+      "draft_plan.h": "5f58794a17b59f85eedc486855c828b7f2ed6f666f37c09bef4b7458f585977e",
+      "fight.h": "2eaa9a671c634d499029f251a6eef66dbd6be052927d3cc8ca8012f4ecc35014",
+      "main.cpp": "1a20906b684c87993425d947166a9e75322dd5fc58e53c3e94dc2af9f3dbb7c2",
+      "mapplan.h": "7b01346e46a21d2339533095a21655c3f83d3f4ef28efaa7d142fb7609df247e",
+      "mapplan_game.h": "167f85bf357b70d797e8612f447b7719f956a974af269286fa32f53569948fb6",
+      "opening_replace.h": "ca6680bae82b74b89fd0bb65573904246df8761d8b22e3ce8cb6bd93207207e7",
+      "params.h": "9c5b4ac85f8e6834af8d200ee1d3f7aae1be9403ee46e14f21b55a15478f85c2",
+      "profile.h": "fe7e170baa2f69e3beba2fe344c19ade35bfd3cad5516307d2b6e2575571f551",
+      "track.h": "c42448671f1a23f4987182648fd131e3182a7fee47970b20baaf0444ca7f5a0a",
+      "utility.h": "db726b9f6ef344cd2b78612ddc906b5712e752c12ec3d010c1701b1943b6a362",
+      "verdict.h": "cea061699b7b7a10e81d5484633dbcb51c100516f8b80e29854bba4f6701e5ee"
+    }
+  },
+  "light-memory-channels": {
+    "family": "LIGHT/stable ties",
+    "wasm_sha256": "7388e37a939e1bd779691206e4f86313818808861d3c286fa057c9d9f44a92ee",
+    "source_fingerprint": "1b83f0b74bb3a346f4df02e16a73e77f8e36b9d0f507d9d2c834ce16a6ef8433",
+    "source_sha256": {
+      "channel_safety.h": "b3cf7afb8684e9b56e44889e2b8846400056e1fcdf8865c5b6b41ecb481f1706",
+      "de_rules.h": "3e50429c96765f325ea3804c2bbb5c13ce26a4119fc7b8694f58def60531221b",
+      "draft_plan.h": "5f58794a17b59f85eedc486855c828b7f2ed6f666f37c09bef4b7458f585977e",
+      "fight.h": "2eaa9a671c634d499029f251a6eef66dbd6be052927d3cc8ca8012f4ecc35014",
+      "main.cpp": "1a20906b684c87993425d947166a9e75322dd5fc58e53c3e94dc2af9f3dbb7c2",
+      "mapplan.h": "7b01346e46a21d2339533095a21655c3f83d3f4ef28efaa7d142fb7609df247e",
+      "mapplan_game.h": "167f85bf357b70d797e8612f447b7719f956a974af269286fa32f53569948fb6",
+      "opening_replace.h": "ca6680bae82b74b89fd0bb65573904246df8761d8b22e3ce8cb6bd93207207e7",
+      "params.h": "7a170d647e3a213d2f2341c85d754205c7dcd17ce1967884013c2b917c5ec0c1",
+      "profile.h": "fe7e170baa2f69e3beba2fe344c19ade35bfd3cad5516307d2b6e2575571f551",
+      "track.h": "c42448671f1a23f4987182648fd131e3182a7fee47970b20baaf0444ca7f5a0a",
+      "utility.h": "db726b9f6ef344cd2b78612ddc906b5712e752c12ec3d010c1701b1943b6a362",
+      "verdict.h": "cea061699b7b7a10e81d5484633dbcb51c100516f8b80e29854bba4f6701e5ee"
+    }
+  },
+  "memory": {
+    "family": "full forecast v2",
+    "wasm_sha256": "f625f6aa0661d98a055dd9f65a6974358c0428eae3b35f316812ce5be9a8447a",
+    "source_fingerprint": "f475b3d42ade2e241ba5369d502e246a7de9abe2c5ea63c5a07a70e678f98006",
+    "source_sha256": {
+      "channel_safety.h": "c77b8b3bba864e45b420284f3c5fe3641c9da263eb43d960a2570a9944f3d934",
+      "de_rules.h": "3e50429c96765f325ea3804c2bbb5c13ce26a4119fc7b8694f58def60531221b",
+      "draft_plan.h": "00c5ba5b8767dfb4a766d0e177f639b8c0b4f353bfdb1ac353f6b1f80863af8e",
+      "fight.h": "2eaa9a671c634d499029f251a6eef66dbd6be052927d3cc8ca8012f4ecc35014",
+      "main.cpp": "fbd9eb0491f43e8a0f83ba668a085d39b9e9e6f9a06337a806df5f49d5d8af83",
+      "mapplan.h": "7b01346e46a21d2339533095a21655c3f83d3f4ef28efaa7d142fb7609df247e",
+      "mapplan_game.h": "167f85bf357b70d797e8612f447b7719f956a974af269286fa32f53569948fb6",
+      "opening_replace.h": "ca6680bae82b74b89fd0bb65573904246df8761d8b22e3ce8cb6bd93207207e7",
+      "params.h": "c7b615dca8bdc5558113b084c4fbb8058dff49070f04660e52ffbc264b1df92e",
+      "profile.h": "fe7e170baa2f69e3beba2fe344c19ade35bfd3cad5516307d2b6e2575571f551",
+      "track.h": "c42448671f1a23f4987182648fd131e3182a7fee47970b20baaf0444ca7f5a0a",
+      "utility.h": "db726b9f6ef344cd2b78612ddc906b5712e752c12ec3d010c1701b1943b6a362",
+      "verdict.h": "cea061699b7b7a10e81d5484633dbcb51c100516f8b80e29854bba4f6701e5ee"
+    }
+  },
+  "memory-anchors": {
+    "family": "full forecast v2",
+    "wasm_sha256": "506b565889e59b3db283de21fabd8eb38709aa7efe9b4ac6dd676a01614c2443",
+    "source_fingerprint": "836ed8e737a0b109beb76298e783ee5b4a5fe7ff7390dba7a180344889624655",
+    "source_sha256": {
+      "channel_safety.h": "c77b8b3bba864e45b420284f3c5fe3641c9da263eb43d960a2570a9944f3d934",
+      "de_rules.h": "3e50429c96765f325ea3804c2bbb5c13ce26a4119fc7b8694f58def60531221b",
+      "draft_plan.h": "00c5ba5b8767dfb4a766d0e177f639b8c0b4f353bfdb1ac353f6b1f80863af8e",
+      "fight.h": "2eaa9a671c634d499029f251a6eef66dbd6be052927d3cc8ca8012f4ecc35014",
+      "main.cpp": "fbd9eb0491f43e8a0f83ba668a085d39b9e9e6f9a06337a806df5f49d5d8af83",
+      "mapplan.h": "7b01346e46a21d2339533095a21655c3f83d3f4ef28efaa7d142fb7609df247e",
+      "mapplan_game.h": "167f85bf357b70d797e8612f447b7719f956a974af269286fa32f53569948fb6",
+      "opening_replace.h": "ca6680bae82b74b89fd0bb65573904246df8761d8b22e3ce8cb6bd93207207e7",
+      "params.h": "9c5b4ac85f8e6834af8d200ee1d3f7aae1be9403ee46e14f21b55a15478f85c2",
+      "profile.h": "fe7e170baa2f69e3beba2fe344c19ade35bfd3cad5516307d2b6e2575571f551",
+      "track.h": "c42448671f1a23f4987182648fd131e3182a7fee47970b20baaf0444ca7f5a0a",
+      "utility.h": "db726b9f6ef344cd2b78612ddc906b5712e752c12ec3d010c1701b1943b6a362",
+      "verdict.h": "cea061699b7b7a10e81d5484633dbcb51c100516f8b80e29854bba4f6701e5ee"
+    }
+  },
+  "memory-channels": {
+    "family": "full forecast v2",
+    "wasm_sha256": "f7c534cdb3cb93d09c175fe5e439e89e6b4c36ddcd1de38f916229991bb5e96d",
+    "source_fingerprint": "de7ae232c91dc84cd82d0a2df3b8fd96372d7227cf7dd0e5eb167a148ae36798",
+    "source_sha256": {
+      "channel_safety.h": "c77b8b3bba864e45b420284f3c5fe3641c9da263eb43d960a2570a9944f3d934",
+      "de_rules.h": "3e50429c96765f325ea3804c2bbb5c13ce26a4119fc7b8694f58def60531221b",
+      "draft_plan.h": "00c5ba5b8767dfb4a766d0e177f639b8c0b4f353bfdb1ac353f6b1f80863af8e",
+      "fight.h": "2eaa9a671c634d499029f251a6eef66dbd6be052927d3cc8ca8012f4ecc35014",
+      "main.cpp": "fbd9eb0491f43e8a0f83ba668a085d39b9e9e6f9a06337a806df5f49d5d8af83",
+      "mapplan.h": "7b01346e46a21d2339533095a21655c3f83d3f4ef28efaa7d142fb7609df247e",
+      "mapplan_game.h": "167f85bf357b70d797e8612f447b7719f956a974af269286fa32f53569948fb6",
+      "opening_replace.h": "ca6680bae82b74b89fd0bb65573904246df8761d8b22e3ce8cb6bd93207207e7",
+      "params.h": "7a170d647e3a213d2f2341c85d754205c7dcd17ce1967884013c2b917c5ec0c1",
+      "profile.h": "fe7e170baa2f69e3beba2fe344c19ade35bfd3cad5516307d2b6e2575571f551",
+      "track.h": "c42448671f1a23f4987182648fd131e3182a7fee47970b20baaf0444ca7f5a0a",
+      "utility.h": "db726b9f6ef344cd2b78612ddc906b5712e752c12ec3d010c1701b1943b6a362",
+      "verdict.h": "cea061699b7b7a10e81d5484633dbcb51c100516f8b80e29854bba4f6701e5ee"
+    }
+  },
+  "original": {
+    "family": "reference",
+    "wasm_sha256": "ac2513db87ede6ded134630085fb7fb1427cb0f50d7e9a38771eeade92b3f5f7",
+    "source_fingerprint": "940a1cb9d53862174e28cec21421a39f60187a19732dc408ce3b113abdcd7e2a",
+    "source_sha256": {
+      "de_rules.h": "3e50429c96765f325ea3804c2bbb5c13ce26a4119fc7b8694f58def60531221b",
+      "draft_plan.h": "4908ee64a900aed17bc587b95e19ba148692d6c4d3efc56d0640c5c6ebdb00c3",
+      "fight.h": "2eaa9a671c634d499029f251a6eef66dbd6be052927d3cc8ca8012f4ecc35014",
+      "main.cpp": "98cd2ab5bfe97d2a946e9301c3c409c9bda9c7658178fe80cecce3322945d84b",
+      "mapplan.h": "7b01346e46a21d2339533095a21655c3f83d3f4ef28efaa7d142fb7609df247e",
+      "mapplan_game.h": "167f85bf357b70d797e8612f447b7719f956a974af269286fa32f53569948fb6",
+      "opening_replace.h": "ca6680bae82b74b89fd0bb65573904246df8761d8b22e3ce8cb6bd93207207e7",
+      "params.h": "0eb115decf9e54fd4a3057af35a16a1005eabdf7cdbb9bc168f87696dfcb9c27",
+      "profile.h": "fe7e170baa2f69e3beba2fe344c19ade35bfd3cad5516307d2b6e2575571f551",
+      "track.h": "c42448671f1a23f4987182648fd131e3182a7fee47970b20baaf0444ca7f5a0a",
+      "utility.h": "8b950d3f8343967508770c6d995bd9a0b01cf3604626ee41b15110bf0f67f561",
+      "verdict.h": "cea061699b7b7a10e81d5484633dbcb51c100516f8b80e29854bba4f6701e5ee"
+    }
+  },
+  "spar11": {
+    "family": "reference",
+    "wasm_sha256": "58000233da20912b8392c6ddb9850c1aad34207ab167ccd328cbba0bbb4b1450",
+    "source_fingerprint": "e8eec0b3d38b3a969f86bc503ea4275675da2ec5d498636ab9f55628606a3c2b",
+    "source_sha256": {
+      "fight.h": "40e22492d61a9a79907b20e26ae536787952759d2fe4333771aa2415a461b362",
+      "main.cpp": "0bf959d3143110e3e6c29bae8c8bb035b60131230dd8d92912ed5fa8d3769684",
+      "params.h": "73e598fae85e7f68e127543bc358b10715c234e8887d0966fdd84569f06b20d5"
+    }
+  },
+  "spar12": {
+    "family": "reference",
+    "wasm_sha256": "fece053441315d8f1f594aea33e7336be3cf2fe1a81f402ab6291ea97eba4b5e",
+    "source_fingerprint": "8603cd5f2fa7f909864ebcabb6144d772604871ef01ff24488efff23231da83c",
+    "source_sha256": {
+      "fight.h": "40e22492d61a9a79907b20e26ae536787952759d2fe4333771aa2415a461b362",
+      "main.cpp": "0bf959d3143110e3e6c29bae8c8bb035b60131230dd8d92912ed5fa8d3769684",
+      "params.h": "0c8fdf62cabab7d1aa462d791f9680405c00132d6d324dbeb59f1749a7d003cf"
+    }
+  },
+  "spar16": {
+    "family": "reference",
+    "wasm_sha256": "d3d96ac62e36a7e88362854c814282175455c2394f7eadd0a750547117f28bb4",
+    "source_fingerprint": "82c8c42bbc070de45b8c36c538ad38b6db9a42d5b5576e7932a79785aa4d8b4b",
+    "source_sha256": {
+      "fight.h": "82eac085aa0eef23f311ff49972709801e5b009ee5b495710ddd20d0ea8c5169",
+      "main.cpp": "56c1771b6fcc83eafbf6afd237b15741738958f2b4e0d8eaa4732e410e8dcc25",
+      "params.h": "f9b7b55d7958bd012accf0e18aaef5fba91ed3d21fc06330094844b57bb9ccaf"
+    }
+  }
+}

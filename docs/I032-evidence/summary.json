@@ -1,0 +1,1060 @@
+{
+  "scope": "Public export of saved current-build summaries; not the independent full-statistics audit.",
+  "selection": "Both ordered WASM hashes and source fingerprints must equal current testing/builds records. Diagnostic and submit-ZIP builds excluded.",
+  "build_count": 20,
+  "record_count": 5246,
+  "physical_games": 5246,
+  "duplicate_physical_records": 0,
+  "skipped": {
+    "historical_wasm_or_source": 392,
+    "outside_requested_builds": 3
+  },
+  "native_faults": [
+    0,
+    0
+  ],
+  "phase_wld": [
+    {
+      "phase": "confirm",
+      "family": "LIGHT/stable ties",
+      "candidate": "light-all",
+      "opponent": "original",
+      "games": 88,
+      "wins": 39,
+      "losses": 49,
+      "draws": 0
+    },
+    {
+      "phase": "confirm",
+      "family": "LIGHT/stable ties",
+      "candidate": "light-all",
+      "opponent": "spar11",
+      "games": 88,
+      "wins": 78,
+      "losses": 10,
+      "draws": 0
+    },
+    {
+      "phase": "confirm",
+      "family": "LIGHT/stable ties",
+      "candidate": "light-all",
+      "opponent": "spar12",
+      "games": 88,
+      "wins": 82,
+      "losses": 6,
+      "draws": 0
+    },
+    {
+      "phase": "confirm",
+      "family": "LIGHT/stable ties",
+      "candidate": "light-all",
+      "opponent": "spar16",
+      "games": 88,
+      "wins": 81,
+      "losses": 7,
+      "draws": 0
+    },
+    {
+      "phase": "confirm",
+      "family": "LIGHT/stable ties",
+      "candidate": "light-anchors",
+      "opponent": "original",
+      "games": 88,
+      "wins": 46,
+      "losses": 42,
+      "draws": 0
+    },
+    {
+      "phase": "confirm",
+      "family": "LIGHT/stable ties",
+      "candidate": "light-channels",
+      "opponent": "original",
+      "games": 88,
+      "wins": 44,
+      "losses": 44,
+      "draws": 0
+    },
+    {
+      "phase": "confirm",
+      "family": "LIGHT/stable ties",
+      "candidate": "light-memory",
+      "opponent": "original",
+      "games": 88,
+      "wins": 42,
+      "losses": 46,
+      "draws": 0
+    },
+    {
+      "phase": "confirm",
+      "family": "reference",
+      "candidate": "original",
+      "opponent": "spar11",
+      "games": 88,
+      "wins": 78,
+      "losses": 10,
+      "draws": 0
+    },
+    {
+      "phase": "confirm",
+      "family": "reference",
+      "candidate": "original",
+      "opponent": "spar12",
+      "games": 88,
+      "wins": 82,
+      "losses": 6,
+      "draws": 0
+    },
+    {
+      "phase": "confirm",
+      "family": "reference",
+      "candidate": "original",
+      "opponent": "spar16",
+      "games": 88,
+      "wins": 80,
+      "losses": 8,
+      "draws": 0
+    },
+    {
+      "phase": "holdout",
+      "family": "full forecast v2",
+      "candidate": "all",
+      "opponent": "original",
+      "games": 42,
+      "wins": 22,
+      "losses": 20,
+      "draws": 0
+    },
+    {
+      "phase": "holdout",
+      "family": "full forecast v2",
+      "candidate": "all",
+      "opponent": "spar11",
+      "games": 42,
+      "wins": 36,
+      "losses": 6,
+      "draws": 0
+    },
+    {
+      "phase": "holdout",
+      "family": "full forecast v2",
+      "candidate": "all",
+      "opponent": "spar12",
+      "games": 42,
+      "wins": 39,
+      "losses": 3,
+      "draws": 0
+    },
+    {
+      "phase": "holdout",
+      "family": "full forecast v2",
+      "candidate": "all",
+      "opponent": "spar16",
+      "games": 42,
+      "wins": 37,
+      "losses": 5,
+      "draws": 0
+    },
+    {
+      "phase": "holdout",
+      "family": "full forecast v2",
+      "candidate": "anchors",
+      "opponent": "original",
+      "games": 42,
+      "wins": 20,
+      "losses": 22,
+      "draws": 0
+    },
+    {
+      "phase": "holdout",
+      "family": "full forecast v2",
+      "candidate": "channels",
+      "opponent": "original",
+      "games": 42,
+      "wins": 25,
+      "losses": 17,
+      "draws": 0
+    },
+    {
+      "phase": "holdout",
+      "family": "LIGHT/stable ties",
+      "candidate": "light-all",
+      "opponent": "original",
+      "games": 42,
+      "wins": 24,
+      "losses": 18,
+      "draws": 0
+    },
+    {
+      "phase": "holdout",
+      "family": "LIGHT/stable ties",
+      "candidate": "light-all",
+      "opponent": "spar11",
+      "games": 42,
+      "wins": 36,
+      "losses": 6,
+      "draws": 0
+    },
+    {
+      "phase": "holdout",
+      "family": "LIGHT/stable ties",
+      "candidate": "light-all",
+      "opponent": "spar12",
+      "games": 42,
+      "wins": 41,
+      "losses": 1,
+      "draws": 0
+    },
+    {
+      "phase": "holdout",
+      "family": "LIGHT/stable ties",
+      "candidate": "light-all",
+      "opponent": "spar16",
+      "games": 42,
+      "wins": 37,
+      "losses": 5,
+      "draws": 0
+    },
+    {
+      "phase": "holdout",
+      "family": "LIGHT/stable ties",
+      "candidate": "light-anchors",
+      "opponent": "original",
+      "games": 42,
+      "wins": 20,
+      "losses": 22,
+      "draws": 0
+    },
+    {
+      "phase": "holdout",
+      "family": "LIGHT/stable ties",
+      "candidate": "light-channels",
+      "opponent": "original",
+      "games": 42,
+      "wins": 25,
+      "losses": 17,
+      "draws": 0
+    },
+    {
+      "phase": "holdout",
+      "family": "LIGHT/stable ties",
+      "candidate": "light-memory",
+      "opponent": "original",
+      "games": 42,
+      "wins": 21,
+      "losses": 21,
+      "draws": 0
+    },
+    {
+      "phase": "holdout",
+      "family": "full forecast v2",
+      "candidate": "memory",
+      "opponent": "original",
+      "games": 42,
+      "wins": 21,
+      "losses": 21,
+      "draws": 0
+    },
+    {
+      "phase": "holdout",
+      "family": "reference",
+      "candidate": "original",
+      "opponent": "spar11",
+      "games": 42,
+      "wins": 34,
+      "losses": 8,
+      "draws": 0
+    },
+    {
+      "phase": "holdout",
+      "family": "reference",
+      "candidate": "original",
+      "opponent": "spar12",
+      "games": 42,
+      "wins": 39,
+      "losses": 3,
+      "draws": 0
+    },
+    {
+      "phase": "holdout",
+      "family": "reference",
+      "candidate": "original",
+      "opponent": "spar16",
+      "games": 42,
+      "wins": 36,
+      "losses": 6,
+      "draws": 0
+    },
+    {
+      "phase": "screen",
+      "family": "full forecast v2",
+      "candidate": "all",
+      "opponent": "anchors",
+      "games": 64,
+      "wins": 27,
+      "losses": 37,
+      "draws": 0
+    },
+    {
+      "phase": "screen",
+      "family": "full forecast v2",
+      "candidate": "all",
+      "opponent": "anchors-channels",
+      "games": 64,
+      "wins": 33,
+      "losses": 31,
+      "draws": 0
+    },
+    {
+      "phase": "screen",
+      "family": "full forecast v2",
+      "candidate": "all",
+      "opponent": "channels",
+      "games": 64,
+      "wins": 31,
+      "losses": 33,
+      "draws": 0
+    },
+    {
+      "phase": "screen",
+      "family": "full forecast v2",
+      "candidate": "all",
+      "opponent": "memory",
+      "games": 64,
+      "wins": 27,
+      "losses": 37,
+      "draws": 0
+    },
+    {
+      "phase": "screen",
+      "family": "full forecast v2",
+      "candidate": "all",
+      "opponent": "memory-anchors",
+      "games": 64,
+      "wins": 28,
+      "losses": 36,
+      "draws": 0
+    },
+    {
+      "phase": "screen",
+      "family": "full forecast v2",
+      "candidate": "all",
+      "opponent": "memory-channels",
+      "games": 64,
+      "wins": 29,
+      "losses": 35,
+      "draws": 0
+    },
+    {
+      "phase": "screen",
+      "family": "full forecast v2",
+      "candidate": "all",
+      "opponent": "original",
+      "games": 64,
+      "wins": 26,
+      "losses": 38,
+      "draws": 0
+    },
+    {
+      "phase": "screen",
+      "family": "full forecast v2",
+      "candidate": "all",
+      "opponent": "spar11",
+      "games": 64,
+      "wins": 56,
+      "losses": 8,
+      "draws": 0
+    },
+    {
+      "phase": "screen",
+      "family": "full forecast v2",
+      "candidate": "all",
+      "opponent": "spar12",
+      "games": 64,
+      "wins": 58,
+      "losses": 6,
+      "draws": 0
+    },
+    {
+      "phase": "screen",
+      "family": "full forecast v2",
+      "candidate": "all",
+      "opponent": "spar16",
+      "games": 64,
+      "wins": 57,
+      "losses": 7,
+      "draws": 0
+    },
+    {
+      "phase": "screen",
+      "family": "full forecast v2",
+      "candidate": "anchors",
+      "opponent": "original",
+      "games": 64,
+      "wins": 33,
+      "losses": 31,
+      "draws": 0
+    },
+    {
+      "phase": "screen",
+      "family": "full forecast v2",
+      "candidate": "anchors",
+      "opponent": "spar11",
+      "games": 64,
+      "wins": 56,
+      "losses": 8,
+      "draws": 0
+    },
+    {
+      "phase": "screen",
+      "family": "full forecast v2",
+      "candidate": "anchors",
+      "opponent": "spar12",
+      "games": 64,
+      "wins": 59,
+      "losses": 5,
+      "draws": 0
+    },
+    {
+      "phase": "screen",
+      "family": "full forecast v2",
+      "candidate": "anchors",
+      "opponent": "spar16",
+      "games": 64,
+      "wins": 57,
+      "losses": 7,
+      "draws": 0
+    },
+    {
+      "phase": "screen",
+      "family": "full forecast v2",
+      "candidate": "anchors-channels",
+      "opponent": "original",
+      "games": 64,
+      "wins": 29,
+      "losses": 35,
+      "draws": 0
+    },
+    {
+      "phase": "screen",
+      "family": "full forecast v2",
+      "candidate": "channels",
+      "opponent": "original",
+      "games": 64,
+      "wins": 30,
+      "losses": 34,
+      "draws": 0
+    },
+    {
+      "phase": "screen",
+      "family": "full forecast v2",
+      "candidate": "channels",
+      "opponent": "spar11",
+      "games": 64,
+      "wins": 58,
+      "losses": 6,
+      "draws": 0
+    },
+    {
+      "phase": "screen",
+      "family": "full forecast v2",
+      "candidate": "channels",
+      "opponent": "spar12",
+      "games": 64,
+      "wins": 58,
+      "losses": 6,
+      "draws": 0
+    },
+    {
+      "phase": "screen",
+      "family": "full forecast v2",
+      "candidate": "channels",
+      "opponent": "spar16",
+      "games": 64,
+      "wins": 55,
+      "losses": 9,
+      "draws": 0
+    },
+    {
+      "phase": "screen",
+      "family": "full forecast v2",
+      "candidate": "control",
+      "opponent": "original",
+      "games": 64,
+      "wins": 32,
+      "losses": 32,
+      "draws": 0
+    },
+    {
+      "phase": "screen",
+      "family": "LIGHT/stable ties",
+      "candidate": "light-all",
+      "opponent": "all",
+      "games": 64,
+      "wins": 34,
+      "losses": 30,
+      "draws": 0
+    },
+    {
+      "phase": "screen",
+      "family": "LIGHT/stable ties",
+      "candidate": "light-all",
+      "opponent": "channels",
+      "games": 64,
+      "wins": 32,
+      "losses": 32,
+      "draws": 0
+    },
+    {
+      "phase": "screen",
+      "family": "LIGHT/stable ties",
+      "candidate": "light-all",
+      "opponent": "light-anchors",
+      "games": 64,
+      "wins": 30,
+      "losses": 34,
+      "draws": 0
+    },
+    {
+      "phase": "screen",
+      "family": "LIGHT/stable ties",
+      "candidate": "light-all",
+      "opponent": "light-anchors-channels",
+      "games": 64,
+      "wins": 30,
+      "losses": 34,
+      "draws": 0
+    },
+    {
+      "phase": "screen",
+      "family": "LIGHT/stable ties",
+      "candidate": "light-all",
+      "opponent": "light-channels",
+      "games": 64,
+      "wins": 28,
+      "losses": 36,
+      "draws": 0
+    },
+    {
+      "phase": "screen",
+      "family": "LIGHT/stable ties",
+      "candidate": "light-all",
+      "opponent": "light-memory",
+      "games": 64,
+      "wins": 28,
+      "losses": 36,
+      "draws": 0
+    },
+    {
+      "phase": "screen",
+      "family": "LIGHT/stable ties",
+      "candidate": "light-all",
+      "opponent": "light-memory-anchors",
+      "games": 64,
+      "wins": 31,
+      "losses": 33,
+      "draws": 0
+    },
+    {
+      "phase": "screen",
+      "family": "LIGHT/stable ties",
+      "candidate": "light-all",
+      "opponent": "light-memory-channels",
+      "games": 64,
+      "wins": 30,
+      "losses": 34,
+      "draws": 0
+    },
+    {
+      "phase": "screen",
+      "family": "LIGHT/stable ties",
+      "candidate": "light-all",
+      "opponent": "original",
+      "games": 64,
+      "wins": 29,
+      "losses": 35,
+      "draws": 0
+    },
+    {
+      "phase": "screen",
+      "family": "LIGHT/stable ties",
+      "candidate": "light-all",
+      "opponent": "spar11",
+      "games": 64,
+      "wins": 56,
+      "losses": 8,
+      "draws": 0
+    },
+    {
+      "phase": "screen",
+      "family": "LIGHT/stable ties",
+      "candidate": "light-all",
+      "opponent": "spar12",
+      "games": 64,
+      "wins": 57,
+      "losses": 7,
+      "draws": 0
+    },
+    {
+      "phase": "screen",
+      "family": "LIGHT/stable ties",
+      "candidate": "light-all",
+      "opponent": "spar16",
+      "games": 64,
+      "wins": 58,
+      "losses": 6,
+      "draws": 0
+    },
+    {
+      "phase": "screen",
+      "family": "LIGHT/stable ties",
+      "candidate": "light-anchors",
+      "opponent": "original",
+      "games": 64,
+      "wins": 33,
+      "losses": 31,
+      "draws": 0
+    },
+    {
+      "phase": "screen",
+      "family": "LIGHT/stable ties",
+      "candidate": "light-anchors",
+      "opponent": "spar11",
+      "games": 64,
+      "wins": 56,
+      "losses": 8,
+      "draws": 0
+    },
+    {
+      "phase": "screen",
+      "family": "LIGHT/stable ties",
+      "candidate": "light-anchors",
+      "opponent": "spar12",
+      "games": 64,
+      "wins": 59,
+      "losses": 5,
+      "draws": 0
+    },
+    {
+      "phase": "screen",
+      "family": "LIGHT/stable ties",
+      "candidate": "light-anchors",
+      "opponent": "spar16",
+      "games": 64,
+      "wins": 57,
+      "losses": 7,
+      "draws": 0
+    },
+    {
+      "phase": "screen",
+      "family": "LIGHT/stable ties",
+      "candidate": "light-anchors-channels",
+      "opponent": "original",
+      "games": 64,
+      "wins": 30,
+      "losses": 34,
+      "draws": 0
+    },
+    {
+      "phase": "screen",
+      "family": "LIGHT/stable ties",
+      "candidate": "light-channels",
+      "opponent": "original",
+      "games": 64,
+      "wins": 31,
+      "losses": 33,
+      "draws": 0
+    },
+    {
+      "phase": "screen",
+      "family": "LIGHT/stable ties",
+      "candidate": "light-channels",
+      "opponent": "spar11",
+      "games": 64,
+      "wins": 56,
+      "losses": 8,
+      "draws": 0
+    },
+    {
+      "phase": "screen",
+      "family": "LIGHT/stable ties",
+      "candidate": "light-channels",
+      "opponent": "spar12",
+      "games": 64,
+      "wins": 54,
+      "losses": 10,
+      "draws": 0
+    },
+    {
+      "phase": "screen",
+      "family": "LIGHT/stable ties",
+      "candidate": "light-channels",
+      "opponent": "spar16",
+      "games": 64,
+      "wins": 58,
+      "losses": 6,
+      "draws": 0
+    },
+    {
+      "phase": "screen",
+      "family": "LIGHT/stable ties",
+      "candidate": "light-control",
+      "opponent": "original",
+      "games": 64,
+      "wins": 32,
+      "losses": 32,
+      "draws": 0
+    },
+    {
+      "phase": "screen",
+      "family": "LIGHT/stable ties",
+      "candidate": "light-memory",
+      "opponent": "original",
+      "games": 64,
+      "wins": 31,
+      "losses": 33,
+      "draws": 0
+    },
+    {
+      "phase": "screen",
+      "family": "LIGHT/stable ties",
+      "candidate": "light-memory",
+      "opponent": "spar11",
+      "games": 64,
+      "wins": 55,
+      "losses": 9,
+      "draws": 0
+    },
+    {
+      "phase": "screen",
+      "family": "LIGHT/stable ties",
+      "candidate": "light-memory",
+      "opponent": "spar12",
+      "games": 64,
+      "wins": 58,
+      "losses": 6,
+      "draws": 0
+    },
+    {
+      "phase": "screen",
+      "family": "LIGHT/stable ties",
+      "candidate": "light-memory",
+      "opponent": "spar16",
+      "games": 64,
+      "wins": 57,
+      "losses": 7,
+      "draws": 0
+    },
+    {
+      "phase": "screen",
+      "family": "LIGHT/stable ties",
+      "candidate": "light-memory-anchors",
+      "opponent": "original",
+      "games": 64,
+      "wins": 30,
+      "losses": 34,
+      "draws": 0
+    },
+    {
+      "phase": "screen",
+      "family": "LIGHT/stable ties",
+      "candidate": "light-memory-channels",
+      "opponent": "original",
+      "games": 64,
+      "wins": 30,
+      "losses": 34,
+      "draws": 0
+    },
+    {
+      "phase": "screen",
+      "family": "full forecast v2",
+      "candidate": "memory",
+      "opponent": "original",
+      "games": 64,
+      "wins": 31,
+      "losses": 33,
+      "draws": 0
+    },
+    {
+      "phase": "screen",
+      "family": "full forecast v2",
+      "candidate": "memory",
+      "opponent": "spar11",
+      "games": 64,
+      "wins": 55,
+      "losses": 9,
+      "draws": 0
+    },
+    {
+      "phase": "screen",
+      "family": "full forecast v2",
+      "candidate": "memory",
+      "opponent": "spar12",
+      "games": 64,
+      "wins": 58,
+      "losses": 6,
+      "draws": 0
+    },
+    {
+      "phase": "screen",
+      "family": "full forecast v2",
+      "candidate": "memory",
+      "opponent": "spar16",
+      "games": 64,
+      "wins": 57,
+      "losses": 7,
+      "draws": 0
+    },
+    {
+      "phase": "screen",
+      "family": "full forecast v2",
+      "candidate": "memory-anchors",
+      "opponent": "original",
+      "games": 64,
+      "wins": 30,
+      "losses": 34,
+      "draws": 0
+    },
+    {
+      "phase": "screen",
+      "family": "full forecast v2",
+      "candidate": "memory-channels",
+      "opponent": "original",
+      "games": 64,
+      "wins": 28,
+      "losses": 36,
+      "draws": 0
+    },
+    {
+      "phase": "screen",
+      "family": "reference",
+      "candidate": "original",
+      "opponent": "spar11",
+      "games": 64,
+      "wins": 56,
+      "losses": 8,
+      "draws": 0
+    },
+    {
+      "phase": "screen",
+      "family": "reference",
+      "candidate": "original",
+      "opponent": "spar12",
+      "games": 64,
+      "wins": 58,
+      "losses": 6,
+      "draws": 0
+    },
+    {
+      "phase": "screen",
+      "family": "reference",
+      "candidate": "original",
+      "opponent": "spar16",
+      "games": 64,
+      "wins": 57,
+      "losses": 7,
+      "draws": 0
+    },
+    {
+      "phase": "smoke",
+      "family": "reference",
+      "candidate": "original",
+      "opponent": "original",
+      "games": 4,
+      "wins": 1,
+      "losses": 3,
+      "draws": 0
+    }
+  ],
+  "all_three_sparring_controls": [
+    {
+      "candidate": "original",
+      "phase": "screen",
+      "games": 192,
+      "wins": 171,
+      "losses": 21,
+      "draws": 0
+    },
+    {
+      "candidate": "original",
+      "phase": "holdout",
+      "games": 126,
+      "wins": 109,
+      "losses": 17,
+      "draws": 0
+    },
+    {
+      "candidate": "original",
+      "phase": "confirm",
+      "games": 264,
+      "wins": 240,
+      "losses": 24,
+      "draws": 0
+    },
+    {
+      "candidate": "original",
+      "phase": "all",
+      "games": 582,
+      "wins": 520,
+      "losses": 62,
+      "draws": 0
+    },
+    {
+      "candidate": "memory",
+      "phase": "screen",
+      "games": 192,
+      "wins": 170,
+      "losses": 22,
+      "draws": 0
+    },
+    {
+      "candidate": "memory",
+      "phase": "all",
+      "games": 192,
+      "wins": 170,
+      "losses": 22,
+      "draws": 0
+    },
+    {
+      "candidate": "anchors",
+      "phase": "screen",
+      "games": 192,
+      "wins": 172,
+      "losses": 20,
+      "draws": 0
+    },
+    {
+      "candidate": "anchors",
+      "phase": "all",
+      "games": 192,
+      "wins": 172,
+      "losses": 20,
+      "draws": 0
+    },
+    {
+      "candidate": "channels",
+      "phase": "screen",
+      "games": 192,
+      "wins": 171,
+      "losses": 21,
+      "draws": 0
+    },
+    {
+      "candidate": "channels",
+      "phase": "all",
+      "games": 192,
+      "wins": 171,
+      "losses": 21,
+      "draws": 0
+    },
+    {
+      "candidate": "all",
+      "phase": "screen",
+      "games": 192,
+      "wins": 171,
+      "losses": 21,
+      "draws": 0
+    },
+    {
+      "candidate": "all",
+      "phase": "holdout",
+      "games": 126,
+      "wins": 112,
+      "losses": 14,
+      "draws": 0
+    },
+    {
+      "candidate": "all",
+      "phase": "all",
+      "games": 318,
+      "wins": 283,
+      "losses": 35,
+      "draws": 0
+    },
+    {
+      "candidate": "light-memory",
+      "phase": "screen",
+      "games": 192,
+      "wins": 170,
+      "losses": 22,
+      "draws": 0
+    },
+    {
+      "candidate": "light-memory",
+      "phase": "all",
+      "games": 192,
+      "wins": 170,
+      "losses": 22,
+      "draws": 0
+    },
+    {
+      "candidate": "light-anchors",
+      "phase": "screen",
+      "games": 192,
+      "wins": 172,
+      "losses": 20,
+      "draws": 0
+    },
+    {
+      "candidate": "light-anchors",
+      "phase": "all",
+      "games": 192,
+      "wins": 172,
+      "losses": 20,
+      "draws": 0
+    },
+    {
+      "candidate": "light-channels",
+      "phase": "screen",
+      "games": 192,
+      "wins": 168,
+      "losses": 24,
+      "draws": 0
+    },
+    {
+      "candidate": "light-channels",
+      "phase": "all",
+      "games": 192,
+      "wins": 168,
+      "losses": 24,
+      "draws": 0
+    },
+    {
+      "candidate": "light-all",
+      "phase": "screen",
+      "games": 192,
+      "wins": 171,
+      "losses": 21,
+      "draws": 0
+    },
+    {
+      "candidate": "light-all",
+      "phase": "holdout",
+      "games": 126,
+      "wins": 114,
+      "losses": 12,
+      "draws": 0
+    },
+    {
+      "candidate": "light-all",
+      "phase": "confirm",
+      "games": 264,
+      "wins": 241,
+      "losses": 23,
+      "draws": 0
+    },
+    {
+      "candidate": "light-all",
+      "phase": "all",
+      "games": 582,
+      "wins": 526,
+      "losses": 56,
+      "draws": 0
+    }
+  ],
+  "limits": [
+    "Panel phase labels retain historical screen/holdout/confirm names; confirm was post hoc.",
+    "Counts are physical-game deduplicated within each comparison/phase and sparring aggregate.",
+    "Caught SDK action errors and full-statistic conservation are assessed by the separate audit.",
+    "No causal component or broad-strength conclusion follows from this export."
+  ]
+}

@@ -140,7 +140,11 @@ struct AwakeEntryContract {
     int owner = -1, group = -1, camp = -1, round = -1;
     Pos stage{}, target{};
 };
+enum class SoloFarmMode { None, Combined, DirectCastOnly };
 struct Mission {
+    int planned_collector = -1;
+    SoloFarmMode solo_mode = SoloFarmMode::None;
+    int solo_slot = -1;
     AwakeEntryContract awake_entry{};
     Phase phase = Phase::Unassigned;
     Intent intent = Intent::Farm;
@@ -168,6 +172,16 @@ struct Mission {
     Pos bank_reentry_target{};
     double bank_reentry_rate = 0;
 };
+// Current-only revalidation may not silently select another controller.
+inline SoloFarmMode current_solo_mode(const Mission &job, int group) {
+    if (group < 0 || job.group != group || job.phase != Phase::Clear)
+        return SoloFarmMode::None;
+    if (job.solo_mode == SoloFarmMode::Combined && job.solo_slot == -1)
+        return SoloFarmMode::Combined;
+    if (job.solo_mode == SoloFarmMode::DirectCastOnly && job.solo_slot >= 0 && job.solo_slot < 2)
+        return SoloFarmMode::DirectCastOnly;
+    return SoloFarmMode::None;
+}
 struct Proposal {
     Action action{};
     Mission mission{};
@@ -177,6 +191,8 @@ struct Proposal {
     // Set only by a paid fresh fixed-position solo-clear certificate. This
     // carries its next basic's proof through one accepted native mutation.
     bool solo_clear_certified = false;
+    Kind solo_current_followup = Kind::None;
+    int solo_current_slot = -1;
     bool awake_entry_current_certified = false;
     bool crew_clear_certified = false;
     ClearProofKind crew_clear_proof = ClearProofKind::None;
@@ -191,6 +207,7 @@ struct AssemblyPathHint {
     std::uint32_t borrowed_generation = 0;
 };
 struct Memory {
+    int resizing_probe_round = -1;
     AwakeEntryContract awake_entry{};
     int awake_entry_backoff_group = -1, awake_entry_backoff_until = -1;
     Mission mission{};

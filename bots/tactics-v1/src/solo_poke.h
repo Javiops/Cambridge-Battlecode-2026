@@ -18,16 +18,17 @@ inline CastOnlyCertificate certify_cast_only_clear(const Actor &actual, const Ca
                                                    int elapsed,
                                                    std::span<const Camp> nearby_camps = {},
                                                    double enemy_reply = 0, int max_ticks = 2000,
-                                                   bool exclusive_allowed = true) {
+                                                   bool exclusive_allowed = true,
+                                                   int required_slot = -1) {
     CastOnlyCertificate best;
-    if (actual.id < 0 || actual.type < 0 || actual.type > 11 || camp.id < 0 || camp.pos.x < 0 ||
-        camp.pos.y < 0 || !actual.alive || actual.stunned || actual.channel != Channel::None ||
-        actual.pos.x < 0 || actual.pos.y < 0 || stage.x < 0 || stage.y < 0 || elapsed < 0 ||
-        (elapsed == 0 && stage != actual.pos) || max_ticks < 1 || !std::isfinite(actual.hp) ||
-        actual.hp <= 0 || !std::isfinite(actual.max_hp) || actual.max_hp <= 0 ||
-        !std::isfinite(camp.hp) || camp.hp <= 0 || !std::isfinite(camp.strength) ||
-        camp.strength < 0 || camp.range < 0 || !std::isfinite(enemy_reply) || enemy_reply < 0 ||
-        distance(stage, camp.pos) <= camp.range)
+    if (required_slot < -1 || required_slot > 1 || actual.id < 0 || actual.type < 0 ||
+        actual.type > 11 || camp.id < 0 || camp.pos.x < 0 || camp.pos.y < 0 || !actual.alive ||
+        actual.stunned || actual.channel != Channel::None || actual.pos.x < 0 || actual.pos.y < 0 ||
+        stage.x < 0 || stage.y < 0 || elapsed < 0 || (elapsed == 0 && stage != actual.pos) ||
+        max_ticks < 1 || !std::isfinite(actual.hp) || actual.hp <= 0 ||
+        !std::isfinite(actual.max_hp) || actual.max_hp <= 0 || !std::isfinite(camp.hp) ||
+        camp.hp <= 0 || !std::isfinite(camp.strength) || camp.strength < 0 || camp.range < 0 ||
+        !std::isfinite(enemy_reply) || enemy_reply < 0 || distance(stage, camp.pos) <= camp.range)
         return best;
     for (const auto &other : nearby_camps) {
         if (other.id == camp.id || !other.awake || other.hp <= 0)
@@ -41,6 +42,8 @@ inline CastOnlyCertificate certify_cast_only_clear(const Actor &actual, const Ca
         return best;
     const double hp = std::max(camp.hp, double(static_cast<float>(camp.hp)));
     for (int slot = 0; slot < 2; ++slot) {
+        if (required_slot >= 0 && slot != required_slot)
+            continue;
         const auto &spell = actual.spells[slot];
         // Direct targeting avoids unpriced area wakes. In particular, an AoE
         // radius cannot turn an out-of-range center into a legal direct cast.

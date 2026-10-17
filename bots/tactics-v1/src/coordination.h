@@ -373,7 +373,10 @@ inline bool name_current_crew(Mission &job, const LocalAssignment &assignment, i
     }
     if (!self)
         return false;
+    job.solo_mode = SoloFarmMode::None;
+    job.solo_slot = -1;
     job.assembly_count = assignment.selected_ids.size();
+    job.planned_collector = assignment.collector_id;
     std::copy(assignment.selected_ids.begin(), assignment.selected_ids.end(),
               job.assembly_ids.begin());
     job.assembly_anchor =
@@ -550,7 +553,15 @@ inline bool quiet_fixed_camp_window(const World &w, std::span<const CampClearBod
     }
     return true;
 }
-inline LocalAssignment propose_local_assignment(World &w, int group) {
+enum class AssignmentFunding { Ordinary, OneCurrentCast };
+inline int assignment_planning_floor(bool committed, unsigned remaining,
+                                     AssignmentFunding funding) {
+    const int optional_slice = funding == AssignmentFunding::OneCurrentCast ? 30000 : 12000;
+    return committed ? 32000 : std::max(32000, static_cast<int>(remaining) - optional_slice);
+}
+inline LocalAssignment
+propose_local_assignment(World &w, int group,
+                         AssignmentFunding funding = AssignmentFunding::Ordinary) {
     LocalAssignment out;
     if (bc::fuel_remaining() < 48000 || w.round != static_cast<int>(bc::round_number())) {
         out.uncertain = true;
@@ -675,9 +686,11 @@ inline LocalAssignment propose_local_assignment(World &w, int group) {
     // Give its fresh current-position certificate the available budget down to
     // the same hard action reserve. Ordinary uncommitted searches keep12k.
     // This changes funding only; no old projected crew is reused as readiness.
+    // Only the named current-cast hypothesis may spend30k before elective
+    // ranking. Ordinary searches retain12k; all paths keep the hard32k
+    // action reserve and the existing epoch/work callbacks.
     const int planning_floor =
-        committed_assembly ? 32000
-                           : std::max(32000, static_cast<int>(bc::fuel_remaining()) - 12000);
+        assignment_planning_floor(committed_assembly, bc::fuel_remaining(), funding);
     auto consider = [&](const std::vector<CampClearBody> &selected, int max_work = 48) {
         if (bc::fuel_remaining() < static_cast<unsigned>(planning_floor + 6000)) {
             out.uncertain = true;

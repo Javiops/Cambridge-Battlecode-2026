@@ -2,6 +2,7 @@
 #include "coordinator.h"
 #include "crew_sequence.h"
 #include "draft.h"
+#include "resizing.h"
 #include "shopping.h"
 #include "vision.h"
 #include <memory>
@@ -83,7 +84,16 @@ class Bot {
 
     // An accepted action may use the rest of this owner's budget. We may end
     // here without another snapshot, but must never decide from that old view.
-    bool refresh_after(World &w, const Action &action, const Execution &result) {
+    bool refresh_after(World &w, const Action &action, const Execution &result,
+                       bool required_solo_continuation = false, int receipt_group = -1,
+                       int receipt_camp = -1, int receipt_serial = -1) {
+        if (required_solo_continuation) {
+            // The only legal consumer of this restricted snapshot is the
+            // exact prepaid scalar continuation below. It never returns to
+            // unrelated arbitration, global observation or geometry work.
+            return w.refresh_receipt_target(receipt_group, receipt_camp, w.round, receipt_serial) &&
+                   fuel(10000);
+        }
         if (result.outcome == Outcome::Started)
             memory_.prior_channel =
                 action.kind == Kind::Recall ? Channel::Recall : Channel::Tribute;
@@ -92,7 +102,8 @@ class Bot {
             w.refresh(true);
             if (w.round != static_cast<int>(bc::round_number()))
                 return false;
-            remember(w, memory_);
+            if (!w.restricted_continuation_snapshot)
+                remember(w, memory_);
             if (action.kind == Kind::CastSelf && memory_.mission.phase == Phase::Clear &&
                 (std::string_view(action.reason) == "farm-certified-solo-live-reset" ||
                  std::string_view(action.reason) == "crew-paid-reset-with-basic"))
@@ -106,13 +117,15 @@ class Bot {
              w.spells[action.slot].kind != 6);
         if (stationary_effect && bc::fuel_remaining() >= 30000) {
             w.refresh_local_effects(action);
-            remember(w, memory_);
-            return fuel(22000);
+            if (!w.restricted_continuation_snapshot)
+                remember(w, memory_);
+            return fuel(required_solo_continuation ? 10000 : 22000);
         }
         if (!fuel(44000))
             return false;
         w.refresh();
-        remember(w, memory_);
+        if (!w.restricted_continuation_snapshot)
+            remember(w, memory_);
         return fuel(28000);
     }
 
@@ -157,18 +170,19 @@ class Bot {
         if (geometry_.valid(memory_.mission.target) && !geometry_.blocked(memory_.mission.target) &&
             memory_.mission.phase != Phase::Channel && memory_.mission.phase != Phase::Recover)
             geometry_.goal_field(memory_.mission.target, 0);
-        if (world_ && geometry_.valid(memory_.mission.target) &&
-            memory_.mission.phase != Phase::Channel && memory_.mission.phase != Phase::Recover &&
-            bc::fuel_remaining() >= 95000) {
+        if (world_ && !world_->restricted_continuation_snapshot &&
+            geometry_.valid(memory_.mission.target) && memory_.mission.phase != Phase::Channel &&
+            memory_.mission.phase != Phase::Recover && bc::fuel_remaining() >= 95000) {
             geometry_.goal_field(memory_.mission.target, ward_contact_range(*world_), true);
         }
-        if (world_ && world_->self.alive && world_->self.channel == Channel::None &&
-            memory_.mission.phase != Phase::Channel && memory_.mission.phase != Phase::Recover &&
-            !memory_.mission.assembly_pending && bc::fuel_remaining() >= 80000)
+        if (world_ && !world_->restricted_continuation_snapshot && world_->self.alive &&
+            world_->self.channel == Channel::None && memory_.mission.phase != Phase::Channel &&
+            memory_.mission.phase != Phase::Recover && !memory_.mission.assembly_pending &&
+            bc::fuel_remaining() >= 80000)
             if (auto nearby = nearby_assembly_group(*world_, memory_))
                 geometry_.goal_field(geometry_.groups[*nearby].spawns.front().pos, 0);
-        if (world_ && world_->self.alive && world_->self.channel == Channel::None &&
-            bc::fuel_remaining() >= 80000)
+        if (world_ && !world_->restricted_continuation_snapshot && world_->self.alive &&
+            world_->self.channel == Channel::None && bc::fuel_remaining() >= 80000)
             if (auto hint = shopping_gem_route_hint(*world_, shopping_))
                 geometry_.goal_field(*hint, 0);
         if (!world_ && bc::fuel_remaining() < 95000)
@@ -191,6 +205,8 @@ class Bot {
                                  shopping_.pending_heal >= 0 || shopping_.installed_gem.group >= 0;
         if (awake_entry_active(memory_.awake_entry))
             preselected = pending_awake_entry_proposal(w, memory_, transaction);
+        if (!preselected)
+            preselected = current_resize_proposal(w, memory_, transaction || chain_.active());
         if (w.round != int(bc::round_number()))
             return;
         if (chain_.active() &&
@@ -217,6 +233,10 @@ class Bot {
             early_solo_eligible(w.self, memory_.mission, w.round, memory_.hold_group >= 0, hostile,
                                 transaction))
             preselected = early_solo_proposal(w, memory_);
+        if (!preselected)
+            preselected = early_current_cast_farm_proposal(
+                w, memory_,
+                transaction || chain_.active() || awake_entry_active(memory_.awake_entry));
         if (!preselected && bc::fuel_remaining() >= 56000 &&
             early_assembly_eligible(w.self, memory_.mission, w.round, memory_.hold_group >= 0,
                                     hostile, transaction))
@@ -277,6 +297,8 @@ class Bot {
         bool crew_accepted = false;
         for (int iteration = 0; iteration < Settings::max_actions && fuel(10000); ++iteration) {
             if (w.round != static_cast<int>(bc::round_number())) {
+                if (w.restricted_continuation_snapshot)
+                    return;
                 w.refresh();
                 observe_progress(w, memory_);
                 break;
@@ -291,27 +313,40 @@ class Bot {
             // reserve; lower budgets never enter global arbitration or shopping.
             std::optional<Proposal> chosen = std::move(preselected);
             preselected.reset();
-            if (!chosen && solo_entry_followup) {
-                solo_entry_followup = false;
-                // The actual accepted move changed position/permissions. Pay
-                // one new snapshot quote before optional ranking; the prior
-                // future route supplies no first-hit permission.
-                if (bc::fuel_remaining() >= 44000 && memory_.mission.group >= 0) {
-                    const auto quote = quote_solo_farm(w, memory_.mission.group);
-                    chosen = solo_farm_proposal(w, memory_, quote);
-                    if (chosen && chosen->action.kind == Kind::BasicCamp)
-                        chosen->action.reason = "solo-early-funded-live-basic";
+            if (w.restricted_continuation_snapshot) {
+                chosen.reset();
+                if (reset_receipt && reset_receipt->valid)
+                    chosen = solo_reset_basic_followup(w, memory_, *reset_receipt, reset_accepted);
+                else if (basic_receipt && basic_receipt->valid && basic_receipt->required)
+                    chosen = solo_basic_reset_followup(w, memory_, *basic_receipt, basic_accepted);
+                reset_accepted = basic_accepted = false;
+                // Changed/dead target, allowance, kit, owner or rejected first
+                // action ends this restricted owner. Never retry a planner.
+                if (!chosen)
+                    return;
+            } else {
+                if (!chosen && solo_entry_followup) {
+                    solo_entry_followup = false;
+                    // The actual accepted move changed position/permissions. Pay
+                    // one new snapshot quote before optional ranking; the prior
+                    // future route supplies no first-hit permission.
+                    if (bc::fuel_remaining() >= 44000 && memory_.mission.group >= 0) {
+                        const auto quote = quote_solo_farm(w, memory_.mission.group);
+                        chosen = solo_farm_proposal(w, memory_, quote);
+                        if (chosen && chosen->action.kind == Kind::BasicCamp)
+                            chosen->action.reason = "solo-early-funded-live-basic";
+                    }
                 }
+                if (!chosen && crew_receipt && crew_receipt->valid)
+                    chosen = crew_turn_followup(w, memory_, *crew_receipt, crew_accepted);
+                crew_accepted = false;
+                if (!chosen && reset_receipt && reset_receipt->valid)
+                    chosen = solo_reset_basic_followup(w, memory_, *reset_receipt, reset_accepted);
+                reset_accepted = false;
+                if (!chosen && basic_receipt && basic_receipt->valid)
+                    chosen = solo_basic_reset_followup(w, memory_, *basic_receipt, basic_accepted);
+                basic_accepted = false;
             }
-            if (!chosen && crew_receipt && crew_receipt->valid)
-                chosen = crew_turn_followup(w, memory_, *crew_receipt, crew_accepted);
-            crew_accepted = false;
-            if (!chosen && reset_receipt && reset_receipt->valid)
-                chosen = solo_reset_basic_followup(w, memory_, *reset_receipt, reset_accepted);
-            reset_accepted = false;
-            if (!chosen && basic_receipt && basic_receipt->valid)
-                chosen = solo_basic_reset_followup(w, memory_, *basic_receipt, basic_accepted);
-            basic_accepted = false;
             if (!chosen && clear_followup && memory_.mission.phase == Phase::Clear &&
                 memory_.mission.assembly_count > 0 && fuel(48000))
                 chosen = farming(w, memory_); // Current named coalition before unrelated planners.
@@ -349,7 +384,8 @@ class Bot {
                 if (w.round != static_cast<int>(bc::round_number()))
                     return;
                 if (shop && fuel(20000)) {
-                    remember(w, memory_);
+                    if (!w.restricted_continuation_snapshot)
+                        remember(w, memory_);
                     auto result = execute(w, *shop);
                     ++shops;
                     if (result.outcome == Outcome::Stale)
@@ -358,7 +394,8 @@ class Bot {
                     shopping_after_action(w, *shop, result.success, shopping_);
                     if (!result.success && ++failures >= 2)
                         break;
-                    remember(w, memory_);
+                    if (!w.restricted_continuation_snapshot)
+                        remember(w, memory_);
                     continue;
                 }
                 chosen = choose_mission(w, memory_);
@@ -394,12 +431,18 @@ class Bot {
                 (bc::fuel_remaining() < 36000 || iteration + 1 >= Settings::max_actions))
                 break;
             // Never insert ward placement before a required survival response.
-            if (!certified_reset && !receipt_basic && !chosen->solo_clear_certified &&
+            const bool solo_damage_continuation = (chosen->action.kind == Kind::CastCamp ||
+                                                   chosen->action.kind == Kind::CastGround) &&
+                                                  std::string_view(chosen->action.reason) ==
+                                                      "farm-certified-solo-basic-damage-receipt";
+            if (!w.restricted_continuation_snapshot && !certified_reset && !receipt_basic &&
+                !solo_damage_continuation && !chosen->solo_clear_certified &&
                 !chosen->crew_clear_certified && bc::fuel_remaining() >= 70000 &&
                 ward_opportunity(w, intended, chosen->action) &&
                 chosen->priority < Priority::Survival && iteration < Settings::max_actions - 1) {
                 if (auto ward = ward_proposal(w, intended, ward_)) {
-                    remember(w, memory_);
+                    if (!w.restricted_continuation_snapshot)
+                        remember(w, memory_);
                     auto result = execute(w, *ward);
                     if (result.outcome == Outcome::Stale)
                         return;
@@ -411,7 +454,8 @@ class Bot {
                     ward_after_action(w, *ward, result.success, ward_);
                     if (!result.success && ++failures >= 2)
                         break;
-                    remember(w, memory_);
+                    if (!w.restricted_continuation_snapshot)
+                        remember(w, memory_);
                     continue;
                 }
             }
@@ -445,6 +489,12 @@ class Bot {
                 basic_receipt = make_solo_basic_receipt(w, *chosen);
             else
                 basic_receipt.reset();
+            if (basic_receipt && basic_receipt->required &&
+                (!basic_receipt->valid ||
+                 iteration + basic_receipt->continuations >= Settings::max_actions)) {
+                memory_.mission = prior;
+                break;
+            }
             bool crew_admission_failed = false;
             if (chosen->crew_clear_certified &&
                 chosen->crew_clear_proof == ClearProofKind::BasicOnly) {
@@ -468,7 +518,8 @@ class Bot {
                 memory_.mission = prior;
                 break;
             }
-            remember(w, memory_);
+            if (!w.restricted_continuation_snapshot)
+                remember(w, memory_);
             auto result = execute(w, chosen->action);
             commit_awake_entry(memory_, *chosen, result.success, w.round);
             reset_accepted = certified_reset && result.success;
@@ -512,12 +563,33 @@ class Bot {
                 if (++failures >= 2)
                     break;
             }
-            if (!refresh_after(w, chosen->action, result))
+            if (w.restricted_continuation_snapshot &&
+                (!result.success || chosen->action.kind != Kind::CastSelf))
+                return; // Required Damage/extraBasic is the last restricted action.
+            const bool refresh_paid_basic =
+                result.success && chosen->action.kind == Kind::BasicCamp && basic_receipt &&
+                basic_receipt->valid && basic_receipt->required;
+            const bool refresh_paid_reset = result.success &&
+                                            chosen->action.kind == Kind::CastSelf &&
+                                            reset_receipt && reset_receipt->valid;
+            const int receipt_group = refresh_paid_basic   ? basic_receipt->group
+                                      : refresh_paid_reset ? reset_receipt->group
+                                                           : -1;
+            const int receipt_camp = refresh_paid_basic   ? basic_receipt->camp.id
+                                     : refresh_paid_reset ? reset_receipt->camp.id
+                                                          : -1;
+            const int receipt_serial = refresh_paid_basic   ? basic_receipt->serial
+                                       : refresh_paid_reset ? reset_receipt->serial
+                                                            : -1;
+            if (!refresh_after(w, chosen->action, result, refresh_paid_basic || refresh_paid_reset,
+                               receipt_group, receipt_camp, receipt_serial))
                 return;
             if (w.round != static_cast<int>(bc::round_number()))
                 return;
             if (w.self.channel != Channel::None)
                 break;
+            if (w.restricted_continuation_snapshot)
+                continue; // No generic postaction query before the exact receipt consumer.
             if (clear_followup && (!reset_receipt || !reset_receipt->valid) &&
                 (!crew_receipt || !crew_receipt->valid) && memory_.mission.phase == Phase::Clear &&
                 memory_.mission.group >= 0 &&
@@ -540,7 +612,8 @@ class Bot {
                 }
             }
         }
-        remember(w, memory_);
+        if (!w.restricted_continuation_snapshot)
+            remember(w, memory_);
     }
 
   public:

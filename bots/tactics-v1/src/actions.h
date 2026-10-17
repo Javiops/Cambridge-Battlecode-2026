@@ -9,6 +9,12 @@ struct Execution {
     bool success = false;
 };
 inline bool any_basic_target(World &w) {
+    if (w.restricted_continuation_snapshot) {
+        const auto target = w.camp(w.restricted_continuation_camp);
+        return target && distance(position(w.me.position()), position(target->position())) <=
+                             w.me.attack_range();
+    }
+
     for (const auto &e : w.enemies)
         if (e.alive && distance(e.pos, w.self.pos) <= w.self.range)
             return true;
@@ -22,6 +28,19 @@ inline bool any_basic_target(World &w) {
 // The only gameplay mutation gateway. Planners never invoke an SDK action.
 inline Execution execute(World &w, const Action &a) {
     Execution result;
+    if (w.restricted_continuation_snapshot) {
+        const bool ground_damage =
+            a.kind == Kind::CastGround && a.slot >= 0 && a.slot < 2 && w.spells[a.slot].kind == 3 &&
+            w.spells[a.slot].ground && std::isfinite(w.spells[a.slot].amount) &&
+            w.spells[a.slot].amount > 0 && a.at == w.restricted_continuation_at;
+        if (a.target != w.restricted_continuation_camp ||
+            (a.kind != Kind::BasicCamp && a.kind != Kind::CastCamp && a.kind != Kind::CastSelf &&
+             !ground_damage)) {
+            result.outcome = Outcome::Stale;
+            return result;
+        }
+    }
+
     if (!fuel(1600) || w.round != static_cast<int>(bc::round_number())) {
         result.outcome = Outcome::Stale;
         return result;

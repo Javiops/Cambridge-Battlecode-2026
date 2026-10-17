@@ -7,11 +7,12 @@
 
 namespace tactics {
 struct SoloClearCertificate {
+    Kind current_followup = Kind::None;
+    int current_slot = -1;
     double clear_ticks = 0, remaining_hp = 0, damage_taken = 0;
     bool known = false, feasible = false;
 };
 enum class AwakeEntryTiming { ActualCurrent, FutureOneOwner };
-enum class SoloFarmMode { Combined, DirectCastOnly };
 struct SoloFarmQuote {
     int group = -1, route_length = 0, arrival_ticks = 0, capture_ticks = 0, bank_ticks = 0,
         recovery_ticks = 0, new_gems = 0, new_gold = 0;
@@ -25,6 +26,8 @@ struct SoloFarmQuote {
     AwakeEntryTiming entry = AwakeEntryTiming::ActualCurrent;
     double awake_prefix_damage = 0;
     int slot = -1;
+    Kind current_followup = Kind::None;
+    int current_slot = -1;
     bool known = false, feasible = false, ready_now = false, current_only = false;
 };
 
@@ -40,8 +43,12 @@ struct SoloResetReceipt {
 // Carries a paid current-clear certificate across exactly its selected basic.
 // Only a quiet singleton whose schedule has no competing ready damage cast
 // can spend this proof on the already priced immediate reset/basic pair.
+enum class SoloBasicContinuation { None, Damage, Reset };
 struct SoloBasicReceipt {
-    bool valid = false;
+    bool valid = false, required = false;
+    SoloBasicContinuation continuation = SoloBasicContinuation::None;
+    Kind action_kind = Kind::None;
+    int continuations = 0;
     int owner = -1, round = -1, serial = -1, group = -1, slot = -1;
     double expected_damage = 0;
     Actor actor{};
@@ -147,6 +154,15 @@ inline SoloClearCertificate certify_solo_clear(Actor actual, const Camp &camp, P
             // only if no damaging cast was chosen. Never two successful casts.
             const int slot = damage_slot >= 0 ? damage_slot : reset_slot;
             if (slot >= 0) {
+                if (tick == 0 && ready_now && elapsed == 0 && basic_range && actual.can_attack &&
+                    !actual.completed) {
+                    out.current_followup = damage_slot >= 0 ? (actual.spells[slot].kind == 3 &&
+                                                                       actual.spells[slot].ground
+                                                                   ? Kind::CastGround
+                                                                   : Kind::CastCamp)
+                                                            : Kind::CastSelf;
+                    out.current_slot = slot;
+                }
                 hp -=
                     (damage_slot >= 0 ? actual.spells[slot].amount : actual.strength) * camp_damage;
                 cooldown[slot] =
@@ -285,6 +301,8 @@ inline SoloFarmQuote price_solo_cycle(World &w, int gi, const assembly_detail::A
     if (certificate.remaining_hp < Settings::ordinary_heal * w.self.max_hp)
         out.recovery_ticks =
             (w.self.home ? 3 : int(bc::constants::recall_time)) + 1 + (home + speed - 1) / speed;
+    out.current_followup = certificate.current_followup;
+    out.current_slot = certificate.current_slot;
     out.clear_ticks = certificate.clear_ticks;
     out.remaining_hp = certificate.remaining_hp;
     out.total_ticks =
@@ -455,7 +473,7 @@ inline SoloFarmQuote quote_solo_basic_farm(World &w, int gi) {
     // Do not certify an unmodeled collateral wake from a splash/area hit.
     int collateral = w.self.type == 10 ? 1 : 0;
     for (const auto &spell : w.self.spells)
-        if (spell.kind == 3 && spell.camps)
+        if (spell.kind == 3 && camp_damage_ability(spell))
             collateral = std::max(collateral, spell.radius);
     for (unsigned other = 0; other < w.groups.size(); ++other) {
         const auto &view = w.groups[other];
@@ -533,6 +551,19 @@ inline SoloFarmQuote quote_solo_basic_farm(World &w, int gi) {
         out.known = true;
         return out; // A proven reserve failure may override an optimistic coarse quote.
     }
+    if (now && !future_awake && certificate.current_followup != Kind::None &&
+        bc::fuel_remaining() < 60000 && bc::fuel_remaining() >= 35000) {
+        // This is a DIFFERENT complete schedule: no cast is spent during the
+        // actual first owner, but real ready cooldowns remain available from
+        // the following owner. It must independently retain the full reserve.
+        Actor first_basic_only = actual;
+        first_basic_only.can_cast = false;
+        const auto alternate =
+            certify_solo_clear(first_basic_only, camp, arrival.at, elapsed, now, enemy_reply, 64,
+                               incumbent || stationary_awake_entry);
+        if (alternate.known && alternate.feasible)
+            certificate = alternate;
+    }
     auto priced =
         price_solo_cycle(w, gi, arrival, elapsed, capture_steps, certificate, !future_awake && now);
     if (future_awake) {
@@ -549,7 +580,8 @@ inline SoloFarmQuote quote_solo_cast_farm(World &w, int gi, bool current_only = 
     SoloFarmQuote out;
     const bool incumbent = w.memory.mission.group == gi && w.memory.mission.phase == Phase::Clear;
     if (gi < 0 || gi >= int(w.groups.size()) || gi >= int(w.geo.groups.size()) || !w.self.alive ||
-        w.self.stunned || w.self.channel != Channel::None || (current_only && !incumbent) ||
+        w.self.stunned || w.self.channel != Channel::None ||
+        (current_only && current_solo_mode(w.memory.mission, gi) != SoloFarmMode::DirectCastOnly) ||
         (!resource_has_bank(w.geo.groups[gi].gems, w.self.gems) &&
          !priced_cash_investment(w.memory, gi, w.round)) ||
         bc::fuel_remaining() < (current_only ? 24000u : 44000u) ||
@@ -568,8 +600,9 @@ inline SoloFarmQuote quote_solo_cast_farm(World &w, int gi, bool current_only = 
             return out;
     int range = 0;
     for (const auto &spell : w.self.spells)
-        if (spell.camps && (spell.kind == 2 || spell.kind == 4) && spell.amount > 0 &&
-            spell.cooldown >= 0 && spell.recharge > 0 && spell.range > camp.range)
+        if ((!current_only || spell.slot == w.memory.mission.solo_slot) && spell.camps &&
+            (spell.kind == 2 || spell.kind == 4) && spell.amount > 0 && spell.cooldown >= 0 &&
+            spell.recharge > 0 && spell.range > camp.range)
             range = std::max(range, spell.range);
     if (!range || range > 24 || w.warning_near(w.self.pos, 4))
         return out;
@@ -619,9 +652,9 @@ inline SoloFarmQuote quote_solo_cast_farm(World &w, int gi, bool current_only = 
                             : (route.arrival_steps + speed - 1) / speed + (w.self.can_move ? 0 : 1);
     if (elapsed > 3 || bc::fuel_remaining() < (current_only ? 16000u : 26000u))
         return out;
-    const auto clear = certify_cast_only_clear(w.self, camp, route.stage, elapsed, {}, 0,
-                                               int(bc::constants::max_rounds) - w.round,
-                                               w.memory.moved_round != w.round);
+    const auto clear = certify_cast_only_clear(
+        w.self, camp, route.stage, elapsed, {}, 0, int(bc::constants::max_rounds) - w.round,
+        w.memory.moved_round != w.round, current_only ? w.memory.mission.solo_slot : -1);
     if (!clear.known || !clear.feasible)
         return out;
     if (current_only) {
@@ -658,6 +691,18 @@ inline SoloFarmQuote quote_solo_cast_farm(World &w, int gi, bool current_only = 
     return out;
 }
 
+// Engaged means the committed controller has a complete dispatch result,
+// including an invalid quote on failed Direct/None. Only Combined continues
+// into the scalar body; a failed Direct proof cannot turn into a basic hit.
+inline std::optional<SoloFarmQuote> current_solo_dispatch(World &w, int gi) {
+    const auto mode = current_solo_mode(w.memory.mission, gi);
+    if (mode == SoloFarmMode::DirectCastOnly)
+        return quote_solo_cast_farm(w, gi, true);
+    if (mode == SoloFarmMode::Combined)
+        return std::nullopt;
+    return SoloFarmQuote{};
+}
+
 inline SoloFarmQuote quote_solo_farm(World &w, int gi) {
     // The cheap current outer tile gets its own funded chance before an
     // unsuccessful close-range quote can spend the remaining path budget.
@@ -671,13 +716,21 @@ inline SoloFarmQuote quote_solo_farm(World &w, int gi) {
                              spell.cooldown >= 0 && spell.recharge > 0;
     }
     SoloFarmQuote ranged;
-    if (current_outer)
+    // Preserve the real stationary incumbent's direct-cast/cooldown path.
+    // A NEW job first pays the ordinary combined route/whole-clear quote.
+    const bool committed_outer =
+        current_outer && current_solo_mode(w.memory.mission, gi) == SoloFarmMode::DirectCastOnly;
+    if (committed_outer)
         ranged = quote_solo_cast_farm(w, gi);
     auto basic = quote_solo_basic_farm(w, gi);
-    // At most one future annulus endpoint is considered, only after the
-    // ordinary option had its funded chance. An optional route never hides
-    // an already-known usable basic quote when its bounded work runs out.
-    if (!current_outer && bc::fuel_remaining() >= 44000)
+    // The optional full-cycle cast quote costs22.3k in the retained real
+    // Cassi counterexample. Do not spend a paid basic's44.6k remainder on
+    // another full quote before its move/refresh consumer can execute.
+    // Unknown is not zero: when the first quote is Unknown, the ordinary
+    // existing44k cast admission remains available. Both known quotes keep
+    // their actual completed-rate comparison below.
+    const unsigned optional_admission = basic.known && basic.feasible ? 56000u : 44000u;
+    if (!committed_outer && bc::fuel_remaining() >= optional_admission)
         ranged = quote_solo_cast_farm(w, gi);
     if (ranged.known && ranged.feasible &&
         (!basic.known || !basic.feasible || ranged.rate > basic.rate))
@@ -685,13 +738,32 @@ inline SoloFarmQuote quote_solo_farm(World &w, int gi) {
     return basic;
 }
 
+// Sufficient actual ordinary first-hit kill, using the same f32 lower-credit
+// arithmetic as the public basic-clear certificate. It never credits a cast,
+// reset, future permission or another body. Unknown/nonfinite means no kill.
+inline bool solo_guaranteed_current_basic_kill(const Actor &actor, const Camp &camp) {
+    if (!actor.alive || actor.completed || actor.stunned || !actor.can_attack ||
+        actor.channel != Channel::None || actor.range < 1 ||
+        distance(actor.pos, camp.pos) > actor.range || !std::isfinite(actor.strength) ||
+        actor.strength <= 0 || !std::isfinite(camp.hp) || camp.hp <= 0)
+        return false;
+    const double hp = std::max(camp.hp, double(static_cast<float>(camp.hp)));
+    const auto hp_ulp = camp_basic_f32_ulp(hp);
+    const double ideal = actor.strength * (actor.monster ? 1.1 : 1.0);
+    const double native =
+        double(static_cast<float>(actor.strength) * (actor.monster ? 1.1f : 1.0f));
+    const double raw = std::min(ideal, native);
+    const auto product_ulp = camp_basic_f32_ulp(raw);
+    if (!hp_ulp || !product_ulp || !std::isfinite(raw))
+        return false;
+    return raw - *hp_ulp - *product_ulp >= hp;
+}
+
 // Re-certify one already committed stationary clear without repricing its
 // unchanged bank/home legs. This is not a new-job or movement certificate.
 inline SoloFarmQuote quote_current_solo_clear(World &w, int gi) {
-    // This fixed-position proof stays valid through real cooldown waits;
-    // generic two-turn farm stagnation is not a cast-only execution rule.
-    if (auto ranged = quote_solo_cast_farm(w, gi, true); ranged.known && ranged.feasible)
-        return ranged;
+    if (auto dispatched = current_solo_dispatch(w, gi))
+        return *dispatched;
     SoloFarmQuote out;
     if (bc::fuel_remaining() < 24000 || w.round != static_cast<int>(bc::round_number()) || gi < 0 ||
         gi >= static_cast<int>(w.groups.size()) || gi >= static_cast<int>(w.geo.groups.size()) ||
@@ -713,7 +785,7 @@ inline SoloFarmQuote quote_current_solo_clear(World &w, int gi) {
             return out;
     int collateral = w.self.type == 10 ? 1 : 0;
     for (const auto &spell : w.spells)
-        if (spell.kind == 3 && spell.camps)
+        if (spell.kind == 3 && camp_damage_ability(spell))
             collateral = std::max(collateral, spell.radius);
     for (unsigned other = 0; other < w.groups.size(); ++other) {
         for (const auto &monster : w.groups[other].camps)
@@ -729,8 +801,12 @@ inline SoloFarmQuote quote_current_solo_clear(World &w, int gi) {
     // Under the quiet/collateral guards above there are no other credible
     // sources. Charge this monster's entire next reply to self, ignoring shield
     // and any ally tank. This is at least farm_safe's .25maxHP hard floor.
-    const double reply =
-        distance(w.self.pos, camp.pos) <= camp.range ? camp.strength * w.self.camp_mitigation : 0;
+    // Only this selected camp is removed by a guaranteed actual legal basic;
+    // every foreign camp/collateral/hostile guard above is unchanged.
+    const double reply = !solo_guaranteed_current_basic_kill(w.self, camp) &&
+                                 distance(w.self.pos, camp.pos) <= camp.range
+                             ? camp.strength * w.self.camp_mitigation
+                             : 0;
     if (w.self.hp - reply <= .25 * w.self.max_hp)
         return out;
     Actor actual = w.self;
@@ -740,7 +816,20 @@ inline SoloFarmQuote quote_current_solo_clear(World &w, int gi) {
                 spell.ready = false;
     const std::array<CampClearMonster, 1> monsters{{{camp, true}}};
     const bool now = coordination_detail::useful_now(actual, monsters);
-    const auto clear = certify_solo_clear(actual, camp, w.self.pos, now ? 0 : 1, now, 0, 64, true);
+    auto clear = certify_solo_clear(actual, camp, w.self.pos, now ? 0 : 1, now, 0, 64, true);
+    // Damage and reset receipts have different actual funded makers. Keep
+    // the exact maker authoritative after dispatch: this only avoids paying
+    // for an unnecessary different first-owner schedule above its real gate.
+    const unsigned current_admission = clear.current_followup == Kind::CastSelf ? 60000u : 40000u;
+    if (now && clear.known && clear.feasible && clear.current_followup != Kind::None &&
+        bc::fuel_remaining() < current_admission && bc::fuel_remaining() >= 24000) {
+        Actor first_basic_only = actual;
+        first_basic_only.can_cast = false;
+        const auto alternate =
+            certify_solo_clear(first_basic_only, camp, w.self.pos, 0, true, 0, 64, true);
+        if (alternate.known && alternate.feasible)
+            clear = alternate;
+    }
     if (!clear.known || !clear.feasible || bc::fuel_remaining() < 13000 ||
         w.round != static_cast<int>(bc::round_number()))
         return out;
@@ -752,6 +841,8 @@ inline SoloFarmQuote quote_current_solo_clear(World &w, int gi) {
     out.target = camp.pos;
     out.clear_ticks = clear.clear_ticks;
     out.remaining_hp = clear.remaining_hp;
+    out.current_followup = clear.current_followup;
+    out.current_slot = clear.current_slot;
     out.rate = w.memory.mission.rate;
     out.known = out.feasible = out.current_only = true;
     out.ready_now = now;

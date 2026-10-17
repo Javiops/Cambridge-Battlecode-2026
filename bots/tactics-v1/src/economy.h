@@ -1,3 +1,4 @@
+#include "observation_detour.h"
 #pragma once
 #include "assembly.h"
 #include "combat.h"
@@ -5,6 +6,7 @@
 #include "cycles.h"
 #include "farm_observation.h"
 #include "farm_readiness.h"
+#include "observation_detour.h"
 #include "ranking.h"
 #include "solo.h"
 #include "squads.h"
@@ -600,6 +602,23 @@ struct FarmCandidate {
         return ready || prospective_feasible;
     }
 };
+// Paid only within this unchanged World snapshot; never a persistent lease.
+struct CurrentCastFarmQuote {
+    int owner = -1, round = -1, serial = -1, group = -1;
+    Pos origin{};
+    FarmCandidate farm{};
+    LocalAssignment assignment{};
+};
+inline bool current_cast_quote_valid(const World &w, const Memory &m,
+                                     const CurrentCastFarmQuote &q) {
+    return q.owner == w.self.id && q.round == w.round && q.serial == w.serial &&
+           q.origin == w.self.pos && q.group == m.mission.group && q.farm.group == q.group &&
+           q.farm.ready && q.assignment.ready && q.assignment.self_selected &&
+           q.assignment.locally_accepted &&
+           q.assignment.rollout.proof == ClearProofKind::DetailedBundle && q.group >= 0 &&
+           q.group < int(w.groups.size()) && w.groups[q.group].fresh(w.round) &&
+           w.groups[q.group].state == Lifecycle::Alive;
+}
 inline std::vector<Contributor> helpers_for(World &w, int gi, Pos target) {
     (void)target; // Any actual living group member may receive the useful action.
     const auto &camps = w.groups[gi].camps;
@@ -833,6 +852,16 @@ inline SortieExit monolith_sortie_exit(World &w, int gi) {
     }
     return {}; // Unknown/blocked exit never certifies a short attrition sortie.
 }
+// Admission to a forecast is never an action/readiness certificate.
+inline bool current_camp_assignment_candidate(const Actor &self, std::span<const Camp> camps,
+                                              Pos target, bool exclusive_allowed, bool fresh,
+                                              Lifecycle state, unsigned available_fuel) {
+    return available_fuel >= 48000 && fresh &&
+           (state == Lifecycle::Reward ||
+            (state == Lifecycle::Alive &&
+             (distance(self.pos, target) <= self.range + 1 ||
+              current_camp_contribution(self, camps, exclusive_allowed).ready)));
+}
 inline FarmCandidate evaluate_farm(World &w, int gi, const SoloFarmQuote *prepaid = nullptr) {
     FarmCandidate out;
     out.group = gi;
@@ -1049,6 +1078,12 @@ inline std::optional<Proposal> solo_farm_proposal(World &w, Memory &m, const Sol
     if (quote.entry == AwakeEntryTiming::FutureOneOwner &&
         (quote.ready_now || quote.current_only || quote.stage == w.self.pos))
         return std::nullopt;
+    if (quote.mode != SoloFarmMode::Combined && quote.mode != SoloFarmMode::DirectCastOnly)
+        return std::nullopt;
+    if (quote.current_only &&
+        (current_solo_mode(m.mission, gi) != quote.mode ||
+         (quote.mode == SoloFarmMode::DirectCastOnly && m.mission.solo_slot != quote.slot)))
+        return std::nullopt;
     const bool future_entry = quote.entry == AwakeEntryTiming::FutureOneOwner;
     if (future_entry &&
         (quote.route_length < 2 || quote.route_length > int(quote.route.size()) ||
@@ -1067,6 +1102,9 @@ inline std::optional<Proposal> solo_farm_proposal(World &w, Memory &m, const Sol
     }
     job.group = gi;
     job.target = quote.target;
+    job.planned_collector = w.self.id;
+    job.solo_mode = quote.mode;
+    job.solo_slot = quote.mode == SoloFarmMode::DirectCastOnly ? quote.slot : -1;
     job.rate = quote.rate;
     job.expiry = w.round + Settings::job_lease;
     if (future_entry) {
@@ -1169,12 +1207,12 @@ inline std::optional<Proposal> solo_farm_proposal(World &w, Memory &m, const Sol
     } else if (w.self.can_cast) {
         double gain = 0;
         for (const auto &spell : w.spells)
-            if (spell.ready && spell.camps &&
-                (spell.kind == 2 || spell.kind == 3 || spell.kind == 4) &&
+            if (spell.ready && camp_damage_ability(spell) &&
                 distance(w.self.pos, camp.pos) <= spell.range &&
                 std::min(camp.hp, spell.amount) > gain) {
                 gain = std::min(camp.hp, spell.amount);
-                action.kind = Kind::CastCamp;
+                action.kind = spell.kind == 3 && spell.ground ? Kind::CastGround : Kind::CastCamp;
+                action.at = camp.pos;
                 action.slot = spell.slot;
                 action.target = camp.id;
                 action.reason = "farm-certified-solo-useful-damage";
@@ -1196,6 +1234,8 @@ inline std::optional<Proposal> solo_farm_proposal(World &w, Memory &m, const Sol
     }
     auto proposal = economic(action, job, Priority::Incumbent, quote.rate);
     proposal.solo_clear_certified = action.kind == Kind::BasicCamp;
+    proposal.solo_current_followup = quote.current_followup;
+    proposal.solo_current_slot = quote.current_slot;
     proposal.awake_entry_current_certified = awake_entry_active(m.awake_entry) &&
                                              m.awake_entry.group == gi && quote.ready_now &&
                                              !future_entry;
@@ -1364,44 +1404,72 @@ inline std::optional<Proposal> early_solo_proposal(World &w, Memory &m) {
 }
 inline SoloBasicReceipt make_solo_basic_receipt(World &w, const Proposal &selected) {
     SoloBasicReceipt out;
+    // A paid Combined schedule may require another mutation this owner. An
+    // invalid proof must not silently degrade that schedule to Basic-only.
+    out.required = selected.valid && selected.solo_clear_certified &&
+                   selected.action.kind == Kind::BasicCamp &&
+                   selected.solo_current_followup != Kind::None;
     const int gi = selected.mission.group;
-    if (!selected.valid || !selected.solo_clear_certified ||
-        selected.action.kind != Kind::BasicCamp || selected.mission.phase != Phase::Clear ||
-        gi < 0 || gi >= static_cast<int>(w.groups.size()) || bc::fuel_remaining() < 60000 ||
-        w.round != static_cast<int>(bc::round_number()))
+    if (!out.required || selected.mission.phase != Phase::Clear || gi < 0 ||
+        gi >= int(w.groups.size()) || w.round != int(bc::round_number()))
         return out;
     const auto &actor = w.self;
     const auto &view = w.groups[gi];
     if (!actor.alive || actor.completed || actor.stunned || actor.channel != Channel::None ||
-        !actor.can_attack || !actor.can_cast || actor.enhanced || !view.fresh(w.round) ||
-        view.state != Lifecycle::Alive || view.camps.size() != 1)
+        !actor.can_attack || !view.fresh(w.round) || view.state != Lifecycle::Alive ||
+        view.camps.size() != 1)
         return out;
     const auto &camp = view.camps.front();
     if (selected.action.target != camp.id || distance(actor.pos, camp.pos) > actor.range)
         return out;
     const double damage = actor.strength * (actor.monster ? 1.1 : 1.0);
-    if (damage <= 0 || camp.hp <= damage)
-        return out; // A lethal first basic has no reset followup to purchase.
-    for (const auto &spell : w.spells)
-        if (spell.ready && spell.camps && spell.amount > 0 &&
-            (spell.kind == 2 || spell.kind == 3 || spell.kind == 4) &&
-            (!spell.exclusive || w.memory.moved_round != w.round) &&
-            distance(actor.pos, camp.pos) <= spell.range)
-            return out; // The certified schedule spends its one cast on damage.
-    for (const auto &spell : w.spells)
-        if (spell.ready && spell.kind == 1 && spell.self &&
-            (!spell.exclusive || w.memory.moved_round != w.round)) {
-            out.valid = true;
-            out.owner = actor.id;
-            out.round = w.round;
-            out.serial = w.serial;
-            out.group = gi;
-            out.slot = spell.slot;
-            out.expected_damage = damage;
-            out.actor = actor;
-            out.camp = camp;
-            break;
-        }
+    if (damage <= 0)
+        return out;
+    if (camp.hp <= damage) {
+        out.required = false;
+        return out;
+    }
+    if (!actor.can_cast)
+        return out; // Stale credited permission never becomes BasicOnly.
+    const int slot = selected.solo_current_slot;
+    if (slot < 0 || slot > 1 || actor.enhanced)
+        return out;
+    const auto &credited = actor.spells[slot];
+    if (!credited.ready || credited.cooldown != 0 ||
+        (credited.exclusive && w.memory.moved_round == w.round))
+        return out;
+    if (selected.solo_current_followup == Kind::CastCamp ||
+        selected.solo_current_followup == Kind::CastGround) {
+        if (!coordination_detail::damage_spell(credited) ||
+            distance(actor.pos, camp.pos) > credited.range)
+            return out;
+        if (selected.solo_current_followup == Kind::CastGround &&
+            (credited.kind != 3 || !credited.ground))
+            return out;
+        if (selected.solo_current_followup == Kind::CastCamp && !credited.camps)
+            return out;
+        out.continuation = SoloBasicContinuation::Damage;
+    } else if (selected.solo_current_followup == Kind::CastSelf && credited.kind == 1 &&
+               credited.self)
+        out.continuation = SoloBasicContinuation::Reset;
+    else
+        return out;
+    out.continuations = out.continuation == SoloBasicContinuation::Reset ? 2 : 1;
+    // Damage needs one cheap post-hit refresh and one gateway. The existing
+    // three-mutation reset contract retains its measured60k first-hit reserve.
+    const unsigned admission = out.continuation == SoloBasicContinuation::Damage ? 40000u : 60000u;
+    if (bc::fuel_remaining() < admission || slot < 0 || slot > 1)
+        return out;
+    out.valid = true;
+    out.action_kind = selected.solo_current_followup;
+    out.owner = actor.id;
+    out.round = w.round;
+    out.serial = w.serial;
+    out.group = gi;
+    out.slot = slot;
+    out.expected_damage = damage;
+    out.actor = actor;
+    out.camp = camp;
     return out;
 }
 
@@ -1409,17 +1477,19 @@ inline std::optional<Proposal>
 solo_basic_reset_followup(World &w, Memory &m, SoloBasicReceipt &receipt, bool basic_accepted) {
     const bool valid = receipt.valid;
     receipt.valid = false;
-    if (!valid || !basic_accepted || bc::fuel_remaining() < 34000 ||
-        w.round != static_cast<int>(bc::round_number()) || receipt.round != w.round ||
+    const bool damaging = receipt.continuation == SoloBasicContinuation::Damage;
+    if (!valid || !basic_accepted || bc::fuel_remaining() < (damaging ? 16000u : 34000u) ||
+        w.round != int(bc::round_number()) || receipt.round != w.round ||
         receipt.owner != w.self.id || receipt.serial + 1 != w.serial ||
         m.mission.phase != Phase::Clear || m.mission.group != receipt.group || receipt.group < 0 ||
-        receipt.group >= static_cast<int>(w.groups.size()) || receipt.slot < 0 || receipt.slot > 1)
+        receipt.group >= int(w.groups.size()) || receipt.slot < 0 || receipt.slot > 1)
         return std::nullopt;
     const auto &before = receipt.actor;
     const auto &after = w.self;
     const auto &view = w.groups[receipt.group];
     if (!after.alive || after.completed || after.stunned || after.channel != Channel::None ||
         after.can_attack || !after.can_cast || after.pos != before.pos || after.hp != before.hp ||
+        after.shield != before.shield || after.shield_ticks != before.shield_ticks ||
         after.max_hp != before.max_hp || after.type != before.type ||
         after.strength != before.strength || after.focus != before.focus ||
         after.range != before.range || after.monster != before.monster ||
@@ -1428,28 +1498,46 @@ solo_basic_reset_followup(World &w, Memory &m, SoloBasicReceipt &receipt, bool b
         return std::nullopt;
     const auto &camp = view.camps.front();
     if (camp.id != receipt.camp.id || camp.pos != receipt.camp.pos || camp.hp <= 0 ||
-        std::abs((receipt.camp.hp - camp.hp) - receipt.expected_damage) > .001 ||
+        std::abs((receipt.camp.hp - camp.hp) - receipt.expected_damage) > .005 ||
         camp.strength != receipt.camp.strength || camp.range != receipt.camp.range ||
         distance(after.pos, camp.pos) > after.range)
         return std::nullopt;
     for (int k = 0; k < 2; ++k) {
         const auto &a = before.spells[k];
         const auto &b = after.spells[k];
-        if (a.kind != b.kind || a.amount != b.amount || a.range != b.range ||
+        if (a.kind != b.kind || a.slot != b.slot || a.amount != b.amount || a.range != b.range ||
             a.radius != b.radius || a.recharge != b.recharge || a.scale != b.scale ||
-            a.camps != b.camps || a.self != b.self || a.exclusive != b.exclusive ||
-            a.cooldown != b.cooldown)
+            a.duration != b.duration || a.camps != b.camps || a.self != b.self ||
+            a.ground != b.ground || a.enemies != b.enemies || a.allies != b.allies ||
+            a.exclusive != b.exclusive || a.cooldown != b.cooldown)
             return std::nullopt;
     }
-    const auto &reset = w.spells[receipt.slot];
-    if (!reset.ready || reset.kind != 1 || !reset.self ||
-        (reset.exclusive && w.memory.moved_round == w.round))
+    const auto &spell = w.spells[receipt.slot];
+    if (!spell.ready || spell.cooldown != 0 || (spell.exclusive && m.moved_round == w.round))
         return std::nullopt;
     Action action;
-    action.kind = Kind::CastSelf;
     action.slot = receipt.slot;
     action.target = camp.id;
-    action.reason = "farm-certified-solo-live-reset";
+    if (damaging) {
+        if (!coordination_detail::damage_spell(spell) ||
+            distance(after.pos, camp.pos) > spell.range)
+            return std::nullopt;
+        if (receipt.action_kind == Kind::CastGround) {
+            if (spell.kind != 3 || !spell.ground)
+                return std::nullopt;
+            action.kind = Kind::CastGround;
+            action.at = camp.pos;
+        } else if (receipt.action_kind == Kind::CastCamp && spell.camps)
+            action.kind = Kind::CastCamp;
+        else
+            return std::nullopt;
+        action.reason = "farm-certified-solo-basic-damage-receipt";
+    } else {
+        if (receipt.continuation != SoloBasicContinuation::Reset || spell.kind != 1 || !spell.self)
+            return std::nullopt;
+        action.kind = Kind::CastSelf;
+        action.reason = "farm-certified-solo-live-reset";
+    }
     return economic(action, m.mission, Priority::Incumbent, m.mission.rate);
 }
 inline SoloResetReceipt make_solo_reset_receipt(World &w, const Mission &selected,
@@ -1521,8 +1609,37 @@ solo_reset_basic_followup(World &w, Memory &m, SoloResetReceipt &receipt, bool r
     action.reason = "farm-certified-reset-receipt-basic";
     return economic(action, m.mission, Priority::Incumbent, m.mission.rate);
 }
-inline std::optional<Proposal> farming(World &w, Memory &m,
-                                       const SoloFarmQuote *prepaid = nullptr) {
+inline std::optional<Pos> safe_observation_detour(World &w, Pos target) {
+    const unsigned start = unsigned(bc::fuel_remaining());
+    if (start < 28000 || !w.geo.valid(target) || w.round != int(bc::round_number()))
+        return std::nullopt;
+    const unsigned floor = std::max(20000u, start - 8000u);
+    const std::vector<std::uint16_t> *field = nullptr;
+    const int target_index = w.geo.index(target);
+    if (auto it = w.geo.goal_cache.find({target_index, 0}); it != w.geo.goal_cache.end())
+        field = &it->second;
+    else if (auto it = w.geo.route_cache.find(target_index); it != w.geo.route_cache.end())
+        field = &it->second;
+    if (!field)
+        return std::nullopt;
+    const auto funded = [&] {
+        return bc::fuel_remaining() >= floor && w.round == int(bc::round_number());
+    };
+    const auto quote = observation_detour_step(
+        w.self, [&](Pos p) { return w.geo.valid(p); }, [&](Pos p) { return w.geo.at(*field, p); },
+        [&](Pos p) { return w.free(p) && packed_bit(w.visible_bytes, w.geo.index(p)); },
+        [&](Pos p) { return potential_camp_pressure(p, w.geo.groups, w.groups, w.round); }, funded);
+    if (!quote.known || !quote.feasible || !funded())
+        return std::nullopt;
+    if (incoming_damage(w, quote.at) >= .65 * w.self.hp || !funded())
+        return std::nullopt;
+    return quote.at;
+}
+
+inline std::optional<Proposal> farming(World &w, Memory &m, const SoloFarmQuote *prepaid = nullptr,
+                                       CurrentCastFarmQuote *current_cast = nullptr) {
+    if (current_cast && !current_cast_quote_valid(w, m, *current_cast))
+        return std::nullopt; // Never reprice a stale carried proof.
     if (prepaid && current_solo_quote(w, *prepaid, m.mission.group))
         if (auto followup = solo_clear_followup(w, m, prepaid))
             return followup;
@@ -1586,6 +1703,11 @@ inline std::optional<Proposal> farming(World &w, Memory &m,
     BoundedRanks<CampRank, 5> candidates;
     std::optional<LocalAssignment> prepaid_assignment;
     const int committed_group = m.mission.group;
+    if (current_cast) {
+        best = std::move(current_cast->farm);
+        prepaid_assignment = std::move(current_cast->assignment);
+        current_cast->serial = -1; // Exactly one common-consumer use.
+    }
     bool actual_holder = false;
     if (m.mission.assembly_pending)
         for (unsigned i = 0; i < w.groups.size(); ++i)
@@ -1603,8 +1725,9 @@ inline std::optional<Proposal> farming(World &w, Memory &m,
     }
     const bool retained_crew_clear =
         m.mission.phase == Phase::Clear && m.mission.assembly_count > 0;
-    if ((m.mission.assembly_pending || retained_crew_clear) && !actual_holder &&
-        committed_group >= 0 && committed_group < static_cast<int>(w.groups.size()) &&
+    if (!prepaid_assignment && (m.mission.assembly_pending || retained_crew_clear) &&
+        !actual_holder && committed_group >= 0 &&
+        committed_group < static_cast<int>(w.groups.size()) &&
         committed_group < static_cast<int>(w.geo.groups.size()) && w.round < m.mission.expiry &&
         !(m.failed_group == committed_group && w.round < m.failed_until) &&
         w.groups[committed_group].fresh(w.round) &&
@@ -1875,11 +1998,10 @@ inline std::optional<Proposal> farming(World &w, Memory &m,
     const bool conservative_ready = best.ready;
     LocalAssignment assignment;
     const bool standalone_solo = best.solo.feasible && helpers_for(w, gi, best.target).size() == 1;
-    if (prepaid_assignment || (!best.gold_fallback && !standalone_solo && view.fresh(w.round) &&
-                               (view.state == Lifecycle::Reward ||
-                                (view.state == Lifecycle::Alive &&
-                                 distance(w.self.pos, best.target) <= w.self.range + 1)) &&
-                               bc::fuel_remaining() >= 48000)) {
+    if (prepaid_assignment || (!best.gold_fallback && !standalone_solo &&
+                               current_camp_assignment_candidate(
+                                   w.self, view.camps, best.target, m.moved_round != w.round,
+                                   view.fresh(w.round), view.state, bc::fuel_remaining()))) {
         assignment =
             prepaid_assignment ? std::move(*prepaid_assignment) : propose_local_assignment(w, gi);
         best.ready = assignment.ready && assignment.self_selected && assignment.locally_accepted;
@@ -2010,6 +2132,8 @@ inline std::optional<Proposal> farming(World &w, Memory &m,
         else if (auto closer = w.toward(best.target);
                  closer && !potential_camp_pressure(*closer, w.geo.groups, w.groups, w.round))
             a = moving(*closer, "farm-inspect-occluded-original-region");
+        else if (auto detour = safe_observation_detour(w, best.target))
+            a = moving(*detour, "farm-observe-safe-adjacent-detour");
         else if (w.round - job.last_progress >= Settings::assembly_wait) {
             m.failed_group = gi;
             m.failed_until = w.round + Settings::job_lease;
@@ -2256,5 +2380,106 @@ inline std::optional<Proposal> farming(World &w, Memory &m,
             a = moving(*step, "farm-inspect-missing-live-member");
     }
     return economic(a, job, Priority::Routine, best_value);
+}
+// One selected current objective; its proof is paid before elective ranking.
+inline std::optional<Proposal> early_current_cast_farm_proposal(World &w, Memory &m,
+                                                                bool protected_work) {
+    const int gi = m.mission.group;
+    const bool phase = m.mission.phase == Phase::Observe || m.mission.phase == Phase::Assemble ||
+                       m.mission.phase == Phase::Travel || m.mission.phase == Phase::Reenter;
+    if (protected_work || !phase || gi < 0 || gi >= int(w.groups.size()) ||
+        gi >= int(w.geo.groups.size()) || w.round >= m.mission.expiry ||
+        (m.failed_group == gi && w.round < m.failed_until) || !w.self.alive || w.self.completed ||
+        w.self.stunned || !w.self.can_cast || w.self.channel != Channel::None || w.self.gems != 0 ||
+        !std::isfinite(w.self.hp) || !std::isfinite(w.self.max_hp) || w.self.hp <= 0 ||
+        w.self.max_hp <= 0 || w.self.health_fraction() < .75 || m.hold_group >= 0 ||
+        m.mission.assembly_pending || m.mission.assembly_count > 0 || m.mission.chain_used ||
+        m.mission.bank_after_reward || m.mission.sortie_length > 0 ||
+        bc::fuel_remaining() < 56000 || w.round != int(bc::round_number()) || !w.enemies.empty())
+        return std::nullopt;
+    const auto &g = w.geo.groups[gi];
+    const auto &view = w.groups[gi];
+    if (g.spawns.size() < 2 || g.gems <= 0 ||
+        !fully_personally_observed_camp(g, view, w.visible_bytes, w.geo.width, w.geo.height,
+                                        w.round) ||
+        w.warning_near(w.self.pos, 4) ||
+        !current_camp_contribution(w.self, view.camps, m.moved_round != w.round).ready)
+        return std::nullopt;
+    for (const auto &camp : view.camps)
+        if (camp.hp > 0 && w.self.can_attack && distance(w.self.pos, camp.pos) <= w.self.range)
+            return std::nullopt; // The ordinary basic controller already has this case.
+    for (const auto &sight : w.sightings)
+        if (sight.actor.alive && combat_detail::recent_sighting(w.round - sight.round))
+            return std::nullopt;
+    for (unsigned other = 0; other < w.groups.size(); ++other)
+        if (int(other) != gi && w.groups[other].fresh(w.round))
+            for (const auto &camp : w.groups[other].camps)
+                if (camp.hp > 0 && camp.awake && camp.strength > 0 &&
+                    distance(w.self.pos, camp.pos) <= camp.range)
+                    return std::nullopt;
+    if (bc::fuel_remaining() < 48000 || w.round != int(bc::round_number()))
+        return std::nullopt;
+    auto assignment = propose_local_assignment(w, gi, AssignmentFunding::OneCurrentCast);
+    if (!assignment.ready || !assignment.self_selected || !assignment.locally_accepted ||
+        assignment.rollout.proof != ClearProofKind::DetailedBundle ||
+        assignment.selected_ids.size() != 1 || assignment.selected_ids.front() != w.self.id ||
+        !std::isfinite(assignment.clear_ticks) || assignment.clear_ticks < 1 ||
+        bc::fuel_remaining() < 32000 || w.round != int(bc::round_number()))
+        return std::nullopt; // Unknown/costly or helper-dependent work stays ordinary work.
+    // Price the actual fixed-stage clear, known capture travel, bank and only
+    // its actual necessary recovery/re-entry. Never reuse an Observe rate.
+    int capture_steps = unreachable;
+    Pos capture{};
+    for (const auto &spawn : g.spawns) {
+        const auto d = w.geo.cached_steps(w.self.pos, spawn.pos);
+        if (d && *d < capture_steps) {
+            capture_steps = *d;
+            capture = spawn.pos;
+        }
+    }
+    const int altar = w.altar_distance(capture), home = w.home_distance(capture);
+    if (capture_steps == unreachable || altar == unreachable || home == unreachable)
+        return std::nullopt;
+    // Current recipients estimate the share for comparison. Future presence
+    // can change it; only the later actual payout supplies bankable resources.
+    // No personal or pooled gold is credited by this narrow current probe.
+    int recipients = 1;
+    for (const auto &ally : w.allies)
+        if (ally.id != w.self.id && ally.alive && w.on_group(gi, ally.pos))
+            ++recipients;
+    const int gems = g.gems / recipients;
+    if (gems <= 0 || assignment.rollout.remaining_hp.size() != 1 ||
+        assignment.rollout.damage_taken.size() != 1 ||
+        !std::isfinite(assignment.rollout.remaining_hp.front()) ||
+        assignment.rollout.remaining_hp.front() < w.self.hp ||
+        assignment.rollout.damage_taken.front() != 0)
+        return std::nullopt;
+    const int speed = std::max(1, w.self.move_speed);
+    // Initial scope: no modeled actual HP loss and no recovery requirement.
+    // Broader quotes must use an independently proved heal/return schedule.
+    const double recovery = 0;
+    const double total = assignment.clear_ticks + (capture_steps + speed - 1) / speed +
+                         bc::constants::capture_time + 1 + (altar + speed - 1) / speed +
+                         current_tribute_ticks(gems) + recovery;
+    if (!std::isfinite(total) || total <= 0 || w.round + total >= bc::constants::max_rounds ||
+        bc::fuel_remaining() < 30000 || w.round != int(bc::round_number()))
+        return std::nullopt;
+    CurrentCastFarmQuote quote;
+    quote.owner = w.self.id;
+    quote.round = w.round;
+    quote.serial = w.serial;
+    quote.group = gi;
+    quote.origin = w.self.pos;
+    quote.farm.group = gi;
+    quote.farm.target = capture;
+    quote.farm.ready = true;
+    quote.farm.clear_time = assignment.clear_ticks;
+    quote.farm.total_time = total;
+    quote.farm.new_gems = gems;
+    quote.farm.recovery_time = recovery;
+    quote.farm.route_known = true;
+    quote.farm.rate = gems / total; // No unpriced raw gold or old mission income.
+    quote.assignment = std::move(assignment);
+    return farming(w, m, nullptr, &quote);
 }
 } // namespace tactics

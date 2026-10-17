@@ -171,6 +171,12 @@ struct World {
     bc::champion &me;
     Actor self{};
     int gold = 0, round = -1, serial = 0, own_score = 0, enemy_score = 0, self_type = -1;
+    // A paid singleton continuation may refresh only the state it can consume.
+    // Nothing else may plan from this restricted view. A full refresh clears it.
+    bool restricted_continuation_snapshot = false;
+    int restricted_continuation_camp = -1;
+    Pos restricted_continuation_at{};
+
     std::array<Spell, 2> spells{};
     std::vector<Actor> allies, enemies;
     std::vector<bc::champion> ally_handles, enemy_handles;
@@ -543,6 +549,13 @@ struct World {
         const int previous_round = round;
         round = bc::round_number();
         ++serial;
+        // A self-only refresh cannot make the rest of a restricted view fresh.
+        // Upgrade it to a full snapshot before any ordinary caller resumes.
+        if (restricted_continuation_snapshot)
+            self_only = false;
+        restricted_continuation_snapshot = false;
+        restricted_continuation_camp = -1;
+        restricted_continuation_at = {};
         self = read_actor(me);
         if (self.alive)
             self_type = self.type;
@@ -675,6 +688,71 @@ struct World {
                     throw;
             }
         }
+    }
+    // Only the prepaid Basic -> Damage/Reset -> Basic singleton sequence may
+    // consume this snapshot. The caller ends this owner on success or failure;
+    // it may not resume general planning/remember() from the partial view.
+    // No other owner acts between same-epoch stationary mutations. An epoch
+    // change is a hard failure, never an implicit expensive full refresh here.
+    bool refresh_receipt_target(int group, int target, int expected_epoch, int expected_serial) {
+        restricted_continuation_snapshot = true;
+        restricted_continuation_camp = target;
+        restricted_continuation_at = {};
+        if (expected_epoch != round || serial != expected_serial ||
+            round != int(bc::round_number()) || group < 0 || group >= int(groups.size()) ||
+            group >= int(geo.groups.size()) || geo.groups[group].spawns.size() != 1 ||
+            geo.groups[group].spawns.front().id != target || !groups[group].fresh(round) ||
+            groups[group].state != Lifecycle::Alive || groups[group].camps.size() != 1 ||
+            groups[group].camps.front().id != target)
+            return false;
+        const auto metadata = camp_metadata.find(target);
+        if (metadata == camp_metadata.end() || metadata->second.group != group)
+            return false;
+        const int owner = self.id;
+        const Pos origin = self.pos;
+        Actor actual = read_actor(me);
+        if (expected_epoch != int(bc::round_number()) || !actual.alive || actual.id != owner ||
+            actual.pos != origin)
+            return false;
+        // Re-read actual kit, buffs and permissions, including damage-linked
+        // self changes; projected receipt HP never becomes a World snapshot.
+        if (memory.moved_round == expected_epoch)
+            for (auto &spell : actual.spells)
+                if (spell.exclusive)
+                    spell.ready = false;
+        const auto &handle = metadata->second.handle;
+        const auto snapshot = sdk_222::visible_camp(handle);
+        if (expected_epoch != int(bc::round_number()) || !snapshot || snapshot->health <= 0)
+            return false; // A killed/hidden target has no required continuation.
+        const auto flags = handle.state();
+        if (expected_epoch != int(bc::round_number()))
+            return false;
+        const auto state = geo.handles[group].state();
+        if (expected_epoch != int(bc::round_number()) || !flags.is_alive())
+            return false;
+        Camp camp = groups[group].camps.front();
+        camp.pos = {snapshot->x, snapshot->y};
+        camp.hp = snapshot->health;
+        camp.max_hp = snapshot->max_health;
+        camp.strength = snapshot->strength;
+        camp.range = metadata->second.range;
+        camp.awake = flags.is_awake();
+        if (!std::holds_alternative<bc::map::camp_group_alive>(state))
+            return false;
+        self = actual;
+        self_type = actual.type;
+        spells = actual.spells;
+        groups[group].camps.front() = camp;
+        groups[group].seen = expected_epoch;
+        groups[group].state = Lifecycle::Alive;
+        restricted_continuation_at = camp.pos;
+        ++serial;
+        for (auto &ally : allies)
+            if (ally.id == owner)
+                ally = self;
+        // Scores, wallets, remote actors, other groups, claims, occupancy and
+        // visibility are deliberately not refreshed or promoted as fresh.
+        return expected_epoch == int(bc::round_number());
     }
     void refresh_local_effects(const Action &action) {
         const int epoch = round;

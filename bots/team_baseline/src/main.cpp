@@ -2543,11 +2543,20 @@ double my_dps(State& s, bc::champion& me) {
 #ifndef P_MP_FOCUS
 #define P_MP_FOCUS 0
 #endif
-int squad_needed(double hp_g, double str_g, double dps, double afford) {
+#ifndef P_CAMP_ROSTER_BOUND
+#define P_CAMP_ROSTER_BOUND 1
+#endif
+int squad_needed(double hp_g, double str_g, double dps, double afford, int physical_roster) {
     if (str_g <= 0) return 1;
     const bool focus = P_MAPPLAN && P_MP_FOCUS && str_g >= P_MP_FOCUS && (!P_MP_FOCUS_FAR || g_mp_far);
     for (int n = 1; n <= 5; ++n)
         if (hp_g * str_g / (dps * n * (focus ? 1 : n)) <= afford) return n;
+    // Keep the legacy hot path. Six was its infeasible sentinel, so a physical
+    // six-body roster must test six before accepting it as a feasible squad.
+    if (P_CAMP_ROSTER_BOUND && physical_roster == 6) {
+        if (hp_g * str_g / (dps * 6 * (focus ? 1 : 6)) <= afford) return 6;
+        return 7;
+    }
     return 6;
 }
 
@@ -2766,7 +2775,7 @@ int choose_target_impl(State& s, bc::champion& me, int round) {
                 if (k != s.ally_idx && ((tank_bits(s) >> k) & 1) && claim_value(s, sm, k) == i + 1) --claimers;
         bool free_reward = g.reward_seen >= 0 && round - g.reward_seen < 30;
         double afford = std::max(1.0, mhp * (1.0 - P_RESERVE_PCT / 100.0));
-        int needed = free_reward ? 1 : squad_needed(g.hp, g.str, dps, afford);
+        int needed = free_reward ? 1 : squad_needed(g.hp, g.str, dps, afford, s.roster);
         bool mono_go = s.mono_only && g.monolith;  // its damage stays, so the team wears it down over several trips
         if (mono_go) needed = std::min(needed, s.roster);
         const int jack_n = std::max(1, std::min(P_JACKN, s.roster));
@@ -3651,13 +3660,13 @@ void farm(State& s, bc::champion& me, int round, const std::vector<bc::camp>& ca
         }
         double dps = my_dps(s, me);
         double afford = std::max(1.0, hp - mhp * P_RESERVE_PCT / 100.0);
-        int needed = squad_needed(rem, str, dps, afford);
+        int needed = squad_needed(rem, str, dps, afford, s.roster);
         int here = 1 + allies_near(s, me, g.center, 7);
         int coming = 1 + count_claimers(s, read_sm(), s.target);
         const bool mono_go = (s.mono_only && g.monolith) || (P_JACKGO && g.jackpot && round >= P_JACKGO);
         if (mono_go) needed = std::min(needed, std::max(1, std::min(g.monolith ? s.roster : P_JACKN, s.roster)));
         if (!engaged && needed > here) {
-            if (needed > std::max(coming, s.roster) || (!mono_go && needed > squad_needed(rem, str, dps, mhp * 0.75))) {
+            if (needed > std::max(coming, s.roster) || (!mono_go && needed > squad_needed(rem, str, dps, mhp * 0.75, s.roster))) {
                 g_farm = "too-strong";  // not even a full-health squad would do it
                 g.bad_until = round + 60;
                 drop_target(s);
@@ -4571,7 +4580,7 @@ void play_turn(State& s) {
                 int d = dist(pos, g.center);
                 if (d > (mp_far_home(s) ? P_MP_CHAIN_R : P_CHAIN_R) || d >= ad || d >= gd) continue;
                 if (count_claimers(s, sm, i) > 0 && i != s.target) continue;
-                if (squad_needed(g.hp, g.str, my_dps(s, me), std::max(1.0f, hp - mhp * 0.3f)) > 1) continue;
+                if (squad_needed(g.hp, g.str, my_dps(s, me), std::max(1.0f, hp - mhp * 0.3f), s.roster) > 1) continue;
                 gi = i;
                 gd = d;
             }

@@ -167,3 +167,6 @@
 
 // Share only the read-only allied view; invalidate before potential actions.
 #define P_FUEL_COHORT 1
+
+// Distinguish a feasible six-body camp squad from the legacy sentinel.
+#define P_CAMP_ROSTER_BOUND 1

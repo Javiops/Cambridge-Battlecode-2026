@@ -681,6 +681,7 @@ std::string norm(const std::string& s) {
 bool starts_with(const std::string& s, const std::string& p) { return s.rfind(p, 0) == 0; }
 
 #include "de_rules.h"
+#include "draft_choice_policy.h"
 int g_de_map = 0;  // Public geometry family, transported in draft-memory byte28.
 #include "draft_plan.h"
 
@@ -713,11 +714,15 @@ void write_plan(const std::vector<std::uint8_t>& roster) {
     buf[26] = static_cast<std::byte>(P.flee_pct);
     buf[27] = static_cast<std::byte>(P.late_round / 10);
     draftplan::copy_to(buf);
+#if P_DP_MEMORY_FIX
+    draftplan::submit_plan(buf);
+#else
     attempt([&] {
         bc::draft_memory_buffer dm;
         dm = std::span<const std::byte>(buf.data(), buf.size());
         return true;
     });
+#endif
 }
 
 #include "mapplan.h"
@@ -867,11 +872,13 @@ void write_plan(const std::vector<std::uint8_t>& roster) {
             for (const char* fallback : PREFS) prefs.push_back(fallback);
         }
     }
+    draftchoice::replace_prism(prefs);
     for (const char* p : prefs)
         for (auto& o : all)
-            if ((o.name == p || starts_with(o.name, p)) && !has(o.name)) order.push_back(o);
+            if (draftchoice::allowed(o.name) &&
+                (o.name == p || starts_with(o.name, p)) && !has(o.name)) order.push_back(o);
     for (auto& o : all)
-        if (!has(o.name)) order.push_back(o);  // anything we did not list, as a fallback
+        if (draftchoice::allowed(o.name) && !has(o.name)) order.push_back(o);  // legal discovered fallback
 
     std::printf("[draft] %zu champions found:", all.size());
     for (auto& o : all) std::printf(" %s", o.name.c_str());
@@ -1549,6 +1556,16 @@ void init_roles(State& s, bc::champion& me) {
 
     attempt([&] {
         bc::draft_memory_buffer dm;
+#if P_DP_MEMORY_FIX
+        // Optional cache errors must not suppress the independent legacy settings.
+        attempt([&] { draftplan::queue_load(dm); return true; });
+        const auto legacy=draftplan::read_legacy_settings(dm);
+        if (P_D34_FAMILY && legacy.family>=v34de::Unknown && legacy.family<=v34de::Rows) s.de_map=legacy.family;
+        if (legacy.tribute>=0) P.tribute_gems=legacy.tribute;
+        if (legacy.recall>=0) P.recall_pct=legacy.recall;
+        if (legacy.flee>=0) P.flee_pct=legacy.flee;
+        if (legacy.late>=0) P.late_round=legacy.late;
+#else
         draftplan::load(dm);
         if (dm.size() >= 28 && dm[0] == std::byte{'C'} && dm[1] == std::byte{'M'} &&
             dm[2] == std::byte{'B'} && dm[3] == std::byte{'1'}) {
@@ -1563,6 +1580,7 @@ void init_roles(State& s, bc::champion& me) {
             if (fl >= 5 && fl <= 80) P.flee_pct = fl;
             if (lr >= 500 && lr <= 2000) P.late_round = lr;
         }
+#endif
         return true;
     });
 
@@ -3298,6 +3316,19 @@ bool cf_evac_reward(State& s, bc::champion& me, Group& g, int round, const std::
     return true;
 }
 
+bool cf_remote_approach(const bc::bitboard& spawn, const bc::bitboard& blocked,
+                        const bc::bitboard& visible_camps, bc::bitboard& goals) {
+    if (!(goals & ~blocked).is_empty() || (goals & visible_camps).is_empty()) return false;
+    bc::bitboard ring;
+    for (auto tile : spawn.positions()) ring.draw_chebyshev(tile, 1.0f);
+    ring &= ~spawn;
+    ring &= ~blocked;
+    if (ring.is_empty()) return false;
+    goals = ring;
+    return true;
+}
+
+
 void farm(State& s, bc::champion& me, int round, const std::vector<bc::camp>& camps) {
     struct NoDash {
         ~NoDash() { g_farm_nodash = false; }
@@ -3602,6 +3633,11 @@ void farm(State& s, bc::champion& me, int round, const std::vector<bc::camp>& ca
     bc::bitboard goals = g.mask;
     if (g.mask.is_set(pos)) goals.set(pos, false);
     bool moved = step_towards(s, me, goals, true);
+    // Keep the normal movement path's fuel unchanged. Only repair an empty,
+    // visibly occupied destination after the original approach has failed.
+    if (!moved && me.can_move() && fuel_ok(12000) &&
+        cf_remote_approach(g.mask, s.blocked, bc::vision::camp_tiles(), goals))
+        moved = step_towards(s, me, goals, true);
     if (!moved) {
         if (++s.probe_fail > 3) {
             g.bad_until = round + 25;
@@ -4934,7 +4970,12 @@ void shoot_rooted(State& s) {
             if (P_U34_POST_FREE && s.sweep >= 3 && s.sweep != 5 && fuel_ok(12000))
                 spell_sweep(s, false, true);
             if (P_R5_LOCK) r5_altar_lock(s);
+#if P_DP_MEMORY_FIX
+            draftplan::finish_queued_load();
+            if (!draftplan::memory_queued && P_R5_WARD) r5_personal_ward(s);
+#else
             if (P_R5_WARD) r5_personal_ward(s);
+#endif
         } catch (const std::exception& e) {
             note_error(e.what());
         } catch (...) {

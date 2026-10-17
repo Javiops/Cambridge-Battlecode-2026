@@ -144,3 +144,10 @@
 // All-champion ward placement: based on the previously tested Mate ward experiment.
 #define P_CF_ALL_PASSING_WARDS 1
 #define P_CF_WARD_EVENT_LOG 0
+
+// Validated draft cache is decoded after useful actions, preserving opening tempo.
+#define P_DP_MEMORY_FIX 1
+#define P_DP_ANCHOR_FIX 1
+
+// No-Prism draft: 0 baseline, 1 Cassi & Issac, 2 Willow.
+#define P_DP_PRISM_SWAP 1

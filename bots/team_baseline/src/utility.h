@@ -53,16 +53,13 @@ bool cf_all_passing_wards(State& s) {
         const vec2 preference(center.x + across.x * off[slot % 6],
                               center.y + across.y * off[slot % 6]);
 
-        // Use teammates' already planted ward positions where the SDK exposes
-        // them. No shared-memory writes, so this won't collide with alerts.
+        // ward_positions() is self-only in SDK 2.2.5. Read ward snapshots
+        // exposed by our current perspective instead; hidden wards remain unknown.
+        // This uses no shared-memory bytes and preserves the alert protocol.
         std::vector<vec2> ally_wards;
         if (fuel_ok(18000)) {
-            for (auto& ally : bc::champions(*s.my)) {
-                if (ally == me) continue;
-                try {
-                    for (auto p : ally.ward_positions()) ally_wards.push_back(p);
-                } catch (...) { /* Unavailable hidden teammate state. */ }
-            }
+            for (const auto& ward : bc::vision::wards(*s.my))
+                ally_wards.push_back(ward.position());
         }
 
         struct Candidate { vec2 p{}; int score = -100000; bool bush = false; };

@@ -18,6 +18,12 @@
 #ifndef P_CALLHELP
 #define P_CALLHELP 0
 #endif
+#ifndef P_PVOUT
+#define P_PVOUT 0  // >0: a leave verdict steps to the least-danger tile (danger in buckets of this many hp)
+#endif
+#ifndef P_PVKITE
+#define P_PVKITE 0  // 1 = a "leave" verdict (verdict.h) kites and calls for help instead of backing off home
+#endif
 #ifndef P_TWIN
 #define P_TWIN 0
 #endif
@@ -137,6 +143,7 @@ inline bool safe_step(State& s, bc::champion& me, const std::vector<Foe>& foes) 
             if (!(a == me) && a.is_alive() && a.health() > 0.4f * a.max_health()) allies.push_back(a.position());
         return true;
     });
+    if (P_TRACK && P_TRACK_RET) track::remembered_allies(allies, static_cast<int>(bc::round_number()));
     auto score = [&](vec2 t) {
         int ally = 30;
         for (auto a : allies) ally = std::min(ally, dist(t, a));
@@ -187,7 +194,7 @@ inline void call_help(State& s, const std::vector<Foe>& foes, int round) {
     if (!near || near->d > 4) return;
     int idx = -1;
     attempt([&] {
-        auto roster = bc::champions(*s.en);
+        auto roster = en_roster(s);
         for (std::size_t k = 0; k < roster.size(); ++k)
             if (roster[k] == near->c) idx = static_cast<int>(k);
         return true;
@@ -204,7 +211,7 @@ inline Foe* help_target(State& s, std::vector<Foe>& foes, int round) {
     if (idx < 0 || ((round - r) & 31) > 2) return nullptr;
     Foe* out = nullptr;
     attempt([&] {
-        auto roster = bc::champions(*s.en);
+        auto roster = en_roster(s);
         if (idx >= static_cast<int>(roster.size())) return false;
         for (auto& f : foes)
             if (f.c == roster[idx]) out = &f;
@@ -290,6 +297,82 @@ inline bool hit_any(State& s, bc::champion& me, const std::vector<Foe*>& near) {
     if (!best) return false;
     cast_offense(s, me, best->c, best->p, true);
     return basic_attack(s, me, best->c, best->p);
+}
+
+// P_PVKITE (2026-10-17, user: "en vez de huir hacemos un kitear mientras pedimos ayuda"): with a leave verdict,
+// stand and shoot while no foe can reach us next round; step back (back_off: retreat toward allies) only when one can.
+// The caller names the nearest foe in shared memory, so allies that see it come and hit it (help_target).
+inline void pv_kite(State& s, bc::champion& me, std::vector<Foe>& foes, int round) {
+    bool threatened = false;
+    std::vector<Foe*> near;
+    for (auto& f : foes) {
+        if (s.en_spawn.is_set(f.p)) continue;
+        if (f.d <= 7) near.push_back(&f);
+        if (f.d <= reach(f) + 1) threatened = true;
+    }
+    if (threatened) {
+        back_off(s, me, foes, round);
+        return;
+    }
+    hit_any(s, me, near);  // nothing reaches us next round: hold the tile and shoot what is in range
+}
+
+// P_PVOUT (2026-10-17, online: kiting on "leave" kept us in range of advancing range-4 casters): on a leave verdict,
+// step (and dash) to the tile where the damage the foes can deal next round is lowest, counting their ready spells and
+// one step of advance (threat_of / danger_at); ties go toward a healthy ally, then home. Shoot only after the step.
+inline void pv_out(State& s, bc::champion& me, const std::vector<Foe>& foes, int round) {
+    (void)round;
+    bool hit = P_HITFIRST && hit_now(s, me, foes);
+    std::vector<Threat> th;
+    for (auto& f : foes)
+        if (f.d <= 10 && !s.en_spawn.is_set(f.p)) th.push_back(threat_of(f.c, f.p, reach(f)));
+    std::vector<vec2> allies;
+    attempt([&] {
+        for (auto& a : bc::vision::champions(*s.my))
+            if (!(a == me) && a.is_alive() && a.health() > 0.4f * a.max_health()) allies.push_back(a.position());
+        return true;
+    });
+    auto score = [&](vec2 t) {
+        int ally = 30;
+        for (auto a : allies) ally = std::min(ally, dist(t, a));
+        return static_cast<long>(danger_at(th, t) / P_PVOUT) * 1000 + ally * 10 + dist(t, s.spawn_center);
+    };
+    vec2 pos = me.position();
+    long here = score(pos);
+    if (here >= 1000 && s.dash_slot >= 0 && me.can_cast()) {
+        auto ab = me.abilities()[s.dash_slot];
+        if (ab.is_ready()) {
+            std::optional<vec2> best;
+            long bests = here;
+            for (int dx = -2; dx <= 2; ++dx)
+                for (int dy = -2; dy <= 2; ++dy) {
+                    vec2 t = pos + vec2(dx, dy);
+                    if (!bc::map::is_in_bounds(t) || s.blocked.is_set(t)) continue;
+                    long sc = score(t);
+                    if (sc < bests - 1000) { bests = sc; best = t; }
+                }
+            if (best && attempt([&] { return ab.use(*best); })) {
+                pos = me.position();
+                here = score(pos);
+            }
+        }
+    }
+    bool moved = false;
+    if (me.can_move()) {
+        std::optional<vec2> best;
+        long bests = here;
+        for (int dx = -1; dx <= 1; ++dx)
+            for (int dy = -1; dy <= 1; ++dy) {
+                if (!dx && !dy) continue;
+                vec2 t = pos + vec2(dx, dy);
+                if (!bc::map::is_in_bounds(t) || s.blocked.is_set(t)) continue;
+                long sc = score(t);
+                if (sc < bests) { bests = sc; best = t; }
+            }
+        if (best && attempt([&] { return me.move_absolute(*best); })) moved = true;
+    }
+    if (!moved && here < 1000 && me.can_move()) flee(s, me);  // nothing near threatens: keep walking out
+    if (!hit) shoot_back(s, me, foes);
 }
 
 inline bool front_line(State& s, bc::champion& me, std::vector<Foe>& foes, int round) {
@@ -491,7 +574,20 @@ inline bool kite(State& s, bc::champion& me, std::vector<Foe>& foes, int round) 
     });
     for (auto* f : near)
         if (f->d <= 6) { ++fc; tc += f->hp; }
-    if (fc > mc + P_KITE_OUT && tc > oc * 1.3) return false;
+    if (fc > mc + P_KITE_OUT && tc * 100.0 > oc * P_GA_KITE_HP) return false;
+    if (PR.outnum && fc >= mc + 2) return false;  // outnumbered: the fight step backs off
+    std::vector<vec2> pull;  // P_KITEALLY: allies we kite toward
+    if (PR.kiteally)
+        attempt([&] {
+            for (auto& a : bc::vision::champions(*s.my))
+                try {
+                    if (a == me || !a.is_alive() || a.is_recalling()) continue;
+                    vec2 p = a.position();
+                    if (dist(p, pos) <= PR.kiteally && !s.my_spawn.is_set(p)) pull.push_back(p);
+                } catch (...) {
+                }
+            return true;
+        });
     std::vector<int> reaches;
     for (auto* f : near) reaches.push_back(reach(*f));
 
@@ -529,7 +625,11 @@ inline bool kite(State& s, bc::champion& me, std::vector<Foe>& foes, int round) 
             int df = dist(t, focus->p);
             double sc = -1000.0 * thr + (df <= SPELL_RANGE ? 300.0 : 0.0) + (df <= range ? 100.0 : 0.0);
             if (!P_NOCHASE || focus->gems >= P_CHASE_GEMS) sc -= 10.0 * std::max(0, df - SPELL_RANGE);  // walk after it
-            if (!mates.empty()) {
+            if (PR.kiteally) {
+                int ad = 99;
+                for (auto& m : pull) ad = std::min(ad, dist(t, m));
+                if (ad < 99 && ad > 2) sc -= 60.0 * (ad - 2);
+            } else if (!mates.empty()) {
                 int ad = 99;
                 for (auto& m : mates) ad = std::min(ad, dist(t, m));
                 if (ad > 4) sc -= 50.0 * (ad - 4);

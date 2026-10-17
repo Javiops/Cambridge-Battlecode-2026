@@ -11,6 +11,8 @@
 bool r5_personal_ward(State& s) {
     static int next_check = 0;
     if (!s.ready || !s.my || !fuel_ok(9000)) return false;
+    if (P_DP_WARDS && draftplan::R.valid &&
+        (s.ally_idx < 0 || s.ally_idx >= P_DP_WARDERS || s.ally_idx >= draftplan::R.ward_n)) return false;
     const int round = static_cast<int>(bc::round_number());
     if (round < next_check) return false;
     next_check = round + 4;
@@ -24,9 +26,13 @@ bool r5_personal_ward(State& s) {
         // Our current connected bush is already transparent to our own vision.
         if (bushes.is_set(here)) return false;
         vec2 goal = s.en_center;
-        if (s.target >= 0 && s.target < static_cast<int>(s.groups.size()))
+        if (P_DP_WARDS && draftplan::R.valid) {
+            goal = draftplan::R.ward[s.ally_idx];
+            // Never walk only to ward: place one only while already passing its anchor.
+            if (goal.x < 0 || dist(here, goal) > bc::constants::ward_placement_radius) return false;
+        } else if (s.target >= 0 && s.target < static_cast<int>(s.groups.size()))
             goal = s.groups[s.target].center;
-        if (static_cast<int>(me.gem_count()) >= P.tribute_gems) {
+        if (!P_DP_WARDS && static_cast<int>(me.gem_count()) >= P.tribute_gems) {
             int nearest = 1 << 20;
             for (std::size_t i = 0; i < s.altars.size(); ++i) {
                 if (i < s.altar_ok.size() && !s.altar_ok[i]) continue;
@@ -48,7 +54,8 @@ bool r5_personal_ward(State& s) {
                 !bushes.is_set(p) || s.static_block.is_set(p) || s.blocked.is_set(p) ||
                 s.my_spawn.is_set(p) || s.en_spawn.is_set(p)) continue;
             if (!current.empty() && dist(current.front(), p) <= 2) continue;
-            const int rank = 3 * dist(here, p) + 2 * (before - dist(p, goal));
+            const int rank = P_DP_WARDS ? (100 - 10 * dist(p, goal) - dist(here, p))
+                                        : (3 * dist(here, p) + 2 * (before - dist(p, goal)));
             for (int i = 0; i < 3; ++i) {
                 if (rank <= best[i].rank) continue;
                 for (int j = 2; j > i; --j) best[j] = best[j - 1];

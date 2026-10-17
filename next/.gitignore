@@ -1,0 +1,16 @@
+.cambc/
+bots/*/.cambc/
+matches/
+replays/
+bots/*/build/
+bots/*/target/
+archive/
+results/games/
+results/history.jsonl
+results/REPORT.md
+results/gates/
+bots/*/compile_commands.json
+bots/*/.clangd
+__pycache__/
+.pytest_cache/
+sdk/

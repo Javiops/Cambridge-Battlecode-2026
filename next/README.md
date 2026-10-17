@@ -18,6 +18,8 @@ cambc init --yes .                # SDK and toolchain; the maps are already in m
 python3 -m pytest -q tests        # the lab's own tests
 ```
 
+On Windows (the PC copy in `C:\Users\Javier\Cambc2026\next`): run `.venv\Scripts\Activate.ps1` first, then type `python` wherever this file says `python3`. The venv holds cambc 2.2.5; the PC-wide cambc (2.2.1) is left alone for the old project.
+
 ## Run the league
 
 ```bash

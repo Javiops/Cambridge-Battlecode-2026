@@ -16,3 +16,4 @@ __pycache__/
 sdk/
 results/bundles/
 results/dashboard.html
+.venv/

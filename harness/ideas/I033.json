@@ -1,0 +1,27 @@
+{
+ "id": "I033",
+ "title": "Replay-backed v59 scouting repairs and exploratory no-Prism draft",
+ "kind": "bug",
+ "source": "User-requested diagnosis of combined regressions: docs/I032-replay-diagnosis.md; replay and panel evidence in docs/I032-diagnosis-evidence/.",
+ "owner": "Fran",
+ "hypothesis": "Repair replay-confirmed scouting/path and draft-cache overhead issues while preserving the supplied v59 communication protocol; evaluate the no-Prism Cassi replacement separately. Correctness repairs do not establish a competitive improvement.",
+ "stage": "local-test",
+ "bot": "bots/team_baseline",
+ "branch": "fran/v59-replay-fixes",
+ "created": "2026-10-17T16:44Z",
+ "updated": "2026-10-17T16:44Z",
+ "history": [
+  {
+   "at": "2026-10-17T16:44Z",
+   "stage": "local-test",
+   "note": "Fresh 25-23 vs v59; spar 34-2 (v59 36-0); fuel events 624 vs 343. Experimental; full gate/online A/B pending.",
+   "result": "Final candidate v59-swap-cassi-v2: 25 wins / 23 losses against exact raw v59 on 24 separate developer maps from both sides; 34 wins / 2 losses against matched sparring bots, versus raw v59 control 36 wins / 0 losses. Candidate fuelExhausted events 624 versus 343 for raw v59; this remains a material weakness. Full repository promotion gate and online A/B remain pending. No stronger-bot, merge or live-activation claim. Detailed source, native replay and mechanism evidence: docs/I032-replay-diagnosis.md and docs/I032-diagnosis-evidence/."
+  }
+ ],
+ "evidence": {
+  "report": "docs/I032-replay-diagnosis.md",
+  "bundle": "docs/I032-diagnosis-evidence/",
+  "panel_ledger": "docs/I032-diagnosis-evidence/final-v2-summary.json"
+ },
+ "pr": "35"
+}

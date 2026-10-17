@@ -19,8 +19,9 @@ describe the previous bot; they do not override the new **Tactic** paragraphs.
 | `actions.h` | The sole gateway for gameplay mutations and explicit action outcomes |
 | `log.h` | Bounded, allocation-free audit records that preserve the action budget |
 | `coordinator.h` | Mission arbitration, channel continuity and confirmed progress |
-| `economy.h` | Clear/collect/deliver/recover cycles, safety and one-extra-reward comparison |
+| `economy.h` | Clear/collect/deliver/recover cycles, fresh proposals and safety |
 | `resource.h`, `ranking.h`, `cycles.h` | Resource purpose, bounded job shortlist and common completed-cycle comparison |
+| `chain.h` | Funded one-extra-job proposal, ordinary-walking bounds and finite delivery obligation |
 | `solo.h`, `solo_bounds.h` | Supported singleton clear/arrival certificates and explicit optimistic lower bounds |
 | `squads.h` | Bounded minimum sufficient locally ready crew selection |
 | `farm_readiness.h` | Present legal camp contribution; unpriced future help never becomes current damage |
@@ -73,7 +74,7 @@ are observed later. An enemy lock is selected by team even if our own lock occup
 - Draft recipes are the handbook's legal initial fallback, not a fitted counterdraft solver.
 - Team coordination uses actual local bodies and the existing eight-byte channel; a claim is
   an intention. A distant claim does not contribute damage or establish a capture holder.
-- Minimum sufficient crews compare solo/pair/larger local subsets. The bot does not pretend
+- Locally priced crews compare solo/pair/larger local subsets. The bot does not pretend
   to assign a globally optimal team partition or price every ally's remote alternative.
 - Farm and bank cycle estimates are coarse, use declared inherited gold weights and initial
   safety margins, and never count the carried bag twice. Hidden group members remain uncertain;
@@ -109,26 +110,76 @@ The submission ZIP must contain `src/main.cpp` and its headers at the ZIP root's
 
 ## Current validation status
 
-Integration20 is a **draft: 0 wins and 28 losses** on the retained development panel.
-All 28 games have zero candidate fuel pauses, native faults, caught errors or action/API errors.
-The corrected source-matched validation package passes 38 pure suites and 28 standalone headers.
-The source manifest matches the build of release module
-`78f3d89e9fbf7ea4167ad91bd36af8c49eb3fa353a3fa58f71729e04790776bc`.
-Do not activate or submit this as an improvement over the original.
+Integration20 finished **0 wins and 28 losses**, with zero candidate fuel/native/API events;
+38 pure suites and 28 standalone headers passed. Strict autonomous crew-to-bank activation
+passed 3/4 controlled games. A separate real-income partial-emblem prelude followed by
+unchanged main produced cash -> exact purchase -> Elk -> actual bank on both sides. These
+are scoped correctness results, not strength proof.
 
-Three of four controlled autonomous-main games pass the strict paid co-clear -> actual receipt
--> recipient bank assertion; the five-pick SideB primary cycle remains incomplete. All four are
-free of fuel/fault/API events. 14 early rendezvous moves are joined to actual native actions,
-plus one accepted wait. These are activation evidence, not competitive success.
+Integration21 finished **1 win and 27 losses**. Its 39 pure suites and 30 standalone headers
+passed, and its early solo clear/capture/bank activated on both sides. The development panel
+nevertheless exposed an unbudgeted local route search: one Lanes side had 222 candidate fuel
+pauses and scored zero. The isolated two-file repair reduced that same candidate to zero fuel
+events and 220 gems; the original still won. Baseline fuel events remain separately reported.
+The failed integration21 snapshot is retained and is not a submission recommendation.
 
-Separate actual/native evidence confirms the solo camp-phase clock and the corrected cache
-costs. The former cash-investment positive case is now honestly obsolete: corrected Cassi can
-clear its Wolf without the formerly required Health shard. That scenario must not force a buy;
-a separate positive case now passes both sides: a scripted native prelude really earns 210 gold
-and buys seven shards; unchanged main then captures its next 35 gold, buys the fifth Jungle Health
-shard, clears an Elk and banks 36 gems. No wallet/stat injection is used. This is one controlled
-starting kit, not whole-team competitive success. Older records retain their source scope.
-The final 18 holdout games stay sealed.
+Integration22 combines the funded route repair, typed direct-cast-only outer-range solo
+itinerary and broader local crew comparison. Its 41 pure suites and 30 standalone headers
+pass; all 28 development games have zero candidate fuel/native/caught/API events, but the
+result remains **1 win and 27 losses**. Exact native full-main Expanse activation supports
+18 casts over 137 owners without HP loss, then collection and bank. The exact investment
+case also passes both sides. Separate cooperative conversion metrics are 2/4 fixed-primary
+and 3/4 any-objective; the latter cannot reconstruct unlogged selected crew IDs. No early
+rendezvous activates in those four controlled games. Safe long clears are not automatically
+better than faster crews.
 
-See [validation](validation/README.md) for exact source, adverse results and scope, and
-[the validation tools](../../tools/tactics-v1-validation/README.md) for reproduction.
+Integration23 fixes expired unnamed staging before optional planning, reserves a singleton
+hypothesis without calling it affordable/ready, and stops treating a fully personally
+observed unready camp as new information. Its 43 pure suites and 31 standalone headers pass.
+Exact normal Expanse side A improves from 66 to 242 gems and from 3 to 11 clears/banks;
+the formerly idle Issac performs 505 actual actions and banks 44 gems. Those gains do not
+generalize to competitive strength: the complete development panel is **0 wins and 28
+losses**, with one candidate fuel pause (caster-ball/Corners/A, R12 Ryth0) and no candidate
+native/caught/API errors. The four controlled autonomous fixtures retain 2/4 fixed-primary
+and 3/4 separately measured any-objective cooperative conversions; early rendezvous still
+does not activate. Long healthy idle intervals remain on multiple geometries.
+
+Integration24r1 passes 45 pure suites and 32 standalone header checks. Its complete
+development panel remains **0 wins and 28 losses**, with zero candidate fuel suspensions,
+native faults, caught errors or action/API errors. The equivalent fixed-array squad
+selector reduces one retained actual input from 33,136 to 6,026 fuel; that is a computation
+repair, not evidence of stronger play. An exact-source quiet controller test now earns
+24 gems, captures one extra 24, and banks 48 once; its direct-bank control converts the
+first 24. Typed cast-only controller and real-cooldown regressions also pass.
+
+The exact integration24r1 lawful investment regression **fails on both sides**. A real receipt is
+created, but its named objective is beyond the bounded three-owner first-hit quote and
+has no finite travel executor. Earlier22 success depended on an incidental approach to
+another target. Integration25r1 repairs finite cash and installed-gem travel, actual-current
+awake entry and bounded unpriced-candidate scheduling. Basic farm execution now requires
+an actual sufficient BasicOnly certificate; recurring spell/reset DPS stays a ranking hint.
+Altar contact ranking uses speed/kit-aware owner-turn estimates.49 pure suites and32
+standalone headers plus the combined include check pass. Six scoped native reports pass,
+including cash/item/gem/bank and740/1000HP current awake entry after a lawful paid move.
+25r1 changes only the lifecycle test template relative to25; source-identical native reuse
+is explicit and does not count as additional games.
+
+This combined version finishes **1W/27L**, with zero candidate fuel/native/caught/API events.
+Total own score drops from6,492 in24r1 to4,405, so this is not a strength recommendation.
+Grouping/splitting, productive group travel, camp selection and opening allocation remain
+required partials. A useful current job is not yet deliberately resized by marginal value.
+Several development cases still idle with healthy actors and no nearby opponents.
+
+All failed versions and adverse results remain retained. All 18 holdout games remain sealed.
+The bot remains a draft until its implementation and competitive gaps close.
+
+See `validation/` for source coverage and final integration evidence, and
+[`tools/tactics-v1-validation`](../../tools/tactics-v1-validation/README.md) for production-helper fixtures.
+Local match results measure this frozen artifact on the recorded opponents/maps; they do not
+prove ladder strength or certify every tactical edge case.
+
+## Exact published checkpoint
+
+integration25r1: 1W/27L; 49 pure suites, 32 standalone headers and their combined include check pass. Candidate events: 0 fuel pauses, 0 native faults, 0 caught errors, 0 action/API errors.
+
+Release module: `11052ae59080b019a7636ec817ab60ebc7f73748983d55d706f429d658e7774f`. This draft is not a live activation recommendation. The 18 final holdout games remain sealed. See [validation](validation/README.md).

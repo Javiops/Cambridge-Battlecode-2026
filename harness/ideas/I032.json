@@ -1,0 +1,25 @@
+{
+ "id": "I032",
+ "title": "mate_bwf draft cache, ward spacing and accepted channel starts",
+ "kind": "bug",
+ "source": "Fran requested implementation and independent multi-map ablations on supplied mate_bwf_upload.zip, 17 Oct 2026",
+ "owner": "Fran",
+ "hypothesis": "Reject partial or malformed draft plans while preserving legacy settings; ensure two selected ward anchors are at least six tiles apart without changing equal-score ordering; verify channel starts and avoid immediate known interruption or a false successful-action return. Mechanism correctness and playing strength are separate acceptance questions.",
+ "stage": "local-test",
+ "created": "2026-10-17T14:58Z",
+ "history": [
+  {
+   "at": "2026-10-17T14:58Z",
+   "stage": "idea",
+   "note": ""
+  },
+  {
+   "at": "2026-10-17T14:58Z",
+   "stage": "local-test",
+   "note": "Experimental correctness candidate only. Eight-way source/SDK regressions pass; 97-map final combination is 92W-102L vs exact supplied original. Full repository gate NOT RUN; no strength promotion. Explicit user-requested follow-up; historical idea metadata not changed."
+  }
+ ],
+ "updated": "2026-10-17T14:58Z",
+ "bot": "bots/study27-economy",
+ "branch": "fran/mate-bwf-safety"
+}

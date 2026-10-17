@@ -130,3 +130,59 @@ python tools/tactics-v1-validation/run_native_survival_budget.py --cli <cambc.ex
 ```
 
 This runs the actual production `choose_mission` with explicit projected personal HP/bag/threat/mission inputs under the native SDK. Fifteen cases per side cover wounded threatened carriers, healthy lethal-contact carriers and capture holders at47k/51k, safe immediate/winning Tribute, unsafe Tribute, spawn healing, live holder retention, harmless raw exposure after mitigation, an affordable current singleton, and shield-bearing owners whose actual HP loss is lethal. The runner requires all30 markers, same owner epoch, a remaining execution reserve and zero native faults/fuel events. No projected action is executed; full-main matches and physical payout are separate evidence. Current shield is subtracted once; multi-owner forecasts credit it only when its known duration covers the horizon.
+
+
+Current productive-job self-release regression
+---------------------------------------------
+
+`resizing` tests the production SDK-free comparator and current-action/endpoint
+guards (59 checks). The runtime's first implementation covers a harmless,
+personally observed singleton with two actual current contributors, a lower-ID
+collector that can finish in the same round, and a distinct positively priced
+harmless singleton for the released actor. Unknown alternatives retain the
+incumbent. Mandatory recovery, transactions, warnings, unseen or locked banks,
+spent/completed actors and delayed collector completion decline.
+
+```powershell
+python tools/tactics-v1-validation/run_native_resizing.py --source bots/tactics-v1/src --output work/native-resizing --cli C:/path/to/cambc.exe --project C:/path/to/arena --node C:/path/to/node.exe --engine C:/path/to/v0_0_2-DFj19m76.wasm
+```
+
+This controlled native fixture compiles the retained production main but does
+**not** call `Bot::turn`. It physically earns the current low-HP camp, establishes
+typed current crew intent through an actual sufficient proof and accepted hit,
+and invokes the production resize adapter at a real approximately 65k native
+budget. The normal action gateway and reset receipts execute the released
+actor's separate job; the retained collector re-certifies its own actual current
+lethal hit. Both sides must clear the incumbent in the release round, receive
+separate actual 24-gem captures and bank both shares. Thirty strict assertions
+also check no native fuel/fault/API errors and immutable source affinity.
+
+The runtime comparison credits only each priced recipient's conservative
+`floor(groupGems/publicAllyCount)` share, with every unpriced recipient credited
+zero; no shared gold or full-team payout is assigned to one wallet. It is a
+bounded secured-personal-score heuristic, not a proof that lower-bound versus
+lower-bound comparison maximizes total team reward. Broader damaging-camp,
+multicamp, coalition addition and general dynamic resizing remain partial.
+
+
+Restricted scalar-receipt snapshot boundary
+-------------------------------------------
+
+`receipt-snapshot` extracts the exact production target-refresh method, restricted
+reset-target helper and mutation-kind gate. Its58 recorded-API checks cover fresh
+self permissions/buffs, exact singleton lifecycle, stale epoch/serial/owner,
+dead/hidden/partial/error failures, no full-refresh fallback or remote-state
+promotion, and target-bound ground-only damage versus dash/other action vetoes.
+The host records are explicit test stand-ins. This is control-flow/source-affinity
+coverage; actual native cost and prepaid sequence execution require separate tests.
+
+
+Committed solo controller boundary
+----------------------------------
+
+`solo-mode` source-extracts current controller dispatch and the common solo builder.
+Its28 explicit model checks preserve Combined basic/cast execution versus Direct
+exact-slot cooldown/ready behavior, including generic basic/outer overlap, manual
+BasicOnly provenance, future travel, invalid metadata and crew ownership reset.
+It binds actual current-quote/slot-adapter/full-quote call sites. These are model
+and control-flow checks, not native route, visibility, budget or strength proof.

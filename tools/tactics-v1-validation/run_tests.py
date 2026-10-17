@@ -33,7 +33,11 @@ from solo_receipt_fixture import generate_solo_receipt_fixture, extract_solo_rec
 from solo_entry_fixture import generate_solo_entry_fixture, extract_solo_entry
 from solo_poke_fixture import generate_solo_poke_consumer, extract_solo_poke_consumer
 from awake_entry_fixture import generate_pending_awake_fixture, extract_pending_awake
+from observation_detour_fixture import generate_observation_detour_fixture, extract_observation_detour
 from coarse_fallback_fixture import generate_coarse_fallback_fixture, extract_coarse_fallback
+from current_cast_fixture import generate_cast_admission_fixture, extract_cast_admission, generate_current_cast_fixture, extract_current_cast
+from receipt_snapshot_fixture import generate_receipt_snapshot_fixture, extract_receipt_snapshot
+from solo_mode_fixture import generate_solo_mode_fixture, extract_solo_mode
 
 HERE = Path(__file__).resolve().parent
 EXPECTED_SDK_SHA256 = "76664dc7c4ab764243a7530eb97be12d9c20518b7bd2601a962fb0669d1da4a4"
@@ -105,6 +109,8 @@ def main():
                           ("squads", r"squad checks passed: (\d+)"),
                           ("camp-affordability", r"(\d+) camp affordability checks passed"),
                           ("solo-certificate", r"(\d+) solo certificate checks passed"),
+                          ("observation-detour", r"(\d+) observation detour checks passed"),
+                          ("observation-detour-caller", r"(\d+) observation detour caller checks passed"),
                           ("awake-entry", r"(\d+) awake entry lease checks passed"),
                           ("awake-arrival", r"(\d+) awake arrival checks passed"),
                           ("awake-entry-caller", r"(\d+) pending awake caller checks passed"),
@@ -130,8 +136,13 @@ def main():
                           ("camp-shield-clock", r"(\d+) camp shield clock checks passed"),
                           ("camp-basic", r"(\d+) camp basic checks passed"),
                           ("coarse-fallback", r"(\d+) exact ordinary fallback checks passed"),
+                          ("cast-admission", r"(\d+) detailed-admission checks passed"),
+                          ("current-cast", r"(\d+) funded-current-cast checks passed"),
                           ("crew-sequence", r"(\d+) crew sequence checks passed"),
                           ("crew-current", r"(\d+) current crew checks passed"),
+                          ("resizing", r"(\d+) current-resizing checks passed"),
+                          ("receipt-snapshot", r"(\d+) restricted receipt snapshot checks passed"),
+                          ("solo-mode", r"(\d+) committed solo mode checks passed"),
                           ("squad-position", r"(\d+) squad-position checks passed"),
                           ("alternative", r"(\d+) separate-opportunity checks passed"),
                           ("vision", r"(\d+) vision checks passed"),
@@ -147,6 +158,12 @@ def main():
                           ("deny", r"(\d+) deny checks passed")):
         if name in ("combat-sequence", "coordination", "squad-position", "vision") and not (source / "coordination.h").is_file():
             continue  # Historical v12 does not contain the new model contracts.
+        if name == "receipt-snapshot" and not re.search(r"bool\s+refresh_receipt_target\s*\(", (source / "sdk_world.h").read_text(encoding="utf8")):
+            continue
+        if name == "solo-mode" and "current_solo_dispatch" not in (source / "solo.h").read_text(encoding="utf8"):
+            continue
+        if name == "resizing" and not (source / "resizing_policy.h").is_file():
+            continue
         if name == "camp-actions" and not (source / "camp_actions.h").is_file():
             continue
         if name == "camp-collateral" and not (source / "camp_collateral.h").is_file():
@@ -156,6 +173,8 @@ def main():
         if name == "camp-basic" and not (source / "camp_basic.h").is_file():
             continue
         if name == "coarse-fallback" and "current_basic_farm_fallback" not in (source / "economy.h").read_text(encoding="utf8"):
+            continue
+        if name in ("cast-admission", "current-cast") and "early_current_cast_farm_proposal" not in (source / "economy.h").read_text(encoding="utf8"):
             continue
         if name == "assembly-handshake" and "assembly_handshake_proposal" not in (source / "coordinator.h").read_text(encoding="utf8"):
             continue
@@ -203,8 +222,15 @@ def main():
             continue
         if name in ("awake-entry", "awake-arrival", "awake-entry-caller") and not (source / "awake_entry.h").is_file():
             continue
+        if name in ("observation-detour", "observation-detour-caller") and not (source / "observation_detour.h").is_file():
+            continue
         template = HERE / "fixtures" / f"{name}.cpp"
-        fixture = (generate_pending_awake_fixture(source, output) if name == "awake-entry-caller" else
+        fixture = (generate_solo_mode_fixture(source, output) if name == "solo-mode" else
+                   generate_receipt_snapshot_fixture(source, output) if name == "receipt-snapshot" else
+                   generate_observation_detour_fixture(source, output) if name == "observation-detour-caller" else
+                   generate_cast_admission_fixture(source, output) if name == "cast-admission" else
+                   generate_current_cast_fixture(source, output) if name == "current-cast" else
+                   generate_pending_awake_fixture(source, output) if name == "awake-entry-caller" else
                    generate_coarse_fallback_fixture(source, output) if name == "coarse-fallback" else
                    generate_channel_fixture(source, output) if name == "channel" else
                    generate_solo_receipt_fixture(source, output) if name == "solo-receipt" else
@@ -236,7 +262,12 @@ def main():
                        "fixture_sha256": sha(fixture), "wasm_sha256": sha(wasm),
                        "template_sha256": sha(template),
                        "production_function_sha256": hashlib.sha256(
-                           (extract_channel_function(source) if name == "channel" else
+                           (extract_solo_mode(source) if name == "solo-mode" else
+                            extract_receipt_snapshot(source) if name == "receipt-snapshot" else
+                            extract_observation_detour(source) if name == "observation-detour-caller" else
+                            extract_cast_admission(source) if name == "cast-admission" else
+                            extract_current_cast(source) if name == "current-cast" else
+                            extract_channel_function(source) if name == "channel" else
                             extract_coarse_fallback(source) if name == "coarse-fallback" else
                             extract_solo_receipt_policy(source) if name == "solo-receipt" else
                             extract_solo_entry(source) if name == "solo-entry" else
@@ -255,7 +286,7 @@ def main():
                             extract_solo_basic_policy(source) if name == "solo-basic" else
                             extract_denial_proposal(source) if name == "deny" else
                             extract_economy_policy(name, source)).encode()).hexdigest()
-                           if name in ("coarse-fallback", "channel", "recovery", "delivery", "vision", "ward-exit", "squad-position", "alternative", "shopping-investment", "shopping-gem", "shopping-cash", "shopping-cash-hint", "solo-basic", "solo-receipt", "solo-entry", "solo-poke-consumer", "deny", "assembly-arrival", "assembly-handshake", "assembly-lifecycle") else None,
+                           if name in ("solo-mode", "receipt-snapshot", "cast-admission", "current-cast", "observation-detour-caller", "coarse-fallback", "channel", "recovery", "delivery", "vision", "ward-exit", "squad-position", "alternative", "shopping-investment", "shopping-gem", "shopping-cash", "shopping-cash-hint", "solo-basic", "solo-receipt", "solo-entry", "solo-poke-consumer", "deny", "assembly-arrival", "assembly-handshake", "assembly-lifecycle") else None,
                        "compile_command": [str(x) for x in command]})
     header_checks = []
     sdk_hash = None

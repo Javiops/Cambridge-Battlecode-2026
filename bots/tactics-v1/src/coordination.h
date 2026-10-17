@@ -426,11 +426,13 @@ inline double alternative(const World &w, const Actor &a, int excluded, bool &kn
                           int &selected_group, Pos &selected_target, bool &selected_bank) {
     double best = 0;
     known = false;
+    const int speed = std::max(1, a.move_speed);
+    const auto walk_ticks = [speed](int steps) { return (steps + speed - 1) / speed; };
     const int altar = w.geo.at(w.geo.nearest_altar, a.pos);
     if (a.gems > 0 && altar != unreachable) {
         known = true;
-        best = a.gems / std::max(1.0, static_cast<double>(altar / std::max(1, a.move_speed) +
-                                                          tribute_ticks(a.gems) + 1));
+        best = a.gems /
+               std::max(1.0, static_cast<double>(walk_ticks(altar) + tribute_ticks(a.gems) + 1));
         int nearest = unreachable;
         for (unsigned i = 0; i < w.geo.altars.size(); ++i) {
             const int d = w.geo.at(w.geo.altar_fields[i], a.pos);
@@ -442,10 +444,14 @@ inline double alternative(const World &w, const Actor &a, int excluded, bool &kn
         selected_group = -1;
         selected_bank = true;
     }
-    int inspected = 0;
-    // The scan does no native work; at most two cached reachable alternatives
-    // receive a cycle value. An absent route remains unknown, never zero value.
-    for (unsigned gi = 0; gi < w.geo.groups.size() && inspected < 2; ++gi) {
+    int priced = 0, work = 0;
+    constexpr int max_scan_work = 256;
+    // Bound both rejected rows and nested member/threat inspection. Only a
+    // fully priced positive alternative consumes one of the two useful slots;
+    // two rich but unpriceable icons must not hide a later real task. No route
+    // is constructed here. Exhausting the scan never proves a free alternative.
+    for (unsigned gi = 0; gi < w.geo.groups.size() && priced < 2 && work < max_scan_work; ++gi) {
+        ++work;
         if (static_cast<int>(gi) == excluded || w.geo.groups[gi].spawns.empty())
             continue;
         const auto &g = w.geo.groups[gi];
@@ -461,10 +467,16 @@ inline double alternative(const World &w, const Actor &a, int excluded, bool &kn
         const int d = cached_distance(w, a.pos, at);
         if (d < 0 || d == unreachable)
             continue;
-        ++inspected;
         const int bank = w.geo.at(w.geo.nearest_altar, at);
         if ((g.gems || a.gems) && bank == unreachable)
             continue;
+        const std::size_t member_work =
+            g.spawns.size() * (v.known_dead.size() + v.camps.size() + 1) + v.camps.size();
+        const std::size_t threat_work =
+            w.enemies.size() + w.sightings.size() * (w.enemies.size() + 1);
+        if (member_work + threat_work > std::size_t(max_scan_work - work))
+            continue; // A costly unresolved row need not hide a later cheap one.
+        work += int(member_work + threat_work);
         if (v.state != Lifecycle::Reward) {
             bool complete = true;
             for (const auto &spawn : g.spawns)
@@ -496,12 +508,16 @@ inline double alternative(const World &w, const Actor &a, int excluded, bool &kn
         const double harm = clear * exposure * a.camp_mitigation + enemy_reply * a.mitigation;
         if ((hp > 0 && v.camps.empty()) || harm + 1 >= a.hp + a.shield)
             continue; // Alternative must be affordable, not merely a rich icon.
-        const double time = d / std::max(1, a.move_speed) + clear + 6 +
-                            ((g.gems || a.gems) ? bank + tribute_ticks(a.gems + g.gems) : 0);
-        known = true;
+        const double time =
+            walk_ticks(d) + clear + 6 +
+            ((g.gems || a.gems) ? walk_ticks(bank) + tribute_ticks(a.gems + g.gems) : 0);
         const double value =
             (g.gems + (w.round < 600 ? .25 : .24) * score_resource_gold(g.gems, g.gold) + a.gems) /
             std::max(1.0, time);
+        if (!std::isfinite(value) || value <= 0)
+            continue;
+        ++priced;
+        known = true;
         if (value > best) {
             best = value;
             selected_group = gi;

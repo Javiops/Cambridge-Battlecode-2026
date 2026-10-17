@@ -1,6 +1,7 @@
 #pragma once
 
 #include "camp_actions.h"
+#include "economy.h"
 #include "sdk_world.h"
 #include "solo.h"
 #include <algorithm>
@@ -69,15 +70,53 @@ inline ShopStat shop_role_stat(int physical_type) {
 // One finite acquisition receipt. Projected gold never enters World or inventory.
 struct CashInvestment {
     int group = -1, item = -1, count = 0, before = 0, emblem_before = 0;
-    int gold_before = 0, expected_gold = 0, created = -1, until = -1;
+    int gold_before = 0, expected_gold = 0, created = -1, until = -1, validated_round = -1;
     Pos stage{}, capture{};
     Mission gem_mission{};
-    double rate = 0, absence = 0;
+    double rate = 0, absence = 0, post_arrival_ticks = 0;
     bool holding = false, started = false;
 };
+inline bool cash_acquisition_eligible(const Actor &self, const Mission &job,
+                                      const CashInvestment &cash, int now, bool authorized,
+                                      bool holder, bool hostile) {
+    return authorized && cash.group >= 0 && cash.validated_round == now && cash.until > now &&
+           std::isfinite(cash.rate) && cash.rate > 0 && self.id >= 0 && self.alive &&
+           !self.completed && !self.stunned && self.channel == Channel::None && self.gems == 0 &&
+           std::isfinite(self.hp) && std::isfinite(self.max_hp) && self.max_hp > 0 &&
+           self.hp >= .75 * self.max_hp && !holder && !hostile && !job.assembly_pending &&
+           job.assembly_count == 0 && job.sortie_length == 0 && !job.chain_used &&
+           !job.bank_after_reward && job.phase != Phase::Clear && job.phase != Phase::Collect &&
+           job.phase != Phase::Recover && job.phase != Phase::Channel;
+}
+inline bool cash_acquisition_fits(const CashInvestment &cash, int now, double arrival,
+                                  double post_arrival) {
+    return std::isfinite(arrival) && std::isfinite(post_arrival) && arrival >= 0 &&
+           post_arrival > 0 && now + arrival + post_arrival < cash.until;
+}
+struct InstalledGemReentry {
+    int group = -1, installed = -1, until = -1;
+    Pos stage{};
+    double rate = 0, remaining_cycle = 0;
+};
+inline InstalledGemReentry make_installed_reentry(const Mission &named, Pos stage, int steps,
+                                                  int speed, int now, int limit) {
+    // Called only after the exact actual purchase/wallet/combination receipt.
+    // This retains a route and deadline, never a forecast or attack permission.
+    if (named.group < 0 || named.latest <= now || named.latest >= limit || steps < 0 ||
+        steps == unreachable || speed < 1 || !std::isfinite(named.rate) || named.rate <= 0)
+        return {};
+    const int arrival = (steps + speed - 1) / speed;
+    const int remaining = limit - named.latest;
+    if (now + arrival + remaining >= limit)
+        return {};
+    return {
+        named.group, now,        std::min(named.latest, now + arrival + 2 * Settings::job_lease),
+        stage,       named.rate, double(remaining)};
+}
 
 struct ShoppingState {
     CashInvestment cash{};
+    InstalledGemReentry installed_gem{};
     int cached_cash_group = -1;
     Pos cached_cash_stage{};
     std::array<int, 2> cached_gem_group{-1, -1};
@@ -525,7 +564,7 @@ struct CashGemLegs {
     int walk = unreachable, capture_walk = unreachable, hold = 0;
 };
 struct CashGemPayoff {
-    double cash_ticks = 0, total_ticks = 0, absence = 0;
+    double cash_ticks = 0, total_ticks = 0, absence = 0, post_arrival_ticks = 0;
     bool known = false, worthwhile = false;
 };
 // A single real solo payout purchases one exact bundle, then completes the
@@ -550,7 +589,8 @@ inline CashGemPayoff completed_cash_gem(const Actor &actual, const Camp &cash, P
     const auto clear = certify_solo_clear(actual, cash, cash_stage, elapsed, now);
     if (!clear.known || !clear.feasible)
         return out;
-    out.cash_ticks = elapsed + clear.clear_ticks + turns(cash_legs.capture_walk) + cash_legs.hold;
+    out.post_arrival_ticks = clear.clear_ticks + turns(cash_legs.capture_walk) + cash_legs.hold;
+    out.cash_ticks = elapsed + out.post_arrival_ticks;
     Actor after_cash = actual;
     after_cash.pos = cash_capture;
     after_cash.hp = clear.remaining_hp;
@@ -691,6 +731,13 @@ inline std::optional<Pos> shopping_gem_route_hint(const World &w, ShoppingState 
     if (!w.self.alive || state.investment_item >= 0 || w.self.type == 11 || w.self.gems > 0 ||
         !w.enemies.empty())
         return std::nullopt;
+    if (state.installed_gem.group >= 0) {
+        const Pos stage = state.installed_gem.stage;
+        if (w.round < state.installed_gem.until &&
+            !w.geo.goal_cache.contains({w.geo.index(stage), 0}))
+            return stage;
+        return std::nullopt;
+    }
     if (state.cash.group >= 0 && state.cash.group < static_cast<int>(w.geo.groups.size())) {
         // The finite prefix consumer certifies arrival using the actual cash
         // camp root, not the separately priced fixed contribution stage.
@@ -988,6 +1035,7 @@ inline bool plan_cash_gem_investment(World &w, Memory &memory, ShoppingState &st
             return false;
         }
         cash.started |= memory.mission.group == gi;
+        cash.validated_round = w.round;
         publish_cash_investment(memory, cash);
         return true;
     }
@@ -1074,6 +1122,8 @@ inline bool plan_cash_gem_investment(World &w, Memory &memory, ShoppingState &st
         best.gem_mission = named;
         best.rate = rate;
         best.absence = payoff.absence;
+        best.post_arrival_ticks = payoff.post_arrival_ticks;
+        best.validated_round = w.round;
     }
     if (best.group < 0)
         return false;
@@ -1088,6 +1138,8 @@ inline void plan_upgrade_return(World &w, Memory &memory, ShoppingState &state) 
     memory.cash_investment_group = -1;
     memory.cash_investment_until = -1;
     memory.cash_investment_rate = 0;
+    if (state.installed_gem.group >= 0 && w.round < state.installed_gem.until)
+        return; // Finish the actual installed bundle's named return before pricing another.
     if ((!w.self.alive || w.self.gems > 0 || !w.enemies.empty()) && state.cash.group >= 0)
         state.cash = {};
     if (w.self.alive && w.self.type != 11 && w.self.channel == Channel::None &&
@@ -1159,6 +1211,130 @@ inline void plan_upgrade_return(World &w, Memory &memory, ShoppingState &state) 
     state.investment_gem_unlock = false;
     state.investment_gain = memory.upgrade_gain = payoff.saved_turns;
     state.investment_absence = memory.upgrade_absence = payoff.absence;
+}
+
+// A successful investment may price more walking than the local3-owner
+// solo certificate. Retain the real named route as travel only, then consume
+// the ordinary fresh quote/common executor when the action window is local.
+enum class PricedStagePurpose { CashAcquisition, InstalledGem };
+inline std::optional<Proposal> priced_stage_proposal(World &w, Memory &memory, int group, Pos stage,
+                                                     int latest_start, int completion_deadline,
+                                                     double post_arrival, double rate,
+                                                     PricedStagePurpose purpose) {
+    if (group < 0 || group >= int(w.groups.size()) || group >= int(w.geo.groups.size()) ||
+        bc::fuel_remaining() < 44000 || w.round != int(bc::round_number()) ||
+        !assembly_detail::simple_sleeping(w, group) || w.warning_near(w.self.pos, 4) ||
+        w.warning_near(stage, 4))
+        return std::nullopt;
+    const auto &camp = w.groups[group].camps.front();
+    const int speed = std::max(1, w.self.move_speed);
+    const int action_lower = std::max(0, distance(w.self.pos, camp.pos) - w.self.range);
+    const auto fresh_quote = [&]() -> std::optional<Proposal> {
+        const auto quote = quote_solo_basic_farm(w, group);
+        const double remaining = purpose == PricedStagePurpose::CashAcquisition
+                                     ? quote.arrival_ticks + quote.clear_ticks + quote.capture_ticks
+                                     : quote.total_ticks;
+        if (!current_solo_quote(w, quote, group) || !quote.known || !quote.feasible ||
+            quote.current_only || w.round + quote.arrival_ticks >= latest_start ||
+            !std::isfinite(remaining) || remaining <= 0 ||
+            w.round + remaining >= completion_deadline || bc::fuel_remaining() < 22000 ||
+            w.round != int(bc::round_number()))
+            return std::nullopt;
+        auto proposal = solo_farm_proposal(w, memory, quote);
+        if (proposal)
+            proposal->mission.latest = completion_deadline;
+        return proposal;
+    };
+    if (action_lower <= 3 * speed && (w.self.can_move || action_lower == 0))
+        return fresh_quote();
+    if (!w.free(stage) || !packed_bit(w.visible_bytes, w.geo.index(stage)))
+        return std::nullopt;
+    const auto field = w.geo.goal_cache.find({w.geo.index(stage), 0});
+    if (field == w.geo.goal_cache.end())
+        return std::nullopt;
+    const int steps = w.geo.at(field->second, w.self.pos);
+    const int arrival = steps == unreachable ? unreachable : (steps + speed - 1) / speed;
+    if (arrival == unreachable || !std::isfinite(post_arrival) || post_arrival <= 0 ||
+        w.round + arrival >= latest_start ||
+        w.round + arrival + post_arrival >= completion_deadline)
+        return std::nullopt;
+    Mission job = memory.mission;
+    if (job.group != group) {
+        job = {};
+        job.start = job.last_progress = w.round;
+        job.last_pos = w.self.pos;
+    }
+    job.group = group;
+    job.target = stage;
+    job.phase = Phase::Travel;
+    job.intent = Intent::Farm;
+    job.rate = rate;
+    job.expiry = w.round + Settings::job_lease;
+    job.latest = latest_start;
+    if (!w.self.can_move) {
+        if (memory.mission.group != group || incoming_damage(w, w.self.pos) > 0 ||
+            bc::fuel_remaining() < 22000 || w.round != int(bc::round_number()))
+            return std::nullopt;
+        Action hold;
+        hold.reason = "priced-stage-current-owner-permission-wait";
+        return economic(hold, job, Priority::Routine, rate);
+    }
+    const auto next = w.toward(stage);
+    if (!next || w.geo.at(field->second, *next) >= steps ||
+        !packed_bit(w.visible_bytes, w.geo.index(*next)) || w.warning_near(*next, 4) ||
+        bc::fuel_remaining() < 22000 || w.round != int(bc::round_number()))
+        return std::nullopt;
+    if (incoming_damage(w, *next) > 0 || bc::fuel_remaining() < 22000 ||
+        w.round != int(bc::round_number()))
+        return std::nullopt; // No unpriced HP loss consumes the named outcome.
+    return economic(moving(*next, purpose == PricedStagePurpose::CashAcquisition
+                                      ? "cash-priced-finite-stage-prefix"
+                                      : "installed-gem-priced-stage-prefix"),
+                    job, Priority::Routine, rate);
+}
+inline std::optional<Proposal> named_cash_acquisition_proposal(World &w, Memory &memory,
+                                                               ShoppingState &state) {
+    const auto &cash = state.cash;
+    bool hostile = !w.enemies.empty();
+    for (const auto &sight : w.sightings)
+        hostile |= sight.actor.alive && combat_detail::recent_sighting(w.round - sight.round);
+    if (!cash_acquisition_eligible(w.self, memory.mission, cash, w.round,
+                                   priced_cash_investment(memory, cash.group, w.round),
+                                   memory.hold_group >= 0, hostile) ||
+        cash.group >= int(w.groups.size()) || cash.group >= int(w.geo.groups.size()) ||
+        w.groups[cash.group].camps.size() != 1 ||
+        w.groups[cash.group].camps.front().strength != 0 || w.geo.groups[cash.group].gems != 0)
+        return std::nullopt;
+    return priced_stage_proposal(w, memory, cash.group, cash.stage, cash.until, cash.until,
+                                 cash.post_arrival_ticks, cash.rate,
+                                 PricedStagePurpose::CashAcquisition);
+}
+inline std::optional<Proposal> named_installed_gem_reentry_proposal(World &w, Memory &memory,
+                                                                    ShoppingState &state) {
+    auto &receipt = state.installed_gem;
+    if (receipt.group < 0)
+        return std::nullopt;
+    bool hostile = !w.enemies.empty();
+    for (const auto &sight : w.sightings)
+        hostile |= sight.actor.alive && combat_detail::recent_sighting(w.round - sight.round);
+    const auto &job = memory.mission;
+    if (receipt.group >= int(w.groups.size()) || !w.self.alive || w.self.stunned ||
+        w.self.channel != Channel::None || w.self.gems > 0 || hostile || memory.hold_group >= 0 ||
+        w.self.completed || !std::isfinite(w.self.hp) || !std::isfinite(w.self.max_hp) ||
+        w.self.max_hp <= 0 || w.self.health_fraction() < .75 || job.assembly_pending ||
+        job.assembly_count > 0 || job.phase == Phase::Clear || job.phase == Phase::Collect ||
+        job.phase == Phase::Recover || job.phase == Phase::Channel || job.sortie_length > 0 ||
+        job.chain_used || job.bank_after_reward || w.round >= receipt.until ||
+        !std::isfinite(receipt.rate) || receipt.rate <= 0 || w.warning_near(receipt.stage, 4) ||
+        (memory.failed_group == receipt.group && w.round < memory.failed_until) ||
+        (w.groups[receipt.group].fresh(w.round) &&
+         w.groups[receipt.group].state != Lifecycle::Alive)) {
+        receipt = {};
+        return std::nullopt;
+    }
+    return priced_stage_proposal(w, memory, receipt.group, receipt.stage, receipt.until,
+                                 int(bc::constants::max_rounds), receipt.remaining_cycle,
+                                 receipt.rate, PricedStagePurpose::InstalledGem);
 }
 
 inline std::optional<Action> shopping_proposal(World &w, const Mission &mission,
@@ -1316,6 +1492,8 @@ inline void shopping_after_action(World &post, const Action &action, bool succes
             inventory.count[raw + 1] == state.investment_emblem_before + (completes ? 1 : 0) &&
             post.gold == state.investment_buy_gold - static_cast<int>(shop_info(raw).cost) * count;
         const Mission original = state.investment_mission, fallback = state.investment_origin;
+        const bool named_unlock = state.investment_gem_unlock;
+        state.installed_gem = {};
         clear_investment(state);
         post.memory.upgrade_gain = post.memory.upgrade_absence = 0;
         post.memory.upgrade_gem_unlock = false;
@@ -1337,6 +1515,17 @@ inline void shopping_after_action(World &post, const Action &action, bool succes
             post.memory.mission.start = post.round;
             post.memory.mission.expiry = post.round + Settings::job_lease;
             post.memory.mission.sortie_floor = 0;
+            if (named_unlock)
+                for (int k = 0; k < 2; ++k)
+                    if (state.gem_route_group[k] == original.group)
+                        if (auto steps =
+                                post.geo.cached_steps(post.self.pos, state.gem_route_stage[k])) {
+                            state.installed_gem =
+                                make_installed_reentry(original, state.gem_route_stage[k], *steps,
+                                                       std::max(1, post.self.move_speed),
+                                                       post.round, int(bc::constants::max_rounds));
+                            break;
+                        }
         }
         return;
     }

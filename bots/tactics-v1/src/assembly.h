@@ -36,6 +36,27 @@ struct AssemblyFacts {
     bool alternative_known = false, can_move = true, unchanged_failure = false;
     double reward_once = 0, cycle_ticks = 0, alternative_rate = 0;
 };
+// Compare only completed, priced itineraries. An unquoted/unknown solo is
+// neither a free alternative nor proof that another body is necessary.
+inline bool prefer_assembly_candidate(const AssemblyCandidate &next,
+                                      const AssemblyCandidate &current) {
+    if (!next.known || !std::isfinite(next.rate) || next.rate <= 0)
+        return false;
+    if (!current.known)
+        return true;
+    if (next.rate != current.rate)
+        return next.rate > current.rate;
+    if (next.selected_count != current.selected_count)
+        return next.selected_count < current.selected_count;
+    return next.total_ticks < current.total_ticks;
+}
+inline std::array<int, 3> assembly_crew_sizes(int available) {
+    if (available < 1 || available > 6)
+        return {};
+    // Fund the available crew first, then compare smaller known options if
+    // budget permits; absent smaller proofs never establish minimality.
+    return {available, available > 1 ? 1 : 0, available > 2 ? 2 : 0};
+}
 // Early setup may reserve a reversible rendezvous before elective planning.
 // It cannot preempt a live clear, capture holder, survival exit or transaction.
 inline bool early_assembly_eligible(const Actor &a, const Mission &job, int now, bool holder,
@@ -517,139 +538,6 @@ inline std::optional<int> nearby_assembly_group(const World &w, const Memory &m)
     return best >= 0 ? std::optional<int>(best) : std::nullopt;
 }
 
-inline std::optional<AssemblyCandidate>
-singleton_assembly_candidate(World &w, const Memory &m, int gi, double alternative_rate,
-                             bool alternative_known = true) {
-    if (!alternative_known || !assembly_detail::simple_sleeping(w, gi) ||
-        !assembly_detail::available(w.self) || bc::fuel_remaining() < 56000)
-        return std::nullopt;
-    const auto &group = w.geo.groups[gi];
-    const auto purpose = resource_job_purpose(group.gems, w.self.gems, w.geo.monolith_only);
-    if (purpose == ResourcePurpose::Ineligible || purpose == ResourcePurpose::MonolithFallback)
-        return std::nullopt; // No invented gem return from unpriced gold-only
-                             // assembly.
-    const auto &camp = w.groups[gi].camps.front();
-    const auto arrival = assembly_detail::contribution_arrival(w, w.self, camp.pos);
-    if (!arrival.known || !assembly_detail::safe_stage(w, arrival.at))
-        return std::nullopt;
-    const int altar = w.altar_distance(camp.pos), home = w.home_distance(camp.pos);
-    if ((group.gems && altar == unreachable) || home == unreachable)
-        return std::nullopt;
-    std::optional<AssemblyCandidate> best;
-    int hypotheses = 0;
-    for (const auto &ally : w.allies) {
-        if (ally.id == w.self.id || !assembly_detail::available(ally) ||
-            distance(ally.pos, camp.pos) > ally.range + 3 * std::max(1, ally.move_speed))
-            continue;
-        const bool claim = w.matching_claim(ally.id, gi);
-        if (ally.id < w.self.id && !claim)
-            continue; // Never follow an unaccepted or higher-ID moving leader.
-        if (hypotheses++ >= 2 || bc::fuel_remaining() < 44000)
-            break;
-        const auto help = assembly_detail::contribution_arrival(w, ally, camp.pos, arrival.at);
-        if (!help.known || !assembly_detail::safe_stage(w, help.at))
-            continue;
-        bool known = false, bank = false;
-        int other = -1;
-        Pos target;
-        const double helper_alternative =
-            coordination_detail::alternative(w, ally, gi, known, other, target, bank);
-        if (!known)
-            continue;
-        std::array<CampClearBody, 2> bodies;
-        bodies[0].actor = w.self;
-        bodies[0].actor.pos = arrival.at;
-        bodies[1].actor = ally;
-        bodies[1].actor.pos = help.at;
-        for (auto &body : bodies) {
-            // The quote occurs after arrival/handshake. Expiring current shield
-            // is discarded; basic permissions are prospective, never actual.
-            body.actor.shield = 0;
-            body.actor.completed = false;
-            body.actor.can_attack = true;
-            body.actor.can_cast = true;
-        }
-        const std::array<CampClearMonster, 1> monsters{{{camp, true}}};
-        const auto lower = optimistic_solo_impossibility(bodies[0].actor, camp, w.self.shield);
-        if (!lower.impossible) {
-            // Measured generic solo rollout can cost29k. Reserve that work
-            // plus the unchanged44k pair admission; a65k owner opportunity
-            // must not spend29k only to discover that its consumer is unfunded.
-            if (bc::fuel_remaining() < 80000)
-                continue;
-            const auto solo =
-                rollout_camp_clear(std::span(bodies.data(), 1), monsters, w.self.id, 128, [&] {
-                    return bc::fuel_remaining() >= 44000 &&
-                           w.round == static_cast<int>(bc::round_number());
-                });
-            if (w.round != static_cast<int>(bc::round_number()))
-                return std::nullopt;
-            if (solo.ready || solo.uncertain)
-                continue; // Cap/unknown never proves a helper necessary.
-        }
-        if (bc::fuel_remaining() < 44000)
-            break;
-        const auto projected = rollout_camp_clear(bodies, monsters, w.self.id, 192, [&] {
-            return bc::fuel_remaining() >= 32000 && w.round == static_cast<int>(bc::round_number());
-        });
-        if (w.round != static_cast<int>(bc::round_number()))
-            return std::nullopt;
-        if (!projected.ready)
-            continue;
-        const int speed = std::max(1, w.self.move_speed);
-        double recovery = 0;
-        if (!projected.remaining_hp.empty() && projected.remaining_hp[0] < .55 * w.self.max_hp)
-            recovery = (w.self.home ? 3 : int(bc::constants::recall_time)) + 2 +
-                       (home + speed - 1) / speed;
-        const double cycle =
-            projected.ticks + bc::constants::capture_time + 1 + recovery +
-            (group.gems ? (altar + speed - 1) / speed +
-                              tribute_ticks(w.self.gems + group.gems,
-                                            bc::constants::submit_gem_duration_multiplier,
-                                            bc::constants::submit_gem_base_duration,
-                                            bc::constants::submit_gem_minimum_duration)
-                        : 0);
-        const auto signature = assembly_detail::fingerprint(gi, w.self, ally, camp, claim);
-        AssemblyFacts f;
-        f.group = gi;
-        f.self_id = w.self.id;
-        f.now = w.round;
-        f.horizon = bc::constants::max_rounds;
-        if (m.mission.assembly_pending && m.mission.group == gi) {
-            f.existing_group = gi;
-            f.existing_start = m.mission.start;
-            f.last_progress = m.mission.last_progress;
-        }
-        f.fresh_sleeping = f.safe_stage = f.hypothesis_affordable = f.priced_crew = true;
-        f.alternative_known = alternative_known;
-        f.alternative_rate = alternative_rate;
-        f.can_move = w.self.can_move;
-        f.unchanged_failure =
-            m.assembly_failed_group == gi && m.assembly_failed_signature == signature;
-        f.reward_once =
-            group.gems + (w.round < 600 ? .25 : .24) * score_resource_gold(group.gems, group.gold);
-        f.cycle_ticks = cycle;
-        const std::array<AssemblyMember, 2> members{
-            {{w.self.id, arrival.turns, true, true, true, true, w.matching_claim(w.self.id, gi),
-              true, true, alternative_rate},
-             {ally.id, help.turns, true, true, true, true, claim, true, known,
-              helper_alternative}}};
-        auto candidate = price_assembly(f, members);
-        if (!candidate.known)
-            continue;
-        candidate.target = camp.pos;
-        candidate.stage = arrival.at;
-        candidate.route = arrival.route;
-        candidate.route_length = arrival.route_length;
-        candidate.signature = signature;
-        candidate.clear_ticks = projected.ticks;
-        if (!best || candidate.rate > best->rate ||
-            (candidate.rate == best->rate && candidate.helper_id < best->helper_id))
-            best = candidate;
-    }
-    return best;
-}
-
 namespace assembly_detail {
 // A future damage action's true targeting range. CastCamp does not acquire
 // the area radius of a ground spell. Unknown cooldown cannot promise a cast.
@@ -845,6 +733,7 @@ inline std::optional<AssemblyCandidate> group_assembly_stage(World &w, const Mem
     if (!alternative_known || !assembly_detail::observed_group(w, gi) ||
         !assembly_detail::available(w.self) || bc::fuel_remaining() < 56000)
         return std::nullopt;
+    const unsigned planning_floor = std::max(40000u, unsigned(bc::fuel_remaining()) - 16000u);
     if (++w.memory.assembly_path_generation == 0) {
         for (auto &hint : w.memory.assembly_paths)
             hint.borrowed_generation = 0;
@@ -926,7 +815,7 @@ inline std::optional<AssemblyCandidate> group_assembly_stage(World &w, const Mem
     std::array<AssemblyMember, 6> members{};
     std::array<Pos, 6> reserved{};
     int selected = 0;
-    for (int i = 0; i < count && bc::fuel_remaining() >= 47000; ++i) {
+    for (int i = 0; i < count && bc::fuel_remaining() >= planning_floor + 6000; ++i) {
         const Actor &actual = *available[i];
         const auto route = assembly_detail::group_arrival(
             w, actual, anchor->pos, std::span(reserved.data(), selected),
@@ -992,30 +881,27 @@ inline std::optional<AssemblyCandidate> group_assembly_stage(World &w, const Mem
             actual.id, route.turns, true,       true, true, true, w.matching_claim(actual.id, gi),
             true,      true,        alternative};
     }
-    if (selected < 1 || bc::fuel_remaining() < 46000)
+    if (selected < 1 || bc::fuel_remaining() < planning_floor + 3000)
         return std::nullopt;
-    for (int i = 0; i < selected; ++i)
-        if (!assembly_exit_unreserved(exits[i].route, arrivals[i].at,
-                                      std::span(reserved.data(), selected)))
-            return std::nullopt; // No promise that a future teammate vacates an escape tile.
     std::array<CampClearMonster, 8> monsters{};
     for (unsigned i = 0; i < view.camps.size(); ++i)
         monsters[i] = {view.camps[i], true};
     // A fully priced sufficient crew is tried first. Smaller Unknown results
     // must not consume the full crew's admission budget or prove necessity.
     // This is a bounded opportunity comparison, not a minimal-crew theorem.
-    std::array<int, 3> sizes{selected, 1, std::min(2, selected)};
-    int previous_size = -1;
-    for (int size : sizes) {
-        if (size == previous_size)
+    AssemblyCandidate best;
+    for (int size : assembly_crew_sizes(selected)) {
+        if (size == 0)
             continue;
-        previous_size = size;
-        if (size == 1 && bc::fuel_remaining() < 62000)
-            continue;
-        if (bc::fuel_remaining() < 42000)
+        if (bc::fuel_remaining() < planning_floor + 3000)
             break;
-        const int floor =
-            size < selected ? std::max(44000, int(bc::fuel_remaining()) - 7000) : 32000;
+        const unsigned floor = planning_floor;
+        bool exit_known = true;
+        for (int i = 0; i < size; ++i)
+            exit_known &= assembly_exit_unreserved(exits[i].route, arrivals[i].at,
+                                                   std::span(reserved.data(), size));
+        if (!exit_known)
+            continue; // A later unselected helper cannot reserve this crew's exit.
         bool external = false;
         for (int i = 0; i < size; ++i)
             external |= external_camp_collateral(bodies[i].actor, view.camps, w.geo.groups, gi,
@@ -1133,9 +1019,10 @@ inline std::optional<AssemblyCandidate> group_assembly_stage(World &w, const Mem
         candidate.selected_count = size;
         for (int i = 0; i < size; ++i)
             candidate.selected_ids[i] = members[i].id;
-        return candidate;
+        if (prefer_assembly_candidate(candidate, best))
+            best = std::move(candidate);
     }
-    return std::nullopt;
+    return best.known ? std::optional<AssemblyCandidate>(std::move(best)) : std::nullopt;
 }
 inline std::optional<AssemblyCandidate> group_assembly_candidate(World &w, const Memory &m, int gi,
                                                                  double alternative_rate,
@@ -1151,13 +1038,14 @@ inline std::optional<AssemblyCandidate> group_assembly_candidate(World &w, const
         return basic;
     // Rates include actual approach, clear, capture, bank, recovery and each
     // helper's known abandoned job. Unquoted alternatives never get free zero.
-    return cast->rate > basic->rate ? cast : basic;
+    return prefer_assembly_candidate(*cast, *basic) ? cast : basic;
 }
 inline std::optional<AssemblyCandidate> local_assembly_candidate(World &w, const Memory &m, int gi,
                                                                  double alternative_rate,
                                                                  bool alternative_known = true) {
-    if (assembly_detail::simple_sleeping(w, gi))
-        return singleton_assembly_candidate(w, m, gi, alternative_rate, alternative_known);
+    // A sleeping singleton can still profit from two or more contributors.
+    // Use the same solo/pair/available-crew comparison as a larger camp group;
+    // feasibility of a slow solo is not a blanket reason to reject cooperation.
     return group_assembly_candidate(w, m, gi, alternative_rate, alternative_known);
 }
 inline std::optional<Pos> assembly_step(const World &w, const Mission &job) {

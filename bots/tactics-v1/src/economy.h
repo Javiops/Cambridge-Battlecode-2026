@@ -3,6 +3,7 @@
 #include "combat.h"
 #include "coordination.h"
 #include "cycles.h"
+#include "farm_observation.h"
 #include "farm_readiness.h"
 #include "ranking.h"
 #include "solo.h"
@@ -315,14 +316,16 @@ inline std::vector<AltarPlan> altar_plans(World &w, const Mission *mission = nul
                 hits = lock->hits_remaining();
             }
         }
-        double enemy_arrival = 1e9;
-        for (const auto &e : w.enemies)
-            enemy_arrival = std::min(
-                enemy_arrival, static_cast<double>(std::max(0, distance(e.pos, altar) - e.range)));
         const int walk_turns =
             (c.d + std::max(1, w.self.move_speed) - 1) / std::max(1, w.self.move_speed);
         const int total = walk_turns + hits + current_tribute_ticks(w.self.gems);
-        double exposure = enemy_arrival <= total ? std::min(30.0, total - enemy_arrival + 1) : 0;
+        // Advisory earliest contact uses owner-turn units and the observed kit,
+        // including plausible spell/dash reach and bounded recent sightings.
+        // It is a conservative lower bound, not a certified safe route/window.
+        // Compact reports keep their separate uncertainty penalty below.
+        const int enemy_arrival = observed_contact_eta(w, altar, total, false);
+        double exposure =
+            enemy_arrival <= total ? std::min(30.0, double(total - enemy_arrival + 1)) : 0;
         double cost = total + exposure;
         if (w.warning_near(altar, 3))
             cost += 4; // Advisory route comparison, never a hidden legal target or
@@ -592,6 +595,7 @@ struct FarmCandidate {
     bool observation_only = false;
     bool ready = false, route_known = false, prospective_feasible = false, gold_fallback = false;
     SoloFarmQuote solo{};
+    CampRollout basic_fallback{}; // Fresh actual BasicOnly certificate, never coarse DPS.
     bool eligible() const {
         return ready || prospective_feasible;
     }
@@ -612,6 +616,139 @@ inline std::vector<Contributor> helpers_for(World &w, int gi, Pos target) {
     return crew;
 }
 
+inline CampRollout current_basic_farm_fallback(World &w, int gi, std::span<const int> ids) {
+    CampRollout out;
+    if (bc::fuel_remaining() < 36000 || w.round != int(bc::round_number()) || ids.empty() ||
+        ids.size() > 6 || gi < 0 || gi >= int(w.groups.size()) || gi >= int(w.geo.groups.size()))
+        return out;
+    const auto &view = w.groups[gi];
+    const auto &group = w.geo.groups[gi];
+    if (!view.fresh(w.round) || view.state != Lifecycle::Alive || view.camps.empty() ||
+        view.camps.size() > 8)
+        return out;
+    const int floor = std::max(24000, int(bc::fuel_remaining()) - 12000);
+    const auto funded = [&] {
+        return bc::fuel_remaining() >= unsigned(floor + 1500) && w.round == int(bc::round_number());
+    };
+    std::array<BasicCampBody, 6> bodies{};
+    std::array<BasicCampMonster, 8> camps{};
+    unsigned count = 0;
+    // A hidden wandering member cannot be priced as dead.
+    for (const auto &spawn : group.spawns) {
+        if (!funded())
+            return out;
+        if (std::find(view.known_dead.begin(), view.known_dead.end(), spawn.id) !=
+            view.known_dead.end())
+            continue;
+        const auto seen = std::find_if(view.camps.begin(), view.camps.end(),
+                                       [&](const Camp &c) { return c.id == spawn.id; });
+        if (seen == view.camps.end() || !packed_bit(w.visible_bytes, w.geo.index(seen->pos)))
+            return out;
+        if (seen->hp > 0) {
+            if (count >= camps.size())
+                return out;
+            camps[count++] = {&*seen, true};
+        }
+    }
+    if (!count)
+        return out;
+    for (unsigned i = 0; i < ids.size(); ++i) {
+        if (!funded())
+            return out;
+        const Actor *a = ids[i] == w.self.id ? &w.self : nullptr;
+        if (!a)
+            for (const auto &ally : w.allies)
+                if (ally.id == ids[i] && w.matching_claim(ally.id, gi)) {
+                    a = &ally;
+                    break;
+                }
+        // Current recurring-DPS usefulness is insufficient: every selected
+        // body must actually retain its ordinary basic permission now.
+        if (!a || !a->can_attack || a->completed || w.warning_near(a->pos, 4))
+            return out;
+        bodies[i] = {a, 0};
+        // A one-reply farm_safe check cannot fund an entire fixed clear under
+        // another active camp. Charge every possible nearest-tie hit in the
+        // selected model; external active pressure instead keeps this Unknown.
+        // Rejecting any in-range selected body is conservative even if a body
+        // outside the selected crew is currently closer to that monster.
+        for (unsigned other = 0; other < w.groups.size(); ++other) {
+            if (!funded())
+                return out;
+            if (int(other) == gi || !w.groups[other].fresh(w.round))
+                continue;
+            for (const auto &camp : w.groups[other].camps)
+                if (camp.hp > 0 && camp.awake && camp.strength > 0 &&
+                    distance(a->pos, camp.pos) <= camp.range)
+                    return out;
+        }
+        // Varg's unavoidable basic splash cannot wake an unpriced group.
+        // Unused optional area spells are deliberately not part of this proof.
+        if (a->type == 10)
+            for (unsigned other = 0; other < w.geo.groups.size(); ++other) {
+                if (!funded())
+                    return out;
+                if (int(other) == gi)
+                    continue;
+                for (const auto &spawn : w.geo.groups[other].spawns)
+                    for (unsigned k = 0; k < count; ++k)
+                        if (distance(spawn.pos, camps[k].camp->pos) <= 1)
+                            return out;
+                if (w.groups[other].fresh(w.round))
+                    for (const auto &c : w.groups[other].camps)
+                        for (unsigned k = 0; k < count; ++k)
+                            if (c.hp > 0 && distance(c.pos, camps[k].camp->pos) <= 1)
+                                return out;
+            }
+    }
+    const auto proof = sufficient_basic_clear(std::span(bodies.data(), ids.size()),
+                                              std::span(camps.data(), count), w.self.id, funded);
+    if (!proof.ready)
+        return out;
+    const int horizon = proof.ticks + 3;
+    // Known/recent possible contact vetoes this restricted fixed clear. It is
+    // not silently charged as one reply across a many-owner commitment.
+    for (const auto &enemy : w.enemies) {
+        if (!funded())
+            return out;
+        if (enemy.alive)
+            for (unsigned i = 0; i < ids.size(); ++i)
+                if (distance(enemy.pos, bodies[i].actor->pos) <= camp_enemy_contact(enemy, horizon))
+                    return out;
+    }
+    for (const auto &seen : w.sightings) {
+        if (!funded())
+            return out;
+        const int age = w.round - seen.round;
+        if (!seen.actor.alive || !combat_detail::recent_sighting(age))
+            continue;
+        bool visible = false;
+        for (const auto &enemy : w.enemies)
+            visible |= enemy.id == seen.actor.id;
+        if (!visible)
+            for (unsigned i = 0; i < ids.size(); ++i)
+                if (distance(seen.actor.pos, bodies[i].actor->pos) <=
+                    camp_enemy_contact(seen.actor, horizon + age))
+                    return out;
+    }
+    if (!funded())
+        return out;
+    out.ready = out.complete = true;
+    out.proof = ClearProofKind::BasicOnly;
+    out.ticks = proof.ticks;
+    out.selected_ids.assign(proof.selected_ids.begin(), proof.selected_ids.begin() + proof.count);
+    out.remaining_hp.assign(proof.remaining_hp.begin(), proof.remaining_hp.begin() + proof.count);
+    out.damage_taken.assign(proof.damage_taken.begin(), proof.damage_taken.begin() + proof.count);
+    return out;
+}
+inline void use_basic_farm_fallback(LocalAssignment &assignment, const CampRollout &proof) {
+    assignment = {};
+    assignment.ready = assignment.self_selected = assignment.locally_accepted = proof.ready;
+    assignment.self_role = LocalRole::Clear;
+    assignment.clear_ticks = proof.ticks;
+    assignment.selected_ids = proof.selected_ids;
+    assignment.rollout = proof;
+}
 inline double coarse_farm_enemy_reply(const World &w, const Actor &body) {
     double raw = 0;
     for (const auto &enemy : w.enemies)
@@ -776,6 +913,14 @@ inline FarmCandidate evaluate_farm(World &w, int gi, const SoloFarmQuote *prepai
         // does not turn this into an ordinary observation job.
         if (solo.known && !solo.feasible && actual_dps <= 0)
             return out;
+        const bool paid_current_plan =
+            gi == w.memory.mission.group &&
+            (w.memory.mission.assembly_pending ||
+             (w.memory.mission.phase == Phase::Clear && w.memory.mission.assembly_count > 0));
+        if (actual_dps <= 0 && !paid_current_plan &&
+            fully_personally_observed_camp(g, live, w.visible_bytes, w.geo.width, w.geo.height,
+                                           w.round))
+            return out; // Already known; walking/waiting cannot create physical help.
         // This body cannot start a useful hit at its current coordinates.
         // Keep a geometric inspection priority, never a fictitious finite
         // clear or completed-cycle income. Future hits need a separate quote.
@@ -815,15 +960,31 @@ inline FarmCandidate evaluate_farm(World &w, int gi, const SoloFarmQuote *prepai
             else
                 monsters.push_back({spawn.pos.x, spawn.pos.y, 0, spawn.strength, false});
         }
-    auto squad = minimum_ready_camp_squad(contributors, w.self.id, hp, monsters);
+    // Exhaustive subset ranking must leave its caller's ordinary action and
+    // bookkeeping reserve. An interrupted pass is Unknown: do not publish a
+    // partial winner as the cheapest sufficient crew or as an infeasibility.
+    auto squad = hp > 0 ? minimum_ready_camp_squad(contributors, w.self.id, hp, monsters,
+                                                   [&] {
+                                                       return bc::fuel_remaining() >= 24000 &&
+                                                              w.round == int(bc::round_number());
+                                                   })
+                        : ReadySquad{};
+    if (squad.interrupted)
+        return out;
     double dps = 0;
     for (const auto &body : crew)
         dps += body.dps;
     if (squad.ready)
         dps = squad.dps;
     const int bodies = squad.ready ? squad.ids.size() : crew.size();
-    const double clear = hp <= 0 ? 0 : std::ceil(hp / dps);
-    bool ready = hp <= 0 || squad.ready;
+    // Aggregate recurring DPS remains a ranking estimate. It cannot authorize
+    // an ordinary basic when the exact bundle was not funded or was Unknown.
+    if (hp > 0 && squad.ready && !(solo.known && crew.size() == 1))
+        out.basic_fallback = current_basic_farm_fallback(w, gi, squad.ids);
+    const double clear = hp <= 0                    ? 0
+                         : out.basic_fallback.ready ? out.basic_fallback.ticks
+                                                    : std::ceil(hp / dps);
+    bool ready = hp <= 0 || out.basic_fallback.ready;
     int altar = w.altar_distance(target), home = w.home_distance(target);
     if ((g.gems > 0 || w.self.gems > 0) && altar == unreachable)
         return out;
@@ -876,25 +1037,104 @@ inline FarmCandidate evaluate_farm(World &w, int gi, const SoloFarmQuote *prepai
         out.rate /= 1 + std::max(0, live.respawn_ticks - static_cast<int>(nearest));
     return out;
 }
-// A committed singleton already has a complete kit/reserve certificate. Reusing
-// it for one actual stationary action avoids another global ranking/crew
-// search.
-inline std::optional<Proposal> solo_clear_followup(World &w, Memory &m,
-                                                   const SoloFarmQuote *prepaid = nullptr) {
-    const int gi = m.mission.group;
-    if (m.mission.phase != Phase::Clear || gi < 0 || gi >= static_cast<int>(w.groups.size()))
+// The same paid finite solo itinerary feeds ordinary ranking and the early
+// owner-budget path. A future endpoint funds only its reversible route/wait;
+// a first hit additionally requires the actual unchanged ready-now snapshot.
+inline std::optional<Proposal> solo_farm_proposal(World &w, Memory &m, const SoloFarmQuote &quote) {
+    const int gi = quote.group;
+    if (!quote.known || !quote.feasible || gi < 0 || gi >= int(w.groups.size()) ||
+        !current_solo_quote(w, quote, gi) || !std::isfinite(quote.rate) || quote.rate <= 0 ||
+        !fuel(13000) || w.round != static_cast<int>(bc::round_number()))
         return std::nullopt;
-    const auto quote =
-        prepaid && current_solo_quote(w, *prepaid, gi) ? *prepaid : quote_current_solo_clear(w, gi);
-    if (!quote.known || !quote.feasible || quote.stage != w.self.pos ||
-        !current_solo_quote(w, quote, gi) || !fuel(13000) ||
-        (!quote.current_only && !farm_safe(w, gi)))
+    if (quote.entry == AwakeEntryTiming::FutureOneOwner &&
+        (quote.ready_now || quote.current_only || quote.stage == w.self.pos))
         return std::nullopt;
+    const bool future_entry = quote.entry == AwakeEntryTiming::FutureOneOwner;
+    if (future_entry &&
+        (quote.route_length < 2 || quote.route_length > int(quote.route.size()) ||
+         !future_awake_entry_available(m, gi, w.round) ||
+         !complete_awake_entry_route(w.self, std::span(quote.route.data(), quote.route_length),
+                                     quote.stage, [&](Pos p) {
+                                         return w.round == int(bc::round_number()) && w.free(p) &&
+                                                packed_bit(w.visible_bytes, w.geo.index(p));
+                                     })))
+        return std::nullopt;
+    Mission job = m.mission;
+    if (job.group != gi) {
+        job = {};
+        job.start = job.last_progress = w.round;
+        job.last_pos = w.self.pos;
+    }
+    job.group = gi;
+    job.target = quote.target;
+    job.rate = quote.rate;
+    job.expiry = w.round + Settings::job_lease;
+    if (future_entry) {
+        const auto &camp = w.groups[gi].camps.front();
+        job.awake_entry = {w.self.id, gi, camp.id, w.round, quote.stage, camp.pos};
+        job.expiry = w.round + 2;
+    } else if (quote.ready_now)
+        job.awake_entry = {};
+    job.assembly_pending = false;
+    // A self-solo certificate owns this controller, even when it replaces a
+    // same-group coalition. Retained crew IDs would otherwise let main run
+    // the old crew controller before this stationary solo continuation.
+    job.assembly_count = 0;
+    job.assembly_ids.fill(-1);
+    job.assembly_signature = 0;
+    job.assembly_anchor = job.assembly_helper = -1;
+    job.assembly_route_length = job.assembly_exit_length = 0;
+    if (quote.stage != w.self.pos || !quote.ready_now) {
+        // An awake stationary incumbent's permission wait keeps its clear;
+        // no future arrival may grant a present basic/cast permission.
+        const bool incumbent_clear =
+            quote.stage == w.self.pos && m.mission.group == gi && m.mission.phase == Phase::Clear;
+        const bool paid_outer_wait =
+            quote.stage == w.self.pos && quote.mode == SoloFarmMode::DirectCastOnly;
+        const bool actual_clear = incumbent_clear || paid_outer_wait;
+        if (actual_clear && !farm_safe(w, gi))
+            return std::nullopt;
+        if (paid_outer_wait) {
+            const auto &view = w.groups[gi];
+            if (!view.fresh(w.round) || view.state != Lifecycle::Alive || view.camps.size() != 1 ||
+                !packed_bit(w.visible_bytes, w.geo.index(view.camps.front().pos)) ||
+                distance(w.self.pos, view.camps.front().pos) <= view.camps.front().range)
+                return std::nullopt;
+            // This is a paid stationary intention, never a claimed hit. The
+            // next owner reobserves the real cooldown and full clear reserve.
+            if (job.last_camp_hp < 0)
+                job.last_camp_hp = view.camps.front().hp;
+        }
+        job.phase = actual_clear ? Phase::Clear : Phase::Travel;
+        Action action;
+        action.reason = paid_outer_wait ? "farm-certified-outer-cooldown-hold"
+                        : actual_clear  ? "farm-certified-next-owner-hold"
+                                        : "farm-prospective-permission-wait";
+        if (quote.stage != w.self.pos && w.self.can_move && fuel(20000)) {
+            int next = 0;
+            for (int k = 1; k < quote.route_length && k <= std::max(1, w.self.move_speed); ++k) {
+                const Pos p = quote.route[k];
+                if (!w.free(p) || !packed_bit(w.visible_bytes, w.geo.index(p)))
+                    break;
+                next = k;
+            }
+            if (next > 0 && incoming_damage(w, quote.route[next]) < .65 * w.self.hp)
+                action = moving(quote.route[next], "farm-certified-solo-stage-only");
+            else if (w.self.can_move)
+                return std::nullopt;
+        }
+        if (future_entry && (action.kind != Kind::Move || action.at != quote.stage))
+            return std::nullopt; // No partial route, permission wait or None receipt.
+        return economic(action, job, actual_clear ? Priority::Incumbent : Priority::Routine,
+                        quote.rate);
+    }
+    if (!quote.current_only && !farm_safe(w, gi))
+        return std::nullopt;
+    job.phase = Phase::Clear;
     const auto &view = w.groups[gi];
     if (!view.fresh(w.round) || view.state != Lifecycle::Alive || view.camps.size() != 1)
         return std::nullopt;
     const auto &camp = view.camps.front();
-    Mission job = m.mission;
     job.target = camp.pos;
     job.rate = quote.rate;
     job.expiry = w.round + Settings::job_lease;
@@ -905,7 +1145,24 @@ inline std::optional<Proposal> solo_clear_followup(World &w, Memory &m,
     }
     job.last_camp_hp = camp.hp;
     Action action;
-    if (w.self.can_attack && distance(w.self.pos, camp.pos) <= w.self.range) {
+    if (quote.mode == SoloFarmMode::DirectCastOnly) {
+        // A paid outer-range clear has exactly one controller. Cooldown
+        // waits above retain its position; a basic/area spell would change
+        // the certified pressure and cannot replace the selected direct cast.
+        if (quote.slot < 0 || quote.slot > 1 || !w.self.can_cast || w.self.completed ||
+            !packed_bit(w.visible_bytes, w.geo.index(camp.pos)))
+            return std::nullopt;
+        const auto &spell = w.spells[quote.slot];
+        if (!spell.ready || spell.cooldown != 0 || !spell.camps ||
+            (spell.kind != 2 && spell.kind != 4) || (spell.exclusive && m.moved_round == w.round) ||
+            distance(w.self.pos, camp.pos) <= camp.range ||
+            distance(w.self.pos, camp.pos) > spell.range)
+            return std::nullopt;
+        action.kind = Kind::CastCamp;
+        action.slot = quote.slot;
+        action.target = camp.id;
+        action.reason = "farm-certified-solo-outer-direct-cast";
+    } else if (w.self.can_attack && distance(w.self.pos, camp.pos) <= w.self.range) {
         action.kind = Kind::BasicCamp;
         action.target = camp.id;
         action.reason = "farm-certified-solo-live-basic";
@@ -939,6 +1196,170 @@ inline std::optional<Proposal> solo_clear_followup(World &w, Memory &m,
     }
     auto proposal = economic(action, job, Priority::Incumbent, quote.rate);
     proposal.solo_clear_certified = action.kind == Kind::BasicCamp;
+    proposal.awake_entry_current_certified = awake_entry_active(m.awake_entry) &&
+                                             m.awake_entry.group == gi && quote.ready_now &&
+                                             !future_entry;
+    return proposal;
+}
+
+// A committed clear reuses its current certificate without rerunning the global
+// farm ranking, and shares the exact first-action builder with a new solo job.
+inline std::optional<Proposal> solo_clear_followup(World &w, Memory &m,
+                                                   const SoloFarmQuote *prepaid = nullptr) {
+    const int gi = m.mission.group;
+    if (m.mission.phase != Phase::Clear || gi < 0 || gi >= static_cast<int>(w.groups.size()))
+        return std::nullopt;
+    const auto quote =
+        prepaid && current_solo_quote(w, *prepaid, gi) ? *prepaid : quote_current_solo_clear(w, gi);
+    if (quote.stage != w.self.pos)
+        return std::nullopt;
+    return solo_farm_proposal(w, m, quote);
+}
+
+// Elective early entry cannot displace an actual conversion, named coalition,
+// return chain, current clear or install receipt. An expired idle travel job is
+// deliberately not required: precisely that state needs a funded new quote.
+// An accepted reversible move owns one funded actual-current revalidation.
+// The old future certificate grants no hit; the new full quote must be ready
+// at the real current tile and include its full conversion/return itinerary.
+inline std::optional<Proposal> pending_awake_entry_proposal(World &w, Memory &m,
+                                                            bool transaction = false) {
+    const auto contract = m.awake_entry;
+    if (transaction || !awake_entry_active(contract) || bc::fuel_remaining() < 44000 ||
+        w.round != int(bc::round_number()) || contract.owner != w.self.id ||
+        w.self.pos != contract.stage || w.round < contract.round || w.round > contract.round + 1)
+        return std::nullopt;
+    const auto quote = quote_solo_basic_farm(w, contract.group);
+    if (!quote.known || !quote.feasible || !quote.ready_now || quote.current_only ||
+        quote.entry != AwakeEntryTiming::ActualCurrent || w.round != int(bc::round_number()))
+        return std::nullopt;
+    auto proposal = solo_farm_proposal(w, m, quote);
+    if (!proposal || !proposal->awake_entry_current_certified)
+        return std::nullopt;
+    if (proposal->action.kind == Kind::BasicCamp)
+        proposal->action.reason = "solo-paid-awake-current-basic";
+    return proposal;
+}
+
+inline bool early_solo_eligible(const Actor &a, const Mission &job, int now, bool holder,
+                                bool hostile, bool transaction) {
+    return a.id >= 0 && a.alive && !a.completed && !a.stunned && a.channel == Channel::None &&
+           a.gems == 0 && std::isfinite(a.hp) && std::isfinite(a.max_hp) && a.max_hp > 0 &&
+           a.hp >= .75 * a.max_hp && !holder && !hostile && !transaction &&
+           job.phase != Phase::Clear && job.phase != Phase::Collect &&
+           job.phase != Phase::Recover && job.phase != Phase::Channel && job.sortie_length == 0 &&
+           !job.assembly_pending && !job.chain_used && !job.bank_after_reward &&
+           (a.can_move || a.can_attack || a.can_cast);
+}
+inline std::optional<Proposal> early_solo_proposal(World &w, Memory &m) {
+    if (bc::fuel_remaining() < 56000 || w.round != static_cast<int>(bc::round_number()))
+        return std::nullopt;
+    const int current = m.mission.group;
+    const bool live_intent =
+        current >= 0 && current < int(w.groups.size()) && w.round < m.mission.expiry;
+    const bool stalled_intent =
+        m.route_round == w.round && m.route_stall >= Settings::assembly_wait;
+    // A selected, personally observed waiting reward is useful existing work.
+    // It needs collection revalidation, not another Alive-camp solo quote.
+    if (live_intent && w.groups[current].fresh(w.round) &&
+        w.groups[current].state == Lifecycle::Reward && m.mission.phase != Phase::Unassigned &&
+        !stalled_intent)
+        return std::nullopt;
+    std::array<int, 2> selected{-1, -1};
+    auto suitable = [&](int gi) {
+        return gi >= 0 && gi < int(w.groups.size()) && gi < int(w.geo.groups.size()) &&
+               w.groups[gi].fresh(w.round) && w.groups[gi].state == Lifecycle::Alive &&
+               w.groups[gi].camps.size() == 1 && w.geo.groups[gi].spawns.size() == 1 &&
+               w.geo.groups[gi].gems > 0 &&
+               (assembly_detail::simple_sleeping(w, gi) ||
+                (w.groups[gi].camps.front().awake && !w.self.completed &&
+                 ((w.self.can_attack &&
+                   distance(w.self.pos, w.groups[gi].camps.front().pos) <= w.self.range) ||
+                  (w.self.can_move && distance(w.self.pos, w.groups[gi].camps.front().pos) <=
+                                          w.self.range + std::max(1, w.self.move_speed))))) &&
+               !(m.failed_group == gi && m.failed_until > w.round);
+    };
+    if (suitable(m.mission.group))
+        selected[0] = m.mission.group;
+    // Cheap actual geometry chooses only two hypotheses. Missing routes remain
+    // unknown and never become a zero-length path or a fabricated completion.
+    for (int gi = 0; gi < int(w.groups.size()); ++gi) {
+        if (!suitable(gi) || gi == selected[0])
+            continue;
+        const int d = distance(w.self.pos, w.groups[gi].camps.front().pos);
+        if (d > std::max(1, w.self.range) + 3 * std::max(1, w.self.move_speed))
+            continue;
+        for (int k = selected[0] == m.mission.group && suitable(m.mission.group) ? 1 : 0; k < 2;
+             ++k) {
+            if (selected[k] < 0 ||
+                d < distance(w.self.pos, w.groups[selected[k]].camps.front().pos) ||
+                (d == distance(w.self.pos, w.groups[selected[k]].camps.front().pos) &&
+                 gi < selected[k])) {
+                if (k == 0)
+                    selected[1] = selected[0];
+                selected[k] = gi;
+                break;
+            }
+        }
+    }
+    if (selected[0] < 0 || (m.solo_probe_group == selected[0] && w.round - m.solo_probe_round < 3))
+        return std::nullopt;
+    std::optional<SoloFarmQuote> best;
+    std::optional<double> incumbent_rate;
+    bool incumbent_infeasible = false;
+    for (int gi : selected) {
+        if (gi < 0 || bc::fuel_remaining() < 44000 ||
+            w.round != static_cast<int>(bc::round_number()))
+            break;
+        const auto quote = quote_solo_farm(w, gi);
+        if (gi == current && quote.known && !quote.feasible)
+            incumbent_infeasible = true;
+        if (!quote.known || !quote.feasible || !std::isfinite(quote.rate) || quote.rate <= 0)
+            continue;
+        // A raw mission rate can describe an unready coarse Assemble job.
+        // Only this pass's fresh, feasible full-cycle quote is comparable
+        // income. An unresolved observation is not a zero-valued forecast;
+        // it simply cannot veto a newly certified self-solo itinerary.
+        if (m.mission.group == gi && m.mission.expiry >= w.round)
+            incumbent_rate = quote.rate;
+        if (gi != current && live_intent && !stalled_intent && !incumbent_rate &&
+            !incumbent_infeasible &&
+            !(w.groups[current].fresh(w.round) &&
+              w.groups[current].state == Lifecycle::Respawning)) {
+            bool named_self = false;
+            if (m.mission.assembly_count > 0 && m.mission.assembly_count <= 6 &&
+                m.mission.assembly_anchor >= 0 && m.mission.last_camp_hp >= 0)
+                for (int i = 0; i < m.mission.assembly_count; ++i)
+                    named_self |= m.mission.assembly_ids[i] == w.self.id;
+            const bool unpriced_idle =
+                m.mission.phase == Phase::Unassigned || m.mission.phase == Phase::Observe ||
+                (m.mission.phase == Phase::Assemble && !m.mission.assembly_pending && !named_self);
+            // An unknown incumbent Travel/rendezvous is not zero income.
+            // Keep its finite ordinary revalidation; only a genuinely unpriced
+            // idle intention lacks a productive contract to protect here.
+            if (!unpriced_idle)
+                continue;
+        }
+        if (m.mission.group != gi && incumbent_rate &&
+            quote.rate <= *incumbent_rate * Settings::switch_margin)
+            continue;
+        if (!best || quote.rate > best->rate)
+            best = quote;
+    }
+    if (!best) {
+        m.solo_probe_group = selected[0];
+        m.solo_probe_round = w.round;
+        return std::nullopt;
+    }
+    auto proposal = solo_farm_proposal(w, m, *best);
+    if (proposal) {
+        if (proposal->action.kind == Kind::Move)
+            proposal->action.reason = "solo-early-funded-stage-move";
+        else if (proposal->action.kind == Kind::None)
+            proposal->action.reason = "solo-early-funded-permission-wait";
+        else if (proposal->action.kind == Kind::BasicCamp)
+            proposal->action.reason = "solo-early-funded-live-basic";
+    }
     return proposal;
 }
 inline SoloBasicReceipt make_solo_basic_receipt(World &w, const Proposal &selected) {
@@ -1242,9 +1663,6 @@ inline std::optional<Proposal> farming(World &w, Memory &m,
             w.geo.estimate(w.self.pos, m.mission.target) != unreachable;
         auto offer = [&](int gi, double score) {
             const auto &g = w.geo.groups[gi];
-            const double ticks = std::ceil(g.initial_hp / std::max(1.0, w.self.strength));
-            const bool affordable =
-                ticks * g.initial_strength * w.self.camp_mitigation + 1 < w.self.hp * .75;
             const bool reward =
                 w.groups[gi].fresh(w.round) && w.groups[gi].state == Lifecycle::Reward;
             const auto purpose = resource_job_purpose(g.gems, w.self.gems, w.geo.monolith_only,
@@ -1254,7 +1672,7 @@ inline std::optional<Proposal> farming(World &w, Memory &m,
                 return;
             auto &destination =
                 purpose == ResourcePurpose::MonolithFallback ? gold_fallback_ranking : ranking;
-            destination.offer({gi, score}, reward, affordable);
+            destination.offer({gi, score}, reward, g.spawns.size() == 1);
         };
         if (continuing)
             offer(m.mission.group, m.mission.rate);
@@ -1302,8 +1720,7 @@ inline std::optional<Proposal> farming(World &w, Memory &m,
                                              ? m.cash_investment_rate
                                          : reward ? cached.reward
                                                   : cached.alive;
-            destination.offer({static_cast<int>(i), complete_rate}, reward,
-                              cached.damage < w.self.hp * .75);
+            destination.offer({static_cast<int>(i), complete_rate}, reward, cached.singleton);
         }
         const bool incumbent_suppressed =
             m.mission.group == m.failed_group && w.round < m.failed_until;
@@ -1318,8 +1735,10 @@ inline std::optional<Proposal> farming(World &w, Memory &m,
                                       w.groups[m.mission.group].state == Lifecycle::Reward &&
                                       w.on_group(m.mission.group, w.self.pos),
                                   priced_cash_investment(m, m.mission.group, w.round));
-        // Exactly the prior full-sort shortlist: incumbent, best fresh reward,
-        // best solo-affordable group, then best remaining entries until three.
+        // Bounded hypotheses: incumbent, best fresh reward, best singleton,
+        // then coarse leaders until three. Basic-only cached damage cannot
+        // exclude a singleton whose actual kit may have a reset/ranged option.
+        // Every real hit still needs the separate fresh native-ready proof.
         candidates = ranking.candidates();
         auto shortlist = ranking.shortlist(retain_incumbent ? m.mission.group : -1);
         // Unpriced monolith growth gets one explicit fallback slot, never every
@@ -1355,8 +1774,28 @@ inline std::optional<Proposal> farming(World &w, Memory &m,
                     shortlist.values.back() = cash;
             }
         }
-        for (int gi : shortlist)
+        // No actual productive commitment is reordered. An unpriced
+        // observation/unnamed assembly may instead give the next bounded
+        // hypothesis its fresh owner budget. A cut-off quote is not recorded
+        // as infeasible, and no Unknown outcome receives zero economic value.
+        const bool reward_incumbent = m.mission.group >= 0 &&
+                                      m.mission.group < int(w.groups.size()) &&
+                                      w.groups[m.mission.group].fresh(w.round) &&
+                                      w.groups[m.mission.group].state == Lifecycle::Reward;
+        const bool unpriced_pass =
+            w.self.gems == 0 && m.hold_group < 0 && !m.mission.assembly_pending &&
+            m.mission.assembly_count == 0 && !m.mission.chain_used &&
+            !m.mission.bank_after_reward && !reward_incumbent &&
+            !priced_cash_investment(m, m.cash_investment_group, w.round) &&
+            (m.mission.phase == Phase::Unassigned || m.mission.phase == Phase::Observe ||
+             m.mission.phase == Phase::Assemble);
+        const auto order = unpriced_pass
+                               ? rotate_candidates_after(shortlist, m.last_unpriced_farm_probe)
+                               : shortlist;
+        for (int gi : order)
             if (fuel(36000)) {
+                if (unpriced_pass)
+                    m.last_unpriced_farm_probe = gi;
                 auto c = evaluate_farm(w, gi, prepaid);
                 if (gi == m.mission.group)
                     incumbent = c;
@@ -1431,43 +1870,8 @@ inline std::optional<Proposal> farming(World &w, Memory &m,
     const auto &view = w.groups[gi];
     // A future-position certificate authorizes only its verified reversible
     // route. It cannot be promoted to an immediate first hit by a second model.
-    if (best.prospective_feasible && !best.ready) {
-        Mission job = m.mission;
-        if (job.group != gi) {
-            job = {};
-            job.start = job.last_progress = w.round;
-            job.last_pos = w.self.pos;
-        }
-        job.group = gi;
-        job.target = best.target; // The actual camp endpoint funds next owner's field.
-        job.rate = best_value;
-        job.expiry = w.round + Settings::job_lease;
-        job.assembly_pending = false;
-        Action action;
-        if (best.solo.stage == w.self.pos) {
-            const bool actual_clear = m.mission.group == gi && m.mission.phase == Phase::Clear;
-            if (actual_clear && !farm_safe(w, gi))
-                return std::nullopt;
-            job.phase = actual_clear ? Phase::Clear : Phase::Travel;
-            action.reason = actual_clear ? "farm-certified-next-owner-hold"
-                                         : "farm-prospective-permission-wait";
-            return economic(action, job, Priority::Incumbent, best_value);
-        }
-        job.phase = Phase::Travel;
-        if (w.self.can_move && fuel(20000)) {
-            int next = 0;
-            for (int k = 1; k < best.solo.route_length && k <= std::max(1, w.self.move_speed);
-                 ++k) {
-                const Pos p = best.solo.route[k];
-                if (!w.free(p) || !packed_bit(w.visible_bytes, w.geo.index(p)))
-                    break;
-                next = k;
-            }
-            if (next > 0 && incoming_damage(w, best.solo.route[next]) < .65 * w.self.hp)
-                action = moving(best.solo.route[next], "farm-certified-solo-stage-only");
-        }
-        return economic(action, job, Priority::Routine, best_value);
-    }
+    if (best.solo.known && best.solo.feasible)
+        return solo_farm_proposal(w, m, best.solo);
     const bool conservative_ready = best.ready;
     LocalAssignment assignment;
     const bool standalone_solo = best.solo.feasible && helpers_for(w, gi, best.target).size() == 1;
@@ -1479,9 +1883,10 @@ inline std::optional<Proposal> farming(World &w, Memory &m,
         assignment =
             prepaid_assignment ? std::move(*prepaid_assignment) : propose_local_assignment(w, gi);
         best.ready = assignment.ready && assignment.self_selected && assignment.locally_accepted;
-        if (!assignment.ready && (assignment.uncertain || best.solo.feasible) && conservative_ready)
-            best.ready = true; // A bounded unknown does not overturn a stricter
-                               // full-clear certificate.
+        if (!assignment.ready && assignment.uncertain && conservative_ready) {
+            use_basic_farm_fallback(assignment, best.basic_fallback);
+            best.ready = assignment.ready;
+        }
         if (assignment.ready && assignment.self_selected && assignment.locally_accepted) {
             best.ready = true;
             best.clear_time = assignment.clear_ticks;
@@ -1513,6 +1918,8 @@ inline std::optional<Proposal> farming(World &w, Memory &m,
             }
             // A priced but dynamically rejected alternative is not a handoff.
             best.ready = conservative_ready;
+            if (best.ready)
+                use_basic_farm_fallback(assignment, best.basic_fallback);
         }
         if (assignment.self_role == LocalRole::Protector)
             if (auto protect = combat_proposal(w, m, true)) {
@@ -1523,6 +1930,11 @@ inline std::optional<Proposal> farming(World &w, Memory &m,
                 }
             }
     }
+    // Also cover the low-budget path where full assignment was never admitted.
+    // Naming actual IDs routes this one basic through the existing BasicOnly
+    // gateway, without a fictitious cast/reset sequence or optional prepayment.
+    if (best.ready && !assignment.ready && best.basic_fallback.ready)
+        use_basic_farm_fallback(assignment, best.basic_fallback);
     Mission job = m.mission;
     if (job.group != gi) {
         job = {};

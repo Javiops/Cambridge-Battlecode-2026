@@ -13,6 +13,7 @@ class Bot {
     Memory memory_;
     ShoppingState shopping_;
     WardState ward_;
+    ChainState chain_;
     std::unique_ptr<World> world_;
     std::vector<int> rejected_draft_;
     Pos fallback_route_{};
@@ -27,6 +28,8 @@ class Bot {
             const bool holder =
                 gi < static_cast<int>(w.groups.size()) && w.groups[gi].fresh(w.round) &&
                 w.groups[gi].state == Lifecycle::Reward && w.on_group(gi, w.self.pos);
+            if (!holder && memory_.failed_group == gi && w.round < memory_.failed_until)
+                return false;
             return resource_new_job_eligible(
                 geometry_.groups[gi].gems, w.self.gems, geometry_.monolith_only, holder,
                 gi == memory_.mission.group, priced_cash_investment(memory_, gi, w.round));
@@ -185,14 +188,42 @@ class Bot {
         for (const auto &seen : w.sightings)
             hostile |= seen.actor.alive && combat_detail::recent_sighting(w.round - seen.round);
         const bool transaction = shopping_.cash.group >= 0 || shopping_.investment_item >= 0 ||
-                                 shopping_.pending_heal >= 0;
-        if (bc::fuel_remaining() >= 56000 &&
+                                 shopping_.pending_heal >= 0 || shopping_.installed_gem.group >= 0;
+        if (awake_entry_active(memory_.awake_entry))
+            preselected = pending_awake_entry_proposal(w, memory_, transaction);
+        if (w.round != int(bc::round_number()))
+            return;
+        if (chain_.active() &&
+            (chain_.owner != w.self.id || w.self.gems <= 0 || !memory_.mission.chain_used))
+            chain_.release();
+        if (!preselected && bc::fuel_remaining() >= (chain_.active() ? 22000u : 56000u))
+            preselected = early_chain_proposal(w, memory_, chain_, transaction);
+        if (!preselected && chain_.active()) {
+            const int failed_chain_group = chain_.group;
+            if (abort_declined_chain(w.self, memory_, chain_, geometry_.altars[chain_.altar],
+                                     memory_.hold_group >= 0)) {
+                w.publish_claim(-1);
+                LogLine("T1J")
+                    .field(w.round)
+                    .field(w.self.id)
+                    .field("chain-abort-to-bank")
+                    .field(failed_chain_group)
+                    .emit();
+            }
+        }
+        if (!preselected && shopping_.installed_gem.group >= 0)
+            preselected = named_installed_gem_reentry_proposal(w, memory_, shopping_);
+        if (!preselected && bc::fuel_remaining() >= 56000 &&
+            early_solo_eligible(w.self, memory_.mission, w.round, memory_.hold_group >= 0, hostile,
+                                transaction))
+            preselected = early_solo_proposal(w, memory_);
+        if (!preselected && bc::fuel_remaining() >= 56000 &&
             early_assembly_eligible(w.self, memory_.mission, w.round, memory_.hold_group >= 0,
                                     hostile, transaction))
             preselected = assembly_handshake_proposal(w, memory_, std::nullopt, 56000);
         if (w.round != static_cast<int>(bc::round_number()))
             return;
-        if (preselected)
+        if (preselected && preselected->mission.assembly_pending)
             preselected->action.reason = preselected->action.kind == Kind::Move
                                              ? "assembly-early-funded-rendezvous-move"
                                              : "assembly-early-funded-rendezvous-wait";
@@ -228,9 +259,14 @@ class Bot {
             plan_upgrade_return(w, memory_, shopping_);
             if (w.round != static_cast<int>(bc::round_number()))
                 return;
+            if (!preselected && shopping_.cash.group >= 0)
+                preselected = named_cash_acquisition_proposal(w, memory_, shopping_);
+            if (w.round != static_cast<int>(bc::round_number()))
+                return;
         }
         int shops = 0, failures = 0, moves_failed = 0;
         bool clear_followup = current_clear || current_crew_clear;
+        bool solo_entry_followup = false;
         // Disengaged storage does not initialize the large actor/camp receipt
         // payloads before a paid rendezvous can spend its ordinary move.
         std::optional<SoloBasicReceipt> basic_receipt;
@@ -255,6 +291,18 @@ class Bot {
             // reserve; lower budgets never enter global arbitration or shopping.
             std::optional<Proposal> chosen = std::move(preselected);
             preselected.reset();
+            if (!chosen && solo_entry_followup) {
+                solo_entry_followup = false;
+                // The actual accepted move changed position/permissions. Pay
+                // one new snapshot quote before optional ranking; the prior
+                // future route supplies no first-hit permission.
+                if (bc::fuel_remaining() >= 44000 && memory_.mission.group >= 0) {
+                    const auto quote = quote_solo_farm(w, memory_.mission.group);
+                    chosen = solo_farm_proposal(w, memory_, quote);
+                    if (chosen && chosen->action.kind == Kind::BasicCamp)
+                        chosen->action.reason = "solo-early-funded-live-basic";
+                }
+            }
             if (!chosen && crew_receipt && crew_receipt->valid)
                 chosen = crew_turn_followup(w, memory_, *crew_receipt, crew_accepted);
             crew_accepted = false;
@@ -269,6 +317,13 @@ class Bot {
                 chosen = farming(w, memory_); // Current named coalition before unrelated planners.
             if (!chosen && clear_followup && memory_.mission.phase == Phase::Clear && fuel(18000))
                 chosen = solo_clear_followup(w, memory_);
+            // A real newly cleared reward must not be abandoned by the
+            // ordinary low-budget banking shortcut after its capture move.
+            if (!chosen && chain_.active() && memory_.mission.chain_used &&
+                memory_.mission.group == chain_.group && chain_funded(w, 22000))
+                chosen = chain_capture_proposal(w, memory_, chain_);
+            if (!chosen && shopping_.installed_gem.group >= 0)
+                chosen = named_installed_gem_reentry_proposal(w, memory_, shopping_);
             if (!chosen) {
                 if (!fuel(30000))
                     break;
@@ -415,6 +470,7 @@ class Bot {
             }
             remember(w, memory_);
             auto result = execute(w, chosen->action);
+            commit_awake_entry(memory_, *chosen, result.success, w.round);
             reset_accepted = certified_reset && result.success;
             basic_accepted = basic_receipt && basic_receipt->valid && result.success;
             crew_accepted = crew_receipt && crew_receipt->valid && result.success;
@@ -431,6 +487,9 @@ class Bot {
                                   (a.kind == Kind::CastSelf &&
                                    std::string_view(a.reason) == "farm-certified-solo-live-reset"));
                 if (a.kind == Kind::Move) {
+                    solo_entry_followup =
+                        std::string_view(a.reason) == "solo-early-funded-stage-move" ||
+                        std::string_view(a.reason) == "chain-early-funded-stage-move";
                     memory_.mission.last_progress = w.round;
                     memory_.mission.last_pos = a.at;
                 }

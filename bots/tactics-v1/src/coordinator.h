@@ -1,4 +1,5 @@
 #pragma once
+#include "chain.h"
 #include "deny.h"
 #include "economy.h"
 #include "log.h"
@@ -27,10 +28,56 @@ inline void observe_hold(World &w, Memory &m) {
         m.hold_last = -1;
     }
 }
+// An unpriced rendezvous must expire even when the expensive farm planner
+// cannot run. Only an accepted movement advances this bounded waiting contract;
+// a claim, target change or refreshed intent timestamp is not physical progress.
+inline bool release_stalled_unnamed_assembly(const Actor &self, Memory &m, int round) {
+    const auto &job = m.mission;
+    if (!self.alive || self.channel != Channel::None || m.hold_group >= 0 ||
+        job.phase != Phase::Assemble || job.assembly_pending || job.group < 0)
+        return false;
+    const int last_motion = std::max(job.start, m.moved_round);
+    const bool stagnant = last_motion < 0 || round - last_motion >= Settings::assembly_wait;
+    const bool moved_for_job = m.moved_round >= 0 && m.moved_round >= job.start &&
+                               round - m.moved_round < Settings::assembly_wait;
+    const bool expired = job.expiry >= 0 && round >= job.expiry && !moved_for_job;
+    if (!stagnant && !expired)
+        return false;
+    m.failed_group = job.group;
+    m.failed_until = round + Settings::job_lease;
+    const bool chain = job.chain_used;
+    const bool bank_after = job.bank_after_reward || (chain && self.gems > 0);
+    m.mission = {};
+    m.mission.chain_used = chain;
+    m.mission.bank_after_reward = bank_after;
+    return true;
+}
 inline void observe_progress(World &w, Memory &m) {
     observe_hold(w, m);
+    if (awake_entry_active(m.awake_entry)) {
+        const auto contract = m.awake_entry;
+        const Camp *camp = nullptr;
+        if (contract.group >= 0 && contract.group < int(w.groups.size()) &&
+            w.groups[contract.group].fresh(w.round))
+            for (const auto &c : w.groups[contract.group].camps)
+                if (c.id == contract.camp)
+                    camp = &c;
+        const bool reward = contract.group >= 0 && contract.group < int(w.groups.size()) &&
+                            w.groups[contract.group].fresh(w.round) &&
+                            w.groups[contract.group].state == Lifecycle::Reward;
+        const bool protected_work =
+            reward || w.self.gems > 0 || m.hold_group >= 0 || w.self.channel != Channel::None ||
+            m.mission.phase == Phase::Deliver || m.mission.phase == Phase::Recover ||
+            m.mission.phase == Phase::Collect;
+        observe_awake_entry(m, w.self, w.round, w.round == int(bc::round_number()), camp,
+                            protected_work);
+    }
     if (m.observed_round == w.round)
         return;
+    if (release_stalled_unnamed_assembly(w.self, m, w.round)) {
+        w.publish_claim(-1);
+        LogLine("T1P").field(w.round).field(w.self.id).field("assembly-replan-no-progress").emit();
+    }
     if (w.self.alive && w.self.can_move && w.self.channel == Channel::None &&
         route_phase(m.mission.phase) && w.geo.valid(m.mission.target)) {
         const std::vector<std::uint16_t> *field = nullptr;
@@ -101,7 +148,7 @@ inline void observe_progress(World &w, Memory &m) {
                 .emit();
             m.mission = {};
             m.mission.chain_used = chain;
-            m.mission.bank_after_reward = chain && w.self.gems > 0;
+            m.mission.bank_after_reward = chain && w.self.gems > m.last_gems;
         }
     }
     m.observed_round = w.round;
@@ -174,9 +221,13 @@ assembly_handshake_proposal(World &w, Memory &m,
                 m.assembly_probe_group == *gi && w.round - m.assembly_probe_round < 3;
             std::optional<AssemblyCandidate> quote;
             if (!probed) {
-                double alternative = std::max(m.mission.rate, external_alternative.value_or(0.0));
+                // A mission rate may be a coarse unready job or this very
+                // camp. It is not a fresh independent opportunity receipt.
+                // An actual current bank proposal may supply the comparison;
+                // otherwise resolve a separate task from this snapshot.
+                double alternative = external_alternative.value_or(0.0);
                 bool alternative_known =
-                    m.mission.rate > 0 || (external_alternative && *external_alternative > 0);
+                    external_alternative && std::isfinite(alternative) && alternative > 0;
                 if (!alternative_known) {
                     int other = -1;
                     Pos target;

@@ -183,14 +183,14 @@ struct World {
     std::map<int, CampMetadata> camp_metadata;
     struct FarmGeometryScore {
         int distance = unreachable;
-        double alive = 0, reward = 0, damage = 0;
-        bool prepared = false;
+        double alive = 0, reward = 0;
+        bool prepared = false, singleton = false;
     };
     std::vector<FarmGeometryScore> farm_geometry_scores;
     std::size_t farm_geometry_cursor = 0;
     std::vector<int> farm_geometry_original_groups;
     Pos farm_geometry_origin{};
-    double farm_geometry_strength = -1, farm_geometry_mitigation = -1;
+    double farm_geometry_strength = -1;
     bool prepare_farm_geometry_row(int gi) {
         if (gi < 0 || gi >= int(geo.groups.size()) || farm_geometry_scores[gi].prepared)
             return true;
@@ -202,26 +202,23 @@ struct World {
             if (home_distance(spawn.pos) != unreachable)
                 value.distance = std::min(value.distance, distance(self.pos, spawn.pos));
         if (value.distance != unreachable) {
-            const double ticks = std::ceil(group.initial_hp / std::max(1.0, self.strength));
             const double reward = group.gems + .25 * group.gold;
             value.alive =
                 reward / (1 + value.distance + group.initial_hp / std::max(1.0, self.strength) + 6);
             value.reward = reward / (1 + value.distance + 6);
-            value.damage = ticks * group.initial_strength * self.camp_mitigation + 1;
         }
+        value.singleton = group.spawns.size() == 1;
         value.prepared = true;
         farm_geometry_scores[gi] = value;
         return true;
     }
     bool prepare_farm_geometry_scores() {
-        if (farm_geometry_origin != self.pos || farm_geometry_strength != self.strength ||
-            farm_geometry_mitigation != self.camp_mitigation) {
+        if (farm_geometry_origin != self.pos || farm_geometry_strength != self.strength) {
             farm_geometry_scores.clear();
             farm_geometry_cursor = 0;
             farm_geometry_original_groups.clear();
             farm_geometry_origin = self.pos;
             farm_geometry_strength = self.strength;
-            farm_geometry_mitigation = self.camp_mitigation;
         }
         // Scan immutable score candidates once per position/power key. Keeping
         // the cursor at the end matters: re-testing all skipped gold rows on

@@ -136,7 +136,12 @@ inline int possible_contact_reach(const Actor &enemy, int horizon = 8) {
         }
     return reach + dash;
 }
+struct AwakeEntryContract {
+    int owner = -1, group = -1, camp = -1, round = -1;
+    Pos stage{}, target{};
+};
 struct Mission {
+    AwakeEntryContract awake_entry{};
     Phase phase = Phase::Unassigned;
     Intent intent = Intent::Farm;
     int group = -1, start = -1, expiry = -1, latest = -1, stagnant = 0, last_progress = -1;
@@ -172,6 +177,7 @@ struct Proposal {
     // Set only by a paid fresh fixed-position solo-clear certificate. This
     // carries its next basic's proof through one accepted native mutation.
     bool solo_clear_certified = false;
+    bool awake_entry_current_certified = false;
     bool crew_clear_certified = false;
     ClearProofKind crew_clear_proof = ClearProofKind::None;
     int crew_proof_owner = -1, crew_proof_round = -1, crew_proof_serial = -1;
@@ -185,6 +191,8 @@ struct AssemblyPathHint {
     std::uint32_t borrowed_generation = 0;
 };
 struct Memory {
+    AwakeEntryContract awake_entry{};
+    int awake_entry_backoff_group = -1, awake_entry_backoff_until = -1;
     Mission mission{};
     int observed_round = -1, hold_group = -1, hold_since = -1, hold_last = -1;
     int last_damage_round = -1000, last_action_round = -1, last_action_serial = 0;
@@ -211,6 +219,8 @@ struct Memory {
     int assembly_failed_group = -1;
     std::uint64_t assembly_failed_signature = 0;
     int assembly_probe_group = -1, assembly_probe_round = -1000;
+    int solo_probe_group = -1, solo_probe_round = -1000;
+    int last_unpriced_farm_probe = -1; // Scheduling cursor, never a viability/cache result.
     std::array<AssemblyPathHint, 12> assembly_paths{};
     int assembly_path_clock = 0;
     std::uint32_t assembly_path_generation = 0;

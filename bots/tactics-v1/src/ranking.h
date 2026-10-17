@@ -25,22 +25,39 @@ template <class T, std::size_t Capacity> struct BoundedRanks {
     }
 };
 
-// Offer each eligible group once. The old full ordering is needed only for
-// its top three entries and its first fresh reward/solo-affordable entry.
-// Keep precisely those sufficient statistics in one pass, without a heap.
+// Fairness for UNPRICED hypotheses only. This changes evaluation order,
+// never shortlist membership, economic value, readiness or feasibility.
+inline BoundedRanks<int, 3> rotate_candidates_after(BoundedRanks<int, 3> slots, int last) {
+    if (slots.count < 2)
+        return slots;
+    std::size_t start = 0;
+    for (std::size_t i = 0; i < slots.count; ++i)
+        if (slots.values[i] == last) {
+            start = (i + 1) % slots.count;
+            break;
+        }
+    auto result = slots;
+    for (std::size_t i = 0; i < slots.count; ++i)
+        result.values[i] = slots.values[(start + i) % slots.count];
+    return result;
+}
+
+// Offer each eligible group once. Reserve a bounded SINGLETON hypothesis
+// alongside the incumbent/reward before filling with coarse leaders. This
+// is candidate diversity, never an affordability or current-readiness claim.
 class CampRanking {
     std::array<CampRank, 3> top_{};
     std::size_t count_ = 0;
-    CampRank reward_{}, affordable_{};
+    CampRank reward_{}, singleton_{};
 
   public:
-    void offer(CampRank candidate, bool fresh_reward, bool affordable) {
+    void offer(CampRank candidate, bool fresh_reward, bool singleton_hypothesis) {
         if (candidate.gi < 0)
             return;
         if (fresh_reward && (reward_.gi < 0 || camp_rank_before(candidate, reward_)))
             reward_ = candidate;
-        if (affordable && (affordable_.gi < 0 || camp_rank_before(candidate, affordable_)))
-            affordable_ = candidate;
+        if (singleton_hypothesis && (singleton_.gi < 0 || camp_rank_before(candidate, singleton_)))
+            singleton_ = candidate;
         std::size_t at = 0;
         while (at < count_ && !camp_rank_before(candidate, top_[at]))
             ++at;
@@ -64,7 +81,7 @@ class CampRanking {
         };
         add(incumbent);
         add(reward_.gi);
-        add(affordable_.gi);
+        add(singleton_.gi);
         for (std::size_t i = 0; i < count_; ++i)
             add(top_[i].gi);
         return out;
@@ -91,7 +108,7 @@ class CampRanking {
         for (std::size_t i = 0; i < count_; ++i)
             add(top_[i]);
         add(reward_);
-        add(affordable_);
+        add(singleton_);
         return out;
     }
 };

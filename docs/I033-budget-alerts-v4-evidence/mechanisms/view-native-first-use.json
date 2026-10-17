@@ -1,0 +1,136 @@
+{
+  "status": "same_state_native_reserve_comparison",
+  "world_round25_identical": true,
+  "matched_global_actions_before_first_difference": 1097,
+  "first_v4_v3_difference": {
+    "v4": {
+      "r": 44,
+      "input": 1118,
+      "kind": 8,
+      "actor": 10,
+      "team": 1,
+      "slot": 4294967295,
+      "abilityType": 0,
+      "from": [
+        16,
+        21
+      ],
+      "to": [
+        16,
+        21
+      ],
+      "before": [
+        10,
+        16,
+        21,
+        780,
+        900,
+        1,
+        90,
+        0,
+        0
+      ],
+      "after": [
+        10,
+        16,
+        21,
+        780,
+        900,
+        1,
+        90,
+        0,
+        0
+      ]
+    },
+    "v3": {
+      "r": 44,
+      "input": 1118,
+      "kind": 26,
+      "actor": 10,
+      "team": 1,
+      "slot": 4294967295,
+      "abilityType": 0,
+      "from": [
+        16,
+        21
+      ],
+      "to": [
+        16,
+        21
+      ],
+      "before": [
+        10,
+        16,
+        21,
+        780,
+        900,
+        1,
+        90,
+        0,
+        0
+      ],
+      "after": [
+        10,
+        16,
+        21,
+        780,
+        900,
+        1,
+        90,
+        0,
+        0
+      ]
+    }
+  },
+  "round25_end_reserves": {
+    "v4": {
+      "ryth": 49739,
+      "stellar": 70997,
+      "cassi": 72330,
+      "issac": 72597,
+      "ren": 52260,
+      "tavi": 77270
+    },
+    "v3": {
+      "ryth": 48749,
+      "stellar": 69726,
+      "cassi": 71221,
+      "issac": 71510,
+      "ren": 53293,
+      "tavi": 76741
+    },
+    "v2": {
+      "ryth": 51122,
+      "stellar": 71472,
+      "cassi": 72783,
+      "issac": 73072,
+      "ren": 54464,
+      "tavi": 77746
+    }
+  },
+  "round25_v4_minus_v3": {
+    "ryth": 990,
+    "stellar": 1271,
+    "cassi": 1109,
+    "issac": 1087,
+    "ren": -1033,
+    "tavi": 529
+  },
+  "round25_v4_minus_v2": {
+    "ryth": -1383,
+    "stellar": -475,
+    "cassi": -453,
+    "issac": -475,
+    "ren": -2204,
+    "tavi": -476
+  },
+  "record_keys": {
+    "v4": "243f52a082492ba0c1139391a406b5145a9f50b510f279246b6eefecc864f725",
+    "v3": "25021df84a2b43d213a6f1e7e7f17cba00d32e775b2f9ee4807a62379e7c1b63",
+    "v2": "b227afd71e532f1ef0c9a7e0a06c29bb6e9c16cd1fd8cfa93afb42baf6a49e2e"
+  },
+  "limits": [
+    "Recorded native reserves in identical states/action prefix establish first-use cost only.",
+    "No claim that this recovery alone causes the later win or general playing-strength gain."
+  ]
+}

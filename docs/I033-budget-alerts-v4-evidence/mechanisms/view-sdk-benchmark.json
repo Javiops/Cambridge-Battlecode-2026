@@ -1,0 +1,204 @@
+{
+  "status": "pass",
+  "sdk_header_sha256": "ee131e2981c16f696cb82cd6b04dc1871f45323057e51f7bb676a893ab72e264",
+  "official_stub_source_sha256": "f42bf83669f84fd60c81e5afdae5f7161955fc87bffec3a302fdf714d8f95d47",
+  "variants": [
+    {
+      "label": "old-on",
+      "header_sha256": "c6dcc9bf04bbe59042e1a4dc00b3775ef48789c5836511976486f6c2817f7cdc",
+      "fixture_sha256": "d5bfc755c0ab61b26b3f6c26237d1cfa34cf14f9ef3b4d240deb813c14f1d216",
+      "flag": 1,
+      "samples": [
+        {
+          "rounds": 1,
+          "reads": 1,
+          "guest_instruction_fuel": 23470,
+          "sdk_champion_bytes": 196,
+          "sdk_lists": 1,
+          "ability_props_queries": 12,
+          "ordered_hash": "6590351264966913"
+        },
+        {
+          "rounds": 500,
+          "reads": 1,
+          "guest_instruction_fuel": 3196047,
+          "sdk_champion_bytes": 196,
+          "sdk_lists": 500,
+          "ability_props_queries": 6000,
+          "ordered_hash": "14606021066481242356"
+        },
+        {
+          "rounds": 1,
+          "reads": 5,
+          "guest_instruction_fuel": 34200,
+          "sdk_champion_bytes": 196,
+          "sdk_lists": 1,
+          "ability_props_queries": 12,
+          "ordered_hash": "9685781155387100677"
+        },
+        {
+          "rounds": 500,
+          "reads": 5,
+          "guest_instruction_fuel": 8504047,
+          "sdk_champion_bytes": 196,
+          "sdk_lists": 500,
+          "ability_props_queries": 6000,
+          "ordered_hash": "15102453071083168964"
+        }
+      ],
+      "guest_fuel_per_scope": {
+        "1": 6357.87,
+        "5": 16973.641
+      }
+    },
+    {
+      "label": "view-on",
+      "header_sha256": "45b84e1ed2dcb788339f4198744bb6c52d67101919525f850a781f7f30f7fc40",
+      "fixture_sha256": "d5bfc755c0ab61b26b3f6c26237d1cfa34cf14f9ef3b4d240deb813c14f1d216",
+      "flag": 1,
+      "samples": [
+        {
+          "rounds": 1,
+          "reads": 1,
+          "guest_instruction_fuel": 22380,
+          "sdk_champion_bytes": 196,
+          "sdk_lists": 1,
+          "ability_props_queries": 12,
+          "ordered_hash": "6590351264966913"
+        },
+        {
+          "rounds": 500,
+          "reads": 1,
+          "guest_instruction_fuel": 2653043,
+          "sdk_champion_bytes": 196,
+          "sdk_lists": 500,
+          "ability_props_queries": 6000,
+          "ordered_hash": "14606021066481242356"
+        },
+        {
+          "rounds": 1,
+          "reads": 5,
+          "guest_instruction_fuel": 26878,
+          "sdk_champion_bytes": 196,
+          "sdk_lists": 1,
+          "ability_props_queries": 12,
+          "ordered_hash": "9685781155387100677"
+        },
+        {
+          "rounds": 500,
+          "reads": 5,
+          "guest_instruction_fuel": 4845043,
+          "sdk_champion_bytes": 196,
+          "sdk_lists": 500,
+          "ability_props_queries": 6000,
+          "ordered_hash": "15102453071083168964"
+        }
+      ],
+      "guest_fuel_per_scope": {
+        "1": 5271.87,
+        "5": 9655.641
+      }
+    },
+    {
+      "label": "old-off",
+      "header_sha256": "c6dcc9bf04bbe59042e1a4dc00b3775ef48789c5836511976486f6c2817f7cdc",
+      "fixture_sha256": "d5bfc755c0ab61b26b3f6c26237d1cfa34cf14f9ef3b4d240deb813c14f1d216",
+      "flag": 0,
+      "samples": [
+        {
+          "rounds": 1,
+          "reads": 1,
+          "guest_instruction_fuel": 21866,
+          "sdk_champion_bytes": 196,
+          "sdk_lists": 1,
+          "ability_props_queries": 12,
+          "ordered_hash": "6590351264966913"
+        },
+        {
+          "rounds": 500,
+          "reads": 1,
+          "guest_instruction_fuel": 2399037,
+          "sdk_champion_bytes": 196,
+          "sdk_lists": 500,
+          "ability_props_queries": 6000,
+          "ordered_hash": "14606021066481242356"
+        },
+        {
+          "rounds": 1,
+          "reads": 5,
+          "guest_instruction_fuel": 40848,
+          "sdk_champion_bytes": 196,
+          "sdk_lists": 5,
+          "ability_props_queries": 60,
+          "ordered_hash": "9685781155387100677"
+        },
+        {
+          "rounds": 500,
+          "reads": 5,
+          "guest_instruction_fuel": 11833117,
+          "sdk_champion_bytes": 196,
+          "sdk_lists": 2500,
+          "ability_props_queries": 30000,
+          "ordered_hash": "15102453071083168964"
+        }
+      ],
+      "guest_fuel_per_scope": {
+        "1": 4763.87,
+        "5": 23631.802
+      }
+    },
+    {
+      "label": "view-off",
+      "header_sha256": "45b84e1ed2dcb788339f4198744bb6c52d67101919525f850a781f7f30f7fc40",
+      "fixture_sha256": "d5bfc755c0ab61b26b3f6c26237d1cfa34cf14f9ef3b4d240deb813c14f1d216",
+      "flag": 0,
+      "samples": [
+        {
+          "rounds": 1,
+          "reads": 1,
+          "guest_instruction_fuel": 21826,
+          "sdk_champion_bytes": 196,
+          "sdk_lists": 1,
+          "ability_props_queries": 12,
+          "ordered_hash": "6590351264966913"
+        },
+        {
+          "rounds": 500,
+          "reads": 1,
+          "guest_instruction_fuel": 2395005,
+          "sdk_champion_bytes": 196,
+          "sdk_lists": 500,
+          "ability_props_queries": 6000,
+          "ordered_hash": "14606021066481242356"
+        },
+        {
+          "rounds": 1,
+          "reads": 5,
+          "guest_instruction_fuel": 40772,
+          "sdk_champion_bytes": 196,
+          "sdk_lists": 5,
+          "ability_props_queries": 60,
+          "ordered_hash": "9685781155387100677"
+        },
+        {
+          "rounds": 500,
+          "reads": 5,
+          "guest_instruction_fuel": 11811085,
+          "sdk_champion_bytes": 196,
+          "sdk_lists": 2500,
+          "ability_props_queries": 30000,
+          "ordered_hash": "15102453071083168964"
+        }
+      ],
+      "guest_fuel_per_scope": {
+        "1": 4755.87,
+        "5": 23587.802
+      }
+    }
+  ],
+  "limits": [
+    "Actual SDK champion objects and cached ability metadata; deterministic SDK host stubs replace live engine calls.",
+    "Wasmtime guest instruction fuel proxy includes shared_ptr control allocation/destruction and vector copies, but is not official native match fuel or playing strength.",
+    "Per-scope proxy uses the difference between500 and1 scopes to remove startup overhead; all compared ordered outputs match."
+  ]
+}

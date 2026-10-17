@@ -1,0 +1,253 @@
+{
+  "status": "pass",
+  "scope": "Saved instrumented native match; no new engine/build/game execution; not a strength sample.",
+  "bindings": {
+    "proof_sha256": "2d1487a6c80a001fdf95fca3fe076e1d61dc89e622d35ee8e1e37956f895cba3",
+    "record_key": "d19993c3e1242a94e89ea41e97fa9e90efb952562e31a334f8ebde0c4a1e0519",
+    "record_json_sha256": "117391296fb36db0a0b45b4eeef876c36b50bd68cece06eacb7e1e59feb8ae4f",
+    "trace_sha256": "b9d7b7678b2ed18db9b5f3e9e70794f90078f45d7e3c3d55ed9af9accc25dbdb",
+    "clean_trace_sha256": "6829f23a4278d51c326b0c93533bac4a4c1835ca9e0783315ba5dd2e009b705c",
+    "replay_bundle_sha256": "e64f6a8da56f206e69d49655e08f49b2d0cea8990b4b241295515d7dd1c92d3b",
+    "raw_replay_sha256": "7757018386bf6b1066befd091da388f86949b75ea8036f31a4ab446ae28b6913",
+    "statistics_sha256": "dcfee9c6beb98a0a00287b78d790b99502363cdf16e7877616bd1489c1b4d5c8",
+    "source_sha256": {
+      "alert_fuel.h": "94ea139aa3115812ac3183087eb135f9d939ec1584559798e8b0f04e4a896c38",
+      "de_rules.h": "3e50429c96765f325ea3804c2bbb5c13ce26a4119fc7b8694f58def60531221b",
+      "draft_choice_policy.h": "ef05ac879a01e67c3b284bb04d48e9a87c4d51ac3e10e1ad9c3c14660b833767",
+      "draft_plan.h": "d6f1ed51fbbd0773984e933b6dd32ea5b50c5ec7a62a412fc69741c4208b1914",
+      "fight.h": "2eaa9a671c634d499029f251a6eef66dbd6be052927d3cc8ca8012f4ecc35014",
+      "main.cpp": "d01a3b3dcc46dc1e045e669b5aa7f1523865fe179aed4f0a8a575508140ba8ee",
+      "mapplan.h": "7b01346e46a21d2339533095a21655c3f83d3f4ef28efaa7d142fb7609df247e",
+      "mapplan_game.h": "167f85bf357b70d797e8612f447b7719f956a974af269286fa32f53569948fb6",
+      "opening_replace.h": "ca6680bae82b74b89fd0bb65573904246df8761d8b22e3ce8cb6bd93207207e7",
+      "params.h": "ac022fc7a6fc7546ae42fce92f8708786a6b28cef99368f1f313b433a20e34c7",
+      "profile.h": "fe7e170baa2f69e3beba2fe344c19ade35bfd3cad5516307d2b6e2575571f551",
+      "track.h": "c42448671f1a23f4987182648fd131e3182a7fee47970b20baaf0444ca7f5a0a",
+      "utility.h": "2327653910762d79a0b2ca9aba5b25255bf1d9033c2d39e18a44e4e365afe378",
+      "verdict.h": "cea061699b7b7a10e81d5484633dbcb51c100516f8b80e29854bba4f6701e5ee"
+    },
+    "wasm_sha256": "d33da4c53bb4d9f305bb48a1cb746353ab99b1265ea8544cf383787e99a28b45"
+  },
+  "native_context": {
+    "map": "fresh-compact-open",
+    "width": 36,
+    "height": 36,
+    "camp_groups": 10,
+    "physical_bodies": 6,
+    "native_bot_faults": [
+      0,
+      0
+    ],
+    "instrumented": true
+  },
+  "events": {
+    "published": 1065,
+    "received": 2265,
+    "layouts": {
+      "16": 3330
+    },
+    "sixth_claim_equal_publications": 1065,
+    "cross_body_receptions_with_latest_preceding_matching_logged_publisher": 1147,
+    "receptions_without_preceding_matching_absolute_publisher_round": 45,
+    "those_matched_to_later_logged_publication_same_absolute_round": 45,
+    "receptions_without_any_matching_absolute_publisher_round": 0,
+    "round_order_regressions_in_stdout": 48,
+    "reception_age_by_kind": [
+      {
+        "kind": 1,
+        "age": 0,
+        "count": 81
+      },
+      {
+        "kind": 1,
+        "age": 1,
+        "count": 49
+      },
+      {
+        "kind": 2,
+        "age": 0,
+        "count": 374
+      },
+      {
+        "kind": 2,
+        "age": 1,
+        "count": 114
+      },
+      {
+        "kind": 3,
+        "age": 0,
+        "count": 134
+      },
+      {
+        "kind": 3,
+        "age": 1,
+        "count": 38
+      },
+      {
+        "kind": 4,
+        "age": 0,
+        "count": 194
+      },
+      {
+        "kind": 4,
+        "age": 1,
+        "count": 41
+      },
+      {
+        "kind": 5,
+        "age": 0,
+        "count": 163
+      },
+      {
+        "kind": 5,
+        "age": 1,
+        "count": 81
+      },
+      {
+        "kind": 6,
+        "age": 0,
+        "count": 361
+      },
+      {
+        "kind": 6,
+        "age": 1,
+        "count": 65
+      },
+      {
+        "kind": 7,
+        "age": 0,
+        "count": 57
+      },
+      {
+        "kind": 8,
+        "age": 0,
+        "count": 88
+      },
+      {
+        "kind": 8,
+        "age": 1,
+        "count": 47
+      },
+      {
+        "kind": 8,
+        "age": 2,
+        "count": 4
+      },
+      {
+        "kind": 9,
+        "age": 0,
+        "count": 88
+      },
+      {
+        "kind": 9,
+        "age": 1,
+        "count": 12
+      },
+      {
+        "kind": 10,
+        "age": 0,
+        "count": 209
+      },
+      {
+        "kind": 10,
+        "age": 1,
+        "count": 61
+      },
+      {
+        "kind": 10,
+        "age": 2,
+        "count": 4
+      }
+    ]
+  },
+  "example": {
+    "publication": {
+      "event_index": 0,
+      "type": "pub",
+      "r": 24,
+      "body": 5,
+      "layout": 16,
+      "raw": 33209,
+      "x": 22,
+      "y": 26,
+      "kind": 1,
+      "c6_before": 5,
+      "c6_after": 5
+    },
+    "receptions": [
+      {
+        "event_index": 2,
+        "type": "rx",
+        "r": 25,
+        "body": 0,
+        "layout": 16,
+        "raw": 33209,
+        "x": 21,
+        "y": 25,
+        "kind": 1,
+        "age": 1,
+        "error": 0
+      },
+      {
+        "event_index": 3,
+        "type": "rx",
+        "r": 25,
+        "body": 1,
+        "layout": 16,
+        "raw": 33209,
+        "x": 21,
+        "y": 25,
+        "kind": 1,
+        "age": 1,
+        "error": 0
+      },
+      {
+        "event_index": 4,
+        "type": "rx",
+        "r": 25,
+        "body": 2,
+        "layout": 16,
+        "raw": 33209,
+        "x": 21,
+        "y": 25,
+        "kind": 1,
+        "age": 1,
+        "error": 0
+      },
+      {
+        "event_index": 5,
+        "type": "rx",
+        "r": 25,
+        "body": 3,
+        "layout": 16,
+        "raw": 33209,
+        "x": 21,
+        "y": 25,
+        "kind": 1,
+        "age": 1,
+        "error": 0
+      },
+      {
+        "event_index": 6,
+        "type": "rx",
+        "r": 25,
+        "body": 4,
+        "layout": 16,
+        "raw": 33209,
+        "x": 21,
+        "y": 25,
+        "kind": 1,
+        "age": 1,
+        "error": 0
+      }
+    ]
+  },
+  "issues": [],
+  "limits": [
+    "Only the full 16-bit six-body layout is observed natively here (10 groups). Compact 12-bit 32\u201363-group fallback is verified by actual-source fixtures, not this run.",
+    "At 64 or more groups, the original nonpacked fallback remains; no universal six-body alert claim.",
+    "No source identity is transmitted: cross-body attribution correlates event order/raw packet/absolute timestamp.",
+    "Accepted ages are observed; refused/hidden packet histories and all wrap/gap cases are not proven by this trace.",
+    "Instrumentation has overhead; this is not a competitive sample or production-fuel measurement."
+  ]
+}

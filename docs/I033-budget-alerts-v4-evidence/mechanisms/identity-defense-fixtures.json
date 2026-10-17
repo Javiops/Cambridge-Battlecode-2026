@@ -1,0 +1,62 @@
+{
+  "status": "pass",
+  "variants": [
+    {
+      "flags": [
+        0,
+        0
+      ],
+      "production_object_sha256": "5dda1482c69ab542396ba53d102e1d332b14459f5c24f464ae59cb2554d31990",
+      "status": "pass",
+      "stdout": "PASS identity_semantics=2629449600 warm_queries=120 fallback=0\n"
+    },
+    {
+      "flags": [
+        0,
+        1
+      ],
+      "production_object_sha256": "00394c3d833d797d9d391498682a2c714d53dc9a0d60085c0c68c07bc0a6312b",
+      "status": "pass",
+      "stdout": "PASS identity_semantics=2629449600 warm_queries=120 fallback=1\n"
+    },
+    {
+      "flags": [
+        1,
+        0
+      ],
+      "production_object_sha256": "69b6c3dd567fe418d3e9505bef002e99c10cbb03d7bbf1c03cbdc72c3e4a4b9a",
+      "status": "pass",
+      "stdout": "PASS identity_semantics=2629449600 warm_queries=6 fallback=0\n"
+    },
+    {
+      "flags": [
+        1,
+        1
+      ],
+      "production_object_sha256": "bfcbd56e427d8b59b5cc1bbf7f8f12e42fb324d401e5b35ae659a1c9983d6404",
+      "status": "pass",
+      "stdout": "PASS identity_semantics=2629449600 warm_queries=6 fallback=1\n"
+    }
+  ],
+  "source_sha256": {
+    "alert_fuel.h": "94ea139aa3115812ac3183087eb135f9d939ec1584559798e8b0f04e4a896c38",
+    "combat_identity.h": "a9251577fdf5977285feb6631128ea9a5ad4c03c1e0aa9df9c7b74d930f847f6",
+    "de_rules.h": "3e50429c96765f325ea3804c2bbb5c13ce26a4119fc7b8694f58def60531221b",
+    "draft_choice_policy.h": "ef05ac879a01e67c3b284bb04d48e9a87c4d51ac3e10e1ad9c3c14660b833767",
+    "draft_plan.h": "d6f1ed51fbbd0773984e933b6dd32ea5b50c5ec7a62a412fc69741c4208b1914",
+    "fight.h": "6817dee2adf1dcff2aef27b666c88d19c315bd6f51c615a67b2de46c51935a30",
+    "main.cpp": "494b9b75c1b0abd6481aef037903881907cab2ffba59d591b667be20fa442167",
+    "mapplan.h": "7b01346e46a21d2339533095a21655c3f83d3f4ef28efaa7d142fb7609df247e",
+    "mapplan_game.h": "167f85bf357b70d797e8612f447b7719f956a974af269286fa32f53569948fb6",
+    "opening_replace.h": "ca6680bae82b74b89fd0bb65573904246df8761d8b22e3ce8cb6bd93207207e7",
+    "params.h": "005b692356d4bc6c05f441a0a6c12849f44d5be560e298d1db9101d8fafd7691",
+    "profile.h": "fe7e170baa2f69e3beba2fe344c19ade35bfd3cad5516307d2b6e2575571f551",
+    "track.h": "c42448671f1a23f4987182648fd131e3182a7fee47970b20baaf0444ca7f5a0a",
+    "utility.h": "2327653910762d79a0b2ca9aba5b25255bf1d9033c2d39e18a44e4e365afe378",
+    "verdict.h": "f02a0a47c680c78b8739b4c84db636b4a2276a53745f3386207e3640d62e3a8b"
+  },
+  "limits": [
+    "Identity cache preserves exact successful types; defensive fallback deliberately changes low-reserve retreat execution.",
+    "Actual production helper text with narrow SDK mocks; native strength and exact cost require separate recorded sample."
+  ]
+}

@@ -1,0 +1,182 @@
+{
+  "status": "pass",
+  "scope": "Final source region/parameter binding only; no builds, games, source edits or fixture reruns.",
+  "final_source_path": "work/mate-v60/variants/budget-v3/src",
+  "final_source_sha256": {
+    "alert_fuel.h": "94ea139aa3115812ac3183087eb135f9d939ec1584559798e8b0f04e4a896c38",
+    "combat_cohort.h": "c6dcc9bf04bbe59042e1a4dc00b3775ef48789c5836511976486f6c2817f7cdc",
+    "combat_identity.h": "a9251577fdf5977285feb6631128ea9a5ad4c03c1e0aa9df9c7b74d930f847f6",
+    "de_rules.h": "3e50429c96765f325ea3804c2bbb5c13ce26a4119fc7b8694f58def60531221b",
+    "draft_choice_policy.h": "ef05ac879a01e67c3b284bb04d48e9a87c4d51ac3e10e1ad9c3c14660b833767",
+    "draft_plan.h": "d6f1ed51fbbd0773984e933b6dd32ea5b50c5ec7a62a412fc69741c4208b1914",
+    "fight.h": "c4053d3d5b5f5f7bee48410c48cd316424774f68d9680152f0f7c5816f8ed19e",
+    "main.cpp": "275a30d4a16824cf7cd318f9c28d516491f3fb31046de137801644f5c699d19e",
+    "mapplan.h": "7b01346e46a21d2339533095a21655c3f83d3f4ef28efaa7d142fb7609df247e",
+    "mapplan_game.h": "167f85bf357b70d797e8612f447b7719f956a974af269286fa32f53569948fb6",
+    "opening_replace.h": "ca6680bae82b74b89fd0bb65573904246df8761d8b22e3ce8cb6bd93207207e7",
+    "params.h": "488cfd850b0e7ef51572330160bf3d5a145f776c24caf6e3f9b9573bf56177e5",
+    "profile.h": "fe7e170baa2f69e3beba2fe344c19ade35bfd3cad5516307d2b6e2575571f551",
+    "track.h": "c42448671f1a23f4987182648fd131e3182a7fee47970b20baaf0444ca7f5a0a",
+    "utility.h": "2327653910762d79a0b2ca9aba5b25255bf1d9033c2d39e18a44e4e365afe378",
+    "verdict.h": "ccda1831c4c9bdc2635a9bcef16bc0f631e2018a4cbd36afe1322e332441b24f"
+  },
+  "fixture_evidence": {
+    "results_path": "work/mate-v60/combined-protocol-tests/results.json",
+    "results_sha256": "ac4253fade0a763930950086aac199b4b4346269dd03fe4cc732ea15d5450897",
+    "snapshot_path": "work/mate-v60/combined-protocol-tests/flag1-help0-kite0/src",
+    "snapshot_main_cpp_sha256": "d01a3b3dcc46dc1e045e669b5aa7f1523865fe179aed4f0a8a575508140ba8ee",
+    "original_tested_source_sha256": {
+      "alert_fuel.h": "94ea139aa3115812ac3183087eb135f9d939ec1584559798e8b0f04e4a896c38",
+      "de_rules.h": "3e50429c96765f325ea3804c2bbb5c13ce26a4119fc7b8694f58def60531221b",
+      "draft_choice_policy.h": "ef05ac879a01e67c3b284bb04d48e9a87c4d51ac3e10e1ad9c3c14660b833767",
+      "draft_plan.h": "d6f1ed51fbbd0773984e933b6dd32ea5b50c5ec7a62a412fc69741c4208b1914",
+      "fight.h": "2eaa9a671c634d499029f251a6eef66dbd6be052927d3cc8ca8012f4ecc35014",
+      "main.cpp": "d01a3b3dcc46dc1e045e669b5aa7f1523865fe179aed4f0a8a575508140ba8ee",
+      "mapplan.h": "7b01346e46a21d2339533095a21655c3f83d3f4ef28efaa7d142fb7609df247e",
+      "mapplan_game.h": "167f85bf357b70d797e8612f447b7719f956a974af269286fa32f53569948fb6",
+      "opening_replace.h": "ca6680bae82b74b89fd0bb65573904246df8761d8b22e3ce8cb6bd93207207e7",
+      "params.h": "453316fb0c07d2fea4482d1cbb855c96b9538a230d0b54664023631d15869017",
+      "profile.h": "fe7e170baa2f69e3beba2fe344c19ade35bfd3cad5516307d2b6e2575571f551",
+      "track.h": "c42448671f1a23f4987182648fd131e3182a7fee47970b20baaf0444ca7f5a0a",
+      "utility.h": "2327653910762d79a0b2ca9aba5b25255bf1d9033c2d39e18a44e4e365afe378",
+      "verdict.h": "cea061699b7b7a10e81d5484633dbcb51c100516f8b80e29854bba4f6701e5ee"
+    },
+    "passed_cases": [
+      {
+        "flag": 0,
+        "help": 0,
+        "kite": 0,
+        "stdout": "PASS six_alerts=0 help=0 kite=0 checks=558 actual protocol/update_danger cases\n",
+        "full_sdk_tu_compile": true
+      },
+      {
+        "flag": 1,
+        "help": 0,
+        "kite": 0,
+        "stdout": "PASS six_alerts=1 help=0 kite=0 checks=2985 actual protocol/update_danger cases\n",
+        "full_sdk_tu_compile": true
+      },
+      {
+        "flag": 1,
+        "help": 1,
+        "kite": 0,
+        "stdout": "PASS six_alerts=1 help=1 kite=0 checks=408 actual protocol/update_danger cases\n",
+        "full_sdk_tu_compile": true
+      },
+      {
+        "flag": 1,
+        "help": 0,
+        "kite": 1,
+        "stdout": "PASS six_alerts=1 help=0 kite=1 checks=408 actual protocol/update_danger cases\n",
+        "full_sdk_tu_compile": true
+      }
+    ]
+  },
+  "regions": {
+    "protocol": {
+      "normalized_sha256": "c72aef7b1935e4bce957af41d823896f9eb952d6390fb13b75ab42adfb73c904",
+      "start_line": 2002,
+      "end_line": 2416,
+      "normalized_characters": 17336,
+      "equal_to_tested_snapshot": true
+    },
+    "update_danger": {
+      "normalized_sha256": "a764744635926e282982ef7cf7df9c07b7990e74320f26fce136ac0594e11732",
+      "start_line": 2583,
+      "end_line": 2672,
+      "normalized_characters": 3808,
+      "equal_to_tested_snapshot": true
+    }
+  },
+  "p_flags": {
+    "P_CALLHELP": {
+      "tested": 0,
+      "final": 0
+    },
+    "P_D5_PACKED_CLAIMS": {
+      "tested": 1,
+      "final": 1
+    },
+    "P_DANGER": {
+      "tested": 4,
+      "final": 4
+    },
+    "P_DANGER_R": {
+      "tested": 5,
+      "final": 5
+    },
+    "P_DANGER_T": {
+      "tested": 45,
+      "final": 45
+    },
+    "P_DP_ALERTS": {
+      "tested": 2,
+      "final": 2
+    },
+    "P_DP_ALERTS_SIX": {
+      "tested": 1,
+      "final": 1
+    },
+    "P_DP_ALERT_GEMS": {
+      "tested": 15,
+      "final": 15
+    },
+    "P_DP_ALERT_GROUP_AGE": {
+      "tested": 2,
+      "final": 2
+    },
+    "P_DP_ALERT_POWER": {
+      "tested": 170,
+      "final": 170
+    },
+    "P_DP_ALERT_PREY_HP": {
+      "tested": 60,
+      "final": 60
+    },
+    "P_DP_ALERT_R": {
+      "tested": 5,
+      "final": 5
+    },
+    "P_DP_ALERT_SELF_R": {
+      "tested": 8,
+      "final": 8
+    },
+    "P_DP_ALERT_SINGLE_AGE": {
+      "tested": 1,
+      "final": 1
+    },
+    "P_DP_ALERT_TRACE": {
+      "tested": 0,
+      "final": 0
+    },
+    "P_FUEL_ALERT_GATE": {
+      "tested": 1,
+      "final": 1
+    },
+    "P_FUEL_ALERT_MEMO": {
+      "tested": 1,
+      "final": 1
+    },
+    "P_FUEL_ALERT_SPAWN": {
+      "tested": 1,
+      "final": 1
+    },
+    "P_PVKITE": {
+      "tested": 0,
+      "final": 0
+    }
+  },
+  "checks": [
+    "protocol region exactly equals tested source after newline normalization",
+    "update_danger region exactly equals tested source after newline normalization",
+    "read_sm/write_sm/claim_value/write_claim/alert read/write/continuity all lie inside unchanged region",
+    "alert_fuel.h remains byte-identical to tested header",
+    "all 19 protocol/update_danger/header P_* dependencies retain tested values",
+    "packet continuity State declarations retain the tested initializers"
+  ],
+  "limits": [
+    "Binding unchanged code to existing actual-source fixtures does not replace release SDK linking or native end-to-end tests of cohort/identity/budget changes.",
+    "Six-body semantic alerts support up to 63 camp groups; at 64 or more groups the original nonpacked fallback has no semantic six-body alerts.",
+    "Native sharing proof is separately bound in native-alert-audit.json and demonstrates the full16-bit layout on a 10-group map."
+  ]
+}

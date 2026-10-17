@@ -1,0 +1,21 @@
+{
+  "status": "measured",
+  "matching_observations": [
+    {
+      "champion": "ryth",
+      "start": 39,
+      "end": 39,
+      "foes": 4,
+      "fingerprint": "7038184088554926420",
+      "baseline_fuel": 4991,
+      "optimized_fuel": 3570,
+      "saved_fuel": 1421,
+      "percent_saved": 28.47
+    }
+  ],
+  "limits": [
+    "Fingerprint compares cached foe positions, integer HP and gems, not a complete engine state.",
+    "Only first identical observation precedes diagnostic game divergence; later games are not strength evidence.",
+    "Instrumentation adds overhead; official default fuel is used and observed native fuel exhaustion remains nonzero."
+  ]
+}

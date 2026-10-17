@@ -1,0 +1,377 @@
+{
+  "status": "complete_with_unresolved_exact_guard",
+  "scope": "One final spar12 loss on fresh-compact-open side B, four already recorded controls/variants; no source edits, games, builds or new profiling.",
+  "comparison": [
+    {
+      "label": "final-loss",
+      "record_key": "25021df84a2b43d213a6f1e7e7f17cba00d32e775b2f9ee4807a62379e7c1b63",
+      "candidate": "v60-budget-v3",
+      "score_candidate_opponent": [
+        882,
+        1020
+      ],
+      "rounds": 739,
+      "fuel_candidate_opponent": [
+        22,
+        0
+      ],
+      "candidate_deaths": 23,
+      "candidate_gems_collected": 1050.0,
+      "candidate_gems_lost": 124,
+      "candidate_body_count": 6,
+      "raw_sha256": "68b329afc82fcef84afe920e12babfd70348c827ef1367f1d1663c6cae736fec",
+      "api_errors": []
+    },
+    {
+      "label": "fuel-alerts-control",
+      "record_key": "345fedc609fd5c853dc4b9b7b156d81842a8a9e75b6ac5c8124d46024ad052ab",
+      "candidate": "v60-fuel-alerts",
+      "score_candidate_opponent": [
+        1020,
+        832
+      ],
+      "rounds": 684,
+      "fuel_candidate_opponent": [
+        50,
+        0
+      ],
+      "candidate_deaths": 13,
+      "candidate_gems_collected": 1042.0,
+      "candidate_gems_lost": 22,
+      "candidate_body_count": 6,
+      "raw_sha256": "716dafc32045084c30a39b182013dce29740b829b098ebc302bc322cce4c2202",
+      "api_errors": []
+    },
+    {
+      "label": "budget-v2-control",
+      "record_key": "b227afd71e532f1ef0c9a7e0a06c29bb6e9c16cd1fd8cfa93afb42baf6a49e2e",
+      "candidate": "v60-budget-v2",
+      "score_candidate_opponent": [
+        1028,
+        794
+      ],
+      "rounds": 702,
+      "fuel_candidate_opponent": [
+        85,
+        0
+      ],
+      "candidate_deaths": 12,
+      "candidate_gems_collected": 1050.0,
+      "candidate_gems_lost": 0,
+      "candidate_body_count": 6,
+      "raw_sha256": "f59ae9f8a8eab42904c816a6c0a2a84673fe49a755597019572aca321f133a43",
+      "api_errors": []
+    },
+    {
+      "label": "raw-v59-control",
+      "record_key": "b14daf999f29fa5e4aedc87b3f556484d5729913222b0128677f51e1ecd3dd66",
+      "candidate": "diagnosis-v59",
+      "score_candidate_opponent": [
+        1006,
+        758
+      ],
+      "rounds": 723,
+      "fuel_candidate_opponent": [
+        20,
+        0
+      ],
+      "candidate_deaths": 18,
+      "candidate_gems_collected": 1028.0,
+      "candidate_gems_lost": 22,
+      "candidate_body_count": 5,
+      "raw_sha256": "060e69a3a0af33a3e201d58936259dba36108079bdda5db20ba94d008e994b36",
+      "api_errors": []
+    }
+  ],
+  "verified_first_divergence": {
+    "matched_global_actions": 764,
+    "first": {
+      "v3": {
+        "r": 31,
+        "input": 785,
+        "kind": 4,
+        "actor": 9,
+        "team": 1,
+        "slot": 4294967295,
+        "abilityType": 0,
+        "from": [
+          23,
+          6
+        ],
+        "to": [
+          24,
+          7
+        ],
+        "before": [
+          9,
+          23,
+          6,
+          660,
+          900,
+          1,
+          0,
+          0,
+          0
+        ],
+        "after": [
+          9,
+          24,
+          7,
+          660,
+          900,
+          1,
+          0,
+          0,
+          0
+        ]
+      },
+      "v2": {
+        "r": 31,
+        "input": 785,
+        "kind": 4,
+        "actor": 9,
+        "team": 1,
+        "slot": 4294967295,
+        "abilityType": 0,
+        "from": [
+          23,
+          6
+        ],
+        "to": [
+          24,
+          6
+        ],
+        "before": [
+          9,
+          23,
+          6,
+          660,
+          900,
+          1,
+          0,
+          0,
+          0
+        ],
+        "after": [
+          9,
+          24,
+          6,
+          660,
+          900,
+          1,
+          0,
+          0,
+          0
+        ]
+      }
+    },
+    "source_delta_checks": {
+      "main_after_only_cohort_undo_matches_v2": true,
+      "fight_after_only_call_revert_matches_v2": true,
+      "verdict_after_only_call_revert_matches_v2": true
+    }
+  },
+  "round25_same_state_fuel": {
+    "final": {
+      "ryth": 48749,
+      "stellar": 69726,
+      "cassi": 71221,
+      "issac": 71510,
+      "ren": 53293,
+      "tavi": 76741
+    },
+    "budget_v2": {
+      "ryth": 51122,
+      "stellar": 71472,
+      "cassi": 72783,
+      "issac": 73072,
+      "ren": 54464,
+      "tavi": 77746
+    },
+    "final_minus_v2": {
+      "ryth": -2373,
+      "stellar": -1746,
+      "cassi": -1562,
+      "issac": -1562,
+      "ren": -1171,
+      "tavi": -1005
+    },
+    "interpretation": "Commands/world state remain identical at round25. The cohort scope costs extra when its first allied list is not reused; copying six SDK champion handles into owned cache is avoidable single-use overhead. This is direct observed reserve loss, not a measurement of the exact round31 guard."
+  },
+  "first_candidate_fuel_exhaustion_round": 44,
+  "regression_attribution": {
+    "established": [
+      "The first 764 global successful action records are identical; first difference is Issac round31 input785 from(23,6), choosing(24,7) instead of(24,6).",
+      "Undoing only cohort additions makes complete main.cpp, fight.h and verdict.h match budget-v2; there is no other source-policy delta between these controls.",
+      "Cohort mechanics preserve ordered handles with fresh live fields; its allocation/copy/round-check cost can change existing fuel-dependent branches, even before a fuelExhausted event.",
+      "Same-slot result regresses despite fuel events falling85\u219222 versus budget-v2, and50\u219222 versus fuel-alerts. Fewer exhaustion events alone do not prove stronger play."
+    ],
+    "inference": "The earliest divergence is consistent with budget-sensitive movement/path selection caused by changed cohort cost. There is no evidence that a stale allied list or an unsafe new fallback decision causes the round31 move.",
+    "exact_branch": "Unresolved: the release replay does not record g_mode, private target/claim state or fuel reserve at the round31 decision. Movement command records cannot distinguish full distance-field pathing, native move_towards, local greedy fallback or a tactical local step.",
+    "relevant_existing_gates": [
+      {
+        "file": "main.cpp",
+        "line": 1776,
+        "condition": "!fuel_ok(25000)",
+        "total_reserve": 31000,
+        "effect": "Switch from explicit field to cheaper goal movement."
+      },
+      {
+        "file": "main.cpp",
+        "line": 1782,
+        "condition": "!fuel_ok(14000)",
+        "total_reserve": 20000,
+        "effect": "Switch native move_towards search to greedy_step."
+      },
+      {
+        "file": "main.cpp",
+        "line": 1797,
+        "condition": "fuel_ok(30000)",
+        "total_reserve": 36000,
+        "effect": "Optional awake-camp avoidance path field."
+      }
+    ],
+    "not_claimed": [
+      "No causal proof links the first one-tile difference to all later deaths or the final loss.",
+      "No claim that cohort cache contents are incorrect.",
+      "No claim that fallback is the sole cause, or that reverting cohort generally improves play."
+    ]
+  },
+  "observed_loss_weaknesses": {
+    "gem_deaths": [
+      {
+        "r": 128,
+        "seq": 16713,
+        "input": 2833,
+        "id": 10,
+        "team": 1,
+        "position": [
+          17,
+          9
+        ],
+        "gems": 36,
+        "step": [
+          10,
+          6,
+          1,
+          1,
+          0
+        ]
+      },
+      {
+        "r": 430,
+        "seq": 56198,
+        "input": 9070,
+        "id": 6,
+        "team": 1,
+        "position": [
+          23,
+          14
+        ],
+        "gems": 44,
+        "step": [
+          10,
+          5,
+          1,
+          3,
+          0
+        ]
+      },
+      {
+        "r": 585,
+        "seq": 76351,
+        "input": 12037,
+        "id": 9,
+        "team": 1,
+        "position": [
+          24,
+          18
+        ],
+        "gems": 44,
+        "step": [
+          10,
+          6,
+          1,
+          0,
+          0
+        ]
+      }
+    ],
+    "ren_channel": {
+      "action": {
+        "r": 125,
+        "seq": 16369,
+        "input": 2771,
+        "kind": 12,
+        "actor": 10,
+        "team": 1,
+        "type": 9,
+        "slot": 4294967295,
+        "abilityType": 0,
+        "from": [
+          0,
+          0
+        ],
+        "to": [
+          17,
+          8
+        ],
+        "before": [
+          10,
+          17,
+          9,
+          215,
+          900,
+          1,
+          210,
+          36,
+          1
+        ],
+        "after": [
+          10,
+          17,
+          9,
+          215,
+          900,
+          1,
+          210,
+          36,
+          1
+        ],
+        "near": [
+          1,
+          0,
+          1,
+          1,
+          1,
+          3
+        ],
+        "losses": []
+      },
+      "interpretation": "After killing Prism, Ren begins submission at215/900HP with36gems inround125 and dies at(17,9) inround128 before delivering. The existing badly-hurt banking preference and channel persistence permit this; this is an inherited policy weakness in the encountered state, not proof that the new cache caused it."
+    },
+    "shared_life": "At round585 Issac dies with44gems when Cassi is killed; Issac had900HP at its previous movement. Coupled-life exposure is inherited and also appears in the fuel-alerts control (round386,22gems lost).",
+    "accounting": "Final candidate collects1050, delivers882, loses124 and retains44. Farming quantity was enough to reach1000; converting bags into score failed."
+  },
+  "future_diagnostic_not_performed": "To name the exact first guard, a separate immutable trace candidate would need to log only Issac round31 g_mode/target and reserves around relevant movement gates, preserving a paired control. No such new run was performed. First reduce or lazily bypass single-use cohort copy overhead if pursuing another candidate; current source remains frozen.",
+  "release_source_unchanged": true,
+  "release_build_record": "work/mate-bwf-fixes/testing/builds/v60-budget-v3.json",
+  "source_sha256": {
+    "alert_fuel.h": "94ea139aa3115812ac3183087eb135f9d939ec1584559798e8b0f04e4a896c38",
+    "combat_cohort.h": "c6dcc9bf04bbe59042e1a4dc00b3775ef48789c5836511976486f6c2817f7cdc",
+    "combat_identity.h": "a9251577fdf5977285feb6631128ea9a5ad4c03c1e0aa9df9c7b74d930f847f6",
+    "de_rules.h": "3e50429c96765f325ea3804c2bbb5c13ce26a4119fc7b8694f58def60531221b",
+    "draft_choice_policy.h": "ef05ac879a01e67c3b284bb04d48e9a87c4d51ac3e10e1ad9c3c14660b833767",
+    "draft_plan.h": "d6f1ed51fbbd0773984e933b6dd32ea5b50c5ec7a62a412fc69741c4208b1914",
+    "fight.h": "c4053d3d5b5f5f7bee48410c48cd316424774f68d9680152f0f7c5816f8ed19e",
+    "main.cpp": "275a30d4a16824cf7cd318f9c28d516491f3fb31046de137801644f5c699d19e",
+    "mapplan.h": "7b01346e46a21d2339533095a21655c3f83d3f4ef28efaa7d142fb7609df247e",
+    "mapplan_game.h": "167f85bf357b70d797e8612f447b7719f956a974af269286fa32f53569948fb6",
+    "opening_replace.h": "ca6680bae82b74b89fd0bb65573904246df8761d8b22e3ce8cb6bd93207207e7",
+    "params.h": "488cfd850b0e7ef51572330160bf3d5a145f776c24caf6e3f9b9573bf56177e5",
+    "profile.h": "fe7e170baa2f69e3beba2fe344c19ade35bfd3cad5516307d2b6e2575571f551",
+    "track.h": "c42448671f1a23f4987182648fd131e3182a7fee47970b20baaf0444ca7f5a0a",
+    "utility.h": "2327653910762d79a0b2ca9aba5b25255bf1d9033c2d39e18a44e4e365afe378",
+    "verdict.h": "ccda1831c4c9bdc2635a9bcef16bc0f631e2018a4cbd36afe1322e332441b24f"
+  }
+}

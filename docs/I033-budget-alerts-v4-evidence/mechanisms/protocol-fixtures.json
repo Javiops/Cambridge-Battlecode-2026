@@ -1,0 +1,57 @@
+{
+  "status": "pass",
+  "source_sha256": {
+    "alert_fuel.h": "94ea139aa3115812ac3183087eb135f9d939ec1584559798e8b0f04e4a896c38",
+    "de_rules.h": "3e50429c96765f325ea3804c2bbb5c13ce26a4119fc7b8694f58def60531221b",
+    "draft_choice_policy.h": "ef05ac879a01e67c3b284bb04d48e9a87c4d51ac3e10e1ad9c3c14660b833767",
+    "draft_plan.h": "d6f1ed51fbbd0773984e933b6dd32ea5b50c5ec7a62a412fc69741c4208b1914",
+    "fight.h": "2eaa9a671c634d499029f251a6eef66dbd6be052927d3cc8ca8012f4ecc35014",
+    "main.cpp": "d01a3b3dcc46dc1e045e669b5aa7f1523865fe179aed4f0a8a575508140ba8ee",
+    "mapplan.h": "7b01346e46a21d2339533095a21655c3f83d3f4ef28efaa7d142fb7609df247e",
+    "mapplan_game.h": "167f85bf357b70d797e8612f447b7719f956a974af269286fa32f53569948fb6",
+    "opening_replace.h": "ca6680bae82b74b89fd0bb65573904246df8761d8b22e3ce8cb6bd93207207e7",
+    "params.h": "453316fb0c07d2fea4482d1cbb855c96b9538a230d0b54664023631d15869017",
+    "profile.h": "fe7e170baa2f69e3beba2fe344c19ade35bfd3cad5516307d2b6e2575571f551",
+    "track.h": "c42448671f1a23f4987182648fd131e3182a7fee47970b20baaf0444ca7f5a0a",
+    "utility.h": "2327653910762d79a0b2ca9aba5b25255bf1d9033c2d39e18a44e4e365afe378",
+    "verdict.h": "cea061699b7b7a10e81d5484633dbcb51c100516f8b80e29854bba4f6701e5ee"
+  },
+  "alert_fuel_header_sha256": "94ea139aa3115812ac3183087eb135f9d939ec1584559798e8b0f04e4a896c38",
+  "actual_protocol_sha256": "c72aef7b1935e4bce957af41d823896f9eb952d6390fb13b75ab42adfb73c904",
+  "actual_update_danger_sha256": "a764744635926e282982ef7cf7df9c07b7990e74320f26fce136ac0594e11732",
+  "cases": [
+    {
+      "flag": 0,
+      "help": 0,
+      "kite": 0,
+      "stdout": "PASS six_alerts=0 help=0 kite=0 checks=558 actual protocol/update_danger cases\n",
+      "full_sdk_tu_compile": true
+    },
+    {
+      "flag": 1,
+      "help": 0,
+      "kite": 0,
+      "stdout": "PASS six_alerts=1 help=0 kite=0 checks=2985 actual protocol/update_danger cases\n",
+      "full_sdk_tu_compile": true
+    },
+    {
+      "flag": 1,
+      "help": 1,
+      "kite": 0,
+      "stdout": "PASS six_alerts=1 help=1 kite=0 checks=408 actual protocol/update_danger cases\n",
+      "full_sdk_tu_compile": true
+    },
+    {
+      "flag": 1,
+      "help": 0,
+      "kite": 1,
+      "stdout": "PASS six_alerts=1 help=0 kite=1 checks=408 actual protocol/update_danger cases\n",
+      "full_sdk_tu_compile": true
+    }
+  ],
+  "limits": [
+    "Actual production protocol and update_danger under narrow shared-memory/runtime mocks.",
+    "Full SDK2.2.5 object compile for feature0/1; no release link or native fuel measurement.",
+    "No new native matches or competitive advantage claim."
+  ]
+}

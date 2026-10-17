@@ -1,0 +1,196 @@
+{
+  "scope": "Read-only reconstruction of4 existing native replays, not new matches. One isolated movement candidate + actual-source mock fixtures; no tactical panel swept.",
+  "duplicate_spar_losses": {
+    "record": "53156b33cfcdffcb9a4dab2906bc66b0b3266259e05a52a77f8d86963ea58a38",
+    "other_record": "0ee263d465292142dc47edaca8653f0998ed62bc23d716cbbcf38d83046885f3",
+    "native_sha256": "8b50ddaf66b2aaf301515ac40f480620df816c3bfb8fa92363459d6d19b29616",
+    "interpretation": "spar11 and spar16 entries reconstruct identical native commands/outcomes. They are two scheduled slots, one behavioral failure, not two independent tactical examples."
+  },
+  "cases": [
+    {
+      "id": "compact-cassi-loss",
+      "record": "53156b33cfcdffcb9a4dab2906bc66b0b3266259e05a52a77f8d86963ea58a38",
+      "round": 47,
+      "actor": 4,
+      "champion": "Ren",
+      "input": 1165,
+      "before": [
+        21,
+        13,
+        660
+      ],
+      "after": [
+        22,
+        14,
+        660
+      ],
+      "target": {
+        "actor": 9,
+        "champion": "Issac",
+        "hp": 45,
+        "position": [
+          24,
+          16
+        ]
+      },
+      "known_threats": [
+        {
+          "actor": 6,
+          "champion": "Stellar",
+          "position": [
+            26,
+            18
+          ],
+          "focus": 160,
+          "ready_spell_damage": 320,
+          "spell_range": 4
+        },
+        {
+          "actor": 7,
+          "champion": "Tavi",
+          "position": [
+            26,
+            17
+          ],
+          "focus": 170,
+          "ready_spell_damage": 374,
+          "spell_range": 4
+        }
+      ],
+      "conclusion": "front_line accepts the geometry and selects45HP Issac. engage approaches without a ready Ren spell or a resulting basic attack that turn. Its combat context bypasses ordinary movement volley protection. The next tile is within both known ready damage spells, whose694HP combined exceeds660HP. The cached production threat model reports320->879, including next-opportunity basic attacks.",
+      "causal_evidence": "Actual-source front_line/engage/step fixture reproduces baseline22,14; isolated pure destination gate takes20,12 (model exposure0). This proves the unsafe approach can be prevented, not that a whole match is won.",
+      "subsequent_native_events": [
+        "R48 Ren23,15 attacks Issac24,16 for40HP; Issac45->5.",
+        "R49 Issac9 dashes24,16->26,14 then moves27,15.",
+        "R49 Ren23,15->24,16 input1206. Actual-source front_line focus is submitting Stellar6; input-level native record alone does not encode target intent.",
+        "R50 Stellar6 spell320 plus attack35; Tavi7 CC deals305 remaining HP, killing Ren before his turn."
+      ],
+      "notes": [
+        "R49 Ren already has model danger799 at23,15 and all8 adjacent tiles; do not claim that specific move creates the first lethal exposure. R47 is the early safe->lethal advance.",
+        "The reproduction isolates the actual production front_line path with observed personal metadata. Full persistent bot state and earlier verdict branches are not reconstructed in this mock. No source-intent telemetry existed in the saved native replay."
+      ]
+    },
+    {
+      "id": "compact-cassi-loss",
+      "record": "53156b33cfcdffcb9a4dab2906bc66b0b3266259e05a52a77f8d86963ea58a38",
+      "round": 56,
+      "actor": 1,
+      "champion": "Stellar",
+      "input": 1346,
+      "position": [
+        22,
+        17
+      ],
+      "hp": 366,
+      "decision": "Start recall",
+      "death": {
+        "round": 59,
+        "killer": 7,
+        "champion": "Tavi",
+        "killer_position": [
+          23,
+          15
+        ]
+      },
+      "conclusion": "Unsafe recall timing is an actual loss mechanism, but the killer was not visible to the personal Stellar perspective at recall start. Allied Tavi5 sees enemy Stellar6 at27,17 but does not see killer Tavi7. A six-body alert fix might deliver contextual caution; it cannot be claimed to transmit an unseen exact killer.",
+      "perspective_file": "perspective-probes.json"
+    },
+    {
+      "id": "fresh174-cassi-B-loss",
+      "record": "bad14773688f9c30daebe20d492c42a2967c9e7c89507f0886df68baf50321f8",
+      "scores": [
+        288,
+        1020
+      ],
+      "rounds": 1443,
+      "fuel_events_candidate": 0,
+      "draft_both": [
+        "Cassi & Issac",
+        "Ren",
+        "Stellar",
+        "Tavi"
+      ],
+      "bodies_each": 5,
+      "conclusion": "A large defeat exists without fuel exhaustion and without the6-body alert disable. Both sides have the same draft. Reverse-side candidate wins1092-324, indicating a physical-side allocation/routing weakness rather than a simple no-Prism draft failure.",
+      "events": [
+        {
+          "round": 1,
+          "actor": 7,
+          "champion": "Ren",
+          "position": [
+            42,
+            4
+          ],
+          "decision": "wait-drop, target-1; fuel27784; no opening dash",
+          "opposite_actor": 2,
+          "opposite_decision": "raw Ren dashes5,4->7,3 then moves8,4; farm target2; fuel20457"
+        },
+        {
+          "round": 44,
+          "actor": 5,
+          "champion": "Cassi",
+          "death_position": [
+            30,
+            18
+          ],
+          "linked_partner": 6,
+          "partner_position": [
+            35,
+            34
+          ],
+          "partner_bag": 24,
+          "separation": 16,
+          "cause": "Enemy Stellar3 spell kills Cassi; linked Issac also dies16 tiles away."
+        },
+        {
+          "round": 198,
+          "actor": 5,
+          "death_position": [
+            22,
+            32
+          ],
+          "partner_position": [
+            35,
+            13
+          ],
+          "separation": 19,
+          "cause": "Both twins die following raw Ren2 attack on Cassi."
+        }
+      ],
+      "limits": [
+        "Opening wait-drop is observed allocation behavior, not evidence of fuel exhaustion.",
+        "A twin escort/reacquisition policy could address this, but it is a strategy change needing separate justification. No such candidate was edited."
+      ]
+    },
+    {
+      "id": "fresh52-cassi-A-loss",
+      "record": "7289bc23271fe11d9f4ef63b8d8a4a184b60bd087d5b674498b30f7a765d8d7d",
+      "scores": [
+        996,
+        1008
+      ],
+      "rounds": 678,
+      "fuel_events_candidate": 0,
+      "conclusion": "Close farm/delivery race. Own final wallet total0, so there is no held winning bag or obvious refused winning channel to fix.",
+      "events": [
+        "R636 Ryth0 banks72 and Cassi2 banks24.",
+        "R653 Issac3 banks36.",
+        "R658 Ren4 banks24 -> own score996.",
+        "Enemy Tavi10 captures24 R657, starts submit at38,30 R675 and completes R678 ->1008."
+      ],
+      "limit": "Not every loss is a glaring implementation bug; this case should not be recast as fuel/alerts or delayed winning-bank failure."
+    }
+  ],
+  "isolated_candidate": {
+    "source": "chase/candidate/src",
+    "diff": "chase/change.diff",
+    "fixture_runner": "chase/run_fixture.py",
+    "fixture_results": "chase/results.json",
+    "gate": "P_DP_CHASE_LETHAL=1. Only engage(champ=true) enables the optional movement context. Uses current s.thr, allows all nonlethal or lower-exposure destinations, checks actual normal/dash/unjam choices and avoids opaque move_towards in guarded fallback. Camps, already-in-range attacks and bank paths retain existing ordering.",
+    "limitations": [
+      "No new native game run for this candidate. Parent owns test selection.",
+      "Model damage is potential ready damage; target focus, initiative and cast exclusivity are not solved.",
+      "A rejected approach can trade tempo for safety; fixture correctness alone does not establish match strength."
+    ]
+  }
+}

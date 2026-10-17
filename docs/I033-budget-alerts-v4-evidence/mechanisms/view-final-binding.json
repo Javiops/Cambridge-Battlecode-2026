@@ -1,0 +1,46 @@
+{
+  "status": "pass",
+  "source": "work/mate-v60/cohort-view/src",
+  "source_sha256": {
+    "alert_fuel.h": "94ea139aa3115812ac3183087eb135f9d939ec1584559798e8b0f04e4a896c38",
+    "combat_cohort.h": "45b84e1ed2dcb788339f4198744bb6c52d67101919525f850a781f7f30f7fc40",
+    "combat_identity.h": "a9251577fdf5977285feb6631128ea9a5ad4c03c1e0aa9df9c7b74d930f847f6",
+    "de_rules.h": "3e50429c96765f325ea3804c2bbb5c13ce26a4119fc7b8694f58def60531221b",
+    "draft_choice_policy.h": "ef05ac879a01e67c3b284bb04d48e9a87c4d51ac3e10e1ad9c3c14660b833767",
+    "draft_plan.h": "d6f1ed51fbbd0773984e933b6dd32ea5b50c5ec7a62a412fc69741c4208b1914",
+    "fight.h": "c4053d3d5b5f5f7bee48410c48cd316424774f68d9680152f0f7c5816f8ed19e",
+    "main.cpp": "1ce3dff4d02910d5e3c32f13cfbd185186b12170b3967c9871d7385b54023ee0",
+    "mapplan.h": "7b01346e46a21d2339533095a21655c3f83d3f4ef28efaa7d142fb7609df247e",
+    "mapplan_game.h": "167f85bf357b70d797e8612f447b7719f956a974af269286fa32f53569948fb6",
+    "opening_replace.h": "ca6680bae82b74b89fd0bb65573904246df8761d8b22e3ce8cb6bd93207207e7",
+    "params.h": "488cfd850b0e7ef51572330160bf3d5a145f776c24caf6e3f9b9573bf56177e5",
+    "profile.h": "fe7e170baa2f69e3beba2fe344c19ade35bfd3cad5516307d2b6e2575571f551",
+    "track.h": "c42448671f1a23f4987182648fd131e3182a7fee47970b20baaf0444ca7f5a0a",
+    "utility.h": "2327653910762d79a0b2ca9aba5b25255bf1d9033c2d39e18a44e4e365afe378",
+    "verdict.h": "ccda1831c4c9bdc2635a9bcef16bc0f631e2018a4cbd36afe1322e332441b24f"
+  },
+  "checks": {
+    "source_manifest_matches_fullSDK_tests": true,
+    "source_manifest_matches_native_release_build": true,
+    "only_two_changed_files": true,
+    "main_only_explicit_memory_include": true,
+    "native_build_pass": true,
+    "sdk_benchmark_matches_native_sdk": true,
+    "benchmark_header_binding": true,
+    "all_mechanism_configurations_pass": true,
+    "all_eight_callers_unchanged": true
+  },
+  "source_fingerprint": "821f162b9c56acfff6d3d644b961e3b8846227f190b9bd570c1a6dfc2f333297",
+  "release_wasm_sha256": "47d988a6219fce3d5fe4008e0d2becb2c5600f6c487d786c7e173f8438bb80da",
+  "mechanism_results": "results.json",
+  "actual_sdk_cpu_proxy": "sdk-benchmark.json",
+  "unchanged_earlier_bindings": "work/mate-v60/final-integration-audit.json",
+  "independent_source_reviews": [
+    "channel_decision_audit: immutable shared ownership and fresh fallback lifetime/alias/round invariants pass.",
+    "replay_interaction_cases: eight call-site mutation order unchanged from reviewed cohort scope."
+  ],
+  "limitations": [
+    "No native games or new profiling run by this agent; native probe belongs to root.",
+    "The guest CPU proxy is not the official native game fuel meter or proof of stronger play."
+  ]
+}

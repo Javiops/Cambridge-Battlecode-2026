@@ -1,0 +1,35 @@
+{
+  "status": "pass",
+  "source": {
+    "de_rules.h": "3e50429c96765f325ea3804c2bbb5c13ce26a4119fc7b8694f58def60531221b",
+    "draft_choice_policy.h": "ef05ac879a01e67c3b284bb04d48e9a87c4d51ac3e10e1ad9c3c14660b833767",
+    "draft_plan.h": "d6f1ed51fbbd0773984e933b6dd32ea5b50c5ec7a62a412fc69741c4208b1914",
+    "fight.h": "2eaa9a671c634d499029f251a6eef66dbd6be052927d3cc8ca8012f4ecc35014",
+    "main.cpp": "ee9b6411a49cff7578ca41cf39decabb2cbcbe2f0f9f8c839b28ebe38e85f617",
+    "mapplan.h": "7b01346e46a21d2339533095a21655c3f83d3f4ef28efaa7d142fb7609df247e",
+    "mapplan_game.h": "167f85bf357b70d797e8612f447b7719f956a974af269286fa32f53569948fb6",
+    "opening_replace.h": "ca6680bae82b74b89fd0bb65573904246df8761d8b22e3ce8cb6bd93207207e7",
+    "params.h": "a08bd51ca85ba411835122c1bb14902cb965fbb95b880bd40786dbebb322ec19",
+    "profile.h": "fe7e170baa2f69e3beba2fe344c19ade35bfd3cad5516307d2b6e2575571f551",
+    "track.h": "c42448671f1a23f4987182648fd131e3182a7fee47970b20baaf0444ca7f5a0a",
+    "utility.h": "2327653910762d79a0b2ca9aba5b25255bf1d9033c2d39e18a44e4e365afe378",
+    "verdict.h": "cea061699b7b7a10e81d5484633dbcb51c100516f8b80e29854bba4f6701e5ee"
+  },
+  "fixture_sha256": "f3f3b1da530d8582c995bdc0bfbfae92ef34e10a5ad162b2e3a69ff1751f2ea8",
+  "results": [
+    {
+      "flag": 0,
+      "stdout": "R47 flag=0 focus=9 from=21,13 to=22,14 exposure=320->879\nR49 flag=0 focus=6 to=24,16 exposure=799->799 (already lethal; no survival claim)\nPASS actual-source checks=17 flag=0\n",
+      "wasm_sha256": "8221f99191c9528c15bb490d8f2232c56bf1026b13e2d7128f6ba8c53066437f"
+    },
+    {
+      "flag": 1,
+      "stdout": "R47 flag=1 focus=9 from=21,13 to=20,12 exposure=320->0\nR49 flag=1 focus=6 to=23,15 exposure=799->799 (already lethal; no survival claim)\nPASS actual-source checks=18 flag=1\n",
+      "wasm_sha256": "48ac147faaf15cdca97b2272fd95162f0e389c5fb61b72f67358d0a46eff61c7"
+    }
+  ],
+  "limits": [
+    "These are native observations from an existing replay; no new match was run.",
+    "The extracted production movement/front functions run on a local mocked board and recorded cached threat data. Exact SDK cost and complete persistent-state decision route are not reproduced."
+  ]
+}

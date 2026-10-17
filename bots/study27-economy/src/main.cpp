@@ -64,6 +64,7 @@
 #include <variant>
 #include <cstdio>
 #include <exception>
+#include "channel_safety.h"
 
 namespace bc = cambc;
 using bc::vec2;
@@ -86,6 +87,9 @@ namespace {
 #endif
 #ifndef P_SHOP_GOLD
 #define P_SHOP_GOLD 300       // recall to shop (when below half health) from this much gold
+#endif
+#ifndef P_DP_CHANNEL_FIX
+#define P_DP_CHANNEL_FIX 1
 #endif
 #ifndef P_LEAN_CAMPS
 #define P_LEAN_CAMPS 1
@@ -217,6 +221,11 @@ namespace {
 #ifndef P_CAPRECALL
 #define P_CAPRECALL 0
 #endif
+// Keep a safely claimable camp reward before a normal/nearby heal or shop recall.
+// Enabled in params.h for an isolated A/B test; off reproduces prior behavior.
+#ifndef P_CAPTURE_RECALL_FIX
+#define P_CAPTURE_RECALL_FIX 0
+#endif
 // P_PATHD 1: camp choice uses walking distances (distance fields) instead of straight-line distance;
 // P_BANKW %: add the bag's round trip to the nearest altar, shared by the squad, to a camp's cost.
 #ifndef P_PATHD
@@ -308,6 +317,29 @@ namespace {
 #ifndef P_DRAFTDIVE
 #define P_DRAFTDIVE 0
 #endif
+// P_DRAFT5 1: with 5 champions the caster draft is Cassi&Issac, Stellar, Varg, Tavi, Ren (what the top 10 won with on
+// the 2026-10-16 maps), instead of Ryth, Stellar, Prism, Ren, Tavi.
+// P_JACKPOT R: a group holding half the map's gems or more that is about as far from both spawns (stampede's centre)
+// is left alone before round R, and gold clusters are farmed even with P_NOGOLD: the top teams buy ~9000 gold of
+// items first and take it by force from r350-475; we walked in at r50 and died 27 times a game.
+#ifndef P_JACKPOT
+#define P_JACKPOT 0
+#endif
+#ifndef P_DRAFT5
+#define P_DRAFT5 0
+#endif
+// P_JACKGO R: from round R the jackpot (P_JACKPOT) is a whole-team job, like P_MONO's monolith: P_JACKN champions
+// commit to it (no "too strong" bail), wait at it while it respawns, and value it P_JACKW times. Online at 13:50 the
+// top teams took it at r305-650 with 2-6 champions while we had 0-1 there (stampede 0-10).
+#ifndef P_JACKGO
+#define P_JACKGO 0
+#endif
+#ifndef P_JACKN
+#define P_JACKN 5
+#endif
+#ifndef P_JACKW
+#define P_JACKW 10
+#endif
 #ifndef P_UNI_PATH
 #define P_UNI_PATH 45
 #endif
@@ -358,6 +390,12 @@ namespace {
 #endif
 #ifndef P_CALLHELP
 #define P_CALLHELP 0
+#endif
+#ifndef P_PVCOMMIT
+#define P_PVCOMMIT 0  // >0 (tiles): with P_PV 2, a "fight" verdict sends us at the weakest foe within this many tiles
+#endif
+#ifndef P_PVKITE
+#define P_PVKITE 0  // fight.h: kite and call for help on a leave verdict
 #endif
 #ifndef P_DANGER_T
 #define P_DANGER_T 40
@@ -476,6 +514,92 @@ inline bool fuel_ok(std::uint64_t need) { return bc::fuel_remaining() > need + F
 int g_errors = 0;
 const char* g_mode = "start";
 const char* g_farm = "-";
+// P_TRACE: one line per turn for behaviour studies (trace builds only; off in every bot we upload).
+#ifndef P_TRACE
+#define P_TRACE 0
+#endif
+int g_nf = 99, g_nfoes = 0, g_nal = 0, g_rew = 0, g_tlive = -1;
+
+// 2026-10-16 behaviour fixes (thread "fix teammate behaviours"). Each is a switch; 0 = the teammate's bot as sent.
+// P_CAPHOME N: a reward of our camp is waiting within N steps and we want to go home (hurt / asked to heal):
+//   step onto it and recall there, so the 5-round capture and the recall run together, instead of recalling or
+//   walking away and leaving the loot (also: no tribute walk while that reward waits for us).
+#ifndef P_CAPHOME
+#define P_CAPHOME 0
+#endif
+#ifndef P_CAPHOME_RSAFE   // 1: only when a recall would start anyway (nobody near enough to interrupt it)
+#define P_CAPHOME_RSAFE 0
+#endif
+#ifndef P_CAPHOME_TRIB    // 1: no tribute walk while our reward waits within 2; 2: only that part (no cap-home recall)
+#define P_CAPHOME_TRIB 1
+#endif
+// P_CAMPFOE N: an enemy champion within 3 (or within N after it hit us in the last 2 rounds) means a fight: hit
+//   it if the fight is favourable and it is in reach, else back off; never spend the turn on a camp.
+#ifndef P_CAMPFOE
+#define P_CAMPFOE 0
+#endif
+// P_NOCHASE2 1: a low-health or channelling foe is only engaged within attack range + 1 (no walking after it),
+//   unless it carries P_CHASE_GEMS+ gems (the user's doctrine: chase only a big bag).
+#ifndef P_NOCHASE2
+#define P_NOCHASE2 0
+#endif
+// P_NEEDHEAL R: waiting for a squad (rally) or for health that no recall will bring (need-heal with 80%+ health or
+//   no safe recall) lasts at most R rounds: the camp is dropped for a while and another one is chosen.
+#ifndef P_NEEDHEAL
+#define P_NEEDHEAL 0
+#endif
+// P_KITEALLY R: kiting steps toward the nearest ally within R tiles (60 a tile past 2), not only toward allies
+//   already within 6.
+#ifndef P_KITEALLY
+#define P_KITEALLY 0
+#endif
+// P_BACKHOME M: right after a tribute at a contested altar (distances to both spawns within M), recall home if
+//   there is no camp to take or the next camp is contested too and (we saw a foe in the last 20 rounds or are
+//   below 80% health); walk home if a recall is not safe.
+#ifndef P_BACKHOME
+#define P_BACKHOME 0
+#endif
+// P_CAPPRIO R: who stays on a reward (the gold and gems go to whoever stands on it): Stellar first (if she claims it
+//   within R tiles or stands next to it), then the other casters, then Ren, the tanks last; ties by distance, then
+//   roster index. A lower-priority champion keeps the capture going until the higher one is on the tiles, then steps off.
+#ifndef P_CAPPRIO
+#define P_CAPPRIO 0
+#endif
+// P_TWINFARM R: Issac farms Cassi's camp (they share one life; online-like local games: 33 of 82 pair deaths came
+//   with Issac alone 9+ tiles from Cassi). With no camp claimed by Cassi he walks back to within R of her.
+// P_NOLEAVE N (the user, 2026-10-16 17:17): a reward of our camp waiting within N tiles is never left behind, except
+//   when staying kills us (the foes' ready damage on our tile, three rounds of it, reaches our health, or we are under
+//   15%) or an ally with more right to the gold takes it (P_ONE_CAP / P_CAPPRIO). We step on, shoot whoever is in
+//   range without moving, and recall on the tiles when we wanted to go home (capture and recall together).
+#ifndef P_NOLEAVE
+#define P_NOLEAVE 0
+#endif
+// P_CACHE 1 (with P_NOLEAVE): a tank that sees a waiting reward posts it in shared bytes 5-6 (group + 1, then 251 +
+//   (round / 16) & 3) instead of taking it; casters and Ren read it as a free reward for 32 rounds and go for it.
+#ifndef P_CACHE
+#define P_CACHE 0
+#endif
+// P_OUTNUM R (the user, 2026-10-16 17:20: corners, Tavi 4 tiles from 3 foes with her allies far away walks toward
+//   them and dies): outnumbered by 2+ within R (allies that are recalling do not count), we back off instead of
+//   kiting, farming or walking on, unless the foe in reach dies to our next hit.
+#ifndef P_OUTNUM
+#define P_OUTNUM 0
+#endif
+// P_DPSFARM 1 (the user, 2026-10-16 17:56: "farming is meant for the DPS to collect and nobody else"): only the DPS
+//   (casters and Ren) capture camps. A tank never chooses its own camp while a DPS has one claimed: it goes to the
+//   DPS's camp nearest to it (Issac to Cassi's), helps kill it and steps off the reward; a reward a tank is left
+//   with is posted in the cache (P_CACHE bytes) for the DPS. DPS do not count tank claims when choosing.
+#ifndef P_DPSFARM
+#define P_DPSFARM 0
+#endif
+#ifndef P_TWINFARM
+#define P_TWINFARM 0
+#endif
+// P_AVOIDFIRST 1 (GA genome b672ef97f6, the user 18:11 idea 6): decide to back off before taking the front line.
+#ifndef P_AVOIDFIRST
+#define P_AVOIDFIRST 0
+#endif
+#include "profile.h"
 
 void note_error(const char* what) {
     ++g_errors;
@@ -498,6 +622,57 @@ bool attempt(F&& f) {
     }
 }
 
+// P_FUELPROF: fuel used per section of the turn, and which section was running when a turn ran out of fuel (the
+// bot is then suspended and resumes in the next round, so the round number changes between two marks).
+// Profiling builds only: printed from debug_block, so run them without --release.
+#ifndef P_FUELPROF
+#define P_FUELPROF 0
+#endif
+// P_FUELGUARD 1: stop turns running out of fuel. A turn that runs out is suspended and the rest of it plays in the
+// champion's next turn, on last round's data, so a champion loses one or two rounds each time (online: ~10 a game,
+// 60+ on lanes). With unlimited fuel the decisions are the same as without it (154 of 154 map sides identical):
+//  - cheaper, same result: one search instead of one per altar at start-up; walking distances to the camp groups
+//    kept while we stand still (capturing); allies out of vision skipped before position() throws in
+//    other_captures; the reward-evacuation check reads the camps near us instead of every visible camp;
+//  - when the turn cannot pay for it: start-up finishes over the first turns (the champion waits on its spawn), an
+//    optional camp re-choice waits for a later turn, log lines are skipped, and the low-fuel fallback step is a
+//    plain greedy step instead of one more path search.
+#ifndef P_FUELGUARD
+#define P_FUELGUARD 0
+#endif
+#if P_FUELPROF
+struct FuelSec { const char* name = "?"; unsigned long long sum = 0, n = 0, mx = 0, over = 0; };
+FuelSec g_fp[32];
+int g_fp_sec = 0, g_fp_round = -1;
+unsigned long long g_fp_last = 0;
+bool g_fp_over = false;
+unsigned long long g_fp_turn[32];
+int g_fp_where = -1;
+void fp_mark(int next, const char* name) {
+    int r = static_cast<int>(bc::round_number());
+    unsigned long long f = bc::fuel_remaining();
+    FuelSec& c = g_fp[g_fp_sec];
+    if (!g_fp_over && r != g_fp_round) { ++c.over; g_fp_over = true; g_fp_where = g_fp_sec; }
+    if (!g_fp_over && g_fp_last >= f) { c.sum += g_fp_last - f; ++c.n; c.mx = std::max(c.mx, g_fp_last - f); g_fp_turn[g_fp_sec] += g_fp_last - f; }
+    g_fp_sec = next; g_fp[next].name = name; g_fp_last = f;
+}
+void fp_begin() {
+    g_fp_round = static_cast<int>(bc::round_number()); g_fp_over = false; g_fp_where = -1;
+    for (auto& t : g_fp_turn) t = 0;
+    g_fp_sec = 0; g_fp[0].name = "pre-sweep"; g_fp_last = bc::fuel_remaining();
+}
+#define FP(i, name) fp_mark(i, name)
+struct FpScope {  // a function's own section; the caller's section resumes when it returns
+    int prev; const char* pname;
+    FpScope(int i, const char* name) : prev(g_fp_sec), pname(g_fp[g_fp_sec].name) { fp_mark(i, name); }
+    ~FpScope() { fp_mark(prev, pname); }
+};
+#define FP_SCOPE(i, name) FpScope fp_scope_{i, name}
+#else
+#define FP(i, name) ((void)0)
+#define FP_SCOPE(i, name) ((void)0)
+#endif
+
 std::string norm(const std::string& s) {
     std::string o;
     for (char c : s) {
@@ -511,6 +686,7 @@ bool starts_with(const std::string& s, const std::string& p) { return s.rfind(p,
 
 #include "de_rules.h"
 int g_de_map = 0;  // Public geometry family, transported in draft-memory byte28.
+#include "draft_plan.h"
 
 // Base monster stats from the rules (health, strength).
 void monster_stats(const bc::camp& c, double& hp, double& str) {
@@ -527,7 +703,7 @@ const char* const PREFS[] = {"vendetta", "varg",  "cassi",   "ryth",  "tavi",  "
                              "marcella", "ren",   "stellar", "prism", "willow"};
 
 void write_plan(const std::vector<std::uint8_t>& roster) {
-    std::array<std::byte, 32> buf{};
+    std::array<std::byte, draftplan::SIZE> buf{};
     buf[0] = std::byte{'C'};
     buf[1] = std::byte{'M'};
     buf[2] = std::byte{'B'};
@@ -540,12 +716,19 @@ void write_plan(const std::vector<std::uint8_t>& roster) {
     buf[25] = static_cast<std::byte>(P.recall_pct);
     buf[26] = static_cast<std::byte>(P.flee_pct);
     buf[27] = static_cast<std::byte>(P.late_round / 10);
+    draftplan::copy_to(buf);
+#if P_DP_MEMORY_FIX
+    draftplan::submit_plan(buf);
+#else
     attempt([&] {
         bc::draft_memory_buffer dm;
         dm = std::span<const std::byte>(buf.data(), buf.size());
         return true;
     });
+#endif
 }
+
+#include "mapplan.h"
 
 [[noreturn]] void run_draft() {
     struct Opt {
@@ -608,6 +791,7 @@ void write_plan(const std::vector<std::uint8_t>& roster) {
         return true;
     });
 #endif
+    draftplan::prepare();
     std::vector<const char*> prefs(std::begin(PREFS), std::end(PREFS));
     if (P_DRAFTCAST) {  // the sparring caster team: VeryGood's draft on every map
         prefs = {"stellar", "tavi", "cassi", "willow", "prism"};
@@ -668,7 +852,18 @@ void write_plan(const std::vector<std::uint8_t>& roster) {
         if (fight_map) {
             if (ts <= 3) prefs = {"cassi", "ren", "stellar"};
             else if (ts == 4) prefs = {"cassi", "ren", "stellar", "tavi"};
+            else if (P_DRAFT5) prefs = {"cassi", "stellar", "varg", "tavi", "ren"};  // top-10 winners' 5-champion draft on the new maps
             else prefs = {"ryth", "stellar", "prism", "ren", "tavi"};
+            for (const char* p : PREFS) prefs.push_back(p);  // fallbacks
+        }
+    }
+    if (P_MAPPLAN) {  // mapplan.h: the draft read from map features
+        MpDraftFeat f = mp_draft_features();
+        auto chosen = mp_draft(f);
+        std::printf("[mapplan] ts=%d altars=%d walls=%d %dx%d path=%d open=%d far_fight=%d\n", f.ts, f.altars, f.walls, f.w, f.h, f.path, f.open,
+                    mp_far_fight(f) ? 1 : 0);
+        if (!chosen.empty()) {
+            prefs = std::move(chosen);
             for (const char* p : PREFS) prefs.push_back(p);  // fallbacks
         }
     }
@@ -733,6 +928,7 @@ struct Group {
     int reward_seen = -1;  // round in which we last saw its reward available
     std::optional<bc::map::camp_group> obj;  // live handle for state() queries
     int spawn_pd = -1, altar_pd = -1;        // P_PATHD: walking distance from our spawn / from the nearest altar
+    bool jackpot = false;                    // P_JACKPOT: most of the map's gems, about as far from both spawns
 };
 
 struct Shard {
@@ -897,6 +1093,10 @@ struct Seen {
 };
 
 struct State {
+    bc::bitboard mp_dashholes, mp_hvis, mp_hole_all;  // mapplan_game.h rule 5: hole tiles a dash crosses, and its field
+    bc::distance_field mp_hdf;
+    int mp_bank_d = -1, mp_home_d = -1, mp_last_g = -1, mp_last_r = -1000;
+    vec2 self_pos;  // mapplan_game.h: median walk from a gem group to its altar / to our spawn
     bool ready = false;
 
     unsigned cf_reach = 0, cf_focus_wait = 0, cf_focus_exit = 0, cf_focus_hit = 0, cf_evac = 0;
@@ -909,6 +1109,7 @@ struct State {
     vec2 spawn_center, en_center;
     std::vector<Group> groups;
     bool mono_only = false;  // P_MONO: every gem on the map sits in a monolith group
+    bool jackpot_map = false;  // P_JACKPOT: a jackpot group exists, so gold clusters are worth farming before it
     std::vector<Shard> shards;
     std::vector<bc::item_type> fallback_items;
     std::vector<Step> plan;
@@ -943,6 +1144,7 @@ struct State {
     vec2 danger_p{0, 0};
     int danger_r = -1000;   // last round an enemy pack was seen at danger_p
     int foe_r = -1000;      // last round this champion saw an enemy champion
+    int nf_d = 99, nf_r = -1000;  // P_CAMPHOLD: nearest enemy champion this round and the round it was measured
     std::vector<Seen> seen; // P_NOCHASE: enemy positions last round
     int seen_r = -10;
     vec2 seen_me{0, 0};     // our own tile last round
@@ -961,7 +1163,17 @@ struct State {
     bc::bitboard tele_va;
     int tele_sa = -1;                // P_TELE: walking distance spawn -> nearest altar
     bc::bitboard pdv;
+    vec2 pd_pos{-1, -1};             // P_FUELGUARD: where pd_gd was measured (walls never change, so it holds there)
+    std::vector<int> pd_gd;          // P_FUELGUARD: walking distance to each camp group from pd_pos (-1 unreached)
+    std::uint64_t ct_cost = 20000;   // P_FUELGUARD: the dearest choose_target so far
+    int init_stage = 0;              // start-up parts done (init)
     int thr_r = -1;
+    int ch_round = -1;
+    vec2 ch_pos{-1,-1};
+    bool ch_complete = false;
+    bool ch_camps_complete = false;
+    std::vector<vec2> ch_foes;
+    std::vector<bc::camp> ch_camps;
     // Capture-recall optional economy policy. Static return-trip distances.
     bc::distance_field cr_home_df;
     bc::bitboard cr_home_seen;
@@ -970,6 +1182,11 @@ struct State {
     int cr_seen = 0, cr_skipped = 0, cr_tavi_skipped = 0;
     int cr_path_unavailable = 0, cr_started = 0, cr_log_round = -1;
     int de_map = 0;
+    bool ranged_me = false;  // P_CACHE: attack range > 1
+    int tank_bits = -1;      // P_DPSFARM: bit k = ally k is a tank (-1 not known yet)
+    bool sub_prev = false;   // P_BACKHOME: we were channelling a tribute last turn
+    int trib_end = -1000;    // P_BACKHOME: round our last tribute finished
+    int wait_start = -1000, wait_group = -1;  // P_NEEDHEAL: first round of the current rally / need-heal wait
     // BR_BANKING_ROUTING: private per-champion, one plan per round/position.
     int br_round = -1, br_choice = -1, br_reason = 0;
     vec2 br_pos{0, 0};
@@ -978,8 +1195,32 @@ struct State {
     bc::bitboard br_risk_block;
     int br_decisions = 0, br_fallbacks = 0, br_routes = 0, br_stops = 0;
     int br_log_round = -1;
+    std::vector<bc::champion> roster_my, roster_en;  // P_ROSTER: the champion handles, read once
+    int oc_round = -1, oc_group = -1, oc_x = -1, oc_y = -1;  // P_OCMEMO: other_captures' answer this turn
+    bool oc_other = false, oc_on = false;
 
 };
+
+// P_ROSTER (2026-10-16 fuel profile): bc::champions(team) cost 3k-23k fuel a call and the handles never change, so
+// read each roster once. P_OCMEMO: other_captures ran up to 4 times a turn (~15k each, the most expensive thing in
+// the turns that ran out of fuel on monolith, stampede, lanes and corners); within one turn its answer only depends
+// on the group and our tile, so it is computed once per (round, group, tile). Same decisions with unlimited fuel.
+#ifndef P_ROSTER
+#define P_ROSTER 0
+#endif
+#ifndef P_OCMEMO
+#define P_OCMEMO 0
+#endif
+inline std::vector<bc::champion> my_roster(State& s) {
+    if (!P_ROSTER) return bc::champions(*s.my);
+    if (s.roster_my.empty()) s.roster_my = bc::champions(*s.my);
+    return s.roster_my;
+}
+inline std::vector<bc::champion> en_roster(State& s) {
+    if (!P_ROSTER) return bc::champions(*s.en);
+    if (s.roster_en.empty()) s.roster_en = bc::champions(*s.en);
+    return s.roster_en;
+}
 
 Slot classify(const bc::ability& a) {
     if (!a.info().has_value()) return Slot::None;
@@ -1072,7 +1313,10 @@ void build_shop(State& s, bc::champion& me) {
     opening36::replace(s.plan, s.de_map, s.name, ((s.de_map == v34de::Rows) ? P_O36_REPLACE : 0));
 }
 
-void init(State& s, bc::champion& me) {
+// Start-up runs in three parts (map and camp groups, fixed walking distances, roles and shop). P_FUELGUARD lets a
+// part wait for the next turn when this one cannot pay for it; with enough fuel all three run in the first turn.
+void init_map(State& s, bc::champion& me) {
+    FP_SCOPE(27, "init-start");
 #ifdef P_CONSTPROBE
     std::printf("[const] capture=%d sleep=%d respawn=%d recall=%d submit_mult=%.3f base=%d min=%d range=%d\n", static_cast<int>(bc::constants::capture_time),
                 static_cast<int>(bc::constants::camp_sleep_time), static_cast<int>(bc::constants::respawn_time),
@@ -1088,7 +1332,22 @@ void init(State& s, bc::champion& me) {
     s.altars = bc::map::altars().positions();
     s.lock_until.assign(s.altars.size(), 0);
     s.altar_ok.assign(s.altars.size(), 1);
-    if (P_ALTAR_REACH)
+    FP(29, "init-altars");
+    if (P_ALTAR_REACH && P_FUELGUARD)
+        attempt([&] {  // one search from where we start; an altar is usable when a tile next to it is reached
+            bc::bitboard wall = bc::map::walls() | bc::map::holes() | bc::map::altars();
+            bc::bitboard roots, seen;
+            roots.set(me.position());
+            bc::distance_field df;
+            df.compute(wall, roots, seen);
+            for (std::size_t i = 0; i < s.altars.size(); ++i) {
+                bc::bitboard ring;
+                ring.draw_chebyshev(s.altars[i], 1.0f);
+                s.altar_ok[i] = (ring & ~wall & seen).is_empty() ? 0 : 1;
+            }
+            return true;
+        });
+    else if (P_ALTAR_REACH)
         attempt([&] {
             bc::bitboard wall = bc::map::walls() | bc::map::holes() | bc::map::altars();
             vec2 home = me.position();
@@ -1102,6 +1361,7 @@ void init(State& s, bc::champion& me) {
             }
             return true;
         });
+    FP(28, "init-spawn");
     s.spawn_tiles = s.my_spawn.positions();
 
     auto centre = [](const std::vector<vec2>& v, vec2 fallback) {
@@ -1121,11 +1381,13 @@ void init(State& s, bc::champion& me) {
         return true;
     });
 
+    FP(21, "init-groups");
     std::vector<bc::map::camp_group> raw_groups;
     attempt([&] {
         raw_groups = bc::map::camp_groups();
         return true;
     });
+    if (P_FUELGUARD) s.groups.reserve(std::min<std::size_t>(raw_groups.size(), MAX_GROUPS));
     for (auto& g : raw_groups) {
         if (s.groups.size() >= MAX_GROUPS) break;
         attempt([&] {
@@ -1159,6 +1421,10 @@ void init(State& s, bc::champion& me) {
         s.mono_only = mono && !other_gems;
     }
 
+}
+
+void init_paths(State& s) {
+    FP_SCOPE(22, "init-dist");
     if (P_PATHD)  // walking distances that never change: our spawn and the altars to every camp group
         attempt([&] {
             bc::bitboard wall = bc::map::walls() | bc::map::holes() | s.en_spawn;
@@ -1179,6 +1445,25 @@ void init(State& s, bc::champion& me) {
             }
             return true;
         });
+    if (P_JACKPOT)  // a jackpot: one group with half the map's gems or more, contested (as far from both spawns)
+        attempt([&] {
+            bc::bitboard wall = bc::map::walls() | bc::map::holes() | s.my_spawn;
+            bc::distance_field fe;
+            bc::bitboard ve;
+            fe.compute(wall, s.en_spawn & ~wall, ve);
+            int total = 0;
+            for (auto& g : s.groups) total += g.gems;
+            for (auto& g : s.groups) {
+                if (g.monolith || g.gems * 2 < total || g.spawn_pd < 0) continue;
+                int be = 1 << 20;
+                for (auto t : g.tiles)
+                    if (ve.is_set(t)) be = std::min(be, static_cast<int>(fe.get(t)));
+                g.jackpot = be < (1 << 20) && std::abs(be - g.spawn_pd) <= 6;
+                if (g.jackpot) s.jackpot_map = true;
+                if (g.jackpot) std::printf("[jackpot] gems=%d of %d, from us %d, from them %d\n", g.gems, total, g.spawn_pd, be);
+            }
+            return true;
+        });
     if (P_TELE)  // walking distance to the altars from everywhere, and from our spawn
         attempt([&] {
             bc::bitboard wall = bc::map::walls() | bc::map::holes() | s.en_spawn, ar;
@@ -1191,10 +1476,14 @@ void init(State& s, bc::champion& me) {
             s.tele_sa = b < (1 << 20) ? b : -1;
             return true;
         });
+}
+
+void init_roles(State& s, bc::champion& me) {
+    FP_SCOPE(25, "init-misc");
     if (P_DRAFTUNI)  // kite/hold only with the #1's caster draft (it always has Stellar; Ren counts as melee)
         attempt([&] {
             bool st = false;
-            for (auto& a : bc::champions(*s.my))
+            for (auto& a : my_roster(s))
                 if (starts_with(norm(bc::to_string(a.champion_name())), "stellar")) st = true;
             s.casters = st;
             if (!st && P_SWEEP >= 3) s.sweep = 2;
@@ -1217,7 +1506,7 @@ void init(State& s, bc::champion& me) {
     if (P_CASTGATE) {
         int ranged = 0;  // the caster ball has 3+ ranged bodies; v19's melee draft has 2 (Cassi, Tavi)
         attempt([&] {
-            for (auto& a : bc::champions(*s.my))
+            for (auto& a : my_roster(s))
                 try {
                     if (a.attack_range() > 1) ++ranged;
                 } catch (...) {
@@ -1243,6 +1532,7 @@ void init(State& s, bc::champion& me) {
                 s.hold_group[k] = s.groups[k].gems > 0 && dist(s.groups[k].center, s.altars[s.hold]) <= P_HOLD_R;
     }
     s.melee = me.attack_range() <= 1;
+    s.ranged_me = !s.melee;
     attempt([&] {
         s.name = norm(bc::to_string(me.champion_name()));
         return true;
@@ -1258,7 +1548,7 @@ void init(State& s, bc::champion& me) {
     }
 
     attempt([&] {
-        auto allies = bc::champions(*s.my);
+        auto allies = my_roster(s);
         s.roster = static_cast<int>(allies.size());
         for (std::size_t i = 0; i < allies.size(); ++i)
             if (allies[i] == me) s.ally_idx = static_cast<int>(i);
@@ -1267,6 +1557,17 @@ void init(State& s, bc::champion& me) {
 
     attempt([&] {
         bc::draft_memory_buffer dm;
+#if P_DP_MEMORY_FIX
+        // Optional cache errors must not suppress the independent legacy settings.
+        attempt([&] { draftplan::load(dm); return true; });
+        const auto legacy=draftplan::read_legacy_settings(dm);
+        if (P_D34_FAMILY && legacy.family>=v34de::Unknown && legacy.family<=v34de::Rows) s.de_map=legacy.family;
+        if (legacy.tribute>=0) P.tribute_gems=legacy.tribute;
+        if (legacy.recall>=0) P.recall_pct=legacy.recall;
+        if (legacy.flee>=0) P.flee_pct=legacy.flee;
+        if (legacy.late>=0) P.late_round=legacy.late;
+#else
+        draftplan::load(dm);
         if (dm.size() >= 28 && dm[0] == std::byte{'C'} && dm[1] == std::byte{'M'} &&
             dm[2] == std::byte{'B'} && dm[3] == std::byte{'1'}) {
             if (P_D34_FAMILY && dm.size() > 28) {
@@ -1280,15 +1581,46 @@ void init(State& s, bc::champion& me) {
             if (fl >= 5 && fl <= 80) P.flee_pct = fl;
             if (lr >= 500 && lr <= 2000) P.late_round = lr;
         }
+#endif
         return true;
     });
 
+    FP(23, "init-shop");
     attempt([&] {
         build_shop(s, me);
         return true;
     });
     s.last_gems = static_cast<int>(me.gem_count());
     s.last_gold = static_cast<int>(me.gold_count());
+
+    // the game plan for this map (profile.h)
+    MapFeatures mf;
+    mf.camps = static_cast<int>(s.groups.size());
+    mf.altars = static_cast<int>(s.altars.size());
+    mf.spawn_dist = dist(s.spawn_center, s.en_center);
+    attempt([&] { mf.team_size = static_cast<int>(bc::draft::team_size()); return true; });
+    attempt([&] { mf.area = static_cast<int>(bc::map::width() * bc::map::height()); return true; });
+    apply_profile(mf);
+}
+
+#include "mapplan_game.h"
+
+// true once start-up is complete. A part that throws is not retried (its stage is counted before it runs).
+bool init(State& s, bc::champion& me) {
+    if (s.init_stage == 0) { s.init_stage = 1; init_map(s, me); }
+    if (s.init_stage == 1) {
+        if (P_FUELGUARD && !fuel_ok(35000)) return false;
+        s.init_stage = 2;
+        init_paths(s);
+        if (P_MAPPLAN && (P_MP_FARHOME || P_MP_FOCUS_FAR || P_MP_SPREAD || P_MP_COMPANY || P_MP_CHAINPLAN)) mp_game_plan(s);  // only the rules that need it: off = v52 games
+    }
+    if (s.init_stage == 2) {
+        if (P_FUELGUARD && !fuel_ok(50000)) return false;
+        s.init_stage = 3;
+        init_roles(s, me);
+        if (P_MAPPLAN && P_MP_DASHHOLE && s.dash_slot >= 0) mp_find_dashholes(s);  // mapplan_game.h rule 5
+    }
+    return true;
 }
 
 // ---------------------------------------------------------------------------
@@ -1359,7 +1691,39 @@ bool volley_mode(bc::champion& me) {
     return true;
 }
 
+// P_FUELGUARD: one step to the free neighbour closest to `to` (straight line), no path search: the turn still moves
+// when it has no fuel left for a search.
+bool greedy_step(State& s, bc::champion& me, vec2 to) {
+    if (!me.can_move()) return false;
+    vec2 pos = me.position();
+    int here = dist(pos, to), bd = here;
+    std::optional<vec2> best;
+    for (int dx = -1; dx <= 1; ++dx)
+        for (int dy = -1; dy <= 1; ++dy) {
+            if (!dx && !dy) continue;
+            vec2 t = pos + vec2(dx, dy);
+            if (!bc::map::is_in_bounds(t) || s.blocked.is_set(t)) continue;
+            int d = dist(t, to);
+            if (d < bd) { bd = d; best = t; }
+        }
+    return best && attempt([&] { return me.move_absolute(*best); });
+}
+
+// P_DASHCALM (2026-10-17, swirl vs Nameless: Ren dashed to the centre at r4 and met all five; 32 of our 66 dashes
+// ended closer to an enemy): while farming, no dash toward a camp in the first P_DASHCALM_OPEN rounds or within
+// P_DASHCALM rounds of seeing an enemy champion. Fleeing and fights keep their dash.
+#ifndef P_DASHCALM
+#define P_DASHCALM 0
+#endif
+#ifndef P_DASHCALM_OPEN
+#define P_DASHCALM_OPEN 40
+#endif
+inline bool g_farm_nodash = false;
+bc::bitboard mp_awake_camp_zone(State& s, vec2 pos);
+int mp_dash_hole_step(State& s, bc::champion& me, const bc::bitboard& goals, const bc::bitboard& vblock, vec2 pos);
 bool step_towards(State& s, bc::champion& me, const bc::bitboard& goals_in, bool use_dash) {
+    FP_SCOPE(16, "step_towards");
+    if (g_farm_nodash) use_dash = false;
     vec2 pos = me.position();
     bc::bitboard goals = goals_in & ~s.blocked;
     if (goals.is_empty() || goals.is_set(pos)) return false;
@@ -1411,6 +1775,7 @@ bool step_towards(State& s, bc::champion& me, const bc::bitboard& goals_in, bool
         vec2 best = ps[0];
         for (auto p : ps)
             if (dist(p, pos) < dist(best, pos)) best = p;
+        if (P_FUELGUARD && !fuel_ok(14000)) return greedy_step(s, me, best);  // move_towards is one more path search
         return attempt([&] { return me.move_towards(best); });
     }
 
@@ -1424,10 +1789,20 @@ bool step_towards(State& s, bc::champion& me, const bc::bitboard& goals_in, bool
             if (dist(p, pos) < dist(best, pos)) best = p;
         return attempt([&] { return me.move_towards(best); });
     };
-    bool ok_field = attempt([&] {
-        s.df.compute_to(vblock, goals, s.dest, s.visited);
-        return s.visited.is_set(pos);
-    });
+    bool ok_field = false;
+    if (P_MAPPLAN && P_MP_CAMPAVOID && fuel_ok(30000)) {  // mapplan_game.h rule 3: walk around awake camps we do not fight
+        bc::bitboard avoid = mp_awake_camp_zone(s, pos);
+        if (!avoid.is_empty())
+            ok_field = attempt([&] {
+                s.df.compute_to(vblock | (avoid & ~goals), goals, s.dest, s.visited);
+                return s.visited.is_set(pos);
+            });
+    }
+    if (!ok_field)
+        ok_field = attempt([&] {
+            s.df.compute_to(vblock, goals, s.dest, s.visited);
+            return s.visited.is_set(pos);
+        });
     if (!ok_field && vol_on) return false;  // every way runs through a ready volley: wait
     if (!ok_field && P_UNJAM) {  // corridor jammed by champions: plan through them
         ok_field = attempt([&] {
@@ -1439,6 +1814,10 @@ bool step_towards(State& s, bc::champion& me, const bc::bitboard& goals_in, bool
     }
     if (!ok_field) return fallback();
 
+    if (P_MAPPLAN && P_MP_DASHHOLE && use_dash && s.dash_slot >= 0 && !s.mp_dashholes.is_empty() && fuel_ok(40000)) {
+        int r = mp_dash_hole_step(s, me, goals, vblock, pos);  // mapplan_game.h rule 5: plan across holes we can dash
+        if (r) return r > 0;
+    }
     bool moved = false;
     if (use_dash && s.dash_slot >= 0 && me.can_cast()) {
         auto ab = me.abilities()[s.dash_slot];
@@ -1500,9 +1879,24 @@ bool u34_target_visible(const U& target) {
 
 vec2 aoe_centre(State& s, bc::champion& me, int k, vec2 tp, int* hits = nullptr);  // P_AOE, defined below
 
+// P_CAMPHOLD (2026-10-17, user: no spells on a camp while an enemy champion is in reach): with an enemy champion
+// within P_CAMPHOLD tiles this round, damage spells and the attack reset are kept for champions. 10 v53 games
+// online: 114 of 808 spells on camps were cast with a foe within 6; Stellar emptied three on a camp at
+// pilgrimage r481-491 with Ren and Varg at 6 tiles.
+#ifndef P_CAMPHOLD
+#define P_CAMPHOLD 0
+#endif
+#ifndef P_TRIBSAFE
+#define P_TRIBSAFE 0
+#endif
+inline bool camp_hold(const State& s, bool champ) {
+    return P_CAMPHOLD && !champ && s.nf_r == static_cast<int>(bc::round_number()) && s.nf_d <= P_CAMPHOLD;
+}
+
 template <class U>
 bool cast_offense(State& s, bc::champion& me, const U& tgt, vec2 tpos, bool champ) {
     if (!me.can_cast() || dist(me.position(), tpos) > SPELL_RANGE) return false;
+    if (camp_hold(s, champ)) return false;
     auto abs = me.abilities();
     for (int k = 0; k < 2; ++k) {
         auto& ab = abs[k];
@@ -1532,7 +1926,7 @@ bool basic_attack(State& s, bc::champion& me, const U& tgt, vec2 tpos) {
         return true;
     });
     // Preserve a reset cooldown when its only selected target disappeared.
-    if (hit && s.reset_slot >= 0 && me.can_cast() &&
+    if (hit && s.reset_slot >= 0 && me.can_cast() && !camp_hold(s, std::is_same_v<U, bc::champion>) &&
         // P_U34_RESET_LIVE 1: only on corners/interlock, spend the reset only if the target is still alive and
         // visible after the first hit; 2: the same check on every map (a dead target wastes the reset).
         (!(P_U34_RESET_LIVE >= 2 || (P_U34_RESET_LIVE && (s.de_map == v34de::Corners || s.de_map == v34de::Interlock))) ||
@@ -1551,6 +1945,7 @@ bool g_ally_near_tgt = false;
 // Full engage on one target: spell, attack, close distance, attack again.
 template <class U>
 bool engage(State& s, bc::champion& me, const U& tgt, vec2 tpos, bool champ, bool dash) {
+    FP_SCOPE(17, "engage");
     int d = dist(me.position(), tpos);
     int range = me.attack_range();
     bool acted = false;
@@ -1668,6 +2063,26 @@ int count_claimers(const State& s, const std::array<std::uint8_t, 8>& sm, int gr
     return n;
 }
 
+// P_DPSFARM: which allies are tanks (anyone but Stellar, the casters and Ren), learned once.
+inline int cap_rank(const std::string& n, bool ranged);
+int tank_bits(State& s) {
+    if (s.tank_bits >= 0) return s.tank_bits;
+    int bits = 0;
+    bool ok = attempt([&] {
+        auto allies = my_roster(s);
+        for (int k = 0; k < static_cast<int>(allies.size()) && k < 16; ++k) {
+            std::string n = norm(bc::to_string(allies[k].champion_name()));
+            bool ranged = !(starts_with(n, "issac") || starts_with(n, "vend") || starts_with(n, "varg") ||
+                            starts_with(n, "ren") || starts_with(n, "marcella") || starts_with(n, "vesper"));
+            if (cap_rank(n, ranged) == 3) bits |= 1 << k;
+        }
+        return true;
+    });
+    if (ok) s.tank_bits = bits;
+    return bits;
+}
+inline bool i_am_tank(State& s) { return PR.dpsfarm && s.ally_idx >= 0 && ((tank_bits(s) >> s.ally_idx) & 1); }
+
 void broadcast_cooldown(int group, int ready_round) {
     if (group < 0 || group > 250) return;
     write_sm(SM_BC_GROUP, static_cast<std::uint8_t>(group + 1));
@@ -1679,12 +2094,16 @@ void broadcast_cooldown(int group, int ready_round) {
 // Camps of the live groups around us, through the group handles (cheap) instead of the
 // vision scan (very expensive). Only camps whose spawn area is in view are returned, so the
 // callers' health() queries do not throw.
-std::vector<bc::camp> near_camps(State& s, vec2 pos) {
+std::vector<bc::camp> near_camps(State& s, vec2 pos, bool* complete = nullptr) {
+    if (complete) *complete=true;
     // Cheap replacement for bc::vision::camps(): only groups near us, and only camps the
     // engine says are in vision (is_visible() reports hidden camps without throwing).
     std::vector<bc::camp> out;
     bc::bitboard tv;  // the engine's own "effective vision", the one state() checks
-    if (!attempt([&] { bc::vision::visible_tiles_into(tv); return true; })) return out;
+    if (!attempt([&] { bc::vision::visible_tiles_into(tv); return true; })) {
+        if (complete) *complete=false;
+        return out;
+    }
     for (auto& g : s.groups) {
         if (!g.obj || dist(g.center, pos) > P_LEAN_RADIUS) continue;
         bool seen = false;  // the engine refuses group queries when no camp spawn tile is in vision
@@ -1699,18 +2118,36 @@ std::vector<bc::camp> near_camps(State& s, vec2 pos) {
             });
             if (resp) continue;
         }
-        attempt([&] {
+        const bool known=attempt([&] {
             for (auto& c : g.obj->camps())
                 if (c.is_visible()) out.push_back(c);
             return true;
         });
+        if (!known && complete) *complete=false;
     }
     return out;
 }
 
+// P_CAPPRIO: capture priority by champion (lower first): Stellar, casters, Ren, tanks.
+inline int cap_rank(const std::string& n, bool ranged) {
+    if (starts_with(n, "stellar")) return 0;
+    if (ranged) return 1;
+    if (starts_with(n, "ren")) return 2;
+    return 3;
+}
 void refresh_groups(State& s, int round) {
     auto sm = read_sm();
     int bg = static_cast<int>(sm[SM_BC_GROUP]) - 1;
+    if (PR.cache && bg >= 0 && bg < static_cast<int>(s.groups.size()) && sm[SM_BC_READY] >= 251) {
+        int stamp = sm[SM_BC_READY] - 251, now = (round / 16) & 3;
+        Group& g = s.groups[bg];
+        if ((stamp == now || stamp == ((now + 3) & 3)) && g.reward_seen < round - 1 && g.next_ok <= round &&
+            cap_rank(s.name, s.ranged_me) <= 2) {
+            g.reward_seen = round - 1;  // a free reward for choose_target (posted by a tank)
+            g.next_ok = 0;
+        }
+        bg = -1;
+    }
     if (bg >= 0 && bg < static_cast<int>(s.groups.size())) {
         int ready = static_cast<int>(sm[SM_BC_READY]) * 8;
         if (ready > round) s.groups[bg].next_ok = std::max(s.groups[bg].next_ok, ready);
@@ -1727,6 +2164,7 @@ void refresh_groups(State& s, int round) {
             if (std::holds_alternative<bc::map::camp_group_respawning>(st)) {
                 int timer = std::get<bc::map::camp_group_respawning>(st).timer;
                 int ready = round + std::max(1, timer) + 1;
+                if (P_MAPPLAN && P_MP_CHAINPLAN && g.reward_seen >= round - 3 && g.gems > 0 && dist(s.self_pos, g.center) <= 6) { s.mp_last_g = i; s.mp_last_r = round; }  // rule 9: captured next to us
                 if (ready > g.next_ok + 4) broadcast_cooldown(i, ready);
                 g.next_ok = std::max(g.next_ok, ready);
                 g.reward_seen = -1;
@@ -1754,10 +2192,16 @@ double my_dps(State& s, bc::champion& me) {
 // Smallest squad that can clear `hp_g` health of `str_g` total strength when each
 // member deals `dps` and can afford to lose `afford` health: with n members the
 // fight lasts hp_g/(dps*n) rounds and each takes str_g/n per round.
+// P_MP_FOCUS S (mapplan, rule 4): camps with strength S+ (elks) focus one champion, so it takes the whole fight's damage:
+// hp*str/(dps*n) must fit in one body, not hp*str/(dps*n*n). 0 = the old model everywhere.
+#ifndef P_MP_FOCUS
+#define P_MP_FOCUS 0
+#endif
 int squad_needed(double hp_g, double str_g, double dps, double afford) {
     if (str_g <= 0) return 1;
+    const bool focus = P_MAPPLAN && P_MP_FOCUS && str_g >= P_MP_FOCUS && (!P_MP_FOCUS_FAR || g_mp_far);
     for (int n = 1; n <= 5; ++n)
-        if (hp_g * str_g / (dps * n * n) <= afford) return n;
+        if (hp_g * str_g / (dps * n * (focus ? 1 : n)) <= afford) return n;
     return 6;
 }
 
@@ -1801,7 +2245,7 @@ void update_danger(State& s, const std::vector<Foe>& foes, int round) {
             break;
         }
     }
-    if (P_CALLHELP) return;  // byte 7 belongs to the help call then
+    if (P_CALLHELP || P_PVKITE) return;  // byte 7 belongs to the help call then
     if (s.danger_r == round) {
         int ai = -1, ad = P_DANGER_R + 1;
         for (std::size_t i = 0; i < s.altars.size() && i < 7; ++i)
@@ -1822,7 +2266,21 @@ void update_danger(State& s, const std::vector<Foe>& foes, int round) {
 bool grouped(const State& s, int round) { return P_GROUP && P_DANGER && s.danger_r > -1000 && round - s.danger_r <= P_GROUP; }
 bool ball_on(const State& s, int round) { return (P_BALL && s.casters) || grouped(s, round); }
 
+int choose_target_impl(State& s, bc::champion& me, int round);
+// P_FUELGUARD: the dearest choose_target seen so far (it grows with the number of camp groups and with walls),
+// so a caller can skip an optional re-choice when the turn could not pay for it plus a step afterwards.
 int choose_target(State& s, bc::champion& me, int round) {
+    if (!P_FUELGUARD) return choose_target_impl(s, me, round);
+    std::uint64_t f0 = bc::fuel_remaining();
+    int t = choose_target_impl(s, me, round);
+    std::uint64_t f1 = bc::fuel_remaining();
+    if (f0 > f1) s.ct_cost = std::max<std::uint64_t>(s.ct_cost, f0 - f1);
+    return t;
+}
+bool can_choose(const State& s) { return !P_FUELGUARD || fuel_ok(s.ct_cost + 12000); }
+
+int choose_target_impl(State& s, bc::champion& me, int round) {
+    FP_SCOPE(15, "choose_target");
     auto sm = read_sm();
     vec2 pos = me.position();
     double hp = me.health();
@@ -1835,7 +2293,7 @@ int choose_target(State& s, bc::champion& me, int round) {
     std::optional<vec2> lead_p;
     if (ball_on(s, round) && s.ally_idx > 0)
         attempt([&] {
-            auto allies = bc::champions(*s.my);
+            auto allies = my_roster(s);
             for (int k = 0; k < s.ally_idx && k < static_cast<int>(allies.size()); ++k) {
                 if (!allies[k].is_alive()) continue;
                 if (k < claim_slots(s)) {
@@ -1847,16 +2305,34 @@ int choose_target(State& s, bc::champion& me, int round) {
             }
             return true;
         });
-    bool have_pd = P_PATHD && attempt([&] {  // walking distance from here to every camp group
+    bool cached = P_FUELGUARD && P_PATHD && s.pd_pos == pos && s.pd_gd.size() == s.groups.size();
+    bool have_pd = cached || (P_PATHD && attempt([&] {  // walking distance from here to every camp group
         bc::bitboard roots, wall = s.static_block;
         roots.set(pos);
         wall.set(pos, false);
         s.pdf.compute(wall, roots, s.pdv, 200);
         return true;
-    });
+    }));
+    if (P_FUELGUARD && P_PATHD && have_pd && !cached) {  // the walking distance to each group, read once per tile
+        s.pd_gd.assign(s.groups.size(), -1);
+        attempt([&] {
+            for (std::size_t i = 0; i < s.groups.size(); ++i) {
+                int b = 1 << 20;
+                for (auto t : s.groups[i].tiles)
+                    if (s.pdv.is_set(t)) b = std::min(b, static_cast<int>(s.pdf.get(t)));
+                s.pd_gd[i] = b < (1 << 20) ? b : -1;
+            }
+            s.pd_pos = pos;
+            return true;
+        });
+    }
     auto walk = [&](const Group& g) {
         int d = dist(pos, g.center);
         if (!have_pd) return d;
+        if (P_FUELGUARD && s.pd_pos == pos && s.pd_gd.size() == s.groups.size()) {
+            int b = s.pd_gd[static_cast<std::size_t>(&g - s.groups.data())];
+            return b >= 0 ? b : d * 3 / 2;
+        }
         int b = 1 << 20;
         for (auto t : g.tiles)
             if (s.pdv.is_set(t)) b = std::min(b, static_cast<int>(s.pdf.get(t)));
@@ -1870,18 +2346,27 @@ int choose_target(State& s, bc::champion& me, int round) {
         if (!held && P_DANGER && round - s.danger_r <= P_DANGER_T && dist(g.center, s.danger_p) <= P_DANGER_R) continue;
         int wait = g.next_ok - round;  // > 0: respawning
         int gd = walk(g);
-        if (wait > 0 && (!P_RESPAWN || g.monolith || wait > gd + P_RESPAWN)) continue;
+        const bool jack_go = P_JACKGO && g.jackpot && round >= P_JACKGO;
+        if (wait > 0 && !(jack_go && wait <= gd + 40) && (!P_RESPAWN || g.monolith || wait > gd + P_RESPAWN)) continue;
         if (g.gems + g.gold <= 0) continue;
-        if (P_NOGOLD && g.gems <= 0 && !s.mono_only) continue;  // gold-only clusters give no gems (but gold is the tiebreak where only monoliths give gems)
+        if (P_JACKPOT && g.jackpot && round < P_JACKPOT) continue;  // farm gold and buy first, as the top teams do (stampede: first visit r350-475)
+        if (P_NOGOLD && g.gems <= 0 && !s.mono_only && !s.jackpot_map) continue;  // gold-only clusters give no gems (but gold is the tiebreak where only monoliths give gems)
         int claimers = count_claimers(s, sm, i);
+        if (PR.dpsfarm && !i_am_tank(s))
+            for (int k = 0; k < claim_slots(s); ++k)
+                if (k != s.ally_idx && ((tank_bits(s) >> k) & 1) && claim_value(s, sm, k) == i + 1) --claimers;
         bool free_reward = g.reward_seen >= 0 && round - g.reward_seen < 30;
         double afford = std::max(1.0, mhp * (1.0 - P_RESERVE_PCT / 100.0));
         int needed = free_reward ? 1 : squad_needed(g.hp, g.str, dps, afford);
         bool mono_go = s.mono_only && g.monolith;  // its damage stays, so the team wears it down over several trips
         if (mono_go) needed = std::min(needed, s.roster);
+        const int jack_n = std::max(1, std::min(P_JACKN, s.roster));
+        if (jack_go) needed = std::min(needed, jack_n);
         if (needed > s.roster) continue;  // not with this team, not with these stats
         int cap = g.str > 0 ? std::max(needed, P_MAX_SHARE) : 1;
+        if (g.str > 0 && mp_spread(s)) cap = needed;  // mapplan_game.h rule 7: no stacking past what the camp needs
         if (mono_go) cap = free_reward ? 1 : s.roster;
+        if (jack_go) cap = jack_n;
         if (P_PAIR && g.str <= 0 && g.gems > 0) cap = P_PAIR;  // gem clusters: a pair kills twice as fast
         bool pot = P_POT && i < static_cast<int>(s.pot_group.size()) && s.pot_group[i];
         if (pot) cap = std::max(cap, 2);
@@ -1899,17 +2384,19 @@ int choose_target(State& s, bc::champion& me, int round) {
         if (P_R34_BANKCOST && (s.de_map == v34de::Expanse || s.de_map == v34de::Monolith) && g.gems > 0 && g.altar_pd >= 0)
             rounds += ((s.de_map == v34de::Monolith ? 100 : P_R34_BANKCOST) / 100.0) * 2.0 * std::max(0, g.altar_pd - 1) / team;
         bool pack = P_PACKOPEN && round < P_PACKOPEN;  // opening: everybody on the best camp together
-        double value = (g.gems + gold_w * g.gold) / (pack ? 1.0 : std::pow(static_cast<double>(team), ((g.monolith || g.hp < P_STACK_HP) ? 100 : P_SHAREEXP) / 100.0));  // big camps (P_STACK_HP+): a joiner keeps more of the value, so champions stack there
+        double value = (g.gems + gold_w * g.gold) / (pack ? 1.0 : std::pow(static_cast<double>(team), ((g.monolith || g.hp < P_STACK_HP || mp_spread(s)) ? 100 : P_SHAREEXP) / 100.0));  // big camps (P_STACK_HP+): a joiner keeps more of the value, so champions stack there
         double score = value / std::max(1.0, rounds);
-        if (needed > 1 + claimers) score *= 0.7;              // still needs company
+        if (needed > 1 + claimers) score *= (mp_far_trip(s, gd) && P_MP_COMPANY) ? P_MP_COMPANY / 100.0 : 0.7;  // still needs company (rule 8)
         if (claimers > 0 && g.str == 0 && !(P_PAIR && g.gems > 0 && claimers < P_PAIR) && !(pot && claimers < 2)) score *= pack ? 1.0 : 0.3;  // clusters are a solo job
         if (pot) score *= P_POT / 100.0;  // the centre pot pays 48 a pair next to the altar
         if (dist(g.center, s.en_center) < 8) score *= 0.6;    // stay off their doorstep
-        if (P_HALF && dist(g.center, s.spawn_center) - dist(g.center, s.en_center) > 6) score *= P_HALF / 100.0;
+        if (P_HALF && !(mp_spread(s) && P_MP_HALFOFF) && dist(g.center, s.spawn_center) - dist(g.center, s.en_center) > 6) score *= P_HALF / 100.0;
         if (held) score *= P_HOLD / 100.0;
         if (lead) score *= (P_BALL && s.casters) ? P_BALL : P_GROUP_W;
         else if (lead_p && dist(g.center, *lead_p) > 8) score *= 0.3;
-        if (i == s.target) score *= P_STICK / 100.0;          // hysteresis
+        if (mp_chain_next(s, me, g, i, round)) score *= P_MP_CHAINPLAN / 100.0;  // rule 9: the squad moves on to the next camp
+        if (i == s.target) score *= (P_MAPPLAN && P_MP_STICK && gd >= P_MP_STICK_D) ? P_MP_STICK / 100.0 : P_STICK / 100.0;  // hysteresis (mapplan_game.h rule 6)
+        if (jack_go) score *= P_JACKW;
 #ifdef P_DBGT
         if (round >= P_DBGT && round < P_DBGT + P_DBGT_LEN) std::printf("[dbgt] r%d %s g%d gems=%d gold=%d d=%d need=%d cl=%d wait=%d score=%.3f\n", round, s.name.c_str(), i, g.gems, g.gold, dist(pos, g.center), needed, claimers, wait, score);
 #endif
@@ -1963,6 +2450,7 @@ int br_ring_distance(const bc::distance_field& field, const bc::bitboard& reache
 
 int br_altar_penalty(State& s, vec2 a, int i, int round) {
     int cost = s.lock_until[i] > round ? 40 : 0;
+    cost += draftplan::altar_penalty(a);
     if (P_ALTAR_SAFE && s.vis.is_set(a))
         attempt([&] {
             for (auto& e : bc::vision::champions(*s.en))
@@ -2063,6 +2551,7 @@ bool br_plan(State& s, vec2 pos, int round) {
 }
 
 std::optional<vec2> best_altar(State& s, vec2 pos, int round) {
+    FP_SCOPE(18, "best_altar");
     if (s.br_round != round || !(s.br_pos == pos)) {
         s.br_round = round; s.br_pos = pos; s.br_choice = -1;
         s.br_safe_route = false; s.br_reason = 0;
@@ -2081,6 +2570,7 @@ std::optional<vec2> best_altar(State& s, vec2 pos, int round) {
 }
 
 int br_altar_distance(State& s, vec2 altar, vec2 pos, int round) {
+    FP_SCOPE(19, "br_altar_dist");
     best_altar(s, pos, round);
     for (std::size_t i = 0; i < s.altars.size(); ++i)
         if (s.altars[i] == altar && s.br_lengths[i] >= 0) return s.br_lengths[i];
@@ -2135,13 +2625,99 @@ void br_note(State& s, int round, int length, bool used_safe) {
 }
 
 
+// Local channel guard: baseline recall policy plus currently observed exposure.
+// It does not project a hypothetical stationary fight over the entire channel.
+bool channel_eligible(State& s, bc::champion& me, int round, bool recall) {
+    if (!P_DP_CHANNEL_FIX) return true;
+    if (static_cast<int>(bc::round_number())!=round || s.ch_round!=round || !s.ch_complete ||
+        (recall && !s.ch_camps_complete)) return false;
+    const vec2 p=me.position();
+    int nearest=99;
+    for (auto fp:s.ch_foes) nearest=std::min(nearest,dist(p,fp));
+    std::vector<bc::camp> moved_camps;
+    const auto* camps=&s.ch_camps;
+    bool unknown_near=false;
+    if (!(p==s.ch_pos)) {
+        // A move may reveal bodies absent from the pre-move snapshot. Only read
+        // positions here; never build another ability/stat observer.
+        if (!fuel_ok(7000)) return false;
+        if (!attempt([&] {
+            for (auto c:bc::vision::champions(*s.en)) {
+                if (!c.is_alive()) continue;
+                const vec2 cp=c.position();
+                nearest=std::min(nearest,dist(p,cp));
+                bool known=false;
+                for (auto fp:s.ch_foes) if (fp==cp) { known=true; break; }
+                if (!known && dist(p,cp)<=8) unknown_near=true;
+            }
+            return true;
+        })) return false;
+        if (recall) {
+            bool complete=true;
+            moved_camps=near_camps(s,p,&complete);
+            if (!complete) return false;
+            camps=&moved_camps;
+        }
+    }
+    if (!recall && P_TRIBSAFE && nearest<=P_TRIBSAFE) return false;
+    bool camp_near=false;
+    if (recall) for (auto c:*camps) {
+        if ((!c.is_wolf() && !c.is_elk() && !c.is_monolith()) || dist(c.spawn_position(),p)>CAMP_RANGE+1) continue;
+        if (!fuel_ok(5000)) return false;
+        if (!attempt([&] {
+            const int range=c.attack_range();
+            if (range<=0 || !c.is_awake()) return true;
+            const int d=dist(c.position(),p);
+            camp_near|=d<=range+1;
+            return true;
+        })) return false;
+    }
+    double enemy_damage=0;
+    bool control=false;
+    if (!s.ch_foes.empty()) {
+        if (s.thr_r!=round) return false;
+        enemy_damage=danger_at(s.thr,p);
+        for (const auto& t:s.thr) if (t.sr>=0 && dist(p,t.p)<=t.sr+1) control=true;
+    }
+    bool safe=nearest>7;
+    if (P_SAFE_RECALL) safe=safe && nearest>8 && round-s.hit_round>2;
+    const bool near_safe=s.rnear && nearest>=s.rnear && round-s.hit_round>=1;
+    const bool capture=s.target>=0 && s.target<static_cast<int>(s.groups.size()) &&
+        s.groups[s.target].reward_seen==round && s.groups[s.target].mask.is_set(p) && nearest>8;
+    const bool allowed=channel_safety::local_allowed(recall,safe||near_safe||capture,
+        camp_near,enemy_damage,me.health(),control,unknown_near);
+    return allowed && static_cast<int>(bc::round_number())==round;
+}
+bool start_recall(State& s, bc::champion& me, int round) {
+    if (P_DP_CHANNEL_FIX && !attempt([&] { return channel_eligible(s,me,round,true); })) return false;
+    return attempt([&] {
+        if (P_DP_CHANNEL_FIX && static_cast<int>(bc::round_number())!=round) return false;
+        const bool was_outside = P_DP_CHANNEL_FIX && !s.my_spawn.is_set(me.position());
+        me.recall();
+        return !P_DP_CHANNEL_FIX || me.is_recalling() || (was_outside && s.my_spawn.is_set(me.position()));
+    });
+}
+bool start_submission(State& s, bc::champion& me, vec2 altar, int round) {
+    if (P_DP_CHANNEL_FIX && !attempt([&] { return channel_eligible(s,me,round,false); })) return false;
+    return attempt([&] {
+        if (P_DP_CHANNEL_FIX && static_cast<int>(bc::round_number())!=round) return false;
+        const auto before = P_DP_CHANNEL_FIX ? me.gem_count() : 0;
+        me.submit_gems(altar);
+        return !P_DP_CHANNEL_FIX || me.is_submitting_gems() || me.gem_count()<before;
+    });
+}
+
 bool go_tribute(State& s, bc::champion& me, int round) {
+    FP_SCOPE(20, "go_tribute");
     vec2 pos = me.position();
     auto a = best_altar(s, pos, round);
     if (!a) return false;
     const int length = br_altar_distance(s, *a, pos, round);
+    // P_TRIBSAFE (2026-10-17, monolith r110-125 vs Nameless: Varg tributed 5 rounds with their Ryth hitting him,
+    // 900 -> 420 hp, then lost the trade and died): no tribute starts with an enemy champion within P_TRIBSAFE.
+    if (P_TRIBSAFE && dist(pos, *a) <= 1 && s.nf_r == round && s.nf_d <= P_TRIBSAFE) return false;
     if (dist(pos, *a) <= 1) {
-        bool acted = attempt([&] { me.submit_gems(*a); return true; });
+        bool acted = start_submission(s, me, *a, round);
         br_note(s, round, length, false);
         return acted;
     }
@@ -2156,10 +2732,11 @@ bool go_tribute(State& s, bc::champion& me, int round) {
         ring.draw_chebyshev(*a, 1.0f);
         moved = step_towards(s, me, ring, true);
     }
-    if (dist(me.position(), *a) <= 1)
-        attempt([&] { me.submit_gems(*a); return true; });
+    bool submitted = false;
+    if (dist(me.position(), *a) <= 1 && !(P_TRIBSAFE && s.nf_r == round && s.nf_d <= P_TRIBSAFE))
+        submitted = start_submission(s, me, *a, round);
     br_note(s, round, length, used_safe);
-    return moved;
+    return moved || (P_DP_CHANNEL_FIX && submitted);
 }
 
 // Step (and dash) to the reachable neighbour that is farthest from the enemies,
@@ -2294,11 +2871,120 @@ vec2 aoe_centre(State& s, bc::champion& me, int k, vec2 tp, int* hits) {
     return best;
 }
 
+#include "track.h"
 #include "fight.h"
+#include "verdict.h"
+
+
+// ---------------------------------------------------------------------------
+// Proven safe match closure: when the missing score is already carried or the
+// team is within P_DP_FINISH_NEAR of 1000, carriers prioritise a safe tribute.
+// ---------------------------------------------------------------------------
+bool dp_finish_bank(State& s, bc::champion& me, const std::vector<Foe>& foes,
+                    int round, int gems, float hpr, bool on_spawn) {
+    if (!P_DP_FINISH || !s.my || gems <= 0) return false;
+    std::uint32_t submitted = 0;
+    if (!attempt([&] { submitted = bc::global_submitted_gems(*s.my); return true; })) return false;
+    if (submitted >= 1000) return false;
+    const int need = 1000 - static_cast<int>(submitted);
+
+    int known_bags = gems;
+    attempt([&] {
+        for (auto& a : bc::vision::champions(*s.my)) {
+            if (a == me || !a.is_alive()) continue;
+            known_bags += static_cast<int>(a.gem_count());
+        }
+        return true;
+    });
+    if (need > P_DP_FINISH_NEAR && known_bags < need && gems < need) return false;
+
+    int nearest = 99;
+    for (auto& f : foes) nearest = std::min(nearest, f.d);
+    if (on_spawn && hpr < 0.90f) { g_mode = "finish-heal"; return true; }
+
+    if (!on_spawn && hpr * 100 < P_DP_FINISH_RECALL_HP && nearest > 8) {
+        g_mode = "finish-recall";
+        if (start_recall(s, me, round)) return true;
+    }
+
+    const vec2 pos = me.position();
+    bc::bitboard risk;
+    bool risk_ok = br_threat_block(s, pos, round, risk);
+    if (!risk_ok) risk = s.blocked;
+    risk.set(pos, false);
+    if (P_DANGER && round - s.danger_r <= P_DANGER_T) {
+        bc::bitboard old_pack;
+        old_pack.draw_chebyshev(s.danger_p, static_cast<float>(P_DANGER_R + 1));
+        risk |= old_pack;
+        risk.set(pos, false);
+    }
+
+    bc::bitboard roots, reached;
+    roots.set(pos);
+    bc::distance_field field;
+    bool path_ok = attempt([&] { field.compute(risk, roots, reached, 400); return true; });
+    int best = -1, best_cost = 1 << 29;
+    if (path_ok) {
+        for (int i = 0; i < static_cast<int>(s.altars.size()); ++i) {
+            if (i < static_cast<int>(s.altar_ok.size()) && !s.altar_ok[i]) continue;
+            int len = br_ring_distance(field, reached, risk, s.altars[i]);
+            if (len < 0) continue;
+            int cost = len + draftplan::altar_penalty(s.altars[i]);
+            cost += std::max(0, 10 - dist(s.altars[i], s.en_center)) * 6;
+            if (P_DANGER && round - s.danger_r <= P_DANGER_T &&
+                dist(s.altars[i], s.danger_p) <= P_DANGER_R + 2) cost += 80;
+            if (cost < best_cost) { best_cost = cost; best = i; }
+        }
+    }
+
+    if (best >= 0) {
+        const vec2 altar = s.altars[best];
+        if (dist(pos, altar) <= 1 && nearest >= 5) {
+            g_mode = "finish-submit";
+            return start_submission(s, me, altar, round);
+        }
+        s.br_risk_block = risk;
+        g_mode = "finish-safe";
+        if (br_safe_move(s, me, altar)) {
+            if (dist(me.position(), altar) <= 1) {
+                int now_near = 99;
+                for (auto& f : foes) now_near = std::min(now_near, dist(me.position(), f.p));
+                if (now_near >= 5)
+                    start_submission(s, me, altar, round);
+            }
+            return true;
+        }
+    }
+
+    if (!foes.empty() && nearest <= 8) {
+        g_mode = "finish-avoid";
+        fight::back_off(s, me, foes, round);
+        return true;
+    }
+    g_mode = "finish-fallback";
+    return go_tribute(s, me, round);
+}
+
+bool g_cap_other_on = false;  // P_CAPPRIO: the ally that takes the reward already stands on it
 
 // One capturer per reward: among the allies on the reward or claiming it within 4 tiles,
 // the nearest one (lowest index on ties) captures; everybody else leaves.
+bool other_captures_impl(State& s, bc::champion& me, const Group& g, int gi);
 bool other_captures(State& s, bc::champion& me, const Group& g, int gi) {
+    if (!P_OCMEMO) return other_captures_impl(s, me, g, gi);
+    const int round = static_cast<int>(bc::round_number());
+    vec2 p = me.position();
+    if (s.oc_round == round && s.oc_group == gi && s.oc_x == X(p) && s.oc_y == Y(p)) {
+        g_cap_other_on = s.oc_on;
+        return s.oc_other;
+    }
+    bool o = other_captures_impl(s, me, g, gi);
+    s.oc_round = round; s.oc_group = gi; s.oc_x = X(p); s.oc_y = Y(p);
+    s.oc_other = o; s.oc_on = g_cap_other_on;
+    return o;
+}
+bool other_captures_impl(State& s, bc::champion& me, const Group& g, int gi) {
+    FP_SCOPE(24, "other_captures");
     auto mask_dist = [&](vec2 p) {
         int d = 99;
         for (auto t : g.tiles) d = std::min(d, dist(p, t));
@@ -2307,16 +2993,34 @@ bool other_captures(State& s, bc::champion& me, const Group& g, int gi) {
     int mine = mask_dist(me.position());
     auto sm = read_sm();
     bool other = false;
+    g_cap_other_on = false;
+    if (i_am_tank(s)) return true;  // P_DPSFARM: a tank never takes a reward
+    const int my_rank = PR.capprio ? cap_rank(s.name, me.attack_range() > 1) : 0;
+    std::vector<bc::champion> seen;  // P_FUELGUARD: allies in vision (position() of any other one throws)
+    if (P_FUELGUARD) attempt([&] { seen = bc::vision::champions(*s.my); return true; });
     attempt([&] {
-    auto allies = bc::champions(*s.my);
+    auto allies = my_roster(s);
     for (std::size_t k = 0; k < allies.size() && !other; ++k) {
         auto& a = allies[k];
+        if (P_FUELGUARD && std::find(seen.begin(), seen.end(), a) == seen.end()) continue;
         // One ally per attempt: an ally out of our vision throws on position(), and with a
         // single attempt around the loop that aborted it, so nobody ever left the reward.
         try {
             if (a == me || !a.is_alive()) continue;
+            if (PR.dpsfarm && ((tank_bits(s) >> k) & 1)) continue;  // tanks step off, they never capture
             int d = mask_dist(a.position());
             bool claims = k < static_cast<std::size_t>(claim_slots(s)) && claim_value(s, sm, static_cast<int>(k)) == gi + 1;
+            if (PR.capprio) {
+                if (a.is_recalling() || a.is_teleporting()) continue;
+                int ar = cap_rank(norm(bc::to_string(a.champion_name())), a.attack_range() > 1);
+                bool counts = ar == 0 && my_rank > 0 ? ((claims && d <= PR.capprio) || d <= 1) : ((claims && d <= 4) || d == 0);
+                if (!counts) continue;
+                if (ar < my_rank || (ar == my_rank && (d < mine || (d == mine && static_cast<int>(k) < s.ally_idx)))) {
+                    other = true;
+                    g_cap_other_on = d == 0;
+                }
+                continue;
+            }
             // P_CAPCLAIM: only allies still claiming the group count. Allies that already chose to
             // leave stand on the tiles for one more turn, and counting them made everybody leave.
             if (P_CAPCLAIM ? !(claims && d <= 4) : !(d == 0 || (claims && d <= 4))) continue;
@@ -2366,7 +3070,8 @@ bool cf_available(const bc::champion& a) {
 
 // Leave only for an ally ALREADY occupying the reward. Merely approaching or
 // claiming allies never justify emptying the region and resetting capture.
-bool cf_evac_reward(State& s, bc::champion& me, Group& g, int round) {
+bool cf_evac_reward(State& s, bc::champion& me, Group& g, int round, const std::vector<bc::camp>* near = nullptr) {
+    FP_SCOPE(26, "evac");
     const vec2 pos = me.position();
     if (!g.mask.is_set(pos) || !me.can_move() || !fuel_ok(28000)) return false;
     bool present = false;
@@ -2381,7 +3086,8 @@ bool cf_evac_reward(State& s, bc::champion& me, Group& g, int round) {
     }
     if (!present) return false;
     std::vector<std::pair<vec2, int>> monsters;
-    for (const auto& c : bc::vision::camps()) {
+    // P_FUELGUARD: the camps within 12 (play_turn's list) are the only ones that can reach a tile next to us.
+    for (const auto& c : (P_FUELGUARD && near) ? *near : bc::vision::camps()) {
         if (!fuel_ok(16000)) return false;
         bool observed = attempt([&] {
             // Camp wake/aggro is not exposed: avoid every visible damaging
@@ -2397,7 +3103,7 @@ bool cf_evac_reward(State& s, bc::champion& me, Group& g, int round) {
     const int old_target = s.target, old_bad = g.bad_until;
     g.bad_until = round + 1;
     int alternate = -1;
-    attempt([&] { alternate = choose_target(s, me, round); return true; });
+    if (can_choose(s)) attempt([&] { alternate = choose_target(s, me, round); return true; });
     g.bad_until = old_bad;
     if (!fuel_ok(16000)) return false;
     if (alternate < 0 || alternate == old_target) return false;
@@ -2432,15 +3138,91 @@ bool cf_evac_reward(State& s, bc::champion& me, Group& g, int round) {
 }
 
 void farm(State& s, bc::champion& me, int round, const std::vector<bc::camp>& camps) {
+    struct NoDash {
+        ~NoDash() { g_farm_nodash = false; }
+    } nodash_reset;
+    g_farm_nodash = P_DASHCALM && (round < P_DASHCALM_OPEN || round - s.foe_r <= P_DASHCALM);
     vec2 pos = me.position();
     double hp = me.health();
     double mhp = std::max(1.0, static_cast<double>(me.max_health()));
+    if (i_am_tank(s)) {  // P_DPSFARM: go where a DPS farms
+        auto sm = read_sm();
+        int best = -1, bd = 1 << 30, tb = tank_bits(s);
+        bool issac = starts_with(s.name, "issac");
+        attempt([&] {
+            auto allies = my_roster(s);
+            for (int k = 0; k < claim_slots(s) && k < static_cast<int>(allies.size()); ++k) {
+                if (k == s.ally_idx || ((tb >> k) & 1) || !allies[k].is_alive()) continue;
+                int c = static_cast<int>(claim_value(s, sm, k)) - 1;
+                if (c < 0 || c >= static_cast<int>(s.groups.size()) || s.groups[c].bad_until > round) continue;
+                int d = dist(pos, s.groups[c].center);
+                if (issac && starts_with(norm(bc::to_string(allies[k].champion_name())), "cassi")) d -= 1000;
+                if (d < bd) { bd = d; best = c; }
+            }
+            return true;
+        });
+        if (best >= 0 && best != s.target) {
+            s.target = best;
+            s.target_round = round;
+            s.cap_start = -1;
+            write_claim(s, best);
+        }
+        if (s.target >= 0 && s.groups[s.target].reward_seen == round) {  // the camp is dead: leave the loot to the DPS
+            Group& g = s.groups[s.target];
+            g_farm = "tank-off";
+            write_sm(SM_BC_GROUP, static_cast<std::uint8_t>(s.target + 1));
+            write_sm(SM_BC_READY, static_cast<std::uint8_t>(251 + ((round / 16) & 3)));
+            g.bad_until = round + 10;
+            drop_target(s);
+            if (g.mask.is_set(pos)) {
+                bc::bitboard r2;
+                for (auto t : g.tiles) r2.draw_chebyshev(t, 2.0f);
+                step_towards(s, me, r2 & ~g.mask, false);
+            }
+            return;
+        }
+        if (best >= 0) s.target_round = round;  // keep following: no periodic re-choice of our own
+    }
+    if (PR.twinfarm && starts_with(s.name, "issac")) {
+        int ck = -1;
+        std::optional<vec2> cp;
+        attempt([&] {
+            auto allies = my_roster(s);
+            for (int k = 0; k < static_cast<int>(allies.size()); ++k) {
+                if (!starts_with(norm(bc::to_string(allies[k].champion_name())), "cassi") || !allies[k].is_alive()) continue;
+                ck = k;
+                try { cp = allies[k].position(); } catch (...) {}
+            }
+            return true;
+        });
+        if (ck >= 0) {
+            int claim = static_cast<int>(claim_value(s, read_sm(), ck)) - 1;
+            if (claim >= 0 && claim < static_cast<int>(s.groups.size())) {
+                if (claim != s.target) {
+                    s.target = claim;
+                    s.target_round = round;
+                    s.cap_start = -1;
+                    write_claim(s, claim);
+                }
+            } else if (cp && dist(*cp, pos) > PR.twinfarm && !s.my_spawn.is_set(*cp)) {
+                g_farm = "twin-join";
+                drop_target(s);
+                bc::bitboard ring;
+                ring.draw_chebyshev(*cp, 2.0f);
+                step_towards(s, me, ring, false);
+                return;
+            }
+        }
+    }
 
     // Committed = a camp of our group is already damaged, or we are capturing.
     bool committed = false;
     if (s.target >= 0) {
         Group& g = s.groups[s.target];
         if (s.cap_start >= 0 && g.mask.is_set(pos)) committed = true;
+        // A cleared camp awaiting capture is also committed. Otherwise the
+        // retarget timer can redirect us between the final kill and the loot.
+        if (P_CAPTURE_RECALL_FIX && g.reward_seen == round) committed = true;
         for (auto& c : camps)
             if (g.mask.is_set(c.spawn_position()) &&
                 attempt([&] { return c.health() > 0 && c.health() < c.max_health(); }))
@@ -2454,7 +3236,15 @@ void farm(State& s, bc::champion& me, int round, const std::vector<bc::camp>& ca
 #endif
     // A damaged camp or active capture remains committed. Only travel plans
     // are reconsidered sooner when a more productive group becomes available.
-    if (s.target < 0 || expired || (!committed && round - s.target_round >= (ball_on(s, round) ? 3 : target_refresh))) {
+    bool refresh = !committed && round - s.target_round >= (ball_on(s, round) ? 3 : target_refresh);
+    if (P_FUELGUARD && (s.target < 0 || expired || refresh) && !can_choose(s)) {
+        // Not enough fuel to choose and still act: a periodic re-choice waits for a later turn (we keep farming the
+        // current target); with no usable target the turn ends here, cleanly, instead of being cut off half way
+        // and finished one round late.
+        if (s.target < 0 || expired) { g_farm = "fuel-wait"; return; }
+        refresh = false;
+    }
+    if (s.target < 0 || expired || refresh) {
         int t = choose_target(s, me, round);
         if (t != s.target) s.cap_start = -1;
         s.target = t;
@@ -2518,14 +3308,25 @@ void farm(State& s, bc::champion& me, int round, const std::vector<bc::camp>& ca
         int needed = squad_needed(rem, str, dps, afford);
         int here = 1 + allies_near(s, me, g.center, 7);
         int coming = 1 + count_claimers(s, read_sm(), s.target);
-        const bool mono_go = s.mono_only && g.monolith;
-        if (mono_go) needed = std::min(needed, std::max(1, s.roster));
+        const bool mono_go = (s.mono_only && g.monolith) || (P_JACKGO && g.jackpot && round >= P_JACKGO);
+        if (mono_go) needed = std::min(needed, std::max(1, std::min(g.monolith ? s.roster : P_JACKN, s.roster)));
         if (!engaged && needed > here) {
             if (needed > std::max(coming, s.roster) || (!mono_go && needed > squad_needed(rem, str, dps, mhp * 0.75))) {
                 g_farm = "too-strong";  // not even a full-health squad would do it
                 g.bad_until = round + 60;
                 drop_target(s);
                 return;
+            }
+            if (PR.needheal) {  // a wait that no recall or ally will end: take another camp
+                if (s.wait_group != s.target) { s.wait_group = s.target; s.wait_start = round; }
+                bool recall_next = needed > coming && hp < 0.8 * mhp && dist(pos, s.spawn_center) > 6;
+                if ((needed > coming && !recall_next) || round - s.wait_start > PR.needheal) {
+                    g_farm = "wait-drop";
+                    g.bad_until = round + 30;
+                    s.wait_group = -1;
+                    drop_target(s);
+                    return;
+                }
             }
             if (needed > coming) {
                 g_farm = "need-heal";   // affordable with full health, not with this much
@@ -2542,6 +3343,7 @@ void farm(State& s, bc::champion& me, int round, const std::vector<bc::camp>& ca
             return;
         }
         g_farm = "fight-camp";
+        s.wait_group = -1;
         if (hp < mhp * P_BAIL_PCT / 100.0) {
             g_farm = "bail";
             g.bad_until = round + 30;
@@ -2584,7 +3386,17 @@ void farm(State& s, bc::champion& me, int round, const std::vector<bc::camp>& ca
     if (g.reward_seen == round) {  // the engine says the reward is waiting: stand on it
         g_farm = "capture";
         if (P_ONE_CAP && other_captures(s, me, g, s.target)) {
-            if (cf_evac_reward(s, me, g, round)) return;
+            if (PR.capprio && g.mask.is_set(pos)) {
+                if (!g_cap_other_on) return;  // keep the capture going until the champion that takes it arrives
+                g_farm = "cap-handoff";
+                g.bad_until = round + 12;
+                drop_target(s);
+                bc::bitboard r2;
+                for (auto t : g.tiles) r2.draw_chebyshev(t, 2.0f);
+                step_towards(s, me, r2 & ~g.mask, false);
+                return;
+            }
+            if (cf_evac_reward(s, me, g, round, &camps)) return;
             if (g.mask.is_set(pos)) return; // retain capture if no safe purposeful step exists
             g_farm = "leave-reward";
             g.bad_until = round + 12;
@@ -2739,15 +3551,28 @@ bool cr_capture_extra(State& s, bc::champion& me, float hpr, int gold, int round
 
 void play_turn(State& s) {
     bc::champion& me = bc::self();
+    FP(1, "init");
     if (!s.ready) {
+        // P_FUELGUARD: start-up can eat most of the first turn's double budget on big maps; the turn then ends
+        // cleanly on the spawn (start-up finishes next turn) rather than run out half way and play the rest late.
+        if (!init(s, me)) {
+            g_mode = "init-fuel";
+            return;
+        }
         s.ready = true;  // never retry a failing init every turn
-        init(s, me);
+        if (P_FUELGUARD && !fuel_ok(40000)) {
+            g_mode = "init-fuel";
+            return;
+        }
     }
     const int round = static_cast<int>(bc::round_number());
     cf_observe(s, me, round);
 
     if (!me.is_alive()) {
         g_mode = "dead";
+#if P_TRACK_LOG
+        track::on_dead(round);
+#endif
         shop(s, me);  // dead champions can still shop
         drop_target(s);
         return;
@@ -2770,6 +3595,7 @@ void play_turn(State& s) {
     }
     s.last_gems = gems;
 
+    FP(2, "shop");
     if (P_SHOPFIX && !s.shop_done && fuel_ok(40000)) build_shop(s, me);  // init ran out of fuel before the item list was done
     if (gold >= 30) {
         shop(s, me);  // only succeeds on spawn / dead (or anywhere for Tavi)
@@ -2781,6 +3607,11 @@ void play_turn(State& s) {
     if (s.last_hp >= 0 && hp < s.last_hp - 1.0f) s.hit_round = round;
     s.last_hp = hp;
 
+    if (PR.backhome) {
+        bool sub = me.is_submitting_gems();
+        if (s.sub_prev && !sub) s.trib_end = round;
+        s.sub_prev = sub;
+    }
     if (me.is_submitting_gems() || me.is_teleporting() || me.is_recalling()) {
         g_mode = "channel";
         return;
@@ -2790,6 +3621,7 @@ void play_turn(State& s) {
         return;
     }
 
+    FP(3, "vision");
     if (X(pos) == s.still_x && Y(pos) == s.still_y) ++s.still_n;
     else { s.still_x = X(pos); s.still_y = Y(pos); s.still_n = 0; }
     s.blocked = s.static_block | bc::vision::champion_tiles() | bc::vision::camp_tiles();
@@ -2798,12 +3630,17 @@ void play_turn(State& s) {
         s.vis = me.visible_tiles();
         return true;
     });
+    FP(4, "groups");
+    if (P_MAPPLAN && P_MP_CHAINPLAN) s.self_pos = pos;
     refresh_groups(s, round);
+    FP(5, "foes");
 
     std::vector<Foe> foes;
+    bool channel_foes_complete=true;
     for (auto& c : bc::vision::champions(*s.en)) {
+        bool inspected=false;
         attempt([&] {
-            if (!c.is_alive()) return false;
+            if (!c.is_alive()) { inspected=true; return false; }
             Foe f{c, c.position(), c.health(), 0, 0, false};
             f.d = dist(f.p, pos);
             attempt([&] {
@@ -2815,8 +3652,10 @@ void play_turn(State& s) {
                 return true;
             });
             foes.push_back(f);
+            inspected=true;
             return true;
         });
+        if (!inspected) channel_foes_complete=false;
     }
     if (P_NOCHASE) {
         // Away: it stepped farther from where we stood, or toward its spawn without coming closer to us;
@@ -2842,6 +3681,7 @@ void play_turn(State& s) {
         s.seen_r = round;
         s.seen_me = pos;
     }
+    if (P_TRACK) track::update(s, me, foes, pos, round);
     if (P_DANGER) update_danger(s, foes, round);
     if (P_VOLLEY || P_FM >= 2) {  // the volley map of this round (step_towards reads it)
         s.thr.clear();
@@ -2857,7 +3697,9 @@ void play_turn(State& s) {
         s.thr_r = round;
     }
     if (!foes.empty()) s.foe_r = round;
-    std::vector<bc::camp> camps = P_LEAN_CAMPS ? near_camps(s, pos) : bc::vision::camps();
+    FP(6, "camps");
+    bool channel_camps_complete=true;
+    std::vector<bc::camp> camps = P_LEAN_CAMPS ? near_camps(s,pos,P_DP_CHANNEL_FIX?&channel_camps_complete:nullptr) : bc::vision::camps();
 
     bool awake_camp_near = false;
     for (auto& c : camps)
@@ -2867,13 +3709,65 @@ void play_turn(State& s) {
         });
     int nearest_foe = 99;
     for (auto& f : foes) nearest_foe = std::min(nearest_foe, f.d);
+    s.nf_d = nearest_foe;
+    s.nf_r = static_cast<int>(bc::round_number());
+    if (P_TRACE) {
+        g_nf = nearest_foe; g_nfoes = 0; g_nal = 0;
+        for (auto& f : foes) if (f.d <= 8) ++g_nfoes;
+        attempt([&] { for (auto& a : bc::vision::champions(*s.my)) if (!(a == me) && a.is_alive() && dist(a.position(), pos) <= 6) ++g_nal; return true; });
+        g_rew = (s.target >= 0 && s.target < static_cast<int>(s.groups.size()) && s.groups[s.target].reward_seen == round) ? 1 : 0;
+    }
     bool in_combat = nearest_foe <= 4 || awake_camp_near;
     bool safe = nearest_foe > 7 && !awake_camp_near;
     if (P_SAFE_RECALL) safe = safe && nearest_foe > 8 && round - s.hit_round > 2;
     // P_RECALL_NEAR: a recall only needs nobody to hit us while it channels, not an empty screen
     bool rsafe = safe || (s.rnear && nearest_foe >= s.rnear && round - s.hit_round >= 1 && !awake_camp_near);
+    if (P_DP_CHANNEL_FIX) {
+        s.ch_round=round; s.ch_pos=pos;
+        s.ch_complete=channel_foes_complete;
+        s.ch_camps_complete=channel_camps_complete;
+        s.ch_foes.clear();
+        for (const auto& f:foes) s.ch_foes.push_back(f.p);
+        s.ch_camps=camps;
+    }
 
+    if (P_DP_FINISH && dp_finish_bank(s, me, foes, round, gems, hpr, on_spawn)) return;
+
+    // Preserve a nearby cleared camp's loot, even if we were hit by its last
+    // surviving monster on a recent turn. The recent-hit check in `safe` is
+    // over-conservative after that monster has died. Only delay non-emergency
+    // recalls, and only when we are the designated capturer, no enemies are
+    // within 8 tiles, and no fighting camp is nearby. Very low HP still flees.
+    bool capture_before_recall = false;
+    if (P_CAPTURE_RECALL_FIX && hpr >= 0.20f && nearest_foe > 8 &&
+        !awake_camp_near && s.target >= 0 &&
+        s.target < static_cast<int>(s.groups.size()) && fuel_ok(18000)) {
+        const Group& reward = s.groups[s.target];
+        if (reward.reward_seen == round) {
+            int nearest_tile = 99;
+            for (auto tile : reward.tiles) nearest_tile = std::min(nearest_tile, dist(pos, tile));
+            if (nearest_tile <= 2 && (!P_ONE_CAP || !other_captures(s, me, reward, s.target)))
+                capture_before_recall = true;
+        }
+    }
+
+    // P_CAPHOME: the reward of our camp waits within reach and we are its capturer.
+    bool cap_home = false, cap_pend = false;
+    if (PR.caphome && s.target >= 0 && s.target < static_cast<int>(s.groups.size()) && !awake_camp_near &&
+        s.groups[s.target].reward_seen == round && fuel_ok(18000)) {
+        const Group& rg = s.groups[s.target];
+        int nt = 99;
+        for (auto tile : rg.tiles) nt = std::min(nt, dist(pos, tile));
+        if (nt <= PR.caphome && (!P_ONE_CAP || !other_captures(s, me, rg, s.target))) {
+            cap_pend = PR.caphome_trib && nt <= 2;
+            cap_home = PR.caphome_trib != 2 && hpr >= 0.1f && nearest_foe > (hpr * 100 < P.flee_pct ? 5 : 3) &&
+                       (!PR.caphome_rsafe || rsafe);
+        }
+    }
+
+    FP(7, "support");
     support_spells(s, me, in_combat);
+    FP(8, "decide/flee");
 
     // Best enemy target: low health, channeling, or carrying gems; never on their spawn.
     Foe* tgt = nullptr;
@@ -2897,41 +3791,109 @@ void play_turn(State& s) {
         }
         if (gems > 0 && go_tribute(s, me, round)) return;
         if (hpr < 0.9f) {
-            if (safe && attempt([&] {
-                    me.recall();
-                    return true;
-                }))
+            if (safe && start_recall(s, me, round))
                 return;
             if (flee(s, me)) return;
         }
         s.still_n = 0;
     }
 
+    if (PR.noleave && !awake_camp_near && hpr >= 0.15f && fuel_ok(25000)) {
+        const bool carry = cap_rank(s.name, me.attack_range() > 1) <= 2;
+        auto sm = read_sm();
+        int gi = -1, gd = 99;
+        for (int i = 0; i < static_cast<int>(s.groups.size()); ++i) {
+            const Group& g = s.groups[i];
+            if (g.reward_seen != round || g.monolith) continue;
+            int d = 99;
+            for (auto tile : g.tiles) d = std::min(d, dist(pos, tile));
+            if (d > PR.noleave || d >= gd) continue;
+            if (i != s.target && count_claimers(s, sm, i) > 0) continue;  // another ally already went for it
+            gi = i;
+            gd = d;
+        }
+        bool skip = gi < 0;
+        if (!skip && PR.cache && !carry) {  // tanks leave it to a carry: post it in the cache and move on
+            bool carry_alive = false, carry_near = false;
+            attempt([&] {
+                for (auto& a : my_roster(s)) {
+                    if (a == me || !a.is_alive()) continue;
+                    bool ar = false;
+                    try { ar = a.attack_range() > 1; } catch (...) {}
+                    if (cap_rank(norm(bc::to_string(a.champion_name())), ar) > 2) continue;
+                    carry_alive = true;
+                    try { if (dist(a.position(), pos) <= 6) carry_near = true; } catch (...) {}
+                }
+                return true;
+            });
+            if (carry_alive && !(gd <= 1 && !carry_near)) {
+                write_sm(SM_BC_GROUP, static_cast<std::uint8_t>(gi + 1));
+                write_sm(SM_BC_READY, static_cast<std::uint8_t>(251 + ((round / 16) & 3)));
+                if (s.target == gi) {
+                    s.groups[gi].bad_until = round + 15;
+                    drop_target(s);
+                }
+                skip = true;
+            }
+        }
+        if (!skip) {
+            Group& g = s.groups[gi];
+            double dmg = s.thr_r == round ? danger_at(s.thr, pos) : 0.0;
+            if (dmg * 3 < hp && (!P_ONE_CAP || !other_captures(s, me, g, gi))) {
+                g_mode = "no-leave";
+                if (s.target != gi) {
+                    s.target = gi;
+                    s.target_round = round;
+                    s.cap_start = -1;
+                    write_claim(s, gi);
+                }
+                if (!g.mask.is_set(pos)) step_towards(s, me, g.mask, true);
+                if (g.mask.is_set(me.position())) {
+                    if (s.cap_start < 0) s.cap_start = round;
+                    bool want_home = hpr * 100 < P.recall_pct || (round - s.need_heal <= 2 && hpr < 0.8f);
+                    if (want_home && rsafe && round - s.cap_start >= P_CAPRECALL_DELAY)
+                        start_recall(s, me, round);
+                }
+                if (!me.is_recalling()) shoot_back(s, me, foes);
+                return;
+            }
+        }
+    }
+
     // 1. Healing on spawn.
     g_mode = "heal-spawn";
-    if (on_spawn && hpr < 0.95f) {
+    if (on_spawn && hpr * 100 < P_GA_SPAWN_HEAL) {
         if (tgt) basic_attack(s, me, tgt->c, tgt->p);
         return;
+    }
+
+    if (cap_home && (hpr * 100 < P.recall_pct || (round - s.need_heal <= 2 && hpr < 0.8f))) {
+        Group& g = s.groups[s.target];
+        g_mode = "cap-home";  // capture and recall run together on the reward tiles
+        if (!g.mask.is_set(pos)) step_towards(s, me, g.mask, true);
+        if (g.mask.is_set(me.position())) {
+            if (s.cap_start < 0) s.cap_start = round;
+            if (start_recall(s, me, round)) return;
+        }
+        if (!P_DP_CHANNEL_FIX) return;
     }
 
     // 2. Badly hurt: run, or recall if nobody can interrupt.
     g_mode = "flee/recall";
     // P_UNI_FLEE: with the caster draft, leave the fight earlier (the #1 walks away 58% of contact rounds below 30%
     // hp and 40% below 50%; v27 died in 20% of its contact rounds below 30%)
-    if (hpr * 100 < ((P_UNI_FLEE && P_DRAFTUNI && s.casters) ? P_UNI_FLEE : P.flee_pct)) {
+    if (!capture_before_recall &&
+        hpr * 100 < ((P_UNI_FLEE && P_DRAFTUNI && s.casters) ? P_UNI_FLEE : P.flee_pct)) {
         if (gems > 0 && nearest_foe > 3) {
             auto a = best_altar(s, pos, round);
             if (a && dist(*a, pos) <= 1) {  // tribute is not interrupted by damage
                 bool acted = go_tribute(s, me, round);
-                if (acted || !P_U34_FAILED_CHANNELS) return;
+                if (acted || !(P_U34_FAILED_CHANNELS || P_DP_CHANNEL_FIX)) return;
             }
         }
         bool recalled = false;
-        if (rsafe) recalled = attempt([&] {
-            me.recall();
-            return true;
-        });
-        if (!rsafe || (P_U34_FAILED_CHANNELS && !recalled)) {
+        if (rsafe) recalled = start_recall(s, me, round);
+        if (!rsafe || ((P_U34_FAILED_CHANNELS || P_DP_CHANNEL_FIX) && !recalled)) {
             bool hit = P_HITFIRST && fight::hit_now(s, me, foes);
             flee(s, me);
             if (!hit) shoot_back(s, me, foes);
@@ -2939,16 +3901,16 @@ void play_turn(State& s) {
         return;
     }
 
-    if (s.rnear && !safe && rsafe && !on_spawn && dist(pos, s.spawn_center) > 6 && hpr * 100 < P.recall_pct) {
+    if (!capture_before_recall && s.rnear && !safe && rsafe && !on_spawn &&
+        dist(pos, s.spawn_center) > 6 && hpr * 100 < P.recall_pct) {
         g_mode = "near-recall";  // the #1: hurt, out of the fight by 4-6 tiles: recall now, come back whole
-        if (attempt([&] {
-                me.recall();
-                return true;
-            }))
+        if (start_recall(s, me, round))
             return;
     }
 
+    bool fight_fav = false;  // P_CAMPFOE: step 3's verdict on the fight
     // 3. Enemy champions: back away from a stronger group, fight an even or weaker one.
+    FP(9, "fight");
     g_mode = "fight";
     std::vector<vec2> allies;
     for (auto& a : bc::vision::champions(*s.my))
@@ -2967,6 +3929,29 @@ void play_turn(State& s) {
                 }
         }
     }
+    bool pv_fight = false;  // P_PV: the first-contact verdict, held for the engagement (verdict.h)
+    if (P_PV) {
+        int v = pv::verdict(s, me, foes, round, on_spawn);
+        bool keep = false;
+        if (P_PV_KEEPCAP && s.cap_start >= 0) {
+            keep = true;
+            for (auto& f : foes)
+                if (f.d <= 3) keep = false;
+        }
+        if (v == 2 && !on_spawn && !foes.empty() && !keep) {
+            if (P_PVKITE) {  // user 2026-10-17: kite while asking for help instead of running home
+                g_mode = "pv-kite";
+                fight::call_help(s, foes, round);
+                fight::pv_kite(s, me, foes, round);
+                return;
+            }
+            g_mode = "pv-leave";
+            if (P_PVOUT) fight::pv_out(s, me, foes, round);
+            else fight::back_off(s, me, foes, round);
+            return;
+        }
+        pv_fight = v == 1;
+    }
     if (P_FM && !foes.empty() && !on_spawn && fight::fight_mode(s, me, foes, round)) {
         g_mode = s.fm == 1 ? "fm-engage" : "fm-retreat";
         return;
@@ -2979,13 +3964,13 @@ void play_turn(State& s) {
         g_mode = "kite";
         return;
     }
-    if (P_KITEFRONT != 1 && P_FRONT && !foes.empty() && !on_spawn && fight::front_line(s, me, foes, round)) {
+    if (P_KITEFRONT != 1 && P_FRONT && !P_AVOIDFIRST && !foes.empty() && !on_spawn && fight::front_line(s, me, foes, round)) {
         g_mode = "front";
         return;
     }
     if (!foes.empty()) {
         if (P_CALLHELP && round - s.hit_round <= 1) fight::call_help(s, foes, round);
-        if (P_TWIN && !on_spawn && (s.cap_start < 0 || round - s.cap_start > 10) && fight::twin_guard(s, me, foes)) {
+        if (PR.twin && !on_spawn && (s.cap_start < 0 || round - s.cap_start > 10) && fight::twin_guard(s, me, foes)) {
             g_mode = "twin";
             return;
         }
@@ -2997,7 +3982,7 @@ void play_turn(State& s) {
             });
         for (auto& f : foes)
             if (f.d <= 8) theirs += f.hp;
-        bool favourable = ours >= 0.9 * theirs;
+        bool favourable = ours * 100.0 >= P_GA_FAV * theirs;
         if (P_ENGAGE2 && tgt) {
             int nb = 1, eb = 0;
             double oh = hp, eh = 0;
@@ -3012,8 +3997,9 @@ void play_turn(State& s) {
                 if (dist(f.p, tgt->p) <= 8) { ++eb; eh += f.hp; }
             favourable = nb >= eb && oh * 100.0 >= P_ENGAGE2 * eh;
         }
+        if (P_TRACK && P_TRACK_FAV && tgt) favourable = track::favourable(me, tgt->p, round);
         bool helping = false;
-        if (P_CALLHELP && hpr > 0.4f) {  // an ally named the foe hitting it: go and hit that one
+        if ((P_CALLHELP || P_PVKITE) && hpr > 0.4f) {  // an ally named the foe hitting it: go and hit that one
             Foe* h = fight::help_target(s, foes, round);
             if (h && h->d <= P_HELP_R && !s.en_spawn.is_set(h->p) && !gone(*h)) {
                 int nb = 1, eb = 0;
@@ -3045,6 +4031,10 @@ void play_turn(State& s) {
             }
             if (best) { tgt = best; favourable = true; helping = true; }
         }
+        if (P_TRACK && P_TRACK_ISO && !helping && hpr > 0.4f) {  // a lone enemy the allies near it kill fast
+            Foe* iso = track::isolated(s, me, foes, round, gone);
+            if (iso) { tgt = iso; favourable = true; helping = true; }
+        }
         bool pot_hold = false;
         if (P_POT && hpr > 0.3f)
             for (auto pa : s.pots)
@@ -3055,34 +4045,67 @@ void play_turn(State& s) {
                     if (eb6 < nb6 + 2) pot_hold = true;
                 }
         if (pot_hold) favourable = true;
+        if (pv_fight) favourable = true;
+        bool commit = false;  // P_PVCOMMIT: a clearly won verdict (P_PV 2, ratio >= P_PV_FIGHT): all of us on the weakest foe
+        if (P_PVCOMMIT && pv_fight && !helping && hpr > 0.25f) {
+            Foe* best = nullptr;
+            for (auto& f : foes) {
+                if (f.d > P_PVCOMMIT || s.en_spawn.is_set(f.p) || gone(f)) continue;
+                if (!best || f.hp < best->hp) best = &f;
+            }
+            if (best) { tgt = best; commit = true; }
+        }
         g_ally_near_tgt = false;
         if (tgt)
             for (auto& ap : allies)
                 if (dist(ap, tgt->p) <= 2) g_ally_near_tgt = true;
-        bool killable = tgt && tgt->hp <= me.strength() * 2.0f;
+        fight_fav = favourable;
+        bool killable = tgt && tgt->hp <= me.strength() * (P_GA_KILL_X / 10.0f);
         bool reachable = tgt && tgt->d <= me.attack_range() + 1;
         bool carrying = P_CARRY && gems >= P_CARRY;
         int low_pct = (P_CASSI_PCT && starts_with(s.name, "cassi")) ? P_CASSI_PCT : P_LOWHP;
-        if (!killable && !on_spawn && !pot_hold && ((low_pct && hpr * 100 < low_pct && nearest_foe <= 6) ||
+        if (!killable && !commit && !on_spawn && !pot_hold && ((low_pct && hpr * 100 < low_pct && nearest_foe <= 6) ||
                                        (carrying && !favourable && nearest_foe <= 6))) {
             g_mode = "avoid";
             if (carrying) {
                 auto a = best_altar(s, pos, round);
                 if (a && dist(*a, pos) <= 1 && nearest_foe > 3) {
                     bool acted = go_tribute(s, me, round);
-                    if (acted || !P_U34_FAILED_CHANNELS) return;
+                    if (acted || !(P_U34_FAILED_CHANNELS || P_DP_CHANNEL_FIX)) return;
                 }
             }
             fight::back_off(s, me, foes, round);
             return;
         }
-        if (!favourable && !killable && (hpr < 0.6f || nearest_foe <= P_AVOID_DIST) && !on_spawn) {
+        if (PR.outnum && !commit && !on_spawn && !(killable && reachable) && nearest_foe <= PR.outnum) {
+            int nb = 1, eb = 0;
+            attempt([&] {
+                for (auto& a : bc::vision::champions(*s.my))
+                    if (!(a == me) && a.is_alive() && !a.is_recalling() && dist(a.position(), pos) <= PR.outnum) ++nb;
+                return true;
+            });
+            for (auto& f : foes)
+                if (f.d <= PR.outnum && !s.en_spawn.is_set(f.p)) ++eb;
+            if (eb >= nb + 2) {
+                g_mode = "outnumbered";
+                fight::back_off(s, me, foes, round);
+                return;
+            }
+        }
+        if (!favourable && !killable && (hpr * 100 < P_GA_AVOID_HP || nearest_foe <= P_AVOID_DIST) && !on_spawn) {
             g_mode = "avoid";
             fight::back_off(s, me, foes, round);
             return;
         }
-        if (tgt && carrying && !killable && !tgt->channeling) tgt = nullptr;
-        if (tgt && (killable || tgt->channeling || (reachable && favourable) || helping ||
+        // P_AVOIDFIRST: the front line is taken only once the back-off checks above said stay
+        if (P_AVOIDFIRST && P_KITEFRONT != 1 && P_FRONT && !on_spawn && fight::front_line(s, me, foes, round)) {
+            g_mode = "front";
+            return;
+        }
+        if (tgt && carrying && !commit && !killable && !tgt->channeling) tgt = nullptr;
+        // P_NOCHASE2: a low or channelling foe is no reason to walk after it, unless it carries a big bag
+        const bool close_enough = !PR.nochase2 || (tgt && (tgt->d <= me.attack_range() + 1 || tgt->gems >= P_CHASE_GEMS));
+        if (tgt && (((killable || tgt->channeling) && close_enough) || (reachable && favourable) || helping || commit ||
                     (P_ALLYDUTY && favourable && tgt->d <= 8 && g_ally_near_tgt))) {
             bool acted = engage(s, me, tgt->c, tgt->p, true, true);
             if (acted || !P_U34_ENGAGE_FALLBACK) return;
@@ -3090,6 +4113,7 @@ void play_turn(State& s) {
     }
 
     // 4. Recall to heal / spend gold when safe; bank the bag first if an altar is close.
+    FP(10, "recall/tribute");
     g_mode = "recall-shop";
     int home = dist(pos, s.spawn_center);
     bool want_recall = hpr * 100 < P.recall_pct || (gold >= P_SHOP_GOLD && hpr < 0.5f) ||
@@ -3105,39 +4129,56 @@ void play_turn(State& s) {
     // weighs the cost of returning to productive territory.
     bool cap_want = want_recall || (((s.de_map == v34de::Lanes) ? 1 : P_CAPRECALL) >= 2 &&
                                    cr_capture_extra(s, me, hpr, gold, round));
-    if (((s.de_map == v34de::Lanes) ? 1 : P_CAPRECALL) && cap_want && safe && s.target >= 0 && s.target < static_cast<int>(s.groups.size())) {
+    if (((s.de_map == v34de::Lanes) ? 1 : P_CAPRECALL) && cap_want &&
+        (safe || capture_before_recall) && s.target >= 0 && s.target < static_cast<int>(s.groups.size())) {
         Group& g = s.groups[s.target];
         if (g.reward_seen == round && !other_captures(s, me, g, s.target)) {
             if (g.mask.is_set(pos) && (P_CAPRECALL_DELAY == 0 || (s.cap_start >= 0 && round - s.cap_start >= P_CAPRECALL_DELAY))) {
                 g_mode = "cap-recall";
-                if (attempt([&] {
-                        me.recall();
-                        return true;
-                    })) {
+                const bool recalled = start_recall(s, me, round);
+                if (recalled) {
                     ++s.cr_started;
                     cr_trace(s, round);
                     if (shop_trip) s.shop_recall = round;
                 }
-                return;
+                if (recalled || !P_DP_CHANNEL_FIX) return;
             }
             want_recall = false;  // step on the tiles first
         }
     }
-    if (rsafe && home > 6 && want_recall) {
+    if (PR.backhome && round - s.trib_end <= 2 && gems == 0 && home > 6) {
+        s.trib_end = -1000;
+        auto contested = [&](vec2 p) { return dist(p, s.spawn_center) - dist(p, s.en_center) >= -PR.backhome; };
+        if (contested(pos)) {
+            int t = s.target;
+            if (can_choose(s)) t = choose_target(s, me, round);
+            bool go = t < 0 || (contested(s.groups[t].center) && (round - s.foe_r <= 20 || hpr < 0.8f));
+            if (go) {
+                g_mode = "back-home";
+                drop_target(s);
+                if (rsafe && start_recall(s, me, round))
+                    return;
+                if (flee(s, me)) return;
+            } else if (t != s.target) {
+                s.target = t;
+                s.target_round = round;
+                s.cap_start = -1;
+                write_claim(s, t);
+            }
+        }
+    }
+    if (!capture_before_recall && rsafe && home > 6 && want_recall) {
         if (gems >= 10) {
             auto a = best_altar(s, pos, round);
             if (a && br_altar_distance(s, *a, pos, round) <= std::min(home, 12)) {
                 g_mode = "tribute";
                 bool acted = go_tribute(s, me, round);
-                if (acted || !P_U34_FAILED_CHANNELS) return;
+                if (acted || !(P_U34_FAILED_CHANNELS || P_DP_CHANNEL_FIX)) return;
             }
         }
-        bool recalled = attempt([&] {
-            me.recall();
-            return true;
-        });
+        bool recalled = start_recall(s, me, round);
         if (recalled && shop_trip) s.shop_recall = round;
-        if (recalled || !P_U34_FAILED_CHANNELS) return;
+        if (recalled || !(P_U34_FAILED_CHANNELS || P_DP_CHANNEL_FIX)) return;
     }
 
     if (P_WALKHOME && !safe && home > 6 && hpr * 100 < P.recall_pct && nearest_foe > 2) {
@@ -3152,18 +4193,19 @@ void play_turn(State& s) {
     // 5. Bank gems.
     g_mode = "tribute";
     bool late = round >= P.late_round;
-    if (gems > 0) {
+    if (gems > 0 && !(cap_pend && !late)) {
         auto a = best_altar(s, pos, round);
         int ad = a ? br_altar_distance(s, *a, pos, round) : 99;
         bool chain = false;
-        if (((s.de_map == v34de::Rows) ? 60 : P_CHAIN) && gems < ((s.de_map == v34de::Rows) ? 60 : P_CHAIN) && !late && ad > 2) {
+        const int chain_gems = mp_far_home(s) ? std::max(P_MP_CHAIN, (s.de_map == v34de::Rows) ? 60 : P_CHAIN) : ((s.de_map == v34de::Rows) ? 60 : P_CHAIN);
+        if (chain_gems && gems < chain_gems && !late && ad > 2) {
             auto sm = read_sm();
             int gi = -1, gd = 99;
             for (int i = 0; i < static_cast<int>(s.groups.size()); ++i) {
                 Group& g = s.groups[i];
                 if (g.gems <= 0 || g.monolith || g.next_ok > round || g.bad_until > round) continue;
                 int d = dist(pos, g.center);
-                if (d > P_CHAIN_R || d >= ad || d >= gd) continue;
+                if (d > (mp_far_home(s) ? P_MP_CHAIN_R : P_CHAIN_R) || d >= ad || d >= gd) continue;
                 if (count_claimers(s, sm, i) > 0 && i != s.target) continue;
                 if (squad_needed(g.hp, g.str, my_dps(s, me), std::max(1.0f, hp - mhp * 0.3f)) > 1) continue;
                 gi = i;
@@ -3181,21 +4223,21 @@ void play_turn(State& s) {
         }
         // P_BAG: with no enemy seen for P_BAG_QUIET rounds, carry up to P_BAG gems before the trip
         // (rows winners bank 81 gems a trip; we banked 39).
-        int bag = (((s.de_map == v34de::Rows) ? 48 : P_BAG) && round - s.foe_r > P_BAG_QUIET) ? std::max(P.tribute_gems, ((s.de_map == v34de::Rows) ? 48 : P_BAG)) : P.tribute_gems;
+        const int bag_q = mp_far_home(s) ? std::max(P_MP_BAG, (s.de_map == v34de::Rows) ? 48 : P_BAG) : ((s.de_map == v34de::Rows) ? 48 : P_BAG);
+        int bag = (bag_q && round - s.foe_r > P_BAG_QUIET) ? std::max(P.tribute_gems, bag_q) : P.tribute_gems;
+        if (P_DP_BANK && draftplan::R.valid && round - s.foe_r > P_DP_BANK_QUIET)
+            bag = std::max(bag, draftplan::quiet_bag());
         if (!chain && (gems >= bag || late || (gems >= 10 && ad <= (s.de_map == v34de::Rows ? 4 : P_TRIBUTE_NEAR)) || (gems >= 5 && ad <= 2))) {
             // P_TELE: the walk to the altar is longer than recalling and walking from home: recall (heals and shops too).
             if (P_TELE && safe && s.tele_sa >= 0 && s.tele_va.is_set(pos) && !s.my_spawn.is_set(pos) &&
                 static_cast<int>(s.tele_fa.get(pos)) > 5 + s.tele_sa + P_TELE) {
                 g_mode = "tele-bank";
-                if (attempt([&] {
-                        me.recall();
-                        return true;
-                    }))
-                    s.shop_recall = round;
-                return;
+                const bool recalled = start_recall(s, me, round);
+                if (recalled) s.shop_recall = round;
+                if (recalled || !P_DP_CHANNEL_FIX) return;
             }
             bool acted = go_tribute(s, me, round);
-            if (acted || !P_U34_FAILED_CHANNELS) return;
+            if (acted || !(P_U34_FAILED_CHANNELS || P_DP_CHANNEL_FIX)) return;
         }
     }
 
@@ -3206,7 +4248,7 @@ void play_turn(State& s) {
         vec2 lp{0, 0};
         std::vector<vec2> fol;
         attempt([&] {
-            auto allies = bc::champions(*s.my);
+            auto allies = my_roster(s);
             for (int k = 0; k < static_cast<int>(allies.size()); ++k) {
                 auto& a = allies[k];
                 try {
@@ -3241,7 +4283,22 @@ void play_turn(State& s) {
         }
     }
 
+    if (PR.campfoe && !on_spawn && !foes.empty()) {
+        int live = 99;
+        for (auto& f : foes)
+            if (!s.en_spawn.is_set(f.p) && !gone(f)) live = std::min(live, f.d);
+        bool capturing = s.target >= 0 && s.target < static_cast<int>(s.groups.size()) &&
+                         s.groups[s.target].reward_seen == round && s.groups[s.target].mask.is_set(pos);
+        if (!capturing && (live <= 3 || (live <= PR.campfoe && round - s.hit_round <= 2))) {
+            g_mode = "campfoe";  // a fight: hit the rival or leave, never the camp
+            if (tgt && fight_fav && tgt->d <= me.attack_range() + 1 && engage(s, me, tgt->c, tgt->p, true, false)) return;
+            fight::back_off(s, me, foes, round);
+            return;
+        }
+    }
+
     // 6. Farm camps.
+    FP(11, "farm");
     g_mode = "farm";
     farm(s, me, round, camps);
 
@@ -3336,7 +4393,23 @@ void log_status(State& s) {
 #else
         bool every = false;
 #endif
+        if (P_TRACE) {
+            bc::champion& me = bc::self();
+            vec2 p = me.is_alive() ? me.position() : vec2(-1, -1);
+            int rw = 0;  // groups with a waiting reward within 3 tiles of us
+            if (me.is_alive())
+                for (auto& g : s.groups)
+                    if (g.reward_seen == round) { int d = 99; for (auto t : g.tiles) d = std::min(d, dist(p, t)); if (d <= 3) ++rw; }
+            std::printf("T %d %d %d %d %d %.0f %u %u %s %s %d %d %d %d %d %d %d\n", round, s.ally_idx, X(p), Y(p),
+                        me.is_alive() ? 1 : 0, me.is_alive() ? 100.0 * me.health() / me.max_health() : 0.0,
+                        me.gem_count(), me.gold_count(), g_mode, g_farm, s.target, g_rew, rw, g_nf, g_nfoes, g_nal,
+                        (me.is_recalling() ? 1 : 0) | (me.is_submitting_gems() ? 2 : 0));
+            std::fflush(stdout);
+            g_nf = 99; g_nfoes = 0; g_nal = 0; g_rew = 0;
+            return true;
+        }
         if (round % STATUS_EVERY != 0 && round > 3 && !every) return false;
+        if (P_FUELGUARD && !fuel_ok(12000)) return false;  // a log line is not worth a turn cut short
         bc::champion& me = bc::self();
         vec2 p = me.position();
         std::printf("[r%d] %s pos=(%d,%d) hp=%.0f/%.0f gems=%u gold=%u mode=%s farm=%s target=%d errs=%d fuel=%llu\n",
@@ -3598,6 +4671,9 @@ void shoot_rooted(State& s) {
         g_mode = "?";
         g_farm = "-";
         try {
+#if P_FUELPROF
+            fp_begin();
+#endif
             if (s.sweep >= 3) spell_sweep(s, true);  // before moving: most targeted spells cannot be cast after a step
 #ifdef P_DZLOG
             double dz0 = -1;
@@ -3620,6 +4696,7 @@ void shoot_rooted(State& s) {
             dz0 = dz_now();
 #endif
             play_turn(s);
+            FP(12, "post-sweep");
 #ifdef P_DZLOG
             {
                 double dz1 = dz_now();
@@ -3689,10 +4766,32 @@ void shoot_rooted(State& s) {
         } catch (...) {
             note_error("unknown exception in turn");
         }
-        if (s.ready && !logged_init) {
+        FP(13, "log");
+        if (s.ready && !logged_init && (!P_FUELGUARD || fuel_ok(20000))) {
             logged_init = true;
             log_init(s);
         }
+#if P_FUELPROF
+        FP(14, "end");
+        debug_block({
+            int r = static_cast<int>(bc::round_number());
+            unsigned long long tot = 0;
+            for (auto t : g_fp_turn) tot += t;
+            if (g_fp_over || tot > 70000) {
+                std::printf("[heavy] r=%d %s mode=%s farm=%s over=%s total=%llu", g_fp_round, s.name.c_str(), g_mode, g_farm,
+                            g_fp_where >= 0 ? g_fp[g_fp_where].name : "-", tot);
+                for (int i = 0; i < 32; ++i)
+                    if (g_fp_turn[i] > 3000) std::printf(" %s=%llu", g_fp[i].name, g_fp_turn[i]);
+                std::printf("\n");
+            }
+            if (r % 100 == 0 || r == 1) {
+                std::printf("[fuel] r=%d %s", r, s.name.c_str());
+                for (auto& c : g_fp)
+                    if (c.n || c.over) std::printf(" | %s n=%llu avg=%llu max=%llu over=%llu", c.name, c.n, c.n ? c.sum / c.n : 0, c.mx, c.over);
+                std::printf("\n");
+            }
+        });
+#endif
         log_status(s);
         bc::end_turn();
     }

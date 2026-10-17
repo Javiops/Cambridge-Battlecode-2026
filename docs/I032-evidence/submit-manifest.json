@@ -1,0 +1,26 @@
+{
+  "archive": "mate-bwf-safety-experimental.zip",
+  "archive_sha256": "4af2fda4a964444f35ca8b71a7a58e896c08a8e6836ec677d257267faff16241",
+  "bytes": 97235,
+  "source_sha256": {
+    "channel_safety.h": "b3cf7afb8684e9b56e44889e2b8846400056e1fcdf8865c5b6b41ecb481f1706",
+    "de_rules.h": "3e50429c96765f325ea3804c2bbb5c13ce26a4119fc7b8694f58def60531221b",
+    "draft_plan.h": "5f58794a17b59f85eedc486855c828b7f2ed6f666f37c09bef4b7458f585977e",
+    "fight.h": "2eaa9a671c634d499029f251a6eef66dbd6be052927d3cc8ca8012f4ecc35014",
+    "main.cpp": "1a20906b684c87993425d947166a9e75322dd5fc58e53c3e94dc2af9f3dbb7c2",
+    "mapplan.h": "7b01346e46a21d2339533095a21655c3f83d3f4ef28efaa7d142fb7609df247e",
+    "mapplan_game.h": "167f85bf357b70d797e8612f447b7719f956a974af269286fa32f53569948fb6",
+    "opening_replace.h": "ca6680bae82b74b89fd0bb65573904246df8761d8b22e3ce8cb6bd93207207e7",
+    "params.h": "b911f3d0771ac06044a7b99afc34b37dbd790de510f6541e771559e6f3065115",
+    "profile.h": "fe7e170baa2f69e3beba2fe344c19ade35bfd3cad5516307d2b6e2575571f551",
+    "track.h": "c42448671f1a23f4987182648fd131e3182a7fee47970b20baaf0444ca7f5a0a",
+    "utility.h": "db726b9f6ef344cd2b78612ddc906b5712e752c12ec3d010c1701b1943b6a362",
+    "verdict.h": "cea061699b7b7a10e81d5484633dbcb51c100516f8b80e29854bba4f6701e5ee"
+  },
+  "flags": {
+    "memory": 1,
+    "anchors": 1,
+    "channels": 1
+  },
+  "validation": "Exactly thirteen files under src/; CRC and each extracted source SHA256 verified. Experimental correctness candidate, strength not established."
+}

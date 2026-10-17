@@ -1,0 +1,132 @@
+{
+  "status": "pass",
+  "variants": [
+    {
+      "flags": {
+        "P_DP_MEMORY_FIX": 0,
+        "P_DP_ANCHOR_FIX": 0,
+        "P_DP_CHANNEL_FIX": 0
+      },
+      "label": "000",
+      "production_object_sha256": "bb75c49f8487cb225871fe9933353f670ab214e64d60f3b2438238269d3d3377",
+      "fixture_wasm_sha256": "524be21423c1bfcca12cd410305aaea3f16f2c2b2c25e4b608bb42475b090d03",
+      "stdout": "GEOMETRY path=20 open=399 flags=26 altar=10,10,10,9 ward=2:8,7:7,7 quiet=0 penalty=4\nPASS checks=47 memory=0 anchor=0\nLIGHT flag0 baseline flow: passed\n",
+      "status": "pass"
+    },
+    {
+      "flags": {
+        "P_DP_MEMORY_FIX": 0,
+        "P_DP_ANCHOR_FIX": 0,
+        "P_DP_CHANNEL_FIX": 1
+      },
+      "label": "001",
+      "production_object_sha256": "04449972a427500b2a8e6b749a2fb6bb63e1b07acb018bf73a56b6a436610e4e",
+      "fixture_wasm_sha256": "53a64680e27a0a050f904d533b60e30b55d97ea6261df58f6007712341f0f1ca",
+      "stdout": "GEOMETRY path=20 open=399 flags=26 altar=10,10,10,9 ward=2:8,7:7,7 quiet=0 penalty=4\nPASS checks=47 memory=0 anchor=0\nactual LIGHT channel eligibility/wrappers: passed\n",
+      "status": "pass"
+    },
+    {
+      "flags": {
+        "P_DP_MEMORY_FIX": 0,
+        "P_DP_ANCHOR_FIX": 1,
+        "P_DP_CHANNEL_FIX": 0
+      },
+      "label": "010",
+      "production_object_sha256": "9c6384eb679376ad83a946b1bf5d907d001d93278df88e68e1a5e1b1fd14ec61",
+      "fixture_wasm_sha256": "1a895b5169efdd6b02dc86711fb90f7cfea5d0f7bf45ad364c7956e10511bf5b",
+      "stdout": "GEOMETRY path=20 open=399 flags=26 altar=10,10,10,9 ward=2:8,7:13,13 quiet=0 penalty=4\nPASS checks=47 memory=0 anchor=1\nLIGHT flag0 baseline flow: passed\n",
+      "status": "pass"
+    },
+    {
+      "flags": {
+        "P_DP_MEMORY_FIX": 0,
+        "P_DP_ANCHOR_FIX": 1,
+        "P_DP_CHANNEL_FIX": 1
+      },
+      "label": "011",
+      "production_object_sha256": "0e4618a96a6903c6718b440c419ac6b76bc23debdec06361e3110808b11ec8af",
+      "fixture_wasm_sha256": "00885b9af51dab9ccf9bd7e3c3833318b7a3af26fb05a94b7da889a7e3bf401c",
+      "stdout": "GEOMETRY path=20 open=399 flags=26 altar=10,10,10,9 ward=2:8,7:13,13 quiet=0 penalty=4\nPASS checks=47 memory=0 anchor=1\nactual LIGHT channel eligibility/wrappers: passed\n",
+      "status": "pass"
+    },
+    {
+      "flags": {
+        "P_DP_MEMORY_FIX": 1,
+        "P_DP_ANCHOR_FIX": 0,
+        "P_DP_CHANNEL_FIX": 0
+      },
+      "label": "100",
+      "production_object_sha256": "f0c7781a740c8f4488eac67e1120b5bbbc4610e9a280a7bcb50bca98a6dd8d31",
+      "fixture_wasm_sha256": "2d2bc52db29fb60a6c0cc9137fb0266154fb473259d594e66b7626eddbd23c9a",
+      "stdout": "GEOMETRY path=20 open=399 flags=26 altar=10,10,10,9 ward=2:8,7:7,7 quiet=0 penalty=4\nPASS checks=135 memory=1 anchor=0\nLIGHT flag0 baseline flow: passed\n",
+      "status": "pass"
+    },
+    {
+      "flags": {
+        "P_DP_MEMORY_FIX": 1,
+        "P_DP_ANCHOR_FIX": 0,
+        "P_DP_CHANNEL_FIX": 1
+      },
+      "label": "101",
+      "production_object_sha256": "00da9a82571eaf8fbe319ca818a536bf02f6e5cffd8b204b5c1edc6dbc474982",
+      "fixture_wasm_sha256": "3eb8be59076110010b0f892836723d07ae4b3452b69b7ff09142e52ea1cfce34",
+      "stdout": "GEOMETRY path=20 open=399 flags=26 altar=10,10,10,9 ward=2:8,7:7,7 quiet=0 penalty=4\nPASS checks=135 memory=1 anchor=0\nactual LIGHT channel eligibility/wrappers: passed\n",
+      "status": "pass"
+    },
+    {
+      "flags": {
+        "P_DP_MEMORY_FIX": 1,
+        "P_DP_ANCHOR_FIX": 1,
+        "P_DP_CHANNEL_FIX": 0
+      },
+      "label": "110",
+      "production_object_sha256": "56b46c4f93a03f6e74e273e0f2641ea223a8c88ac214ee885d30c1d70d69c842",
+      "fixture_wasm_sha256": "7d8eb3745b0a5476f03cd5ad7dc2e4a657dc82374a8e5aaa7c6f0cf2ee648a70",
+      "stdout": "GEOMETRY path=20 open=399 flags=26 altar=10,10,10,9 ward=2:8,7:13,13 quiet=0 penalty=4\nPASS checks=135 memory=1 anchor=1\nLIGHT flag0 baseline flow: passed\n",
+      "status": "pass"
+    },
+    {
+      "flags": {
+        "P_DP_MEMORY_FIX": 1,
+        "P_DP_ANCHOR_FIX": 1,
+        "P_DP_CHANNEL_FIX": 1
+      },
+      "label": "111",
+      "production_object_sha256": "728722a3a8d8feda0198e74bca5a886ee4d1a69eb496a65861d8ec3efee573bf",
+      "fixture_wasm_sha256": "01c65ad1c0aad76eae4a76b408a6367fb5c24e4e65599a8a3136a36b6a23cebe",
+      "stdout": "GEOMETRY path=20 open=399 flags=26 altar=10,10,10,9 ward=2:8,7:13,13 quiet=0 penalty=4\nPASS checks=135 memory=1 anchor=1\nactual LIGHT channel eligibility/wrappers: passed\n",
+      "status": "pass"
+    }
+  ],
+  "source_sha256": {
+    "channel_safety.h": "b3cf7afb8684e9b56e44889e2b8846400056e1fcdf8865c5b6b41ecb481f1706",
+    "de_rules.h": "3e50429c96765f325ea3804c2bbb5c13ce26a4119fc7b8694f58def60531221b",
+    "draft_plan.h": "5f58794a17b59f85eedc486855c828b7f2ed6f666f37c09bef4b7458f585977e",
+    "fight.h": "2eaa9a671c634d499029f251a6eef66dbd6be052927d3cc8ca8012f4ecc35014",
+    "main.cpp": "1a20906b684c87993425d947166a9e75322dd5fc58e53c3e94dc2af9f3dbb7c2",
+    "mapplan.h": "7b01346e46a21d2339533095a21655c3f83d3f4ef28efaa7d142fb7609df247e",
+    "mapplan_game.h": "167f85bf357b70d797e8612f447b7719f956a974af269286fa32f53569948fb6",
+    "opening_replace.h": "ca6680bae82b74b89fd0bb65573904246df8761d8b22e3ce8cb6bd93207207e7",
+    "params.h": "b911f3d0771ac06044a7b99afc34b37dbd790de510f6541e771559e6f3065115",
+    "profile.h": "fe7e170baa2f69e3beba2fe344c19ade35bfd3cad5516307d2b6e2575571f551",
+    "track.h": "c42448671f1a23f4987182648fd131e3182a7fee47970b20baaf0444ca7f5a0a",
+    "utility.h": "db726b9f6ef344cd2b78612ddc906b5712e752c12ec3d010c1701b1943b6a362",
+    "verdict.h": "cea061699b7b7a10e81d5484633dbcb51c100516f8b80e29854bba4f6701e5ee"
+  },
+  "sdk_header_sha256": "ee131e2981c16f696cb82cd6b04dc1871f45323057e51f7bb676a893ab72e264",
+  "extracted_function_sha256": {
+    "channel_eligible": "e45ac29cfeecb37098dd3120db0f4176d72e86e45a37f113a32b1cfa9fb400f6",
+    "start_recall": "01f5ce360768fd2ab0a593c2ad6389e2fc7b015f7930b111987dc497b500d184",
+    "start_submission": "f990dbefe03d41529894d763df052cb4526e3d6f6c77867c31a70079310a7900"
+  },
+  "fixture_sha256": {
+    "channel_cases.cpp": "eee68126f60e887fd415e4582878b65c3b65798353123459c9fe932a9448c6b7",
+    "channel_mock.cpp": "570c3d64e7d3e4abf49b8266d4e701ba6ccae400f931791f5f05de0840c69189",
+    "memory.cpp": "4ab2fe1c96354be30997be185c5739efeac414f3e3d75b39764d1417c02ccb6e"
+  },
+  "limits": [
+    "SDK compilation is a full translation-unit object compile, not a link or release build.",
+    "Mechanisms execute actual production helpers with narrow mocks; no matches or strength claims.",
+    "Mock fuel checks do not measure native engine/guest cost; native calibration is separate."
+  ]
+}

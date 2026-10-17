@@ -1,0 +1,356 @@
+diff --git a/bots/team_baseline/src/camp_escape.h b/bots/team_baseline/src/camp_escape.h
+new file mode 100644
+--- /dev/null
++++ b/bots/team_baseline/src/camp_escape.h
+@@ -0,0 +1,250 @@
++#pragma once
++#ifndef P_CAMP_ESCAPE
++#define P_CAMP_ESCAPE 0
++#endif
++#ifndef P_CAMP_ESCAPE_ROUTE
++#define P_CAMP_ESCAPE_ROUTE 0
++#endif
++
++// Local potential exposure only: full raw hits from known awake visible camps.
++// No tank credit, future wake planner, tie rule, or exact next-phase prediction.
++namespace campescape {
++constexpr std::size_t max_hazards = 8, max_inputs = 24;
++constexpr std::uint64_t reserve_need = 18000;
++struct Hazard { vec2 position; double strength; int range; };
++struct Snapshot {
++    std::array<Hazard, max_hazards> hazards{};
++    std::size_t count = 0;
++};
++
++inline double exposure(const Snapshot& snapshot, vec2 tile) {
++    double total = 0;
++    for (std::size_t i = 0; i < snapshot.count; ++i) {
++        const auto& h = snapshot.hazards[i];
++        if (dist(tile, h.position) <= h.range) total += h.strength;
++    }
++    return total;
++}
++
++struct Candidate { vec2 position; double champion, camp; int home; };
++struct Poses {
++    std::array<Candidate, 8> candidates{};
++    std::size_t count = 0;
++    double current_camp = 0, current_champion = 0, minimum_champion = 0;
++    bool reentry_risk = false;
++};
++
++inline std::optional<vec2> choose(const State& s, const Snapshot& snapshot,
++                                  vec2 position, int width, int height,
++                                  Poses* continuation = nullptr) {
++    const double current = exposure(snapshot, position);
++    if (!(current > 0) && !(P_CAMP_ESCAPE_ROUTE && continuation)) return std::nullopt;
++    std::array<Candidate, 8> candidates{};
++    std::size_t count = 0;
++    double minimum_champion = danger_at(s.thr, position);
++    double best_exposure = current;
++    int best_home = 0;
++    std::optional<vec2> best;
++    // Every candidate evaluation is pure: no SDK calls in this pose loop.
++    // Match distance_field::next_moves_from's N,NE,E,SE,S,SW,W,NW tie order.
++    // Engine north is +y. This is not a full legacy-path-plan reconstruction.
++    constexpr int directions[8][2] = {
++        {0, 1}, {1, 1}, {1, 0}, {1, -1},
++        {0, -1}, {-1, -1}, {-1, 0}, {-1, 1}};
++    for (const auto& direction : directions) {
++            const int dx = direction[0], dy = direction[1];
++            const vec2 tile = position + vec2(dx, dy);
++            if (X(tile) < 0 || Y(tile) < 0 || X(tile) >= width || Y(tile) >= height ||
++                s.blocked.is_set(tile) || !s.vis.is_set(tile)) continue;
++            const double champion = danger_at(s.thr, tile);
++            minimum_champion = std::min(minimum_champion, champion);
++            candidates[count++] = {tile, champion, exposure(snapshot, tile),
++                                   dist(tile, s.spawn_center)};
++        }
++    if (P_CAMP_ESCAPE_ROUTE && continuation) {
++        continuation->candidates = candidates;
++        continuation->count = count;
++        continuation->current_camp = current;
++        continuation->current_champion = danger_at(s.thr, position);
++        continuation->minimum_champion = minimum_champion;
++        for (std::size_t i = 0; i < count; ++i)
++            if (candidates[i].camp > current) continuation->reentry_risk = true;
++    }
++    // Do not choose a camp exit while ignoring an available neighbor with
++    // strictly less known champion danger. Current position participates too.
++    for (std::size_t i = 0; i < count; ++i) {
++        const auto& c = candidates[i];
++        if (c.champion > minimum_champion + 1e-6 || !(c.camp < current)) continue;
++        if (!best || c.camp < best_exposure ||
++            (c.camp == best_exposure && c.home < best_home)) {
++            best = c.position; best_exposure = c.camp; best_home = c.home;
++        }
++    }
++    return best;
++}
++
++enum class ContinuationKind { Declined, Move, Hold };
++struct Continuation { ContinuationKind kind = ContinuationKind::Declined; vec2 tile{}; };
++
++// Called only after the unchanged strict-exposure selector found no step.
++// First leave at least one currently covering camp; once exposure is zero,
++// route home without entering a new camp. Future route tiles may be unseen,
++// as in ordinary pathing; only the fresh legal/visible next step is authorized.
++template<class Ready>
++Continuation continue_retreat(State& s, const Snapshot& snapshot, vec2 position,
++                           const Poses& poses, Ready&& ready) {
++    if (!poses.reentry_risk || poses.count == 0) return {};
++    // Equal positive champion envelopes cannot rank real imminent enemy fire.
++    // Keep the original combat fallback unless a zero-known-danger pose exists.
++    // NaN also declines; the strict camp-improvement selector already ran.
++    if (!(poses.minimum_champion <= 1e-6)) return {};
++    Continuation result;
++    const bool complete = attempt([&] {
++        if (!ready() || s.my_spawn.is_set(position)) return false;
++        bc::bitboard forbidden, retained;
++        bool covering = false;
++        for (std::size_t i = 0; i < snapshot.count; ++i) {
++            const auto& h = snapshot.hazards[i];
++            bc::bitboard zone;
++            zone.draw_chebyshev(h.position, static_cast<float>(h.range));
++            if (dist(position, h.position) > h.range) forbidden |= zone;
++            else {
++                if (!covering) retained = zone;
++                else retained &= zone;
++                covering = true;
++            }
++        }
++        // Moving champions are only an immediate-step filter. Including them
++        // in the route field could reverse the home potential every turn.
++        bc::bitboard walls = s.static_block | bc::vision::camp_tiles() | forbidden;
++        walls.set(position, false);
++        const bool leave_camp = poses.current_camp > 0;
++        if (leave_camp && !covering) return false;  // inconsistent snapshot
++        const bc::bitboard roots = (leave_camp ? ~retained : s.my_spawn) & ~walls;
++        if (!ready()) return false;
++        if (roots.is_empty()) {
++            if (!leave_camp) return false;
++            if (poses.current_champion <= poses.minimum_champion + 1e-6)
++                result.kind = ContinuationKind::Hold;
++            return ready();
++        }
++        s.dest.clear(); s.dest.set(position);
++        // Outside the retained intersection leaves at least one positive
++        // current hazard. Forbidden membership prevents replacement by another.
++        // One finite search over the map, stopping when the current tile is
++        // reached. No second search or greedy re-entry fallback in this branch.
++        s.df.compute_to(walls, roots, s.dest, s.visited);
++        if (!ready()) return false;
++        const auto here = s.df.get(position);
++        int best_distance = bc::distance_field::unreachable, best_home = 0;
++        if (here != bc::distance_field::unreachable) {
++            for (std::size_t i = 0; i < poses.count; ++i) {
++                const auto& c = poses.candidates[i];
++                if (c.champion > poses.minimum_champion + 1e-6 ||
++                    c.camp > poses.current_camp) continue;
++                const auto distance = s.df.get(c.position);
++                if (distance == bc::distance_field::unreachable || distance >= here) continue;
++                if (result.kind != ContinuationKind::Move || distance < best_distance ||
++                    (distance == best_distance && c.home < best_home)) {
++                    result = {ContinuationKind::Move, c.position};
++                    best_distance = distance; best_home = c.home;
++                }
++            }
++        }
++        if (!ready()) return false;
++        if (result.kind == ContinuationKind::Move) return true;
++        // A complete no-route observation is different from a failed read.
++        // Hold only if standing is at the global minimum champion danger.
++        // Otherwise decline so the old emergency champion escape can act.
++        if (poses.current_champion <= poses.minimum_champion + 1e-6)
++            result.kind = ContinuationKind::Hold;
++        return true;
++    });
++    return complete ? result : Continuation{};
++}
++
++inline bool step(State& s, bc::champion& me, const std::vector<bc::camp>& camps,
++                 const std::vector<Foe>& foes, int round, vec2 expected_position,
++                 bool input_complete) {
++#if P_CAMP_ESCAPE
++    if (!input_complete || camps.empty() || camps.size() > max_inputs ||
++        s.dash_slot >= 0 || s.thr_r != round) return false;
++    Snapshot snapshot;
++    int width = 0, height = 0;
++    const auto same_turn = [&] {
++        return bc::self() == me && static_cast<int>(bc::round_number()) == round;
++    };
++    const bool known = attempt([&] {
++        if (!fuel_ok(reserve_need) || !same_turn() || !me.can_move()) return false;
++        const int range = static_cast<int>(me.attack_range());
++        if (!(me.position() == expected_position)) return false;
++        // Preserve a melee hit_now that could cast/attack before the old flee.
++        // Ranged movable bodies already skip hit_now; no per-foe SDK reads.
++        if (range <= 1)
++            for (const auto& foe : foes)
++                if (foe.hp > 0 && dist(expected_position, foe.p) <= range) return false;
++        width = bc::map::width(); height = bc::map::height();
++        for (const auto& camp : camps) {
++            if (!fuel_ok(reserve_need)) return false;
++            const auto state = camp.state();
++            // SDK camp_state::alive means awake AND living; no second health
++            // query is needed. All reads remain provisional until batch end.
++            if (state.is_awake()) {
++                const double strength = camp.strength();
++                if (!std::isfinite(strength)) return false;
++                if (strength > 0) {
++                    if (snapshot.count == max_hazards) return false;
++                    const vec2 position = camp.position();
++                    const int range = camp.attack_range();
++                    if (range < 0 || X(position) < 0 || Y(position) < 0 ||
++                        X(position) >= width || Y(position) >= height) return false;
++                    snapshot.hazards[snapshot.count++] = {position, strength, range};
++                }
++            }
++            if (!fuel_ok(reserve_need)) return false;
++        }
++        // A failed or round-crossing read never authorizes a move, even if the
++        // remaining read-only batch completes after the SDK resumes.
++        return fuel_ok(reserve_need) && same_turn();
++    });
++    if (!known || snapshot.count == 0) return false;
++    Poses poses;
++    std::optional<vec2> best;
++    if (P_CAMP_ESCAPE_ROUTE) {
++        // New zero-exposure pose reads can fail too. Unknown selection must
++        // decline to the old fallback, not consume a turn as a certified hold.
++        if (!attempt([&] {
++                best = choose(s, snapshot, expected_position, width, height, &poses);
++                return true;
++            })) return false;
++    } else best = choose(s, snapshot, expected_position, width, height);
++    bool hold = false;
++    if (!best) {
++        if (!P_CAMP_ESCAPE_ROUTE) return false;
++        const auto continuation = continue_retreat(s, snapshot, expected_position, poses, [&] {
++            // Reuse the original path planner's field-admission budget.
++            return fuel_ok(25000) && same_turn();
++        });
++        if (continuation.kind == ContinuationKind::Declined) return false;
++        if (continuation.kind == ContinuationKind::Move) best = continuation.tile;
++        else hold = true;
++    }
++    return attempt([&] {
++        if (!fuel_ok(reserve_need)) return false;
++        const vec2 position = me.position();
++        const bool can_move = me.can_move();
++        if (!(position == expected_position) || !can_move ||
++            !fuel_ok(reserve_need) || !same_turn()) return false;
++        // The SDK validates the final occupancy/action. It can itself suspend;
++        // the preceding same-round checks are not an atomicity guarantee.
++        if (hold) return true;  // caller may shoot back, then deliberately yields
++        combatcohort::invalidate();
++        return me.move_absolute(*best);
++    });
++#else
++    (void)s; (void)me; (void)camps; (void)foes; (void)round;
++    (void)expected_position; (void)input_complete;
++    return false;
++#endif
++}
++} // namespace campescape
+diff --git a/bots/team_baseline/src/main.cpp b/bots/team_baseline/src/main.cpp
+--- a/bots/team_baseline/src/main.cpp
++++ b/bots/team_baseline/src/main.cpp
+@@ -2445,12 +2445,16 @@
+ // Camps of the live groups around us, through the group handles (cheap) instead of the
+ // vision scan (very expensive). Only camps whose spawn area is in view are returned, so the
+ // callers' health() queries do not throw.
+-std::vector<bc::camp> near_camps(State& s, vec2 pos) {
++std::vector<bc::camp> near_camps(State& s, vec2 pos, bool* complete = nullptr) {
++    if (complete) *complete = true;
+     // Cheap replacement for bc::vision::camps(): only groups near us, and only camps the
+     // engine says are in vision (is_visible() reports hidden camps without throwing).
+     std::vector<bc::camp> out;
+     bc::bitboard tv;  // the engine's own "effective vision", the one state() checks
+-    if (!attempt([&] { bc::vision::visible_tiles_into(tv); return true; })) return out;
++    if (!attempt([&] { bc::vision::visible_tiles_into(tv); return true; })) {
++        if (complete) *complete = false;
++        return out;
++    }
+     for (auto& g : s.groups) {
+         if (!g.obj || dist(g.center, pos) > P_LEAN_RADIUS) continue;
+         bool seen = false;  // the engine refuses group queries when no camp spawn tile is in vision
+@@ -2459,17 +2463,19 @@
+         if (!seen) continue;
+         if (g.next_ok > 0 && g.reward_seen < 0) {  // refresh_groups saw it respawning this turn
+             bool resp = false;
+-            attempt([&] {
++            const bool known = attempt([&] {
+                 resp = std::holds_alternative<bc::map::camp_group_respawning>(g.obj->state());
+                 return true;
+             });
++            if (complete && !known) *complete = false;
+             if (resp) continue;
+         }
+-        attempt([&] {
++        const bool known = attempt([&] {
+             for (auto& c : g.obj->camps())
+                 if (c.is_visible()) out.push_back(c);
+             return true;
+         });
++        if (complete && !known) *complete = false;
+     }
+     return out;
+ }
+@@ -3909,6 +3915,8 @@
+     return result;
+ }
+ 
++#include "camp_escape.h"
++
+ void play_turn(State& s) {
+     bc::champion& me = bc::self();
+     FP(1, "init");
+@@ -3986,7 +3994,7 @@
+     else { s.still_x = X(pos); s.still_y = Y(pos); s.still_n = 0; }
+     s.blocked = s.static_block | bc::vision::champion_tiles() | bc::vision::camp_tiles();
+     s.blocked.set(pos, false);
+-    attempt([&] {
++    const bool own_vision_complete = attempt([&] {
+         s.vis = me.visible_tiles();
+         return true;
+     });
+@@ -4054,7 +4062,9 @@
+     }
+     if (!foes.empty()) s.foe_r = round;
+     FP(6, "camps");
+-    std::vector<bc::camp> camps = P_LEAN_CAMPS ? near_camps(s, pos) : bc::vision::camps();
++    bool camps_complete = true;
++    std::vector<bc::camp> camps = P_LEAN_CAMPS ? near_camps(s, pos,
++        P_CAMP_ESCAPE ? &camps_complete : nullptr) : bc::vision::camps();
+ 
+     bool awake_camp_near = false;
+     for (auto& c : camps)
+@@ -4253,6 +4263,14 @@
+             return true;
+         });
+         if (!rsafe || (P_U34_FAILED_CHANNELS && !recalled)) {
++            // An ordinary escape may reduce known camp exposure before a
++            // ranged/no-target hit_now that would otherwise return false.
++            if (campescape::step(s, me, camps, foes, round, pos,
++                                 camps_complete && own_vision_complete)) {
++                g_mode = "camp-escape";
++                shoot_back(s, me, foes);
++                return;
++            }
+             bool hit = P_HITFIRST && fight::hit_now(s, me, foes);
+             flee(s, me);
+             if (!hit) shoot_back(s, me, foes);
+diff --git a/bots/team_baseline/src/params.h b/bots/team_baseline/src/params.h
+--- a/bots/team_baseline/src/params.h
++++ b/bots/team_baseline/src/params.h
+@@ -170,3 +170,9 @@
+ 
+ // Distinguish a feasible six-body camp squad from the legacy sentinel.
+ #define P_CAMP_ROSTER_BOUND 1
++
++// Experimental low-HP ordinary escape from known awake camp damage.
++#define P_CAMP_ESCAPE 1
++
++// Continue a known camp escape toward lower exposure, then home.
++#define P_CAMP_ESCAPE_ROUTE 1

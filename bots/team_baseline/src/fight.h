@@ -95,7 +95,7 @@ inline int reach(const Foe& f) {
     if (r <= 1) {
         std::string n;
         attempt([&] {
-            n = norm(bc::to_string(f.c.champion_name()));
+            n = norm(bc::to_string(combat_identity_type(f.c)));
             return true;
         });
         // Melee champions with a dash: Vendetta, Issac and Ren (Cassi is ranged and has none; the old list said
@@ -139,7 +139,7 @@ inline bool safe_step(State& s, bc::champion& me, const std::vector<Foe>& foes) 
     for (auto& f : foes) reaches.push_back(reach(f));
     std::vector<vec2> allies;
     attempt([&] {
-        for (auto& a : bc::vision::champions(*s.my))
+        for (auto& a : combat_allies(s))
             if (!(a == me) && a.is_alive() && a.health() > 0.4f * a.max_health()) allies.push_back(a.position());
         return true;
     });
@@ -233,7 +233,7 @@ inline bool twin_guard(State& s, bc::champion& me, const std::vector<Foe>& foes)
             if (a == me || !a.is_alive()) continue;
             vec2 ap = a.position();
             if (dist(ap, pos) < nd) { nd = dist(ap, pos); nearest = ap; }
-            std::string n = norm(bc::to_string(a.champion_name()));
+            std::string n = norm(bc::to_string(combat_identity_type(a)));
             if ((issac && starts_with(n, "cassi")) || (cassi && starts_with(n, "issac"))) partner = ap;
         }
         return true;
@@ -261,8 +261,55 @@ inline bool twin_guard(State& s, bc::champion& me, const std::vector<Foe>& foes)
     return moved || hit;
 }
 
+// Low-reserve withdrawal must still act in this round. Reuse the turn's
+// ready-damage snapshot and cached foe positions, avoiding another live threat
+// rebuild, ally scan, dash search or path field. Only defensive callers use it.
+inline bool budget_back_off(State& s, bc::champion& me, const std::vector<Foe>& foes, int round) {
+    if (!P_FUEL_FIGHT_FALLBACK || foes.empty() || fuel_ok(P_FUEL_FIGHT_WORK)) return false;
+    vec2 pos=me.position();
+    const bool fresh=s.thr_r==round && round==static_cast<int>(bc::round_number()) && !s.thr.empty();
+    auto damage=[&](vec2 p) {
+        if(fresh) return danger_at(s.thr,p);
+        double envelope=0;
+        for(const auto& f:foes) if(dist(f.p,p)<=4) envelope+=1000;
+        return envelope;
+    };
+    auto score=[&](vec2 p) {
+        int nearest=9;
+        for(const auto& f:foes) nearest=std::min(nearest,dist(f.p,p));
+        return -100.0*damage(p)+10.0*std::min(nearest,6)-dist(p,s.spawn_center);
+    };
+    if(me.can_move() && fuel_ok(3000)) {
+        double best_score=score(pos);std::optional<vec2> best;
+        for(int dx=-1;dx<=1;++dx)for(int dy=-1;dy<=1;++dy){
+            if(!dx&&!dy) continue;
+            const vec2 tile=pos+vec2(dx,dy);
+            if(!bc::map::is_in_bounds(tile)||s.blocked.is_set(tile)) continue;
+            const double candidate=score(tile);
+            if(candidate>best_score){best_score=candidate;best=tile;}
+        }
+        if(best && attempt([&]{return me.move_absolute(*best);})) pos=me.position();
+    }
+    // Moving first also avoids spending a ranged basic attack before escape.
+    // Do not start optional spell/AoE searches with this reduced reserve.
+    if(fuel_ok(4000) && me.can_attack()) {
+        const auto range=me.attack_range();const Foe* target=nullptr;
+        for(const auto& f:foes) if(f.hp>0 && dist(pos,f.p)<=range && (!target||f.hp<target->hp)) target=&f;
+        // One SDK attack only: the general basic_attack helper may also reset
+        // and attack again. Fresh positions catch a target moved by an action.
+        if(target && u34_target_visible(target->c))
+            attempt([&]{
+                if(dist(me.position(),target->c.position())>range) return false;
+                me.attack(target->c);
+                return true;
+            });
+    }
+    return true;
+}
+
 // Backing off: optionally hit first, then step (safe tile, retreat or flee), then hit if we have not yet.
 inline void back_off(State& s, bc::champion& me, const std::vector<Foe>& foes, int round) {
+    if(budget_back_off(s,me,foes,round)) return;
     bool hit = P_HITFIRST && hit_now(s, me, foes);
 #ifdef P_PROBE
     std::printf("[hf] r=%d %s range=%.0f hit=%d move=%d\n", round, s.name.c_str(), static_cast<double>(me.attack_range()), hit ? 1 : 0, me.can_move() ? 1 : 0);
@@ -321,6 +368,7 @@ inline void pv_kite(State& s, bc::champion& me, std::vector<Foe>& foes, int roun
 // step (and dash) to the tile where the damage the foes can deal next round is lowest, counting their ready spells and
 // one step of advance (threat_of / danger_at); ties go toward a healthy ally, then home. Shoot only after the step.
 inline void pv_out(State& s, bc::champion& me, const std::vector<Foe>& foes, int round) {
+    if(budget_back_off(s,me,foes,round)) return;
     (void)round;
     bool hit = P_HITFIRST && hit_now(s, me, foes);
     std::vector<Threat> th;
@@ -328,7 +376,7 @@ inline void pv_out(State& s, bc::champion& me, const std::vector<Foe>& foes, int
         if (f.d <= 10 && !s.en_spawn.is_set(f.p)) th.push_back(threat_of(f.c, f.p, reach(f)));
     std::vector<vec2> allies;
     attempt([&] {
-        for (auto& a : bc::vision::champions(*s.my))
+        for (auto& a : combat_allies(s))
             if (!(a == me) && a.is_alive() && a.health() > 0.4f * a.max_health()) allies.push_back(a.position());
         return true;
     });
@@ -382,7 +430,7 @@ inline bool front_line(State& s, bc::champion& me, std::vector<Foe>& foes, int r
     std::vector<Mate> mates;
     double ours = me.health();
     attempt([&] {
-        for (auto& a : bc::vision::champions(*s.my)) {
+        for (auto& a : combat_allies(s)) {
             try {
                 if (a == me || !a.is_alive()) continue;
                 vec2 p = a.position();
@@ -416,7 +464,7 @@ inline bool front_line(State& s, bc::champion& me, std::vector<Foe>& foes, int r
             if (f->d <= 5) { ++fc; tc += f->hp; }
         if (mc == 0 || fc > mc + 1) return false;
         attempt([&] {
-            for (auto& a : bc::vision::champions(*s.my))
+            for (auto& a : combat_allies(s))
                 try {
                     if (!(a == me) && a.is_alive() && dist(a.position(), pos) <= 4) oc += a.health();
                 } catch (...) {
@@ -560,7 +608,7 @@ inline bool kite(State& s, bc::champion& me, std::vector<Foe>& foes, int round) 
     double oc = me.health(), tc = 0;
     std::vector<vec2> mates;
     attempt([&] {
-        for (auto& a : bc::vision::champions(*s.my))
+        for (auto& a : combat_allies(s))
             try {
                 if (a == me || !a.is_alive()) continue;
                 vec2 p = a.position();
@@ -579,7 +627,7 @@ inline bool kite(State& s, bc::champion& me, std::vector<Foe>& foes, int round) 
     std::vector<vec2> pull;  // P_KITEALLY: allies we kite toward
     if (PR.kiteally)
         attempt([&] {
-            for (auto& a : bc::vision::champions(*s.my))
+            for (auto& a : combat_allies(s))
                 try {
                     if (a == me || !a.is_alive() || a.is_recalling()) continue;
                     vec2 p = a.position();

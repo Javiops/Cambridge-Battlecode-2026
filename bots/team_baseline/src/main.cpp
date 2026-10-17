@@ -58,6 +58,7 @@
 #include <cstddef>
 #include <cstdint>
 #include <optional>
+#include <memory>
 #include <span>
 #include <string>
 #include <vector>
@@ -966,11 +967,13 @@ struct ChampSpells {
     int type = -1;
     SpellInfo k[2];
 };
+#include "combat_identity.h"
+
 inline const ChampSpells& spells_of(const bc::champion& c) {
     static std::vector<ChampSpells> cache;
     int type = -2;
     attempt([&] {
-        type = static_cast<int>(c.champion_name());
+        type = static_cast<int>(combat_identity_type(c));
         return true;
     });
     for (auto& cs : cache)
@@ -1147,7 +1150,8 @@ struct State {
     vec2 alert_p{0, 0};
     int alert_r = -1000, alert_kind = 0;
     std::uint16_t alert_raw = 0;
-    int alert_raw_r = -1000;              // when this champion first observed this packet value
+    int alert_raw_r = -1000;
+    int alert_observed_r = -1000, alert_uncertainty = 0; // six-body packet continuity/quantization              // when this champion first observed this packet value
     int foe_r = -1000;      // last round this champion saw an enemy champion
     int nf_d = 99, nf_r = -1000;  // P_CAMPHOLD: nearest enemy champion this round and the round it was measured
     std::vector<Seen> seen; // P_NOCHASE: enemy positions last round
@@ -1671,6 +1675,7 @@ void shop(State& s, bc::champion& me) {
 // ---------------------------------------------------------------------------
 // Movement
 // ---------------------------------------------------------------------------
+#include "combat_cohort.h"
 // Step (and dash, if allowed) towards any tile of `goals_in`. Returns true if we moved.
 // P_VOLLEY: modes that commit to a fight walk in on purpose; every other mode respects the volley map.
 // P_VOLLEY_FIGHT 1: ranged champions respect it in fights too (melee still walk in); 2: everybody does.
@@ -1721,6 +1726,7 @@ inline bool g_farm_nodash = false;
 bc::bitboard mp_awake_camp_zone(State& s, vec2 pos);
 int mp_dash_hole_step(State& s, bc::champion& me, const bc::bitboard& goals, const bc::bitboard& vblock, vec2 pos);
 bool step_towards(State& s, bc::champion& me, const bc::bitboard& goals_in, bool use_dash) {
+    combatcohort::invalidate();
     FP_SCOPE(16, "step_towards");
     if (g_farm_nodash) use_dash = false;
     vec2 pos = me.position();
@@ -1894,6 +1900,7 @@ inline bool camp_hold(const State& s, bool champ) {
 
 template <class U>
 bool cast_offense(State& s, bc::champion& me, const U& tgt, vec2 tpos, bool champ) {
+    combatcohort::invalidate();
     if (!me.can_cast() || dist(me.position(), tpos) > SPELL_RANGE) return false;
     if (camp_hold(s, champ)) return false;
     auto abs = me.abilities();
@@ -1918,6 +1925,7 @@ bool cast_offense(State& s, bc::champion& me, const U& tgt, vec2 tpos, bool cham
 
 template <class U>
 bool basic_attack(State& s, bc::champion& me, const U& tgt, vec2 tpos) {
+    combatcohort::invalidate();
     if (dist(me.position(), tpos) > me.attack_range() || !me.can_attack()) return false;
     if (P_U34_ATTACK_LIVE && !u34_target_visible(tgt)) return false;
     bool hit = attempt([&] {
@@ -1961,6 +1969,7 @@ bool engage(State& s, bc::champion& me, const U& tgt, vec2 tpos, bool champ, boo
 }
 
 void support_spells(State& s, bc::champion& me, bool in_combat) {
+    combatcohort::invalidate();
     if (!me.can_cast()) return;
     auto abs = me.abilities();
     for (int k = 0; k < 2; ++k) {
@@ -1985,13 +1994,12 @@ void support_spells(State& s, bc::champion& me, bool in_combat) {
 // ---------------------------------------------------------------------------
 // Objectives
 // ---------------------------------------------------------------------------
-// Shared memory (8 bytes):
-//   bytes0..3 = packed claims for up to 5 champions; byte4 = alert low byte.
-//   on a 6-body roster, bytes0..4 are reserved for all six claims as before,
-//   and semantic alerts are disabled (legacy danger/help byte7 is preserved).
-//   bytes5/6   = camp lifecycle / respawn broadcast (unchanged).
-//   byte7      = semantic alert high byte ONLY on 1..5-body rosters when
-//                help/kite are disabled; otherwise legacy danger/help.
+// Shared memory (8 bytes), deterministic from physical roster/group count:
+// <=5 bodies: existing layout unchanged (claims0..3, alert4/7, lifecycle5/6).
+// Six bodies, <=31 groups: six5-bit claims in bits0..29; full16-bit alert4/7.
+// Six bodies,32..63 groups: six6-bit claims in bits0..35; compact12-bit
+// alert in byte4 high nibble + byte7. Full group IDs remain representable.
+// >63 groups / disabled packing / help ownership: original fallback, no alerts.
 constexpr int SM_CLAIMS = 5;
 constexpr int SM_ALERT_LO = 4;
 constexpr int SM_BC_GROUP = 5, SM_BC_READY = 6;
@@ -2025,15 +2033,29 @@ constexpr int SM_ALERT_HI = 7;
 #define P_DP_ALERT_POWER 170
 #endif
 
+#ifndef P_DP_ALERTS_SIX
+#define P_DP_ALERTS_SIX 0
+#endif
+#ifndef P_DP_ALERT_TRACE
+#define P_DP_ALERT_TRACE 0
+#endif
+
 inline bool packed_claims(const State& s) {
     // 1..5 bodies fit in bytes0..3, six need bytes0..4 as in original Mate.
     // Groups >63 retain the baseline one-byte-per-champion fallback.
     return P_D5_PACKED_CLAIMS && s.roster >= 1 && s.roster <= 6 && s.groups.size() <= 63;
 }
+inline bool six_alert_layout(const State& s) {
+    // Do not depend on late cache readiness: all champions must encode claims
+    // identically before and after validated geometry becomes available.
+    return P_DP_ALERTS_SIX && P_DP_ALERTS && packed_claims(s) && s.roster == 6 &&
+           !P_CALLHELP && !P_PVKITE;
+}
+inline bool compact_six_alert(const State& s) { return six_alert_layout(s) && s.groups.size() > 31; }
+inline int claim_bits(const State& s) { return six_alert_layout(s) && s.groups.size() <= 31 ? 5 : 6; }
 inline int claim_slots(const State& s) { return packed_claims(s) ? s.roster : SM_CLAIMS; }
 inline bool shared_alert_memory(const State& s) {
-    // Byte4 belongs to the sixth claim on six-body rosters, not to alerts.
-    return P_DP_ALERTS && packed_claims(s) && s.roster <= 5 &&
+    return P_DP_ALERTS && packed_claims(s) && (s.roster <= 5 || six_alert_layout(s)) &&
            !P_CALLHELP && !P_PVKITE && draftplan::R.valid;
 }
 
@@ -2041,9 +2063,9 @@ inline bool shared_alert_memory(const State& s) {
 inline std::uint8_t claim_value(const State& s, const std::array<std::uint8_t, 8>& sm, int body) {
     if (body < 0 || body >= claim_slots(s)) return 0;
     if (!packed_claims(s)) return sm[body];
-    const int bit = body * 6, byte = bit / 8, shift = bit % 8;
+    const int bits = claim_bits(s), bit = body * bits, byte = bit / 8, shift = bit % 8;
     const unsigned word = static_cast<unsigned>(sm[byte]) | (static_cast<unsigned>(sm[byte + 1]) << 8);
-    return static_cast<std::uint8_t>((word >> shift) & 63u);
+    return static_cast<std::uint8_t>((word >> shift) & ((1u << bits) - 1u));
 }
 
 std::array<std::uint8_t, 8> read_sm() {
@@ -2083,7 +2105,7 @@ enum SharedAlertClass {
 struct SharedAlert {
     bool valid = false;
     vec2 p{0,0};
-    int kind = 0, age = 99, round = -1000;
+    int kind = 0, age = 99, round = -1000, uncertainty = 0;
 };
 
 inline int alert_q(int v, int size) {
@@ -2116,43 +2138,137 @@ inline int alert_priority(int kind) {
     }
 }
 
+inline int compact_alert_class(int kind) {
+    switch (kind) {
+    case SA_SINGLE_INFO: case SA_SINGLE_CARRIER: return 1;
+    case SA_SINGLE_THREAT: return 2;
+    case SA_SINGLE_PREY: return 3;
+    case SA_DUO_INFO: case SA_DUO_CARRIER: return 4;
+    case SA_DUO_THREAT: return 5;
+    case SA_PACK: case SA_PACK_CARRIER: return 6;
+    case SA_CRITICAL: return 7;
+    default: return 0;
+    }
+}
+inline int expand_alert_class(int code) {
+    constexpr int kinds[8] = {SA_NONE,SA_SINGLE_INFO,SA_SINGLE_THREAT,SA_SINGLE_PREY,
+                             SA_DUO_INFO,SA_DUO_THREAT,SA_PACK,SA_CRITICAL};
+    return code >= 0 && code < 8 ? kinds[code] : SA_NONE;
+}
+inline std::uint16_t alert_word(const State& s, const std::array<std::uint8_t,8>& sm) {
+    if (compact_six_alert(s))
+        return static_cast<std::uint16_t>(sm[4] >> 4) | (static_cast<std::uint16_t>(sm[7]) << 4);
+    return static_cast<std::uint16_t>(sm[SM_ALERT_LO]) |
+           (static_cast<std::uint16_t>(sm[SM_ALERT_HI]) << 8);
+}
+inline int alert_grid_q(int v,int size,int bins) {
+    return size <= 1 ? 0 : std::clamp(v * bins / size,0,bins-1);
+}
+inline int alert_grid_u(int q,int size,int bins) {
+    return size <= 1 ? 0 : std::clamp((q * size + size / 2) / bins,0,size-1);
+}
 SharedAlert read_shared_alert(const State& s, int round, const std::array<std::uint8_t,8>* cached=nullptr) {
     SharedAlert a;
     if (!shared_alert_memory(s)) return a;
     const auto sm = cached ? *cached : read_sm();
-    const std::uint16_t w = static_cast<std::uint16_t>(sm[SM_ALERT_LO]) |
-                            (static_cast<std::uint16_t>(sm[SM_ALERT_HI]) << 8);
-    const int kind = (w >> 8) & 15;
-    if (!kind) return a;
-    const int stamp = (w >> 12) & 15;
-    const int age = ((round & 15) - stamp) & 15;
+    const std::uint16_t w = alert_word(s,sm);
+    const bool compact = compact_six_alert(s);
+    const int kind = compact ? expand_alert_class((w >> 6) & 7) : ((w >> 8) & 15);
+    if (!kind || (six_alert_layout(s) && (kind > SA_CRITICAL || draftplan::R.w <= 0 || draftplan::R.h <= 0))) return a;
+    const int mask = compact ? 7 : 15;
+    const int stamp = compact ? ((w >> 9) & 7) : ((w >> 12) & 15);
+    const int age = ((round & mask) - stamp) & mask;
     if (age > alert_max_age(kind)) return a;
-    const int qx = w & 15, qy = (w >> 4) & 15;
     a.valid = true; a.kind = kind; a.age = age; a.round = round - age;
-    a.p = vec2(alert_u(qx, draftplan::R.w), alert_u(qy, draftplan::R.h));
+    if (compact) {
+        a.p = vec2(alert_grid_u(w & 7,draftplan::R.w,8),alert_grid_u((w >> 3) & 7,draftplan::R.h,8));
+        a.uncertainty = (std::max(draftplan::R.w,draftplan::R.h) + 15) / 16;
+    } else {
+        a.p = vec2(alert_u(w & 15,draftplan::R.w),alert_u((w >> 4) & 15,draftplan::R.h));
+    }
     return a;
 }
 
-void write_shared_alert(const State& s, vec2 p, int kind, int round) {
-    if (!shared_alert_memory(s) || kind < 1 || kind > 15) return;
-    auto sm = read_sm();
-    SharedAlert old = read_shared_alert(s, round, &sm);
-    // Never let a low-value single overwrite a same-round group warning.  A
-    // fresher packet may replace an older one; same-class alerts prefer nearer
-    // information only through the normal last-writer order.
-    if (old.valid && old.age == 0 && alert_priority(old.kind) > alert_priority(kind)) return;
-    const std::uint16_t w = static_cast<std::uint16_t>(alert_q(p.x, draftplan::R.w)) |
-                            (static_cast<std::uint16_t>(alert_q(p.y, draftplan::R.h)) << 4) |
-                            (static_cast<std::uint16_t>(kind) << 8) |
-                            (static_cast<std::uint16_t>(round & 15) << 12);
-    write_sm(SM_ALERT_LO, static_cast<std::uint8_t>(w & 255));
-    write_sm(SM_ALERT_HI, static_cast<std::uint8_t>((w >> 8) & 255));
+void observe_alert_packet(State& s,int round,std::uint16_t raw) {
+    if (six_alert_layout(s)) {
+        const bool continuous = s.alert_observed_r == round || s.alert_observed_r == round-1;
+        // First observation after a gap has no absolute age proof. Wait for an
+        // observed new packet or our own successful publication; never revive
+        // an unchanged packet when its short timestamp wraps.
+        if (!continuous) s.alert_raw_r = -1000;
+        if (raw != s.alert_raw) {
+            s.alert_raw = raw;
+            s.alert_raw_r = continuous ? round : -1000;
+        }
+        s.alert_observed_r = round;
+    } else if (raw != s.alert_raw) {
+        s.alert_raw = raw; s.alert_raw_r = round;
+    }
 }
 
+void write_shared_alert(State& s, vec2 p, int kind, int round) {
+    if (!shared_alert_memory(s) || kind < 1 || kind > 15) return;
+    const bool six = six_alert_layout(s), compact = compact_six_alert(s);
+    if (six && (kind > SA_CRITICAL || p.x < 0 || p.y < 0 || p.x >= draftplan::R.w || p.y >= draftplan::R.h ||
+                !fuel_ok(4000) || static_cast<int>(bc::round_number()) != round)) return;
+    if (compact) kind = expand_alert_class(compact_alert_class(kind));
+    std::array<std::uint8_t,8> sm{};
+    if (six) {
+        std::array<std::byte,8> snapshot{};
+        // A failed read must not become a zero-filled read/modify/write that
+        // erases another champion's claims or the camp lifecycle broadcast.
+        if (!attempt([&] { bc::shared_memory.read(0,std::span<std::byte>(snapshot.data(),snapshot.size())); return true; })) return;
+        for (int i=0;i<8;++i) sm[i]=std::to_integer<std::uint8_t>(snapshot[i]);
+    } else sm = read_sm();
+    if (six) observe_alert_packet(s,round,alert_word(s,sm));
+    SharedAlert old = read_shared_alert(s, round, &sm);
+    const bool old_fresh = !six || round - s.alert_raw_r <= alert_max_age(old.kind);
+    if (old.valid && old_fresh && old.age == 0 && alert_priority(old.kind) > alert_priority(kind)) return;
+    std::uint16_t w;
+    if (compact) {
+        w = static_cast<std::uint16_t>(alert_grid_q(p.x,draftplan::R.w,8)) |
+            (static_cast<std::uint16_t>(alert_grid_q(p.y,draftplan::R.h,8)) << 3) |
+            (static_cast<std::uint16_t>(compact_alert_class(kind)) << 6) |
+            (static_cast<std::uint16_t>(round & 7) << 9);
+    } else {
+        w = static_cast<std::uint16_t>(alert_q(p.x,draftplan::R.w)) |
+            (static_cast<std::uint16_t>(alert_q(p.y,draftplan::R.h)) << 4) |
+            (static_cast<std::uint16_t>(kind) << 8) |
+            (static_cast<std::uint16_t>(round & 15) << 12);
+    }
+    if (six) {
+        if (compact) { sm[4] = (sm[4] & 15u) | ((w & 15u) << 4); sm[7] = w >> 4; }
+        else { sm[4] = w & 255u; sm[7] = w >> 8; }
+        std::array<std::byte,8> raw{};
+        for (int i=0;i<8;++i) raw[i]=static_cast<std::byte>(sm[i]);
+        if (!fuel_ok(3000) || static_cast<int>(bc::round_number()) != round) return;
+        // One host call commits the entire packet; preserve every claim and
+        // lifecycle byte from the current sequential turn's snapshot.
+        if (attempt([&] { bc::shared_memory.write(0,std::span<const std::byte>(raw.data(),raw.size())); return true; })) {
+            s.alert_raw=w; s.alert_raw_r=round; s.alert_observed_r=round;
+#if P_DP_ALERT_TRACE
+            const auto committed_sm=read_sm();
+            std::printf("[alert-pub] r=%d body=%d layout=%d raw=%u x=%d y=%d kind=%d c6_before=%u c6_after=%u\n",
+                        round,s.ally_idx,compact?12:16,static_cast<unsigned>(w),p.x,p.y,kind,
+                        static_cast<unsigned>(claim_value(s,sm,5)),static_cast<unsigned>(claim_value(s,committed_sm,5)));
+#endif
+        }
+    } else {
+        write_sm(SM_ALERT_LO,static_cast<std::uint8_t>(w & 255));
+        write_sm(SM_ALERT_HI,static_cast<std::uint8_t>(w >> 8));
+    }
+}
+
+#include "alert_fuel.h"
+
 inline double alert_unit_power(const Foe& f, double& hp_pct) {
+#if P_FUEL_ALERT_MEMO
+    double cached_power=0.0;
+    if (alertfuel::read(f,hp_pct,cached_power)) return cached_power;
+#endif
     double mhp = std::max(1.0, static_cast<double>(f.hp));
     double str = 60.0, foc = 0.0;
-    attempt([&] {
+    const bool read_ok=attempt([&] {
         mhp = std::max(1.0, static_cast<double>(f.c.max_health()));
         str = f.c.strength();
         foc = f.c.focus();
@@ -2161,7 +2277,11 @@ inline double alert_unit_power(const Foe& f, double& hp_pct) {
     hp_pct = 100.0 * f.hp / mhp;
     // Actual Strength/Focus reflect bought shards/emblems, so purchases affect
     // the transmitted risk without spending bits on a separate item counter.
-    return (str + 1.25 * foc) * std::clamp(hp_pct / 100.0, 0.25, 1.0);
+    const double power=(str + 1.25 * foc) * std::clamp(hp_pct / 100.0, 0.25, 1.0);
+#if P_FUEL_ALERT_MEMO
+    if (read_ok) alertfuel::remember(f,hp_pct,power);
+#endif
+    return power;
 }
 
 int classify_shared_alert(const std::vector<const Foe*>& near) {
@@ -2201,7 +2321,8 @@ int classify_shared_alert(const std::vector<const Foe*>& near) {
 inline int alert_camp_pct(const State& s, const bc::champion& me, vec2 pos, vec2 camp, int round, int kind) {
     if (!P_DP_ALERTS || kind <= 0 || round - s.alert_r > alert_max_age(kind)) return 100;
     // Remote information is for awareness, not global rerouting.
-    if (dist(pos, s.alert_p) > P_DP_ALERT_SELF_R || dist(camp, s.alert_p) > P_DP_ALERT_R) return 100;
+    const int uncertainty = compact_six_alert(s) ? s.alert_uncertainty : 0;
+    if (dist(pos, s.alert_p) > P_DP_ALERT_SELF_R + uncertainty || dist(camp, s.alert_p) > P_DP_ALERT_R + uncertainty) return 100;
     if (alert_prey(kind)) return 100; // valuable/vulnerable singles are not treated as danger.
     int pct = 100;
     switch (kind) {
@@ -2234,7 +2355,8 @@ inline int alert_camp_pct(const State& s, const bc::champion& me, vec2 pos, vec2
 inline int alert_altar_penalty(const State& s, vec2 pos, vec2 altar, int round) {
     const int kind = s.alert_kind;
     if (!P_DP_ALERTS || kind <= 0 || round - s.alert_r > alert_max_age(kind)) return 0;
-    if (dist(pos, s.alert_p) > P_DP_ALERT_SELF_R + 2 || dist(altar, s.alert_p) > P_DP_ALERT_R) return 0;
+    const int uncertainty = compact_six_alert(s) ? s.alert_uncertainty : 0;
+    if (dist(pos, s.alert_p) > P_DP_ALERT_SELF_R + 2 + uncertainty || dist(altar, s.alert_p) > P_DP_ALERT_R + uncertainty) return 0;
     if (alert_prey(kind)) return 0;
     int p = 0;
     switch (kind) {
@@ -2264,7 +2386,8 @@ void write_claim(State& s, int group) {
     // 1..5 bodies use 4 bytes; 6 use 5 bytes, preserving the original 6th
     // claim. Never overwrite byte4 with a claim when shared alerts are active.
     if (!fuel_ok(2000)) return;
-    const std::size_t claim_bytes = (s.roster == 6 ? 5 : 4);
+    const int bits = claim_bits(s);
+    const std::size_t claim_bytes = (s.roster == 6 && bits == 6 ? 5 : 4);
     std::array<std::byte, 5> raw{};
     if (!attempt([&] {
             bc::shared_memory.read(0, std::span<std::byte>(raw.data(), claim_bytes));
@@ -2273,8 +2396,8 @@ void write_claim(State& s, int group) {
     std::uint64_t word = 0;
     for (std::size_t i = 0; i < claim_bytes; ++i)
         word |= static_cast<std::uint64_t>(std::to_integer<std::uint8_t>(raw[i])) << (i * 8);
-    const int shift = s.ally_idx * 6;
-    const std::uint64_t mask = std::uint64_t{63} << shift;
+    const int shift = s.ally_idx * bits;
+    const std::uint64_t mask = ((std::uint64_t{1} << bits) - 1) << shift;
     word = (word & ~mask) | (static_cast<std::uint64_t>(group + 1) << shift);
     for (std::size_t i = 0; i < claim_bytes; ++i)
         raw[i] = static_cast<std::byte>((word >> (i * 8)) & 255u);
@@ -2459,18 +2582,40 @@ void shoot_back(State& s, bc::champion& me, const std::vector<Foe>& foes) {
 // risk/value class derived from enemy count, HP, carried gems and live stats.
 // It is advisory only: no hunt, no forced rotation.
 void update_danger(State& s, const std::vector<Foe>& foes, int round) {
+#if P_FUEL_ALERT_MEMO
+    alertfuel::Scope alert_power_scope(round);
+#endif
+#if P_FUEL_ALERT_GATE
+    const bool classify_semantics=shared_alert_memory(s);
+#else
+    constexpr bool classify_semantics=true;
+#endif
+#if P_FUEL_ALERT_SPAWN
+    std::vector<std::pair<const Foe*,bool>> spawn_cache;
+    spawn_cache.reserve(foes.size());
+    auto enemy_spawn = [&](const Foe& foe) {
+        for (const auto& entry:spawn_cache) if (entry.first==&foe) return entry.second;
+        const bool value=s.en_spawn.is_set(foe.p);
+        spawn_cache.push_back({&foe,value});
+        return value;
+    };
+#else
+    auto enemy_spawn = [&](const Foe& foe) { return s.en_spawn.is_set(foe.p); };
+#endif
     int best_kind = 0;
     vec2 best_p{0,0};
     int best_pri = -1;
     for (auto& f : foes) {
-        if (s.en_spawn.is_set(f.p)) continue;
+        if (enemy_spawn(f)) continue;
         std::vector<const Foe*> near;
         near.reserve(foes.size());
         for (auto& o : foes)
-            if (!s.en_spawn.is_set(o.p) && dist(o.p, f.p) <= 4) near.push_back(&o);
-        const int kind = classify_shared_alert(near);
-        const int pri = alert_priority(kind);
-        if (pri > best_pri) { best_pri = pri; best_kind = kind; best_p = f.p; }
+            if (!enemy_spawn(o) && dist(o.p, f.p) <= 4) near.push_back(&o);
+        if (classify_semantics) {
+            const int kind = classify_shared_alert(near);
+            const int pri = alert_priority(kind);
+            if (pri > best_pri) { best_pri = pri; best_kind = kind; best_p = f.p; }
+        }
         if (P_DANGER && static_cast<int>(near.size()) >= P_DANGER) {
             s.danger_p = f.p;
             s.danger_r = round;
@@ -2480,24 +2625,33 @@ void update_danger(State& s, const std::vector<Foe>& foes, int round) {
     if (shared_alert_memory(s)) {
         if (best_kind) write_shared_alert(s, best_p, best_kind, round);
         auto asm_now = read_sm();
-        const std::uint16_t raw_now = static_cast<std::uint16_t>(asm_now[SM_ALERT_LO]) |
-                                      (static_cast<std::uint16_t>(asm_now[SM_ALERT_HI]) << 8);
-        if (raw_now != s.alert_raw) { s.alert_raw = raw_now; s.alert_raw_r = round; }
+        const std::uint16_t raw_now = alert_word(s,asm_now);
+        observe_alert_packet(s,round,raw_now);
         SharedAlert a = read_shared_alert(s, round, &asm_now);
         // The timestamp wraps every16 rounds. Requiring the packet value itself
         // to have changed recently prevents an untouched stale packet reappearing.
         if (a.valid && round - s.alert_raw_r <= alert_max_age(a.kind)) {
             if (a.round >= s.alert_r) {
-                s.alert_p = a.p; s.alert_r = a.round; s.alert_kind = a.kind;
+                s.alert_p = a.p; s.alert_r = a.round; s.alert_kind = a.kind; s.alert_uncertainty = a.uncertainty;
+#if P_DP_ALERT_TRACE
+                if (six_alert_layout(s))
+                    std::printf("[alert-rx] r=%d body=%d layout=%d raw=%u x=%d y=%d kind=%d age=%d error=%d\n",
+                                round,s.ally_idx,compact_six_alert(s)?12:16,static_cast<unsigned>(raw_now),
+                                a.p.x,a.p.y,a.kind,a.age,a.uncertainty);
+#endif
             }
             // Preserve legacy long-lived danger only for genuine 3+ enemy packs.
-            if (P_DANGER && alert_pack(a.kind) && a.round > s.danger_r) {
+            if (P_DANGER && !compact_six_alert(s) && alert_pack(a.kind) && a.round > s.danger_r) {
                 s.danger_p = a.p;
                 s.danger_r = a.round;
             }
         }
         return;
     }
+
+    // Reserve the six-body alert bytes while geometry validation is pending;
+    // never reinterpret legacy danger as a compact semantic packet later.
+    if (six_alert_layout(s)) return;
 
     // Original byte7 danger fallback when alerts cannot own byte7.
     if (P_CALLHELP || P_PVKITE) return;
@@ -4111,8 +4265,11 @@ void play_turn(State& s) {
     // 3. Enemy champions: back away from a stronger group, fight an even or weaker one.
     FP(9, "fight");
     g_mode = "fight";
+#if P_FUEL_COHORT
+    combatcohort::Scope combat_cohort_scope(round);
+#endif
     std::vector<vec2> allies;
-    for (auto& a : bc::vision::champions(*s.my))
+    for (auto& a : combat_allies(s))
         attempt([&] {
             if (!(a == me) && a.is_alive()) allies.push_back(a.position());
             return true;

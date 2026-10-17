@@ -1,0 +1,55 @@
+{
+  "id": "I033",
+  "title": "Replay-backed v59 scouting, six-body alerts and combat fuel repairs",
+  "kind": "bug",
+  "source": "User-requested diagnosis of combined regressions: docs/I032-replay-diagnosis.md; replay and panel evidence in docs/I032-diagnosis-evidence/.",
+  "owner": "Fran",
+  "hypothesis": "Preserve all six physical-body claims while sharing observations; reduce redundant SDK work without stale live state or lost actions. Playing-strength superiority requires separate evidence.",
+  "stage": "local-test",
+  "bot": "bots/team_baseline",
+  "branch": "fran/v59-replay-fixes",
+  "created": "2026-10-17T16:44Z",
+  "updated": "2026-10-17T20:04Z",
+  "history": [
+    {
+      "at": "2026-10-17T16:44Z",
+      "stage": "local-test",
+      "note": "Fresh 25-23 vs v59; spar 34-2 (v59 36-0); fuel events 624 vs 343. Experimental; full gate/online A/B pending.",
+      "result": "Final candidate v59-swap-cassi-v2: 25 wins / 23 losses against exact raw v59 on 24 separate developer maps from both sides; 34 wins / 2 losses against matched sparring bots, versus raw v59 control 36 wins / 0 losses. Candidate fuelExhausted events 624 versus 343 for raw v59; this remains a material weakness. Full repository promotion gate and online A/B remain pending. No stronger-bot, merge or live-activation claim. Detailed source, native replay and mechanism evidence: docs/I032-replay-diagnosis.md and docs/I032-diagnosis-evidence/."
+    },
+    {
+      "at": "2026-10-17T18:02Z",
+      "stage": "local-test",
+      "note": "Frozen no-copy v4: 96-96 vs v59 on 96 paired maps; 36-0 matched sparring. Fuel 80/177 head-to-head; 302 vs previous 624 and raw-v59 control 343 on matched sparring. Draft review only; no promotion gate or activation.",
+      "result": "All 18 actual-source configurations and full SDK 2.2.5 compile pass. Native faults 0; caught SDK errors persist. Postkill transplant studied separately, not selected after 33-3 sparring vs 36-0 unchanged v4. No Battlecode upload recommendation."
+    },
+    {
+      "at": "2026-10-17T18:31Z",
+      "stage": "local-test",
+      "note": "Confirmed six-body sentinel correction selected for draft review. 37-37 vs v4 on 37 locked maps; 19-21 on 20 diagnostic maps; 36-0 sparring. 31-43 vs v59, identical outcomes to unchanged-v4 matched control. No strength gain demonstrated.",
+      "result": "720,086 actual-function assertions and SDK on/off builds pass. Broader concentrated camp-damage/tanking model remains open; current-engine replay evidence in I035. All sources and comparisons remain separate. No full gate, online A/B or live activation."
+    },
+    {
+      "at": "2026-10-17T19:19Z",
+      "stage": "local-test",
+      "note": "I036 causal diagnostics: corrected camp lifecycle exposes unsafe recall; bounded escape fixes the first step but later legacy retreat re-enters camp range. Compositions remain unselected; I035 stays the review source.",
+      "result": "Triple composition: 25-15 vs raw v59 on 20 diagnostic maps, then 36-38 vs raw v59 and 36-38 vs selected base on the fixed 37-map confirmation. 36-0 sparring. Native faults 0; caught SDK errors remain. No demonstrated superiority, full promotion gate, online activation or upload recommendation."
+    },
+    {
+      "at": "2026-10-17T20:04Z",
+      "stage": "local-test",
+      "note": "I037 retreat continuation: exact replay rescues and a combat/ally-tanking regression led to a scoped zero-known-champion-danger route. Optional component patch only; I035 remains selected and no submission is recommended.",
+      "result": "Postkill plus scoped retreat: 37-37 vs raw v59, 33-41 vs selected I035 on 37 maps, 36-0 sparring. Retreat component without postkill: 36-38 vs raw v59, 39-35 vs I035 (paired-map p=.3125), 36-0 sparring. The small component edge is inconclusive. Actual source SDK/fixtures pass; native faults 0; caught SDK errors persist. Full concentrated camp-damage/tanking, recall-range warning and promotion gate remain open."
+    }
+  ],
+  "evidence": {
+    "report": "docs/I033-budget-alerts-followup.md",
+    "bundle": "docs/I033-budget-alerts-v4-evidence/",
+    "panel_ledger": "docs/I033-budget-alerts-v4-evidence/final-games.csv",
+    "postkill_study": "docs/I034-postkill-study.md",
+    "camp_roster_study": "docs/I035-camp-roster-bound.md",
+    "camp_lifecycle_diagnostics": "docs/I036-camp-lifecycle-diagnostics.md",
+    "camp_retreat_continuation": "docs/I037-retreat-continuation-diagnostics.md"
+  },
+  "pr": "35"
+}

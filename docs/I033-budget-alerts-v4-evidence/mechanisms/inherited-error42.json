@@ -1,0 +1,17 @@
+{
+  "sdk_version": "2.2.5",
+  "sdk_header_sha256": "ee131e2981c16f696cb82cd6b04dc1871f45323057e51f7bb676a893ab72e264",
+  "sdk_line": 375,
+  "enum": "invalid_action_attack_bad_target",
+  "code": 42,
+  "engine_message": "Target must be a visible enemy or neutral camp.",
+  "final_main_sha256": "275a30d4a16824cf7cd318f9c28d516491f3fb31046de137801644f5c699d19e",
+  "raw_v59_main_sha256": "042fc970c76e3ca35679d6002a3e6bb6f6cbccf5d9b275602a8e72d34ed3fb71",
+  "final_attack_live_flag": 0,
+  "observed_callflow": "Both rawv59 and final engage call cast_offense before basic_attack on the selected handle. The live attack target guard is disabled.",
+  "interpretation": "Post-spell disappearance/death of a selected target is a plausible inherited source of error42. No complete per-marker target attribution is established. Individual attempted target IDs are absent from captured markers.",
+  "limits": [
+    "Native faults and caught SDK markers are distinct.",
+    "This note identifies existing callflow and SDK meaning; no source fix or new native run was performed."
+  ]
+}

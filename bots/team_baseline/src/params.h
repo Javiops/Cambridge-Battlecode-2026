@@ -144,3 +144,29 @@
 // All-champion ward placement: based on the previously tested Mate ward experiment.
 #define P_CF_ALL_PASSING_WARDS 1
 #define P_CF_WARD_EVENT_LOG 0
+
+// Validated draft cache is decoded after useful actions, preserving opening tempo.
+#define P_DP_MEMORY_FIX 1
+#define P_DP_ANCHOR_FIX 1
+
+// No-Prism draft: 0 baseline, 1 Cassi & Issac, 2 Willow.
+#define P_DP_PRISM_SWAP 1
+
+// Six-body claims plus semantic scouting; independent of draft composition.
+#define P_DP_ALERTS_SIX 1
+#define P_DP_ALERT_TRACE 0  // isolated native protocol diagnostics only
+
+// Reuse no-action alert inputs and skip unsendable classifications.
+#define P_FUEL_ALERT_MEMO 1
+#define P_FUEL_ALERT_GATE 1
+#define P_FUEL_ALERT_SPAWN 1
+
+#define P_FUEL_IDENTITY 1
+#define P_FUEL_FIGHT_FALLBACK 1
+#define P_FUEL_FIGHT_WORK 30000
+
+// Share only the read-only allied view; invalidate before potential actions.
+#define P_FUEL_COHORT 1
+
+// Distinguish a feasible six-body camp squad from the legacy sentinel.
+#define P_CAMP_ROSTER_BOUND 1

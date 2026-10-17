@@ -153,7 +153,7 @@ inline const SimType& sim_type(const bc::champion& c) {
     static std::vector<SimType> cache;
     int type = -2;
     attempt([&] {
-        type = static_cast<int>(c.champion_name());
+        type = static_cast<int>(combat_identity_type(c));
         return true;
     });
     for (auto& t : cache)
@@ -211,7 +211,7 @@ inline SimUnit sim_unit(const bc::champion& c, double hp) {
     });
     std::string nm;
     attempt([&] {
-        nm = norm(bc::to_string(c.champion_name()));
+        nm = norm(bc::to_string(combat_identity_type(c)));
         return true;
     });
     u.ren = starts_with(nm, "ren");
@@ -293,7 +293,7 @@ inline double sim_ratio(State& s, bc::champion& me, const std::vector<Foe>& foes
     std::vector<SimUnit> us, them;
     us.push_back(sim_unit(me, me.health()));
     attempt([&] {
-        for (auto& a : bc::vision::champions(*s.my)) {
+        for (auto& a : combat_allies(s)) {
             try {
                 if (a == me || !a.is_alive() || a.is_recalling()) continue;
                 if (dist(a.position(), pos) > 6) continue;

@@ -1,0 +1,512 @@
+[
+  {
+    "name": "elkring",
+    "sha256": "37b8ace8d2ae29b8d7dcedc7ce5107e9ef3c5d8868fb8d42e2e1293cdc04939e",
+    "archive_entry": "maps/37b8ace8d2ae29b8d7dcedc7ce5107e9ef3c5d8868fb8d42e2e1293cdc04939e.map26a"
+  },
+  {
+    "name": "fresh-compact-open",
+    "sha256": "3c34efc5240b4ccb9f67b151ddb3461dd35145c22f01091dec6953ae52b63c6c",
+    "archive_entry": "maps/3c34efc5240b4ccb9f67b151ddb3461dd35145c22f01091dec6953ae52b63c6c.map26a"
+  },
+  {
+    "name": "gen4242_184",
+    "sha256": "8b7ff67d2f59aef41414bf1222a45c95c4df3974457445fd73f87b060673405c",
+    "archive_entry": "maps/8b7ff67d2f59aef41414bf1222a45c95c4df3974457445fd73f87b060673405c.map26a"
+  },
+  {
+    "name": "gen4242_97",
+    "sha256": "8bbea69d4acb335e7e6a1de81a1363ad5b368d5abcac39e9d6d66740c23aa64b",
+    "archive_entry": "maps/8bbea69d4acb335e7e6a1de81a1363ad5b368d5abcac39e9d6d66740c23aa64b.map26a"
+  },
+  {
+    "name": "gen4242_48",
+    "sha256": "8f6146d7b5491f6aa4a6c8b01ce061133ce74e3dce90fb99063a2f9a8cbe101f",
+    "archive_entry": "maps/8f6146d7b5491f6aa4a6c8b01ce061133ce74e3dce90fb99063a2f9a8cbe101f.map26a"
+  },
+  {
+    "name": "gen4242_181",
+    "sha256": "9040aef773bda40b7251371fd3dd6a0b929b644b81fa6f641e8d5294660d52b3",
+    "archive_entry": "maps/9040aef773bda40b7251371fd3dd6a0b929b644b81fa6f641e8d5294660d52b3.map26a"
+  },
+  {
+    "name": "gen4242_121",
+    "sha256": "92190529a071f82272bdd3404fdb0172bdb4f2c1c510146139488cbb7ece514e",
+    "archive_entry": "maps/92190529a071f82272bdd3404fdb0172bdb4f2c1c510146139488cbb7ece514e.map26a"
+  },
+  {
+    "name": "gen4242_185",
+    "sha256": "9430d6ba6ccef4324e23c047f6d431106fd7a14d12622032ad334730403a2547",
+    "archive_entry": "maps/9430d6ba6ccef4324e23c047f6d431106fd7a14d12622032ad334730403a2547.map26a"
+  },
+  {
+    "name": "gen4242_31",
+    "sha256": "947046d722c35ac195e9246c2828dca39962b61ad56bb255149972e8bd92cb31",
+    "archive_entry": "maps/947046d722c35ac195e9246c2828dca39962b61ad56bb255149972e8bd92cb31.map26a"
+  },
+  {
+    "name": "gen4242_129",
+    "sha256": "96aef280051aba405abaa1b1ff0d033110edbf0017d7b2734853b63bb83d2f9d",
+    "archive_entry": "maps/96aef280051aba405abaa1b1ff0d033110edbf0017d7b2734853b63bb83d2f9d.map26a"
+  },
+  {
+    "name": "gen4242_60",
+    "sha256": "985014b79d517cb681d124ec2a48ae89af710197e99667d97cb0f7553d68d439",
+    "archive_entry": "maps/985014b79d517cb681d124ec2a48ae89af710197e99667d97cb0f7553d68d439.map26a"
+  },
+  {
+    "name": "gen4242_58",
+    "sha256": "99dff1d2b194f6d6b56d9323a2f0780b0c1e12f09eb19d3dd839e213e5c921cb",
+    "archive_entry": "maps/99dff1d2b194f6d6b56d9323a2f0780b0c1e12f09eb19d3dd839e213e5c921cb.map26a"
+  },
+  {
+    "name": "gen4242_02",
+    "sha256": "a09042309e11b445c018f3baac36b7b8dd3a9adeca285b9b56c40d39872d42b4",
+    "archive_entry": "maps/a09042309e11b445c018f3baac36b7b8dd3a9adeca285b9b56c40d39872d42b4.map26a"
+  },
+  {
+    "name": "gen4242_00",
+    "sha256": "a1401626896fa67ddb1ab5b827ae4d3939b1cc10e3fce7c0ec11a205eedfab4b",
+    "archive_entry": "maps/a1401626896fa67ddb1ab5b827ae4d3939b1cc10e3fce7c0ec11a205eedfab4b.map26a"
+  },
+  {
+    "name": "gen4242_155",
+    "sha256": "a1d76747a317c0c0e6a066de94cf901545d1a02a6881e9cc0b88eab2cd717f20",
+    "archive_entry": "maps/a1d76747a317c0c0e6a066de94cf901545d1a02a6881e9cc0b88eab2cd717f20.map26a"
+  },
+  {
+    "name": "gen4242_120",
+    "sha256": "a2380f81403f594a63653a9d54b54172c8e8fbc5b2e0b73c74c56112374c4523",
+    "archive_entry": "maps/a2380f81403f594a63653a9d54b54172c8e8fbc5b2e0b73c74c56112374c4523.map26a"
+  },
+  {
+    "name": "gen4242_05",
+    "sha256": "a285cbb966628a1211a6d046140f2dbb9cd0ba7e8f6d2522d029dfcdb557749e",
+    "archive_entry": "maps/a285cbb966628a1211a6d046140f2dbb9cd0ba7e8f6d2522d029dfcdb557749e.map26a"
+  },
+  {
+    "name": "gen4242_35",
+    "sha256": "a33682934a842eb2cb696cc91e635e7d575ac395e34ccd3f7d802d542a68bfee",
+    "archive_entry": "maps/a33682934a842eb2cb696cc91e635e7d575ac395e34ccd3f7d802d542a68bfee.map26a"
+  },
+  {
+    "name": "gen4242_81",
+    "sha256": "a4591ffdabf4f02e6cc848a82e10c9b4f97ce0f06c890b50300e7de2d658c356",
+    "archive_entry": "maps/a4591ffdabf4f02e6cc848a82e10c9b4f97ce0f06c890b50300e7de2d658c356.map26a"
+  },
+  {
+    "name": "gen4242_13",
+    "sha256": "a54244da965c773528e15624276c84111e62ade5a84918c7119981bb2a287d37",
+    "archive_entry": "maps/a54244da965c773528e15624276c84111e62ade5a84918c7119981bb2a287d37.map26a"
+  },
+  {
+    "name": "gen4242_20",
+    "sha256": "a6bc9855f9385d92613f257b7e3e821bada4bce46b24a2873aa59c00c4ca9515",
+    "archive_entry": "maps/a6bc9855f9385d92613f257b7e3e821bada4bce46b24a2873aa59c00c4ca9515.map26a"
+  },
+  {
+    "name": "gen4242_33",
+    "sha256": "a6d19b0f05008f9906813acfa973ae66d6079fb17312b5173c4f5918920a5b06",
+    "archive_entry": "maps/a6d19b0f05008f9906813acfa973ae66d6079fb17312b5173c4f5918920a5b06.map26a"
+  },
+  {
+    "name": "gen4242_79",
+    "sha256": "a72be7fad2067164a4f7ba0d61fbeb47fc5dfe018a7e170d115bed2a1ce0e669",
+    "archive_entry": "maps/a72be7fad2067164a4f7ba0d61fbeb47fc5dfe018a7e170d115bed2a1ce0e669.map26a"
+  },
+  {
+    "name": "gen4242_94",
+    "sha256": "a85bd5f35a8202bf75c9a394443ee5842929a73bc8c9849f9b0ac644a9514657",
+    "archive_entry": "maps/a85bd5f35a8202bf75c9a394443ee5842929a73bc8c9849f9b0ac644a9514657.map26a"
+  },
+  {
+    "name": "gen4242_127",
+    "sha256": "aa6a082a71bcfa255d56612e48471f0e91ed0c62d9d823873ae91c7f86bd8614",
+    "archive_entry": "maps/aa6a082a71bcfa255d56612e48471f0e91ed0c62d9d823873ae91c7f86bd8614.map26a"
+  },
+  {
+    "name": "gen4242_139",
+    "sha256": "ac80d4a6803ed7ed6c5fd05ac94f1cb493ada788767dc2133be995b03186e5ce",
+    "archive_entry": "maps/ac80d4a6803ed7ed6c5fd05ac94f1cb493ada788767dc2133be995b03186e5ce.map26a"
+  },
+  {
+    "name": "gen4242_126",
+    "sha256": "accea4271a1050610060b8044828ea409640730c0333cbc54c52bed8c7bac3b2",
+    "archive_entry": "maps/accea4271a1050610060b8044828ea409640730c0333cbc54c52bed8c7bac3b2.map26a"
+  },
+  {
+    "name": "gen4242_141",
+    "sha256": "aef6b6dfbc38cf602e0c68e8ec5ccb1afdbf9abb3f187446281e79414288ecff",
+    "archive_entry": "maps/aef6b6dfbc38cf602e0c68e8ec5ccb1afdbf9abb3f187446281e79414288ecff.map26a"
+  },
+  {
+    "name": "gen4242_160",
+    "sha256": "af16c9429e0a5a649f62fd3f788fc3ff9404c4650dd317a878c4a1b0234d29b3",
+    "archive_entry": "maps/af16c9429e0a5a649f62fd3f788fc3ff9404c4650dd317a878c4a1b0234d29b3.map26a"
+  },
+  {
+    "name": "gen4242_176",
+    "sha256": "af9565b579156404c9ea330eb2453ba4ec8086ad418cb6c98738d0eae562885f",
+    "archive_entry": "maps/af9565b579156404c9ea330eb2453ba4ec8086ad418cb6c98738d0eae562885f.map26a"
+  },
+  {
+    "name": "gen4242_30",
+    "sha256": "afa905a8628967193a24406a3a0162785c9a8cb7d7630687004274b2ef5b555b",
+    "archive_entry": "maps/afa905a8628967193a24406a3a0162785c9a8cb7d7630687004274b2ef5b555b.map26a"
+  },
+  {
+    "name": "gen4242_103",
+    "sha256": "afc70a4a6ff8b40311dfee89f2d980c42326dec08455e5e508d0d42c1fab0b29",
+    "archive_entry": "maps/afc70a4a6ff8b40311dfee89f2d980c42326dec08455e5e508d0d42c1fab0b29.map26a"
+  },
+  {
+    "name": "gen4242_66",
+    "sha256": "b098f6776323f32baf64bdf3578e981e547e6ef7d218ccc094371b76b9c512e8",
+    "archive_entry": "maps/b098f6776323f32baf64bdf3578e981e547e6ef7d218ccc094371b76b9c512e8.map26a"
+  },
+  {
+    "name": "gen4242_07",
+    "sha256": "b72fb83f479abf0f5e8b1346ac938653eec0e82cbf8f4492e146cbc8668ca00b",
+    "archive_entry": "maps/b72fb83f479abf0f5e8b1346ac938653eec0e82cbf8f4492e146cbc8668ca00b.map26a"
+  },
+  {
+    "name": "gen4242_77",
+    "sha256": "b98dd5bf5c264a1d5fd4ac44208ed2f7cef72ddee544deca0b28e674501c1069",
+    "archive_entry": "maps/b98dd5bf5c264a1d5fd4ac44208ed2f7cef72ddee544deca0b28e674501c1069.map26a"
+  },
+  {
+    "name": "gen4242_131",
+    "sha256": "bad277062dd01a72bbfb391aa01f37efb6d843144ea7db883e63a02e14cf9164",
+    "archive_entry": "maps/bad277062dd01a72bbfb391aa01f37efb6d843144ea7db883e63a02e14cf9164.map26a"
+  },
+  {
+    "name": "gen4242_09",
+    "sha256": "bb0730694d921afadc997b1c3ce4632b489af2ee679981948cbbad2e294ce7ce",
+    "archive_entry": "maps/bb0730694d921afadc997b1c3ce4632b489af2ee679981948cbbad2e294ce7ce.map26a"
+  },
+  {
+    "name": "gen4242_194",
+    "sha256": "bb142a980b2d0ce308bfbe2d90f0235b14eafa727427663503bb733854c542ff",
+    "archive_entry": "maps/bb142a980b2d0ce308bfbe2d90f0235b14eafa727427663503bb733854c542ff.map26a"
+  },
+  {
+    "name": "gen4242_45",
+    "sha256": "bca053d0800da0da5688304b604525efd44401dc00caaefdf8ec550c83815932",
+    "archive_entry": "maps/bca053d0800da0da5688304b604525efd44401dc00caaefdf8ec550c83815932.map26a"
+  },
+  {
+    "name": "gen4242_73",
+    "sha256": "bd1eb07102d4a20718e5f6beeefc051a338e730c7431fd3a61264e692a9bb2ae",
+    "archive_entry": "maps/bd1eb07102d4a20718e5f6beeefc051a338e730c7431fd3a61264e692a9bb2ae.map26a"
+  },
+  {
+    "name": "gen4242_34",
+    "sha256": "be10a1e2dfe6172025ca285afc134f698c590010e64aa09a31639cd80a4a2e1c",
+    "archive_entry": "maps/be10a1e2dfe6172025ca285afc134f698c590010e64aa09a31639cd80a4a2e1c.map26a"
+  },
+  {
+    "name": "gen4242_154",
+    "sha256": "c0cea4bafe4cf7f3b76b3ac2efa1c2b306b3e0f7f6e4764452dc63bae37c1f91",
+    "archive_entry": "maps/c0cea4bafe4cf7f3b76b3ac2efa1c2b306b3e0f7f6e4764452dc63bae37c1f91.map26a"
+  },
+  {
+    "name": "gen4242_165",
+    "sha256": "c100995993237250ed3204dbbbd421e7b029581fb99ed09a033e44d08f9bef3e",
+    "archive_entry": "maps/c100995993237250ed3204dbbbd421e7b029581fb99ed09a033e44d08f9bef3e.map26a"
+  },
+  {
+    "name": "gen4242_71",
+    "sha256": "c192e276243f9b6b05297f90c187fe1bd5b57e9a0d78cb1c5e3fa7db98073ef8",
+    "archive_entry": "maps/c192e276243f9b6b05297f90c187fe1bd5b57e9a0d78cb1c5e3fa7db98073ef8.map26a"
+  },
+  {
+    "name": "gen4242_61",
+    "sha256": "c194b02a3bed612de99f53212489200477b8f6b9c36b0c3ae9ab08390161bd2d",
+    "archive_entry": "maps/c194b02a3bed612de99f53212489200477b8f6b9c36b0c3ae9ab08390161bd2d.map26a"
+  },
+  {
+    "name": "gen4242_85",
+    "sha256": "c4e3c01a29366947aea54cadbfed384998049ffd7210aa38e6e90d50b9fbcf3f",
+    "archive_entry": "maps/c4e3c01a29366947aea54cadbfed384998049ffd7210aa38e6e90d50b9fbcf3f.map26a"
+  },
+  {
+    "name": "gen4242_145",
+    "sha256": "c6ac5df8f45eed21289d7144c9e7fb4bccf748997a01bfeb82ff09df841534fc",
+    "archive_entry": "maps/c6ac5df8f45eed21289d7144c9e7fb4bccf748997a01bfeb82ff09df841534fc.map26a"
+  },
+  {
+    "name": "contest",
+    "sha256": "c76debb1c6fde9bad53996f02dda7820b79b9729c7a4592a71a82b0518820f7f",
+    "archive_entry": "maps/c76debb1c6fde9bad53996f02dda7820b79b9729c7a4592a71a82b0518820f7f.map26a"
+  },
+  {
+    "name": "gen4242_17",
+    "sha256": "c7e3fcc9aafea7e650b0c756011538752a283281ff79baa8421abd87f23070b9",
+    "archive_entry": "maps/c7e3fcc9aafea7e650b0c756011538752a283281ff79baa8421abd87f23070b9.map26a"
+  },
+  {
+    "name": "gen4242_111",
+    "sha256": "c86d56e1b3ad77987a0b3b3cbc1efe6545708e53b7f977dbe017130080cc6baa",
+    "archive_entry": "maps/c86d56e1b3ad77987a0b3b3cbc1efe6545708e53b7f977dbe017130080cc6baa.map26a"
+  },
+  {
+    "name": "gen4242_151",
+    "sha256": "c86e82a87251399205e02241d67e7609ea7ff3a836a00ecd2e81530e1687da05",
+    "archive_entry": "maps/c86e82a87251399205e02241d67e7609ea7ff3a836a00ecd2e81530e1687da05.map26a"
+  },
+  {
+    "name": "gen4242_163",
+    "sha256": "ca680aa910ffe3fd948328fe9bd590026eece2f07335f0d2cac3cd0ed01ca824",
+    "archive_entry": "maps/ca680aa910ffe3fd948328fe9bd590026eece2f07335f0d2cac3cd0ed01ca824.map26a"
+  },
+  {
+    "name": "gen4242_101",
+    "sha256": "caca526f539fea740707b1f7424c8ce68c17c1fbd04a1e5fe372d1fb7dae033e",
+    "archive_entry": "maps/caca526f539fea740707b1f7424c8ce68c17c1fbd04a1e5fe372d1fb7dae033e.map26a"
+  },
+  {
+    "name": "gen4242_195",
+    "sha256": "cad7624bd67fe35526dd2359f6ca11bf67d4ecbedb7e9314021b3d59ef29969a",
+    "archive_entry": "maps/cad7624bd67fe35526dd2359f6ca11bf67d4ecbedb7e9314021b3d59ef29969a.map26a"
+  },
+  {
+    "name": "gen4242_98",
+    "sha256": "d2bd72ff6fac3812bedd1aab84ebab67d7b8ceb2ef422b6da4a395b3b932bcdf",
+    "archive_entry": "maps/d2bd72ff6fac3812bedd1aab84ebab67d7b8ceb2ef422b6da4a395b3b932bcdf.map26a"
+  },
+  {
+    "name": "gen4242_108",
+    "sha256": "d35c6574f0bfe9ee479165b6c442193ae43d4a876894f357d5af08caa905de51",
+    "archive_entry": "maps/d35c6574f0bfe9ee479165b6c442193ae43d4a876894f357d5af08caa905de51.map26a"
+  },
+  {
+    "name": "gen4242_47",
+    "sha256": "d3f46559f59af137ad2eb916ee894fb358a949b9ccce7db7aa469b71650a9ef4",
+    "archive_entry": "maps/d3f46559f59af137ad2eb916ee894fb358a949b9ccce7db7aa469b71650a9ef4.map26a"
+  },
+  {
+    "name": "gen4242_87",
+    "sha256": "d46c17b45b85e3eeef711de4208cf0f3af48d2bbf7a35436d13ab514df873ff8",
+    "archive_entry": "maps/d46c17b45b85e3eeef711de4208cf0f3af48d2bbf7a35436d13ab514df873ff8.map26a"
+  },
+  {
+    "name": "gen4242_109",
+    "sha256": "d50077caa3d82a5fc04b2bbe3057bd50774701957afdbc58ff6be69f95960ce3",
+    "archive_entry": "maps/d50077caa3d82a5fc04b2bbe3057bd50774701957afdbc58ff6be69f95960ce3.map26a"
+  },
+  {
+    "name": "gen4242_171",
+    "sha256": "d514cd0eb20e368b1260d74a290303990e675e7407b9d29ae555270c0227d296",
+    "archive_entry": "maps/d514cd0eb20e368b1260d74a290303990e675e7407b9d29ae555270c0227d296.map26a"
+  },
+  {
+    "name": "gen4242_164",
+    "sha256": "d574ce2de88ba0a01961cb2081cca09967f3185d3ff3a835308f60ef51000301",
+    "archive_entry": "maps/d574ce2de88ba0a01961cb2081cca09967f3185d3ff3a835308f60ef51000301.map26a"
+  },
+  {
+    "name": "gen4242_122",
+    "sha256": "d5c3887571d2aa6c28e14cbd9ffede6778162166fa7acbd4f559be36ed85d36d",
+    "archive_entry": "maps/d5c3887571d2aa6c28e14cbd9ffede6778162166fa7acbd4f559be36ed85d36d.map26a"
+  },
+  {
+    "name": "gen4242_67",
+    "sha256": "d5e3201fcd29347306460b0fbeb18a06c82cbef6516a1dad6dd0f56885956c3c",
+    "archive_entry": "maps/d5e3201fcd29347306460b0fbeb18a06c82cbef6516a1dad6dd0f56885956c3c.map26a"
+  },
+  {
+    "name": "gen4242_190",
+    "sha256": "d633ccddb8a89c1478998ad45f2bbdb697caa27f3396a44c577a2046f2e0e107",
+    "archive_entry": "maps/d633ccddb8a89c1478998ad45f2bbdb697caa27f3396a44c577a2046f2e0e107.map26a"
+  },
+  {
+    "name": "gen4242_36",
+    "sha256": "d6a01d6285e82f8eb8fd2159147179ab5e32c8f11dbd6c978b1c86776dd83260",
+    "archive_entry": "maps/d6a01d6285e82f8eb8fd2159147179ab5e32c8f11dbd6c978b1c86776dd83260.map26a"
+  },
+  {
+    "name": "gen4242_03",
+    "sha256": "daf74eb11d1e0b6d960783943fb7b046cec865814d3fd4f8ce7abc912138396f",
+    "archive_entry": "maps/daf74eb11d1e0b6d960783943fb7b046cec865814d3fd4f8ce7abc912138396f.map26a"
+  },
+  {
+    "name": "gen4242_59",
+    "sha256": "dba561652f98ad94b8a258d7f853ba1802b515adbd983892995c7a3af40c4047",
+    "archive_entry": "maps/dba561652f98ad94b8a258d7f853ba1802b515adbd983892995c7a3af40c4047.map26a"
+  },
+  {
+    "name": "gen4242_170",
+    "sha256": "dc71b6c7ba39d9d8e263445a97c4e103f87f57e30bae1d38dca4fea9c53caa10",
+    "archive_entry": "maps/dc71b6c7ba39d9d8e263445a97c4e103f87f57e30bae1d38dca4fea9c53caa10.map26a"
+  },
+  {
+    "name": "gen4242_80",
+    "sha256": "dcddbce6cde4af0b52b59440187233d0baf0a12b08d68ceb480e3e394491a9c0",
+    "archive_entry": "maps/dcddbce6cde4af0b52b59440187233d0baf0a12b08d68ceb480e3e394491a9c0.map26a"
+  },
+  {
+    "name": "gen4242_115",
+    "sha256": "ddad23cb0dc8e564cd562ae960345a1b2af08b652d732cc9c19e3e0d976c353e",
+    "archive_entry": "maps/ddad23cb0dc8e564cd562ae960345a1b2af08b652d732cc9c19e3e0d976c353e.map26a"
+  },
+  {
+    "name": "gen4242_128",
+    "sha256": "dfe85c7019a4f07a3e8dc6689bbe98ed1e902a8bd31eb7fd7a90bd13406b3944",
+    "archive_entry": "maps/dfe85c7019a4f07a3e8dc6689bbe98ed1e902a8bd31eb7fd7a90bd13406b3944.map26a"
+  },
+  {
+    "name": "gen4242_157",
+    "sha256": "e12bbca7206cd27d5560039d4e935116bfe021ba99a08391abbeb0c3c72ae6a6",
+    "archive_entry": "maps/e12bbca7206cd27d5560039d4e935116bfe021ba99a08391abbeb0c3c72ae6a6.map26a"
+  },
+  {
+    "name": "gen4242_177",
+    "sha256": "e33d4a4779bb92ded2290ffe7a886aa76442cd4748410df8cad84ebaca3bab5c",
+    "archive_entry": "maps/e33d4a4779bb92ded2290ffe7a886aa76442cd4748410df8cad84ebaca3bab5c.map26a"
+  },
+  {
+    "name": "gen4242_55",
+    "sha256": "e36fadc87ff75f639acdfcf7d399ecbc59f2fc5d78dc639441eae2a63660c28e",
+    "archive_entry": "maps/e36fadc87ff75f639acdfcf7d399ecbc59f2fc5d78dc639441eae2a63660c28e.map26a"
+  },
+  {
+    "name": "gen4242_86",
+    "sha256": "e3a1d92226576793a7ca99daa3d6999cdca783638c7499aba753b7b03c1ad7fe",
+    "archive_entry": "maps/e3a1d92226576793a7ca99daa3d6999cdca783638c7499aba753b7b03c1ad7fe.map26a"
+  },
+  {
+    "name": "gen4242_88",
+    "sha256": "e47ad03930e12f876a07e57ad40843d20703d82e168913666d96f85541188243",
+    "archive_entry": "maps/e47ad03930e12f876a07e57ad40843d20703d82e168913666d96f85541188243.map26a"
+  },
+  {
+    "name": "maps_hold60/gen20261015_12",
+    "sha256": "e4e2d0602fe61323672f651f570064c7737ae144149a14c5ffbae519f63bfeb1",
+    "archive_entry": "maps/e4e2d0602fe61323672f651f570064c7737ae144149a14c5ffbae519f63bfeb1.map26a"
+  },
+  {
+    "name": "gen4242_152",
+    "sha256": "e51508011135b4dc122ca6ae8673b0f0a6cd7e4152ab1bcf8cab768ef09bf021",
+    "archive_entry": "maps/e51508011135b4dc122ca6ae8673b0f0a6cd7e4152ab1bcf8cab768ef09bf021.map26a"
+  },
+  {
+    "name": "gen4242_27",
+    "sha256": "e65c8bcba7bfbe143c3f0e199042160d971944f33643d09e903a15e65e8acf74",
+    "archive_entry": "maps/e65c8bcba7bfbe143c3f0e199042160d971944f33643d09e903a15e65e8acf74.map26a"
+  },
+  {
+    "name": "gen4242_12",
+    "sha256": "e661d1af5ad3cfe4e8e8ec044a37998c090fcc6f4e72586e8e9147f5ac955e8c",
+    "archive_entry": "maps/e661d1af5ad3cfe4e8e8ec044a37998c090fcc6f4e72586e8e9147f5ac955e8c.map26a"
+  },
+  {
+    "name": "gen4242_116",
+    "sha256": "e685c86f2748cb8930f8e69f24321732eb91b68f3f3d0dec5fc346e58e926721",
+    "archive_entry": "maps/e685c86f2748cb8930f8e69f24321732eb91b68f3f3d0dec5fc346e58e926721.map26a"
+  },
+  {
+    "name": "gen4242_25",
+    "sha256": "e7700bd0c6601f271dc6293ebee83fcff77d4bfc6d249048ecda080d5a6dee24",
+    "archive_entry": "maps/e7700bd0c6601f271dc6293ebee83fcff77d4bfc6d249048ecda080d5a6dee24.map26a"
+  },
+  {
+    "name": "gen4242_142",
+    "sha256": "e7b2c7f1ae4685b37902954109aea898c194a9a3d56ba903b66c3b37c0c7a477",
+    "archive_entry": "maps/e7b2c7f1ae4685b37902954109aea898c194a9a3d56ba903b66c3b37c0c7a477.map26a"
+  },
+  {
+    "name": "maps_dev200/gen4242_75",
+    "sha256": "e84f236bcb91f9fc21f57830a8c1307e46126c646883715e3607990270ea12ea",
+    "archive_entry": "maps/e84f236bcb91f9fc21f57830a8c1307e46126c646883715e3607990270ea12ea.map26a"
+  },
+  {
+    "name": "gen4242_140",
+    "sha256": "ea1dd92a9a41cac8d5d234c14428d9dd0d43a9081835f966128a1de6c36da538",
+    "archive_entry": "maps/ea1dd92a9a41cac8d5d234c14428d9dd0d43a9081835f966128a1de6c36da538.map26a"
+  },
+  {
+    "name": "gen4242_183",
+    "sha256": "eaf99b0e01265b42123f2e96d47451cf222e73625f9b7a864b1cccd5b0db5933",
+    "archive_entry": "maps/eaf99b0e01265b42123f2e96d47451cf222e73625f9b7a864b1cccd5b0db5933.map26a"
+  },
+  {
+    "name": "gen4242_123",
+    "sha256": "eba165e539ecf9af31fa7c78187a749021be575064187039951fde05166f977b",
+    "archive_entry": "maps/eba165e539ecf9af31fa7c78187a749021be575064187039951fde05166f977b.map26a"
+  },
+  {
+    "name": "gen4242_147",
+    "sha256": "edb9630e50a4b907b44ae2616f963c683847634ede80da61747a811c97f9258e",
+    "archive_entry": "maps/edb9630e50a4b907b44ae2616f963c683847634ede80da61747a811c97f9258e.map26a"
+  },
+  {
+    "name": "corners",
+    "sha256": "ee68ccad568ca8ff6d87a77f2cbc9cf6ee54dc63c74fb306e5ac67d8c0556cc6",
+    "archive_entry": "maps/ee68ccad568ca8ff6d87a77f2cbc9cf6ee54dc63c74fb306e5ac67d8c0556cc6.map26a"
+  },
+  {
+    "name": "gen4242_93",
+    "sha256": "f147f1e644a500832f2527be293be96cab41d97540021267320a317afed7038a",
+    "archive_entry": "maps/f147f1e644a500832f2527be293be96cab41d97540021267320a317afed7038a.map26a"
+  },
+  {
+    "name": "gen4242_22",
+    "sha256": "f173ddec69c52e51d671b73882d006c80fef8f1066021a6d951860ceb61073e9",
+    "archive_entry": "maps/f173ddec69c52e51d671b73882d006c80fef8f1066021a6d951860ceb61073e9.map26a"
+  },
+  {
+    "name": "gen4242_69",
+    "sha256": "f2d72b7be026ef055fda38597a7a134d25605d1065921f421b57291faff8946c",
+    "archive_entry": "maps/f2d72b7be026ef055fda38597a7a134d25605d1065921f421b57291faff8946c.map26a"
+  },
+  {
+    "name": "gen4242_65",
+    "sha256": "f345509b4636c9e0a952b26240e0e055bb31a98e4880e938df3b34da0d5a6cc7",
+    "archive_entry": "maps/f345509b4636c9e0a952b26240e0e055bb31a98e4880e938df3b34da0d5a6cc7.map26a"
+  },
+  {
+    "name": "gen4242_99",
+    "sha256": "f4fa7e17d78f398ca2d2da0147511f44fc8122d77eb7d2aa35ef31a5349cf6a4",
+    "archive_entry": "maps/f4fa7e17d78f398ca2d2da0147511f44fc8122d77eb7d2aa35ef31a5349cf6a4.map26a"
+  },
+  {
+    "name": "gen4242_26",
+    "sha256": "f5b61f5ad9cde35480de55661a8b21d429c7cbb4dfaf82b553047d8b346714e8",
+    "archive_entry": "maps/f5b61f5ad9cde35480de55661a8b21d429c7cbb4dfaf82b553047d8b346714e8.map26a"
+  },
+  {
+    "name": "gen4242_64",
+    "sha256": "f63a16265bff78931373883f795543b4134121768f79ae28fd6a609a2eaa0be4",
+    "archive_entry": "maps/f63a16265bff78931373883f795543b4134121768f79ae28fd6a609a2eaa0be4.map26a"
+  },
+  {
+    "name": "gen4242_119",
+    "sha256": "f91247c7562a8addb862b1123dc58cf093f844a552addc876b47998dce0d361e",
+    "archive_entry": "maps/f91247c7562a8addb862b1123dc58cf093f844a552addc876b47998dce0d361e.map26a"
+  },
+  {
+    "name": "gen4242_198",
+    "sha256": "f993f81bea38cf59a59fc872ac842d2ad5ae9d05c1f004964432079536377aed",
+    "archive_entry": "maps/f993f81bea38cf59a59fc872ac842d2ad5ae9d05c1f004964432079536377aed.map26a"
+  },
+  {
+    "name": "gen4242_153",
+    "sha256": "fa75f36f1b1e160874adb076a4c5de622517334dd014da4da06999eb19fefa37",
+    "archive_entry": "maps/fa75f36f1b1e160874adb076a4c5de622517334dd014da4da06999eb19fefa37.map26a"
+  },
+  {
+    "name": "gen4242_44",
+    "sha256": "fb9f06e6e49108a34792cadbc6407c984263dc80d573c28f7c9778b922ba6411",
+    "archive_entry": "maps/fb9f06e6e49108a34792cadbc6407c984263dc80d573c28f7c9778b922ba6411.map26a"
+  },
+  {
+    "name": "gen4242_24",
+    "sha256": "fc006d376f4006ab979ff6ddedc3133631c32bb6140cb0dba502e3e5a9b7eb9a",
+    "archive_entry": "maps/fc006d376f4006ab979ff6ddedc3133631c32bb6140cb0dba502e3e5a9b7eb9a.map26a"
+  },
+  {
+    "name": "gen4242_06",
+    "sha256": "ff4d15535b68d52942429c9a3c1e52f5962eabaa024f5a014a595a0f73cd547f",
+    "archive_entry": "maps/ff4d15535b68d52942429c9a3c1e52f5962eabaa024f5a014a595a0f73cd547f.map26a"
+  }
+]

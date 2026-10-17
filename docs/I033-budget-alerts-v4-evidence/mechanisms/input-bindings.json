@@ -1,0 +1,78 @@
+{
+  "protocol.json": {
+    "input_sha256": "7bea7aa5e119c620c484d0901a11459321941f7934c17da2f6f51b7bea20e03e",
+    "input": "work/mate-v60/final-protocol-audit.json"
+  },
+  "protocol-fixtures.json": {
+    "input_sha256": "ac4253fade0a763930950086aac199b4b4346269dd03fe4cc732ea15d5450897",
+    "input": "work/mate-v60/combined-protocol-tests/results.json"
+  },
+  "native-alerts.json": {
+    "input_sha256": "d313cfeb88573ddc94f9e73dc59b530b8017bae29b9cda44f1eaf58bc9aee0c6",
+    "input": "work/mate-v60/native-alert-audit.json"
+  },
+  "native-alert-cost.json": {
+    "input_sha256": "d3fb030ce963a735d103faf68ade5fa722dddbd240ff853566f8e4c7e1737045",
+    "input": "work/mate-v60/fuel/native-alert-cost-summary.json"
+  },
+  "fuel-memo-fixtures.json": {
+    "input_sha256": "284e77c81ced68f5938995e001a82ed9bf6c04f051d27c948bf47b0f7231adcc",
+    "input": "work/mate-v60/fuel/alert-fuel-mechanisms.json"
+  },
+  "identity-defense-fixtures.json": {
+    "input_sha256": "d846947397085edc45466f7b98f1cbe487f2198f33cd3602139663b69d1f0fde",
+    "input": "work/mate-v60/fuel-stage2/mechanisms-v2.json"
+  },
+  "cohort-fixtures.json": {
+    "input_sha256": "8365c3ba38b9c54a06d4df2188f67889b3dd50d4affefb205e8dde71068078ce",
+    "input": "work/mate-v60/fuel-stage3/results.json"
+  },
+  "existing-loss-audit.json": {
+    "input_sha256": "e7865a84b68e6b32e61a2113eaf77671e61dacb74173b09ba1513468678a57b8",
+    "input": "work/mate-v60/replays/loss-audit.json"
+  },
+  "rejected-chase-fixtures.json": {
+    "input_sha256": "7d165c30355360e3de01b782df38195221d0ba5f0b5a0a3819811b4dade995e7",
+    "input": "work/mate-v60/replays/chase/results.json"
+  },
+  "historical-v3-portable-validation.json": {
+    "input_sha256": "c4a63d82957f8593ccfc828024da636ee4e42a3be996d0f59a06865430a2fb8c",
+    "input": "work/mate-v60/portable-test-validation/results.json"
+  },
+  "historical-v3-integration-audit.json": {
+    "input_sha256": "7a25e8b3540c853aa94ab0408766c4b70ddb3d760b89064613c202c35986e3bf",
+    "input": "work/mate-v60/final-integration-audit.json"
+  },
+  "view-mechanisms.json": {
+    "input_sha256": "ee7970c9a5c13fc42d487bcc90d9826d296006bdb1ea451249dae5eb9003d8f8",
+    "input": "work/mate-v60/cohort-view/results.json"
+  },
+  "view-sdk-benchmark.json": {
+    "input_sha256": "ee279adf606321d0759d6c86528ea32fe649bf71b5591345f710799d4c33552d",
+    "input": "work/mate-v60/cohort-view/sdk-benchmark.json"
+  },
+  "view-native-first-use.json": {
+    "input_sha256": "d370fc49580a4a92b55dcd3dce11d8d207c2a59f5011212b8d18ad9217042a00",
+    "input": "work/mate-v60/cohort-view/native-first-use-followup.json"
+  },
+  "view-final-binding.json": {
+    "input_sha256": "d7b77a0ad88a80e4d8562361788ca98d8ec38a7b42124ab2d1a8163e2f532f0e",
+    "input": "work/mate-v60/cohort-view/view-binding-audit.json"
+  },
+  "view-lifetime-review.json": {
+    "input_sha256": "3aeed65c9a481fd64345b4b636b95134d7d0abb12cddf3edd94fac6595a762b3",
+    "input": "work/mate-v60/cohort-view/replay-review.json"
+  },
+  "portable-v4-final-source-validation.json": {
+    "input_sha256": "1603f45ee21faa60a83679b62f7a89bb78c508c5c451c90d622fc0cd01e11ffa",
+    "input": "work/mate-v60/publication-v4/tests/recorded/portable-validation.json"
+  },
+  "loss-followup.json": {
+    "input_sha256": "0959cd4c682e02dd203379a6922bfd455477355176a41f910e7feec35b471da6",
+    "input": "work/mate-v60/loss-followup/loss-followup.json"
+  },
+  "inherited-error42.json": {
+    "input_sha256": "a7b5ccb747f87b6a883d6cd047577bde3a9c5a003ada20b680f6568729d5c190",
+    "input": "work/mate-v60/inherited-error42-note.json"
+  }
+}

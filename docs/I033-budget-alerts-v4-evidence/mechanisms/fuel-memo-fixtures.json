@@ -1,0 +1,146 @@
+{
+  "status": "pass",
+  "cases": 504,
+  "variants": [
+    {
+      "flags": [
+        0,
+        0,
+        0
+      ],
+      "label": "000",
+      "fixture_sha256": "22aed617df67c0810495a90520ae99bf945a5156a21fc0fa44f18e18156df616",
+      "production_object_sha256": "ee3dca2975b737a973911cdb0254c492eae63b2aecbe99167144e2670d92ffc4",
+      "status": "pass",
+      "semantic_hash": "9386454944460054408",
+      "stats_queries": 6228,
+      "spawn_queries": 2940,
+      "stdout": "SEMANTICS 9386454944460054408 stats=6228 spawn=2940\nPASS actual update_danger semantics and scope/round/failure cases\n"
+    },
+    {
+      "flags": [
+        0,
+        0,
+        1
+      ],
+      "label": "001",
+      "fixture_sha256": "22aed617df67c0810495a90520ae99bf945a5156a21fc0fa44f18e18156df616",
+      "production_object_sha256": "9704e48e398c15e5faf417d7482645b90885ca5e67ff277cc8c15c8dcf7946e6",
+      "status": "pass",
+      "semantic_hash": "9386454944460054408",
+      "stats_queries": 6228,
+      "spawn_queries": 756,
+      "stdout": "SEMANTICS 9386454944460054408 stats=6228 spawn=756\nPASS actual update_danger semantics and scope/round/failure cases\n"
+    },
+    {
+      "flags": [
+        0,
+        1,
+        0
+      ],
+      "label": "010",
+      "fixture_sha256": "22aed617df67c0810495a90520ae99bf945a5156a21fc0fa44f18e18156df616",
+      "production_object_sha256": "05a3ad9478e20421693bd3f75adaffaac8f50ea11695d9ae1c9182cf8fca5622",
+      "status": "pass",
+      "semantic_hash": "9386454944460054408",
+      "stats_queries": 3060,
+      "spawn_queries": 2940,
+      "stdout": "SEMANTICS 9386454944460054408 stats=3060 spawn=2940\nPASS actual update_danger semantics and scope/round/failure cases\n"
+    },
+    {
+      "flags": [
+        0,
+        1,
+        1
+      ],
+      "label": "011",
+      "fixture_sha256": "22aed617df67c0810495a90520ae99bf945a5156a21fc0fa44f18e18156df616",
+      "production_object_sha256": "a2ae0e6a16ccde4edcc70d967f5ede783bc49802b7c9f7937b5374f901bcdd54",
+      "status": "pass",
+      "semantic_hash": "9386454944460054408",
+      "stats_queries": 3060,
+      "spawn_queries": 756,
+      "stdout": "SEMANTICS 9386454944460054408 stats=3060 spawn=756\nPASS actual update_danger semantics and scope/round/failure cases\n"
+    },
+    {
+      "flags": [
+        1,
+        0,
+        0
+      ],
+      "label": "100",
+      "fixture_sha256": "22aed617df67c0810495a90520ae99bf945a5156a21fc0fa44f18e18156df616",
+      "production_object_sha256": "6266bebad82cef866a40dca2c8cdd43c92666dc1e90298a7470b1f0fa0a8778f",
+      "status": "pass",
+      "semantic_hash": "9386454944460054408",
+      "stats_queries": 1512,
+      "spawn_queries": 2940,
+      "stdout": "SEMANTICS 9386454944460054408 stats=1512 spawn=2940\nPASS actual update_danger semantics and scope/round/failure cases\n"
+    },
+    {
+      "flags": [
+        1,
+        0,
+        1
+      ],
+      "label": "101",
+      "fixture_sha256": "22aed617df67c0810495a90520ae99bf945a5156a21fc0fa44f18e18156df616",
+      "production_object_sha256": "8c8c23e420c7a4bdc2052c8afa30a398c850a4d5732472b3f74e179a6d3e0266",
+      "status": "pass",
+      "semantic_hash": "9386454944460054408",
+      "stats_queries": 1512,
+      "spawn_queries": 756,
+      "stdout": "SEMANTICS 9386454944460054408 stats=1512 spawn=756\nPASS actual update_danger semantics and scope/round/failure cases\n"
+    },
+    {
+      "flags": [
+        1,
+        1,
+        0
+      ],
+      "label": "110",
+      "fixture_sha256": "22aed617df67c0810495a90520ae99bf945a5156a21fc0fa44f18e18156df616",
+      "production_object_sha256": "3ca456dedd01ea5d604272564b379035b260ebfb543cb54d6b262b5b4929742e",
+      "status": "pass",
+      "semantic_hash": "9386454944460054408",
+      "stats_queries": 756,
+      "spawn_queries": 2940,
+      "stdout": "SEMANTICS 9386454944460054408 stats=756 spawn=2940\nPASS actual update_danger semantics and scope/round/failure cases\n"
+    },
+    {
+      "flags": [
+        1,
+        1,
+        1
+      ],
+      "label": "111",
+      "fixture_sha256": "22aed617df67c0810495a90520ae99bf945a5156a21fc0fa44f18e18156df616",
+      "production_object_sha256": "86d8f1242017e85669228ca94a8b4b4e739055419a6abcaff6f3fd805adbf27f",
+      "status": "pass",
+      "semantic_hash": "9386454944460054408",
+      "stats_queries": 756,
+      "spawn_queries": 756,
+      "stdout": "SEMANTICS 9386454944460054408 stats=756 spawn=756\nPASS actual update_danger semantics and scope/round/failure cases\n"
+    }
+  ],
+  "source_sha256": {
+    "alert_fuel.h": "94ea139aa3115812ac3183087eb135f9d939ec1584559798e8b0f04e4a896c38",
+    "de_rules.h": "3e50429c96765f325ea3804c2bbb5c13ce26a4119fc7b8694f58def60531221b",
+    "draft_choice_policy.h": "ef05ac879a01e67c3b284bb04d48e9a87c4d51ac3e10e1ad9c3c14660b833767",
+    "draft_plan.h": "d6f1ed51fbbd0773984e933b6dd32ea5b50c5ec7a62a412fc69741c4208b1914",
+    "fight.h": "2eaa9a671c634d499029f251a6eef66dbd6be052927d3cc8ca8012f4ecc35014",
+    "main.cpp": "0b11e318a2adce516f12a877cdf8ed3b62ae34bfbdfa5f1068daee48092ae668",
+    "mapplan.h": "7b01346e46a21d2339533095a21655c3f83d3f4ef28efaa7d142fb7609df247e",
+    "mapplan_game.h": "167f85bf357b70d797e8612f447b7719f956a974af269286fa32f53569948fb6",
+    "opening_replace.h": "ca6680bae82b74b89fd0bb65573904246df8761d8b22e3ce8cb6bd93207207e7",
+    "params.h": "b6f23e7c30238c5539934b148e3505e9a29cc4627c4a099042560813f034b138",
+    "profile.h": "fe7e170baa2f69e3beba2fe344c19ade35bfd3cad5516307d2b6e2575571f551",
+    "track.h": "c42448671f1a23f4987182648fd131e3182a7fee47970b20baaf0444ca7f5a0a",
+    "utility.h": "2327653910762d79a0b2ca9aba5b25255bf1d9033c2d39e18a44e4e365afe378",
+    "verdict.h": "cea061699b7b7a10e81d5484633dbcb51c100516f8b80e29854bba4f6701e5ee"
+  },
+  "limits": [
+    "Actual production functions under narrow deterministic SDK mocks, not native cost or win-rate proof.",
+    "Only successful stable same-round reads within one no-action update scope are cached. SDK failure readings and round changes remain uncached/invalidated."
+  ]
+}

@@ -1,0 +1,44 @@
+{
+  "status": "pass",
+  "variants": [
+    {
+      "flag": 0,
+      "production_object_sha256": "41e3f113fe29f6d114fd650c076d4d96590275ef32f78283450edcbd9f0852b3",
+      "status": "pass",
+      "stdout": "PASS readonly_hash=860549416 readonly_lists=5 metadata=116 copies=0 moves=58\n"
+    },
+    {
+      "flag": 1,
+      "production_object_sha256": "1c4abb0f78ce1afcef2d8da64c79cb5f3ea7adebebd190a43da1875a1b170d49",
+      "status": "pass",
+      "stdout": "PASS readonly_hash=860549416 readonly_lists=1 metadata=86 copies=0 moves=43\n"
+    }
+  ],
+  "source_sha256": {
+    "alert_fuel.h": "94ea139aa3115812ac3183087eb135f9d939ec1584559798e8b0f04e4a896c38",
+    "combat_cohort.h": "45b84e1ed2dcb788339f4198744bb6c52d67101919525f850a781f7f30f7fc40",
+    "combat_identity.h": "a9251577fdf5977285feb6631128ea9a5ad4c03c1e0aa9df9c7b74d930f847f6",
+    "de_rules.h": "3e50429c96765f325ea3804c2bbb5c13ce26a4119fc7b8694f58def60531221b",
+    "draft_choice_policy.h": "ef05ac879a01e67c3b284bb04d48e9a87c4d51ac3e10e1ad9c3c14660b833767",
+    "draft_plan.h": "d6f1ed51fbbd0773984e933b6dd32ea5b50c5ec7a62a412fc69741c4208b1914",
+    "fight.h": "c4053d3d5b5f5f7bee48410c48cd316424774f68d9680152f0f7c5816f8ed19e",
+    "main.cpp": "1ce3dff4d02910d5e3c32f13cfbd185186b12170b3967c9871d7385b54023ee0",
+    "mapplan.h": "7b01346e46a21d2339533095a21655c3f83d3f4ef28efaa7d142fb7609df247e",
+    "mapplan_game.h": "167f85bf357b70d797e8612f447b7719f956a974af269286fa32f53569948fb6",
+    "opening_replace.h": "ca6680bae82b74b89fd0bb65573904246df8761d8b22e3ce8cb6bd93207207e7",
+    "params.h": "488cfd850b0e7ef51572330160bf3d5a145f776c24caf6e3f9b9573bf56177e5",
+    "profile.h": "fe7e170baa2f69e3beba2fe344c19ade35bfd3cad5516307d2b6e2575571f551",
+    "track.h": "c42448671f1a23f4987182648fd131e3182a7fee47970b20baaf0444ca7f5a0a",
+    "utility.h": "2327653910762d79a0b2ca9aba5b25255bf1d9033c2d39e18a44e4e365afe378",
+    "verdict.h": "ccda1831c4c9bdc2635a9bcef16bc0f631e2018a4cbd36afe1322e332441b24f"
+  },
+  "static_binding": {
+    "wrapper_entry_invalidators": 4,
+    "selected_ally_reads": 8,
+    "scope_after_FP9": true
+  },
+  "limits": [
+    "Actual production cache helper under narrow SDK mocks plus full production SDK compilation.",
+    "Direct mutating branch ordering requires separate source audit; no native games or strength claim."
+  ]
+}

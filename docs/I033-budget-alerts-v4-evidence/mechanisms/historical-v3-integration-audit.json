@@ -1,0 +1,400 @@
+{
+  "status": "pass",
+  "created_utc": "2026-10-17T17:32:06.555191+00:00",
+  "source": "work/mate-v60/variants/budget-v3/src",
+  "source_sha256": {
+    "alert_fuel.h": "94ea139aa3115812ac3183087eb135f9d939ec1584559798e8b0f04e4a896c38",
+    "combat_cohort.h": "c6dcc9bf04bbe59042e1a4dc00b3775ef48789c5836511976486f6c2817f7cdc",
+    "combat_identity.h": "a9251577fdf5977285feb6631128ea9a5ad4c03c1e0aa9df9c7b74d930f847f6",
+    "de_rules.h": "3e50429c96765f325ea3804c2bbb5c13ce26a4119fc7b8694f58def60531221b",
+    "draft_choice_policy.h": "ef05ac879a01e67c3b284bb04d48e9a87c4d51ac3e10e1ad9c3c14660b833767",
+    "draft_plan.h": "d6f1ed51fbbd0773984e933b6dd32ea5b50c5ec7a62a412fc69741c4208b1914",
+    "fight.h": "c4053d3d5b5f5f7bee48410c48cd316424774f68d9680152f0f7c5816f8ed19e",
+    "main.cpp": "275a30d4a16824cf7cd318f9c28d516491f3fb31046de137801644f5c699d19e",
+    "mapplan.h": "7b01346e46a21d2339533095a21655c3f83d3f4ef28efaa7d142fb7609df247e",
+    "mapplan_game.h": "167f85bf357b70d797e8612f447b7719f956a974af269286fa32f53569948fb6",
+    "opening_replace.h": "ca6680bae82b74b89fd0bb65573904246df8761d8b22e3ce8cb6bd93207207e7",
+    "params.h": "488cfd850b0e7ef51572330160bf3d5a145f776c24caf6e3f9b9573bf56177e5",
+    "profile.h": "fe7e170baa2f69e3beba2fe344c19ade35bfd3cad5516307d2b6e2575571f551",
+    "track.h": "c42448671f1a23f4987182648fd131e3182a7fee47970b20baaf0444ca7f5a0a",
+    "utility.h": "2327653910762d79a0b2ca9aba5b25255bf1d9033c2d39e18a44e4e365afe378",
+    "verdict.h": "ccda1831c4c9bdc2635a9bcef16bc0f631e2018a4cbd36afe1322e332441b24f"
+  },
+  "checks": [
+    {
+      "name": "cohort_header_matches_tested_stage3",
+      "pass": true,
+      "detail": {
+        "normalized_sha256": "919b0de7cc4e0f6feb5f68d685bd408c6775a86e8c517c67b18a2d2893c92cc4",
+        "reference_normalized_sha256": "919b0de7cc4e0f6feb5f68d685bd408c6775a86e8c517c67b18a2d2893c92cc4"
+      }
+    },
+    {
+      "name": "identity_header_matches_tested_stage2_v2",
+      "pass": true,
+      "detail": {
+        "normalized_sha256": "d6adfece99ae93a7f899b841d7c7fce5c61c122e0d3beb9fc9dd2137e77509bd",
+        "reference_normalized_sha256": "d6adfece99ae93a7f899b841d7c7fce5c61c122e0d3beb9fc9dd2137e77509bd"
+      }
+    },
+    {
+      "name": "alert_fuel_header_matches_tested_stage1",
+      "pass": true,
+      "detail": {
+        "normalized_sha256": "6157c6237eca315e9387fde9e4ca7cbd9ed2b2a20150a0dfae96f63f0012b2f9",
+        "reference_normalized_sha256": "6157c6237eca315e9387fde9e4ca7cbd9ed2b2a20150a0dfae96f63f0012b2f9"
+      }
+    },
+    {
+      "name": "entire_fight_h_matches_tested_stage3",
+      "pass": true,
+      "detail": {
+        "normalized_sha256": "411eaac513a1d46457932ca5357930aa2804aab4412bcba08cae29dbe30a0808",
+        "reference_normalized_sha256": "411eaac513a1d46457932ca5357930aa2804aab4412bcba08cae29dbe30a0808"
+      }
+    },
+    {
+      "name": "entire_verdict_h_matches_tested_stage3",
+      "pass": true,
+      "detail": {
+        "normalized_sha256": "ce1df1a2209eab434de0e308ff9c71b5fe2a177570b5bb9044da072700e94bcb",
+        "reference_normalized_sha256": "ce1df1a2209eab434de0e308ff9c71b5fe2a177570b5bb9044da072700e94bcb"
+      }
+    },
+    {
+      "name": "budget_helper_matches_tested_stage2_v2",
+      "pass": true,
+      "detail": {
+        "normalized_sha256": "ecf41bfee956ef4f3813324159d1e6453b1c81e5d2cb0d4bdbd9f9c47d52abd4",
+        "reference_normalized_sha256": "ecf41bfee956ef4f3813324159d1e6453b1c81e5d2cb0d4bdbd9f9c47d52abd4"
+      }
+    },
+    {
+      "name": "step_towards_matches_tested_stage3",
+      "pass": true,
+      "detail": {
+        "normalized_sha256": "535376ec2409420cc6eb458df03deb7d6ab4374200bac3d29b4ee1189b7f1562",
+        "reference_normalized_sha256": "535376ec2409420cc6eb458df03deb7d6ab4374200bac3d29b4ee1189b7f1562"
+      }
+    },
+    {
+      "name": "step_towards_invalidates_at_entry",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "cast_offense_matches_tested_stage3",
+      "pass": true,
+      "detail": {
+        "normalized_sha256": "60115eedab321222b661199d36a0f2eb1b78f58cdd28a4e512ca9a267daa82ff",
+        "reference_normalized_sha256": "60115eedab321222b661199d36a0f2eb1b78f58cdd28a4e512ca9a267daa82ff"
+      }
+    },
+    {
+      "name": "cast_offense_invalidates_at_entry",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "basic_attack_matches_tested_stage3",
+      "pass": true,
+      "detail": {
+        "normalized_sha256": "4bd6940e70e53327a32d80837aba8b1314125f52108263d7d1178d3d3ac254f4",
+        "reference_normalized_sha256": "4bd6940e70e53327a32d80837aba8b1314125f52108263d7d1178d3d3ac254f4"
+      }
+    },
+    {
+      "name": "basic_attack_invalidates_at_entry",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "support_spells_matches_tested_stage3",
+      "pass": true,
+      "detail": {
+        "normalized_sha256": "0e31ddcb120566333ae4848691a8ee0bff2836cae967fedc027d8c230a58348e",
+        "reference_normalized_sha256": "0e31ddcb120566333ae4848691a8ee0bff2836cae967fedc027d8c230a58348e"
+      }
+    },
+    {
+      "name": "support_spells_invalidates_at_entry",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "spells_of_matches_tested_stage3",
+      "pass": true,
+      "detail": {
+        "normalized_sha256": "3709a91697722948bdfa1d3bc2d11e2ea3aa88a039554e7c5cfb9830f8ed19b9",
+        "reference_normalized_sha256": "3709a91697722948bdfa1d3bc2d11e2ea3aa88a039554e7c5cfb9830f8ed19b9"
+      }
+    },
+    {
+      "name": "back_off_budget_hook_first",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "pv_out_budget_hook_first",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "exactly_8_selected_cohort_reads",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "scope_and_initial_combat_loop_match_stage3",
+      "pass": true,
+      "detail": {
+        "normalized_sha256": "60adaa52ad7bbdb097f9834552101e0c9c03b149681cab6c264fe50582df51cb",
+        "reference_normalized_sha256": "60adaa52ad7bbdb097f9834552101e0c9c03b149681cab6c264fe50582df51cb"
+      }
+    },
+    {
+      "name": "alert_unit_power_matches_tested_stage1",
+      "pass": true,
+      "detail": {
+        "normalized_sha256": "bf3df77b7fe2dee8e7734f80700b374c3f01e9bf2d9ca188ef7486237ad55f3c",
+        "reference_normalized_sha256": "bf3df77b7fe2dee8e7734f80700b374c3f01e9bf2d9ca188ef7486237ad55f3c"
+      }
+    },
+    {
+      "name": "classify_shared_alert_matches_tested_stage1",
+      "pass": true,
+      "detail": {
+        "normalized_sha256": "e26b1ae297f54dce6242638a09e21dd3d83b9e467b6f9bf6b30e7ba2ff1a55e6",
+        "reference_normalized_sha256": "e26b1ae297f54dce6242638a09e21dd3d83b9e467b6f9bf6b30e7ba2ff1a55e6"
+      }
+    },
+    {
+      "name": "update_danger_local_prefix_matches_tested_stage1",
+      "pass": true,
+      "detail": {
+        "normalized_sha256": "1b747037970b5acfaf285ed4e000efc48969e655f97485433bb9bff88b9991e3",
+        "reference_normalized_sha256": "1b747037970b5acfaf285ed4e000efc48969e655f97485433bb9bff88b9991e3"
+      }
+    },
+    {
+      "name": "update_danger_including_6_body_receive_matches_tested_combined",
+      "pass": true,
+      "detail": {
+        "normalized_sha256": "a764744635926e282982ef7cf7df9c07b7990e74320f26fce136ac0594e11732",
+        "reference_normalized_sha256": "a764744635926e282982ef7cf7df9c07b7990e74320f26fce136ac0594e11732"
+      }
+    },
+    {
+      "name": "entire_alert_protocol_region_matches_tested_combined",
+      "pass": true,
+      "detail": {
+        "normalized_sha256": "217c4f4ce838a50654c75e9cfe20d2fd69f436121b1d64c801d7671c6e822a1b",
+        "reference_normalized_sha256": "217c4f4ce838a50654c75e9cfe20d2fd69f436121b1d64c801d7671c6e822a1b"
+      }
+    },
+    {
+      "name": "mechanical_main_token_count_24",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "mechanical_main_token_count_25",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "mechanical_main_token_count_26",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "mechanical_main_token_count_27",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "complete_main_remainder_matches_tested_combined",
+      "pass": true,
+      "detail": {
+        "normalized_sha256": "8642006af7c74032875c7b98fc11a5d86c42e4ce8656c45dc55039b2433277f5",
+        "reference_normalized_sha256": "8642006af7c74032875c7b98fc11a5d86c42e4ce8656c45dc55039b2433277f5"
+      }
+    },
+    {
+      "name": "flag_P_FUEL_ALERT_MEMO",
+      "pass": true,
+      "detail": {
+        "expected": 1,
+        "definitions": [
+          "1"
+        ]
+      }
+    },
+    {
+      "name": "flag_P_FUEL_ALERT_GATE",
+      "pass": true,
+      "detail": {
+        "expected": 1,
+        "definitions": [
+          "1"
+        ]
+      }
+    },
+    {
+      "name": "flag_P_FUEL_ALERT_SPAWN",
+      "pass": true,
+      "detail": {
+        "expected": 1,
+        "definitions": [
+          "1"
+        ]
+      }
+    },
+    {
+      "name": "flag_P_FUEL_IDENTITY",
+      "pass": true,
+      "detail": {
+        "expected": 1,
+        "definitions": [
+          "1"
+        ]
+      }
+    },
+    {
+      "name": "flag_P_FUEL_FIGHT_FALLBACK",
+      "pass": true,
+      "detail": {
+        "expected": 1,
+        "definitions": [
+          "1"
+        ]
+      }
+    },
+    {
+      "name": "flag_P_FUEL_FIGHT_WORK",
+      "pass": true,
+      "detail": {
+        "expected": 30000,
+        "definitions": [
+          "30000"
+        ]
+      }
+    },
+    {
+      "name": "flag_P_FUEL_COHORT",
+      "pass": true,
+      "detail": {
+        "expected": 1,
+        "definitions": [
+          "1"
+        ]
+      }
+    },
+    {
+      "name": "flag_P_DP_ALERTS_SIX",
+      "pass": true,
+      "detail": {
+        "expected": 1,
+        "definitions": [
+          "1"
+        ]
+      }
+    },
+    {
+      "name": "flag_P_DP_MEMORY_FIX",
+      "pass": true,
+      "detail": {
+        "expected": 1,
+        "definitions": [
+          "1"
+        ]
+      }
+    },
+    {
+      "name": "flag_P_DP_ANCHOR_FIX",
+      "pass": true,
+      "detail": {
+        "expected": 1,
+        "definitions": [
+          "1"
+        ]
+      }
+    },
+    {
+      "name": "flag_P_DP_PRISM_SWAP",
+      "pass": true,
+      "detail": {
+        "expected": 1,
+        "definitions": [
+          "1"
+        ]
+      }
+    },
+    {
+      "name": "flag_P_DP_ALERT_TRACE",
+      "pass": true,
+      "detail": {
+        "expected": 0,
+        "definitions": [
+          "0"
+        ]
+      }
+    },
+    {
+      "name": "lethal_chase_experiment_absent",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "final_source_file_count",
+      "pass": true,
+      "detail": {
+        "files": [
+          "alert_fuel.h",
+          "combat_cohort.h",
+          "combat_identity.h",
+          "de_rules.h",
+          "draft_choice_policy.h",
+          "draft_plan.h",
+          "fight.h",
+          "main.cpp",
+          "mapplan.h",
+          "mapplan_game.h",
+          "opening_replace.h",
+          "params.h",
+          "profile.h",
+          "track.h",
+          "utility.h",
+          "verdict.h"
+        ]
+      }
+    },
+    {
+      "name": "root_release_build_matches_all_source_hashes",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "root_release_build_success",
+      "pass": true,
+      "detail": null
+    }
+  ],
+  "failed_checks": [],
+  "bound_mechanism_results": {
+    "stage1": "work/mate-v60/fuel/alert-fuel-mechanisms.json",
+    "stage2_v2": "work/mate-v60/fuel-stage2/mechanisms-v2.json",
+    "stage3": "work/mate-v60/fuel-stage3/results.json"
+  },
+  "native_release_build": {
+    "record": "work/mate-bwf-fixes/testing/builds/v60-budget-v3.json",
+    "source_fingerprint": "b67b3f1ae71cbbad0ff46725fd63aa9510173b1c2afaa69300633e5c4f9898d5",
+    "wasm_sha256": "7fb9ad7dc0ec42c761a0d5f24395256c5e0056715801812c92c58e4d5ad26ab0",
+    "sdk_version": "2.2.5",
+    "engine_version": "0.0.3"
+  },
+  "limits": [
+    "Source binding and integration audit only; no games or repeated production compilation were run.",
+    "Existing mechanism tests transfer only to matching helper code and reviewed call sites; this audit makes no performance or strength claim."
+  ]
+}

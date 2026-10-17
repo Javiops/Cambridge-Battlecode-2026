@@ -1,0 +1,277 @@
+{
+  "status": "pass",
+  "suite": "all",
+  "full_sdk_translation_unit_compile": true,
+  "source_files": 16,
+  "source_sha256": {
+    "alert_fuel.h": "94ea139aa3115812ac3183087eb135f9d939ec1584559798e8b0f04e4a896c38",
+    "combat_cohort.h": "45b84e1ed2dcb788339f4198744bb6c52d67101919525f850a781f7f30f7fc40",
+    "combat_identity.h": "a9251577fdf5977285feb6631128ea9a5ad4c03c1e0aa9df9c7b74d930f847f6",
+    "de_rules.h": "3e50429c96765f325ea3804c2bbb5c13ce26a4119fc7b8694f58def60531221b",
+    "draft_choice_policy.h": "ef05ac879a01e67c3b284bb04d48e9a87c4d51ac3e10e1ad9c3c14660b833767",
+    "draft_plan.h": "d6f1ed51fbbd0773984e933b6dd32ea5b50c5ec7a62a412fc69741c4208b1914",
+    "fight.h": "c4053d3d5b5f5f7bee48410c48cd316424774f68d9680152f0f7c5816f8ed19e",
+    "main.cpp": "1ce3dff4d02910d5e3c32f13cfbd185186b12170b3967c9871d7385b54023ee0",
+    "mapplan.h": "7b01346e46a21d2339533095a21655c3f83d3f4ef28efaa7d142fb7609df247e",
+    "mapplan_game.h": "167f85bf357b70d797e8612f447b7719f956a974af269286fa32f53569948fb6",
+    "opening_replace.h": "ca6680bae82b74b89fd0bb65573904246df8761d8b22e3ce8cb6bd93207207e7",
+    "params.h": "488cfd850b0e7ef51572330160bf3d5a145f776c24caf6e3f9b9573bf56177e5",
+    "profile.h": "fe7e170baa2f69e3beba2fe344c19ade35bfd3cad5516307d2b6e2575571f551",
+    "track.h": "c42448671f1a23f4987182648fd131e3182a7fee47970b20baaf0444ca7f5a0a",
+    "utility.h": "2327653910762d79a0b2ca9aba5b25255bf1d9033c2d39e18a44e4e365afe378",
+    "verdict.h": "ccda1831c4c9bdc2635a9bcef16bc0f631e2018a4cbd36afe1322e332441b24f"
+  },
+  "normalized_source_sha256": {
+    "alert_fuel.h": "d28fca6cddbfb7b47c7e5a7588f002601195ef8a9a2f52b982054ce783642bc0",
+    "combat_cohort.h": "454351316149798fa54b865e05a463cc5c099025dc40fa5a8703ab6fbc03bba9",
+    "combat_identity.h": "7e728ad051438504a314b445e74265aab20523f53cca8587e24b4cb24b5267cc",
+    "de_rules.h": "3e50429c96765f325ea3804c2bbb5c13ce26a4119fc7b8694f58def60531221b",
+    "draft_choice_policy.h": "3fb9ba9153bcfc46a7ff975b5e546cf8b1c33b0019895f986baee1b397c410da",
+    "draft_plan.h": "772c4b5869b9a541200561d42b8fbcc4c4bc67bfd393698aab02d0c2e72c32dd",
+    "fight.h": "c4053d3d5b5f5f7bee48410c48cd316424774f68d9680152f0f7c5816f8ed19e",
+    "main.cpp": "c05400ffe9c5b9c6a8d8049f12f48e58ba7b14ed6b5e531b12d7384b8f13d1dc",
+    "mapplan.h": "7b01346e46a21d2339533095a21655c3f83d3f4ef28efaa7d142fb7609df247e",
+    "mapplan_game.h": "167f85bf357b70d797e8612f447b7719f956a974af269286fa32f53569948fb6",
+    "opening_replace.h": "ca6680bae82b74b89fd0bb65573904246df8761d8b22e3ce8cb6bd93207207e7",
+    "params.h": "8d56ece3a1981a9ad17195f4e5f7a9cb9ea2d97b7dd6323cdb722aa7bb738e51",
+    "profile.h": "fe7e170baa2f69e3beba2fe344c19ade35bfd3cad5516307d2b6e2575571f551",
+    "track.h": "c42448671f1a23f4987182648fd131e3182a7fee47970b20baaf0444ca7f5a0a",
+    "utility.h": "2327653910762d79a0b2ca9aba5b25255bf1d9033c2d39e18a44e4e365afe378",
+    "verdict.h": "ccda1831c4c9bdc2635a9bcef16bc0f631e2018a4cbd36afe1322e332441b24f"
+  },
+  "source_unchanged": true,
+  "snippets_sha256": {
+    "protocol": "c72aef7b1935e4bce957af41d823896f9eb952d6390fb13b75ab42adfb73c904",
+    "update_danger": "a764744635926e282982ef7cf7df9c07b7990e74320f26fce136ac0594e11732",
+    "budget_back_off": "ecf41bfee956ef4f3813324159d1e6453b1c81e5d2cb0d4bdbd9f9c47d52abd4"
+  },
+  "results": [
+    {
+      "suite": "protocol",
+      "flags": {
+        "P_DP_ALERTS_SIX": 0,
+        "P_CALLHELP": 0,
+        "P_PVKITE": 0
+      },
+      "stdout": "PASS six_alerts=0 help=0 kite=0 checks=558 actual protocol/update_danger cases\n",
+      "fixture_sha256": "c19663e6d619df644eb2cefd38c1140248b0c7b71b84c767fdccdc076c2adfea",
+      "wasm_sha256": "f3bbc5b318f7b0b7772239f30a5e9745a55e9dfce1d55fea022b828d5d316854"
+    },
+    {
+      "suite": "protocol",
+      "flags": {
+        "P_DP_ALERTS_SIX": 1,
+        "P_CALLHELP": 0,
+        "P_PVKITE": 0
+      },
+      "stdout": "PASS six_alerts=1 help=0 kite=0 checks=2985 actual protocol/update_danger cases\n",
+      "fixture_sha256": "c19663e6d619df644eb2cefd38c1140248b0c7b71b84c767fdccdc076c2adfea",
+      "wasm_sha256": "44e5a7fc203fa180380fc8a74a917474cf50d10894213e87bce9fdb02c38bc56"
+    },
+    {
+      "suite": "protocol",
+      "flags": {
+        "P_DP_ALERTS_SIX": 1,
+        "P_CALLHELP": 1,
+        "P_PVKITE": 0
+      },
+      "stdout": "PASS six_alerts=1 help=1 kite=0 checks=408 actual protocol/update_danger cases\n",
+      "fixture_sha256": "c19663e6d619df644eb2cefd38c1140248b0c7b71b84c767fdccdc076c2adfea",
+      "wasm_sha256": "b5d0448e1759a326d760f18e78444e73640e210936ffb6c33272f2e21fa57641"
+    },
+    {
+      "suite": "protocol",
+      "flags": {
+        "P_DP_ALERTS_SIX": 1,
+        "P_CALLHELP": 0,
+        "P_PVKITE": 1
+      },
+      "stdout": "PASS six_alerts=1 help=0 kite=1 checks=408 actual protocol/update_danger cases\n",
+      "fixture_sha256": "c19663e6d619df644eb2cefd38c1140248b0c7b71b84c767fdccdc076c2adfea",
+      "wasm_sha256": "97fe4b3682a4b3fb79bf6618738c215546abda31b980b393d35a2d326a790c02"
+    },
+    {
+      "suite": "memo",
+      "flags": {
+        "P_FUEL_ALERT_MEMO": 0,
+        "P_FUEL_ALERT_GATE": 0,
+        "P_FUEL_ALERT_SPAWN": 0
+      },
+      "stdout": "SEMANTICS 6670136114993335834 stats=6228 spawn=2940\nPASS actual update_danger semantics and scope/round/failure cases\n",
+      "fixture_sha256": "270ead0dddc33d20cc3ce0196f451215d6038a6a24687588f8143930de20f32a",
+      "wasm_sha256": "82eb3b81ffceacba6b7bee39a0331628fdb11dbe57ccda9df5617c1102f47cec",
+      "semantic_hash": "6670136114993335834",
+      "stats_queries": 6228,
+      "spawn_queries": 2940,
+      "update_calls": 504
+    },
+    {
+      "suite": "memo",
+      "flags": {
+        "P_FUEL_ALERT_MEMO": 0,
+        "P_FUEL_ALERT_GATE": 0,
+        "P_FUEL_ALERT_SPAWN": 1
+      },
+      "stdout": "SEMANTICS 6670136114993335834 stats=6228 spawn=756\nPASS actual update_danger semantics and scope/round/failure cases\n",
+      "fixture_sha256": "270ead0dddc33d20cc3ce0196f451215d6038a6a24687588f8143930de20f32a",
+      "wasm_sha256": "539efc078bbbcd374144c4f6e8d222b76d475a391822d685a545b1c5a8745baa",
+      "semantic_hash": "6670136114993335834",
+      "stats_queries": 6228,
+      "spawn_queries": 756,
+      "update_calls": 504
+    },
+    {
+      "suite": "memo",
+      "flags": {
+        "P_FUEL_ALERT_MEMO": 0,
+        "P_FUEL_ALERT_GATE": 1,
+        "P_FUEL_ALERT_SPAWN": 0
+      },
+      "stdout": "SEMANTICS 6670136114993335834 stats=4590 spawn=2940\nPASS actual update_danger semantics and scope/round/failure cases\n",
+      "fixture_sha256": "270ead0dddc33d20cc3ce0196f451215d6038a6a24687588f8143930de20f32a",
+      "wasm_sha256": "0fc62fc0504781fd5e63957e56f6e20630d25949b306ec16bac9cc720e22869b",
+      "semantic_hash": "6670136114993335834",
+      "stats_queries": 4590,
+      "spawn_queries": 2940,
+      "update_calls": 504
+    },
+    {
+      "suite": "memo",
+      "flags": {
+        "P_FUEL_ALERT_MEMO": 0,
+        "P_FUEL_ALERT_GATE": 1,
+        "P_FUEL_ALERT_SPAWN": 1
+      },
+      "stdout": "SEMANTICS 6670136114993335834 stats=4590 spawn=756\nPASS actual update_danger semantics and scope/round/failure cases\n",
+      "fixture_sha256": "270ead0dddc33d20cc3ce0196f451215d6038a6a24687588f8143930de20f32a",
+      "wasm_sha256": "4751e8f5a6be2b9a7c1978c2839ac8bb395323180977bf2aa7affc69e7447bdc",
+      "semantic_hash": "6670136114993335834",
+      "stats_queries": 4590,
+      "spawn_queries": 756,
+      "update_calls": 504
+    },
+    {
+      "suite": "memo",
+      "flags": {
+        "P_FUEL_ALERT_MEMO": 1,
+        "P_FUEL_ALERT_GATE": 0,
+        "P_FUEL_ALERT_SPAWN": 0
+      },
+      "stdout": "SEMANTICS 6670136114993335834 stats=1512 spawn=2940\nPASS actual update_danger semantics and scope/round/failure cases\n",
+      "fixture_sha256": "270ead0dddc33d20cc3ce0196f451215d6038a6a24687588f8143930de20f32a",
+      "wasm_sha256": "80c65614803ed196020347f79de0a7c072067fbc327c9625f64f79cc282d48ac",
+      "semantic_hash": "6670136114993335834",
+      "stats_queries": 1512,
+      "spawn_queries": 2940,
+      "update_calls": 504
+    },
+    {
+      "suite": "memo",
+      "flags": {
+        "P_FUEL_ALERT_MEMO": 1,
+        "P_FUEL_ALERT_GATE": 0,
+        "P_FUEL_ALERT_SPAWN": 1
+      },
+      "stdout": "SEMANTICS 6670136114993335834 stats=1512 spawn=756\nPASS actual update_danger semantics and scope/round/failure cases\n",
+      "fixture_sha256": "270ead0dddc33d20cc3ce0196f451215d6038a6a24687588f8143930de20f32a",
+      "wasm_sha256": "db33e7b1391a53bd910617f895e4f85e22395c6eb39a9fd4a81145432d477660",
+      "semantic_hash": "6670136114993335834",
+      "stats_queries": 1512,
+      "spawn_queries": 756,
+      "update_calls": 504
+    },
+    {
+      "suite": "memo",
+      "flags": {
+        "P_FUEL_ALERT_MEMO": 1,
+        "P_FUEL_ALERT_GATE": 1,
+        "P_FUEL_ALERT_SPAWN": 0
+      },
+      "stdout": "SEMANTICS 6670136114993335834 stats=1134 spawn=2940\nPASS actual update_danger semantics and scope/round/failure cases\n",
+      "fixture_sha256": "270ead0dddc33d20cc3ce0196f451215d6038a6a24687588f8143930de20f32a",
+      "wasm_sha256": "746b787ddc814e78519c4a0e41a4e9bb2501d7626ff5bf15f34e906ba700ef82",
+      "semantic_hash": "6670136114993335834",
+      "stats_queries": 1134,
+      "spawn_queries": 2940,
+      "update_calls": 504
+    },
+    {
+      "suite": "memo",
+      "flags": {
+        "P_FUEL_ALERT_MEMO": 1,
+        "P_FUEL_ALERT_GATE": 1,
+        "P_FUEL_ALERT_SPAWN": 1
+      },
+      "stdout": "SEMANTICS 6670136114993335834 stats=1134 spawn=756\nPASS actual update_danger semantics and scope/round/failure cases\n",
+      "fixture_sha256": "270ead0dddc33d20cc3ce0196f451215d6038a6a24687588f8143930de20f32a",
+      "wasm_sha256": "a3f7b5158638c4b1d2a192d6d7da970e817288b9244eb655f506b328e2c7bbd7",
+      "semantic_hash": "6670136114993335834",
+      "stats_queries": 1134,
+      "spawn_queries": 756,
+      "update_calls": 504
+    },
+    {
+      "suite": "budget",
+      "flags": {
+        "P_FUEL_IDENTITY": 0,
+        "P_FUEL_FIGHT_FALLBACK": 0
+      },
+      "stdout": "PASS identity_semantics=2629449600 warm_queries=120 fallback=0\n",
+      "fixture_sha256": "373a6f5e3976363ab3e94c6150a978e23fc6285c19f84a2aec3d4c3778b5e335",
+      "wasm_sha256": "8bb43dacba65ee50651ce1f7eb90654f89256bb05446634e4d1aba616a2a4459"
+    },
+    {
+      "suite": "budget",
+      "flags": {
+        "P_FUEL_IDENTITY": 0,
+        "P_FUEL_FIGHT_FALLBACK": 1
+      },
+      "stdout": "PASS identity_semantics=2629449600 warm_queries=120 fallback=1\n",
+      "fixture_sha256": "373a6f5e3976363ab3e94c6150a978e23fc6285c19f84a2aec3d4c3778b5e335",
+      "wasm_sha256": "096ed6d5e0d3bd2a478e3d3a5dfc5f65e49380fa8ef6071287442c9ffde2a7f8"
+    },
+    {
+      "suite": "budget",
+      "flags": {
+        "P_FUEL_IDENTITY": 1,
+        "P_FUEL_FIGHT_FALLBACK": 0
+      },
+      "stdout": "PASS identity_semantics=2629449600 warm_queries=6 fallback=0\n",
+      "fixture_sha256": "373a6f5e3976363ab3e94c6150a978e23fc6285c19f84a2aec3d4c3778b5e335",
+      "wasm_sha256": "650b5477e9061f36d281f481f60c0a7584073c3f4c43046a9af20ff19bb71d17"
+    },
+    {
+      "suite": "budget",
+      "flags": {
+        "P_FUEL_IDENTITY": 1,
+        "P_FUEL_FIGHT_FALLBACK": 1
+      },
+      "stdout": "PASS identity_semantics=2629449600 warm_queries=6 fallback=1\n",
+      "fixture_sha256": "373a6f5e3976363ab3e94c6150a978e23fc6285c19f84a2aec3d4c3778b5e335",
+      "wasm_sha256": "fbc58fd36be4be23a192bf80ce22ac4d6703c1227a4ea436a82526b4e3625b8d"
+    },
+    {
+      "suite": "cohort",
+      "flags": {
+        "P_FUEL_COHORT": 0
+      },
+      "stdout": "PASS readonly_hash=860549416 readonly_lists=5 metadata=116 copies=0 moves=58\n",
+      "fixture_sha256": "ae9646752c348502c4012bffa77782d0f5bbfbd074babad3e9b38d441d410922",
+      "wasm_sha256": "6de589e78952c7aab9ebe33160d833248cc16ef33441c12f67d446451ff4e228"
+    },
+    {
+      "suite": "cohort",
+      "flags": {
+        "P_FUEL_COHORT": 1
+      },
+      "stdout": "PASS readonly_hash=860549416 readonly_lists=1 metadata=86 copies=0 moves=43\n",
+      "fixture_sha256": "ae9646752c348502c4012bffa77782d0f5bbfbd074babad3e9b38d441d410922",
+      "wasm_sha256": "8fc9a9988c0c7a390d5ffad1510ef77612830e6184b49c0f6530ca39948c847a"
+    }
+  ],
+  "limits": [
+    "Actual production snippets/headers under narrow SDK mocks, plus one full SDK object compile.",
+    "No release linking, game simulation, native fuel measurement or win-rate proof.",
+    "Protocol supports six-body semantic alerts only up to 63 camp groups."
+  ]
+}

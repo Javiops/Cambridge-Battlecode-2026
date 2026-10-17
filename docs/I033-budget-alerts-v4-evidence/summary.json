@@ -1,0 +1,438 @@
+{
+  "final": {
+    "diagnosis-v59": {
+      "games": 192,
+      "wins": 96,
+      "losses": 96,
+      "draws": 0,
+      "maps_won_both": 17,
+      "maps_lost_both": 17,
+      "fuel": [
+        80,
+        177
+      ],
+      "potential_body_rounds": [
+        591405,
+        578166
+      ],
+      "native_faults": [
+        0,
+        0
+      ],
+      "caught_error_markers": [
+        2606,
+        2603
+      ],
+      "games_with_caught_markers": [
+        192,
+        192
+      ],
+      "unique_record_keys": 192,
+      "unique_physical_keys": 192,
+      "unique_native_replay_streams": 182
+    },
+    "spar11": {
+      "games": 12,
+      "wins": 12,
+      "losses": 0,
+      "draws": 0,
+      "maps_won_both": 6,
+      "maps_lost_both": 0,
+      "fuel": [
+        92,
+        44
+      ],
+      "potential_body_rounds": [
+        58386,
+        58386
+      ],
+      "native_faults": [
+        0,
+        0
+      ],
+      "caught_error_markers": [
+        288,
+        346
+      ],
+      "games_with_caught_markers": [
+        12,
+        12
+      ],
+      "unique_record_keys": 12,
+      "unique_physical_keys": 12,
+      "unique_native_replay_streams": 12
+    },
+    "spar12": {
+      "games": 12,
+      "wins": 12,
+      "losses": 0,
+      "draws": 0,
+      "maps_won_both": 6,
+      "maps_lost_both": 0,
+      "fuel": [
+        112,
+        58
+      ],
+      "potential_body_rounds": [
+        55320,
+        55320
+      ],
+      "native_faults": [
+        0,
+        0
+      ],
+      "caught_error_markers": [
+        256,
+        320
+      ],
+      "games_with_caught_markers": [
+        12,
+        12
+      ],
+      "unique_record_keys": 12,
+      "unique_physical_keys": 12,
+      "unique_native_replay_streams": 12
+    },
+    "spar16": {
+      "games": 12,
+      "wins": 12,
+      "losses": 0,
+      "draws": 0,
+      "maps_won_both": 6,
+      "maps_lost_both": 0,
+      "fuel": [
+        98,
+        44
+      ],
+      "potential_body_rounds": [
+        60294,
+        60294
+      ],
+      "native_faults": [
+        0,
+        0
+      ],
+      "caught_error_markers": [
+        278,
+        349
+      ],
+      "games_with_caught_markers": [
+        12,
+        12
+      ],
+      "unique_record_keys": 12,
+      "unique_physical_keys": 12,
+      "unique_native_replay_streams": 12
+    },
+    "matched_spar_total": {
+      "games": 36,
+      "wins": 36,
+      "losses": 0,
+      "draws": 0,
+      "maps_won_both": 18,
+      "maps_lost_both": 0,
+      "fuel": [
+        302,
+        146
+      ],
+      "potential_body_rounds": [
+        174000,
+        174000
+      ],
+      "native_faults": [
+        0,
+        0
+      ],
+      "caught_error_markers": [
+        822,
+        1015
+      ],
+      "games_with_caught_markers": [
+        36,
+        36
+      ],
+      "unique_record_keys": 36,
+      "unique_physical_keys": 36,
+      "unique_native_replay_streams": 28
+    },
+    "all_final_slots": {
+      "games": 228,
+      "wins": 132,
+      "losses": 96,
+      "draws": 0,
+      "maps_won_both": 35,
+      "maps_lost_both": 17,
+      "fuel": [
+        382,
+        323
+      ],
+      "potential_body_rounds": [
+        765405,
+        752166
+      ],
+      "native_faults": [
+        0,
+        0
+      ],
+      "caught_error_markers": [
+        3428,
+        3618
+      ],
+      "games_with_caught_markers": [
+        228,
+        228
+      ],
+      "unique_record_keys": 228,
+      "unique_physical_keys": 228,
+      "unique_native_replay_streams": 210
+    }
+  },
+  "historical_matched_controls": {
+    "diagnosis-v59-swap-cassi-v2": {
+      "games": 36,
+      "wins": 34,
+      "losses": 2,
+      "draws": 0,
+      "maps_won_both": 16,
+      "maps_lost_both": 0,
+      "fuel": [
+        624,
+        138
+      ],
+      "potential_body_rounds": [
+        170988,
+        170988
+      ],
+      "native_faults": [
+        0,
+        0
+      ],
+      "caught_error_markers": [
+        848,
+        960
+      ],
+      "games_with_caught_markers": [
+        36,
+        36
+      ],
+      "unique_record_keys": 36,
+      "unique_physical_keys": 36,
+      "unique_native_replay_streams": 31
+    },
+    "v60-fuel-alerts": {
+      "games": 36,
+      "wins": 36,
+      "losses": 0,
+      "draws": 0,
+      "maps_won_both": 18,
+      "maps_lost_both": 0,
+      "fuel": [
+        650,
+        140
+      ],
+      "potential_body_rounds": [
+        166716,
+        166716
+      ],
+      "native_faults": [
+        0,
+        0
+      ],
+      "caught_error_markers": [
+        824,
+        934
+      ],
+      "games_with_caught_markers": [
+        36,
+        36
+      ],
+      "unique_record_keys": 36,
+      "unique_physical_keys": 36,
+      "unique_native_replay_streams": 34
+    },
+    "diagnosis-v59": {
+      "games": 36,
+      "wins": 36,
+      "losses": 0,
+      "draws": 0,
+      "maps_won_both": 18,
+      "maps_lost_both": 0,
+      "fuel": [
+        343,
+        136
+      ],
+      "potential_body_rounds": [
+        147830,
+        177396
+      ],
+      "native_faults": [
+        0,
+        0
+      ],
+      "caught_error_markers": [
+        799,
+        888
+      ],
+      "games_with_caught_markers": [
+        36,
+        36
+      ],
+      "unique_record_keys": 36,
+      "unique_physical_keys": 36,
+      "unique_native_replay_streams": 27
+    },
+    "v60-budget-v3": {
+      "games": 36,
+      "wins": 35,
+      "losses": 1,
+      "draws": 0,
+      "maps_won_both": 17,
+      "maps_lost_both": 0,
+      "fuel": [
+        427,
+        151
+      ],
+      "potential_body_rounds": [
+        168960,
+        168960
+      ],
+      "native_faults": [
+        0,
+        0
+      ],
+      "caught_error_markers": [
+        801,
+        958
+      ],
+      "games_with_caught_markers": [
+        36,
+        36
+      ],
+      "unique_record_keys": 36,
+      "unique_physical_keys": 36,
+      "unique_native_replay_streams": 30
+    }
+  },
+  "panel_binding": [
+    {
+      "panel": "final-vs-diagnosis-v59",
+      "panel_json_sha256": "ce2cae7b4b6c82e2da9f78ea40b69f5d4e41af4b007148d40eb855bb52adcd66",
+      "freeze_sha256": "b8c30115bf5f1b18b4eecdec840abcc6b5164952e99b4bc84a7a1502ddedbc31",
+      "slot_count": 192,
+      "final": true
+    },
+    {
+      "panel": "final-vs-spar11",
+      "panel_json_sha256": "dbf855969a81b8aad6ce07ed44ede4e67133b377ce6ce6aef014061a3c435f92",
+      "freeze_sha256": "affe94ad3cf642ed069835c2949525500cdf4fc1085f54c545766f05463cf87c",
+      "slot_count": 12,
+      "final": true
+    },
+    {
+      "panel": "final-vs-spar12",
+      "panel_json_sha256": "0f7205ce43379b24238073bcbd7866c4cd5bb5c9b05737a860601e8690c346eb",
+      "freeze_sha256": "affe94ad3cf642ed069835c2949525500cdf4fc1085f54c545766f05463cf87c",
+      "slot_count": 12,
+      "final": true
+    },
+    {
+      "panel": "final-vs-spar16",
+      "panel_json_sha256": "53fb87e46a96c55962e3a63c924b2aa087c45c1531545e981010694af88ee3a0",
+      "freeze_sha256": "affe94ad3cf642ed069835c2949525500cdf4fc1085f54c545766f05463cf87c",
+      "slot_count": 12,
+      "final": true
+    },
+    {
+      "panel": "matched-control-diagnosis-v59-swap-cassi-v2-vs-spar11",
+      "panel_json_sha256": "c7fbeabf084a41c1943bd52240f25f08dbb85ab3ee84032f75bea32840afd40c",
+      "freeze_sha256": "4d70a0d99cb318f5d49e7540137c426f5f4fc5bd7730a38e0ef52c78d2a40ca3",
+      "slot_count": 12,
+      "final": false
+    },
+    {
+      "panel": "matched-control-diagnosis-v59-swap-cassi-v2-vs-spar12",
+      "panel_json_sha256": "1497e2028ccbcbc8fd3d2ce426f5d44766e5899e2620663708cd80e4530d80eb",
+      "freeze_sha256": "4d70a0d99cb318f5d49e7540137c426f5f4fc5bd7730a38e0ef52c78d2a40ca3",
+      "slot_count": 12,
+      "final": false
+    },
+    {
+      "panel": "matched-control-diagnosis-v59-swap-cassi-v2-vs-spar16",
+      "panel_json_sha256": "2af052ed1c121c3591cd28f5587e51c591b2ec5fc75aa04e04a455e03c496786",
+      "freeze_sha256": "4d70a0d99cb318f5d49e7540137c426f5f4fc5bd7730a38e0ef52c78d2a40ca3",
+      "slot_count": 12,
+      "final": false
+    },
+    {
+      "panel": "matched-control-v60-fuel-alerts-vs-spar11",
+      "panel_json_sha256": "50927182e3e8f9afdc6374586af60797da2880826cb422e047463878d4b672f5",
+      "freeze_sha256": "affe94ad3cf642ed069835c2949525500cdf4fc1085f54c545766f05463cf87c",
+      "slot_count": 12,
+      "final": false
+    },
+    {
+      "panel": "matched-control-v60-fuel-alerts-vs-spar12",
+      "panel_json_sha256": "a3da0a53f41ad3ea32a4e05ac314f13a3b705f03fca869ff25ce6dd8cf766ba5",
+      "freeze_sha256": "affe94ad3cf642ed069835c2949525500cdf4fc1085f54c545766f05463cf87c",
+      "slot_count": 12,
+      "final": false
+    },
+    {
+      "panel": "matched-control-v60-fuel-alerts-vs-spar16",
+      "panel_json_sha256": "df60c567b6eecd15aed0370b97c4e2b1a0bc28a713064709e4753bfce1470846",
+      "freeze_sha256": "affe94ad3cf642ed069835c2949525500cdf4fc1085f54c545766f05463cf87c",
+      "slot_count": 12,
+      "final": false
+    },
+    {
+      "panel": "matched-control-diagnosis-v59-vs-spar11",
+      "panel_json_sha256": "5b24fca410084e8bc2263cfc8d09a0b435b48a29697bf779b0e553189768915a",
+      "freeze_sha256": "4d70a0d99cb318f5d49e7540137c426f5f4fc5bd7730a38e0ef52c78d2a40ca3",
+      "slot_count": 12,
+      "final": false
+    },
+    {
+      "panel": "matched-control-diagnosis-v59-vs-spar12",
+      "panel_json_sha256": "77bf181aef7df066e27b08aef8d9b248d0e3940b2d93cb09cf987c6fa4e1cb83",
+      "freeze_sha256": "4d70a0d99cb318f5d49e7540137c426f5f4fc5bd7730a38e0ef52c78d2a40ca3",
+      "slot_count": 12,
+      "final": false
+    },
+    {
+      "panel": "matched-control-diagnosis-v59-vs-spar16",
+      "panel_json_sha256": "b61ed8ce2fd70e43f94827e627f7af4e51f9cdc818c7ef950cb99c26f86c6e5a",
+      "freeze_sha256": "4d70a0d99cb318f5d49e7540137c426f5f4fc5bd7730a38e0ef52c78d2a40ca3",
+      "slot_count": 12,
+      "final": false
+    },
+    {
+      "panel": "matched-control-v60-budget-v3-vs-spar11",
+      "panel_json_sha256": "e54a05680702422b22ec1038b8157e8ba73b5e6564eaed15407dd0be70864cfb",
+      "freeze_sha256": "affe94ad3cf642ed069835c2949525500cdf4fc1085f54c545766f05463cf87c",
+      "slot_count": 12,
+      "final": false
+    },
+    {
+      "panel": "matched-control-v60-budget-v3-vs-spar12",
+      "panel_json_sha256": "f42859beddf41dd58a0b12f5d48672d4371df7092c4e868efa5322564725c669",
+      "freeze_sha256": "affe94ad3cf642ed069835c2949525500cdf4fc1085f54c545766f05463cf87c",
+      "slot_count": 12,
+      "final": false
+    },
+    {
+      "panel": "matched-control-v60-budget-v3-vs-spar16",
+      "panel_json_sha256": "80051c0ce10302261cd8e1185bc09f74875631c48ff45fbc89d85e1e6e8f052d",
+      "freeze_sha256": "affe94ad3cf642ed069835c2949525500cdf4fc1085f54c545766f05463cf87c",
+      "slot_count": 12,
+      "final": false
+    }
+  ],
+  "interpretation": [
+    "228 final slots; 144 historical controls are separate, never counted as new final games.",
+    "Opponent fuel is distinct from historical matched raw-v59-control fuel.",
+    "Potential body-rounds are not alive/action-normalized.",
+    "Caught markers are selectively printed or truncatable stdout; complete native faults and fuel are separate.",
+    "V3 and v4 are separate frozen sources; their direct-reference win rates must not be pooled. Complete promotion gate and online A/B not run.",
+    "Maps were locked before these outcomes; they come from historical pools, not globally unseen tournament maps."
+  ]
+}

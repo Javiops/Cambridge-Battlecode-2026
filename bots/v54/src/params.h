@@ -67,7 +67,7 @@
 #define P_AOE 2              // Stellar's area spell aims at the tile hitting the most foes; goes first with 2+ under it
 #define P_CASTSAFE 0         // skip a rooting cast when we should escape: lost 15-30 (hp only) and 12-29 (70%), off
 #define P_KITEFRONT 0        // 1 = front line before kite, 2 = kite shoots the team focus: both noise, off
-#define P_R5_WARD 0          // wards: 55-58 maps won/lost both sides, noise again, off
+#define P_R5_WARD 1          // v54: wards on (panels +10/+6 alone, deaths -2/game)
 
 // 2026-10-16 fuel guard: the same decisions for less fuel (turns that ran out were suspended and played a round
 // late). P_FUELPROF 1 + a debug build (`cambc run` without --release) prints fuel per turn section.
@@ -115,3 +115,5 @@
 #define P_PV_LEAVE 60
 #define P_PV_ER 6
 #define P_MP_DASHHOLE 4
+#define P_PVSIM 1   // v54: fight model of both sides decides the first-contact verdict (verdict.h)
+#define P_PVKITE 1  // v54: a leave verdict kites and calls for help instead of backing off home (fight.h)

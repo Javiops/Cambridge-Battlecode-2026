@@ -1127,6 +1127,7 @@ struct State {
     vec2 danger_p{0, 0};
     int danger_r = -1000;   // last round an enemy pack was seen at danger_p
     int foe_r = -1000;      // last round this champion saw an enemy champion
+    int nf_d = 99, nf_r = -1000;  // P_CAMPHOLD: nearest enemy champion this round and the round it was measured
     std::vector<Seen> seen; // P_NOCHASE: enemy positions last round
     int seen_r = -10;
     vec2 seen_me{0, 0};     // our own tile last round
@@ -1832,9 +1833,21 @@ bool u34_target_visible(const U& target) {
 
 vec2 aoe_centre(State& s, bc::champion& me, int k, vec2 tp, int* hits = nullptr);  // P_AOE, defined below
 
+// P_CAMPHOLD (2026-10-17, user: no spells on a camp while an enemy champion is in reach): with an enemy champion
+// within P_CAMPHOLD tiles this round, damage spells and the attack reset are kept for champions. 10 v53 games
+// online: 114 of 808 spells on camps were cast with a foe within 6; Stellar emptied three on a camp at
+// pilgrimage r481-491 with Ren and Varg at 6 tiles.
+#ifndef P_CAMPHOLD
+#define P_CAMPHOLD 0
+#endif
+inline bool camp_hold(const State& s, bool champ) {
+    return P_CAMPHOLD && !champ && s.nf_r == static_cast<int>(bc::round_number()) && s.nf_d <= P_CAMPHOLD;
+}
+
 template <class U>
 bool cast_offense(State& s, bc::champion& me, const U& tgt, vec2 tpos, bool champ) {
     if (!me.can_cast() || dist(me.position(), tpos) > SPELL_RANGE) return false;
+    if (camp_hold(s, champ)) return false;
     auto abs = me.abilities();
     for (int k = 0; k < 2; ++k) {
         auto& ab = abs[k];
@@ -1864,7 +1877,7 @@ bool basic_attack(State& s, bc::champion& me, const U& tgt, vec2 tpos) {
         return true;
     });
     // Preserve a reset cooldown when its only selected target disappeared.
-    if (hit && s.reset_slot >= 0 && me.can_cast() &&
+    if (hit && s.reset_slot >= 0 && me.can_cast() && !camp_hold(s, std::is_same_v<U, bc::champion>) &&
         // P_U34_RESET_LIVE 1: only on corners/interlock, spend the reset only if the target is still alive and
         // visible after the first hit; 2: the same check on every map (a dead target wastes the reset).
         (!(P_U34_RESET_LIVE >= 2 || (P_U34_RESET_LIVE && (s.de_map == v34de::Corners || s.de_map == v34de::Interlock))) ||
@@ -3456,6 +3469,8 @@ void play_turn(State& s) {
         });
     int nearest_foe = 99;
     for (auto& f : foes) nearest_foe = std::min(nearest_foe, f.d);
+    s.nf_d = nearest_foe;
+    s.nf_r = static_cast<int>(bc::round_number());
     if (P_TRACE) {
         g_nf = nearest_foe; g_nfoes = 0; g_nal = 0;
         for (auto& f : foes) if (f.d <= 8) ++g_nfoes;

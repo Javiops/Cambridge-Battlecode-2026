@@ -18,6 +18,9 @@
 #ifndef P_CALLHELP
 #define P_CALLHELP 0
 #endif
+#ifndef P_PVKITE
+#define P_PVKITE 0  // 1 = a "leave" verdict (verdict.h) kites and calls for help instead of backing off home
+#endif
 #ifndef P_TWIN
 #define P_TWIN 0
 #endif
@@ -291,6 +294,24 @@ inline bool hit_any(State& s, bc::champion& me, const std::vector<Foe*>& near) {
     if (!best) return false;
     cast_offense(s, me, best->c, best->p, true);
     return basic_attack(s, me, best->c, best->p);
+}
+
+// P_PVKITE (2026-10-17, user: "en vez de huir hacemos un kitear mientras pedimos ayuda"): with a leave verdict,
+// stand and shoot while no foe can reach us next round; step back (back_off: retreat toward allies) only when one can.
+// The caller names the nearest foe in shared memory, so allies that see it come and hit it (help_target).
+inline void pv_kite(State& s, bc::champion& me, std::vector<Foe>& foes, int round) {
+    bool threatened = false;
+    std::vector<Foe*> near;
+    for (auto& f : foes) {
+        if (s.en_spawn.is_set(f.p)) continue;
+        if (f.d <= 7) near.push_back(&f);
+        if (f.d <= reach(f) + 1) threatened = true;
+    }
+    if (threatened) {
+        back_off(s, me, foes, round);
+        return;
+    }
+    hit_any(s, me, near);  // nothing reaches us next round: hold the tile and shoot what is in range
 }
 
 inline bool front_line(State& s, bc::champion& me, std::vector<Foe>& foes, int round) {

@@ -387,6 +387,9 @@ namespace {
 #ifndef P_CALLHELP
 #define P_CALLHELP 0
 #endif
+#ifndef P_PVKITE
+#define P_PVKITE 0  // fight.h: kite and call for help on a leave verdict
+#endif
 #ifndef P_DANGER_T
 #define P_DANGER_T 40
 #endif
@@ -2205,7 +2208,7 @@ void update_danger(State& s, const std::vector<Foe>& foes, int round) {
             break;
         }
     }
-    if (P_CALLHELP) return;  // byte 7 belongs to the help call then
+    if (P_CALLHELP || P_PVKITE) return;  // byte 7 belongs to the help call then
     if (s.danger_r == round) {
         int ai = -1, ad = P_DANGER_R + 1;
         for (std::size_t i = 0; i < s.altars.size() && i < 7; ++i)
@@ -3725,6 +3728,12 @@ void play_turn(State& s) {
                 if (f.d <= 3) keep = false;
         }
         if (v == 2 && !on_spawn && !foes.empty() && !keep) {
+            if (P_PVKITE) {  // user 2026-10-17: kite while asking for help instead of running home
+                g_mode = "pv-kite";
+                fight::call_help(s, foes, round);
+                fight::pv_kite(s, me, foes, round);
+                return;
+            }
             g_mode = "pv-leave";
             fight::back_off(s, me, foes, round);
             return;
@@ -3778,7 +3787,7 @@ void play_turn(State& s) {
         }
         if (P_TRACK && P_TRACK_FAV && tgt) favourable = track::favourable(me, tgt->p, round);
         bool helping = false;
-        if (P_CALLHELP && hpr > 0.4f) {  // an ally named the foe hitting it: go and hit that one
+        if ((P_CALLHELP || P_PVKITE) && hpr > 0.4f) {  // an ally named the foe hitting it: go and hit that one
             Foe* h = fight::help_target(s, foes, round);
             if (h && h->d <= P_HELP_R && !s.en_spawn.is_set(h->p) && !gone(*h)) {
                 int nb = 1, eb = 0;

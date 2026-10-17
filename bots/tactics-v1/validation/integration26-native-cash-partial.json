@@ -1,0 +1,399 @@
+{
+  "passed": true,
+  "scope": "Real partial-emblem prelude, then unchanged production cash\u2192shop\u2192Elk\u2192bank caller.\n\nThis native activation fixture earns every coin and physically buys its starting\ninventory. It never projects a wallet/Actor into production World. The scalar\nbefore/after preview is explicitly hypothetical and installs nothing. Quiet one\npick setup; wrapper module differs from the competitive module; no strength claim.\n",
+  "created_utc": "2026-10-17T02:23:11.851446+00:00",
+  "source_sha256": {
+    "actions.h": "c0855f91cd2f7081961ae32680c5e5ba07cbedb6ff18ca77dfd70ff282cc673a",
+    "assembly.h": "da161935fe87245e1966095f1cb1235fb33f62723d179a483fd9f055ce9923c8",
+    "awake_entry.h": "e1f43a2c25fd4dcabe6839efc233407f200429e26e642135027c3e945ca9edc9",
+    "camp_actions.h": "37236ab64f4de26c39beb493f3875fabcc1155b66770582d569d3e608bc4f5fa",
+    "camp_basic.h": "7bf89b67e929472e4a760a5a1f91858f622ca6b44c9ae06cd9a1908f788efd44",
+    "camp_collateral.h": "69b29ad70768f3bad399f3f3a1fb576deb076e89b74d5c33670e52afefae17d2",
+    "chain.h": "679749f1cf0c6827edafab2efbf8a99c02ad0e94c1f5b7a53a00baf1339fb79d",
+    "combat.h": "1d6bb5eaebd38e8c65770c52107101b00bfb8261d6512caae85f0cef3625f2a1",
+    "coordination.h": "99d54b94c9a712a68b690bbcce732958cad18cd96072e2f8087b8fa9b4294089",
+    "coordinator.h": "6b0dd3fc95deb2c7cecaf1a210dd2e0b65ce69a79fa3c26e688622cdc78cd287",
+    "crew_sequence.h": "5b0549469e508383de382afe4e6a7a73b1688592dada1ed86f6fc2ab43602b1d",
+    "cycles.h": "957d9754a3233cb3920f0f7c95d030b4f0e41309d2ac2d9298ab85815273f661",
+    "deny.h": "34766bcdc919400e2bcb821541a6aa6d560d88df1ab855b674d5c0d56e467872",
+    "draft.h": "4aacfd6fe0c9d8867f551ad54c2394cfbf1a984ce2c1d6cdd339582165f8346a",
+    "economy.h": "faac6b644652e487f37ed31a63516d7e373cbbf718683dee4535243b7993271e",
+    "farm_observation.h": "9d76f1f9d9f152100bb6f3a0a60d07299643c773695907fe37d78df8299b194c",
+    "farm_readiness.h": "440153f3982e535832654f90ba9099cd7053bb8e5365b3f698952acf27c61c99",
+    "geometry.h": "1e247a48f232b300e9cfbd8944368d50e6b644fdd1793ed57418da0213e354f2",
+    "information.h": "ae1a681040a444c1bd3470a6fa7c06b725c1318429dbcfd7cefb8554f38483d2",
+    "log.h": "bd93aec4806ef14eba825578c53ed15f37798467ba3ad8db36cef859f3995fbe",
+    "observation_detour.h": "99ad6d3e6b3b42c81c1979c58a571593fa419111f0d53e8c6d035c4bbb8e18a7",
+    "ranking.h": "760ab19f9af723faef6082b3ae13158d754dbdd7d554f3f2491ec804d530f85c",
+    "resizing.h": "a0d8e243604e827ed87839d6087cc5c99b966fb09728374e3dd03c430bcae05a",
+    "resizing_policy.h": "ccfb37740ee28e365dcb0e8c988492e71a54f64e2907fd36b3760576729cbc3c",
+    "resource.h": "e31de4cb4db5011b507df3f7932fc27a4b583f1c94c9b4850c88032c1c1ba59b",
+    "sdk_world.h": "ee7757075c183f0704b2d575c408c56fa725f228a905566c01e1e0d7e254f1b4",
+    "shopping.h": "f81da81acb14639befe63a5c39eb6b6d6b331884477433de6295a276fb634552",
+    "solo.h": "f4fe4cb0b9a1d13ec17cbd4c89e4631f8f9f4b1ce59870ee5acf36821e287b69",
+    "solo_bounds.h": "37848f2d951b318f00bd6a197edd89b827080edd0900e34b99f3111d4280fc77",
+    "solo_poke.h": "c37ca6ad467d67ec390a7bd637c4dcc1b3ee8467f96181a8f03ee34535c8a253",
+    "solo_routes.h": "98edc9f7fce8aa8d2625c3b030075bc3c79d03df76ba2540ba3ff17d873bc9b4",
+    "squads.h": "7dcfa36091ef0631cf7af4bb4d291d2219369a3dbf3710a35965fc071f767fe3",
+    "strategic.h": "c2f67e403ce8d591e99e016aaf156b69dfca92070cdf84502411633b86e1fb01",
+    "types.h": "f4c46830e1ea75cee85485a1de33509cc783f84e27e1b8c36388334e06c7ade7",
+    "vision.h": "6cea9e058fe56bbc7b5ac85ff316270760e7f2be7ad84888a7dab55eb3012abf",
+    "main.cpp": "18c5fa09fd796b5a4a62576dabd52811d8a9c38a2d28ea7ae21e34cfe2619689"
+  },
+  "sdk_header_sha256": "76664dc7c4ab764243a7530eb97be12d9c20518b7bd2601a962fb0669d1da4a4",
+  "module_sha256": "433c4efec3a5a9549f81dca4caa80e0a99ba2e80a70dc15930ea4e566838d69b",
+  "fixture_sha256": "4d667e6a4af0f681de193ce61b57702e8f38fc2b100bb2bfca4ec66cc636150f",
+  "map_sha256": "9c5d0b697f28f8e542d3f8a2eb5ab14a91a24d260c974f66c192b90cab515243",
+  "statistics_sha256": "269632cfd2a1d3e0f6357dd9cd11bafc6c04dd4bdc585c47296a6d9991af6bff",
+  "replay_sha256": "2a6efd3625721646c5b4eb68bca4931d67eca3c56f24755916270aa69110e8fa",
+  "actual_engine": {
+    "engineBuildHash": "02c4624c8c9b8bcaf9d906f407c0b1d932d5b5bce6e8ea7e222e08065dd9cede",
+    "engineVersion": "0.0.2",
+    "finalInput": 4346,
+    "finalRoundPartial": false,
+    "finalSubstep": 6,
+    "height": 48,
+    "mapHash": "9c5d0b697f28f8e542d3f8a2eb5ab14a91a24d260c974f66c192b90cab515243",
+    "metricSemanticsVersion": 1,
+    "outcome": "teamB",
+    "roundsCompleted": 2000,
+    "roundsStarted": 2000,
+    "seed": "6719836196202226177",
+    "width": 48
+  },
+  "native_faults": {
+    "teamA": 0,
+    "teamB": 0
+  },
+  "fuel_exhausted": 0,
+  "failures": [],
+  "cases": {
+    "a": {
+      "markers": [
+        "PC20_PREVIEW 0 known=1,1 feasible=0,1 beforeHP=1900.00 beforeSTR=57.00 nextHP=2000.00 nextSTR=58.00 nextMIT=0.70 ticks=25,31 damage=1440,1260",
+        "PC20_EARNED 0 351 210",
+        "PC20_PRELUDE 0 356 wallet=0 jungleShards=4 powerShards=3 emblem=0 HP=1900 STR=57",
+        "PC20_HANDOVER 0 401 wallet=0 cashAlive=1",
+        "PC20_COMPLETE 0 503 36"
+      ],
+      "prelude_round": 356,
+      "handover_round": 401,
+      "actual_pre_cash_receipts": 6,
+      "prelude_native_purchases": [
+        {
+          "amount": 120.0,
+          "context": "210",
+          "target": {
+            "kind": "item",
+            "name": "Jungle Shard of Health"
+          },
+          "timestamp": {
+            "input": 868,
+            "ordinal": 12842,
+            "phase": "champions",
+            "round": 356,
+            "substep": 0
+          },
+          "value": "4",
+          "x": 1,
+          "y": 1
+        },
+        {
+          "amount": 90.0,
+          "context": "90",
+          "target": {
+            "kind": "item",
+            "name": "Power Shard of Health"
+          },
+          "timestamp": {
+            "input": 869,
+            "ordinal": 12843,
+            "phase": "champions",
+            "round": 356,
+            "substep": 0
+          },
+          "value": "3",
+          "x": 1,
+          "y": 1
+        }
+      ],
+      "actual_cash_receipt": [
+        {
+          "amount": 0.0,
+          "context": "campGroup",
+          "target": {
+            "id": 0,
+            "kind": "campGroup"
+          },
+          "timestamp": {
+            "input": 1052,
+            "ordinal": 15438,
+            "phase": "campCaptures",
+            "round": 428,
+            "substep": 10
+          },
+          "value": "0",
+          "x": 6,
+          "y": 6
+        }
+      ],
+      "actual_named_purchase": [
+        {
+          "amount": 30.0,
+          "context": "35",
+          "target": {
+            "kind": "item",
+            "name": "Jungle Shard of Health"
+          },
+          "timestamp": {
+            "input": 1067,
+            "ordinal": 15620,
+            "phase": "champions",
+            "round": 433,
+            "substep": 0
+          },
+          "value": "1",
+          "x": 1,
+          "y": 1
+        }
+      ],
+      "actual_emblem_combination": [
+        {
+          "amount": 0.0,
+          "context": "0",
+          "target": {
+            "kind": "item",
+            "name": "Jungle Emblem of Health"
+          },
+          "timestamp": {
+            "input": 1067,
+            "ordinal": 15621,
+            "phase": "champions",
+            "round": 433,
+            "substep": 0
+          },
+          "value": "1",
+          "x": 1,
+          "y": 1
+        }
+      ],
+      "actual_gem_receipt": [
+        {
+          "amount": 0.0,
+          "context": "campGroup",
+          "target": {
+            "id": 2,
+            "kind": "campGroup"
+          },
+          "timestamp": {
+            "input": 1330,
+            "ordinal": 17930,
+            "phase": "campCaptures",
+            "round": 497,
+            "substep": 10
+          },
+          "value": "36",
+          "x": 13,
+          "y": 6
+        }
+      ],
+      "actual_bank": [
+        {
+          "amount": 0.0,
+          "context": "0",
+          "target": 0,
+          "timestamp": {
+            "input": 1350,
+            "ordinal": 18148,
+            "phase": "championStartTurn",
+            "round": 503,
+            "substep": 18
+          },
+          "value": "36",
+          "x": 10,
+          "y": 10
+        }
+      ],
+      "named_production_action_verified": true,
+      "ordered": true
+    },
+    "b": {
+      "markers": [
+        "PC20_PREVIEW 1 known=1,1 feasible=0,1 beforeHP=1900.00 beforeSTR=57.00 nextHP=2000.00 nextSTR=58.00 nextMIT=0.70 ticks=25,31 damage=1440,1260",
+        "PC20_EARNED 1 351 210",
+        "PC20_PRELUDE 1 356 wallet=0 jungleShards=4 powerShards=3 emblem=0 HP=1900 STR=57",
+        "PC20_HANDOVER 1 401 wallet=0 cashAlive=1",
+        "PC20_COMPLETE 1 503 36"
+      ],
+      "prelude_round": 356,
+      "handover_round": 401,
+      "actual_pre_cash_receipts": 6,
+      "prelude_native_purchases": [
+        {
+          "amount": 120.0,
+          "context": "210",
+          "target": {
+            "kind": "item",
+            "name": "Jungle Shard of Health"
+          },
+          "timestamp": {
+            "input": 865,
+            "ordinal": 12840,
+            "phase": "champions",
+            "round": 356,
+            "substep": 0
+          },
+          "value": "4",
+          "x": 46,
+          "y": 1
+        },
+        {
+          "amount": 90.0,
+          "context": "90",
+          "target": {
+            "kind": "item",
+            "name": "Power Shard of Health"
+          },
+          "timestamp": {
+            "input": 866,
+            "ordinal": 12841,
+            "phase": "champions",
+            "round": 356,
+            "substep": 0
+          },
+          "value": "3",
+          "x": 46,
+          "y": 1
+        }
+      ],
+      "actual_cash_receipt": [
+        {
+          "amount": 0.0,
+          "context": "campGroup",
+          "target": {
+            "id": 1,
+            "kind": "campGroup"
+          },
+          "timestamp": {
+            "input": 1052,
+            "ordinal": 15439,
+            "phase": "campCaptures",
+            "round": 428,
+            "substep": 11
+          },
+          "value": "0",
+          "x": 41,
+          "y": 6
+        }
+      ],
+      "actual_named_purchase": [
+        {
+          "amount": 30.0,
+          "context": "35",
+          "target": {
+            "kind": "item",
+            "name": "Jungle Shard of Health"
+          },
+          "timestamp": {
+            "input": 1070,
+            "ordinal": 15622,
+            "phase": "champions",
+            "round": 433,
+            "substep": 0
+          },
+          "value": "1",
+          "x": 46,
+          "y": 1
+        }
+      ],
+      "actual_emblem_combination": [
+        {
+          "amount": 0.0,
+          "context": "0",
+          "target": {
+            "kind": "item",
+            "name": "Jungle Emblem of Health"
+          },
+          "timestamp": {
+            "input": 1070,
+            "ordinal": 15623,
+            "phase": "champions",
+            "round": 433,
+            "substep": 0
+          },
+          "value": "1",
+          "x": 46,
+          "y": 1
+        }
+      ],
+      "actual_gem_receipt": [
+        {
+          "amount": 0.0,
+          "context": "campGroup",
+          "target": {
+            "id": 3,
+            "kind": "campGroup"
+          },
+          "timestamp": {
+            "input": 1330,
+            "ordinal": 17931,
+            "phase": "campCaptures",
+            "round": 497,
+            "substep": 11
+          },
+          "value": "36",
+          "x": 34,
+          "y": 6
+        }
+      ],
+      "actual_bank": [
+        {
+          "amount": 0.0,
+          "context": "0",
+          "target": 0,
+          "timestamp": {
+            "input": 1351,
+            "ordinal": 18149,
+            "phase": "championStartTurn",
+            "round": 503,
+            "substep": 7
+          },
+          "value": "36",
+          "x": 37,
+          "y": 10
+        }
+      ],
+      "named_production_action_verified": true,
+      "ordered": true
+    }
+  },
+  "commands": [
+    [
+      "C:\\Users\\frans\\Documents\\Codex\\2026-10-14\\v\\work\\combat-research\\acquisition\\cli-2.2.2\\cambc-2.2.2.data\\scripts\\cambc.exe",
+      "build",
+      "C:\\Users\\frans\\Documents\\Codex\\2026-10-14\\v\\work\\tactics-bot-v1\\testing\\improvement-v2\\native-final-integration26-cash-partial\\bot"
+    ],
+    [
+      "C:\\Users\\frans\\Documents\\Codex\\2026-10-14\\v\\work\\combat-research\\acquisition\\cli-2.2.2\\cambc-2.2.2.data\\scripts\\cambc.exe",
+      "build",
+      "C:\\Users\\frans\\Documents\\Codex\\2026-10-14\\v\\work\\tactics-bot-v1\\testing\\improvement-v2\\native-final-integration26-cash-partial\\bot",
+      "--release"
+    ],
+    [
+      "C:\\Users\\frans\\Documents\\Codex\\2026-10-14\\v\\work\\combat-research\\acquisition\\cli-2.2.2\\cambc-2.2.2.data\\scripts\\cambc.exe",
+      "run",
+      "C:\\Users\\frans\\Documents\\Codex\\2026-10-14\\v\\work\\tactics-bot-v1\\testing\\improvement-v2\\native-final-integration26-cash-partial\\bot",
+      "C:\\Users\\frans\\Documents\\Codex\\2026-10-14\\v\\work\\tactics-bot-v1\\testing\\improvement-v2\\native-final-integration26-cash-partial\\bot",
+      "--map",
+      "C:\\Users\\frans\\Documents\\Codex\\2026-10-14\\v\\work\\tactics-bot-v1\\testing\\improvement-v2\\candidates\\integration26\\validation-tools\\fixtures\\native-cash-partial.map26a",
+      "--release",
+      "--json",
+      "-o",
+      "C:\\Users\\frans\\Documents\\Codex\\2026-10-14\\v\\work\\tactics-bot-v1\\testing\\improvement-v2\\native-final-integration26-cash-partial\\game",
+      "--statistics",
+      "C:\\Users\\frans\\Documents\\Codex\\2026-10-14\\v\\work\\tactics-bot-v1\\testing\\improvement-v2\\native-final-integration26-cash-partial\\game\\statistics.json"
+    ]
+  ],
+  "reused_existing_local_native_game": false,
+  "existing_game": null
+}

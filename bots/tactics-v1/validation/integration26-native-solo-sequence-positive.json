@@ -1,0 +1,292 @@
+{
+  "passed": true,
+  "scope": "Real production-main paid continuation at a measured native fuel boundary.\n\nThe copy changes no World, stats, wallet, camp, mission or selected proposal.\nIt waits for an actual paid Damage continuation, burns guest fuel immediately\nbefore its admission, then records a deferred marker after the owner finishes.\nPositive proves Basic -> actual restricted snapshot -> required damage through\nthe real main loop. Negative proves that an unfunded required first hit declines.\nBoth sides use official Lanes and a drafting/yielding opponent; this is scoped\ncorrectness activation, not a strength benchmark or a projected-world fixture.\n",
+  "mode": "positive",
+  "not_independent_strength_games": true,
+  "production_main_exercised": true,
+  "production_main_modified_only_for_deferred_marker": true,
+  "production_main_sha256": "18c5fa09fd796b5a4a62576dabd52811d8a9c38a2d28ea7ae21e34cfe2619689",
+  "instrumented_copy_main_sha256": "d59cdbdce62cfc8f1ca1603c0f8b9bc416e255cdbe8347b0b0a856b2910e0309",
+  "source_sha256": {
+    "actions.h": "c0855f91cd2f7081961ae32680c5e5ba07cbedb6ff18ca77dfd70ff282cc673a",
+    "assembly.h": "da161935fe87245e1966095f1cb1235fb33f62723d179a483fd9f055ce9923c8",
+    "awake_entry.h": "e1f43a2c25fd4dcabe6839efc233407f200429e26e642135027c3e945ca9edc9",
+    "camp_actions.h": "37236ab64f4de26c39beb493f3875fabcc1155b66770582d569d3e608bc4f5fa",
+    "camp_basic.h": "7bf89b67e929472e4a760a5a1f91858f622ca6b44c9ae06cd9a1908f788efd44",
+    "camp_collateral.h": "69b29ad70768f3bad399f3f3a1fb576deb076e89b74d5c33670e52afefae17d2",
+    "chain.h": "679749f1cf0c6827edafab2efbf8a99c02ad0e94c1f5b7a53a00baf1339fb79d",
+    "combat.h": "1d6bb5eaebd38e8c65770c52107101b00bfb8261d6512caae85f0cef3625f2a1",
+    "coordination.h": "99d54b94c9a712a68b690bbcce732958cad18cd96072e2f8087b8fa9b4294089",
+    "coordinator.h": "6b0dd3fc95deb2c7cecaf1a210dd2e0b65ce69a79fa3c26e688622cdc78cd287",
+    "crew_sequence.h": "5b0549469e508383de382afe4e6a7a73b1688592dada1ed86f6fc2ab43602b1d",
+    "cycles.h": "957d9754a3233cb3920f0f7c95d030b4f0e41309d2ac2d9298ab85815273f661",
+    "deny.h": "34766bcdc919400e2bcb821541a6aa6d560d88df1ab855b674d5c0d56e467872",
+    "draft.h": "4aacfd6fe0c9d8867f551ad54c2394cfbf1a984ce2c1d6cdd339582165f8346a",
+    "economy.h": "faac6b644652e487f37ed31a63516d7e373cbbf718683dee4535243b7993271e",
+    "farm_observation.h": "9d76f1f9d9f152100bb6f3a0a60d07299643c773695907fe37d78df8299b194c",
+    "farm_readiness.h": "440153f3982e535832654f90ba9099cd7053bb8e5365b3f698952acf27c61c99",
+    "geometry.h": "1e247a48f232b300e9cfbd8944368d50e6b644fdd1793ed57418da0213e354f2",
+    "information.h": "ae1a681040a444c1bd3470a6fa7c06b725c1318429dbcfd7cefb8554f38483d2",
+    "log.h": "bd93aec4806ef14eba825578c53ed15f37798467ba3ad8db36cef859f3995fbe",
+    "main.cpp": "18c5fa09fd796b5a4a62576dabd52811d8a9c38a2d28ea7ae21e34cfe2619689",
+    "observation_detour.h": "99ad6d3e6b3b42c81c1979c58a571593fa419111f0d53e8c6d035c4bbb8e18a7",
+    "ranking.h": "760ab19f9af723faef6082b3ae13158d754dbdd7d554f3f2491ec804d530f85c",
+    "resizing.h": "a0d8e243604e827ed87839d6087cc5c99b966fb09728374e3dd03c430bcae05a",
+    "resizing_policy.h": "ccfb37740ee28e365dcb0e8c988492e71a54f64e2907fd36b3760576729cbc3c",
+    "resource.h": "e31de4cb4db5011b507df3f7932fc27a4b583f1c94c9b4850c88032c1c1ba59b",
+    "sdk_world.h": "ee7757075c183f0704b2d575c408c56fa725f228a905566c01e1e0d7e254f1b4",
+    "shopping.h": "f81da81acb14639befe63a5c39eb6b6d6b331884477433de6295a276fb634552",
+    "solo.h": "f4fe4cb0b9a1d13ec17cbd4c89e4631f8f9f4b1ce59870ee5acf36821e287b69",
+    "solo_bounds.h": "37848f2d951b318f00bd6a197edd89b827080edd0900e34b99f3111d4280fc77",
+    "solo_poke.h": "c37ca6ad467d67ec390a7bd637c4dcc1b3ee8467f96181a8f03ee34535c8a253",
+    "solo_routes.h": "98edc9f7fce8aa8d2625c3b030075bc3c79d03df76ba2540ba3ff17d873bc9b4",
+    "squads.h": "7dcfa36091ef0631cf7af4bb4d291d2219369a3dbf3710a35965fc071f767fe3",
+    "strategic.h": "c2f67e403ce8d591e99e016aaf156b69dfca92070cdf84502411633b86e1fb01",
+    "types.h": "f4c46830e1ea75cee85485a1de33509cc783f84e27e1b8c36388334e06c7ade7",
+    "vision.h": "6cea9e058fe56bbc7b5ac85ff316270760e7f2be7ad84888a7dab55eb3012abf"
+  },
+  "instrumented_source_sha256": {
+    "actions.h": "c0855f91cd2f7081961ae32680c5e5ba07cbedb6ff18ca77dfd70ff282cc673a",
+    "assembly.h": "da161935fe87245e1966095f1cb1235fb33f62723d179a483fd9f055ce9923c8",
+    "awake_entry.h": "e1f43a2c25fd4dcabe6839efc233407f200429e26e642135027c3e945ca9edc9",
+    "boundary27.h": "6362b8bd3f0ff6f3069fe10a38e5a5846c520c8741f6cd911f14458da5d485f2",
+    "camp_actions.h": "37236ab64f4de26c39beb493f3875fabcc1155b66770582d569d3e608bc4f5fa",
+    "camp_basic.h": "7bf89b67e929472e4a760a5a1f91858f622ca6b44c9ae06cd9a1908f788efd44",
+    "camp_collateral.h": "69b29ad70768f3bad399f3f3a1fb576deb076e89b74d5c33670e52afefae17d2",
+    "chain.h": "679749f1cf0c6827edafab2efbf8a99c02ad0e94c1f5b7a53a00baf1339fb79d",
+    "combat.h": "1d6bb5eaebd38e8c65770c52107101b00bfb8261d6512caae85f0cef3625f2a1",
+    "coordination.h": "99d54b94c9a712a68b690bbcce732958cad18cd96072e2f8087b8fa9b4294089",
+    "coordinator.h": "6b0dd3fc95deb2c7cecaf1a210dd2e0b65ce69a79fa3c26e688622cdc78cd287",
+    "crew_sequence.h": "5b0549469e508383de382afe4e6a7a73b1688592dada1ed86f6fc2ab43602b1d",
+    "cycles.h": "957d9754a3233cb3920f0f7c95d030b4f0e41309d2ac2d9298ab85815273f661",
+    "deny.h": "34766bcdc919400e2bcb821541a6aa6d560d88df1ab855b674d5c0d56e467872",
+    "draft.h": "4aacfd6fe0c9d8867f551ad54c2394cfbf1a984ce2c1d6cdd339582165f8346a",
+    "economy.h": "23289c899405c7b5c859481467ed96490c4c4fb5674c94e12483e92c2ce49d15",
+    "farm_observation.h": "9d76f1f9d9f152100bb6f3a0a60d07299643c773695907fe37d78df8299b194c",
+    "farm_readiness.h": "440153f3982e535832654f90ba9099cd7053bb8e5365b3f698952acf27c61c99",
+    "geometry.h": "1e247a48f232b300e9cfbd8944368d50e6b644fdd1793ed57418da0213e354f2",
+    "information.h": "ae1a681040a444c1bd3470a6fa7c06b725c1318429dbcfd7cefb8554f38483d2",
+    "log.h": "bd93aec4806ef14eba825578c53ed15f37798467ba3ad8db36cef859f3995fbe",
+    "main.cpp": "d59cdbdce62cfc8f1ca1603c0f8b9bc416e255cdbe8347b0b0a856b2910e0309",
+    "observation_detour.h": "99ad6d3e6b3b42c81c1979c58a571593fa419111f0d53e8c6d035c4bbb8e18a7",
+    "ranking.h": "760ab19f9af723faef6082b3ae13158d754dbdd7d554f3f2491ec804d530f85c",
+    "resizing.h": "a0d8e243604e827ed87839d6087cc5c99b966fb09728374e3dd03c430bcae05a",
+    "resizing_policy.h": "ccfb37740ee28e365dcb0e8c988492e71a54f64e2907fd36b3760576729cbc3c",
+    "resource.h": "e31de4cb4db5011b507df3f7932fc27a4b583f1c94c9b4850c88032c1c1ba59b",
+    "sdk_world.h": "ee7757075c183f0704b2d575c408c56fa725f228a905566c01e1e0d7e254f1b4",
+    "shopping.h": "f81da81acb14639befe63a5c39eb6b6d6b331884477433de6295a276fb634552",
+    "solo.h": "f4fe4cb0b9a1d13ec17cbd4c89e4631f8f9f4b1ce59870ee5acf36821e287b69",
+    "solo_bounds.h": "37848f2d951b318f00bd6a197edd89b827080edd0900e34b99f3111d4280fc77",
+    "solo_poke.h": "c37ca6ad467d67ec390a7bd637c4dcc1b3ee8467f96181a8f03ee34535c8a253",
+    "solo_routes.h": "98edc9f7fce8aa8d2625c3b030075bc3c79d03df76ba2540ba3ff17d873bc9b4",
+    "squads.h": "7dcfa36091ef0631cf7af4bb4d291d2219369a3dbf3710a35965fc071f767fe3",
+    "strategic.h": "c2f67e403ce8d591e99e016aaf156b69dfca92070cdf84502411633b86e1fb01",
+    "types.h": "f4c46830e1ea75cee85485a1de33509cc783f84e27e1b8c36388334e06c7ade7",
+    "vision.h": "6cea9e058fe56bbc7b5ac85ff316270760e7f2be7ad84888a7dab55eb3012abf"
+  },
+  "source_delta": "economy: real fuel burn only before actual required Damage admission; main: deferred marker only; extra diagnostics header. No projected World or forced actions.",
+  "runtime_pins": {
+    "cli_sha256": "a4262675695e4716ec5355712d21d2ec71e78cc8371dca28990bf1de84480da3",
+    "sdk_header_sha256": "76664dc7c4ab764243a7530eb97be12d9c20518b7bd2601a962fb0669d1da4a4",
+    "project_config_sha256": "afaadf58883877c0bb8879694126f7d918366cacc9f66e75d086d4f7386f872a",
+    "actual_engine_build": "02c4624c8c9b8bcaf9d906f407c0b1d932d5b5bce6e8ea7e222e08065dd9cede"
+  },
+  "quiet_fixture_sha256": "044888eae68831e722e9736b1e3d2ece144af57661db59e7a3073b03b3978c78",
+  "runner_sha256": "79a117c435194ed75a8821f25bb6300c709d4526b032268f7c4a98c515726246",
+  "games": [
+    {
+      "side": 0,
+      "markers": [
+        [
+          51,
+          5,
+          55115,
+          40318,
+          7,
+          1,
+          33,
+          1,
+          730,
+          32,
+          1315,
+          1,
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "native_faults": {
+        "teamA": 0,
+        "teamB": 0
+      },
+      "own_fuel_exhausted": 0,
+      "action_errors": [],
+      "caught_errors": [],
+      "module_sha256": "4549fc7132746af34f17d1a9e16e7f97ef4ef712c8d66ee6473a9e39bfed7aae",
+      "map_sha256": "bf50fd858a0f4d89a86b90228e77df6ee16bcaf05c627ba4d79460eab904f184",
+      "replay_sha256": "fed637ec27065e3c389dfd673b0c9c388ab26b7a6d1f467d10b0144ce853f296",
+      "statistics_sha256": "664744a34f017920ad3ef4135e0be8f41b2ef6bc26e9014cb90387399bb230b8",
+      "actual_engine": {
+        "engineBuildHash": "02c4624c8c9b8bcaf9d906f407c0b1d932d5b5bce6e8ea7e222e08065dd9cede",
+        "engineVersion": "0.0.2",
+        "finalInput": 24211,
+        "finalRoundPartial": false,
+        "finalSubstep": 6,
+        "height": 30,
+        "mapHash": "bf50fd858a0f4d89a86b90228e77df6ee16bcaf05c627ba4d79460eab904f184",
+        "metricSemanticsVersion": 1,
+        "outcome": "teamA",
+        "roundsCompleted": 2000,
+        "roundsStarted": 2000,
+        "seed": "16060603396980886320",
+        "width": 90
+      },
+      "passed": true,
+      "same_owner_actions": [
+        {
+          "round": 51,
+          "owner": 5,
+          "kind": 3,
+          "outcome": 2,
+          "error": 0,
+          "reason": "farm-certified-solo-live-basic",
+          "fuel_after": 35210
+        },
+        {
+          "round": 51,
+          "owner": 5,
+          "kind": 7,
+          "outcome": 2,
+          "error": 0,
+          "reason": "farm-certified-solo-basic-damage-receipt",
+          "fuel_after": 20789
+        }
+      ],
+      "measured_maker_admission_budget": 40318
+    },
+    {
+      "side": 1,
+      "markers": [
+        [
+          51,
+          11,
+          57106,
+          40320,
+          7,
+          1,
+          56,
+          1,
+          730,
+          33,
+          1315,
+          1,
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "native_faults": {
+        "teamA": 0,
+        "teamB": 0
+      },
+      "own_fuel_exhausted": 0,
+      "action_errors": [],
+      "caught_errors": [],
+      "module_sha256": "4549fc7132746af34f17d1a9e16e7f97ef4ef712c8d66ee6473a9e39bfed7aae",
+      "map_sha256": "bf50fd858a0f4d89a86b90228e77df6ee16bcaf05c627ba4d79460eab904f184",
+      "replay_sha256": "63eca9ce7cbf636e4d05d7c078735a930b6837c02447f2810e3b49aa784bd800",
+      "statistics_sha256": "15f31f0b5f157a96fcf5f796b768a2264cfc4e035ca131468c17bcc151dd5427",
+      "actual_engine": {
+        "engineBuildHash": "02c4624c8c9b8bcaf9d906f407c0b1d932d5b5bce6e8ea7e222e08065dd9cede",
+        "engineVersion": "0.0.2",
+        "finalInput": 22005,
+        "finalRoundPartial": true,
+        "finalSubstep": 7,
+        "height": 30,
+        "mapHash": "bf50fd858a0f4d89a86b90228e77df6ee16bcaf05c627ba4d79460eab904f184",
+        "metricSemanticsVersion": 1,
+        "outcome": "teamB",
+        "roundsCompleted": 1718,
+        "roundsStarted": 1719,
+        "seed": "16060603396980886320",
+        "width": 90
+      },
+      "passed": true,
+      "same_owner_actions": [
+        {
+          "round": 51,
+          "owner": 11,
+          "kind": 3,
+          "outcome": 2,
+          "error": 0,
+          "reason": "farm-certified-solo-live-basic",
+          "fuel_after": 35195
+        },
+        {
+          "round": 51,
+          "owner": 11,
+          "kind": 7,
+          "outcome": 2,
+          "error": 0,
+          "reason": "farm-certified-solo-basic-damage-receipt",
+          "fuel_after": 20778
+        }
+      ],
+      "measured_maker_admission_budget": 40320
+    }
+  ],
+  "commands": [
+    [
+      "C:\\Users\\frans\\Documents\\Codex\\2026-10-14\\v\\work\\combat-research\\acquisition\\cli-2.2.2\\cambc-2.2.2.data\\scripts\\cambc.exe",
+      "build",
+      "C:\\Users\\frans\\Documents\\Codex\\2026-10-14\\v\\work\\tactics-bot-v1\\testing\\improvement-v2\\native-final-integration26-solo-sequence-positive\\bot"
+    ],
+    [
+      "C:\\Users\\frans\\Documents\\Codex\\2026-10-14\\v\\work\\combat-research\\acquisition\\cli-2.2.2\\cambc-2.2.2.data\\scripts\\cambc.exe",
+      "build",
+      "C:\\Users\\frans\\Documents\\Codex\\2026-10-14\\v\\work\\tactics-bot-v1\\testing\\improvement-v2\\native-final-integration26-solo-sequence-positive\\bot",
+      "--release"
+    ],
+    [
+      "C:\\Users\\frans\\Documents\\Codex\\2026-10-14\\v\\work\\combat-research\\acquisition\\cli-2.2.2\\cambc-2.2.2.data\\scripts\\cambc.exe",
+      "build",
+      "C:\\Users\\frans\\Documents\\Codex\\2026-10-14\\v\\work\\tactics-bot-v1\\testing\\improvement-v2\\native-final-integration26-solo-sequence-positive\\quiet"
+    ],
+    [
+      "C:\\Users\\frans\\Documents\\Codex\\2026-10-14\\v\\work\\combat-research\\acquisition\\cli-2.2.2\\cambc-2.2.2.data\\scripts\\cambc.exe",
+      "build",
+      "C:\\Users\\frans\\Documents\\Codex\\2026-10-14\\v\\work\\tactics-bot-v1\\testing\\improvement-v2\\native-final-integration26-solo-sequence-positive\\quiet",
+      "--release"
+    ],
+    [
+      "C:\\Users\\frans\\Documents\\Codex\\2026-10-14\\v\\work\\combat-research\\acquisition\\cli-2.2.2\\cambc-2.2.2.data\\scripts\\cambc.exe",
+      "run",
+      "C:\\Users\\frans\\Documents\\Codex\\2026-10-14\\v\\work\\tactics-bot-v1\\testing\\improvement-v2\\native-final-integration26-solo-sequence-positive\\bot",
+      "C:\\Users\\frans\\Documents\\Codex\\2026-10-14\\v\\work\\tactics-bot-v1\\testing\\improvement-v2\\native-final-integration26-solo-sequence-positive\\quiet",
+      "--map",
+      "C:\\Users\\frans\\Documents\\Codex\\2026-10-14\\v\\work\\tactics-bot-v1\\testing\\arena\\maps\\lanes.map26a",
+      "--release",
+      "--json",
+      "-o",
+      "C:\\Users\\frans\\Documents\\Codex\\2026-10-14\\v\\work\\tactics-bot-v1\\testing\\improvement-v2\\native-final-integration26-solo-sequence-positive\\side0",
+      "--statistics",
+      "C:\\Users\\frans\\Documents\\Codex\\2026-10-14\\v\\work\\tactics-bot-v1\\testing\\improvement-v2\\native-final-integration26-solo-sequence-positive\\side0\\statistics.json"
+    ],
+    [
+      "C:\\Users\\frans\\Documents\\Codex\\2026-10-14\\v\\work\\combat-research\\acquisition\\cli-2.2.2\\cambc-2.2.2.data\\scripts\\cambc.exe",
+      "run",
+      "C:\\Users\\frans\\Documents\\Codex\\2026-10-14\\v\\work\\tactics-bot-v1\\testing\\improvement-v2\\native-final-integration26-solo-sequence-positive\\quiet",
+      "C:\\Users\\frans\\Documents\\Codex\\2026-10-14\\v\\work\\tactics-bot-v1\\testing\\improvement-v2\\native-final-integration26-solo-sequence-positive\\bot",
+      "--map",
+      "C:\\Users\\frans\\Documents\\Codex\\2026-10-14\\v\\work\\tactics-bot-v1\\testing\\arena\\maps\\lanes.map26a",
+      "--release",
+      "--json",
+      "-o",
+      "C:\\Users\\frans\\Documents\\Codex\\2026-10-14\\v\\work\\tactics-bot-v1\\testing\\improvement-v2\\native-final-integration26-solo-sequence-positive\\side1",
+      "--statistics",
+      "C:\\Users\\frans\\Documents\\Codex\\2026-10-14\\v\\work\\tactics-bot-v1\\testing\\improvement-v2\\native-final-integration26-solo-sequence-positive\\side1\\statistics.json"
+    ]
+  ]
+}

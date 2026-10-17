@@ -1,0 +1,97 @@
+{
+  "status": "pass",
+  "source_sha256": {
+    "de_rules.h": "3e50429c96765f325ea3804c2bbb5c13ce26a4119fc7b8694f58def60531221b",
+    "draft_choice_policy.h": "ef05ac879a01e67c3b284bb04d48e9a87c4d51ac3e10e1ad9c3c14660b833767",
+    "draft_plan.h": "d6f1ed51fbbd0773984e933b6dd32ea5b50c5ec7a62a412fc69741c4208b1914",
+    "fight.h": "2eaa9a671c634d499029f251a6eef66dbd6be052927d3cc8ca8012f4ecc35014",
+    "main.cpp": "9137166afc335a4246394db501c5d10d24127d94c98b0c8bf0f19948fc9eee1d",
+    "mapplan.h": "7b01346e46a21d2339533095a21655c3f83d3f4ef28efaa7d142fb7609df247e",
+    "mapplan_game.h": "167f85bf357b70d797e8612f447b7719f956a974af269286fa32f53569948fb6",
+    "opening_replace.h": "ca6680bae82b74b89fd0bb65573904246df8761d8b22e3ce8cb6bd93207207e7",
+    "params.h": "ce79d0ad47b92394513b67a447d55508b40eeeac1906e6db7f1223dfec382fd9",
+    "profile.h": "fe7e170baa2f69e3beba2fe344c19ade35bfd3cad5516307d2b6e2575571f551",
+    "track.h": "c42448671f1a23f4987182648fd131e3182a7fee47970b20baaf0444ca7f5a0a",
+    "utility.h": "2327653910762d79a0b2ca9aba5b25255bf1d9033c2d39e18a44e4e365afe378",
+    "verdict.h": "cea061699b7b7a10e81d5484633dbcb51c100516f8b80e29854bba4f6701e5ee"
+  },
+  "sdk_header_sha256": "ee131e2981c16f696cb82cd6b04dc1871f45323057e51f7bb676a893ab72e264",
+  "full_production_object_sha256": "5982c3144cfad4c19fd6323f3266bd0bc9192bd9cc62b5280d506b528635b110",
+  "callsite": {
+    "status": "pass",
+    "source_sha256": "9137166afc335a4246394db501c5d10d24127d94c98b0c8bf0f19948fc9eee1d",
+    "scope": "Read-only callsite order check. It verifies ordinary movement precedes fallback mask work and requires !moved, movement availability and a fuel reserve; it is not a fuel cost measurement.",
+    "callsite": "bool moved = step_towards(s, me, goals, true);\n    // Keep the normal movement path's fuel unchanged. Only repair an empty,\n    // visibly occupied destination after the original approach has failed.\n    if (!moved && me.can_move() && fuel_ok(12000) &&\n        cf_remote_approach(g.mask, s.blocked, bc::vision::camp_tiles(), goals))\n        moved = step_towards(s, me, goals, true);\n    if (!moved) {\n        if (++s.probe_fail > 3) {\n            g.bad_until = round + 25;\n            drop_target(s);\n            s.probe_fail = 0;\n        }\n    } else {\n        s.probe_fail = 0;\n    }\n}\n\n// ---------------------------------------------------------------------------\n"
+  },
+  "fixtures": [
+    {
+      "fixture": "ward-api",
+      "status": "pass",
+      "fixture_sha256": "977c384a404cd7ded295d6a87985a35cb8861f1af169e52f1f5f469137b02c88",
+      "wasm_sha256": "41d3e94d5cf55197e12f807fb0919df1487d176693b54854a8dd8ebf9a1553a6",
+      "stdout": "PASS 7 actual-source ward API contract/spacing cases\n"
+    },
+    {
+      "fixture": "camp-approach",
+      "status": "pass",
+      "fixture_sha256": "db603cb35a78ec1cb402f2636fb6fc78a236e0bc611fdd89951d7a34ae3d8fd1",
+      "wasm_sha256": "b5294543d99bdc981c642a8ae4c4eb443a7cbb1dfdff6b642d8dc097edf12912",
+      "stdout": "PASS checks=8\n"
+    },
+    {
+      "fixture": "draft-swap-0",
+      "status": "pass",
+      "fixture_sha256": "4c62cd9c298f7535549c4ec71f1d4986d90f56d1de65f831905d4def43f94293",
+      "wasm_sha256": "b305eae7006b189ce5547beada03d201a8827bb2cca25529c82ceb89e577a6b6",
+      "stdout": "PASS swap=0 actual final preference/filter/order cases\n"
+    },
+    {
+      "fixture": "draft-swap-1",
+      "status": "pass",
+      "fixture_sha256": "4c62cd9c298f7535549c4ec71f1d4986d90f56d1de65f831905d4def43f94293",
+      "wasm_sha256": "d3616167cffbfc1811e134104c10fe78e9ddb15d60cdbab766ab7deb2a257691",
+      "stdout": "PASS swap=1 actual final preference/filter/order cases\n"
+    },
+    {
+      "fixture": "draft-swap-2",
+      "status": "pass",
+      "fixture_sha256": "4c62cd9c298f7535549c4ec71f1d4986d90f56d1de65f831905d4def43f94293",
+      "wasm_sha256": "8c481d75593b0c94c09aa108388748bdc2a3085c090b748ecf0f390735ffe61c",
+      "stdout": "PASS swap=2 actual final preference/filter/order cases\n"
+    },
+    {
+      "fixture": "memory-alerts-00",
+      "status": "pass",
+      "fixture_sha256": "54331eb39573e7424dc49134ef11dc18a86b8eb3aafbb1bbff4bc6e7e3a1e38e",
+      "wasm_sha256": "ffdcc34ba8651b5307b1ce72d6315c63e398d406dd90925af351d1c24c8849b8",
+      "stdout": "GEOMETRY path=20 open=399 flags=26 altar=10,10,10,9 ward=2:8,7:7,7 quiet=0 penalty=4\nPASS checks=47 memory=0 anchor=0\nPASS V59 production alert/claim byte separation and deferred integration\n"
+    },
+    {
+      "fixture": "memory-alerts-01",
+      "status": "pass",
+      "fixture_sha256": "54331eb39573e7424dc49134ef11dc18a86b8eb3aafbb1bbff4bc6e7e3a1e38e",
+      "wasm_sha256": "777496b65797406ab7c8d6331fc8aae344491c392b6cf67c23a3a2406ca35150",
+      "stdout": "GEOMETRY path=20 open=399 flags=26 altar=10,10,10,9 ward=2:8,7:13,13 quiet=0 penalty=4\nPASS checks=47 memory=0 anchor=1\nPASS V59 production alert/claim byte separation and deferred integration\n"
+    },
+    {
+      "fixture": "memory-alerts-10",
+      "status": "pass",
+      "fixture_sha256": "54331eb39573e7424dc49134ef11dc18a86b8eb3aafbb1bbff4bc6e7e3a1e38e",
+      "wasm_sha256": "212c13e99bcccbcd4cae02b156e8a910886bfbf93551654ddd43369eb34b0b67",
+      "stdout": "GEOMETRY path=20 open=399 flags=26 altar=10,10,10,9 ward=2:8,7:7,7 quiet=0 penalty=4\nPASS checks=144 memory=1 anchor=0\nPASS V59 production alert/claim byte separation and deferred integration\n"
+    },
+    {
+      "fixture": "memory-alerts-11",
+      "status": "pass",
+      "fixture_sha256": "54331eb39573e7424dc49134ef11dc18a86b8eb3aafbb1bbff4bc6e7e3a1e38e",
+      "wasm_sha256": "9a6693e02fd9c66dcaf0cec4d9c4e570e1934d0bc06baf2ea4c6636f3638540b",
+      "stdout": "GEOMETRY path=20 open=399 flags=26 altar=10,10,10,9 ward=2:8,7:13,13 quiet=0 penalty=4\nPASS checks=144 memory=1 anchor=1\nPASS V59 production alert/claim byte separation and deferred integration\n"
+    }
+  ],
+  "limits": [
+    "Full current production translation unit compiled once with its shipped flags; object compile is not a release link.",
+    "Nine fixture runs execute actual current helpers/order/protocol and cache headers with narrow mocks.",
+    "Mock bitboard/fuel behaviour does not measure native SDK costs or predict match strength.",
+    "Native opening and Monolith regression replays separately validate the two integration mechanisms."
+  ]
+}

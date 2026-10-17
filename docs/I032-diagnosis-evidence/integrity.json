@@ -1,0 +1,27 @@
+{
+  "status": "pass",
+  "final_v2_accepted_rows_including_reused_panel_slots": 432,
+  "final_v2_unique_physical_games_including_explicit_baseline_comparators": 428,
+  "final_v2_completed_panels": 19,
+  "source_files": 13,
+  "frozen_unique_map_inputs": 48,
+  "portable_fixtures_passed": 9,
+  "native_example_streams": 8,
+  "issues": [],
+  "archive_file_sha256": {
+    "candidate-source.zip": "1ef46b8bcb80b5a818b7926d29e9dc64b4a5cbb3066536b80b476d5e99009f14",
+    "exploratory-v1-builds.json": "061a9af58448e68c30c9e305aed5dd67a4124e1353324debc763df38f32343b4",
+    "exploratory-v1-games.csv": "0770171df90db87be69ed0b192254d183985d95dee90bb6043c7e02720f1a1e3",
+    "exploratory-v1-summary.json": "f45a7acf3a087e01df71d0d515e38f092e8c7732786b5517c51d9a40b7059ade",
+    "final-v2-builds.json": "79baf49a66dc2c22466cf97ab9b768c63fbdb00f1253eb0c684a02ba83a33817",
+    "final-v2-games.csv": "a8c5f8ccc61bfdc0bf26b6ddd8d0aad0933f05c6b7001c5716f7bdbd3dc9bc1b",
+    "final-v2-summary.json": "2bba6474536d116ece6f6439367e3efab0d2046baea434eccf07735101f26adb",
+    "maps.json": "9d87c426c331d28cbe77989fe37a4aa342f7d3be109ad9112cc4398588d6b8f0",
+    "maps.zip": "1c1447ad3ab18dca3c0edca03bab029b32f5113173ed86a996ad2e60d5b05c3c",
+    "native-cases.zip": "79bd238acb88bda83183615c1e15855e469b676c33bc6e45208e7e9d6448a123",
+    "README.md": "4f6c123cd2c0ec894ed3b29a935bff0bd97dc76622da19d8ba10e0419af7c8c3",
+    "source-manifest.json": "c78001e5ddf78958aec7c05e25d41333503f644522e6dc23aa9537d7cf163f4c",
+    "test-results.json": "2714b8e42bdf32ce149e557842893c78825f5659780b541ef723e03556d93bf3",
+    "tests.zip": "5a40c2d49a974ce54a04e461e64de4d22d1645fb27cefcf28de7860ebc58f9e0"
+  }
+}

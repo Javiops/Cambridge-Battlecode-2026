@@ -1,0 +1,490 @@
+[
+  {
+    "sha256": "61bcbc25b93c80091ab59ebfd8a087847880f54cb0dfaa2c39e2fe0ef3cedb2e",
+    "file": "maps/61bcbc25b93c-monolith.map26a",
+    "labels": [
+      "monolith"
+    ],
+    "freezes": [
+      "targeted-map-freeze.json"
+    ]
+  },
+  {
+    "sha256": "e8ad0f31c9e3445265d86213e82b3823f507f1372dd22498ec0c0ee8b9a12312",
+    "file": "maps/e8ad0f31c9e3-gen20261015_47.map26a",
+    "labels": [
+      "confirmation/gen20261015_47"
+    ],
+    "freezes": [
+      "targeted-map-freeze.json"
+    ]
+  },
+  {
+    "sha256": "c7ac699781ace7557a98f736bf57a719a7f0aa7c816b462419d193d2e6e5b5f4",
+    "file": "maps/c7ac699781ac-interlock.map26a",
+    "labels": [
+      "interlock"
+    ],
+    "freezes": [
+      "targeted-map-freeze.json"
+    ]
+  },
+  {
+    "sha256": "ebfcace19ebb3bca84d63856c5cb56285042057d751ff41dc011d8a2c8c085dc",
+    "file": "maps/ebfcace19ebb-collision.map26a",
+    "labels": [
+      "collision"
+    ],
+    "freezes": [
+      "targeted-map-freeze.json"
+    ]
+  },
+  {
+    "sha256": "13843d1e38afd731a5e8a0ef0c05a5af08a00101e24475dfda56bb07d8a33e81",
+    "file": "maps/13843d1e38af-pilgrimage.map26a",
+    "labels": [
+      "pilgrimage"
+    ],
+    "freezes": [
+      "targeted-map-freeze.json"
+    ]
+  },
+  {
+    "sha256": "988f7804a0f3e3fa4394ff66cac222dc957886d15ba9fcec9f3023a0ecb09360",
+    "file": "maps/988f7804a0f3-swirl.map26a",
+    "labels": [
+      "swirl"
+    ],
+    "freezes": [
+      "targeted-map-freeze.json"
+    ]
+  },
+  {
+    "sha256": "e84f236bcb91f9fc21f57830a8c1307e46126c646883715e3607990270ea12ea",
+    "file": "maps/e84f236bcb91-gen4242_75.map26a",
+    "labels": [
+      "maps_dev200/gen4242_75"
+    ],
+    "freezes": [
+      "prism-map-freeze.json",
+      "spar-map-freeze.json",
+      "targeted-map-freeze.json"
+    ]
+  },
+  {
+    "sha256": "35a2d8ceb5c9d200128ff7bfbb0c34456da195d33f64e832a9910a9cf97426bd",
+    "file": "maps/35a2d8ceb5c9-gen4242_169.map26a",
+    "labels": [
+      "maps_dev200/gen4242_169"
+    ],
+    "freezes": [
+      "targeted-map-freeze.json"
+    ]
+  },
+  {
+    "sha256": "ee68ccad568ca8ff6d87a77f2cbc9cf6ee54dc63c74fb306e5ac67d8c0556cc6",
+    "file": "maps/ee68ccad568c-corners.map26a",
+    "labels": [
+      "corners"
+    ],
+    "freezes": [
+      "prism-map-freeze.json",
+      "spar-map-freeze.json",
+      "targeted-map-freeze.json"
+    ]
+  },
+  {
+    "sha256": "116b2c569baf13bb06a75699c809e239fbb14202a03dc8d8d15a2146be6e2416",
+    "file": "maps/116b2c569baf-packs.map26a",
+    "labels": [
+      "packs"
+    ],
+    "freezes": [
+      "targeted-map-freeze.json"
+    ]
+  },
+  {
+    "sha256": "50365c961d1f85234220239211a5b526e70522f30c145160a46c0ea6e1cf757a",
+    "file": "maps/50365c961d1f-rows.map26a",
+    "labels": [
+      "rows"
+    ],
+    "freezes": [
+      "targeted-map-freeze.json"
+    ]
+  },
+  {
+    "sha256": "95a4e64280dfd13f8d00b58b2ea651335c1203a08df1ef6d53ded8ab990cdb90",
+    "file": "maps/95a4e64280df-expanse.map26a",
+    "labels": [
+      "expanse"
+    ],
+    "freezes": [
+      "targeted-map-freeze.json"
+    ]
+  },
+  {
+    "sha256": "0025c0ea8e353601edd64726dbec6141b0e3d68a24ec1c79e63842efc468174b",
+    "file": "maps/0025c0ea8e35-gen4242_15.map26a",
+    "labels": [
+      "diagnosis-fresh/gen4242_15"
+    ],
+    "freezes": [
+      "fresh-map-freeze.json"
+    ]
+  },
+  {
+    "sha256": "0032363b1e0b1d598755a424d0c83a6b5bec3c81b18bbd793bbe8fea9ff2d83a",
+    "file": "maps/0032363b1e0b-gen4242_91.map26a",
+    "labels": [
+      "diagnosis-fresh/gen4242_91"
+    ],
+    "freezes": [
+      "fresh-map-freeze.json"
+    ]
+  },
+  {
+    "sha256": "038f4fc8e5ea950c75ef807ba251d49d4205cd01902a5b90afaeffcd634823d4",
+    "file": "maps/038f4fc8e5ea-gen4242_63.map26a",
+    "labels": [
+      "diagnosis-fresh/gen4242_63"
+    ],
+    "freezes": [
+      "fresh-map-freeze.json"
+    ]
+  },
+  {
+    "sha256": "05b7775cf90b8ce29953e23ab432969cde5f951f9cf7c71aac45541c27834c51",
+    "file": "maps/05b7775cf90b-gen4242_136.map26a",
+    "labels": [
+      "diagnosis-fresh/gen4242_136"
+    ],
+    "freezes": [
+      "fresh-map-freeze.json"
+    ]
+  },
+  {
+    "sha256": "07988f1c9b339b6ad3703bc367113b56c9789a91d513d4137633f655ee181a3a",
+    "file": "maps/07988f1c9b33-gen4242_135.map26a",
+    "labels": [
+      "diagnosis-fresh/gen4242_135"
+    ],
+    "freezes": [
+      "fresh-map-freeze.json"
+    ]
+  },
+  {
+    "sha256": "07e031be9983c55fac6f95e617cf516a13dce0ce208f6c20c239ab819b206561",
+    "file": "maps/07e031be9983-gen4242_52.map26a",
+    "labels": [
+      "diagnosis-fresh/gen4242_52"
+    ],
+    "freezes": [
+      "fresh-map-freeze.json"
+    ]
+  },
+  {
+    "sha256": "0bd02145d6af986a42c2eb10a421c91278cb5fcb72410298e4e5350e4e2c735b",
+    "file": "maps/0bd02145d6af-gen4242_186.map26a",
+    "labels": [
+      "diagnosis-fresh/gen4242_186"
+    ],
+    "freezes": [
+      "fresh-map-freeze.json"
+    ]
+  },
+  {
+    "sha256": "0ef8456cb5e7af93af0e8c81ea5c076a376101b8c7f0d920519f14fb77b12af6",
+    "file": "maps/0ef8456cb5e7-gen4242_130.map26a",
+    "labels": [
+      "diagnosis-fresh/gen4242_130"
+    ],
+    "freezes": [
+      "fresh-map-freeze.json"
+    ]
+  },
+  {
+    "sha256": "0f2e74d7f17dfe46723875d861ba774221ac857a3105c74532a7c7cf9152719b",
+    "file": "maps/0f2e74d7f17d-gen4242_168.map26a",
+    "labels": [
+      "diagnosis-fresh/gen4242_168"
+    ],
+    "freezes": [
+      "fresh-map-freeze.json"
+    ]
+  },
+  {
+    "sha256": "16ca20ed056769a276b4b3a9294e44db647c2f8cc004d109e23a7a31c9b61705",
+    "file": "maps/16ca20ed0567-gen4242_173.map26a",
+    "labels": [
+      "diagnosis-fresh/gen4242_173"
+    ],
+    "freezes": [
+      "fresh-map-freeze.json"
+    ]
+  },
+  {
+    "sha256": "1721b1d4ff79cde1efa0b3a94a6efc5f7809330f2ecfdc849ffb68dd602e7d38",
+    "file": "maps/1721b1d4ff79-gen4242_82.map26a",
+    "labels": [
+      "diagnosis-fresh/gen4242_82"
+    ],
+    "freezes": [
+      "fresh-map-freeze.json"
+    ]
+  },
+  {
+    "sha256": "17ca6887cd8c18d110345f82bb2ef9d96300a10a3ed7a088c30004806747450e",
+    "file": "maps/17ca6887cd8c-gen4242_112.map26a",
+    "labels": [
+      "diagnosis-fresh/gen4242_112"
+    ],
+    "freezes": [
+      "fresh-map-freeze.json"
+    ]
+  },
+  {
+    "sha256": "1831351956dd853ea9d5757e9fb41a0e48d0f2bd0c9a65569dc1ad125b8959df",
+    "file": "maps/1831351956dd-gen4242_124.map26a",
+    "labels": [
+      "diagnosis-fresh/gen4242_124"
+    ],
+    "freezes": [
+      "fresh-map-freeze.json"
+    ]
+  },
+  {
+    "sha256": "18fd5470518241130b920c5722f1fda91e0ab97e059cacf4f1d6d685eb2e7db4",
+    "file": "maps/18fd54705182-gen4242_174.map26a",
+    "labels": [
+      "diagnosis-fresh/gen4242_174"
+    ],
+    "freezes": [
+      "fresh-map-freeze.json"
+    ]
+  },
+  {
+    "sha256": "1d8629b88a7fec162e3467af7b88267f08cb506c772393e7ac806403ae614090",
+    "file": "maps/1d8629b88a7f-gen4242_178.map26a",
+    "labels": [
+      "diagnosis-fresh/gen4242_178"
+    ],
+    "freezes": [
+      "fresh-map-freeze.json"
+    ]
+  },
+  {
+    "sha256": "1e10ca4cdf1ac3223edc3ab1cd158652bdfa83d4fb7ead01152aa6e13a9da371",
+    "file": "maps/1e10ca4cdf1a-gen4242_159.map26a",
+    "labels": [
+      "diagnosis-fresh/gen4242_159"
+    ],
+    "freezes": [
+      "fresh-map-freeze.json"
+    ]
+  },
+  {
+    "sha256": "1e917c97cd8fa374ae6a4fd6ae1ccd137e49ac04ed030387e85be7c52dcaa5fb",
+    "file": "maps/1e917c97cd8f-gen4242_21.map26a",
+    "labels": [
+      "diagnosis-fresh/gen4242_21"
+    ],
+    "freezes": [
+      "fresh-map-freeze.json"
+    ]
+  },
+  {
+    "sha256": "2332ace3dc87108f05bfbdd8dc8cdc950b834607da2ed74a73d7642545817159",
+    "file": "maps/2332ace3dc87-gen4242_107.map26a",
+    "labels": [
+      "diagnosis-fresh/gen4242_107"
+    ],
+    "freezes": [
+      "fresh-map-freeze.json"
+    ]
+  },
+  {
+    "sha256": "23855ef56e0e409307f76dc5bb19d0850a5a127413cc6136fbfe33379586d7c6",
+    "file": "maps/23855ef56e0e-gen4242_180.map26a",
+    "labels": [
+      "diagnosis-fresh/gen4242_180"
+    ],
+    "freezes": [
+      "fresh-map-freeze.json"
+    ]
+  },
+  {
+    "sha256": "27611026d75b8d6a46239dfe9721a014d9a865230315c1e48a8275f73ae5c0d6",
+    "file": "maps/27611026d75b-gen4242_158.map26a",
+    "labels": [
+      "diagnosis-fresh/gen4242_158"
+    ],
+    "freezes": [
+      "fresh-map-freeze.json"
+    ]
+  },
+  {
+    "sha256": "27789dbd4ea2ac824156e197c8998c9a6bec530ef70cfffe31a1a3b5d51e14ff",
+    "file": "maps/27789dbd4ea2-gen4242_68.map26a",
+    "labels": [
+      "diagnosis-fresh/gen4242_68"
+    ],
+    "freezes": [
+      "fresh-map-freeze.json"
+    ]
+  },
+  {
+    "sha256": "279e1ed690515deb54f7508b4003f0643c4b6e5faeb49bec904e48d302724a9f",
+    "file": "maps/279e1ed69051-gen4242_102.map26a",
+    "labels": [
+      "diagnosis-fresh/gen4242_102"
+    ],
+    "freezes": [
+      "fresh-map-freeze.json"
+    ]
+  },
+  {
+    "sha256": "2a85d139315b26213aea386103a3856f1b1a72ea78696a7ccd57fd6320c4523c",
+    "file": "maps/2a85d139315b-gen4242_40.map26a",
+    "labels": [
+      "diagnosis-fresh/gen4242_40"
+    ],
+    "freezes": [
+      "fresh-map-freeze.json"
+    ]
+  },
+  {
+    "sha256": "2ab0296e4eac4e73f20ff72bd3fe67e79e4f1236025dfb6a0e8fba7ee0859102",
+    "file": "maps/2ab0296e4eac-gen4242_113.map26a",
+    "labels": [
+      "diagnosis-fresh/gen4242_113"
+    ],
+    "freezes": [
+      "fresh-map-freeze.json"
+    ]
+  },
+  {
+    "sha256": "605d1cb63909f9506b7257eaea9647ac0b463a199f501b185ea6155899917ad7",
+    "file": "maps/605d1cb63909-gen20261015_01.map26a",
+    "labels": [
+      "confirmation/gen20261015_01"
+    ],
+    "freezes": [
+      "prism-map-freeze.json"
+    ]
+  },
+  {
+    "sha256": "cf6bfbd73f5b241a610c9a940fccf1375c44660c20b21b0cbffb1e0d0d1c777f",
+    "file": "maps/cf6bfbd73f5b-gen20261015_30.map26a",
+    "labels": [
+      "confirmation/gen20261015_30"
+    ],
+    "freezes": [
+      "prism-map-freeze.json"
+    ]
+  },
+  {
+    "sha256": "982f3d9ed253c86bff33545e39a86725a71f9daf5f9318854ad9d405c6fd38c2",
+    "file": "maps/982f3d9ed253-gen20261015_51.map26a",
+    "labels": [
+      "confirmation/gen20261015_51"
+    ],
+    "freezes": [
+      "prism-map-freeze.json"
+    ]
+  },
+  {
+    "sha256": "7d66ffb8904c9142e0a955d5b28a722c4b87c2f62b282238b726b6ef4bf62764",
+    "file": "maps/7d66ffb8904c-gen20261015_54.map26a",
+    "labels": [
+      "confirmation/gen20261015_54"
+    ],
+    "freezes": [
+      "prism-map-freeze.json"
+    ]
+  },
+  {
+    "sha256": "6be4891e8115bfe1417d7f5410bdda6040a3bf7ed6c70b30f7fde09e64b355da",
+    "file": "maps/6be4891e8115-gen20261015_56.map26a",
+    "labels": [
+      "confirmation/gen20261015_56"
+    ],
+    "freezes": [
+      "prism-map-freeze.json"
+    ]
+  },
+  {
+    "sha256": "41c50162e088c85ff5d23980d5c435d231d5c475501e1344b0832f3f380705eb",
+    "file": "maps/41c50162e088-gen20261015_58.map26a",
+    "labels": [
+      "confirmation/gen20261015_58"
+    ],
+    "freezes": [
+      "prism-map-freeze.json"
+    ]
+  },
+  {
+    "sha256": "c76debb1c6fde9bad53996f02dda7820b79b9729c7a4592a71a82b0518820f7f",
+    "file": "maps/c76debb1c6fd-contest.map26a",
+    "labels": [
+      "contest"
+    ],
+    "freezes": [
+      "prism-map-freeze.json",
+      "spar-map-freeze.json"
+    ]
+  },
+  {
+    "sha256": "37b8ace8d2ae29b8d7dcedc7ce5107e9ef3c5d8868fb8d42e2e1293cdc04939e",
+    "file": "maps/37b8ace8d2ae-elkring.map26a",
+    "labels": [
+      "elkring"
+    ],
+    "freezes": [
+      "prism-map-freeze.json",
+      "spar-map-freeze.json"
+    ]
+  },
+  {
+    "sha256": "3c34efc5240b4ccb9f67b151ddb3461dd35145c22f01091dec6953ae52b63c6c",
+    "file": "maps/3c34efc5240b-fresh-compact-open.map26a",
+    "labels": [
+      "fresh-compact-open"
+    ],
+    "freezes": [
+      "prism-map-freeze.json",
+      "spar-map-freeze.json"
+    ]
+  },
+  {
+    "sha256": "4508e67f4aaaf5f358d34d7f14686da6fb4c423753f57f310a66bbee84f56181",
+    "file": "maps/4508e67f4aaa-gen4242_148.map26a",
+    "labels": [
+      "maps_dev200/gen4242_148"
+    ],
+    "freezes": [
+      "prism-map-freeze.json"
+    ]
+  },
+  {
+    "sha256": "e4e2d0602fe61323672f651f570064c7737ae144149a14c5ffbae519f63bfeb1",
+    "file": "maps/e4e2d0602fe6-gen20261015_12.map26a",
+    "labels": [
+      "maps_hold60/gen20261015_12"
+    ],
+    "freezes": [
+      "prism-map-freeze.json",
+      "spar-map-freeze.json"
+    ]
+  },
+  {
+    "sha256": "8f51d3d769ab7cde7f977d08a093d29f0973422369fb08b90c5afcba48da899d",
+    "file": "maps/8f51d3d769ab-gen20261015_20.map26a",
+    "labels": [
+      "maps_hold60/gen20261015_20"
+    ],
+    "freezes": [
+      "prism-map-freeze.json"
+    ]
+  }
+]

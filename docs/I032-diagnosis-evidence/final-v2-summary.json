@@ -1,0 +1,1256 @@
+{
+  "created_utc": "2026-10-17T16:42:20.589050+00:00",
+  "panels": [
+    {
+      "panel": "diagnosis-old-all-repaired-v2-vs-original-screen",
+      "candidate": "diagnosis-old-all-repaired-v2",
+      "opponent": "original",
+      "stage": "screen",
+      "manifest": "targeted-map-freeze.json",
+      "expected_slots": 24,
+      "panel_completed_slots": 24,
+      "accepted_current_slots": 24,
+      "complete": true
+    },
+    {
+      "panel": "diagnosis-v59-swap-cassi-v2-vs-diagnosis-v59-holdout",
+      "candidate": "diagnosis-v59-swap-cassi-v2",
+      "opponent": "diagnosis-v59",
+      "stage": "holdout",
+      "manifest": "fresh-map-freeze.json",
+      "expected_slots": 48,
+      "panel_completed_slots": 48,
+      "accepted_current_slots": 48,
+      "complete": true
+    },
+    {
+      "panel": "diagnosis-v59-swap-cassi-v2-vs-diagnosis-v59-screen",
+      "candidate": "diagnosis-v59-swap-cassi-v2",
+      "opponent": "diagnosis-v59",
+      "stage": "screen",
+      "manifest": "targeted-map-freeze.json",
+      "expected_slots": 24,
+      "panel_completed_slots": 24,
+      "accepted_current_slots": 24,
+      "complete": true
+    },
+    {
+      "panel": "diagnosis-v59-swap-cassi-v2-vs-diagnosis-v59-swap-willow-v2-screen",
+      "candidate": "diagnosis-v59-swap-cassi-v2",
+      "opponent": "diagnosis-v59-swap-willow-v2",
+      "stage": "screen",
+      "manifest": "prism-map-freeze.json",
+      "expected_slots": 28,
+      "panel_completed_slots": 28,
+      "accepted_current_slots": 28,
+      "complete": true
+    },
+    {
+      "panel": "diagnosis-v59-swap-cassi-v2-vs-diagnosis-v59-validated-cache-v2-screen",
+      "candidate": "diagnosis-v59-swap-cassi-v2",
+      "opponent": "diagnosis-v59-validated-cache-v2",
+      "stage": "screen",
+      "manifest": "prism-map-freeze.json",
+      "expected_slots": 28,
+      "panel_completed_slots": 28,
+      "accepted_current_slots": 28,
+      "complete": true
+    },
+    {
+      "panel": "diagnosis-v59-swap-cassi-v2-vs-spar11-screen",
+      "candidate": "diagnosis-v59-swap-cassi-v2",
+      "opponent": "spar11",
+      "stage": "screen",
+      "manifest": "spar-map-freeze.json",
+      "expected_slots": 12,
+      "panel_completed_slots": 12,
+      "accepted_current_slots": 12,
+      "complete": true
+    },
+    {
+      "panel": "diagnosis-v59-swap-cassi-v2-vs-spar12-screen",
+      "candidate": "diagnosis-v59-swap-cassi-v2",
+      "opponent": "spar12",
+      "stage": "screen",
+      "manifest": "spar-map-freeze.json",
+      "expected_slots": 12,
+      "panel_completed_slots": 12,
+      "accepted_current_slots": 12,
+      "complete": true
+    },
+    {
+      "panel": "diagnosis-v59-swap-cassi-v2-vs-spar16-screen",
+      "candidate": "diagnosis-v59-swap-cassi-v2",
+      "opponent": "spar16",
+      "stage": "screen",
+      "manifest": "spar-map-freeze.json",
+      "expected_slots": 12,
+      "panel_completed_slots": 12,
+      "accepted_current_slots": 12,
+      "complete": true
+    },
+    {
+      "panel": "diagnosis-v59-swap-willow-v2-vs-diagnosis-v59-holdout",
+      "candidate": "diagnosis-v59-swap-willow-v2",
+      "opponent": "diagnosis-v59",
+      "stage": "holdout",
+      "manifest": "fresh-map-freeze.json",
+      "expected_slots": 48,
+      "panel_completed_slots": 48,
+      "accepted_current_slots": 48,
+      "complete": true
+    },
+    {
+      "panel": "diagnosis-v59-swap-willow-v2-vs-spar11-screen",
+      "candidate": "diagnosis-v59-swap-willow-v2",
+      "opponent": "spar11",
+      "stage": "screen",
+      "manifest": "spar-map-freeze.json",
+      "expected_slots": 12,
+      "panel_completed_slots": 12,
+      "accepted_current_slots": 12,
+      "complete": true
+    },
+    {
+      "panel": "diagnosis-v59-swap-willow-v2-vs-spar12-screen",
+      "candidate": "diagnosis-v59-swap-willow-v2",
+      "opponent": "spar12",
+      "stage": "screen",
+      "manifest": "spar-map-freeze.json",
+      "expected_slots": 12,
+      "panel_completed_slots": 12,
+      "accepted_current_slots": 12,
+      "complete": true
+    },
+    {
+      "panel": "diagnosis-v59-swap-willow-v2-vs-spar16-screen",
+      "candidate": "diagnosis-v59-swap-willow-v2",
+      "opponent": "spar16",
+      "stage": "screen",
+      "manifest": "spar-map-freeze.json",
+      "expected_slots": 12,
+      "panel_completed_slots": 12,
+      "accepted_current_slots": 12,
+      "complete": true
+    },
+    {
+      "panel": "diagnosis-v59-validated-cache-v2-vs-diagnosis-v59-holdout",
+      "candidate": "diagnosis-v59-validated-cache-v2",
+      "opponent": "diagnosis-v59",
+      "stage": "holdout",
+      "manifest": "fresh-map-freeze.json",
+      "expected_slots": 48,
+      "panel_completed_slots": 48,
+      "accepted_current_slots": 48,
+      "complete": true
+    },
+    {
+      "panel": "diagnosis-v59-validated-cache-v2-vs-diagnosis-v59-screen",
+      "candidate": "diagnosis-v59-validated-cache-v2",
+      "opponent": "diagnosis-v59",
+      "stage": "screen",
+      "manifest": "targeted-map-freeze.json",
+      "expected_slots": 24,
+      "panel_completed_slots": 24,
+      "accepted_current_slots": 24,
+      "complete": true
+    },
+    {
+      "panel": "diagnosis-v59-vs-original-screen",
+      "candidate": "diagnosis-v59",
+      "opponent": "original",
+      "stage": "screen",
+      "manifest": "targeted-map-freeze.json",
+      "expected_slots": 24,
+      "panel_completed_slots": 24,
+      "accepted_current_slots": 24,
+      "complete": true
+    },
+    {
+      "panel": "diagnosis-v59-vs-spar11-screen",
+      "candidate": "diagnosis-v59",
+      "opponent": "spar11",
+      "stage": "screen",
+      "manifest": "spar-map-freeze.json",
+      "expected_slots": 12,
+      "panel_completed_slots": 12,
+      "accepted_current_slots": 12,
+      "complete": true
+    },
+    {
+      "panel": "diagnosis-v59-vs-spar12-screen",
+      "candidate": "diagnosis-v59",
+      "opponent": "spar12",
+      "stage": "screen",
+      "manifest": "spar-map-freeze.json",
+      "expected_slots": 12,
+      "panel_completed_slots": 12,
+      "accepted_current_slots": 12,
+      "complete": true
+    },
+    {
+      "panel": "diagnosis-v59-vs-spar16-screen",
+      "candidate": "diagnosis-v59",
+      "opponent": "spar16",
+      "stage": "screen",
+      "manifest": "spar-map-freeze.json",
+      "expected_slots": 12,
+      "panel_completed_slots": 12,
+      "accepted_current_slots": 12,
+      "complete": true
+    },
+    {
+      "panel": "baseline-light-all-vs-original-targeted12",
+      "candidate": "light-all",
+      "opponent": "original",
+      "stage": "targeted-baseline",
+      "manifest": "targeted-map-freeze.json",
+      "expected_slots": 24,
+      "panel_completed_slots": 24,
+      "accepted_current_slots": 24
+    }
+  ],
+  "summary": [
+    {
+      "panel": "diagnosis-old-all-repaired-v2-vs-original-screen",
+      "candidate": "diagnosis-old-all-repaired-v2",
+      "opponent": "original",
+      "games": 24,
+      "wins": 11,
+      "losses": 13,
+      "draws": 0,
+      "complete_paired_maps": 12,
+      "won_both": 2,
+      "lost_both": 3,
+      "native_faults": 0,
+      "fuel_exhausted": 42,
+      "caught_sdk_markers": 397
+    },
+    {
+      "panel": "diagnosis-v59-swap-cassi-v2-vs-diagnosis-v59-holdout",
+      "candidate": "diagnosis-v59-swap-cassi-v2",
+      "opponent": "diagnosis-v59",
+      "games": 48,
+      "wins": 25,
+      "losses": 23,
+      "draws": 0,
+      "complete_paired_maps": 24,
+      "won_both": 3,
+      "lost_both": 2,
+      "native_faults": 0,
+      "fuel_exhausted": 18,
+      "caught_sdk_markers": 732
+    },
+    {
+      "panel": "diagnosis-v59-swap-cassi-v2-vs-diagnosis-v59-screen",
+      "candidate": "diagnosis-v59-swap-cassi-v2",
+      "opponent": "diagnosis-v59",
+      "games": 24,
+      "wins": 14,
+      "losses": 10,
+      "draws": 0,
+      "complete_paired_maps": 12,
+      "won_both": 3,
+      "lost_both": 1,
+      "native_faults": 0,
+      "fuel_exhausted": 72,
+      "caught_sdk_markers": 387
+    },
+    {
+      "panel": "diagnosis-v59-swap-cassi-v2-vs-diagnosis-v59-swap-willow-v2-screen",
+      "candidate": "diagnosis-v59-swap-cassi-v2",
+      "opponent": "diagnosis-v59-swap-willow-v2",
+      "games": 28,
+      "wins": 17,
+      "losses": 11,
+      "draws": 0,
+      "complete_paired_maps": 14,
+      "won_both": 6,
+      "lost_both": 3,
+      "native_faults": 0,
+      "fuel_exhausted": 138,
+      "caught_sdk_markers": 536
+    },
+    {
+      "panel": "diagnosis-v59-swap-cassi-v2-vs-diagnosis-v59-validated-cache-v2-screen",
+      "candidate": "diagnosis-v59-swap-cassi-v2",
+      "opponent": "diagnosis-v59-validated-cache-v2",
+      "games": 28,
+      "wins": 16,
+      "losses": 12,
+      "draws": 0,
+      "complete_paired_maps": 14,
+      "won_both": 5,
+      "lost_both": 3,
+      "native_faults": 0,
+      "fuel_exhausted": 103,
+      "caught_sdk_markers": 520
+    },
+    {
+      "panel": "diagnosis-v59-swap-cassi-v2-vs-spar11-screen",
+      "candidate": "diagnosis-v59-swap-cassi-v2",
+      "opponent": "spar11",
+      "games": 12,
+      "wins": 11,
+      "losses": 1,
+      "draws": 0,
+      "complete_paired_maps": 6,
+      "won_both": 5,
+      "lost_both": 0,
+      "native_faults": 0,
+      "fuel_exhausted": 129,
+      "caught_sdk_markers": 270
+    },
+    {
+      "panel": "diagnosis-v59-swap-cassi-v2-vs-spar12-screen",
+      "candidate": "diagnosis-v59-swap-cassi-v2",
+      "opponent": "spar12",
+      "games": 12,
+      "wins": 12,
+      "losses": 0,
+      "draws": 0,
+      "complete_paired_maps": 6,
+      "won_both": 6,
+      "lost_both": 0,
+      "native_faults": 0,
+      "fuel_exhausted": 320,
+      "caught_sdk_markers": 294
+    },
+    {
+      "panel": "diagnosis-v59-swap-cassi-v2-vs-spar16-screen",
+      "candidate": "diagnosis-v59-swap-cassi-v2",
+      "opponent": "spar16",
+      "games": 12,
+      "wins": 11,
+      "losses": 1,
+      "draws": 0,
+      "complete_paired_maps": 6,
+      "won_both": 5,
+      "lost_both": 0,
+      "native_faults": 0,
+      "fuel_exhausted": 175,
+      "caught_sdk_markers": 284
+    },
+    {
+      "panel": "diagnosis-v59-swap-willow-v2-vs-diagnosis-v59-holdout",
+      "candidate": "diagnosis-v59-swap-willow-v2",
+      "opponent": "diagnosis-v59",
+      "games": 48,
+      "wins": 22,
+      "losses": 26,
+      "draws": 0,
+      "complete_paired_maps": 24,
+      "won_both": 3,
+      "lost_both": 5,
+      "native_faults": 0,
+      "fuel_exhausted": 14,
+      "caught_sdk_markers": 695
+    },
+    {
+      "panel": "diagnosis-v59-swap-willow-v2-vs-spar11-screen",
+      "candidate": "diagnosis-v59-swap-willow-v2",
+      "opponent": "spar11",
+      "games": 12,
+      "wins": 11,
+      "losses": 1,
+      "draws": 0,
+      "complete_paired_maps": 6,
+      "won_both": 5,
+      "lost_both": 0,
+      "native_faults": 0,
+      "fuel_exhausted": 143,
+      "caught_sdk_markers": 212
+    },
+    {
+      "panel": "diagnosis-v59-swap-willow-v2-vs-spar12-screen",
+      "candidate": "diagnosis-v59-swap-willow-v2",
+      "opponent": "spar12",
+      "games": 12,
+      "wins": 12,
+      "losses": 0,
+      "draws": 0,
+      "complete_paired_maps": 6,
+      "won_both": 6,
+      "lost_both": 0,
+      "native_faults": 0,
+      "fuel_exhausted": 231,
+      "caught_sdk_markers": 223
+    },
+    {
+      "panel": "diagnosis-v59-swap-willow-v2-vs-spar16-screen",
+      "candidate": "diagnosis-v59-swap-willow-v2",
+      "opponent": "spar16",
+      "games": 12,
+      "wins": 11,
+      "losses": 1,
+      "draws": 0,
+      "complete_paired_maps": 6,
+      "won_both": 5,
+      "lost_both": 0,
+      "native_faults": 0,
+      "fuel_exhausted": 180,
+      "caught_sdk_markers": 204
+    },
+    {
+      "panel": "diagnosis-v59-validated-cache-v2-vs-diagnosis-v59-holdout",
+      "candidate": "diagnosis-v59-validated-cache-v2",
+      "opponent": "diagnosis-v59",
+      "games": 48,
+      "wins": 24,
+      "losses": 24,
+      "draws": 0,
+      "complete_paired_maps": 24,
+      "won_both": 2,
+      "lost_both": 2,
+      "native_faults": 0,
+      "fuel_exhausted": 14,
+      "caught_sdk_markers": 715
+    },
+    {
+      "panel": "diagnosis-v59-validated-cache-v2-vs-diagnosis-v59-screen",
+      "candidate": "diagnosis-v59-validated-cache-v2",
+      "opponent": "diagnosis-v59",
+      "games": 24,
+      "wins": 13,
+      "losses": 11,
+      "draws": 0,
+      "complete_paired_maps": 12,
+      "won_both": 2,
+      "lost_both": 1,
+      "native_faults": 0,
+      "fuel_exhausted": 51,
+      "caught_sdk_markers": 375
+    },
+    {
+      "panel": "diagnosis-v59-vs-original-screen",
+      "candidate": "diagnosis-v59",
+      "opponent": "original",
+      "games": 24,
+      "wins": 10,
+      "losses": 14,
+      "draws": 0,
+      "complete_paired_maps": 12,
+      "won_both": 2,
+      "lost_both": 4,
+      "native_faults": 0,
+      "fuel_exhausted": 55,
+      "caught_sdk_markers": 402
+    },
+    {
+      "panel": "diagnosis-v59-vs-spar11-screen",
+      "candidate": "diagnosis-v59",
+      "opponent": "spar11",
+      "games": 12,
+      "wins": 12,
+      "losses": 0,
+      "draws": 0,
+      "complete_paired_maps": 6,
+      "won_both": 6,
+      "lost_both": 0,
+      "native_faults": 0,
+      "fuel_exhausted": 79,
+      "caught_sdk_markers": 259
+    },
+    {
+      "panel": "diagnosis-v59-vs-spar12-screen",
+      "candidate": "diagnosis-v59",
+      "opponent": "spar12",
+      "games": 12,
+      "wins": 12,
+      "losses": 0,
+      "draws": 0,
+      "complete_paired_maps": 6,
+      "won_both": 6,
+      "lost_both": 0,
+      "native_faults": 0,
+      "fuel_exhausted": 187,
+      "caught_sdk_markers": 288
+    },
+    {
+      "panel": "diagnosis-v59-vs-spar16-screen",
+      "candidate": "diagnosis-v59",
+      "opponent": "spar16",
+      "games": 12,
+      "wins": 12,
+      "losses": 0,
+      "draws": 0,
+      "complete_paired_maps": 6,
+      "won_both": 6,
+      "lost_both": 0,
+      "native_faults": 0,
+      "fuel_exhausted": 77,
+      "caught_sdk_markers": 252
+    },
+    {
+      "panel": "baseline-light-all-vs-original-targeted12",
+      "candidate": "light-all",
+      "opponent": "original",
+      "games": 24,
+      "wins": 6,
+      "losses": 18,
+      "draws": 0,
+      "complete_paired_maps": 12,
+      "won_both": 0,
+      "lost_both": 6,
+      "native_faults": 0,
+      "fuel_exhausted": 40,
+      "caught_sdk_markers": 391
+    },
+    {
+      "panel": "mechanism-v2-mechanism-native",
+      "candidate": "diagnosis-old-all-repaired-v2",
+      "opponent": "original",
+      "games": 4,
+      "wins": 2,
+      "losses": 2,
+      "draws": 0,
+      "complete_paired_maps": 2,
+      "won_both": 0,
+      "lost_both": 0,
+      "native_faults": 0,
+      "fuel_exhausted": 0,
+      "caught_sdk_markers": 48
+    }
+  ],
+  "paired_outcome_flips": [
+    {
+      "panel_a": "diagnosis-old-all-repaired-v2-vs-original-screen",
+      "panel_b": "diagnosis-v59-vs-original-screen",
+      "opponent": "original",
+      "shared_map_side_slots": 24,
+      "a_win_b_not": 5,
+      "b_win_a_not": 4,
+      "differences": [
+        {
+          "map": "maps_dev200/gen4242_169",
+          "map_sha256": "35a2d8ceb5c9d200128ff7bfbb0c34456da195d33f64e832a9910a9cf97426bd",
+          "side": "b",
+          "a_outcome": "LOSS",
+          "b_outcome": "WIN",
+          "a_score": 964,
+          "b_score": 1008,
+          "a_record": "10cb1d643b7025316d30e869291b1ef548edeb7ab15544f0ff19bbd9410f12bf",
+          "b_record": "c2a93f7f463c94a8c3e8f298b2333334563d679ffee61d62aab5e29106678e1b"
+        },
+        {
+          "map": "monolith",
+          "map_sha256": "61bcbc25b93c80091ab59ebfd8a087847880f54cb0dfaa2c39e2fe0ef3cedb2e",
+          "side": "a",
+          "a_outcome": "LOSS",
+          "b_outcome": "WIN",
+          "a_score": 988,
+          "b_score": 1032,
+          "a_record": "466a1a1601a6bf1bf403b3e2e81dac7cca67d0c1d25406070c58a655fd5b1d12",
+          "b_record": "4d2fdc892a700516e318b697b5aeb6e1e9226ab5c3e7fea8e363a2fc008ee2b2"
+        },
+        {
+          "map": "monolith",
+          "map_sha256": "61bcbc25b93c80091ab59ebfd8a087847880f54cb0dfaa2c39e2fe0ef3cedb2e",
+          "side": "b",
+          "a_outcome": "WIN",
+          "b_outcome": "LOSS",
+          "a_score": 1032,
+          "b_score": 856,
+          "a_record": "f5bea99096d58bf96a2cae891cb7fafbcf50647cba3b7ccb1737840ed9d5f9c9",
+          "b_record": "ec6e950f9ded1db40070e15afb8f74b73862d169a6a5c778a18f7431461af0c5"
+        },
+        {
+          "map": "swirl",
+          "map_sha256": "988f7804a0f3e3fa4394ff66cac222dc957886d15ba9fcec9f3023a0ecb09360",
+          "side": "a",
+          "a_outcome": "WIN",
+          "b_outcome": "LOSS",
+          "a_score": 1070,
+          "b_score": 300,
+          "a_record": "ca0500046772982525f2c0d8307c1c8ce3490737d2d83175586562f3a93ccc84",
+          "b_record": "ef4542ae0b8bd007375e6b8cbf7329652f21d593b78bdfc75f19d5a8da4c49f8"
+        },
+        {
+          "map": "swirl",
+          "map_sha256": "988f7804a0f3e3fa4394ff66cac222dc957886d15ba9fcec9f3023a0ecb09360",
+          "side": "b",
+          "a_outcome": "LOSS",
+          "b_outcome": "WIN",
+          "a_score": 424,
+          "b_score": 1000,
+          "a_record": "6dcfd914c470564db9808c1a52ead5d1072a7b9a553be9b619b855f5b486a0b7",
+          "b_record": "2b8b96fd85c7e1110a06dcfec32ae09ccd10a39035b8bf14957df04bdc256142"
+        },
+        {
+          "map": "interlock",
+          "map_sha256": "c7ac699781ace7557a98f736bf57a719a7f0aa7c816b462419d193d2e6e5b5f4",
+          "side": "a",
+          "a_outcome": "WIN",
+          "b_outcome": "LOSS",
+          "a_score": 1108,
+          "b_score": 980,
+          "a_record": "35990be38fc21ceb91cba96977d4855d7be0cfc503fb5ce641a3312d85d46a34",
+          "b_record": "41093c6b77f2344f68c3f7306b242fb2e647dbe4fa0cfcb80bed13fa7fc2fe34"
+        },
+        {
+          "map": "interlock",
+          "map_sha256": "c7ac699781ace7557a98f736bf57a719a7f0aa7c816b462419d193d2e6e5b5f4",
+          "side": "b",
+          "a_outcome": "WIN",
+          "b_outcome": "LOSS",
+          "a_score": 1036,
+          "b_score": 870,
+          "a_record": "b2d1923dad1e13a4254c525d119c92fc4a75878b8b68ff36c6cc56d689a7d873",
+          "b_record": "2d0acf19473758cd3722b9e590f5a47093c83382e080c69497d19b462dc5f32a"
+        },
+        {
+          "map": "maps_dev200/gen4242_75",
+          "map_sha256": "e84f236bcb91f9fc21f57830a8c1307e46126c646883715e3607990270ea12ea",
+          "side": "a",
+          "a_outcome": "WIN",
+          "b_outcome": "LOSS",
+          "a_score": 1002,
+          "b_score": 896,
+          "a_record": "e16debe72c2521d276b2b853721d9023d36efb38adcd028d9f05828e9ad9a24c",
+          "b_record": "3fe2fec2088d0cad550977ddd679efad0da05a71098c4ddc50c59675735143e7"
+        },
+        {
+          "map": "confirmation/gen20261015_47",
+          "map_sha256": "e8ad0f31c9e3445265d86213e82b3823f507f1372dd22498ec0c0ee8b9a12312",
+          "side": "b",
+          "a_outcome": "LOSS",
+          "b_outcome": "WIN",
+          "a_score": 904,
+          "b_score": 1020,
+          "a_record": "c6ca73db9cc7d52208ff33cfb9716e949ba4d15c71711af8daae115e7d787a1f",
+          "b_record": "964eb9aa55fbab49a0fabf809abb2efc65dbe4990fc48d057e728ca4add8f644"
+        }
+      ]
+    },
+    {
+      "panel_a": "diagnosis-old-all-repaired-v2-vs-original-screen",
+      "panel_b": "baseline-light-all-vs-original-targeted12",
+      "opponent": "original",
+      "shared_map_side_slots": 24,
+      "a_win_b_not": 5,
+      "b_win_a_not": 0,
+      "differences": [
+        {
+          "map": "monolith",
+          "map_sha256": "61bcbc25b93c80091ab59ebfd8a087847880f54cb0dfaa2c39e2fe0ef3cedb2e",
+          "side": "b",
+          "a_outcome": "WIN",
+          "b_outcome": "LOSS",
+          "a_score": 1032,
+          "b_score": 944,
+          "a_record": "f5bea99096d58bf96a2cae891cb7fafbcf50647cba3b7ccb1737840ed9d5f9c9",
+          "b_record": "55f41b6d6d4015d7c99842eb53e07f65b0e2e3d23cc7ccb8ff56250d1d7e4a75"
+        },
+        {
+          "map": "interlock",
+          "map_sha256": "c7ac699781ace7557a98f736bf57a719a7f0aa7c816b462419d193d2e6e5b5f4",
+          "side": "a",
+          "a_outcome": "WIN",
+          "b_outcome": "LOSS",
+          "a_score": 1108,
+          "b_score": 870,
+          "a_record": "35990be38fc21ceb91cba96977d4855d7be0cfc503fb5ce641a3312d85d46a34",
+          "b_record": "46bcf0fb9b9ec86c2b9322e513da33ae60df70cc37da231a07315f867d475a58"
+        },
+        {
+          "map": "maps_dev200/gen4242_75",
+          "map_sha256": "e84f236bcb91f9fc21f57830a8c1307e46126c646883715e3607990270ea12ea",
+          "side": "a",
+          "a_outcome": "WIN",
+          "b_outcome": "LOSS",
+          "a_score": 1002,
+          "b_score": 868,
+          "a_record": "e16debe72c2521d276b2b853721d9023d36efb38adcd028d9f05828e9ad9a24c",
+          "b_record": "7e4c946454b906dcf9e962a1e3699b10cfbfba25f97798d2c874b53a10c6d751"
+        },
+        {
+          "map": "confirmation/gen20261015_47",
+          "map_sha256": "e8ad0f31c9e3445265d86213e82b3823f507f1372dd22498ec0c0ee8b9a12312",
+          "side": "a",
+          "a_outcome": "WIN",
+          "b_outcome": "LOSS",
+          "a_score": 1006,
+          "b_score": 978,
+          "a_record": "a6782e1e89c9961e6ad86f4bd72fb72959d28d3d95743f3f571e72e672f118c8",
+          "b_record": "0153e54c61c9d0f47fa736fcda2fac53007efa48e6bfd873dd64961591d596be"
+        },
+        {
+          "map": "corners",
+          "map_sha256": "ee68ccad568ca8ff6d87a77f2cbc9cf6ee54dc63c74fb306e5ac67d8c0556cc6",
+          "side": "b",
+          "a_outcome": "WIN",
+          "b_outcome": "LOSS",
+          "a_score": 1002,
+          "b_score": 276,
+          "a_record": "3ac0292adb4981a4a8bb3af8723b7290f6bbefc807a68992a8223fb26e03dd4b",
+          "b_record": "89f7c6a053a4481ac0442b9c93a35a1f4a6f6701e072bfa53c7bdbfa8fbc537e"
+        }
+      ]
+    },
+    {
+      "panel_a": "diagnosis-v59-swap-cassi-v2-vs-diagnosis-v59-holdout",
+      "panel_b": "diagnosis-v59-swap-willow-v2-vs-diagnosis-v59-holdout",
+      "opponent": "diagnosis-v59",
+      "shared_map_side_slots": 48,
+      "a_win_b_not": 4,
+      "b_win_a_not": 1,
+      "differences": [
+        {
+          "map": "diagnosis-fresh/gen4242_52",
+          "map_sha256": "07e031be9983c55fac6f95e617cf516a13dce0ce208f6c20c239ab819b206561",
+          "side": "b",
+          "a_outcome": "WIN",
+          "b_outcome": "LOSS",
+          "a_score": 1008,
+          "b_score": 876,
+          "a_record": "28aae59537c4a2b532dfdfccbf375b2c2060e051a4d9428587eff04ea79b4aa2",
+          "b_record": "86b766238dd13ec2866af09ef8c581d4ba4263b69a5b38a808492242ac2faadf"
+        },
+        {
+          "map": "diagnosis-fresh/gen4242_130",
+          "map_sha256": "0ef8456cb5e7af93af0e8c81ea5c076a376101b8c7f0d920519f14fb77b12af6",
+          "side": "a",
+          "a_outcome": "WIN",
+          "b_outcome": "LOSS",
+          "a_score": 1074,
+          "b_score": 950,
+          "a_record": "5af2b91fb2a7eec892c4ec34094b45719181429c00e25e65e5097de97b3dd035",
+          "b_record": "2dd4777e914ada479b2b80483ca7f8d16a022a4935bc78029c24329e62df600e"
+        },
+        {
+          "map": "diagnosis-fresh/gen4242_173",
+          "map_sha256": "16ca20ed056769a276b4b3a9294e44db647c2f8cc004d109e23a7a31c9b61705",
+          "side": "b",
+          "a_outcome": "LOSS",
+          "b_outcome": "WIN",
+          "a_score": 894,
+          "b_score": 1002,
+          "a_record": "05210573584a08783cd7b5e3f44dad964fef9b5728564a3393a12a080588b61e",
+          "b_record": "f589a438ef16d9095b38d1cec30a5895f4b56d6ecf7e2989c905b5a84f37e85e"
+        },
+        {
+          "map": "diagnosis-fresh/gen4242_107",
+          "map_sha256": "2332ace3dc87108f05bfbdd8dc8cdc950b834607da2ed74a73d7642545817159",
+          "side": "a",
+          "a_outcome": "WIN",
+          "b_outcome": "LOSS",
+          "a_score": 1002,
+          "b_score": 816,
+          "a_record": "c84ce48946e0714b2aeb1e0751c300f894d8eae6dbb93eee5e9515fd9ff42ea5",
+          "b_record": "f96dd8e155e6e8492aa0f548367181a6d8f978bbe8fb68b0aeb1422a1a0b9afd"
+        },
+        {
+          "map": "diagnosis-fresh/gen4242_107",
+          "map_sha256": "2332ace3dc87108f05bfbdd8dc8cdc950b834607da2ed74a73d7642545817159",
+          "side": "b",
+          "a_outcome": "WIN",
+          "b_outcome": "LOSS",
+          "a_score": 1018,
+          "b_score": 984,
+          "a_record": "57e5e795e90885e33a0da055ea8231489221aeb559c27f28dc225c4e5c356053",
+          "b_record": "adbca1409ccd900bf9ff19618d8f576ea494b0d87d22b44af59109fc2b8368a3"
+        }
+      ]
+    },
+    {
+      "panel_a": "diagnosis-v59-swap-cassi-v2-vs-diagnosis-v59-holdout",
+      "panel_b": "diagnosis-v59-validated-cache-v2-vs-diagnosis-v59-holdout",
+      "opponent": "diagnosis-v59",
+      "shared_map_side_slots": 48,
+      "a_win_b_not": 3,
+      "b_win_a_not": 2,
+      "differences": [
+        {
+          "map": "diagnosis-fresh/gen4242_52",
+          "map_sha256": "07e031be9983c55fac6f95e617cf516a13dce0ce208f6c20c239ab819b206561",
+          "side": "a",
+          "a_outcome": "LOSS",
+          "b_outcome": "WIN",
+          "a_score": 996,
+          "b_score": 1008,
+          "a_record": "7289bc23271fe11d9f4ef63b8d8a4a184b60bd087d5b674498b30f7a765d8d7d",
+          "b_record": "d9070f42631e85f7213d58a8c7ea45fe6f0215aab1cdb20574b1f08a2fc23caf"
+        },
+        {
+          "map": "diagnosis-fresh/gen4242_52",
+          "map_sha256": "07e031be9983c55fac6f95e617cf516a13dce0ce208f6c20c239ab819b206561",
+          "side": "b",
+          "a_outcome": "WIN",
+          "b_outcome": "LOSS",
+          "a_score": 1008,
+          "b_score": 864,
+          "a_record": "28aae59537c4a2b532dfdfccbf375b2c2060e051a4d9428587eff04ea79b4aa2",
+          "b_record": "2daaa136bb801d7d8fcabf29ea2c93a9d223145d2c6e52ccc19a08b853477aa7"
+        },
+        {
+          "map": "diagnosis-fresh/gen4242_173",
+          "map_sha256": "16ca20ed056769a276b4b3a9294e44db647c2f8cc004d109e23a7a31c9b61705",
+          "side": "b",
+          "a_outcome": "LOSS",
+          "b_outcome": "WIN",
+          "a_score": 894,
+          "b_score": 1002,
+          "a_record": "05210573584a08783cd7b5e3f44dad964fef9b5728564a3393a12a080588b61e",
+          "b_record": "14eba519bf5f8c69dea3fb3366bf23d7c6808810d24f80ba18500fddd9c401ba"
+        },
+        {
+          "map": "diagnosis-fresh/gen4242_82",
+          "map_sha256": "1721b1d4ff79cde1efa0b3a94a6efc5f7809330f2ecfdc849ffb68dd602e7d38",
+          "side": "a",
+          "a_outcome": "WIN",
+          "b_outcome": "LOSS",
+          "a_score": 1020,
+          "b_score": 294,
+          "a_record": "d84310161bd6da5cdc6164fc4c9c26990aa221eb67c61369990c860c5929c39e",
+          "b_record": "d886b6692baa63da02f146d315a683303c2fe064ec4607a52fa6b5910e86be15"
+        },
+        {
+          "map": "diagnosis-fresh/gen4242_107",
+          "map_sha256": "2332ace3dc87108f05bfbdd8dc8cdc950b834607da2ed74a73d7642545817159",
+          "side": "a",
+          "a_outcome": "WIN",
+          "b_outcome": "LOSS",
+          "a_score": 1002,
+          "b_score": 840,
+          "a_record": "c84ce48946e0714b2aeb1e0751c300f894d8eae6dbb93eee5e9515fd9ff42ea5",
+          "b_record": "c14167ebcf7223924d3c58a0d96053e14fcec14af2ed9d0281c5dc0969c2111f"
+        }
+      ]
+    },
+    {
+      "panel_a": "diagnosis-v59-swap-cassi-v2-vs-diagnosis-v59-screen",
+      "panel_b": "diagnosis-v59-validated-cache-v2-vs-diagnosis-v59-screen",
+      "opponent": "diagnosis-v59",
+      "shared_map_side_slots": 24,
+      "a_win_b_not": 1,
+      "b_win_a_not": 0,
+      "differences": [
+        {
+          "map": "corners",
+          "map_sha256": "ee68ccad568ca8ff6d87a77f2cbc9cf6ee54dc63c74fb306e5ac67d8c0556cc6",
+          "side": "a",
+          "a_outcome": "WIN",
+          "b_outcome": "LOSS",
+          "a_score": 1018,
+          "b_score": 308,
+          "a_record": "eb8e3dfb53e25b8b52ff3cc84ee7f4b0b8282b2d9874a6cfdf8ed3653872a319",
+          "b_record": "f048a5805ded3c1fc2a3881934db5292bb012cb09f8478b089752e9e45377a84"
+        }
+      ]
+    },
+    {
+      "panel_a": "diagnosis-v59-swap-cassi-v2-vs-spar11-screen",
+      "panel_b": "diagnosis-v59-swap-willow-v2-vs-spar11-screen",
+      "opponent": "spar11",
+      "shared_map_side_slots": 12,
+      "a_win_b_not": 1,
+      "b_win_a_not": 1,
+      "differences": [
+        {
+          "map": "fresh-compact-open",
+          "map_sha256": "3c34efc5240b4ccb9f67b151ddb3461dd35145c22f01091dec6953ae52b63c6c",
+          "side": "a",
+          "a_outcome": "LOSS",
+          "b_outcome": "WIN",
+          "a_score": 912,
+          "b_score": 1014,
+          "a_record": "53156b33cfcdffcb9a4dab2906bc66b0b3266259e05a52a77f8d86963ea58a38",
+          "b_record": "4b648f0cf6559ae7096281a4b5abeff0da24bef86f3c260cbad81a019390274b"
+        },
+        {
+          "map": "maps_hold60/gen20261015_12",
+          "map_sha256": "e4e2d0602fe61323672f651f570064c7737ae144149a14c5ffbae519f63bfeb1",
+          "side": "b",
+          "a_outcome": "WIN",
+          "b_outcome": "LOSS",
+          "a_score": 1002,
+          "b_score": 994,
+          "a_record": "fa683a58efe0910ec77918958c3591c5267f774d09f4249287417a1cd899b5dd",
+          "b_record": "889716b914b57755a04f652eae3803cb6122b9bd482cd51aaa76720a73e65525"
+        }
+      ]
+    },
+    {
+      "panel_a": "diagnosis-v59-swap-cassi-v2-vs-spar11-screen",
+      "panel_b": "diagnosis-v59-vs-spar11-screen",
+      "opponent": "spar11",
+      "shared_map_side_slots": 12,
+      "a_win_b_not": 0,
+      "b_win_a_not": 1,
+      "differences": [
+        {
+          "map": "fresh-compact-open",
+          "map_sha256": "3c34efc5240b4ccb9f67b151ddb3461dd35145c22f01091dec6953ae52b63c6c",
+          "side": "a",
+          "a_outcome": "LOSS",
+          "b_outcome": "WIN",
+          "a_score": 912,
+          "b_score": 1006,
+          "a_record": "53156b33cfcdffcb9a4dab2906bc66b0b3266259e05a52a77f8d86963ea58a38",
+          "b_record": "8b3d7e581c56b99533195bd3627e581d1abea8869e04c67ed0f6f1de3c2868a2"
+        }
+      ]
+    },
+    {
+      "panel_a": "diagnosis-v59-swap-cassi-v2-vs-spar12-screen",
+      "panel_b": "diagnosis-v59-swap-willow-v2-vs-spar12-screen",
+      "opponent": "spar12",
+      "shared_map_side_slots": 12,
+      "a_win_b_not": 0,
+      "b_win_a_not": 0,
+      "differences": []
+    },
+    {
+      "panel_a": "diagnosis-v59-swap-cassi-v2-vs-spar12-screen",
+      "panel_b": "diagnosis-v59-vs-spar12-screen",
+      "opponent": "spar12",
+      "shared_map_side_slots": 12,
+      "a_win_b_not": 0,
+      "b_win_a_not": 0,
+      "differences": []
+    },
+    {
+      "panel_a": "diagnosis-v59-swap-cassi-v2-vs-spar16-screen",
+      "panel_b": "diagnosis-v59-swap-willow-v2-vs-spar16-screen",
+      "opponent": "spar16",
+      "shared_map_side_slots": 12,
+      "a_win_b_not": 1,
+      "b_win_a_not": 1,
+      "differences": [
+        {
+          "map": "fresh-compact-open",
+          "map_sha256": "3c34efc5240b4ccb9f67b151ddb3461dd35145c22f01091dec6953ae52b63c6c",
+          "side": "a",
+          "a_outcome": "LOSS",
+          "b_outcome": "WIN",
+          "a_score": 912,
+          "b_score": 1014,
+          "a_record": "0ee263d465292142dc47edaca8653f0998ed62bc23d716cbbcf38d83046885f3",
+          "b_record": "7c97272944b2a2c7d84157ca0c6db48ea9960fa50892330dc8ee1ce91472896f"
+        },
+        {
+          "map": "maps_hold60/gen20261015_12",
+          "map_sha256": "e4e2d0602fe61323672f651f570064c7737ae144149a14c5ffbae519f63bfeb1",
+          "side": "b",
+          "a_outcome": "WIN",
+          "b_outcome": "LOSS",
+          "a_score": 1002,
+          "b_score": 994,
+          "a_record": "ad94fd53beb5285e4a59a21708837976dbecca8f09b8a32c441fcae883ee1353",
+          "b_record": "36aefdf0ad0b8e3625454cf2ea7fdc6c316af28c871ac5eb30dd78964aa686fe"
+        }
+      ]
+    },
+    {
+      "panel_a": "diagnosis-v59-swap-cassi-v2-vs-spar16-screen",
+      "panel_b": "diagnosis-v59-vs-spar16-screen",
+      "opponent": "spar16",
+      "shared_map_side_slots": 12,
+      "a_win_b_not": 0,
+      "b_win_a_not": 1,
+      "differences": [
+        {
+          "map": "fresh-compact-open",
+          "map_sha256": "3c34efc5240b4ccb9f67b151ddb3461dd35145c22f01091dec6953ae52b63c6c",
+          "side": "a",
+          "a_outcome": "LOSS",
+          "b_outcome": "WIN",
+          "a_score": 912,
+          "b_score": 1006,
+          "a_record": "0ee263d465292142dc47edaca8653f0998ed62bc23d716cbbcf38d83046885f3",
+          "b_record": "20dc01adef2c3d402db7dfe6380c1868bd6f49fe8f7a18458bc211ecea28897a"
+        }
+      ]
+    },
+    {
+      "panel_a": "diagnosis-v59-swap-willow-v2-vs-diagnosis-v59-holdout",
+      "panel_b": "diagnosis-v59-validated-cache-v2-vs-diagnosis-v59-holdout",
+      "opponent": "diagnosis-v59",
+      "shared_map_side_slots": 48,
+      "a_win_b_not": 1,
+      "b_win_a_not": 3,
+      "differences": [
+        {
+          "map": "diagnosis-fresh/gen4242_52",
+          "map_sha256": "07e031be9983c55fac6f95e617cf516a13dce0ce208f6c20c239ab819b206561",
+          "side": "a",
+          "a_outcome": "LOSS",
+          "b_outcome": "WIN",
+          "a_score": 828,
+          "b_score": 1008,
+          "a_record": "65c71c8d6821a810db990f4a021bcf6fe7df810067d9939a55d3602ec5d81961",
+          "b_record": "d9070f42631e85f7213d58a8c7ea45fe6f0215aab1cdb20574b1f08a2fc23caf"
+        },
+        {
+          "map": "diagnosis-fresh/gen4242_130",
+          "map_sha256": "0ef8456cb5e7af93af0e8c81ea5c076a376101b8c7f0d920519f14fb77b12af6",
+          "side": "a",
+          "a_outcome": "LOSS",
+          "b_outcome": "WIN",
+          "a_score": 950,
+          "b_score": 1066,
+          "a_record": "2dd4777e914ada479b2b80483ca7f8d16a022a4935bc78029c24329e62df600e",
+          "b_record": "4d4eeb98b14df89115fe49888dce3a912f2ca1ae929b833ddfb4fbf27d9f59ce"
+        },
+        {
+          "map": "diagnosis-fresh/gen4242_82",
+          "map_sha256": "1721b1d4ff79cde1efa0b3a94a6efc5f7809330f2ecfdc849ffb68dd602e7d38",
+          "side": "a",
+          "a_outcome": "WIN",
+          "b_outcome": "LOSS",
+          "a_score": 1024,
+          "b_score": 294,
+          "a_record": "05b165e3de4b3391ca7355b59dcd5dca00d98311a0a88d50d21528c29f0cea8a",
+          "b_record": "d886b6692baa63da02f146d315a683303c2fe064ec4607a52fa6b5910e86be15"
+        },
+        {
+          "map": "diagnosis-fresh/gen4242_107",
+          "map_sha256": "2332ace3dc87108f05bfbdd8dc8cdc950b834607da2ed74a73d7642545817159",
+          "side": "b",
+          "a_outcome": "LOSS",
+          "b_outcome": "WIN",
+          "a_score": 984,
+          "b_score": 1016,
+          "a_record": "adbca1409ccd900bf9ff19618d8f576ea494b0d87d22b44af59109fc2b8368a3",
+          "b_record": "6565386bfde00eb05b939a7ca17ba3a22b42a63e769917fab3ae79b6663e3085"
+        }
+      ]
+    },
+    {
+      "panel_a": "diagnosis-v59-swap-willow-v2-vs-spar11-screen",
+      "panel_b": "diagnosis-v59-vs-spar11-screen",
+      "opponent": "spar11",
+      "shared_map_side_slots": 12,
+      "a_win_b_not": 0,
+      "b_win_a_not": 1,
+      "differences": [
+        {
+          "map": "maps_hold60/gen20261015_12",
+          "map_sha256": "e4e2d0602fe61323672f651f570064c7737ae144149a14c5ffbae519f63bfeb1",
+          "side": "b",
+          "a_outcome": "LOSS",
+          "b_outcome": "WIN",
+          "a_score": 994,
+          "b_score": 1014,
+          "a_record": "889716b914b57755a04f652eae3803cb6122b9bd482cd51aaa76720a73e65525",
+          "b_record": "88dcf0dac7e0042d90368df0d797566c582fe47b71d1de5acdaf40024cf783fe"
+        }
+      ]
+    },
+    {
+      "panel_a": "diagnosis-v59-swap-willow-v2-vs-spar12-screen",
+      "panel_b": "diagnosis-v59-vs-spar12-screen",
+      "opponent": "spar12",
+      "shared_map_side_slots": 12,
+      "a_win_b_not": 0,
+      "b_win_a_not": 0,
+      "differences": []
+    },
+    {
+      "panel_a": "diagnosis-v59-swap-willow-v2-vs-spar16-screen",
+      "panel_b": "diagnosis-v59-vs-spar16-screen",
+      "opponent": "spar16",
+      "shared_map_side_slots": 12,
+      "a_win_b_not": 0,
+      "b_win_a_not": 1,
+      "differences": [
+        {
+          "map": "maps_hold60/gen20261015_12",
+          "map_sha256": "e4e2d0602fe61323672f651f570064c7737ae144149a14c5ffbae519f63bfeb1",
+          "side": "b",
+          "a_outcome": "LOSS",
+          "b_outcome": "WIN",
+          "a_score": 994,
+          "b_score": 1014,
+          "a_record": "36aefdf0ad0b8e3625454cf2ea7fdc6c316af28c871ac5eb30dd78964aa686fe",
+          "b_record": "1e17972aee5c958cb8d0e4f22661d7cd1c14408aee7035b69b53d158521a59b6"
+        }
+      ]
+    },
+    {
+      "panel_a": "diagnosis-v59-vs-original-screen",
+      "panel_b": "baseline-light-all-vs-original-targeted12",
+      "opponent": "original",
+      "shared_map_side_slots": 24,
+      "a_win_b_not": 6,
+      "b_win_a_not": 2,
+      "differences": [
+        {
+          "map": "maps_dev200/gen4242_169",
+          "map_sha256": "35a2d8ceb5c9d200128ff7bfbb0c34456da195d33f64e832a9910a9cf97426bd",
+          "side": "b",
+          "a_outcome": "WIN",
+          "b_outcome": "LOSS",
+          "a_score": 1008,
+          "b_score": 964,
+          "a_record": "c2a93f7f463c94a8c3e8f298b2333334563d679ffee61d62aab5e29106678e1b",
+          "b_record": "d70ba26fd9dc71cefc0114365e618317b94e15a2b86e70f9f228e0167f768671"
+        },
+        {
+          "map": "monolith",
+          "map_sha256": "61bcbc25b93c80091ab59ebfd8a087847880f54cb0dfaa2c39e2fe0ef3cedb2e",
+          "side": "a",
+          "a_outcome": "WIN",
+          "b_outcome": "LOSS",
+          "a_score": 1032,
+          "b_score": 988,
+          "a_record": "4d2fdc892a700516e318b697b5aeb6e1e9226ab5c3e7fea8e363a2fc008ee2b2",
+          "b_record": "f6590cdab41088e7ff986860529e4ba30bd679254ca6379625567bb45e04a51a"
+        },
+        {
+          "map": "swirl",
+          "map_sha256": "988f7804a0f3e3fa4394ff66cac222dc957886d15ba9fcec9f3023a0ecb09360",
+          "side": "a",
+          "a_outcome": "LOSS",
+          "b_outcome": "WIN",
+          "a_score": 300,
+          "b_score": 1070,
+          "a_record": "ef4542ae0b8bd007375e6b8cbf7329652f21d593b78bdfc75f19d5a8da4c49f8",
+          "b_record": "0a0bb88be7fd1399ff68eefb9671cf4149273d5b757978e26082022298122583"
+        },
+        {
+          "map": "swirl",
+          "map_sha256": "988f7804a0f3e3fa4394ff66cac222dc957886d15ba9fcec9f3023a0ecb09360",
+          "side": "b",
+          "a_outcome": "WIN",
+          "b_outcome": "LOSS",
+          "a_score": 1000,
+          "b_score": 424,
+          "a_record": "2b8b96fd85c7e1110a06dcfec32ae09ccd10a39035b8bf14957df04bdc256142",
+          "b_record": "475a652db46a4457b154516721a2f42ab0c3ac92364ecc190d547d5c227ed394"
+        },
+        {
+          "map": "interlock",
+          "map_sha256": "c7ac699781ace7557a98f736bf57a719a7f0aa7c816b462419d193d2e6e5b5f4",
+          "side": "b",
+          "a_outcome": "LOSS",
+          "b_outcome": "WIN",
+          "a_score": 870,
+          "b_score": 1064,
+          "a_record": "2d0acf19473758cd3722b9e590f5a47093c83382e080c69497d19b462dc5f32a",
+          "b_record": "0aa80b2d5cabe26ab338c8b8ab0ae1ce264247dcfa52d6b34aaa7ee7b2e2b1f0"
+        },
+        {
+          "map": "confirmation/gen20261015_47",
+          "map_sha256": "e8ad0f31c9e3445265d86213e82b3823f507f1372dd22498ec0c0ee8b9a12312",
+          "side": "a",
+          "a_outcome": "WIN",
+          "b_outcome": "LOSS",
+          "a_score": 1006,
+          "b_score": 978,
+          "a_record": "c84f78c0aac0fd888a8db4371cd4b6d7504f923adbc53770a608232336ecdc38",
+          "b_record": "0153e54c61c9d0f47fa736fcda2fac53007efa48e6bfd873dd64961591d596be"
+        },
+        {
+          "map": "confirmation/gen20261015_47",
+          "map_sha256": "e8ad0f31c9e3445265d86213e82b3823f507f1372dd22498ec0c0ee8b9a12312",
+          "side": "b",
+          "a_outcome": "WIN",
+          "b_outcome": "LOSS",
+          "a_score": 1020,
+          "b_score": 680,
+          "a_record": "964eb9aa55fbab49a0fabf809abb2efc65dbe4990fc48d057e728ca4add8f644",
+          "b_record": "db69c417faab5fb14ae7524fdc279e01ebc924c2887f55d8fcebaf48e1720451"
+        },
+        {
+          "map": "corners",
+          "map_sha256": "ee68ccad568ca8ff6d87a77f2cbc9cf6ee54dc63c74fb306e5ac67d8c0556cc6",
+          "side": "b",
+          "a_outcome": "WIN",
+          "b_outcome": "LOSS",
+          "a_score": 1004,
+          "b_score": 276,
+          "a_record": "aaa083dd9de946ddad805a821dc54acd8e914e9da2aed96e5cbda2b254801fee",
+          "b_record": "89f7c6a053a4481ac0442b9c93a35a1f4a6f6701e072bfa53c7bdbfa8fbc537e"
+        }
+      ]
+    },
+    {
+      "panel_a": "diagnosis-v59-vs-original-screen",
+      "panel_b": "mechanism-v2-mechanism-native",
+      "opponent": "original",
+      "shared_map_side_slots": 4,
+      "a_win_b_not": 2,
+      "b_win_a_not": 1,
+      "differences": [
+        {
+          "map": "monolith",
+          "map_sha256": "61bcbc25b93c80091ab59ebfd8a087847880f54cb0dfaa2c39e2fe0ef3cedb2e",
+          "side": "a",
+          "a_outcome": "WIN",
+          "b_outcome": "LOSS",
+          "a_score": 1032,
+          "b_score": 988,
+          "a_record": "4d2fdc892a700516e318b697b5aeb6e1e9226ab5c3e7fea8e363a2fc008ee2b2",
+          "b_record": "466a1a1601a6bf1bf403b3e2e81dac7cca67d0c1d25406070c58a655fd5b1d12"
+        },
+        {
+          "map": "monolith",
+          "map_sha256": "61bcbc25b93c80091ab59ebfd8a087847880f54cb0dfaa2c39e2fe0ef3cedb2e",
+          "side": "b",
+          "a_outcome": "LOSS",
+          "b_outcome": "WIN",
+          "a_score": 856,
+          "b_score": 1032,
+          "a_record": "ec6e950f9ded1db40070e15afb8f74b73862d169a6a5c778a18f7431461af0c5",
+          "b_record": "f5bea99096d58bf96a2cae891cb7fafbcf50647cba3b7ccb1737840ed9d5f9c9"
+        },
+        {
+          "map": "confirmation/gen20261015_47",
+          "map_sha256": "e8ad0f31c9e3445265d86213e82b3823f507f1372dd22498ec0c0ee8b9a12312",
+          "side": "b",
+          "a_outcome": "WIN",
+          "b_outcome": "LOSS",
+          "a_score": 1020,
+          "b_score": 904,
+          "a_record": "964eb9aa55fbab49a0fabf809abb2efc65dbe4990fc48d057e728ca4add8f644",
+          "b_record": "c6ca73db9cc7d52208ff33cfb9716e949ba4d15c71711af8daae115e7d787a1f"
+        }
+      ]
+    },
+    {
+      "panel_a": "baseline-light-all-vs-original-targeted12",
+      "panel_b": "mechanism-v2-mechanism-native",
+      "opponent": "original",
+      "shared_map_side_slots": 4,
+      "a_win_b_not": 0,
+      "b_win_a_not": 2,
+      "differences": [
+        {
+          "map": "monolith",
+          "map_sha256": "61bcbc25b93c80091ab59ebfd8a087847880f54cb0dfaa2c39e2fe0ef3cedb2e",
+          "side": "b",
+          "a_outcome": "LOSS",
+          "b_outcome": "WIN",
+          "a_score": 944,
+          "b_score": 1032,
+          "a_record": "55f41b6d6d4015d7c99842eb53e07f65b0e2e3d23cc7ccb8ff56250d1d7e4a75",
+          "b_record": "f5bea99096d58bf96a2cae891cb7fafbcf50647cba3b7ccb1737840ed9d5f9c9"
+        },
+        {
+          "map": "confirmation/gen20261015_47",
+          "map_sha256": "e8ad0f31c9e3445265d86213e82b3823f507f1372dd22498ec0c0ee8b9a12312",
+          "side": "a",
+          "a_outcome": "LOSS",
+          "b_outcome": "WIN",
+          "a_score": 978,
+          "b_score": 1006,
+          "a_record": "0153e54c61c9d0f47fa736fcda2fac53007efa48e6bfd873dd64961591d596be",
+          "b_record": "a6782e1e89c9961e6ad86f4bd72fb72959d28d3d95743f3f571e72e672f118c8"
+        }
+      ]
+    }
+  ],
+  "unique_physical_games": 428,
+  "row_count_including_reused_slots": 432,
+  "excluded_historical_records": [],
+  "issues": [],
+  "limits": [
+    "Targeted12 maps are diagnosed regressions and geometry controls, not an unseen strength gate.",
+    "Reused physical games are counted once in unique_physical_games; panel slot totals remain correlated.",
+    "Native bot faults, fuel exhaustion and selectively printed caught SDK errors are separate categories.",
+    "No missing panel is inferred as complete; this script never runs or repairs games.",
+    "Source/build hashes are checked against the current registry, plus saved replay/statistics/map input hashes.",
+    "Mechanism-only rows are not included in aggregate strength panels."
+  ]
+}

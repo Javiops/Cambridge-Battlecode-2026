@@ -100,7 +100,22 @@ Add `--baseline-source /path/to/frozen/old/src` for the same-scenario section-co
 Finite zero-wallet investment regression
 ----------------------------------------
 
-`shopping-cash` runs31 exact finite itinerary and wallet/capture-receipt checks. `shopping-cash-hint` runs12 exact route-cache contract checks: a contribution-stage field cannot replace the actual cash-camp-rooted field required by the consumer.
+`shopping-cash` runs 33 exact finite itinerary and wallet/capture-receipt checks. `shopping-cash-hint` runs 12 exact route-cache contract checks: a contribution-stage field cannot replace the actual cash-camp-rooted field required by the consumer.
+
+**Source scope:** the old Wolf-unlock native scenario below is obsolete after the solo
+camp-phase correction in integration20. Cassi can already clear that Wolf without its
+formerly required Health shard; do not force a purchase or interpret that old fixture's
+assertions as competitive-module faults. Use the separate partial-emblem native case:
+
+```powershell
+python tools/tactics-v1-validation/run_native_cash_partial.py --cli C:/path/to/cambc.exe --project C:/path/to/arena --source bots/tactics-v1/src --output work/native-cash-partial
+```
+
+This case physically earns 210 gold and buys four Jungle Health plus three Power Health
+shards in a scripted prelude. With its real wallet then empty, unchanged main must earn
+the next 35 gold, buy the fifth Jungle Health shard, clear the named Elk and actually bank
+36 gems. No wallet/stat projections enter main. One controlled starting kit is activation
+evidence; it is not competitive-strength or general opening-allocation proof.
 
 ```powershell
 python run_native_cash_investment.py --cli /path/to/cambc --project /path/to/arena --source ../../bots/tactics-v1/src --output /path/to/new-results

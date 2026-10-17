@@ -16,10 +16,12 @@ def extract_shopping_investment(source):
     tokens = ["enum class ShopFamily", "enum class ShopStat", "struct ShopInventory"]
     if "struct CashInvestment" in text:
         tokens.append("struct CashInvestment")
+    if "struct InstalledGemReentry" in text:
+        tokens.append("struct InstalledGemReentry")
     tokens += ["struct ShoppingState", "struct UpgradeDelta", "struct ReturnPayoff"]
     types = "\n".join(block(text.index(token)) for token in tokens)
     functions = "\n".join(block(text.rfind("inline ", 0, text.index(name))) for name in
-                          ("upgrade_delta(", "upgrade_mission_value(", "named_return_payoff(", "clear_investment(",
+                          ("make_installed_reentry(", "upgrade_delta(", "upgrade_mission_value(", "named_return_payoff(", "clear_investment(",
                            "investment_plan_invalid(", "shopping_after_action("))
     return types, functions
 

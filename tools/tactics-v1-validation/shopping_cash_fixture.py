@@ -10,7 +10,7 @@ def extract_shopping_cash(source):
             depth+=(text[j]=="{")-(text[j]=="}");j+=1
         return text[start:j]+(";"if text[j:j+1]==";"else"")
     return extract_shopping_gem(source)+"\n"+"\n".join(block(token)for token in
-        ("struct CashGemLegs","struct CashGemPayoff","struct CashInvestment","inline CashGemPayoff completed_cash_gem(","inline bool cash_reward_paid("))
+        ("struct CashGemLegs","struct CashGemPayoff","struct CashInvestment","inline CashGemPayoff completed_cash_gem(","inline bool cash_reward_paid(","inline bool cash_acquisition_eligible(","inline bool cash_acquisition_fits("))
 
 def generate_shopping_cash_fixture(source,output):
     target=Path(output)/"shopping-cash.generated.cpp"

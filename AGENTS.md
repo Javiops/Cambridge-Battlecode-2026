@@ -10,13 +10,16 @@ Translate legacy wording when bringing it into the foundation.
 1. [Human quick start](bots/foundation/README.md).
 2. The relevant topic in the [tactics handbook](docs/tactics/README.md).
 3. [Decision contract](docs/tactics/cycle-decision-contract.md) for mission selection;
-   its status is Planned, so do not assume arbitration is already implemented.
-4. `bots/foundation/src/actions.h` and its tests before changing action behavior.
+   full mission logic remains Planned. The current priority selector is a scaffold.
+4. [Policy integration contract](bots/foundation/INTEGRATION.md), `src/planner.h`,
+   `src/actions.h` and their tests (paths are relative to `bots/foundation`).
 
 ## Safe scope and collaboration
 
 - Work on a task branch from the team's foundation branch, currently
   `fran/foundation-baseline`. Do not overwrite a teammate's changes.
+  Until PR #38 merges, target task PRs at `fran/foundation-baseline`; after it
+  merges, branch from updated `main` and target `main`.
 - Keep the 25 bot source trees in `bots/foundation/baseline.json` unchanged.
   Never regenerate that manifest merely to make a failing check pass.
 - Keep each PR focused on one idea. Agree interface changes with the affected
@@ -34,7 +37,11 @@ Translate legacy wording when bringing it into the foundation.
    Distinguish a proposal from an implemented and measured policy.
 2. Add a failing regression scenario for the intended behavior or bug, then
    implement the smallest change under `bots/foundation`.
-3. Keep policy separate from engine mutations. During gameplay, only
+3. Put each policy in `src/policies/` and register it in `policies/registry.h`.
+   Return an optional `Proposal` from the immutable `PlanningContext`; never call the SDK
+   or mutate state inside a policy. Test competing policies and justify priorities.
+   Selection uses shared priority then stable ID, not registration order. Full
+   resource-cycle utility/feasibility is still planned. Keep policy separate from engine mutations. During gameplay, only
    `src/sdk_actions.h` calls mutating SDK actions; draft/end-turn lifecycle calls
    stay in `main.cpp`. Policies submit requests through the executor.
 4. Obtain a fresh snapshot with `Executor::observe()`, attach its epoch to the

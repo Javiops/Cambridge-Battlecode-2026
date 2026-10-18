@@ -22,7 +22,8 @@ int main() {
                         cambc::draft::pick(pick); break;
                     }
                 }
-            } else if (!tested) {
+            } else if (!tested && cambc::round_number()>=2) {
+                // The first play turn gets 2x fuel. Exercise the normal budget.
                 tested = true;
                 auto s = executor.observe(port);
                 auto old = s.epoch; ++old.round;
@@ -47,7 +48,7 @@ int main() {
                 s = executor.observe(port);
                 require(executor.execute(port,{Action::move,s.epoch,{p.x,p.y}}).outcome==Outcome::channel_active,
                     "active channel overwritten");
-                require(cambc::round_number()<=2 && cambc::fuel_remaining()>=Executor::reserve,
+                require(cambc::round_number()==2 && cambc::fuel_remaining()>=Executor::reserve,
                     "scenario suspended or exhausted execution reserve");
                 // Test-only completion marker, visible in official statistics.
                 cambc::self().cancel_recall();

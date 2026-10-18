@@ -1,53 +1,46 @@
-# Bot foundation
+# Foundation: human quick start
 
-PR1 provides action contracts and reproducible checks. The new bot **holds position**;
-competitive strategies will be migrated in later PRs. Keep using the existing bot for competition.
+This is the new bot's foundation. It currently **holds position**; keep using the
+existing competition bot. All new code, comments and documentation use English.
 
 ```mermaid
 flowchart TD
-    O[Observe] --> S[Snapshot with epoch]
-    S --> R[Action request]
-    R --> E[Executor]
-    E --> K[SDK]
-    K --> F[Refresh and classify result]
-    F --> O
+    I[Write strategy in tactics handbook] --> T[Add a scenario]
+    T --> C[Implement one small change]
+    C --> V[Run checks]
+    V --> P[Teammate reviews the pull request]
 ```
 
-**Run** — Python 3.12+, Node 24, and a C++20 compiler:
+**Start:** switch to branch `fran/foundation-baseline` on GitHub and open
+`bots/foundation`. For a local checkout, install Python 3.12+, Node 24 and a C++20
+compiler, then run from the repository root:
 
 ```sh
+git switch fran/foundation-baseline
 pip install cambc==2.2.5
 cambc init --yes
 python bots/foundation/check.py
 ```
 
-Windows with wasi-sdk: add `--wasi-cxx <path/to/clang++.exe>`.
-Use `--cli <path>` or `--engine <path>` when needed. The check requires the pinned
-official 0.0.3 engine; missing inputs fail. Evidence goes to `out/foundation/checks.json`.
+On Windows with wasi-sdk, add `--wasi-cxx <path/to/clang++.exe>` to the check.
+Optional overrides: `--cli <path>` and `--engine <path>`. Missing inputs fail;
+the engine must match the pinned official 0.0.3 build.
 
-**Change** — one idea, one branch, one reviewed PR:
+**Make a change:** create your own branch from the foundation branch. Write the
+trigger, action, abort rule, fallback and expected result in the relevant
+[tactic](../../docs/tactics/README.md), keeping its topic ID. Add a failing scenario,
+implement it, run the check, then open a PR linking the tactic and results.
+Competitive changes also pass the [team harness](../../harness/README.md).
 
-1. Write the trigger, proposed work, abort rule, fallback and expected result in the
-   relevant [tactic](../../docs/tactics/README.md); keep its stable topic ID.
-2. Add a failing scenario, then implement the smallest change under `bots/foundation`.
-3. Use `Executor::observe()` to obtain a fresh epoch; submit requests through
-   `Executor::execute()`. Inspect the named outcome and refresh before the next request.
-4. Run the check. Link the tactic, test and results in the PR. Competitive changes
-   also pass the [team harness](../../harness/README.md).
+**Find things:** `src/actions.h` = action contract; `src/sdk_actions.h` = SDK adapter;
+`src/main.cpp` = bot loop; `tests/` = scenarios;
+`out/foundation/checks.json` = generated evidence. Existing bot sources are frozen
+by `baseline.json`; the live upload is unverified.
 
-**Rules** — only `sdk_actions.h` mutates the SDK during gameplay. A move is not a
-channel start; a start is not completion. Rejected attempts invalidate old requests.
-Preserve active channels. Keep observations local: allies do not share vision.
-The 12k fuel reserve is an initial guard, not a proven bound for future features.
+**Four work areas:** runtime/adapters, cycle/navigation, combat, evaluation.
+Agree shared interfaces before splitting work; a teammate reviews every PR.
+Next: mission arbitration from the [decision contract](../../docs/tactics/cycle-decision-contract.md),
+then policies from the [clean v53 reference](https://github.com/Javiops/Cambridge-Battlecode-2026/tree/990046182a6d001b0b35b91ee58cd8e4145b753b/bots/v53_refactor).
 
-**Four owners** — runtime/adapters; cycle/navigation; combat; evaluation.
-Agree shared interfaces first; a teammate reviews each PR.
-
-**Baseline** — `baseline.json` pins all 25 existing bot source trees at `22b2792`.
-`python bots/foundation/baseline.py` verifies them. The live upload is **unverified**;
-match its exact ZIP using the existing online version tooling before promotion.
-
-**Next** — add mission proposals and arbitration using the existing
-[decision contract](../../docs/tactics/cycle-decision-contract.md). Migrate policies from
-the concurrently merged [clean v53 baseline](https://github.com/Javiops/Cambridge-Battlecode-2026/tree/990046182a6d001b0b35b91ee58cd8e4145b753b/bots/v53_refactor).
-PR1 does not yet supply arbitration, combat or farming.
+**Using an assistant?** Ask Codex to read [AGENTS.md](../../AGENTS.md), or Claude
+to read [CLAUDE.md](../../CLAUDE.md), before making changes.

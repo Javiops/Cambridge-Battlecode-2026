@@ -1,89 +1,92 @@
-# Cambridge Battlecode 2026 (CAMBC 2026a): nuestro bot
+# Cambridge Battlecode 2026 (CAMBC 2026a)
 
-> **[Tactics handbook](docs/tactics/README.md)** — Our living bot specification: 12 chapters, 96 decision topics, and detailed tactics maintained in English.
+C++ bots for [CAMBC 2026a](https://2026a.battlecode.co.uk).
 
-Bot en C++ para [CAMBC 2026a](https://2026a.battlecode.co.uk). La versión actual es la **v30** (`bots/v30`),
-la misma que está subida a la web como versión 30. Con la v29 llegamos al puesto 25 del ranking.
+**New foundation: start with the [short human guide](bots/foundation/README.md).**
+Coding assistants: read [AGENTS.md](AGENTS.md); Claude also has [CLAUDE.md](CLAUDE.md).
+The foundation currently holds position. Keep using the existing competition bot.
 
-## Cómo trabajamos: el harness
+Strategies live in the English [tactics handbook](docs/tactics/README.md):
+12 chapters and 96 decision topics. Write an idea there before implementing it.
 
-Las ideas pasan por cuatro etapas con una puerta con números en cada una (brainstorm -> desarrollo y puerta local
-`tools/gate.py` -> online A/B emparejado `online/lfl.py` -> disección `online/dissect.py` -> nuevas ideas). El
-pipeline completo, quién hace qué y dónde vive cada cosa (en inglés, para todo el equipo):
-**[harness/README.md](harness/README.md)**. El estado de cada idea: **[harness/IDEAS.md](harness/IDEAS.md)**
-(`python3 tools/idea.py board`).
+## Team workflow
 
-## Qué hay en el repo
+Ideas move through development and the local gate (`tools/gate.py`), paired online
+A/B evaluation (`online/lfl.py`), and analysis (`online/dissect.py`). See the
+[harness guide](harness/README.md) for the complete process and the
+[idea board](harness/IDEAS.md) for status (`python3 tools/idea.py board`).
 
-| carpeta | qué es |
-|---|---|
-| `bots/v30/src/` | el bot: `main.cpp` (draft, farmeo, decisiones de cada campeón), `fight.h` (pelea: kite, hechizos, foco), `params.h` (interruptores) |
-| `bots/spar11`, `spar12`, `spar16` | rivales de entrenamiento: el mismo motor con draft de lanzadores (Stellar, Tavi, Cassi&Issac, Willow, Prism). spar12 va en bola, spar16 prioriza matar a los de rango |
-| `tools/arena.py` | juega muchas partidas en paralelo y resume victorias, gemas, muertes y kills |
-| `tools/variante.sh` | crea una copia de un bot cambiando interruptores de `params.h` y la compila |
-| `tools/ab.py` | la prueba suelta: ¿es la variante mejor que la base? Compila las dos, juega todos los mapas por los dos lados y da un veredicto |
-| `tools/gate.py` | **la puerta del harness**: seguridad + mapas nuevos con parada temprana + panel de lanzadores + contraejemplos, y veredicto PASA/NO PASA por tipo de cambio |
-| `tools/idea.py` | el tablero de ideas (`harness/ideas/`, `harness/IDEAS.md`) |
-| `online/` | el bucle online: retos, resultados, comparación emparejada de versiones (`lfl.py`) y disección (`dissect.py`) |
-| `maps_gen/` | 44 mapas generados al azar. Ya hemos ajustado mucho sobre ellos: sirven para entrenar, no para decidir |
-| `maps_hold60/` | 60 mapas nuevos sellados (semilla 20261015): no ajustes nada mirándolos, son la comprobación final |
-| `maps_dev200/` | 200 mapas nuevos (semilla 4242): la muestra grande para decidir si un cambio pequeño sirve |
+## Repository map
 
-## Empezar
+| Path | Purpose |
+| --- | --- |
+| `bots/foundation/` | New action contracts, SDK adapter and reproducible checks |
+| `docs/tactics/` | Shared strategy specifications with stable topic IDs |
+| `bots/v30/src/` | Historical v30 bot: draft, farming, combat and parameter switches |
+| `bots/spar11`, `spar12`, `spar16` | Training opponents with ranged drafts; spar12 groups up, spar16 prioritizes ranged targets |
+| `tools/arena.py` | Parallel games and summaries of wins, gems, deaths and kills |
+| `tools/variante.sh` | Copy a bot, change `params.h` switches and compile it |
+| `tools/ab.py` | Compile and compare a variant against a baseline on both sides of each map |
+| `tools/gate.py` | Safety checks, fresh maps, ranged opponents and counterexamples; change-specific pass/fail verdict |
+| `tools/idea.py` | Manage `harness/ideas/` and `harness/IDEAS.md` |
+| `online/` | Challenges, results, paired version comparisons and analysis |
+| `maps_gen/` | 44 generated training maps; heavily tuned against, so unsuitable for final decisions |
+| `maps_hold60/` | 60 sealed holdout maps, seed 20261015; final evaluation only, never tune against them |
+| `maps_dev200/` | 200 development maps, seed 4242, for larger comparisons |
 
-```bash
-pip install cambc                 # CLI oficial
+## Historical bot workflow
+
+The commands below describe the existing v30 workflow. The previous README called
+v30 the live version and reported rank 25 with v29; those are historical claims,
+not a verified statement of the current upload. The foundation's
+[source manifest](bots/foundation/baseline.json) records the baseline uncertainty.
+
+```sh
+pip install cambc==2.2.5
 git clone https://github.com/Javiops/Cambridge-Battlecode-2026.git
 cd Cambridge-Battlecode-2026
-cambc init --yes                  # descarga el SDK, la toolchain y los 9 mapas oficiales en maps/
+cambc init --yes
 cambc build bots/v30
-cambc run bots/v30 bots/spar11 --map maps/corners.map26a -o out/partida
-cambc view out/partida            # ver la repetición
+cambc run bots/v30 bots/spar11 --map maps/corners.map26a -o out/example
+cambc view out/example
 ```
 
-## Probar un cambio
+Create a separate variant; keep the baseline unchanged:
 
-1. Crea una variante cambiando interruptores (no toques `bots/v30`):
-   ```bash
-   tools/variante.sh prueba1 v30 "#define P_FINISH 40"
-   ```
-   O copia `bots/v30` a `bots/mi_bot` y edita el código.
-2. Compárala con la base en una sola orden:
-   ```bash
-   python3 tools/ab.py bots/prueba1 bots/v30                              # oficiales + gen + hold60 (226 partidas, ~35 s con 4 núcleos)
-   python3 tools/ab.py bots/prueba1 bots/v30 --sets official,gen,hold,dev  # + 200 mapas nuevos (626 partidas, ~100 s)
-   ```
-   Cuenta **mapas**, no partidas: un mapa es tuyo solo si lo ganas por los dos lados. La columna `same game`
-   cuenta los mapas donde la variante jugó exactamente igual que la base (el lado decidió): son ruido.
-   El veredicto usa solo los mapas nuevos (hold, dev) y dice cuántos mapas harían falta si no está decidido.
-   Las partidas ya jugadas se guardan en `out/ab-cache/` (el motor es determinista) y no se repiten.
-3. Contra los rivales de entrenamiento sigue sirviendo `arena.py`:
-   ```bash
-   python3 tools/arena.py bots/prueba1 bots/spar11 --maps "maps/*.map26a" --sides both --jobs 4 --out out/p1_s11
-   ```
+```sh
+tools/variante.sh trial1 v30 "#define P_FINISH 40"
+python3 tools/ab.py bots/trial1 bots/v30
+python3 tools/ab.py bots/trial1 bots/v30 --sets official,gen,hold,dev
+python3 tools/arena.py bots/trial1 bots/spar11 --maps "maps/*.map26a" --sides both --jobs 4 --out out/trial1_s11
+```
 
-Cosas que hemos aprendido probando:
-- El motor es determinista: la misma partida sale igual siempre. Un cambio minúsculo puede cambiar varios
-  resultados por azar, así que solo cuenta una diferencia clara en muchas partidas.
-- Ganar en local no garantiza ganar online: los rivales reales pelean distinto. Por eso existen los spar.
-- Usa siempre `maps_gen/` además de los oficiales: la estrategia tiene que salir de cómo es el mapa
-  (tamaño del equipo, distancia entre bases, muros, altares), no de un plan para cada mapa.
+Count maps, not games: a map win requires winning on both sides. `same game`
+counts maps where the variant behaved exactly like the baseline and only the
+side decided the outcome. The A/B tool bases its verdict on fresh maps and
+reports the additional sample needed when results are inconclusive. Deterministic
+games are cached in `out/ab-cache/`.
 
-## Cómo funciona la v30 (resumen)
+Use generated maps as well as official maps. Small changes can swing individual
+results; require a clear difference across many maps. Local wins do not guarantee
+online wins, so include the training opponents and the harness gates.
 
-- **Draft según el mapa** (`P_DRAFTUNI 2`): si el camino entre las dos bases mide 45 casillas o menos es un mapa de
-  pelea y elegimos lanzadores como el número 1 del ranking (3 = Cassi&Issac, Ren, Stellar; 4 = + Tavi;
-  5 = Ryth, Stellar, Prism, Ren, Tavi). En mapas largos, draft de farmeo: Vendetta, Varg, Cassi&Issac, Ryth, Tavi.
-- **Pelea de lanzadores** (`P_KITE`, `P_SWEEP 3`): lanzar hechizos a 4 casillas, quietos, y mantener la distancia.
-- **Retirada** (`P_UNI_FLEE 35`, `P_RECALL_NEAR 5`): con menos del 35% de vida se va; hace recall si el enemigo
-  más cercano está a 5 o más casillas (el daño corta el recall).
-- **Rematar** (`P_FINISH 30`, nuevo en la v30): un enemigo a 6 casillas o menos con menos del 30% de vida se
-  persigue aunque huya.
-- **Compras** (`P_SHOPUNI 1`): Ren, Prism y Stellar compran foco (power) y algo de vida.
-- Todos los interruptores se definen al principio de `main.cpp` (`#ifndef P_...`), casi todos con un comentario. Valen 0 si
-  `params.h` no los define.
+## Historical v30 behavior
 
-## Subir una versión
+- Map-based draft (`P_DRAFTUNI 2`): paths between bases of at most 45 tiles select
+  ranged teams (3: Cassi&Issac, Ren, Stellar; 4: add Tavi; 5: Ryth, Stellar, Prism,
+  Ren, Tavi). Longer maps select Vendetta, Varg, Cassi&Issac, Ryth, Tavi for farming.
+- Ranged combat (`P_KITE`, `P_SWEEP 3`): cast at range four and keep distance.
+- Retreat (`P_UNI_FLEE 35`, `P_RECALL_NEAR 5`): retreat below 35% HP; recall when
+  the nearest enemy is at least five tiles away. Damage interrupts recall.
+- Finish (`P_FINISH 30`, introduced in v30): pursue an enemy within six tiles
+  when its HP is below 30%, even when it retreats.
+- Shopping (`P_SHOPUNI 1`): Ren, Prism and Stellar buy power and some health.
+- Switch defaults are near the start of `main.cpp` (`#ifndef P_...`); most have
+  comments. Undefined switches generally default to zero unless set in `params.h`.
 
-Solo la cuenta del equipo puede subir: `cambc login` y luego `cambc submit bots/NOMBRE`. La versión se activa
-desde la web. **Nunca subas al repo el token de login** (se guarda en `~/.config/cambc`, fuera del repo).
+## Competition uploads
+
+The existing upload process uses the team account: `cambc login`, then
+`cambc submit bots/NAME`; activation happens on the competition website.
+Upload and activation require an explicit team decision. Never commit login
+tokens (stored outside the repository in `~/.config/cambc`).

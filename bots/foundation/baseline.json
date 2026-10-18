@@ -1,0 +1,283 @@
+{
+  "schema": 1,
+  "repository": "Javiops/Cambridge-Battlecode-2026",
+  "source_commit": "22b279231c9f5506b64a490a5be8f1bc4820fee2",
+  "acquisition": "Authenticated GitHub main ZIP; commit from archive comment",
+  "live_upload": {
+    "verified": false,
+    "reason": "No exact uploaded artifact has been matched to this source snapshot."
+  },
+  "reference_bot": "study27-economy",
+  "reference_note": "Harness reference; README instead names v30. Both are frozen below.",
+  "protected_bots": {
+    "anti_feed": {
+      "sha256": "1e9b5487dd3fb6ab6fa216559bc61b0dfd7c4977508fffdd4beb29c373f9e9a0",
+      "files": {
+        "de_rules.h": "3e50429c96765f325ea3804c2bbb5c13ce26a4119fc7b8694f58def60531221b",
+        "fight.h": "a988aa261cf021aa5e79efe6d221c9b41199bf6d6670fbc5f0588ef1d4841f31",
+        "main.cpp": "ea83c90320ba2ea4ac93c9ce6817288d32967223be16f5c9d190f35daa40f8b5",
+        "opening_replace.h": "ca6680bae82b74b89fd0bb65573904246df8761d8b22e3ce8cb6bd93207207e7",
+        "params.h": "0c01346d63fb19ee666228e18ff769938468120ab4a22835745490716c7ebb4f",
+        "utility.h": "5e48af1229195c4b356a617fd7323f49efe2af3a09728f6eda91ed4975c2b580"
+      }
+    },
+    "capture_fix": {
+      "sha256": "05542496edf2fe830f6b270e5158f884592b9e16fe38d7d15d045ca3c18d26b7",
+      "files": {
+        "de_rules.h": "3e50429c96765f325ea3804c2bbb5c13ce26a4119fc7b8694f58def60531221b",
+        "fight.h": "a988aa261cf021aa5e79efe6d221c9b41199bf6d6670fbc5f0588ef1d4841f31",
+        "main.cpp": "e42496653ce12aaae3b78042c389de72823946c77514ca9614915c1de52b7afa",
+        "opening_replace.h": "ca6680bae82b74b89fd0bb65573904246df8761d8b22e3ce8cb6bd93207207e7",
+        "params.h": "c54f728e4a8ee1d9b9d02edca1b434caa05c55d35555533dfd4485b3d168b662",
+        "utility.h": "5e48af1229195c4b356a617fd7323f49efe2af3a09728f6eda91ed4975c2b580"
+      }
+    },
+    "clear_fixes": {
+      "sha256": "72d2cd8dd70cb5ee27562aded4ad8ddf2901fd60afc6bba3e2064d9e3a33cb39",
+      "files": {
+        "de_rules.h": "3e50429c96765f325ea3804c2bbb5c13ce26a4119fc7b8694f58def60531221b",
+        "fight.h": "a988aa261cf021aa5e79efe6d221c9b41199bf6d6670fbc5f0588ef1d4841f31",
+        "main.cpp": "fe03686253f40f5be743ebe591cfa0ac22873814f75fefb13dad1afb43fcb44b",
+        "opening_replace.h": "ca6680bae82b74b89fd0bb65573904246df8761d8b22e3ce8cb6bd93207207e7",
+        "params.h": "1824cfdd47aa02dbb2b07fec481cbe592012dd0ffc3133e0badbac38db325c2f",
+        "utility.h": "5e48af1229195c4b356a617fd7323f49efe2af3a09728f6eda91ed4975c2b580"
+      }
+    },
+    "dynamic_tactics": {
+      "sha256": "b82b3c1c13259319e3418420ba527822973ce7504f75359ff362898b801a7bd0",
+      "files": {
+        "de_rules.h": "3e50429c96765f325ea3804c2bbb5c13ce26a4119fc7b8694f58def60531221b",
+        "fight.h": "190541aed8be8c0ebc7e05b3304bae86da3d2660bf01bda05f15944d0716fd32",
+        "main.cpp": "662a038cf4453db290e238f2a2a79667efbc08feee8190bd2d4f016b7f72fd42",
+        "opening_replace.h": "ca6680bae82b74b89fd0bb65573904246df8761d8b22e3ce8cb6bd93207207e7",
+        "params.h": "ac7d4cc96cb923889f3d8bfbcaf4f226c44313d3f4bc5e49aa1014ddd19f8f50",
+        "utility.h": "5e48af1229195c4b356a617fd7323f49efe2af3a09728f6eda91ed4975c2b580"
+      }
+    },
+    "finish_step_only": {
+      "sha256": "4caeeec4ee8f297e29315e3ad34029ee303073e9f06d765ed996897546b3b3f4",
+      "files": {
+        "de_rules.h": "3e50429c96765f325ea3804c2bbb5c13ce26a4119fc7b8694f58def60531221b",
+        "fight.h": "190541aed8be8c0ebc7e05b3304bae86da3d2660bf01bda05f15944d0716fd32",
+        "main.cpp": "2f5e965cc267b32bbe2ec2fb4182f56dbe1f0ffba4861b97d1a8288b00417e77",
+        "opening_replace.h": "ca6680bae82b74b89fd0bb65573904246df8761d8b22e3ce8cb6bd93207207e7",
+        "params.h": "d2f3a600357f56bd5a2c10135275d7f5a0ec12a7f6e051e644bb8c86739768ce",
+        "utility.h": "5e48af1229195c4b356a617fd7323f49efe2af3a09728f6eda91ed4975c2b580"
+      }
+    },
+    "loot_guard": {
+      "sha256": "7c5136c74fc6193182845c928c1518d2b07bb575b3b8cacfe01e23fc56eca13b",
+      "files": {
+        "de_rules.h": "3e50429c96765f325ea3804c2bbb5c13ce26a4119fc7b8694f58def60531221b",
+        "fight.h": "190541aed8be8c0ebc7e05b3304bae86da3d2660bf01bda05f15944d0716fd32",
+        "main.cpp": "71acf34e06ccd7b8eebde11095a58cb8deeff716f7cfa6aa0030e3615cd6b085",
+        "opening_replace.h": "ca6680bae82b74b89fd0bb65573904246df8761d8b22e3ce8cb6bd93207207e7",
+        "params.h": "7d42e19d19cf75ea7f9314b02e9c6b8edc4cffebe4ae63035a4c85ce74ecf0ae",
+        "utility.h": "5e48af1229195c4b356a617fd7323f49efe2af3a09728f6eda91ed4975c2b580"
+      }
+    },
+    "loot_preposition": {
+      "sha256": "c536669aaf38d5e299ada6966546f180fc626cbd36212c1d47ea34ed75cc6331",
+      "files": {
+        "de_rules.h": "3e50429c96765f325ea3804c2bbb5c13ce26a4119fc7b8694f58def60531221b",
+        "fight.h": "190541aed8be8c0ebc7e05b3304bae86da3d2660bf01bda05f15944d0716fd32",
+        "main.cpp": "1df168b72815b877caf17a402cf4c550a7b1f9b3dc276573366c185a5e041afc",
+        "opening_replace.h": "ca6680bae82b74b89fd0bb65573904246df8761d8b22e3ce8cb6bd93207207e7",
+        "params.h": "46a88a562dfe83609f4841511cb64588bce33a7cceb7352e78ef5229fca28251",
+        "utility.h": "5e48af1229195c4b356a617fd7323f49efe2af3a09728f6eda91ed4975c2b580"
+      }
+    },
+    "own_capture_only": {
+      "sha256": "4d38f22eb6a0943a54a0267d080fad6623088b89133df1a0d20b64ba3d53543c",
+      "files": {
+        "de_rules.h": "3e50429c96765f325ea3804c2bbb5c13ce26a4119fc7b8694f58def60531221b",
+        "fight.h": "190541aed8be8c0ebc7e05b3304bae86da3d2660bf01bda05f15944d0716fd32",
+        "main.cpp": "dedf104313bf7fb07420363ee923fe9d9ac16d8560a4447cace9c836a4be21ea",
+        "opening_replace.h": "ca6680bae82b74b89fd0bb65573904246df8761d8b22e3ce8cb6bd93207207e7",
+        "params.h": "2e3032605fcd33fd821ad7207ded1e7dd1e90417a19164ecfb7bd8260a4e5166",
+        "utility.h": "5e48af1229195c4b356a617fd7323f49efe2af3a09728f6eda91ed4975c2b580"
+      }
+    },
+    "spar11": {
+      "sha256": "10dcde7b579acb322da8bfe8672af012f38b8107dc665e072f95ce8510a90e03",
+      "files": {
+        "fight.h": "40e22492d61a9a79907b20e26ae536787952759d2fe4333771aa2415a461b362",
+        "main.cpp": "0bf959d3143110e3e6c29bae8c8bb035b60131230dd8d92912ed5fa8d3769684",
+        "params.h": "73e598fae85e7f68e127543bc358b10715c234e8887d0966fdd84569f06b20d5"
+      }
+    },
+    "spar12": {
+      "sha256": "d7a21ff7ec630c9d34df1f79edab3f24ca46782b93521a717efe0e25df85cbe5",
+      "files": {
+        "fight.h": "40e22492d61a9a79907b20e26ae536787952759d2fe4333771aa2415a461b362",
+        "main.cpp": "0bf959d3143110e3e6c29bae8c8bb035b60131230dd8d92912ed5fa8d3769684",
+        "params.h": "0c8fdf62cabab7d1aa462d791f9680405c00132d6d324dbeb59f1749a7d003cf"
+      }
+    },
+    "spar16": {
+      "sha256": "882bf9a308b8cf375581fdcc4f90d931d47da6087463f63f7442baf45a2a98f1",
+      "files": {
+        "fight.h": "82eac085aa0eef23f311ff49972709801e5b009ee5b495710ddd20d0ea8c5169",
+        "main.cpp": "56c1771b6fcc83eafbf6afd237b15741738958f2b4e0d8eaa4732e410e8dcc25",
+        "params.h": "f9b7b55d7958bd012accf0e18aaef5fba91ed3d21fc06330094844b57bb9ccaf"
+      }
+    },
+    "study25": {
+      "sha256": "359f6ce3d330127b79eb3fdfc0a93051c52d8433c2826642c87fdc7d399a2f4f",
+      "files": {
+        "de_rules.h": "3e50429c96765f325ea3804c2bbb5c13ce26a4119fc7b8694f58def60531221b",
+        "fight.h": "82eac085aa0eef23f311ff49972709801e5b009ee5b495710ddd20d0ea8c5169",
+        "main.cpp": "cff7420d7c460ae5d0aaa0f9a8c038999ff34a92af54dd0cafb36e5a46d96b03",
+        "opening_replace.h": "ca6680bae82b74b89fd0bb65573904246df8761d8b22e3ce8cb6bd93207207e7",
+        "params.h": "34980fe043eb588e19acf472ec833791fcb20bc826387ab4f1493697ba820ca6",
+        "utility.h": "5e48af1229195c4b356a617fd7323f49efe2af3a09728f6eda91ed4975c2b580"
+      }
+    },
+    "study27-economy": {
+      "sha256": "be39320f276871edd8c172e67b77b68d43c32d9209f01e9985769a490c4659e7",
+      "files": {
+        "de_rules.h": "3e50429c96765f325ea3804c2bbb5c13ce26a4119fc7b8694f58def60531221b",
+        "fight.h": "5fb073f23ce41a5f6d07fba3aa55a016582a46ac54c4f8316ee6c96ebe92a7bb",
+        "main.cpp": "9872dbba42d7c16e795b16b8c273d3e0a7cae1742d0fbd39e7614340849ba14e",
+        "opening_replace.h": "ca6680bae82b74b89fd0bb65573904246df8761d8b22e3ce8cb6bd93207207e7",
+        "params.h": "d99ef2cecff65f7851efb491bb4691d40ddeaaa6a96499e13eddec814fdc1372",
+        "utility.h": "5e48af1229195c4b356a617fd7323f49efe2af3a09728f6eda91ed4975c2b580"
+      }
+    },
+    "team_baseline": {
+      "sha256": "5a41974ecdacb5483374712fd8d252d34dc9c1e24cb03a830f9237284ef44e22",
+      "files": {
+        "de_rules.h": "3e50429c96765f325ea3804c2bbb5c13ce26a4119fc7b8694f58def60531221b",
+        "draft_plan.h": "4908ee64a900aed17bc587b95e19ba148692d6c4d3efc56d0640c5c6ebdb00c3",
+        "fight.h": "2eaa9a671c634d499029f251a6eef66dbd6be052927d3cc8ca8012f4ecc35014",
+        "main.cpp": "042fc970c76e3ca35679d6002a3e6bb6f6cbccf5d9b275602a8e72d34ed3fb71",
+        "mapplan.h": "7b01346e46a21d2339533095a21655c3f83d3f4ef28efaa7d142fb7609df247e",
+        "mapplan_game.h": "167f85bf357b70d797e8612f447b7719f956a974af269286fa32f53569948fb6",
+        "opening_replace.h": "ca6680bae82b74b89fd0bb65573904246df8761d8b22e3ce8cb6bd93207207e7",
+        "params.h": "76327d5c5356a1524ea13d7aecd09f3230fa407049d56c0ba9e393d2e553ae03",
+        "profile.h": "fe7e170baa2f69e3beba2fe344c19ade35bfd3cad5516307d2b6e2575571f551",
+        "track.h": "c42448671f1a23f4987182648fd131e3182a7fee47970b20baaf0444ca7f5a0a",
+        "utility.h": "5904961939c2ff51d931b94f7b96884258395477c0ae377ca2a8e3436a5cfeb8",
+        "verdict.h": "cea061699b7b7a10e81d5484633dbcb51c100516f8b80e29854bba4f6701e5ee"
+      }
+    },
+    "test_all_off": {
+      "sha256": "010ae3a399092c0664348ed38f2a046698f3b6c7bab292074ee1efaeb5562197",
+      "files": {
+        "de_rules.h": "3e50429c96765f325ea3804c2bbb5c13ce26a4119fc7b8694f58def60531221b",
+        "fight.h": "190541aed8be8c0ebc7e05b3304bae86da3d2660bf01bda05f15944d0716fd32",
+        "main.cpp": "662a038cf4453db290e238f2a2a79667efbc08feee8190bd2d4f016b7f72fd42",
+        "opening_replace.h": "ca6680bae82b74b89fd0bb65573904246df8761d8b22e3ce8cb6bd93207207e7",
+        "params.h": "58d46ec297b5b3b39b532e9a1425e46697c16d5db7011555b10c8e42ab790148",
+        "utility.h": "5e48af1229195c4b356a617fd7323f49efe2af3a09728f6eda91ed4975c2b580"
+      }
+    },
+    "test_p_adaptive_jackpot": {
+      "sha256": "f129c3569d829ee064f91406211dc1fae36c4bd95065b4041baf431fd2317104",
+      "files": {
+        "de_rules.h": "3e50429c96765f325ea3804c2bbb5c13ce26a4119fc7b8694f58def60531221b",
+        "fight.h": "190541aed8be8c0ebc7e05b3304bae86da3d2660bf01bda05f15944d0716fd32",
+        "main.cpp": "662a038cf4453db290e238f2a2a79667efbc08feee8190bd2d4f016b7f72fd42",
+        "opening_replace.h": "ca6680bae82b74b89fd0bb65573904246df8761d8b22e3ce8cb6bd93207207e7",
+        "params.h": "be0bd0daf244090efe82f1b629023c5e76424944f8561fac7cf91f5dfd3e02ec",
+        "utility.h": "5e48af1229195c4b356a617fd7323f49efe2af3a09728f6eda91ed4975c2b580"
+      }
+    },
+    "test_p_death_regroup": {
+      "sha256": "c79cbdd5b5776d54d6f2560f3ab3366ef6a994f8deb4454f6b925f222eabe15c",
+      "files": {
+        "de_rules.h": "3e50429c96765f325ea3804c2bbb5c13ce26a4119fc7b8694f58def60531221b",
+        "fight.h": "190541aed8be8c0ebc7e05b3304bae86da3d2660bf01bda05f15944d0716fd32",
+        "main.cpp": "662a038cf4453db290e238f2a2a79667efbc08feee8190bd2d4f016b7f72fd42",
+        "opening_replace.h": "ca6680bae82b74b89fd0bb65573904246df8761d8b22e3ce8cb6bd93207207e7",
+        "params.h": "991b1caf3eb1cbb4f63ef91c50e163746c4e0bf8be12da69636d202fe2bc3507",
+        "utility.h": "5e48af1229195c4b356a617fd7323f49efe2af3a09728f6eda91ed4975c2b580"
+      }
+    },
+    "test_p_dynamic_combat": {
+      "sha256": "13bb4c412c80690f5e92105722aebb469f49476ac63c781bfd256a3c563698cc",
+      "files": {
+        "de_rules.h": "3e50429c96765f325ea3804c2bbb5c13ce26a4119fc7b8694f58def60531221b",
+        "fight.h": "190541aed8be8c0ebc7e05b3304bae86da3d2660bf01bda05f15944d0716fd32",
+        "main.cpp": "662a038cf4453db290e238f2a2a79667efbc08feee8190bd2d4f016b7f72fd42",
+        "opening_replace.h": "ca6680bae82b74b89fd0bb65573904246df8761d8b22e3ce8cb6bd93207207e7",
+        "params.h": "13596fe55afe614a740e518502ad94b82e17873c83dac1d9213c524aafc4f853",
+        "utility.h": "5e48af1229195c4b356a617fd7323f49efe2af3a09728f6eda91ed4975c2b580"
+      }
+    },
+    "test_p_dynamic_finish": {
+      "sha256": "6e22d427c207452486e4d7736b32c6e83f18de3b6015ebf61924bf6c8cd85840",
+      "files": {
+        "de_rules.h": "3e50429c96765f325ea3804c2bbb5c13ce26a4119fc7b8694f58def60531221b",
+        "fight.h": "190541aed8be8c0ebc7e05b3304bae86da3d2660bf01bda05f15944d0716fd32",
+        "main.cpp": "662a038cf4453db290e238f2a2a79667efbc08feee8190bd2d4f016b7f72fd42",
+        "opening_replace.h": "ca6680bae82b74b89fd0bb65573904246df8761d8b22e3ce8cb6bd93207207e7",
+        "params.h": "3ad119619d91906be18fe264ec82a7a8d1a8f48b236d7ba0466d9a3fc0e027f1",
+        "utility.h": "5e48af1229195c4b356a617fd7323f49efe2af3a09728f6eda91ed4975c2b580"
+      }
+    },
+    "test_p_support_kite": {
+      "sha256": "27d7e1c06a2158679609b0410310d9470814ae382401f116b982949dc26891eb",
+      "files": {
+        "de_rules.h": "3e50429c96765f325ea3804c2bbb5c13ce26a4119fc7b8694f58def60531221b",
+        "fight.h": "190541aed8be8c0ebc7e05b3304bae86da3d2660bf01bda05f15944d0716fd32",
+        "main.cpp": "662a038cf4453db290e238f2a2a79667efbc08feee8190bd2d4f016b7f72fd42",
+        "opening_replace.h": "ca6680bae82b74b89fd0bb65573904246df8761d8b22e3ce8cb6bd93207207e7",
+        "params.h": "f008170b2afe3cc4aec0fa8cd34ddc85dd4547e151b2e6e1b368a0f5ec5f2a36",
+        "utility.h": "5e48af1229195c4b356a617fd7323f49efe2af3a09728f6eda91ed4975c2b580"
+      }
+    },
+    "test_p_support_retreat": {
+      "sha256": "e4a1519a5a3a5d245d26b5733d3bf8643d66f372a118c8a70f695dc01ec10fa2",
+      "files": {
+        "de_rules.h": "3e50429c96765f325ea3804c2bbb5c13ce26a4119fc7b8694f58def60531221b",
+        "fight.h": "190541aed8be8c0ebc7e05b3304bae86da3d2660bf01bda05f15944d0716fd32",
+        "main.cpp": "662a038cf4453db290e238f2a2a79667efbc08feee8190bd2d4f016b7f72fd42",
+        "opening_replace.h": "ca6680bae82b74b89fd0bb65573904246df8761d8b22e3ce8cb6bd93207207e7",
+        "params.h": "25a2c02c38e2470df62bfd710eb2ca50b7db34d19cbbe4233e0e1e65932252da",
+        "utility.h": "5e48af1229195c4b356a617fd7323f49efe2af3a09728f6eda91ed4975c2b580"
+      }
+    },
+    "v30": {
+      "sha256": "27e3ca546fd644a58a7914339a17bbf18ed9130f0a94e5c3108f8fd18e12b881",
+      "files": {
+        "fight.h": "1eb03914daadfbf1f0dc244f74cd9d58f7abb2229276b6653dcc8a04a82ff9e9",
+        "main.cpp": "68a4679cc08f7f2f789f3b5fe0bf7b8d4293162a5119587fa397f283a0cb88ce",
+        "params.h": "69582908ba5e05c1c50af4cf7dd8f3e7fb0194ac57738bdf1df95914915b679c"
+      }
+    },
+    "wards_camps": {
+      "sha256": "d13eefdd32e0898e5e36d5934cbcd7b4113fd4118138a43ccc5c609c11e26042",
+      "files": {
+        "de_rules.h": "3e50429c96765f325ea3804c2bbb5c13ce26a4119fc7b8694f58def60531221b",
+        "fight.h": "190541aed8be8c0ebc7e05b3304bae86da3d2660bf01bda05f15944d0716fd32",
+        "main.cpp": "662a038cf4453db290e238f2a2a79667efbc08feee8190bd2d4f016b7f72fd42",
+        "opening_replace.h": "ca6680bae82b74b89fd0bb65573904246df8761d8b22e3ce8cb6bd93207207e7",
+        "params.h": "726a61400873fa96577a29be40fcb6a429c0f5ca3c3aaf5bfd6990673caa3df1",
+        "utility.h": "b13f5bd573829ade8b122ed95785f83ab7b8a37a3bbbcb36e3fa36e1b505bd47"
+      }
+    },
+    "wards_old": {
+      "sha256": "e8932644ec425dfe7f46bee4474556671ce1c93b2a21055dc3d667c055f3bceb",
+      "files": {
+        "de_rules.h": "3e50429c96765f325ea3804c2bbb5c13ce26a4119fc7b8694f58def60531221b",
+        "fight.h": "190541aed8be8c0ebc7e05b3304bae86da3d2660bf01bda05f15944d0716fd32",
+        "main.cpp": "662a038cf4453db290e238f2a2a79667efbc08feee8190bd2d4f016b7f72fd42",
+        "opening_replace.h": "ca6680bae82b74b89fd0bb65573904246df8761d8b22e3ce8cb6bd93207207e7",
+        "params.h": "5ba5553d79b7a3ac3aab6a7a20feb20f03db8ddbb28b6cee3671ff69c40bf1a5",
+        "utility.h": "5e48af1229195c4b356a617fd7323f49efe2af3a09728f6eda91ed4975c2b580"
+      }
+    },
+    "wards_routes": {
+      "sha256": "2930de9cbe80893fafe8c2fd1d7cfd0adcba86527d06f91290cebff1ffd8eb33",
+      "files": {
+        "de_rules.h": "3e50429c96765f325ea3804c2bbb5c13ce26a4119fc7b8694f58def60531221b",
+        "fight.h": "190541aed8be8c0ebc7e05b3304bae86da3d2660bf01bda05f15944d0716fd32",
+        "main.cpp": "662a038cf4453db290e238f2a2a79667efbc08feee8190bd2d4f016b7f72fd42",
+        "opening_replace.h": "ca6680bae82b74b89fd0bb65573904246df8761d8b22e3ce8cb6bd93207207e7",
+        "params.h": "b364c369fa472285ce3f08e4c9c691b10995aa848d6b7a60d6248a7240589d97",
+        "utility.h": "b13f5bd573829ade8b122ed95785f83ab7b8a37a3bbbcb36e3fa36e1b505bd47"
+      }
+    }
+  }
+}

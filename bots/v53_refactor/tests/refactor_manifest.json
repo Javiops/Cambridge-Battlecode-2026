@@ -1,0 +1,89 @@
+{
+  "original_main_sha256": "b232793121312cbd2745d67afb254aea086632164eeeccd2eda914b64ac8c1ba",
+  "unchanged_headers_sha256": {
+    "src/opening_replace.h": "ca6680bae82b74b89fd0bb65573904246df8761d8b22e3ce8cb6bd93207207e7",
+    "src/profile.h": "fe7e170baa2f69e3beba2fe344c19ade35bfd3cad5516307d2b6e2575571f551",
+    "src/fight.h": "2c6d8df473b2fae9dae3a42fb3ee585ab3a47b4f5435295a22c88347506e4217",
+    "src/mapplan_game.h": "c9a51887a7ffa38d7319ddab40de3a12aa063aae4cc3e989413f59ff44007948",
+    "src/params.h": "d3743d3b0b887fe751449cc7bbfdc21e2e86202ebfb1c5bbd188ce31cfcb7b56",
+    "src/track.h": "c42448671f1a23f4987182648fd131e3182a7fee47970b20baaf0444ca7f5a0a",
+    "src/mapplan.h": "7b01346e46a21d2339533095a21655c3f83d3f4ef28efaa7d142fb7609df247e",
+    "src/utility.h": "5e48af1229195c4b356a617fd7323f49efe2af3a09728f6eda91ed4975c2b580",
+    "src/de_rules.h": "3e50429c96765f325ea3804c2bbb5c13ce26a4119fc7b8694f58def60531221b",
+    "src/verdict.h": "7dd1b33cb8b86886d9a8acaca838f79882312f6122cf18ff9609b24ec167e335"
+  },
+  "fragments": [
+    {
+      "file": "legacy_config.inc",
+      "original_start_line": 73,
+      "original_end_line": 482,
+      "description": "Legacy compile-time parameters and defaults. No values changed."
+    },
+    {
+      "file": "runtime_foundation.inc",
+      "original_start_line": 483,
+      "original_end_line": 674,
+      "description": "Shared globals, instrumentation and lightweight primitives."
+    },
+    {
+      "file": "draft_impl.inc",
+      "original_start_line": 675,
+      "original_end_line": 898,
+      "description": "Draft pick ordering, draft-memory serialization and map draft heuristics."
+    },
+    {
+      "file": "game_state.inc",
+      "original_start_line": 899,
+      "original_end_line": 1213,
+      "description": "World state, champion and group models, abilities and cached rosters."
+    },
+    {
+      "file": "setup_shop.inc",
+      "original_start_line": 1214,
+      "original_end_line": 1648,
+      "description": "Startup, map geometry, path initialization, roles and item purchases."
+    },
+    {
+      "file": "movement_actions.inc",
+      "original_start_line": 1649,
+      "original_end_line": 1928,
+      "description": "Movement, pathfinding and basic combat action helpers."
+    },
+    {
+      "file": "team_camp_planning.inc",
+      "original_start_line": 1929,
+      "original_end_line": 2367,
+      "description": "Shared memory, claims, camp data, group selection and squad estimates."
+    },
+    {
+      "file": "banking_tactics.inc",
+      "original_start_line": 2368,
+      "original_end_line": 2723,
+      "description": "Tribute routing, retreat and tactical spell helpers; legacy ordering preserved."
+    },
+    {
+      "file": "capture_farming.inc",
+      "original_start_line": 2724,
+      "original_end_line": 3213,
+      "description": "Capture arbitration, resource farming and camp pursuit."
+    },
+    {
+      "file": "turn_policy.inc",
+      "original_start_line": 3214,
+      "original_end_line": 4063,
+      "description": "Strategic/tactical turn decision sequence and the active early returns."
+    },
+    {
+      "file": "diagnostics.inc",
+      "original_start_line": 4064,
+      "original_end_line": 4167,
+      "description": "Logging and debug instrumentation."
+    },
+    {
+      "file": "spell_sweep.inc",
+      "original_start_line": 4168,
+      "original_end_line": 4407,
+      "description": "Pre/post-turn spell scheduling and rooted follow-up attacks."
+    }
+  ]
+}

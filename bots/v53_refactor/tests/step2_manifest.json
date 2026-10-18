@@ -1,0 +1,24 @@
+{
+  "base": "v53-refactor-step1",
+  "previous_main_sha256": "3e5b3e52c1d12c65b4ddf27deba4849d200f55769c44e23911cca516bf5e1ca6",
+  "previous_turn_policy_sha256": "07bbe595d73aa01a86b704a5c79a4972d698758ade8472334137070e07274672",
+  "new_includes": [
+    "turn_helpers.inc",
+    "turn_policy.inc",
+    "turn_labels.inc",
+    "run_loop.inc"
+  ],
+  "original_main_sha256": "b232793121312cbd2745d67afb254aea086632164eeeccd2eda914b64ac8c1ba",
+  "unchanged_headers_sha256": {
+    "src/opening_replace.h": "ca6680bae82b74b89fd0bb65573904246df8761d8b22e3ce8cb6bd93207207e7",
+    "src/profile.h": "fe7e170baa2f69e3beba2fe344c19ade35bfd3cad5516307d2b6e2575571f551",
+    "src/fight.h": "2c6d8df473b2fae9dae3a42fb3ee585ab3a47b4f5435295a22c88347506e4217",
+    "src/mapplan_game.h": "c9a51887a7ffa38d7319ddab40de3a12aa063aae4cc3e989413f59ff44007948",
+    "src/params.h": "d3743d3b0b887fe751449cc7bbfdc21e2e86202ebfb1c5bbd188ce31cfcb7b56",
+    "src/track.h": "c42448671f1a23f4987182648fd131e3182a7fee47970b20baaf0444ca7f5a0a",
+    "src/mapplan.h": "7b01346e46a21d2339533095a21655c3f83d3f4ef28efaa7d142fb7609df247e",
+    "src/utility.h": "5e48af1229195c4b356a617fd7323f49efe2af3a09728f6eda91ed4975c2b580",
+    "src/de_rules.h": "3e50429c96765f325ea3804c2bbb5c13ce26a4119fc7b8694f58def60531221b",
+    "src/verdict.h": "7dd1b33cb8b86886d9a8acaca838f79882312f6122cf18ff9609b24ec167e335"
+  }
+}

@@ -1,0 +1,65 @@
+// Runs the real SdkPort and Executor inside a metered Wasmtime guest.
+#include <cambc.h>
+#include <cstdio>
+#include <stdexcept>
+#include "sdk_actions.h"
+using namespace foundation;
+
+void require(bool ok, const char* message) {
+    if (!ok) throw std::runtime_error(message);
+}
+int main() {
+    Executor executor;
+    SdkPort port;
+    bool tested = false;
+    for (;;) {
+        try {
+            if (cambc::is_draft()) {
+                auto chosen = cambc::draft::current_draft(cambc::team::ally);
+                for (int i=0; i<11; ++i) {
+                    auto pick = static_cast<cambc::champion_draft>(i);
+                    if (std::find(chosen.begin(),chosen.end(),pick)==chosen.end()) {
+                        cambc::draft::pick(pick); break;
+                    }
+                }
+            } else if (!tested) {
+                tested = true;
+                auto s = executor.observe(port);
+                auto old = s.epoch; ++old.round;
+                require(executor.execute(port,{Action::recall,old}).outcome==Outcome::stale,"stale plan executed");
+                auto rejected = executor.execute(port,{Action::move,s.epoch,{-1,-1}});
+                require(rejected.outcome==Outcome::rejected && rejected.engine_error!=0,"lost SDK rejection");
+                require(executor.execute(port,{Action::recall,s.epoch}).outcome==Outcome::stale,"reused sibling proposal");
+                bool moved = false;
+                const auto p = cambc::self().position();
+                for (int dx=-1; dx<=1 && !moved; ++dx) {
+                    for (int dy=-1; dy<=1 && !moved; ++dy) {
+                        if (!dx && !dy) continue;
+                        s = executor.observe(port);
+                        auto r = executor.execute(port,{Action::move,s.epoch,{p.x+dx,p.y+dy}});
+                        moved = r.outcome==Outcome::moved;
+                    }
+                }
+                require(moved,"could not exercise a legal move");
+                s = executor.observe(port);
+                auto recall = executor.execute(port,{Action::recall,s.epoch});
+                require(recall.outcome==Outcome::recall_started,"recall start not confirmed");
+                s = executor.observe(port);
+                require(executor.execute(port,{Action::move,s.epoch,{p.x,p.y}}).outcome==Outcome::channel_active,
+                    "active channel overwritten");
+                require(cambc::round_number()<=2 && cambc::fuel_remaining()>=Executor::reserve,
+                    "scenario suspended or exhausted execution reserve");
+                // Test-only completion marker, visible in official statistics.
+                cambc::self().cancel_recall();
+                require(cambc::self().place_ward(cambc::self().position()),"completion marker failed");
+                std::printf("FOUNDATION_GUEST_PASS round=%u fuel=%llu\n",cambc::round_number(),
+                    static_cast<unsigned long long>(cambc::fuel_remaining()));
+                std::fflush(stdout);
+            }
+        } catch (const std::exception& e) {
+            std::printf("FOUNDATION_GUEST_FAIL %s\n",e.what()); std::fflush(stdout);
+            return 1;
+        } catch (...) { std::puts("FOUNDATION_GUEST_FAIL unknown"); std::fflush(stdout); return 1; }
+        cambc::end_turn();
+    }
+}

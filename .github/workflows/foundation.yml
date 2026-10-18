@@ -1,10 +1,10 @@
 name: Foundation contracts
 on:
   pull_request:
-    paths: ['bots/foundation/**', '.github/workflows/foundation.yml']
+    paths: ['bots/**', 'docs/tactics/**', 'AGENTS.md', 'CLAUDE.md', '.github/workflows/foundation.yml']
   push:
     branches: ['fran/foundation-baseline']
-    paths: ['bots/foundation/**', '.github/workflows/foundation.yml']
+    paths: ['bots/**', 'docs/tactics/**', 'AGENTS.md', 'CLAUDE.md', '.github/workflows/foundation.yml']
 permissions:
   contents: read
 jobs:

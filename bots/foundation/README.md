@@ -4,7 +4,7 @@ PR1 provides action contracts and reproducible checks. The new bot **holds posit
 competitive strategies will be migrated in later PRs. Keep using the existing bot for competition.
 
 ```mermaid
-flowchart LR
+flowchart TD
     O[Observe] --> S[Snapshot with epoch]
     S --> R[Action request]
     R --> E[Executor]

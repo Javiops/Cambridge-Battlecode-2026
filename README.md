@@ -1,5 +1,7 @@
 # Cambridge Battlecode 2026 (CAMBC 2026a): nuestro bot
 
+[New bot foundation](bots/foundation/README.md) — short guide, action contracts and reproducible checks.
+
 > **[Tactics handbook](docs/tactics/README.md)** — Our living bot specification: 12 chapters, 96 decision topics, and detailed tactics maintained in English.
 
 Bot en C++ para [CAMBC 2026a](https://2026a.battlecode.co.uk). La versión actual es la **v30** (`bots/v30`),

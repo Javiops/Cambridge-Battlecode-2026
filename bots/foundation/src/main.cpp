@@ -2,6 +2,7 @@
 #include <cambc.h>
 #include <cstdio>
 #include "sdk_actions.h"
+#include "policies/registry.h"
 
 int main() {
     foundation::Executor executor;
@@ -18,8 +19,18 @@ int main() {
                 }
             } else {
                 const auto snapshot = executor.observe(port);
+                const auto decision = foundation::select(foundation::PlanningContext{snapshot},
+                    foundation::policies::registry);
+                if (decision.status == foundation::DecisionStatus::fault) {
+                    std::puts("foundation: policy selection fault");
+                    return 1;
+                }
+                if (decision.status == foundation::DecisionStatus::stale) {
+                    cambc::end_turn();
+                    continue;
+                }
                 const auto result = executor.execute(port,
-                    {foundation::Action::wait, snapshot.epoch});
+                    decision.request);
                 if (result.outcome == foundation::Outcome::fault) {
                     std::puts("foundation: observation/action fault");
                     return 1;

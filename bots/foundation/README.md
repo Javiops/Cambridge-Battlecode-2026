@@ -48,5 +48,6 @@ Agree shared interfaces first; a teammate reviews each PR.
 match its exact ZIP using the existing online version tooling before promotion.
 
 **Next** — add mission proposals and arbitration using the existing
-[decision contract](../../docs/tactics/cycle-decision-contract.md), then migrate one
-complete resource cycle. PR1 does not yet supply arbitration, combat or farming.
+[decision contract](../../docs/tactics/cycle-decision-contract.md). Migrate policies from
+the concurrently merged [clean v53 baseline](https://github.com/Javiops/Cambridge-Battlecode-2026/tree/990046182a6d001b0b35b91ee58cd8e4145b753b/bots/v53_refactor).
+PR1 does not yet supply arbitration, combat or farming.

@@ -3,7 +3,17 @@
 #include <cstdio>
 #include <stdexcept>
 #include "sdk_actions.h"
+#include "policies/registry.h"
 using namespace foundation;
+
+std::optional<Proposal> farm_proposal(const PlanningContext& context) {
+    const auto& s = context.actor;
+    return Proposal{{Action::move,s.epoch,{s.state.position.x+1,s.state.position.y}},Priority::ordinary};
+}
+std::optional<Proposal> recall_proposal(const PlanningContext& context) {
+    const auto& s = context.actor;
+    return Proposal{{Action::recall,s.epoch},Priority::survival};
+}
 
 void require(bool ok, const char* message) {
     if (!ok) throw std::runtime_error(message);
@@ -26,6 +36,9 @@ int main() {
                 // The first play turn gets 2x fuel. Exercise the normal budget.
                 tested = true;
                 auto s = executor.observe(port);
+                auto hold = select(PlanningContext{s},policies::registry);
+                require(hold.status==DecisionStatus::selected && hold.policy=="12.5.hold" &&
+                    hold.request.action==Action::wait,"production registry did not hold");
                 auto old = s.epoch; ++old.round;
                 require(executor.execute(port,{Action::recall,old}).outcome==Outcome::stale,"stale plan executed");
                 auto rejected = executor.execute(port,{Action::move,s.epoch,{-1,-1}});
@@ -43,9 +56,13 @@ int main() {
                 }
                 require(moved,"could not exercise a legal move");
                 s = executor.observe(port);
-                auto recall = executor.execute(port,{Action::recall,s.epoch});
+                const std::array competing{Policy{"08.1.farm",farm_proposal},Policy{"10.1.recall",recall_proposal}};
+                const auto chosen = select(PlanningContext{s},competing);
+                require(chosen.policy=="10.1.recall","competing policies spent the wrong action");
+                auto recall = executor.execute(port,chosen.request);
                 require(recall.outcome==Outcome::recall_started,"recall start not confirmed");
                 s = executor.observe(port);
+                require(select(PlanningContext{s},competing).status==DecisionStatus::idle,"planner interrupted channel");
                 require(executor.execute(port,{Action::move,s.epoch,{p.x,p.y}}).outcome==Outcome::channel_active,
                     "active channel overwritten");
                 require(cambc::round_number()==2 && cambc::fuel_remaining()>=Executor::reserve,

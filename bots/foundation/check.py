@@ -7,12 +7,14 @@ from pathlib import Path
 import shutil
 import subprocess
 import sys
+import tempfile
 
 import baseline
 
 HERE = Path(__file__).resolve().parent
 ROOT = baseline.ROOT
 ENGINE_SHA = '1919c5a6f2ea039041071166aef38f6f1ede8d5c29b062db8c2e028109e3f96f'
+ENGINE_BUILD = 'd7e29ae3546357b011419c764204b7b9e2232bdb1b07868250c6b35d4c18d2a5'
 
 
 def executable(name):
@@ -51,6 +53,9 @@ def main():
     report.unlink(missing_ok=True)  # Clear the old PASS before validating any input.
     baseline.verify()
     before = baseline.source_identity(HERE/'src')
+    tests_before = baseline.source_identity(HERE/'tests')
+    runner_before = baseline.sha(Path(__file__))
+    manifest_before = baseline.sha(baseline.MANIFEST)
     cli, node = executable(args.cli), executable('node')
     engine = engine_path(args.engine)
     environment = {**os.environ, 'CAMBC_NO_UPDATE_CHECK': '1',
@@ -74,31 +79,31 @@ def main():
         raise RuntimeError(f'Expected cambc 2.2.5, got {version}; review and repin deliberately')
     run('baseline-tests',[sys.executable,HERE/'tests/baseline_test.py'])
     compiler = executable(args.wasi_cxx or args.cxx)
-    binary = output/('actions.wasm' if args.wasi_cxx else 'actions-test')
     flags = ['-std=c++20','-O2','-UNDEBUG']
     if args.wasi_cxx:
         sdk = Path(compiler).parent.parent/'share/wasi-sysroot'
         flags += ['-fwasm-exceptions','-mllvm','-wasm-use-legacy-eh=false','--no-wasm-opt',
                   '-isystem', str(sdk/'include/wasm32-wasip1/eh/c++/v1'),
                   '-L'+str(sdk/'lib/wasm32-wasip1/eh'),'-lunwind']
-    run('compile-contracts',[compiler,*flags,HERE/'tests/actions.cpp','-o',binary])
-    if args.wasi_cxx:
-        runner = output/'actions-run.mjs'
-        runner.write_text("import fs from 'node:fs';import{WASI}from'node:wasi';"
-            "const w=new WASI({version:'preview1',args:[],env:{},preopens:{}});"
-            "const{instance}=await WebAssembly.instantiate(fs.readFileSync(new URL('./actions.wasm',import.meta.url)),"
-            "{wasi_snapshot_preview1:w.wasiImport});w.start(instance);",encoding='utf-8')
-        run('executor-contracts',[node,runner])
-    else:
-        run('executor-contracts',[binary])
+    for suite in ('actions', 'planner'):
+        binary = output/(suite + ('.wasm' if args.wasi_cxx else '-test'))
+        run('compile-'+suite,[compiler,*flags,HERE/('tests/'+suite+'.cpp'),'-o',binary])
+        if args.wasi_cxx:
+            runner = output/(suite+'-run.mjs')
+            runner.write_text("import fs from 'node:fs';import{WASI}from'node:wasi';"
+                "const w=new WASI({version:'preview1',args:[],env:{},preopens:{}});"
+                "const{instance}=await WebAssembly.instantiate(fs.readFileSync(new URL('./"+suite+".wasm',import.meta.url)),"
+                "{wasi_snapshot_preview1:w.wasiImport});w.start(instance);",encoding='utf-8')
+            run(suite+'-contracts',[node,runner])
+        else:
+            run(suite+'-contracts',[binary])
     mechanics = json.loads(run('engine-cases',[node,HERE/'tests/engine.mjs',engine]))
     run('build-foundation',[cli,'build','bots/foundation','--release'])
-    guest = output/'guest'
+    guest = Path(tempfile.mkdtemp(prefix='guest-',dir=output))
     source = guest/'src'
-    source.mkdir(parents=True,exist_ok=True)
-    # Exact current headers, not a separately maintained test implementation.
-    for header in ('actions.h','sdk_actions.h'):
-        shutil.copyfile(HERE/'src'/header,source/header)
+    # Exact current modules, with only the entrypoint replaced by the guest test.
+    # A fresh tree prevents deleted headers/modules surviving from earlier runs.
+    shutil.copytree(HERE/'src',source)
     shutil.copyfile(HERE/'tests/guest.cpp',source/'main.cpp')
     run('build-guest',[cli,'build',guest,'--release'])
     games = []
@@ -129,19 +134,22 @@ def main():
         bad_events=[e for e in data['events'] if e['kind'] in ('fuelExhausted','resignation','botFault') and e['entries']]
         if bad_events or data['match']['roundsCompleted']!=2000 or data['match']['finalRoundPartial']:
             raise RuntimeError(f'Incomplete or fuel-exhausted guest game: {match}')
-        if data['match']['engineVersion']!='0.0.3':
-            raise RuntimeError('CLI game used a different engine version')
+        if data['match']['engineVersion']!='0.0.3' or data['match']['engineBuildHash']!=ENGINE_BUILD:
+            raise RuntimeError('CLI game used a different engine version/build; review before repinning')
         games.append({'side':side,'statistics_sha256':baseline.sha(stats),
                       'guest_instances':len(expected),'reserve_asserted_in_guest':12000,
                       'engine_build_hash':data['match']['engineBuildHash'],
                       'bot_faults':faults,'fuel_exhausted_events':0})
     baseline.verify()
-    if baseline.source_identity(HERE/'src') != before:
-        raise RuntimeError('Foundation sources changed while checks were running')
+    if (baseline.source_identity(HERE/'src') != before or
+            baseline.source_identity(HERE/'tests') != tests_before or
+            baseline.sha(Path(__file__)) != runner_before or
+            baseline.sha(baseline.MANIFEST) != manifest_before):
+        raise RuntimeError('Foundation sources, tests, runner or baseline changed while checks were running')
     result={'schema':1,'passed':True,'created_utc':datetime.now(timezone.utc).isoformat(),
-        'baseline_manifest_sha256':baseline.sha(baseline.MANIFEST),
-        'runner_sha256':baseline.sha(Path(__file__)),
-        'test_sources':baseline.source_identity(HERE/'tests'),
+        'baseline_manifest_sha256':manifest_before,
+        'runner_sha256':runner_before,
+        'test_sources':tests_before,
         'guest_sources':baseline.source_identity(source),
         'guest_artifact_sha256':baseline.sha(guest/'.cambc/build-release/bot-injected.wasm'),
         'node':{'version':run('node-version',[node,'--version']).strip(),'sha256':baseline.sha(node)},

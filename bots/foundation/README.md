@@ -31,15 +31,18 @@ trigger, action, abort rule, fallback and expected result in the relevant
 [tactic](../../docs/tactics/README.md), keeping its topic ID. Add a failing scenario,
 implement it, run the check, then open a PR linking the tactic and results.
 Competitive changes also pass the [team harness](../../harness/README.md).
+Before PR #38 merges, target task PRs at `fran/foundation-baseline`; afterward use `main`.
 
-**Find things:** `src/actions.h` = action contract; `src/sdk_actions.h` = SDK adapter;
-`src/main.cpp` = bot loop; `tests/` = scenarios;
+**Find things:** `src/policies/` = separate policy files and registry;
+`src/planner.h` = selects one proposal; `src/actions.h` = executor;
+`src/sdk_actions.h` = SDK adapter; `tests/` = scenarios;
 `out/foundation/checks.json` = generated evidence. Existing bot sources are frozen
 by `baseline.json`; the live upload is unverified.
 
 **Four work areas:** runtime/adapters, cycle/navigation, combat, evaluation.
 Agree shared interfaces before splitting work; a teammate reviews every PR.
-Next: mission arbitration from the [decision contract](../../docs/tactics/cycle-decision-contract.md),
+Read [how to add a policy](INTEGRATION.md) and the [review/Carson comparison](REVIEW.md).
+Next: full mission logic from the [decision contract](../../docs/tactics/cycle-decision-contract.md),
 then policies from the [clean v53 reference](https://github.com/Javiops/Cambridge-Battlecode-2026/tree/990046182a6d001b0b35b91ee58cd8e4145b753b/bots/v53_refactor).
 
 **Using an assistant?** Ask Codex to read [AGENTS.md](../../AGENTS.md), or Claude

@@ -3,6 +3,21 @@
 Conclusions that should outlive one experiment, each with the numbers behind it (after Carson's
 screeps-rl DECISIONS.md). Open questions go to ROADMAP.md.
 
+## 2026-10-20 · Hotfix compatibility passes; verify the actual live submission
+
+The unchanged v12 source builds with CLI 3.0.2 to identical WASM under engine
+1.0.1. It wins 68/70 games on all 35 current site maps, with zero faults and
+17 fuel-exhausted turns, plus 140/140 on its locked-map compatibility repeat
+with zero faults or fuel losses. This repeats an already used cohort without
+strategic tuning; it is not another independent confirmation result.
+
+The server-stored platform v83 source matches the qualified ZIP hash. Its
+selection was cancelled while the team changed the live bot to v81 and then
+v82. The first requested group actually used v81; its 0/5 loss to Intercontinental
+Fish is excluded from PPO results. Keep upload success, server compilation and
+actual match identity separate. The remaining unranked group awaits selection
+coordination. See HOTFIX-1.0.1.md and results/stage7-hotfix101.json.
+
 ## 2026-10-20 · Stage 7 hybrid clears the unchanged promotion gate
 
 Keep `ppo-league-v12` as the qualified candidate: 140/140 wins

@@ -27,7 +27,13 @@ Stage 7's expert/PPO hybrid `ppo-league-v12` passes the unchanged promotion gate
 zero bot faults, fuel losses within the allowed limit, and an exact source rebuild.
 See [STAGE7.md](STAGE7.md) and `python -m lab stage7 ready`. The matched actor-disabled
 control also clears screening, so the strength gain is attributed to the strategic
-controller. Neither confirmation pool is sealed any longer. The bot has not been uploaded.
+controller. Neither confirmation pool is sealed any longer.
+
+**Patch 1.0.1 release follow-up:** the exact v12 source builds under CLI 3.0.2 to
+identical WASM and passes current-patch compatibility checks. It is uploaded as
+platform v83, but that selection was cancelled while the team changed the live
+bot to v81 and then v82. No completed v12 sparring result is available yet.
+See [HOTFIX-1.0.1.md](HOTFIX-1.0.1.md) for the upload hash, test results and version mismatch.
 
 ## Setup
 

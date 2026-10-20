@@ -1,5 +1,8 @@
 # Stage 7 competitive qualification
 
+This page records the qualification milestone before the hotfix and upload.
+See [HOTFIX-1.0.1.md](HOTFIX-1.0.1.md) for later release status.
+
 `ppo-league-v12` passes the unchanged promotion gate against `starter-week2-v1`:
 140/140 wins (100.00%) on 70 fresh generated maps,
 both seats. The source ZIP independently rebuilds to the qualified WASM.

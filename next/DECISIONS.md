@@ -3,6 +3,28 @@
 Conclusions that should outlive one experiment, each with the numbers behind it (after Carson's
 screeps-rl DECISIONS.md). Open questions go to ROADMAP.md.
 
+## 2026-10-20 · Stage 7 hybrid clears the unchanged promotion gate
+
+Keep `ppo-league-v12` as the qualified candidate: 140/140 wins
+(100.00%) on 70 fresh generated confirmation maps, both seats,
+zero bot faults and 0 fuel-exhausted turns
+(0.0000/game against a 1.0 limit). The source ZIP reproduces
+the frozen WASM exactly. Screening wins are 200/200; site stress wins are 12/12;
+the full fixed-panel candidate record is 1,000/1,000. See STAGE7.md.
+
+The original actor alone loses 200/200 screening games. The expert/PPO hybrid's
+matched actor-disabled control also wins 200/200, so attribute this competitive
+improvement to the strategic controller. Six native canaries record
+215 PPO calls and 104 changed targets; the
+unchanged actor is active, but its independent strength gain is unproven.
+
+Bound optional planning cooperatively and provide a cheap camp fallback when
+full planning cannot fit. Keep the checkpoint throw out of line: v11 passed its
+game gate but failed an independent byte-exact source rebuild. V12 fixes packaging;
+it was verified before consuming a fresh outcome-independent confirmation pool.
+The earlier 137/140 result remains historical. Both cohort locks must be retained;
+neither cohort may guide another tuned candidate. No upload or champion change.
+
 ## 2026-10-20 · PPO C++ runtime passes Stage 6
 
 Keep `ppo-runtime-v1` as the exact runtime port of final PPO checkpoint 012.

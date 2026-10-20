@@ -51,6 +51,8 @@ def main() -> None:
     rl.add_argument("check", choices=["plan", "check", "train", "evaluate", "audit", "ready"])
     rt = sub.add_parser("stage6")
     rt.add_argument("check", choices=["prepare", "release", "ready"])
+    final = sub.add_parser("stage7")
+    final.add_argument("check", choices=["maps", "bundle", "screen", "canary", "gate", "ready"])
     a = p.parse_args()
     cfg = core.config()
 
@@ -135,6 +137,11 @@ def main() -> None:
         from . import stage6
         result=getattr(stage6,a.check)()
         print(json.dumps(result.meta if a.check=='prepare' else result,indent=2))
+    elif a.cmd == "stage7":
+        from . import stage7
+        result=getattr(stage7,a.check)()
+        print(json.dumps(result,indent=2))
+        if not result['passed']:raise SystemExit(1)
 
 
 if __name__ == "__main__":

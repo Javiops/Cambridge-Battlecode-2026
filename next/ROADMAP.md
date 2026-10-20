@@ -2,6 +2,9 @@
 
 Open questions and the next steps, in order. Settled conclusions move to DECISIONS.md.
 
+Current status: Stage 7 qualification is complete. Statements below about sealed
+confirmation maps describe earlier stage milestones; both final cohorts are now consumed.
+
 ## Stage 1 of the seven-stage learning plan: complete
 
 The October 20 official runtime, persistent actor stepping/batching, generated map pools,
@@ -60,10 +63,20 @@ both seats, banking and maps up to 80×80 are covered. Official total fuel peaks
 or fuel losses, and the source bundle reproduces the frozen WASM. See STAGE6.md and
 `python -m lab stage6 ready`.
 
-Stage 7 is next. The runtime diagnostic cohort loses all 16 games to starter;
-economy, purchases, survival and strategic coverage still need strength work. Keep
-the frozen checkpoint and certificates as the baseline, use fresh development
-cohorts for tuning, and reserve final confirmation maps for the promotion gate.
+## Stage 7 competitive qualification complete
+
+`ppo-league-v12` combines the expert strategic controller with the unchanged PPO weights.
+It wins 200/200 screening games and 140/140 fresh confirmation games
+against starter. The unchanged promotion gate passes with zero bot faults and
+0.0000 fuel-exhausted turns/game (limit 1.0); the source ZIP rebuilds
+exactly. The actor-disabled control also wins all screening games, so no independent
+PPO strength gain is established. See STAGE7.md and `python -m lab stage7 ready`.
+
+Both the original v11 confirmation cohort and replacement v12 cohort are now
+consumed. Preserve their attempt locks. Further tuning needs fresh holdouts.
+The seven-stage first pass is complete; no live upload or champion change was made.
+Next: review the qualified source bundle, then explicitly authorize upload and
+evaluate stronger opponents using a new independent test plan.
 
 ## Foundation (before any real bot)
 

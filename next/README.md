@@ -21,8 +21,13 @@ Stage 5's first PPO self-play run is trained and audited. Its native strength ga
 Stage 6 integrates that unchanged actor and controller into C++/WASM. It passes
 262,936 exact native decisions over 16 full release matches, with zero faults or
 fuel losses and an exact source-bundle rebuild. See [STAGE6.md](STAGE6.md) and
-`python -m lab stage6 ready`. It remains weaker than starter; Stage 7 must establish
-competitive strength before promotion or live submission.
+`python -m lab stage6 ready`.
+Stage 7's expert/PPO hybrid `ppo-league-v12` passes the unchanged promotion gate:
+140/140 wins (100.00%) against starter on 70 fresh paired maps,
+zero bot faults, fuel losses within the allowed limit, and an exact source rebuild.
+See [STAGE7.md](STAGE7.md) and `python -m lab stage7 ready`. The matched actor-disabled
+control also clears screening, so the strength gain is attributed to the strategic
+controller. Neither confirmation pool is sealed any longer. The bot has not been uploaded.
 
 ## Setup
 

@@ -295,3 +295,7 @@ Continue safe existing banking trips before optional group planning. The local b
 ## 2026-10-20 · V8 positive-cargo continuation, offline only
 
 Complete already-started healthy/quiet banking trips even below 12 gems. Big-world starter deposits improve from v7 316/105 to 692/800 with zero faults/fuel losses. V8 wins 152/302 against v7 and 146/302 against fixed v6; starter 69/70. Fuel totals 106 versus v7 and 14 versus fixed v6 are matchup-dependent: the reverse-seat v7 also exhausts 94 times on the same generated B-seat fixture. Do not label that difference a new regression without the fixed-opponent control. No promotion or online upload during the teammate hold. Next isolate the optional spell-scan budget guard. See BANKING-V8.md.
+
+## 2026-10-20 · V9 optional spell guard rejected
+
+Raising only optional spell-scan entry headroom from 22k to 41k does not fix the reproduced Stellar failure: 94 B-seat fuel losses persist. Ten targeted canaries have zero faults. Do not broaden or upload a failed target hypothesis. Frozen v9 and its reproducible source remain intact; working source returns to v8. No global initialization reserve or model change. See BANKING-V9-REJECTED.md.

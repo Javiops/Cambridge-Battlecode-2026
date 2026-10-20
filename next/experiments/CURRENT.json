@@ -7,7 +7,7 @@
   "report": "V84-SPARRING.md",
   "status": "teammate_live_hold_offline_work_continues",
   "next_hypotheses": [
-    "Bound optional spell-scan entry below the normal turn budget; repeated Stellar B-seat exhaustion against v7/v8 needs a general fix.",
+    "Locate the unchecked operation behind the repeated Stellar B-seat runtime case; v9 optional spell-scan entry guard failed and should not be repeated without new evidence.",
     "Preserve zero observed fuel losses while testing useful gem collection and deposits; do not raise global initialization reserve",
     "Elk-arena sustained objective execution: assault logs exist and deposits rise to 96/144, but both seats still lose",
     "Pilgrimage/reverse-spiral fight exposure and carried-gem loss; preserve multi-camp maps"
@@ -38,5 +38,10 @@
     "Honor experiments/LIVE-HOLD.json before live mutations or quota use.",
     "After hold and teammate batch completion, select frozen v85 and repeat pinned Preyas source 26aefce6-7006-4ece-8bc8-75a679090632, both seats, five-map benchmark.",
     "Download and native-verify the v85 pair before uploading the next usable prepared fix; persist request and returned IDs immediately."
-  ]
+  ],
+  "rejected_candidates": {
+    "ppo-topdraft-v9": "Optional spell-scan guard does not fix the reproduced 94-loss B-seat runtime case."
+  },
+  "prepared_source_zip_sha256": "7cb32c43786e6df0cca50de081f619405cd2a65dbc43cf97696bdf3e3081c7cb",
+  "prepared_wasm_sha256": "c92a39613426dab54e4e02363cdf7ec50882865329ac869bcc155da9db0c9b89"
 }

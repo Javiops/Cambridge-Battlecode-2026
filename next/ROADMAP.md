@@ -15,10 +15,14 @@ confirmation maps describe earlier stage milestones; both final cohorts are now 
 - V7 fixes the reproduced large-load banking stall locally: big-world versus
   starter deposits rise from 121/0 to 316/105, both seats, zero faults/fuel losses.
   It wins 148/302 versus v6 across broad development maps; no promotion claim.
-- Continue small already-started banking trips before optional planning. V7 still
-  has late sampled stalls with four gems. Do not alter trip-start thresholds.
-- After the teammate hold, reproduce the pinned Preyas matchup in both seats
-  with v85; its source/build is frozen, and zero v85 unranked groups have started.
+- V8 finishes small already-started trips early: local starter deposits 692/800
+  on big-world, zero faults/fuel losses in both seats. Broad fixed-v6 comparison
+  is 146/302 and 14 fuel losses; parent-v7 comparison is 152/302 and 106 losses.
+  A generated B-seat fixture accounts for 94 losses with either v7 or v8.
+  The v9 optional spell-scan entry guard leaves those 94 unchanged and is rejected.
+- After the teammate hold, reproduce pinned Preyas in both seats with v85,
+  native-verify the pair, then field-test prepared v8 with a short upload note.
+  Zero v85 unranked groups have been started; the hold takes precedence over quota.
 - Profile optional native calls on big-world and ambush if fuel losses recur. The new 250-game batch
   has 55 and 41 fuel losses respectively. Raising the global reserve in v5
   stalled initialization; do not repeat that attempted fix.

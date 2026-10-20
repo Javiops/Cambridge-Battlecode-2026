@@ -23,7 +23,11 @@ the relevant next-match choice.
 Read `experiments/LIVE-HOLD.json` before any live action and
 `experiments/CURRENT.json` for the newest state. V84 remains the preceding
 usable experimental bot; qualified v12/platform v83 remains preserved. Zero
-v85 unranked challenges have been initiated. Historical v84 evidence below
+v85 unranked challenges have been initiated. V8 is independently rebuilt and
+ready offline: big-world starter deposits 692/800, starter 69/70, fixed-v6
+comparison 146/302 with 14 fuel losses. It is not uploaded during the hold.
+The v9 optional spell-scan guard did not fix the reproduced runtime case and
+is rejected. See BANKING-V8.md and BANKING-V9-REJECTED.md. Historical v84 evidence below
 describes its completed 40-game batch, not the current selection.
 
 ## Evaluation and iteration

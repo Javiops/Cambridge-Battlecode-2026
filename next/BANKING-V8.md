@@ -38,6 +38,8 @@ Next isolate the optional spell scan: its existing entry guard permits it to
 start below the controller's normal budget checkpoint. Test a bounded entry
 guard for that optional scan, without increasing initialization's global reserve.
 Keep the fixed-opponent comparison to measure collateral changes.
+The subsequent v9 guard test leaves 94 losses unchanged and is rejected; see
+BANKING-V9-REJECTED.md. V8 remains the prepared version.
 
 V8 is frozen and independently rebuilt to identical release WASM, but **not
 uploaded** during the teammate hold. V82 remains selected; read LIVE-HOLD.json

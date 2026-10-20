@@ -1,0 +1,17 @@
+{
+  "passed": true,
+  "version": "online-v76-week2-v1",
+  "wasm_sha256": "6c1a995ccd3c197fcc6f8203de2f4d9aa5d5fc221b29e6e5d368226be4631f0f",
+  "bundle_sha256": "da3107fd128295b80d0ed76dcfb3e84c6baf0961cb1727d8882c8e6db87f8d70",
+  "rebuild_identical": true,
+  "original_submission": {
+    "team": "Live Love Larp",
+    "submission_id": "87604ab9-30d5-4a41-badd-55a4c571ecb3",
+    "version": 76,
+    "note": "BASELINE V3 + TEAM-FIGHT ACCEPTED",
+    "archive_sha256": "100578ba428a1499e7eef73b81ad21669f9925f08605ced927fcbee2ea3931ec",
+    "downloaded_on": "2026-10-20",
+    "source": "https://2026a.battlecode.co.uk/game/submissions",
+    "lineage": "live-love-larp-v76"
+  }
+}

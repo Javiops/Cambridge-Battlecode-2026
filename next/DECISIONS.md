@@ -3,6 +3,30 @@
 Conclusions that should outlive one experiment, each with the numbers behind it (after Carson's
 screeps-rl DECISIONS.md). Open questions go to ROADMAP.md.
 
+## 2026-10-20 · Stage 2 baseline: exact replay reconstruction and disjoint lineages
+
+The copied active v76 source builds on the pinned SDK and is frozen as
+`online-v76-week2-v1` (origin archive/submission in `bots/baseline-online-v76/ORIGIN.json`).
+The 24-slot plan reserves g1 families 0/1/2 for its demonstrations and family 3 for
+independent SDK-starter validation. Idle opponents provide context, not teacher labels.
+23 clean games yielded 104,133 sampled frames and 59,291 eligible BC rows; one v76 mirror
+lost one turn to fuel and is quarantined. Neither that game nor any confirm game trains a model.
+
+The importer reconstructs scoped observations before native inputs. Its 2,560-frame
+SDK-log differential test passes, including decoded action sequences. The official replay
+omits guest-memory writes and boolean action returns; those remain null. The v1 features
+do not use them. Unsupported teacher actions retain null candidate labels.
+
+Four authorized unranked groups (20 games, both seats) against Nyx and Sneaky Bush Campers
+all ended in v76 losses. Replay terminals agree with website outcomes. Missing exact
+server-build/opponent-WASM identity and overlap with the v76 lineage keep these files in
+external diagnostics. Local train/validation maps, families and lineages remain disjoint.
+
+The admitted rows have 44,221 train and 15,070 validation examples; constant wait already
+scores 56.9% on validation. Seven training body types, missing Willow/Heart and only 203
+supported training casts limit the baseline. Stage 3 must use per-class metrics and live
+release evaluation. Details and actual data layout: STAGE2.md. Training has not started.
+
 ## 2026-10-20 · Stage 1 complete: use the official rules module for training
 
 The fast environment wraps the exact pinned official WASM module. We avoid maintaining

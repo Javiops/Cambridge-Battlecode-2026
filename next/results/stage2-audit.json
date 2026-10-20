@@ -1,0 +1,92 @@
+{
+  "schema": 1,
+  "passed": true,
+  "planned_games": 24,
+  "quarantined_games": 1,
+  "admitted_games": 23,
+  "splits": {
+    "train": {
+      "records": 72763,
+      "eligible": 44221,
+      "eligible_actions": {
+        "wait": 23698,
+        "move": 15572,
+        "attack": 4748,
+        "cast": 203
+      },
+      "body_types": {
+        "3": 6321,
+        "4": 6090,
+        "9": 10378,
+        "5": 10303,
+        "11": 4848,
+        "0": 3351,
+        "6": 2930
+      },
+      "seats": {
+        "0": 22855,
+        "1": 21366
+      },
+      "terminal_labels": {
+        "1": 36320,
+        "0": 7901
+      },
+      "unsupported_actions": {
+        "cast": 2147,
+        "recall": 352,
+        "buy": 677,
+        "buy_consumable": 41,
+        "submit": 313,
+        "use_consumable": 26
+      }
+    },
+    "validation": {
+      "records": 31370,
+      "eligible": 15070,
+      "eligible_actions": {
+        "move": 3405,
+        "wait": 8576,
+        "attack": 3089
+      },
+      "body_types": {
+        "1": 2542,
+        "5": 2370,
+        "10": 1734,
+        "9": 2205,
+        "6": 1230,
+        "3": 1128,
+        "0": 607,
+        "4": 1049,
+        "7": 638,
+        "11": 605,
+        "2": 962
+      },
+      "seats": {
+        "0": 7976,
+        "1": 7094
+      },
+      "terminal_labels": {
+        "1": 7608,
+        "0": 7462
+      },
+      "unsupported_actions": {
+        "priority": 5851,
+        "recall": 900,
+        "submit": 104,
+        "attack": 2,
+        "buy": 72
+      }
+    }
+  },
+  "map_and_lineage_leakage": false,
+  "confirmation_games": 0,
+  "stage3_started": false,
+  "manifest_sha256": "271e888f1c473b3559d30802d28fa0168be0a982a657a92c456bb216efcb2426",
+  "validator_sources": {
+    "lab/dataset.py": "e5c5478f74c04cc836bbe827cdf2e6c12553a8810a78b2b8f0ba79b5aafadf96",
+    "lab/replay.py": "fae7eb097d64ee3601a018f9910cd13064347278d0ade22a85d5c9a72809bd7f",
+    "lab/replay-engine.mjs": "dda9093093de30983d273ace26dfdbe3ce3eda0e0a42863a6696fe3cde26c65e",
+    "lab/policy.py": "91610c10b30f959706e25c412a9684b38eed4fe6430dcf841eb63ccf74a30023",
+    "lab/engine.mjs": "390e898cfcc869ddd9e8212a004681da2c69224623deb946111f3c7935356a0b"
+  }
+}

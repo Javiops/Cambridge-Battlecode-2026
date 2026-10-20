@@ -3,7 +3,8 @@
 Stage 1 is complete for the pinned October 20 runtime. The acceptance command is
 `python -m lab stage1 ready`; it checks the saved parity, calibration and throughput
 proofs against current source, configuration, map and frozen-bot hashes. See
-`results/stage1-ready.json`. Stage 2 data collection has not started.
+`results/stage1-ready.json`. Stage 2 subsequently collected the baseline described in
+[STAGE2.md](STAGE2.md).
 
 ## Runtime and maps
 

@@ -122,3 +122,20 @@ request_timeout = 30
 benchmark_envs = 16
 benchmark_steps = 100
 parity_maps = ["00collision", "generated/screen/g1-screen-000", "generated/screen/g1-screen-003", "generated/screen/g1-screen-002"]
+
+[stage2]
+dataset = "stage2-baseline-v1"
+train_families = [0, 1, 2]
+validation_families = [3]
+maps_per_train_family = 2
+validation_maps = 2
+train_pairs = [["online-v76-week2-v1", "online-v76-week2-v1"], ["online-v76-week2-v1", "dummy-week2-v1"]]
+validation_pairs = [["starter-week2-v1", "calib-seed-week2-v1"], ["starter-week2-v1", "starter-week2-v1"]]
+train_teachers = ["online-v76-week2-v1"]
+validation_teachers = ["starter-week2-v1", "calib-seed-week2-v1"]
+lineages = { online-v76-week2-v1 = "live-love-larp-v76", dummy-week2-v1 = "idle", starter-week2-v1 = "sdk-starter", calib-seed-week2-v1 = "sdk-starter" }
+round_stride = 5
+max_actions_per_turn = 64
+jobs = 4
+min_eligible_train = 10000
+min_eligible_validation = 2000

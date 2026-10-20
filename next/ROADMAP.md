@@ -17,13 +17,20 @@ validation examples. Whole maps, families and both teacher/opponent lineages are
 Twenty new live sparring replays remain separate diagnostics. See STAGE2.md and
 `results/stage2-*.json`; final confirmation maps remain sealed.
 
-## Stage 3 next: behavioural cloning
+## Stage 3: first behavioural cloning model complete
 
-Fit the certified 305-parameter candidate model with class-aware training. Beat the
-56.9% constant-wait validation baseline, report per-action metrics, preserve validation
-separation, export exact float32 weights and test the bot with the official release runner.
-The first dataset lacks Willow/Heart, and validation contains no supported cast labels.
-Do not mistake this baseline for full champion or strong-opponent coverage.
+`bc-v1` fits the certified 305-parameter model with class-aware training and a whole-map
+development split inside training. Its one final held-out evaluation scores 63.39% exact
+candidate accuracy against 56.91% constant wait, and 72.98% macro action recall. The
+untrained control scores 73.28% exact accuracy but only 0.73% movement-type recall;
+the trained actor has 73.51% movement-type recall and predicts too many casts.
+See STAGE3.md for all per-action metrics, 1,440-turn bit-exact release parity and 24
+paired diagnostic matches. No promotion, live upload, confirmation play, or Stage 4 run.
+
+The first model is a warm start, not a competitive submission. It banks no gems because
+the local proposal contract has no submission action. Future work needs macro/action
+coverage and stronger in-engine learning, with fresh evaluation data for any new tuning.
+Willow/Heart are absent from the dataset; cast imitation has no validation labels.
 
 ## Foundation (before any real bot)
 

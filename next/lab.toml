@@ -139,3 +139,26 @@ max_actions_per_turn = 64
 jobs = 4
 min_eligible_train = 10000
 min_eligible_validation = 2000
+
+[stage3]
+model = "bc-v1"
+seed = 20261023
+epochs = 120
+batch_size = 256
+evaluate_every = 5
+learning_rate = 0.003
+weight_decay = 0.0001
+max_class_weight = 6.0
+# Entire maps, including both seats, are held out INSIDE the training partition.
+# Select the epoch here, refit on all training maps, then evaluate validation once.
+development_maps = ["generated/screen/g1-screen-001", "generated/screen/g1-screen-004", "generated/screen/g1-screen-007"]
+release_maps = ["generated/screen/g1-screen-008", "generated/screen/g1-screen-009", "generated/screen/g1-screen-010"]
+release_opponents = ["dummy-week2-v1", "starter-week2-v1"]
+jobs = 4
+minimum_validation_accuracy = 0.5690776376907764
+minimum_macro_action_recall = 0.5
+parity_score_atol = 0.00005
+trained_version = "bc-actor-v1"
+control_version = "bc-untrained-v1"
+parity_maps = ["00collision", "generated/screen/g1-screen-002"]
+max_turn_fuel = 95000

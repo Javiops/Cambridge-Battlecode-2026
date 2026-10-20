@@ -1,0 +1,15 @@
+{
+  "schema": 1,
+  "base_commit": "e4bf301649b2d1fc9165c8d463592c033dafbd05",
+  "source_identity": "SHA256 of UTF-8 source after normalizing checkout newlines",
+  "sources": {
+    "lab/cloning.py": "23840532b9d4d7c8d114213cf0aae3e0c0bacfadc4e2b22db473f4c147759555",
+    "lab/policy.py": "91610c10b30f959706e25c412a9684b38eed4fe6430dcf841eb63ccf74a30023",
+    "lab/dataset.py": "e5c5478f74c04cc836bbe827cdf2e6c12553a8810a78b2b8f0ba79b5aafadf96"
+  },
+  "plan_sha256": "7b60f9337a80811787b70d34acb6df482323f73dad634ff18bb78eabfde47df3",
+  "weights_sha256": "76ec1dcaf4d37f1cccaccd483885e241a7f14cf929630332ece35e72e5988d3e",
+  "initialization": "lab.policy.weights LCG 0xC0FFEE, unchanged certified reference",
+  "validation_used_for_model_selection": false,
+  "trainer_unchanged_since_training": true
+}

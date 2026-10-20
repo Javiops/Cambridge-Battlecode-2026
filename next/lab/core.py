@@ -23,7 +23,8 @@ from concurrent.futures import ThreadPoolExecutor
 from dataclasses import dataclass
 from pathlib import Path
 
-from .stats import VERSION as STATS_VERSION, summarize
+from . import runtime
+from .stats import VERSION as STATS_VERSION, summarize, validate
 
 ROOT = Path(__file__).resolve().parent.parent
 ARCHIVE = ROOT / "archive"
@@ -44,7 +45,11 @@ def sha(path: Path) -> str:
 
 
 def cli_version() -> str:
-    return subprocess.run([CLI, "--version"], capture_output=True, text=True, env=ENV).stdout.strip()
+    return runtime.cli_version(CLI, ENV, ROOT)
+
+
+def runtime_identity() -> dict:
+    return runtime.identity(ROOT, CLI, ENV, config())
 
 
 # ---------------------------------------------------------------- versions
@@ -72,7 +77,9 @@ def freeze(bot_dir: str, name: str, note: str = "", parent: str | None = None) -
     dest = ARCHIVE / name
     if dest.exists():
         raise SystemExit(f"{name} already exists. Versions are never overwritten; pick a new name.")
-    r = subprocess.run([CLI, "build", "--release", str(bot)], capture_output=True, text=True, env=ENV)
+    profile = runtime_identity()
+    r = subprocess.run([CLI, "build", "--release", str(bot)], capture_output=True, text=True,
+                       encoding="utf-8", errors="replace", env=ENV, cwd=ROOT, timeout=TIMEOUT)
     if r.returncode != 0:
         raise SystemExit(f"build failed for {bot}:\n{r.stdout[-3000:]}\n{r.stderr[-3000:]}")
     built = bot / ".cambc" / "build-release" / "bot-injected.wasm"
@@ -84,7 +91,7 @@ def freeze(bot_dir: str, name: str, note: str = "", parent: str | None = None) -
                            capture_output=True, text=True).stdout.strip()
     meta = {"name": name, "bot_dir": str(bot.relative_to(ROOT)) if bot.is_relative_to(ROOT) else str(bot),
             "wasm_sha256": sha(dest / "bot.wasm"), "git": git.stdout.strip() + ("+dirty" if dirty else ""),
-            "changelog": note or changelog_line(bot / "src"), "cli": cli_version(),
+            "changelog": note or changelog_line(bot / "src"), "cli": profile["cli"], "runtime": profile,
             # the version this one was copied from: by default the champion of the day (lineage tree)
             "parent": config()["league"]["champion"] if parent is None else parent,
             "frozen_at": time.strftime("%Y-%m-%d %H:%M UTC", time.gmtime())}
@@ -112,41 +119,64 @@ def map_path(name: str) -> Path:
     return p
 
 
-def game_key(a: Version, b: Version, mp: Path, cli: str) -> str:
-    h = hashlib.sha256(f"{a.meta['wasm_sha256']}|{b.meta['wasm_sha256']}|{sha(mp)}|{cli}|s{STATS_VERSION}".encode()).hexdigest()
+def game_key(a: Version, b: Version, mp: Path, cli: str, profile: dict | None = None) -> str:
+    h = hashlib.sha256(f"{a.meta['wasm_sha256']}|{b.meta['wasm_sha256']}|{sha(mp)}|{cli}|"
+                       f"{runtime.fingerprint(profile or {})}|s{STATS_VERSION}|runner2".encode()).hexdigest()
     return h[:24]
 
 
 TIMEOUT = 300  # seconds per game; a hung bot must not hang the league (Carson's elo.py uses 300 too)
 
 
-def run_game(a: Version, b: Version, mp: Path, out_dir: str, logs: bool = False) -> tuple[dict | None, str]:
+def run_game(a: Version, b: Version, mp: Path, out_dir: str, logs: bool = False,
+             profile: dict | None = None) -> tuple[dict | None, str]:
     """Run one game with cambc. Returns (match summary or None, error text)."""
     stats = Path(out_dir) / "stats.json"
     cmd = [CLI, "run", str(a.wasm), str(b.wasm), "--map", str(mp), "-o", out_dir,
            "--statistics", str(stats), "--json", "--release"] + ([] if logs else ["--log-limit", "0"])
     try:
-        r = subprocess.run(cmd, capture_output=True, text=True, env=ENV, timeout=TIMEOUT)
+        # watch() can reuse an output directory. Only statistics from this invocation count.
+        stats.unlink(missing_ok=True)
+        r = subprocess.run(cmd, capture_output=True, text=True, encoding="utf-8", errors="replace",
+                           env=ENV, cwd=ROOT, timeout=TIMEOUT)
     except subprocess.TimeoutExpired:
         return None, f"timeout after {TIMEOUT} s"
+    except OSError as exc:
+        return None, f"cannot run CAMBC: {exc}"
+    if r.returncode:
+        return None, f"exit code {r.returncode}: {(r.stdout[-1500:] + r.stderr[-1500:]).strip()}"
     if not stats.exists():
         return None, (r.stdout[-1500:] + r.stderr[-1500:]).strip() or f"exit code {r.returncode}"
-    return json.loads(stats.read_text()), ""
+    try:
+        summary = json.loads(stats.read_text(encoding="utf-8"))
+        validate(summary)
+        if profile and summary["match"].get("engineBuildHash") != profile["engine_build_hash"]:
+            raise ValueError("Observed engine build does not match the pinned runtime")
+    except (OSError, ValueError, KeyError, TypeError) as exc:
+        return None, f"invalid match statistics: {exc}"
+    return summary, ""
 
 
-def play_one(a: Version, b: Version, map_name: str, cli: str) -> dict:
+def play_one(a: Version, b: Version, map_name: str, cli: str, profile: dict | None = None) -> dict:
     """Play a (side A) vs b (side B) on one map, or return the stored game."""
+    profile = profile if profile is not None else runtime_identity()
+    runtime.require_compatible(a.meta, profile)
+    runtime.require_compatible(b.meta, profile)
     mp = map_path(map_name)
-    key = game_key(a, b, mp, cli)
+    key = game_key(a, b, mp, cli, profile)
     out = RESULTS / f"{key}.json"
     if out.exists():
         rec = json.loads(out.read_text())
     else:
         with tempfile.TemporaryDirectory() as tmp:
-            summary, err = run_game(a, b, mp, tmp)
+            summary, err = run_game(a, b, mp, tmp, profile=profile)
             # A game that does not finish is a result too: it is a crash we must see, never skip.
-            rec = summarize(summary) if summary else {"error": err}
-        rec.update(key=key, a=a.meta["wasm_sha256"], b=b.meta["wasm_sha256"], map=map_name, cli=cli)
+            try:
+                rec = summarize(summary) if summary else {"error": err}
+            except (ValueError, KeyError, TypeError, StopIteration) as exc:
+                rec = {"error": f"invalid match statistics: {exc}"}
+        rec.update(key=key, a=a.meta["wasm_sha256"], b=b.meta["wasm_sha256"], map=map_name,
+                   cli=cli, runtime=profile)
         RESULTS.mkdir(parents=True, exist_ok=True)
         out.write_text(json.dumps(rec) + "\n")
     # names are not part of the key (a renamed copy is the same bot), so attach them after loading
@@ -159,8 +189,11 @@ def default_jobs() -> int:
 
 def play(pairs: list[tuple[str, str]], map_names: list[str], jobs: int, progress=print) -> list[dict]:
     """Every pair on every map, from both sides. Returns one record per game."""
-    cli = cli_version()
+    profile = runtime_identity()
+    cli = profile["cli"]
     vs = {n: version(n) for p in pairs for n in p}
+    for v in vs.values():
+        runtime.require_compatible(v.meta, profile)
     todo = []
     for x, y in pairs:
         for m in map_names:
@@ -169,7 +202,7 @@ def play(pairs: list[tuple[str, str]], map_names: list[str], jobs: int, progress
                 todo.append((vs[y], vs[x], m))
     done = []
     with ThreadPoolExecutor(jobs) as ex:
-        for i, rec in enumerate(ex.map(lambda t: play_one(*t, cli), todo), 1):
+        for i, rec in enumerate(ex.map(lambda t: play_one(*t, cli, profile), todo), 1):
             done.append(rec)
             if i % 20 == 0 or i == len(todo):
                 progress(f"  {i}/{len(todo)} games")
@@ -180,7 +213,7 @@ def score_a(rec: dict) -> float | None:
     """Score of side A: 1 win, 0.5 draw, 0 loss; None if the game did not finish."""
     if "error" in rec:
         return None
-    return {"teamA": 1.0, "teamB": 0.0}.get(rec["outcome"], 0.5)
+    return {"teamA": 1.0, "teamB": 0.0, "draw": 0.5}.get(rec.get("outcome"))
 
 
 def watch(a_name: str, b_name: str, map_name: str, out_dir: Path) -> Path:
@@ -189,7 +222,11 @@ def watch(a_name: str, b_name: str, map_name: str, out_dir: Path) -> Path:
     Games are deterministic, so this reproduces exactly the game the league stored.
     """
     out_dir.mkdir(parents=True, exist_ok=True)
-    summary, err = run_game(version(a_name), version(b_name), map_path(map_name), str(out_dir), logs=True)
+    profile = runtime_identity()
+    a, b = version(a_name), version(b_name)
+    runtime.require_compatible(a.meta, profile)
+    runtime.require_compatible(b.meta, profile)
+    summary, err = run_game(a, b, map_path(map_name), str(out_dir), logs=True, profile=profile)
     if summary is None:
         raise SystemExit(f"game did not finish: {err}")
     return max(out_dir.glob("*.repl26a"), key=lambda p: p.stat().st_mtime)
@@ -201,6 +238,7 @@ def bundle(name: str, out: Path) -> tuple[Path, bool]:
     After kaggriculture: the file you upload must be the bytes that passed the gate, proven by hash.
     """
     v = version(name)
+    runtime.require_compatible(v.meta, runtime_identity())
     out.parent.mkdir(parents=True, exist_ok=True)
     r = subprocess.run([CLI, "bundle", str(ARCHIVE / name), "--output", str(out)], capture_output=True, text=True, env=ENV)
     if r.returncode != 0 or not out.exists():

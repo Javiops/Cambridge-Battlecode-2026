@@ -5,22 +5,94 @@
 # Each set has one job and the jobs never swap.
 # screen  = where we look while developing; tune freely.
 # confirm = only for the promotion gate; never look at these games while tuning.
-# Only 17 site maps exist so far, so confirm holds 5 of them until we have a map generator
-# (ROADMAP.md). The qualifying maps will be new, so the generator is the real confirm set.
-screen = ["ambush", "collision", "contest", "corners", "eight", "elkring",
-          "expanse", "fragment", "interlock", "lanes", "monolith", "packs"]
-confirm = ["pilgrimage", "rows", "rushbait-v2", "stampede", "swirl"]
+# Site maps remain a separate diagnostic line. Generate the g1 pools with python -m lab stage1 maps.
+# Confirm combines the 10 sealed 01* site maps and 60 generated holdouts; never tune on these games.
+site = [
+    "00ambush", "00collision", "00contest",
+    "00corners", "00eight", "00elkring",
+    "00expanse", "00fragment", "00interlock",
+    "00lanes", "00monolith",
+]
+screen = [
+    "generated/screen/g1-screen-000", "generated/screen/g1-screen-001", "generated/screen/g1-screen-002",
+    "generated/screen/g1-screen-003", "generated/screen/g1-screen-004", "generated/screen/g1-screen-005",
+    "generated/screen/g1-screen-006", "generated/screen/g1-screen-007", "generated/screen/g1-screen-008",
+    "generated/screen/g1-screen-009", "generated/screen/g1-screen-010", "generated/screen/g1-screen-011",
+    "generated/screen/g1-screen-012", "generated/screen/g1-screen-013", "generated/screen/g1-screen-014",
+    "generated/screen/g1-screen-015", "generated/screen/g1-screen-016", "generated/screen/g1-screen-017",
+    "generated/screen/g1-screen-018", "generated/screen/g1-screen-019", "generated/screen/g1-screen-020",
+    "generated/screen/g1-screen-021", "generated/screen/g1-screen-022", "generated/screen/g1-screen-023",
+    "generated/screen/g1-screen-024", "generated/screen/g1-screen-025", "generated/screen/g1-screen-026",
+    "generated/screen/g1-screen-027", "generated/screen/g1-screen-028", "generated/screen/g1-screen-029",
+    "generated/screen/g1-screen-030", "generated/screen/g1-screen-031", "generated/screen/g1-screen-032",
+    "generated/screen/g1-screen-033", "generated/screen/g1-screen-034", "generated/screen/g1-screen-035",
+    "generated/screen/g1-screen-036", "generated/screen/g1-screen-037", "generated/screen/g1-screen-038",
+    "generated/screen/g1-screen-039", "generated/screen/g1-screen-040", "generated/screen/g1-screen-041",
+    "generated/screen/g1-screen-042", "generated/screen/g1-screen-043", "generated/screen/g1-screen-044",
+    "generated/screen/g1-screen-045", "generated/screen/g1-screen-046", "generated/screen/g1-screen-047",
+    "generated/screen/g1-screen-048", "generated/screen/g1-screen-049", "generated/screen/g1-screen-050",
+    "generated/screen/g1-screen-051", "generated/screen/g1-screen-052", "generated/screen/g1-screen-053",
+    "generated/screen/g1-screen-054", "generated/screen/g1-screen-055", "generated/screen/g1-screen-056",
+    "generated/screen/g1-screen-057", "generated/screen/g1-screen-058", "generated/screen/g1-screen-059",
+    "generated/screen/g1-screen-060", "generated/screen/g1-screen-061", "generated/screen/g1-screen-062",
+    "generated/screen/g1-screen-063", "generated/screen/g1-screen-064", "generated/screen/g1-screen-065",
+    "generated/screen/g1-screen-066", "generated/screen/g1-screen-067", "generated/screen/g1-screen-068",
+    "generated/screen/g1-screen-069", "generated/screen/g1-screen-070", "generated/screen/g1-screen-071",
+    "generated/screen/g1-screen-072", "generated/screen/g1-screen-073", "generated/screen/g1-screen-074",
+    "generated/screen/g1-screen-075", "generated/screen/g1-screen-076", "generated/screen/g1-screen-077",
+    "generated/screen/g1-screen-078", "generated/screen/g1-screen-079", "generated/screen/g1-screen-080",
+    "generated/screen/g1-screen-081", "generated/screen/g1-screen-082", "generated/screen/g1-screen-083",
+    "generated/screen/g1-screen-084", "generated/screen/g1-screen-085", "generated/screen/g1-screen-086",
+    "generated/screen/g1-screen-087", "generated/screen/g1-screen-088", "generated/screen/g1-screen-089",
+    "generated/screen/g1-screen-090", "generated/screen/g1-screen-091", "generated/screen/g1-screen-092",
+    "generated/screen/g1-screen-093", "generated/screen/g1-screen-094", "generated/screen/g1-screen-095",
+    "generated/screen/g1-screen-096", "generated/screen/g1-screen-097", "generated/screen/g1-screen-098",
+    "generated/screen/g1-screen-099",
+]
+confirm = [
+    "01big-world", "01boss-battle", "01broken-curve",
+    "01concentrated-wealth", "01corridors", "01elk-arena",
+    "01fracture", "01gold-rush", "01hooks",
+    "01islands", "generated/confirm/g1-confirm-000", "generated/confirm/g1-confirm-001",
+    "generated/confirm/g1-confirm-002", "generated/confirm/g1-confirm-003", "generated/confirm/g1-confirm-004",
+    "generated/confirm/g1-confirm-005", "generated/confirm/g1-confirm-006", "generated/confirm/g1-confirm-007",
+    "generated/confirm/g1-confirm-008", "generated/confirm/g1-confirm-009", "generated/confirm/g1-confirm-010",
+    "generated/confirm/g1-confirm-011", "generated/confirm/g1-confirm-012", "generated/confirm/g1-confirm-013",
+    "generated/confirm/g1-confirm-014", "generated/confirm/g1-confirm-015", "generated/confirm/g1-confirm-016",
+    "generated/confirm/g1-confirm-017", "generated/confirm/g1-confirm-018", "generated/confirm/g1-confirm-019",
+    "generated/confirm/g1-confirm-020", "generated/confirm/g1-confirm-021", "generated/confirm/g1-confirm-022",
+    "generated/confirm/g1-confirm-023", "generated/confirm/g1-confirm-024", "generated/confirm/g1-confirm-025",
+    "generated/confirm/g1-confirm-026", "generated/confirm/g1-confirm-027", "generated/confirm/g1-confirm-028",
+    "generated/confirm/g1-confirm-029", "generated/confirm/g1-confirm-030", "generated/confirm/g1-confirm-031",
+    "generated/confirm/g1-confirm-032", "generated/confirm/g1-confirm-033", "generated/confirm/g1-confirm-034",
+    "generated/confirm/g1-confirm-035", "generated/confirm/g1-confirm-036", "generated/confirm/g1-confirm-037",
+    "generated/confirm/g1-confirm-038", "generated/confirm/g1-confirm-039", "generated/confirm/g1-confirm-040",
+    "generated/confirm/g1-confirm-041", "generated/confirm/g1-confirm-042", "generated/confirm/g1-confirm-043",
+    "generated/confirm/g1-confirm-044", "generated/confirm/g1-confirm-045", "generated/confirm/g1-confirm-046",
+    "generated/confirm/g1-confirm-047", "generated/confirm/g1-confirm-048", "generated/confirm/g1-confirm-049",
+    "generated/confirm/g1-confirm-050", "generated/confirm/g1-confirm-051", "generated/confirm/g1-confirm-052",
+    "generated/confirm/g1-confirm-053", "generated/confirm/g1-confirm-054", "generated/confirm/g1-confirm-055",
+    "generated/confirm/g1-confirm-056", "generated/confirm/g1-confirm-057", "generated/confirm/g1-confirm-058",
+    "generated/confirm/g1-confirm-059",
+]
+
+[runtime]
+ruleset = "cambc2026a-week2-2026-10-20"
+cli_version = "cambc 3.0.1"
+# Observed in a completed release match on 00collision. Changing this starts a new experiment.
+engine_build_hash = "2b36d9c61b2710d06036680d07fc4b7a8319ba35f634e4f1445725e0d99a1e16"
 
 [league]
 # The frozen panel: fixed, versioned opponents that every new version plays.
 # When this list changes, bump panel_version, so old and new reports are never mixed.
-panel_version = 2
-panel = ["dummy-v1", "starter-v1", "calib-seed-v1"]
+panel_version = 4
+panel = ["dummy-week2-v1", "starter-week2-v1", "calib-seed-week2-v1",
+         "calib-skip10-week2-v1", "calib-skip2-week2-v1"]
 # Two versions of equal strength. Their gap is printed in every report as the noise band:
 # a difference smaller than this between any two versions is not a result.
-noise_pair = ["starter-v1", "calib-seed-v1"]
+noise_pair = ["starter-week2-v1", "calib-seed-week2-v1"]
 # The current best version. Every new version starts from it (copy, change one thing).
-champion = "starter-v1"
+champion = "starter-week2-v1"
 jobs = 0             # parallel games; 0 = one per CPU core
 # Carson's stopping rule (cb-bc ABLATION_PROMPT.md): stop a line of work when the best rating
 # gains less than this for two league runs in a row.
@@ -30,6 +102,23 @@ plateau_points = 20
 # Promotion gate, after Carson's kaggriculture finalist gates (>= 0.5 vs the best, >= 0.9 vs starter).
 vs_champion = 0.50   # score against the champion on the confirm maps, both sides
 vs_weak = 0.90       # score against the weak bot on the confirm maps, both sides
-weak = "starter-v1"
+weak = "starter-week2-v1"
 max_faults = 0       # bot faults across all gate games
 max_fuel_exhausted_per_game = 1.0  # average turns lost to fuel per game, our side
+
+[stage1]
+# Exact official v1.0.0 rules module distributed by CLI 3.0.1; never select assets by mtime.
+engine_wasm_sha256 = "f7d27c468024ce20f1f64eb1bd06ec4de6314213314fb0132e8b605cf0a610db"
+screen_maps = 100
+confirm_maps = 60
+screen_seed = 2026102001
+confirm_seed = 2026102002
+jobs = 4
+max_kernel_fuel = 65000
+max_prelog_fuel = 85000
+min_observed_turns_per_second = 500
+handicaps = ["calib-skip10-week2-v1", "calib-skip2-week2-v1"]
+request_timeout = 30
+benchmark_envs = 16
+benchmark_steps = 100
+parity_maps = ["00collision", "generated/screen/g1-screen-000", "generated/screen/g1-screen-003", "generated/screen/g1-screen-002"]

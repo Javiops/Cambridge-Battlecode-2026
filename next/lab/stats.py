@@ -10,7 +10,7 @@ from __future__ import annotations
 from collections import Counter
 
 TEAMS = ("teamA", "teamB")
-VERSION = 2  # bump when the record format or its meaning changes: stored games are then replayed
+VERSION = 3  # incomplete captures and unknown outcomes are not completed games
 SNAPSHOT_EVERY = 100  # rounds between snapshots, as in Carson's stats wrapper
 
 
@@ -31,8 +31,24 @@ def _team_sum(timelines: list[dict], metric: str, team: str, index: int) -> floa
                if t["metric"] == metric and t["owner"]["team"] == team)
 
 
+def validate(stats: dict) -> None:
+    """Reject unfinished games and statistics that cannot support the safety gate."""
+    if not isinstance(stats, dict):
+        raise ValueError("Match statistics must be an object")
+    match = stats.get("match")
+    if not isinstance(match, dict) or match.get("outcome") not in TEAMS:
+        raise ValueError("Match has no completed teamA/teamB outcome")
+    diagnostics = stats.get("diagnostics")
+    if not isinstance(diagnostics, dict) or diagnostics.get("detailedCaptureComplete") is not True:
+        raise ValueError("Detailed statistics capture is incomplete; fuel/fault counts are unreliable")
+    faults = diagnostics.get("botFaults")
+    if not isinstance(faults, dict) or any(type(faults.get(t)) is not int or faults[t] < 0 for t in TEAMS):
+        raise ValueError("Missing or invalid team bot fault counters")
+
+
 def summarize(stats: dict) -> dict:
     """Compact record of one game: outcome, final numbers, snapshots and strategy coverage per team."""
+    validate(stats)
     match = stats["match"]
     # The last round can be partial: the winning submission lands in round roundsStarted.
     rounds = int(match["roundsStarted"])
@@ -63,7 +79,7 @@ def summarize(stats: dict) -> dict:
             "gold": int(metric("earnedGold")),
             "monster_damage": round(metric("monsterDamageDone")),
             "champion_damage": round(metric("championDamageDone")),
-            "faults": int(stats["diagnostics"]["botFaults"].get(team, 0)),
+            "faults": stats["diagnostics"]["botFaults"][team],
             "fuel_exhausted": events["fuelExhausted"],
             "camp_clears": events["campClear"],
             "distinct_camps": len(camps_cleared),
@@ -78,7 +94,11 @@ def summarize(stats: dict) -> dict:
                             for r in snap_rounds],
         }
     return {
-        "outcome": match["outcome"],  # "teamA" | "teamB" | anything else = draw
+        "outcome": match["outcome"],
+        "engine_build_hash": match.get("engineBuildHash"),
+        "engine_version": match.get("engineVersion"),
+        "map_hash": match.get("mapHash"),
+        "seed": match.get("seed"),
         "rounds": rounds,
         "snap_rounds": snap_rounds,
         "teams": teams,

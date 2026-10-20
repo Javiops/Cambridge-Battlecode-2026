@@ -1,0 +1,27 @@
+{
+  "passed": true,
+  "maps": [
+    {
+      "map": "00collision",
+      "observations": 480,
+      "replay_sha256": "8573cefea6f9535c4fcf53259a9d500bc1e1f60d3ee71db0605d58cd17a88b57"
+    },
+    {
+      "map": "generated/screen/g1-screen-000",
+      "observations": 480,
+      "replay_sha256": "93c0beb919f08124de943393cd6af60bab8647167d6864fdd7105f1f633f55d0"
+    },
+    {
+      "map": "generated/screen/g1-screen-003",
+      "observations": 640,
+      "replay_sha256": "f0ace9b4fb6ca5e07e854db513524ab95291d1add5b0e277724e9fc9823b0da0"
+    },
+    {
+      "map": "generated/screen/g1-screen-002",
+      "observations": 960,
+      "replay_sha256": "0fda9b8a00052c10433c06b375f753e98913cbebcc038d941a97b02d31488e66"
+    }
+  ],
+  "observations": 2560,
+  "memory_contract": "unrecorded guest memory is null; actor-v1 features do not use it"
+}

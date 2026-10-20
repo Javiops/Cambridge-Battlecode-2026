@@ -275,6 +275,6 @@ def ready():
                 release_games=proofs["calibration"]["games"],generated_maps=len(manifest["maps"]),
                 kernel_fuel_max=max(m["kernel_fuel_max"] for m in proofs["parity"]["maps"]),
                 actor_turns_per_second=proofs["throughput"]["actor_turns_per_second"],
-                stage2_dataset_started=False)
+                stage2_dataset_started=(core.ROOT/'results/stage2-dataset.json').exists())
     save("stage1-ready.json",result)
     return result

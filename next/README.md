@@ -12,7 +12,8 @@ and [ROADMAP.md](ROADMAP.md) (what is next).
 **Stage 1 is complete for the October 20 patch.** See [STAGE1.md](STAGE1.md) for the
 training interface, observation/action contract, release fuel certificate and reproduction
 commands. `python -m lab stage1 ready` verifies the saved evidence against current hashes.
-Stage 2's baseline dataset has not started.
+Stage 2's first baseline dataset is now collected and audited. See [STAGE2.md](STAGE2.md)
+and `python -m lab stage2 ready`; Stage 3 training has not started.
 
 ## Setup
 
@@ -76,5 +77,7 @@ the current league requires fresh versions recorded against this runtime.
 | `lab/environment.py`, `lab/engine.mjs` | persistent batched actor access to the exact official rules module |
 | `lab/mapgen.py`, `mechanics/generated-maps-g1.json` | deterministic generator and immutable map hashes |
 | `results/stage1-*.json`, `STAGE1.md` | source-bound Stage 1 exit checks and Stage 2 handoff |
+| `lab/dataset.py`, `lab/replay*.mjs`, `lab/replay.py` | native replay importer, split plan, demonstrations and audit |
+| `STAGE2.md`, `results/stage2-*.json` | dataset contract, live sparring evidence and Stage 3 handoff |
 | `results/calibration-2026-10-17.md` | the first league report |
 | `maps/` | 100 generated screen maps; 60 generated + ten site confirm maps; 11 separate `00*` diagnostics |

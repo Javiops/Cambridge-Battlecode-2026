@@ -9,13 +9,21 @@ five-control calibration, release inference fuel and observation/action parity a
 See [STAGE1.md](STAGE1.md), `results/stage1-*.json` and the executable acceptance command
 `python -m lab stage1 ready`. Confirmation games remain unplayed.
 
-## Stage 2 next: baseline replay dataset
+## Stage 2: first baseline dataset complete
 
-Use the versioned actor/candidate contract in STAGE1.md. Reserve a validation subset of
-screening maps before collection, freeze teacher identities, collect both seats, track native
-actions outside the proposal set and label only complete games. Split by match/map and opponent
-lineage. Report schema validity, proposal coverage and dataset balance before Stage 3.
-Dataset collection has not started. Keep the final confirmation maps sealed.
+The immutable 24-slot plan produced 23 clean games and one quarantined fuel-limited v76
+mirror. There are 104,133 sampled frames: 44,221 eligible train and 15,070 eligible
+validation examples. Whole maps, families and both teacher/opponent lineages are disjoint.
+Twenty new live sparring replays remain separate diagnostics. See STAGE2.md and
+`results/stage2-*.json`; final confirmation maps remain sealed.
+
+## Stage 3 next: behavioural cloning
+
+Fit the certified 305-parameter candidate model with class-aware training. Beat the
+56.9% constant-wait validation baseline, report per-action metrics, preserve validation
+separation, export exact float32 weights and test the bot with the official release runner.
+The first dataset lacks Willow/Heart, and validation contains no supported cast labels.
+Do not mistake this baseline for full champion or strong-opponent coverage.
 
 ## Foundation (before any real bot)
 

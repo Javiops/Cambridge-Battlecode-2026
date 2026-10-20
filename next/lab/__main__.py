@@ -41,6 +41,8 @@ def main() -> None:
     sub.add_parser("probe")
     s = sub.add_parser("stage1")
     s.add_argument("check", choices=["maps", "verify", "benchmark", "calibrate", "ready"])
+    d = sub.add_parser("stage2")
+    d.add_argument("check",choices=["plan","collect","audit","proof","online","ready"])
     a = p.parse_args()
     cfg = core.config()
 
@@ -101,6 +103,10 @@ def main() -> None:
         result = {"maps": mapgen.run, "verify": stage1.verify, "benchmark": stage1.benchmark,
                   "calibrate":stage1.calibrate,"ready":stage1.ready}[a.check]()
         print(json.dumps(result, indent=2))
+    elif a.cmd == "stage2":
+        from . import dataset
+        result=getattr(dataset,a.check)()
+        print(json.dumps(result,indent=2))
 
 
 if __name__ == "__main__":

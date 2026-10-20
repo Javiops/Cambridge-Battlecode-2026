@@ -1,0 +1,799 @@
+{
+  "schema": 1,
+  "name": "stage2-baseline-v1",
+  "episodes": [
+    {
+      "split": "train",
+      "map": "generated/screen/g1-screen-000",
+      "map_sha256": "c5fca8116a6e73856e630ea95677f4023a164d4f9759e3a0cf717c3e32932f23",
+      "family": 0,
+      "names": [
+        "online-v76-week2-v1",
+        "online-v76-week2-v1"
+      ],
+      "wasm_sha256": [
+        "6c1a995ccd3c197fcc6f8203de2f4d9aa5d5fc221b29e6e5d368226be4631f0f",
+        "6c1a995ccd3c197fcc6f8203de2f4d9aa5d5fc221b29e6e5d368226be4631f0f"
+      ],
+      "lineages": [
+        "live-love-larp-v76",
+        "live-love-larp-v76"
+      ],
+      "runtime": {
+        "cli": "cambc 3.0.1",
+        "sdk_sha256": "478d64d6b611ffbe584d18352c449eaebb0d79465729811788a1e972860a1a9d",
+        "engine_build_hash": "2b36d9c61b2710d06036680d07fc4b7a8319ba35f634e4f1445725e0d99a1e16",
+        "ruleset": "cambc2026a-week2-2026-10-20",
+        "release": true
+      },
+      "teacher_teams": [
+        0,
+        1
+      ],
+      "episode_id": "9e7260ffbeae3229ef457156"
+    },
+    {
+      "split": "train",
+      "map": "generated/screen/g1-screen-000",
+      "map_sha256": "c5fca8116a6e73856e630ea95677f4023a164d4f9759e3a0cf717c3e32932f23",
+      "family": 0,
+      "names": [
+        "online-v76-week2-v1",
+        "dummy-week2-v1"
+      ],
+      "wasm_sha256": [
+        "6c1a995ccd3c197fcc6f8203de2f4d9aa5d5fc221b29e6e5d368226be4631f0f",
+        "ad187698542977544e6c83b40471c298d5867c6e050254ad2523aa053b4afaa7"
+      ],
+      "lineages": [
+        "live-love-larp-v76",
+        "idle"
+      ],
+      "runtime": {
+        "cli": "cambc 3.0.1",
+        "sdk_sha256": "478d64d6b611ffbe584d18352c449eaebb0d79465729811788a1e972860a1a9d",
+        "engine_build_hash": "2b36d9c61b2710d06036680d07fc4b7a8319ba35f634e4f1445725e0d99a1e16",
+        "ruleset": "cambc2026a-week2-2026-10-20",
+        "release": true
+      },
+      "teacher_teams": [
+        0
+      ],
+      "episode_id": "60a5d2c026a3de80fe2d070d"
+    },
+    {
+      "split": "train",
+      "map": "generated/screen/g1-screen-000",
+      "map_sha256": "c5fca8116a6e73856e630ea95677f4023a164d4f9759e3a0cf717c3e32932f23",
+      "family": 0,
+      "names": [
+        "dummy-week2-v1",
+        "online-v76-week2-v1"
+      ],
+      "wasm_sha256": [
+        "ad187698542977544e6c83b40471c298d5867c6e050254ad2523aa053b4afaa7",
+        "6c1a995ccd3c197fcc6f8203de2f4d9aa5d5fc221b29e6e5d368226be4631f0f"
+      ],
+      "lineages": [
+        "idle",
+        "live-love-larp-v76"
+      ],
+      "runtime": {
+        "cli": "cambc 3.0.1",
+        "sdk_sha256": "478d64d6b611ffbe584d18352c449eaebb0d79465729811788a1e972860a1a9d",
+        "engine_build_hash": "2b36d9c61b2710d06036680d07fc4b7a8319ba35f634e4f1445725e0d99a1e16",
+        "ruleset": "cambc2026a-week2-2026-10-20",
+        "release": true
+      },
+      "teacher_teams": [
+        1
+      ],
+      "episode_id": "7b98099116924e45098576d9"
+    },
+    {
+      "split": "train",
+      "map": "generated/screen/g1-screen-001",
+      "map_sha256": "f9fd8ee8724cae0143ffe80a7df51d36ac4e2f9c18c6bc4f9c30372daaea7ad8",
+      "family": 0,
+      "names": [
+        "online-v76-week2-v1",
+        "online-v76-week2-v1"
+      ],
+      "wasm_sha256": [
+        "6c1a995ccd3c197fcc6f8203de2f4d9aa5d5fc221b29e6e5d368226be4631f0f",
+        "6c1a995ccd3c197fcc6f8203de2f4d9aa5d5fc221b29e6e5d368226be4631f0f"
+      ],
+      "lineages": [
+        "live-love-larp-v76",
+        "live-love-larp-v76"
+      ],
+      "runtime": {
+        "cli": "cambc 3.0.1",
+        "sdk_sha256": "478d64d6b611ffbe584d18352c449eaebb0d79465729811788a1e972860a1a9d",
+        "engine_build_hash": "2b36d9c61b2710d06036680d07fc4b7a8319ba35f634e4f1445725e0d99a1e16",
+        "ruleset": "cambc2026a-week2-2026-10-20",
+        "release": true
+      },
+      "teacher_teams": [
+        0,
+        1
+      ],
+      "episode_id": "948da54173bf8af341bd67da"
+    },
+    {
+      "split": "train",
+      "map": "generated/screen/g1-screen-001",
+      "map_sha256": "f9fd8ee8724cae0143ffe80a7df51d36ac4e2f9c18c6bc4f9c30372daaea7ad8",
+      "family": 0,
+      "names": [
+        "online-v76-week2-v1",
+        "dummy-week2-v1"
+      ],
+      "wasm_sha256": [
+        "6c1a995ccd3c197fcc6f8203de2f4d9aa5d5fc221b29e6e5d368226be4631f0f",
+        "ad187698542977544e6c83b40471c298d5867c6e050254ad2523aa053b4afaa7"
+      ],
+      "lineages": [
+        "live-love-larp-v76",
+        "idle"
+      ],
+      "runtime": {
+        "cli": "cambc 3.0.1",
+        "sdk_sha256": "478d64d6b611ffbe584d18352c449eaebb0d79465729811788a1e972860a1a9d",
+        "engine_build_hash": "2b36d9c61b2710d06036680d07fc4b7a8319ba35f634e4f1445725e0d99a1e16",
+        "ruleset": "cambc2026a-week2-2026-10-20",
+        "release": true
+      },
+      "teacher_teams": [
+        0
+      ],
+      "episode_id": "c98df58f0374ff237629c9c8"
+    },
+    {
+      "split": "train",
+      "map": "generated/screen/g1-screen-001",
+      "map_sha256": "f9fd8ee8724cae0143ffe80a7df51d36ac4e2f9c18c6bc4f9c30372daaea7ad8",
+      "family": 0,
+      "names": [
+        "dummy-week2-v1",
+        "online-v76-week2-v1"
+      ],
+      "wasm_sha256": [
+        "ad187698542977544e6c83b40471c298d5867c6e050254ad2523aa053b4afaa7",
+        "6c1a995ccd3c197fcc6f8203de2f4d9aa5d5fc221b29e6e5d368226be4631f0f"
+      ],
+      "lineages": [
+        "idle",
+        "live-love-larp-v76"
+      ],
+      "runtime": {
+        "cli": "cambc 3.0.1",
+        "sdk_sha256": "478d64d6b611ffbe584d18352c449eaebb0d79465729811788a1e972860a1a9d",
+        "engine_build_hash": "2b36d9c61b2710d06036680d07fc4b7a8319ba35f634e4f1445725e0d99a1e16",
+        "ruleset": "cambc2026a-week2-2026-10-20",
+        "release": true
+      },
+      "teacher_teams": [
+        1
+      ],
+      "episode_id": "7726c96418525646d6f463be"
+    },
+    {
+      "split": "train",
+      "map": "generated/screen/g1-screen-003",
+      "map_sha256": "f2338072f2be1307ac369988049617f6f0a7843b2b1b984bdefb47bcbf19ced7",
+      "family": 1,
+      "names": [
+        "online-v76-week2-v1",
+        "online-v76-week2-v1"
+      ],
+      "wasm_sha256": [
+        "6c1a995ccd3c197fcc6f8203de2f4d9aa5d5fc221b29e6e5d368226be4631f0f",
+        "6c1a995ccd3c197fcc6f8203de2f4d9aa5d5fc221b29e6e5d368226be4631f0f"
+      ],
+      "lineages": [
+        "live-love-larp-v76",
+        "live-love-larp-v76"
+      ],
+      "runtime": {
+        "cli": "cambc 3.0.1",
+        "sdk_sha256": "478d64d6b611ffbe584d18352c449eaebb0d79465729811788a1e972860a1a9d",
+        "engine_build_hash": "2b36d9c61b2710d06036680d07fc4b7a8319ba35f634e4f1445725e0d99a1e16",
+        "ruleset": "cambc2026a-week2-2026-10-20",
+        "release": true
+      },
+      "teacher_teams": [
+        0,
+        1
+      ],
+      "episode_id": "6b27d270ee18a9886726496c"
+    },
+    {
+      "split": "train",
+      "map": "generated/screen/g1-screen-003",
+      "map_sha256": "f2338072f2be1307ac369988049617f6f0a7843b2b1b984bdefb47bcbf19ced7",
+      "family": 1,
+      "names": [
+        "online-v76-week2-v1",
+        "dummy-week2-v1"
+      ],
+      "wasm_sha256": [
+        "6c1a995ccd3c197fcc6f8203de2f4d9aa5d5fc221b29e6e5d368226be4631f0f",
+        "ad187698542977544e6c83b40471c298d5867c6e050254ad2523aa053b4afaa7"
+      ],
+      "lineages": [
+        "live-love-larp-v76",
+        "idle"
+      ],
+      "runtime": {
+        "cli": "cambc 3.0.1",
+        "sdk_sha256": "478d64d6b611ffbe584d18352c449eaebb0d79465729811788a1e972860a1a9d",
+        "engine_build_hash": "2b36d9c61b2710d06036680d07fc4b7a8319ba35f634e4f1445725e0d99a1e16",
+        "ruleset": "cambc2026a-week2-2026-10-20",
+        "release": true
+      },
+      "teacher_teams": [
+        0
+      ],
+      "episode_id": "488c1db3c9d09fae0579497c"
+    },
+    {
+      "split": "train",
+      "map": "generated/screen/g1-screen-003",
+      "map_sha256": "f2338072f2be1307ac369988049617f6f0a7843b2b1b984bdefb47bcbf19ced7",
+      "family": 1,
+      "names": [
+        "dummy-week2-v1",
+        "online-v76-week2-v1"
+      ],
+      "wasm_sha256": [
+        "ad187698542977544e6c83b40471c298d5867c6e050254ad2523aa053b4afaa7",
+        "6c1a995ccd3c197fcc6f8203de2f4d9aa5d5fc221b29e6e5d368226be4631f0f"
+      ],
+      "lineages": [
+        "idle",
+        "live-love-larp-v76"
+      ],
+      "runtime": {
+        "cli": "cambc 3.0.1",
+        "sdk_sha256": "478d64d6b611ffbe584d18352c449eaebb0d79465729811788a1e972860a1a9d",
+        "engine_build_hash": "2b36d9c61b2710d06036680d07fc4b7a8319ba35f634e4f1445725e0d99a1e16",
+        "ruleset": "cambc2026a-week2-2026-10-20",
+        "release": true
+      },
+      "teacher_teams": [
+        1
+      ],
+      "episode_id": "8dc06ece972af3306e6d3c38"
+    },
+    {
+      "split": "train",
+      "map": "generated/screen/g1-screen-007",
+      "map_sha256": "aaa0846f7c20c2187ee584f52a27a674d120c4ecbc2b1e11cdd81aa4ec1642e2",
+      "family": 1,
+      "names": [
+        "online-v76-week2-v1",
+        "online-v76-week2-v1"
+      ],
+      "wasm_sha256": [
+        "6c1a995ccd3c197fcc6f8203de2f4d9aa5d5fc221b29e6e5d368226be4631f0f",
+        "6c1a995ccd3c197fcc6f8203de2f4d9aa5d5fc221b29e6e5d368226be4631f0f"
+      ],
+      "lineages": [
+        "live-love-larp-v76",
+        "live-love-larp-v76"
+      ],
+      "runtime": {
+        "cli": "cambc 3.0.1",
+        "sdk_sha256": "478d64d6b611ffbe584d18352c449eaebb0d79465729811788a1e972860a1a9d",
+        "engine_build_hash": "2b36d9c61b2710d06036680d07fc4b7a8319ba35f634e4f1445725e0d99a1e16",
+        "ruleset": "cambc2026a-week2-2026-10-20",
+        "release": true
+      },
+      "teacher_teams": [
+        0,
+        1
+      ],
+      "episode_id": "96b6ffb2956fd8d018c04f69"
+    },
+    {
+      "split": "train",
+      "map": "generated/screen/g1-screen-007",
+      "map_sha256": "aaa0846f7c20c2187ee584f52a27a674d120c4ecbc2b1e11cdd81aa4ec1642e2",
+      "family": 1,
+      "names": [
+        "online-v76-week2-v1",
+        "dummy-week2-v1"
+      ],
+      "wasm_sha256": [
+        "6c1a995ccd3c197fcc6f8203de2f4d9aa5d5fc221b29e6e5d368226be4631f0f",
+        "ad187698542977544e6c83b40471c298d5867c6e050254ad2523aa053b4afaa7"
+      ],
+      "lineages": [
+        "live-love-larp-v76",
+        "idle"
+      ],
+      "runtime": {
+        "cli": "cambc 3.0.1",
+        "sdk_sha256": "478d64d6b611ffbe584d18352c449eaebb0d79465729811788a1e972860a1a9d",
+        "engine_build_hash": "2b36d9c61b2710d06036680d07fc4b7a8319ba35f634e4f1445725e0d99a1e16",
+        "ruleset": "cambc2026a-week2-2026-10-20",
+        "release": true
+      },
+      "teacher_teams": [
+        0
+      ],
+      "episode_id": "c91e4c26bded994efa5f51e6"
+    },
+    {
+      "split": "train",
+      "map": "generated/screen/g1-screen-007",
+      "map_sha256": "aaa0846f7c20c2187ee584f52a27a674d120c4ecbc2b1e11cdd81aa4ec1642e2",
+      "family": 1,
+      "names": [
+        "dummy-week2-v1",
+        "online-v76-week2-v1"
+      ],
+      "wasm_sha256": [
+        "ad187698542977544e6c83b40471c298d5867c6e050254ad2523aa053b4afaa7",
+        "6c1a995ccd3c197fcc6f8203de2f4d9aa5d5fc221b29e6e5d368226be4631f0f"
+      ],
+      "lineages": [
+        "idle",
+        "live-love-larp-v76"
+      ],
+      "runtime": {
+        "cli": "cambc 3.0.1",
+        "sdk_sha256": "478d64d6b611ffbe584d18352c449eaebb0d79465729811788a1e972860a1a9d",
+        "engine_build_hash": "2b36d9c61b2710d06036680d07fc4b7a8319ba35f634e4f1445725e0d99a1e16",
+        "ruleset": "cambc2026a-week2-2026-10-20",
+        "release": true
+      },
+      "teacher_teams": [
+        1
+      ],
+      "episode_id": "332ff52744a898e4fd467eb0"
+    },
+    {
+      "split": "train",
+      "map": "generated/screen/g1-screen-002",
+      "map_sha256": "2600d65825d2ba20c7a0568b70e25e4ff1963ca9b1ae9083eae3e69a3618f33c",
+      "family": 2,
+      "names": [
+        "online-v76-week2-v1",
+        "online-v76-week2-v1"
+      ],
+      "wasm_sha256": [
+        "6c1a995ccd3c197fcc6f8203de2f4d9aa5d5fc221b29e6e5d368226be4631f0f",
+        "6c1a995ccd3c197fcc6f8203de2f4d9aa5d5fc221b29e6e5d368226be4631f0f"
+      ],
+      "lineages": [
+        "live-love-larp-v76",
+        "live-love-larp-v76"
+      ],
+      "runtime": {
+        "cli": "cambc 3.0.1",
+        "sdk_sha256": "478d64d6b611ffbe584d18352c449eaebb0d79465729811788a1e972860a1a9d",
+        "engine_build_hash": "2b36d9c61b2710d06036680d07fc4b7a8319ba35f634e4f1445725e0d99a1e16",
+        "ruleset": "cambc2026a-week2-2026-10-20",
+        "release": true
+      },
+      "teacher_teams": [
+        0,
+        1
+      ],
+      "episode_id": "542ffb7dfcb08f3a8d918600"
+    },
+    {
+      "split": "train",
+      "map": "generated/screen/g1-screen-002",
+      "map_sha256": "2600d65825d2ba20c7a0568b70e25e4ff1963ca9b1ae9083eae3e69a3618f33c",
+      "family": 2,
+      "names": [
+        "online-v76-week2-v1",
+        "dummy-week2-v1"
+      ],
+      "wasm_sha256": [
+        "6c1a995ccd3c197fcc6f8203de2f4d9aa5d5fc221b29e6e5d368226be4631f0f",
+        "ad187698542977544e6c83b40471c298d5867c6e050254ad2523aa053b4afaa7"
+      ],
+      "lineages": [
+        "live-love-larp-v76",
+        "idle"
+      ],
+      "runtime": {
+        "cli": "cambc 3.0.1",
+        "sdk_sha256": "478d64d6b611ffbe584d18352c449eaebb0d79465729811788a1e972860a1a9d",
+        "engine_build_hash": "2b36d9c61b2710d06036680d07fc4b7a8319ba35f634e4f1445725e0d99a1e16",
+        "ruleset": "cambc2026a-week2-2026-10-20",
+        "release": true
+      },
+      "teacher_teams": [
+        0
+      ],
+      "episode_id": "b1150aaeca798e0c4fe05116"
+    },
+    {
+      "split": "train",
+      "map": "generated/screen/g1-screen-002",
+      "map_sha256": "2600d65825d2ba20c7a0568b70e25e4ff1963ca9b1ae9083eae3e69a3618f33c",
+      "family": 2,
+      "names": [
+        "dummy-week2-v1",
+        "online-v76-week2-v1"
+      ],
+      "wasm_sha256": [
+        "ad187698542977544e6c83b40471c298d5867c6e050254ad2523aa053b4afaa7",
+        "6c1a995ccd3c197fcc6f8203de2f4d9aa5d5fc221b29e6e5d368226be4631f0f"
+      ],
+      "lineages": [
+        "idle",
+        "live-love-larp-v76"
+      ],
+      "runtime": {
+        "cli": "cambc 3.0.1",
+        "sdk_sha256": "478d64d6b611ffbe584d18352c449eaebb0d79465729811788a1e972860a1a9d",
+        "engine_build_hash": "2b36d9c61b2710d06036680d07fc4b7a8319ba35f634e4f1445725e0d99a1e16",
+        "ruleset": "cambc2026a-week2-2026-10-20",
+        "release": true
+      },
+      "teacher_teams": [
+        1
+      ],
+      "episode_id": "de017137cc37fe388312cfdc"
+    },
+    {
+      "split": "train",
+      "map": "generated/screen/g1-screen-004",
+      "map_sha256": "e9e72601110c631d1cf995682554eed42dc3d576244596b0ad7ae4fb34cd29e3",
+      "family": 2,
+      "names": [
+        "online-v76-week2-v1",
+        "online-v76-week2-v1"
+      ],
+      "wasm_sha256": [
+        "6c1a995ccd3c197fcc6f8203de2f4d9aa5d5fc221b29e6e5d368226be4631f0f",
+        "6c1a995ccd3c197fcc6f8203de2f4d9aa5d5fc221b29e6e5d368226be4631f0f"
+      ],
+      "lineages": [
+        "live-love-larp-v76",
+        "live-love-larp-v76"
+      ],
+      "runtime": {
+        "cli": "cambc 3.0.1",
+        "sdk_sha256": "478d64d6b611ffbe584d18352c449eaebb0d79465729811788a1e972860a1a9d",
+        "engine_build_hash": "2b36d9c61b2710d06036680d07fc4b7a8319ba35f634e4f1445725e0d99a1e16",
+        "ruleset": "cambc2026a-week2-2026-10-20",
+        "release": true
+      },
+      "teacher_teams": [
+        0,
+        1
+      ],
+      "episode_id": "4cf8149dcd3fb557c5a1d03e"
+    },
+    {
+      "split": "train",
+      "map": "generated/screen/g1-screen-004",
+      "map_sha256": "e9e72601110c631d1cf995682554eed42dc3d576244596b0ad7ae4fb34cd29e3",
+      "family": 2,
+      "names": [
+        "online-v76-week2-v1",
+        "dummy-week2-v1"
+      ],
+      "wasm_sha256": [
+        "6c1a995ccd3c197fcc6f8203de2f4d9aa5d5fc221b29e6e5d368226be4631f0f",
+        "ad187698542977544e6c83b40471c298d5867c6e050254ad2523aa053b4afaa7"
+      ],
+      "lineages": [
+        "live-love-larp-v76",
+        "idle"
+      ],
+      "runtime": {
+        "cli": "cambc 3.0.1",
+        "sdk_sha256": "478d64d6b611ffbe584d18352c449eaebb0d79465729811788a1e972860a1a9d",
+        "engine_build_hash": "2b36d9c61b2710d06036680d07fc4b7a8319ba35f634e4f1445725e0d99a1e16",
+        "ruleset": "cambc2026a-week2-2026-10-20",
+        "release": true
+      },
+      "teacher_teams": [
+        0
+      ],
+      "episode_id": "dc557787f9a7692301111f8e"
+    },
+    {
+      "split": "train",
+      "map": "generated/screen/g1-screen-004",
+      "map_sha256": "e9e72601110c631d1cf995682554eed42dc3d576244596b0ad7ae4fb34cd29e3",
+      "family": 2,
+      "names": [
+        "dummy-week2-v1",
+        "online-v76-week2-v1"
+      ],
+      "wasm_sha256": [
+        "ad187698542977544e6c83b40471c298d5867c6e050254ad2523aa053b4afaa7",
+        "6c1a995ccd3c197fcc6f8203de2f4d9aa5d5fc221b29e6e5d368226be4631f0f"
+      ],
+      "lineages": [
+        "idle",
+        "live-love-larp-v76"
+      ],
+      "runtime": {
+        "cli": "cambc 3.0.1",
+        "sdk_sha256": "478d64d6b611ffbe584d18352c449eaebb0d79465729811788a1e972860a1a9d",
+        "engine_build_hash": "2b36d9c61b2710d06036680d07fc4b7a8319ba35f634e4f1445725e0d99a1e16",
+        "ruleset": "cambc2026a-week2-2026-10-20",
+        "release": true
+      },
+      "teacher_teams": [
+        1
+      ],
+      "episode_id": "5fe7661709fbd43277b3de55"
+    },
+    {
+      "split": "validation",
+      "map": "generated/screen/g1-screen-006",
+      "map_sha256": "dcc9a4436f9ad52c946471b300037a96fa5cff88cbc2cfc9bd18481d0e8d093a",
+      "family": 3,
+      "names": [
+        "starter-week2-v1",
+        "calib-seed-week2-v1"
+      ],
+      "wasm_sha256": [
+        "c9a0ca35cf13686680ef4ea00d0bb99f654a79be78382bdb3283604d5fde9795",
+        "c9602e0a27c5791b84146529346bfd1453e5cdb3c900759363231f487bb6ccf9"
+      ],
+      "lineages": [
+        "sdk-starter",
+        "sdk-starter"
+      ],
+      "runtime": {
+        "cli": "cambc 3.0.1",
+        "sdk_sha256": "478d64d6b611ffbe584d18352c449eaebb0d79465729811788a1e972860a1a9d",
+        "engine_build_hash": "2b36d9c61b2710d06036680d07fc4b7a8319ba35f634e4f1445725e0d99a1e16",
+        "ruleset": "cambc2026a-week2-2026-10-20",
+        "release": true
+      },
+      "teacher_teams": [
+        0,
+        1
+      ],
+      "episode_id": "5d70db190999cf9d941b22ac"
+    },
+    {
+      "split": "validation",
+      "map": "generated/screen/g1-screen-006",
+      "map_sha256": "dcc9a4436f9ad52c946471b300037a96fa5cff88cbc2cfc9bd18481d0e8d093a",
+      "family": 3,
+      "names": [
+        "calib-seed-week2-v1",
+        "starter-week2-v1"
+      ],
+      "wasm_sha256": [
+        "c9602e0a27c5791b84146529346bfd1453e5cdb3c900759363231f487bb6ccf9",
+        "c9a0ca35cf13686680ef4ea00d0bb99f654a79be78382bdb3283604d5fde9795"
+      ],
+      "lineages": [
+        "sdk-starter",
+        "sdk-starter"
+      ],
+      "runtime": {
+        "cli": "cambc 3.0.1",
+        "sdk_sha256": "478d64d6b611ffbe584d18352c449eaebb0d79465729811788a1e972860a1a9d",
+        "engine_build_hash": "2b36d9c61b2710d06036680d07fc4b7a8319ba35f634e4f1445725e0d99a1e16",
+        "ruleset": "cambc2026a-week2-2026-10-20",
+        "release": true
+      },
+      "teacher_teams": [
+        0,
+        1
+      ],
+      "episode_id": "46739459b29dc5176b4ae8dc"
+    },
+    {
+      "split": "validation",
+      "map": "generated/screen/g1-screen-006",
+      "map_sha256": "dcc9a4436f9ad52c946471b300037a96fa5cff88cbc2cfc9bd18481d0e8d093a",
+      "family": 3,
+      "names": [
+        "starter-week2-v1",
+        "starter-week2-v1"
+      ],
+      "wasm_sha256": [
+        "c9a0ca35cf13686680ef4ea00d0bb99f654a79be78382bdb3283604d5fde9795",
+        "c9a0ca35cf13686680ef4ea00d0bb99f654a79be78382bdb3283604d5fde9795"
+      ],
+      "lineages": [
+        "sdk-starter",
+        "sdk-starter"
+      ],
+      "runtime": {
+        "cli": "cambc 3.0.1",
+        "sdk_sha256": "478d64d6b611ffbe584d18352c449eaebb0d79465729811788a1e972860a1a9d",
+        "engine_build_hash": "2b36d9c61b2710d06036680d07fc4b7a8319ba35f634e4f1445725e0d99a1e16",
+        "ruleset": "cambc2026a-week2-2026-10-20",
+        "release": true
+      },
+      "teacher_teams": [
+        0,
+        1
+      ],
+      "episode_id": "4c090d1eb6ad58ca451de840"
+    },
+    {
+      "split": "validation",
+      "map": "generated/screen/g1-screen-009",
+      "map_sha256": "f05497138cfc78290c0e777d0837cf7d81304f4765505eeaaa5c5867b00552d1",
+      "family": 3,
+      "names": [
+        "starter-week2-v1",
+        "calib-seed-week2-v1"
+      ],
+      "wasm_sha256": [
+        "c9a0ca35cf13686680ef4ea00d0bb99f654a79be78382bdb3283604d5fde9795",
+        "c9602e0a27c5791b84146529346bfd1453e5cdb3c900759363231f487bb6ccf9"
+      ],
+      "lineages": [
+        "sdk-starter",
+        "sdk-starter"
+      ],
+      "runtime": {
+        "cli": "cambc 3.0.1",
+        "sdk_sha256": "478d64d6b611ffbe584d18352c449eaebb0d79465729811788a1e972860a1a9d",
+        "engine_build_hash": "2b36d9c61b2710d06036680d07fc4b7a8319ba35f634e4f1445725e0d99a1e16",
+        "ruleset": "cambc2026a-week2-2026-10-20",
+        "release": true
+      },
+      "teacher_teams": [
+        0,
+        1
+      ],
+      "episode_id": "45bafd707b5576bcc96919ae"
+    },
+    {
+      "split": "validation",
+      "map": "generated/screen/g1-screen-009",
+      "map_sha256": "f05497138cfc78290c0e777d0837cf7d81304f4765505eeaaa5c5867b00552d1",
+      "family": 3,
+      "names": [
+        "calib-seed-week2-v1",
+        "starter-week2-v1"
+      ],
+      "wasm_sha256": [
+        "c9602e0a27c5791b84146529346bfd1453e5cdb3c900759363231f487bb6ccf9",
+        "c9a0ca35cf13686680ef4ea00d0bb99f654a79be78382bdb3283604d5fde9795"
+      ],
+      "lineages": [
+        "sdk-starter",
+        "sdk-starter"
+      ],
+      "runtime": {
+        "cli": "cambc 3.0.1",
+        "sdk_sha256": "478d64d6b611ffbe584d18352c449eaebb0d79465729811788a1e972860a1a9d",
+        "engine_build_hash": "2b36d9c61b2710d06036680d07fc4b7a8319ba35f634e4f1445725e0d99a1e16",
+        "ruleset": "cambc2026a-week2-2026-10-20",
+        "release": true
+      },
+      "teacher_teams": [
+        0,
+        1
+      ],
+      "episode_id": "58c932f7061c7c39d07257b8"
+    },
+    {
+      "split": "validation",
+      "map": "generated/screen/g1-screen-009",
+      "map_sha256": "f05497138cfc78290c0e777d0837cf7d81304f4765505eeaaa5c5867b00552d1",
+      "family": 3,
+      "names": [
+        "starter-week2-v1",
+        "starter-week2-v1"
+      ],
+      "wasm_sha256": [
+        "c9a0ca35cf13686680ef4ea00d0bb99f654a79be78382bdb3283604d5fde9795",
+        "c9a0ca35cf13686680ef4ea00d0bb99f654a79be78382bdb3283604d5fde9795"
+      ],
+      "lineages": [
+        "sdk-starter",
+        "sdk-starter"
+      ],
+      "runtime": {
+        "cli": "cambc 3.0.1",
+        "sdk_sha256": "478d64d6b611ffbe584d18352c449eaebb0d79465729811788a1e972860a1a9d",
+        "engine_build_hash": "2b36d9c61b2710d06036680d07fc4b7a8319ba35f634e4f1445725e0d99a1e16",
+        "ruleset": "cambc2026a-week2-2026-10-20",
+        "release": true
+      },
+      "teacher_teams": [
+        0,
+        1
+      ],
+      "episode_id": "46047191b8e81e16b0abffe7"
+    }
+  ],
+  "sampling": {
+    "round_stride": 5,
+    "max_actions_per_turn": 64,
+    "phase": "(round - 1) mod stride == 0"
+  },
+  "actor_schema": 1,
+  "model_shape": [
+    24,
+    16,
+    12,
+    8
+  ],
+  "sealed_maps": [
+    "01big-world",
+    "01boss-battle",
+    "01broken-curve",
+    "01concentrated-wealth",
+    "01corridors",
+    "01elk-arena",
+    "01fracture",
+    "01gold-rush",
+    "01hooks",
+    "01islands",
+    "generated/confirm/g1-confirm-000",
+    "generated/confirm/g1-confirm-001",
+    "generated/confirm/g1-confirm-002",
+    "generated/confirm/g1-confirm-003",
+    "generated/confirm/g1-confirm-004",
+    "generated/confirm/g1-confirm-005",
+    "generated/confirm/g1-confirm-006",
+    "generated/confirm/g1-confirm-007",
+    "generated/confirm/g1-confirm-008",
+    "generated/confirm/g1-confirm-009",
+    "generated/confirm/g1-confirm-010",
+    "generated/confirm/g1-confirm-011",
+    "generated/confirm/g1-confirm-012",
+    "generated/confirm/g1-confirm-013",
+    "generated/confirm/g1-confirm-014",
+    "generated/confirm/g1-confirm-015",
+    "generated/confirm/g1-confirm-016",
+    "generated/confirm/g1-confirm-017",
+    "generated/confirm/g1-confirm-018",
+    "generated/confirm/g1-confirm-019",
+    "generated/confirm/g1-confirm-020",
+    "generated/confirm/g1-confirm-021",
+    "generated/confirm/g1-confirm-022",
+    "generated/confirm/g1-confirm-023",
+    "generated/confirm/g1-confirm-024",
+    "generated/confirm/g1-confirm-025",
+    "generated/confirm/g1-confirm-026",
+    "generated/confirm/g1-confirm-027",
+    "generated/confirm/g1-confirm-028",
+    "generated/confirm/g1-confirm-029",
+    "generated/confirm/g1-confirm-030",
+    "generated/confirm/g1-confirm-031",
+    "generated/confirm/g1-confirm-032",
+    "generated/confirm/g1-confirm-033",
+    "generated/confirm/g1-confirm-034",
+    "generated/confirm/g1-confirm-035",
+    "generated/confirm/g1-confirm-036",
+    "generated/confirm/g1-confirm-037",
+    "generated/confirm/g1-confirm-038",
+    "generated/confirm/g1-confirm-039",
+    "generated/confirm/g1-confirm-040",
+    "generated/confirm/g1-confirm-041",
+    "generated/confirm/g1-confirm-042",
+    "generated/confirm/g1-confirm-043",
+    "generated/confirm/g1-confirm-044",
+    "generated/confirm/g1-confirm-045",
+    "generated/confirm/g1-confirm-046",
+    "generated/confirm/g1-confirm-047",
+    "generated/confirm/g1-confirm-048",
+    "generated/confirm/g1-confirm-049",
+    "generated/confirm/g1-confirm-050",
+    "generated/confirm/g1-confirm-051",
+    "generated/confirm/g1-confirm-052",
+    "generated/confirm/g1-confirm-053",
+    "generated/confirm/g1-confirm-054",
+    "generated/confirm/g1-confirm-055",
+    "generated/confirm/g1-confirm-056",
+    "generated/confirm/g1-confirm-057",
+    "generated/confirm/g1-confirm-058",
+    "generated/confirm/g1-confirm-059"
+  ],
+  "partition_policy": "whole map family and both actor/opponent lineages"
+}

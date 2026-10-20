@@ -1,0 +1,11 @@
+{
+  "passed": true,
+  "stage": 2,
+  "admitted_games": 23,
+  "quarantined_games": 1,
+  "train_samples": 44221,
+  "validation_samples": 15070,
+  "live_sparring_games": 20,
+  "stage3_started": false,
+  "manifest_sha256": "271e888f1c473b3559d30802d28fa0168be0a982a657a92c456bb216efcb2426"
+}

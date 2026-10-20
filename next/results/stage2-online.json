@@ -1,0 +1,2868 @@
+{
+  "schema": 1,
+  "passed": true,
+  "games": 20,
+  "groups": 4,
+  "our_wins": 0,
+  "our_losses": 20,
+  "confirmation_games": 0,
+  "our_submission_changed": false,
+  "matches": [
+    {
+      "group_id": "9b05598c-5761-4a4c-a4b9-4feceec94e7a",
+      "url": "https://2026a.battlecode.co.uk/game/match-groups/9b05598c-5761-4a4c-a4b9-4feceec94e7a",
+      "opponent": "Nyx",
+      "our_version": 76,
+      "our_seat": 0,
+      "map": "00ambush",
+      "terminal": {
+        "outcome": "teamB",
+        "round": 1135,
+        "banks": [
+          442,
+          1001
+        ]
+      },
+      "statistics": [
+        {
+          "id": 0,
+          "team": 0,
+          "type": 3,
+          "kills": 0,
+          "deaths": 2,
+          "gold": 0,
+          "collected_gems": 0,
+          "submitted_gems": 0
+        },
+        {
+          "id": 1,
+          "team": 0,
+          "type": 4,
+          "kills": 0,
+          "deaths": 2,
+          "gold": 880,
+          "collected_gems": 191,
+          "submitted_gems": 191
+        },
+        {
+          "id": 2,
+          "team": 0,
+          "type": 5,
+          "kills": 0,
+          "deaths": 0,
+          "gold": 0,
+          "collected_gems": 0,
+          "submitted_gems": 0
+        },
+        {
+          "id": 3,
+          "team": 0,
+          "type": 10,
+          "kills": 0,
+          "deaths": 0,
+          "gold": 1050,
+          "collected_gems": 200,
+          "submitted_gems": 163
+        },
+        {
+          "id": 4,
+          "team": 0,
+          "type": 11,
+          "kills": 0,
+          "deaths": 0,
+          "gold": 450,
+          "collected_gems": 88,
+          "submitted_gems": 88
+        },
+        {
+          "id": 5,
+          "team": 0,
+          "type": 9,
+          "kills": 0,
+          "deaths": 2,
+          "gold": 0,
+          "collected_gems": 0,
+          "submitted_gems": 0
+        },
+        {
+          "id": 6,
+          "team": 1,
+          "type": 9,
+          "kills": 0,
+          "deaths": 0,
+          "gold": 1798,
+          "collected_gems": 124,
+          "submitted_gems": 124
+        },
+        {
+          "id": 7,
+          "team": 1,
+          "type": 5,
+          "kills": 0,
+          "deaths": 1,
+          "gold": 1918,
+          "collected_gems": 291,
+          "submitted_gems": 291
+        },
+        {
+          "id": 8,
+          "team": 1,
+          "type": 3,
+          "kills": 0,
+          "deaths": 2,
+          "gold": 1012,
+          "collected_gems": 121,
+          "submitted_gems": 121
+        },
+        {
+          "id": 9,
+          "team": 1,
+          "type": 4,
+          "kills": 0,
+          "deaths": 2,
+          "gold": 652,
+          "collected_gems": 0,
+          "submitted_gems": 0
+        },
+        {
+          "id": 10,
+          "team": 1,
+          "type": 0,
+          "kills": 0,
+          "deaths": 0,
+          "gold": 968,
+          "collected_gems": 88,
+          "submitted_gems": 88
+        },
+        {
+          "id": 11,
+          "team": 1,
+          "type": 10,
+          "kills": 0,
+          "deaths": 1,
+          "gold": 1854,
+          "collected_gems": 377,
+          "submitted_gems": 377
+        }
+      ],
+      "input_actions": {
+        "draft": 10,
+        "wait": 13621,
+        "cast": 817,
+        "move": 9461,
+        "ward": 240,
+        "attack": 1730,
+        "recall": 88,
+        "buy": 150,
+        "submit": 35,
+        "buy_consumable": 3
+      },
+      "replay_sha256": "1efde6f04afedeb46c63349232ab61cbd5ba4e5949649e60263f43deffbc6fff",
+      "download_sha256": "3c981abc639722f703578ce6d8ef372316c0752e311c0f18cfbebef7c87ce70e",
+      "engine_build_hash": null,
+      "decoder_engine_sha256": "f7d27c468024ce20f1f64eb1bd06ec4de6314213314fb0132e8b605cf0a610db",
+      "partition": "external_diagnostics",
+      "training_eligible": false,
+      "reason": "Download omits exact server build/submission WASM identity and guest memory writes"
+    },
+    {
+      "group_id": "9b05598c-5761-4a4c-a4b9-4feceec94e7a",
+      "url": "https://2026a.battlecode.co.uk/game/match-groups/9b05598c-5761-4a4c-a4b9-4feceec94e7a",
+      "opponent": "Nyx",
+      "our_version": 76,
+      "our_seat": 0,
+      "map": "00collision",
+      "terminal": {
+        "outcome": "teamB",
+        "round": 1124,
+        "banks": [
+          146,
+          1011
+        ]
+      },
+      "statistics": [
+        {
+          "id": 0,
+          "team": 0,
+          "type": 3,
+          "kills": 0,
+          "deaths": 10,
+          "gold": 60,
+          "collected_gems": 4,
+          "submitted_gems": 0
+        },
+        {
+          "id": 1,
+          "team": 0,
+          "type": 4,
+          "kills": 0,
+          "deaths": 10,
+          "gold": 300,
+          "collected_gems": 23,
+          "submitted_gems": 11
+        },
+        {
+          "id": 2,
+          "team": 0,
+          "type": 9,
+          "kills": 0,
+          "deaths": 7,
+          "gold": 410,
+          "collected_gems": 83,
+          "submitted_gems": 69
+        },
+        {
+          "id": 3,
+          "team": 0,
+          "type": 5,
+          "kills": 2,
+          "deaths": 8,
+          "gold": 410,
+          "collected_gems": 71,
+          "submitted_gems": 66
+        },
+        {
+          "id": 4,
+          "team": 1,
+          "type": 9,
+          "kills": 3,
+          "deaths": 1,
+          "gold": 1828,
+          "collected_gems": 190,
+          "submitted_gems": 190
+        },
+        {
+          "id": 5,
+          "team": 1,
+          "type": 5,
+          "kills": 17,
+          "deaths": 1,
+          "gold": 4836,
+          "collected_gems": 305,
+          "submitted_gems": 283
+        },
+        {
+          "id": 6,
+          "team": 1,
+          "type": 3,
+          "kills": 4,
+          "deaths": 1,
+          "gold": 2854,
+          "collected_gems": 304,
+          "submitted_gems": 304
+        },
+        {
+          "id": 7,
+          "team": 1,
+          "type": 4,
+          "kills": 1,
+          "deaths": 1,
+          "gold": 1912,
+          "collected_gems": 245,
+          "submitted_gems": 234
+        }
+      ],
+      "input_actions": {
+        "draft": 6,
+        "wait": 8992,
+        "cast": 760,
+        "move": 3814,
+        "attack": 1474,
+        "recall": 106,
+        "buy": 179,
+        "priority": 313,
+        "submit": 56,
+        "buy_consumable": 5,
+        "use_consumable": 3,
+        "cancel": 2,
+        "ward": 1
+      },
+      "replay_sha256": "8fab527fea987a8c2531f950fa66e1995c2c2f06a70692c592f6d435349a9532",
+      "download_sha256": "3c981abc639722f703578ce6d8ef372316c0752e311c0f18cfbebef7c87ce70e",
+      "engine_build_hash": null,
+      "decoder_engine_sha256": "f7d27c468024ce20f1f64eb1bd06ec4de6314213314fb0132e8b605cf0a610db",
+      "partition": "external_diagnostics",
+      "training_eligible": false,
+      "reason": "Download omits exact server build/submission WASM identity and guest memory writes"
+    },
+    {
+      "group_id": "9b05598c-5761-4a4c-a4b9-4feceec94e7a",
+      "url": "https://2026a.battlecode.co.uk/game/match-groups/9b05598c-5761-4a4c-a4b9-4feceec94e7a",
+      "opponent": "Nyx",
+      "our_version": 76,
+      "our_seat": 0,
+      "map": "00corners",
+      "terminal": {
+        "outcome": "teamB",
+        "round": 1176,
+        "banks": [
+          695,
+          1003
+        ]
+      },
+      "statistics": [
+        {
+          "id": 0,
+          "team": 0,
+          "type": 0,
+          "kills": 0,
+          "deaths": 2,
+          "gold": 2240,
+          "collected_gems": 333,
+          "submitted_gems": 311
+        },
+        {
+          "id": 1,
+          "team": 0,
+          "type": 5,
+          "kills": 0,
+          "deaths": 3,
+          "gold": 420,
+          "collected_gems": 46,
+          "submitted_gems": 46
+        },
+        {
+          "id": 2,
+          "team": 0,
+          "type": 6,
+          "kills": 0,
+          "deaths": 4,
+          "gold": 310,
+          "collected_gems": 38,
+          "submitted_gems": 16
+        },
+        {
+          "id": 3,
+          "team": 0,
+          "type": 9,
+          "kills": 3,
+          "deaths": 1,
+          "gold": 1970,
+          "collected_gems": 300,
+          "submitted_gems": 300
+        },
+        {
+          "id": 4,
+          "team": 0,
+          "type": 11,
+          "kills": 0,
+          "deaths": 4,
+          "gold": 110,
+          "collected_gems": 22,
+          "submitted_gems": 22
+        },
+        {
+          "id": 5,
+          "team": 1,
+          "type": 9,
+          "kills": 1,
+          "deaths": 0,
+          "gold": 1534,
+          "collected_gems": 120,
+          "submitted_gems": 116
+        },
+        {
+          "id": 6,
+          "team": 1,
+          "type": 5,
+          "kills": 6,
+          "deaths": 3,
+          "gold": 2904,
+          "collected_gems": 359,
+          "submitted_gems": 192
+        },
+        {
+          "id": 7,
+          "team": 1,
+          "type": 3,
+          "kills": 2,
+          "deaths": 2,
+          "gold": 2020,
+          "collected_gems": 228,
+          "submitted_gems": 216
+        },
+        {
+          "id": 8,
+          "team": 1,
+          "type": 4,
+          "kills": 0,
+          "deaths": 2,
+          "gold": 1710,
+          "collected_gems": 164,
+          "submitted_gems": 123
+        },
+        {
+          "id": 9,
+          "team": 1,
+          "type": 0,
+          "kills": 3,
+          "deaths": 1,
+          "gold": 1330,
+          "collected_gems": 132,
+          "submitted_gems": 132
+        },
+        {
+          "id": 10,
+          "team": 1,
+          "type": 10,
+          "kills": 0,
+          "deaths": 0,
+          "gold": 1270,
+          "collected_gems": 224,
+          "submitted_gems": 224
+        }
+      ],
+      "input_actions": {
+        "draft": 10,
+        "wait": 12941,
+        "cast": 1237,
+        "move": 6719,
+        "attack": 2555,
+        "ward": 82,
+        "recall": 176,
+        "buy": 282,
+        "submit": 96,
+        "buy_consumable": 11,
+        "use_consumable": 6,
+        "priority": 474,
+        "cancel": 3
+      },
+      "replay_sha256": "45890520f26bdd35002e89ce45126571a492b9bcb7ab7bf672778d627688cf4e",
+      "download_sha256": "3c981abc639722f703578ce6d8ef372316c0752e311c0f18cfbebef7c87ce70e",
+      "engine_build_hash": null,
+      "decoder_engine_sha256": "f7d27c468024ce20f1f64eb1bd06ec4de6314213314fb0132e8b605cf0a610db",
+      "partition": "external_diagnostics",
+      "training_eligible": false,
+      "reason": "Download omits exact server build/submission WASM identity and guest memory writes"
+    },
+    {
+      "group_id": "9b05598c-5761-4a4c-a4b9-4feceec94e7a",
+      "url": "https://2026a.battlecode.co.uk/game/match-groups/9b05598c-5761-4a4c-a4b9-4feceec94e7a",
+      "opponent": "Nyx",
+      "our_version": 76,
+      "our_seat": 0,
+      "map": "00eight",
+      "terminal": {
+        "outcome": "teamB",
+        "round": 1167,
+        "banks": [
+          505,
+          1017
+        ]
+      },
+      "statistics": [
+        {
+          "id": 0,
+          "team": 0,
+          "type": 3,
+          "kills": 1,
+          "deaths": 5,
+          "gold": 260,
+          "collected_gems": 27,
+          "submitted_gems": 23
+        },
+        {
+          "id": 1,
+          "team": 0,
+          "type": 4,
+          "kills": 1,
+          "deaths": 5,
+          "gold": 800,
+          "collected_gems": 98,
+          "submitted_gems": 64
+        },
+        {
+          "id": 2,
+          "team": 0,
+          "type": 5,
+          "kills": 4,
+          "deaths": 2,
+          "gold": 660,
+          "collected_gems": 60,
+          "submitted_gems": 60
+        },
+        {
+          "id": 3,
+          "team": 0,
+          "type": 10,
+          "kills": 1,
+          "deaths": 2,
+          "gold": 2090,
+          "collected_gems": 285,
+          "submitted_gems": 262
+        },
+        {
+          "id": 4,
+          "team": 0,
+          "type": 11,
+          "kills": 3,
+          "deaths": 5,
+          "gold": 300,
+          "collected_gems": 8,
+          "submitted_gems": 8
+        },
+        {
+          "id": 5,
+          "team": 0,
+          "type": 9,
+          "kills": 0,
+          "deaths": 3,
+          "gold": 900,
+          "collected_gems": 104,
+          "submitted_gems": 88
+        },
+        {
+          "id": 6,
+          "team": 1,
+          "type": 10,
+          "kills": 8,
+          "deaths": 1,
+          "gold": 4154,
+          "collected_gems": 592,
+          "submitted_gems": 592
+        },
+        {
+          "id": 7,
+          "team": 1,
+          "type": 2,
+          "kills": 0,
+          "deaths": 3,
+          "gold": 1096,
+          "collected_gems": 188,
+          "submitted_gems": 169
+        },
+        {
+          "id": 8,
+          "team": 1,
+          "type": 3,
+          "kills": 3,
+          "deaths": 5,
+          "gold": 1792,
+          "collected_gems": 226,
+          "submitted_gems": 159
+        },
+        {
+          "id": 9,
+          "team": 1,
+          "type": 4,
+          "kills": 2,
+          "deaths": 5,
+          "gold": 296,
+          "collected_gems": 22,
+          "submitted_gems": 22
+        },
+        {
+          "id": 10,
+          "team": 1,
+          "type": 8,
+          "kills": 0,
+          "deaths": 1,
+          "gold": 400,
+          "collected_gems": 49,
+          "submitted_gems": 11
+        },
+        {
+          "id": 11,
+          "team": 1,
+          "type": 0,
+          "kills": 1,
+          "deaths": 1,
+          "gold": 676,
+          "collected_gems": 79,
+          "submitted_gems": 64
+        }
+      ],
+      "input_actions": {
+        "draft": 10,
+        "wait": 14003,
+        "move": 7476,
+        "cast": 1230,
+        "attack": 2468,
+        "recall": 162,
+        "buy": 247,
+        "priority": 578,
+        "cancel": 2,
+        "buy_consumable": 14,
+        "use_consumable": 12,
+        "submit": 114,
+        "ward": 92
+      },
+      "replay_sha256": "7e030da88a5c2ec0281f06911bd5cc2e8aebc68edb9472572d5e4b21ae579b4a",
+      "download_sha256": "3c981abc639722f703578ce6d8ef372316c0752e311c0f18cfbebef7c87ce70e",
+      "engine_build_hash": null,
+      "decoder_engine_sha256": "f7d27c468024ce20f1f64eb1bd06ec4de6314213314fb0132e8b605cf0a610db",
+      "partition": "external_diagnostics",
+      "training_eligible": false,
+      "reason": "Download omits exact server build/submission WASM identity and guest memory writes"
+    },
+    {
+      "group_id": "9b05598c-5761-4a4c-a4b9-4feceec94e7a",
+      "url": "https://2026a.battlecode.co.uk/game/match-groups/9b05598c-5761-4a4c-a4b9-4feceec94e7a",
+      "opponent": "Nyx",
+      "our_version": 76,
+      "our_seat": 0,
+      "map": "00lanes",
+      "terminal": {
+        "outcome": "teamB",
+        "round": 930,
+        "banks": [
+          132,
+          1008
+        ]
+      },
+      "statistics": [
+        {
+          "id": 0,
+          "team": 0,
+          "type": 2,
+          "kills": 0,
+          "deaths": 0,
+          "gold": 160,
+          "collected_gems": 44,
+          "submitted_gems": 33
+        },
+        {
+          "id": 1,
+          "team": 0,
+          "type": 10,
+          "kills": 0,
+          "deaths": 0,
+          "gold": 40,
+          "collected_gems": 11,
+          "submitted_gems": 0
+        },
+        {
+          "id": 2,
+          "team": 0,
+          "type": 3,
+          "kills": 0,
+          "deaths": 1,
+          "gold": 360,
+          "collected_gems": 99,
+          "submitted_gems": 99
+        },
+        {
+          "id": 3,
+          "team": 0,
+          "type": 4,
+          "kills": 0,
+          "deaths": 1,
+          "gold": 60,
+          "collected_gems": 4,
+          "submitted_gems": 0
+        },
+        {
+          "id": 4,
+          "team": 0,
+          "type": 0,
+          "kills": 0,
+          "deaths": 0,
+          "gold": 60,
+          "collected_gems": 4,
+          "submitted_gems": 0
+        },
+        {
+          "id": 5,
+          "team": 0,
+          "type": 11,
+          "kills": 0,
+          "deaths": 0,
+          "gold": 60,
+          "collected_gems": 4,
+          "submitted_gems": 0
+        },
+        {
+          "id": 6,
+          "team": 1,
+          "type": 9,
+          "kills": 1,
+          "deaths": 0,
+          "gold": 1536,
+          "collected_gems": 183,
+          "submitted_gems": 183
+        },
+        {
+          "id": 7,
+          "team": 1,
+          "type": 5,
+          "kills": 0,
+          "deaths": 0,
+          "gold": 1774,
+          "collected_gems": 353,
+          "submitted_gems": 353
+        },
+        {
+          "id": 8,
+          "team": 1,
+          "type": 3,
+          "kills": 0,
+          "deaths": 2,
+          "gold": 1174,
+          "collected_gems": 163,
+          "submitted_gems": 152
+        },
+        {
+          "id": 9,
+          "team": 1,
+          "type": 4,
+          "kills": 0,
+          "deaths": 2,
+          "gold": 492,
+          "collected_gems": 63,
+          "submitted_gems": 59
+        },
+        {
+          "id": 10,
+          "team": 1,
+          "type": 0,
+          "kills": 0,
+          "deaths": 0,
+          "gold": 1132,
+          "collected_gems": 217,
+          "submitted_gems": 195
+        },
+        {
+          "id": 11,
+          "team": 1,
+          "type": 10,
+          "kills": 0,
+          "deaths": 2,
+          "gold": 516,
+          "collected_gems": 96,
+          "submitted_gems": 66
+        }
+      ],
+      "input_actions": {
+        "draft": 10,
+        "wait": 11158,
+        "ward": 379,
+        "cast": 699,
+        "move": 3602,
+        "attack": 2211,
+        "recall": 81,
+        "submit": 57,
+        "buy": 109,
+        "buy_consumable": 3,
+        "priority": 13
+      },
+      "replay_sha256": "a7df4adaf3a6f2f9aeaad064267eb0d8d30c3d4f25531acdfe80c16003958c68",
+      "download_sha256": "3c981abc639722f703578ce6d8ef372316c0752e311c0f18cfbebef7c87ce70e",
+      "engine_build_hash": null,
+      "decoder_engine_sha256": "f7d27c468024ce20f1f64eb1bd06ec4de6314213314fb0132e8b605cf0a610db",
+      "partition": "external_diagnostics",
+      "training_eligible": false,
+      "reason": "Download omits exact server build/submission WASM identity and guest memory writes"
+    },
+    {
+      "group_id": "bfce0895-aad8-4129-aa9d-0b8f6c92e358",
+      "url": "https://2026a.battlecode.co.uk/game/match-groups/bfce0895-aad8-4129-aa9d-0b8f6c92e358",
+      "opponent": "Nyx",
+      "our_version": 76,
+      "our_seat": 1,
+      "map": "00ambush",
+      "terminal": {
+        "outcome": "teamA",
+        "round": 1195,
+        "banks": [
+          1004,
+          545
+        ]
+      },
+      "statistics": [
+        {
+          "id": 0,
+          "team": 0,
+          "type": 9,
+          "kills": 2,
+          "deaths": 0,
+          "gold": 2236,
+          "collected_gems": 343,
+          "submitted_gems": 343
+        },
+        {
+          "id": 1,
+          "team": 0,
+          "type": 5,
+          "kills": 1,
+          "deaths": 1,
+          "gold": 1616,
+          "collected_gems": 228,
+          "submitted_gems": 228
+        },
+        {
+          "id": 2,
+          "team": 0,
+          "type": 3,
+          "kills": 0,
+          "deaths": 1,
+          "gold": 1736,
+          "collected_gems": 264,
+          "submitted_gems": 264
+        },
+        {
+          "id": 3,
+          "team": 0,
+          "type": 4,
+          "kills": 0,
+          "deaths": 1,
+          "gold": 1348,
+          "collected_gems": 66,
+          "submitted_gems": 66
+        },
+        {
+          "id": 4,
+          "team": 0,
+          "type": 0,
+          "kills": 0,
+          "deaths": 0,
+          "gold": 1004,
+          "collected_gems": 70,
+          "submitted_gems": 70
+        },
+        {
+          "id": 5,
+          "team": 0,
+          "type": 10,
+          "kills": 0,
+          "deaths": 1,
+          "gold": 222,
+          "collected_gems": 33,
+          "submitted_gems": 33
+        },
+        {
+          "id": 6,
+          "team": 1,
+          "type": 3,
+          "kills": 0,
+          "deaths": 3,
+          "gold": 0,
+          "collected_gems": 0,
+          "submitted_gems": 0
+        },
+        {
+          "id": 7,
+          "team": 1,
+          "type": 4,
+          "kills": 0,
+          "deaths": 3,
+          "gold": 400,
+          "collected_gems": 74,
+          "submitted_gems": 74
+        },
+        {
+          "id": 8,
+          "team": 1,
+          "type": 5,
+          "kills": 0,
+          "deaths": 2,
+          "gold": 180,
+          "collected_gems": 51,
+          "submitted_gems": 51
+        },
+        {
+          "id": 9,
+          "team": 1,
+          "type": 10,
+          "kills": 0,
+          "deaths": 0,
+          "gold": 1050,
+          "collected_gems": 210,
+          "submitted_gems": 173
+        },
+        {
+          "id": 10,
+          "team": 1,
+          "type": 11,
+          "kills": 0,
+          "deaths": 2,
+          "gold": 0,
+          "collected_gems": 0,
+          "submitted_gems": 0
+        },
+        {
+          "id": 11,
+          "team": 1,
+          "type": 9,
+          "kills": 0,
+          "deaths": 1,
+          "gold": 1430,
+          "collected_gems": 298,
+          "submitted_gems": 247
+        }
+      ],
+      "input_actions": {
+        "draft": 10,
+        "wait": 14342,
+        "cast": 926,
+        "move": 9921,
+        "ward": 230,
+        "attack": 2031,
+        "recall": 99,
+        "buy": 178,
+        "buy_consumable": 4,
+        "submit": 46,
+        "priority": 20,
+        "use_consumable": 1
+      },
+      "replay_sha256": "cecddb992a4c7086f45e3e4b8fc5c05ae3d67e6f94acd35f0f5edf869896e188",
+      "download_sha256": "8f7d510a9de209e492a6b9d5486677b5c04b40a53ef9d3ac44110152f6d7b827",
+      "engine_build_hash": null,
+      "decoder_engine_sha256": "f7d27c468024ce20f1f64eb1bd06ec4de6314213314fb0132e8b605cf0a610db",
+      "partition": "external_diagnostics",
+      "training_eligible": false,
+      "reason": "Download omits exact server build/submission WASM identity and guest memory writes"
+    },
+    {
+      "group_id": "bfce0895-aad8-4129-aa9d-0b8f6c92e358",
+      "url": "https://2026a.battlecode.co.uk/game/match-groups/bfce0895-aad8-4129-aa9d-0b8f6c92e358",
+      "opponent": "Nyx",
+      "our_version": 76,
+      "our_seat": 1,
+      "map": "00collision",
+      "terminal": {
+        "outcome": "teamA",
+        "round": 1239,
+        "banks": [
+          1009,
+          202
+        ]
+      },
+      "statistics": [
+        {
+          "id": 0,
+          "team": 0,
+          "type": 9,
+          "kills": 3,
+          "deaths": 2,
+          "gold": 1756,
+          "collected_gems": 247,
+          "submitted_gems": 218
+        },
+        {
+          "id": 1,
+          "team": 0,
+          "type": 5,
+          "kills": 15,
+          "deaths": 0,
+          "gold": 4684,
+          "collected_gems": 355,
+          "submitted_gems": 355
+        },
+        {
+          "id": 2,
+          "team": 0,
+          "type": 3,
+          "kills": 4,
+          "deaths": 1,
+          "gold": 3136,
+          "collected_gems": 334,
+          "submitted_gems": 257
+        },
+        {
+          "id": 3,
+          "team": 0,
+          "type": 4,
+          "kills": 2,
+          "deaths": 1,
+          "gold": 1838,
+          "collected_gems": 205,
+          "submitted_gems": 179
+        },
+        {
+          "id": 4,
+          "team": 1,
+          "type": 3,
+          "kills": 1,
+          "deaths": 10,
+          "gold": 500,
+          "collected_gems": 82,
+          "submitted_gems": 63
+        },
+        {
+          "id": 5,
+          "team": 1,
+          "type": 4,
+          "kills": 0,
+          "deaths": 10,
+          "gold": 260,
+          "collected_gems": 69,
+          "submitted_gems": 47
+        },
+        {
+          "id": 6,
+          "team": 1,
+          "type": 9,
+          "kills": 0,
+          "deaths": 6,
+          "gold": 540,
+          "collected_gems": 71,
+          "submitted_gems": 63
+        },
+        {
+          "id": 7,
+          "team": 1,
+          "type": 5,
+          "kills": 0,
+          "deaths": 8,
+          "gold": 140,
+          "collected_gems": 29,
+          "submitted_gems": 29
+        }
+      ],
+      "input_actions": {
+        "draft": 6,
+        "wait": 9916,
+        "cast": 885,
+        "move": 4494,
+        "attack": 1653,
+        "recall": 121,
+        "priority": 332,
+        "buy": 185,
+        "submit": 74,
+        "buy_consumable": 7,
+        "use_consumable": 5,
+        "ward": 6,
+        "cancel": 3
+      },
+      "replay_sha256": "c8f12d604d8e9307dc46ee7754e55bc9ff2f856771035e0cb926a68d63713aaa",
+      "download_sha256": "8f7d510a9de209e492a6b9d5486677b5c04b40a53ef9d3ac44110152f6d7b827",
+      "engine_build_hash": null,
+      "decoder_engine_sha256": "f7d27c468024ce20f1f64eb1bd06ec4de6314213314fb0132e8b605cf0a610db",
+      "partition": "external_diagnostics",
+      "training_eligible": false,
+      "reason": "Download omits exact server build/submission WASM identity and guest memory writes"
+    },
+    {
+      "group_id": "bfce0895-aad8-4129-aa9d-0b8f6c92e358",
+      "url": "https://2026a.battlecode.co.uk/game/match-groups/bfce0895-aad8-4129-aa9d-0b8f6c92e358",
+      "opponent": "Nyx",
+      "our_version": 76,
+      "our_seat": 1,
+      "map": "00corners",
+      "terminal": {
+        "outcome": "teamA",
+        "round": 1087,
+        "banks": [
+          1016,
+          424
+        ]
+      },
+      "statistics": [
+        {
+          "id": 0,
+          "team": 0,
+          "type": 9,
+          "kills": 13,
+          "deaths": 0,
+          "gold": 3672,
+          "collected_gems": 271,
+          "submitted_gems": 249
+        },
+        {
+          "id": 1,
+          "team": 0,
+          "type": 5,
+          "kills": 6,
+          "deaths": 1,
+          "gold": 2850,
+          "collected_gems": 299,
+          "submitted_gems": 269
+        },
+        {
+          "id": 2,
+          "team": 0,
+          "type": 3,
+          "kills": 5,
+          "deaths": 0,
+          "gold": 2248,
+          "collected_gems": 218,
+          "submitted_gems": 196
+        },
+        {
+          "id": 3,
+          "team": 0,
+          "type": 4,
+          "kills": 1,
+          "deaths": 0,
+          "gold": 1420,
+          "collected_gems": 95,
+          "submitted_gems": 95
+        },
+        {
+          "id": 4,
+          "team": 0,
+          "type": 0,
+          "kills": 0,
+          "deaths": 0,
+          "gold": 1156,
+          "collected_gems": 142,
+          "submitted_gems": 142
+        },
+        {
+          "id": 5,
+          "team": 0,
+          "type": 10,
+          "kills": 0,
+          "deaths": 0,
+          "gold": 382,
+          "collected_gems": 65,
+          "submitted_gems": 65
+        },
+        {
+          "id": 6,
+          "team": 1,
+          "type": 0,
+          "kills": 0,
+          "deaths": 3,
+          "gold": 1330,
+          "collected_gems": 226,
+          "submitted_gems": 204
+        },
+        {
+          "id": 7,
+          "team": 1,
+          "type": 5,
+          "kills": 0,
+          "deaths": 6,
+          "gold": 200,
+          "collected_gems": 16,
+          "submitted_gems": 16
+        },
+        {
+          "id": 8,
+          "team": 1,
+          "type": 6,
+          "kills": 0,
+          "deaths": 6,
+          "gold": 220,
+          "collected_gems": 44,
+          "submitted_gems": 44
+        },
+        {
+          "id": 9,
+          "team": 1,
+          "type": 9,
+          "kills": 0,
+          "deaths": 4,
+          "gold": 1010,
+          "collected_gems": 174,
+          "submitted_gems": 148
+        },
+        {
+          "id": 10,
+          "team": 1,
+          "type": 11,
+          "kills": 0,
+          "deaths": 6,
+          "gold": 160,
+          "collected_gems": 12,
+          "submitted_gems": 12
+        }
+      ],
+      "input_actions": {
+        "draft": 10,
+        "wait": 11964,
+        "cast": 1068,
+        "move": 6218,
+        "attack": 2264,
+        "ward": 98,
+        "recall": 171,
+        "buy": 229,
+        "submit": 110,
+        "buy_consumable": 11,
+        "use_consumable": 9,
+        "priority": 374,
+        "cancel": 2
+      },
+      "replay_sha256": "99d24c121ac21481f49bd2149083d5dd8fd151d7ff53d8f3dd8b4b23f0f2bc1a",
+      "download_sha256": "8f7d510a9de209e492a6b9d5486677b5c04b40a53ef9d3ac44110152f6d7b827",
+      "engine_build_hash": null,
+      "decoder_engine_sha256": "f7d27c468024ce20f1f64eb1bd06ec4de6314213314fb0132e8b605cf0a610db",
+      "partition": "external_diagnostics",
+      "training_eligible": false,
+      "reason": "Download omits exact server build/submission WASM identity and guest memory writes"
+    },
+    {
+      "group_id": "bfce0895-aad8-4129-aa9d-0b8f6c92e358",
+      "url": "https://2026a.battlecode.co.uk/game/match-groups/bfce0895-aad8-4129-aa9d-0b8f6c92e358",
+      "opponent": "Nyx",
+      "our_version": 76,
+      "our_seat": 1,
+      "map": "00eight",
+      "terminal": {
+        "outcome": "teamA",
+        "round": 1051,
+        "banks": [
+          1020,
+          329
+        ]
+      },
+      "statistics": [
+        {
+          "id": 0,
+          "team": 0,
+          "type": 10,
+          "kills": 1,
+          "deaths": 1,
+          "gold": 1116,
+          "collected_gems": 174,
+          "submitted_gems": 174
+        },
+        {
+          "id": 1,
+          "team": 0,
+          "type": 2,
+          "kills": 2,
+          "deaths": 2,
+          "gold": 1300,
+          "collected_gems": 234,
+          "submitted_gems": 193
+        },
+        {
+          "id": 2,
+          "team": 0,
+          "type": 3,
+          "kills": 13,
+          "deaths": 2,
+          "gold": 3596,
+          "collected_gems": 310,
+          "submitted_gems": 276
+        },
+        {
+          "id": 3,
+          "team": 0,
+          "type": 4,
+          "kills": 0,
+          "deaths": 2,
+          "gold": 208,
+          "collected_gems": 30,
+          "submitted_gems": 22
+        },
+        {
+          "id": 4,
+          "team": 0,
+          "type": 8,
+          "kills": 0,
+          "deaths": 1,
+          "gold": 488,
+          "collected_gems": 78,
+          "submitted_gems": 78
+        },
+        {
+          "id": 5,
+          "team": 0,
+          "type": 0,
+          "kills": 2,
+          "deaths": 0,
+          "gold": 1964,
+          "collected_gems": 277,
+          "submitted_gems": 277
+        },
+        {
+          "id": 6,
+          "team": 1,
+          "type": 3,
+          "kills": 0,
+          "deaths": 7,
+          "gold": 80,
+          "collected_gems": 22,
+          "submitted_gems": 22
+        },
+        {
+          "id": 7,
+          "team": 1,
+          "type": 4,
+          "kills": 0,
+          "deaths": 7,
+          "gold": 280,
+          "collected_gems": 27,
+          "submitted_gems": 0
+        },
+        {
+          "id": 8,
+          "team": 1,
+          "type": 5,
+          "kills": 0,
+          "deaths": 2,
+          "gold": 280,
+          "collected_gems": 27,
+          "submitted_gems": 16
+        },
+        {
+          "id": 9,
+          "team": 1,
+          "type": 10,
+          "kills": 0,
+          "deaths": 5,
+          "gold": 860,
+          "collected_gems": 110,
+          "submitted_gems": 94
+        },
+        {
+          "id": 10,
+          "team": 1,
+          "type": 11,
+          "kills": 1,
+          "deaths": 5,
+          "gold": 460,
+          "collected_gems": 56,
+          "submitted_gems": 0
+        },
+        {
+          "id": 11,
+          "team": 1,
+          "type": 9,
+          "kills": 1,
+          "deaths": 5,
+          "gold": 1330,
+          "collected_gems": 205,
+          "submitted_gems": 197
+        }
+      ],
+      "input_actions": {
+        "draft": 10,
+        "wait": 12612,
+        "move": 6419,
+        "cast": 1087,
+        "attack": 2398,
+        "recall": 148,
+        "buy": 194,
+        "priority": 346,
+        "ward": 84,
+        "submit": 73,
+        "buy_consumable": 10,
+        "use_consumable": 7
+      },
+      "replay_sha256": "a32e90ba9089a152ce1bcb6d5c1c7354c6e717148e472ddf02be595d7b930b92",
+      "download_sha256": "8f7d510a9de209e492a6b9d5486677b5c04b40a53ef9d3ac44110152f6d7b827",
+      "engine_build_hash": null,
+      "decoder_engine_sha256": "f7d27c468024ce20f1f64eb1bd06ec4de6314213314fb0132e8b605cf0a610db",
+      "partition": "external_diagnostics",
+      "training_eligible": false,
+      "reason": "Download omits exact server build/submission WASM identity and guest memory writes"
+    },
+    {
+      "group_id": "bfce0895-aad8-4129-aa9d-0b8f6c92e358",
+      "url": "https://2026a.battlecode.co.uk/game/match-groups/bfce0895-aad8-4129-aa9d-0b8f6c92e358",
+      "opponent": "Nyx",
+      "our_version": 76,
+      "our_seat": 1,
+      "map": "00lanes",
+      "terminal": {
+        "outcome": "teamA",
+        "round": 932,
+        "banks": [
+          1003,
+          131
+        ]
+      },
+      "statistics": [
+        {
+          "id": 0,
+          "team": 0,
+          "type": 9,
+          "kills": 0,
+          "deaths": 0,
+          "gold": 1302,
+          "collected_gems": 279,
+          "submitted_gems": 279
+        },
+        {
+          "id": 1,
+          "team": 0,
+          "type": 5,
+          "kills": 1,
+          "deaths": 0,
+          "gold": 1858,
+          "collected_gems": 327,
+          "submitted_gems": 327
+        },
+        {
+          "id": 2,
+          "team": 0,
+          "type": 3,
+          "kills": 0,
+          "deaths": 1,
+          "gold": 1388,
+          "collected_gems": 149,
+          "submitted_gems": 149
+        },
+        {
+          "id": 3,
+          "team": 0,
+          "type": 4,
+          "kills": 0,
+          "deaths": 1,
+          "gold": 952,
+          "collected_gems": 101,
+          "submitted_gems": 93
+        },
+        {
+          "id": 4,
+          "team": 0,
+          "type": 0,
+          "kills": 0,
+          "deaths": 0,
+          "gold": 792,
+          "collected_gems": 133,
+          "submitted_gems": 133
+        },
+        {
+          "id": 5,
+          "team": 0,
+          "type": 10,
+          "kills": 0,
+          "deaths": 1,
+          "gold": 180,
+          "collected_gems": 37,
+          "submitted_gems": 22
+        },
+        {
+          "id": 6,
+          "team": 1,
+          "type": 2,
+          "kills": 0,
+          "deaths": 0,
+          "gold": 180,
+          "collected_gems": 37,
+          "submitted_gems": 26
+        },
+        {
+          "id": 7,
+          "team": 1,
+          "type": 10,
+          "kills": 0,
+          "deaths": 1,
+          "gold": 500,
+          "collected_gems": 75,
+          "submitted_gems": 42
+        },
+        {
+          "id": 8,
+          "team": 1,
+          "type": 3,
+          "kills": 0,
+          "deaths": 0,
+          "gold": 240,
+          "collected_gems": 66,
+          "submitted_gems": 55
+        },
+        {
+          "id": 9,
+          "team": 1,
+          "type": 4,
+          "kills": 0,
+          "deaths": 0,
+          "gold": 100,
+          "collected_gems": 15,
+          "submitted_gems": 4
+        },
+        {
+          "id": 10,
+          "team": 1,
+          "type": 0,
+          "kills": 0,
+          "deaths": 0,
+          "gold": 60,
+          "collected_gems": 4,
+          "submitted_gems": 0
+        },
+        {
+          "id": 11,
+          "team": 1,
+          "type": 11,
+          "kills": 0,
+          "deaths": 0,
+          "gold": 120,
+          "collected_gems": 8,
+          "submitted_gems": 4
+        }
+      ],
+      "input_actions": {
+        "draft": 10,
+        "wait": 11183,
+        "ward": 272,
+        "cast": 741,
+        "move": 3936,
+        "attack": 2325,
+        "recall": 81,
+        "buy": 128,
+        "submit": 64,
+        "buy_consumable": 4,
+        "priority": 25
+      },
+      "replay_sha256": "a16d7c9ca3ea01665012fd584c2fa6c1d602927ccbae9bca332d05afcf526e4b",
+      "download_sha256": "8f7d510a9de209e492a6b9d5486677b5c04b40a53ef9d3ac44110152f6d7b827",
+      "engine_build_hash": null,
+      "decoder_engine_sha256": "f7d27c468024ce20f1f64eb1bd06ec4de6314213314fb0132e8b605cf0a610db",
+      "partition": "external_diagnostics",
+      "training_eligible": false,
+      "reason": "Download omits exact server build/submission WASM identity and guest memory writes"
+    },
+    {
+      "group_id": "a71ac20b-ce61-4461-a1e7-582339cc67c4",
+      "url": "https://2026a.battlecode.co.uk/game/match-groups/a71ac20b-ce61-4461-a1e7-582339cc67c4",
+      "opponent": "Sneaky Bush Campers",
+      "our_version": 76,
+      "our_seat": 0,
+      "map": "00elkring",
+      "terminal": {
+        "outcome": "teamB",
+        "round": 763,
+        "banks": [
+          330,
+          1012
+        ]
+      },
+      "statistics": [
+        {
+          "id": 0,
+          "team": 0,
+          "type": 0,
+          "kills": 0,
+          "deaths": 3,
+          "gold": 880,
+          "collected_gems": 176,
+          "submitted_gems": 154
+        },
+        {
+          "id": 1,
+          "team": 0,
+          "type": 5,
+          "kills": 0,
+          "deaths": 5,
+          "gold": 110,
+          "collected_gems": 22,
+          "submitted_gems": 22
+        },
+        {
+          "id": 2,
+          "team": 0,
+          "type": 6,
+          "kills": 0,
+          "deaths": 5,
+          "gold": 330,
+          "collected_gems": 66,
+          "submitted_gems": 66
+        },
+        {
+          "id": 3,
+          "team": 0,
+          "type": 9,
+          "kills": 0,
+          "deaths": 6,
+          "gold": 330,
+          "collected_gems": 66,
+          "submitted_gems": 22
+        },
+        {
+          "id": 4,
+          "team": 0,
+          "type": 11,
+          "kills": 1,
+          "deaths": 4,
+          "gold": 430,
+          "collected_gems": 88,
+          "submitted_gems": 66
+        },
+        {
+          "id": 5,
+          "team": 1,
+          "type": 12,
+          "kills": 9,
+          "deaths": 1,
+          "gold": 2362,
+          "collected_gems": 269,
+          "submitted_gems": 247
+        },
+        {
+          "id": 6,
+          "team": 1,
+          "type": 9,
+          "kills": 4,
+          "deaths": 0,
+          "gold": 1959,
+          "collected_gems": 312,
+          "submitted_gems": 312
+        },
+        {
+          "id": 7,
+          "team": 1,
+          "type": 0,
+          "kills": 4,
+          "deaths": 0,
+          "gold": 1297,
+          "collected_gems": 201,
+          "submitted_gems": 201
+        },
+        {
+          "id": 8,
+          "team": 1,
+          "type": 5,
+          "kills": 3,
+          "deaths": 0,
+          "gold": 1051,
+          "collected_gems": 172,
+          "submitted_gems": 172
+        },
+        {
+          "id": 9,
+          "team": 1,
+          "type": 8,
+          "kills": 0,
+          "deaths": 0,
+          "gold": 402,
+          "collected_gems": 80,
+          "submitted_gems": 80
+        }
+      ],
+      "input_actions": {
+        "draft": 10,
+        "wait": 7633,
+        "priority": 118,
+        "move": 3418,
+        "cast": 759,
+        "attack": 1796,
+        "recall": 85,
+        "buy": 119,
+        "buy_consumable": 11,
+        "submit": 44,
+        "ward": 66,
+        "use_consumable": 9
+      },
+      "replay_sha256": "39344338aa74b73308fca823de5208c5790ddebbd57525272f5ff919cedc198d",
+      "download_sha256": "e65a978b7f9ed81d0a2d564614e47672ddc1ed99ef3294b5594a837e0a611404",
+      "engine_build_hash": null,
+      "decoder_engine_sha256": "f7d27c468024ce20f1f64eb1bd06ec4de6314213314fb0132e8b605cf0a610db",
+      "partition": "external_diagnostics",
+      "training_eligible": false,
+      "reason": "Download omits exact server build/submission WASM identity and guest memory writes"
+    },
+    {
+      "group_id": "a71ac20b-ce61-4461-a1e7-582339cc67c4",
+      "url": "https://2026a.battlecode.co.uk/game/match-groups/a71ac20b-ce61-4461-a1e7-582339cc67c4",
+      "opponent": "Sneaky Bush Campers",
+      "our_version": 76,
+      "our_seat": 0,
+      "map": "00expanse",
+      "terminal": {
+        "outcome": "teamB",
+        "round": 1019,
+        "banks": [
+          693,
+          1037
+        ]
+      },
+      "statistics": [
+        {
+          "id": 0,
+          "team": 0,
+          "type": 2,
+          "kills": 0,
+          "deaths": 0,
+          "gold": 1520,
+          "collected_gems": 266,
+          "submitted_gems": 222
+        },
+        {
+          "id": 1,
+          "team": 0,
+          "type": 10,
+          "kills": 0,
+          "deaths": 0,
+          "gold": 800,
+          "collected_gems": 137,
+          "submitted_gems": 137
+        },
+        {
+          "id": 2,
+          "team": 0,
+          "type": 3,
+          "kills": 0,
+          "deaths": 0,
+          "gold": 40,
+          "collected_gems": 11,
+          "submitted_gems": 11
+        },
+        {
+          "id": 3,
+          "team": 0,
+          "type": 4,
+          "kills": 0,
+          "deaths": 0,
+          "gold": 780,
+          "collected_gems": 109,
+          "submitted_gems": 94
+        },
+        {
+          "id": 4,
+          "team": 0,
+          "type": 0,
+          "kills": 0,
+          "deaths": 1,
+          "gold": 930,
+          "collected_gems": 191,
+          "submitted_gems": 191
+        },
+        {
+          "id": 5,
+          "team": 0,
+          "type": 11,
+          "kills": 0,
+          "deaths": 1,
+          "gold": 300,
+          "collected_gems": 38,
+          "submitted_gems": 38
+        },
+        {
+          "id": 6,
+          "team": 1,
+          "type": 12,
+          "kills": 0,
+          "deaths": 1,
+          "gold": 1066,
+          "collected_gems": 200,
+          "submitted_gems": 200
+        },
+        {
+          "id": 7,
+          "team": 1,
+          "type": 9,
+          "kills": 1,
+          "deaths": 0,
+          "gold": 1646,
+          "collected_gems": 240,
+          "submitted_gems": 240
+        },
+        {
+          "id": 8,
+          "team": 1,
+          "type": 0,
+          "kills": 0,
+          "deaths": 0,
+          "gold": 1261,
+          "collected_gems": 243,
+          "submitted_gems": 243
+        },
+        {
+          "id": 9,
+          "team": 1,
+          "type": 10,
+          "kills": 1,
+          "deaths": 0,
+          "gold": 1395,
+          "collected_gems": 257,
+          "submitted_gems": 257
+        },
+        {
+          "id": 10,
+          "team": 1,
+          "type": 5,
+          "kills": 0,
+          "deaths": 0,
+          "gold": 865,
+          "collected_gems": 97,
+          "submitted_gems": 97
+        }
+      ],
+      "input_actions": {
+        "draft": 10,
+        "wait": 11215,
+        "priority": 125,
+        "cast": 871,
+        "move": 7758,
+        "attack": 2296,
+        "recall": 103,
+        "buy": 199,
+        "buy_consumable": 6,
+        "submit": 63
+      },
+      "replay_sha256": "ecbccf2ce7f4bbb1049c4363436670c15527ec84bc409c7a8a32d6ef8bf5b7b1",
+      "download_sha256": "e65a978b7f9ed81d0a2d564614e47672ddc1ed99ef3294b5594a837e0a611404",
+      "engine_build_hash": null,
+      "decoder_engine_sha256": "f7d27c468024ce20f1f64eb1bd06ec4de6314213314fb0132e8b605cf0a610db",
+      "partition": "external_diagnostics",
+      "training_eligible": false,
+      "reason": "Download omits exact server build/submission WASM identity and guest memory writes"
+    },
+    {
+      "group_id": "a71ac20b-ce61-4461-a1e7-582339cc67c4",
+      "url": "https://2026a.battlecode.co.uk/game/match-groups/a71ac20b-ce61-4461-a1e7-582339cc67c4",
+      "opponent": "Sneaky Bush Campers",
+      "our_version": 76,
+      "our_seat": 0,
+      "map": "00fragment",
+      "terminal": {
+        "outcome": "teamB",
+        "round": 1709,
+        "banks": [
+          158,
+          1014
+        ]
+      },
+      "statistics": [
+        {
+          "id": 0,
+          "team": 0,
+          "type": 3,
+          "kills": 1,
+          "deaths": 19,
+          "gold": 160,
+          "collected_gems": 4,
+          "submitted_gems": 0
+        },
+        {
+          "id": 1,
+          "team": 0,
+          "type": 4,
+          "kills": 0,
+          "deaths": 19,
+          "gold": 600,
+          "collected_gems": 72,
+          "submitted_gems": 52
+        },
+        {
+          "id": 2,
+          "team": 0,
+          "type": 9,
+          "kills": 0,
+          "deaths": 15,
+          "gold": 840,
+          "collected_gems": 88,
+          "submitted_gems": 68
+        },
+        {
+          "id": 3,
+          "team": 0,
+          "type": 5,
+          "kills": 0,
+          "deaths": 12,
+          "gold": 810,
+          "collected_gems": 70,
+          "submitted_gems": 38
+        },
+        {
+          "id": 4,
+          "team": 1,
+          "type": 12,
+          "kills": 20,
+          "deaths": 1,
+          "gold": 5464,
+          "collected_gems": 462,
+          "submitted_gems": 462
+        },
+        {
+          "id": 5,
+          "team": 1,
+          "type": 9,
+          "kills": 23,
+          "deaths": 0,
+          "gold": 4864,
+          "collected_gems": 256,
+          "submitted_gems": 252
+        },
+        {
+          "id": 6,
+          "team": 1,
+          "type": 0,
+          "kills": 1,
+          "deaths": 0,
+          "gold": 2361,
+          "collected_gems": 300,
+          "submitted_gems": 300
+        }
+      ],
+      "input_actions": {
+        "draft": 6,
+        "wait": 11963,
+        "move": 4060,
+        "cast": 962,
+        "priority": 183,
+        "ward": 219,
+        "attack": 1786,
+        "recall": 132,
+        "submit": 53,
+        "buy": 151,
+        "buy_consumable": 1
+      },
+      "replay_sha256": "f1d8b07e13c2beb049037fcd35dba7039fb1d5851956cd94f105417132cf95b0",
+      "download_sha256": "e65a978b7f9ed81d0a2d564614e47672ddc1ed99ef3294b5594a837e0a611404",
+      "engine_build_hash": null,
+      "decoder_engine_sha256": "f7d27c468024ce20f1f64eb1bd06ec4de6314213314fb0132e8b605cf0a610db",
+      "partition": "external_diagnostics",
+      "training_eligible": false,
+      "reason": "Download omits exact server build/submission WASM identity and guest memory writes"
+    },
+    {
+      "group_id": "a71ac20b-ce61-4461-a1e7-582339cc67c4",
+      "url": "https://2026a.battlecode.co.uk/game/match-groups/a71ac20b-ce61-4461-a1e7-582339cc67c4",
+      "opponent": "Sneaky Bush Campers",
+      "our_version": 76,
+      "our_seat": 0,
+      "map": "00monolith",
+      "terminal": {
+        "outcome": "teamB",
+        "round": 979,
+        "banks": [
+          262,
+          1004
+        ]
+      },
+      "statistics": [
+        {
+          "id": 0,
+          "team": 0,
+          "type": 2,
+          "kills": 0,
+          "deaths": 6,
+          "gold": 220,
+          "collected_gems": 34,
+          "submitted_gems": 34
+        },
+        {
+          "id": 1,
+          "team": 0,
+          "type": 10,
+          "kills": 0,
+          "deaths": 4,
+          "gold": 940,
+          "collected_gems": 131,
+          "submitted_gems": 123
+        },
+        {
+          "id": 2,
+          "team": 0,
+          "type": 3,
+          "kills": 0,
+          "deaths": 7,
+          "gold": 340,
+          "collected_gems": 56,
+          "submitted_gems": 30
+        },
+        {
+          "id": 3,
+          "team": 0,
+          "type": 4,
+          "kills": 0,
+          "deaths": 7,
+          "gold": 440,
+          "collected_gems": 82,
+          "submitted_gems": 45
+        },
+        {
+          "id": 4,
+          "team": 0,
+          "type": 0,
+          "kills": 0,
+          "deaths": 5,
+          "gold": 560,
+          "collected_gems": 72,
+          "submitted_gems": 30
+        },
+        {
+          "id": 5,
+          "team": 0,
+          "type": 11,
+          "kills": 0,
+          "deaths": 7,
+          "gold": 180,
+          "collected_gems": 23,
+          "submitted_gems": 0
+        },
+        {
+          "id": 6,
+          "team": 1,
+          "type": 12,
+          "kills": 11,
+          "deaths": 0,
+          "gold": 2718,
+          "collected_gems": 209,
+          "submitted_gems": 209
+        },
+        {
+          "id": 7,
+          "team": 1,
+          "type": 9,
+          "kills": 6,
+          "deaths": 0,
+          "gold": 2162,
+          "collected_gems": 245,
+          "submitted_gems": 245
+        },
+        {
+          "id": 8,
+          "team": 1,
+          "type": 0,
+          "kills": 2,
+          "deaths": 0,
+          "gold": 1481,
+          "collected_gems": 202,
+          "submitted_gems": 202
+        },
+        {
+          "id": 9,
+          "team": 1,
+          "type": 5,
+          "kills": 4,
+          "deaths": 0,
+          "gold": 1494,
+          "collected_gems": 185,
+          "submitted_gems": 185
+        },
+        {
+          "id": 10,
+          "team": 1,
+          "type": 3,
+          "kills": 0,
+          "deaths": 0,
+          "gold": 509,
+          "collected_gems": 65,
+          "submitted_gems": 65
+        },
+        {
+          "id": 11,
+          "team": 1,
+          "type": 4,
+          "kills": 3,
+          "deaths": 0,
+          "gold": 972,
+          "collected_gems": 98,
+          "submitted_gems": 98
+        }
+      ],
+      "input_actions": {
+        "draft": 10,
+        "wait": 11753,
+        "move": 5871,
+        "priority": 174,
+        "cast": 1034,
+        "attack": 2710,
+        "recall": 132,
+        "buy": 165,
+        "buy_consumable": 12,
+        "ward": 91,
+        "submit": 58,
+        "use_consumable": 7
+      },
+      "replay_sha256": "68e555d77e03358eed9984c0c4ca95fef7d6db7f6fd3ad82b24dcbe9e75e1a77",
+      "download_sha256": "e65a978b7f9ed81d0a2d564614e47672ddc1ed99ef3294b5594a837e0a611404",
+      "engine_build_hash": null,
+      "decoder_engine_sha256": "f7d27c468024ce20f1f64eb1bd06ec4de6314213314fb0132e8b605cf0a610db",
+      "partition": "external_diagnostics",
+      "training_eligible": false,
+      "reason": "Download omits exact server build/submission WASM identity and guest memory writes"
+    },
+    {
+      "group_id": "a71ac20b-ce61-4461-a1e7-582339cc67c4",
+      "url": "https://2026a.battlecode.co.uk/game/match-groups/a71ac20b-ce61-4461-a1e7-582339cc67c4",
+      "opponent": "Sneaky Bush Campers",
+      "our_version": 76,
+      "our_seat": 0,
+      "map": "00interlock",
+      "terminal": {
+        "outcome": "teamB",
+        "round": 1413,
+        "banks": [
+          372,
+          1001
+        ]
+      },
+      "statistics": [
+        {
+          "id": 0,
+          "team": 0,
+          "type": 3,
+          "kills": 1,
+          "deaths": 7,
+          "gold": 480,
+          "collected_gems": 48,
+          "submitted_gems": 25
+        },
+        {
+          "id": 1,
+          "team": 0,
+          "type": 4,
+          "kills": 0,
+          "deaths": 7,
+          "gold": 380,
+          "collected_gems": 39,
+          "submitted_gems": 15
+        },
+        {
+          "id": 2,
+          "team": 0,
+          "type": 9,
+          "kills": 1,
+          "deaths": 3,
+          "gold": 780,
+          "collected_gems": 106,
+          "submitted_gems": 98
+        },
+        {
+          "id": 3,
+          "team": 0,
+          "type": 5,
+          "kills": 0,
+          "deaths": 5,
+          "gold": 1120,
+          "collected_gems": 229,
+          "submitted_gems": 192
+        },
+        {
+          "id": 4,
+          "team": 0,
+          "type": 11,
+          "kills": 0,
+          "deaths": 6,
+          "gold": 340,
+          "collected_gems": 53,
+          "submitted_gems": 42
+        },
+        {
+          "id": 5,
+          "team": 1,
+          "type": 12,
+          "kills": 12,
+          "deaths": 2,
+          "gold": 4668,
+          "collected_gems": 609,
+          "submitted_gems": 601
+        },
+        {
+          "id": 6,
+          "team": 1,
+          "type": 9,
+          "kills": 4,
+          "deaths": 0,
+          "gold": 1580,
+          "collected_gems": 139,
+          "submitted_gems": 139
+        },
+        {
+          "id": 7,
+          "team": 1,
+          "type": 0,
+          "kills": 3,
+          "deaths": 0,
+          "gold": 1320,
+          "collected_gems": 158,
+          "submitted_gems": 158
+        },
+        {
+          "id": 8,
+          "team": 1,
+          "type": 11,
+          "kills": 0,
+          "deaths": 1,
+          "gold": 980,
+          "collected_gems": 112,
+          "submitted_gems": 103
+        }
+      ],
+      "input_actions": {
+        "draft": 8,
+        "wait": 12717,
+        "move": 6614,
+        "priority": 92,
+        "cast": 1206,
+        "attack": 2378,
+        "recall": 127,
+        "buy": 158,
+        "buy_consumable": 13,
+        "ward": 125,
+        "use_consumable": 9,
+        "submit": 57
+      },
+      "replay_sha256": "2705c8d9bc544ff590d17ea5220aff1fb3df21229fe998a63ba73934af781e16",
+      "download_sha256": "e65a978b7f9ed81d0a2d564614e47672ddc1ed99ef3294b5594a837e0a611404",
+      "engine_build_hash": null,
+      "decoder_engine_sha256": "f7d27c468024ce20f1f64eb1bd06ec4de6314213314fb0132e8b605cf0a610db",
+      "partition": "external_diagnostics",
+      "training_eligible": false,
+      "reason": "Download omits exact server build/submission WASM identity and guest memory writes"
+    },
+    {
+      "group_id": "cc9471f4-2f67-438f-bddb-96ae139eb391",
+      "url": "https://2026a.battlecode.co.uk/game/match-groups/cc9471f4-2f67-438f-bddb-96ae139eb391",
+      "opponent": "Sneaky Bush Campers",
+      "our_version": 76,
+      "our_seat": 1,
+      "map": "00elkring",
+      "terminal": {
+        "outcome": "teamA",
+        "round": 809,
+        "banks": [
+          1012,
+          220
+        ]
+      },
+      "statistics": [
+        {
+          "id": 0,
+          "team": 0,
+          "type": 12,
+          "kills": 8,
+          "deaths": 0,
+          "gold": 2502,
+          "collected_gems": 286,
+          "submitted_gems": 264
+        },
+        {
+          "id": 1,
+          "team": 0,
+          "type": 9,
+          "kills": 6,
+          "deaths": 0,
+          "gold": 1755,
+          "collected_gems": 253,
+          "submitted_gems": 253
+        },
+        {
+          "id": 2,
+          "team": 0,
+          "type": 0,
+          "kills": 3,
+          "deaths": 0,
+          "gold": 1675,
+          "collected_gems": 275,
+          "submitted_gems": 275
+        },
+        {
+          "id": 3,
+          "team": 0,
+          "type": 5,
+          "kills": 5,
+          "deaths": 0,
+          "gold": 1380,
+          "collected_gems": 176,
+          "submitted_gems": 176
+        },
+        {
+          "id": 4,
+          "team": 0,
+          "type": 8,
+          "kills": 0,
+          "deaths": 1,
+          "gold": 220,
+          "collected_gems": 44,
+          "submitted_gems": 44
+        },
+        {
+          "id": 5,
+          "team": 1,
+          "type": 0,
+          "kills": 0,
+          "deaths": 6,
+          "gold": 220,
+          "collected_gems": 44,
+          "submitted_gems": 44
+        },
+        {
+          "id": 6,
+          "team": 1,
+          "type": 5,
+          "kills": 0,
+          "deaths": 5,
+          "gold": 440,
+          "collected_gems": 88,
+          "submitted_gems": 66
+        },
+        {
+          "id": 7,
+          "team": 1,
+          "type": 6,
+          "kills": 1,
+          "deaths": 5,
+          "gold": 100,
+          "collected_gems": 0,
+          "submitted_gems": 0
+        },
+        {
+          "id": 8,
+          "team": 1,
+          "type": 9,
+          "kills": 0,
+          "deaths": 2,
+          "gold": 550,
+          "collected_gems": 110,
+          "submitted_gems": 88
+        },
+        {
+          "id": 9,
+          "team": 1,
+          "type": 11,
+          "kills": 0,
+          "deaths": 4,
+          "gold": 110,
+          "collected_gems": 22,
+          "submitted_gems": 22
+        }
+      ],
+      "input_actions": {
+        "draft": 10,
+        "wait": 8094,
+        "priority": 117,
+        "move": 3864,
+        "cast": 774,
+        "attack": 1621,
+        "recall": 92,
+        "buy": 93,
+        "submit": 39,
+        "ward": 141,
+        "buy_consumable": 6,
+        "use_consumable": 2
+      },
+      "replay_sha256": "58184d2ef362686777d49c114ee9ee4a3538c1094d3e6fe2f095a680d187a537",
+      "download_sha256": "132f03b07cb51c07e7909e7bf39fd088f1312099dc8c08b3ba05b3886c47abac",
+      "engine_build_hash": null,
+      "decoder_engine_sha256": "f7d27c468024ce20f1f64eb1bd06ec4de6314213314fb0132e8b605cf0a610db",
+      "partition": "external_diagnostics",
+      "training_eligible": false,
+      "reason": "Download omits exact server build/submission WASM identity and guest memory writes"
+    },
+    {
+      "group_id": "cc9471f4-2f67-438f-bddb-96ae139eb391",
+      "url": "https://2026a.battlecode.co.uk/game/match-groups/cc9471f4-2f67-438f-bddb-96ae139eb391",
+      "opponent": "Sneaky Bush Campers",
+      "our_version": 76,
+      "our_seat": 1,
+      "map": "00expanse",
+      "terminal": {
+        "outcome": "teamA",
+        "round": 1031,
+        "banks": [
+          1026,
+          514
+        ]
+      },
+      "statistics": [
+        {
+          "id": 0,
+          "team": 0,
+          "type": 12,
+          "kills": 0,
+          "deaths": 2,
+          "gold": 885,
+          "collected_gems": 140,
+          "submitted_gems": 132
+        },
+        {
+          "id": 1,
+          "team": 0,
+          "type": 9,
+          "kills": 0,
+          "deaths": 0,
+          "gold": 1450,
+          "collected_gems": 221,
+          "submitted_gems": 221
+        },
+        {
+          "id": 2,
+          "team": 0,
+          "type": 0,
+          "kills": 0,
+          "deaths": 0,
+          "gold": 1110,
+          "collected_gems": 200,
+          "submitted_gems": 200
+        },
+        {
+          "id": 3,
+          "team": 0,
+          "type": 10,
+          "kills": 0,
+          "deaths": 0,
+          "gold": 1790,
+          "collected_gems": 371,
+          "submitted_gems": 371
+        },
+        {
+          "id": 4,
+          "team": 0,
+          "type": 5,
+          "kills": 0,
+          "deaths": 0,
+          "gold": 855,
+          "collected_gems": 102,
+          "submitted_gems": 102
+        },
+        {
+          "id": 5,
+          "team": 1,
+          "type": 2,
+          "kills": 0,
+          "deaths": 2,
+          "gold": 1238,
+          "collected_gems": 191,
+          "submitted_gems": 169
+        },
+        {
+          "id": 6,
+          "team": 1,
+          "type": 10,
+          "kills": 0,
+          "deaths": 1,
+          "gold": 646,
+          "collected_gems": 104,
+          "submitted_gems": 104
+        },
+        {
+          "id": 7,
+          "team": 1,
+          "type": 3,
+          "kills": 0,
+          "deaths": 1,
+          "gold": 220,
+          "collected_gems": 48,
+          "submitted_gems": 44
+        },
+        {
+          "id": 8,
+          "team": 1,
+          "type": 4,
+          "kills": 0,
+          "deaths": 1,
+          "gold": 560,
+          "collected_gems": 89,
+          "submitted_gems": 63
+        },
+        {
+          "id": 9,
+          "team": 1,
+          "type": 0,
+          "kills": 0,
+          "deaths": 1,
+          "gold": 576,
+          "collected_gems": 96,
+          "submitted_gems": 96
+        },
+        {
+          "id": 10,
+          "team": 1,
+          "type": 11,
+          "kills": 0,
+          "deaths": 0,
+          "gold": 380,
+          "collected_gems": 46,
+          "submitted_gems": 38
+        }
+      ],
+      "input_actions": {
+        "draft": 10,
+        "wait": 11340,
+        "priority": 131,
+        "cast": 885,
+        "move": 7531,
+        "attack": 2212,
+        "recall": 106,
+        "buy": 167,
+        "buy_consumable": 6,
+        "submit": 64
+      },
+      "replay_sha256": "344a5fe08a9e3b26430e99ad7caad086a72029563221b4d4af7ee8a34acfcc87",
+      "download_sha256": "132f03b07cb51c07e7909e7bf39fd088f1312099dc8c08b3ba05b3886c47abac",
+      "engine_build_hash": null,
+      "decoder_engine_sha256": "f7d27c468024ce20f1f64eb1bd06ec4de6314213314fb0132e8b605cf0a610db",
+      "partition": "external_diagnostics",
+      "training_eligible": false,
+      "reason": "Download omits exact server build/submission WASM identity and guest memory writes"
+    },
+    {
+      "group_id": "cc9471f4-2f67-438f-bddb-96ae139eb391",
+      "url": "https://2026a.battlecode.co.uk/game/match-groups/cc9471f4-2f67-438f-bddb-96ae139eb391",
+      "opponent": "Sneaky Bush Campers",
+      "our_version": 76,
+      "our_seat": 1,
+      "map": "00fragment",
+      "terminal": {
+        "outcome": "teamA",
+        "round": 1501,
+        "banks": [
+          1001,
+          80
+        ]
+      },
+      "statistics": [
+        {
+          "id": 0,
+          "team": 0,
+          "type": 12,
+          "kills": 12,
+          "deaths": 1,
+          "gold": 4230,
+          "collected_gems": 416,
+          "submitted_gems": 399
+        },
+        {
+          "id": 1,
+          "team": 0,
+          "type": 9,
+          "kills": 19,
+          "deaths": 0,
+          "gold": 4528,
+          "collected_gems": 312,
+          "submitted_gems": 308
+        },
+        {
+          "id": 2,
+          "team": 0,
+          "type": 0,
+          "kills": 6,
+          "deaths": 1,
+          "gold": 2856,
+          "collected_gems": 298,
+          "submitted_gems": 294
+        },
+        {
+          "id": 3,
+          "team": 1,
+          "type": 3,
+          "kills": 0,
+          "deaths": 16,
+          "gold": 60,
+          "collected_gems": 4,
+          "submitted_gems": 0
+        },
+        {
+          "id": 4,
+          "team": 1,
+          "type": 4,
+          "kills": 0,
+          "deaths": 16,
+          "gold": 300,
+          "collected_gems": 20,
+          "submitted_gems": 8
+        },
+        {
+          "id": 5,
+          "team": 1,
+          "type": 9,
+          "kills": 0,
+          "deaths": 10,
+          "gold": 1050,
+          "collected_gems": 86,
+          "submitted_gems": 46
+        },
+        {
+          "id": 6,
+          "team": 1,
+          "type": 5,
+          "kills": 2,
+          "deaths": 11,
+          "gold": 800,
+          "collected_gems": 80,
+          "submitted_gems": 26
+        }
+      ],
+      "input_actions": {
+        "draft": 6,
+        "wait": 10508,
+        "cast": 932,
+        "move": 3782,
+        "priority": 175,
+        "ward": 212,
+        "attack": 1665,
+        "recall": 126,
+        "buy": 139,
+        "submit": 49,
+        "buy_consumable": 2,
+        "use_consumable": 1
+      },
+      "replay_sha256": "ba3ba8c5ded143bccf4ff2a419ede8c9d2cceb8cb2e6cc22f4d4b990f5871395",
+      "download_sha256": "132f03b07cb51c07e7909e7bf39fd088f1312099dc8c08b3ba05b3886c47abac",
+      "engine_build_hash": null,
+      "decoder_engine_sha256": "f7d27c468024ce20f1f64eb1bd06ec4de6314213314fb0132e8b605cf0a610db",
+      "partition": "external_diagnostics",
+      "training_eligible": false,
+      "reason": "Download omits exact server build/submission WASM identity and guest memory writes"
+    },
+    {
+      "group_id": "cc9471f4-2f67-438f-bddb-96ae139eb391",
+      "url": "https://2026a.battlecode.co.uk/game/match-groups/cc9471f4-2f67-438f-bddb-96ae139eb391",
+      "opponent": "Sneaky Bush Campers",
+      "our_version": 76,
+      "our_seat": 1,
+      "map": "00monolith",
+      "terminal": {
+        "outcome": "teamA",
+        "round": 983,
+        "banks": [
+          1003,
+          247
+        ]
+      },
+      "statistics": [
+        {
+          "id": 0,
+          "team": 0,
+          "type": 12,
+          "kills": 6,
+          "deaths": 0,
+          "gold": 2271,
+          "collected_gems": 220,
+          "submitted_gems": 220
+        },
+        {
+          "id": 1,
+          "team": 0,
+          "type": 9,
+          "kills": 3,
+          "deaths": 0,
+          "gold": 1415,
+          "collected_gems": 179,
+          "submitted_gems": 179
+        },
+        {
+          "id": 2,
+          "team": 0,
+          "type": 0,
+          "kills": 3,
+          "deaths": 0,
+          "gold": 1420,
+          "collected_gems": 151,
+          "submitted_gems": 151
+        },
+        {
+          "id": 3,
+          "team": 0,
+          "type": 5,
+          "kills": 6,
+          "deaths": 0,
+          "gold": 1845,
+          "collected_gems": 249,
+          "submitted_gems": 238
+        },
+        {
+          "id": 4,
+          "team": 0,
+          "type": 3,
+          "kills": 4,
+          "deaths": 2,
+          "gold": 1145,
+          "collected_gems": 160,
+          "submitted_gems": 160
+        },
+        {
+          "id": 5,
+          "team": 0,
+          "type": 4,
+          "kills": 0,
+          "deaths": 2,
+          "gold": 365,
+          "collected_gems": 55,
+          "submitted_gems": 55
+        },
+        {
+          "id": 6,
+          "team": 1,
+          "type": 2,
+          "kills": 1,
+          "deaths": 4,
+          "gold": 990,
+          "collected_gems": 92,
+          "submitted_gems": 45
+        },
+        {
+          "id": 7,
+          "team": 1,
+          "type": 10,
+          "kills": 0,
+          "deaths": 3,
+          "gold": 1080,
+          "collected_gems": 143,
+          "submitted_gems": 124
+        },
+        {
+          "id": 8,
+          "team": 1,
+          "type": 3,
+          "kills": 0,
+          "deaths": 6,
+          "gold": 40,
+          "collected_gems": 11,
+          "submitted_gems": 0
+        },
+        {
+          "id": 9,
+          "team": 1,
+          "type": 4,
+          "kills": 0,
+          "deaths": 6,
+          "gold": 420,
+          "collected_gems": 64,
+          "submitted_gems": 22
+        },
+        {
+          "id": 10,
+          "team": 1,
+          "type": 0,
+          "kills": 0,
+          "deaths": 3,
+          "gold": 460,
+          "collected_gems": 68,
+          "submitted_gems": 41
+        },
+        {
+          "id": 11,
+          "team": 1,
+          "type": 11,
+          "kills": 1,
+          "deaths": 6,
+          "gold": 480,
+          "collected_gems": 53,
+          "submitted_gems": 15
+        }
+      ],
+      "input_actions": {
+        "draft": 10,
+        "wait": 11796,
+        "move": 6136,
+        "priority": 157,
+        "cast": 1001,
+        "attack": 2743,
+        "recall": 132,
+        "buy": 177,
+        "buy_consumable": 17,
+        "use_consumable": 13,
+        "submit": 62,
+        "ward": 75
+      },
+      "replay_sha256": "e7d65b476ae8209208e594a3443cdbd50203604cc8ca637aaaf145816a261624",
+      "download_sha256": "132f03b07cb51c07e7909e7bf39fd088f1312099dc8c08b3ba05b3886c47abac",
+      "engine_build_hash": null,
+      "decoder_engine_sha256": "f7d27c468024ce20f1f64eb1bd06ec4de6314213314fb0132e8b605cf0a610db",
+      "partition": "external_diagnostics",
+      "training_eligible": false,
+      "reason": "Download omits exact server build/submission WASM identity and guest memory writes"
+    },
+    {
+      "group_id": "cc9471f4-2f67-438f-bddb-96ae139eb391",
+      "url": "https://2026a.battlecode.co.uk/game/match-groups/cc9471f4-2f67-438f-bddb-96ae139eb391",
+      "opponent": "Sneaky Bush Campers",
+      "our_version": 76,
+      "our_seat": 1,
+      "map": "00interlock",
+      "terminal": {
+        "outcome": "teamA",
+        "round": 1245,
+        "banks": [
+          1020,
+          167
+        ]
+      },
+      "statistics": [
+        {
+          "id": 0,
+          "team": 0,
+          "type": 12,
+          "kills": 11,
+          "deaths": 0,
+          "gold": 4272,
+          "collected_gems": 539,
+          "submitted_gems": 539
+        },
+        {
+          "id": 1,
+          "team": 0,
+          "type": 9,
+          "kills": 9,
+          "deaths": 0,
+          "gold": 2050,
+          "collected_gems": 151,
+          "submitted_gems": 151
+        },
+        {
+          "id": 2,
+          "team": 0,
+          "type": 0,
+          "kills": 1,
+          "deaths": 2,
+          "gold": 1440,
+          "collected_gems": 276,
+          "submitted_gems": 231
+        },
+        {
+          "id": 3,
+          "team": 0,
+          "type": 11,
+          "kills": 0,
+          "deaths": 2,
+          "gold": 690,
+          "collected_gems": 103,
+          "submitted_gems": 99
+        },
+        {
+          "id": 4,
+          "team": 1,
+          "type": 3,
+          "kills": 0,
+          "deaths": 9,
+          "gold": 120,
+          "collected_gems": 12,
+          "submitted_gems": 0
+        },
+        {
+          "id": 5,
+          "team": 1,
+          "type": 4,
+          "kills": 0,
+          "deaths": 9,
+          "gold": 640,
+          "collected_gems": 91,
+          "submitted_gems": 27
+        },
+        {
+          "id": 6,
+          "team": 1,
+          "type": 9,
+          "kills": 2,
+          "deaths": 2,
+          "gold": 810,
+          "collected_gems": 103,
+          "submitted_gems": 103
+        },
+        {
+          "id": 7,
+          "team": 1,
+          "type": 5,
+          "kills": 2,
+          "deaths": 4,
+          "gold": 420,
+          "collected_gems": 45,
+          "submitted_gems": 37
+        },
+        {
+          "id": 8,
+          "team": 1,
+          "type": 11,
+          "kills": 0,
+          "deaths": 6,
+          "gold": 210,
+          "collected_gems": 18,
+          "submitted_gems": 0
+        }
+      ],
+      "input_actions": {
+        "draft": 8,
+        "wait": 11204,
+        "move": 5748,
+        "priority": 110,
+        "cast": 1011,
+        "attack": 2112,
+        "recall": 107,
+        "buy": 123,
+        "buy_consumable": 9,
+        "ward": 113,
+        "use_consumable": 5,
+        "submit": 47
+      },
+      "replay_sha256": "6d6e8b700c60beae623b04c18918a1ba162c487bdccfd58716c6b5dd27760d7a",
+      "download_sha256": "132f03b07cb51c07e7909e7bf39fd088f1312099dc8c08b3ba05b3886c47abac",
+      "engine_build_hash": null,
+      "decoder_engine_sha256": "f7d27c468024ce20f1f64eb1bd06ec4de6314213314fb0132e8b605cf0a610db",
+      "partition": "external_diagnostics",
+      "training_eligible": false,
+      "reason": "Download omits exact server build/submission WASM identity and guest memory writes"
+    }
+  ]
+}

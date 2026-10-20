@@ -3,20 +3,44 @@
 Conclusions that should outlive one experiment, each with the numbers behind it (after Carson's
 screeps-rl DECISIONS.md). Open questions go to ROADMAP.md.
 
-## 2026-10-20 · Hotfix compatibility passes; verify the actual live submission
+## 2026-10-20 · Scout leaders; develop the current draft with a measured curriculum
+
+Use Fish's observed Stellar, Heart of Ruin, Ren, Cassi & Issac, Ryth priority in
+a separate `ppo-topdraft` fork. Both observed leaders picked Heart and Ren in
+10/10 post-hotfix drafts. V1 wins 67/70 against starter but 124/270 against v12;
+keep it as a development reference, without claiming a strength gain.
+
+The first single-objective rally (v2) staged around a large camp perimeter while
+counting allies near its centre: zero assault releases in four full-log canaries.
+Reject that implementation. V3 uses one reachable home-side point and latches the
+assault after the quorum arrives. Four canaries record 96 per-champion releases
+with five/six healthy allied bodies assembled. It wins both elk-arena seats,
+banking 288/648 against v1's 72/72, but loses both Stampede seats. It wins 67/70
+versus starter and 136/270 versus v1 overall, with zero faults and 33 fuel losses
+across 340 release games. Retain for research; it is not a promoted replacement.
+See TOPDRAFT.md and results/topdraft-v*.json.
+
+All 24 remaining hourly challenges were used: 120 v83 games across all 35 maps,
+both seats, and the top ten teams. Result 4/120, zero faults, 29 fuel losses (all
+big-world). Every replay and champion statistic matches the official 1.0.1 WASM.
+Such saturated losses are scouting, not the sole progress signal. Hourly testing
+now targets approximately 60% nearby/moderately stronger teams, 30% stretch,
+10% leaders, using economy/objective/fight/runtime measurements as well as wins.
+Fran authorizes automatic tested uploads with short notes; require a fresh
+promotion check before stable live replacement. No additional model was trained.
+
+## 2026-10-20 · Hotfix compatibility and actual v83 deployment verified
 
 The unchanged v12 source builds with CLI 3.0.2 to identical WASM under engine
-1.0.1. It wins 68/70 games on all 35 current site maps, with zero faults and
-17 fuel-exhausted turns, plus 140/140 on its locked-map compatibility repeat
-with zero faults or fuel losses. This repeats an already used cohort without
-strategic tuning; it is not another independent confirmation result.
+1.0.1. Compatibility repeats are 68/70 on current site maps, zero faults and
+17 fuel losses; 140/140 on its locked-map repeat, zero faults/fuel losses.
+These are compatibility checks, not fresh independent confirmation.
 
-The server-stored platform v83 source matches the qualified ZIP hash. Its
-selection was cancelled while the team changed the live bot to v81 and then
-v82. The first requested group actually used v81; its 0/5 loss to Intercontinental
-Fish is excluded from PPO results. Keep upload success, server compilation and
-actual match identity separate. The remaining unranked group awaits selection
-coordination. See HOTFIX-1.0.1.md and results/stage7-hotfix101.json.
+Fran authorized reselecting v83 and keeping it live for the PPO test. Server
+compilation succeeded. The initial Nyx group wins 1/5 and automatic ranked TTS
+wins 2/5, both with zero faults/fuel losses. The earlier 0/5 Fish group ran v81
+and stays excluded from PPO evaluation. The source ZIP is hash-verified and all
+130 audited v83 replays reconstruct exactly. See HOTFIX-1.0.1.md.
 
 ## 2026-10-20 · Stage 7 hybrid clears the unchanged promotion gate
 

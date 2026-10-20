@@ -1,5 +1,5 @@
 {
-  "schema": 1,
+  "schema": 2,
   "compatibility": {
     "passed": true,
     "candidate": "ppo-league-v12",
@@ -36019,12 +36019,12 @@
     "download_verified": true,
     "source_changed": false,
     "uploaded": true,
-    "status": "v83 selection cancelled; the live bot changed to v81 and then v82",
+    "status": "v83 Live/Active; server build completed successfully",
     "previous_active_version": 82,
     "previous_submission_id": "20613553-e9d8-4acd-9e59-cfcf7bee417d",
     "patch_note": "https://2026a.battlecode.co.uk/game/patch-notes/7a4caf45-afc3-49d0-838a-9eb9657bafc6",
-    "server_compilation_verified": false,
-    "valid_ppo_sparring_games": 0,
+    "server_compilation_verified": true,
+    "valid_ppo_sparring_games": 125,
     "excluded_groups": [
       {
         "id": "005481ca-51a0-4e36-8542-cce33160738c",
@@ -36036,10 +36036,3289 @@
         "download_sha256": "a49a859caaa4be7443bedc000d7b20d8cb5dda2b37a5b1ee4436d89d213d7add"
       }
     ],
-    "current_observed_active_version": 82
+    "current_observed_active_version": 83,
+    "selection_history": [
+      {
+        "status": "v83 selection cancelled; the live bot changed to v81 and then v82",
+        "observed_active_version": 82
+      },
+      {
+        "action": "User authorized keeping v83 live for PPO test",
+        "status": "Live/Active",
+        "platform_version": 83
+      }
+    ],
+    "additional_automatic_ranked_games": 5,
+    "unranked_groups_remaining_after_test": 0,
+    "results": "results.json",
+    "valid_ppo_sparring_wins": 5
   },
-  "validation_package": {
-    "filename": "battlecode-stage7-hotfix101-validation.zip",
-    "sha256": "c887650985ef51cd9f827bccf63a57336fc632474133fd1f9efa421a89e4bfdc"
+  "live_results": {
+    "schema": 1,
+    "candidate": "ppo-league-v12",
+    "platform_version": 83,
+    "submission_id": "db9366e1-f5a9-4398-a5a9-87739cd660aa",
+    "source_zip_sha256": "04abd46d87905fff8223555961b88bc20facdba8ea265b5861879a530f6d7af1",
+    "server_compilation_verified": true,
+    "engine_build_hash": "c3e9ffc8d98c106f86660c58344dc26ced9459a504e2f0d90d88b4c8594c7765",
+    "decoder_wasm_sha256": "c03ab26f20263b08e576ebc1a064cd6f9b66a996aca005d69bd9fb9205434354",
+    "source_and_model_changed": false,
+    "training_eligible": false,
+    "groups": [
+      {
+        "name": "nyx",
+        "id": "d1a5ee25-5b2a-446c-bcda-ff889aacd32a",
+        "opponent": "Nyx",
+        "kind": "unranked",
+        "opponent_rating_at_setup": 2066,
+        "opponent_rank_at_setup": 4,
+        "maps": [
+          "00collision",
+          "00expanse",
+          "00lanes",
+          "01the-farm",
+          "01yellow-brick-road"
+        ],
+        "seats": [
+          1,
+          0,
+          1,
+          0,
+          1
+        ],
+        "ids": [
+          "1b8254ad-2e74-437b-9c0d-a0135b8965c3",
+          "9334dc7c-c7bb-4497-8abc-9e790319792e",
+          "57681d63-c901-49f2-81bc-61d3496b7524",
+          "993e2600-ad09-4b4f-b5d2-5c84cf10ec03",
+          "ed043044-c157-4f9f-8e71-65c556145760"
+        ],
+        "platform_version": 83,
+        "games": [
+          {
+            "id": "1b8254ad-2e74-437b-9c0d-a0135b8965c3",
+            "map": "00collision",
+            "our_seat": "teamB",
+            "platform_version": 83,
+            "won": false,
+            "rounds": 1161,
+            "our": {
+              "gems": 11,
+              "kills": 0,
+              "deaths": 45,
+              "gold": 560,
+              "monster_damage": 15645,
+              "champion_damage": 15035,
+              "faults": 0,
+              "fuel_exhausted": 0,
+              "camp_clears": 12,
+              "distinct_camps": 6,
+              "wards": 0,
+              "draft": [
+                "Unknown champion (3)",
+                "Unknown champion (4)",
+                "Unknown champion (9)",
+                "Unknown champion (5)"
+              ],
+              "items": {
+                "Unknown item (8)": 9,
+                "Unknown item (6)": 6,
+                "Unknown item (16)": 2
+              },
+              "snap_gems": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                11
+              ],
+              "snap_deaths": [
+                0,
+                5,
+                9,
+                13,
+                15,
+                21,
+                25,
+                30,
+                34,
+                38,
+                43,
+                45
+              ]
+            },
+            "opponent": {
+              "gems": 1006,
+              "kills": 34,
+              "deaths": 2,
+              "gold": 11028,
+              "monster_damage": 137411,
+              "champion_damage": 29943,
+              "faults": 0,
+              "fuel_exhausted": 0,
+              "camp_clears": 98,
+              "distinct_camps": 14,
+              "wards": 5,
+              "draft": [
+                "Unknown champion (12)",
+                "Unknown champion (9)",
+                "Unknown champion (0)"
+              ],
+              "items": {
+                "Unknown item (6)": 189,
+                "Unknown item (8)": 125,
+                "Unknown item (16)": 15,
+                "Unknown item (22)": 10,
+                "Unknown item (18)": 5,
+                "Unknown item (40)": 5
+              },
+              "snap_gems": [
+                18,
+                71,
+                88,
+                191,
+                209,
+                327,
+                403,
+                460,
+                649,
+                786,
+                988,
+                1006
+              ],
+              "snap_deaths": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                1,
+                1,
+                1,
+                1,
+                1,
+                2
+              ]
+            },
+            "own_champions": [
+              {
+                "id": 3,
+                "name": "Cassi",
+                "metrics": {
+                  "earnedGold": "220",
+                  "spentGold": "220",
+                  "gold": "0",
+                  "gems": "0",
+                  "collectedGems": "13",
+                  "submittedGems": "0",
+                  "saleRefunds": "0",
+                  "kills": "0",
+                  "deaths": "11",
+                  "assists": "0",
+                  "monsterDamageDone": 3135,
+                  "monsterDamageTaken": 1640,
+                  "championDamageDone": 3252.7999420166016,
+                  "championDamageTaken": 4952.999977111816,
+                  "healingDone": 0,
+                  "healingReceived": 1090,
+                  "shieldingDone": 0
+                }
+              },
+              {
+                "id": 4,
+                "name": "Issac",
+                "metrics": {
+                  "earnedGold": "200",
+                  "spentGold": "190",
+                  "gold": "10",
+                  "gems": "0",
+                  "collectedGems": "4",
+                  "submittedGems": "0",
+                  "saleRefunds": "0",
+                  "kills": "0",
+                  "deaths": "11",
+                  "assists": "0",
+                  "monsterDamageDone": 2171,
+                  "monsterDamageTaken": 1600,
+                  "championDamageDone": 1250.7999572753906,
+                  "championDamageTaken": 5971.427978515625,
+                  "healingDone": 0,
+                  "healingReceived": 2344.327880859375,
+                  "shieldingDone": 0
+                }
+              },
+              {
+                "id": 5,
+                "name": "Ren",
+                "metrics": {
+                  "earnedGold": "40",
+                  "spentGold": "30",
+                  "gold": "10",
+                  "gems": "0",
+                  "collectedGems": "2",
+                  "submittedGems": "0",
+                  "saleRefunds": "0",
+                  "kills": "0",
+                  "deaths": "12",
+                  "assists": "0",
+                  "monsterDamageDone": 4108.400014877319,
+                  "monsterDamageTaken": 1420,
+                  "championDamageDone": 4184.705007553101,
+                  "championDamageTaken": 10843.600021362305,
+                  "healingDone": 0,
+                  "healingReceived": 1463.5999755859375,
+                  "shieldingDone": 0
+                }
+              },
+              {
+                "id": 6,
+                "name": "Stellar",
+                "metrics": {
+                  "earnedGold": "100",
+                  "spentGold": "100",
+                  "gold": "0",
+                  "gems": "0",
+                  "collectedGems": "11",
+                  "submittedGems": "11",
+                  "saleRefunds": "0",
+                  "kills": "0",
+                  "deaths": "11",
+                  "assists": "0",
+                  "monsterDamageDone": 6231,
+                  "monsterDamageTaken": 700,
+                  "championDamageDone": 6346.959854125977,
+                  "championDamageTaken": 8174.999895095825,
+                  "healingDone": 0,
+                  "healingReceived": 625,
+                  "shieldingDone": 0
+                }
+              }
+            ],
+            "statistics": "cambc-hotfix-1.0.1/live/nyx/1b8254ad-2e74-437b-9c0d-a0135b8965c3.json",
+            "statistics_sha256": "1dccaa038f7a956afa5ec785aa5c37fd4bd51f30472c597954b740c6b1fcb771",
+            "replay_sha256": "344daff4ac85a87082a53e6f958c1e44b6451338f06097eabf716b6bacdde550",
+            "native_terminal": {
+              "outcome": "teamA",
+              "round": 1161,
+              "banks": [
+                1006,
+                11
+              ]
+            },
+            "native_verified": true,
+            "ppo_last_logged_counters": {
+              "3": {
+                "round": 1100,
+                "calls": 16,
+                "changes": 12,
+                "choices": 46
+              },
+              "4": {
+                "round": 1100,
+                "calls": 3,
+                "changes": 3,
+                "choices": 7
+              },
+              "5": {
+                "round": 1100,
+                "calls": 2,
+                "changes": 1,
+                "choices": 4
+              },
+              "6": {
+                "round": 1100,
+                "calls": 39,
+                "changes": 16,
+                "choices": 108
+              }
+            },
+            "ppo_logged_calls": 60,
+            "ppo_logged_target_changes": 32,
+            "official_fuel": {
+              "turns": 4641,
+              "initial_max": 179785,
+              "ordinary_max": 84587
+            },
+            "engine_build_hash": "c3e9ffc8d98c106f86660c58344dc26ced9459a504e2f0d90d88b4c8594c7765"
+          },
+          {
+            "id": "9334dc7c-c7bb-4497-8abc-9e790319792e",
+            "map": "00expanse",
+            "our_seat": "teamA",
+            "platform_version": 83,
+            "won": false,
+            "rounds": 1061,
+            "our": {
+              "gems": 779,
+              "kills": 0,
+              "deaths": 2,
+              "gold": 5490,
+              "monster_damage": 133428,
+              "champion_damage": 0,
+              "faults": 0,
+              "fuel_exhausted": 0,
+              "camp_clears": 60,
+              "distinct_camps": 13,
+              "wards": 0,
+              "draft": [
+                "Unknown champion (2)",
+                "Unknown champion (10)",
+                "Unknown champion (3)",
+                "Unknown champion (4)",
+                "Unknown champion (0)",
+                "Unknown champion (11)"
+              ],
+              "items": {
+                "Unknown item (6)": 104,
+                "Unknown item (24)": 15,
+                "Unknown item (8)": 14,
+                "Unknown item (12)": 13,
+                "Unknown item (40)": 13,
+                "Unknown item (16)": 8
+              },
+              "snap_gems": [
+                30,
+                68,
+                98,
+                180,
+                280,
+                321,
+                399,
+                521,
+                650,
+                764,
+                779
+              ],
+              "snap_deaths": [
+                0,
+                0,
+                2,
+                2,
+                2,
+                2,
+                2,
+                2,
+                2,
+                2,
+                2
+              ]
+            },
+            "opponent": {
+              "gems": 1023,
+              "kills": 0,
+              "deaths": 2,
+              "gold": 8480,
+              "monster_damage": 180650,
+              "champion_damage": 0,
+              "faults": 0,
+              "fuel_exhausted": 0,
+              "camp_clears": 85,
+              "distinct_camps": 11,
+              "wards": 0,
+              "draft": [
+                "Unknown champion (12)",
+                "Unknown champion (9)",
+                "Unknown champion (0)",
+                "Unknown champion (5)",
+                "Unknown champion (11)"
+              ],
+              "items": {
+                "Unknown item (8)": 120,
+                "Unknown item (6)": 74,
+                "Unknown item (16)": 20,
+                "Unknown item (22)": 10,
+                "Unknown item (40)": 10,
+                "Unknown item (20)": 10
+              },
+              "snap_gems": [
+                26,
+                76,
+                121,
+                185,
+                226,
+                331,
+                468,
+                620,
+                734,
+                905,
+                1023
+              ],
+              "snap_deaths": [
+                0,
+                0,
+                0,
+                0,
+                1,
+                1,
+                1,
+                1,
+                1,
+                1,
+                2
+              ]
+            },
+            "own_champions": [
+              {
+                "id": 0,
+                "name": "Vendetta",
+                "metrics": {
+                  "earnedGold": "1370",
+                  "spentGold": "1360",
+                  "gold": "10",
+                  "gems": "0",
+                  "collectedGems": "183",
+                  "submittedGems": "183",
+                  "saleRefunds": "0",
+                  "kills": "0",
+                  "deaths": "0",
+                  "assists": "0",
+                  "monsterDamageDone": 29446,
+                  "monsterDamageTaken": 5348.799942016602,
+                  "championDamageDone": 0,
+                  "championDamageTaken": 0,
+                  "healingDone": 0,
+                  "healingReceived": 5848.799560546875,
+                  "shieldingDone": 0
+                }
+              },
+              {
+                "id": 1,
+                "name": "Varg",
+                "metrics": {
+                  "earnedGold": "1790",
+                  "spentGold": "1780",
+                  "gold": "10",
+                  "gems": "0",
+                  "collectedGems": "339",
+                  "submittedGems": "339",
+                  "saleRefunds": "0",
+                  "kills": "0",
+                  "deaths": "0",
+                  "assists": "0",
+                  "monsterDamageDone": 38990,
+                  "monsterDamageTaken": 6578.399923324585,
+                  "championDamageDone": 0,
+                  "championDamageTaken": 0,
+                  "healingDone": 0,
+                  "healingReceived": 4322.80224609375,
+                  "shieldingDone": 3950
+                }
+              },
+              {
+                "id": 2,
+                "name": "Cassi",
+                "metrics": {
+                  "earnedGold": "40",
+                  "spentGold": "40",
+                  "gold": "0",
+                  "gems": "0",
+                  "collectedGems": "11",
+                  "submittedGems": "11",
+                  "saleRefunds": "0",
+                  "kills": "0",
+                  "deaths": "1",
+                  "assists": "0",
+                  "monsterDamageDone": 14239,
+                  "monsterDamageTaken": 3340,
+                  "championDamageDone": 0,
+                  "championDamageTaken": 0,
+                  "healingDone": 0,
+                  "healingReceived": 2740,
+                  "shieldingDone": 0
+                }
+              },
+              {
+                "id": 3,
+                "name": "Issac",
+                "metrics": {
+                  "earnedGold": "1120",
+                  "spentGold": "1120",
+                  "gold": "0",
+                  "gems": "0",
+                  "collectedGems": "175",
+                  "submittedGems": "175",
+                  "saleRefunds": "0",
+                  "kills": "0",
+                  "deaths": "1",
+                  "assists": "0",
+                  "monsterDamageDone": 22055,
+                  "monsterDamageTaken": 6059.999973297119,
+                  "championDamageDone": 0,
+                  "championDamageTaken": 0,
+                  "healingDone": 0,
+                  "healingReceived": 5968.60009765625,
+                  "shieldingDone": 0
+                }
+              },
+              {
+                "id": 4,
+                "name": "Ryth",
+                "metrics": {
+                  "earnedGold": "590",
+                  "spentGold": "340",
+                  "gold": "250",
+                  "gems": "44",
+                  "collectedGems": "104",
+                  "submittedGems": "60",
+                  "saleRefunds": "0",
+                  "kills": "0",
+                  "deaths": "0",
+                  "assists": "0",
+                  "monsterDamageDone": 14880,
+                  "monsterDamageTaken": 3940,
+                  "championDamageDone": 0,
+                  "championDamageTaken": 0,
+                  "healingDone": 0,
+                  "healingReceived": 4240,
+                  "shieldingDone": 0
+                }
+              },
+              {
+                "id": 5,
+                "name": "Tavi",
+                "metrics": {
+                  "earnedGold": "580",
+                  "spentGold": "580",
+                  "gold": "0",
+                  "gems": "4",
+                  "collectedGems": "15",
+                  "submittedGems": "11",
+                  "saleRefunds": "0",
+                  "kills": "0",
+                  "deaths": "0",
+                  "assists": "0",
+                  "monsterDamageDone": 13818,
+                  "monsterDamageTaken": 900,
+                  "championDamageDone": 0,
+                  "championDamageTaken": 0,
+                  "healingDone": 0,
+                  "healingReceived": 900,
+                  "shieldingDone": 0
+                }
+              }
+            ],
+            "statistics": "cambc-hotfix-1.0.1/live/nyx/9334dc7c-c7bb-4497-8abc-9e790319792e.json",
+            "statistics_sha256": "bc62723b484c89b01f1c05dfb0301040baa6464cf819b1ab5982594f7d2aeae6",
+            "replay_sha256": "53cec4e1e137f8a7df99e0a1643f4e69ab461bacc4ed5d857e71b52918eb9fa8",
+            "native_terminal": {
+              "outcome": "teamB",
+              "round": 1061,
+              "banks": [
+                779,
+                1023
+              ]
+            },
+            "native_verified": true,
+            "ppo_last_logged_counters": {
+              "0": {
+                "round": 1000,
+                "calls": 8,
+                "changes": 5,
+                "choices": 16
+              },
+              "1": {
+                "round": 1000,
+                "calls": 19,
+                "changes": 11,
+                "choices": 38
+              },
+              "2": {
+                "round": 1000,
+                "calls": 0,
+                "changes": 0,
+                "choices": 0
+              },
+              "3": {
+                "round": 1000,
+                "calls": 0,
+                "changes": 0,
+                "choices": 0
+              },
+              "4": {
+                "round": 1000,
+                "calls": 0,
+                "changes": 0,
+                "choices": 0
+              },
+              "5": {
+                "round": 1000,
+                "calls": 2,
+                "changes": 0,
+                "choices": 4
+              }
+            },
+            "ppo_logged_calls": 29,
+            "ppo_logged_target_changes": 16,
+            "official_fuel": {
+              "turns": 6361,
+              "initial_max": 188192,
+              "ordinary_max": 88032
+            },
+            "engine_build_hash": "c3e9ffc8d98c106f86660c58344dc26ced9459a504e2f0d90d88b4c8594c7765"
+          },
+          {
+            "id": "57681d63-c901-49f2-81bc-61d3496b7524",
+            "map": "00lanes",
+            "our_seat": "teamB",
+            "platform_version": 83,
+            "won": false,
+            "rounds": 984,
+            "our": {
+              "gems": 327,
+              "kills": 0,
+              "deaths": 14,
+              "gold": 3130,
+              "monster_damage": 83427,
+              "champion_damage": 4343,
+              "faults": 0,
+              "fuel_exhausted": 0,
+              "camp_clears": 71,
+              "distinct_camps": 16,
+              "wards": 0,
+              "draft": [
+                "Unknown champion (2)",
+                "Unknown champion (10)",
+                "Unknown champion (3)",
+                "Unknown champion (4)",
+                "Unknown champion (0)",
+                "Unknown champion (11)"
+              ],
+              "items": {
+                "Unknown item (6)": 33,
+                "Unknown item (24)": 18,
+                "Unknown item (12)": 15,
+                "Unknown item (40)": 15,
+                "Unknown item (8)": 10,
+                "Unknown item (16)": 9
+              },
+              "snap_gems": [
+                22,
+                59,
+                81,
+                114,
+                163,
+                204,
+                238,
+                260,
+                327,
+                327
+              ],
+              "snap_deaths": [
+                0,
+                0,
+                0,
+                1,
+                1,
+                3,
+                7,
+                7,
+                8,
+                14
+              ]
+            },
+            "opponent": {
+              "gems": 1015,
+              "kills": 10,
+              "deaths": 1,
+              "gold": 7506,
+              "monster_damage": 143362,
+              "champion_damage": 14069,
+              "faults": 0,
+              "fuel_exhausted": 0,
+              "camp_clears": 85,
+              "distinct_camps": 23,
+              "wards": 180,
+              "draft": [
+                "Unknown champion (12)",
+                "Unknown champion (9)",
+                "Unknown champion (0)",
+                "Unknown champion (5)",
+                "Unknown champion (11)"
+              ],
+              "items": {
+                "Unknown item (6)": 79,
+                "Unknown item (8)": 68,
+                "Unknown item (16)": 20,
+                "Unknown item (22)": 10,
+                "Unknown item (40)": 10,
+                "Unknown item (20)": 10
+              },
+              "snap_gems": [
+                11,
+                49,
+                153,
+                220,
+                313,
+                450,
+                620,
+                716,
+                812,
+                1015
+              ],
+              "snap_deaths": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                1,
+                1,
+                1
+              ]
+            },
+            "own_champions": [
+              {
+                "id": 5,
+                "name": "Vendetta",
+                "metrics": {
+                  "earnedGold": "750",
+                  "spentGold": "730",
+                  "gold": "20",
+                  "gems": "0",
+                  "collectedGems": "86",
+                  "submittedGems": "52",
+                  "saleRefunds": "0",
+                  "kills": "0",
+                  "deaths": "3",
+                  "assists": "0",
+                  "monsterDamageDone": 19226,
+                  "monsterDamageTaken": 3666.799980163574,
+                  "championDamageDone": 438.79998779296875,
+                  "championDamageTaken": 2591.2001342773438,
+                  "healingDone": 0,
+                  "healingReceived": 3158,
+                  "shieldingDone": 0
+                }
+              },
+              {
+                "id": 6,
+                "name": "Varg",
+                "metrics": {
+                  "earnedGold": "560",
+                  "spentGold": "550",
+                  "gold": "10",
+                  "gems": "0",
+                  "collectedGems": "111",
+                  "submittedGems": "103",
+                  "saleRefunds": "0",
+                  "kills": "0",
+                  "deaths": "2",
+                  "assists": "0",
+                  "monsterDamageDone": 19506.19921875,
+                  "monsterDamageTaken": 7434,
+                  "championDamageDone": 1091,
+                  "championDamageTaken": 2753.5200004577637,
+                  "healingDone": 0,
+                  "healingReceived": 3270,
+                  "shieldingDone": 13000
+                }
+              },
+              {
+                "id": 7,
+                "name": "Cassi",
+                "metrics": {
+                  "earnedGold": "320",
+                  "spentGold": "310",
+                  "gold": "10",
+                  "gems": "0",
+                  "collectedGems": "55",
+                  "submittedGems": "55",
+                  "saleRefunds": "0",
+                  "kills": "0",
+                  "deaths": "3",
+                  "assists": "0",
+                  "monsterDamageDone": 4827,
+                  "monsterDamageTaken": 1062.7999877929688,
+                  "championDamageDone": 685,
+                  "championDamageTaken": 2319.500011444092,
+                  "healingDone": 0,
+                  "healingReceived": 2192.300033569336,
+                  "shieldingDone": 0
+                }
+              },
+              {
+                "id": 8,
+                "name": "Issac",
+                "metrics": {
+                  "earnedGold": "460",
+                  "spentGold": "460",
+                  "gold": "0",
+                  "gems": "0",
+                  "collectedGems": "23",
+                  "submittedGems": "15",
+                  "saleRefunds": "0",
+                  "kills": "0",
+                  "deaths": "3",
+                  "assists": "0",
+                  "monsterDamageDone": 6459,
+                  "monsterDamageTaken": 2780,
+                  "championDamageDone": 0,
+                  "championDamageTaken": 825,
+                  "healingDone": 0,
+                  "healingReceived": 2100,
+                  "shieldingDone": 0
+                }
+              },
+              {
+                "id": 9,
+                "name": "Ryth",
+                "metrics": {
+                  "earnedGold": "860",
+                  "spentGold": "850",
+                  "gold": "10",
+                  "gems": "0",
+                  "collectedGems": "113",
+                  "submittedGems": "91",
+                  "saleRefunds": "0",
+                  "kills": "0",
+                  "deaths": "1",
+                  "assists": "0",
+                  "monsterDamageDone": 22316.200073242188,
+                  "monsterDamageTaken": 4910.599981307983,
+                  "championDamageDone": 1830.5999603271484,
+                  "championDamageTaken": 3733.605770111084,
+                  "healingDone": 0,
+                  "healingReceived": 7444.2060546875,
+                  "shieldingDone": 0
+                }
+              },
+              {
+                "id": 10,
+                "name": "Tavi",
+                "metrics": {
+                  "earnedGold": "180",
+                  "spentGold": "160",
+                  "gold": "20",
+                  "gems": "0",
+                  "collectedGems": "15",
+                  "submittedGems": "11",
+                  "saleRefunds": "0",
+                  "kills": "0",
+                  "deaths": "2",
+                  "assists": "0",
+                  "monsterDamageDone": 11093,
+                  "monsterDamageTaken": 2640,
+                  "championDamageDone": 297.8999938964844,
+                  "championDamageTaken": 1846,
+                  "healingDone": 0,
+                  "healingReceived": 2986,
+                  "shieldingDone": 0
+                }
+              }
+            ],
+            "statistics": "cambc-hotfix-1.0.1/live/nyx/57681d63-c901-49f2-81bc-61d3496b7524.json",
+            "statistics_sha256": "466d11bdf9203ffbcd58bf4134cc94f3a4128f790f80c942db99d6968b76a7e2",
+            "replay_sha256": "80082c021739ee4958044148ba8ada2fcc39fd61c1e528cc9bd4bceade51fd3e",
+            "native_terminal": {
+              "outcome": "teamA",
+              "round": 984,
+              "banks": [
+                1015,
+                327
+              ]
+            },
+            "native_verified": true,
+            "ppo_last_logged_counters": {
+              "5": {
+                "round": 900,
+                "calls": 14,
+                "changes": 10,
+                "choices": 31
+              },
+              "6": {
+                "round": 900,
+                "calls": 33,
+                "changes": 18,
+                "choices": 77
+              },
+              "7": {
+                "round": 900,
+                "calls": 33,
+                "changes": 12,
+                "choices": 76
+              },
+              "8": {
+                "round": 900,
+                "calls": 26,
+                "changes": 13,
+                "choices": 57
+              },
+              "9": {
+                "round": 900,
+                "calls": 25,
+                "changes": 12,
+                "choices": 52
+              },
+              "10": {
+                "round": 900,
+                "calls": 49,
+                "changes": 20,
+                "choices": 109
+              }
+            },
+            "ppo_logged_calls": 180,
+            "ppo_logged_target_changes": 85,
+            "official_fuel": {
+              "turns": 5902,
+              "initial_max": 176021,
+              "ordinary_max": 84913
+            },
+            "engine_build_hash": "c3e9ffc8d98c106f86660c58344dc26ced9459a504e2f0d90d88b4c8594c7765"
+          },
+          {
+            "id": "993e2600-ad09-4b4f-b5d2-5c84cf10ec03",
+            "map": "01the-farm",
+            "our_seat": "teamA",
+            "platform_version": 83,
+            "won": false,
+            "rounds": 916,
+            "our": {
+              "gems": 213,
+              "kills": 0,
+              "deaths": 15,
+              "gold": 1870,
+              "monster_damage": 50795,
+              "champion_damage": 5706,
+              "faults": 0,
+              "fuel_exhausted": 0,
+              "camp_clears": 23,
+              "distinct_camps": 6,
+              "wards": 0,
+              "draft": [
+                "Unknown champion (3)",
+                "Unknown champion (4)",
+                "Unknown champion (9)",
+                "Unknown champion (5)"
+              ],
+              "items": {
+                "Unknown item (8)": 24,
+                "Unknown item (16)": 17,
+                "Unknown item (6)": 11,
+                "Unknown item (24)": 5,
+                "Unknown item (40)": 1
+              },
+              "snap_gems": [
+                15,
+                37,
+                66,
+                92,
+                136,
+                176,
+                176,
+                213,
+                213,
+                213
+              ],
+              "snap_deaths": [
+                1,
+                2,
+                5,
+                6,
+                6,
+                9,
+                11,
+                11,
+                13,
+                15
+              ]
+            },
+            "opponent": {
+              "gems": 1001,
+              "kills": 8,
+              "deaths": 0,
+              "gold": 5977,
+              "monster_damage": 116403,
+              "champion_damage": 8643,
+              "faults": 0,
+              "fuel_exhausted": 0,
+              "camp_clears": 42,
+              "distinct_camps": 12,
+              "wards": 51,
+              "draft": [
+                "Unknown champion (12)",
+                "Unknown champion (9)",
+                "Unknown champion (0)"
+              ],
+              "items": {
+                "Unknown item (8)": 94,
+                "Unknown item (6)": 56,
+                "Unknown item (22)": 10,
+                "Unknown item (16)": 10,
+                "Unknown item (18)": 5,
+                "Unknown item (40)": 5
+              },
+              "snap_gems": [
+                0,
+                25,
+                98,
+                250,
+                317,
+                376,
+                497,
+                652,
+                898,
+                1001
+              ],
+              "snap_deaths": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ]
+            },
+            "own_champions": [
+              {
+                "id": 0,
+                "name": "Cassi",
+                "metrics": {
+                  "earnedGold": "380",
+                  "spentGold": "380",
+                  "gold": "0",
+                  "gems": "0",
+                  "collectedGems": "52",
+                  "submittedGems": "52",
+                  "saleRefunds": "0",
+                  "kills": "0",
+                  "deaths": "3",
+                  "assists": "0",
+                  "monsterDamageDone": 14064.050277709961,
+                  "monsterDamageTaken": 5189,
+                  "championDamageDone": 680.3999633789062,
+                  "championDamageTaken": 1087,
+                  "healingDone": 0,
+                  "healingReceived": 4683,
+                  "shieldingDone": 0
+                }
+              },
+              {
+                "id": 1,
+                "name": "Issac",
+                "metrics": {
+                  "earnedGold": "610",
+                  "spentGold": "590",
+                  "gold": "20",
+                  "gems": "0",
+                  "collectedGems": "100",
+                  "submittedGems": "77",
+                  "saleRefunds": "0",
+                  "kills": "0",
+                  "deaths": "3",
+                  "assists": "0",
+                  "monsterDamageDone": 11765,
+                  "monsterDamageTaken": 8360,
+                  "championDamageDone": 273.6000061035156,
+                  "championDamageTaken": 1276.25,
+                  "healingDone": 0,
+                  "healingReceived": 8896.25,
+                  "shieldingDone": 0
+                }
+              },
+              {
+                "id": 2,
+                "name": "Ren",
+                "metrics": {
+                  "earnedGold": "580",
+                  "spentGold": "580",
+                  "gold": "0",
+                  "gems": "0",
+                  "collectedGems": "82",
+                  "submittedGems": "41",
+                  "saleRefunds": "0",
+                  "kills": "0",
+                  "deaths": "3",
+                  "assists": "0",
+                  "monsterDamageDone": 16247.249164581299,
+                  "monsterDamageTaken": 5924,
+                  "championDamageDone": 2942.564998626709,
+                  "championDamageTaken": 4225,
+                  "healingDone": 0,
+                  "healingReceived": 6119,
+                  "shieldingDone": 0
+                }
+              },
+              {
+                "id": 3,
+                "name": "Stellar",
+                "metrics": {
+                  "earnedGold": "300",
+                  "spentGold": "280",
+                  "gold": "20",
+                  "gems": "0",
+                  "collectedGems": "83",
+                  "submittedGems": "43",
+                  "saleRefunds": "0",
+                  "kills": "0",
+                  "deaths": "6",
+                  "assists": "0",
+                  "monsterDamageDone": 8718.700317382812,
+                  "monsterDamageTaken": 3490,
+                  "championDamageDone": 1809.3799514770508,
+                  "championDamageTaken": 2055,
+                  "healingDone": 0,
+                  "healingReceived": 1045,
+                  "shieldingDone": 0
+                }
+              }
+            ],
+            "statistics": "cambc-hotfix-1.0.1/live/nyx/993e2600-ad09-4b4f-b5d2-5c84cf10ec03.json",
+            "statistics_sha256": "4c500f657a1ea660bd469ea1e5e03141513d77bd096729548b390a98901c4ee8",
+            "replay_sha256": "193b1a9923c8bf1a290310d7163a0a3de24541e636cab90713ada931ca66de21",
+            "native_terminal": {
+              "outcome": "teamB",
+              "round": 916,
+              "banks": [
+                213,
+                1001
+              ]
+            },
+            "native_verified": true,
+            "ppo_last_logged_counters": {
+              "0": {
+                "round": 900,
+                "calls": 50,
+                "changes": 22,
+                "choices": 114
+              },
+              "1": {
+                "round": 900,
+                "calls": 8,
+                "changes": 2,
+                "choices": 16
+              },
+              "2": {
+                "round": 900,
+                "calls": 16,
+                "changes": 7,
+                "choices": 32
+              },
+              "3": {
+                "round": 900,
+                "calls": 30,
+                "changes": 12,
+                "choices": 71
+              }
+            },
+            "ppo_logged_calls": 104,
+            "ppo_logged_target_changes": 43,
+            "official_fuel": {
+              "turns": 3662,
+              "initial_max": 184278,
+              "ordinary_max": 83914
+            },
+            "engine_build_hash": "c3e9ffc8d98c106f86660c58344dc26ced9459a504e2f0d90d88b4c8594c7765"
+          },
+          {
+            "id": "ed043044-c157-4f9f-8e71-65c556145760",
+            "map": "01yellow-brick-road",
+            "our_seat": "teamB",
+            "platform_version": 83,
+            "won": true,
+            "rounds": 1900,
+            "our": {
+              "gems": 1000,
+              "kills": 34,
+              "deaths": 62,
+              "gold": 18930,
+              "monster_damage": 262285,
+              "champion_damage": 90496,
+              "faults": 0,
+              "fuel_exhausted": 0,
+              "camp_clears": 67,
+              "distinct_camps": 13,
+              "wards": 0,
+              "draft": [
+                "Unknown champion (0)",
+                "Unknown champion (5)",
+                "Unknown champion (6)",
+                "Unknown champion (9)",
+                "Unknown champion (11)"
+              ],
+              "items": {
+                "Unknown item (8)": 457,
+                "Unknown item (6)": 66,
+                "Unknown item (40)": 53,
+                "Unknown item (16)": 27,
+                "Unknown item (12)": 5,
+                "Unknown item (24)": 5
+              },
+              "snap_gems": [
+                30,
+                30,
+                60,
+                120,
+                139,
+                139,
+                139,
+                139,
+                169,
+                169,
+                274,
+                342,
+                357,
+                508,
+                591,
+                715,
+                816,
+                932,
+                1000
+              ],
+              "snap_deaths": [
+                3,
+                7,
+                9,
+                13,
+                17,
+                21,
+                24,
+                30,
+                34,
+                37,
+                41,
+                44,
+                48,
+                48,
+                52,
+                54,
+                54,
+                57,
+                62
+              ]
+            },
+            "opponent": {
+              "gems": 982,
+              "kills": 53,
+              "deaths": 59,
+              "gold": 17984,
+              "monster_damage": 192156,
+              "champion_damage": 74335,
+              "faults": 0,
+              "fuel_exhausted": 0,
+              "camp_clears": 50,
+              "distinct_camps": 19,
+              "wards": 380,
+              "draft": [
+                "Unknown champion (12)",
+                "Unknown champion (9)",
+                "Unknown champion (0)",
+                "Unknown champion (5)",
+                "Unknown champion (11)"
+              ],
+              "items": {
+                "Unknown item (8)": 381,
+                "Unknown item (6)": 134,
+                "Unknown item (16)": 20,
+                "Unknown item (22)": 10,
+                "Unknown item (40)": 10,
+                "Unknown item (20)": 10
+              },
+              "snap_gems": [
+                0,
+                0,
+                30,
+                30,
+                30,
+                60,
+                60,
+                154,
+                199,
+                214,
+                226,
+                248,
+                383,
+                409,
+                483,
+                561,
+                658,
+                811,
+                982
+              ],
+              "snap_deaths": [
+                4,
+                6,
+                9,
+                12,
+                17,
+                20,
+                24,
+                28,
+                31,
+                35,
+                38,
+                41,
+                43,
+                48,
+                50,
+                52,
+                56,
+                57,
+                59
+              ]
+            },
+            "own_champions": [
+              {
+                "id": 5,
+                "name": "Ryth",
+                "metrics": {
+                  "earnedGold": "3490",
+                  "spentGold": "3470",
+                  "gold": "20",
+                  "gems": "0",
+                  "collectedGems": "459",
+                  "submittedGems": "384",
+                  "saleRefunds": "0",
+                  "kills": "0",
+                  "deaths": "13",
+                  "assists": "13",
+                  "monsterDamageDone": 57285.375244140625,
+                  "monsterDamageTaken": 22361.022205352783,
+                  "championDamageDone": 6852.399841308594,
+                  "championDamageTaken": 17366.121994018555,
+                  "healingDone": 0,
+                  "healingReceived": 21127.15399169922,
+                  "shieldingDone": 0
+                }
+              },
+              {
+                "id": 6,
+                "name": "Stellar",
+                "metrics": {
+                  "earnedGold": "2590",
+                  "spentGold": "2470",
+                  "gold": "120",
+                  "gems": "15",
+                  "collectedGems": "131",
+                  "submittedGems": "60",
+                  "saleRefunds": "0",
+                  "kills": "5",
+                  "deaths": "13",
+                  "assists": "7",
+                  "monsterDamageDone": 38524.89924621582,
+                  "monsterDamageTaken": 14648.02001953125,
+                  "championDamageDone": 19263.714126586914,
+                  "championDamageTaken": 12260.219984054565,
+                  "healingDone": 0,
+                  "healingReceived": 14533.239929199219,
+                  "shieldingDone": 0
+                }
+              },
+              {
+                "id": 7,
+                "name": "Prism",
+                "metrics": {
+                  "earnedGold": "4370",
+                  "spentGold": "4370",
+                  "gold": "0",
+                  "gems": "0",
+                  "collectedGems": "121",
+                  "submittedGems": "42",
+                  "saleRefunds": "0",
+                  "kills": "13",
+                  "deaths": "12",
+                  "assists": "8",
+                  "monsterDamageDone": 56783.850036621094,
+                  "monsterDamageTaken": 15799.700073242188,
+                  "championDamageDone": 26936.10986328125,
+                  "championDamageTaken": 9468.644989013672,
+                  "healingDone": 0,
+                  "healingReceived": 13568.345031738281,
+                  "shieldingDone": 0
+                }
+              },
+              {
+                "id": 8,
+                "name": "Ren",
+                "metrics": {
+                  "earnedGold": "2450",
+                  "spentGold": "2320",
+                  "gold": "130",
+                  "gems": "0",
+                  "collectedGems": "278",
+                  "submittedGems": "248",
+                  "saleRefunds": "0",
+                  "kills": "1",
+                  "deaths": "15",
+                  "assists": "18",
+                  "monsterDamageDone": 53305.50104904175,
+                  "monsterDamageTaken": 20271.250732421875,
+                  "championDamageDone": 14302.934425354004,
+                  "championDamageTaken": 21398.75675392151,
+                  "healingDone": 0,
+                  "healingReceived": 16050.007202148438,
+                  "shieldingDone": 0
+                }
+              },
+              {
+                "id": 9,
+                "name": "Tavi",
+                "metrics": {
+                  "earnedGold": "6030",
+                  "spentGold": "6030",
+                  "gold": "0",
+                  "gems": "0",
+                  "collectedGems": "353",
+                  "submittedGems": "266",
+                  "saleRefunds": "0",
+                  "kills": "15",
+                  "deaths": "9",
+                  "assists": "1",
+                  "monsterDamageDone": 56385.350242614746,
+                  "monsterDamageTaken": 13404,
+                  "championDamageDone": 23141.193031311035,
+                  "championDamageTaken": 13840.90496635437,
+                  "healingDone": 0,
+                  "healingReceived": 16444.90496826172,
+                  "shieldingDone": 0
+                }
+              }
+            ],
+            "statistics": "cambc-hotfix-1.0.1/live/nyx/ed043044-c157-4f9f-8e71-65c556145760.json",
+            "statistics_sha256": "852f35237f7fb42ced2100899f24bf10588c451f12a6c3939effc08431bb9808",
+            "replay_sha256": "5663c27a0776ce8d340452487f3db959837a64e708012688f605105a3208d4a8",
+            "native_terminal": {
+              "outcome": "teamB",
+              "round": 1900,
+              "banks": [
+                982,
+                1000
+              ]
+            },
+            "native_verified": true,
+            "ppo_last_logged_counters": {
+              "5": {
+                "round": 1900,
+                "calls": 12,
+                "changes": 9,
+                "choices": 24
+              },
+              "6": {
+                "round": 1900,
+                "calls": 32,
+                "changes": 18,
+                "choices": 84
+              },
+              "7": {
+                "round": 1900,
+                "calls": 27,
+                "changes": 19,
+                "choices": 55
+              },
+              "8": {
+                "round": 1800,
+                "calls": 12,
+                "changes": 2,
+                "choices": 24
+              },
+              "9": {
+                "round": 1800,
+                "calls": 47,
+                "changes": 30,
+                "choices": 116
+              }
+            },
+            "ppo_logged_calls": 130,
+            "ppo_logged_target_changes": 78,
+            "official_fuel": {
+              "turns": 9498,
+              "initial_max": 171304,
+              "ordinary_max": 92466
+            },
+            "engine_build_hash": "c3e9ffc8d98c106f86660c58344dc26ced9459a504e2f0d90d88b4c8594c7765"
+          }
+        ],
+        "summary": {
+          "games": 5,
+          "wins": 1,
+          "faults": 0,
+          "fuel_exhausted": 0,
+          "opponent_faults": 0,
+          "ppo_logged_calls": 503,
+          "ppo_logged_target_changes": 254,
+          "mean_banked_gems": 466.0,
+          "mean_opponent_banked_gems": 1005.4,
+          "native_verified_games": 5
+        }
+      },
+      {
+        "name": "tts",
+        "id": "2cfa5a5c-01c2-4899-8907-4bbe24233204",
+        "opponent": "TTS",
+        "kind": "ranked",
+        "opponent_rating_on_page": 1718,
+        "initiated_by_agent": false,
+        "maps": [
+          "00contest",
+          "01fracture",
+          "00collision",
+          "00rows",
+          "01elk-arena"
+        ],
+        "seats": [
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "ids": [
+          "6469bb00-7811-4957-9942-20a5f1aae8db",
+          "dcc08d21-48c5-4ddb-9934-e08d9186209a",
+          "b4b177fb-95f2-42fa-b2e2-422ad93c379a",
+          "0e50abbb-589d-4b24-a7da-b3523460a7a0",
+          "6d3c4214-0754-4915-9f36-a6065a544507"
+        ],
+        "platform_version": 83,
+        "games": [
+          {
+            "id": "6469bb00-7811-4957-9942-20a5f1aae8db",
+            "map": "00contest",
+            "our_seat": "teamB",
+            "platform_version": 83,
+            "won": true,
+            "rounds": 2000,
+            "our": {
+              "gems": 400,
+              "kills": 28,
+              "deaths": 26,
+              "gold": 12240,
+              "monster_damage": 107520,
+              "champion_damage": 133268,
+              "faults": 0,
+              "fuel_exhausted": 0,
+              "camp_clears": 142,
+              "distinct_camps": 11,
+              "wards": 0,
+              "draft": [
+                "Ryth",
+                "Stellar",
+                "Prism",
+                "Ren",
+                "Tavi"
+              ],
+              "items": {
+                "Power Shard of Focus": 312,
+                "Bruiser Shard of Health": 30,
+                "Power Shard of Strength": 28,
+                "Durability Shard of Health": 19,
+                "Durability Shard of Strength": 5,
+                "Jungle Shard of Strength": 5
+              },
+              "snap_gems": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                200,
+                400,
+                400,
+                400
+              ],
+              "snap_deaths": [
+                1,
+                3,
+                4,
+                5,
+                5,
+                5,
+                6,
+                6,
+                7,
+                7,
+                10,
+                13,
+                14,
+                17,
+                18,
+                19,
+                20,
+                22,
+                25,
+                26
+              ]
+            },
+            "opponent": {
+              "gems": 0,
+              "kills": 25,
+              "deaths": 28,
+              "gold": 8620,
+              "monster_damage": 32399,
+              "champion_damage": 53804,
+              "faults": 0,
+              "fuel_exhausted": 0,
+              "camp_clears": 100,
+              "distinct_camps": 10,
+              "wards": 0,
+              "draft": [
+                "Vendetta",
+                "Heart of Ruin",
+                "Varg",
+                "Ryth",
+                "Stellar"
+              ],
+              "items": {
+                "Power Shard of Health": 91,
+                "Power Shard of Strength": 54,
+                "Power Shard of Focus": 48,
+                "Durability Shard of Health": 25,
+                "Treasure Shard of Health": 20,
+                "Bruiser Shard of Health": 20
+              },
+              "snap_gems": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "snap_deaths": [
+                0,
+                0,
+                1,
+                2,
+                4,
+                7,
+                8,
+                8,
+                8,
+                11,
+                13,
+                14,
+                15,
+                16,
+                19,
+                21,
+                23,
+                24,
+                27,
+                28
+              ]
+            },
+            "own_champions": [
+              {
+                "id": 5,
+                "name": "Ryth",
+                "metrics": {
+                  "earnedGold": "1760",
+                  "spentGold": "1740",
+                  "gold": "20",
+                  "gems": "0",
+                  "collectedGems": "400",
+                  "submittedGems": "400",
+                  "saleRefunds": "0",
+                  "kills": "2",
+                  "deaths": "6",
+                  "assists": "13",
+                  "monsterDamageDone": 23885.385250091553,
+                  "monsterDamageTaken": 6048,
+                  "championDamageDone": 15669.100032806396,
+                  "championDamageTaken": 17634.400577545166,
+                  "healingDone": 0,
+                  "healingReceived": 14182.40054321289,
+                  "shieldingDone": 0
+                }
+              },
+              {
+                "id": 6,
+                "name": "Stellar",
+                "metrics": {
+                  "earnedGold": "3760",
+                  "spentGold": "3760",
+                  "gold": "0",
+                  "gems": "0",
+                  "collectedGems": "0",
+                  "submittedGems": "0",
+                  "saleRefunds": "0",
+                  "kills": "10",
+                  "deaths": "2",
+                  "assists": "10",
+                  "monsterDamageDone": 32369.454223632812,
+                  "monsterDamageTaken": 900,
+                  "championDamageDone": 44898.30911254883,
+                  "championDamageTaken": 4331.422943115234,
+                  "healingDone": 0,
+                  "healingReceived": 2456.4230346679688,
+                  "shieldingDone": 0
+                }
+              },
+              {
+                "id": 7,
+                "name": "Prism",
+                "metrics": {
+                  "earnedGold": "2540",
+                  "spentGold": "2530",
+                  "gold": "10",
+                  "gems": "0",
+                  "collectedGems": "0",
+                  "submittedGems": "0",
+                  "saleRefunds": "0",
+                  "kills": "7",
+                  "deaths": "8",
+                  "assists": "13",
+                  "monsterDamageDone": 13040,
+                  "monsterDamageTaken": 0,
+                  "championDamageDone": 24221.020111083984,
+                  "championDamageTaken": 9134.759986877441,
+                  "healingDone": 0,
+                  "healingReceived": 1794.760009765625,
+                  "shieldingDone": 0
+                }
+              },
+              {
+                "id": 8,
+                "name": "Ren",
+                "metrics": {
+                  "earnedGold": "1980",
+                  "spentGold": "1960",
+                  "gold": "20",
+                  "gems": "0",
+                  "collectedGems": "0",
+                  "submittedGems": "0",
+                  "saleRefunds": "0",
+                  "kills": "5",
+                  "deaths": "3",
+                  "assists": "16",
+                  "monsterDamageDone": 18226.900100708008,
+                  "monsterDamageTaken": 4680,
+                  "championDamageDone": 27129.520099639893,
+                  "championDamageTaken": 16309.839851379395,
+                  "healingDone": 0,
+                  "healingReceived": 16889.84002685547,
+                  "shieldingDone": 0
+                }
+              },
+              {
+                "id": 9,
+                "name": "Tavi",
+                "metrics": {
+                  "earnedGold": "2200",
+                  "spentGold": "2200",
+                  "gold": "0",
+                  "gems": "0",
+                  "collectedGems": "0",
+                  "submittedGems": "0",
+                  "saleRefunds": "0",
+                  "kills": "4",
+                  "deaths": "7",
+                  "assists": "11",
+                  "monsterDamageDone": 19998,
+                  "monsterDamageTaken": 2125,
+                  "championDamageDone": 21350.359741210938,
+                  "championDamageTaken": 6393.999950408936,
+                  "healingDone": 0,
+                  "healingReceived": 694,
+                  "shieldingDone": 0
+                }
+              }
+            ],
+            "statistics": "cambc-hotfix-1.0.1/live/tts/6469bb00-7811-4957-9942-20a5f1aae8db.json",
+            "statistics_sha256": "e5d7c2906cf6eaf3333c8fd193094c79c31e15a8561303ba71a85e354b4ef75e",
+            "replay_sha256": "d3fe1749ed8961bf363d9b08b0ded032985a4cc66c8f5191f3889c847867a933",
+            "native_terminal": {
+              "outcome": "teamB",
+              "round": 2000,
+              "banks": [
+                0,
+                400
+              ]
+            },
+            "native_verified": true,
+            "ppo_last_logged_counters": {
+              "5": {
+                "round": 2000,
+                "calls": 23,
+                "changes": 14,
+                "choices": 51
+              },
+              "6": {
+                "round": 2000,
+                "calls": 17,
+                "changes": 13,
+                "choices": 38
+              },
+              "7": {
+                "round": 2000,
+                "calls": 22,
+                "changes": 9,
+                "choices": 46
+              },
+              "8": {
+                "round": 2000,
+                "calls": 52,
+                "changes": 34,
+                "choices": 112
+              },
+              "9": {
+                "round": 2000,
+                "calls": 46,
+                "changes": 29,
+                "choices": 100
+              }
+            },
+            "ppo_logged_calls": 160,
+            "ppo_logged_target_changes": 99,
+            "official_fuel": {
+              "turns": 10000,
+              "initial_max": 183515,
+              "ordinary_max": 84419
+            },
+            "engine_build_hash": "c3e9ffc8d98c106f86660c58344dc26ced9459a504e2f0d90d88b4c8594c7765"
+          },
+          {
+            "id": "dcc08d21-48c5-4ddb-9934-e08d9186209a",
+            "map": "01fracture",
+            "our_seat": "teamB",
+            "platform_version": 83,
+            "won": false,
+            "rounds": 2000,
+            "our": {
+              "gems": 177,
+              "kills": 7,
+              "deaths": 32,
+              "gold": 4120,
+              "monster_damage": 55887,
+              "champion_damage": 33153,
+              "faults": 0,
+              "fuel_exhausted": 0,
+              "camp_clears": 87,
+              "distinct_camps": 10,
+              "wards": 0,
+              "draft": [
+                "Cassi",
+                "Issac",
+                "Stellar",
+                "Varg",
+                "Tavi",
+                "Ren"
+              ],
+              "items": {
+                "Power Shard of Focus": 61,
+                "Power Shard of Strength": 32,
+                "Durability Shard of Health": 14,
+                "Bruiser Shard of Health": 7,
+                "Durability Shard of Strength": 5,
+                "Jungle Shard of Strength": 5
+              },
+              "snap_gems": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                12,
+                24,
+                32,
+                40,
+                93,
+                93,
+                93,
+                93,
+                101,
+                139,
+                139,
+                139,
+                139,
+                177
+              ],
+              "snap_deaths": [
+                0,
+                0,
+                0,
+                2,
+                3,
+                3,
+                6,
+                7,
+                8,
+                10,
+                11,
+                16,
+                16,
+                19,
+                19,
+                23,
+                27,
+                29,
+                32,
+                32
+              ]
+            },
+            "opponent": {
+              "gems": 335,
+              "kills": 15,
+              "deaths": 24,
+              "gold": 6698,
+              "monster_damage": 122344,
+              "champion_damage": 24821,
+              "faults": 0,
+              "fuel_exhausted": 34,
+              "camp_clears": 43,
+              "distinct_camps": 13,
+              "wards": 4,
+              "draft": [
+                "Vendetta",
+                "Heart of Ruin",
+                "Varg",
+                "Ryth",
+                "Stellar"
+              ],
+              "items": {
+                "Power Shard of Strength": 49,
+                "Power Shard of Focus": 41,
+                "Power Shard of Health": 37,
+                "Treasure Shard of Health": 20,
+                "Bruiser Shard of Health": 20,
+                "Jungle Shard of Strength": 15
+              },
+              "snap_gems": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                15,
+                69,
+                91,
+                91,
+                91,
+                91,
+                103,
+                103,
+                103,
+                103,
+                162,
+                232,
+                335,
+                335,
+                335
+              ],
+              "snap_deaths": [
+                0,
+                0,
+                2,
+                4,
+                5,
+                5,
+                5,
+                7,
+                7,
+                8,
+                9,
+                13,
+                13,
+                16,
+                17,
+                18,
+                19,
+                21,
+                21,
+                24
+              ]
+            },
+            "own_champions": [
+              {
+                "id": 5,
+                "name": "Cassi",
+                "metrics": {
+                  "earnedGold": "220",
+                  "spentGold": "210",
+                  "gold": "10",
+                  "gems": "0",
+                  "collectedGems": "0",
+                  "submittedGems": "0",
+                  "saleRefunds": "0",
+                  "kills": "0",
+                  "deaths": "8",
+                  "assists": "1",
+                  "monsterDamageDone": 1560,
+                  "monsterDamageTaken": 3000.7238960266113,
+                  "championDamageDone": 3002.3999633789062,
+                  "championDamageTaken": 1029.2761039733887,
+                  "healingDone": 0,
+                  "healingReceived": 520,
+                  "shieldingDone": 0
+                }
+              },
+              {
+                "id": 6,
+                "name": "Issac",
+                "metrics": {
+                  "earnedGold": "280",
+                  "spentGold": "200",
+                  "gold": "80",
+                  "gems": "0",
+                  "collectedGems": "0",
+                  "submittedGems": "0",
+                  "saleRefunds": "0",
+                  "kills": "0",
+                  "deaths": "8",
+                  "assists": "1",
+                  "monsterDamageDone": 1718,
+                  "monsterDamageTaken": 1660,
+                  "championDamageDone": 1350.899990081787,
+                  "championDamageTaken": 5055.399990081787,
+                  "healingDone": 0,
+                  "healingReceived": 3475.4000244140625,
+                  "shieldingDone": 0
+                }
+              },
+              {
+                "id": 7,
+                "name": "Stellar",
+                "metrics": {
+                  "earnedGold": "580",
+                  "spentGold": "570",
+                  "gold": "10",
+                  "gems": "0",
+                  "collectedGems": "0",
+                  "submittedGems": "0",
+                  "saleRefunds": "0",
+                  "kills": "1",
+                  "deaths": "6",
+                  "assists": "4",
+                  "monsterDamageDone": 3955.999984741211,
+                  "monsterDamageTaken": 4367,
+                  "championDamageDone": 8806.479019165039,
+                  "championDamageTaken": 2809.60001373291,
+                  "healingDone": 0,
+                  "healingReceived": 1401.5999755859375,
+                  "shieldingDone": 0
+                }
+              },
+              {
+                "id": 8,
+                "name": "Varg",
+                "metrics": {
+                  "earnedGold": "1300",
+                  "spentGold": "1300",
+                  "gold": "0",
+                  "gems": "0",
+                  "collectedGems": "104",
+                  "submittedGems": "104",
+                  "saleRefunds": "0",
+                  "kills": "1",
+                  "deaths": "2",
+                  "assists": "1",
+                  "monsterDamageDone": 29134.499755859375,
+                  "monsterDamageTaken": 3661.199941635132,
+                  "championDamageDone": 2274.9819946289062,
+                  "championDamageTaken": 2496.6000061035156,
+                  "healingDone": 0,
+                  "healingReceived": 2311.3988037109375,
+                  "shieldingDone": 9925
+                }
+              },
+              {
+                "id": 9,
+                "name": "Tavi",
+                "metrics": {
+                  "earnedGold": "780",
+                  "spentGold": "780",
+                  "gold": "0",
+                  "gems": "0",
+                  "collectedGems": "8",
+                  "submittedGems": "8",
+                  "saleRefunds": "0",
+                  "kills": "2",
+                  "deaths": "2",
+                  "assists": "2",
+                  "monsterDamageDone": 8939,
+                  "monsterDamageTaken": 2780,
+                  "championDamageDone": 8014.999938964844,
+                  "championDamageTaken": 3533.1818809509277,
+                  "healingDone": 0,
+                  "healingReceived": 4123.181884765625,
+                  "shieldingDone": 0
+                }
+              },
+              {
+                "id": 10,
+                "name": "Ren",
+                "metrics": {
+                  "earnedGold": "960",
+                  "spentGold": "960",
+                  "gold": "0",
+                  "gems": "0",
+                  "collectedGems": "65",
+                  "submittedGems": "65",
+                  "saleRefunds": "0",
+                  "kills": "3",
+                  "deaths": "6",
+                  "assists": "2",
+                  "monsterDamageDone": 10579.55013847351,
+                  "monsterDamageTaken": 3469.4202270507812,
+                  "championDamageDone": 9702.843795776367,
+                  "championDamageTaken": 9896.671970367432,
+                  "healingDone": 0,
+                  "healingReceived": 4766.0919189453125,
+                  "shieldingDone": 0
+                }
+              }
+            ],
+            "statistics": "cambc-hotfix-1.0.1/live/tts/dcc08d21-48c5-4ddb-9934-e08d9186209a.json",
+            "statistics_sha256": "db3e9eafe88a8fada684c2d78925a844e02dfe3d0b6a0613651ce07321b0b1ba",
+            "replay_sha256": "31427de871753c7428484a5b73fd9fadbcfb8b9bf9db7e8f0f571425fa205393",
+            "native_terminal": {
+              "outcome": "teamA",
+              "round": 2000,
+              "banks": [
+                335,
+                177
+              ]
+            },
+            "native_verified": true,
+            "ppo_last_logged_counters": {
+              "5": {
+                "round": 2000,
+                "calls": 9,
+                "changes": 6,
+                "choices": 22
+              },
+              "6": {
+                "round": 2000,
+                "calls": 6,
+                "changes": 5,
+                "choices": 12
+              },
+              "7": {
+                "round": 2000,
+                "calls": 0,
+                "changes": 0,
+                "choices": 0
+              },
+              "8": {
+                "round": 2000,
+                "calls": 18,
+                "changes": 13,
+                "choices": 36
+              },
+              "9": {
+                "round": 2000,
+                "calls": 18,
+                "changes": 11,
+                "choices": 36
+              },
+              "10": {
+                "round": 2000,
+                "calls": 0,
+                "changes": 0,
+                "choices": 0
+              }
+            },
+            "ppo_logged_calls": 51,
+            "ppo_logged_target_changes": 35,
+            "official_fuel": {
+              "turns": 12000,
+              "initial_max": 175176,
+              "ordinary_max": 87422
+            },
+            "engine_build_hash": "c3e9ffc8d98c106f86660c58344dc26ced9459a504e2f0d90d88b4c8594c7765"
+          },
+          {
+            "id": "b4b177fb-95f2-42fa-b2e2-422ad93c379a",
+            "map": "00collision",
+            "our_seat": "teamB",
+            "platform_version": 83,
+            "won": false,
+            "rounds": 1374,
+            "our": {
+              "gems": 348,
+              "kills": 4,
+              "deaths": 30,
+              "gold": 3440,
+              "monster_damage": 89076,
+              "champion_damage": 30531,
+              "faults": 0,
+              "fuel_exhausted": 0,
+              "camp_clears": 60,
+              "distinct_camps": 10,
+              "wards": 0,
+              "draft": [
+                "Cassi",
+                "Issac",
+                "Ren",
+                "Stellar"
+              ],
+              "items": {
+                "Power Shard of Focus": 63,
+                "Durability Shard of Health": 19,
+                "Power Shard of Strength": 16,
+                "Bruiser Shard of Health": 7,
+                "Jungle Shard of Strength": 5
+              },
+              "snap_gems": [
+                18,
+                76,
+                109,
+                118,
+                136,
+                154,
+                172,
+                249,
+                249,
+                278,
+                308,
+                337,
+                348,
+                348
+              ],
+              "snap_deaths": [
+                2,
+                2,
+                5,
+                5,
+                8,
+                9,
+                12,
+                13,
+                19,
+                20,
+                22,
+                26,
+                30,
+                30
+              ]
+            },
+            "opponent": {
+              "gems": 1040,
+              "kills": 20,
+              "deaths": 4,
+              "gold": 7904,
+              "monster_damage": 112171,
+              "champion_damage": 27391,
+              "faults": 0,
+              "fuel_exhausted": 3,
+              "camp_clears": 50,
+              "distinct_camps": 12,
+              "wards": 2,
+              "draft": [
+                "Vendetta",
+                "Heart of Ruin",
+                "Varg"
+              ],
+              "items": {
+                "Power Shard of Health": 68,
+                "Power Shard of Strength": 40,
+                "Power Shard of Focus": 40,
+                "Treasure Shard of Health": 15,
+                "Jungle Shard of Strength": 10,
+                "Bruiser Shard of Health": 10
+              },
+              "snap_gems": [
+                0,
+                0,
+                0,
+                53,
+                64,
+                82,
+                291,
+                291,
+                398,
+                548,
+                655,
+                809,
+                974,
+                1040
+              ],
+              "snap_deaths": [
+                2,
+                2,
+                2,
+                2,
+                3,
+                3,
+                4,
+                4,
+                4,
+                4,
+                4,
+                4,
+                4,
+                4
+              ]
+            },
+            "own_champions": [
+              {
+                "id": 3,
+                "name": "Cassi",
+                "metrics": {
+                  "earnedGold": "420",
+                  "spentGold": "420",
+                  "gold": "0",
+                  "gems": "0",
+                  "collectedGems": "36",
+                  "submittedGems": "11",
+                  "saleRefunds": "0",
+                  "kills": "0",
+                  "deaths": "9",
+                  "assists": "4",
+                  "monsterDamageDone": 13391.126678466797,
+                  "monsterDamageTaken": 3272,
+                  "championDamageDone": 3323.5999450683594,
+                  "championDamageTaken": 4267.412525177002,
+                  "healingDone": 0,
+                  "healingReceived": 2130,
+                  "shieldingDone": 0
+                }
+              },
+              {
+                "id": 4,
+                "name": "Issac",
+                "metrics": {
+                  "earnedGold": "780",
+                  "spentGold": "770",
+                  "gold": "10",
+                  "gems": "0",
+                  "collectedGems": "178",
+                  "submittedGems": "90",
+                  "saleRefunds": "0",
+                  "kills": "1",
+                  "deaths": "9",
+                  "assists": "3",
+                  "monsterDamageDone": 16496.149810791016,
+                  "monsterDamageTaken": 3708.927490234375,
+                  "championDamageDone": 1902.7999954223633,
+                  "championDamageTaken": 4595.260551452637,
+                  "healingDone": 0,
+                  "healingReceived": 2428,
+                  "shieldingDone": 0
+                }
+              },
+              {
+                "id": 5,
+                "name": "Ren",
+                "metrics": {
+                  "earnedGold": "1520",
+                  "spentGold": "1510",
+                  "gold": "10",
+                  "gems": "0",
+                  "collectedGems": "345",
+                  "submittedGems": "188",
+                  "saleRefunds": "0",
+                  "kills": "2",
+                  "deaths": "5",
+                  "assists": "2",
+                  "monsterDamageDone": 29723.398874282837,
+                  "monsterDamageTaken": 4478,
+                  "championDamageDone": 12606.39402961731,
+                  "championDamageTaken": 11467.342269897461,
+                  "healingDone": 0,
+                  "healingReceived": 8247.342468261719,
+                  "shieldingDone": 0
+                }
+              },
+              {
+                "id": 6,
+                "name": "Stellar",
+                "metrics": {
+                  "earnedGold": "720",
+                  "spentGold": "710",
+                  "gold": "10",
+                  "gems": "0",
+                  "collectedGems": "83",
+                  "submittedGems": "59",
+                  "saleRefunds": "0",
+                  "kills": "1",
+                  "deaths": "7",
+                  "assists": "3",
+                  "monsterDamageDone": 29464.999799728394,
+                  "monsterDamageTaken": 3690,
+                  "championDamageDone": 12697.979705810547,
+                  "championDamageTaken": 7060.9884605407715,
+                  "healingDone": 0,
+                  "healingReceived": 3292.9884643554688,
+                  "shieldingDone": 0
+                }
+              }
+            ],
+            "statistics": "cambc-hotfix-1.0.1/live/tts/b4b177fb-95f2-42fa-b2e2-422ad93c379a.json",
+            "statistics_sha256": "7836bb993bf85c1a5d0fa07869b110eebe41af66f935c9a524638ffd273b97f4",
+            "replay_sha256": "8d970cc1c0d280e457970fe56698cc4302feaacb56e99e022751f00144ab8510",
+            "native_terminal": {
+              "outcome": "teamA",
+              "round": 1374,
+              "banks": [
+                1040,
+                348
+              ]
+            },
+            "native_verified": true,
+            "ppo_last_logged_counters": {
+              "3": {
+                "round": 1300,
+                "calls": 54,
+                "changes": 28,
+                "choices": 163
+              },
+              "4": {
+                "round": 1300,
+                "calls": 0,
+                "changes": 0,
+                "choices": 0
+              },
+              "5": {
+                "round": 1300,
+                "calls": 16,
+                "changes": 10,
+                "choices": 32
+              },
+              "6": {
+                "round": 1300,
+                "calls": 74,
+                "changes": 36,
+                "choices": 198
+              }
+            },
+            "ppo_logged_calls": 144,
+            "ppo_logged_target_changes": 74,
+            "official_fuel": {
+              "turns": 5493,
+              "initial_max": 179785,
+              "ordinary_max": 89603
+            },
+            "engine_build_hash": "c3e9ffc8d98c106f86660c58344dc26ced9459a504e2f0d90d88b4c8594c7765"
+          },
+          {
+            "id": "0e50abbb-589d-4b24-a7da-b3523460a7a0",
+            "map": "00rows",
+            "our_seat": "teamB",
+            "platform_version": 83,
+            "won": false,
+            "rounds": 1634,
+            "our": {
+              "gems": 939,
+              "kills": 3,
+              "deaths": 13,
+              "gold": 8660,
+              "monster_damage": 253782,
+              "champion_damage": 12587,
+              "faults": 0,
+              "fuel_exhausted": 0,
+              "camp_clears": 53,
+              "distinct_camps": 3,
+              "wards": 0,
+              "draft": [
+                "Vendetta",
+                "Varg",
+                "Cassi",
+                "Issac",
+                "Ryth"
+              ],
+              "items": {
+                "Power Shard of Strength": 202,
+                "Bruiser Shard of Health": 23,
+                "Jungle Shard of Strength": 20,
+                "Durability Shard of Health": 16,
+                "Durability Shard of Strength": 15
+              },
+              "snap_gems": [
+                0,
+                27,
+                82,
+                114,
+                195,
+                247,
+                299,
+                369,
+                419,
+                488,
+                557,
+                623,
+                711,
+                768,
+                780,
+                939,
+                939
+              ],
+              "snap_deaths": [
+                0,
+                0,
+                1,
+                1,
+                1,
+                1,
+                1,
+                4,
+                5,
+                6,
+                7,
+                8,
+                10,
+                13,
+                13,
+                13,
+                13
+              ]
+            },
+            "opponent": {
+              "gems": 1001,
+              "kills": 4,
+              "deaths": 7,
+              "gold": 8528,
+              "monster_damage": 179297,
+              "champion_damage": 9429,
+              "faults": 0,
+              "fuel_exhausted": 0,
+              "camp_clears": 44,
+              "distinct_camps": 6,
+              "wards": 0,
+              "draft": [
+                "Stellar",
+                "Vendetta",
+                "Heart of Ruin",
+                "Varg"
+              ],
+              "items": {
+                "Power Shard of Health": 120,
+                "Power Shard of Focus": 40,
+                "Power Shard of Strength": 40,
+                "Treasure Shard of Health": 15,
+                "Bruiser Shard of Health": 15,
+                "Durability Shard of Health": 10
+              },
+              "snap_gems": [
+                0,
+                31,
+                69,
+                119,
+                169,
+                207,
+                257,
+                288,
+                319,
+                338,
+                388,
+                400,
+                431,
+                431,
+                963,
+                989,
+                1001
+              ],
+              "snap_deaths": [
+                1,
+                1,
+                1,
+                1,
+                3,
+                3,
+                4,
+                4,
+                4,
+                4,
+                6,
+                6,
+                6,
+                7,
+                7,
+                7,
+                7
+              ]
+            },
+            "own_champions": [
+              {
+                "id": 4,
+                "name": "Vendetta",
+                "metrics": {
+                  "earnedGold": "2580",
+                  "spentGold": "2440",
+                  "gold": "140",
+                  "gems": "0",
+                  "collectedGems": "242",
+                  "submittedGems": "242",
+                  "saleRefunds": "0",
+                  "kills": "2",
+                  "deaths": "5",
+                  "assists": "1",
+                  "monsterDamageDone": 66610,
+                  "monsterDamageTaken": 10844.199870109558,
+                  "championDamageDone": 6385.399604797363,
+                  "championDamageTaken": 3261.0006103515625,
+                  "healingDone": 0,
+                  "healingReceived": 8403.596008300781,
+                  "shieldingDone": 0
+                }
+              },
+              {
+                "id": 5,
+                "name": "Varg",
+                "metrics": {
+                  "earnedGold": "2190",
+                  "spentGold": "2170",
+                  "gold": "20",
+                  "gems": "0",
+                  "collectedGems": "201",
+                  "submittedGems": "201",
+                  "saleRefunds": "0",
+                  "kills": "0",
+                  "deaths": "4",
+                  "assists": "1",
+                  "monsterDamageDone": 63962,
+                  "monsterDamageTaken": 13177.39992904663,
+                  "championDamageDone": 3654,
+                  "championDamageTaken": 4283.999755859375,
+                  "healingDone": 0,
+                  "healingReceived": 7269.59716796875,
+                  "shieldingDone": 7050
+                }
+              },
+              {
+                "id": 6,
+                "name": "Cassi",
+                "metrics": {
+                  "earnedGold": "0",
+                  "spentGold": "0",
+                  "gold": "0",
+                  "gems": "0",
+                  "collectedGems": "0",
+                  "submittedGems": "0",
+                  "saleRefunds": "0",
+                  "kills": "0",
+                  "deaths": "2",
+                  "assists": "1",
+                  "monsterDamageDone": 16633,
+                  "monsterDamageTaken": 1460,
+                  "championDamageDone": 360,
+                  "championDamageTaken": 0,
+                  "healingDone": 0,
+                  "healingReceived": 860,
+                  "shieldingDone": 0
+                }
+              },
+              {
+                "id": 7,
+                "name": "Issac",
+                "metrics": {
+                  "earnedGold": "2500",
+                  "spentGold": "2500",
+                  "gold": "0",
+                  "gems": "0",
+                  "collectedGems": "341",
+                  "submittedGems": "341",
+                  "saleRefunds": "0",
+                  "kills": "1",
+                  "deaths": "2",
+                  "assists": "1",
+                  "monsterDamageDone": 55019,
+                  "monsterDamageTaken": 8627.39981174469,
+                  "championDamageDone": 1155.5997924804688,
+                  "championDamageTaken": 1624,
+                  "healingDone": 0,
+                  "healingReceived": 9389.792602539062,
+                  "shieldingDone": 0
+                }
+              },
+              {
+                "id": 8,
+                "name": "Ryth",
+                "metrics": {
+                  "earnedGold": "1390",
+                  "spentGold": "1210",
+                  "gold": "180",
+                  "gems": "12",
+                  "collectedGems": "167",
+                  "submittedGems": "155",
+                  "saleRefunds": "0",
+                  "kills": "0",
+                  "deaths": "0",
+                  "assists": "3",
+                  "monsterDamageDone": 51558,
+                  "monsterDamageTaken": 9682.999917030334,
+                  "championDamageDone": 1031.7999801635742,
+                  "championDamageTaken": 260,
+                  "healingDone": 0,
+                  "healingReceived": 10965.798950195312,
+                  "shieldingDone": 0
+                }
+              }
+            ],
+            "statistics": "cambc-hotfix-1.0.1/live/tts/0e50abbb-589d-4b24-a7da-b3523460a7a0.json",
+            "statistics_sha256": "e3b009db869cedd4da25fa0e60386d7ec422a1201b02d120b70e5cdf0a12818b",
+            "replay_sha256": "5986f8dfedbba44ec17dc9fe7fb71cd9d28e7a0179ffaff91990c03ba0f8c181",
+            "native_terminal": {
+              "outcome": "teamA",
+              "round": 1634,
+              "banks": [
+                1001,
+                939
+              ]
+            },
+            "native_verified": true,
+            "ppo_last_logged_counters": {
+              "4": {
+                "round": 1600,
+                "calls": 30,
+                "changes": 14,
+                "choices": 63
+              },
+              "5": {
+                "round": 1600,
+                "calls": 25,
+                "changes": 16,
+                "choices": 52
+              },
+              "6": {
+                "round": 1600,
+                "calls": 80,
+                "changes": 38,
+                "choices": 180
+              },
+              "7": {
+                "round": 1600,
+                "calls": 34,
+                "changes": 22,
+                "choices": 89
+              },
+              "8": {
+                "round": 1600,
+                "calls": 111,
+                "changes": 67,
+                "choices": 258
+              }
+            },
+            "ppo_logged_calls": 280,
+            "ppo_logged_target_changes": 157,
+            "official_fuel": {
+              "turns": 8169,
+              "initial_max": 176908,
+              "ordinary_max": 85968
+            },
+            "engine_build_hash": "c3e9ffc8d98c106f86660c58344dc26ced9459a504e2f0d90d88b4c8594c7765"
+          },
+          {
+            "id": "6d3c4214-0754-4915-9f36-a6065a544507",
+            "map": "01elk-arena",
+            "our_seat": "teamB",
+            "platform_version": 83,
+            "won": true,
+            "rounds": 2000,
+            "our": {
+              "gems": 720,
+              "kills": 17,
+              "deaths": 30,
+              "gold": 10740,
+              "monster_damage": 98440,
+              "champion_damage": 96924,
+              "faults": 0,
+              "fuel_exhausted": 0,
+              "camp_clears": 184,
+              "distinct_camps": 20,
+              "wards": 0,
+              "draft": [
+                "Ryth",
+                "Stellar",
+                "Prism",
+                "Ren",
+                "Tavi"
+              ],
+              "items": {
+                "Power Shard of Focus": 223,
+                "Bruiser Shard of Health": 47,
+                "Power Shard of Strength": 46,
+                "Durability Shard of Health": 18,
+                "Durability Shard of Strength": 5,
+                "Jungle Shard of Strength": 5
+              },
+              "snap_gems": [
+                0,
+                0,
+                0,
+                0,
+                144,
+                144,
+                144,
+                288,
+                288,
+                288,
+                360,
+                360,
+                432,
+                504,
+                576,
+                648,
+                648,
+                648,
+                648,
+                720
+              ],
+              "snap_deaths": [
+                1,
+                2,
+                4,
+                5,
+                5,
+                10,
+                10,
+                11,
+                11,
+                14,
+                14,
+                15,
+                15,
+                16,
+                17,
+                17,
+                20,
+                24,
+                27,
+                30
+              ]
+            },
+            "opponent": {
+              "gems": 648,
+              "kills": 28,
+              "deaths": 20,
+              "gold": 12412,
+              "monster_damage": 92720,
+              "champion_damage": 61326,
+              "faults": 0,
+              "fuel_exhausted": 10,
+              "camp_clears": 175,
+              "distinct_camps": 20,
+              "wards": 2,
+              "draft": [
+                "Vendetta",
+                "Heart of Ruin",
+                "Varg",
+                "Ryth",
+                "Stellar"
+              ],
+              "items": {
+                "Power Shard of Health": 120,
+                "Power Shard of Strength": 81,
+                "Power Shard of Focus": 40,
+                "Treasure Shard of Health": 20,
+                "Bruiser Shard of Health": 20,
+                "Durability Shard of Health": 20
+              },
+              "snap_gems": [
+                0,
+                0,
+                72,
+                72,
+                72,
+                72,
+                144,
+                144,
+                216,
+                288,
+                288,
+                360,
+                360,
+                432,
+                432,
+                432,
+                504,
+                576,
+                648,
+                648
+              ],
+              "snap_deaths": [
+                4,
+                5,
+                8,
+                9,
+                11,
+                12,
+                13,
+                13,
+                13,
+                15,
+                16,
+                16,
+                16,
+                16,
+                16,
+                17,
+                17,
+                18,
+                20,
+                20
+              ]
+            },
+            "own_champions": [
+              {
+                "id": 5,
+                "name": "Ryth",
+                "metrics": {
+                  "earnedGold": "2660",
+                  "spentGold": "2530",
+                  "gold": "130",
+                  "gems": "0",
+                  "collectedGems": "360",
+                  "submittedGems": "288",
+                  "saleRefunds": "0",
+                  "kills": "3",
+                  "deaths": "4",
+                  "assists": "5",
+                  "monsterDamageDone": 18070.200073242188,
+                  "monsterDamageTaken": 5583.599899291992,
+                  "championDamageDone": 20650.799392700195,
+                  "championDamageTaken": 17834.59783935547,
+                  "healingDone": 0,
+                  "healingReceived": 13363.603759765625,
+                  "shieldingDone": 0
+                }
+              },
+              {
+                "id": 6,
+                "name": "Stellar",
+                "metrics": {
+                  "earnedGold": "1420",
+                  "spentGold": "1400",
+                  "gold": "20",
+                  "gems": "0",
+                  "collectedGems": "72",
+                  "submittedGems": "72",
+                  "saleRefunds": "0",
+                  "kills": "1",
+                  "deaths": "8",
+                  "assists": "8",
+                  "monsterDamageDone": 18236.499404907227,
+                  "monsterDamageTaken": 2682,
+                  "championDamageDone": 19493.139404296875,
+                  "championDamageTaken": 7902.765480041504,
+                  "healingDone": 0,
+                  "healingReceived": 2409.7653198242188,
+                  "shieldingDone": 0
+                }
+              },
+              {
+                "id": 7,
+                "name": "Prism",
+                "metrics": {
+                  "earnedGold": "1900",
+                  "spentGold": "1880",
+                  "gold": "20",
+                  "gems": "0",
+                  "collectedGems": "0",
+                  "submittedGems": "0",
+                  "saleRefunds": "0",
+                  "kills": "5",
+                  "deaths": "7",
+                  "assists": "7",
+                  "monsterDamageDone": 21211.60009765625,
+                  "monsterDamageTaken": 2718,
+                  "championDamageDone": 19775.299743652344,
+                  "championDamageTaken": 8763.376739501953,
+                  "healingDone": 0,
+                  "healingReceived": 4781.3768310546875,
+                  "shieldingDone": 0
+                }
+              },
+              {
+                "id": 8,
+                "name": "Ren",
+                "metrics": {
+                  "earnedGold": "2940",
+                  "spentGold": "2930",
+                  "gold": "10",
+                  "gems": "0",
+                  "collectedGems": "288",
+                  "submittedGems": "288",
+                  "saleRefunds": "0",
+                  "kills": "4",
+                  "deaths": "2",
+                  "assists": "6",
+                  "monsterDamageDone": 25597.000122070312,
+                  "monsterDamageTaken": 3834,
+                  "championDamageDone": 29538.014247894287,
+                  "championDamageTaken": 18706.524559020996,
+                  "healingDone": 0,
+                  "healingReceived": 18900.86541748047,
+                  "shieldingDone": 0
+                }
+              },
+              {
+                "id": 9,
+                "name": "Tavi",
+                "metrics": {
+                  "earnedGold": "1820",
+                  "spentGold": "1810",
+                  "gold": "10",
+                  "gems": "0",
+                  "collectedGems": "72",
+                  "submittedGems": "72",
+                  "saleRefunds": "0",
+                  "kills": "4",
+                  "deaths": "9",
+                  "assists": "4",
+                  "monsterDamageDone": 15324.59912109375,
+                  "monsterDamageTaken": 1290,
+                  "championDamageDone": 7467.099792480469,
+                  "championDamageTaken": 8119.000003814697,
+                  "healingDone": 0,
+                  "healingReceived": 934,
+                  "shieldingDone": 0
+                }
+              }
+            ],
+            "statistics": "cambc-hotfix-1.0.1/live/tts/6d3c4214-0754-4915-9f36-a6065a544507.json",
+            "statistics_sha256": "509aa22e8290d5beb6eb16cf8ee9a690c621562b57c7e42afa4288c6506d0c8a",
+            "replay_sha256": "1bc1c0b442ecbdee2c72a415e91f53ed2f4cfc11e219143d75f64886c072af36",
+            "native_terminal": {
+              "outcome": "teamB",
+              "round": 2000,
+              "banks": [
+                648,
+                720
+              ]
+            },
+            "native_verified": true,
+            "ppo_last_logged_counters": {
+              "5": {
+                "round": 2000,
+                "calls": 14,
+                "changes": 7,
+                "choices": 28
+              },
+              "6": {
+                "round": 2000,
+                "calls": 24,
+                "changes": 15,
+                "choices": 65
+              },
+              "7": {
+                "round": 2000,
+                "calls": 28,
+                "changes": 14,
+                "choices": 70
+              },
+              "8": {
+                "round": 2000,
+                "calls": 2,
+                "changes": 1,
+                "choices": 4
+              },
+              "9": {
+                "round": 2000,
+                "calls": 18,
+                "changes": 11,
+                "choices": 44
+              }
+            },
+            "ppo_logged_calls": 86,
+            "ppo_logged_target_changes": 48,
+            "official_fuel": {
+              "turns": 10000,
+              "initial_max": 165306,
+              "ordinary_max": 85991
+            },
+            "engine_build_hash": "c3e9ffc8d98c106f86660c58344dc26ced9459a504e2f0d90d88b4c8594c7765"
+          }
+        ],
+        "summary": {
+          "games": 5,
+          "wins": 2,
+          "faults": 0,
+          "fuel_exhausted": 0,
+          "opponent_faults": 0,
+          "ppo_logged_calls": 721,
+          "ppo_logged_target_changes": 413,
+          "mean_banked_gems": 516.8,
+          "mean_opponent_banked_gems": 604.8,
+          "native_verified_games": 5
+        }
+      }
+    ],
+    "valid_sparring_games": 5,
+    "additional_automatic_ranked_games": 5,
+    "limitations": [
+      "Five unranked games are a small diagnostic sample; there is no full map-by-map seat pairing.",
+      "Automatic ranked games are separate observational evidence, not another controlled sparring group.",
+      "PPO counters are last periodic log snapshots, so they are lower bounds on activity.",
+      "The server source is hash-verified; a separate server-compiled WASM hash is not exposed."
+    ]
+  },
+  "hourly_results": {
+    "schema": 1,
+    "platform_version": 83,
+    "candidate": "ppo-league-v12",
+    "engine_build_hash": "c3e9ffc8d98c106f86660c58344dc26ced9459a504e2f0d90d88b4c8594c7765",
+    "decoder_wasm_sha256": "c03ab26f20263b08e576ebc1a064cd6f9b66a996aca005d69bd9fb9205434354",
+    "kind": "unranked",
+    "challenged_groups": 24,
+    "allowance_before": 24,
+    "allowance_after": 0,
+    "maps": 35,
+    "native_verified_games": 120,
+    "summary": {
+      "games": 120,
+      "wins": 4,
+      "faults": 0,
+      "fuel_exhausted": 29,
+      "opponent_faults": 0,
+      "mean_banked_gems": 280.85833333333335,
+      "mean_opponent_banked_gems": 991.3,
+      "zero_bank_games": 11,
+      "ppo_logged_calls": 10276,
+      "ppo_logged_changes": 5428
+    },
+    "by_opponent": {
+      "Intercontinental Fish": {
+        "games": 20,
+        "wins": 0,
+        "faults": 0,
+        "fuel_exhausted": 0,
+        "opponent_faults": 0,
+        "mean_banked_gems": 270.2,
+        "mean_opponent_banked_gems": 1034.95,
+        "zero_bank_games": 2,
+        "ppo_logged_calls": 1613,
+        "ppo_logged_changes": 793
+      },
+      "Sponge(Albert and Bob)": {
+        "games": 20,
+        "wins": 1,
+        "faults": 0,
+        "fuel_exhausted": 16,
+        "opponent_faults": 0,
+        "mean_banked_gems": 337.95,
+        "mean_opponent_banked_gems": 1010.25,
+        "zero_bank_games": 2,
+        "ppo_logged_calls": 2295,
+        "ppo_logged_changes": 1258
+      },
+      ":3": {
+        "games": 10,
+        "wins": 0,
+        "faults": 0,
+        "fuel_exhausted": 0,
+        "opponent_faults": 0,
+        "mean_banked_gems": 336.8,
+        "mean_opponent_banked_gems": 1011.7,
+        "zero_bank_games": 0,
+        "ppo_logged_calls": 860,
+        "ppo_logged_changes": 421
+      },
+      "Nyx": {
+        "games": 10,
+        "wins": 3,
+        "faults": 0,
+        "fuel_exhausted": 0,
+        "opponent_faults": 0,
+        "mean_banked_gems": 450.4,
+        "mean_opponent_banked_gems": 900.8,
+        "zero_bank_games": 1,
+        "ppo_logged_calls": 841,
+        "ppo_logged_changes": 440
+      },
+      "Sneaky Bush Campers": {
+        "games": 10,
+        "wins": 0,
+        "faults": 0,
+        "fuel_exhausted": 13,
+        "opponent_faults": 0,
+        "mean_banked_gems": 238.7,
+        "mean_opponent_banked_gems": 832.4,
+        "zero_bank_games": 2,
+        "ppo_logged_calls": 1678,
+        "ppo_logged_changes": 902
+      },
+      "EMPEROR Tung": {
+        "games": 10,
+        "wins": 0,
+        "faults": 0,
+        "fuel_exhausted": 0,
+        "opponent_faults": 0,
+        "mean_banked_gems": 115.2,
+        "mean_opponent_banked_gems": 1017.6,
+        "zero_bank_games": 2,
+        "ppo_logged_calls": 245,
+        "ppo_logged_changes": 126
+      },
+      "F\u00fcrFortnite": {
+        "games": 10,
+        "wins": 0,
+        "faults": 0,
+        "fuel_exhausted": 0,
+        "opponent_faults": 0,
+        "mean_banked_gems": 290.4,
+        "mean_opponent_banked_gems": 1001.5,
+        "zero_bank_games": 0,
+        "ppo_logged_calls": 895,
+        "ppo_logged_changes": 527
+      },
+      "Let's LARP again": {
+        "games": 10,
+        "wins": 0,
+        "faults": 0,
+        "fuel_exhausted": 0,
+        "opponent_faults": 0,
+        "mean_banked_gems": 225.6,
+        "mean_opponent_banked_gems": 1017.9,
+        "zero_bank_games": 0,
+        "ppo_logged_calls": 665,
+        "ppo_logged_changes": 318
+      },
+      "Tartarus": {
+        "games": 10,
+        "wins": 0,
+        "faults": 0,
+        "fuel_exhausted": 0,
+        "opponent_faults": 0,
+        "mean_banked_gems": 307.9,
+        "mean_opponent_banked_gems": 1006.3,
+        "zero_bank_games": 0,
+        "ppo_logged_calls": 525,
+        "ppo_logged_changes": 286
+      },
+      "Trzy Kwaterki": {
+        "games": 10,
+        "wins": 0,
+        "faults": 0,
+        "fuel_exhausted": 0,
+        "opponent_faults": 0,
+        "mean_banked_gems": 189.0,
+        "mean_opponent_banked_gems": 1017.0,
+        "zero_bank_games": 2,
+        "ppo_logged_calls": 659,
+        "ppo_logged_changes": 357
+      }
+    },
+    "interpretation": "Top-team scouting batch. Future hourly allocation uses primarily nearby/stronger opponents, with at most 10% leader scouting. PPO counters are lower bounds from periodic logs. No model retraining or champion change is implied.",
+    "full_per_game_record": "stage7-live-hourly.json"
   }
 }

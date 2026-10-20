@@ -42,9 +42,9 @@ fuel-exhausted turns. Two additional fuel-exhausted turns occur in a win on
 - Note: `ppo-league-v12 | expert/PPO | checkpoint 012 | Patch 1.0.1 checked`.
 - Uploaded source ZIP SHA256: `04abd46d87905fff8223555961b88bc20facdba8ea265b5861879a530f6d7af1`.
 - Qualified/current-patch WASM SHA256: `7cdeca594e68bc9e5aeaa2a19116fd7eb990ffdafa9c911a7dbd69bcd5866bcc`.
-- Current recorded status: **v83 selection cancelled; the live bot changed to v81 and then v82**.
-- Server compilation verified: **False**.
-- Completed valid v12 sparring games: **0**.
+- Current recorded status: **v83 Live/Active; server build completed successfully**.
+- Server compilation verified: **True**.
+- Completed valid v12 sparring games: **125**.
 
 The first requested unranked group
 [against Intercontinental Fish](https://2026a.battlecode.co.uk/game/match-groups/005481ca-51a0-4e36-8542-cce33160738c)
@@ -52,9 +52,25 @@ ran platform **v81**, after v83's selection was cancelled and the live bot rever
 Its 0/5 result is excluded from PPO results. The source upload succeeded, but
 upload success alone does not establish that a match ran the requested bot.
 
-Only two unranked groups remained when setup began; one was used by that excluded
-group. The remaining group is held pending coordination of the live selection.
-No further selection changes are made while another team member may be changing it.
+Fran authorized keeping v83 selected. Its server build succeeded and the next
+Nyx group explicitly records v83: **1/5 wins**, zero faults and zero fuel losses.
+An automatic ranked TTS group separately records **2/5 wins**, zero faults/fuel
+losses. The agent did not initiate that ranked group.
+
+After Fran clarified that the site permits 50 unranked challenges per hour,
+the remaining **24 challenges were used for 120 v83 games**, covering all 35
+official maps, both seats, and the top ten teams. This scouting batch wins
+**4/120**, with zero bot faults and **29 fuel-exhausted turns**, all on
+`01big-world`. The ten initial audited games and all 120 new replays reproduce
+their official terminal results and per-champion kills, deaths, gold and deposits
+through the official 1.0.1 WASM. Source and model identities remain unchanged.
+
+This is scouting evidence, not a promotion test. An hourly automation now uses
+the actual available unranked allowance. Future allocation is approximately 60%
+nearby/moderately stronger teams, 30% stretch teams, and at most 10% leader
+scouting, adjusting to observed win rates. Fran authorizes automatic uploads of
+tested candidates with short submission notes. See TOPDRAFT.md for the separate
+draft and coordinated-objective experiments; none changes the qualified v12.
 
 ## Evidence and reproduction
 

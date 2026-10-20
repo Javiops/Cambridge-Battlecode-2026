@@ -1,4 +1,4 @@
-// ppo-topdraft-v2: rally the whole team periodically at the sole gem objective; expect fewer zero-gem games.
+// ppo-topdraft-v3: assemble around one reachable rally tile, then latch the team assault; expect objective captures.
 // team-fight-v1 (design: analysis/claude-api-2026-10-18/team_fight_design_1019.md): recall-api-v1 + P_TEAM_FIGHT (finish layer,
 // below) + P_HP_SHOP (hp shards at the top teams' hp share on the v72 power path).
 // Finish layer: the no-chase doctrine lifted for hurt rivals. The bot let hurt rivals go by
@@ -563,6 +563,8 @@ struct State {
     std::vector<vec2> altars, spawn_tiles;
     vec2 spawn_center, en_center;
     std::vector<Group> groups;
+    std::optional<vec2> objective_stage;
+    int objective_release_cycle = -1;
     int sole_gem_group = -1;  // public map geometry: exactly one gem-paying camp group
     bool mono_only = false;  // P_MONO: every gem on the map sits in a monolith group
     bool jackpot_map = false;  // P_JACKPOT: a jackpot group exists, so gold clusters are worth farming before it
@@ -1638,6 +1640,51 @@ int objective_target(State& s, bc::champion& me, int round) {
 }
 
 int choose_target_impl(State& s, bc::champion& me, int round);
+// Assemble at one reachable home-side staging tile, not around the camp's
+// bounding perimeter: a large grouped camp can extend far beyond its centre.
+bool objective_assemble(State& s, bc::champion& me, int round) {
+    if (objective_target(s, me, round) < 0) return false;
+    const int cycle = (round - P_OBJECTIVE_START) / P_OBJECTIVE_PERIOD;
+    if (s.objective_release_cycle == cycle) return false;
+    const auto& g = s.groups[s.sole_gem_group];
+    if (!s.objective_stage) {
+        bc::bitboard outer, inner;
+        for (auto t : g.tiles) { stage7_budget_checkpoint(); outer.draw_chebyshev(t, 7.0f); inner.draw_chebyshev(t, 4.0f); }
+        bc::distance_field from_home;
+        bc::bitboard reachable;
+        from_home.compute(s.static_block, s.my_spawn & ~s.static_block, reachable, 200);
+        int best = 1 << 20;
+        for (auto t : (outer & ~inner & ~s.static_block & reachable).positions()) {
+            stage7_budget_checkpoint();
+            int d = static_cast<int>(from_home.get(t));
+            if (d < best) { best = d; s.objective_stage = t; }
+        }
+        if (!s.objective_stage) return false;
+    }
+    int ready = 0;
+    attempt([&] {
+        for (auto& a : my_roster(s)) {
+            stage7_budget_checkpoint();
+            if (a.is_alive() && !a.is_recalling() && a.health() >= 0.5f * a.max_health() &&
+                dist(a.position(), *s.objective_stage) <= 5) ++ready;
+        }
+        return true;
+    });
+    const int quorum = std::min(s.roster, std::max(2, (4 * s.roster + 4) / 5));
+    if (ready >= quorum) {
+        s.objective_release_cycle = cycle;
+        std::printf("OBJ r=%d unit=%d group=%d ready=%d quorum=%d phase=assault\n", round, s.ally_idx, s.sole_gem_group, ready, quorum);
+        return false;
+    }
+    if (round % 40 == 0) std::printf("OBJ r=%d unit=%d group=%d ready=%d quorum=%d phase=rally\n", round, s.ally_idx, s.sole_gem_group, ready, quorum);
+    g_mode = "objective-rally";
+    g_farm = "objective-rally";
+    bc::bitboard goals;
+    goals.draw_chebyshev(*s.objective_stage, 3.0f);
+    step_towards(s, me, goals & ~s.static_block, true);
+    return true;
+}
+
 // P_FUELGUARD: the dearest choose_target seen so far (it grows with the number of camp groups and with walls),
 // so a caller can skip an optional re-choice when the turn could not pay for it plus a step afterwards.
 int choose_target(State& s, bc::champion& me, int round) {
@@ -2502,37 +2549,6 @@ void farm(State& s, bc::champion& me, int round, const std::vector<bc::camp>& ca
         int here = 1 + allies_near(s, me, g.center, 7);
         int coming = 1 + count_claimers(s, read_sm(), s.target);
         const bool objective_go = s.target == s.sole_gem_group && objective_window(s, round);
-        if (objective_go) {
-            int ready = hp >= 0.5 * mhp && dist(pos, g.center) <= 8 ? 1 : 0;
-            attempt([&] {
-                for (auto& a : my_roster(s)) {
-                    stage7_budget_checkpoint();
-                    if (!(a == me) && a.is_alive() && !a.is_recalling() &&
-                        a.health() >= 0.5f * a.max_health() && dist(a.position(), g.center) <= 8) ++ready;
-                }
-                return true;
-            });
-            // Three picks need all three; a six-body Cassi/Issac roster needs
-            // five. A missing/dead ally cannot lock the team here indefinitely:
-            // the synchronized window ends and normal farming resumes.
-            const int quorum = std::min(s.roster, std::max(2, (4 * s.roster + 4) / 5));
-            if (ready < quorum) {
-                g_farm = "objective-rally";
-                bc::bitboard outer, inner;
-                for (auto t : g.tiles) { stage7_budget_checkpoint(); outer.draw_chebyshev(t, 7.0f); inner.draw_chebyshev(t, 4.0f); }
-                bc::bitboard goals = outer & ~inner & ~s.static_block;
-                bc::bitboard home_side;
-                for (auto t : goals.positions()) {
-                    stage7_budget_checkpoint();
-                    if (dist(t, s.spawn_center) <= dist(g.center, s.spawn_center)) home_side.set(t);
-                }
-                if (!home_side.is_empty()) goals = home_side;
-                if (round % 40 == 0) std::printf("OBJ r=%d unit=%d group=%d ready=%d quorum=%d phase=rally\n", round, s.ally_idx, s.target, ready, quorum);
-                step_towards(s, me, goals, true);
-                return;
-            }
-            if (round % 40 == 0) std::printf("OBJ r=%d unit=%d group=%d ready=%d quorum=%d phase=assault\n", round, s.ally_idx, s.target, ready, quorum);
-        }
         const bool mono_go = objective_go || (s.mono_only && g.monolith) || (g.jackpot && round >= P_JACKGO);
         if (mono_go) needed = std::min(needed, std::max(1, std::min(g.monolith ? s.roster : P_JACKN, s.roster)));
         if (!engaged && needed > here) {
@@ -3142,6 +3158,11 @@ void play_turn(State& s) {
     }
 
     bool fight_fav = false;  // P_CAMPFOE: step 3's verdict on the fight
+    // Healthy, empty-handed champions assemble before choosing solo gold or
+    // applying the generic danger skip. Keep urgent self-defence and shop trips.
+    if (objective_window(s, round) && gems == 0 && hpr >= 0.65f && nearest_foe > 2 &&
+        gold < P_SHOP_RECALL && fuel_ok(22000) && objective_assemble(s, me, round)) return;
+
     // 3. Enemy champions: back away from a stronger group, fight an even or weaker one.
     FP(9, "fight");
     g_mode = "fight";

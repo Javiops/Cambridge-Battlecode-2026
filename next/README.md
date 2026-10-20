@@ -29,11 +29,17 @@ See [STAGE7.md](STAGE7.md) and `python -m lab stage7 ready`. The matched actor-d
 control also clears screening, so the strength gain is attributed to the strategic
 controller. Neither confirmation pool is sealed any longer.
 
-**Patch 1.0.1 release follow-up:** the exact v12 source builds under CLI 3.0.2 to
-identical WASM and passes current-patch compatibility checks. It is uploaded as
-platform v83, but that selection was cancelled while the team changed the live
-bot to v81 and then v82. No completed v12 sparring result is available yet.
-See [HOTFIX-1.0.1.md](HOTFIX-1.0.1.md) for the upload hash, test results and version mismatch.
+**Patch 1.0.1 release follow-up:** v12 is live as platform v83. Its source ZIP
+matches the qualified artifact and server compilation succeeded. The initial
+Nyx sparring group wins 1/5; a later paired top-ten scouting batch wins 4/120,
+with zero bot faults and 29 fuel losses, all on `01big-world`.
+See [HOTFIX-1.0.1.md](HOTFIX-1.0.1.md) for audited deployment and replay evidence.
+
+**Current development:** [TOPDRAFT.md](TOPDRAFT.md) records a separate Fish-draft
+fork and coordinated single-objective rallies. V3 stages five/six allied bodies
+before assaults, improves elk-arena income, and still regresses on Stampede.
+It remains offline. The hourly unranked loop now focuses primarily on nearby and
+moderately stronger teams, with a small leader-scouting allocation.
 
 ## Setup
 

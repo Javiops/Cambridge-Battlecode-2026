@@ -1,0 +1,25 @@
+{
+  "schema": 1,
+  "working_candidate": "ppo-topdraft-v3",
+  "qualified_candidate": "ppo-league-v12",
+  "last_verified_platform_version": 83,
+  "live_batch": "results/stage7-live-hourly-groups.json",
+  "report": "TOPDRAFT.md",
+  "status": "development_only_not_promoted",
+  "next_hypotheses": [
+    "Heart focus-oriented purchases, isolated from rally changes",
+    "Stampede sustained objective damage and engagement timing",
+    "Big-world planning fuel"
+  ],
+  "user_authorizations": {
+    "hourly_unranked_all_available": true,
+    "automatic_tested_uploads": true,
+    "short_submission_notes": true
+  },
+  "hourly_automation": "battlecode-hourly-sparring-and-learning",
+  "curriculum": {
+    "nearby": 0.6,
+    "stretch": 0.3,
+    "leaders": 0.1
+  }
+}

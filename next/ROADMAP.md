@@ -5,6 +5,23 @@ Open questions and the next steps, in order. Settled conclusions move to DECISIO
 Current status: Stage 7 qualification is complete. Statements below about sealed
 confirmation maps describe earlier stage milestones; both final cohorts are now consumed.
 
+## Current development after deployment
+
+- Continue the hourly unranked curriculum: most opponents near/moderately above
+  our strength, with a repeatable benchmark and at most 10% leader scouting.
+- Keep qualified v12/platform v83 live while the draft fork is developed. Automatic
+  uploads are authorized with short notes once runtime and fresh promotion checks pass.
+- `ppo-topdraft-v3` now assembles and launches single-objective assaults. Improve
+  Stampede sustained damage and capture income without losing elk-arena gains.
+- Isolate Heart's focus-oriented item build: the leader buys focus, while our
+  Heart still inherits the generic melee strength build. Do not combine this
+  experiment with rally timing changes.
+- Fix fuel-exhausted turns on `01big-world`; all 29 losses of fuel in the 120-game
+  live scouting batch occur there. Preserve the original qualified source.
+- Identify other one-area layouts from public metadata and replays; Fran does
+  not have map names. The strict single-gem-group detector currently covers
+  Stampede and elk-arena only.
+
 ## Stage 1 of the seven-stage learning plan: complete
 
 The October 20 official runtime, persistent actor stepping/batching, generated map pools,

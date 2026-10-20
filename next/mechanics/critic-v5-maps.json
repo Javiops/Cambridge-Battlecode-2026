@@ -1,0 +1,55 @@
+{
+  "generator": "g1 geometry, independent critic-v5 seed stream, family 3",
+  "seed": 20261027,
+  "maps": [
+    {
+      "name": "generated/critic-v5/validation/cv5-val-000",
+      "path": "maps/generated/critic-v5/validation/cv5-val-000.map26a",
+      "sha256": "66e675925658cc6d3aa636851dee9be77bc1b85f3c6ed3711b968bb75ae1b47e",
+      "bytes": 9393
+    },
+    {
+      "name": "generated/critic-v5/validation/cv5-val-001",
+      "path": "maps/generated/critic-v5/validation/cv5-val-001.map26a",
+      "sha256": "6579249dcc1f39bdfe4099b225cbf4ef9334014a8924ce9afb0aac4daab7ef09",
+      "bytes": 19148
+    },
+    {
+      "name": "generated/critic-v5/validation/cv5-val-002",
+      "path": "maps/generated/critic-v5/validation/cv5-val-002.map26a",
+      "sha256": "58b61e7d5b27ea41ef340f108e5be86abf2cc59581d32836846d6789a6bdb888",
+      "bytes": 27488
+    },
+    {
+      "name": "generated/critic-v5/validation/cv5-val-003",
+      "path": "maps/generated/critic-v5/validation/cv5-val-003.map26a",
+      "sha256": "83aa44eda6802a74df1621d7739a10ccd9073e095006b2895ac58f082aad7b51",
+      "bytes": 3878
+    },
+    {
+      "name": "generated/critic-v5/validation/cv5-val-004",
+      "path": "maps/generated/critic-v5/validation/cv5-val-004.map26a",
+      "sha256": "da5c78c35d276c9f3d5c5441d4477dfe9644939f38d6096cdae6cc70ba0b8542",
+      "bytes": 6721
+    },
+    {
+      "name": "generated/critic-v5/validation/cv5-val-005",
+      "path": "maps/generated/critic-v5/validation/cv5-val-005.map26a",
+      "sha256": "75309a17c14bc64d71d0e0cdc0fcba5f8d855aa5e2d3bbce35d2019edafdf643",
+      "bytes": 38060
+    },
+    {
+      "name": "generated/critic-v5/validation/cv5-val-006",
+      "path": "maps/generated/critic-v5/validation/cv5-val-006.map26a",
+      "sha256": "094e1327a6a3a8ed75a8d66e2f4542edf33c69315c08f7c8070f09f0a83cd599",
+      "bytes": 17037
+    },
+    {
+      "name": "generated/critic-v5/validation/cv5-val-007",
+      "path": "maps/generated/critic-v5/validation/cv5-val-007.map26a",
+      "sha256": "2ff9e52fc0e5eda7498cba36d16c9cf985aff3af2939de39b4ce5eea77091e23",
+      "bytes": 6094
+    }
+  ],
+  "role": "critic screening acceptance, not final confirmation"
+}

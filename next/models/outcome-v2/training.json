@@ -1,0 +1,2892 @@
+{
+  "schema": 1,
+  "model": "outcome-v2",
+  "training_complete": true,
+  "predictive_acceptance_passed": false,
+  "elapsed_seconds": 8.537443900015205,
+  "parent": "bc-v1",
+  "parent_weights_sha256": "76ec1dcaf4d37f1cccaccd483885e241a7f14cf929630332ece35e72e5988d3e",
+  "actor_unchanged": true,
+  "backbone_frozen": true,
+  "frozen_backbone_parameters": 305,
+  "trainable_head_parameters": 45,
+  "critic_state_features": 44,
+  "selection": {
+    "trials": [
+      {
+        "l2": 0.001,
+        "development": {
+          "rows": 30350,
+          "log_loss": 0.16379324341054172,
+          "brier": 0.048312529793055586,
+          "accuracy": 0.9445470947760004,
+          "expected_calibration_error": 0.06201006823294294,
+          "mean_prediction": 0.4935476745862509,
+          "win_fraction": 0.5,
+          "reliability": [
+            {
+              "bin": 0,
+              "weight": 0.3302357851735757,
+              "rows": 9385,
+              "predicted_win": 0.012198846567807814,
+              "actual_win": 0.0
+            },
+            {
+              "bin": 1,
+              "weight": 0.0438651403838264,
+              "rows": 1326,
+              "predicted_win": 0.1466898455168185,
+              "actual_win": 0.00781803533189876
+            },
+            {
+              "bin": 2,
+              "weight": 0.03608099192799531,
+              "rows": 1127,
+              "predicted_win": 0.2521462285499828,
+              "actual_win": 0.055829698444673496
+            },
+            {
+              "bin": 3,
+              "weight": 0.04499819071634541,
+              "rows": 1427,
+              "predicted_win": 0.3490218853355403,
+              "actual_win": 0.16049909005602978
+            },
+            {
+              "bin": 4,
+              "weight": 0.044740493039644974,
+              "rows": 1528,
+              "predicted_win": 0.4514818128152754,
+              "actual_win": 0.404717365010338
+            },
+            {
+              "bin": 5,
+              "weight": 0.05246746032282636,
+              "rows": 1759,
+              "predicted_win": 0.5513012890637179,
+              "actual_win": 0.6515568438979178
+            },
+            {
+              "bin": 6,
+              "weight": 0.048510410394579234,
+              "rows": 1630,
+              "predicted_win": 0.6475436517945371,
+              "actual_win": 0.8442415971872792
+            },
+            {
+              "bin": 7,
+              "weight": 0.04085181137545553,
+              "rows": 1310,
+              "predicted_win": 0.7486345461749577,
+              "actual_win": 0.959184220123431
+            },
+            {
+              "bin": 8,
+              "weight": 0.04845160142420238,
+              "rows": 1541,
+              "predicted_win": 0.8527144474734815,
+              "actual_win": 0.9946147922342927
+            },
+            {
+              "bin": 9,
+              "weight": 0.3097981152415487,
+              "rows": 9317,
+              "predicted_win": 0.98724165927068,
+              "actual_win": 1.0
+            }
+          ]
+        }
+      },
+      {
+        "l2": 0.01,
+        "development": {
+          "rows": 30350,
+          "log_loss": 0.19624262803231135,
+          "brier": 0.056066239408649174,
+          "accuracy": 0.9537951046659486,
+          "expected_calibration_error": 0.1035283947994244,
+          "mean_prediction": 0.4945190549667175,
+          "win_fraction": 0.5,
+          "reliability": [
+            {
+              "bin": 0,
+              "weight": 0.2809810188103785,
+              "rows": 7856,
+              "predicted_win": 0.014567920003747714,
+              "actual_win": 0.0
+            },
+            {
+              "bin": 1,
+              "weight": 0.05555042297957653,
+              "rows": 1740,
+              "predicted_win": 0.1513411748561843,
+              "actual_win": 0.0005585374839672893
+            },
+            {
+              "bin": 2,
+              "weight": 0.04666841461659517,
+              "rows": 1377,
+              "predicted_win": 0.25005332880993303,
+              "actual_win": 0.0180652651890407
+            },
+            {
+              "bin": 3,
+              "weight": 0.04860437601503225,
+              "rows": 1541,
+              "predicted_win": 0.3521704856857083,
+              "actual_win": 0.08749482335677577
+            },
+            {
+              "bin": 4,
+              "weight": 0.0642049668334517,
+              "rows": 2143,
+              "predicted_win": 0.44924527159277416,
+              "actual_win": 0.24889525700884024
+            },
+            {
+              "bin": 5,
+              "weight": 0.06549215145275314,
+              "rows": 2235,
+              "predicted_win": 0.5516074758642494,
+              "actual_win": 0.6891727178748362
+            },
+            {
+              "bin": 6,
+              "weight": 0.06491861844069982,
+              "rows": 2093,
+              "predicted_win": 0.6491660819464826,
+              "actual_win": 0.9353684170666547
+            },
+            {
+              "bin": 7,
+              "weight": 0.059243818732661324,
+              "rows": 1900,
+              "predicted_win": 0.7508025183288777,
+              "actual_win": 0.9907955371055293
+            },
+            {
+              "bin": 8,
+              "weight": 0.05760569217998139,
+              "rows": 1836,
+              "predicted_win": 0.8483834926541053,
+              "actual_win": 1.0
+            },
+            {
+              "bin": 9,
+              "weight": 0.2567305199388702,
+              "rows": 7629,
+              "predicted_win": 0.9845624536213233,
+              "actual_win": 1.0
+            }
+          ]
+        }
+      },
+      {
+        "l2": 0.1,
+        "development": {
+          "rows": 30350,
+          "log_loss": 0.28863112276882796,
+          "brier": 0.08268321450715471,
+          "accuracy": 0.9504501275782158,
+          "expected_calibration_error": 0.17594070004515552,
+          "mean_prediction": 0.4929035067463955,
+          "win_fraction": 0.5,
+          "reliability": [
+            {
+              "bin": 0,
+              "weight": 0.18700509552287123,
+              "rows": 5261,
+              "predicted_win": 0.0353369224119571,
+              "actual_win": 0.0
+            },
+            {
+              "bin": 1,
+              "weight": 0.06882343430165788,
+              "rows": 1909,
+              "predicted_win": 0.15055954769540786,
+              "actual_win": 0.0
+            },
+            {
+              "bin": 2,
+              "weight": 0.05537343778371324,
+              "rows": 1570,
+              "predicted_win": 0.2481998740945017,
+              "actual_win": 0.007543366727889448
+            },
+            {
+              "bin": 3,
+              "weight": 0.07396386965409946,
+              "rows": 2311,
+              "predicted_win": 0.3532672334184879,
+              "actual_win": 0.029515863338272847
+            },
+            {
+              "bin": 4,
+              "weight": 0.10569480313806946,
+              "rows": 3369,
+              "predicted_win": 0.4520984646926398,
+              "actual_win": 0.16655924673263547
+            },
+            {
+              "bin": 5,
+              "weight": 0.10750932637688372,
+              "rows": 3609,
+              "predicted_win": 0.5511990955788273,
+              "actual_win": 0.7479384818329908
+            },
+            {
+              "bin": 6,
+              "weight": 0.10688294152858686,
+              "rows": 3444,
+              "predicted_win": 0.648871493632531,
+              "actual_win": 0.9792901598544927
+            },
+            {
+              "bin": 7,
+              "weight": 0.0760318042302765,
+              "rows": 2353,
+              "predicted_win": 0.7463267470087196,
+              "actual_win": 0.9995775010996603
+            },
+            {
+              "bin": 8,
+              "weight": 0.06550095899780581,
+              "rows": 1970,
+              "predicted_win": 0.8541158452770719,
+              "actual_win": 1.0
+            },
+            {
+              "bin": 9,
+              "weight": 0.1532143284660359,
+              "rows": 4554,
+              "predicted_win": 0.9592695079568048,
+              "actual_win": 1.0
+            }
+          ]
+        }
+      },
+      {
+        "l2": 1.0,
+        "development": {
+          "rows": 30350,
+          "log_loss": 0.4752646287420293,
+          "brier": 0.14792251032100695,
+          "accuracy": 0.9287292283942833,
+          "expected_calibration_error": 0.2947678760789825,
+          "mean_prediction": 0.4924429937734469,
+          "win_fraction": 0.5,
+          "reliability": [
+            {
+              "bin": 0,
+              "weight": 0.0007472686044114616,
+              "rows": 29,
+              "predicted_win": 0.09624049445530983,
+              "actual_win": 0.0
+            },
+            {
+              "bin": 1,
+              "weight": 0.0530764380513137,
+              "rows": 1563,
+              "predicted_win": 0.16409601214919017,
+              "actual_win": 0.0
+            },
+            {
+              "bin": 2,
+              "weight": 0.10608029662858319,
+              "rows": 2915,
+              "predicted_win": 0.25173039524707624,
+              "actual_win": 0.0
+            },
+            {
+              "bin": 3,
+              "weight": 0.1165961873099321,
+              "rows": 3199,
+              "predicted_win": 0.34728850093403485,
+              "actual_win": 0.006525446106560837
+            },
+            {
+              "bin": 4,
+              "weight": 0.21091948207538191,
+              "rows": 6551,
+              "predicted_win": 0.4597629231908139,
+              "actual_win": 0.1355227109410982
+            },
+            {
+              "bin": 5,
+              "weight": 0.25960820270018187,
+              "rows": 8444,
+              "predicted_win": 0.5463194620169918,
+              "actual_win": 0.8395245408777089
+            },
+            {
+              "bin": 6,
+              "weight": 0.13202350216180625,
+              "rows": 4046,
+              "predicted_win": 0.6446647896343685,
+              "actual_win": 0.9979942666003652
+            },
+            {
+              "bin": 7,
+              "weight": 0.09209410416923824,
+              "rows": 2734,
+              "predicted_win": 0.7452927030874101,
+              "actual_win": 1.0
+            },
+            {
+              "bin": 8,
+              "weight": 0.02885451829915132,
+              "rows": 869,
+              "predicted_win": 0.8288253418275242,
+              "actual_win": 1.0
+            }
+          ]
+        }
+      }
+    ],
+    "selected_l2": 0.001,
+    "fit_games": 17,
+    "development_games": 11
+  },
+  "score_time_selection": {
+    "trials": [
+      {
+        "l2": 0.001,
+        "development": {
+          "rows": 30350,
+          "log_loss": 0.17980312239240534,
+          "brier": 0.05304456457273238,
+          "accuracy": 0.953474589267635,
+          "expected_calibration_error": 0.08804534752745494,
+          "mean_prediction": 0.49997387430098766,
+          "win_fraction": 0.5,
+          "reliability": [
+            {
+              "bin": 0,
+              "weight": 0.30113362251584125,
+              "rows": 8520,
+              "predicted_win": 0.012105223615714337,
+              "actual_win": 0.0
+            },
+            {
+              "bin": 1,
+              "weight": 0.044932264872837926,
+              "rows": 1338,
+              "predicted_win": 0.14696358157211772,
+              "actual_win": 0.0
+            },
+            {
+              "bin": 2,
+              "weight": 0.03681737838072304,
+              "rows": 1070,
+              "predicted_win": 0.25609665566378714,
+              "actual_win": 0.0
+            },
+            {
+              "bin": 3,
+              "weight": 0.046016717511230466,
+              "rows": 1542,
+              "predicted_win": 0.35994703555163055,
+              "actual_win": 0.06104710268537421
+            },
+            {
+              "bin": 4,
+              "weight": 0.0709898209457387,
+              "rows": 2381,
+              "predicted_win": 0.4363461273841913,
+              "actual_win": 0.2873428884375956
+            },
+            {
+              "bin": 5,
+              "weight": 0.07124991524892968,
+              "rows": 2388,
+              "predicted_win": 0.5633676163640583,
+              "actual_win": 0.7121594334225823
+            },
+            {
+              "bin": 6,
+              "weight": 0.04592714105691973,
+              "rows": 1546,
+              "predicted_win": 0.639846974239117,
+              "actual_win": 0.9388338308350093
+            },
+            {
+              "bin": 7,
+              "weight": 0.03683021399100748,
+              "rows": 1084,
+              "predicted_win": 0.743643675410867,
+              "actual_win": 1.0
+            },
+            {
+              "bin": 8,
+              "weight": 0.04484403545883696,
+              "rows": 1401,
+              "predicted_win": 0.8527765309265943,
+              "actual_win": 1.0
+            },
+            {
+              "bin": 9,
+              "weight": 0.3012588900179348,
+              "rows": 9080,
+              "predicted_win": 0.9878544066840635,
+              "actual_win": 1.0
+            }
+          ]
+        }
+      },
+      {
+        "l2": 0.01,
+        "development": {
+          "rows": 30350,
+          "log_loss": 0.22897048395003441,
+          "brier": 0.06662288325206053,
+          "accuracy": 0.9646167095359797,
+          "expected_calibration_error": 0.14278674132185942,
+          "mean_prediction": 0.49998442869685894,
+          "win_fraction": 0.5,
+          "reliability": [
+            {
+              "bin": 0,
+              "weight": 0.2395957273355299,
+              "rows": 6643,
+              "predicted_win": 0.015652827806450435,
+              "actual_win": 0.0
+            },
+            {
+              "bin": 1,
+              "weight": 0.05187088921262732,
+              "rows": 1575,
+              "predicted_win": 0.15326411257601563,
+              "actual_win": 0.0
+            },
+            {
+              "bin": 2,
+              "weight": 0.05119956227006049,
+              "rows": 1567,
+              "predicted_win": 0.2533700067792177,
+              "actual_win": 0.0
+            },
+            {
+              "bin": 3,
+              "weight": 0.05310829870692459,
+              "rows": 1571,
+              "predicted_win": 0.35382973113995475,
+              "actual_win": 0.0
+            },
+            {
+              "bin": 4,
+              "weight": 0.10416616561148284,
+              "rows": 3497,
+              "predicted_win": 0.4376039626976603,
+              "actual_win": 0.16955569686800198
+            },
+            {
+              "bin": 5,
+              "weight": 0.104208677110981,
+              "rows": 3517,
+              "predicted_win": 0.5622257340498811,
+              "actual_win": 0.8299438765082435
+            },
+            {
+              "bin": 6,
+              "weight": 0.05335685058599199,
+              "rows": 1597,
+              "predicted_win": 0.6462204288652567,
+              "actual_win": 1.0
+            },
+            {
+              "bin": 7,
+              "weight": 0.0510081606882135,
+              "rows": 1606,
+              "predicted_win": 0.7467416341718477,
+              "actual_win": 1.0
+            },
+            {
+              "bin": 8,
+              "weight": 0.052019937442338446,
+              "rows": 1685,
+              "predicted_win": 0.8468298744975593,
+              "actual_win": 1.0
+            },
+            {
+              "bin": 9,
+              "weight": 0.23946573103584998,
+              "rows": 7092,
+              "predicted_win": 0.9843823358430205,
+              "actual_win": 1.0
+            }
+          ]
+        }
+      },
+      {
+        "l2": 0.1,
+        "development": {
+          "rows": 30350,
+          "log_loss": 0.3453971795802864,
+          "brier": 0.10250972910045979,
+          "accuracy": 0.9653695581527532,
+          "expected_calibration_error": 0.23583780612391925,
+          "mean_prediction": 0.4999942747561733,
+          "win_fraction": 0.5,
+          "reliability": [
+            {
+              "bin": 0,
+              "weight": 0.12658489722718744,
+              "rows": 3551,
+              "predicted_win": 0.046396931089955164,
+              "actual_win": 0.0
+            },
+            {
+              "bin": 1,
+              "weight": 0.06160227909657766,
+              "rows": 1720,
+              "predicted_win": 0.14688838220089073,
+              "actual_win": 0.0
+            },
+            {
+              "bin": 2,
+              "weight": 0.0507212956583612,
+              "rows": 1417,
+              "predicted_win": 0.2478728734636273,
+              "actual_win": 0.0
+            },
+            {
+              "bin": 3,
+              "weight": 0.09542230185284244,
+              "rows": 2859,
+              "predicted_win": 0.3530206317577712,
+              "actual_win": 0.0
+            },
+            {
+              "bin": 4,
+              "weight": 0.16565975646806155,
+              "rows": 5308,
+              "predicted_win": 0.44697785170830157,
+              "actual_win": 0.10449421419061408
+            },
+            {
+              "bin": 5,
+              "weight": 0.16569042874542614,
+              "rows": 5366,
+              "predicted_win": 0.5530138550739038,
+              "actual_win": 0.8954679766160819
+            },
+            {
+              "bin": 6,
+              "weight": 0.09549181214327526,
+              "rows": 2996,
+              "predicted_win": 0.6470149193640957,
+              "actual_win": 1.0
+            },
+            {
+              "bin": 7,
+              "weight": 0.050885172414732525,
+              "rows": 1514,
+              "predicted_win": 0.7523878984254736,
+              "actual_win": 1.0
+            },
+            {
+              "bin": 8,
+              "weight": 0.061251181048083296,
+              "rows": 1851,
+              "predicted_win": 0.8532436553989747,
+              "actual_win": 1.0
+            },
+            {
+              "bin": 9,
+              "weight": 0.12669087534545248,
+              "rows": 3768,
+              "predicted_win": 0.9535528780530016,
+              "actual_win": 1.0
+            }
+          ]
+        }
+      },
+      {
+        "l2": 1.0,
+        "development": {
+          "rows": 30350,
+          "log_loss": 0.5441295633760074,
+          "brier": 0.1781692292862596,
+          "accuracy": 0.956557486549421,
+          "expected_calibration_error": 0.37038686589162445,
+          "mean_prediction": 0.49999961498663176,
+          "win_fraction": 0.5,
+          "reliability": [
+            {
+              "bin": 2,
+              "weight": 0.06285507563780064,
+              "rows": 1822,
+              "predicted_win": 0.26250447939475713,
+              "actual_win": 0.0
+            },
+            {
+              "bin": 3,
+              "weight": 0.11602103832489184,
+              "rows": 3187,
+              "predicted_win": 0.3534512483140564,
+              "actual_win": 0.0
+            },
+            {
+              "bin": 4,
+              "weight": 0.32110494664336814,
+              "rows": 9869,
+              "predicted_win": 0.4652606859374538,
+              "actual_win": 0.06761585972212927
+            },
+            {
+              "bin": 5,
+              "weight": 0.32116067263420356,
+              "rows": 10119,
+              "predicted_win": 0.5347394216183851,
+              "actual_win": 0.9323369008913176
+            },
+            {
+              "bin": 6,
+              "weight": 0.11602830940757786,
+              "rows": 3468,
+              "predicted_win": 0.6465670006686195,
+              "actual_win": 1.0
+            },
+            {
+              "bin": 7,
+              "weight": 0.062829957352158,
+              "rows": 1885,
+              "predicted_win": 0.7375023179177544,
+              "actual_win": 1.0
+            }
+          ]
+        }
+      }
+    ],
+    "selected_l2": 0.001,
+    "fit_games": 17,
+    "development_games": 11
+  },
+  "partitions": {
+    "train": {
+      "constant": {
+        "rows": 81953,
+        "log_loss": 0.6931471805599453,
+        "brier": 0.25,
+        "accuracy": 0.5,
+        "expected_calibration_error": 0.0,
+        "mean_prediction": 0.5,
+        "win_fraction": 0.5,
+        "reliability": [
+          {
+            "bin": 5,
+            "weight": 1.0,
+            "rows": 81953,
+            "predicted_win": 0.5,
+            "actual_win": 0.5
+          }
+        ],
+        "games": 28,
+        "maps": 17,
+        "phases": {
+          "early": {
+            "rows": 34036,
+            "log_loss": 0.6931471805599454,
+            "brier": 0.2500000000000001,
+            "accuracy": 0.5000000000000001,
+            "expected_calibration_error": 1.110223024625157e-16,
+            "mean_prediction": 0.5000000000000002,
+            "win_fraction": 0.5000000000000001,
+            "reliability": [
+              {
+                "bin": 5,
+                "weight": 1.0000000000000004,
+                "rows": 34036,
+                "predicted_win": 0.5,
+                "actual_win": 0.4999999999999999
+              }
+            ]
+          },
+          "middle": {
+            "rows": 32633,
+            "log_loss": 0.6931471805599454,
+            "brier": 0.25,
+            "accuracy": 0.5,
+            "expected_calibration_error": 0.0,
+            "mean_prediction": 0.5,
+            "win_fraction": 0.5,
+            "reliability": [
+              {
+                "bin": 5,
+                "weight": 1.0,
+                "rows": 32633,
+                "predicted_win": 0.5,
+                "actual_win": 0.5
+              }
+            ]
+          },
+          "late": {
+            "rows": 15284,
+            "log_loss": 0.6931471805599453,
+            "brier": 0.25,
+            "accuracy": 0.5,
+            "expected_calibration_error": 0.0,
+            "mean_prediction": 0.5,
+            "win_fraction": 0.5,
+            "reliability": [
+              {
+                "bin": 5,
+                "weight": 1.0,
+                "rows": 15284,
+                "predicted_win": 0.5,
+                "actual_win": 0.5
+              }
+            ]
+          }
+        }
+      },
+      "score_time": {
+        "rows": 81953,
+        "log_loss": 0.24184738806184808,
+        "brier": 0.07916945671027603,
+        "accuracy": 0.8844225372705511,
+        "expected_calibration_error": 0.02435395321310567,
+        "mean_prediction": 0.5000000002005212,
+        "win_fraction": 0.5,
+        "reliability": [
+          {
+            "bin": 0,
+            "weight": 0.28672396796286337,
+            "rows": 22916,
+            "predicted_win": 0.014036653993555633,
+            "actual_win": 0.0004083928510313073
+          },
+          {
+            "bin": 1,
+            "weight": 0.046808978021180836,
+            "rows": 3853,
+            "predicted_win": 0.14816670632301274,
+            "actual_win": 0.036199608350961615
+          },
+          {
+            "bin": 2,
+            "weight": 0.049728810048200865,
+            "rows": 4068,
+            "predicted_win": 0.25103046325178,
+            "actual_win": 0.28164833853268745
+          },
+          {
+            "bin": 3,
+            "weight": 0.08254950110850837,
+            "rows": 7010,
+            "predicted_win": 0.34199586454820596,
+            "actual_win": 0.3387996980377997
+          },
+          {
+            "bin": 4,
+            "weight": 0.0340930744914719,
+            "rows": 2911,
+            "predicted_win": 0.44431020900566387,
+            "actual_win": 0.4093368498608141
+          },
+          {
+            "bin": 5,
+            "weight": 0.034381112459198476,
+            "rows": 2919,
+            "predicted_win": 0.5556884249697455,
+            "actual_win": 0.5930305647050768
+          },
+          {
+            "bin": 6,
+            "weight": 0.08242029262803297,
+            "rows": 6983,
+            "predicted_win": 0.6579373710281685,
+            "actual_win": 0.6605035098313755
+          },
+          {
+            "bin": 7,
+            "weight": 0.049715097766697164,
+            "rows": 4087,
+            "predicted_win": 0.7489810435047778,
+            "actual_win": 0.7173574331989633
+          },
+          {
+            "bin": 8,
+            "weight": 0.04687173683271657,
+            "rows": 3855,
+            "predicted_win": 0.8517799039816043,
+            "actual_win": 0.9638501831890613
+          },
+          {
+            "bin": 9,
+            "weight": 0.2867074286811295,
+            "rows": 23351,
+            "predicted_win": 0.9859676214563475,
+            "actual_win": 0.9995915835900241
+          }
+        ],
+        "games": 28,
+        "maps": 17,
+        "phases": {
+          "early": {
+            "rows": 34036,
+            "log_loss": 0.42090801876556583,
+            "brier": 0.13870953473107103,
+            "accuracy": 0.8026585820895524,
+            "expected_calibration_error": 0.03816949734782694,
+            "mean_prediction": 0.5000129172161552,
+            "win_fraction": 0.5000000000000001,
+            "reliability": [
+              {
+                "bin": 0,
+                "weight": 0.12519989339019194,
+                "rows": 3853,
+                "predicted_win": 0.03633596240677564,
+                "actual_win": 0.0021287919105907396
+              },
+              {
+                "bin": 1,
+                "weight": 0.07433813077469796,
+                "rows": 2524,
+                "predicted_win": 0.14971253614445906,
+                "actual_win": 0.04338213325366
+              },
+              {
+                "bin": 2,
+                "weight": 0.09440076403695809,
+                "rows": 3299,
+                "predicted_win": 0.25132584991284784,
+                "actual_win": 0.269204526739289
+              },
+              {
+                "bin": 3,
+                "weight": 0.16023676261549402,
+                "rows": 5625,
+                "predicted_win": 0.34206108596682594,
+                "actual_win": 0.3219349920299397
+              },
+              {
+                "bin": 4,
+                "weight": 0.045644545131485435,
+                "rows": 1595,
+                "predicted_win": 0.437749543538139,
+                "actual_win": 0.3963310787796214
+              },
+              {
+                "bin": 5,
+                "weight": 0.04614205756929639,
+                "rows": 1597,
+                "predicted_win": 0.5622751394028255,
+                "actual_win": 0.6060649819494585
+              },
+              {
+                "bin": 6,
+                "weight": 0.16002132196162053,
+                "rows": 5602,
+                "predicted_win": 0.6578688639431135,
+                "actual_win": 0.6775483011325782
+              },
+              {
+                "bin": 7,
+                "weight": 0.09431636460554374,
+                "rows": 3314,
+                "predicted_win": 0.7486706809063853,
+                "actual_win": 0.7297068173790179
+              },
+              {
+                "bin": 8,
+                "weight": 0.07470015991471218,
+                "rows": 2533,
+                "predicted_win": 0.8502963043720093,
+                "actual_win": 0.9568281152439567
+              },
+              {
+                "bin": 9,
+                "weight": 0.12500000000000003,
+                "rows": 4094,
+                "predicted_win": 0.9637645797175071,
+                "actual_win": 0.9978678038379531
+              }
+            ]
+          },
+          "middle": {
+            "rows": 32633,
+            "log_loss": 0.15016097984306764,
+            "brier": 0.05039152629427039,
+            "accuracy": 0.9166732090586335,
+            "expected_calibration_error": 0.03270916342157268,
+            "mean_prediction": 0.4999961809545015,
+            "win_fraction": 0.5,
+            "reliability": [
+              {
+                "bin": 0,
+                "weight": 0.383168321567277,
+                "rows": 12098,
+                "predicted_win": 0.010043041830280848,
+                "actual_win": 0.0
+              },
+              {
+                "bin": 1,
+                "weight": 0.024700587346228167,
+                "rows": 861,
+                "predicted_win": 0.1480903128558494,
+                "actual_win": 0.02717834805436223
+              },
+              {
+                "bin": 2,
+                "weight": 0.018643869761645115,
+                "rows": 685,
+                "predicted_win": 0.25611205052070235,
+                "actual_win": 0.3715985179158467
+              },
+              {
+                "bin": 3,
+                "weight": 0.03665874746845303,
+                "rows": 1252,
+                "predicted_win": 0.3381477461676598,
+                "actual_win": 0.5048773327741665
+              },
+              {
+                "bin": 4,
+                "weight": 0.036767644984872214,
+                "rows": 1316,
+                "predicted_win": 0.454013203476115,
+                "actual_win": 0.42225861528276243
+              },
+              {
+                "bin": 5,
+                "weight": 0.03693793507760677,
+                "rows": 1322,
+                "predicted_win": 0.545872173385243,
+                "actual_win": 0.5796880679469145
+              },
+              {
+                "bin": 6,
+                "weight": 0.03655640942596404,
+                "rows": 1248,
+                "predicted_win": 0.6617543125850355,
+                "actual_win": 0.4927798719568012
+              },
+              {
+                "bin": 7,
+                "weight": 0.018643869761645115,
+                "rows": 685,
+                "predicted_win": 0.7435281741438761,
+                "actual_win": 0.6269611777511462
+              },
+              {
+                "bin": 8,
+                "weight": 0.02459765143502158,
+                "rows": 858,
+                "predicted_win": 0.8514321119052582,
+                "actual_win": 0.9727079163709444
+              },
+              {
+                "bin": 9,
+                "weight": 0.38332496317128695,
+                "rows": 12308,
+                "predicted_win": 0.9899325902240362,
+                "actual_win": 1.0
+              }
+            ]
+          },
+          "late": {
+            "rows": 15284,
+            "log_loss": 0.02488359933853836,
+            "brier": 0.004011860809269543,
+            "accuracy": 1.0,
+            "expected_calibration_error": 0.022383371554703078,
+            "mean_prediction": 0.5000008084315302,
+            "win_fraction": 0.5,
+            "reliability": [
+              {
+                "bin": 0,
+                "weight": 0.4635204730879423,
+                "rows": 6965,
+                "predicted_win": 0.008718399960832244,
+                "actual_win": 0.0
+              },
+              {
+                "bin": 1,
+                "weight": 0.02528677229825046,
+                "rows": 468,
+                "predicted_win": 0.13841633104432127,
+                "actual_win": 0.0
+              },
+              {
+                "bin": 2,
+                "weight": 0.003588516746411483,
+                "rows": 84,
+                "predicted_win": 0.21004733402199993,
+                "actual_win": 0.0
+              },
+              {
+                "bin": 3,
+                "weight": 0.007604237867395763,
+                "rows": 133,
+                "predicted_win": 0.3809813091157138,
+                "actual_win": 0.0
+              },
+              {
+                "bin": 6,
+                "weight": 0.007604237867395763,
+                "rows": 133,
+                "predicted_win": 0.6185756802559268,
+                "actual_win": 1.0
+              },
+              {
+                "bin": 7,
+                "weight": 0.003759398496240601,
+                "rows": 88,
+                "predicted_win": 0.7901006836967062,
+                "actual_win": 1.0
+              },
+              {
+                "bin": 8,
+                "weight": 0.02513879597446227,
+                "rows": 464,
+                "predicted_win": 0.8623963345933042,
+                "actual_win": 1.0
+              },
+              {
+                "bin": 9,
+                "weight": 0.4634975676619013,
+                "rows": 6949,
+                "predicted_win": 0.9912781534492925,
+                "actual_win": 1.0
+              }
+            ]
+          }
+        }
+      },
+      "critic": {
+        "rows": 81953,
+        "log_loss": 0.22021462679575285,
+        "brier": 0.07148259038577301,
+        "accuracy": 0.8946607201466517,
+        "expected_calibration_error": 0.014888839733768106,
+        "mean_prediction": 0.49999998340086377,
+        "win_fraction": 0.5,
+        "reliability": [
+          {
+            "bin": 0,
+            "weight": 0.3170274359526453,
+            "rows": 25534,
+            "predicted_win": 0.01309061895345387,
+            "actual_win": 0.0016274775522425726
+          },
+          {
+            "bin": 1,
+            "weight": 0.046494137764155966,
+            "rows": 3766,
+            "predicted_win": 0.14776061736682686,
+            "actual_win": 0.10718191007287922
+          },
+          {
+            "bin": 2,
+            "weight": 0.047741575411593275,
+            "rows": 4029,
+            "predicted_win": 0.25123519224863095,
+            "actual_win": 0.2460274282015395
+          },
+          {
+            "bin": 3,
+            "weight": 0.04940434763836276,
+            "rows": 4171,
+            "predicted_win": 0.34743741760022945,
+            "actual_win": 0.34091897216333716
+          },
+          {
+            "bin": 4,
+            "weight": 0.040683150683316835,
+            "rows": 3384,
+            "predicted_win": 0.44937269160809046,
+            "actual_win": 0.4733424370035672
+          },
+          {
+            "bin": 5,
+            "weight": 0.03162555165036689,
+            "rows": 2632,
+            "predicted_win": 0.5501770024579585,
+            "actual_win": 0.5958243456483281
+          },
+          {
+            "bin": 6,
+            "weight": 0.0437539800671049,
+            "rows": 3709,
+            "predicted_win": 0.6528018138598571,
+            "actual_win": 0.6289360346503233
+          },
+          {
+            "bin": 7,
+            "weight": 0.05660572880695408,
+            "rows": 4796,
+            "predicted_win": 0.7505494416203534,
+            "actual_win": 0.7450955766495801
+          },
+          {
+            "bin": 8,
+            "weight": 0.06059059597465166,
+            "rows": 5054,
+            "predicted_win": 0.8519938449333486,
+            "actual_win": 0.8811017706080014
+          },
+          {
+            "bin": 9,
+            "weight": 0.3060734960508482,
+            "rows": 24878,
+            "predicted_win": 0.9849535419608242,
+            "actual_win": 0.9956110293643177
+          }
+        ],
+        "games": 28,
+        "maps": 17,
+        "phases": {
+          "early": {
+            "rows": 34036,
+            "log_loss": 0.37477681598240686,
+            "brier": 0.12210777074369908,
+            "accuracy": 0.8254264392324095,
+            "expected_calibration_error": 0.017747953575005807,
+            "mean_prediction": 0.500489222000704,
+            "win_fraction": 0.5000000000000001,
+            "reliability": [
+              {
+                "bin": 0,
+                "weight": 0.18882373845060418,
+                "rows": 6112,
+                "predicted_win": 0.02929885688581958,
+                "actual_win": 0.006175308177284274
+              },
+              {
+                "bin": 1,
+                "weight": 0.07727656361051885,
+                "rows": 2617,
+                "predicted_win": 0.1474591409088239,
+                "actual_win": 0.12787054867358377
+              },
+              {
+                "bin": 2,
+                "weight": 0.08445495735607678,
+                "rows": 2966,
+                "predicted_win": 0.2515383688314789,
+                "actual_win": 0.22295857988165685
+              },
+              {
+                "bin": 3,
+                "weight": 0.08882595948827295,
+                "rows": 3095,
+                "predicted_win": 0.34722048818896417,
+                "actual_win": 0.337934138474233
+              },
+              {
+                "bin": 4,
+                "weight": 0.06235119047619049,
+                "rows": 2154,
+                "predicted_win": 0.4472819762524826,
+                "actual_win": 0.4532112706158942
+              },
+              {
+                "bin": 5,
+                "weight": 0.04674840085287847,
+                "rows": 1626,
+                "predicted_win": 0.5512176734233369,
+                "actual_win": 0.6034777651083238
+              },
+              {
+                "bin": 6,
+                "weight": 0.07542643923240941,
+                "rows": 2612,
+                "predicted_win": 0.654085421146176,
+                "actual_win": 0.6606007067137809
+              },
+              {
+                "bin": 7,
+                "weight": 0.10350479744136462,
+                "rows": 3659,
+                "predicted_win": 0.7504268891989205,
+                "actual_win": 0.7572421784472769
+              },
+              {
+                "bin": 8,
+                "weight": 0.10720282515991474,
+                "rows": 3743,
+                "predicted_win": 0.8518620122850061,
+                "actual_win": 0.8689788053949903
+              },
+              {
+                "bin": 9,
+                "weight": 0.1653851279317698,
+                "rows": 5452,
+                "predicted_win": 0.9643471160027153,
+                "actual_win": 0.9811852866524313
+              }
+            ]
+          },
+          "middle": {
+            "rows": 32633,
+            "log_loss": 0.1442576717634356,
+            "brier": 0.04825273594864127,
+            "accuracy": 0.9203188929247874,
+            "expected_calibration_error": 0.023770270775162715,
+            "mean_prediction": 0.5001349824185449,
+            "win_fraction": 0.5,
+            "reliability": [
+              {
+                "bin": 0,
+                "weight": 0.38859871380803523,
+                "rows": 12292,
+                "predicted_win": 0.008393332473618308,
+                "actual_win": 6.910173772469993e-05
+              },
+              {
+                "bin": 1,
+                "weight": 0.02395032850877097,
+                "rows": 847,
+                "predicted_win": 0.1489266899315767,
+                "actual_win": 0.08969512511491327
+              },
+              {
+                "bin": 2,
+                "weight": 0.027352083862874195,
+                "rows": 979,
+                "predicted_win": 0.253065390565925,
+                "actual_win": 0.3573861528603708
+              },
+              {
+                "bin": 3,
+                "weight": 0.027724795221423237,
+                "rows": 978,
+                "predicted_win": 0.3468959174973669,
+                "actual_win": 0.40568376107871323
+              },
+              {
+                "bin": 4,
+                "weight": 0.03408661375357696,
+                "rows": 1189,
+                "predicted_win": 0.45332745853416934,
+                "actual_win": 0.5133682523550797
+              },
+              {
+                "bin": 5,
+                "weight": 0.026323117635965593,
+                "rows": 937,
+                "predicted_win": 0.548680947915428,
+                "actual_win": 0.5799853211152058
+              },
+              {
+                "bin": 6,
+                "weight": 0.030508062003427323,
+                "rows": 1050,
+                "predicted_win": 0.6501941614235272,
+                "actual_win": 0.5048670730539687
+              },
+              {
+                "bin": 7,
+                "weight": 0.026596411967760185,
+                "rows": 947,
+                "predicted_win": 0.7493048134999372,
+                "actual_win": 0.6415617846765678
+              },
+              {
+                "bin": 8,
+                "weight": 0.02650727732058424,
+                "rows": 937,
+                "predicted_win": 0.8503156094302392,
+                "actual_win": 0.8799551436339854
+              },
+              {
+                "bin": 9,
+                "weight": 0.38835259591758203,
+                "rows": 12477,
+                "predicted_win": 0.9902524019653535,
+                "actual_win": 0.9997234178765998
+              }
+            ]
+          },
+          "late": {
+            "rows": 15284,
+            "log_loss": 0.026068965123517,
+            "brier": 0.004946122008153646,
+            "accuracy": 0.9967850598449702,
+            "expected_calibration_error": 0.01914634424330018,
+            "mean_prediction": 0.4969457893137724,
+            "win_fraction": 0.5,
+            "reliability": [
+              {
+                "bin": 0,
+                "weight": 0.47157827474876746,
+                "rows": 7130,
+                "predicted_win": 0.006815907312238961,
+                "actual_win": 0.0
+              },
+              {
+                "bin": 1,
+                "weight": 0.015763568738092815,
+                "rows": 302,
+                "predicted_win": 0.14438569205252685,
+                "actual_win": 0.0
+              },
+              {
+                "bin": 2,
+                "weight": 0.004710155466034524,
+                "rows": 84,
+                "predicted_win": 0.23939066654028435,
+                "actual_win": 0.0
+              },
+              {
+                "bin": 3,
+                "weight": 0.005163355681272814,
+                "rows": 98,
+                "predicted_win": 0.3471675713296947,
+                "actual_win": 0.07777347463296132
+              },
+              {
+                "bin": 4,
+                "weight": 0.002936075682436265,
+                "rows": 41,
+                "predicted_win": 0.4491939772946544,
+                "actual_win": 0.4365054795368708
+              },
+              {
+                "bin": 5,
+                "weight": 0.00413224793124009,
+                "rows": 69,
+                "predicted_win": 0.5421984284896029,
+                "actual_win": 0.6864634199991206
+              },
+              {
+                "bin": 6,
+                "weight": 0.0031155015197568393,
+                "rows": 47,
+                "predicted_win": 0.6455454076936696,
+                "actual_win": 0.924203524331894
+              },
+              {
+                "bin": 7,
+                "weight": 0.009813475298497694,
+                "rows": 190,
+                "predicted_win": 0.7585107847536328,
+                "actual_win": 1.0
+              },
+              {
+                "bin": 8,
+                "weight": 0.023275185061299282,
+                "rows": 374,
+                "predicted_win": 0.8601642512325991,
+                "actual_win": 1.0
+              },
+              {
+                "bin": 9,
+                "weight": 0.4595121598726022,
+                "rows": 6949,
+                "predicted_win": 0.9912702471511069,
+                "actual_win": 1.0
+              }
+            ]
+          }
+        }
+      }
+    },
+    "validation": {
+      "constant": {
+        "rows": 17947,
+        "log_loss": 0.6931471805599452,
+        "brier": 0.25,
+        "accuracy": 0.5,
+        "expected_calibration_error": 0.0,
+        "mean_prediction": 0.5,
+        "win_fraction": 0.5,
+        "reliability": [
+          {
+            "bin": 5,
+            "weight": 1.0,
+            "rows": 17947,
+            "predicted_win": 0.5,
+            "actual_win": 0.5
+          }
+        ],
+        "games": 6,
+        "maps": 2,
+        "phases": {
+          "early": {
+            "rows": 6164,
+            "log_loss": 0.6931471805599454,
+            "brier": 0.25000000000000006,
+            "accuracy": 0.5000000000000001,
+            "expected_calibration_error": 0.0,
+            "mean_prediction": 0.5000000000000001,
+            "win_fraction": 0.5000000000000001,
+            "reliability": [
+              {
+                "bin": 5,
+                "weight": 1.0000000000000002,
+                "rows": 6164,
+                "predicted_win": 0.5,
+                "actual_win": 0.5
+              }
+            ]
+          },
+          "middle": {
+            "rows": 6118,
+            "log_loss": 0.6931471805599453,
+            "brier": 0.25,
+            "accuracy": 0.5,
+            "expected_calibration_error": 0.0,
+            "mean_prediction": 0.5,
+            "win_fraction": 0.5,
+            "reliability": [
+              {
+                "bin": 5,
+                "weight": 1.0,
+                "rows": 6118,
+                "predicted_win": 0.5,
+                "actual_win": 0.5
+              }
+            ]
+          },
+          "late": {
+            "rows": 5665,
+            "log_loss": 0.6931471805599454,
+            "brier": 0.25,
+            "accuracy": 0.5000000000000001,
+            "expected_calibration_error": 1.1102230246251565e-16,
+            "mean_prediction": 0.5,
+            "win_fraction": 0.5000000000000001,
+            "reliability": [
+              {
+                "bin": 5,
+                "weight": 1.0,
+                "rows": 5665,
+                "predicted_win": 0.5,
+                "actual_win": 0.5000000000000001
+              }
+            ]
+          }
+        }
+      },
+      "score_time": {
+        "rows": 17947,
+        "log_loss": 0.6528050442563482,
+        "brier": 0.24071382974097233,
+        "accuracy": 0.5031915980657498,
+        "expected_calibration_error": 0.18412224887404444,
+        "mean_prediction": 0.49990976090115435,
+        "win_fraction": 0.5,
+        "reliability": [
+          {
+            "bin": 0,
+            "weight": 0.06856605507221408,
+            "rows": 1426,
+            "predicted_win": 0.020742772072936094,
+            "actual_win": 0.0
+          },
+          {
+            "bin": 1,
+            "weight": 0.03304463251691695,
+            "rows": 631,
+            "predicted_win": 0.1587269632239846,
+            "actual_win": 0.23662387324680514
+          },
+          {
+            "bin": 2,
+            "weight": 0.04050738278235068,
+            "rows": 743,
+            "predicted_win": 0.2498691870663207,
+            "actual_win": 0.33641901106527367
+          },
+          {
+            "bin": 3,
+            "weight": 0.19424480475253325,
+            "rows": 3559,
+            "predicted_win": 0.3546848815159158,
+            "actual_win": 0.6927129335456949
+          },
+          {
+            "bin": 4,
+            "weight": 0.16354331492482074,
+            "rows": 2880,
+            "predicted_win": 0.44878875596362305,
+            "actual_win": 0.564711586745129
+          },
+          {
+            "bin": 5,
+            "weight": 0.16342266890185722,
+            "rows": 2774,
+            "predicted_win": 0.5507906114816394,
+            "actual_win": 0.4356144094729096
+          },
+          {
+            "bin": 6,
+            "weight": 0.1949570791331328,
+            "rows": 3293,
+            "predicted_win": 0.6451695884629275,
+            "actual_win": 0.30784428718243273
+          },
+          {
+            "bin": 7,
+            "weight": 0.040599569719508274,
+            "rows": 777,
+            "predicted_win": 0.7511591547907345,
+            "actual_win": 0.6696128730387797
+          },
+          {
+            "bin": 8,
+            "weight": 0.032742761743311255,
+            "rows": 637,
+            "predicted_win": 0.8421995641215294,
+            "actual_win": 0.7598408088190262
+          },
+          {
+            "bin": 9,
+            "weight": 0.06837173045335478,
+            "rows": 1227,
+            "predicted_win": 0.9794115876276205,
+            "actual_win": 1.0
+          }
+        ],
+        "games": 6,
+        "maps": 2,
+        "phases": {
+          "early": {
+            "rows": 6164,
+            "log_loss": 0.9070743851000992,
+            "brier": 0.3504136331179779,
+            "accuracy": 0.25917288557213936,
+            "expected_calibration_error": 0.38172724845177375,
+            "mean_prediction": 0.4999306537974529,
+            "win_fraction": 0.5000000000000001,
+            "reliability": [
+              {
+                "bin": 1,
+                "weight": 0.014925373134328358,
+                "rows": 96,
+                "predicted_win": 0.17389491893083078,
+                "actual_win": 1.0
+              },
+              {
+                "bin": 2,
+                "weight": 0.03631840796019901,
+                "rows": 239,
+                "predicted_win": 0.2487446945255897,
+                "actual_win": 0.6164383561643836
+              },
+              {
+                "bin": 3,
+                "weight": 0.35899668325041467,
+                "rows": 2197,
+                "predicted_win": 0.35584565794573486,
+                "actual_win": 0.8136043423028063
+              },
+              {
+                "bin": 4,
+                "weight": 0.08960406301824214,
+                "rows": 589,
+                "predicted_win": 0.4470852483966478,
+                "actual_win": 0.45691150954308846
+              },
+              {
+                "bin": 5,
+                "weight": 0.08939676616915425,
+                "rows": 626,
+                "predicted_win": 0.5525811417109905,
+                "actual_win": 0.542608695652174
+              },
+              {
+                "bin": 6,
+                "weight": 0.3602300995024877,
+                "rows": 2051,
+                "predicted_win": 0.6439656065451962,
+                "actual_win": 0.1886059559775572
+              },
+              {
+                "bin": 7,
+                "weight": 0.03547885572139304,
+                "rows": 245,
+                "predicted_win": 0.7521436810165872,
+                "actual_win": 0.3724802804557406
+              },
+              {
+                "bin": 8,
+                "weight": 0.015049751243781103,
+                "rows": 121,
+                "predicted_win": 0.8261380038893349,
+                "actual_win": 0.0
+              }
+            ]
+          },
+          "middle": {
+            "rows": 6118,
+            "log_loss": 0.6450015006711831,
+            "brier": 0.236371868217488,
+            "accuracy": 0.4600563909774436,
+            "expected_calibration_error": 0.23808081624651717,
+            "mean_prediction": 0.4999211065177254,
+            "win_fraction": 0.5,
+            "reliability": [
+              {
+                "bin": 0,
+                "weight": 0.06403508771929825,
+                "rows": 495,
+                "predicted_win": 0.04535501268725169,
+                "actual_win": 0.0
+              },
+              {
+                "bin": 1,
+                "weight": 0.06315789473684211,
+                "rows": 434,
+                "predicted_win": 0.14781271694715303,
+                "actual_win": 0.11904761904761904
+              },
+              {
+                "bin": 2,
+                "weight": 0.0400062656641604,
+                "rows": 290,
+                "predicted_win": 0.2497776966840657,
+                "actual_win": 0.41973375097885673
+              },
+              {
+                "bin": 3,
+                "weight": 0.12479114452798665,
+                "rows": 867,
+                "predicted_win": 0.3506017554498314,
+                "actual_win": 0.7759832635983263
+              },
+              {
+                "bin": 4,
+                "weight": 0.20785296574770257,
+                "rows": 1192,
+                "predicted_win": 0.4537006623402791,
+                "actual_win": 0.7156350482315113
+              },
+              {
+                "bin": 5,
+                "weight": 0.2079156223893066,
+                "rows": 1077,
+                "predicted_win": 0.5458236679608052,
+                "actual_win": 0.2850326469110999
+              },
+              {
+                "bin": 6,
+                "weight": 0.12541771094402673,
+                "rows": 698,
+                "predicted_win": 0.6493359223501506,
+                "actual_win": 0.22189841798501247
+              },
+              {
+                "bin": 7,
+                "weight": 0.039473684210526314,
+                "rows": 252,
+                "predicted_win": 0.7506799353260278,
+                "actual_win": 0.5873015873015873
+              },
+              {
+                "bin": 8,
+                "weight": 0.0637531328320802,
+                "rows": 407,
+                "predicted_win": 0.8524415202277525,
+                "actual_win": 0.8820638820638821
+              },
+              {
+                "bin": 9,
+                "weight": 0.06359649122807018,
+                "rows": 406,
+                "predicted_win": 0.9549606404518826,
+                "actual_win": 1.0
+              }
+            ]
+          },
+          "late": {
+            "rows": 5665,
+            "log_loss": 0.3785617478113774,
+            "brier": 0.12517087064179516,
+            "accuracy": 0.8095238095238096,
+            "expected_calibration_error": 0.07707772853798248,
+            "mean_prediction": 0.49991907412127984,
+            "win_fraction": 0.5000000000000001,
+            "reliability": [
+              {
+                "bin": 0,
+                "weight": 0.1610305958132045,
+                "rows": 931,
+                "predicted_win": 0.008610273826394807,
+                "actual_win": 0.0
+              },
+              {
+                "bin": 1,
+                "weight": 0.016401208334846783,
+                "rows": 101,
+                "predicted_win": 0.18868807547591412,
+                "actual_win": 0.0
+              },
+              {
+                "bin": 2,
+                "weight": 0.04123987504994371,
+                "rows": 214,
+                "predicted_win": 0.2509756927089462,
+                "actual_win": 0.0
+              },
+              {
+                "bin": 3,
+                "weight": 0.09110275689223059,
+                "rows": 495,
+                "predicted_win": 0.356270918579348,
+                "actual_win": 0.10591471801925723
+              },
+              {
+                "bin": 4,
+                "weight": 0.19022556390977446,
+                "rows": 1099,
+                "predicted_win": 0.4443815884352106,
+                "actual_win": 0.4499341238471673
+              },
+              {
+                "bin": 5,
+                "weight": 0.19000626566416043,
+                "rows": 1071,
+                "predicted_win": 0.5552207249325848,
+                "actual_win": 0.5507007419620774
+              },
+              {
+                "bin": 6,
+                "weight": 0.09132205513784462,
+                "rows": 544,
+                "predicted_win": 0.6436109925756165,
+                "actual_win": 0.8919382504288165
+              },
+              {
+                "bin": 7,
+                "weight": 0.04292510938362857,
+                "rows": 280,
+                "predicted_win": 0.7507929662975964,
+                "actual_win": 1.0
+              },
+              {
+                "bin": 8,
+                "weight": 0.014729620661824058,
+                "rows": 109,
+                "predicted_win": 0.8124830631311913,
+                "actual_win": 1.0
+              },
+              {
+                "bin": 9,
+                "weight": 0.1610169491525424,
+                "rows": 821,
+                "predicted_win": 0.9913919312638321,
+                "actual_win": 1.0
+              }
+            ]
+          }
+        }
+      },
+      "critic": {
+        "rows": 17947,
+        "log_loss": 0.6704404443211417,
+        "brier": 0.24673766036820358,
+        "accuracy": 0.5345270965143819,
+        "expected_calibration_error": 0.16681757581988937,
+        "mean_prediction": 0.47663916784935245,
+        "win_fraction": 0.5,
+        "reliability": [
+          {
+            "bin": 0,
+            "weight": 0.07929976562724322,
+            "rows": 1626,
+            "predicted_win": 0.022754464926773778,
+            "actual_win": 0.01138064233059348
+          },
+          {
+            "bin": 1,
+            "weight": 0.04419050279777162,
+            "rows": 806,
+            "predicted_win": 0.15574793377189933,
+            "actual_win": 0.19643851232563278
+          },
+          {
+            "bin": 2,
+            "weight": 0.09171959748442707,
+            "rows": 1653,
+            "predicted_win": 0.25912516823496395,
+            "actual_win": 0.5126930254315579
+          },
+          {
+            "bin": 3,
+            "weight": 0.18163825033584058,
+            "rows": 3248,
+            "predicted_win": 0.34753353097956224,
+            "actual_win": 0.6362959318048369
+          },
+          {
+            "bin": 4,
+            "weight": 0.16750335726742177,
+            "rows": 2903,
+            "predicted_win": 0.4486219580217963,
+            "actual_win": 0.5535967364439047
+          },
+          {
+            "bin": 5,
+            "weight": 0.1370546878587251,
+            "rows": 2349,
+            "predicted_win": 0.5494386305216598,
+            "actual_win": 0.4789936318988161
+          },
+          {
+            "bin": 6,
+            "weight": 0.12183333011596577,
+            "rows": 2098,
+            "predicted_win": 0.6463243710105777,
+            "actual_win": 0.39862356763430973
+          },
+          {
+            "bin": 7,
+            "weight": 0.06322578159206872,
+            "rows": 1179,
+            "predicted_win": 0.7442332985993283,
+            "actual_win": 0.4444606977372957
+          },
+          {
+            "bin": 8,
+            "weight": 0.04409569931316112,
+            "rows": 829,
+            "predicted_win": 0.8473848863604986,
+            "actual_win": 0.5944046930577745
+          },
+          {
+            "bin": 9,
+            "weight": 0.06943902760737503,
+            "rows": 1256,
+            "predicted_win": 0.9713052240506977,
+            "actual_win": 0.9585644955540973
+          }
+        ],
+        "games": 6,
+        "maps": 2,
+        "phases": {
+          "early": {
+            "rows": 6164,
+            "log_loss": 0.9304561518314499,
+            "brier": 0.3555644928249794,
+            "accuracy": 0.288785240464345,
+            "expected_calibration_error": 0.36473287031591406,
+            "mean_prediction": 0.5153643980891323,
+            "win_fraction": 0.5000000000000001,
+            "reliability": [
+              {
+                "bin": 0,
+                "weight": 0.000746268656716418,
+                "rows": 5,
+                "predicted_win": 0.07452697925933136,
+                "actual_win": 0.4166666666666667
+              },
+              {
+                "bin": 1,
+                "weight": 0.019890132669983417,
+                "rows": 130,
+                "predicted_win": 0.16536153514663535,
+                "actual_win": 0.6122980719124543
+              },
+              {
+                "bin": 2,
+                "weight": 0.08845356550580433,
+                "rows": 556,
+                "predicted_win": 0.2657242338199677,
+                "actual_win": 0.8306772908366533
+              },
+              {
+                "bin": 3,
+                "weight": 0.21188847429519075,
+                "rows": 1295,
+                "predicted_win": 0.34379593625404303,
+                "actual_win": 0.8129433057770385
+              },
+              {
+                "bin": 4,
+                "weight": 0.14836235489220567,
+                "rows": 929,
+                "predicted_win": 0.4441706884914051,
+                "actual_win": 0.5530948721531367
+              },
+              {
+                "bin": 5,
+                "weight": 0.16324626865671643,
+                "rows": 981,
+                "predicted_win": 0.5539695512318128,
+                "actual_win": 0.343936507936508
+              },
+              {
+                "bin": 6,
+                "weight": 0.20828150912106141,
+                "rows": 1203,
+                "predicted_win": 0.6453950958725634,
+                "actual_win": 0.2560338392634984
+              },
+              {
+                "bin": 7,
+                "weight": 0.09970978441127698,
+                "rows": 650,
+                "predicted_win": 0.7448890858570388,
+                "actual_win": 0.35831600831600824
+              },
+              {
+                "bin": 8,
+                "weight": 0.050746268656716435,
+                "rows": 350,
+                "predicted_win": 0.8406364479818239,
+                "actual_win": 0.2536764705882353
+              },
+              {
+                "bin": 9,
+                "weight": 0.00867537313432836,
+                "rows": 65,
+                "predicted_win": 0.9200337982502865,
+                "actual_win": 0.18996415770609318
+              }
+            ]
+          },
+          "middle": {
+            "rows": 6118,
+            "log_loss": 0.6586525153382998,
+            "brier": 0.2411498337692008,
+            "accuracy": 0.5471491228070176,
+            "expected_calibration_error": 0.16157146229713695,
+            "mean_prediction": 0.4697665324116971,
+            "win_fraction": 0.5,
+            "reliability": [
+              {
+                "bin": 0,
+                "weight": 0.08912907268170427,
+                "rows": 662,
+                "predicted_win": 0.04572175898351251,
+                "actual_win": 0.025307557117750436
+              },
+              {
+                "bin": 1,
+                "weight": 0.05464703425229741,
+                "rows": 382,
+                "predicted_win": 0.14886691158990983,
+                "actual_win": 0.20580928721574623
+              },
+              {
+                "bin": 2,
+                "weight": 0.07993943191311612,
+                "rows": 551,
+                "predicted_win": 0.26113765923895466,
+                "actual_win": 0.6449379490529066
+              },
+              {
+                "bin": 3,
+                "weight": 0.17699456975772765,
+                "rows": 1081,
+                "predicted_win": 0.35071348537390645,
+                "actual_win": 0.6456428107852971
+              },
+              {
+                "bin": 4,
+                "weight": 0.20608813700918963,
+                "rows": 1122,
+                "predicted_win": 0.44952115838979245,
+                "actual_win": 0.48761084367874336
+              },
+              {
+                "bin": 5,
+                "weight": 0.11695906432748537,
+                "rows": 633,
+                "predicted_win": 0.5514442877157335,
+                "actual_win": 0.4033928571428571
+              },
+              {
+                "bin": 6,
+                "weight": 0.08378237259816207,
+                "rows": 480,
+                "predicted_win": 0.6517857206538805,
+                "actual_win": 0.3840209397980805
+              },
+              {
+                "bin": 7,
+                "weight": 0.06495405179615706,
+                "rows": 395,
+                "predicted_win": 0.7434137129928697,
+                "actual_win": 0.4292604501607717
+              },
+              {
+                "bin": 8,
+                "weight": 0.06610275689223058,
+                "rows": 420,
+                "predicted_win": 0.8520919146440353,
+                "actual_win": 0.7962085308056871
+              },
+              {
+                "bin": 9,
+                "weight": 0.06140350877192982,
+                "rows": 392,
+                "predicted_win": 0.9486067521830014,
+                "actual_win": 0.9821428571428571
+              }
+            ]
+          },
+          "late": {
+            "rows": 5665,
+            "log_loss": 0.39387058900701677,
+            "brier": 0.13323851911769713,
+            "accuracy": 0.7857843761947242,
+            "expected_calibration_error": 0.09531735285127613,
+            "mean_prediction": 0.44350625846738495,
+            "win_fraction": 0.5000000000000001,
+            "reliability": [
+              {
+                "bin": 0,
+                "weight": 0.16598077318901117,
+                "rows": 959,
+                "predicted_win": 0.006931943021244945,
+                "actual_win": 0.0007549867421410259
+              },
+              {
+                "bin": 1,
+                "weight": 0.054166969355756545,
+                "rows": 294,
+                "predicted_win": 0.1595985241877506,
+                "actual_win": 0.03470194604713542
+              },
+              {
+                "bin": 2,
+                "weight": 0.10340827915198625,
+                "rows": 546,
+                "predicted_win": 0.25234889298913193,
+                "actual_win": 0.13996639659048338
+              },
+              {
+                "bin": 3,
+                "weight": 0.15194523143607813,
+                "rows": 872,
+                "predicted_win": 0.34895761389668534,
+                "actual_win": 0.380473899094494
+              },
+              {
+                "bin": 4,
+                "weight": 0.14337184769834194,
+                "rows": 852,
+                "predicted_win": 0.45213712904157416,
+                "actual_win": 0.6434629420217572
+              },
+              {
+                "bin": 5,
+                "weight": 0.12696324143692567,
+                "rows": 735,
+                "predicted_win": 0.5416244297936579,
+                "actual_win": 0.7232275045237703
+              },
+              {
+                "bin": 6,
+                "weight": 0.06829874828313724,
+                "rows": 415,
+                "predicted_win": 0.6420468595481599,
+                "actual_win": 0.844043568287304
+              },
+              {
+                "bin": 7,
+                "weight": 0.019477518369603583,
+                "rows": 134,
+                "predicted_win": 0.74191283763008,
+                "actual_win": 0.9195782537397177
+              },
+              {
+                "bin": 8,
+                "weight": 0.00981341259383882,
+                "rows": 59,
+                "predicted_win": 0.849141574412779,
+                "actual_win": 0.968076017896492
+              },
+              {
+                "bin": 9,
+                "weight": 0.15657397848532079,
+                "rows": 799,
+                "predicted_win": 0.985914702511552,
+                "actual_win": 1.0
+              }
+            ]
+          }
+        }
+      }
+    },
+    "fresh_validation": {
+      "constant": {
+        "rows": 50800,
+        "log_loss": 0.6931471805599454,
+        "brier": 0.25,
+        "accuracy": 0.5,
+        "expected_calibration_error": 0.0,
+        "mean_prediction": 0.5,
+        "win_fraction": 0.5,
+        "reliability": [
+          {
+            "bin": 5,
+            "weight": 1.0,
+            "rows": 50800,
+            "predicted_win": 0.5,
+            "actual_win": 0.5
+          }
+        ],
+        "games": 12,
+        "maps": 4,
+        "phases": {
+          "early": {
+            "rows": 17018,
+            "log_loss": 0.6931471805599454,
+            "brier": 0.25000000000000006,
+            "accuracy": 0.5000000000000001,
+            "expected_calibration_error": 0.0,
+            "mean_prediction": 0.5000000000000001,
+            "win_fraction": 0.5000000000000001,
+            "reliability": [
+              {
+                "bin": 5,
+                "weight": 1.0000000000000002,
+                "rows": 17018,
+                "predicted_win": 0.5,
+                "actual_win": 0.5
+              }
+            ]
+          },
+          "middle": {
+            "rows": 16891,
+            "log_loss": 0.6931471805599453,
+            "brier": 0.25000000000000006,
+            "accuracy": 0.5000000000000002,
+            "expected_calibration_error": 1.1102230246251568e-16,
+            "mean_prediction": 0.5000000000000001,
+            "win_fraction": 0.5000000000000002,
+            "reliability": [
+              {
+                "bin": 5,
+                "weight": 1.0000000000000002,
+                "rows": 16891,
+                "predicted_win": 0.5,
+                "actual_win": 0.5000000000000001
+              }
+            ]
+          },
+          "late": {
+            "rows": 16891,
+            "log_loss": 0.6931471805599454,
+            "brier": 0.25,
+            "accuracy": 0.5,
+            "expected_calibration_error": 0.0,
+            "mean_prediction": 0.5,
+            "win_fraction": 0.5,
+            "reliability": [
+              {
+                "bin": 5,
+                "weight": 1.0,
+                "rows": 16891,
+                "predicted_win": 0.5,
+                "actual_win": 0.5
+              }
+            ]
+          }
+        }
+      },
+      "score_time": {
+        "rows": 50800,
+        "log_loss": 0.39927170143785096,
+        "brier": 0.13402090117443738,
+        "accuracy": 0.7773003472222222,
+        "expected_calibration_error": 0.06300032742477413,
+        "mean_prediction": 0.49998800602967297,
+        "win_fraction": 0.5,
+        "reliability": [
+          {
+            "bin": 0,
+            "weight": 0.16423611111111114,
+            "rows": 8344,
+            "predicted_win": 0.03173030830136472,
+            "actual_win": 0.0006342494714587736
+          },
+          {
+            "bin": 1,
+            "weight": 0.08105381944444444,
+            "rows": 4205,
+            "predicted_win": 0.14452002611354323,
+            "actual_win": 0.11694904363098936
+          },
+          {
+            "bin": 2,
+            "weight": 0.06734027777777779,
+            "rows": 3415,
+            "predicted_win": 0.2578003708723574,
+            "actual_win": 0.1769619469939156
+          },
+          {
+            "bin": 3,
+            "weight": 0.1225434027777778,
+            "rows": 6026,
+            "predicted_win": 0.3464690303452859,
+            "actual_win": 0.4725366579301551
+          },
+          {
+            "bin": 4,
+            "weight": 0.0647309027777778,
+            "rows": 3153,
+            "predicted_win": 0.4423728206151941,
+            "actual_win": 0.4927450717446694
+          },
+          {
+            "bin": 5,
+            "weight": 0.06470833333333334,
+            "rows": 3176,
+            "predicted_win": 0.5572977946578554,
+            "actual_win": 0.5055537669027689
+          },
+          {
+            "bin": 6,
+            "weight": 0.12245312500000001,
+            "rows": 6242,
+            "predicted_win": 0.653262759595141,
+            "actual_win": 0.5278238555002622
+          },
+          {
+            "bin": 7,
+            "weight": 0.06767708333333335,
+            "rows": 3494,
+            "predicted_win": 0.7420085334906797,
+            "actual_win": 0.8229439228361807
+          },
+          {
+            "bin": 8,
+            "weight": 0.08088541666666667,
+            "rows": 4298,
+            "predicted_win": 0.8554079081885231,
+            "actual_win": 0.8830221077484439
+          },
+          {
+            "bin": 9,
+            "weight": 0.16437152777777775,
+            "rows": 8447,
+            "predicted_win": 0.9682147195717526,
+            "actual_win": 0.9991550307357572
+          }
+        ],
+        "games": 12,
+        "maps": 4,
+        "phases": {
+          "early": {
+            "rows": 17018,
+            "log_loss": 0.597768097010637,
+            "brier": 0.2110637279643103,
+            "accuracy": 0.5886815920398012,
+            "expected_calibration_error": 0.1949855526350687,
+            "mean_prediction": 0.49993178079118206,
+            "win_fraction": 0.5000000000000001,
+            "reliability": [
+              {
+                "bin": 0,
+                "weight": 0.012282338308457715,
+                "rows": 202,
+                "predicted_win": 0.08347424255289386,
+                "actual_win": 0.0
+              },
+              {
+                "bin": 1,
+                "weight": 0.09110696517412938,
+                "rows": 1582,
+                "predicted_win": 0.15126317444381254,
+                "actual_win": 0.0
+              },
+              {
+                "bin": 2,
+                "weight": 0.10332193200663353,
+                "rows": 1695,
+                "predicted_win": 0.26037557263083055,
+                "actual_win": 0.2178863419772283
+              },
+              {
+                "bin": 3,
+                "weight": 0.2476419983416253,
+                "rows": 4037,
+                "predicted_win": 0.3423994583703672,
+                "actual_win": 0.5775452547870671
+              },
+              {
+                "bin": 4,
+                "weight": 0.04564676616915425,
+                "rows": 792,
+                "predicted_win": 0.4367132209717055,
+                "actual_win": 0.8789736603088102
+              },
+              {
+                "bin": 5,
+                "weight": 0.04576077943615259,
+                "rows": 826,
+                "predicted_win": 0.5631882008706341,
+                "actual_win": 0.12072480181200453
+              },
+              {
+                "bin": 6,
+                "weight": 0.24705120232172476,
+                "rows": 4263,
+                "predicted_win": 0.6573708158453461,
+                "actual_win": 0.4225420066707222
+              },
+              {
+                "bin": 7,
+                "weight": 0.1037676202321725,
+                "rows": 1780,
+                "predicted_win": 0.7393316974785206,
+                "actual_win": 0.7806522499126005
+              },
+              {
+                "bin": 8,
+                "weight": 0.09113805970149257,
+                "rows": 1615,
+                "predicted_win": 0.8486560218798543,
+                "actual_win": 1.0
+              },
+              {
+                "bin": 9,
+                "weight": 0.012282338308457713,
+                "rows": 226,
+                "predicted_win": 0.9164474871575896,
+                "actual_win": 1.0
+              }
+            ]
+          },
+          "middle": {
+            "rows": 16891,
+            "log_loss": 0.43533156301646037,
+            "brier": 0.14382572912224015,
+            "accuracy": 0.804793233082707,
+            "expected_calibration_error": 0.08882652877056385,
+            "mean_prediction": 0.5000216739881647,
+            "win_fraction": 0.5000000000000002,
+            "reliability": [
+              {
+                "bin": 0,
+                "weight": 0.16593567251461994,
+                "rows": 2724,
+                "predicted_win": 0.0517820882531069,
+                "actual_win": 0.0018879798615481435
+              },
+              {
+                "bin": 1,
+                "weight": 0.0944026733500418,
+                "rows": 1603,
+                "predicted_win": 0.1398831988780646,
+                "actual_win": 0.30199115044247793
+              },
+              {
+                "bin": 2,
+                "weight": 0.050898078529657484,
+                "rows": 931,
+                "predicted_win": 0.2604204657008617,
+                "actual_win": 0.2523594583504309
+              },
+              {
+                "bin": 3,
+                "weight": 0.0834638680033417,
+                "rows": 1413,
+                "predicted_win": 0.3574879081556548,
+                "actual_win": 0.20118861432593058
+              },
+              {
+                "bin": 4,
+                "weight": 0.10514306599832918,
+                "rows": 1687,
+                "predicted_win": 0.4420580185624011,
+                "actual_win": 0.37155484928241544
+              },
+              {
+                "bin": 5,
+                "weight": 0.10507518796992485,
+                "rows": 1695,
+                "predicted_win": 0.557573052289434,
+                "actual_win": 0.6267143709004174
+              },
+              {
+                "bin": 6,
+                "weight": 0.08354218880534672,
+                "rows": 1372,
+                "predicted_win": 0.6422867288973244,
+                "actual_win": 0.799
+              },
+              {
+                "bin": 7,
+                "weight": 0.05114870509607353,
+                "rows": 920,
+                "predicted_win": 0.7394523084037166,
+                "actual_win": 0.7498979175173541
+              },
+              {
+                "bin": 8,
+                "weight": 0.09409983291562242,
+                "rows": 1692,
+                "predicted_win": 0.8599336311275594,
+                "actual_win": 0.6975918322050828
+              },
+              {
+                "bin": 9,
+                "weight": 0.16629072681704266,
+                "rows": 2854,
+                "predicted_win": 0.9481316343434272,
+                "actual_win": 0.9974880683245417
+              }
+            ]
+          },
+          "late": {
+            "rows": 16891,
+            "log_loss": 0.16322299018440484,
+            "brier": 0.046593977062401815,
+            "accuracy": 0.9398444026733501,
+            "expected_calibration_error": 0.05935673534387644,
+            "mean_prediction": 0.5000109860558266,
+            "win_fraction": 0.5,
+            "reliability": [
+              {
+                "bin": 0,
+                "weight": 0.31563283208020054,
+                "rows": 5418,
+                "predicted_win": 0.019159941203887615,
+                "actual_win": 0.0
+              },
+              {
+                "bin": 1,
+                "weight": 0.05757623224728488,
+                "rows": 1020,
+                "predicted_win": 0.14137223331144996,
+                "actual_win": 0.0
+              },
+              {
+                "bin": 2,
+                "weight": 0.04753028404344194,
+                "rows": 789,
+                "predicted_win": 0.24935453083644202,
+                "actual_win": 0.006591233659233219
+              },
+              {
+                "bin": 3,
+                "weight": 0.035583751044277356,
+                "rows": 576,
+                "predicted_win": 0.34915835316593774,
+                "actual_win": 0.3727072633895818
+              },
+              {
+                "bin": 4,
+                "weight": 0.04354636591478697,
+                "rows": 674,
+                "predicted_win": 0.44911010150211744,
+                "actual_win": 0.3774580335731414
+              },
+              {
+                "bin": 5,
+                "weight": 0.04343149540517961,
+                "rows": 655,
+                "predicted_win": 0.5503788752737824,
+                "actual_win": 0.620942534263044
+              },
+              {
+                "bin": 6,
+                "weight": 0.035829156223893065,
+                "rows": 607,
+                "predicted_win": 0.6503162923350917,
+                "actual_win": 0.6269309239288837
+              },
+              {
+                "bin": 7,
+                "weight": 0.047843567251461994,
+                "rows": 794,
+                "predicted_win": 0.7505907738511903,
+                "actual_win": 0.9934519262250354
+              },
+              {
+                "bin": 8,
+                "weight": 0.05734126984126984,
+                "rows": 991,
+                "predicted_win": 0.8587930924734373,
+                "actual_win": 1.0
+              },
+              {
+                "bin": 9,
+                "weight": 0.3156850459482039,
+                "rows": 5367,
+                "predicted_win": 0.9808229636864275,
+                "actual_win": 1.0
+              }
+            ]
+          }
+        }
+      },
+      "critic": {
+        "rows": 50800,
+        "log_loss": 0.41563860539256303,
+        "brier": 0.13906797388302033,
+        "accuracy": 0.7810642361111112,
+        "expected_calibration_error": 0.03133196764119634,
+        "mean_prediction": 0.48420388195684627,
+        "win_fraction": 0.5,
+        "reliability": [
+          {
+            "bin": 0,
+            "weight": 0.19478472222222223,
+            "rows": 9915,
+            "predicted_win": 0.03196654652746957,
+            "actual_win": 0.0206067952511676
+          },
+          {
+            "bin": 1,
+            "weight": 0.07790451388888889,
+            "rows": 3990,
+            "predicted_win": 0.14693575743824172,
+            "actual_win": 0.15949457357430974
+          },
+          {
+            "bin": 2,
+            "weight": 0.08436805555555556,
+            "rows": 4222,
+            "predicted_win": 0.25368463350167364,
+            "actual_win": 0.29308996625236644
+          },
+          {
+            "bin": 3,
+            "weight": 0.09840972222222223,
+            "rows": 4802,
+            "predicted_win": 0.34854430163505756,
+            "actual_win": 0.4326970573706867
+          },
+          {
+            "bin": 4,
+            "weight": 0.06279513888888891,
+            "rows": 3093,
+            "predicted_win": 0.44900209624325743,
+            "actual_win": 0.5549903234724909
+          },
+          {
+            "bin": 5,
+            "weight": 0.07513541666666668,
+            "rows": 3809,
+            "predicted_win": 0.5528618043830514,
+            "actual_win": 0.5713064374508988
+          },
+          {
+            "bin": 6,
+            "weight": 0.07238194444444446,
+            "rows": 3705,
+            "predicted_win": 0.6507436925558933,
+            "actual_win": 0.5739950110332916
+          },
+          {
+            "bin": 7,
+            "weight": 0.08223611111111112,
+            "rows": 4220,
+            "predicted_win": 0.7491700233122573,
+            "actual_win": 0.7630045600405336
+          },
+          {
+            "bin": 8,
+            "weight": 0.09028125000000001,
+            "rows": 4737,
+            "predicted_win": 0.8504983361661482,
+            "actual_win": 0.8545440559978462
+          },
+          {
+            "bin": 9,
+            "weight": 0.161703125,
+            "rows": 8307,
+            "predicted_win": 0.9622428393841236,
+            "actual_win": 0.9711190560547985
+          }
+        ],
+        "games": 12,
+        "maps": 4,
+        "phases": {
+          "early": {
+            "rows": 17018,
+            "log_loss": 0.6074983118784686,
+            "brier": 0.21305074220207126,
+            "accuracy": 0.628803897180763,
+            "expected_calibration_error": 0.1044132660805822,
+            "mean_prediction": 0.5105029969059656,
+            "win_fraction": 0.5000000000000001,
+            "reliability": [
+              {
+                "bin": 0,
+                "weight": 0.029700456053068,
+                "rows": 505,
+                "predicted_win": 0.07660451919305294,
+                "actual_win": 0.012563252486477054
+              },
+              {
+                "bin": 1,
+                "weight": 0.09357898009950251,
+                "rows": 1597,
+                "predicted_win": 0.15026933086138944,
+                "actual_win": 0.1216148861937199
+              },
+              {
+                "bin": 2,
+                "weight": 0.1318407960199005,
+                "rows": 2182,
+                "predicted_win": 0.255784387251152,
+                "actual_win": 0.35935534591194973
+              },
+              {
+                "bin": 3,
+                "weight": 0.16768760364842458,
+                "rows": 2723,
+                "predicted_win": 0.34776665186875866,
+                "actual_win": 0.5040640356028062
+              },
+              {
+                "bin": 4,
+                "weight": 0.06728337479270317,
+                "rows": 1153,
+                "predicted_win": 0.4443269555454251,
+                "actual_win": 0.5497188631287068
+              },
+              {
+                "bin": 5,
+                "weight": 0.08884742951907135,
+                "rows": 1578,
+                "predicted_win": 0.5539279603339322,
+                "actual_win": 0.38876574895006993
+              },
+              {
+                "bin": 6,
+                "weight": 0.11871890547263686,
+                "rows": 2061,
+                "predicted_win": 0.6533434613343287,
+                "actual_win": 0.40099528548978525
+              },
+              {
+                "bin": 7,
+                "weight": 0.13981654228855728,
+                "rows": 2398,
+                "predicted_win": 0.7474896656284988,
+                "actual_win": 0.7015456466140331
+              },
+              {
+                "bin": 8,
+                "weight": 0.12129456882255395,
+                "rows": 2108,
+                "predicted_win": 0.8457009410024495,
+                "actual_win": 0.8356761375774406
+              },
+              {
+                "bin": 9,
+                "weight": 0.041231343283582106,
+                "rows": 713,
+                "predicted_win": 0.9303921654999096,
+                "actual_win": 0.9157868275515334
+              }
+            ]
+          },
+          "middle": {
+            "rows": 16891,
+            "log_loss": 0.45565068081141,
+            "brier": 0.1488978160606224,
+            "accuracy": 0.7931025480367587,
+            "expected_calibration_error": 0.051992452409435196,
+            "mean_prediction": 0.47700538521505004,
+            "win_fraction": 0.5000000000000002,
+            "reliability": [
+              {
+                "bin": 0,
+                "weight": 0.19730576441102762,
+                "rows": 3250,
+                "predicted_win": 0.04681836810239785,
+                "actual_win": 0.05896051656610565
+              },
+              {
+                "bin": 1,
+                "weight": 0.08701963241436927,
+                "rows": 1510,
+                "predicted_win": 0.14494459863830395,
+                "actual_win": 0.2521300852034082
+              },
+              {
+                "bin": 2,
+                "weight": 0.07669172932330828,
+                "rows": 1337,
+                "predicted_win": 0.25290567440472245,
+                "actual_win": 0.19757625272331156
+              },
+              {
+                "bin": 3,
+                "weight": 0.08680033416875524,
+                "rows": 1429,
+                "predicted_win": 0.34976301665850895,
+                "actual_win": 0.31334215591915304
+              },
+              {
+                "bin": 4,
+                "weight": 0.08546888053467003,
+                "rows": 1382,
+                "predicted_win": 0.45163291002465744,
+                "actual_win": 0.5167695033294643
+              },
+              {
+                "bin": 5,
+                "weight": 0.09149436090225567,
+                "rows": 1495,
+                "predicted_win": 0.5526390931536903,
+                "actual_win": 0.6838440906237515
+              },
+              {
+                "bin": 6,
+                "weight": 0.05969089390142024,
+                "rows": 1001,
+                "predicted_win": 0.6451636133735026,
+                "actual_win": 0.7606717984604617
+              },
+              {
+                "bin": 7,
+                "weight": 0.06293337510442776,
+                "rows": 1084,
+                "predicted_win": 0.7510358341570281,
+                "actual_win": 0.7717580685306562
+              },
+              {
+                "bin": 8,
+                "weight": 0.09463763575605683,
+                "rows": 1694,
+                "predicted_win": 0.8547503389287265,
+                "actual_win": 0.8009379310344827
+              },
+              {
+                "bin": 9,
+                "weight": 0.15795739348370935,
+                "rows": 2709,
+                "predicted_win": 0.9468909197160486,
+                "actual_win": 0.934219225175195
+              }
+            ]
+          },
+          "late": {
+            "rows": 16891,
+            "log_loss": 0.18232426930370618,
+            "brier": 0.054699101970434656,
+            "accuracy": 0.9224310776942356,
+            "expected_calibration_error": 0.05672891334808182,
+            "mean_prediction": 0.46490552604313906,
+            "win_fraction": 0.5,
+            "reliability": [
+              {
+                "bin": 0,
+                "weight": 0.3585891812865497,
+                "rows": 6160,
+                "predicted_win": 0.020069683603639924,
+                "actual_win": 0.00017473098708446788
+              },
+              {
+                "bin": 1,
+                "weight": 0.05299707602339181,
+                "rows": 883,
+                "predicted_win": 0.14427470495134365,
+                "actual_win": 0.07477832512315272
+              },
+              {
+                "bin": 2,
+                "weight": 0.04421470342522974,
+                "rows": 703,
+                "predicted_win": 0.24872757349096153,
+                "actual_win": 0.25968351440717996
+              },
+              {
+                "bin": 3,
+                "weight": 0.0402203425229741,
+                "rows": 650,
+                "predicted_win": 0.34918074132586324,
+                "actual_win": 0.39049720887965733
+              },
+              {
+                "bin": 4,
+                "weight": 0.03559941520467836,
+                "rows": 558,
+                "predicted_win": 0.45158842080943895,
+                "actual_win": 0.6567908477559401
+              },
+              {
+                "bin": 5,
+                "weight": 0.04496136173767753,
+                "rows": 736,
+                "predicted_win": 0.551192357309563,
+                "actual_win": 0.7057252351643246
+              },
+              {
+                "bin": 6,
+                "weight": 0.038387635756056804,
+                "rows": 643,
+                "predicted_win": 0.65131985714195,
+                "actual_win": 0.8227693144722525
+              },
+              {
+                "bin": 7,
+                "weight": 0.043525480367585634,
+                "rows": 738,
+                "predicted_win": 0.7519106365365976,
+                "actual_win": 0.9492562380038387
+              },
+              {
+                "bin": 8,
+                "weight": 0.05467836257309942,
+                "rows": 935,
+                "predicted_win": 0.8538611592882492,
+                "actual_win": 0.9894957983193278
+              },
+              {
+                "bin": 9,
+                "weight": 0.2868264411027569,
+                "rows": 4885,
+                "predicted_win": 0.9753102166477247,
+                "actual_win": 0.9994538801813118
+              }
+            ]
+          }
+        }
+      }
+    }
+  },
+  "uncertainty": {
+    "unit": "whole map, retaining both seats and all pairings",
+    "maps": 4,
+    "paired_brier_difference_by_map": {
+      "generated/screen/g1-screen-039": -0.0037162957075736885,
+      "generated/screen/g1-screen-041": -0.00954108914630769,
+      "generated/screen/g1-screen-044": 0.005555369631879286,
+      "generated/screen/g1-screen-056": 0.027890306056333858
+    },
+    "mean_difference": 0.005047072708582941,
+    "interval_90": [
+      -0.005766974451760947,
+      0.01853245725567347
+    ],
+    "superiority_supported": false,
+    "note": "Only four fresh maps; uncertainty is not estimated from independent frames"
+  },
+  "optimizer": {
+    "iterations": 9,
+    "final_gradient_max": 1.5185998292199798e-10,
+    "loss_history": [
+      0.6931471805599453,
+      0.368798082717522,
+      0.29754375273679196,
+      0.26512484334157355,
+      0.24406522575871928,
+      0.2350548120403248,
+      0.23419305308774493,
+      0.23418537481395882,
+      0.23418537413905618
+    ]
+  },
+  "exports": {
+    "critic.npz": "9f1c58a290cd3c12eb99462725f9acec3e94c85ed96ff042801b5d9f2d333ca8",
+    "score-time.npz": "58817be295fabb8813deaf72748364f2167cecd9b42c027321feb1327dd69800",
+    "actor.f32": "76ec1dcaf4d37f1cccaccd483885e241a7f14cf929630332ece35e72e5988d3e"
+  },
+  "dataset_manifest_sha256": "4e3d5cb26d33d6b2548ea2b492bddc059c4feb996a4172d578afbb1f2d0c2fd4",
+  "plan_sha256": "bd3045e064e6c80d538b6ef497f72272850e3e13975868480a64cbd4a5a2fad2",
+  "source_sha256": "1eb4bd84b10bbf6a50613adac274f0d3609ae8647a562176ebf394a14060c7ca",
+  "outer_validation_model_selections": 0,
+  "ppo_started": false,
+  "confirmation_games": 0,
+  "promoted": false,
+  "value_target": "2 * P(eventual completed-game win under replay behavior mixture) - 1; undiscounted",
+  "limitations": [
+    "Offline behavior mixture; recalibrate/refit on on-policy trajectories for PPO",
+    "Training has only 28 independent games on 17 maps; critic observations are local",
+    "Stage 2 validation was already inspected; fresh validation uses four additional screening maps",
+    "No actor update, macro repair, centralized hidden state, live upload or strength claim"
+  ]
+}

@@ -1,0 +1,753 @@
+{
+  "schema": 4,
+  "config": {
+    "model": "outcome-v5",
+    "dataset": "stage4-outcome-v5",
+    "parent": "bc-v1",
+    "parent_sha256": "76ec1dcaf4d37f1cccaccd483885e241a7f14cf929630332ece35e72e5988d3e",
+    "development_maps": [
+      "generated/screen/g1-screen-001",
+      "generated/screen/g1-screen-004",
+      "generated/screen/g1-screen-007",
+      "generated/screen/g1-screen-021",
+      "generated/screen/g1-screen-038",
+      "generated/screen/g1-screen-012"
+    ],
+    "extra_training_maps": [
+      "generated/screen/g1-screen-005",
+      "generated/screen/g1-screen-014",
+      "generated/screen/g1-screen-016",
+      "generated/screen/g1-screen-021",
+      "generated/screen/g1-screen-015",
+      "generated/screen/g1-screen-020",
+      "generated/screen/g1-screen-027",
+      "generated/screen/g1-screen-038",
+      "generated/screen/g1-screen-008",
+      "generated/screen/g1-screen-010",
+      "generated/screen/g1-screen-011",
+      "generated/screen/g1-screen-012"
+    ],
+    "extra_training_pairs": [
+      [
+        "online-v76-week2-v1",
+        "online-v76-week2-v1"
+      ]
+    ],
+    "fresh_validation_maps": [
+      "generated/critic-v5/validation/cv5-val-000",
+      "generated/critic-v5/validation/cv5-val-001",
+      "generated/critic-v5/validation/cv5-val-002",
+      "generated/critic-v5/validation/cv5-val-003",
+      "generated/critic-v5/validation/cv5-val-004",
+      "generated/critic-v5/validation/cv5-val-005",
+      "generated/critic-v5/validation/cv5-val-006",
+      "generated/critic-v5/validation/cv5-val-007"
+    ],
+    "fresh_validation_pairs": [
+      [
+        "starter-week2-v1",
+        "calib-seed-week2-v1"
+      ],
+      [
+        "starter-week2-v1",
+        "starter-week2-v1"
+      ]
+    ],
+    "l2_grid": [
+      0.001,
+      0.01,
+      0.1,
+      1.0
+    ],
+    "newton_iterations": 50,
+    "newton_tolerance": 1e-07,
+    "line_search_steps": 24,
+    "calibration_bins": 10,
+    "phase_boundaries": [
+      666,
+      1333
+    ],
+    "bootstrap_samples": 2000,
+    "seed": 20261024,
+    "jobs": 4,
+    "world_round_stride": 10,
+    "source_dataset": "stage4-outcome-v2",
+    "residual_l2_grid": [
+      0.0001,
+      0.001,
+      0.01,
+      0.1,
+      1.0
+    ],
+    "residual_modes": [
+      "team",
+      "team_bc"
+    ],
+    "residual_shrinkage": [
+      0.0,
+      0.25,
+      0.5,
+      1.0
+    ],
+    "bc_complexity_penalty": 0.005,
+    "folds": 3,
+    "additional_maps_per_training_family": 9,
+    "minimum_cv_brier_gain": 0.002,
+    "validation_map_seed": 20261027,
+    "central_training_dataset": "stage4-outcome-v5",
+    "inventory_source_dataset": "stage4-outcome-v3",
+    "monotone_modes": [
+      "temperature",
+      "banks",
+      "wealth",
+      "wealth_banks",
+      "team_wealth",
+      "team_banks_wealth"
+    ],
+    "temperature_bounds": [
+      0.25,
+      2.0
+    ],
+    "box_iterations": 120,
+    "box_tolerance": 1e-06
+  },
+  "training_manifest_sha256": "8845011c14fda9ab08bbf1fd81cfdbb3253f6b59134fc1a9c812715e21b7628c",
+  "fresh_validation_episodes": [
+    {
+      "split": "fresh_validation",
+      "map": "generated/critic-v5/validation/cv5-val-000",
+      "map_sha256": "66e675925658cc6d3aa636851dee9be77bc1b85f3c6ed3711b968bb75ae1b47e",
+      "family": 3,
+      "names": [
+        "starter-week2-v1",
+        "calib-seed-week2-v1"
+      ],
+      "wasm_sha256": [
+        "c9a0ca35cf13686680ef4ea00d0bb99f654a79be78382bdb3283604d5fde9795",
+        "c9602e0a27c5791b84146529346bfd1453e5cdb3c900759363231f487bb6ccf9"
+      ],
+      "runtime": {
+        "cli": "cambc 3.0.1",
+        "sdk_sha256": "478d64d6b611ffbe584d18352c449eaebb0d79465729811788a1e972860a1a9d",
+        "engine_build_hash": "2b36d9c61b2710d06036680d07fc4b7a8319ba35f634e4f1445725e0d99a1e16",
+        "ruleset": "cambc2026a-week2-2026-10-20",
+        "release": true
+      },
+      "lineages": [
+        "sdk-starter",
+        "sdk-starter"
+      ],
+      "episode_id": "eb5037970a7a91e33c1104ff"
+    },
+    {
+      "split": "fresh_validation",
+      "map": "generated/critic-v5/validation/cv5-val-000",
+      "map_sha256": "66e675925658cc6d3aa636851dee9be77bc1b85f3c6ed3711b968bb75ae1b47e",
+      "family": 3,
+      "names": [
+        "calib-seed-week2-v1",
+        "starter-week2-v1"
+      ],
+      "wasm_sha256": [
+        "c9602e0a27c5791b84146529346bfd1453e5cdb3c900759363231f487bb6ccf9",
+        "c9a0ca35cf13686680ef4ea00d0bb99f654a79be78382bdb3283604d5fde9795"
+      ],
+      "runtime": {
+        "cli": "cambc 3.0.1",
+        "sdk_sha256": "478d64d6b611ffbe584d18352c449eaebb0d79465729811788a1e972860a1a9d",
+        "engine_build_hash": "2b36d9c61b2710d06036680d07fc4b7a8319ba35f634e4f1445725e0d99a1e16",
+        "ruleset": "cambc2026a-week2-2026-10-20",
+        "release": true
+      },
+      "lineages": [
+        "sdk-starter",
+        "sdk-starter"
+      ],
+      "episode_id": "fc417cc8f09c9df862b2a614"
+    },
+    {
+      "split": "fresh_validation",
+      "map": "generated/critic-v5/validation/cv5-val-000",
+      "map_sha256": "66e675925658cc6d3aa636851dee9be77bc1b85f3c6ed3711b968bb75ae1b47e",
+      "family": 3,
+      "names": [
+        "starter-week2-v1",
+        "starter-week2-v1"
+      ],
+      "wasm_sha256": [
+        "c9a0ca35cf13686680ef4ea00d0bb99f654a79be78382bdb3283604d5fde9795",
+        "c9a0ca35cf13686680ef4ea00d0bb99f654a79be78382bdb3283604d5fde9795"
+      ],
+      "runtime": {
+        "cli": "cambc 3.0.1",
+        "sdk_sha256": "478d64d6b611ffbe584d18352c449eaebb0d79465729811788a1e972860a1a9d",
+        "engine_build_hash": "2b36d9c61b2710d06036680d07fc4b7a8319ba35f634e4f1445725e0d99a1e16",
+        "ruleset": "cambc2026a-week2-2026-10-20",
+        "release": true
+      },
+      "lineages": [
+        "sdk-starter",
+        "sdk-starter"
+      ],
+      "episode_id": "5ba4fecd4d9c91b0769cd84a"
+    },
+    {
+      "split": "fresh_validation",
+      "map": "generated/critic-v5/validation/cv5-val-001",
+      "map_sha256": "6579249dcc1f39bdfe4099b225cbf4ef9334014a8924ce9afb0aac4daab7ef09",
+      "family": 3,
+      "names": [
+        "starter-week2-v1",
+        "calib-seed-week2-v1"
+      ],
+      "wasm_sha256": [
+        "c9a0ca35cf13686680ef4ea00d0bb99f654a79be78382bdb3283604d5fde9795",
+        "c9602e0a27c5791b84146529346bfd1453e5cdb3c900759363231f487bb6ccf9"
+      ],
+      "runtime": {
+        "cli": "cambc 3.0.1",
+        "sdk_sha256": "478d64d6b611ffbe584d18352c449eaebb0d79465729811788a1e972860a1a9d",
+        "engine_build_hash": "2b36d9c61b2710d06036680d07fc4b7a8319ba35f634e4f1445725e0d99a1e16",
+        "ruleset": "cambc2026a-week2-2026-10-20",
+        "release": true
+      },
+      "lineages": [
+        "sdk-starter",
+        "sdk-starter"
+      ],
+      "episode_id": "735d58d50dc26aac0f7c909d"
+    },
+    {
+      "split": "fresh_validation",
+      "map": "generated/critic-v5/validation/cv5-val-001",
+      "map_sha256": "6579249dcc1f39bdfe4099b225cbf4ef9334014a8924ce9afb0aac4daab7ef09",
+      "family": 3,
+      "names": [
+        "calib-seed-week2-v1",
+        "starter-week2-v1"
+      ],
+      "wasm_sha256": [
+        "c9602e0a27c5791b84146529346bfd1453e5cdb3c900759363231f487bb6ccf9",
+        "c9a0ca35cf13686680ef4ea00d0bb99f654a79be78382bdb3283604d5fde9795"
+      ],
+      "runtime": {
+        "cli": "cambc 3.0.1",
+        "sdk_sha256": "478d64d6b611ffbe584d18352c449eaebb0d79465729811788a1e972860a1a9d",
+        "engine_build_hash": "2b36d9c61b2710d06036680d07fc4b7a8319ba35f634e4f1445725e0d99a1e16",
+        "ruleset": "cambc2026a-week2-2026-10-20",
+        "release": true
+      },
+      "lineages": [
+        "sdk-starter",
+        "sdk-starter"
+      ],
+      "episode_id": "7a2758e7c9a95f91f29b4f97"
+    },
+    {
+      "split": "fresh_validation",
+      "map": "generated/critic-v5/validation/cv5-val-001",
+      "map_sha256": "6579249dcc1f39bdfe4099b225cbf4ef9334014a8924ce9afb0aac4daab7ef09",
+      "family": 3,
+      "names": [
+        "starter-week2-v1",
+        "starter-week2-v1"
+      ],
+      "wasm_sha256": [
+        "c9a0ca35cf13686680ef4ea00d0bb99f654a79be78382bdb3283604d5fde9795",
+        "c9a0ca35cf13686680ef4ea00d0bb99f654a79be78382bdb3283604d5fde9795"
+      ],
+      "runtime": {
+        "cli": "cambc 3.0.1",
+        "sdk_sha256": "478d64d6b611ffbe584d18352c449eaebb0d79465729811788a1e972860a1a9d",
+        "engine_build_hash": "2b36d9c61b2710d06036680d07fc4b7a8319ba35f634e4f1445725e0d99a1e16",
+        "ruleset": "cambc2026a-week2-2026-10-20",
+        "release": true
+      },
+      "lineages": [
+        "sdk-starter",
+        "sdk-starter"
+      ],
+      "episode_id": "167c80b0ac799116d4adc065"
+    },
+    {
+      "split": "fresh_validation",
+      "map": "generated/critic-v5/validation/cv5-val-002",
+      "map_sha256": "58b61e7d5b27ea41ef340f108e5be86abf2cc59581d32836846d6789a6bdb888",
+      "family": 3,
+      "names": [
+        "starter-week2-v1",
+        "calib-seed-week2-v1"
+      ],
+      "wasm_sha256": [
+        "c9a0ca35cf13686680ef4ea00d0bb99f654a79be78382bdb3283604d5fde9795",
+        "c9602e0a27c5791b84146529346bfd1453e5cdb3c900759363231f487bb6ccf9"
+      ],
+      "runtime": {
+        "cli": "cambc 3.0.1",
+        "sdk_sha256": "478d64d6b611ffbe584d18352c449eaebb0d79465729811788a1e972860a1a9d",
+        "engine_build_hash": "2b36d9c61b2710d06036680d07fc4b7a8319ba35f634e4f1445725e0d99a1e16",
+        "ruleset": "cambc2026a-week2-2026-10-20",
+        "release": true
+      },
+      "lineages": [
+        "sdk-starter",
+        "sdk-starter"
+      ],
+      "episode_id": "6289cb184904f0cd5ef5500d"
+    },
+    {
+      "split": "fresh_validation",
+      "map": "generated/critic-v5/validation/cv5-val-002",
+      "map_sha256": "58b61e7d5b27ea41ef340f108e5be86abf2cc59581d32836846d6789a6bdb888",
+      "family": 3,
+      "names": [
+        "calib-seed-week2-v1",
+        "starter-week2-v1"
+      ],
+      "wasm_sha256": [
+        "c9602e0a27c5791b84146529346bfd1453e5cdb3c900759363231f487bb6ccf9",
+        "c9a0ca35cf13686680ef4ea00d0bb99f654a79be78382bdb3283604d5fde9795"
+      ],
+      "runtime": {
+        "cli": "cambc 3.0.1",
+        "sdk_sha256": "478d64d6b611ffbe584d18352c449eaebb0d79465729811788a1e972860a1a9d",
+        "engine_build_hash": "2b36d9c61b2710d06036680d07fc4b7a8319ba35f634e4f1445725e0d99a1e16",
+        "ruleset": "cambc2026a-week2-2026-10-20",
+        "release": true
+      },
+      "lineages": [
+        "sdk-starter",
+        "sdk-starter"
+      ],
+      "episode_id": "5f10e57bc1c3e26d4e6731f5"
+    },
+    {
+      "split": "fresh_validation",
+      "map": "generated/critic-v5/validation/cv5-val-002",
+      "map_sha256": "58b61e7d5b27ea41ef340f108e5be86abf2cc59581d32836846d6789a6bdb888",
+      "family": 3,
+      "names": [
+        "starter-week2-v1",
+        "starter-week2-v1"
+      ],
+      "wasm_sha256": [
+        "c9a0ca35cf13686680ef4ea00d0bb99f654a79be78382bdb3283604d5fde9795",
+        "c9a0ca35cf13686680ef4ea00d0bb99f654a79be78382bdb3283604d5fde9795"
+      ],
+      "runtime": {
+        "cli": "cambc 3.0.1",
+        "sdk_sha256": "478d64d6b611ffbe584d18352c449eaebb0d79465729811788a1e972860a1a9d",
+        "engine_build_hash": "2b36d9c61b2710d06036680d07fc4b7a8319ba35f634e4f1445725e0d99a1e16",
+        "ruleset": "cambc2026a-week2-2026-10-20",
+        "release": true
+      },
+      "lineages": [
+        "sdk-starter",
+        "sdk-starter"
+      ],
+      "episode_id": "8c5400c48628ce3cf6899491"
+    },
+    {
+      "split": "fresh_validation",
+      "map": "generated/critic-v5/validation/cv5-val-003",
+      "map_sha256": "83aa44eda6802a74df1621d7739a10ccd9073e095006b2895ac58f082aad7b51",
+      "family": 3,
+      "names": [
+        "starter-week2-v1",
+        "calib-seed-week2-v1"
+      ],
+      "wasm_sha256": [
+        "c9a0ca35cf13686680ef4ea00d0bb99f654a79be78382bdb3283604d5fde9795",
+        "c9602e0a27c5791b84146529346bfd1453e5cdb3c900759363231f487bb6ccf9"
+      ],
+      "runtime": {
+        "cli": "cambc 3.0.1",
+        "sdk_sha256": "478d64d6b611ffbe584d18352c449eaebb0d79465729811788a1e972860a1a9d",
+        "engine_build_hash": "2b36d9c61b2710d06036680d07fc4b7a8319ba35f634e4f1445725e0d99a1e16",
+        "ruleset": "cambc2026a-week2-2026-10-20",
+        "release": true
+      },
+      "lineages": [
+        "sdk-starter",
+        "sdk-starter"
+      ],
+      "episode_id": "31b15021b801b294e007a37e"
+    },
+    {
+      "split": "fresh_validation",
+      "map": "generated/critic-v5/validation/cv5-val-003",
+      "map_sha256": "83aa44eda6802a74df1621d7739a10ccd9073e095006b2895ac58f082aad7b51",
+      "family": 3,
+      "names": [
+        "calib-seed-week2-v1",
+        "starter-week2-v1"
+      ],
+      "wasm_sha256": [
+        "c9602e0a27c5791b84146529346bfd1453e5cdb3c900759363231f487bb6ccf9",
+        "c9a0ca35cf13686680ef4ea00d0bb99f654a79be78382bdb3283604d5fde9795"
+      ],
+      "runtime": {
+        "cli": "cambc 3.0.1",
+        "sdk_sha256": "478d64d6b611ffbe584d18352c449eaebb0d79465729811788a1e972860a1a9d",
+        "engine_build_hash": "2b36d9c61b2710d06036680d07fc4b7a8319ba35f634e4f1445725e0d99a1e16",
+        "ruleset": "cambc2026a-week2-2026-10-20",
+        "release": true
+      },
+      "lineages": [
+        "sdk-starter",
+        "sdk-starter"
+      ],
+      "episode_id": "ca594e987da04a54fefee104"
+    },
+    {
+      "split": "fresh_validation",
+      "map": "generated/critic-v5/validation/cv5-val-003",
+      "map_sha256": "83aa44eda6802a74df1621d7739a10ccd9073e095006b2895ac58f082aad7b51",
+      "family": 3,
+      "names": [
+        "starter-week2-v1",
+        "starter-week2-v1"
+      ],
+      "wasm_sha256": [
+        "c9a0ca35cf13686680ef4ea00d0bb99f654a79be78382bdb3283604d5fde9795",
+        "c9a0ca35cf13686680ef4ea00d0bb99f654a79be78382bdb3283604d5fde9795"
+      ],
+      "runtime": {
+        "cli": "cambc 3.0.1",
+        "sdk_sha256": "478d64d6b611ffbe584d18352c449eaebb0d79465729811788a1e972860a1a9d",
+        "engine_build_hash": "2b36d9c61b2710d06036680d07fc4b7a8319ba35f634e4f1445725e0d99a1e16",
+        "ruleset": "cambc2026a-week2-2026-10-20",
+        "release": true
+      },
+      "lineages": [
+        "sdk-starter",
+        "sdk-starter"
+      ],
+      "episode_id": "27c46f2e80530deabd24660c"
+    },
+    {
+      "split": "fresh_validation",
+      "map": "generated/critic-v5/validation/cv5-val-004",
+      "map_sha256": "da5c78c35d276c9f3d5c5441d4477dfe9644939f38d6096cdae6cc70ba0b8542",
+      "family": 3,
+      "names": [
+        "starter-week2-v1",
+        "calib-seed-week2-v1"
+      ],
+      "wasm_sha256": [
+        "c9a0ca35cf13686680ef4ea00d0bb99f654a79be78382bdb3283604d5fde9795",
+        "c9602e0a27c5791b84146529346bfd1453e5cdb3c900759363231f487bb6ccf9"
+      ],
+      "runtime": {
+        "cli": "cambc 3.0.1",
+        "sdk_sha256": "478d64d6b611ffbe584d18352c449eaebb0d79465729811788a1e972860a1a9d",
+        "engine_build_hash": "2b36d9c61b2710d06036680d07fc4b7a8319ba35f634e4f1445725e0d99a1e16",
+        "ruleset": "cambc2026a-week2-2026-10-20",
+        "release": true
+      },
+      "lineages": [
+        "sdk-starter",
+        "sdk-starter"
+      ],
+      "episode_id": "0c89d98a5b5ce62a330793cc"
+    },
+    {
+      "split": "fresh_validation",
+      "map": "generated/critic-v5/validation/cv5-val-004",
+      "map_sha256": "da5c78c35d276c9f3d5c5441d4477dfe9644939f38d6096cdae6cc70ba0b8542",
+      "family": 3,
+      "names": [
+        "calib-seed-week2-v1",
+        "starter-week2-v1"
+      ],
+      "wasm_sha256": [
+        "c9602e0a27c5791b84146529346bfd1453e5cdb3c900759363231f487bb6ccf9",
+        "c9a0ca35cf13686680ef4ea00d0bb99f654a79be78382bdb3283604d5fde9795"
+      ],
+      "runtime": {
+        "cli": "cambc 3.0.1",
+        "sdk_sha256": "478d64d6b611ffbe584d18352c449eaebb0d79465729811788a1e972860a1a9d",
+        "engine_build_hash": "2b36d9c61b2710d06036680d07fc4b7a8319ba35f634e4f1445725e0d99a1e16",
+        "ruleset": "cambc2026a-week2-2026-10-20",
+        "release": true
+      },
+      "lineages": [
+        "sdk-starter",
+        "sdk-starter"
+      ],
+      "episode_id": "1ce008b6613c27d2769860f6"
+    },
+    {
+      "split": "fresh_validation",
+      "map": "generated/critic-v5/validation/cv5-val-004",
+      "map_sha256": "da5c78c35d276c9f3d5c5441d4477dfe9644939f38d6096cdae6cc70ba0b8542",
+      "family": 3,
+      "names": [
+        "starter-week2-v1",
+        "starter-week2-v1"
+      ],
+      "wasm_sha256": [
+        "c9a0ca35cf13686680ef4ea00d0bb99f654a79be78382bdb3283604d5fde9795",
+        "c9a0ca35cf13686680ef4ea00d0bb99f654a79be78382bdb3283604d5fde9795"
+      ],
+      "runtime": {
+        "cli": "cambc 3.0.1",
+        "sdk_sha256": "478d64d6b611ffbe584d18352c449eaebb0d79465729811788a1e972860a1a9d",
+        "engine_build_hash": "2b36d9c61b2710d06036680d07fc4b7a8319ba35f634e4f1445725e0d99a1e16",
+        "ruleset": "cambc2026a-week2-2026-10-20",
+        "release": true
+      },
+      "lineages": [
+        "sdk-starter",
+        "sdk-starter"
+      ],
+      "episode_id": "fea2b9fcf690df2c8dd2cb5a"
+    },
+    {
+      "split": "fresh_validation",
+      "map": "generated/critic-v5/validation/cv5-val-005",
+      "map_sha256": "75309a17c14bc64d71d0e0cdc0fcba5f8d855aa5e2d3bbce35d2019edafdf643",
+      "family": 3,
+      "names": [
+        "starter-week2-v1",
+        "calib-seed-week2-v1"
+      ],
+      "wasm_sha256": [
+        "c9a0ca35cf13686680ef4ea00d0bb99f654a79be78382bdb3283604d5fde9795",
+        "c9602e0a27c5791b84146529346bfd1453e5cdb3c900759363231f487bb6ccf9"
+      ],
+      "runtime": {
+        "cli": "cambc 3.0.1",
+        "sdk_sha256": "478d64d6b611ffbe584d18352c449eaebb0d79465729811788a1e972860a1a9d",
+        "engine_build_hash": "2b36d9c61b2710d06036680d07fc4b7a8319ba35f634e4f1445725e0d99a1e16",
+        "ruleset": "cambc2026a-week2-2026-10-20",
+        "release": true
+      },
+      "lineages": [
+        "sdk-starter",
+        "sdk-starter"
+      ],
+      "episode_id": "3f5de75e6527b11dce1d9f57"
+    },
+    {
+      "split": "fresh_validation",
+      "map": "generated/critic-v5/validation/cv5-val-005",
+      "map_sha256": "75309a17c14bc64d71d0e0cdc0fcba5f8d855aa5e2d3bbce35d2019edafdf643",
+      "family": 3,
+      "names": [
+        "calib-seed-week2-v1",
+        "starter-week2-v1"
+      ],
+      "wasm_sha256": [
+        "c9602e0a27c5791b84146529346bfd1453e5cdb3c900759363231f487bb6ccf9",
+        "c9a0ca35cf13686680ef4ea00d0bb99f654a79be78382bdb3283604d5fde9795"
+      ],
+      "runtime": {
+        "cli": "cambc 3.0.1",
+        "sdk_sha256": "478d64d6b611ffbe584d18352c449eaebb0d79465729811788a1e972860a1a9d",
+        "engine_build_hash": "2b36d9c61b2710d06036680d07fc4b7a8319ba35f634e4f1445725e0d99a1e16",
+        "ruleset": "cambc2026a-week2-2026-10-20",
+        "release": true
+      },
+      "lineages": [
+        "sdk-starter",
+        "sdk-starter"
+      ],
+      "episode_id": "c642eeaa24b068b48ab140c4"
+    },
+    {
+      "split": "fresh_validation",
+      "map": "generated/critic-v5/validation/cv5-val-005",
+      "map_sha256": "75309a17c14bc64d71d0e0cdc0fcba5f8d855aa5e2d3bbce35d2019edafdf643",
+      "family": 3,
+      "names": [
+        "starter-week2-v1",
+        "starter-week2-v1"
+      ],
+      "wasm_sha256": [
+        "c9a0ca35cf13686680ef4ea00d0bb99f654a79be78382bdb3283604d5fde9795",
+        "c9a0ca35cf13686680ef4ea00d0bb99f654a79be78382bdb3283604d5fde9795"
+      ],
+      "runtime": {
+        "cli": "cambc 3.0.1",
+        "sdk_sha256": "478d64d6b611ffbe584d18352c449eaebb0d79465729811788a1e972860a1a9d",
+        "engine_build_hash": "2b36d9c61b2710d06036680d07fc4b7a8319ba35f634e4f1445725e0d99a1e16",
+        "ruleset": "cambc2026a-week2-2026-10-20",
+        "release": true
+      },
+      "lineages": [
+        "sdk-starter",
+        "sdk-starter"
+      ],
+      "episode_id": "773de4e729b2bc79a0c3139d"
+    },
+    {
+      "split": "fresh_validation",
+      "map": "generated/critic-v5/validation/cv5-val-006",
+      "map_sha256": "094e1327a6a3a8ed75a8d66e2f4542edf33c69315c08f7c8070f09f0a83cd599",
+      "family": 3,
+      "names": [
+        "starter-week2-v1",
+        "calib-seed-week2-v1"
+      ],
+      "wasm_sha256": [
+        "c9a0ca35cf13686680ef4ea00d0bb99f654a79be78382bdb3283604d5fde9795",
+        "c9602e0a27c5791b84146529346bfd1453e5cdb3c900759363231f487bb6ccf9"
+      ],
+      "runtime": {
+        "cli": "cambc 3.0.1",
+        "sdk_sha256": "478d64d6b611ffbe584d18352c449eaebb0d79465729811788a1e972860a1a9d",
+        "engine_build_hash": "2b36d9c61b2710d06036680d07fc4b7a8319ba35f634e4f1445725e0d99a1e16",
+        "ruleset": "cambc2026a-week2-2026-10-20",
+        "release": true
+      },
+      "lineages": [
+        "sdk-starter",
+        "sdk-starter"
+      ],
+      "episode_id": "59a74cef684807a156ec288c"
+    },
+    {
+      "split": "fresh_validation",
+      "map": "generated/critic-v5/validation/cv5-val-006",
+      "map_sha256": "094e1327a6a3a8ed75a8d66e2f4542edf33c69315c08f7c8070f09f0a83cd599",
+      "family": 3,
+      "names": [
+        "calib-seed-week2-v1",
+        "starter-week2-v1"
+      ],
+      "wasm_sha256": [
+        "c9602e0a27c5791b84146529346bfd1453e5cdb3c900759363231f487bb6ccf9",
+        "c9a0ca35cf13686680ef4ea00d0bb99f654a79be78382bdb3283604d5fde9795"
+      ],
+      "runtime": {
+        "cli": "cambc 3.0.1",
+        "sdk_sha256": "478d64d6b611ffbe584d18352c449eaebb0d79465729811788a1e972860a1a9d",
+        "engine_build_hash": "2b36d9c61b2710d06036680d07fc4b7a8319ba35f634e4f1445725e0d99a1e16",
+        "ruleset": "cambc2026a-week2-2026-10-20",
+        "release": true
+      },
+      "lineages": [
+        "sdk-starter",
+        "sdk-starter"
+      ],
+      "episode_id": "6a19a48e622291e6905611d9"
+    },
+    {
+      "split": "fresh_validation",
+      "map": "generated/critic-v5/validation/cv5-val-006",
+      "map_sha256": "094e1327a6a3a8ed75a8d66e2f4542edf33c69315c08f7c8070f09f0a83cd599",
+      "family": 3,
+      "names": [
+        "starter-week2-v1",
+        "starter-week2-v1"
+      ],
+      "wasm_sha256": [
+        "c9a0ca35cf13686680ef4ea00d0bb99f654a79be78382bdb3283604d5fde9795",
+        "c9a0ca35cf13686680ef4ea00d0bb99f654a79be78382bdb3283604d5fde9795"
+      ],
+      "runtime": {
+        "cli": "cambc 3.0.1",
+        "sdk_sha256": "478d64d6b611ffbe584d18352c449eaebb0d79465729811788a1e972860a1a9d",
+        "engine_build_hash": "2b36d9c61b2710d06036680d07fc4b7a8319ba35f634e4f1445725e0d99a1e16",
+        "ruleset": "cambc2026a-week2-2026-10-20",
+        "release": true
+      },
+      "lineages": [
+        "sdk-starter",
+        "sdk-starter"
+      ],
+      "episode_id": "439865da5cf8123440189043"
+    },
+    {
+      "split": "fresh_validation",
+      "map": "generated/critic-v5/validation/cv5-val-007",
+      "map_sha256": "2ff9e52fc0e5eda7498cba36d16c9cf985aff3af2939de39b4ce5eea77091e23",
+      "family": 3,
+      "names": [
+        "starter-week2-v1",
+        "calib-seed-week2-v1"
+      ],
+      "wasm_sha256": [
+        "c9a0ca35cf13686680ef4ea00d0bb99f654a79be78382bdb3283604d5fde9795",
+        "c9602e0a27c5791b84146529346bfd1453e5cdb3c900759363231f487bb6ccf9"
+      ],
+      "runtime": {
+        "cli": "cambc 3.0.1",
+        "sdk_sha256": "478d64d6b611ffbe584d18352c449eaebb0d79465729811788a1e972860a1a9d",
+        "engine_build_hash": "2b36d9c61b2710d06036680d07fc4b7a8319ba35f634e4f1445725e0d99a1e16",
+        "ruleset": "cambc2026a-week2-2026-10-20",
+        "release": true
+      },
+      "lineages": [
+        "sdk-starter",
+        "sdk-starter"
+      ],
+      "episode_id": "59e20a597ad31b1c35948c5f"
+    },
+    {
+      "split": "fresh_validation",
+      "map": "generated/critic-v5/validation/cv5-val-007",
+      "map_sha256": "2ff9e52fc0e5eda7498cba36d16c9cf985aff3af2939de39b4ce5eea77091e23",
+      "family": 3,
+      "names": [
+        "calib-seed-week2-v1",
+        "starter-week2-v1"
+      ],
+      "wasm_sha256": [
+        "c9602e0a27c5791b84146529346bfd1453e5cdb3c900759363231f487bb6ccf9",
+        "c9a0ca35cf13686680ef4ea00d0bb99f654a79be78382bdb3283604d5fde9795"
+      ],
+      "runtime": {
+        "cli": "cambc 3.0.1",
+        "sdk_sha256": "478d64d6b611ffbe584d18352c449eaebb0d79465729811788a1e972860a1a9d",
+        "engine_build_hash": "2b36d9c61b2710d06036680d07fc4b7a8319ba35f634e4f1445725e0d99a1e16",
+        "ruleset": "cambc2026a-week2-2026-10-20",
+        "release": true
+      },
+      "lineages": [
+        "sdk-starter",
+        "sdk-starter"
+      ],
+      "episode_id": "3907c330c7b91202bcc39953"
+    },
+    {
+      "split": "fresh_validation",
+      "map": "generated/critic-v5/validation/cv5-val-007",
+      "map_sha256": "2ff9e52fc0e5eda7498cba36d16c9cf985aff3af2939de39b4ce5eea77091e23",
+      "family": 3,
+      "names": [
+        "starter-week2-v1",
+        "starter-week2-v1"
+      ],
+      "wasm_sha256": [
+        "c9a0ca35cf13686680ef4ea00d0bb99f654a79be78382bdb3283604d5fde9795",
+        "c9a0ca35cf13686680ef4ea00d0bb99f654a79be78382bdb3283604d5fde9795"
+      ],
+      "runtime": {
+        "cli": "cambc 3.0.1",
+        "sdk_sha256": "478d64d6b611ffbe584d18352c449eaebb0d79465729811788a1e972860a1a9d",
+        "engine_build_hash": "2b36d9c61b2710d06036680d07fc4b7a8319ba35f634e4f1445725e0d99a1e16",
+        "ruleset": "cambc2026a-week2-2026-10-20",
+        "release": true
+      },
+      "lineages": [
+        "sdk-starter",
+        "sdk-starter"
+      ],
+      "episode_id": "049dc91185d6b272cd060e92"
+    }
+  ],
+  "parent_weights_sha256": "76ec1dcaf4d37f1cccaccd483885e241a7f14cf929630332ece35e72e5988d3e",
+  "runtime": {
+    "cli": "cambc 3.0.1",
+    "sdk_sha256": "478d64d6b611ffbe584d18352c449eaebb0d79465729811788a1e972860a1a9d",
+    "engine_build_hash": "2b36d9c61b2710d06036680d07fc4b7a8319ba35f634e4f1445725e0d99a1e16",
+    "ruleset": "cambc2026a-week2-2026-10-20",
+    "release": true
+  },
+  "acceptance": "unchanged strict Brier AND log loss superiority to constant AND score/time baseline",
+  "actor_updated": false,
+  "ppo_started": false,
+  "confirmation_games": 0
+}

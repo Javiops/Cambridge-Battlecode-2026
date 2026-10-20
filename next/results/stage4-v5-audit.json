@@ -1,0 +1,11 @@
+{
+  "passed": true,
+  "games": 75,
+  "rows": 120946,
+  "training_manifest_sha256": "8845011c14fda9ab08bbf1fd81cfdbb3253f6b59134fc1a9c812715e21b7628c",
+  "evaluation_manifest_sha256": "a38a7d55fcb079dd40aa31ccfdf39c8bc3c0d6d283f242b6211c6ba38cac6899",
+  "source_sha256": "a11846bb57fd28192ed1e49ccc68acf5196042740a14028113d0186bb021a47d",
+  "current_state_only": true,
+  "actor_unchanged": true,
+  "confirmation_games": 0
+}

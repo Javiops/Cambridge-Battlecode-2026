@@ -1,0 +1,10 @@
+{
+  "passed": true,
+  "roster": 6,
+  "initial_inventories_zero": true,
+  "current_inventory_changes_verified": true,
+  "hidden_enemy_gold_does_not_change_actor": true,
+  "past_snapshot_unchanged": true,
+  "source": "live official native state; no terminal-statistic feature queries",
+  "engine_sha256": "f7d27c468024ce20f1f64eb1bd06ec4de6314213314fb0132e8b605cf0a610db"
+}

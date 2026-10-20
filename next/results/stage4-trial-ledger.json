@@ -1,0 +1,68 @@
+{
+  "acceptance": "strict lower game/team-weighted Brier AND log loss than BOTH constant and independently selected score/time baseline",
+  "trials": [
+    {
+      "model": "outcome-v1",
+      "status": "invalid",
+      "reason": "unsigned-label log-loss bug",
+      "record": "results/stage4-invalid-v1.json"
+    },
+    {
+      "model": "outcome-v2",
+      "status": "rejected",
+      "record": "models/outcome-v2/training.json",
+      "baseline": {
+        "brier": 0.13402090117443738,
+        "log_loss": 0.39927170143785096
+      },
+      "critic": {
+        "brier": 0.13906797388302033,
+        "log_loss": 0.41563860539256303
+      }
+    },
+    {
+      "model": "outcome-v3",
+      "status": "rejected",
+      "record": "models/outcome-v3/evaluation.json",
+      "baseline": {
+        "brier": 0.1253462445673012,
+        "log_loss": 0.3890515053771274
+      },
+      "critic": {
+        "brier": 0.127066577858856,
+        "log_loss": 0.3916497770957985
+      }
+    },
+    {
+      "model": "outcome-v4",
+      "status": "rejected",
+      "record": "models/outcome-v4/evaluation.json",
+      "baseline": {
+        "brier": 0.16226743955915793,
+        "log_loss": 0.4790024645964836
+      },
+      "critic": {
+        "brier": 0.16741421569550186,
+        "log_loss": 0.4887953049267506
+      }
+    },
+    {
+      "model": "outcome-v5",
+      "status": "passed",
+      "record": "models/outcome-v5/evaluation.json",
+      "baseline": {
+        "brier": 0.13067074600401501,
+        "log_loss": 0.40074948061090876
+      },
+      "critic": {
+        "brier": 0.12507579582082076,
+        "log_loss": 0.38629259472347954
+      }
+    }
+  ],
+  "independent_new_map_cohort_per_trial": true,
+  "development_within_training_only": true,
+  "interpretation": "Sequential research: previous cohort failures informed feature hypotheses. Each frozen candidate had one new outer test; no claim of a selection-adjusted universal guarantee.",
+  "actor_changed": false,
+  "stage5_started": false
+}

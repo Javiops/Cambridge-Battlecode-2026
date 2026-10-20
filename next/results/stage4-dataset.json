@@ -1,0 +1,1624 @@
+{
+  "schema": 1,
+  "passed": true,
+  "parent_weights_sha256": "76ec1dcaf4d37f1cccaccd483885e241a7f14cf929630332ece35e72e5988d3e",
+  "source_manifest_sha256": "271e888f1c473b3559d30802d28fa0168be0a982a657a92c456bb216efcb2426",
+  "plan_sha256": "d56168ca449219152cae43a71ea4524ddbdd193750eca6baa554fd1ad80c6d25",
+  "episodes": [
+    {
+      "episode_id": "9e7260ffbeae3229ef457156",
+      "map": "generated/screen/g1-screen-000",
+      "family": 0,
+      "split": "train",
+      "rows": 2728,
+      "terminal": {
+        "outcome": "teamA",
+        "round": 1702,
+        "banks": [
+          1011,
+          238
+        ]
+      },
+      "teams": {
+        "0": 1364,
+        "1": 1364
+      },
+      "path": "shards/train-9e7260ffbeae3229ef457156.npz",
+      "sha256": "8bd8f93132a6092c5078bd58b030ffe4bd56642c512d86fdc6fb5fb6da872d2d",
+      "observation_source_sha256": "799fee300afa4ab84816f0e99bb2fb462fe613b8d221cc9f99ce08dfc508970a",
+      "lineages": [
+        "live-love-larp-v76",
+        "live-love-larp-v76"
+      ],
+      "runtime": {
+        "cli": "cambc 3.0.1",
+        "sdk_sha256": "478d64d6b611ffbe584d18352c449eaebb0d79465729811788a1e972860a1a9d",
+        "engine_build_hash": "2b36d9c61b2710d06036680d07fc4b7a8319ba35f634e4f1445725e0d99a1e16",
+        "ruleset": "cambc2026a-week2-2026-10-20",
+        "release": true
+      },
+      "map_sha256": "c5fca8116a6e73856e630ea95677f4023a164d4f9759e3a0cf717c3e32932f23"
+    },
+    {
+      "episode_id": "60a5d2c026a3de80fe2d070d",
+      "map": "generated/screen/g1-screen-000",
+      "family": 0,
+      "split": "train",
+      "rows": 1939,
+      "terminal": {
+        "outcome": "teamA",
+        "round": 1385,
+        "banks": [
+          1004,
+          0
+        ]
+      },
+      "teams": {
+        "0": 1108,
+        "1": 831
+      },
+      "path": "shards/train-60a5d2c026a3de80fe2d070d.npz",
+      "sha256": "748be8ee35db68fc29b3109dd0538e95d799920f3907a0497bf85edda67d78ae",
+      "observation_source_sha256": "26b04c7ba825b173ec7f0ba5b257e3f566545c5f1375b151fead8eb4511d0c1e",
+      "lineages": [
+        "live-love-larp-v76",
+        "idle"
+      ],
+      "runtime": {
+        "cli": "cambc 3.0.1",
+        "sdk_sha256": "478d64d6b611ffbe584d18352c449eaebb0d79465729811788a1e972860a1a9d",
+        "engine_build_hash": "2b36d9c61b2710d06036680d07fc4b7a8319ba35f634e4f1445725e0d99a1e16",
+        "ruleset": "cambc2026a-week2-2026-10-20",
+        "release": true
+      },
+      "map_sha256": "c5fca8116a6e73856e630ea95677f4023a164d4f9759e3a0cf717c3e32932f23"
+    },
+    {
+      "episode_id": "7b98099116924e45098576d9",
+      "map": "generated/screen/g1-screen-000",
+      "family": 0,
+      "split": "train",
+      "rows": 1862,
+      "terminal": {
+        "outcome": "teamB",
+        "round": 1329,
+        "banks": [
+          0,
+          1000
+        ]
+      },
+      "teams": {
+        "0": 798,
+        "1": 1064
+      },
+      "path": "shards/train-7b98099116924e45098576d9.npz",
+      "sha256": "67b77f6da0b6bb26a8467150c7ad99d4454700979c0aa231748a90a17947f5a6",
+      "observation_source_sha256": "d734da27dd11c6d324a2db5a886f86f0a6346007cfc01e6aa872e934ddcaf80d",
+      "lineages": [
+        "idle",
+        "live-love-larp-v76"
+      ],
+      "runtime": {
+        "cli": "cambc 3.0.1",
+        "sdk_sha256": "478d64d6b611ffbe584d18352c449eaebb0d79465729811788a1e972860a1a9d",
+        "engine_build_hash": "2b36d9c61b2710d06036680d07fc4b7a8319ba35f634e4f1445725e0d99a1e16",
+        "ruleset": "cambc2026a-week2-2026-10-20",
+        "release": true
+      },
+      "map_sha256": "c5fca8116a6e73856e630ea95677f4023a164d4f9759e3a0cf717c3e32932f23"
+    },
+    {
+      "episode_id": "948da54173bf8af341bd67da",
+      "map": "generated/screen/g1-screen-001",
+      "family": 0,
+      "split": "train",
+      "rows": 1924,
+      "terminal": {
+        "outcome": "teamA",
+        "round": 1201,
+        "banks": [
+          1003,
+          170
+        ]
+      },
+      "teams": {
+        "0": 962,
+        "1": 962
+      },
+      "path": "shards/train-948da54173bf8af341bd67da.npz",
+      "sha256": "9981c694317ece2bb1dfcf14c3aecca6afdd2ff06efd754424a063d976751c7d",
+      "observation_source_sha256": "5a4551ef60bde86083e6eb6845d67125621cc6d62ccbfa58a69c2571347b6681",
+      "lineages": [
+        "live-love-larp-v76",
+        "live-love-larp-v76"
+      ],
+      "runtime": {
+        "cli": "cambc 3.0.1",
+        "sdk_sha256": "478d64d6b611ffbe584d18352c449eaebb0d79465729811788a1e972860a1a9d",
+        "engine_build_hash": "2b36d9c61b2710d06036680d07fc4b7a8319ba35f634e4f1445725e0d99a1e16",
+        "ruleset": "cambc2026a-week2-2026-10-20",
+        "release": true
+      },
+      "map_sha256": "f9fd8ee8724cae0143ffe80a7df51d36ac4e2f9c18c6bc4f9c30372daaea7ad8"
+    },
+    {
+      "episode_id": "c98df58f0374ff237629c9c8",
+      "map": "generated/screen/g1-screen-001",
+      "family": 0,
+      "split": "train",
+      "rows": 1687,
+      "terminal": {
+        "outcome": "teamA",
+        "round": 1202,
+        "banks": [
+          1001,
+          0
+        ]
+      },
+      "teams": {
+        "0": 964,
+        "1": 723
+      },
+      "path": "shards/train-c98df58f0374ff237629c9c8.npz",
+      "sha256": "32f89bc804108b8ba356f2b6a2d26e5dda6d357050781d07eb2d9968582691ff",
+      "observation_source_sha256": "7cf24f4c03a952207850f8fd36c17ce3899cb4ad04e949ebdc82dcb9388d0bed",
+      "lineages": [
+        "live-love-larp-v76",
+        "idle"
+      ],
+      "runtime": {
+        "cli": "cambc 3.0.1",
+        "sdk_sha256": "478d64d6b611ffbe584d18352c449eaebb0d79465729811788a1e972860a1a9d",
+        "engine_build_hash": "2b36d9c61b2710d06036680d07fc4b7a8319ba35f634e4f1445725e0d99a1e16",
+        "ruleset": "cambc2026a-week2-2026-10-20",
+        "release": true
+      },
+      "map_sha256": "f9fd8ee8724cae0143ffe80a7df51d36ac4e2f9c18c6bc4f9c30372daaea7ad8"
+    },
+    {
+      "episode_id": "7726c96418525646d6f463be",
+      "map": "generated/screen/g1-screen-001",
+      "family": 0,
+      "split": "train",
+      "rows": 1631,
+      "terminal": {
+        "outcome": "teamB",
+        "round": 1163,
+        "banks": [
+          0,
+          1006
+        ]
+      },
+      "teams": {
+        "0": 699,
+        "1": 932
+      },
+      "path": "shards/train-7726c96418525646d6f463be.npz",
+      "sha256": "02c77468def57c50484a06f1cf8385bf8d3fbb113dac610f45faa81555cb4356",
+      "observation_source_sha256": "8441159065aab78a35b08d25b1f8ff3c9fe8016e1ad3712d69466dc7e54f1cc2",
+      "lineages": [
+        "idle",
+        "live-love-larp-v76"
+      ],
+      "runtime": {
+        "cli": "cambc 3.0.1",
+        "sdk_sha256": "478d64d6b611ffbe584d18352c449eaebb0d79465729811788a1e972860a1a9d",
+        "engine_build_hash": "2b36d9c61b2710d06036680d07fc4b7a8319ba35f634e4f1445725e0d99a1e16",
+        "ruleset": "cambc2026a-week2-2026-10-20",
+        "release": true
+      },
+      "map_sha256": "f9fd8ee8724cae0143ffe80a7df51d36ac4e2f9c18c6bc4f9c30372daaea7ad8"
+    },
+    {
+      "episode_id": "6b27d270ee18a9886726496c",
+      "map": "generated/screen/g1-screen-003",
+      "family": 1,
+      "split": "train",
+      "rows": 3395,
+      "terminal": {
+        "outcome": "teamA",
+        "round": 1696,
+        "banks": [
+          1029,
+          627
+        ]
+      },
+      "teams": {
+        "0": 1697,
+        "1": 1698
+      },
+      "path": "shards/train-6b27d270ee18a9886726496c.npz",
+      "sha256": "831c9bed29c38e13cd55dee0d9bf126a049f6e2ff97571ca7e07e8a72e368600",
+      "observation_source_sha256": "546e76944de0fca7d8f3f5324df4dd912981823e411d0cd0be033f8cd7157360",
+      "lineages": [
+        "live-love-larp-v76",
+        "live-love-larp-v76"
+      ],
+      "runtime": {
+        "cli": "cambc 3.0.1",
+        "sdk_sha256": "478d64d6b611ffbe584d18352c449eaebb0d79465729811788a1e972860a1a9d",
+        "engine_build_hash": "2b36d9c61b2710d06036680d07fc4b7a8319ba35f634e4f1445725e0d99a1e16",
+        "ruleset": "cambc2026a-week2-2026-10-20",
+        "release": true
+      },
+      "map_sha256": "f2338072f2be1307ac369988049617f6f0a7843b2b1b984bdefb47bcbf19ced7"
+    },
+    {
+      "episode_id": "488c1db3c9d09fae0579497c",
+      "map": "generated/screen/g1-screen-003",
+      "family": 1,
+      "split": "train",
+      "rows": 3510,
+      "terminal": {
+        "outcome": "teamA",
+        "round": 1754,
+        "banks": [
+          1002,
+          0
+        ]
+      },
+      "teams": {
+        "0": 1755,
+        "1": 1755
+      },
+      "path": "shards/train-488c1db3c9d09fae0579497c.npz",
+      "sha256": "be89a2591498e142cc83a7d1a482c91522131657ef3c68b4060e2e1d45b6b61f",
+      "observation_source_sha256": "78aca00ecf7e6cde9ec689a34f5e26fd7c70f6f0e70c66e9d854da6e089a8ef6",
+      "lineages": [
+        "live-love-larp-v76",
+        "idle"
+      ],
+      "runtime": {
+        "cli": "cambc 3.0.1",
+        "sdk_sha256": "478d64d6b611ffbe584d18352c449eaebb0d79465729811788a1e972860a1a9d",
+        "engine_build_hash": "2b36d9c61b2710d06036680d07fc4b7a8319ba35f634e4f1445725e0d99a1e16",
+        "ruleset": "cambc2026a-week2-2026-10-20",
+        "release": true
+      },
+      "map_sha256": "f2338072f2be1307ac369988049617f6f0a7843b2b1b984bdefb47bcbf19ced7"
+    },
+    {
+      "episode_id": "8dc06ece972af3306e6d3c38",
+      "map": "generated/screen/g1-screen-003",
+      "family": 1,
+      "split": "train",
+      "rows": 2965,
+      "terminal": {
+        "outcome": "teamB",
+        "round": 1481,
+        "banks": [
+          0,
+          1008
+        ]
+      },
+      "teams": {
+        "0": 1483,
+        "1": 1482
+      },
+      "path": "shards/train-8dc06ece972af3306e6d3c38.npz",
+      "sha256": "a819d03243d89163b141064cee0c2c1caa01bb9b84fc1004143d09ada9afadc3",
+      "observation_source_sha256": "141a984c0d8a175616c7d518e16e81fa2edee35326dd4c93cca5d6cffb15bf76",
+      "lineages": [
+        "idle",
+        "live-love-larp-v76"
+      ],
+      "runtime": {
+        "cli": "cambc 3.0.1",
+        "sdk_sha256": "478d64d6b611ffbe584d18352c449eaebb0d79465729811788a1e972860a1a9d",
+        "engine_build_hash": "2b36d9c61b2710d06036680d07fc4b7a8319ba35f634e4f1445725e0d99a1e16",
+        "ruleset": "cambc2026a-week2-2026-10-20",
+        "release": true
+      },
+      "map_sha256": "f2338072f2be1307ac369988049617f6f0a7843b2b1b984bdefb47bcbf19ced7"
+    },
+    {
+      "episode_id": "96b6ffb2956fd8d018c04f69",
+      "map": "generated/screen/g1-screen-007",
+      "family": 1,
+      "split": "train",
+      "rows": 2904,
+      "terminal": {
+        "outcome": "teamA",
+        "round": 1814,
+        "banks": [
+          1024,
+          64
+        ]
+      },
+      "teams": {
+        "0": 1452,
+        "1": 1452
+      },
+      "path": "shards/train-96b6ffb2956fd8d018c04f69.npz",
+      "sha256": "5b99f10dca5f57ab3350027e66a3601f30dea265edce94abcad945126822d716",
+      "observation_source_sha256": "6b68d558105bb5dbc4263b7c99656f6a8baf44435a4749ec65a0434313ad481b",
+      "lineages": [
+        "live-love-larp-v76",
+        "live-love-larp-v76"
+      ],
+      "runtime": {
+        "cli": "cambc 3.0.1",
+        "sdk_sha256": "478d64d6b611ffbe584d18352c449eaebb0d79465729811788a1e972860a1a9d",
+        "engine_build_hash": "2b36d9c61b2710d06036680d07fc4b7a8319ba35f634e4f1445725e0d99a1e16",
+        "ruleset": "cambc2026a-week2-2026-10-20",
+        "release": true
+      },
+      "map_sha256": "aaa0846f7c20c2187ee584f52a27a674d120c4ecbc2b1e11cdd81aa4ec1642e2"
+    },
+    {
+      "episode_id": "c91e4c26bded994efa5f51e6",
+      "map": "generated/screen/g1-screen-007",
+      "family": 1,
+      "split": "train",
+      "rows": 2800,
+      "terminal": {
+        "outcome": "teamA",
+        "round": 2000,
+        "banks": [
+          667,
+          0
+        ]
+      },
+      "teams": {
+        "0": 1600,
+        "1": 1200
+      },
+      "path": "shards/train-c91e4c26bded994efa5f51e6.npz",
+      "sha256": "ffa9451c8110585894e10180311c6902000d750db4374efc5f5520d30b39af97",
+      "observation_source_sha256": "f2c3ba8c988e38a56162cbaaabb153c5160a68ae2a9fc150e78733e6af633e12",
+      "lineages": [
+        "live-love-larp-v76",
+        "idle"
+      ],
+      "runtime": {
+        "cli": "cambc 3.0.1",
+        "sdk_sha256": "478d64d6b611ffbe584d18352c449eaebb0d79465729811788a1e972860a1a9d",
+        "engine_build_hash": "2b36d9c61b2710d06036680d07fc4b7a8319ba35f634e4f1445725e0d99a1e16",
+        "ruleset": "cambc2026a-week2-2026-10-20",
+        "release": true
+      },
+      "map_sha256": "aaa0846f7c20c2187ee584f52a27a674d120c4ecbc2b1e11cdd81aa4ec1642e2"
+    },
+    {
+      "episode_id": "332ff52744a898e4fd467eb0",
+      "map": "generated/screen/g1-screen-007",
+      "family": 1,
+      "split": "train",
+      "rows": 2800,
+      "terminal": {
+        "outcome": "teamB",
+        "round": 2000,
+        "banks": [
+          0,
+          958
+        ]
+      },
+      "teams": {
+        "0": 1200,
+        "1": 1600
+      },
+      "path": "shards/train-332ff52744a898e4fd467eb0.npz",
+      "sha256": "ced6680313e1de13a0d9546723db115c8035513702cbf8897fe3ca67c237d153",
+      "observation_source_sha256": "bf35fd6fc9c2eb1c6705058a512fbb58c76b77e8db9f971252cf9fa33fbd1f4f",
+      "lineages": [
+        "idle",
+        "live-love-larp-v76"
+      ],
+      "runtime": {
+        "cli": "cambc 3.0.1",
+        "sdk_sha256": "478d64d6b611ffbe584d18352c449eaebb0d79465729811788a1e972860a1a9d",
+        "engine_build_hash": "2b36d9c61b2710d06036680d07fc4b7a8319ba35f634e4f1445725e0d99a1e16",
+        "ruleset": "cambc2026a-week2-2026-10-20",
+        "release": true
+      },
+      "map_sha256": "aaa0846f7c20c2187ee584f52a27a674d120c4ecbc2b1e11cdd81aa4ec1642e2"
+    },
+    {
+      "episode_id": "542ffb7dfcb08f3a8d918600",
+      "map": "generated/screen/g1-screen-002",
+      "family": 2,
+      "split": "train",
+      "rows": 3140,
+      "terminal": {
+        "outcome": "teamA",
+        "round": 1569,
+        "banks": [
+          1029,
+          568
+        ]
+      },
+      "teams": {
+        "0": 1570,
+        "1": 1570
+      },
+      "path": "shards/train-542ffb7dfcb08f3a8d918600.npz",
+      "sha256": "e86f7dcda23da70f22b6211d6e7400357f4311e3abfdd1e053abecf5a0b17652",
+      "observation_source_sha256": "1edb7da9bfbac4bbc78c9500efa6abc1338100405acf9bf653e617a5ff0fadbb",
+      "lineages": [
+        "live-love-larp-v76",
+        "live-love-larp-v76"
+      ],
+      "runtime": {
+        "cli": "cambc 3.0.1",
+        "sdk_sha256": "478d64d6b611ffbe584d18352c449eaebb0d79465729811788a1e972860a1a9d",
+        "engine_build_hash": "2b36d9c61b2710d06036680d07fc4b7a8319ba35f634e4f1445725e0d99a1e16",
+        "ruleset": "cambc2026a-week2-2026-10-20",
+        "release": true
+      },
+      "map_sha256": "2600d65825d2ba20c7a0568b70e25e4ff1963ca9b1ae9083eae3e69a3618f33c"
+    },
+    {
+      "episode_id": "b1150aaeca798e0c4fe05116",
+      "map": "generated/screen/g1-screen-002",
+      "family": 2,
+      "split": "train",
+      "rows": 4224,
+      "terminal": {
+        "outcome": "teamA",
+        "round": 1918,
+        "banks": [
+          1086,
+          0
+        ]
+      },
+      "teams": {
+        "0": 1920,
+        "1": 2304
+      },
+      "path": "shards/train-b1150aaeca798e0c4fe05116.npz",
+      "sha256": "cd7d211764e972cd75aa3d0a1d85027f3e02a6168084d415f98f87f015662d92",
+      "observation_source_sha256": "bc9b7ad70aef003a298e3829c8c1a68f83ba8767cae986ab06a300c454efbf0c",
+      "lineages": [
+        "live-love-larp-v76",
+        "idle"
+      ],
+      "runtime": {
+        "cli": "cambc 3.0.1",
+        "sdk_sha256": "478d64d6b611ffbe584d18352c449eaebb0d79465729811788a1e972860a1a9d",
+        "engine_build_hash": "2b36d9c61b2710d06036680d07fc4b7a8319ba35f634e4f1445725e0d99a1e16",
+        "ruleset": "cambc2026a-week2-2026-10-20",
+        "release": true
+      },
+      "map_sha256": "2600d65825d2ba20c7a0568b70e25e4ff1963ca9b1ae9083eae3e69a3618f33c"
+    },
+    {
+      "episode_id": "de017137cc37fe388312cfdc",
+      "map": "generated/screen/g1-screen-002",
+      "family": 2,
+      "split": "train",
+      "rows": 4246,
+      "terminal": {
+        "outcome": "teamB",
+        "round": 1929,
+        "banks": [
+          0,
+          1004
+        ]
+      },
+      "teams": {
+        "0": 2316,
+        "1": 1930
+      },
+      "path": "shards/train-de017137cc37fe388312cfdc.npz",
+      "sha256": "b4162eb83a42694085fd5da478bb7ee0fc472623d09db39e5e18a8318fb21b9b",
+      "observation_source_sha256": "3f16c9550ac6c4f82b553896384fe7caef44045fb99a73fae1a91c50dd54fabe",
+      "lineages": [
+        "idle",
+        "live-love-larp-v76"
+      ],
+      "runtime": {
+        "cli": "cambc 3.0.1",
+        "sdk_sha256": "478d64d6b611ffbe584d18352c449eaebb0d79465729811788a1e972860a1a9d",
+        "engine_build_hash": "2b36d9c61b2710d06036680d07fc4b7a8319ba35f634e4f1445725e0d99a1e16",
+        "ruleset": "cambc2026a-week2-2026-10-20",
+        "release": true
+      },
+      "map_sha256": "2600d65825d2ba20c7a0568b70e25e4ff1963ca9b1ae9083eae3e69a3618f33c"
+    },
+    {
+      "episode_id": "dc557787f9a7692301111f8e",
+      "map": "generated/screen/g1-screen-004",
+      "family": 2,
+      "split": "train",
+      "rows": 3234,
+      "terminal": {
+        "outcome": "teamA",
+        "round": 1469,
+        "banks": [
+          1016,
+          0
+        ]
+      },
+      "teams": {
+        "0": 1470,
+        "1": 1764
+      },
+      "path": "shards/train-dc557787f9a7692301111f8e.npz",
+      "sha256": "b5efd49013c778af0b501cc6f2a23a5e31ccefdb6d491e79407c8f832886c561",
+      "observation_source_sha256": "fa21b14b16b1057ec5f7d137b6355a4835d63cfcf9308ea213f69f814ee18fbb",
+      "lineages": [
+        "live-love-larp-v76",
+        "idle"
+      ],
+      "runtime": {
+        "cli": "cambc 3.0.1",
+        "sdk_sha256": "478d64d6b611ffbe584d18352c449eaebb0d79465729811788a1e972860a1a9d",
+        "engine_build_hash": "2b36d9c61b2710d06036680d07fc4b7a8319ba35f634e4f1445725e0d99a1e16",
+        "ruleset": "cambc2026a-week2-2026-10-20",
+        "release": true
+      },
+      "map_sha256": "e9e72601110c631d1cf995682554eed42dc3d576244596b0ad7ae4fb34cd29e3"
+    },
+    {
+      "episode_id": "5fe7661709fbd43277b3de55",
+      "map": "generated/screen/g1-screen-004",
+      "family": 2,
+      "split": "train",
+      "rows": 3223,
+      "terminal": {
+        "outcome": "teamB",
+        "round": 1464,
+        "banks": [
+          0,
+          1003
+        ]
+      },
+      "teams": {
+        "0": 1758,
+        "1": 1465
+      },
+      "path": "shards/train-5fe7661709fbd43277b3de55.npz",
+      "sha256": "df0c197422dcbffcd02b0ed1ceaa904159af3f391166f770f6b3e84c4187022f",
+      "observation_source_sha256": "132ada5aaf5a95fed60f1f2d7648001473aebb77df3ff569742f6b3fb6c5a482",
+      "lineages": [
+        "idle",
+        "live-love-larp-v76"
+      ],
+      "runtime": {
+        "cli": "cambc 3.0.1",
+        "sdk_sha256": "478d64d6b611ffbe584d18352c449eaebb0d79465729811788a1e972860a1a9d",
+        "engine_build_hash": "2b36d9c61b2710d06036680d07fc4b7a8319ba35f634e4f1445725e0d99a1e16",
+        "ruleset": "cambc2026a-week2-2026-10-20",
+        "release": true
+      },
+      "map_sha256": "e9e72601110c631d1cf995682554eed42dc3d576244596b0ad7ae4fb34cd29e3"
+    },
+    {
+      "episode_id": "5d70db190999cf9d941b22ac",
+      "map": "generated/screen/g1-screen-006",
+      "family": 3,
+      "split": "validation",
+      "rows": 3600,
+      "terminal": {
+        "outcome": "teamA",
+        "round": 2000,
+        "banks": [
+          569,
+          542
+        ]
+      },
+      "teams": {
+        "0": 2000,
+        "1": 1600
+      },
+      "path": "shards/validation-5d70db190999cf9d941b22ac.npz",
+      "sha256": "86d48fd9342d79ef70f4d028c732da404e15fab8402560c50bdb260a5099c7b4",
+      "observation_source_sha256": "01046b00d529f2bbc6ecde924d76bfad32d3d15ad69fd18842d98b1bed6bd9e4",
+      "lineages": [
+        "sdk-starter",
+        "sdk-starter"
+      ],
+      "runtime": {
+        "cli": "cambc 3.0.1",
+        "sdk_sha256": "478d64d6b611ffbe584d18352c449eaebb0d79465729811788a1e972860a1a9d",
+        "engine_build_hash": "2b36d9c61b2710d06036680d07fc4b7a8319ba35f634e4f1445725e0d99a1e16",
+        "ruleset": "cambc2026a-week2-2026-10-20",
+        "release": true
+      },
+      "map_sha256": "dcc9a4436f9ad52c946471b300037a96fa5cff88cbc2cfc9bd18481d0e8d093a"
+    },
+    {
+      "episode_id": "46739459b29dc5176b4ae8dc",
+      "map": "generated/screen/g1-screen-006",
+      "family": 3,
+      "split": "validation",
+      "rows": 2963,
+      "terminal": {
+        "outcome": "teamB",
+        "round": 1851,
+        "banks": [
+          544,
+          1010
+        ]
+      },
+      "teams": {
+        "0": 1482,
+        "1": 1481
+      },
+      "path": "shards/validation-46739459b29dc5176b4ae8dc.npz",
+      "sha256": "04b7616b116186c8f457f48cf3c4576e9ac870c6f44d10da8fdb94b87e6dd41f",
+      "observation_source_sha256": "e7466456ffa21ae5569f1187ce7d55b82ed03f619ebd92ebf065fb4f78c61ac5",
+      "lineages": [
+        "sdk-starter",
+        "sdk-starter"
+      ],
+      "runtime": {
+        "cli": "cambc 3.0.1",
+        "sdk_sha256": "478d64d6b611ffbe584d18352c449eaebb0d79465729811788a1e972860a1a9d",
+        "engine_build_hash": "2b36d9c61b2710d06036680d07fc4b7a8319ba35f634e4f1445725e0d99a1e16",
+        "ruleset": "cambc2026a-week2-2026-10-20",
+        "release": true
+      },
+      "map_sha256": "dcc9a4436f9ad52c946471b300037a96fa5cff88cbc2cfc9bd18481d0e8d093a"
+    },
+    {
+      "episode_id": "4c090d1eb6ad58ca451de840",
+      "map": "generated/screen/g1-screen-006",
+      "family": 3,
+      "split": "validation",
+      "rows": 3384,
+      "terminal": {
+        "outcome": "teamB",
+        "round": 1880,
+        "banks": [
+          645,
+          1001
+        ]
+      },
+      "teams": {
+        "0": 1880,
+        "1": 1504
+      },
+      "path": "shards/validation-4c090d1eb6ad58ca451de840.npz",
+      "sha256": "0c43f40ea67cf0f889d66c9caf191fc3429b5e23a1afda1954ba57aaf878d771",
+      "observation_source_sha256": "c9c7f175a4a13d7cbcb8d59b8b482f6f7f27b8da86d2e7f0b7abe63afebb1588",
+      "lineages": [
+        "sdk-starter",
+        "sdk-starter"
+      ],
+      "runtime": {
+        "cli": "cambc 3.0.1",
+        "sdk_sha256": "478d64d6b611ffbe584d18352c449eaebb0d79465729811788a1e972860a1a9d",
+        "engine_build_hash": "2b36d9c61b2710d06036680d07fc4b7a8319ba35f634e4f1445725e0d99a1e16",
+        "ruleset": "cambc2026a-week2-2026-10-20",
+        "release": true
+      },
+      "map_sha256": "dcc9a4436f9ad52c946471b300037a96fa5cff88cbc2cfc9bd18481d0e8d093a"
+    },
+    {
+      "episode_id": "45bafd707b5576bcc96919ae",
+      "map": "generated/screen/g1-screen-009",
+      "family": 3,
+      "split": "validation",
+      "rows": 2400,
+      "terminal": {
+        "outcome": "teamB",
+        "round": 2000,
+        "banks": [
+          152,
+          221
+        ]
+      },
+      "teams": {
+        "0": 1200,
+        "1": 1200
+      },
+      "path": "shards/validation-45bafd707b5576bcc96919ae.npz",
+      "sha256": "c94abe0fc8de7ac54b1127978bae90ffc20a6af929a27e0c19684b7a5cee95bd",
+      "observation_source_sha256": "bc1c21e140bdcbccb43a7689ee04c4789e64a2b85f18eb5545c91b25e8c788b2",
+      "lineages": [
+        "sdk-starter",
+        "sdk-starter"
+      ],
+      "runtime": {
+        "cli": "cambc 3.0.1",
+        "sdk_sha256": "478d64d6b611ffbe584d18352c449eaebb0d79465729811788a1e972860a1a9d",
+        "engine_build_hash": "2b36d9c61b2710d06036680d07fc4b7a8319ba35f634e4f1445725e0d99a1e16",
+        "ruleset": "cambc2026a-week2-2026-10-20",
+        "release": true
+      },
+      "map_sha256": "f05497138cfc78290c0e777d0837cf7d81304f4765505eeaaa5c5867b00552d1"
+    },
+    {
+      "episode_id": "58c932f7061c7c39d07257b8",
+      "map": "generated/screen/g1-screen-009",
+      "family": 3,
+      "split": "validation",
+      "rows": 2800,
+      "terminal": {
+        "outcome": "teamB",
+        "round": 2000,
+        "banks": [
+          140,
+          155
+        ]
+      },
+      "teams": {
+        "0": 1200,
+        "1": 1600
+      },
+      "path": "shards/validation-58c932f7061c7c39d07257b8.npz",
+      "sha256": "1ca6c04fd18239ee13b834268317e16a09b11cf92b846528c1fab5dd04b196a5",
+      "observation_source_sha256": "0a3a099375e66a303537ae5296d6bc2216e107137aee2656ae0cf1dddf6bd344",
+      "lineages": [
+        "sdk-starter",
+        "sdk-starter"
+      ],
+      "runtime": {
+        "cli": "cambc 3.0.1",
+        "sdk_sha256": "478d64d6b611ffbe584d18352c449eaebb0d79465729811788a1e972860a1a9d",
+        "engine_build_hash": "2b36d9c61b2710d06036680d07fc4b7a8319ba35f634e4f1445725e0d99a1e16",
+        "ruleset": "cambc2026a-week2-2026-10-20",
+        "release": true
+      },
+      "map_sha256": "f05497138cfc78290c0e777d0837cf7d81304f4765505eeaaa5c5867b00552d1"
+    },
+    {
+      "episode_id": "46047191b8e81e16b0abffe7",
+      "map": "generated/screen/g1-screen-009",
+      "family": 3,
+      "split": "validation",
+      "rows": 2800,
+      "terminal": {
+        "outcome": "teamB",
+        "round": 2000,
+        "banks": [
+          136,
+          200
+        ]
+      },
+      "teams": {
+        "0": 1200,
+        "1": 1600
+      },
+      "path": "shards/validation-46047191b8e81e16b0abffe7.npz",
+      "sha256": "5ce02d5e318c267f78c64289111cc681b9b5a698fcb860b78fdd9419bf201437",
+      "observation_source_sha256": "f07c24de78a1deeccea50c8e6f56c2b75256858e5ec4290a11718a257ae8d1b0",
+      "lineages": [
+        "sdk-starter",
+        "sdk-starter"
+      ],
+      "runtime": {
+        "cli": "cambc 3.0.1",
+        "sdk_sha256": "478d64d6b611ffbe584d18352c449eaebb0d79465729811788a1e972860a1a9d",
+        "engine_build_hash": "2b36d9c61b2710d06036680d07fc4b7a8319ba35f634e4f1445725e0d99a1e16",
+        "ruleset": "cambc2026a-week2-2026-10-20",
+        "release": true
+      },
+      "map_sha256": "f05497138cfc78290c0e777d0837cf7d81304f4765505eeaaa5c5867b00552d1"
+    },
+    {
+      "episode_id": "197fd7b6a3baa2fc01fb8643",
+      "map": "generated/screen/g1-screen-005",
+      "family": 0,
+      "split": "train",
+      "rows": 2650,
+      "terminal": {
+        "outcome": "teamB",
+        "round": 1322,
+        "banks": [
+          649,
+          1002
+        ]
+      },
+      "teams": {
+        "0": 1325,
+        "1": 1325
+      },
+      "path": "shards/train-197fd7b6a3baa2fc01fb8643.npz",
+      "sha256": "8d5e30f1276541ef7418ebb2924d7decfe856eca6bfc6b34646bce6c61c7671a",
+      "observation_source_sha256": "17eb125ddf39800ba06087d2e33074939926879caa179c078c2d5434231484d0",
+      "lineages": [
+        "live-love-larp-v76",
+        "live-love-larp-v76"
+      ],
+      "runtime": {
+        "cli": "cambc 3.0.1",
+        "sdk_sha256": "478d64d6b611ffbe584d18352c449eaebb0d79465729811788a1e972860a1a9d",
+        "engine_build_hash": "2b36d9c61b2710d06036680d07fc4b7a8319ba35f634e4f1445725e0d99a1e16",
+        "ruleset": "cambc2026a-week2-2026-10-20",
+        "release": true
+      },
+      "map_sha256": "5f1834774e810161ebb603a36b796b98a308bb16776c697733f622faca34c8b5"
+    },
+    {
+      "episode_id": "8407d306ff09be31f488e16f",
+      "map": "generated/screen/g1-screen-014",
+      "family": 0,
+      "split": "train",
+      "rows": 2824,
+      "terminal": {
+        "outcome": "teamA",
+        "round": 1764,
+        "banks": [
+          1006,
+          50
+        ]
+      },
+      "teams": {
+        "0": 1412,
+        "1": 1412
+      },
+      "path": "shards/train-8407d306ff09be31f488e16f.npz",
+      "sha256": "36c42556c3c4b7c09e3255445036bbc6ac20a7605399525dde2ddc71b4723da6",
+      "observation_source_sha256": "10bc51fe0da212d9a68c6731e772ede6e6369c278e8241e8a57da4d3eaca1207",
+      "lineages": [
+        "live-love-larp-v76",
+        "live-love-larp-v76"
+      ],
+      "runtime": {
+        "cli": "cambc 3.0.1",
+        "sdk_sha256": "478d64d6b611ffbe584d18352c449eaebb0d79465729811788a1e972860a1a9d",
+        "engine_build_hash": "2b36d9c61b2710d06036680d07fc4b7a8319ba35f634e4f1445725e0d99a1e16",
+        "ruleset": "cambc2026a-week2-2026-10-20",
+        "release": true
+      },
+      "map_sha256": "8dffc602ef4f5b1fefcf1e61be6ac739bebc4a3a95be2bde225f8e092d5b7610"
+    },
+    {
+      "episode_id": "78716c397a3185bcd548d68e",
+      "map": "generated/screen/g1-screen-016",
+      "family": 0,
+      "split": "train",
+      "rows": 3820,
+      "terminal": {
+        "outcome": "teamA",
+        "round": 1908,
+        "banks": [
+          1005,
+          735
+        ]
+      },
+      "teams": {
+        "0": 1910,
+        "1": 1910
+      },
+      "path": "shards/train-78716c397a3185bcd548d68e.npz",
+      "sha256": "4f477a48abf9a062e8d4f9994e91141f50d0c82dcb95abd5eaea012a4cb63423",
+      "observation_source_sha256": "139bfdd007ec500da9169449dc9d5eeea3fbd047cc09b3dbb4e53127052531c9",
+      "lineages": [
+        "live-love-larp-v76",
+        "live-love-larp-v76"
+      ],
+      "runtime": {
+        "cli": "cambc 3.0.1",
+        "sdk_sha256": "478d64d6b611ffbe584d18352c449eaebb0d79465729811788a1e972860a1a9d",
+        "engine_build_hash": "2b36d9c61b2710d06036680d07fc4b7a8319ba35f634e4f1445725e0d99a1e16",
+        "ruleset": "cambc2026a-week2-2026-10-20",
+        "release": true
+      },
+      "map_sha256": "a5dc5030aef82dfd17ddf2b8d0e94e2550ad8cc9ea2fed7f97fc70a2206815e0"
+    },
+    {
+      "episode_id": "62101989525c137afe53ca77",
+      "map": "generated/screen/g1-screen-021",
+      "family": 0,
+      "split": "train",
+      "rows": 4000,
+      "terminal": {
+        "outcome": "teamA",
+        "round": 2000,
+        "banks": [
+          412,
+          284
+        ]
+      },
+      "teams": {
+        "0": 2000,
+        "1": 2000
+      },
+      "path": "shards/train-62101989525c137afe53ca77.npz",
+      "sha256": "bf75299c5712f584ee872f9e718be23274d0eac2be9ddaf8702a695ec810e915",
+      "observation_source_sha256": "e9a83ec33f481a25a1eac6cd0e76cfcbee4a02a7798648a151dc41e7a345615d",
+      "lineages": [
+        "live-love-larp-v76",
+        "live-love-larp-v76"
+      ],
+      "runtime": {
+        "cli": "cambc 3.0.1",
+        "sdk_sha256": "478d64d6b611ffbe584d18352c449eaebb0d79465729811788a1e972860a1a9d",
+        "engine_build_hash": "2b36d9c61b2710d06036680d07fc4b7a8319ba35f634e4f1445725e0d99a1e16",
+        "ruleset": "cambc2026a-week2-2026-10-20",
+        "release": true
+      },
+      "map_sha256": "8efecbed56882ec0939fdf17cdf7a525eb07c7e92c88e7643fb72aed9b9ad334"
+    },
+    {
+      "episode_id": "66c6469edb6d988faff4b819",
+      "map": "generated/screen/g1-screen-015",
+      "family": 1,
+      "split": "train",
+      "rows": 3350,
+      "terminal": {
+        "outcome": "teamA",
+        "round": 1674,
+        "banks": [
+          1053,
+          630
+        ]
+      },
+      "teams": {
+        "0": 1675,
+        "1": 1675
+      },
+      "path": "shards/train-66c6469edb6d988faff4b819.npz",
+      "sha256": "71596b9205b395da299f34223021ee8c8dbb3f776d632638e11615f32a0ea2c7",
+      "observation_source_sha256": "ae6aa47263d3a4d7a119f7d963fc2951fb192ab2bb8f4b7d8a8df5953bae1256",
+      "lineages": [
+        "live-love-larp-v76",
+        "live-love-larp-v76"
+      ],
+      "runtime": {
+        "cli": "cambc 3.0.1",
+        "sdk_sha256": "478d64d6b611ffbe584d18352c449eaebb0d79465729811788a1e972860a1a9d",
+        "engine_build_hash": "2b36d9c61b2710d06036680d07fc4b7a8319ba35f634e4f1445725e0d99a1e16",
+        "ruleset": "cambc2026a-week2-2026-10-20",
+        "release": true
+      },
+      "map_sha256": "785b8c6da543b8175b661821227459a4e427765921187d1be5aa0f21aa20efdc"
+    },
+    {
+      "episode_id": "aea4a16ead8e6134e506c2b0",
+      "map": "generated/screen/g1-screen-020",
+      "family": 1,
+      "split": "train",
+      "rows": 2180,
+      "terminal": {
+        "outcome": "teamA",
+        "round": 1088,
+        "banks": [
+          1034,
+          895
+        ]
+      },
+      "teams": {
+        "0": 1090,
+        "1": 1090
+      },
+      "path": "shards/train-aea4a16ead8e6134e506c2b0.npz",
+      "sha256": "608b7281553818fbc33c0be96fd842a8014045af7a0fa4e91969ab98bb77cee5",
+      "observation_source_sha256": "53a9f5e6ae3f19821de1ff6b8248c114cac8cbc18142bd65dfec09cfbd190f68",
+      "lineages": [
+        "live-love-larp-v76",
+        "live-love-larp-v76"
+      ],
+      "runtime": {
+        "cli": "cambc 3.0.1",
+        "sdk_sha256": "478d64d6b611ffbe584d18352c449eaebb0d79465729811788a1e972860a1a9d",
+        "engine_build_hash": "2b36d9c61b2710d06036680d07fc4b7a8319ba35f634e4f1445725e0d99a1e16",
+        "ruleset": "cambc2026a-week2-2026-10-20",
+        "release": true
+      },
+      "map_sha256": "be018e0775c2bbb37362efd7979fa71d67bcbacb4e786a479f9e66baeb62e9af"
+    },
+    {
+      "episode_id": "0ad9d4fc866a2221cb3bd990",
+      "map": "generated/screen/g1-screen-027",
+      "family": 1,
+      "split": "train",
+      "rows": 3050,
+      "terminal": {
+        "outcome": "teamB",
+        "round": 1522,
+        "banks": [
+          700,
+          1003
+        ]
+      },
+      "teams": {
+        "0": 1525,
+        "1": 1525
+      },
+      "path": "shards/train-0ad9d4fc866a2221cb3bd990.npz",
+      "sha256": "c4e13b09dbe1a7d3d975d38a1662dce1a06ccc2f2e7285cf5df53709dedb6689",
+      "observation_source_sha256": "78a3f600aca2eb8c7d5797567504e64d46572c9e35619f0ba5382967af2b5dc3",
+      "lineages": [
+        "live-love-larp-v76",
+        "live-love-larp-v76"
+      ],
+      "runtime": {
+        "cli": "cambc 3.0.1",
+        "sdk_sha256": "478d64d6b611ffbe584d18352c449eaebb0d79465729811788a1e972860a1a9d",
+        "engine_build_hash": "2b36d9c61b2710d06036680d07fc4b7a8319ba35f634e4f1445725e0d99a1e16",
+        "ruleset": "cambc2026a-week2-2026-10-20",
+        "release": true
+      },
+      "map_sha256": "1ee0e9104951e0f6f8307d7328ef544ef39ad8f0a2cf873fb642eeb5bec4fc15"
+    },
+    {
+      "episode_id": "f5fcda6423e45b808dd5adc5",
+      "map": "generated/screen/g1-screen-038",
+      "family": 1,
+      "split": "train",
+      "rows": 2830,
+      "terminal": {
+        "outcome": "teamA",
+        "round": 1413,
+        "banks": [
+          1028,
+          882
+        ]
+      },
+      "teams": {
+        "0": 1415,
+        "1": 1415
+      },
+      "path": "shards/train-f5fcda6423e45b808dd5adc5.npz",
+      "sha256": "438c916bfb56090013e5caa4abd001137ec0bb4b15a185f90e681e30ff676f61",
+      "observation_source_sha256": "6209aae443fb97c173f4fa07e3ee231f21b4e1376219bb39996a8ab61c23077a",
+      "lineages": [
+        "live-love-larp-v76",
+        "live-love-larp-v76"
+      ],
+      "runtime": {
+        "cli": "cambc 3.0.1",
+        "sdk_sha256": "478d64d6b611ffbe584d18352c449eaebb0d79465729811788a1e972860a1a9d",
+        "engine_build_hash": "2b36d9c61b2710d06036680d07fc4b7a8319ba35f634e4f1445725e0d99a1e16",
+        "ruleset": "cambc2026a-week2-2026-10-20",
+        "release": true
+      },
+      "map_sha256": "b2b678daa99873697e744fbbf9f143aa750d84f5221960e5ae8aae00e6502189"
+    },
+    {
+      "episode_id": "44c978311f841f806b54698c",
+      "map": "generated/screen/g1-screen-010",
+      "family": 2,
+      "split": "train",
+      "rows": 2520,
+      "terminal": {
+        "outcome": "teamB",
+        "round": 1572,
+        "banks": [
+          532,
+          1026
+        ]
+      },
+      "teams": {
+        "0": 1260,
+        "1": 1260
+      },
+      "path": "shards/train-44c978311f841f806b54698c.npz",
+      "sha256": "c7e79aa5b6670054f13f88659b15e3a01c3c0b59547093d587d9551960ec68a4",
+      "observation_source_sha256": "08d23c7bf18dca8d7a7abc0f23f08ee08aaa35365d7b9509374cce38fd1fb3e2",
+      "lineages": [
+        "live-love-larp-v76",
+        "live-love-larp-v76"
+      ],
+      "runtime": {
+        "cli": "cambc 3.0.1",
+        "sdk_sha256": "478d64d6b611ffbe584d18352c449eaebb0d79465729811788a1e972860a1a9d",
+        "engine_build_hash": "2b36d9c61b2710d06036680d07fc4b7a8319ba35f634e4f1445725e0d99a1e16",
+        "ruleset": "cambc2026a-week2-2026-10-20",
+        "release": true
+      },
+      "map_sha256": "569a64392fd3880892a76de8d184d25136fa6ffe3a75aeaa0c86a5f8db38effa"
+    },
+    {
+      "episode_id": "b86c774984a1b938c3b51158",
+      "map": "generated/screen/g1-screen-011",
+      "family": 2,
+      "split": "train",
+      "rows": 3200,
+      "terminal": {
+        "outcome": "teamB",
+        "round": 2000,
+        "banks": [
+          134,
+          281
+        ]
+      },
+      "teams": {
+        "0": 1600,
+        "1": 1600
+      },
+      "path": "shards/train-b86c774984a1b938c3b51158.npz",
+      "sha256": "e4a98e69c604a9ebd569b971f4d6301d9cdcee5123f07c1e78bee432283a7705",
+      "observation_source_sha256": "2e98bf6c12c2512d55d0566e90dc3c0c25f515a82f95efdedde5358d47eb3b2b",
+      "lineages": [
+        "live-love-larp-v76",
+        "live-love-larp-v76"
+      ],
+      "runtime": {
+        "cli": "cambc 3.0.1",
+        "sdk_sha256": "478d64d6b611ffbe584d18352c449eaebb0d79465729811788a1e972860a1a9d",
+        "engine_build_hash": "2b36d9c61b2710d06036680d07fc4b7a8319ba35f634e4f1445725e0d99a1e16",
+        "ruleset": "cambc2026a-week2-2026-10-20",
+        "release": true
+      },
+      "map_sha256": "ec40d47f9f29d99e6742b573cd136b8d5240d9b1df87a63402be80f62205d00c"
+    },
+    {
+      "episode_id": "a9629160dfad5fc1378cb4a8",
+      "map": "generated/screen/g1-screen-012",
+      "family": 2,
+      "split": "train",
+      "rows": 3317,
+      "terminal": {
+        "outcome": "teamA",
+        "round": 1656,
+        "banks": [
+          1000,
+          272
+        ]
+      },
+      "teams": {
+        "0": 1658,
+        "1": 1659
+      },
+      "path": "shards/train-a9629160dfad5fc1378cb4a8.npz",
+      "sha256": "9fa2959044d6728b12b713467277d8a3eecf69204d4d0e21ff0a138cee066102",
+      "observation_source_sha256": "41efd1ad6138f73797f9051ad3a05d913feea4a205c90b6596c49b74bc305eee",
+      "lineages": [
+        "live-love-larp-v76",
+        "live-love-larp-v76"
+      ],
+      "runtime": {
+        "cli": "cambc 3.0.1",
+        "sdk_sha256": "478d64d6b611ffbe584d18352c449eaebb0d79465729811788a1e972860a1a9d",
+        "engine_build_hash": "2b36d9c61b2710d06036680d07fc4b7a8319ba35f634e4f1445725e0d99a1e16",
+        "ruleset": "cambc2026a-week2-2026-10-20",
+        "release": true
+      },
+      "map_sha256": "bb51dd4b8842ffbcafc725ec5d08fc4fc49a91036f04566c9eb12aa5a9eaf514"
+    },
+    {
+      "episode_id": "6ec24c73e1e4c83666cb48ee",
+      "map": "generated/screen/g1-screen-039",
+      "family": 3,
+      "split": "fresh_validation",
+      "rows": 4000,
+      "terminal": {
+        "outcome": "teamA",
+        "round": 2000,
+        "banks": [
+          890,
+          700
+        ]
+      },
+      "teams": {
+        "0": 2000,
+        "1": 2000
+      },
+      "path": "shards/fresh_validation-6ec24c73e1e4c83666cb48ee.npz",
+      "sha256": "281b2fd22f9f1004043a32963efc0fe52f18d3dc9bee0bf524464f0c5c5a1b23",
+      "observation_source_sha256": "60fe373069c54e1194739061a50f353f7cf65196fb2079d7edb2bf127d3a8b92",
+      "lineages": [
+        "sdk-starter",
+        "sdk-starter"
+      ],
+      "runtime": {
+        "cli": "cambc 3.0.1",
+        "sdk_sha256": "478d64d6b611ffbe584d18352c449eaebb0d79465729811788a1e972860a1a9d",
+        "engine_build_hash": "2b36d9c61b2710d06036680d07fc4b7a8319ba35f634e4f1445725e0d99a1e16",
+        "ruleset": "cambc2026a-week2-2026-10-20",
+        "release": true
+      },
+      "map_sha256": "fc3cf02b204c13d3cd520a277b0abaa4dd274d5fb81c52ab0bd80493b6648846"
+    },
+    {
+      "episode_id": "a4b3d31ac66290cd6f4d6111",
+      "map": "generated/screen/g1-screen-039",
+      "family": 3,
+      "split": "fresh_validation",
+      "rows": 3200,
+      "terminal": {
+        "outcome": "teamA",
+        "round": 2000,
+        "banks": [
+          721,
+          672
+        ]
+      },
+      "teams": {
+        "0": 1600,
+        "1": 1600
+      },
+      "path": "shards/fresh_validation-a4b3d31ac66290cd6f4d6111.npz",
+      "sha256": "3e3c919b7207e6512445562264c2234b983b618bec60358133bd76d8f69121f5",
+      "observation_source_sha256": "2c30c52e0e2e3c8ee5407994a4b86f8843eb2a81ba4721f2804f9bf419d2c905",
+      "lineages": [
+        "sdk-starter",
+        "sdk-starter"
+      ],
+      "runtime": {
+        "cli": "cambc 3.0.1",
+        "sdk_sha256": "478d64d6b611ffbe584d18352c449eaebb0d79465729811788a1e972860a1a9d",
+        "engine_build_hash": "2b36d9c61b2710d06036680d07fc4b7a8319ba35f634e4f1445725e0d99a1e16",
+        "ruleset": "cambc2026a-week2-2026-10-20",
+        "release": true
+      },
+      "map_sha256": "fc3cf02b204c13d3cd520a277b0abaa4dd274d5fb81c52ab0bd80493b6648846"
+    },
+    {
+      "episode_id": "594a4eba749507ab6245cf2a",
+      "map": "generated/screen/g1-screen-039",
+      "family": 3,
+      "split": "fresh_validation",
+      "rows": 3600,
+      "terminal": {
+        "outcome": "teamA",
+        "round": 2000,
+        "banks": [
+          911,
+          639
+        ]
+      },
+      "teams": {
+        "0": 2000,
+        "1": 1600
+      },
+      "path": "shards/fresh_validation-594a4eba749507ab6245cf2a.npz",
+      "sha256": "85bb7c7f1e001b6df9f90b377d1a400bffeee3157ed7bfb140315af38e3b8c66",
+      "observation_source_sha256": "2e6644551c6c46b6d9259f38b7302704c0ebf8f395022d21eb342ff27d34e78e",
+      "lineages": [
+        "sdk-starter",
+        "sdk-starter"
+      ],
+      "runtime": {
+        "cli": "cambc 3.0.1",
+        "sdk_sha256": "478d64d6b611ffbe584d18352c449eaebb0d79465729811788a1e972860a1a9d",
+        "engine_build_hash": "2b36d9c61b2710d06036680d07fc4b7a8319ba35f634e4f1445725e0d99a1e16",
+        "ruleset": "cambc2026a-week2-2026-10-20",
+        "release": true
+      },
+      "map_sha256": "fc3cf02b204c13d3cd520a277b0abaa4dd274d5fb81c52ab0bd80493b6648846"
+    },
+    {
+      "episode_id": "aad632f0bc4ba3bd7808510e",
+      "map": "generated/screen/g1-screen-041",
+      "family": 3,
+      "split": "fresh_validation",
+      "rows": 4800,
+      "terminal": {
+        "outcome": "teamB",
+        "round": 2000,
+        "banks": [
+          492,
+          652
+        ]
+      },
+      "teams": {
+        "0": 2400,
+        "1": 2400
+      },
+      "path": "shards/fresh_validation-aad632f0bc4ba3bd7808510e.npz",
+      "sha256": "f5047dc4840f306cd1be80364e5ce9de30907f3e1e47cea9b18cf4371fbf53c7",
+      "observation_source_sha256": "bd25f9d8fe0082ef8fafabc2db7e50b958c570d2e728415972212124f2f014bc",
+      "lineages": [
+        "sdk-starter",
+        "sdk-starter"
+      ],
+      "runtime": {
+        "cli": "cambc 3.0.1",
+        "sdk_sha256": "478d64d6b611ffbe584d18352c449eaebb0d79465729811788a1e972860a1a9d",
+        "engine_build_hash": "2b36d9c61b2710d06036680d07fc4b7a8319ba35f634e4f1445725e0d99a1e16",
+        "ruleset": "cambc2026a-week2-2026-10-20",
+        "release": true
+      },
+      "map_sha256": "85e72bcbd00dd8796e688a187313ea9dccf2cf6100e79a2e7e40b72de12109a4"
+    },
+    {
+      "episode_id": "9523201ae08b104e5346fec0",
+      "map": "generated/screen/g1-screen-041",
+      "family": 3,
+      "split": "fresh_validation",
+      "rows": 4000,
+      "terminal": {
+        "outcome": "teamB",
+        "round": 2000,
+        "banks": [
+          625,
+          768
+        ]
+      },
+      "teams": {
+        "0": 2000,
+        "1": 2000
+      },
+      "path": "shards/fresh_validation-9523201ae08b104e5346fec0.npz",
+      "sha256": "aa6bc4cac4d9e6f9bc7c9a1eb1797e4f9760571c9d219256ff9e911aca413b20",
+      "observation_source_sha256": "c970e3a597b3229a0018f146515db3090adc46f9fc192807b12d8090dd3b4e0c",
+      "lineages": [
+        "sdk-starter",
+        "sdk-starter"
+      ],
+      "runtime": {
+        "cli": "cambc 3.0.1",
+        "sdk_sha256": "478d64d6b611ffbe584d18352c449eaebb0d79465729811788a1e972860a1a9d",
+        "engine_build_hash": "2b36d9c61b2710d06036680d07fc4b7a8319ba35f634e4f1445725e0d99a1e16",
+        "ruleset": "cambc2026a-week2-2026-10-20",
+        "release": true
+      },
+      "map_sha256": "85e72bcbd00dd8796e688a187313ea9dccf2cf6100e79a2e7e40b72de12109a4"
+    },
+    {
+      "episode_id": "6a970845b263cca2da7549a0",
+      "map": "generated/screen/g1-screen-041",
+      "family": 3,
+      "split": "fresh_validation",
+      "rows": 4400,
+      "terminal": {
+        "outcome": "teamB",
+        "round": 2000,
+        "banks": [
+          503,
+          806
+        ]
+      },
+      "teams": {
+        "0": 2400,
+        "1": 2000
+      },
+      "path": "shards/fresh_validation-6a970845b263cca2da7549a0.npz",
+      "sha256": "32183e28d00e034c651a8ff7a8365df8acd2a18843cedc8c40a99aec1ab89c9f",
+      "observation_source_sha256": "649519f2f8e5c3b5cf01ef87ad2f6af0dbb424b6b1f1d90bff0fc06d358b3263",
+      "lineages": [
+        "sdk-starter",
+        "sdk-starter"
+      ],
+      "runtime": {
+        "cli": "cambc 3.0.1",
+        "sdk_sha256": "478d64d6b611ffbe584d18352c449eaebb0d79465729811788a1e972860a1a9d",
+        "engine_build_hash": "2b36d9c61b2710d06036680d07fc4b7a8319ba35f634e4f1445725e0d99a1e16",
+        "ruleset": "cambc2026a-week2-2026-10-20",
+        "release": true
+      },
+      "map_sha256": "85e72bcbd00dd8796e688a187313ea9dccf2cf6100e79a2e7e40b72de12109a4"
+    },
+    {
+      "episode_id": "b8cc14ad36168193753016d1",
+      "map": "generated/screen/g1-screen-044",
+      "family": 3,
+      "split": "fresh_validation",
+      "rows": 4400,
+      "terminal": {
+        "outcome": "teamA",
+        "round": 2000,
+        "banks": [
+          670,
+          441
+        ]
+      },
+      "teams": {
+        "0": 2400,
+        "1": 2000
+      },
+      "path": "shards/fresh_validation-b8cc14ad36168193753016d1.npz",
+      "sha256": "de9e55e91f7b5ebd57da2e2d1f83b1a12f2566ce5e84c2e670b617322b35e00c",
+      "observation_source_sha256": "abdc60b9fdc7d633d084f673d05133a72ded0d4c0720a422bbec218973d8f62a",
+      "lineages": [
+        "sdk-starter",
+        "sdk-starter"
+      ],
+      "runtime": {
+        "cli": "cambc 3.0.1",
+        "sdk_sha256": "478d64d6b611ffbe584d18352c449eaebb0d79465729811788a1e972860a1a9d",
+        "engine_build_hash": "2b36d9c61b2710d06036680d07fc4b7a8319ba35f634e4f1445725e0d99a1e16",
+        "ruleset": "cambc2026a-week2-2026-10-20",
+        "release": true
+      },
+      "map_sha256": "8f7dadd341433366525e799c30ec90c53eccc739faefc3f9f852b9829b13ea33"
+    },
+    {
+      "episode_id": "b352823bc674504896b053e3",
+      "map": "generated/screen/g1-screen-044",
+      "family": 3,
+      "split": "fresh_validation",
+      "rows": 4400,
+      "terminal": {
+        "outcome": "teamA",
+        "round": 2000,
+        "banks": [
+          778,
+          405
+        ]
+      },
+      "teams": {
+        "0": 2000,
+        "1": 2400
+      },
+      "path": "shards/fresh_validation-b352823bc674504896b053e3.npz",
+      "sha256": "cce0a1ec56dcdc5560490567d3257110734fcf6dd8afd9633d680f5cdd8c9cdf",
+      "observation_source_sha256": "f085fbfc8a6fd1aa393c66be294e543e5f1620757db951e1567c35d61e75f86a",
+      "lineages": [
+        "sdk-starter",
+        "sdk-starter"
+      ],
+      "runtime": {
+        "cli": "cambc 3.0.1",
+        "sdk_sha256": "478d64d6b611ffbe584d18352c449eaebb0d79465729811788a1e972860a1a9d",
+        "engine_build_hash": "2b36d9c61b2710d06036680d07fc4b7a8319ba35f634e4f1445725e0d99a1e16",
+        "ruleset": "cambc2026a-week2-2026-10-20",
+        "release": true
+      },
+      "map_sha256": "8f7dadd341433366525e799c30ec90c53eccc739faefc3f9f852b9829b13ea33"
+    },
+    {
+      "episode_id": "fc8b8ac9b52526195277665e",
+      "map": "generated/screen/g1-screen-044",
+      "family": 3,
+      "split": "fresh_validation",
+      "rows": 4800,
+      "terminal": {
+        "outcome": "teamA",
+        "round": 2000,
+        "banks": [
+          646,
+          409
+        ]
+      },
+      "teams": {
+        "0": 2400,
+        "1": 2400
+      },
+      "path": "shards/fresh_validation-fc8b8ac9b52526195277665e.npz",
+      "sha256": "4510f0b7ffb553f25f4a6dd781a7737899763e456c83b5f2aef7dd5f6ffb8bf0",
+      "observation_source_sha256": "0a5c24fd857406a7fb1f36d12d06f11bf9b4b33fffc3b54bdc2dd7afffb6892e",
+      "lineages": [
+        "sdk-starter",
+        "sdk-starter"
+      ],
+      "runtime": {
+        "cli": "cambc 3.0.1",
+        "sdk_sha256": "478d64d6b611ffbe584d18352c449eaebb0d79465729811788a1e972860a1a9d",
+        "engine_build_hash": "2b36d9c61b2710d06036680d07fc4b7a8319ba35f634e4f1445725e0d99a1e16",
+        "ruleset": "cambc2026a-week2-2026-10-20",
+        "release": true
+      },
+      "map_sha256": "8f7dadd341433366525e799c30ec90c53eccc739faefc3f9f852b9829b13ea33"
+    },
+    {
+      "episode_id": "b54dd51d205e5696e167a313",
+      "map": "generated/screen/g1-screen-056",
+      "family": 3,
+      "split": "fresh_validation",
+      "rows": 4800,
+      "terminal": {
+        "outcome": "teamA",
+        "round": 2000,
+        "banks": [
+          549,
+          537
+        ]
+      },
+      "teams": {
+        "0": 2400,
+        "1": 2400
+      },
+      "path": "shards/fresh_validation-b54dd51d205e5696e167a313.npz",
+      "sha256": "2d6e474bf9010a1555a527286214ff5c94f5b60ab0a0113312ede2f23ff1222e",
+      "observation_source_sha256": "b62ee3b05bf0536db7fb7d9e6fdf975fe877a7eb9986414ae37c2a2d68103121",
+      "lineages": [
+        "sdk-starter",
+        "sdk-starter"
+      ],
+      "runtime": {
+        "cli": "cambc 3.0.1",
+        "sdk_sha256": "478d64d6b611ffbe584d18352c449eaebb0d79465729811788a1e972860a1a9d",
+        "engine_build_hash": "2b36d9c61b2710d06036680d07fc4b7a8319ba35f634e4f1445725e0d99a1e16",
+        "ruleset": "cambc2026a-week2-2026-10-20",
+        "release": true
+      },
+      "map_sha256": "0b1aaf14a1f83742a5a63592a4d0ebbe79579526169a0ed07eb1612d1f7f57fc"
+    },
+    {
+      "episode_id": "e3d2967d0ba6daa7a7eed491",
+      "map": "generated/screen/g1-screen-056",
+      "family": 3,
+      "split": "fresh_validation",
+      "rows": 4000,
+      "terminal": {
+        "outcome": "teamB",
+        "round": 2000,
+        "banks": [
+          441,
+          593
+        ]
+      },
+      "teams": {
+        "0": 2000,
+        "1": 2000
+      },
+      "path": "shards/fresh_validation-e3d2967d0ba6daa7a7eed491.npz",
+      "sha256": "e5e61df0354041e4f7d783f90e965c22e046b585c0e89bc29678eb9a0a905758",
+      "observation_source_sha256": "aad8d7b332ec6a81c528704491e2c810b3c40e2b43baf866971e828a4f900f30",
+      "lineages": [
+        "sdk-starter",
+        "sdk-starter"
+      ],
+      "runtime": {
+        "cli": "cambc 3.0.1",
+        "sdk_sha256": "478d64d6b611ffbe584d18352c449eaebb0d79465729811788a1e972860a1a9d",
+        "engine_build_hash": "2b36d9c61b2710d06036680d07fc4b7a8319ba35f634e4f1445725e0d99a1e16",
+        "ruleset": "cambc2026a-week2-2026-10-20",
+        "release": true
+      },
+      "map_sha256": "0b1aaf14a1f83742a5a63592a4d0ebbe79579526169a0ed07eb1612d1f7f57fc"
+    },
+    {
+      "episode_id": "c11bed4d71e1cd154fb54fc4",
+      "map": "generated/screen/g1-screen-056",
+      "family": 3,
+      "split": "fresh_validation",
+      "rows": 4400,
+      "terminal": {
+        "outcome": "teamB",
+        "round": 2000,
+        "banks": [
+          450,
+          673
+        ]
+      },
+      "teams": {
+        "0": 2400,
+        "1": 2000
+      },
+      "path": "shards/fresh_validation-c11bed4d71e1cd154fb54fc4.npz",
+      "sha256": "06da9cc9d5f54bed55a99576f5b39cab7e7261596bfd52aa09a219b9629868aa",
+      "observation_source_sha256": "a4eba9fac90ca70210bfc400694bafe7f92069b7bfe353eed22b430b8aa52db6",
+      "lineages": [
+        "sdk-starter",
+        "sdk-starter"
+      ],
+      "runtime": {
+        "cli": "cambc 3.0.1",
+        "sdk_sha256": "478d64d6b611ffbe584d18352c449eaebb0d79465729811788a1e972860a1a9d",
+        "engine_build_hash": "2b36d9c61b2710d06036680d07fc4b7a8319ba35f634e4f1445725e0d99a1e16",
+        "ruleset": "cambc2026a-week2-2026-10-20",
+        "release": true
+      },
+      "map_sha256": "0b1aaf14a1f83742a5a63592a4d0ebbe79579526169a0ed07eb1612d1f7f57fc"
+    }
+  ],
+  "extra_training_quarantine": [
+    {
+      "split": "train",
+      "map": "generated/screen/g1-screen-008",
+      "map_sha256": "d94a748700296a0af2f3ab4715a00ed9dd246edcf257d00ee4fed424f5f45cec",
+      "family": 2,
+      "names": [
+        "online-v76-week2-v1",
+        "online-v76-week2-v1"
+      ],
+      "wasm_sha256": [
+        "6c1a995ccd3c197fcc6f8203de2f4d9aa5d5fc221b29e6e5d368226be4631f0f",
+        "6c1a995ccd3c197fcc6f8203de2f4d9aa5d5fc221b29e6e5d368226be4631f0f"
+      ],
+      "runtime": {
+        "cli": "cambc 3.0.1",
+        "sdk_sha256": "478d64d6b611ffbe584d18352c449eaebb0d79465729811788a1e972860a1a9d",
+        "engine_build_hash": "2b36d9c61b2710d06036680d07fc4b7a8319ba35f634e4f1445725e0d99a1e16",
+        "ruleset": "cambc2026a-week2-2026-10-20",
+        "release": true
+      },
+      "lineages": [
+        "live-love-larp-v76",
+        "live-love-larp-v76"
+      ],
+      "teacher_teams": [
+        0,
+        1
+      ],
+      "episode_id": "5b25dce56ef5a1a12bd9f373",
+      "status": "quarantined",
+      "rows": 0,
+      "reason": "Release fault or fuel exhaustion; no critic labels",
+      "diagnostics": {
+        "teamA": {
+          "faults": 0,
+          "fuel_exhausted": 0
+        },
+        "teamB": {
+          "faults": 0,
+          "fuel_exhausted": 1
+        }
+      }
+    }
+  ],
+  "excluded_quarantined_games": 2,
+  "excluded_external_sparring_games": 20,
+  "feature_count": 44,
+  "terminal_labels_only": true,
+  "actor_updated": false,
+  "confirmation_games": 0
+}

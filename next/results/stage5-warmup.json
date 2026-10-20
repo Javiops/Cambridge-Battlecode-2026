@@ -1,0 +1,141 @@
+{
+  "games": 12,
+  "states": 60044,
+  "cross_validation": "leave training family out, complete maps and both seats grouped",
+  "initial": {
+    "rows": 60044,
+    "log_loss": 0.6651120959446092,
+    "brier": 0.2361502418460838,
+    "accuracy": 0.5931633098178597,
+    "expected_calibration_error": 0.0609585126425626,
+    "mean_prediction": 0.5012079282021596,
+    "win_fraction": 0.5,
+    "reliability": [
+      {
+        "bin": 2,
+        "weight": 0.0006334726973267452,
+        "rows": 40,
+        "predicted_win": 0.2871547222137451,
+        "actual_win": 0.0
+      },
+      {
+        "bin": 3,
+        "weight": 0.023387539043595328,
+        "rows": 1468,
+        "predicted_win": 0.3768216455167263,
+        "actual_win": 0.0
+      },
+      {
+        "bin": 4,
+        "weight": 0.4614833499416392,
+        "rows": 27224,
+        "predicted_win": 0.4729507809087556,
+        "actual_win": 0.4250868984919157
+      },
+      {
+        "bin": 5,
+        "weight": 0.49032805305142746,
+        "rows": 29732,
+        "predicted_win": 0.5277275261336041,
+        "actual_win": 0.5703566970342321
+      },
+      {
+        "bin": 6,
+        "weight": 0.023171817279952107,
+        "rows": 1516,
+        "predicted_win": 0.6251437755147838,
+        "actual_win": 1.0
+      },
+      {
+        "bin": 7,
+        "weight": 0.0009957679860592482,
+        "rows": 64,
+        "predicted_win": 0.711866706609726,
+        "actual_win": 1.0
+      }
+    ]
+  },
+  "on_policy_oof": {
+    "rows": 60044,
+    "log_loss": 0.6013841920579001,
+    "brier": 0.20640848149005026,
+    "accuracy": 0.6647810191245376,
+    "expected_calibration_error": 0.05555966685476013,
+    "mean_prediction": 0.5001479444525242,
+    "win_fraction": 0.5,
+    "reliability": [
+      {
+        "bin": 0,
+        "weight": 0.08109991447642334,
+        "rows": 5152,
+        "predicted_win": 0.05953727743821708,
+        "actual_win": 0.15347595534355485
+      },
+      {
+        "bin": 1,
+        "weight": 0.0733547924658496,
+        "rows": 4476,
+        "predicted_win": 0.14433666823018104,
+        "actual_win": 0.11681123091288989
+      },
+      {
+        "bin": 2,
+        "weight": 0.09779738829134657,
+        "rows": 5808,
+        "predicted_win": 0.24993383772385014,
+        "actual_win": 0.2674900963258129
+      },
+      {
+        "bin": 3,
+        "weight": 0.07684732846721137,
+        "rows": 4560,
+        "predicted_win": 0.3518347861350348,
+        "actual_win": 0.5649969882282416
+      },
+      {
+        "bin": 4,
+        "weight": 0.1734481916923471,
+        "rows": 10368,
+        "predicted_win": 0.4540048856926161,
+        "actual_win": 0.45137055027656003
+      },
+      {
+        "bin": 5,
+        "weight": 0.17104597996767146,
+        "rows": 9988,
+        "predicted_win": 0.5447432413593374,
+        "actual_win": 0.5308230554871411
+      },
+      {
+        "bin": 6,
+        "weight": 0.07129451527053875,
+        "rows": 4062,
+        "predicted_win": 0.6513110612877482,
+        "actual_win": 0.49348189270969106
+      },
+      {
+        "bin": 7,
+        "weight": 0.1012929474210661,
+        "rows": 5916,
+        "predicted_win": 0.7485177186581113,
+        "actual_win": 0.7130516642346171
+      },
+      {
+        "bin": 8,
+        "weight": 0.07071455464851059,
+        "rows": 4392,
+        "predicted_win": 0.8591829566901398,
+        "actual_win": 0.8873177652364944
+      },
+      {
+        "bin": 9,
+        "weight": 0.08310438729903513,
+        "rows": 5322,
+        "predicted_win": 0.9423999398158972,
+        "actual_win": 0.8443069825930382
+      }
+    ]
+  },
+  "actor_updates": 0,
+  "note": "GAE lambda=gamma=1 uses complete Monte Carlo returns, avoiding bias from an imperfect critic"
+}

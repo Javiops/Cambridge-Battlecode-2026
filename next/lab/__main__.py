@@ -47,6 +47,8 @@ def main() -> None:
     t.add_argument("check", choices=["train", "prepare", "verify", "release", "analyze", "ready"])
     c = sub.add_parser("stage4")
     c.add_argument("check", choices=["maps", "plan", "collect", "develop", "train", "evaluate", "audit", "ready"])
+    rl = sub.add_parser("stage5")
+    rl.add_argument("check", choices=["plan", "check", "train", "evaluate", "audit", "ready"])
     a = p.parse_args()
     cfg = core.config()
 
@@ -122,6 +124,11 @@ def main() -> None:
         print(json.dumps(result, indent=2))
         if a.check == 'ready' and not result['passed']:
             raise SystemExit(1)
+    elif a.cmd == "stage5":
+        from . import ppo
+        result=getattr(ppo,a.check)()
+        print(json.dumps(result,indent=2))
+        if a.check=='ready' and not result['passed']:raise SystemExit(1)
 
 
 if __name__ == "__main__":

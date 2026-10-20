@@ -1,0 +1,17 @@
+{
+  "python": "3.12.14",
+  "numpy": "2.5.4",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "node": "v24.19.0",
+  "blas_threads": 1,
+  "native_engine_sha256": "f7d27c468024ce20f1f64eb1bd06ec4de6314213314fb0132e8b605cf0a610db",
+  "release_runtime_identity": {
+    "cli": "cambc 3.0.1",
+    "sdk_sha256": "478d64d6b611ffbe584d18352c449eaebb0d79465729811788a1e972860a1a9d",
+    "engine_build_hash": "2b36d9c61b2710d06036680d07fc4b7a8319ba35f634e4f1445725e0d99a1e16",
+    "ruleset": "cambc2026a-week2-2026-10-20",
+    "release": true
+  },
+  "training_base_commit": "b407e4d757b0409760d2620923071e25d767e127",
+  "production_wasm_tested": false
+}

@@ -1,0 +1,118 @@
+{
+  "model": "ppo-v1",
+  "games": 64,
+  "maps": 16,
+  "win_fraction": 0.609375,
+  "map_win_fractions": {
+    "generated/ppo-v1/evaluation/ppo-evaluation-000": 0.5,
+    "generated/ppo-v1/evaluation/ppo-evaluation-001": 0.75,
+    "generated/ppo-v1/evaluation/ppo-evaluation-002": 0.5,
+    "generated/ppo-v1/evaluation/ppo-evaluation-003": 0.75,
+    "generated/ppo-v1/evaluation/ppo-evaluation-004": 1.0,
+    "generated/ppo-v1/evaluation/ppo-evaluation-005": 0.5,
+    "generated/ppo-v1/evaluation/ppo-evaluation-006": 0.75,
+    "generated/ppo-v1/evaluation/ppo-evaluation-007": 0.75,
+    "generated/ppo-v1/evaluation/ppo-evaluation-008": 0.5,
+    "generated/ppo-v1/evaluation/ppo-evaluation-009": 0.75,
+    "generated/ppo-v1/evaluation/ppo-evaluation-010": 0.75,
+    "generated/ppo-v1/evaluation/ppo-evaluation-011": 0.5,
+    "generated/ppo-v1/evaluation/ppo-evaluation-012": 0.25,
+    "generated/ppo-v1/evaluation/ppo-evaluation-013": 0.5,
+    "generated/ppo-v1/evaluation/ppo-evaluation-014": 0.5,
+    "generated/ppo-v1/evaluation/ppo-evaluation-015": 0.5
+  },
+  "bootstrap_90": [
+    0.53125,
+    0.6875
+  ],
+  "strength_gate_passed": true,
+  "critic": {
+    "rows": 368690,
+    "log_loss": 0.5700226426896137,
+    "brier": 0.19203267413883854,
+    "accuracy": 0.6915509512461145,
+    "expected_calibration_error": 0.04887849759737059,
+    "mean_prediction": 0.4980092121511501,
+    "win_fraction": 0.5000000000000001,
+    "reliability": [
+      {
+        "bin": 0,
+        "weight": 0.05534418593060832,
+        "rows": 24059,
+        "predicted_win": 0.04253427937293929,
+        "actual_win": 0.11256640424595583
+      },
+      {
+        "bin": 1,
+        "weight": 0.043703477369640656,
+        "rows": 17201,
+        "predicted_win": 0.1496464397423895,
+        "actual_win": 0.060177132025226655
+      },
+      {
+        "bin": 2,
+        "weight": 0.054238492442958745,
+        "rows": 22480,
+        "predicted_win": 0.2538684973106345,
+        "actual_win": 0.13199832567689274
+      },
+      {
+        "bin": 3,
+        "weight": 0.10913325988145423,
+        "rows": 39182,
+        "predicted_win": 0.35739348253812775,
+        "actual_win": 0.27534688921708633
+      },
+      {
+        "bin": 4,
+        "weight": 0.25040754692527545,
+        "rows": 85645,
+        "predicted_win": 0.45645460567330187,
+        "actual_win": 0.4575312019016348
+      },
+      {
+        "bin": 5,
+        "weight": 0.23389015599932916,
+        "rows": 80437,
+        "predicted_win": 0.5430063557568108,
+        "actual_win": 0.5504722411491899
+      },
+      {
+        "bin": 6,
+        "weight": 0.10079912019081973,
+        "rows": 36451,
+        "predicted_win": 0.6440822401569677,
+        "actual_win": 0.7377330245822941
+      },
+      {
+        "bin": 7,
+        "weight": 0.05363356698358114,
+        "rows": 22144,
+        "predicted_win": 0.7466246530143248,
+        "actual_win": 0.8675111223584882
+      },
+      {
+        "bin": 8,
+        "weight": 0.0429289159394681,
+        "rows": 17003,
+        "predicted_win": 0.850805007027888,
+        "actual_win": 0.9351187512237987
+      },
+      {
+        "bin": 9,
+        "weight": 0.05592127833686465,
+        "rows": 24088,
+        "predicted_win": 0.9575502572777967,
+        "actual_win": 0.8865635317816268
+      }
+    ]
+  },
+  "actor_sha256": "94c1399f470e7c64f65a203a46d4bd14dff4527057d6eb12fc26fffb79b5402f",
+  "evaluation_manifest_sha256": "6724205457711f2f506ddecb149eed270248ffe73ba010dce10d61ab5e1b0f32",
+  "evaluation_model_selections": 0,
+  "comparison": "stochastic PPO vs unchanged BC; same banking controller, draft, temperature and decision cap; paired seats/seeds",
+  "native_rules_only": true,
+  "production_wasm_tested": false,
+  "confirmation_games": 0,
+  "promoted": false
+}

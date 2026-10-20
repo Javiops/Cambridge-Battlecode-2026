@@ -1,0 +1,27 @@
+{
+  "passed": true,
+  "actor_privacy": true,
+  "native_submission_completed": true,
+  "channel_preserved": true,
+  "banks": [
+    80,
+    0
+  ],
+  "engine_sha256": "f7d27c468024ce20f1f64eb1bd06ec4de6314213314fb0132e8b605cf0a610db",
+  "sources": {
+    "lab/ppo-actor.mjs": "d152076dfcd825d7a9ab8b71d93242c788cbf8d18519b6052e6f719b1a94ed33",
+    "lab/ppo-native-check.mjs": "56315030f2f686046dce30bf1d931a4547fe80f471dbddac25d9beb848fdd28f",
+    "lab/ppo-replay-check.mjs": "626989de1f1ee8b7b1a02ab2d7f0f8a5ee2f6c990691026ab873f1bac44340e4",
+    "lab/ppo-rollout.mjs": "0bb5d4990c68379f479ce1c3c3956995f5082d277ac3b7bdc5e320e8cfb029fd",
+    "lab/ppo-state.mjs": "14163e4b534d235265e2c5ea07f0cd872eb6c6518f186c15bcb222bbcd09c52c",
+    "lab/ppo.py": "d8f1bbbd166e87bb8887ad12a22b4d6b96c7eabc3e43e5a19e1998c6c30ca9f0",
+    "lab/ppo_math.py": "b41121a7c2704658a575ae803f9bbb7530a95771cbe31ca737eea08b61637bff",
+    "lab/policy.py": "91610c10b30f959706e25c412a9684b38eed4fe6430dcf841eb63ccf74a30023",
+    "lab/cloning.py": "23840532b9d4d7c8d114213cf0aae3e0c0bacfadc4e2b22db473f4c147759555",
+    "lab/engine.mjs": "390e898cfcc869ddd9e8212a004681da2c69224623deb946111f3c7935356a0b",
+    "lab/critic-inventory-state.mjs": "b7caca352bcade12dd54137e175f9785d0c39de840d7a8d23885a4789c7b40ca",
+    "lab/critic-state.mjs": "017773c98b3af76f8bd012eb134d21c4c37e3c5e988e9d2507a64e3750d084d1",
+    "lab/wealth_state.py": "f767b93c2f549fef8554cf33fac7416eca71c88b66b80b865e5a20d4454a7b64",
+    "lab/monotone_critic.py": "a11846bb57fd28192ed1e49ccc68acf5196042740a14028113d0186bb021a47d"
+  }
+}

@@ -2,7 +2,8 @@
 
 `outcome-v5` passes `python -m lab stage4 ready` against the pinned October 20
 CAMBC 3.0.1 release runtime. Both predictive and pipeline checks pass.
-Stage 5 is eligible to begin; PPO has not started.
+Stage 5 PPO results are documented in [STAGE5.md](STAGE5.md). This report records
+the frozen Stage 4 experiment.
 
 ## Result and unchanged gate
 

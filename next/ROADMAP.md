@@ -9,13 +9,16 @@ confirmation maps describe earlier stage milestones; both final cohorts are now 
 
 - Continue the hourly unranked curriculum: most opponents near/moderately above
   our strength, with a repeatable benchmark and at most 10% leader scouting.
-- Platform v84 / `ppo-topdraft-v6` is verified compiled and active as a live experiment. Retain qualified v12/platform v83 as rollback. Tested
-  experimental uploads are authorized even after a strength regression; reserve the
-  fresh promotion gate for a proven lab champion. See LIVE-EXPERIMENTS.md.
-- `ppo-topdraft-v6` is the working development fork, with bounded movement
-  fallback. Its 149/302 versus v12 fails the development minimum; it is not promoted.
-- First fix banking progress for carriers repeatedly stationary in tribute mode.
-  The first 40 v84 games have zero fuel losses, but big-world B banks zero.
+- Platform v85 / `ppo-topdraft-v7` compiled and was live, then Fran requested a
+  temporary teammate handoff. V82 is restored as selected. Read LIVE-HOLD.json
+  before live actions; no uploads, selections or initiated matches through the hold.
+- V7 fixes the reproduced large-load banking stall locally: big-world versus
+  starter deposits rise from 121/0 to 316/105, both seats, zero faults/fuel losses.
+  It wins 148/302 versus v6 across broad development maps; no promotion claim.
+- Continue small already-started banking trips before optional planning. V7 still
+  has late sampled stalls with four gems. Do not alter trip-start thresholds.
+- After the teammate hold, reproduce the pinned Preyas matchup in both seats
+  with v85; its source/build is frozen, and zero v85 unranked groups have started.
 - Profile optional native calls on big-world and ambush if fuel losses recur. The new 250-game batch
   has 55 and 41 fuel losses respectively. Raising the global reserve in v5
   stalled initialization; do not repeat that attempted fix.

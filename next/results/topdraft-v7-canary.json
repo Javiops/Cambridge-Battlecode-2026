@@ -1,0 +1,66 @@
+{
+  "schema": 1,
+  "experiment": "ppo-topdraft-v7",
+  "parent": "ppo-topdraft-v6",
+  "baseline": "ppo-topdraft-v6",
+  "runtime": {
+    "cli_version": "cambc 3.0.2",
+    "engine_version": "1.0.1",
+    "engine_build_hash": "c3e9ffc8d98c106f86660c58344dc26ced9459a504e2f0d90d88b4c8594c7765"
+  },
+  "identities": {
+    "candidate": "42650144a523cdd760b320efb067fc3325fb7a1e840b40deb16692a8bc0ba7ea",
+    "baseline": "f21d27dce9cc364a26c61780367fc0b5c16ce39f643c37929e3b599fe471f534",
+    "starter": "c9a0ca35cf13686680ef4ea00d0bb99f654a79be78382bdb3283604d5fde9795"
+  },
+  "config_sha256": "4c92aef58a33a6de62624315c7672385e1bcb611edf1ff44de0133a059dbbe29",
+  "changes": "ppo-topdraft-v7: continue safe existing banking trips before optional group planning; expect fewer stationary tribute turns and more deposits.",
+  "status": "development_only_not_promoted",
+  "sealed_confirmation_maps_used": false,
+  "promotion_gate_run": false,
+  "draft_verified_games": 8,
+  "elapsed_seconds": 6.496248722076416,
+  "summary": {
+    "starter": {
+      "games": 4,
+      "wins": 2,
+      "faults": 0,
+      "fuel_exhausted": 1,
+      "opponent_faults": 0,
+      "by_seat": {
+        "0": {
+          "games": 2,
+          "wins": 1
+        },
+        "1": {
+          "games": 2,
+          "wins": 1
+        }
+      },
+      "mean_banked_gems": 612.5,
+      "mean_opponent_banked_gems": 323.5
+    },
+    "baseline": {
+      "games": 4,
+      "wins": 2,
+      "faults": 0,
+      "fuel_exhausted": 1,
+      "opponent_faults": 0,
+      "by_seat": {
+        "0": {
+          "games": 2,
+          "wins": 1
+        },
+        "1": {
+          "games": 2,
+          "wins": 1
+        }
+      },
+      "mean_banked_gems": 523.5,
+      "mean_opponent_banked_gems": 482.0
+    }
+  },
+  "per_game_records": "topdraft-v7-canary-games.jsonl",
+  "deployment_record": "topdraft-v7-deployment.json",
+  "snapshot_scope": "Offline test captured before upload; deployment and live hold are separate."
+}

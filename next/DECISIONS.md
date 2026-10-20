@@ -287,3 +287,7 @@ Used all 50 available challenge groups for 250 v83 games, both seats and all 35 
 ## 2026-10-20 · V84 live field test
 
 V84 compiled on the platform and stays live for iterative learning. Used all eight available challenge groups: 16/40 wins and zero faults/fuel losses, versus 14/40 and 12 fuel losses in the corresponding historical v83 blocks. Do not claim overall strength improvement from this small, partly historical comparison. Stampede wins both seats; elk-arena deposits increase but both seats lose. Big-world B carriers repeatedly hold gems at unchanged positions in tribute mode, so the next isolated hypothesis is obstacle-aware banking progress under low fuel. No promotion, rollback or model retraining. Full evidence: V84-SPARRING.md.
+
+## 2026-10-20 · V7 banking priority and teammate handoff
+
+Continue safe existing banking trips before optional group planning. The local big-world starter reproduction rises from 121/0 to 316/105 banked gems in both seats, with zero faults/fuel losses. Broad screening: 67/70 starter and 148/302 v6; 14 fuel losses across 372 games, zero faults. No proven strength gain or lab promotion. V7 uploaded as v85 and compiled; then Fran requested a teammate handoff, so v82 was restored as selected and live actions were held until 23:10:20 UTC unless released earlier. Zero v85 unranked requests were initiated. Small late-game cargo can still stall; next isolate continuation of positive-cargo trips without changing their start policy. See BANKING-V7.md and LIVE-HOLD.json.

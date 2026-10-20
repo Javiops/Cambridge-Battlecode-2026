@@ -1,0 +1,17 @@
+{
+  "schema": 1,
+  "status": "active_until_expiry_or_user_release",
+  "reason": "Fran temporarily handed live bot and challenge quota to a teammate for one batch.",
+  "started_utc": "2026-10-20T22:10:20Z",
+  "expires_utc": "2026-10-20T23:10:20Z",
+  "no_uploads": true,
+  "no_bot_selection_changes": true,
+  "no_initiated_matches": true,
+  "offline_development_continues": true,
+  "teammate_selected_platform_version": 82,
+  "selection_restored_utc": "2026-10-20T22:13:53.955871+00:00",
+  "last_observed_live_platform_version": 85,
+  "last_observed_selected_platform_version": 82,
+  "after_expiry": "Inspect current team activity; let any teammate batch finish before resuming our live experiments. Never override a newer teammate selection without resolving the conflict.",
+  "proof": "live/topdraft-v7-deployment/handoff-selection.txt"
+}

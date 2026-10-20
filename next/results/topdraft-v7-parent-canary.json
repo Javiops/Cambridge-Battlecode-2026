@@ -1,0 +1,66 @@
+{
+  "schema": 1,
+  "experiment": "ppo-topdraft-v6",
+  "parent": "ppo-topdraft-v3",
+  "baseline": "ppo-topdraft-v3",
+  "runtime": {
+    "cli_version": "cambc 3.0.2",
+    "engine_version": "1.0.1",
+    "engine_build_hash": "c3e9ffc8d98c106f86660c58344dc26ced9459a504e2f0d90d88b4c8594c7765"
+  },
+  "identities": {
+    "candidate": "f21d27dce9cc364a26c61780367fc0b5c16ce39f643c37929e3b599fe471f534",
+    "baseline": "daebfb48072c6723d7a5d3c554c36c84204880ea6e3aaa6fb7616074162f7d85",
+    "starter": "c9a0ca35cf13686680ef4ea00d0bb99f654a79be78382bdb3283604d5fde9795"
+  },
+  "config_sha256": "00f89272419dbc93b87e5d60e584a3fffb902c3b2a13538a9736508531403aa7",
+  "changes": "ppo-topdraft-v6: bound low-fuel goal scans and use a cheap movement fallback; expect fewer exhausted turns without stalling initialization.",
+  "status": "development_only_not_promoted",
+  "sealed_confirmation_maps_used": false,
+  "promotion_gate_run": false,
+  "draft_verified_games": 8,
+  "elapsed_seconds": 6.361802577972412,
+  "summary": {
+    "starter": {
+      "games": 4,
+      "wins": 2,
+      "faults": 0,
+      "fuel_exhausted": 0,
+      "opponent_faults": 0,
+      "by_seat": {
+        "0": {
+          "games": 2,
+          "wins": 1
+        },
+        "1": {
+          "games": 2,
+          "wins": 1
+        }
+      },
+      "mean_banked_gems": 541.5,
+      "mean_opponent_banked_gems": 321.5
+    },
+    "baseline": {
+      "games": 4,
+      "wins": 1,
+      "faults": 0,
+      "fuel_exhausted": 0,
+      "opponent_faults": 0,
+      "by_seat": {
+        "0": {
+          "games": 2,
+          "wins": 1
+        },
+        "1": {
+          "games": 2,
+          "wins": 0
+        }
+      },
+      "mean_banked_gems": 471.75,
+      "mean_opponent_banked_gems": 646.5
+    }
+  },
+  "per_game_records": "topdraft-v7-parent-canary-games.jsonl",
+  "deployment_record": "topdraft-v7-deployment.json",
+  "snapshot_scope": "Offline test captured before upload; deployment and live hold are separate."
+}

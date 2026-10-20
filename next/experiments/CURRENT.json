@@ -1,13 +1,13 @@
 {
   "schema": 1,
-  "working_candidate": "ppo-topdraft-v6",
+  "working_candidate": "ppo-topdraft-v7",
   "qualified_candidate": "ppo-league-v12",
-  "last_verified_platform_version": 84,
+  "last_verified_platform_version": 85,
   "live_batch": "results/stage7-live-v84-groups.json",
   "report": "V84-SPARRING.md",
-  "status": "experimental_live_verified",
+  "status": "teammate_live_hold_offline_work_continues",
   "next_hypotheses": [
-    "Obstacle-aware banking progress under low fuel: big-world B carriers retain 15 gems at repeated positions in tribute mode",
+    "Finish already-started healthy/quiet positive-cargo banking trips before optional work; v7 still strands four-gem loads late.",
     "Preserve zero observed fuel losses while testing useful gem collection and deposits; do not raise global initialization reserve",
     "Elk-arena sustained objective execution: assault logs exist and deposits rise to 96/144, but both seats still lose",
     "Pilgrimage/reverse-spiral fight exposure and carried-gem loss; preserve multi-camp maps"
@@ -25,7 +25,11 @@
     "stretch": 0.3,
     "leaders": 0.1
   },
-  "selected_platform_version": 84,
-  "selected_candidate": "ppo-topdraft-v6",
-  "deployment": "results/topdraft-v6-deployment.json"
+  "selected_platform_version": 82,
+  "selected_candidate": "teammate BASELINE V7",
+  "deployment": "results/topdraft-v7-deployment.json",
+  "live_hold": "experiments/LIVE-HOLD.json",
+  "last_completed_batch_platform_version": 84,
+  "working_report": "BANKING-V7.md",
+  "offline_results": "results/topdraft-v7-screen.json"
 }

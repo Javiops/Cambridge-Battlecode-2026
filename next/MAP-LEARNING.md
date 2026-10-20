@@ -1,6 +1,8 @@
 # Map learning and development, 20 October 2026
 
-Deployment follow-up: platform v84 / `ppo-topdraft-v6` has since been uploaded and
+Latest banking follow-up: v7 / platform v85 improves the locally reproduced banking stall; see [BANKING-V7.md](BANKING-V7.md). A temporary teammate handoff now selects v82; read experiments/LIVE-HOLD.json before live actions.
+
+Historical deployment follow-up: platform v84 / `ppo-topdraft-v6` has since been uploaded and
 selected as an experiment under Fran's clarified iteration policy. Server compilation and live status are now verified; see V84-SPARRING.md for the first 40 games. See [LIVE-EXPERIMENTS.md](LIVE-EXPERIMENTS.md).
 The v83 batch and screening conclusions below remain historical evidence.
 

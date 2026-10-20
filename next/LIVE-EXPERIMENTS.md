@@ -5,25 +5,26 @@ fixing a mistake initially weakens aggregate results. Requiring every upload to 
 the promotion gate was too restrictive. A promotion establishes a proven lab champion;
 an experimental upload gathers evidence about a frozen, functional candidate.
 
-## Current selection
+## Current selection and teammate handoff
 
-- Platform **v84**: `ppo-topdraft-v6`, uploaded with note `topdraft-v6 | movement trial`.
-- Submission: `922f3836-7d6c-49c5-bbbd-e80c39f78c66`.
-- Observed state: **compiled successfully and active live, verified by the site**.
-- Platform v83 / qualified `ppo-league-v12` remains the previous working fallback.
-- The site starts compilation on matchmaking. Do not initiate ranked matches to force
-  compilation. Verify compilation and the actual version of the first new game.
+Platform **v85 / ppo-topdraft-v7** compiled and was observed live. It continues
+healthy, quiet existing banking trips before optional planning; see
+[BANKING-V7.md](BANKING-V7.md). Its source ZIP matches the server download and
+independently rebuilds to the frozen release WASM.
 
-V84 includes the leader draft, reachable-point objective rally and v6's bounded
-low-fuel movement fallback. V6 changes only movement relative to its v3 parent;
-comparing v84 with platform v83 tests several accumulated changes and cannot isolate
-their individual contributions. Offline version comparisons retain that distinction.
+Fran requested temporary teammate use immediately afterward. **V82 / BASELINE V7
+is restored as selected for the next match.** No uploads, selection changes or
+initiated matches until 23:10:20 UTC / 01:10:20 CEST, unless Fran releases earlier.
+Continue offline work and let a still-running teammate batch finish. Never
+overwrite a newer teammate selection based on stale state. The live header may
+continue to show v85 until the next v82 match compiles; the selected version is
+the relevant next-match choice.
 
-The uploaded source ZIP and the source downloaded back from the server both have
-SHA256 `3e9819880e134285a34c84d2f61ae605fe59aea275af9c3f3189c1fe3b246e52`.
-Its independently rebuilt local release WASM has SHA256
-`f21d27dce9cc364a26c61780367fc0b5c16ce39f643c37929e3b599fe471f534`.
-Source delivery and local reproducibility are verified. Server compilation and live status have since been verified; no server binary hash is claimed.
+Read `experiments/LIVE-HOLD.json` before any live action and
+`experiments/CURRENT.json` for the newest state. V84 remains the preceding
+usable experimental bot; qualified v12/platform v83 remains preserved. Zero
+v85 unranked challenges have been initiated. Historical v84 evidence below
+describes its completed 40-game batch, not the current selection.
 
 ## Evaluation and iteration
 
@@ -47,6 +48,6 @@ its pre-upload `uploaded: false` development records are not current deployment 
 
 The existing hourly automation has been updated with this policy. Do not create a
 duplicate automation. Current machine-readable state is in
-`results/topdraft-v6-deployment.json` and `experiments/CURRENT.json`.
+`results/topdraft-v7-deployment.json`, `experiments/LIVE-HOLD.json` and `experiments/CURRENT.json`.
 
 The first eight live challenge groups are complete and native-verified: 16/40 wins, zero faults/fuel losses. See [V84-SPARRING.md](V84-SPARRING.md) for the historical comparison and next banking-progress hypothesis.

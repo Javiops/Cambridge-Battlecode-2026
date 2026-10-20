@@ -16,6 +16,9 @@ Stage 2's first baseline dataset is now collected and audited. See [STAGE2.md](S
 and `python -m lab stage2 ready`. Stage 3's first behavioural cloning model is trained,
 exported and tested in release matches. See [STAGE3.md](STAGE3.md) and
 `python -m lab stage3 ready`. It is a local actor warm start; the live bot is unchanged.
+Stage 4's outcome critic is trained from the frozen BC encoder. It beats a constant
+predictor but trails the score/time baseline; its predictive gate fails. See
+[STAGE4.md](STAGE4.md). Stage 4 is not cleared for PPO.
 
 ## Setup
 

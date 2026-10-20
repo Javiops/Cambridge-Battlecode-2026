@@ -162,3 +162,23 @@ trained_version = "bc-actor-v1"
 control_version = "bc-untrained-v1"
 parity_maps = ["00collision", "generated/screen/g1-screen-002"]
 max_turn_fuel = 95000
+
+[stage4]
+model = "outcome-v2"
+dataset = "stage4-outcome-v2"
+parent = "bc-v1"
+parent_sha256 = "76ec1dcaf4d37f1cccaccd483885e241a7f14cf929630332ece35e72e5988d3e"
+development_maps = ["generated/screen/g1-screen-001", "generated/screen/g1-screen-004", "generated/screen/g1-screen-007", "generated/screen/g1-screen-021", "generated/screen/g1-screen-038", "generated/screen/g1-screen-012"]
+extra_training_maps = ["generated/screen/g1-screen-005", "generated/screen/g1-screen-014", "generated/screen/g1-screen-016", "generated/screen/g1-screen-021", "generated/screen/g1-screen-015", "generated/screen/g1-screen-020", "generated/screen/g1-screen-027", "generated/screen/g1-screen-038", "generated/screen/g1-screen-008", "generated/screen/g1-screen-010", "generated/screen/g1-screen-011", "generated/screen/g1-screen-012"]
+extra_training_pairs = [["online-v76-week2-v1", "online-v76-week2-v1"]]
+fresh_validation_maps = ["generated/screen/g1-screen-039", "generated/screen/g1-screen-041", "generated/screen/g1-screen-044", "generated/screen/g1-screen-056"]
+fresh_validation_pairs = [["starter-week2-v1", "calib-seed-week2-v1"], ["starter-week2-v1", "starter-week2-v1"]]
+l2_grid = [0.001, 0.01, 0.1, 1.0]
+newton_iterations = 50
+newton_tolerance = 0.0000001
+line_search_steps = 24
+calibration_bins = 10
+phase_boundaries = [666, 1333]
+bootstrap_samples = 2000
+seed = 20261024
+jobs = 4

@@ -3,6 +3,31 @@
 Conclusions that should outlive one experiment, each with the numbers behind it (after Carson's
 screeps-rl DECISIONS.md). Open questions go to ROADMAP.md.
 
+## 2026-10-20 · Stage 4: retain the outcome critic experiment; reject the readiness gate
+
+The binary outcome critic reuses `bc-v1` as a frozen feature encoder and trains a
+45-parameter readout, with the actor byte-identical. The corrected trial fits 81,953
+states from 28 games on 17 training maps, selecting regularization on whole internal
+development maps, then refitting all train games before loading outer evaluation.
+Both actor teams contribute, weighted equally per game and team; long trajectories
+do not count as more independent outcome evidence. A new v76 fuel-limited mirror is
+quarantined along with the original Stage 2 rejection.
+
+On 12 fresh SDK-lineage games across four new family-3 screening maps: critic Brier
+0.1391, log loss 0.4156, accuracy 78.1%, ECE 0.0313. Constant Brier is 0.2500; the
+score/time/seat baseline has Brier 0.1340, log loss 0.3993, accuracy 77.7%, ECE 0.0630.
+Better accuracy/calibration-bin error does not override the predeclared proper-score
+gate: both Brier and log loss must improve over the simple predictor. They do not.
+The paired map Brier-difference 90% interval is [-0.0058, 0.0185], overlapping zero.
+
+The first trial's log loss and model selection were invalid because negating a uint8
+label wrapped before multiplication. A reproducing regression test fixes the scorer
+by converting labels to float64. That trial remains recorded as invalid, and revised
+evaluation uses different maps. No validation-directed checkpoint changes follow the
+corrected trial. Stage 4 remains uncleared; keep this as a provisional offline seed,
+not a verified on-policy PPO critic. No actor update, PPO, live upload, promotion or
+confirmation play. See STAGE4.md for the data, phase metrics and artifacts.
+
 ## 2026-10-20 · Stage 3: keep the cloned checkpoint, reject promotion
 
 `bc-v1` trains the certified 305-parameter actor on 44,221 admitted examples. An internal

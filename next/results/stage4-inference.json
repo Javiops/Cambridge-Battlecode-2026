@@ -1,0 +1,7 @@
+{
+  "passed": true,
+  "observations": 64,
+  "probability_max_error": 0.0,
+  "finite_bounded_values": true,
+  "actor_weights_unchanged": true
+}

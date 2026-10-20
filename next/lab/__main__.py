@@ -45,6 +45,8 @@ def main() -> None:
     d.add_argument("check",choices=["plan","collect","audit","proof","online","ready"])
     t = sub.add_parser("stage3")
     t.add_argument("check", choices=["train", "prepare", "verify", "release", "analyze", "ready"])
+    c = sub.add_parser("stage4")
+    c.add_argument("check", choices=["plan", "collect", "train", "audit", "ready"])
     a = p.parse_args()
     cfg = core.config()
 
@@ -113,6 +115,12 @@ def main() -> None:
         from . import cloning, stage3
         result = cloning.train() if a.check == 'train' else getattr(stage3, a.check)()
         print(json.dumps(result, indent=2))
+    elif a.cmd == "stage4":
+        from . import critic
+        result = getattr(critic, a.check)()
+        print(json.dumps(result, indent=2))
+        if a.check == 'ready' and not result['passed']:
+            raise SystemExit(1)
 
 
 if __name__ == "__main__":

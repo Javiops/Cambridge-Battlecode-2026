@@ -32,6 +32,23 @@ the local proposal contract has no submission action. Future work needs macro/ac
 coverage and stronger in-engine learning, with fresh evaluation data for any new tuning.
 Willow/Heart are absent from the dataset; cast imitation has no validation labels.
 
+## Stage 4: outcome critic trained; predictive gate not cleared
+
+`outcome-v2` keeps the `bc-v1` actor/encoder frozen and trains a separate 45-parameter
+binary win head. Training uses 81,953 states from 28 clean games on 17 training maps,
+with both perspectives and equal game/team weighting. Two whole fuel-limited games
+(one original, one new) are excluded. The independent 12-game/four-map evaluation has
+Brier 0.1391, log loss 0.4156 and accuracy 78.1%; constant Brier is 0.2500. The simpler
+score/time/seat predictor has Brier 0.1340 and log loss 0.3993, so the predeclared gate
+fails. The paired map bootstrap also cannot establish an improvement over that baseline.
+
+See STAGE4.md and `results/stage4-*.json`. The first trial is explicitly invalidated for
+an unsigned-label metric bug, covered by a regression test; its inspected maps are not
+reused for the revised trial's fresh test. Keep the frozen critic as a provisional
+offline experiment. Next work within Stage 4 needs new training/evaluation evidence to
+improve on the simple predictor; Stage 5 PPO remains unstarted. No actor, live submission,
+reference champion, or final confirmation pool changed.
+
 ## Foundation (before any real bot)
 
 1. **Map generator: complete.** The immutable g1 manifest covers 100 screen and 60 generated

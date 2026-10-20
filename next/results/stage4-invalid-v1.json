@@ -1,0 +1,17 @@
+{
+  "status": "invalid_do_not_use",
+  "model": "outcome-v1",
+  "reason": "uint8 outcome labels wrapped under unary negation in log loss; invalid checkpoint selection and reported log losses",
+  "source_sha256": "751bb6c6f1418306ca6102709d4ff3d3b904d31379a7f2acba090e3be66d8fa2",
+  "actor_unchanged": true,
+  "invalid_constant_log_loss": -88.02969193111305,
+  "correct_constant_log_loss": 0.6931471805599453,
+  "valid_fresh_brier": 0.2622762371234365,
+  "fresh_maps_inspected": [
+    "generated/screen/g1-screen-013",
+    "generated/screen/g1-screen-017",
+    "generated/screen/g1-screen-022",
+    "generated/screen/g1-screen-028"
+  ],
+  "ppo_started": false
+}

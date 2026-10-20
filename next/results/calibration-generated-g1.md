@@ -1,6 +1,6 @@
 # Stage 1 calibration (generated screen maps)
 
-Generated 2026-10-20 14:55 UTC · panel v4 · champion `starter-week2-v1` · 2500 games on 100 maps
+Generated 2026-10-20 15:19 UTC · panel v4 · champion `starter-week2-v1` · 2500 games on 100 maps
 
 ## Leaderboard
 
@@ -78,7 +78,7 @@ Carson's stopping rule: when the best rating gains less than 20 points for two r
 
 | run | best version | rating | gain |
 |---|---|---|---|
-| 10-20 14:55 | `starter-week2-v1` | 1828 |  |
+| 10-20 15:19 | `starter-week2-v1` | 1828 |  |
 
 ## Lineage
 

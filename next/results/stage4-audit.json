@@ -1,0 +1,11 @@
+{
+  "passed": true,
+  "games": 46,
+  "rows": 150700,
+  "manifest_sha256": "4e3d5cb26d33d6b2548ea2b492bddc059c4feb996a4172d578afbb1f2d0c2fd4",
+  "parent_weights_sha256": "76ec1dcaf4d37f1cccaccd483885e241a7f14cf929630332ece35e72e5988d3e",
+  "recomputed_actor_states": true,
+  "complete_binary_targets": true,
+  "confirmation_games": 0,
+  "source_sha256": "1eb4bd84b10bbf6a50613adac274f0d3609ae8647a562176ebf394a14060c7ca"
+}

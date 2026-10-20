@@ -18,3 +18,5 @@ results/bundles/
 results/dashboard.html
 .venv/
 datasets/
+# Stage 4's first trial has invalid unsigned-label metrics; rejection is recorded in results/.
+models/outcome-v1/

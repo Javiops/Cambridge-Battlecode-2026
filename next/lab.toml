@@ -240,3 +240,13 @@ evaluation_seeds = 2
 bootstrap_samples = 5000
 jobs = 4
 controller = { bank_threshold = 40, bank_late_round = 1600, farm_navigation = true, enemy_attention_radius = 6, exploration_period = 200 }
+
+[stage6]
+version = "ppo-runtime-v1"
+checkpoint = "models/ppo-v1/checkpoints/012"
+weights_sha256 = "94c1399f470e7c64f65a203a46d4bd14dff4527057d6eb12fc26fffb79b5402f"
+maps = ["00collision", "00expanse", "00corners", "generated/screen/g1-screen-000", "generated/screen/g1-screen-002", "generated/screen/g1-screen-003", "generated/screen/g1-screen-015", "generated/screen/g1-screen-038"]
+opponents = ["starter-week2-v1"]
+jobs = 4
+max_turn_fuel = 90000
+max_initial_fuel = 180000

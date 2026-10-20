@@ -3,6 +3,25 @@
 Conclusions that should outlive one experiment, each with the numbers behind it (after Carson's
 screeps-rl DECISIONS.md). Open questions go to ROADMAP.md.
 
+## 2026-10-20 · PPO C++ runtime passes Stage 6
+
+Keep `ppo-runtime-v1` as the exact runtime port of final PPO checkpoint 012.
+Sixteen complete release games cover 160,000 turns and 262,936 native-equivalent
+decisions, with all six physical champion types, both seats and maps up to 80×80.
+Official total fuel peaks at 84,574/100,000 on ordinary turns and 97,603/200,000 on
+first turns; no faults or fuel losses occur. The source ZIP rebuilds to the frozen
+WASM. See STAGE6.md and the executable `stage6 ready` gate.
+
+Preserve softmax sampling, team-shared RNG and the training controller. Packed
+terrain seeding, early-terminating native pathfinding and shared padded-row logits
+reduce fuel without changing the policy. Use hex traces: stdout NUL framing can
+split binary records. Both the native parity checker and official total-fuel stream
+are required; a neural-kernel measurement alone is insufficient.
+
+The actor loses 0–16 against starter in this diagnostic cohort and banks 20 gems
+total. Runtime acceptance does not qualify it competitively. Stage 7 needs stronger
+economy/combat behavior and a separate promotion gate. No confirmation or live play.
+
 ## 2026-10-20 · First PPO self-play run and native strength gate
 
 Freeze the BC actor and accepted outcome critic as parents, then warm up/refit the critic

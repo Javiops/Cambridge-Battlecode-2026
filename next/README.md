@@ -17,7 +17,12 @@ and `python -m lab stage2 ready`. Stage 3's first behavioural cloning model is t
 exported and tested in release matches. See [STAGE3.md](STAGE3.md) and
 `python -m lab stage3 ready`. It is a local actor warm start; the live bot is unchanged.
 Stage 4's inventory-aware outcome critic passes its fresh prediction and pipeline gates: 24 release games on eight unseen maps, with both Brier and log loss better than the independently fitted score/time baseline. See [STAGE4.md](STAGE4.md) and `python -m lab stage4 ready`.
-Stage 5's first PPO self-play run is trained and audited. Its native strength gate is **PASSED** (60.9% over 64 fresh paired games). See [STAGE5.md](STAGE5.md) and `python -m lab stage5 ready`. Production integration has not started.
+Stage 5's first PPO self-play run is trained and audited. Its native strength gate is **PASSED** (60.9% over 64 fresh paired games). See [STAGE5.md](STAGE5.md) and `python -m lab stage5 ready`.
+Stage 6 integrates that unchanged actor and controller into C++/WASM. It passes
+262,936 exact native decisions over 16 full release matches, with zero faults or
+fuel losses and an exact source-bundle rebuild. See [STAGE6.md](STAGE6.md) and
+`python -m lab stage6 ready`. It remains weaker than starter; Stage 7 must establish
+competitive strength before promotion or live submission.
 
 ## Setup
 

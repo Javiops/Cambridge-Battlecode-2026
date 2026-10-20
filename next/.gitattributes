@@ -2,3 +2,4 @@
 models/** -text whitespace=cr-at-eol
 bots/bc-actor/src/weights.h -text whitespace=cr-at-eol
 bots/bc-untrained/src/weights.h -text whitespace=cr-at-eol
+bots/ppo-actor/src/weights.h -text whitespace=cr-at-eol

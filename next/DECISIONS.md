@@ -3,6 +3,26 @@
 Conclusions that should outlive one experiment, each with the numbers behind it (after Carson's
 screeps-rl DECISIONS.md). Open questions go to ROADMAP.md.
 
+## 2026-10-20 · Recalibrate after the week 2 patch
+
+CLI/SDK 3.0.1 changes the rules and design ABI. The lab now pins the observed release engine build,
+records an SDK fingerprint for each frozen version and rejects incompatible versions/results.
+Pre-patch calibration is historical evidence, not a rating for a current bot.
+
+The fresh three-reference league completed 99 release games on 11 screening maps, both seats plus
+mirrors, with zero faults and fuel exhaustion. Total league/report time was 23.679 seconds using
+four workers (4.181 games/second on this machine). All 40 unit tests pass; the starter source bundle
+rebuilds to exactly its frozen WASM bytes. See `results/calibration-2026-10-20.md` and
+`results/patch-validation-2026-10-20.json`.
+
+The seed control rates 1813 (90% interval 1749–1902), starter 1719 (1631–1780), dummy 968 (935–972).
+The control's 94-point gap and 64% head-to-head score over 22 games reinforce the need for more maps
+before judging small changes. The intervals overlap. The starter remains the reference champion;
+no confirm maps were played and no promotion was made.
+
+This validates the patched measuring loop. It does not complete the fast training environment or
+the C++/WASM neural inference fuel benchmark required before stage 2's dataset.
+
 ## 2026-10-17 · The judge is a pool rating over all versions, not one variant against one base
 
 Every frozen version plays every other on every screen map from both sides. Ratings are fitted

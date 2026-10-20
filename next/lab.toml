@@ -5,22 +5,29 @@
 # Each set has one job and the jobs never swap.
 # screen  = where we look while developing; tune freely.
 # confirm = only for the promotion gate; never look at these games while tuning.
-# Only 17 site maps exist so far, so confirm holds 5 of them until we have a map generator
-# (ROADMAP.md). The qualifying maps will be new, so the generator is the real confirm set.
-screen = ["ambush", "collision", "contest", "corners", "eight", "elkring",
-          "expanse", "fragment", "interlock", "lanes", "monolith", "packs"]
-confirm = ["pilgrimage", "rows", "rushbait-v2", "stampede", "swirl"]
+# The 21-map pool published with CLI 3.0.1. The new 01* maps stay sealed for the gate.
+# Fetch with cambc maps pull; do not inspect confirm replays while tuning.
+screen = ["00ambush", "00collision", "00contest", "00corners", "00eight", "00elkring",
+          "00expanse", "00fragment", "00interlock", "00lanes", "00monolith"]
+confirm = ["01big-world", "01boss-battle", "01broken-curve", "01concentrated-wealth",
+           "01corridors", "01elk-arena", "01fracture", "01gold-rush", "01hooks", "01islands"]
+
+[runtime]
+ruleset = "cambc2026a-week2-2026-10-20"
+cli_version = "cambc 3.0.1"
+# Observed in a completed release match on 00collision. Changing this starts a new experiment.
+engine_build_hash = "2b36d9c61b2710d06036680d07fc4b7a8319ba35f634e4f1445725e0d99a1e16"
 
 [league]
 # The frozen panel: fixed, versioned opponents that every new version plays.
 # When this list changes, bump panel_version, so old and new reports are never mixed.
-panel_version = 2
-panel = ["dummy-v1", "starter-v1", "calib-seed-v1"]
+panel_version = 3
+panel = ["dummy-week2-v1", "starter-week2-v1", "calib-seed-week2-v1"]
 # Two versions of equal strength. Their gap is printed in every report as the noise band:
 # a difference smaller than this between any two versions is not a result.
-noise_pair = ["starter-v1", "calib-seed-v1"]
+noise_pair = ["starter-week2-v1", "calib-seed-week2-v1"]
 # The current best version. Every new version starts from it (copy, change one thing).
-champion = "starter-v1"
+champion = "starter-week2-v1"
 jobs = 0             # parallel games; 0 = one per CPU core
 # Carson's stopping rule (cb-bc ABLATION_PROMPT.md): stop a line of work when the best rating
 # gains less than this for two league runs in a row.
@@ -30,6 +37,6 @@ plateau_points = 20
 # Promotion gate, after Carson's kaggriculture finalist gates (>= 0.5 vs the best, >= 0.9 vs starter).
 vs_champion = 0.50   # score against the champion on the confirm maps, both sides
 vs_weak = 0.90       # score against the weak bot on the confirm maps, both sides
-weak = "starter-v1"
+weak = "starter-week2-v1"
 max_faults = 0       # bot faults across all gate games
 max_fuel_exhausted_per_game = 1.0  # average turns lost to fuel per game, our side

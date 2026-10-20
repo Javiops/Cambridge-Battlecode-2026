@@ -1,0 +1,19 @@
+{
+  "cli": "cambc 3.0.1",
+  "engine_build_hash": "2b36d9c61b2710d06036680d07fc4b7a8319ba35f634e4f1445725e0d99a1e16",
+  "maps": "screen only; 11 maps; confirm unused",
+  "jobs": 4,
+  "completed_games": 99,
+  "end_to_end_seconds": 23.679,
+  "completed_games_per_second": 4.181,
+  "bot_faults": 0,
+  "fuel_exhausted": 0,
+  "unit_tests_passed": 40,
+  "unit_tests_skipped": 0,
+  "reference_wasm_sha256": {
+    "dummy-week2-v1": "ad187698542977544e6c83b40471c298d5867c6e050254ad2523aa053b4afaa7",
+    "starter-week2-v1": "c9a0ca35cf13686680ef4ea00d0bb99f654a79be78382bdb3283604d5fde9795",
+    "calib-seed-week2-v1": "c9602e0a27c5791b84146529346bfd1453e5cdb3c900759363231f487bb6ccf9"
+  },
+  "bundle_rebuild_matches_frozen_wasm": true
+}

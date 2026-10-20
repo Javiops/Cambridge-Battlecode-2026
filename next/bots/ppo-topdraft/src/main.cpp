@@ -1,4 +1,4 @@
-// ppo-topdraft-v7: continue safe existing banking trips before optional group planning; expect fewer stationary tribute turns and more deposits.
+// ppo-topdraft-v8: finish safe existing banking trips with any positive cargo before optional planning; expect fewer late small-load stalls.
 // team-fight-v1 (design: analysis/claude-api-2026-10-18/team_fight_design_1019.md): recall-api-v1 + P_TEAM_FIGHT (finish layer,
 // below) + P_HP_SHOP (hp shards at the top teams' hp share on the v72 power path).
 // Finish layer: the no-chase doctrine lifted for hurt rivals. The bot let hurt rivals go by
@@ -2893,7 +2893,7 @@ void play_turn(State& s) {
     // A carrying champion already committed to an altar gets a movement budget
     // before routine camp refresh. Late low-fuel greedy movement can stay at
     // an obstacle forever. Keep urgent safety and the existing altar trip policy.
-    if (gems >= P.tribute_gems && hpr >= 0.65f && s.bt_altar >= 0 &&
+    if (gems > 0 && hpr >= 0.65f && s.bt_altar >= 0 &&
         round - s.bt_last <= 2 && fuel_ok(40000)) {
         bool quiet = true;
         for (auto enemy : bc::vision::champions(*s.en)) {

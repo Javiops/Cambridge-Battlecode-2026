@@ -1,13 +1,13 @@
 {
   "schema": 1,
-  "working_candidate": "ppo-topdraft-v7",
+  "working_candidate": "ppo-topdraft-v8",
   "qualified_candidate": "ppo-league-v12",
   "last_verified_platform_version": 85,
   "live_batch": "results/stage7-live-v84-groups.json",
   "report": "V84-SPARRING.md",
   "status": "teammate_live_hold_offline_work_continues",
   "next_hypotheses": [
-    "Finish already-started healthy/quiet positive-cargo banking trips before optional work; v7 still strands four-gem loads late.",
+    "Bound optional spell-scan entry below the normal turn budget; repeated Stellar B-seat exhaustion against v7/v8 needs a general fix.",
     "Preserve zero observed fuel losses while testing useful gem collection and deposits; do not raise global initialization reserve",
     "Elk-arena sustained objective execution: assault logs exist and deposits rise to 96/144, but both seats still lose",
     "Pilgrimage/reverse-spiral fight exposure and carried-gem loss; preserve multi-camp maps"
@@ -30,6 +30,13 @@
   "deployment": "results/topdraft-v7-deployment.json",
   "live_hold": "experiments/LIVE-HOLD.json",
   "last_completed_batch_platform_version": 84,
-  "working_report": "BANKING-V7.md",
-  "offline_results": "results/topdraft-v7-screen.json"
+  "working_report": "BANKING-V8.md",
+  "offline_results": "results/topdraft-v8-vs-parent.json",
+  "prepared_candidate": "ppo-topdraft-v8",
+  "prepared_uploaded": false,
+  "live_next_steps": [
+    "Honor experiments/LIVE-HOLD.json before live mutations or quota use.",
+    "After hold and teammate batch completion, select frozen v85 and repeat pinned Preyas source 26aefce6-7006-4ece-8bc8-75a679090632, both seats, five-map benchmark.",
+    "Download and native-verify the v85 pair before uploading the next usable prepared fix; persist request and returned IDs immediately."
+  ]
 }

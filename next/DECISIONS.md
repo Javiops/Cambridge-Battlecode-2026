@@ -291,3 +291,7 @@ V84 compiled on the platform and stays live for iterative learning. Used all eig
 ## 2026-10-20 · V7 banking priority and teammate handoff
 
 Continue safe existing banking trips before optional group planning. The local big-world starter reproduction rises from 121/0 to 316/105 banked gems in both seats, with zero faults/fuel losses. Broad screening: 67/70 starter and 148/302 v6; 14 fuel losses across 372 games, zero faults. No proven strength gain or lab promotion. V7 uploaded as v85 and compiled; then Fran requested a teammate handoff, so v82 was restored as selected and live actions were held until 23:10:20 UTC unless released earlier. Zero v85 unranked requests were initiated. Small late-game cargo can still stall; next isolate continuation of positive-cargo trips without changing their start policy. See BANKING-V7.md and LIVE-HOLD.json.
+
+## 2026-10-20 · V8 positive-cargo continuation, offline only
+
+Complete already-started healthy/quiet banking trips even below 12 gems. Big-world starter deposits improve from v7 316/105 to 692/800 with zero faults/fuel losses. V8 wins 152/302 against v7 and 146/302 against fixed v6; starter 69/70. Fuel totals 106 versus v7 and 14 versus fixed v6 are matchup-dependent: the reverse-seat v7 also exhausts 94 times on the same generated B-seat fixture. Do not label that difference a new regression without the fixed-opponent control. No promotion or online upload during the teammate hold. Next isolate the optional spell-scan budget guard. See BANKING-V8.md.

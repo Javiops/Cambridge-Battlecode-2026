@@ -9,6 +9,11 @@ that explain *why* a version wins or loses. Only then do we write the bot, one c
 Start with [AUDIT.md](AUDIT.md) (this lab next to what Carson built), [AGENTS.md](AGENTS.md) (how we work), then [DECISIONS.md](DECISIONS.md) (what we know, with numbers)
 and [ROADMAP.md](ROADMAP.md) (what is next).
 
+**Stage 1 is complete for the October 20 patch.** See [STAGE1.md](STAGE1.md) for the
+training interface, observation/action contract, release fuel certificate and reproduction
+commands. `python -m lab stage1 ready` verifies the saved evidence against current hashes.
+Stage 2's baseline dataset has not started.
+
 ## Setup
 
 ```bash
@@ -25,6 +30,9 @@ On Windows, create the environment with `py -3.12 -m venv .venv`, activate it wi
 `.venv\Scripts\Activate.ps1`, then use `python` wherever this file says `python3`.
 The project environment pins CAMBC 3.0.1. See [PATCH-2026-10-20.md](PATCH-2026-10-20.md)
 before migrating old frozen versions or interpreting pre-patch ratings.
+The fast actor environment also requires Node.js 22+ and the pinned official map-editor
+rules asset. Follow [the Stage 1 setup](STAGE1.md#reproduce), then generate the map pool with
+`python -m lab stage1 maps` before running the default league.
 
 ## Run the league
 
@@ -32,6 +40,8 @@ before migrating old frozen versions or interpreting pre-patch ratings.
 python3 -m lab freeze bots/dummy dummy-week2-v1 --parent ""
 python3 -m lab freeze bots/starter-cpp starter-week2-v1 --parent ""
 python3 -m lab freeze bots/calib-seed calib-seed-week2-v1 --parent ""
+python3 -m lab freeze bots/calib-skip10 calib-skip10-week2-v1
+python3 -m lab freeze bots/calib-skip2 calib-skip2-week2-v1
 python3 -m lab league --mirror                 # writes results/REPORT.md
 python3 -m lab watch starter-week2-v1 dummy-week2-v1 00corners
 python3 -m lab probe                           # regenerate mechanics/constants.md from the engine
@@ -62,5 +72,9 @@ the current league requires fresh versions recorded against this runtime.
 | `bots/starter-cpp` | the SDK starter, the weak reference |
 | `bots/calib-*` | calibration bots of known strength (same, -10% turns, -50% turns) |
 | `bots/probe` | prints constants, all 13 champion bodies, all 6 camps, dash and CC designs |
+| `bots/contract-probe` | release observation/action parity and SIMD inference fuel certificate |
+| `lab/environment.py`, `lab/engine.mjs` | persistent batched actor access to the exact official rules module |
+| `lab/mapgen.py`, `mechanics/generated-maps-g1.json` | deterministic generator and immutable map hashes |
+| `results/stage1-*.json`, `STAGE1.md` | source-bound Stage 1 exit checks and Stage 2 handoff |
 | `results/calibration-2026-10-17.md` | the first league report |
-| `maps/` | current 21-map pool (`00*` screen, `01*` confirm); old maps remain historical |
+| `maps/` | 100 generated screen maps; 60 generated + ten site confirm maps; 11 separate `00*` diagnostics |

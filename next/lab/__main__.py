@@ -31,7 +31,7 @@ def main() -> None:
     f.add_argument("--note", default=""); f.add_argument("--parent", default=None, help="version it was copied from (default: the champion; \"\" for none)")
     sub.add_parser("list")
     lg = sub.add_parser("league"); lg.add_argument("versions", nargs="*")
-    lg.add_argument("--maps", default="screen", choices=["screen", "confirm", "all"])
+    lg.add_argument("--maps", default="screen", choices=["screen", "site", "confirm", "all"])
     lg.add_argument("--mirror", action="store_true"); lg.add_argument("--jobs", type=int)
     lg.add_argument("--out", default="results/REPORT.md")
     g = sub.add_parser("gate"); g.add_argument("version"); g.add_argument("--jobs", type=int)
@@ -39,6 +39,8 @@ def main() -> None:
     w.add_argument("--no-view", action="store_true")
     b = sub.add_parser("bundle"); b.add_argument("version")
     sub.add_parser("probe")
+    s = sub.add_parser("stage1")
+    s.add_argument("check", choices=["maps", "verify", "benchmark", "calibrate", "ready"])
     a = p.parse_args()
     cfg = core.config()
 
@@ -52,7 +54,7 @@ def main() -> None:
     elif a.cmd == "league":
         names = list(dict.fromkeys(cfg["league"]["panel"] + [cfg["league"]["champion"]] + a.versions))
         maps = cfg["maps"]["screen"] + cfg["maps"]["confirm"] if a.maps == "all" else cfg["maps"][a.maps]
-        if a.maps != "screen":
+        if a.maps in ("confirm", "all"):
             print("warning: confirm maps are for the gate. Looking at them while tuning turns them into screening maps.")
         pairs = [(x, y) for i, x in enumerate(names) for y in names[i + 1:]]
         if a.mirror:
@@ -94,6 +96,11 @@ def main() -> None:
         raise SystemExit(0 if same else 1)
     elif a.cmd == "probe":
         print(f"wrote {probe.run().relative_to(core.ROOT)}")
+    elif a.cmd == "stage1":
+        from . import mapgen, stage1
+        result = {"maps": mapgen.run, "verify": stage1.verify, "benchmark": stage1.benchmark,
+                  "calibrate":stage1.calibrate,"ready":stage1.ready}[a.check]()
+        print(json.dumps(result, indent=2))
 
 
 if __name__ == "__main__":

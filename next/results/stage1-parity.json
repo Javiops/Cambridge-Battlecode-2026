@@ -1,0 +1,159 @@
+{
+  "schema": 1,
+  "runtime": {
+    "cli": "cambc 3.0.1",
+    "sdk_sha256": "478d64d6b611ffbe584d18352c449eaebb0d79465729811788a1e972860a1a9d",
+    "engine_build_hash": "2b36d9c61b2710d06036680d07fc4b7a8319ba35f634e4f1445725e0d99a1e16",
+    "ruleset": "cambc2026a-week2-2026-10-20",
+    "release": true
+  },
+  "engine_wasm_sha256": "f7d27c468024ce20f1f64eb1bd06ec4de6314213314fb0132e8b605cf0a610db",
+  "protocol": {
+    "passed": true,
+    "hidden_queries_denied": true,
+    "hidden_health_mutation_invariant": true,
+    "unfinished_unlabelled": true,
+    "stale_actor_rejected": true,
+    "decision_cap": 2,
+    "batch_error_isolation": true,
+    "invalid_numeric_input_rejected": true,
+    "closed_episode_rejected": true
+  },
+  "model": {
+    "global_features": 24,
+    "candidate_features": 12,
+    "hidden": 8,
+    "candidates": 16,
+    "weights": 305,
+    "decisions_per_turn": 2
+  },
+  "maps": [
+    {
+      "map": "00collision",
+      "map_sha256": "6e3c67956080f8da5a0042e68ea481189cd6f61061a742a8be0354a9ea5c5620",
+      "actors": 6,
+      "observations": 480,
+      "actions": {
+        "move": 68,
+        "cast": 20,
+        "attack": 163,
+        "recall": 1,
+        "buy": 2
+      },
+      "kernel_fuel_max": 55610,
+      "prelog_fuel_max": 71444,
+      "terminal": {
+        "outcome": "teamB",
+        "round": 2000,
+        "banks": [
+          0,
+          0
+        ]
+      },
+      "faults": 0,
+      "fuel_exhausted": 0,
+      "wasm_sha256": "2af3dad9b0bdf4ac5491ddfa3d739d7110966d8720cd053c913c4dfa89722182"
+    },
+    {
+      "map": "generated/screen/g1-screen-000",
+      "map_sha256": "c5fca8116a6e73856e630ea95677f4023a164d4f9759e3a0cf717c3e32932f23",
+      "actors": 6,
+      "observations": 480,
+      "actions": {
+        "move": 52,
+        "cast": 13,
+        "attack": 131,
+        "recall": 14,
+        "buy": 6
+      },
+      "kernel_fuel_max": 41890,
+      "prelog_fuel_max": 53662,
+      "terminal": {
+        "outcome": "teamB",
+        "round": 2000,
+        "banks": [
+          0,
+          0
+        ]
+      },
+      "faults": 0,
+      "fuel_exhausted": 0,
+      "wasm_sha256": "2af3dad9b0bdf4ac5491ddfa3d739d7110966d8720cd053c913c4dfa89722182"
+    },
+    {
+      "map": "generated/screen/g1-screen-003",
+      "map_sha256": "f2338072f2be1307ac369988049617f6f0a7843b2b1b984bdefb47bcbf19ced7",
+      "actors": 8,
+      "observations": 640,
+      "actions": {
+        "move": 120,
+        "cast": 7,
+        "attack": 135,
+        "recall": 22,
+        "submit": 1,
+        "buy": 3
+      },
+      "kernel_fuel_max": 42297,
+      "prelog_fuel_max": 49434,
+      "terminal": {
+        "outcome": "teamA",
+        "round": 2000,
+        "banks": [
+          15,
+          0
+        ]
+      },
+      "faults": 0,
+      "fuel_exhausted": 0,
+      "wasm_sha256": "2af3dad9b0bdf4ac5491ddfa3d739d7110966d8720cd053c913c4dfa89722182"
+    },
+    {
+      "map": "generated/screen/g1-screen-002",
+      "map_sha256": "2600d65825d2ba20c7a0568b70e25e4ff1963ca9b1ae9083eae3e69a3618f33c",
+      "actors": 12,
+      "observations": 960,
+      "actions": {
+        "move": 110,
+        "cast": 6,
+        "attack": 112,
+        "recall": 17
+      },
+      "kernel_fuel_max": 44382,
+      "prelog_fuel_max": 52035,
+      "terminal": {
+        "outcome": "teamB",
+        "round": 2000,
+        "banks": [
+          0,
+          0
+        ]
+      },
+      "faults": 0,
+      "fuel_exhausted": 0,
+      "wasm_sha256": "2af3dad9b0bdf4ac5491ddfa3d739d7110966d8720cd053c913c4dfa89722182"
+    }
+  ],
+  "passed": true,
+  "sources": {
+    "lab.toml": "9e3b0b447e2609ae24daac4688e59b54f1a745d534b8a6233b5ab4387729b032",
+    "lab/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "lab/__main__.py": "a12258fcf12cf627b285d63eca6f3128bddb5c674fb7af3d7cf8d179e29a1296",
+    "lab/core.py": "a22268763ba7be333a99bd41ed9e951bde2a9395f0879de1762b9e2513806021",
+    "lab/dashboard.py": "1e1efc1a3f9797d3ad13dec0a6b899b8840de7234516f0397cae13e392376951",
+    "lab/engine-check.mjs": "8fc2b6066f7ebf4aa253211fda0d90e98075047fe7edd70998236f52a7694b06",
+    "lab/engine.mjs": "390e898cfcc869ddd9e8212a004681da2c69224623deb946111f3c7935356a0b",
+    "lab/environment.py": "a11f7bd43806cc14293f5c454600840d7f741ed2290975c204c22af6924366b5",
+    "lab/gate.py": "1257fe4b21eefc0dd6b9786ce80f5ed3881927b1b6e8e34455568b211462654e",
+    "lab/mapgen.py": "ebda23feb8717724cf70be2dd638b3e6382204b42204e7b88a9ee0b2f17316d0",
+    "lab/policy.py": "91610c10b30f959706e25c412a9684b38eed4fe6430dcf841eb63ccf74a30023",
+    "lab/probe.py": "e51575314b10070f1c2d9027478bb296fbbf24286d1c350a95fd039c19342878",
+    "lab/rating.py": "559bb092a69158094a1d0d7343ef6c1cc4f9970bdd31d19ce231a349e5f8b155",
+    "lab/report.py": "3253e8fef30adba8f89b8f67d369100a1a1f6d9116f374971135071e535e8726",
+    "lab/runtime.py": "9e0c64db060958d888b84432a0e544411638a8bf94aa8c5d491df437baf6e792",
+    "lab/stage1.py": "e9ef268201b85da22e310d16e4cd6ec1ee33c07df6ca9b9f9ac0f8eb791b5c4f",
+    "lab/stats.py": "8d907514521f7125e0e2e616df710ce3ef3be16fb1c5c5abe1f6cd4c47f278fa",
+    "bots/contract-probe/src/main.cpp": "2fa98697a9b10188b3ad721e59a0719a70df64aefc5b8b3abaa30781de62d4d3",
+    "bots/contract-probe/src/observe.h": "c8aa097d6d13672dddfc85b7b425dc5a1470edd9a61e2b0d1efcc5678e9904a3",
+    "bots/contract-probe/src/policy.h": "48df40d372fe33ce5a8544dc3b22e6fe9d7ddb9c1e417379b5d630e1a18c947b"
+  }
+}

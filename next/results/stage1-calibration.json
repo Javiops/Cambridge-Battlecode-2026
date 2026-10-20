@@ -1,0 +1,59 @@
+{
+  "games": 2500,
+  "maps": 100,
+  "faults": 0,
+  "fuel_exhausted": 0,
+  "ratings": {
+    "starter-week2-v1": 1827.6828247185513,
+    "calib-seed-week2-v1": 1811.7793250980405,
+    "calib-skip10-week2-v1": 1789.701309511512,
+    "calib-skip2-week2-v1": 1383.9288954207395,
+    "dummy-week2-v1": 686.9076452511569
+  },
+  "seed_gap": 15.903499620510729,
+  "handicap_gaps": {
+    "calib-skip10-week2-v1": 37.981515207039365,
+    "calib-skip2-week2-v1": 443.75392929781174
+  },
+  "schema": 1,
+  "passed": true,
+  "panel": {
+    "dummy-week2-v1": "ad187698542977544e6c83b40471c298d5867c6e050254ad2523aa053b4afaa7",
+    "starter-week2-v1": "c9a0ca35cf13686680ef4ea00d0bb99f654a79be78382bdb3283604d5fde9795",
+    "calib-seed-week2-v1": "c9602e0a27c5791b84146529346bfd1453e5cdb3c900759363231f487bb6ccf9",
+    "calib-skip10-week2-v1": "3be16272ea89990ee8628bea2f61dac235054473a624b088da891071f6ea656d",
+    "calib-skip2-week2-v1": "0b448da704a41345c3ac8f4ab5aefddfc86e919371784f4d5ccb45f537cefd10"
+  },
+  "runtime": {
+    "cli": "cambc 3.0.1",
+    "sdk_sha256": "478d64d6b611ffbe584d18352c449eaebb0d79465729811788a1e972860a1a9d",
+    "engine_build_hash": "2b36d9c61b2710d06036680d07fc4b7a8319ba35f634e4f1445725e0d99a1e16",
+    "ruleset": "cambc2026a-week2-2026-10-20",
+    "release": true
+  },
+  "map_manifest_sha256": "99f62498e7b3924e90dba4ee5ab6618a65c8b469ee7bb61efe679a53226afd7c",
+  "generated_holdouts": 60,
+  "records_sha256": "b2bb01d5d7a2e6062a22806afb7ddc764695ddca58dc6bdbd581de0650020184",
+  "sources": {
+    "lab.toml": "9e3b0b447e2609ae24daac4688e59b54f1a745d534b8a6233b5ab4387729b032",
+    "lab/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "lab/__main__.py": "a12258fcf12cf627b285d63eca6f3128bddb5c674fb7af3d7cf8d179e29a1296",
+    "lab/core.py": "a22268763ba7be333a99bd41ed9e951bde2a9395f0879de1762b9e2513806021",
+    "lab/dashboard.py": "1e1efc1a3f9797d3ad13dec0a6b899b8840de7234516f0397cae13e392376951",
+    "lab/engine-check.mjs": "8fc2b6066f7ebf4aa253211fda0d90e98075047fe7edd70998236f52a7694b06",
+    "lab/engine.mjs": "390e898cfcc869ddd9e8212a004681da2c69224623deb946111f3c7935356a0b",
+    "lab/environment.py": "a11f7bd43806cc14293f5c454600840d7f741ed2290975c204c22af6924366b5",
+    "lab/gate.py": "1257fe4b21eefc0dd6b9786ce80f5ed3881927b1b6e8e34455568b211462654e",
+    "lab/mapgen.py": "ebda23feb8717724cf70be2dd638b3e6382204b42204e7b88a9ee0b2f17316d0",
+    "lab/policy.py": "91610c10b30f959706e25c412a9684b38eed4fe6430dcf841eb63ccf74a30023",
+    "lab/probe.py": "e51575314b10070f1c2d9027478bb296fbbf24286d1c350a95fd039c19342878",
+    "lab/rating.py": "559bb092a69158094a1d0d7343ef6c1cc4f9970bdd31d19ce231a349e5f8b155",
+    "lab/report.py": "3253e8fef30adba8f89b8f67d369100a1a1f6d9116f374971135071e535e8726",
+    "lab/runtime.py": "9e0c64db060958d888b84432a0e544411638a8bf94aa8c5d491df437baf6e792",
+    "lab/stage1.py": "e9ef268201b85da22e310d16e4cd6ec1ee33c07df6ca9b9f9ac0f8eb791b5c4f",
+    "lab/stats.py": "8d907514521f7125e0e2e616df710ce3ef3be16fb1c5c5abe1f6cd4c47f278fa",
+    "bots/contract-probe/src/main.cpp": "2fa98697a9b10188b3ad721e59a0719a70df64aefc5b8b3abaa30781de62d4d3",
+    "bots/contract-probe/src/observe.h": "c8aa097d6d13672dddfc85b7b425dc5a1470edd9a61e2b0d1efcc5678e9904a3",
+    "bots/contract-probe/src/policy.h": "48df40d372fe33ce5a8544dc3b22e6fe9d7ddb9c1e417379b5d630e1a18c947b"
+  }
+}

@@ -1,15 +1,16 @@
 {
   "schema": 1,
-  "working_candidate": "ppo-topdraft-v3",
+  "working_candidate": "ppo-topdraft-v6",
   "qualified_candidate": "ppo-league-v12",
   "last_verified_platform_version": 83,
-  "live_batch": "results/stage7-live-hourly-groups.json",
-  "report": "TOPDRAFT.md",
-  "status": "development_only_not_promoted",
+  "live_batch": "results/stage7-live-curriculum-groups.json",
+  "report": "MAP-LEARNING.md",
+  "status": "development_only_failed_strength_minimum",
   "next_hypotheses": [
-    "Heart focus-oriented purchases, isolated from rally changes",
-    "Stampede sustained objective damage and engagement timing",
-    "Big-world planning fuel"
+    "Profile optional native calls on ambush and big-world; all 96 live fuel losses are on these maps",
+    "Pilgrimage fight exposure: 0/6 against three nearby teams and 47.5 mean team deaths",
+    "Sustained shared objective damage and reward collection after rally",
+    "Profile optional native path operations without raising global initialization reserve"
   ],
   "user_authorizations": {
     "hourly_unranked_all_available": true,

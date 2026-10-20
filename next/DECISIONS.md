@@ -279,3 +279,7 @@ So every comparison plays both sides, and a result from one side is never report
 
 Only 17 site maps exist locally. 12 are `screen` and 5 are `confirm` (`lab.toml`). The qualifying
 maps will be new, so the long-term confirm set is generated maps no one has tuned on.
+
+## 2026-10-20 · Nearby curriculum and failed development candidates
+
+Used all 50 available challenge groups for 250 v83 games, both seats and all 35 maps. Keep live strength separated by opponent cohort. Rejected Heart-focus v4 (95/270 versus v3) and global-area-reserve v5 (initialization starvation). V6 reduces fuel losses versus its parent (14 versus 23) but wins 151/302; against qualified v12 it wins 149/302. No promotion or upload, no confirmation outcomes consumed. Preserve v6 as a runtime hypothesis, not a proven strength improvement. See MAP-LEARNING.md and compact results.

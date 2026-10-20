@@ -1,4 +1,4 @@
-// ppo-topdraft-v3: assemble around one reachable rally tile, then latch the team assault; expect objective captures.
+// ppo-topdraft-v6: bound low-fuel goal scans and use a cheap movement fallback; expect fewer exhausted turns without stalling initialization.
 // team-fight-v1 (design: analysis/claude-api-2026-10-18/team_fight_design_1019.md): recall-api-v1 + P_TEAM_FIGHT (finish layer,
 // below) + P_HP_SHOP (hp shards at the top teams' hp share on the v72 power path).
 // Finish layer: the no-chase doctrine lifted for hurt rivals. The bot let hurt rivals go by
@@ -1165,9 +1165,11 @@ bool step_towards(State& s, bc::champion& me, const bc::bitboard& goals_in, bool
         auto ps = goals.positions();
         if (ps.empty()) return false;
         vec2 best = ps[0];
-        for (auto p : ps)
+        for (auto p : ps) {
+            if (bc::fuel_remaining() < 36000) break;
             if (dist(p, pos) < dist(best, pos)) best = p;
-        if (!fuel_ok(14000)) return greedy_step(s, me, best);  // move_towards is one more path search
+        }
+        if (!fuel_ok(25000)) return greedy_step(s, me, best);  // move_towards is one more path search
         return attempt([&] { return me.move_towards(best); });
     }
 
@@ -1177,8 +1179,11 @@ bool step_towards(State& s, bc::champion& me, const bc::bitboard& goals_in, bool
         auto ps = goals.positions();
         if (ps.empty() || !me.can_move()) return false;
         vec2 best = ps[0];
-        for (auto p : ps)
+        for (auto p : ps) {
+            if (bc::fuel_remaining() < 36000) break;
             if (dist(p, pos) < dist(best, pos)) best = p;
+        }
+        if (!fuel_ok(25000)) return greedy_step(s, me, best);
         return attempt([&] { return me.move_towards(best); });
     };
     bool ok_field = false;

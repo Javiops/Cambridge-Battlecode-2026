@@ -11,13 +11,19 @@ confirmation maps describe earlier stage milestones; both final cohorts are now 
   our strength, with a repeatable benchmark and at most 10% leader scouting.
 - Keep qualified v12/platform v83 live while the draft fork is developed. Automatic
   uploads are authorized with short notes once runtime and fresh promotion checks pass.
-- `ppo-topdraft-v3` now assembles and launches single-objective assaults. Improve
-  Stampede sustained damage and capture income without losing elk-arena gains.
-- Isolate Heart's focus-oriented item build: the leader buys focus, while our
-  Heart still inherits the generic melee strength build. Do not combine this
-  experiment with rally timing changes.
-- Fix fuel-exhausted turns on `01big-world`; all 29 losses of fuel in the 120-game
-  live scouting batch occur there. Preserve the original qualified source.
+- `ppo-topdraft-v6` is the working development fork, with bounded movement
+  fallback. Its 149/302 versus v12 fails the development minimum; it is not promoted.
+- Profile optional native calls on big-world and ambush. The new 250-game batch
+  has 55 and 41 fuel losses respectively. Raising the global reserve in v5
+  stalled initialization; do not repeat that attempted fix.
+- Elk-arena, big-world and pilgrimage each lose 0/6 against three nearby teams.
+  Diagnose objective commitment, low collection and fight exposure separately.
+  Pilgrimage averages 47.5 team deaths; collection/deposit differences alone
+  do not prove a banking bug.
+- After healthy allies assemble, test sustained single-objective damage and
+  reward collection. Preserve ordinary multi-camp performance and both seats.
+- Heart's copied focus build was isolated in v4 and lost 95/270 against v3.
+  Repeating that purchase order without a new hypothesis is not the next step.
 - Identify other one-area layouts from public metadata and replays; Fran does
   not have map names. The strict single-gem-group detector currently covers
   Stampede and elk-arena only.

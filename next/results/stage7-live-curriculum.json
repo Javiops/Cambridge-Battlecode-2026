@@ -1,0 +1,3262 @@
+{
+  "schema": 1,
+  "platform_version": 83,
+  "candidate": "ppo-league-v12",
+  "engine_build_hash": "c3e9ffc8d98c106f86660c58344dc26ced9459a504e2f0d90d88b4c8594c7765",
+  "decoder_wasm_sha256": "c03ab26f20263b08e576ebc1a064cd6f9b66a996aca005d69bd9fb9205434354",
+  "kind": "unranked",
+  "challenged_groups": 50,
+  "allowance_before": 26,
+  "allowance_after": 0,
+  "maps": 35,
+  "native_verified_games": 250,
+  "summary": {
+    "games": 250,
+    "wins": 96,
+    "faults": 0,
+    "fuel_exhausted": 96,
+    "opponent_faults": 1,
+    "mean_banked_gems": 582.864,
+    "mean_opponent_banked_gems": 738.592,
+    "zero_bank_games": 15,
+    "ppo_logged_calls": 29527,
+    "ppo_logged_changes": 15120
+  },
+  "by_cohort": {
+    "nearby": {
+      "games": 150,
+      "wins": 66,
+      "faults": 0,
+      "fuel_exhausted": 84,
+      "opponent_faults": 0,
+      "mean_banked_gems": 648.58,
+      "mean_opponent_banked_gems": 746.1666666666666,
+      "zero_bank_games": 8,
+      "ppo_logged_calls": 17178,
+      "ppo_logged_changes": 8722
+    },
+    "stretch": {
+      "games": 80,
+      "wins": 28,
+      "faults": 0,
+      "fuel_exhausted": 0,
+      "opponent_faults": 1,
+      "mean_banked_gems": 524.7125,
+      "mean_opponent_banked_gems": 680.125,
+      "zero_bank_games": 4,
+      "ppo_logged_calls": 11110,
+      "ppo_logged_changes": 5804
+    },
+    "leader": {
+      "games": 20,
+      "wins": 2,
+      "faults": 0,
+      "fuel_exhausted": 12,
+      "opponent_faults": 0,
+      "mean_banked_gems": 322.6,
+      "mean_opponent_banked_gems": 915.65,
+      "zero_bank_games": 3,
+      "ppo_logged_calls": 1239,
+      "ppo_logged_changes": 594
+    }
+  },
+  "by_map": {
+    "00ambush": {
+      "games": 8,
+      "wins": 2,
+      "faults": 0,
+      "fuel_exhausted": 41,
+      "opponent_faults": 0,
+      "mean_banked_gems": 783.375,
+      "mean_opponent_banked_gems": 960.0,
+      "zero_bank_games": 0,
+      "ppo_logged_calls": 907,
+      "ppo_logged_changes": 383
+    },
+    "00collision": {
+      "games": 12,
+      "wins": 7,
+      "faults": 0,
+      "fuel_exhausted": 0,
+      "opponent_faults": 0,
+      "mean_banked_gems": 693.75,
+      "mean_opponent_banked_gems": 634.75,
+      "zero_bank_games": 0,
+      "ppo_logged_calls": 1679,
+      "ppo_logged_changes": 748
+    },
+    "00contest": {
+      "games": 8,
+      "wins": 2,
+      "faults": 0,
+      "fuel_exhausted": 0,
+      "opponent_faults": 0,
+      "mean_banked_gems": 275.0,
+      "mean_opponent_banked_gems": 850.0,
+      "zero_bank_games": 4,
+      "ppo_logged_calls": 795,
+      "ppo_logged_changes": 452
+    },
+    "00corners": {
+      "games": 6,
+      "wins": 6,
+      "faults": 0,
+      "fuel_exhausted": 0,
+      "opponent_faults": 0,
+      "mean_banked_gems": 1006.8333333333334,
+      "mean_opponent_banked_gems": 451.6666666666667,
+      "zero_bank_games": 0,
+      "ppo_logged_calls": 792,
+      "ppo_logged_changes": 395
+    },
+    "00eight": {
+      "games": 6,
+      "wins": 3,
+      "faults": 0,
+      "fuel_exhausted": 0,
+      "opponent_faults": 0,
+      "mean_banked_gems": 636.5,
+      "mean_opponent_banked_gems": 735.3333333333334,
+      "zero_bank_games": 0,
+      "ppo_logged_calls": 1016,
+      "ppo_logged_changes": 460
+    },
+    "00elkring": {
+      "games": 6,
+      "wins": 1,
+      "faults": 0,
+      "fuel_exhausted": 0,
+      "opponent_faults": 0,
+      "mean_banked_gems": 610.6666666666666,
+      "mean_opponent_banked_gems": 982.5,
+      "zero_bank_games": 0,
+      "ppo_logged_calls": 279,
+      "ppo_logged_changes": 148
+    },
+    "00expanse": {
+      "games": 6,
+      "wins": 3,
+      "faults": 0,
+      "fuel_exhausted": 0,
+      "opponent_faults": 0,
+      "mean_banked_gems": 992.6666666666666,
+      "mean_opponent_banked_gems": 809.8333333333334,
+      "zero_bank_games": 0,
+      "ppo_logged_calls": 362,
+      "ppo_logged_changes": 183
+    },
+    "00fragment": {
+      "games": 6,
+      "wins": 4,
+      "faults": 0,
+      "fuel_exhausted": 0,
+      "opponent_faults": 0,
+      "mean_banked_gems": 767.0,
+      "mean_opponent_banked_gems": 506.8333333333333,
+      "zero_bank_games": 0,
+      "ppo_logged_calls": 142,
+      "ppo_logged_changes": 74
+    },
+    "00interlock": {
+      "games": 6,
+      "wins": 4,
+      "faults": 0,
+      "fuel_exhausted": 0,
+      "opponent_faults": 0,
+      "mean_banked_gems": 803.8333333333334,
+      "mean_opponent_banked_gems": 689.0,
+      "zero_bank_games": 0,
+      "ppo_logged_calls": 526,
+      "ppo_logged_changes": 248
+    },
+    "00lanes": {
+      "games": 6,
+      "wins": 5,
+      "faults": 0,
+      "fuel_exhausted": 0,
+      "opponent_faults": 0,
+      "mean_banked_gems": 969.1666666666666,
+      "mean_opponent_banked_gems": 511.8333333333333,
+      "zero_bank_games": 0,
+      "ppo_logged_calls": 970,
+      "ppo_logged_changes": 521
+    },
+    "00monolith": {
+      "games": 12,
+      "wins": 3,
+      "faults": 0,
+      "fuel_exhausted": 0,
+      "opponent_faults": 0,
+      "mean_banked_gems": 818.0,
+      "mean_opponent_banked_gems": 966.8333333333334,
+      "zero_bank_games": 0,
+      "ppo_logged_calls": 2203,
+      "ppo_logged_changes": 1125
+    },
+    "00packs": {
+      "games": 6,
+      "wins": 4,
+      "faults": 0,
+      "fuel_exhausted": 0,
+      "opponent_faults": 0,
+      "mean_banked_gems": 795.0,
+      "mean_opponent_banked_gems": 541.3333333333334,
+      "zero_bank_games": 0,
+      "ppo_logged_calls": 1341,
+      "ppo_logged_changes": 660
+    },
+    "00pilgrimage": {
+      "games": 6,
+      "wins": 0,
+      "faults": 0,
+      "fuel_exhausted": 0,
+      "opponent_faults": 0,
+      "mean_banked_gems": 435.5,
+      "mean_opponent_banked_gems": 693.8333333333334,
+      "zero_bank_games": 0,
+      "ppo_logged_calls": 775,
+      "ppo_logged_changes": 381
+    },
+    "00quadrants": {
+      "games": 6,
+      "wins": 1,
+      "faults": 0,
+      "fuel_exhausted": 0,
+      "opponent_faults": 0,
+      "mean_banked_gems": 570.6666666666666,
+      "mean_opponent_banked_gems": 993.5,
+      "zero_bank_games": 0,
+      "ppo_logged_calls": 140,
+      "ppo_logged_changes": 71
+    },
+    "00reverse-spiral": {
+      "games": 6,
+      "wins": 1,
+      "faults": 0,
+      "fuel_exhausted": 0,
+      "opponent_faults": 0,
+      "mean_banked_gems": 393.8333333333333,
+      "mean_opponent_banked_gems": 815.0,
+      "zero_bank_games": 0,
+      "ppo_logged_calls": 170,
+      "ppo_logged_changes": 93
+    },
+    "00rows": {
+      "games": 10,
+      "wins": 10,
+      "faults": 0,
+      "fuel_exhausted": 0,
+      "opponent_faults": 0,
+      "mean_banked_gems": 1077.9,
+      "mean_opponent_banked_gems": 666.2,
+      "zero_bank_games": 0,
+      "ppo_logged_calls": 2774,
+      "ppo_logged_changes": 1466
+    },
+    "00rushbait-v2": {
+      "games": 6,
+      "wins": 3,
+      "faults": 0,
+      "fuel_exhausted": 0,
+      "opponent_faults": 0,
+      "mean_banked_gems": 856.6666666666666,
+      "mean_opponent_banked_gems": 730.8333333333334,
+      "zero_bank_games": 0,
+      "ppo_logged_calls": 418,
+      "ppo_logged_changes": 181
+    },
+    "00split": {
+      "games": 6,
+      "wins": 0,
+      "faults": 0,
+      "fuel_exhausted": 0,
+      "opponent_faults": 0,
+      "mean_banked_gems": 440.3333333333333,
+      "mean_opponent_banked_gems": 1011.5,
+      "zero_bank_games": 0,
+      "ppo_logged_calls": 100,
+      "ppo_logged_changes": 54
+    },
+    "00stampede": {
+      "games": 12,
+      "wins": 5,
+      "faults": 0,
+      "fuel_exhausted": 0,
+      "opponent_faults": 0,
+      "mean_banked_gems": 446.6666666666667,
+      "mean_opponent_banked_gems": 560.0,
+      "zero_bank_games": 2,
+      "ppo_logged_calls": 1184,
+      "ppo_logged_changes": 593
+    },
+    "00swirl": {
+      "games": 6,
+      "wins": 3,
+      "faults": 0,
+      "fuel_exhausted": 0,
+      "opponent_faults": 0,
+      "mean_banked_gems": 580.6666666666666,
+      "mean_opponent_banked_gems": 398.6666666666667,
+      "zero_bank_games": 0,
+      "ppo_logged_calls": 891,
+      "ppo_logged_changes": 535
+    },
+    "01big-world": {
+      "games": 8,
+      "wins": 0,
+      "faults": 0,
+      "fuel_exhausted": 55,
+      "opponent_faults": 0,
+      "mean_banked_gems": 76.625,
+      "mean_opponent_banked_gems": 1016.75,
+      "zero_bank_games": 0,
+      "ppo_logged_calls": 66,
+      "ppo_logged_changes": 34
+    },
+    "01boss-battle": {
+      "games": 6,
+      "wins": 2,
+      "faults": 0,
+      "fuel_exhausted": 0,
+      "opponent_faults": 0,
+      "mean_banked_gems": 0.0,
+      "mean_opponent_banked_gems": 0.0,
+      "zero_bank_games": 6,
+      "ppo_logged_calls": 361,
+      "ppo_logged_changes": 160
+    },
+    "01broken-curve": {
+      "games": 6,
+      "wins": 1,
+      "faults": 0,
+      "fuel_exhausted": 0,
+      "opponent_faults": 0,
+      "mean_banked_gems": 587.6666666666666,
+      "mean_opponent_banked_gems": 992.1666666666666,
+      "zero_bank_games": 0,
+      "ppo_logged_calls": 988,
+      "ppo_logged_changes": 547
+    },
+    "01concentrated-wealth": {
+      "games": 6,
+      "wins": 2,
+      "faults": 0,
+      "fuel_exhausted": 0,
+      "opponent_faults": 1,
+      "mean_banked_gems": 641.1666666666666,
+      "mean_opponent_banked_gems": 911.6666666666666,
+      "zero_bank_games": 0,
+      "ppo_logged_calls": 1368,
+      "ppo_logged_changes": 577
+    },
+    "01corridors": {
+      "games": 6,
+      "wins": 5,
+      "faults": 0,
+      "fuel_exhausted": 0,
+      "opponent_faults": 0,
+      "mean_banked_gems": 797.3333333333334,
+      "mean_opponent_banked_gems": 563.8333333333334,
+      "zero_bank_games": 0,
+      "ppo_logged_calls": 3560,
+      "ppo_logged_changes": 2028
+    },
+    "01elk-arena": {
+      "games": 12,
+      "wins": 1,
+      "faults": 0,
+      "fuel_exhausted": 0,
+      "opponent_faults": 0,
+      "mean_banked_gems": 229.83333333333334,
+      "mean_opponent_banked_gems": 917.1666666666666,
+      "zero_bank_games": 3,
+      "ppo_logged_calls": 429,
+      "ppo_logged_changes": 224
+    },
+    "01fracture": {
+      "games": 8,
+      "wins": 0,
+      "faults": 0,
+      "fuel_exhausted": 0,
+      "opponent_faults": 0,
+      "mean_banked_gems": 364.375,
+      "mean_opponent_banked_gems": 860.0,
+      "zero_bank_games": 0,
+      "ppo_logged_calls": 446,
+      "ppo_logged_changes": 192
+    },
+    "01gold-rush": {
+      "games": 8,
+      "wins": 0,
+      "faults": 0,
+      "fuel_exhausted": 0,
+      "opponent_faults": 0,
+      "mean_banked_gems": 496.375,
+      "mean_opponent_banked_gems": 875.75,
+      "zero_bank_games": 0,
+      "ppo_logged_calls": 63,
+      "ppo_logged_changes": 41
+    },
+    "01hooks": {
+      "games": 6,
+      "wins": 1,
+      "faults": 0,
+      "fuel_exhausted": 0,
+      "opponent_faults": 0,
+      "mean_banked_gems": 333.6666666666667,
+      "mean_opponent_banked_gems": 847.0,
+      "zero_bank_games": 0,
+      "ppo_logged_calls": 773,
+      "ppo_logged_changes": 441
+    },
+    "01islands": {
+      "games": 6,
+      "wins": 2,
+      "faults": 0,
+      "fuel_exhausted": 0,
+      "opponent_faults": 0,
+      "mean_banked_gems": 227.33333333333334,
+      "mean_opponent_banked_gems": 677.0,
+      "zero_bank_games": 0,
+      "ppo_logged_calls": 210,
+      "ppo_logged_changes": 93
+    },
+    "01shortcut": {
+      "games": 6,
+      "wins": 1,
+      "faults": 0,
+      "fuel_exhausted": 0,
+      "opponent_faults": 0,
+      "mean_banked_gems": 349.0,
+      "mean_opponent_banked_gems": 855.1666666666666,
+      "zero_bank_games": 0,
+      "ppo_logged_calls": 654,
+      "ppo_logged_changes": 336
+    },
+    "01starfish": {
+      "games": 6,
+      "wins": 3,
+      "faults": 0,
+      "fuel_exhausted": 0,
+      "opponent_faults": 0,
+      "mean_banked_gems": 593.0,
+      "mean_opponent_banked_gems": 590.6666666666666,
+      "zero_bank_games": 0,
+      "ppo_logged_calls": 1026,
+      "ppo_logged_changes": 600
+    },
+    "01starvation": {
+      "games": 6,
+      "wins": 3,
+      "faults": 0,
+      "fuel_exhausted": 0,
+      "opponent_faults": 0,
+      "mean_banked_gems": 389.3333333333333,
+      "mean_opponent_banked_gems": 544.0,
+      "zero_bank_games": 0,
+      "ppo_logged_calls": 322,
+      "ppo_logged_changes": 171
+    },
+    "01the-farm": {
+      "games": 8,
+      "wins": 4,
+      "faults": 0,
+      "fuel_exhausted": 0,
+      "opponent_faults": 0,
+      "mean_banked_gems": 703.875,
+      "mean_opponent_banked_gems": 645.875,
+      "zero_bank_games": 0,
+      "ppo_logged_calls": 1218,
+      "ppo_logged_changes": 594
+    },
+    "01yellow-brick-road": {
+      "games": 6,
+      "wins": 4,
+      "faults": 0,
+      "fuel_exhausted": 0,
+      "opponent_faults": 0,
+      "mean_banked_gems": 735.6666666666666,
+      "mean_opponent_banked_gems": 709.1666666666666,
+      "zero_bank_games": 0,
+      "ppo_logged_calls": 579,
+      "ppo_logged_changes": 311
+    }
+  },
+  "by_opponent": {
+    "Preyas": {
+      "games": 20,
+      "wins": 7,
+      "faults": 0,
+      "fuel_exhausted": 10,
+      "opponent_faults": 0,
+      "mean_banked_gems": 577.5,
+      "mean_opponent_banked_gems": 743.35,
+      "zero_bank_games": 4,
+      "ppo_logged_calls": 2304,
+      "ppo_logged_changes": 1151
+    },
+    "Tozo's Disciples": {
+      "games": 20,
+      "wins": 8,
+      "faults": 0,
+      "fuel_exhausted": 2,
+      "opponent_faults": 0,
+      "mean_banked_gems": 520.35,
+      "mean_opponent_banked_gems": 765.15,
+      "zero_bank_games": 1,
+      "ppo_logged_calls": 2828,
+      "ppo_logged_changes": 1501
+    },
+    "Agentic Loop Builders": {
+      "games": 20,
+      "wins": 13,
+      "faults": 0,
+      "fuel_exhausted": 0,
+      "opponent_faults": 0,
+      "mean_banked_gems": 723.55,
+      "mean_opponent_banked_gems": 671.65,
+      "zero_bank_games": 0,
+      "ppo_logged_calls": 2207,
+      "ppo_logged_changes": 1157
+    },
+    "Dirty Coding": {
+      "games": 20,
+      "wins": 6,
+      "faults": 0,
+      "fuel_exhausted": 14,
+      "opponent_faults": 0,
+      "mean_banked_gems": 462.55,
+      "mean_opponent_banked_gems": 736.3,
+      "zero_bank_games": 1,
+      "ppo_logged_calls": 1540,
+      "ppo_logged_changes": 757
+    },
+    "NotSoLonely": {
+      "games": 20,
+      "wins": 6,
+      "faults": 0,
+      "fuel_exhausted": 0,
+      "opponent_faults": 1,
+      "mean_banked_gems": 434.8,
+      "mean_opponent_banked_gems": 735.55,
+      "zero_bank_games": 2,
+      "ppo_logged_calls": 2515,
+      "ppo_logged_changes": 1334
+    },
+    "Pathfinders": {
+      "games": 20,
+      "wins": 8,
+      "faults": 0,
+      "fuel_exhausted": 0,
+      "opponent_faults": 0,
+      "mean_banked_gems": 594.2,
+      "mean_opponent_banked_gems": 662.0,
+      "zero_bank_games": 0,
+      "ppo_logged_calls": 2992,
+      "ppo_logged_changes": 1634
+    },
+    "Antifreeze": {
+      "games": 20,
+      "wins": 10,
+      "faults": 0,
+      "fuel_exhausted": 0,
+      "opponent_faults": 0,
+      "mean_banked_gems": 607.9,
+      "mean_opponent_banked_gems": 544.15,
+      "zero_bank_games": 0,
+      "ppo_logged_calls": 2959,
+      "ppo_logged_changes": 1520
+    },
+    "BitShift": {
+      "games": 20,
+      "wins": 4,
+      "faults": 0,
+      "fuel_exhausted": 0,
+      "opponent_faults": 0,
+      "mean_banked_gems": 461.95,
+      "mean_opponent_banked_gems": 778.8,
+      "zero_bank_games": 2,
+      "ppo_logged_calls": 2644,
+      "ppo_logged_changes": 1316
+    },
+    "Nyx": {
+      "games": 20,
+      "wins": 2,
+      "faults": 0,
+      "fuel_exhausted": 12,
+      "opponent_faults": 0,
+      "mean_banked_gems": 322.6,
+      "mean_opponent_banked_gems": 915.65,
+      "zero_bank_games": 3,
+      "ppo_logged_calls": 1239,
+      "ppo_logged_changes": 594
+    },
+    "Slawomir Zarzycki": {
+      "games": 20,
+      "wins": 7,
+      "faults": 0,
+      "fuel_exhausted": 21,
+      "opponent_faults": 0,
+      "mean_banked_gems": 611.85,
+      "mean_opponent_banked_gems": 861.35,
+      "zero_bank_games": 1,
+      "ppo_logged_calls": 1817,
+      "ppo_logged_changes": 893
+    },
+    "Cozy Campfire": {
+      "games": 20,
+      "wins": 10,
+      "faults": 0,
+      "fuel_exhausted": 35,
+      "opponent_faults": 0,
+      "mean_banked_gems": 833.3,
+      "mean_opponent_banked_gems": 772.4,
+      "zero_bank_games": 0,
+      "ppo_logged_calls": 2692,
+      "ppo_logged_changes": 1307
+    },
+    "Ad Astra": {
+      "games": 20,
+      "wins": 9,
+      "faults": 0,
+      "fuel_exhausted": 2,
+      "opponent_faults": 0,
+      "mean_banked_gems": 716.65,
+      "mean_opponent_banked_gems": 722.3,
+      "zero_bank_games": 1,
+      "ppo_logged_calls": 2812,
+      "ppo_logged_changes": 1440
+    },
+    "Context Overflow": {
+      "games": 10,
+      "wins": 6,
+      "faults": 0,
+      "fuel_exhausted": 0,
+      "opponent_faults": 0,
+      "mean_banked_gems": 837.2,
+      "mean_opponent_banked_gems": 647.5,
+      "zero_bank_games": 0,
+      "ppo_logged_calls": 978,
+      "ppo_logged_changes": 516
+    }
+  },
+  "interpretation": "Paired curriculum across nearby, stretch and leader opponents. Map and opponent effects are confounded outside matched blocks; no causal improvement or retraining is claimed. PPO counters are log lower bounds.",
+  "map_diagnostics": {
+    "00ambush": {
+      "all": {
+        "games": 8,
+        "wins": 2,
+        "opponents": 4,
+        "mean_our_bank": 783.375,
+        "mean_foe_bank": 960.0,
+        "mean_our_collected": 809.125,
+        "mean_foe_collected": 1017.5,
+        "mean_our_gold": 3933.75,
+        "mean_our_deaths": 6.0,
+        "faults": 0,
+        "fuel_exhausted": 41,
+        "wins_with_opponent_fault": 0,
+        "seats": {
+          "A": {
+            "games": 4,
+            "wins": 1
+          },
+          "B": {
+            "games": 4,
+            "wins": 1
+          }
+        }
+      },
+      "nearby": {
+        "games": 6,
+        "wins": 2,
+        "opponents": 3,
+        "mean_our_bank": 842.6666666666666,
+        "mean_foe_bank": 946.0,
+        "mean_our_collected": 877.0,
+        "mean_foe_collected": 1014.1666666666666,
+        "mean_our_gold": 4263.333333333333,
+        "mean_our_deaths": 6.166666666666667,
+        "faults": 0,
+        "fuel_exhausted": 39,
+        "wins_with_opponent_fault": 0,
+        "seats": {
+          "A": {
+            "games": 3,
+            "wins": 1
+          },
+          "B": {
+            "games": 3,
+            "wins": 1
+          }
+        }
+      },
+      "stretch": {
+        "games": 0
+      },
+      "leader": {
+        "games": 2,
+        "wins": 0,
+        "opponents": 1,
+        "mean_our_bank": 605.5,
+        "mean_foe_bank": 1002.0,
+        "mean_our_collected": 605.5,
+        "mean_foe_collected": 1027.5,
+        "mean_our_gold": 2945.0,
+        "mean_our_deaths": 5.5,
+        "faults": 0,
+        "fuel_exhausted": 2,
+        "wins_with_opponent_fault": 0,
+        "seats": {
+          "A": {
+            "games": 1,
+            "wins": 0
+          },
+          "B": {
+            "games": 1,
+            "wins": 0
+          }
+        }
+      }
+    },
+    "00collision": {
+      "all": {
+        "games": 12,
+        "wins": 7,
+        "opponents": 6,
+        "mean_our_bank": 693.75,
+        "mean_foe_bank": 634.75,
+        "mean_our_collected": 790.75,
+        "mean_foe_collected": 750.6666666666666,
+        "mean_our_gold": 6142.5,
+        "mean_our_deaths": 25.5,
+        "faults": 0,
+        "fuel_exhausted": 0,
+        "wins_with_opponent_fault": 0,
+        "seats": {
+          "A": {
+            "games": 6,
+            "wins": 4
+          },
+          "B": {
+            "games": 6,
+            "wins": 3
+          }
+        }
+      },
+      "nearby": {
+        "games": 6,
+        "wins": 5,
+        "opponents": 3,
+        "mean_our_bank": 842.1666666666666,
+        "mean_foe_bank": 524.1666666666666,
+        "mean_our_collected": 940.8333333333334,
+        "mean_foe_collected": 685.1666666666666,
+        "mean_our_gold": 6970.0,
+        "mean_our_deaths": 19.333333333333332,
+        "faults": 0,
+        "fuel_exhausted": 0,
+        "wins_with_opponent_fault": 0,
+        "seats": {
+          "A": {
+            "games": 3,
+            "wins": 3
+          },
+          "B": {
+            "games": 3,
+            "wins": 2
+          }
+        }
+      },
+      "stretch": {
+        "games": 4,
+        "wins": 2,
+        "opponents": 2,
+        "mean_our_bank": 792.5,
+        "mean_foe_bank": 616.0,
+        "mean_our_collected": 914.0,
+        "mean_foe_collected": 701.0,
+        "mean_our_gold": 7372.5,
+        "mean_our_deaths": 29.75,
+        "faults": 0,
+        "fuel_exhausted": 0,
+        "wins_with_opponent_fault": 0,
+        "seats": {
+          "A": {
+            "games": 2,
+            "wins": 1
+          },
+          "B": {
+            "games": 2,
+            "wins": 1
+          }
+        }
+      },
+      "leader": {
+        "games": 2,
+        "wins": 0,
+        "opponents": 1,
+        "mean_our_bank": 51.0,
+        "mean_foe_bank": 1004.0,
+        "mean_our_collected": 94.0,
+        "mean_foe_collected": 1046.5,
+        "mean_our_gold": 1200.0,
+        "mean_our_deaths": 35.5,
+        "faults": 0,
+        "fuel_exhausted": 0,
+        "wins_with_opponent_fault": 0,
+        "seats": {
+          "A": {
+            "games": 1,
+            "wins": 0
+          },
+          "B": {
+            "games": 1,
+            "wins": 0
+          }
+        }
+      }
+    },
+    "00contest": {
+      "all": {
+        "games": 8,
+        "wins": 2,
+        "opponents": 4,
+        "mean_our_bank": 275.0,
+        "mean_foe_bank": 850.0,
+        "mean_our_collected": 400.0,
+        "mean_foe_collected": 1275.0,
+        "mean_our_gold": 4955.0,
+        "mean_our_deaths": 65.5,
+        "faults": 0,
+        "fuel_exhausted": 0,
+        "wins_with_opponent_fault": 0,
+        "seats": {
+          "A": {
+            "games": 4,
+            "wins": 2
+          },
+          "B": {
+            "games": 4,
+            "wins": 0
+          }
+        }
+      },
+      "nearby": {
+        "games": 6,
+        "wins": 2,
+        "opponents": 3,
+        "mean_our_bank": 366.6666666666667,
+        "mean_foe_bank": 800.0,
+        "mean_our_collected": 533.3333333333334,
+        "mean_foe_collected": 1366.6666666666667,
+        "mean_our_gold": 5913.333333333333,
+        "mean_our_deaths": 60.666666666666664,
+        "faults": 0,
+        "fuel_exhausted": 0,
+        "wins_with_opponent_fault": 0,
+        "seats": {
+          "A": {
+            "games": 3,
+            "wins": 2
+          },
+          "B": {
+            "games": 3,
+            "wins": 0
+          }
+        }
+      },
+      "stretch": {
+        "games": 0
+      },
+      "leader": {
+        "games": 2,
+        "wins": 0,
+        "opponents": 1,
+        "mean_our_bank": 0.0,
+        "mean_foe_bank": 1000.0,
+        "mean_our_collected": 0.0,
+        "mean_foe_collected": 1000.0,
+        "mean_our_gold": 2080.0,
+        "mean_our_deaths": 80.0,
+        "faults": 0,
+        "fuel_exhausted": 0,
+        "wins_with_opponent_fault": 0,
+        "seats": {
+          "A": {
+            "games": 1,
+            "wins": 0
+          },
+          "B": {
+            "games": 1,
+            "wins": 0
+          }
+        }
+      }
+    },
+    "00corners": {
+      "all": {
+        "games": 6,
+        "wins": 6,
+        "opponents": 3,
+        "mean_our_bank": 1006.8333333333334,
+        "mean_foe_bank": 451.6666666666667,
+        "mean_our_collected": 1063.3333333333333,
+        "mean_foe_collected": 742.6666666666666,
+        "mean_our_gold": 6933.333333333333,
+        "mean_our_deaths": 6.333333333333333,
+        "faults": 0,
+        "fuel_exhausted": 0,
+        "wins_with_opponent_fault": 0,
+        "seats": {
+          "A": {
+            "games": 3,
+            "wins": 3
+          },
+          "B": {
+            "games": 3,
+            "wins": 3
+          }
+        }
+      },
+      "nearby": {
+        "games": 6,
+        "wins": 6,
+        "opponents": 3,
+        "mean_our_bank": 1006.8333333333334,
+        "mean_foe_bank": 451.6666666666667,
+        "mean_our_collected": 1063.3333333333333,
+        "mean_foe_collected": 742.6666666666666,
+        "mean_our_gold": 6933.333333333333,
+        "mean_our_deaths": 6.333333333333333,
+        "faults": 0,
+        "fuel_exhausted": 0,
+        "wins_with_opponent_fault": 0,
+        "seats": {
+          "A": {
+            "games": 3,
+            "wins": 3
+          },
+          "B": {
+            "games": 3,
+            "wins": 3
+          }
+        }
+      },
+      "stretch": {
+        "games": 0
+      },
+      "leader": {
+        "games": 0
+      }
+    },
+    "00eight": {
+      "all": {
+        "games": 6,
+        "wins": 3,
+        "opponents": 3,
+        "mean_our_bank": 636.5,
+        "mean_foe_bank": 735.3333333333334,
+        "mean_our_collected": 807.8333333333334,
+        "mean_foe_collected": 1083.0,
+        "mean_our_gold": 5225.0,
+        "mean_our_deaths": 41.166666666666664,
+        "faults": 0,
+        "fuel_exhausted": 0,
+        "wins_with_opponent_fault": 0,
+        "seats": {
+          "A": {
+            "games": 3,
+            "wins": 2
+          },
+          "B": {
+            "games": 3,
+            "wins": 1
+          }
+        }
+      },
+      "nearby": {
+        "games": 6,
+        "wins": 3,
+        "opponents": 3,
+        "mean_our_bank": 636.5,
+        "mean_foe_bank": 735.3333333333334,
+        "mean_our_collected": 807.8333333333334,
+        "mean_foe_collected": 1083.0,
+        "mean_our_gold": 5225.0,
+        "mean_our_deaths": 41.166666666666664,
+        "faults": 0,
+        "fuel_exhausted": 0,
+        "wins_with_opponent_fault": 0,
+        "seats": {
+          "A": {
+            "games": 3,
+            "wins": 2
+          },
+          "B": {
+            "games": 3,
+            "wins": 1
+          }
+        }
+      },
+      "stretch": {
+        "games": 0
+      },
+      "leader": {
+        "games": 0
+      }
+    },
+    "00elkring": {
+      "all": {
+        "games": 6,
+        "wins": 1,
+        "opponents": 3,
+        "mean_our_bank": 610.6666666666666,
+        "mean_foe_bank": 982.5,
+        "mean_our_collected": 720.5,
+        "mean_foe_collected": 1151.1666666666667,
+        "mean_our_gold": 3728.3333333333335,
+        "mean_our_deaths": 23.333333333333332,
+        "faults": 0,
+        "fuel_exhausted": 0,
+        "wins_with_opponent_fault": 0,
+        "seats": {
+          "A": {
+            "games": 3,
+            "wins": 0
+          },
+          "B": {
+            "games": 3,
+            "wins": 1
+          }
+        }
+      },
+      "nearby": {
+        "games": 6,
+        "wins": 1,
+        "opponents": 3,
+        "mean_our_bank": 610.6666666666666,
+        "mean_foe_bank": 982.5,
+        "mean_our_collected": 720.5,
+        "mean_foe_collected": 1151.1666666666667,
+        "mean_our_gold": 3728.3333333333335,
+        "mean_our_deaths": 23.333333333333332,
+        "faults": 0,
+        "fuel_exhausted": 0,
+        "wins_with_opponent_fault": 0,
+        "seats": {
+          "A": {
+            "games": 3,
+            "wins": 0
+          },
+          "B": {
+            "games": 3,
+            "wins": 1
+          }
+        }
+      },
+      "stretch": {
+        "games": 0
+      },
+      "leader": {
+        "games": 0
+      }
+    },
+    "00expanse": {
+      "all": {
+        "games": 6,
+        "wins": 3,
+        "opponents": 3,
+        "mean_our_bank": 992.6666666666666,
+        "mean_foe_bank": 809.8333333333334,
+        "mean_our_collected": 1061.0,
+        "mean_foe_collected": 821.1666666666666,
+        "mean_our_gold": 7181.666666666667,
+        "mean_our_deaths": 3.5,
+        "faults": 0,
+        "fuel_exhausted": 0,
+        "wins_with_opponent_fault": 0,
+        "seats": {
+          "A": {
+            "games": 3,
+            "wins": 1
+          },
+          "B": {
+            "games": 3,
+            "wins": 2
+          }
+        }
+      },
+      "nearby": {
+        "games": 6,
+        "wins": 3,
+        "opponents": 3,
+        "mean_our_bank": 992.6666666666666,
+        "mean_foe_bank": 809.8333333333334,
+        "mean_our_collected": 1061.0,
+        "mean_foe_collected": 821.1666666666666,
+        "mean_our_gold": 7181.666666666667,
+        "mean_our_deaths": 3.5,
+        "faults": 0,
+        "fuel_exhausted": 0,
+        "wins_with_opponent_fault": 0,
+        "seats": {
+          "A": {
+            "games": 3,
+            "wins": 1
+          },
+          "B": {
+            "games": 3,
+            "wins": 2
+          }
+        }
+      },
+      "stretch": {
+        "games": 0
+      },
+      "leader": {
+        "games": 0
+      }
+    },
+    "00fragment": {
+      "all": {
+        "games": 6,
+        "wins": 4,
+        "opponents": 3,
+        "mean_our_bank": 767.0,
+        "mean_foe_bank": 506.8333333333333,
+        "mean_our_collected": 869.6666666666666,
+        "mean_foe_collected": 613.0,
+        "mean_our_gold": 8303.333333333334,
+        "mean_our_deaths": 35.833333333333336,
+        "faults": 0,
+        "fuel_exhausted": 0,
+        "wins_with_opponent_fault": 0,
+        "seats": {
+          "A": {
+            "games": 3,
+            "wins": 1
+          },
+          "B": {
+            "games": 3,
+            "wins": 3
+          }
+        }
+      },
+      "nearby": {
+        "games": 6,
+        "wins": 4,
+        "opponents": 3,
+        "mean_our_bank": 767.0,
+        "mean_foe_bank": 506.8333333333333,
+        "mean_our_collected": 869.6666666666666,
+        "mean_foe_collected": 613.0,
+        "mean_our_gold": 8303.333333333334,
+        "mean_our_deaths": 35.833333333333336,
+        "faults": 0,
+        "fuel_exhausted": 0,
+        "wins_with_opponent_fault": 0,
+        "seats": {
+          "A": {
+            "games": 3,
+            "wins": 1
+          },
+          "B": {
+            "games": 3,
+            "wins": 3
+          }
+        }
+      },
+      "stretch": {
+        "games": 0
+      },
+      "leader": {
+        "games": 0
+      }
+    },
+    "00interlock": {
+      "all": {
+        "games": 6,
+        "wins": 4,
+        "opponents": 3,
+        "mean_our_bank": 803.8333333333334,
+        "mean_foe_bank": 689.0,
+        "mean_our_collected": 888.5,
+        "mean_foe_collected": 757.0,
+        "mean_our_gold": 5730.0,
+        "mean_our_deaths": 15.0,
+        "faults": 0,
+        "fuel_exhausted": 0,
+        "wins_with_opponent_fault": 0,
+        "seats": {
+          "A": {
+            "games": 3,
+            "wins": 2
+          },
+          "B": {
+            "games": 3,
+            "wins": 2
+          }
+        }
+      },
+      "nearby": {
+        "games": 6,
+        "wins": 4,
+        "opponents": 3,
+        "mean_our_bank": 803.8333333333334,
+        "mean_foe_bank": 689.0,
+        "mean_our_collected": 888.5,
+        "mean_foe_collected": 757.0,
+        "mean_our_gold": 5730.0,
+        "mean_our_deaths": 15.0,
+        "faults": 0,
+        "fuel_exhausted": 0,
+        "wins_with_opponent_fault": 0,
+        "seats": {
+          "A": {
+            "games": 3,
+            "wins": 2
+          },
+          "B": {
+            "games": 3,
+            "wins": 2
+          }
+        }
+      },
+      "stretch": {
+        "games": 0
+      },
+      "leader": {
+        "games": 0
+      }
+    },
+    "00lanes": {
+      "all": {
+        "games": 6,
+        "wins": 5,
+        "opponents": 3,
+        "mean_our_bank": 969.1666666666666,
+        "mean_foe_bank": 511.8333333333333,
+        "mean_our_collected": 1005.0,
+        "mean_foe_collected": 546.0,
+        "mean_our_gold": 8098.333333333333,
+        "mean_our_deaths": 6.333333333333333,
+        "faults": 0,
+        "fuel_exhausted": 0,
+        "wins_with_opponent_fault": 0,
+        "seats": {
+          "A": {
+            "games": 3,
+            "wins": 2
+          },
+          "B": {
+            "games": 3,
+            "wins": 3
+          }
+        }
+      },
+      "nearby": {
+        "games": 6,
+        "wins": 5,
+        "opponents": 3,
+        "mean_our_bank": 969.1666666666666,
+        "mean_foe_bank": 511.8333333333333,
+        "mean_our_collected": 1005.0,
+        "mean_foe_collected": 546.0,
+        "mean_our_gold": 8098.333333333333,
+        "mean_our_deaths": 6.333333333333333,
+        "faults": 0,
+        "fuel_exhausted": 0,
+        "wins_with_opponent_fault": 0,
+        "seats": {
+          "A": {
+            "games": 3,
+            "wins": 2
+          },
+          "B": {
+            "games": 3,
+            "wins": 3
+          }
+        }
+      },
+      "stretch": {
+        "games": 0
+      },
+      "leader": {
+        "games": 0
+      }
+    },
+    "00monolith": {
+      "all": {
+        "games": 12,
+        "wins": 3,
+        "opponents": 6,
+        "mean_our_bank": 818.0,
+        "mean_foe_bank": 966.8333333333334,
+        "mean_our_collected": 1007.0833333333334,
+        "mean_foe_collected": 1057.75,
+        "mean_our_gold": 6947.5,
+        "mean_our_deaths": 17.916666666666668,
+        "faults": 0,
+        "fuel_exhausted": 0,
+        "wins_with_opponent_fault": 0,
+        "seats": {
+          "A": {
+            "games": 6,
+            "wins": 0
+          },
+          "B": {
+            "games": 6,
+            "wins": 3
+          }
+        }
+      },
+      "nearby": {
+        "games": 6,
+        "wins": 2,
+        "opponents": 3,
+        "mean_our_bank": 950.5,
+        "mean_foe_bank": 937.3333333333334,
+        "mean_our_collected": 1143.5,
+        "mean_foe_collected": 1071.0,
+        "mean_our_gold": 7456.666666666667,
+        "mean_our_deaths": 15.0,
+        "faults": 0,
+        "fuel_exhausted": 0,
+        "wins_with_opponent_fault": 0,
+        "seats": {
+          "A": {
+            "games": 3,
+            "wins": 0
+          },
+          "B": {
+            "games": 3,
+            "wins": 2
+          }
+        }
+      },
+      "stretch": {
+        "games": 4,
+        "wins": 1,
+        "opponents": 2,
+        "mean_our_bank": 763.5,
+        "mean_foe_bank": 988.0,
+        "mean_our_collected": 972.75,
+        "mean_foe_collected": 1049.0,
+        "mean_our_gold": 7230.0,
+        "mean_our_deaths": 21.5,
+        "faults": 0,
+        "fuel_exhausted": 0,
+        "wins_with_opponent_fault": 0,
+        "seats": {
+          "A": {
+            "games": 2,
+            "wins": 0
+          },
+          "B": {
+            "games": 2,
+            "wins": 1
+          }
+        }
+      },
+      "leader": {
+        "games": 2,
+        "wins": 0,
+        "opponents": 1,
+        "mean_our_bank": 529.5,
+        "mean_foe_bank": 1013.0,
+        "mean_our_collected": 666.5,
+        "mean_foe_collected": 1035.5,
+        "mean_our_gold": 4855.0,
+        "mean_our_deaths": 19.5,
+        "faults": 0,
+        "fuel_exhausted": 0,
+        "wins_with_opponent_fault": 0,
+        "seats": {
+          "A": {
+            "games": 1,
+            "wins": 0
+          },
+          "B": {
+            "games": 1,
+            "wins": 0
+          }
+        }
+      }
+    },
+    "00packs": {
+      "all": {
+        "games": 6,
+        "wins": 4,
+        "opponents": 3,
+        "mean_our_bank": 795.0,
+        "mean_foe_bank": 541.3333333333334,
+        "mean_our_collected": 831.0,
+        "mean_foe_collected": 586.6666666666666,
+        "mean_our_gold": 5866.666666666667,
+        "mean_our_deaths": 15.5,
+        "faults": 0,
+        "fuel_exhausted": 0,
+        "wins_with_opponent_fault": 0,
+        "seats": {
+          "A": {
+            "games": 3,
+            "wins": 2
+          },
+          "B": {
+            "games": 3,
+            "wins": 2
+          }
+        }
+      },
+      "nearby": {
+        "games": 6,
+        "wins": 4,
+        "opponents": 3,
+        "mean_our_bank": 795.0,
+        "mean_foe_bank": 541.3333333333334,
+        "mean_our_collected": 831.0,
+        "mean_foe_collected": 586.6666666666666,
+        "mean_our_gold": 5866.666666666667,
+        "mean_our_deaths": 15.5,
+        "faults": 0,
+        "fuel_exhausted": 0,
+        "wins_with_opponent_fault": 0,
+        "seats": {
+          "A": {
+            "games": 3,
+            "wins": 2
+          },
+          "B": {
+            "games": 3,
+            "wins": 2
+          }
+        }
+      },
+      "stretch": {
+        "games": 0
+      },
+      "leader": {
+        "games": 0
+      }
+    },
+    "00pilgrimage": {
+      "all": {
+        "games": 6,
+        "wins": 0,
+        "opponents": 3,
+        "mean_our_bank": 435.5,
+        "mean_foe_bank": 693.8333333333334,
+        "mean_our_collected": 538.3333333333334,
+        "mean_foe_collected": 792.0,
+        "mean_our_gold": 5030.0,
+        "mean_our_deaths": 47.5,
+        "faults": 0,
+        "fuel_exhausted": 0,
+        "wins_with_opponent_fault": 0,
+        "seats": {
+          "A": {
+            "games": 3,
+            "wins": 0
+          },
+          "B": {
+            "games": 3,
+            "wins": 0
+          }
+        }
+      },
+      "nearby": {
+        "games": 6,
+        "wins": 0,
+        "opponents": 3,
+        "mean_our_bank": 435.5,
+        "mean_foe_bank": 693.8333333333334,
+        "mean_our_collected": 538.3333333333334,
+        "mean_foe_collected": 792.0,
+        "mean_our_gold": 5030.0,
+        "mean_our_deaths": 47.5,
+        "faults": 0,
+        "fuel_exhausted": 0,
+        "wins_with_opponent_fault": 0,
+        "seats": {
+          "A": {
+            "games": 3,
+            "wins": 0
+          },
+          "B": {
+            "games": 3,
+            "wins": 0
+          }
+        }
+      },
+      "stretch": {
+        "games": 0
+      },
+      "leader": {
+        "games": 0
+      }
+    },
+    "00quadrants": {
+      "all": {
+        "games": 6,
+        "wins": 1,
+        "opponents": 3,
+        "mean_our_bank": 570.6666666666666,
+        "mean_foe_bank": 993.5,
+        "mean_our_collected": 603.0,
+        "mean_foe_collected": 1105.6666666666667,
+        "mean_our_gold": 1620.0,
+        "mean_our_deaths": 13.833333333333334,
+        "faults": 0,
+        "fuel_exhausted": 0,
+        "wins_with_opponent_fault": 0,
+        "seats": {
+          "A": {
+            "games": 3,
+            "wins": 1
+          },
+          "B": {
+            "games": 3,
+            "wins": 0
+          }
+        }
+      },
+      "nearby": {
+        "games": 6,
+        "wins": 1,
+        "opponents": 3,
+        "mean_our_bank": 570.6666666666666,
+        "mean_foe_bank": 993.5,
+        "mean_our_collected": 603.0,
+        "mean_foe_collected": 1105.6666666666667,
+        "mean_our_gold": 1620.0,
+        "mean_our_deaths": 13.833333333333334,
+        "faults": 0,
+        "fuel_exhausted": 0,
+        "wins_with_opponent_fault": 0,
+        "seats": {
+          "A": {
+            "games": 3,
+            "wins": 1
+          },
+          "B": {
+            "games": 3,
+            "wins": 0
+          }
+        }
+      },
+      "stretch": {
+        "games": 0
+      },
+      "leader": {
+        "games": 0
+      }
+    },
+    "00reverse-spiral": {
+      "all": {
+        "games": 6,
+        "wins": 1,
+        "opponents": 3,
+        "mean_our_bank": 393.8333333333333,
+        "mean_foe_bank": 815.0,
+        "mean_our_collected": 707.5,
+        "mean_foe_collected": 1034.1666666666667,
+        "mean_our_gold": 2966.6666666666665,
+        "mean_our_deaths": 51.333333333333336,
+        "faults": 0,
+        "fuel_exhausted": 0,
+        "wins_with_opponent_fault": 0,
+        "seats": {
+          "A": {
+            "games": 3,
+            "wins": 0
+          },
+          "B": {
+            "games": 3,
+            "wins": 1
+          }
+        }
+      },
+      "nearby": {
+        "games": 6,
+        "wins": 1,
+        "opponents": 3,
+        "mean_our_bank": 393.8333333333333,
+        "mean_foe_bank": 815.0,
+        "mean_our_collected": 707.5,
+        "mean_foe_collected": 1034.1666666666667,
+        "mean_our_gold": 2966.6666666666665,
+        "mean_our_deaths": 51.333333333333336,
+        "faults": 0,
+        "fuel_exhausted": 0,
+        "wins_with_opponent_fault": 0,
+        "seats": {
+          "A": {
+            "games": 3,
+            "wins": 0
+          },
+          "B": {
+            "games": 3,
+            "wins": 1
+          }
+        }
+      },
+      "stretch": {
+        "games": 0
+      },
+      "leader": {
+        "games": 0
+      }
+    },
+    "00rows": {
+      "all": {
+        "games": 10,
+        "wins": 10,
+        "opponents": 5,
+        "mean_our_bank": 1077.9,
+        "mean_foe_bank": 666.2,
+        "mean_our_collected": 1146.4,
+        "mean_foe_collected": 702.3,
+        "mean_our_gold": 9080.0,
+        "mean_our_deaths": 9.2,
+        "faults": 0,
+        "fuel_exhausted": 0,
+        "wins_with_opponent_fault": 0,
+        "seats": {
+          "A": {
+            "games": 5,
+            "wins": 5
+          },
+          "B": {
+            "games": 5,
+            "wins": 5
+          }
+        }
+      },
+      "nearby": {
+        "games": 6,
+        "wins": 6,
+        "opponents": 3,
+        "mean_our_bank": 1119.0,
+        "mean_foe_bank": 726.6666666666666,
+        "mean_our_collected": 1216.5,
+        "mean_foe_collected": 773.0,
+        "mean_our_gold": 9343.333333333334,
+        "mean_our_deaths": 14.5,
+        "faults": 0,
+        "fuel_exhausted": 0,
+        "wins_with_opponent_fault": 0,
+        "seats": {
+          "A": {
+            "games": 3,
+            "wins": 3
+          },
+          "B": {
+            "games": 3,
+            "wins": 3
+          }
+        }
+      },
+      "stretch": {
+        "games": 4,
+        "wins": 4,
+        "opponents": 2,
+        "mean_our_bank": 1016.25,
+        "mean_foe_bank": 575.5,
+        "mean_our_collected": 1041.25,
+        "mean_foe_collected": 596.25,
+        "mean_our_gold": 8685.0,
+        "mean_our_deaths": 1.25,
+        "faults": 0,
+        "fuel_exhausted": 0,
+        "wins_with_opponent_fault": 0,
+        "seats": {
+          "A": {
+            "games": 2,
+            "wins": 2
+          },
+          "B": {
+            "games": 2,
+            "wins": 2
+          }
+        }
+      },
+      "leader": {
+        "games": 0
+      }
+    },
+    "00rushbait-v2": {
+      "all": {
+        "games": 6,
+        "wins": 3,
+        "opponents": 3,
+        "mean_our_bank": 856.6666666666666,
+        "mean_foe_bank": 730.8333333333334,
+        "mean_our_collected": 1006.6666666666666,
+        "mean_foe_collected": 897.8333333333334,
+        "mean_our_gold": 5936.666666666667,
+        "mean_our_deaths": 10.0,
+        "faults": 0,
+        "fuel_exhausted": 0,
+        "wins_with_opponent_fault": 0,
+        "seats": {
+          "A": {
+            "games": 3,
+            "wins": 2
+          },
+          "B": {
+            "games": 3,
+            "wins": 1
+          }
+        }
+      },
+      "nearby": {
+        "games": 6,
+        "wins": 3,
+        "opponents": 3,
+        "mean_our_bank": 856.6666666666666,
+        "mean_foe_bank": 730.8333333333334,
+        "mean_our_collected": 1006.6666666666666,
+        "mean_foe_collected": 897.8333333333334,
+        "mean_our_gold": 5936.666666666667,
+        "mean_our_deaths": 10.0,
+        "faults": 0,
+        "fuel_exhausted": 0,
+        "wins_with_opponent_fault": 0,
+        "seats": {
+          "A": {
+            "games": 3,
+            "wins": 2
+          },
+          "B": {
+            "games": 3,
+            "wins": 1
+          }
+        }
+      },
+      "stretch": {
+        "games": 0
+      },
+      "leader": {
+        "games": 0
+      }
+    },
+    "00split": {
+      "all": {
+        "games": 6,
+        "wins": 0,
+        "opponents": 3,
+        "mean_our_bank": 440.3333333333333,
+        "mean_foe_bank": 1011.5,
+        "mean_our_collected": 550.0,
+        "mean_foe_collected": 1106.5,
+        "mean_our_gold": 1331.6666666666667,
+        "mean_our_deaths": 34.166666666666664,
+        "faults": 0,
+        "fuel_exhausted": 0,
+        "wins_with_opponent_fault": 0,
+        "seats": {
+          "A": {
+            "games": 3,
+            "wins": 0
+          },
+          "B": {
+            "games": 3,
+            "wins": 0
+          }
+        }
+      },
+      "nearby": {
+        "games": 2,
+        "wins": 0,
+        "opponents": 1,
+        "mean_our_bank": 508.0,
+        "mean_foe_bank": 1008.0,
+        "mean_our_collected": 622.5,
+        "mean_foe_collected": 1083.5,
+        "mean_our_gold": 765.0,
+        "mean_our_deaths": 43.5,
+        "faults": 0,
+        "fuel_exhausted": 0,
+        "wins_with_opponent_fault": 0,
+        "seats": {
+          "A": {
+            "games": 1,
+            "wins": 0
+          },
+          "B": {
+            "games": 1,
+            "wins": 0
+          }
+        }
+      },
+      "stretch": {
+        "games": 4,
+        "wins": 0,
+        "opponents": 2,
+        "mean_our_bank": 406.5,
+        "mean_foe_bank": 1013.25,
+        "mean_our_collected": 513.75,
+        "mean_foe_collected": 1118.0,
+        "mean_our_gold": 1615.0,
+        "mean_our_deaths": 29.5,
+        "faults": 0,
+        "fuel_exhausted": 0,
+        "wins_with_opponent_fault": 0,
+        "seats": {
+          "A": {
+            "games": 2,
+            "wins": 0
+          },
+          "B": {
+            "games": 2,
+            "wins": 0
+          }
+        }
+      },
+      "leader": {
+        "games": 0
+      }
+    },
+    "00stampede": {
+      "all": {
+        "games": 12,
+        "wins": 5,
+        "opponents": 6,
+        "mean_our_bank": 446.6666666666667,
+        "mean_foe_bank": 560.0,
+        "mean_our_collected": 573.3333333333334,
+        "mean_foe_collected": 613.3333333333334,
+        "mean_our_gold": 7265.0,
+        "mean_our_deaths": 41.666666666666664,
+        "faults": 0,
+        "fuel_exhausted": 0,
+        "wins_with_opponent_fault": 0,
+        "seats": {
+          "A": {
+            "games": 6,
+            "wins": 1
+          },
+          "B": {
+            "games": 6,
+            "wins": 4
+          }
+        }
+      },
+      "nearby": {
+        "games": 6,
+        "wins": 3,
+        "opponents": 3,
+        "mean_our_bank": 453.3333333333333,
+        "mean_foe_bank": 613.3333333333334,
+        "mean_our_collected": 560.0,
+        "mean_foe_collected": 613.3333333333334,
+        "mean_our_gold": 8750.0,
+        "mean_our_deaths": 28.0,
+        "faults": 0,
+        "fuel_exhausted": 0,
+        "wins_with_opponent_fault": 0,
+        "seats": {
+          "A": {
+            "games": 3,
+            "wins": 1
+          },
+          "B": {
+            "games": 3,
+            "wins": 2
+          }
+        }
+      },
+      "stretch": {
+        "games": 4,
+        "wins": 1,
+        "opponents": 2,
+        "mean_our_bank": 320.0,
+        "mean_foe_bank": 520.0,
+        "mean_our_collected": 520.0,
+        "mean_foe_collected": 680.0,
+        "mean_our_gold": 5485.0,
+        "mean_our_deaths": 55.5,
+        "faults": 0,
+        "fuel_exhausted": 0,
+        "wins_with_opponent_fault": 0,
+        "seats": {
+          "A": {
+            "games": 2,
+            "wins": 0
+          },
+          "B": {
+            "games": 2,
+            "wins": 1
+          }
+        }
+      },
+      "leader": {
+        "games": 2,
+        "wins": 1,
+        "opponents": 1,
+        "mean_our_bank": 680.0,
+        "mean_foe_bank": 480.0,
+        "mean_our_collected": 720.0,
+        "mean_foe_collected": 480.0,
+        "mean_our_gold": 6370.0,
+        "mean_our_deaths": 55.0,
+        "faults": 0,
+        "fuel_exhausted": 0,
+        "wins_with_opponent_fault": 0,
+        "seats": {
+          "A": {
+            "games": 1,
+            "wins": 0
+          },
+          "B": {
+            "games": 1,
+            "wins": 1
+          }
+        }
+      }
+    },
+    "00swirl": {
+      "all": {
+        "games": 6,
+        "wins": 3,
+        "opponents": 3,
+        "mean_our_bank": 580.6666666666666,
+        "mean_foe_bank": 398.6666666666667,
+        "mean_our_collected": 610.1666666666666,
+        "mean_foe_collected": 447.1666666666667,
+        "mean_our_gold": 8566.666666666666,
+        "mean_our_deaths": 36.833333333333336,
+        "faults": 0,
+        "fuel_exhausted": 0,
+        "wins_with_opponent_fault": 0,
+        "seats": {
+          "A": {
+            "games": 3,
+            "wins": 1
+          },
+          "B": {
+            "games": 3,
+            "wins": 2
+          }
+        }
+      },
+      "nearby": {
+        "games": 2,
+        "wins": 2,
+        "opponents": 1,
+        "mean_our_bank": 1007.0,
+        "mean_foe_bank": 132.5,
+        "mean_our_collected": 1054.0,
+        "mean_foe_collected": 132.5,
+        "mean_our_gold": 14705.0,
+        "mean_our_deaths": 24.0,
+        "faults": 0,
+        "fuel_exhausted": 0,
+        "wins_with_opponent_fault": 0,
+        "seats": {
+          "A": {
+            "games": 1,
+            "wins": 1
+          },
+          "B": {
+            "games": 1,
+            "wins": 1
+          }
+        }
+      },
+      "stretch": {
+        "games": 4,
+        "wins": 1,
+        "opponents": 2,
+        "mean_our_bank": 367.5,
+        "mean_foe_bank": 531.75,
+        "mean_our_collected": 388.25,
+        "mean_foe_collected": 604.5,
+        "mean_our_gold": 5497.5,
+        "mean_our_deaths": 43.25,
+        "faults": 0,
+        "fuel_exhausted": 0,
+        "wins_with_opponent_fault": 0,
+        "seats": {
+          "A": {
+            "games": 2,
+            "wins": 0
+          },
+          "B": {
+            "games": 2,
+            "wins": 1
+          }
+        }
+      },
+      "leader": {
+        "games": 0
+      }
+    },
+    "01big-world": {
+      "all": {
+        "games": 8,
+        "wins": 0,
+        "opponents": 4,
+        "mean_our_bank": 76.625,
+        "mean_foe_bank": 1016.75,
+        "mean_our_collected": 102.25,
+        "mean_foe_collected": 1040.5,
+        "mean_our_gold": 1176.25,
+        "mean_our_deaths": 2.125,
+        "faults": 0,
+        "fuel_exhausted": 55,
+        "wins_with_opponent_fault": 0,
+        "seats": {
+          "A": {
+            "games": 4,
+            "wins": 0
+          },
+          "B": {
+            "games": 4,
+            "wins": 0
+          }
+        }
+      },
+      "nearby": {
+        "games": 6,
+        "wins": 0,
+        "opponents": 3,
+        "mean_our_bank": 84.16666666666667,
+        "mean_foe_bank": 1011.6666666666666,
+        "mean_our_collected": 111.0,
+        "mean_foe_collected": 1031.0,
+        "mean_our_gold": 1238.3333333333333,
+        "mean_our_deaths": 2.6666666666666665,
+        "faults": 0,
+        "fuel_exhausted": 45,
+        "wins_with_opponent_fault": 0,
+        "seats": {
+          "A": {
+            "games": 3,
+            "wins": 0
+          },
+          "B": {
+            "games": 3,
+            "wins": 0
+          }
+        }
+      },
+      "stretch": {
+        "games": 0
+      },
+      "leader": {
+        "games": 2,
+        "wins": 0,
+        "opponents": 1,
+        "mean_our_bank": 54.0,
+        "mean_foe_bank": 1032.0,
+        "mean_our_collected": 76.0,
+        "mean_foe_collected": 1069.0,
+        "mean_our_gold": 990.0,
+        "mean_our_deaths": 0.5,
+        "faults": 0,
+        "fuel_exhausted": 10,
+        "wins_with_opponent_fault": 0,
+        "seats": {
+          "A": {
+            "games": 1,
+            "wins": 0
+          },
+          "B": {
+            "games": 1,
+            "wins": 0
+          }
+        }
+      }
+    },
+    "01boss-battle": {
+      "all": {
+        "games": 6,
+        "wins": 2,
+        "opponents": 3,
+        "mean_our_bank": 0.0,
+        "mean_foe_bank": 0.0,
+        "mean_our_collected": 139.5,
+        "mean_foe_collected": 228.66666666666666,
+        "mean_our_gold": 1445.0,
+        "mean_our_deaths": 19.333333333333332,
+        "faults": 0,
+        "fuel_exhausted": 0,
+        "wins_with_opponent_fault": 0,
+        "seats": {
+          "A": {
+            "games": 3,
+            "wins": 1
+          },
+          "B": {
+            "games": 3,
+            "wins": 1
+          }
+        }
+      },
+      "nearby": {
+        "games": 2,
+        "wins": 0,
+        "opponents": 1,
+        "mean_our_bank": 0.0,
+        "mean_foe_bank": 0.0,
+        "mean_our_collected": 144.5,
+        "mean_foe_collected": 316.0,
+        "mean_our_gold": 1225.0,
+        "mean_our_deaths": 11.0,
+        "faults": 0,
+        "fuel_exhausted": 0,
+        "wins_with_opponent_fault": 0,
+        "seats": {
+          "A": {
+            "games": 1,
+            "wins": 0
+          },
+          "B": {
+            "games": 1,
+            "wins": 0
+          }
+        }
+      },
+      "stretch": {
+        "games": 4,
+        "wins": 2,
+        "opponents": 2,
+        "mean_our_bank": 0.0,
+        "mean_foe_bank": 0.0,
+        "mean_our_collected": 137.0,
+        "mean_foe_collected": 185.0,
+        "mean_our_gold": 1555.0,
+        "mean_our_deaths": 23.5,
+        "faults": 0,
+        "fuel_exhausted": 0,
+        "wins_with_opponent_fault": 0,
+        "seats": {
+          "A": {
+            "games": 2,
+            "wins": 1
+          },
+          "B": {
+            "games": 2,
+            "wins": 1
+          }
+        }
+      },
+      "leader": {
+        "games": 0
+      }
+    },
+    "01broken-curve": {
+      "all": {
+        "games": 6,
+        "wins": 1,
+        "opponents": 3,
+        "mean_our_bank": 587.6666666666666,
+        "mean_foe_bank": 992.1666666666666,
+        "mean_our_collected": 663.3333333333334,
+        "mean_foe_collected": 1024.6666666666667,
+        "mean_our_gold": 3268.3333333333335,
+        "mean_our_deaths": 21.166666666666668,
+        "faults": 0,
+        "fuel_exhausted": 0,
+        "wins_with_opponent_fault": 0,
+        "seats": {
+          "A": {
+            "games": 3,
+            "wins": 1
+          },
+          "B": {
+            "games": 3,
+            "wins": 0
+          }
+        }
+      },
+      "nearby": {
+        "games": 2,
+        "wins": 0,
+        "opponents": 1,
+        "mean_our_bank": 581.0,
+        "mean_foe_bank": 1011.5,
+        "mean_our_collected": 635.0,
+        "mean_foe_collected": 1062.5,
+        "mean_our_gold": 2525.0,
+        "mean_our_deaths": 14.0,
+        "faults": 0,
+        "fuel_exhausted": 0,
+        "wins_with_opponent_fault": 0,
+        "seats": {
+          "A": {
+            "games": 1,
+            "wins": 0
+          },
+          "B": {
+            "games": 1,
+            "wins": 0
+          }
+        }
+      },
+      "stretch": {
+        "games": 4,
+        "wins": 1,
+        "opponents": 2,
+        "mean_our_bank": 591.0,
+        "mean_foe_bank": 982.5,
+        "mean_our_collected": 677.5,
+        "mean_foe_collected": 1005.75,
+        "mean_our_gold": 3640.0,
+        "mean_our_deaths": 24.75,
+        "faults": 0,
+        "fuel_exhausted": 0,
+        "wins_with_opponent_fault": 0,
+        "seats": {
+          "A": {
+            "games": 2,
+            "wins": 1
+          },
+          "B": {
+            "games": 2,
+            "wins": 0
+          }
+        }
+      },
+      "leader": {
+        "games": 0
+      }
+    },
+    "01concentrated-wealth": {
+      "all": {
+        "games": 6,
+        "wins": 2,
+        "opponents": 3,
+        "mean_our_bank": 641.1666666666666,
+        "mean_foe_bank": 911.6666666666666,
+        "mean_our_collected": 774.5,
+        "mean_foe_collected": 990.6666666666666,
+        "mean_our_gold": 5585.0,
+        "mean_our_deaths": 15.166666666666666,
+        "faults": 0,
+        "fuel_exhausted": 0,
+        "wins_with_opponent_fault": 0,
+        "seats": {
+          "A": {
+            "games": 3,
+            "wins": 1
+          },
+          "B": {
+            "games": 3,
+            "wins": 1
+          }
+        }
+      },
+      "nearby": {
+        "games": 2,
+        "wins": 2,
+        "opponents": 1,
+        "mean_our_bank": 1012.0,
+        "mean_foe_bank": 702.0,
+        "mean_our_collected": 1084.0,
+        "mean_foe_collected": 889.5,
+        "mean_our_gold": 7590.0,
+        "mean_our_deaths": 9.0,
+        "faults": 0,
+        "fuel_exhausted": 0,
+        "wins_with_opponent_fault": 0,
+        "seats": {
+          "A": {
+            "games": 1,
+            "wins": 1
+          },
+          "B": {
+            "games": 1,
+            "wins": 1
+          }
+        }
+      },
+      "stretch": {
+        "games": 4,
+        "wins": 0,
+        "opponents": 2,
+        "mean_our_bank": 455.75,
+        "mean_foe_bank": 1016.5,
+        "mean_our_collected": 619.75,
+        "mean_foe_collected": 1041.25,
+        "mean_our_gold": 4582.5,
+        "mean_our_deaths": 18.25,
+        "faults": 0,
+        "fuel_exhausted": 0,
+        "wins_with_opponent_fault": 0,
+        "seats": {
+          "A": {
+            "games": 2,
+            "wins": 0
+          },
+          "B": {
+            "games": 2,
+            "wins": 0
+          }
+        }
+      },
+      "leader": {
+        "games": 0
+      }
+    },
+    "01corridors": {
+      "all": {
+        "games": 6,
+        "wins": 5,
+        "opponents": 3,
+        "mean_our_bank": 797.3333333333334,
+        "mean_foe_bank": 563.8333333333334,
+        "mean_our_collected": 843.3333333333334,
+        "mean_foe_collected": 731.0,
+        "mean_our_gold": 7613.333333333333,
+        "mean_our_deaths": 3.8333333333333335,
+        "faults": 0,
+        "fuel_exhausted": 0,
+        "wins_with_opponent_fault": 0,
+        "seats": {
+          "A": {
+            "games": 3,
+            "wins": 3
+          },
+          "B": {
+            "games": 3,
+            "wins": 2
+          }
+        }
+      },
+      "nearby": {
+        "games": 2,
+        "wins": 2,
+        "opponents": 1,
+        "mean_our_bank": 770.0,
+        "mean_foe_bank": 349.0,
+        "mean_our_collected": 778.0,
+        "mean_foe_collected": 578.0,
+        "mean_our_gold": 7030.0,
+        "mean_our_deaths": 2.5,
+        "faults": 0,
+        "fuel_exhausted": 0,
+        "wins_with_opponent_fault": 0,
+        "seats": {
+          "A": {
+            "games": 1,
+            "wins": 1
+          },
+          "B": {
+            "games": 1,
+            "wins": 1
+          }
+        }
+      },
+      "stretch": {
+        "games": 4,
+        "wins": 3,
+        "opponents": 2,
+        "mean_our_bank": 811.0,
+        "mean_foe_bank": 671.25,
+        "mean_our_collected": 876.0,
+        "mean_foe_collected": 807.5,
+        "mean_our_gold": 7905.0,
+        "mean_our_deaths": 4.5,
+        "faults": 0,
+        "fuel_exhausted": 0,
+        "wins_with_opponent_fault": 0,
+        "seats": {
+          "A": {
+            "games": 2,
+            "wins": 2
+          },
+          "B": {
+            "games": 2,
+            "wins": 1
+          }
+        }
+      },
+      "leader": {
+        "games": 0
+      }
+    },
+    "01elk-arena": {
+      "all": {
+        "games": 12,
+        "wins": 1,
+        "opponents": 6,
+        "mean_our_bank": 229.83333333333334,
+        "mean_foe_bank": 917.1666666666666,
+        "mean_our_collected": 286.8333333333333,
+        "mean_foe_collected": 999.0,
+        "mean_our_gold": 9318.333333333334,
+        "mean_our_deaths": 26.0,
+        "faults": 0,
+        "fuel_exhausted": 0,
+        "wins_with_opponent_fault": 0,
+        "seats": {
+          "A": {
+            "games": 6,
+            "wins": 0
+          },
+          "B": {
+            "games": 6,
+            "wins": 1
+          }
+        }
+      },
+      "nearby": {
+        "games": 6,
+        "wins": 0,
+        "opponents": 3,
+        "mean_our_bank": 117.66666666666667,
+        "mean_foe_bank": 1012.3333333333334,
+        "mean_our_collected": 159.66666666666666,
+        "mean_foe_collected": 1134.0,
+        "mean_our_gold": 9323.333333333334,
+        "mean_our_deaths": 14.333333333333334,
+        "faults": 0,
+        "fuel_exhausted": 0,
+        "wins_with_opponent_fault": 0,
+        "seats": {
+          "A": {
+            "games": 3,
+            "wins": 0
+          },
+          "B": {
+            "games": 3,
+            "wins": 0
+          }
+        }
+      },
+      "stretch": {
+        "games": 4,
+        "wins": 0,
+        "opponents": 2,
+        "mean_our_bank": 261.0,
+        "mean_foe_bank": 927.0,
+        "mean_our_collected": 351.0,
+        "mean_foe_collected": 972.0,
+        "mean_our_gold": 10235.0,
+        "mean_our_deaths": 42.25,
+        "faults": 0,
+        "fuel_exhausted": 0,
+        "wins_with_opponent_fault": 0,
+        "seats": {
+          "A": {
+            "games": 2,
+            "wins": 0
+          },
+          "B": {
+            "games": 2,
+            "wins": 0
+          }
+        }
+      },
+      "leader": {
+        "games": 2,
+        "wins": 1,
+        "opponents": 1,
+        "mean_our_bank": 504.0,
+        "mean_foe_bank": 612.0,
+        "mean_our_collected": 540.0,
+        "mean_foe_collected": 648.0,
+        "mean_our_gold": 7470.0,
+        "mean_our_deaths": 28.5,
+        "faults": 0,
+        "fuel_exhausted": 0,
+        "wins_with_opponent_fault": 0,
+        "seats": {
+          "A": {
+            "games": 1,
+            "wins": 0
+          },
+          "B": {
+            "games": 1,
+            "wins": 1
+          }
+        }
+      }
+    },
+    "01fracture": {
+      "all": {
+        "games": 8,
+        "wins": 0,
+        "opponents": 4,
+        "mean_our_bank": 364.375,
+        "mean_foe_bank": 860.0,
+        "mean_our_collected": 422.0,
+        "mean_foe_collected": 1107.0,
+        "mean_our_gold": 5672.5,
+        "mean_our_deaths": 20.625,
+        "faults": 0,
+        "fuel_exhausted": 0,
+        "wins_with_opponent_fault": 0,
+        "seats": {
+          "A": {
+            "games": 4,
+            "wins": 0
+          },
+          "B": {
+            "games": 4,
+            "wins": 0
+          }
+        }
+      },
+      "nearby": {
+        "games": 2,
+        "wins": 0,
+        "opponents": 1,
+        "mean_our_bank": 449.0,
+        "mean_foe_bank": 674.5,
+        "mean_our_collected": 480.0,
+        "mean_foe_collected": 1032.0,
+        "mean_our_gold": 6315.0,
+        "mean_our_deaths": 22.5,
+        "faults": 0,
+        "fuel_exhausted": 0,
+        "wins_with_opponent_fault": 0,
+        "seats": {
+          "A": {
+            "games": 1,
+            "wins": 0
+          },
+          "B": {
+            "games": 1,
+            "wins": 0
+          }
+        }
+      },
+      "stretch": {
+        "games": 4,
+        "wins": 0,
+        "opponents": 2,
+        "mean_our_bank": 426.5,
+        "mean_foe_bank": 864.5,
+        "mean_our_collected": 500.0,
+        "mean_foe_collected": 1097.5,
+        "mean_our_gold": 6375.0,
+        "mean_our_deaths": 23.25,
+        "faults": 0,
+        "fuel_exhausted": 0,
+        "wins_with_opponent_fault": 0,
+        "seats": {
+          "A": {
+            "games": 2,
+            "wins": 0
+          },
+          "B": {
+            "games": 2,
+            "wins": 0
+          }
+        }
+      },
+      "leader": {
+        "games": 2,
+        "wins": 0,
+        "opponents": 1,
+        "mean_our_bank": 155.5,
+        "mean_foe_bank": 1036.5,
+        "mean_our_collected": 208.0,
+        "mean_foe_collected": 1201.0,
+        "mean_our_gold": 3625.0,
+        "mean_our_deaths": 13.5,
+        "faults": 0,
+        "fuel_exhausted": 0,
+        "wins_with_opponent_fault": 0,
+        "seats": {
+          "A": {
+            "games": 1,
+            "wins": 0
+          },
+          "B": {
+            "games": 1,
+            "wins": 0
+          }
+        }
+      }
+    },
+    "01gold-rush": {
+      "all": {
+        "games": 8,
+        "wins": 0,
+        "opponents": 4,
+        "mean_our_bank": 496.375,
+        "mean_foe_bank": 875.75,
+        "mean_our_collected": 566.75,
+        "mean_foe_collected": 909.625,
+        "mean_our_gold": 2202.5,
+        "mean_our_deaths": 61.0,
+        "faults": 0,
+        "fuel_exhausted": 0,
+        "wins_with_opponent_fault": 0,
+        "seats": {
+          "A": {
+            "games": 4,
+            "wins": 0
+          },
+          "B": {
+            "games": 4,
+            "wins": 0
+          }
+        }
+      },
+      "nearby": {
+        "games": 2,
+        "wins": 0,
+        "opponents": 1,
+        "mean_our_bank": 396.0,
+        "mean_foe_bank": 871.0,
+        "mean_our_collected": 440.0,
+        "mean_foe_collected": 946.0,
+        "mean_our_gold": 1600.0,
+        "mean_our_deaths": 76.0,
+        "faults": 0,
+        "fuel_exhausted": 0,
+        "wins_with_opponent_fault": 0,
+        "seats": {
+          "A": {
+            "games": 1,
+            "wins": 0
+          },
+          "B": {
+            "games": 1,
+            "wins": 0
+          }
+        }
+      },
+      "stretch": {
+        "games": 4,
+        "wins": 0,
+        "opponents": 2,
+        "mean_our_bank": 561.0,
+        "mean_foe_bank": 832.0,
+        "mean_our_collected": 666.0,
+        "mean_foe_collected": 851.25,
+        "mean_our_gold": 2655.0,
+        "mean_our_deaths": 53.0,
+        "faults": 0,
+        "fuel_exhausted": 0,
+        "wins_with_opponent_fault": 0,
+        "seats": {
+          "A": {
+            "games": 2,
+            "wins": 0
+          },
+          "B": {
+            "games": 2,
+            "wins": 0
+          }
+        }
+      },
+      "leader": {
+        "games": 2,
+        "wins": 0,
+        "opponents": 1,
+        "mean_our_bank": 467.5,
+        "mean_foe_bank": 968.0,
+        "mean_our_collected": 495.0,
+        "mean_foe_collected": 990.0,
+        "mean_our_gold": 1900.0,
+        "mean_our_deaths": 62.0,
+        "faults": 0,
+        "fuel_exhausted": 0,
+        "wins_with_opponent_fault": 0,
+        "seats": {
+          "A": {
+            "games": 1,
+            "wins": 0
+          },
+          "B": {
+            "games": 1,
+            "wins": 0
+          }
+        }
+      }
+    },
+    "01hooks": {
+      "all": {
+        "games": 6,
+        "wins": 1,
+        "opponents": 3,
+        "mean_our_bank": 333.6666666666667,
+        "mean_foe_bank": 847.0,
+        "mean_our_collected": 462.0,
+        "mean_foe_collected": 949.6666666666666,
+        "mean_our_gold": 3021.6666666666665,
+        "mean_our_deaths": 62.666666666666664,
+        "faults": 0,
+        "fuel_exhausted": 0,
+        "wins_with_opponent_fault": 0,
+        "seats": {
+          "A": {
+            "games": 3,
+            "wins": 0
+          },
+          "B": {
+            "games": 3,
+            "wins": 1
+          }
+        }
+      },
+      "nearby": {
+        "games": 2,
+        "wins": 0,
+        "opponents": 1,
+        "mean_our_bank": 209.0,
+        "mean_foe_bank": 1001.0,
+        "mean_our_collected": 407.0,
+        "mean_foe_collected": 1232.0,
+        "mean_our_gold": 2415.0,
+        "mean_our_deaths": 75.5,
+        "faults": 0,
+        "fuel_exhausted": 0,
+        "wins_with_opponent_fault": 0,
+        "seats": {
+          "A": {
+            "games": 1,
+            "wins": 0
+          },
+          "B": {
+            "games": 1,
+            "wins": 0
+          }
+        }
+      },
+      "stretch": {
+        "games": 4,
+        "wins": 1,
+        "opponents": 2,
+        "mean_our_bank": 396.0,
+        "mean_foe_bank": 770.0,
+        "mean_our_collected": 489.5,
+        "mean_foe_collected": 808.5,
+        "mean_our_gold": 3325.0,
+        "mean_our_deaths": 56.25,
+        "faults": 0,
+        "fuel_exhausted": 0,
+        "wins_with_opponent_fault": 0,
+        "seats": {
+          "A": {
+            "games": 2,
+            "wins": 0
+          },
+          "B": {
+            "games": 2,
+            "wins": 1
+          }
+        }
+      },
+      "leader": {
+        "games": 0
+      }
+    },
+    "01islands": {
+      "all": {
+        "games": 6,
+        "wins": 2,
+        "opponents": 3,
+        "mean_our_bank": 227.33333333333334,
+        "mean_foe_bank": 677.0,
+        "mean_our_collected": 227.33333333333334,
+        "mean_foe_collected": 683.8333333333334,
+        "mean_our_gold": 1340.0,
+        "mean_our_deaths": 3.1666666666666665,
+        "faults": 0,
+        "fuel_exhausted": 0,
+        "wins_with_opponent_fault": 0,
+        "seats": {
+          "A": {
+            "games": 3,
+            "wins": 1
+          },
+          "B": {
+            "games": 3,
+            "wins": 1
+          }
+        }
+      },
+      "nearby": {
+        "games": 2,
+        "wins": 0,
+        "opponents": 1,
+        "mean_our_bank": 60.0,
+        "mean_foe_bank": 1000.0,
+        "mean_our_collected": 60.0,
+        "mean_foe_collected": 1000.0,
+        "mean_our_gold": 440.0,
+        "mean_our_deaths": 3.0,
+        "faults": 0,
+        "fuel_exhausted": 0,
+        "wins_with_opponent_fault": 0,
+        "seats": {
+          "A": {
+            "games": 1,
+            "wins": 0
+          },
+          "B": {
+            "games": 1,
+            "wins": 0
+          }
+        }
+      },
+      "stretch": {
+        "games": 4,
+        "wins": 2,
+        "opponents": 2,
+        "mean_our_bank": 311.0,
+        "mean_foe_bank": 515.5,
+        "mean_our_collected": 311.0,
+        "mean_foe_collected": 525.75,
+        "mean_our_gold": 1790.0,
+        "mean_our_deaths": 3.25,
+        "faults": 0,
+        "fuel_exhausted": 0,
+        "wins_with_opponent_fault": 0,
+        "seats": {
+          "A": {
+            "games": 2,
+            "wins": 1
+          },
+          "B": {
+            "games": 2,
+            "wins": 1
+          }
+        }
+      },
+      "leader": {
+        "games": 0
+      }
+    },
+    "01shortcut": {
+      "all": {
+        "games": 6,
+        "wins": 1,
+        "opponents": 3,
+        "mean_our_bank": 349.0,
+        "mean_foe_bank": 855.1666666666666,
+        "mean_our_collected": 726.8333333333334,
+        "mean_foe_collected": 983.6666666666666,
+        "mean_our_gold": 1755.0,
+        "mean_our_deaths": 18.333333333333332,
+        "faults": 0,
+        "fuel_exhausted": 0,
+        "wins_with_opponent_fault": 0,
+        "seats": {
+          "A": {
+            "games": 3,
+            "wins": 1
+          },
+          "B": {
+            "games": 3,
+            "wins": 0
+          }
+        }
+      },
+      "nearby": {
+        "games": 2,
+        "wins": 0,
+        "opponents": 1,
+        "mean_our_bank": 153.5,
+        "mean_foe_bank": 1042.0,
+        "mean_our_collected": 628.5,
+        "mean_foe_collected": 1099.5,
+        "mean_our_gold": 2090.0,
+        "mean_our_deaths": 20.5,
+        "faults": 0,
+        "fuel_exhausted": 0,
+        "wins_with_opponent_fault": 0,
+        "seats": {
+          "A": {
+            "games": 1,
+            "wins": 0
+          },
+          "B": {
+            "games": 1,
+            "wins": 0
+          }
+        }
+      },
+      "stretch": {
+        "games": 4,
+        "wins": 1,
+        "opponents": 2,
+        "mean_our_bank": 446.75,
+        "mean_foe_bank": 761.75,
+        "mean_our_collected": 776.0,
+        "mean_foe_collected": 925.75,
+        "mean_our_gold": 1587.5,
+        "mean_our_deaths": 17.25,
+        "faults": 0,
+        "fuel_exhausted": 0,
+        "wins_with_opponent_fault": 0,
+        "seats": {
+          "A": {
+            "games": 2,
+            "wins": 1
+          },
+          "B": {
+            "games": 2,
+            "wins": 0
+          }
+        }
+      },
+      "leader": {
+        "games": 0
+      }
+    },
+    "01starfish": {
+      "all": {
+        "games": 6,
+        "wins": 3,
+        "opponents": 3,
+        "mean_our_bank": 593.0,
+        "mean_foe_bank": 590.6666666666666,
+        "mean_our_collected": 823.0,
+        "mean_foe_collected": 738.5,
+        "mean_our_gold": 7940.0,
+        "mean_our_deaths": 44.333333333333336,
+        "faults": 0,
+        "fuel_exhausted": 0,
+        "wins_with_opponent_fault": 0,
+        "seats": {
+          "A": {
+            "games": 3,
+            "wins": 2
+          },
+          "B": {
+            "games": 3,
+            "wins": 1
+          }
+        }
+      },
+      "nearby": {
+        "games": 2,
+        "wins": 1,
+        "opponents": 1,
+        "mean_our_bank": 584.5,
+        "mean_foe_bank": 779.0,
+        "mean_our_collected": 795.5,
+        "mean_foe_collected": 888.0,
+        "mean_our_gold": 7970.0,
+        "mean_our_deaths": 31.5,
+        "faults": 0,
+        "fuel_exhausted": 0,
+        "wins_with_opponent_fault": 0,
+        "seats": {
+          "A": {
+            "games": 1,
+            "wins": 1
+          },
+          "B": {
+            "games": 1,
+            "wins": 0
+          }
+        }
+      },
+      "stretch": {
+        "games": 4,
+        "wins": 2,
+        "opponents": 2,
+        "mean_our_bank": 597.25,
+        "mean_foe_bank": 496.5,
+        "mean_our_collected": 836.75,
+        "mean_foe_collected": 663.75,
+        "mean_our_gold": 7925.0,
+        "mean_our_deaths": 50.75,
+        "faults": 0,
+        "fuel_exhausted": 0,
+        "wins_with_opponent_fault": 0,
+        "seats": {
+          "A": {
+            "games": 2,
+            "wins": 1
+          },
+          "B": {
+            "games": 2,
+            "wins": 1
+          }
+        }
+      },
+      "leader": {
+        "games": 0
+      }
+    },
+    "01starvation": {
+      "all": {
+        "games": 6,
+        "wins": 3,
+        "opponents": 3,
+        "mean_our_bank": 389.3333333333333,
+        "mean_foe_bank": 544.0,
+        "mean_our_collected": 442.0,
+        "mean_foe_collected": 620.6666666666666,
+        "mean_our_gold": 2606.6666666666665,
+        "mean_our_deaths": 42.166666666666664,
+        "faults": 0,
+        "fuel_exhausted": 0,
+        "wins_with_opponent_fault": 0,
+        "seats": {
+          "A": {
+            "games": 3,
+            "wins": 1
+          },
+          "B": {
+            "games": 3,
+            "wins": 2
+          }
+        }
+      },
+      "nearby": {
+        "games": 2,
+        "wins": 2,
+        "opponents": 1,
+        "mean_our_bank": 512.0,
+        "mean_foe_bank": 316.0,
+        "mean_our_collected": 550.0,
+        "mean_foe_collected": 356.0,
+        "mean_our_gold": 3680.0,
+        "mean_our_deaths": 26.0,
+        "faults": 0,
+        "fuel_exhausted": 0,
+        "wins_with_opponent_fault": 0,
+        "seats": {
+          "A": {
+            "games": 1,
+            "wins": 1
+          },
+          "B": {
+            "games": 1,
+            "wins": 1
+          }
+        }
+      },
+      "stretch": {
+        "games": 4,
+        "wins": 1,
+        "opponents": 2,
+        "mean_our_bank": 328.0,
+        "mean_foe_bank": 658.0,
+        "mean_our_collected": 388.0,
+        "mean_foe_collected": 753.0,
+        "mean_our_gold": 2070.0,
+        "mean_our_deaths": 50.25,
+        "faults": 0,
+        "fuel_exhausted": 0,
+        "wins_with_opponent_fault": 0,
+        "seats": {
+          "A": {
+            "games": 2,
+            "wins": 0
+          },
+          "B": {
+            "games": 2,
+            "wins": 1
+          }
+        }
+      },
+      "leader": {
+        "games": 0
+      }
+    },
+    "01the-farm": {
+      "all": {
+        "games": 8,
+        "wins": 4,
+        "opponents": 4,
+        "mean_our_bank": 703.875,
+        "mean_foe_bank": 645.875,
+        "mean_our_collected": 856.875,
+        "mean_foe_collected": 845.5,
+        "mean_our_gold": 4562.5,
+        "mean_our_deaths": 25.625,
+        "faults": 0,
+        "fuel_exhausted": 0,
+        "wins_with_opponent_fault": 0,
+        "seats": {
+          "A": {
+            "games": 4,
+            "wins": 1
+          },
+          "B": {
+            "games": 4,
+            "wins": 3
+          }
+        }
+      },
+      "nearby": {
+        "games": 2,
+        "wins": 1,
+        "opponents": 1,
+        "mean_our_bank": 985.5,
+        "mean_foe_bank": 982.5,
+        "mean_our_collected": 1152.0,
+        "mean_foe_collected": 1256.5,
+        "mean_our_gold": 5575.0,
+        "mean_our_deaths": 31.5,
+        "faults": 0,
+        "fuel_exhausted": 0,
+        "wins_with_opponent_fault": 0,
+        "seats": {
+          "A": {
+            "games": 1,
+            "wins": 0
+          },
+          "B": {
+            "games": 1,
+            "wins": 1
+          }
+        }
+      },
+      "stretch": {
+        "games": 4,
+        "wins": 3,
+        "opponents": 2,
+        "mean_our_bank": 825.5,
+        "mean_foe_bank": 296.0,
+        "mean_our_collected": 992.25,
+        "mean_foe_collected": 543.75,
+        "mean_our_gold": 5587.5,
+        "mean_our_deaths": 27.25,
+        "faults": 0,
+        "fuel_exhausted": 0,
+        "wins_with_opponent_fault": 0,
+        "seats": {
+          "A": {
+            "games": 2,
+            "wins": 1
+          },
+          "B": {
+            "games": 2,
+            "wins": 2
+          }
+        }
+      },
+      "leader": {
+        "games": 2,
+        "wins": 0,
+        "opponents": 1,
+        "mean_our_bank": 179.0,
+        "mean_foe_bank": 1009.0,
+        "mean_our_collected": 291.0,
+        "mean_foe_collected": 1038.0,
+        "mean_our_gold": 1500.0,
+        "mean_our_deaths": 16.5,
+        "faults": 0,
+        "fuel_exhausted": 0,
+        "wins_with_opponent_fault": 0,
+        "seats": {
+          "A": {
+            "games": 1,
+            "wins": 0
+          },
+          "B": {
+            "games": 1,
+            "wins": 0
+          }
+        }
+      }
+    },
+    "01yellow-brick-road": {
+      "all": {
+        "games": 6,
+        "wins": 4,
+        "opponents": 3,
+        "mean_our_bank": 735.6666666666666,
+        "mean_foe_bank": 709.1666666666666,
+        "mean_our_collected": 803.3333333333334,
+        "mean_foe_collected": 756.1666666666666,
+        "mean_our_gold": 6858.333333333333,
+        "mean_our_deaths": 35.666666666666664,
+        "faults": 0,
+        "fuel_exhausted": 0,
+        "wins_with_opponent_fault": 0,
+        "seats": {
+          "A": {
+            "games": 3,
+            "wins": 1
+          },
+          "B": {
+            "games": 3,
+            "wins": 3
+          }
+        }
+      },
+      "nearby": {
+        "games": 2,
+        "wins": 1,
+        "opponents": 1,
+        "mean_our_bank": 572.5,
+        "mean_foe_bank": 994.5,
+        "mean_our_collected": 604.5,
+        "mean_foe_collected": 1032.0,
+        "mean_our_gold": 4800.0,
+        "mean_our_deaths": 28.0,
+        "faults": 0,
+        "fuel_exhausted": 0,
+        "wins_with_opponent_fault": 0,
+        "seats": {
+          "A": {
+            "games": 1,
+            "wins": 0
+          },
+          "B": {
+            "games": 1,
+            "wins": 1
+          }
+        }
+      },
+      "stretch": {
+        "games": 4,
+        "wins": 3,
+        "opponents": 2,
+        "mean_our_bank": 817.25,
+        "mean_foe_bank": 566.5,
+        "mean_our_collected": 902.75,
+        "mean_foe_collected": 618.25,
+        "mean_our_gold": 7887.5,
+        "mean_our_deaths": 39.5,
+        "faults": 0,
+        "fuel_exhausted": 0,
+        "wins_with_opponent_fault": 0,
+        "seats": {
+          "A": {
+            "games": 2,
+            "wins": 1
+          },
+          "B": {
+            "games": 2,
+            "wins": 2
+          }
+        }
+      },
+      "leader": {
+        "games": 0
+      }
+    }
+  },
+  "fault_free_opponent_games": {
+    "games": 249,
+    "wins": 96,
+    "opponents": 13,
+    "mean_our_bank": 582.6706827309237,
+    "mean_foe_bank": 737.5421686746988,
+    "mean_our_collected": 686.3855421686746,
+    "mean_foe_collected": 855.3172690763053,
+    "mean_our_gold": 5340.0,
+    "mean_our_deaths": 26.068273092369477,
+    "faults": 0,
+    "fuel_exhausted": 96,
+    "wins_with_opponent_fault": 0,
+    "seats": {
+      "A": {
+        "games": 125,
+        "wins": 43
+      },
+      "B": {
+        "games": 124,
+        "wins": 53
+      }
+    }
+  },
+  "allowance_accounting": "26 initial challenges plus 24 replenished during the run; all 50 used; final observed allowance zero. No additional window is implied.",
+  "per_game_records": "stage7-live-curriculum-games.jsonl"
+}

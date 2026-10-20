@@ -1,0 +1,72 @@
+{
+  "schema": 1,
+  "experiment": "ppo-topdraft-v6",
+  "parent": "ppo-topdraft-v3",
+  "baseline": "ppo-topdraft-v3",
+  "runtime": {
+    "cli_version": "cambc 3.0.2",
+    "engine_version": "1.0.1",
+    "engine_build_hash": "c3e9ffc8d98c106f86660c58344dc26ced9459a504e2f0d90d88b4c8594c7765"
+  },
+  "identities": {
+    "candidate": "f21d27dce9cc364a26c61780367fc0b5c16ce39f643c37929e3b599fe471f534",
+    "baseline": "daebfb48072c6723d7a5d3c554c36c84204880ea6e3aaa6fb7616074162f7d85",
+    "starter": "c9a0ca35cf13686680ef4ea00d0bb99f654a79be78382bdb3283604d5fde9795"
+  },
+  "config_sha256": "124a3c2a72a57dace1de6bace1f521d76e196df99c3065583c6e6d0156653209",
+  "changes": "ppo-topdraft-v6: bound low-fuel goal scans and use a cheap movement fallback; expect fewer exhausted turns without stalling initialization.",
+  "status": "rejected_for_promotion",
+  "sealed_confirmation_maps_used": false,
+  "promotion_gate_run": false,
+  "uploaded": false,
+  "draft_verified_games": 372,
+  "elapsed_seconds": 93.30293130874634,
+  "summary": {
+    "starter": {
+      "games": 70,
+      "wins": 67,
+      "faults": 0,
+      "fuel_exhausted": 3,
+      "opponent_faults": 0,
+      "by_seat": {
+        "0": {
+          "games": 35,
+          "wins": 34
+        },
+        "1": {
+          "games": 35,
+          "wins": 33
+        }
+      },
+      "mean_banked_gems": 882.1857142857143,
+      "mean_opponent_banked_gems": 100.91428571428571
+    },
+    "baseline": {
+      "games": 302,
+      "wins": 151,
+      "faults": 0,
+      "fuel_exhausted": 14,
+      "opponent_faults": 0,
+      "by_seat": {
+        "0": {
+          "games": 151,
+          "wins": 84
+        },
+        "1": {
+          "games": 151,
+          "wins": 67
+        }
+      },
+      "mean_banked_gems": 705.2350993377484,
+      "mean_opponent_banked_gems": 697.5033112582781
+    }
+  },
+  "source_rebuild_identical": true,
+  "source_zip_sha256": "3e9819880e134285a34c84d2f61ae605fe59aea275af9c3f3189c1fe3b246e52",
+  "reason": "151/302 versus parent is no strength result; 149/302 versus qualified v12 fails development minimum.",
+  "metadata_errata": {
+    "frozen_at": "The archive metadata mistakenly inherited v3 timestamp; v6 source/binary freeze occurred this session after v5 screening. No prior result is claimed.",
+    "source_and_wasm_identity_valid": true
+  },
+  "per_game_records": "topdraft-v6-games.jsonl"
+}

@@ -1,5 +1,7 @@
 # Top-team draft and coordinated-objective development
 
+Latest follow-up: `ppo-topdraft-v6` is the working development candidate. It has no proven strength gain and is not promoted. The new 250-game nearby/stretch curriculum, rejected v4/v5 attempts and v6 runtime comparison are in [MAP-LEARNING.md](MAP-LEARNING.md). The sections below retain earlier v1–v3 evidence.
+
 The working bot is `ppo-topdraft-v3`, a separate fork of qualified v12. It uses
 the rank-one draft and adds bounded, synchronized single-objective pushes.
 It is a development candidate; platform v83 remains the deployed v12.

@@ -1,0 +1,189 @@
+{
+  "passed": true,
+  "pipeline_checks_passed": true,
+  "strength_gate_passed": true,
+  "stage": 5,
+  "next_stage": 6,
+  "model": "ppo-v1",
+  "actor_sha256": "94c1399f470e7c64f65a203a46d4bd14dff4527057d6eb12fc26fffb79b5402f",
+  "parent_actor_sha256": "76ec1dcaf4d37f1cccaccd483885e241a7f14cf929630332ece35e72e5988d3e",
+  "parent_critic_sha256": "b9380867c31e9b31bb6993b0d38bdedabb1836ac3fedf567f028c87b49985dec",
+  "actor_change_norm": 0.09545585513114929,
+  "evaluation": {
+    "games": 64,
+    "maps": 16,
+    "win_fraction": 0.609375,
+    "bootstrap_90": [
+      0.53125,
+      0.6875
+    ],
+    "comparison": "stochastic PPO vs unchanged BC; same banking controller, draft, temperature and decision cap; paired seats/seeds"
+  },
+  "audit": {
+    "games": 220,
+    "states": 1297015,
+    "native_probes": 14058,
+    "old_logp_max_error": 8.951173136040325e-16,
+    "critic_feature_max_error": 0.0
+  },
+  "warmup": {
+    "games": 12,
+    "states": 60044,
+    "cross_validation": "leave training family out, complete maps and both seats grouped",
+    "initial": {
+      "rows": 60044,
+      "log_loss": 0.6651120959446092,
+      "brier": 0.2361502418460838,
+      "accuracy": 0.5931633098178597,
+      "expected_calibration_error": 0.0609585126425626,
+      "mean_prediction": 0.5012079282021596,
+      "win_fraction": 0.5,
+      "reliability": [
+        {
+          "bin": 2,
+          "weight": 0.0006334726973267452,
+          "rows": 40,
+          "predicted_win": 0.2871547222137451,
+          "actual_win": 0.0
+        },
+        {
+          "bin": 3,
+          "weight": 0.023387539043595328,
+          "rows": 1468,
+          "predicted_win": 0.3768216455167263,
+          "actual_win": 0.0
+        },
+        {
+          "bin": 4,
+          "weight": 0.4614833499416392,
+          "rows": 27224,
+          "predicted_win": 0.4729507809087556,
+          "actual_win": 0.4250868984919157
+        },
+        {
+          "bin": 5,
+          "weight": 0.49032805305142746,
+          "rows": 29732,
+          "predicted_win": 0.5277275261336041,
+          "actual_win": 0.5703566970342321
+        },
+        {
+          "bin": 6,
+          "weight": 0.023171817279952107,
+          "rows": 1516,
+          "predicted_win": 0.6251437755147838,
+          "actual_win": 1.0
+        },
+        {
+          "bin": 7,
+          "weight": 0.0009957679860592482,
+          "rows": 64,
+          "predicted_win": 0.711866706609726,
+          "actual_win": 1.0
+        }
+      ]
+    },
+    "on_policy_oof": {
+      "rows": 60044,
+      "log_loss": 0.6013841920579001,
+      "brier": 0.20640848149005026,
+      "accuracy": 0.6647810191245376,
+      "expected_calibration_error": 0.05555966685476013,
+      "mean_prediction": 0.5001479444525242,
+      "win_fraction": 0.5,
+      "reliability": [
+        {
+          "bin": 0,
+          "weight": 0.08109991447642334,
+          "rows": 5152,
+          "predicted_win": 0.05953727743821708,
+          "actual_win": 0.15347595534355485
+        },
+        {
+          "bin": 1,
+          "weight": 0.0733547924658496,
+          "rows": 4476,
+          "predicted_win": 0.14433666823018104,
+          "actual_win": 0.11681123091288989
+        },
+        {
+          "bin": 2,
+          "weight": 0.09779738829134657,
+          "rows": 5808,
+          "predicted_win": 0.24993383772385014,
+          "actual_win": 0.2674900963258129
+        },
+        {
+          "bin": 3,
+          "weight": 0.07684732846721137,
+          "rows": 4560,
+          "predicted_win": 0.3518347861350348,
+          "actual_win": 0.5649969882282416
+        },
+        {
+          "bin": 4,
+          "weight": 0.1734481916923471,
+          "rows": 10368,
+          "predicted_win": 0.4540048856926161,
+          "actual_win": 0.45137055027656003
+        },
+        {
+          "bin": 5,
+          "weight": 0.17104597996767146,
+          "rows": 9988,
+          "predicted_win": 0.5447432413593374,
+          "actual_win": 0.5308230554871411
+        },
+        {
+          "bin": 6,
+          "weight": 0.07129451527053875,
+          "rows": 4062,
+          "predicted_win": 0.6513110612877482,
+          "actual_win": 0.49348189270969106
+        },
+        {
+          "bin": 7,
+          "weight": 0.1012929474210661,
+          "rows": 5916,
+          "predicted_win": 0.7485177186581113,
+          "actual_win": 0.7130516642346171
+        },
+        {
+          "bin": 8,
+          "weight": 0.07071455464851059,
+          "rows": 4392,
+          "predicted_win": 0.8591829566901398,
+          "actual_win": 0.8873177652364944
+        },
+        {
+          "bin": 9,
+          "weight": 0.08310438729903513,
+          "rows": 5322,
+          "predicted_win": 0.9423999398158972,
+          "actual_win": 0.8443069825930382
+        }
+      ]
+    },
+    "actor_updates": 0,
+    "note": "GAE lambda=gamma=1 uses complete Monte Carlo returns, avoiding bias from an imperfect critic"
+  },
+  "sources": {
+    "lab/ppo-actor.mjs": "d152076dfcd825d7a9ab8b71d93242c788cbf8d18519b6052e6f719b1a94ed33",
+    "lab/ppo-native-check.mjs": "56315030f2f686046dce30bf1d931a4547fe80f471dbddac25d9beb848fdd28f",
+    "lab/ppo-replay-check.mjs": "626989de1f1ee8b7b1a02ab2d7f0f8a5ee2f6c990691026ab873f1bac44340e4",
+    "lab/ppo-rollout.mjs": "0bb5d4990c68379f479ce1c3c3956995f5082d277ac3b7bdc5e320e8cfb029fd",
+    "lab/ppo-state.mjs": "14163e4b534d235265e2c5ea07f0cd872eb6c6518f186c15bcb222bbcd09c52c",
+    "lab/ppo.py": "d8f1bbbd166e87bb8887ad12a22b4d6b96c7eabc3e43e5a19e1998c6c30ca9f0",
+    "lab/ppo_math.py": "b41121a7c2704658a575ae803f9bbb7530a95771cbe31ca737eea08b61637bff",
+    "lab/policy.py": "91610c10b30f959706e25c412a9684b38eed4fe6430dcf841eb63ccf74a30023",
+    "lab/cloning.py": "23840532b9d4d7c8d114213cf0aae3e0c0bacfadc4e2b22db473f4c147759555",
+    "lab/engine.mjs": "390e898cfcc869ddd9e8212a004681da2c69224623deb946111f3c7935356a0b",
+    "lab/critic-inventory-state.mjs": "b7caca352bcade12dd54137e175f9785d0c39de840d7a8d23885a4789c7b40ca",
+    "lab/critic-state.mjs": "017773c98b3af76f8bd012eb134d21c4c37e3c5e988e9d2507a64e3750d084d1",
+    "lab/wealth_state.py": "f767b93c2f549fef8554cf33fac7416eca71c88b66b80b865e5a20d4454a7b64",
+    "lab/monotone_critic.py": "a11846bb57fd28192ed1e49ccc68acf5196042740a14028113d0186bb021a47d"
+  },
+  "production_wasm_tested": false,
+  "confirmation_games": 0,
+  "promoted": false
+}

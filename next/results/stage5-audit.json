@@ -1,0 +1,43 @@
+{
+  "passed": true,
+  "games": 220,
+  "states": 1297015,
+  "native_probes": 14058,
+  "old_logp_max_error": 8.951173136040325e-16,
+  "critic_feature_max_error": 0.0,
+  "manifest_sha256": {
+    "warmup.json": "ed7636654d528a50482708833a73a7b0c68b029ccb8c063bb2f03db6d2edc709",
+    "train-001.json": "911f216cd6ce3a75fe2103900197f31bc8cf15a5512b95a275a6890dc7f883dd",
+    "train-002.json": "9c2a33ea2de57b111a8767554543b939bd8e0c04330b74d0a2a84a224226bf54",
+    "train-003.json": "075ed52949aa8b162dbc41a029e67590eabe7c21011d3ba23b21ecfea86f407a",
+    "train-004.json": "baf871b852d1b1747f52599e3d2428b19afa583041bd5d4c8213b1ede25e7bc6",
+    "train-005.json": "4e02b6ecd762c07a1875f9d4505ca84e0c92449c4c3580701d8281ee5f3a464d",
+    "train-006.json": "0c00fae86b626a74df9e1c153069c7b33e0bfd59d72339fb66eed57c785eb58e",
+    "train-007.json": "a06fd7764a0423120d0842804a05fc3f5c61d2df8f10809b79a635203822c6ab",
+    "train-008.json": "9fb6defb2d88654472ff1655af7d11f566fa21658cdf15df9504c014a75820ca",
+    "train-009.json": "5d1c67c82001a1437aa7b5721a8f88152bd5a6e9cf6f22e20ac72cf99fbd5e9d",
+    "train-010.json": "80c52ffbb8089ef29f1f23def784a8c7a3d5f76da65e50df547362e07e65044c",
+    "train-011.json": "3bbb9668ab550e8447d20f3822bde1ca5bad15e1ef3206f25980f321284a5c56",
+    "train-012.json": "0b01f522c0133407c5b2241e424fb6ffe318cc56d8a7bc4e46ff2d3e0e44c1f5",
+    "evaluation.json": "6724205457711f2f506ddecb149eed270248ffe73ba010dce10d61ab5e1b0f32"
+  },
+  "sources": {
+    "lab/ppo-actor.mjs": "d152076dfcd825d7a9ab8b71d93242c788cbf8d18519b6052e6f719b1a94ed33",
+    "lab/ppo-native-check.mjs": "56315030f2f686046dce30bf1d931a4547fe80f471dbddac25d9beb848fdd28f",
+    "lab/ppo-replay-check.mjs": "626989de1f1ee8b7b1a02ab2d7f0f8a5ee2f6c990691026ab873f1bac44340e4",
+    "lab/ppo-rollout.mjs": "0bb5d4990c68379f479ce1c3c3956995f5082d277ac3b7bdc5e320e8cfb029fd",
+    "lab/ppo-state.mjs": "14163e4b534d235265e2c5ea07f0cd872eb6c6518f186c15bcb222bbcd09c52c",
+    "lab/ppo.py": "d8f1bbbd166e87bb8887ad12a22b4d6b96c7eabc3e43e5a19e1998c6c30ca9f0",
+    "lab/ppo_math.py": "b41121a7c2704658a575ae803f9bbb7530a95771cbe31ca737eea08b61637bff",
+    "lab/policy.py": "91610c10b30f959706e25c412a9684b38eed4fe6430dcf841eb63ccf74a30023",
+    "lab/cloning.py": "23840532b9d4d7c8d114213cf0aae3e0c0bacfadc4e2b22db473f4c147759555",
+    "lab/engine.mjs": "390e898cfcc869ddd9e8212a004681da2c69224623deb946111f3c7935356a0b",
+    "lab/critic-inventory-state.mjs": "b7caca352bcade12dd54137e175f9785d0c39de840d7a8d23885a4789c7b40ca",
+    "lab/critic-state.mjs": "017773c98b3af76f8bd012eb134d21c4c37e3c5e988e9d2507a64e3750d084d1",
+    "lab/wealth_state.py": "f767b93c2f549fef8554cf33fac7416eca71c88b66b80b865e5a20d4454a7b64",
+    "lab/monotone_critic.py": "a11846bb57fd28192ed1e49ccc68acf5196042740a14028113d0186bb021a47d"
+  },
+  "all_native_terminals_checked": true,
+  "audit_driver_sha256": "e1183afd0cba1690dbd960dfeb48a3743007fc012bb9cb112d7a501a2ae7cd92",
+  "array_io": "identical immutable arrays, materialized once per NPZ context"
+}

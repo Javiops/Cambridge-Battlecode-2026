@@ -3,6 +3,26 @@
 Conclusions that should outlive one experiment, each with the numbers behind it (after Carson's
 screeps-rl DECISIONS.md). Open questions go to ROADMAP.md.
 
+## 2026-10-20 · First PPO self-play run and native strength gate
+
+Freeze the BC actor and accepted outcome critic as parents, then warm up/refit the critic
+on current native behavior and train 12 PPO iterations against frozen self-play snapshots.
+A shared deterministic scout/camp/banking controller supplies missing strategic action
+coverage on both learner and BC control; it is not attributed as a PPO learning gain.
+The 305-parameter actor receives only its original authenticated feature tensors.
+
+The on-policy critic's held-out training-fold Brier improves from
+0.236150 to 0.206408.
+PPO's final checkpoint scores 60.94% on 64 fresh paired native games,
+with whole-map 90% interval [53.12%, 68.75%].
+Native pipeline checks pass; strength gate: **PASSED**. Stage 5 clears its native training and held-out strength milestone; Stage 6 production integration has not started.
+
+Audit 220 captures/179 distinct replay traces and 1,297,015 states;
+111 tests pass. Equal-policy self-play seat captures can repeat a physical trajectory;
+map splits retain these together and the final test contains 64 distinct replays.
+No production WASM strength/fuel claim, upload, promotion or confirmation play follows.
+See STAGE5.md, results/stage5-ready.json and models/ppo-v1 for frozen evidence.
+
 ## 2026-10-20 · Stage 4 inventory critic passes the unchanged acceptance gate
 
 The local-only v2 critic failed; v3's centralized residual and v4's monotone residual

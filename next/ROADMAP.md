@@ -42,13 +42,14 @@ The paired map bootstrap interval supports the Brier improvement. See STAGE4.md 
 training-only selection, provenance, calibration, the failed v1-v4 trials and limitations.
 The BC actor is unchanged; final confirmation maps remain sealed.
 
-## Stage 5: PPO, not started
+## Stage 5: first PPO run trained; strength gate passed
 
-Initialize the actor from `bc-v1` and the offline critic from `outcome-v5`.
-Collect on-policy native rollouts and refit/recalibrate the privileged critic before
-trusting its values for advantages. Resolve the actor's missing submission/macro-action
-coverage as part of the next stage's explicit scope. Passing this offline critic gate
-does not establish actor strength or validate an eventual PPO training run.
+`ppo-v1` starts from `bc-v1` and accepted `outcome-v5`, recalibrates its critic on
+on-policy data, and completes 12 clipped PPO iterations. The native pipeline is audited.
+Fresh matched-controller evaluation scores 60.94% on 64 games/16 maps;
+90% whole-map interval [53.12%, 68.75%]. Stage 5 clears its native training and held-out strength milestone; Stage 6 production integration has not started.
+See STAGE5.md for the shared controller, duplicate self-play capture accounting,
+source-bound old-policy checks, model hashes and remaining coverage limits.
 
 ## Foundation (before any real bot)
 

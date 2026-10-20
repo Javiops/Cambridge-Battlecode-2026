@@ -1,0 +1,91 @@
+{
+  "iteration": 11,
+  "export": {
+    "parameters": 305,
+    "dtype": "little-endian float32",
+    "bytes": 1220,
+    "weights_sha256": "a118c4750d2bd20fe24aec854a0e7c6d28b981a45fed429baaa99418ae86f6d7",
+    "header_sha256": "7c7352921c29c712724d55a1cca630a6a03185f713e9e98e9ca06d358537c9ae"
+  },
+  "training_state_sha256": "8d547ef9fa66e3f0a1f9c566c36a4941de616af531903aa3e005d3275458105a",
+  "report": {
+    "iteration": 11,
+    "games": 12,
+    "sampled_states": 79793,
+    "policy_samples": 8469,
+    "old_logp_max_error": 8.881784197001252e-16,
+    "actor_change_norm": 0.036139268428087234,
+    "distance_from_bc": 0.09105012565851212,
+    "critic_change_norm": 0.2391834557056427,
+    "learner_training_win_fraction": 0.5833333333333334,
+    "critic_old_brier": 0.22503378802108187,
+    "critic_refit_training_brier": 0.21948665642576126,
+    "training_manifest_sha256": "3bbb9668ab550e8447d20f3822bde1ca5bad15e1ef3206f25980f321284a5c56",
+    "ppo": {
+      "history": [
+        {
+          "epoch": 1,
+          "loss": -0.0024755618240113503,
+          "kl": 9.56387016288134e-05,
+          "entropy": 1.1022147349540958,
+          "clip_fraction": 0.0,
+          "ratio_max": 1.1056312398542236,
+          "ratio_min": 0.9289130931182255
+        },
+        {
+          "epoch": 2,
+          "loss": -0.003049966482462676,
+          "kl": 0.00023821221334759612,
+          "entropy": 1.0948222909573153,
+          "clip_fraction": 0.00035423308537017357,
+          "ratio_max": 1.3472084609065005,
+          "ratio_min": 0.8690703884269341
+        },
+        {
+          "epoch": 3,
+          "loss": -0.0036486808355777277,
+          "kl": 0.000607939863587475,
+          "entropy": 1.0947016429356147,
+          "clip_fraction": 0.0004723107804935648,
+          "ratio_max": 1.2745758493203947,
+          "ratio_min": 0.8489392945617732
+        },
+        {
+          "epoch": 4,
+          "loss": -0.004251088005345336,
+          "kl": 0.001186407256827332,
+          "entropy": 1.0912209179261836,
+          "clip_fraction": 0.003542330853701736,
+          "ratio_max": 1.3449309356852377,
+          "ratio_min": 0.7749041612316058
+        }
+      ],
+      "attempted_optimizer_updates": 68,
+      "optimizer_updates": 68,
+      "kl": 0.001186399923289861,
+      "entropy": 1.0912209337275114,
+      "clip_fraction": 0.003542330853701736,
+      "ratio_max": 1.3449305089455397,
+      "ratio_min": 0.7749047534650446
+    }
+  },
+  "parent_actor_sha256": "76ec1dcaf4d37f1cccaccd483885e241a7f14cf929630332ece35e72e5988d3e",
+  "parent_critic_sha256": "b9380867c31e9b31bb6993b0d38bdedabb1836ac3fedf567f028c87b49985dec",
+  "plan_sha256": "97206209a28a7dfcecb068802f15d29c2e90b430da86e07504b31acee0e96076",
+  "sources": {
+    "lab/ppo-actor.mjs": "d152076dfcd825d7a9ab8b71d93242c788cbf8d18519b6052e6f719b1a94ed33",
+    "lab/ppo-native-check.mjs": "56315030f2f686046dce30bf1d931a4547fe80f471dbddac25d9beb848fdd28f",
+    "lab/ppo-replay-check.mjs": "626989de1f1ee8b7b1a02ab2d7f0f8a5ee2f6c990691026ab873f1bac44340e4",
+    "lab/ppo-rollout.mjs": "0bb5d4990c68379f479ce1c3c3956995f5082d277ac3b7bdc5e320e8cfb029fd",
+    "lab/ppo-state.mjs": "14163e4b534d235265e2c5ea07f0cd872eb6c6518f186c15bcb222bbcd09c52c",
+    "lab/ppo.py": "d8f1bbbd166e87bb8887ad12a22b4d6b96c7eabc3e43e5a19e1998c6c30ca9f0",
+    "lab/ppo_math.py": "b41121a7c2704658a575ae803f9bbb7530a95771cbe31ca737eea08b61637bff",
+    "lab/policy.py": "91610c10b30f959706e25c412a9684b38eed4fe6430dcf841eb63ccf74a30023",
+    "lab/cloning.py": "23840532b9d4d7c8d114213cf0aae3e0c0bacfadc4e2b22db473f4c147759555",
+    "lab/engine.mjs": "390e898cfcc869ddd9e8212a004681da2c69224623deb946111f3c7935356a0b",
+    "lab/critic-inventory-state.mjs": "b7caca352bcade12dd54137e175f9785d0c39de840d7a8d23885a4789c7b40ca",
+    "lab/critic-state.mjs": "017773c98b3af76f8bd012eb134d21c4c37e3c5e988e9d2507a64e3750d084d1",
+    "lab/wealth_state.py": "f767b93c2f549fef8554cf33fac7416eca71c88b66b80b865e5a20d4454a7b64",
+    "lab/monotone_critic.py": "a11846bb57fd28192ed1e49ccc68acf5196042740a14028113d0186bb021a47d"
+  }
+}

@@ -1,0 +1,91 @@
+{
+  "iteration": 12,
+  "export": {
+    "parameters": 305,
+    "dtype": "little-endian float32",
+    "bytes": 1220,
+    "weights_sha256": "94c1399f470e7c64f65a203a46d4bd14dff4527057d6eb12fc26fffb79b5402f",
+    "header_sha256": "9ef5645301051994cabc6c1b84615bcae55852a13359157384c03d69fd082085"
+  },
+  "training_state_sha256": "839263a55c7a5c3f2809609c703070950de7145b61a30c000add152269d8d16e",
+  "report": {
+    "iteration": 12,
+    "games": 12,
+    "sampled_states": 67898,
+    "policy_samples": 7863,
+    "old_logp_max_error": 8.881784197001252e-16,
+    "actor_change_norm": 0.030855705961585045,
+    "distance_from_bc": 0.09545585513114929,
+    "critic_change_norm": 0.23732341825962067,
+    "learner_training_win_fraction": 0.5833333333333334,
+    "critic_old_brier": 0.21938933375692563,
+    "critic_refit_training_brier": 0.21257025699073473,
+    "training_manifest_sha256": "0b01f522c0133407c5b2241e424fb6ffe318cc56d8a7bc4e46ff2d3e0e44c1f5",
+    "ppo": {
+      "history": [
+        {
+          "epoch": 1,
+          "loss": -0.002901096911436459,
+          "kl": 0.00036277453864477435,
+          "entropy": 1.0792150056436416,
+          "clip_fraction": 0.0,
+          "ratio_max": 1.1639200956047997,
+          "ratio_min": 0.8998743872082681
+        },
+        {
+          "epoch": 2,
+          "loss": -0.0038920160864349177,
+          "kl": 0.0014033640556138877,
+          "entropy": 1.0841860934617122,
+          "clip_fraction": 0.004196871423120946,
+          "ratio_max": 1.2956514662725012,
+          "ratio_min": 0.804558308182235
+        },
+        {
+          "epoch": 3,
+          "loss": -0.0042283610686528455,
+          "kl": 0.002648870978320785,
+          "entropy": 1.0891188631578035,
+          "clip_fraction": 0.019966933740302683,
+          "ratio_max": 1.4176192910558445,
+          "ratio_min": 0.7373550454216471
+        },
+        {
+          "epoch": 4,
+          "loss": -0.004631352530162777,
+          "kl": 0.003098688854726303,
+          "entropy": 1.0816853018632724,
+          "clip_fraction": 0.021493068803255754,
+          "ratio_max": 1.360592271450705,
+          "ratio_min": 0.722082056175637
+        }
+      ],
+      "attempted_optimizer_updates": 64,
+      "optimizer_updates": 64,
+      "kl": 0.003098689804563891,
+      "entropy": 1.0816852744096885,
+      "clip_fraction": 0.021493068803255754,
+      "ratio_max": 1.3605925525880145,
+      "ratio_min": 0.7220820060226125
+    }
+  },
+  "parent_actor_sha256": "76ec1dcaf4d37f1cccaccd483885e241a7f14cf929630332ece35e72e5988d3e",
+  "parent_critic_sha256": "b9380867c31e9b31bb6993b0d38bdedabb1836ac3fedf567f028c87b49985dec",
+  "plan_sha256": "97206209a28a7dfcecb068802f15d29c2e90b430da86e07504b31acee0e96076",
+  "sources": {
+    "lab/ppo-actor.mjs": "d152076dfcd825d7a9ab8b71d93242c788cbf8d18519b6052e6f719b1a94ed33",
+    "lab/ppo-native-check.mjs": "56315030f2f686046dce30bf1d931a4547fe80f471dbddac25d9beb848fdd28f",
+    "lab/ppo-replay-check.mjs": "626989de1f1ee8b7b1a02ab2d7f0f8a5ee2f6c990691026ab873f1bac44340e4",
+    "lab/ppo-rollout.mjs": "0bb5d4990c68379f479ce1c3c3956995f5082d277ac3b7bdc5e320e8cfb029fd",
+    "lab/ppo-state.mjs": "14163e4b534d235265e2c5ea07f0cd872eb6c6518f186c15bcb222bbcd09c52c",
+    "lab/ppo.py": "d8f1bbbd166e87bb8887ad12a22b4d6b96c7eabc3e43e5a19e1998c6c30ca9f0",
+    "lab/ppo_math.py": "b41121a7c2704658a575ae803f9bbb7530a95771cbe31ca737eea08b61637bff",
+    "lab/policy.py": "91610c10b30f959706e25c412a9684b38eed4fe6430dcf841eb63ccf74a30023",
+    "lab/cloning.py": "23840532b9d4d7c8d114213cf0aae3e0c0bacfadc4e2b22db473f4c147759555",
+    "lab/engine.mjs": "390e898cfcc869ddd9e8212a004681da2c69224623deb946111f3c7935356a0b",
+    "lab/critic-inventory-state.mjs": "b7caca352bcade12dd54137e175f9785d0c39de840d7a8d23885a4789c7b40ca",
+    "lab/critic-state.mjs": "017773c98b3af76f8bd012eb134d21c4c37e3c5e988e9d2507a64e3750d084d1",
+    "lab/wealth_state.py": "f767b93c2f549fef8554cf33fac7416eca71c88b66b80b865e5a20d4454a7b64",
+    "lab/monotone_critic.py": "a11846bb57fd28192ed1e49ccc68acf5196042740a14028113d0186bb021a47d"
+  }
+}

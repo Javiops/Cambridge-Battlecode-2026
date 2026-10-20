@@ -1,0 +1,69 @@
+{
+  "schema": 1,
+  "experiment": "ppo-topdraft-v11",
+  "parent": "ppo-topdraft-v8",
+  "baseline": "ppo-topdraft-v8",
+  "runtime": {
+    "cli_version": "cambc 3.0.2",
+    "engine_version": "1.0.1",
+    "engine_build_hash": "c3e9ffc8d98c106f86660c58344dc26ced9459a504e2f0d90d88b4c8594c7765"
+  },
+  "identities": {
+    "candidate": "99b5262db00b747e629f2656157468596d1ba805b43ce8a4dff5d20ba95e4c95",
+    "baseline": "c92a39613426dab54e4e02363cdf7ec50882865329ac869bcc155da9db0c9b89",
+    "starter": "c9a0ca35cf13686680ef4ea00d0bb99f654a79be78382bdb3283604d5fde9795"
+  },
+  "config_sha256": "d05857bcebfe0cea28fc3d2ffe45348f1441f4b1f55527651b7c59113f35309f",
+  "changes": "ppo-topdraft-v11: learn a conservative planner cost after budget-aborted target selection; expect fewer repeated no-progress retries and fuel losses.",
+  "status": "rejected_targeted_runtime_hypothesis",
+  "sealed_confirmation_maps_used": false,
+  "promotion_gate_run": false,
+  "uploaded": false,
+  "draft_verified_games": 10,
+  "elapsed_seconds": 7.851048231124878,
+  "summary": {
+    "starter": {
+      "games": 4,
+      "wins": 1,
+      "faults": 0,
+      "fuel_exhausted": 0,
+      "opponent_faults": 0,
+      "by_seat": {
+        "0": {
+          "games": 2,
+          "wins": 0
+        },
+        "1": {
+          "games": 2,
+          "wins": 1
+        }
+      },
+      "mean_banked_gems": 252.0,
+      "mean_opponent_banked_gems": 357.75
+    },
+    "baseline": {
+      "games": 6,
+      "wins": 1,
+      "faults": 0,
+      "fuel_exhausted": 94,
+      "opponent_faults": 0,
+      "by_seat": {
+        "0": {
+          "games": 3,
+          "wins": 0
+        },
+        "1": {
+          "games": 3,
+          "wins": 1
+        }
+      },
+      "mean_banked_gems": 217.33333333333334,
+      "mean_opponent_banked_gems": 636.8333333333334
+    }
+  },
+  "rejection_reason": "Learning the entry budget after an aborted target choice leaves the repeated case unchanged at 94 and harms the official canaries.",
+  "broad_screen_run": false,
+  "independent_rebuild_sha256": "99b5262db00b747e629f2656157468596d1ba805b43ce8a4dff5d20ba95e4c95",
+  "source_zip_sha256": "5eb89db7bfe31ebbb9d5fb47ec2dd72c363fa18bf6ac0ee9a878ed8a89348ad2",
+  "per_game_records": "topdraft-v11-canary-games.jsonl"
+}

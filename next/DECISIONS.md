@@ -299,3 +299,7 @@ Complete already-started healthy/quiet banking trips even below 12 gems. Big-wor
 ## 2026-10-20 · V9 optional spell guard rejected
 
 Raising only optional spell-scan entry headroom from 22k to 41k does not fix the reproduced Stellar failure: 94 B-seat fuel losses persist. Ten targeted canaries have zero faults. Do not broaden or upload a failed target hypothesis. Frozen v9 and its reproducible source remain intact; working source returns to v8. No global initialization reserve or model change. See BANKING-V9-REJECTED.md.
+
+## 2026-10-20 · V10/V11 runtime hypotheses rejected
+
+Native PPO tile lookups and failed-planner cost learning each leave the 94-loss B-seat case unchanged. Both have ten canaries, zero faults and exact independent rebuilds; neither receives a broad screen or upload. V11 also weakens stress-map banking. Working source returns to v8. Actor-disabled and phase-only diagnostics change the trajectory, so they narrow investigation without proving cost attribution. See RUNTIME-PROBES.md.

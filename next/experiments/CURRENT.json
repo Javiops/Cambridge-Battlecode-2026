@@ -40,7 +40,9 @@
     "Download and native-verify the v85 pair before uploading the next usable prepared fix; persist request and returned IDs immediately."
   ],
   "rejected_candidates": {
-    "ppo-topdraft-v9": "Optional spell-scan guard does not fix the reproduced 94-loss B-seat runtime case."
+    "ppo-topdraft-v9": "Optional spell-scan guard does not fix the reproduced 94-loss B-seat runtime case.",
+    "ppo-topdraft-v10": "PPO roster-lookup optimization leaves target fuel failure unchanged at 94.",
+    "ppo-topdraft-v11": "Failed-planner cost learning leaves target fuel failure unchanged at 94 and weakens stress-map canaries."
   },
   "prepared_source_zip_sha256": "7cb32c43786e6df0cca50de081f619405cd2a65dbc43cf97696bdf3e3081c7cb",
   "prepared_wasm_sha256": "c92a39613426dab54e4e02363cdf7ec50882865329ac869bcc155da9db0c9b89"

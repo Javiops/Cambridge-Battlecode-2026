@@ -43,6 +43,8 @@ def main() -> None:
     s.add_argument("check", choices=["maps", "verify", "benchmark", "calibrate", "ready"])
     d = sub.add_parser("stage2")
     d.add_argument("check",choices=["plan","collect","audit","proof","online","ready"])
+    t = sub.add_parser("stage3")
+    t.add_argument("check", choices=["train", "prepare", "verify", "release", "analyze", "ready"])
     a = p.parse_args()
     cfg = core.config()
 
@@ -107,6 +109,10 @@ def main() -> None:
         from . import dataset
         result=getattr(dataset,a.check)()
         print(json.dumps(result,indent=2))
+    elif a.cmd == "stage3":
+        from . import cloning, stage3
+        result = cloning.train() if a.check == 'train' else getattr(stage3, a.check)()
+        print(json.dumps(result, indent=2))
 
 
 if __name__ == "__main__":

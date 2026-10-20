@@ -3,6 +3,24 @@
 Conclusions that should outlive one experiment, each with the numbers behind it (after Carson's
 screeps-rl DECISIONS.md). Open questions go to ROADMAP.md.
 
+## 2026-10-20 · Stage 3: keep the cloned checkpoint, reject promotion
+
+`bc-v1` trains the certified 305-parameter actor on 44,221 admitted examples. An internal
+whole-map development split selects epoch 115/120; a fresh refit uses all training data
+before validation is loaded. Held-out exact candidate accuracy is 63.39% against constant
+wait's 56.91%, but below the untrained model's 73.28%. Macro action recall improves from
+64.85% to 72.98%; movement-type recall improves from 0.73% to 73.51%. Exact movement
+accuracy remains 41.15%. Training/validation teacher-lineage shift produces 2,637 cast
+predictions against zero validation cast labels. No validation-based checkpoint change.
+
+The exact float32 export passes 1,440-turn official release parity (23,040 bit-identical
+logits, all four supported action kinds) and 24 paired screening diagnostics, with zero
+faults/fuel exhaustion. Max measured ordinary-turn fuel is 55,081 before the tiny footer.
+The trained actor banks zero gems and scores 0/6 against starter; it lacks submission
+and macro actions. Keep the model as an offline learning warm start, reject it as a
+competitive replacement. No strength gain is established, no confirmation map is opened,
+the live v76 submission is unchanged, and Stage 4 has not started. See STAGE3.md.
+
 ## 2026-10-20 · Stage 2 baseline: exact replay reconstruction and disjoint lineages
 
 The copied active v76 source builds on the pinned SDK and is frozen as

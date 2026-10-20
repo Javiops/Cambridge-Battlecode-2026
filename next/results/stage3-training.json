@@ -1,0 +1,1987 @@
+{
+  "schema": 1,
+  "model": "bc-v1",
+  "training_complete": true,
+  "offline_acceptance_passed": true,
+  "elapsed_seconds": 53.25958180002635,
+  "plan_sha256": "7b60f9337a80811787b70d34acb6df482323f73dad634ff18bb78eabfde47df3",
+  "dataset_manifest_sha256": "271e888f1c473b3559d30802d28fa0168be0a982a657a92c456bb216efcb2426",
+  "export": {
+    "parameters": 305,
+    "dtype": "little-endian float32",
+    "bytes": 1220,
+    "weights_sha256": "76ec1dcaf4d37f1cccaccd483885e241a7f14cf929630332ece35e72e5988d3e",
+    "header_sha256": "9e0d0a5735131194ed5ff436d76fb074d8577cebb3abb467822bf53c5090c902"
+  },
+  "selection": {
+    "history": [
+      {
+        "epoch": 5,
+        "mean_batch_weighted_cross_entropy": 1.0128740715045554,
+        "development": {
+          "rows": 18127,
+          "exact_candidate_accuracy": 0.6314889391515419,
+          "action_accuracy": 0.7460693992387047,
+          "macro_action_recall": 0.7155734041056018,
+          "confusion_truth_rows_predicted_columns": [
+            [
+              8640,
+              537,
+              637,
+              0
+            ],
+            [
+              2222,
+              2853,
+              1169,
+              0
+            ],
+            [
+              0,
+              0,
+              1989,
+              0
+            ],
+            [
+              38,
+              0,
+              0,
+              42
+            ]
+          ],
+          "per_action": {
+            "wait": {
+              "support": 9814,
+              "predicted": 10900,
+              "recall": 0.8803749745261871,
+              "precision": 0.7926605504587156,
+              "exact_candidate_accuracy": 0.8803749745261871
+            },
+            "move": {
+              "support": 6244,
+              "predicted": 3390,
+              "recall": 0.4569186418962204,
+              "precision": 0.8415929203539823,
+              "exact_candidate_accuracy": 0.14830237027546445
+            },
+            "attack": {
+              "support": 1989,
+              "predicted": 3795,
+              "recall": 1.0,
+              "precision": 0.5241106719367589,
+              "exact_candidate_accuracy": 0.9245852187028658
+            },
+            "cast": {
+              "support": 80,
+              "predicted": 42,
+              "recall": 0.525,
+              "precision": 1.0,
+              "exact_candidate_accuracy": 0.525
+            }
+          },
+          "constant_wait_accuracy": 0.5414023280189773
+        }
+      },
+      {
+        "epoch": 10,
+        "mean_batch_weighted_cross_entropy": 0.9684681512561499,
+        "development": {
+          "rows": 18127,
+          "exact_candidate_accuracy": 0.6413085452639709,
+          "action_accuracy": 0.7867269818502786,
+          "macro_action_recall": 0.7683909333194092,
+          "confusion_truth_rows_predicted_columns": [
+            [
+              8487,
+              704,
+              609,
+              14
+            ],
+            [
+              1336,
+              3742,
+              1166,
+              0
+            ],
+            [
+              6,
+              0,
+              1983,
+              0
+            ],
+            [
+              31,
+              0,
+              0,
+              49
+            ]
+          ],
+          "per_action": {
+            "wait": {
+              "support": 9814,
+              "predicted": 9860,
+              "recall": 0.8647850010189525,
+              "precision": 0.8607505070993915,
+              "exact_candidate_accuracy": 0.8647850010189525
+            },
+            "move": {
+              "support": 6244,
+              "predicted": 4446,
+              "recall": 0.5992953235105701,
+              "precision": 0.841655420602789,
+              "exact_candidate_accuracy": 0.2011531069827034
+            },
+            "attack": {
+              "support": 1989,
+              "predicted": 3758,
+              "recall": 0.9969834087481146,
+              "precision": 0.5276742948376796,
+              "exact_candidate_accuracy": 0.9215686274509803
+            },
+            "cast": {
+              "support": 80,
+              "predicted": 63,
+              "recall": 0.6125,
+              "precision": 0.7777777777777778,
+              "exact_candidate_accuracy": 0.6125
+            }
+          },
+          "constant_wait_accuracy": 0.5414023280189773
+        }
+      },
+      {
+        "epoch": 15,
+        "mean_batch_weighted_cross_entropy": 0.8935035747640273,
+        "development": {
+          "rows": 18127,
+          "exact_candidate_accuracy": 0.6700502013570916,
+          "action_accuracy": 0.8285982236442875,
+          "macro_action_recall": 0.8019631837514958,
+          "confusion_truth_rows_predicted_columns": [
+            [
+              8192,
+              1012,
+              581,
+              29
+            ],
+            [
+              331,
+              4809,
+              1104,
+              0
+            ],
+            [
+              16,
+              3,
+              1970,
+              0
+            ],
+            [
+              31,
+              0,
+              0,
+              49
+            ]
+          ],
+          "per_action": {
+            "wait": {
+              "support": 9814,
+              "predicted": 8570,
+              "recall": 0.8347259017729773,
+              "precision": 0.9558926487747959,
+              "exact_candidate_accuracy": 0.8347259017729773
+            },
+            "move": {
+              "support": 6244,
+              "predicted": 5824,
+              "recall": 0.7701793721973094,
+              "precision": 0.8257211538461539,
+              "exact_candidate_accuracy": 0.3350416399743754
+            },
+            "attack": {
+              "support": 1989,
+              "predicted": 3655,
+              "recall": 0.9904474610356964,
+              "precision": 0.5389876880984952,
+              "exact_candidate_accuracy": 0.9115133232780291
+            },
+            "cast": {
+              "support": 80,
+              "predicted": 78,
+              "recall": 0.6125,
+              "precision": 0.6282051282051282,
+              "exact_candidate_accuracy": 0.6125
+            }
+          },
+          "constant_wait_accuracy": 0.5414023280189773
+        }
+      },
+      {
+        "epoch": 20,
+        "mean_batch_weighted_cross_entropy": 0.8389569848191505,
+        "development": {
+          "rows": 18127,
+          "exact_candidate_accuracy": 0.6747945054338832,
+          "action_accuracy": 0.8343355215976168,
+          "macro_action_recall": 0.804871517458057,
+          "confusion_truth_rows_predicted_columns": [
+            [
+              8190,
+              1063,
+              538,
+              23
+            ],
+            [
+              321,
+              4930,
+              993,
+              0
+            ],
+            [
+              13,
+              21,
+              1955,
+              0
+            ],
+            [
+              31,
+              0,
+              0,
+              49
+            ]
+          ],
+          "per_action": {
+            "wait": {
+              "support": 9814,
+              "predicted": 8555,
+              "recall": 0.8345221112696148,
+              "precision": 0.9573348918760959,
+              "exact_candidate_accuracy": 0.8345221112696148
+            },
+            "move": {
+              "support": 6244,
+              "predicted": 6014,
+              "recall": 0.7895579756566303,
+              "precision": 0.8197539075490522,
+              "exact_candidate_accuracy": 0.35361947469570787
+            },
+            "attack": {
+              "support": 1989,
+              "predicted": 3486,
+              "recall": 0.9829059829059829,
+              "precision": 0.5608146873207114,
+              "exact_candidate_accuracy": 0.8974358974358975
+            },
+            "cast": {
+              "support": 80,
+              "predicted": 72,
+              "recall": 0.6125,
+              "precision": 0.6805555555555556,
+              "exact_candidate_accuracy": 0.6125
+            }
+          },
+          "constant_wait_accuracy": 0.5414023280189773
+        }
+      },
+      {
+        "epoch": 25,
+        "mean_batch_weighted_cross_entropy": 0.8082871553944606,
+        "development": {
+          "rows": 18127,
+          "exact_candidate_accuracy": 0.6783251503282396,
+          "action_accuracy": 0.8357146797594748,
+          "macro_action_recall": 0.8047958781547802,
+          "confusion_truth_rows_predicted_columns": [
+            [
+              8270,
+              1059,
+              481,
+              4
+            ],
+            [
+              453,
+              4944,
+              847,
+              0
+            ],
+            [
+              33,
+              72,
+              1884,
+              0
+            ],
+            [
+              29,
+              0,
+              0,
+              51
+            ]
+          ],
+          "per_action": {
+            "wait": {
+              "support": 9814,
+              "predicted": 8785,
+              "recall": 0.8426737314041166,
+              "precision": 0.9413773477518498,
+              "exact_candidate_accuracy": 0.8426737314041166
+            },
+            "move": {
+              "support": 6244,
+              "predicted": 6075,
+              "recall": 0.791800128122998,
+              "precision": 0.8138271604938272,
+              "exact_candidate_accuracy": 0.3608263933376041
+            },
+            "attack": {
+              "support": 1989,
+              "predicted": 3212,
+              "recall": 0.947209653092006,
+              "precision": 0.5865504358655044,
+              "exact_candidate_accuracy": 0.8657616892911011
+            },
+            "cast": {
+              "support": 80,
+              "predicted": 55,
+              "recall": 0.6375,
+              "precision": 0.9272727272727272,
+              "exact_candidate_accuracy": 0.6375
+            }
+          },
+          "constant_wait_accuracy": 0.5414023280189773
+        }
+      },
+      {
+        "epoch": 30,
+        "mean_batch_weighted_cross_entropy": 0.7925960474154529,
+        "development": {
+          "rows": 18127,
+          "exact_candidate_accuracy": 0.6787113146135599,
+          "action_accuracy": 0.8467479450543388,
+          "macro_action_recall": 0.8126145891113852,
+          "confusion_truth_rows_predicted_columns": [
+            [
+              8183,
+              1171,
+              456,
+              4
+            ],
+            [
+              202,
+              5248,
+              794,
+              0
+            ],
+            [
+              31,
+              91,
+              1867,
+              0
+            ],
+            [
+              29,
+              0,
+              0,
+              51
+            ]
+          ],
+          "per_action": {
+            "wait": {
+              "support": 9814,
+              "predicted": 8445,
+              "recall": 0.833808844507846,
+              "precision": 0.9689757252812315,
+              "exact_candidate_accuracy": 0.833808844507846
+            },
+            "move": {
+              "support": 6244,
+              "predicted": 6510,
+              "recall": 0.840486867392697,
+              "precision": 0.8061443932411675,
+              "exact_candidate_accuracy": 0.37860345932094813
+            },
+            "attack": {
+              "support": 1989,
+              "predicted": 3117,
+              "recall": 0.9386626445449975,
+              "precision": 0.5989733718318896,
+              "exact_candidate_accuracy": 0.8572146807440925
+            },
+            "cast": {
+              "support": 80,
+              "predicted": 55,
+              "recall": 0.6375,
+              "precision": 0.9272727272727272,
+              "exact_candidate_accuracy": 0.6375
+            }
+          },
+          "constant_wait_accuracy": 0.5414023280189773
+        }
+      },
+      {
+        "epoch": 35,
+        "mean_batch_weighted_cross_entropy": 0.7817643308172039,
+        "development": {
+          "rows": 18127,
+          "exact_candidate_accuracy": 0.6788216472665085,
+          "action_accuracy": 0.8420588073040216,
+          "macro_action_recall": 0.8291278824251043,
+          "confusion_truth_rows_predicted_columns": [
+            [
+              8151,
+              1133,
+              511,
+              19
+            ],
+            [
+              240,
+              5143,
+              861,
+              0
+            ],
+            [
+              13,
+              62,
+              1914,
+              0
+            ],
+            [
+              24,
+              0,
+              0,
+              56
+            ]
+          ],
+          "per_action": {
+            "wait": {
+              "support": 9814,
+              "predicted": 8428,
+              "recall": 0.8305481964540452,
+              "precision": 0.9671333649738966,
+              "exact_candidate_accuracy": 0.8305481964540452
+            },
+            "move": {
+              "support": 6244,
+              "predicted": 6338,
+              "recall": 0.8236707238949391,
+              "precision": 0.8114547175765225,
+              "exact_candidate_accuracy": 0.37668161434977576
+            },
+            "attack": {
+              "support": 1989,
+              "predicted": 3286,
+              "recall": 0.9622926093514329,
+              "precision": 0.5824710894704809,
+              "exact_candidate_accuracy": 0.8778280542986425
+            },
+            "cast": {
+              "support": 80,
+              "predicted": 75,
+              "recall": 0.7,
+              "precision": 0.7466666666666667,
+              "exact_candidate_accuracy": 0.7
+            }
+          },
+          "constant_wait_accuracy": 0.5414023280189773
+        }
+      },
+      {
+        "epoch": 40,
+        "mean_batch_weighted_cross_entropy": 0.771670307598862,
+        "development": {
+          "rows": 18127,
+          "exact_candidate_accuracy": 0.6799249737959949,
+          "action_accuracy": 0.8456446185248524,
+          "macro_action_recall": 0.8299025414050969,
+          "confusion_truth_rows_predicted_columns": [
+            [
+              8153,
+              1160,
+              490,
+              11
+            ],
+            [
+              202,
+              5227,
+              815,
+              0
+            ],
+            [
+              24,
+              72,
+              1893,
+              0
+            ],
+            [
+              24,
+              0,
+              0,
+              56
+            ]
+          ],
+          "per_action": {
+            "wait": {
+              "support": 9814,
+              "predicted": 8403,
+              "recall": 0.8307519869574078,
+              "precision": 0.9702487206949899,
+              "exact_candidate_accuracy": 0.8307519869574078
+            },
+            "move": {
+              "support": 6244,
+              "predicted": 6459,
+              "recall": 0.8371236386931454,
+              "precision": 0.8092583991329927,
+              "exact_candidate_accuracy": 0.3845291479820628
+            },
+            "attack": {
+              "support": 1989,
+              "predicted": 3198,
+              "recall": 0.951734539969834,
+              "precision": 0.5919324577861164,
+              "exact_candidate_accuracy": 0.8622423328305682
+            },
+            "cast": {
+              "support": 80,
+              "predicted": 67,
+              "recall": 0.7,
+              "precision": 0.835820895522388,
+              "exact_candidate_accuracy": 0.7
+            }
+          },
+          "constant_wait_accuracy": 0.5414023280189773
+        }
+      },
+      {
+        "epoch": 45,
+        "mean_batch_weighted_cross_entropy": 0.7623312303832933,
+        "development": {
+          "rows": 18127,
+          "exact_candidate_accuracy": 0.6767804931869587,
+          "action_accuracy": 0.8485132675015171,
+          "macro_action_recall": 0.8420013043008368,
+          "confusion_truth_rows_predicted_columns": [
+            [
+              8036,
+              1251,
+              495,
+              32
+            ],
+            [
+              60,
+              5404,
+              780,
+              0
+            ],
+            [
+              16,
+              91,
+              1882,
+              0
+            ],
+            [
+              21,
+              0,
+              0,
+              59
+            ]
+          ],
+          "per_action": {
+            "wait": {
+              "support": 9814,
+              "predicted": 8133,
+              "recall": 0.818830242510699,
+              "precision": 0.9880732816918726,
+              "exact_candidate_accuracy": 0.818830242510699
+            },
+            "move": {
+              "support": 6244,
+              "predicted": 6746,
+              "recall": 0.8654708520179372,
+              "precision": 0.8010672991402312,
+              "exact_candidate_accuracy": 0.39525944907110827
+            },
+            "attack": {
+              "support": 1989,
+              "predicted": 3157,
+              "recall": 0.9462041226747109,
+              "precision": 0.5961355717453278,
+              "exact_candidate_accuracy": 0.8572146807440925
+            },
+            "cast": {
+              "support": 80,
+              "predicted": 91,
+              "recall": 0.7375,
+              "precision": 0.6483516483516484,
+              "exact_candidate_accuracy": 0.7375
+            }
+          },
+          "constant_wait_accuracy": 0.5414023280189773
+        }
+      },
+      {
+        "epoch": 50,
+        "mean_batch_weighted_cross_entropy": 0.7576811786960153,
+        "development": {
+          "rows": 18127,
+          "exact_candidate_accuracy": 0.6797043084900977,
+          "action_accuracy": 0.8497820930104264,
+          "macro_action_recall": 0.847571223886019,
+          "confusion_truth_rows_predicted_columns": [
+            [
+              8117,
+              1212,
+              445,
+              40
+            ],
+            [
+              151,
+              5383,
+              710,
+              0
+            ],
+            [
+              32,
+              115,
+              1842,
+              0
+            ],
+            [
+              18,
+              0,
+              0,
+              62
+            ]
+          ],
+          "per_action": {
+            "wait": {
+              "support": 9814,
+              "predicted": 8318,
+              "recall": 0.827083757896882,
+              "precision": 0.9758355373887954,
+              "exact_candidate_accuracy": 0.827083757896882
+            },
+            "move": {
+              "support": 6244,
+              "predicted": 6710,
+              "recall": 0.8621076233183856,
+              "precision": 0.8022354694485841,
+              "exact_candidate_accuracy": 0.3970211402946829
+            },
+            "attack": {
+              "support": 1989,
+              "predicted": 2997,
+              "recall": 0.9260935143288085,
+              "precision": 0.6146146146146146,
+              "exact_candidate_accuracy": 0.836098541980895
+            },
+            "cast": {
+              "support": 80,
+              "predicted": 102,
+              "recall": 0.775,
+              "precision": 0.6078431372549019,
+              "exact_candidate_accuracy": 0.775
+            }
+          },
+          "constant_wait_accuracy": 0.5414023280189773
+        }
+      },
+      {
+        "epoch": 55,
+        "mean_batch_weighted_cross_entropy": 0.7526378847804724,
+        "development": {
+          "rows": 18127,
+          "exact_candidate_accuracy": 0.6784906493076626,
+          "action_accuracy": 0.8461411154631213,
+          "macro_action_recall": 0.8675695632216746,
+          "confusion_truth_rows_predicted_columns": [
+            [
+              8098,
+              1185,
+              470,
+              61
+            ],
+            [
+              159,
+              5285,
+              800,
+              0
+            ],
+            [
+              25,
+              77,
+              1887,
+              0
+            ],
+            [
+              12,
+              0,
+              0,
+              68
+            ]
+          ],
+          "per_action": {
+            "wait": {
+              "support": 9814,
+              "predicted": 8294,
+              "recall": 0.8251477481149379,
+              "precision": 0.9763684591270798,
+              "exact_candidate_accuracy": 0.8251477481149379
+            },
+            "move": {
+              "support": 6244,
+              "predicted": 6547,
+              "recall": 0.8464125560538116,
+              "precision": 0.8072399572323201,
+              "exact_candidate_accuracy": 0.3901345291479821
+            },
+            "attack": {
+              "support": 1989,
+              "predicted": 3157,
+              "recall": 0.9487179487179487,
+              "precision": 0.5977193538169148,
+              "exact_candidate_accuracy": 0.853192559074912
+            },
+            "cast": {
+              "support": 80,
+              "predicted": 129,
+              "recall": 0.85,
+              "precision": 0.5271317829457365,
+              "exact_candidate_accuracy": 0.85
+            }
+          },
+          "constant_wait_accuracy": 0.5414023280189773
+        }
+      },
+      {
+        "epoch": 60,
+        "mean_batch_weighted_cross_entropy": 0.7503986843660766,
+        "development": {
+          "rows": 18127,
+          "exact_candidate_accuracy": 0.678049318695868,
+          "action_accuracy": 0.8461962817895956,
+          "macro_action_recall": 0.8576260766401955,
+          "confusion_truth_rows_predicted_columns": [
+            [
+              8095,
+              1174,
+              499,
+              46
+            ],
+            [
+              150,
+              5266,
+              828,
+              0
+            ],
+            [
+              20,
+              55,
+              1914,
+              0
+            ],
+            [
+              16,
+              0,
+              0,
+              64
+            ]
+          ],
+          "per_action": {
+            "wait": {
+              "support": 9814,
+              "predicted": 8281,
+              "recall": 0.824842062359894,
+              "precision": 0.9775389445719116,
+              "exact_candidate_accuracy": 0.824842062359894
+            },
+            "move": {
+              "support": 6244,
+              "predicted": 6495,
+              "recall": 0.8433696348494555,
+              "precision": 0.8107775211701309,
+              "exact_candidate_accuracy": 0.38565022421524664
+            },
+            "attack": {
+              "support": 1989,
+              "predicted": 3241,
+              "recall": 0.9622926093514329,
+              "precision": 0.5905584696081456,
+              "exact_candidate_accuracy": 0.8667672197083962
+            },
+            "cast": {
+              "support": 80,
+              "predicted": 110,
+              "recall": 0.8,
+              "precision": 0.5818181818181818,
+              "exact_candidate_accuracy": 0.8
+            }
+          },
+          "constant_wait_accuracy": 0.5414023280189773
+        }
+      },
+      {
+        "epoch": 65,
+        "mean_batch_weighted_cross_entropy": 0.7459261808909622,
+        "development": {
+          "rows": 18127,
+          "exact_candidate_accuracy": 0.6814144646108016,
+          "action_accuracy": 0.8481271032161969,
+          "macro_action_recall": 0.8369504561852097,
+          "confusion_truth_rows_predicted_columns": [
+            [
+              8193,
+              1168,
+              432,
+              21
+            ],
+            [
+              262,
+              5269,
+              713,
+              0
+            ],
+            [
+              36,
+              100,
+              1853,
+              0
+            ],
+            [
+              21,
+              0,
+              0,
+              59
+            ]
+          ],
+          "per_action": {
+            "wait": {
+              "support": 9814,
+              "predicted": 8512,
+              "recall": 0.8348277970246587,
+              "precision": 0.9625234962406015,
+              "exact_candidate_accuracy": 0.8348277970246587
+            },
+            "move": {
+              "support": 6244,
+              "predicted": 6537,
+              "recall": 0.8438500960922486,
+              "precision": 0.8060272296160318,
+              "exact_candidate_accuracy": 0.38757206918641895
+            },
+            "attack": {
+              "support": 1989,
+              "predicted": 2998,
+              "recall": 0.9316239316239316,
+              "precision": 0.6180787191460974,
+              "exact_candidate_accuracy": 0.8446455505279035
+            },
+            "cast": {
+              "support": 80,
+              "predicted": 80,
+              "recall": 0.7375,
+              "precision": 0.7375,
+              "exact_candidate_accuracy": 0.7375
+            }
+          },
+          "constant_wait_accuracy": 0.5414023280189773
+        }
+      },
+      {
+        "epoch": 70,
+        "mean_batch_weighted_cross_entropy": 0.7450266942089679,
+        "development": {
+          "rows": 18127,
+          "exact_candidate_accuracy": 0.6771114911458046,
+          "action_accuracy": 0.8409554807745352,
+          "macro_action_recall": 0.8676368136079395,
+          "confusion_truth_rows_predicted_columns": [
+            [
+              8135,
+              1126,
+              484,
+              69
+            ],
+            [
+              308,
+              5138,
+              798,
+              0
+            ],
+            [
+              24,
+              63,
+              1902,
+              0
+            ],
+            [
+              11,
+              0,
+              0,
+              69
+            ]
+          ],
+          "per_action": {
+            "wait": {
+              "support": 9814,
+              "predicted": 8478,
+              "recall": 0.8289178724271449,
+              "precision": 0.9595423448926633,
+              "exact_candidate_accuracy": 0.8289178724271449
+            },
+            "move": {
+              "support": 6244,
+              "predicted": 6327,
+              "recall": 0.8228699551569507,
+              "precision": 0.8120752331278647,
+              "exact_candidate_accuracy": 0.37732222934016657
+            },
+            "attack": {
+              "support": 1989,
+              "predicted": 3184,
+              "recall": 0.9562594268476622,
+              "precision": 0.5973618090452262,
+              "exact_candidate_accuracy": 0.8617395676219206
+            },
+            "cast": {
+              "support": 80,
+              "predicted": 138,
+              "recall": 0.8625,
+              "precision": 0.5,
+              "exact_candidate_accuracy": 0.8625
+            }
+          },
+          "constant_wait_accuracy": 0.5414023280189773
+        }
+      },
+      {
+        "epoch": 75,
+        "mean_batch_weighted_cross_entropy": 0.7419982231130787,
+        "development": {
+          "rows": 18127,
+          "exact_candidate_accuracy": 0.6819109615490705,
+          "action_accuracy": 0.8430518011805593,
+          "macro_action_recall": 0.826094049153276,
+          "confusion_truth_rows_predicted_columns": [
+            [
+              8250,
+              1094,
+              463,
+              7
+            ],
+            [
+              372,
+              5089,
+              783,
+              0
+            ],
+            [
+              31,
+              71,
+              1887,
+              0
+            ],
+            [
+              24,
+              0,
+              0,
+              56
+            ]
+          ],
+          "per_action": {
+            "wait": {
+              "support": 9814,
+              "predicted": 8677,
+              "recall": 0.8406358263704912,
+              "precision": 0.9507894433559986,
+              "exact_candidate_accuracy": 0.8406358263704912
+            },
+            "move": {
+              "support": 6244,
+              "predicted": 6254,
+              "recall": 0.8150224215246636,
+              "precision": 0.8137192196993924,
+              "exact_candidate_accuracy": 0.37732222934016657
+            },
+            "attack": {
+              "support": 1989,
+              "predicted": 3133,
+              "recall": 0.9487179487179487,
+              "precision": 0.6022981168209384,
+              "exact_candidate_accuracy": 0.8541980894922071
+            },
+            "cast": {
+              "support": 80,
+              "predicted": 63,
+              "recall": 0.7,
+              "precision": 0.8888888888888888,
+              "exact_candidate_accuracy": 0.7
+            }
+          },
+          "constant_wait_accuracy": 0.5414023280189773
+        }
+      },
+      {
+        "epoch": 80,
+        "mean_batch_weighted_cross_entropy": 0.7412587217256135,
+        "development": {
+          "rows": 18127,
+          "exact_candidate_accuracy": 0.6799801401224692,
+          "action_accuracy": 0.8408451481215866,
+          "macro_action_recall": 0.8364308023776532,
+          "confusion_truth_rows_predicted_columns": [
+            [
+              8207,
+              1106,
+              461,
+              40
+            ],
+            [
+              383,
+              5100,
+              761,
+              0
+            ],
+            [
+              34,
+              80,
+              1875,
+              0
+            ],
+            [
+              20,
+              0,
+              0,
+              60
+            ]
+          ],
+          "per_action": {
+            "wait": {
+              "support": 9814,
+              "predicted": 8644,
+              "recall": 0.8362543305481964,
+              "precision": 0.9494447015270708,
+              "exact_candidate_accuracy": 0.8362543305481964
+            },
+            "move": {
+              "support": 6244,
+              "predicted": 6286,
+              "recall": 0.8167841127482383,
+              "precision": 0.811326757874642,
+              "exact_candidate_accuracy": 0.38036515054452275
+            },
+            "attack": {
+              "support": 1989,
+              "predicted": 3097,
+              "recall": 0.942684766214178,
+              "precision": 0.605424604455925,
+              "exact_candidate_accuracy": 0.8466566113624937
+            },
+            "cast": {
+              "support": 80,
+              "predicted": 100,
+              "recall": 0.75,
+              "precision": 0.6,
+              "exact_candidate_accuracy": 0.75
+            }
+          },
+          "constant_wait_accuracy": 0.5414023280189773
+        }
+      },
+      {
+        "epoch": 85,
+        "mean_batch_weighted_cross_entropy": 0.7388771865882126,
+        "development": {
+          "rows": 18127,
+          "exact_candidate_accuracy": 0.6755116676780493,
+          "action_accuracy": 0.8410106471010096,
+          "macro_action_recall": 0.8827055854090906,
+          "confusion_truth_rows_predicted_columns": [
+            [
+              8068,
+              1148,
+              497,
+              101
+            ],
+            [
+              232,
+              5182,
+              830,
+              0
+            ],
+            [
+              18,
+              49,
+              1922,
+              0
+            ],
+            [
+              7,
+              0,
+              0,
+              73
+            ]
+          ],
+          "per_action": {
+            "wait": {
+              "support": 9814,
+              "predicted": 8325,
+              "recall": 0.8220908905644997,
+              "precision": 0.9691291291291291,
+              "exact_candidate_accuracy": 0.8220908905644997
+            },
+            "move": {
+              "support": 6244,
+              "predicted": 6379,
+              "recall": 0.8299167200512492,
+              "precision": 0.8123530333908137,
+              "exact_candidate_accuracy": 0.3813260730301089
+            },
+            "attack": {
+              "support": 1989,
+              "predicted": 3249,
+              "recall": 0.9663147310206134,
+              "precision": 0.5915666358879655,
+              "exact_candidate_accuracy": 0.8662644544997486
+            },
+            "cast": {
+              "support": 80,
+              "predicted": 174,
+              "recall": 0.9125,
+              "precision": 0.41954022988505746,
+              "exact_candidate_accuracy": 0.9125
+            }
+          },
+          "constant_wait_accuracy": 0.5414023280189773
+        }
+      },
+      {
+        "epoch": 90,
+        "mean_batch_weighted_cross_entropy": 0.7382288148590163,
+        "development": {
+          "rows": 18127,
+          "exact_candidate_accuracy": 0.6800904727754179,
+          "action_accuracy": 0.8437137970982512,
+          "macro_action_recall": 0.8564625389378206,
+          "confusion_truth_rows_predicted_columns": [
+            [
+              8169,
+              1157,
+              443,
+              45
+            ],
+            [
+              324,
+              5197,
+              723,
+              0
+            ],
+            [
+              34,
+              93,
+              1862,
+              0
+            ],
+            [
+              14,
+              0,
+              0,
+              66
+            ]
+          ],
+          "per_action": {
+            "wait": {
+              "support": 9814,
+              "predicted": 8541,
+              "recall": 0.8323823109843081,
+              "precision": 0.9564453811029153,
+              "exact_candidate_accuracy": 0.8323823109843081
+            },
+            "move": {
+              "support": 6244,
+              "predicted": 6447,
+              "recall": 0.8323190262652146,
+              "precision": 0.806111369629285,
+              "exact_candidate_accuracy": 0.38741191543882125
+            },
+            "attack": {
+              "support": 1989,
+              "predicted": 3028,
+              "recall": 0.9361488185017597,
+              "precision": 0.6149273447820344,
+              "exact_candidate_accuracy": 0.8416289592760181
+            },
+            "cast": {
+              "support": 80,
+              "predicted": 111,
+              "recall": 0.825,
+              "precision": 0.5945945945945946,
+              "exact_candidate_accuracy": 0.825
+            }
+          },
+          "constant_wait_accuracy": 0.5414023280189773
+        }
+      },
+      {
+        "epoch": 95,
+        "mean_batch_weighted_cross_entropy": 0.7356081184218911,
+        "development": {
+          "rows": 18127,
+          "exact_candidate_accuracy": 0.6754013350251007,
+          "action_accuracy": 0.8385281624096651,
+          "macro_action_recall": 0.8871900194016902,
+          "confusion_truth_rows_predicted_columns": [
+            [
+              8066,
+              1151,
+              478,
+              119
+            ],
+            [
+              293,
+              5171,
+              780,
+              0
+            ],
+            [
+              25,
+              77,
+              1887,
+              0
+            ],
+            [
+              4,
+              0,
+              0,
+              76
+            ]
+          ],
+          "per_action": {
+            "wait": {
+              "support": 9814,
+              "predicted": 8388,
+              "recall": 0.8218871000611372,
+              "precision": 0.9616118264186934,
+              "exact_candidate_accuracy": 0.8218871000611372
+            },
+            "move": {
+              "support": 6244,
+              "predicted": 6399,
+              "recall": 0.8281550288276746,
+              "precision": 0.8080950148460697,
+              "exact_candidate_accuracy": 0.38549007046764894
+            },
+            "attack": {
+              "support": 1989,
+              "predicted": 3145,
+              "recall": 0.9487179487179487,
+              "precision": 0.6,
+              "exact_candidate_accuracy": 0.8516842634489693
+            },
+            "cast": {
+              "support": 80,
+              "predicted": 195,
+              "recall": 0.95,
+              "precision": 0.38974358974358975,
+              "exact_candidate_accuracy": 0.95
+            }
+          },
+          "constant_wait_accuracy": 0.5414023280189773
+        }
+      },
+      {
+        "epoch": 100,
+        "mean_batch_weighted_cross_entropy": 0.7339316238375271,
+        "development": {
+          "rows": 18127,
+          "exact_candidate_accuracy": 0.6792078115518287,
+          "action_accuracy": 0.8460307828101726,
+          "macro_action_recall": 0.8582350107886954,
+          "confusion_truth_rows_predicted_columns": [
+            [
+              8151,
+              1171,
+              449,
+              43
+            ],
+            [
+              277,
+              5259,
+              708,
+              0
+            ],
+            [
+              27,
+              102,
+              1860,
+              0
+            ],
+            [
+              14,
+              0,
+              0,
+              66
+            ]
+          ],
+          "per_action": {
+            "wait": {
+              "support": 9814,
+              "predicted": 8469,
+              "recall": 0.8305481964540452,
+              "precision": 0.9624512929507616,
+              "exact_candidate_accuracy": 0.8305481964540452
+            },
+            "move": {
+              "support": 6244,
+              "predicted": 6532,
+              "recall": 0.8422485586162716,
+              "precision": 0.8051132884262094,
+              "exact_candidate_accuracy": 0.3885329916720051
+            },
+            "attack": {
+              "support": 1989,
+              "predicted": 3017,
+              "recall": 0.9351432880844646,
+              "precision": 0.6165064633742128,
+              "exact_candidate_accuracy": 0.8391151332327803
+            },
+            "cast": {
+              "support": 80,
+              "predicted": 109,
+              "recall": 0.825,
+              "precision": 0.6055045871559633,
+              "exact_candidate_accuracy": 0.825
+            }
+          },
+          "constant_wait_accuracy": 0.5414023280189773
+        }
+      },
+      {
+        "epoch": 105,
+        "mean_batch_weighted_cross_entropy": 0.7335112153315076,
+        "development": {
+          "rows": 18127,
+          "exact_candidate_accuracy": 0.6777734870634965,
+          "action_accuracy": 0.8365973409830639,
+          "macro_action_recall": 0.8743414707145124,
+          "confusion_truth_rows_predicted_columns": [
+            [
+              8193,
+              1104,
+              448,
+              69
+            ],
+            [
+              453,
+              5016,
+              775,
+              0
+            ],
+            [
+              34,
+              72,
+              1883,
+              0
+            ],
+            [
+              7,
+              0,
+              0,
+              73
+            ]
+          ],
+          "per_action": {
+            "wait": {
+              "support": 9814,
+              "predicted": 8687,
+              "recall": 0.8348277970246587,
+              "precision": 0.943133417750662,
+              "exact_candidate_accuracy": 0.8348277970246587
+            },
+            "move": {
+              "support": 6244,
+              "predicted": 6192,
+              "recall": 0.803331197950032,
+              "precision": 0.810077519379845,
+              "exact_candidate_accuracy": 0.37267777065983343
+            },
+            "attack": {
+              "support": 1989,
+              "predicted": 3106,
+              "recall": 0.9467068878833584,
+              "precision": 0.6062459755312298,
+              "exact_candidate_accuracy": 0.8511814982403217
+            },
+            "cast": {
+              "support": 80,
+              "predicted": 142,
+              "recall": 0.9125,
+              "precision": 0.5140845070422535,
+              "exact_candidate_accuracy": 0.9125
+            }
+          },
+          "constant_wait_accuracy": 0.5414023280189773
+        }
+      },
+      {
+        "epoch": 110,
+        "mean_batch_weighted_cross_entropy": 0.733018208952511,
+        "development": {
+          "rows": 18127,
+          "exact_candidate_accuracy": 0.6773321564517019,
+          "action_accuracy": 0.8464721134219673,
+          "macro_action_recall": 0.8724193780834236,
+          "confusion_truth_rows_predicted_columns": [
+            [
+              8123,
+              1225,
+              401,
+              65
+            ],
+            [
+              231,
+              5348,
+              665,
+              0
+            ],
+            [
+              51,
+              137,
+              1801,
+              0
+            ],
+            [
+              8,
+              0,
+              0,
+              72
+            ]
+          ],
+          "per_action": {
+            "wait": {
+              "support": 9814,
+              "predicted": 8413,
+              "recall": 0.8276951294069697,
+              "precision": 0.9655295376203494,
+              "exact_candidate_accuracy": 0.8276951294069697
+            },
+            "move": {
+              "support": 6244,
+              "predicted": 6710,
+              "recall": 0.8565022421524664,
+              "precision": 0.7970193740685544,
+              "exact_candidate_accuracy": 0.3944586803331198
+            },
+            "attack": {
+              "support": 1989,
+              "predicted": 2867,
+              "recall": 0.9054801407742584,
+              "precision": 0.6281827694454133,
+              "exact_candidate_accuracy": 0.8144796380090498
+            },
+            "cast": {
+              "support": 80,
+              "predicted": 137,
+              "recall": 0.9,
+              "precision": 0.5255474452554745,
+              "exact_candidate_accuracy": 0.9
+            }
+          },
+          "constant_wait_accuracy": 0.5414023280189773
+        }
+      },
+      {
+        "epoch": 115,
+        "mean_batch_weighted_cross_entropy": 0.7296915171193141,
+        "development": {
+          "rows": 18127,
+          "exact_candidate_accuracy": 0.6798698074695206,
+          "action_accuracy": 0.8453136205660066,
+          "macro_action_recall": 0.8832705015262476,
+          "confusion_truth_rows_predicted_columns": [
+            [
+              8132,
+              1167,
+              449,
+              66
+            ],
+            [
+              252,
+              5250,
+              742,
+              0
+            ],
+            [
+              34,
+              88,
+              1867,
+              0
+            ],
+            [
+              6,
+              0,
+              0,
+              74
+            ]
+          ],
+          "per_action": {
+            "wait": {
+              "support": 9814,
+              "predicted": 8424,
+              "recall": 0.8286121866721011,
+              "precision": 0.9653371320037987,
+              "exact_candidate_accuracy": 0.8286121866721011
+            },
+            "move": {
+              "support": 6244,
+              "predicted": 6505,
+              "recall": 0.8408071748878924,
+              "precision": 0.8070714834742506,
+              "exact_candidate_accuracy": 0.39061499039077513
+            },
+            "attack": {
+              "support": 1989,
+              "predicted": 3058,
+              "recall": 0.9386626445449975,
+              "precision": 0.6105297580117724,
+              "exact_candidate_accuracy": 0.8441427853192559
+            },
+            "cast": {
+              "support": 80,
+              "predicted": 140,
+              "recall": 0.925,
+              "precision": 0.5285714285714286,
+              "exact_candidate_accuracy": 0.925
+            }
+          },
+          "constant_wait_accuracy": 0.5414023280189773
+        }
+      },
+      {
+        "epoch": 120,
+        "mean_batch_weighted_cross_entropy": 0.7281529348270566,
+        "development": {
+          "rows": 18127,
+          "exact_candidate_accuracy": 0.6805869697136868,
+          "action_accuracy": 0.8359353450653721,
+          "macro_action_recall": 0.8683038952778436,
+          "confusion_truth_rows_predicted_columns": [
+            [
+              8251,
+              1064,
+              446,
+              53
+            ],
+            [
+              526,
+              4966,
+              752,
+              0
+            ],
+            [
+              42,
+              83,
+              1864,
+              0
+            ],
+            [
+              8,
+              0,
+              0,
+              72
+            ]
+          ],
+          "per_action": {
+            "wait": {
+              "support": 9814,
+              "predicted": 8827,
+              "recall": 0.8407377216221724,
+              "precision": 0.9347456667044296,
+              "exact_candidate_accuracy": 0.8407377216221724
+            },
+            "move": {
+              "support": 6244,
+              "predicted": 6113,
+              "recall": 0.7953235105701474,
+              "precision": 0.8123670865368886,
+              "exact_candidate_accuracy": 0.37475976937860345
+            },
+            "attack": {
+              "support": 1989,
+              "predicted": 3062,
+              "recall": 0.9371543489190548,
+              "precision": 0.6087524493794906,
+              "exact_candidate_accuracy": 0.8416289592760181
+            },
+            "cast": {
+              "support": 80,
+              "predicted": 125,
+              "recall": 0.9,
+              "precision": 0.576,
+              "exact_candidate_accuracy": 0.9
+            }
+          },
+          "constant_wait_accuracy": 0.5414023280189773
+        }
+      }
+    ],
+    "selected_epoch": 115,
+    "class_counts": [
+      13884,
+      9328,
+      2759,
+      123
+    ],
+    "class_weights": [
+      0.8021500706672668,
+      0.9786303639411926,
+      1.7994388341903687,
+      7.021402359008789
+    ],
+    "optimizer_steps": 12240
+  },
+  "refit": {
+    "history": [
+      {
+        "epoch": 5,
+        "mean_batch_weighted_cross_entropy": 0.9291822093759659
+      },
+      {
+        "epoch": 10,
+        "mean_batch_weighted_cross_entropy": 0.8501271099024426
+      },
+      {
+        "epoch": 15,
+        "mean_batch_weighted_cross_entropy": 0.8274825763151136
+      },
+      {
+        "epoch": 20,
+        "mean_batch_weighted_cross_entropy": 0.8148523703475908
+      },
+      {
+        "epoch": 25,
+        "mean_batch_weighted_cross_entropy": 0.8045787418508805
+      },
+      {
+        "epoch": 30,
+        "mean_batch_weighted_cross_entropy": 0.7985403537750244
+      },
+      {
+        "epoch": 35,
+        "mean_batch_weighted_cross_entropy": 0.7945913810261412
+      },
+      {
+        "epoch": 40,
+        "mean_batch_weighted_cross_entropy": 0.7917344139490513
+      },
+      {
+        "epoch": 45,
+        "mean_batch_weighted_cross_entropy": 0.7894350824328517
+      },
+      {
+        "epoch": 50,
+        "mean_batch_weighted_cross_entropy": 0.7870839324300689
+      },
+      {
+        "epoch": 55,
+        "mean_batch_weighted_cross_entropy": 0.7851308766817082
+      },
+      {
+        "epoch": 60,
+        "mean_batch_weighted_cross_entropy": 0.7840960769984074
+      },
+      {
+        "epoch": 65,
+        "mean_batch_weighted_cross_entropy": 0.7819561510416814
+      },
+      {
+        "epoch": 70,
+        "mean_batch_weighted_cross_entropy": 0.7799179491969203
+      },
+      {
+        "epoch": 75,
+        "mean_batch_weighted_cross_entropy": 0.7802295953552157
+      },
+      {
+        "epoch": 80,
+        "mean_batch_weighted_cross_entropy": 0.7787968127024656
+      },
+      {
+        "epoch": 85,
+        "mean_batch_weighted_cross_entropy": 0.7770120546307867
+      },
+      {
+        "epoch": 90,
+        "mean_batch_weighted_cross_entropy": 0.7751041154640947
+      },
+      {
+        "epoch": 95,
+        "mean_batch_weighted_cross_entropy": 0.7746673698370168
+      },
+      {
+        "epoch": 100,
+        "mean_batch_weighted_cross_entropy": 0.7742354745809743
+      },
+      {
+        "epoch": 105,
+        "mean_batch_weighted_cross_entropy": 0.7729647583355105
+      },
+      {
+        "epoch": 110,
+        "mean_batch_weighted_cross_entropy": 0.7741313666277538
+      },
+      {
+        "epoch": 115,
+        "mean_batch_weighted_cross_entropy": 0.7725758755827226
+      }
+    ],
+    "selected_epoch": 115,
+    "class_counts": [
+      23698,
+      15572,
+      4748,
+      203
+    ],
+    "class_weights": [
+      0.7996743321418762,
+      0.9864993095397949,
+      1.7865437269210815,
+      7.024832248687744
+    ],
+    "optimizer_steps": 19895
+  },
+  "train": {
+    "rows": 44221,
+    "exact_candidate_accuracy": 0.730580493430723,
+    "action_accuracy": 0.8786549376992832,
+    "macro_action_recall": 0.8336210256342422,
+    "confusion_truth_rows_predicted_columns": [
+      [
+        20919,
+        2119,
+        611,
+        49
+      ],
+      [
+        985,
+        13276,
+        1311,
+        0
+      ],
+      [
+        93,
+        126,
+        4529,
+        0
+      ],
+      [
+        72,
+        0,
+        0,
+        131
+      ]
+    ],
+    "per_action": {
+      "wait": {
+        "support": 23698,
+        "predicted": 22069,
+        "recall": 0.8827327200607646,
+        "precision": 0.9478907064207712,
+        "exact_candidate_accuracy": 0.8827327200607646
+      },
+      "move": {
+        "support": 15572,
+        "predicted": 15521,
+        "recall": 0.8525558695093758,
+        "precision": 0.8553572579086399,
+        "exact_candidate_accuracy": 0.44637811456460313
+      },
+      "attack": {
+        "support": 4748,
+        "predicted": 6451,
+        "recall": 0.9538753159224936,
+        "precision": 0.7020616958611068,
+        "exact_candidate_accuracy": 0.9069081718618366
+      },
+      "cast": {
+        "support": 203,
+        "predicted": 180,
+        "recall": 0.645320197044335,
+        "precision": 0.7277777777777777,
+        "exact_candidate_accuracy": 0.645320197044335
+      }
+    },
+    "constant_wait_accuracy": 0.5358992333958978
+  },
+  "validation": {
+    "rows": 15070,
+    "exact_candidate_accuracy": 0.6339084273390843,
+    "action_accuracy": 0.7227604512276045,
+    "macro_action_recall": 0.7297544651542868,
+    "confusion_truth_rows_predicted_columns": [
+      [
+        6091,
+        505,
+        16,
+        1964
+      ],
+      [
+        342,
+        2503,
+        118,
+        442
+      ],
+      [
+        120,
+        440,
+        2298,
+        231
+      ],
+      [
+        0,
+        0,
+        0,
+        0
+      ]
+    ],
+    "per_action": {
+      "wait": {
+        "support": 8576,
+        "predicted": 6553,
+        "recall": 0.7102378731343284,
+        "precision": 0.9294979398748665,
+        "exact_candidate_accuracy": 0.7102378731343284
+      },
+      "move": {
+        "support": 3405,
+        "predicted": 3448,
+        "recall": 0.7350954478707783,
+        "precision": 0.7259280742459396,
+        "exact_candidate_accuracy": 0.41145374449339206
+      },
+      "attack": {
+        "support": 3089,
+        "predicted": 2432,
+        "recall": 0.7439300744577533,
+        "precision": 0.9449013157894737,
+        "exact_candidate_accuracy": 0.6672062156037553
+      },
+      "cast": {
+        "support": 0,
+        "predicted": 2637,
+        "recall": null,
+        "precision": 0.0,
+        "exact_candidate_accuracy": null
+      }
+    },
+    "constant_wait_accuracy": 0.5690776376907764
+  },
+  "untrained_validation": {
+    "rows": 15070,
+    "exact_candidate_accuracy": 0.7327803583278036,
+    "action_accuracy": 0.7494359654943596,
+    "macro_action_recall": 0.648544134807867,
+    "confusion_truth_rows_predicted_columns": [
+      [
+        8255,
+        59,
+        59,
+        203
+      ],
+      [
+        3206,
+        25,
+        174,
+        0
+      ],
+      [
+        75,
+        0,
+        3014,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0
+      ]
+    ],
+    "per_action": {
+      "wait": {
+        "support": 8576,
+        "predicted": 11536,
+        "recall": 0.9625699626865671,
+        "precision": 0.7155859916782247,
+        "exact_candidate_accuracy": 0.9625699626865671
+      },
+      "move": {
+        "support": 3405,
+        "predicted": 84,
+        "recall": 0.007342143906020558,
+        "precision": 0.2976190476190476,
+        "exact_candidate_accuracy": 0.0020558002936857563
+      },
+      "attack": {
+        "support": 3089,
+        "predicted": 3247,
+        "recall": 0.9757202978310133,
+        "precision": 0.9282414536495226,
+        "exact_candidate_accuracy": 0.9002913564260279
+      },
+      "cast": {
+        "support": 0,
+        "predicted": 203,
+        "recall": null,
+        "precision": 0.0,
+        "exact_candidate_accuracy": null
+      }
+    },
+    "constant_wait_accuracy": 0.5690776376907764
+  },
+  "validation_episodes": [
+    {
+      "id": "5d70db190999cf9d941b22ac",
+      "map": "generated/screen/g1-screen-006",
+      "rows": 2992,
+      "sha256": "215129e03806b65e96c940f8e2068e8e1f00bfa75618a80e093fa68398224a9d"
+    },
+    {
+      "id": "46739459b29dc5176b4ae8dc",
+      "map": "generated/screen/g1-screen-006",
+      "rows": 2729,
+      "sha256": "c28540acbce9b47df81996cb6c5769d0da490a57c7e449de5a216135a1e640e0"
+    },
+    {
+      "id": "4c090d1eb6ad58ca451de840",
+      "map": "generated/screen/g1-screen-006",
+      "rows": 3016,
+      "sha256": "73bf1201302d8c7edf9d25a6c117fc4618e7ee955eda148802ee145440840df9"
+    },
+    {
+      "id": "45bafd707b5576bcc96919ae",
+      "map": "generated/screen/g1-screen-009",
+      "rows": 1976,
+      "sha256": "0d7539822ff2443288915dc47501ca9b78f0621becacc22683a2328622772bd4"
+    },
+    {
+      "id": "58c932f7061c7c39d07257b8",
+      "map": "generated/screen/g1-screen-009",
+      "rows": 2193,
+      "sha256": "fee3fa08d95993f3db15ce75ada090fe56ddb9506d5eb2ff4ea22ee6554eb0dc"
+    },
+    {
+      "id": "46047191b8e81e16b0abffe7",
+      "map": "generated/screen/g1-screen-009",
+      "rows": 2164,
+      "sha256": "d8e31bd9e520a977eb647d522c9f9ab7f6683276b0e2cc246127677e7b5477af"
+    }
+  ],
+  "validation_model_selections": 0,
+  "confirmation_games": 0,
+  "promoted": false,
+  "limitations": [
+    "No supported cast labels in validation; cast generalization unmeasured",
+    "Willow and Heart absent from both dataset partitions",
+    "Only supported local proposals are cloned; no macro planner or full spell policy"
+  ]
+}

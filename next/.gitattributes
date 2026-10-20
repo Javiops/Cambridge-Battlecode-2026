@@ -1,0 +1,4 @@
+# Checkpoint hashes describe exact artifact bytes on every checkout platform.
+models/** -text whitespace=cr-at-eol
+bots/bc-actor/src/weights.h -text whitespace=cr-at-eol
+bots/bc-untrained/src/weights.h -text whitespace=cr-at-eol

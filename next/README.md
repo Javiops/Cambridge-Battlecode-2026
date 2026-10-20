@@ -13,7 +13,9 @@ and [ROADMAP.md](ROADMAP.md) (what is next).
 training interface, observation/action contract, release fuel certificate and reproduction
 commands. `python -m lab stage1 ready` verifies the saved evidence against current hashes.
 Stage 2's first baseline dataset is now collected and audited. See [STAGE2.md](STAGE2.md)
-and `python -m lab stage2 ready`; Stage 3 training has not started.
+and `python -m lab stage2 ready`. Stage 3's first behavioural cloning model is trained,
+exported and tested in release matches. See [STAGE3.md](STAGE3.md) and
+`python -m lab stage3 ready`. It is a local actor warm start; the live bot is unchanged.
 
 ## Setup
 

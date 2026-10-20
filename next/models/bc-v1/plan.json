@@ -1,0 +1,161 @@
+{
+  "schema": 1,
+  "config": {
+    "model": "bc-v1",
+    "seed": 20261023,
+    "epochs": 120,
+    "batch_size": 256,
+    "evaluate_every": 5,
+    "learning_rate": 0.003,
+    "weight_decay": 0.0001,
+    "max_class_weight": 6.0,
+    "development_maps": [
+      "generated/screen/g1-screen-001",
+      "generated/screen/g1-screen-004",
+      "generated/screen/g1-screen-007"
+    ],
+    "release_maps": [
+      "generated/screen/g1-screen-008",
+      "generated/screen/g1-screen-009",
+      "generated/screen/g1-screen-010"
+    ],
+    "release_opponents": [
+      "dummy-week2-v1",
+      "starter-week2-v1"
+    ],
+    "jobs": 4,
+    "minimum_validation_accuracy": 0.5690776376907764,
+    "minimum_macro_action_recall": 0.5,
+    "parity_score_atol": 5e-05
+  },
+  "dataset_manifest_sha256": "271e888f1c473b3559d30802d28fa0168be0a982a657a92c456bb216efcb2426",
+  "selection": "highest mean of exact candidate accuracy and macro action recall; earliest epoch wins ties",
+  "training_episodes": [
+    {
+      "id": "9e7260ffbeae3229ef457156",
+      "map": "generated/screen/g1-screen-000",
+      "rows": 3352,
+      "sha256": "5c7d11ec5725022c702a9db6147347af488782808afeb4e1128bccde27a5d76a"
+    },
+    {
+      "id": "60a5d2c026a3de80fe2d070d",
+      "map": "generated/screen/g1-screen-000",
+      "rows": 1682,
+      "sha256": "4872665abef29f30efec84c0f4954dbc1a3cf46c3a724b5f4ff95c6945976e91"
+    },
+    {
+      "id": "7b98099116924e45098576d9",
+      "map": "generated/screen/g1-screen-000",
+      "rows": 1705,
+      "sha256": "7bb841dccacfb8b31c67c2806d3b3bf692d4aa216b7a9de16e86017d73e1f5ff"
+    },
+    {
+      "id": "948da54173bf8af341bd67da",
+      "map": "generated/screen/g1-screen-001",
+      "rows": 2330,
+      "sha256": "063fe80244350ec15bb95f1dc18ccd3119a9de07a4048336a58a3c75821e827c"
+    },
+    {
+      "id": "c98df58f0374ff237629c9c8",
+      "map": "generated/screen/g1-screen-001",
+      "rows": 1488,
+      "sha256": "2ff40d8d55d3743abf537fa6d5d892476030b6c768ac0043c02966d1c6a2429d"
+    },
+    {
+      "id": "7726c96418525646d6f463be",
+      "map": "generated/screen/g1-screen-001",
+      "rows": 1441,
+      "sha256": "de43d0780661d37dee9eeedb49ca91f773384b72ae6a1a142084b107c0316976"
+    },
+    {
+      "id": "6b27d270ee18a9886726496c",
+      "map": "generated/screen/g1-screen-003",
+      "rows": 4067,
+      "sha256": "480abf9b5884920027b3605dd9386248c8838ef141d1ca079e4bc007e363c5ff"
+    },
+    {
+      "id": "488c1db3c9d09fae0579497c",
+      "map": "generated/screen/g1-screen-003",
+      "rows": 2380,
+      "sha256": "49256e839286eddcc76462da3ca6e330b26744321e33798d9a6011ff50da74d9"
+    },
+    {
+      "id": "8dc06ece972af3306e6d3c38",
+      "map": "generated/screen/g1-screen-003",
+      "rows": 2158,
+      "sha256": "555cafdcdbe458e6a0bd4a89514bcc64b82e12bfa35997b22ea902830db83ef1"
+    },
+    {
+      "id": "96b6ffb2956fd8d018c04f69",
+      "map": "generated/screen/g1-screen-007",
+      "rows": 3517,
+      "sha256": "dd96790b72dfe19e9aff60ba7b3a3c0623a99787b9b7cc2587a49299f1c3dc66"
+    },
+    {
+      "id": "c91e4c26bded994efa5f51e6",
+      "map": "generated/screen/g1-screen-007",
+      "rows": 2135,
+      "sha256": "e934068607cba4209a418c87c945a54213923f369a51c6be85a3194d1717fc1b"
+    },
+    {
+      "id": "332ff52744a898e4fd467eb0",
+      "map": "generated/screen/g1-screen-007",
+      "rows": 2391,
+      "sha256": "a43fa5c99c27042077154b2c22323c0e1240c23682cbb176020b86c04450e4d2"
+    },
+    {
+      "id": "542ffb7dfcb08f3a8d918600",
+      "map": "generated/screen/g1-screen-002",
+      "rows": 4164,
+      "sha256": "b8f3129ad12958fcbb116ebf6db90a2ce7c87a876d2fe1d59a4a98a7a1f01993"
+    },
+    {
+      "id": "b1150aaeca798e0c4fe05116",
+      "map": "generated/screen/g1-screen-002",
+      "rows": 3236,
+      "sha256": "c906f1a0d89ab8be1ec2f8b152f39087b7688db1b93e765c2c583fb963e65f2f"
+    },
+    {
+      "id": "de017137cc37fe388312cfdc",
+      "map": "generated/screen/g1-screen-002",
+      "rows": 3350,
+      "sha256": "8cea3ecd79a725d4f1f6c84b2a7516004305c6b25cd7ebd1d6e116d7b66ece06"
+    },
+    {
+      "id": "dc557787f9a7692301111f8e",
+      "map": "generated/screen/g1-screen-004",
+      "rows": 2405,
+      "sha256": "2fac2db4d568573b11a724c76e556f6c8aae70b3627eb6e772fe6f0688f4353f"
+    },
+    {
+      "id": "5fe7661709fbd43277b3de55",
+      "map": "generated/screen/g1-screen-004",
+      "rows": 2420,
+      "sha256": "57edf29d06f8590b2464d338995db5c9ff380b8b03ab672c88639b0c8cde9091"
+    }
+  ],
+  "fit_rows": 26094,
+  "development_rows": 18127,
+  "fit_maps": [
+    "generated/screen/g1-screen-000",
+    "generated/screen/g1-screen-002",
+    "generated/screen/g1-screen-003"
+  ],
+  "development_maps": [
+    "generated/screen/g1-screen-001",
+    "generated/screen/g1-screen-004",
+    "generated/screen/g1-screen-007"
+  ],
+  "validation_access": "after epoch selection and full-training refit only",
+  "actor_inputs": [
+    "features",
+    "candidates",
+    "mask"
+  ],
+  "privileged_inputs_used": false,
+  "runtime": {
+    "python": "3.12.14",
+    "numpy": "2.5.4",
+    "platform": "win32"
+  }
+}

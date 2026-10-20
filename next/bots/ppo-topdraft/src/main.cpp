@@ -1,4 +1,4 @@
-// ppo-topdraft-v1: copy rank-one Fish draft; expect Heart of Ruin in every roster and measure the strength gap to v12.
+// ppo-topdraft-v2: rally the whole team periodically at the sole gem objective; expect fewer zero-gem games.
 // team-fight-v1 (design: analysis/claude-api-2026-10-18/team_fight_design_1019.md): recall-api-v1 + P_TEAM_FIGHT (finish layer,
 // below) + P_HP_SHOP (hp shards at the top teams' hp share on the v72 power path).
 // Finish layer: the no-chase doctrine lifted for hurt rivals. The bot let hurt rivals go by
@@ -563,6 +563,7 @@ struct State {
     std::vector<vec2> altars, spawn_tiles;
     vec2 spawn_center, en_center;
     std::vector<Group> groups;
+    int sole_gem_group = -1;  // public map geometry: exactly one gem-paying camp group
     bool mono_only = false;  // P_MONO: every gem on the map sits in a monolith group
     bool jackpot_map = false;  // P_JACKPOT: a jackpot group exists, so gold clusters are worth farming before it
     std::vector<Shard> shards;
@@ -850,6 +851,12 @@ void init_map(State& s, bc::champion& me) {
             else other_gems = other_gems || g.gems > 0;
         }
         s.mono_only = mono && !other_gems;
+        int gem_groups = 0;
+        for (int i = 0; i < static_cast<int>(s.groups.size()); ++i) {
+            stage7_budget_checkpoint();
+            if (s.groups[i].gems > 0) { ++gem_groups; s.sole_gem_group = i; }
+        }
+        if (gem_groups != 1) s.sole_gem_group = -1;
     }
 
 }
@@ -1616,10 +1623,25 @@ void update_danger(State& s, const std::vector<Foe>& foes, int round) {
 bool grouped(const State& s, int round) { return false; }
 bool ball_on(const State& s, int round) { return grouped(s, round); }
 
+// A shared round clock gives every champion the same objective window without
+// using the claim bytes (which already have owners). Gold farming and shopping
+// remain available between pushes; healing and banking retain their priorities.
+bool objective_window(const State& s, int round) {
+    return s.sole_gem_group >= 0 && round >= P_OBJECTIVE_START &&
+        (round - P_OBJECTIVE_START) % P_OBJECTIVE_PERIOD < P_OBJECTIVE_WINDOW;
+}
+int objective_target(State& s, bc::champion& me, int round) {
+    if (!objective_window(s, round) || me.health() < 0.65f * me.max_health()) return -1;
+    const auto& g = s.groups[s.sole_gem_group];
+    if (g.spawn_pd < 0 || g.next_ok > round + 40) return -1;
+    return s.sole_gem_group;
+}
+
 int choose_target_impl(State& s, bc::champion& me, int round);
 // P_FUELGUARD: the dearest choose_target seen so far (it grows with the number of camp groups and with walls),
 // so a caller can skip an optional re-choice when the turn could not pay for it plus a step afterwards.
 int choose_target(State& s, bc::champion& me, int round) {
+    if (int objective = objective_target(s, me, round); objective >= 0) return objective;
     if(!fuel_ok(s.ct_cost+12000)) {
         auto position=me.position();const auto sm=read_sm();int best=-1;double best_score=0;
         const auto strength=std::max(1.f,me.strength());const auto health=me.health();
@@ -2379,6 +2401,15 @@ void farm(State& s, bc::champion& me, int round, const std::vector<bc::camp>& ca
         }
     }
 
+    // Healthy champions switch away from scattered gold camps together. Do not
+    // interrupt an active capture; ordinary healing/shopping/banking run first.
+    const int objective = objective_target(s, me, round);
+    if (objective >= 0 && s.target != objective && s.cap_start < 0) {
+        s.target = objective;
+        s.target_round = round;
+        s.cap_start = -1;
+        write_claim(s, objective);
+    }
     // Committed = a camp of our group is already damaged, or we are capturing.
     bool committed = false;
     if (s.target >= 0) {
@@ -2470,7 +2501,39 @@ void farm(State& s, bc::champion& me, int round, const std::vector<bc::camp>& ca
         int needed = squad_needed(rem, str, dps, afford);
         int here = 1 + allies_near(s, me, g.center, 7);
         int coming = 1 + count_claimers(s, read_sm(), s.target);
-        const bool mono_go = (s.mono_only && g.monolith) || (g.jackpot && round >= P_JACKGO);
+        const bool objective_go = s.target == s.sole_gem_group && objective_window(s, round);
+        if (objective_go) {
+            int ready = hp >= 0.5 * mhp && dist(pos, g.center) <= 8 ? 1 : 0;
+            attempt([&] {
+                for (auto& a : my_roster(s)) {
+                    stage7_budget_checkpoint();
+                    if (!(a == me) && a.is_alive() && !a.is_recalling() &&
+                        a.health() >= 0.5f * a.max_health() && dist(a.position(), g.center) <= 8) ++ready;
+                }
+                return true;
+            });
+            // Three picks need all three; a six-body Cassi/Issac roster needs
+            // five. A missing/dead ally cannot lock the team here indefinitely:
+            // the synchronized window ends and normal farming resumes.
+            const int quorum = std::min(s.roster, std::max(2, (4 * s.roster + 4) / 5));
+            if (ready < quorum) {
+                g_farm = "objective-rally";
+                bc::bitboard outer, inner;
+                for (auto t : g.tiles) { stage7_budget_checkpoint(); outer.draw_chebyshev(t, 7.0f); inner.draw_chebyshev(t, 4.0f); }
+                bc::bitboard goals = outer & ~inner & ~s.static_block;
+                bc::bitboard home_side;
+                for (auto t : goals.positions()) {
+                    stage7_budget_checkpoint();
+                    if (dist(t, s.spawn_center) <= dist(g.center, s.spawn_center)) home_side.set(t);
+                }
+                if (!home_side.is_empty()) goals = home_side;
+                if (round % 40 == 0) std::printf("OBJ r=%d unit=%d group=%d ready=%d quorum=%d phase=rally\n", round, s.ally_idx, s.target, ready, quorum);
+                step_towards(s, me, goals, true);
+                return;
+            }
+            if (round % 40 == 0) std::printf("OBJ r=%d unit=%d group=%d ready=%d quorum=%d phase=assault\n", round, s.ally_idx, s.target, ready, quorum);
+        }
+        const bool mono_go = objective_go || (s.mono_only && g.monolith) || (g.jackpot && round >= P_JACKGO);
         if (mono_go) needed = std::min(needed, std::max(1, std::min(g.monolith ? s.roster : P_JACKN, s.roster)));
         if (!engaged && needed > here) {
             if (needed > std::max(coming, s.roster) || (!mono_go && needed > squad_needed(rem, str, dps, mhp * 0.75))) {
@@ -2479,7 +2542,7 @@ void farm(State& s, bc::champion& me, int round, const std::vector<bc::camp>& ca
                 drop_target(s);
                 return;
             }
-            if (PR.needheal) {  // a wait that no recall or ally will end: take another camp
+            if (PR.needheal && !objective_go) {  // objective rally has its own bounded team window
                 if (s.wait_group != s.target) { s.wait_group = s.target; s.wait_start = round; }
                 bool recall_next = needed > coming && hp < 0.8 * mhp && dist(pos, s.spawn_center) > 6;
                 if ((needed > coming && !recall_next) || round - s.wait_start > PR.needheal) {

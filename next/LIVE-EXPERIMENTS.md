@@ -9,7 +9,7 @@ an experimental upload gathers evidence about a frozen, functional candidate.
 
 - Platform **v84**: `ppo-topdraft-v6`, uploaded with note `topdraft-v6 | movement trial`.
 - Submission: `922f3836-7d6c-49c5-bbbd-e80c39f78c66`.
-- Observed state: **selected for the next match; server compilation pending**.
+- Observed state: **compiled successfully and active live, verified by the site**.
 - Platform v83 / qualified `ppo-league-v12` remains the previous working fallback.
 - The site starts compilation on matchmaking. Do not initiate ranked matches to force
   compilation. Verify compilation and the actual version of the first new game.
@@ -23,7 +23,7 @@ The uploaded source ZIP and the source downloaded back from the server both have
 SHA256 `3e9819880e134285a34c84d2f61ae605fe59aea275af9c3f3189c1fe3b246e52`.
 Its independently rebuilt local release WASM has SHA256
 `f21d27dce9cc364a26c61780367fc0b5c16ce39f643c37929e3b599fe471f534`.
-This verifies source delivery and local reproducibility, not yet server compilation.
+Source delivery and local reproducibility are verified. Server compilation and live status have since been verified; no server binary hash is claimed.
 
 ## Evaluation and iteration
 
@@ -48,3 +48,5 @@ its pre-upload `uploaded: false` development records are not current deployment 
 The existing hourly automation has been updated with this policy. Do not create a
 duplicate automation. Current machine-readable state is in
 `results/topdraft-v6-deployment.json` and `experiments/CURRENT.json`.
+
+The first eight live challenge groups are complete and native-verified: 16/40 wins, zero faults/fuel losses. See [V84-SPARRING.md](V84-SPARRING.md) for the historical comparison and next banking-progress hypothesis.

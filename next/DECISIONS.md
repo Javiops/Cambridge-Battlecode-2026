@@ -283,3 +283,7 @@ maps will be new, so the long-term confirm set is generated maps no one has tune
 ## 2026-10-20 · Nearby curriculum and failed development candidates
 
 Used all 50 available challenge groups for 250 v83 games, both seats and all 35 maps. Keep live strength separated by opponent cohort. Rejected Heart-focus v4 (95/270 versus v3) and global-area-reserve v5 (initialization starvation). V6 reduces fuel losses versus its parent (14 versus 23) but wins 151/302; against qualified v12 it wins 149/302. No promotion or upload, no confirmation outcomes consumed. Preserve v6 as a runtime hypothesis, not a proven strength improvement. See MAP-LEARNING.md and compact results.
+
+## 2026-10-20 · V84 live field test
+
+V84 compiled on the platform and stays live for iterative learning. Used all eight available challenge groups: 16/40 wins and zero faults/fuel losses, versus 14/40 and 12 fuel losses in the corresponding historical v83 blocks. Do not claim overall strength improvement from this small, partly historical comparison. Stampede wins both seats; elk-arena deposits increase but both seats lose. Big-world B carriers repeatedly hold gems at unchanged positions in tribute mode, so the next isolated hypothesis is obstacle-aware banking progress under low fuel. No promotion, rollback or model retraining. Full evidence: V84-SPARRING.md.

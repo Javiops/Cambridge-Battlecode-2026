@@ -1,0 +1,302 @@
+{
+  "schema": 2,
+  "initialAllowance": 8,
+  "baselineVersion": 83,
+  "candidateVersion": 84,
+  "startedUtc": "2026-10-20T21:47:43.165Z",
+  "purpose": "Paired live experiments against previous opponent submissions; diagnose runtime, collection and objective execution",
+  "groups": [
+    {
+      "opponent": "Preyas",
+      "sourceGroup": "34651631-fe29-4b50-b308-78a16b67e0e4",
+      "baselineGroups": [
+        "34651631-fe29-4b50-b308-78a16b67e0e4",
+        "fe4716bd-8cf7-4c7b-97b5-81e4758c5c4a"
+      ],
+      "maps": [
+        "00collision",
+        "00expanse",
+        "00stampede",
+        "01elk_arena",
+        "01big_world"
+      ],
+      "cohort": "nearby",
+      "seat": "A",
+      "version": 84,
+      "allowanceBefore": 8,
+      "id": "26aefce6-7006-4ece-8bc8-75a679090632",
+      "summaryFiles": [
+        "17ee0010-2e37-42b8-be25-34dcb1758034.json",
+        "2186914c-d22a-4bcc-b846-2f873fa0668b.json",
+        "70d8163d-d30d-4758-adc7-fbd02ebe1100.json",
+        "316f553e-8dc5-4827-9814-c80ff952fb80.json",
+        "22c4980d-a79c-4b8f-b789-50a9eda3a010.json"
+      ],
+      "collectionStatus": "complete"
+    },
+    {
+      "opponent": "Preyas",
+      "sourceGroup": "34651631-fe29-4b50-b308-78a16b67e0e4",
+      "baselineGroups": [
+        "34651631-fe29-4b50-b308-78a16b67e0e4",
+        "fe4716bd-8cf7-4c7b-97b5-81e4758c5c4a"
+      ],
+      "maps": [
+        "00collision",
+        "00expanse",
+        "00stampede",
+        "01elk_arena",
+        "01big_world"
+      ],
+      "cohort": "nearby",
+      "seat": "B",
+      "version": 84,
+      "allowanceBefore": 7,
+      "id": "66e43745-96bf-455d-86d6-a8d9af33ae2b",
+      "summaryFiles": [
+        "e212632b-8699-4231-9f43-06143b94f46f.json",
+        "f2d949ea-c6fd-4c09-a77f-4872e7b789b4.json",
+        "ad3489d5-038e-47e9-bdb1-663f1ad34727.json",
+        "83d0bb8d-7217-4c18-b810-5e30971087db.json",
+        "ff23018b-277e-46a2-aeae-a43a8b69ca69.json"
+      ],
+      "collectionStatus": "complete"
+    },
+    {
+      "opponent": "Tozo's Disciples",
+      "sourceGroup": "d3ea9e46-923d-4ba8-b4c7-bc6df2d88ebf",
+      "baselineGroups": [
+        "d3ea9e46-923d-4ba8-b4c7-bc6df2d88ebf",
+        "e72dd8b0-f71c-42ad-85e8-a9bc64ae9b64"
+      ],
+      "maps": [
+        "00ambush",
+        "00contest",
+        "00corners",
+        "00eight",
+        "00elkring"
+      ],
+      "cohort": "nearby",
+      "seat": "A",
+      "version": 84,
+      "allowanceBefore": 6,
+      "id": "44d6496f-e1af-415c-ae6b-6a8e17643495",
+      "summaryFiles": [
+        "f1f2f434-0bd7-42fa-bd2c-ef933e8a0dae.json",
+        "d32a5877-6c35-4568-afd1-91c22853212c.json",
+        "68ab7a80-cd6b-418b-a434-ee741ed4f62d.json",
+        "6f1926c6-0d13-419c-bf4e-361563e0ca2d.json",
+        "121b937d-799b-458e-9335-009103cfa4f7.json"
+      ],
+      "collectionStatus": "complete"
+    },
+    {
+      "opponent": "Tozo's Disciples",
+      "sourceGroup": "d3ea9e46-923d-4ba8-b4c7-bc6df2d88ebf",
+      "baselineGroups": [
+        "d3ea9e46-923d-4ba8-b4c7-bc6df2d88ebf",
+        "e72dd8b0-f71c-42ad-85e8-a9bc64ae9b64"
+      ],
+      "maps": [
+        "00ambush",
+        "00contest",
+        "00corners",
+        "00eight",
+        "00elkring"
+      ],
+      "cohort": "nearby",
+      "seat": "B",
+      "version": 84,
+      "allowanceBefore": 5,
+      "id": "a8221fbd-3e5d-4531-af21-874dc584b6f4",
+      "summaryFiles": [
+        "84198ce1-2b9c-46ca-ae25-7bbcbdb3d8e0.json",
+        "a189731f-741a-4604-946f-7dd89c4a5efa.json",
+        "8b12aa96-744d-4feb-8a54-4f74e75a49d6.json",
+        "c87ee388-f190-40b3-872d-db21c60bd7ca.json",
+        "193b40d5-ac82-472c-b8de-f1cbd4849be1.json"
+      ],
+      "collectionStatus": "complete"
+    },
+    {
+      "opponent": "Dirty Coding",
+      "sourceGroup": "ccaaa85a-8832-46c2-b5d0-24e39ec2fac3",
+      "baselineGroups": [
+        "ccaaa85a-8832-46c2-b5d0-24e39ec2fac3",
+        "bd96cc27-7f1a-4f49-865d-f4ee857c50fc"
+      ],
+      "maps": [
+        "00pilgrimage",
+        "00quadrants",
+        "00reverse_spiral",
+        "00rows",
+        "00rushbait_v2"
+      ],
+      "cohort": "nearby",
+      "seat": "A",
+      "version": 84,
+      "allowanceBefore": 4,
+      "id": "712dbee0-8a10-4f5d-b1c4-a80eff50e49b",
+      "summaryFiles": [
+        "6f388261-b352-4438-8096-03b23b80f5a8.json",
+        "627f0648-7cf5-42a7-9d38-4a1ef0b7b773.json",
+        "b00195dc-8053-4448-9558-426c00638c11.json",
+        "cf017ccc-9f93-4624-9292-ca7136109bce.json",
+        "ade1464e-a41b-4168-b6e4-fdbe0a28654b.json"
+      ],
+      "collectionStatus": "complete"
+    },
+    {
+      "opponent": "Dirty Coding",
+      "sourceGroup": "ccaaa85a-8832-46c2-b5d0-24e39ec2fac3",
+      "baselineGroups": [
+        "ccaaa85a-8832-46c2-b5d0-24e39ec2fac3",
+        "bd96cc27-7f1a-4f49-865d-f4ee857c50fc"
+      ],
+      "maps": [
+        "00pilgrimage",
+        "00quadrants",
+        "00reverse_spiral",
+        "00rows",
+        "00rushbait_v2"
+      ],
+      "cohort": "nearby",
+      "seat": "B",
+      "version": 84,
+      "allowanceBefore": 3,
+      "id": "a1fea85d-bacc-4a84-ac92-0ad8c688ec02",
+      "summaryFiles": [
+        "1f1c8ede-97aa-46a2-b428-6327cb1ff4ca.json",
+        "26ce3029-6793-4fc6-b9dd-ce73efb7cb1c.json",
+        "371298c1-d11b-4e6a-b498-8ea3d1f3fe65.json",
+        "38fb7e48-cad1-480c-b63d-11976d02a93f.json",
+        "b1403d50-6c23-4421-b331-5f093f45c983.json"
+      ],
+      "collectionStatus": "complete"
+    },
+    {
+      "opponent": "Pathfinders",
+      "sourceGroup": "d3a41ff7-cdd1-4db6-ae25-17df1c7ff7f2",
+      "baselineGroups": [
+        "d3a41ff7-cdd1-4db6-ae25-17df1c7ff7f2",
+        "d3142c6c-7190-4910-b85e-f2be7c7f9720"
+      ],
+      "maps": [
+        "01corridors",
+        "01fracture",
+        "01gold_rush",
+        "01hooks",
+        "01islands"
+      ],
+      "cohort": "stretch",
+      "seat": "A",
+      "version": 84,
+      "allowanceBefore": 2,
+      "id": "7c44d5b1-a00e-499c-b028-2f6a20260204",
+      "summaryFiles": [
+        "edc61662-6740-4435-ba03-e06fa4c4d840.json",
+        "fe5aa773-fd65-4063-9a2e-5828a4d1832a.json",
+        "8b682bcb-63d1-4e86-ac27-ba664437fdc5.json",
+        "c1b70c22-0456-40e5-9429-8fd2547f655b.json",
+        "8047eac4-e93d-4220-98e6-5108767c3e83.json"
+      ],
+      "collectionStatus": "complete"
+    },
+    {
+      "opponent": "Pathfinders",
+      "sourceGroup": "d3a41ff7-cdd1-4db6-ae25-17df1c7ff7f2",
+      "baselineGroups": [
+        "d3a41ff7-cdd1-4db6-ae25-17df1c7ff7f2",
+        "d3142c6c-7190-4910-b85e-f2be7c7f9720"
+      ],
+      "maps": [
+        "01corridors",
+        "01fracture",
+        "01gold_rush",
+        "01hooks",
+        "01islands"
+      ],
+      "cohort": "stretch",
+      "seat": "B",
+      "version": 84,
+      "allowanceBefore": 1,
+      "id": "beb2f663-f4cb-43f2-8165-e952fc11421b",
+      "summaryFiles": [
+        "c972fa38-69ec-4952-9702-8c1752002e5b.json",
+        "a60199a2-caaa-465e-aa7c-8bdc65546666.json",
+        "a8b46c47-fbb4-4382-8524-cc7bae754256.json",
+        "18be0e2a-3742-493c-99f0-e04dc9b2cfa1.json",
+        "9a0a9bb8-b96a-45b5-a4fd-0c7d24e87309.json"
+      ],
+      "collectionStatus": "complete"
+    }
+  ],
+  "plan": [
+    {
+      "opponent": "Preyas",
+      "sourceGroup": "34651631-fe29-4b50-b308-78a16b67e0e4",
+      "baselineGroups": [
+        "34651631-fe29-4b50-b308-78a16b67e0e4",
+        "fe4716bd-8cf7-4c7b-97b5-81e4758c5c4a"
+      ],
+      "maps": [
+        "00collision",
+        "00expanse",
+        "00stampede",
+        "01elk_arena",
+        "01big_world"
+      ],
+      "cohort": "nearby"
+    },
+    {
+      "opponent": "Tozo's Disciples",
+      "sourceGroup": "d3ea9e46-923d-4ba8-b4c7-bc6df2d88ebf",
+      "baselineGroups": [
+        "d3ea9e46-923d-4ba8-b4c7-bc6df2d88ebf",
+        "e72dd8b0-f71c-42ad-85e8-a9bc64ae9b64"
+      ],
+      "maps": [
+        "00ambush",
+        "00contest",
+        "00corners",
+        "00eight",
+        "00elkring"
+      ],
+      "cohort": "nearby"
+    },
+    {
+      "opponent": "Dirty Coding",
+      "sourceGroup": "ccaaa85a-8832-46c2-b5d0-24e39ec2fac3",
+      "baselineGroups": [
+        "ccaaa85a-8832-46c2-b5d0-24e39ec2fac3",
+        "bd96cc27-7f1a-4f49-865d-f4ee857c50fc"
+      ],
+      "maps": [
+        "00pilgrimage",
+        "00quadrants",
+        "00reverse_spiral",
+        "00rows",
+        "00rushbait_v2"
+      ],
+      "cohort": "nearby"
+    },
+    {
+      "opponent": "Pathfinders",
+      "sourceGroup": "d3a41ff7-cdd1-4db6-ae25-17df1c7ff7f2",
+      "baselineGroups": [
+        "d3a41ff7-cdd1-4db6-ae25-17df1c7ff7f2",
+        "d3142c6c-7190-4910-b85e-f2be7c7f9720"
+      ],
+      "maps": [
+        "01corridors",
+        "01fracture",
+        "01gold_rush",
+        "01hooks",
+        "01islands"
+      ],
+      "cohort": "stretch"
+    }
+  ],
+  "finalAllowance": 0,
+  "collectedUtc": "2026-10-20T21:52:45.059Z"
+}

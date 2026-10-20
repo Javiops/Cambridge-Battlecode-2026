@@ -2,15 +2,15 @@
   "schema": 1,
   "working_candidate": "ppo-topdraft-v6",
   "qualified_candidate": "ppo-league-v12",
-  "last_verified_platform_version": 83,
-  "live_batch": "results/stage7-live-curriculum-groups.json",
-  "report": "MAP-LEARNING.md",
-  "status": "experimental_uploaded_selected_pending_server_compilation",
+  "last_verified_platform_version": 84,
+  "live_batch": "results/stage7-live-v84-groups.json",
+  "report": "V84-SPARRING.md",
+  "status": "experimental_live_verified",
   "next_hypotheses": [
-    "Profile optional native calls on ambush and big-world; all 96 live fuel losses are on these maps",
-    "Pilgrimage fight exposure: 0/6 against three nearby teams and 47.5 mean team deaths",
-    "Sustained shared objective damage and reward collection after rally",
-    "Profile optional native path operations without raising global initialization reserve"
+    "Obstacle-aware banking progress under low fuel: big-world B carriers retain 15 gems at repeated positions in tribute mode",
+    "Preserve zero observed fuel losses while testing useful gem collection and deposits; do not raise global initialization reserve",
+    "Elk-arena sustained objective execution: assault logs exist and deposits rise to 96/144, but both seats still lose",
+    "Pilgrimage/reverse-spiral fight exposure and carried-gem loss; preserve multi-camp maps"
   ],
   "user_authorizations": {
     "hourly_unranked_all_available": true,

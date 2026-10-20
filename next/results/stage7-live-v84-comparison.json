@@ -1,0 +1,558 @@
+{
+  "schema": 1,
+  "kind": "historical_paired_map_opponent_seat_comparison",
+  "v83": {
+    "games": 40,
+    "wins": 14,
+    "fuel_exhausted": 12,
+    "faults": 0,
+    "mean_bank": 557.55,
+    "mean_deaths": 28.625,
+    "mean_collected": 671.25,
+    "zero_bank_games": 3
+  },
+  "v84": {
+    "games": 40,
+    "wins": 16,
+    "fuel_exhausted": 0,
+    "faults": 0,
+    "mean_bank": 536.125,
+    "mean_deaths": 30.4,
+    "mean_collected": 654.9,
+    "zero_bank_games": 3
+  },
+  "opponent_selection": "Each new pair uses the official previous-match bot selector pinned to the A-seat source group in plan. Historical B-seat groups were requested close together, but an opponent binary hash is not exposed; this is not a contemporaneous controlled crossover.",
+  "limitations": "40 games / 20 paired maps / four opponents. V84 includes several accumulated changes. No causal or statistically established overall strength gain is claimed.",
+  "by_map": {
+    "00ambush": {
+      "v83": {
+        "games": 2,
+        "wins": 2,
+        "fuel_exhausted": 2,
+        "faults": 0,
+        "mean_bank": 1010.0,
+        "mean_deaths": 5.5,
+        "mean_collected": 1043.0,
+        "zero_bank_games": 0
+      },
+      "v84": {
+        "games": 2,
+        "wins": 1,
+        "fuel_exhausted": 0,
+        "faults": 0,
+        "mean_bank": 1015.5,
+        "mean_deaths": 7.0,
+        "mean_collected": 1059.5,
+        "zero_bank_games": 0
+      }
+    },
+    "00collision": {
+      "v83": {
+        "games": 2,
+        "wins": 2,
+        "fuel_exhausted": 0,
+        "faults": 0,
+        "mean_bank": 1011.0,
+        "mean_deaths": 8.5,
+        "mean_collected": 1101.0,
+        "zero_bank_games": 0
+      },
+      "v84": {
+        "games": 2,
+        "wins": 1,
+        "fuel_exhausted": 0,
+        "faults": 0,
+        "mean_bank": 941.5,
+        "mean_deaths": 8.0,
+        "mean_collected": 1050.5,
+        "zero_bank_games": 0
+      }
+    },
+    "00contest": {
+      "v83": {
+        "games": 2,
+        "wins": 1,
+        "fuel_exhausted": 0,
+        "faults": 0,
+        "mean_bank": 200.0,
+        "mean_deaths": 66.5,
+        "mean_collected": 400.0,
+        "zero_bank_games": 1
+      },
+      "v84": {
+        "games": 2,
+        "wins": 0,
+        "fuel_exhausted": 0,
+        "faults": 0,
+        "mean_bank": 0.0,
+        "mean_deaths": 88.0,
+        "mean_collected": 0.0,
+        "zero_bank_games": 2
+      }
+    },
+    "00corners": {
+      "v83": {
+        "games": 2,
+        "wins": 2,
+        "fuel_exhausted": 0,
+        "faults": 0,
+        "mean_bank": 1013.5,
+        "mean_deaths": 11.0,
+        "mean_collected": 1069.0,
+        "zero_bank_games": 0
+      },
+      "v84": {
+        "games": 2,
+        "wins": 2,
+        "fuel_exhausted": 0,
+        "faults": 0,
+        "mean_bank": 1014.5,
+        "mean_deaths": 4.0,
+        "mean_collected": 1033.0,
+        "zero_bank_games": 0
+      }
+    },
+    "00eight": {
+      "v83": {
+        "games": 2,
+        "wins": 1,
+        "fuel_exhausted": 0,
+        "faults": 0,
+        "mean_bank": 567.5,
+        "mean_deaths": 61.0,
+        "mean_collected": 803.0,
+        "zero_bank_games": 0
+      },
+      "v84": {
+        "games": 2,
+        "wins": 0,
+        "fuel_exhausted": 0,
+        "faults": 0,
+        "mean_bank": 218.0,
+        "mean_deaths": 72.5,
+        "mean_collected": 392.5,
+        "zero_bank_games": 0
+      }
+    },
+    "00elkring": {
+      "v83": {
+        "games": 2,
+        "wins": 0,
+        "fuel_exhausted": 0,
+        "faults": 0,
+        "mean_bank": 528.5,
+        "mean_deaths": 39.5,
+        "mean_collected": 605.0,
+        "zero_bank_games": 0
+      },
+      "v84": {
+        "games": 2,
+        "wins": 0,
+        "fuel_exhausted": 0,
+        "faults": 0,
+        "mean_bank": 456.5,
+        "mean_deaths": 40.0,
+        "mean_collected": 652.5,
+        "zero_bank_games": 0
+      }
+    },
+    "00expanse": {
+      "v83": {
+        "games": 2,
+        "wins": 0,
+        "fuel_exhausted": 0,
+        "faults": 0,
+        "mean_bank": 960.0,
+        "mean_deaths": 3.0,
+        "mean_collected": 1028.5,
+        "zero_bank_games": 0
+      },
+      "v84": {
+        "games": 2,
+        "wins": 1,
+        "fuel_exhausted": 0,
+        "faults": 0,
+        "mean_bank": 889.5,
+        "mean_deaths": 0.5,
+        "mean_collected": 903.0,
+        "zero_bank_games": 0
+      }
+    },
+    "00pilgrimage": {
+      "v83": {
+        "games": 2,
+        "wins": 0,
+        "fuel_exhausted": 0,
+        "faults": 0,
+        "mean_bank": 376.5,
+        "mean_deaths": 56.0,
+        "mean_collected": 482.0,
+        "zero_bank_games": 0
+      },
+      "v84": {
+        "games": 2,
+        "wins": 1,
+        "fuel_exhausted": 0,
+        "faults": 0,
+        "mean_bank": 304.5,
+        "mean_deaths": 59.5,
+        "mean_collected": 382.0,
+        "zero_bank_games": 0
+      }
+    },
+    "00quadrants": {
+      "v83": {
+        "games": 2,
+        "wins": 0,
+        "fuel_exhausted": 0,
+        "faults": 0,
+        "mean_bank": 359.0,
+        "mean_deaths": 15.5,
+        "mean_collected": 385.5,
+        "zero_bank_games": 0
+      },
+      "v84": {
+        "games": 2,
+        "wins": 0,
+        "fuel_exhausted": 0,
+        "faults": 0,
+        "mean_bank": 570.5,
+        "mean_deaths": 23.0,
+        "mean_collected": 671.5,
+        "zero_bank_games": 0
+      }
+    },
+    "00reverse-spiral": {
+      "v83": {
+        "games": 2,
+        "wins": 0,
+        "fuel_exhausted": 0,
+        "faults": 0,
+        "mean_bank": 195.0,
+        "mean_deaths": 65.5,
+        "mean_collected": 549.5,
+        "zero_bank_games": 0
+      },
+      "v84": {
+        "games": 2,
+        "wins": 0,
+        "fuel_exhausted": 0,
+        "faults": 0,
+        "mean_bank": 133.0,
+        "mean_deaths": 68.0,
+        "mean_collected": 541.0,
+        "zero_bank_games": 0
+      }
+    },
+    "00rows": {
+      "v83": {
+        "games": 2,
+        "wins": 2,
+        "fuel_exhausted": 0,
+        "faults": 0,
+        "mean_bank": 906.0,
+        "mean_deaths": 39.5,
+        "mean_collected": 1102.0,
+        "zero_bank_games": 0
+      },
+      "v84": {
+        "games": 2,
+        "wins": 2,
+        "fuel_exhausted": 0,
+        "faults": 0,
+        "mean_bank": 746.0,
+        "mean_deaths": 42.0,
+        "mean_collected": 1009.0,
+        "zero_bank_games": 0
+      }
+    },
+    "00rushbait-v2": {
+      "v83": {
+        "games": 2,
+        "wins": 0,
+        "fuel_exhausted": 0,
+        "faults": 0,
+        "mean_bank": 615.0,
+        "mean_deaths": 17.0,
+        "mean_collected": 901.0,
+        "zero_bank_games": 0
+      },
+      "v84": {
+        "games": 2,
+        "wins": 1,
+        "fuel_exhausted": 0,
+        "faults": 0,
+        "mean_bank": 821.5,
+        "mean_deaths": 12.0,
+        "mean_collected": 1005.0,
+        "zero_bank_games": 0
+      }
+    },
+    "00stampede": {
+      "v83": {
+        "games": 2,
+        "wins": 1,
+        "fuel_exhausted": 0,
+        "faults": 0,
+        "mean_bank": 640.0,
+        "mean_deaths": 23.5,
+        "mean_collected": 720.0,
+        "zero_bank_games": 0
+      },
+      "v84": {
+        "games": 2,
+        "wins": 2,
+        "fuel_exhausted": 0,
+        "faults": 0,
+        "mean_bank": 1020.0,
+        "mean_deaths": 18.0,
+        "mean_collected": 1120.0,
+        "zero_bank_games": 0
+      }
+    },
+    "01big-world": {
+      "v83": {
+        "games": 2,
+        "wins": 0,
+        "fuel_exhausted": 10,
+        "faults": 0,
+        "mean_bank": 56.0,
+        "mean_deaths": 1.0,
+        "mean_collected": 83.5,
+        "zero_bank_games": 0
+      },
+      "v84": {
+        "games": 2,
+        "wins": 0,
+        "fuel_exhausted": 0,
+        "faults": 0,
+        "mean_bank": 50.5,
+        "mean_deaths": 2.5,
+        "mean_collected": 101.5,
+        "zero_bank_games": 1
+      }
+    },
+    "01corridors": {
+      "v83": {
+        "games": 2,
+        "wins": 2,
+        "fuel_exhausted": 0,
+        "faults": 0,
+        "mean_bank": 797.0,
+        "mean_deaths": 5.5,
+        "mean_collected": 858.0,
+        "zero_bank_games": 0
+      },
+      "v84": {
+        "games": 2,
+        "wins": 2,
+        "fuel_exhausted": 0,
+        "faults": 0,
+        "mean_bank": 769.0,
+        "mean_deaths": 19.0,
+        "mean_collected": 794.0,
+        "zero_bank_games": 0
+      }
+    },
+    "01elk-arena": {
+      "v83": {
+        "games": 2,
+        "wins": 0,
+        "fuel_exhausted": 0,
+        "faults": 0,
+        "mean_bank": 0.0,
+        "mean_deaths": 5.0,
+        "mean_collected": 18.0,
+        "zero_bank_games": 2
+      },
+      "v84": {
+        "games": 2,
+        "wins": 0,
+        "fuel_exhausted": 0,
+        "faults": 0,
+        "mean_bank": 120.0,
+        "mean_deaths": 13.0,
+        "mean_collected": 192.0,
+        "zero_bank_games": 0
+      }
+    },
+    "01fracture": {
+      "v83": {
+        "games": 2,
+        "wins": 0,
+        "fuel_exhausted": 0,
+        "faults": 0,
+        "mean_bank": 372.0,
+        "mean_deaths": 29.5,
+        "mean_collected": 489.0,
+        "zero_bank_games": 0
+      },
+      "v84": {
+        "games": 2,
+        "wins": 0,
+        "fuel_exhausted": 0,
+        "faults": 0,
+        "mean_bank": 185.0,
+        "mean_deaths": 34.0,
+        "mean_collected": 299.5,
+        "zero_bank_games": 0
+      }
+    },
+    "01gold-rush": {
+      "v83": {
+        "games": 2,
+        "wins": 0,
+        "fuel_exhausted": 0,
+        "faults": 0,
+        "mean_bank": 462.0,
+        "mean_deaths": 65.5,
+        "mean_collected": 639.0,
+        "zero_bank_games": 0
+      },
+      "v84": {
+        "games": 2,
+        "wins": 1,
+        "fuel_exhausted": 0,
+        "faults": 0,
+        "mean_bank": 539.0,
+        "mean_deaths": 43.5,
+        "mean_collected": 699.5,
+        "zero_bank_games": 0
+      }
+    },
+    "01hooks": {
+      "v83": {
+        "games": 2,
+        "wins": 1,
+        "fuel_exhausted": 0,
+        "faults": 0,
+        "mean_bank": 594.0,
+        "mean_deaths": 49.0,
+        "mean_collected": 660.0,
+        "zero_bank_games": 0
+      },
+      "v84": {
+        "games": 2,
+        "wins": 2,
+        "fuel_exhausted": 0,
+        "faults": 0,
+        "mean_bank": 847.0,
+        "mean_deaths": 53.5,
+        "mean_collected": 1111.0,
+        "zero_bank_games": 0
+      }
+    },
+    "01islands": {
+      "v83": {
+        "games": 2,
+        "wins": 0,
+        "fuel_exhausted": 0,
+        "faults": 0,
+        "mean_bank": 488.0,
+        "mean_deaths": 5.0,
+        "mean_collected": 488.0,
+        "zero_bank_games": 0
+      },
+      "v84": {
+        "games": 2,
+        "wins": 0,
+        "fuel_exhausted": 0,
+        "faults": 0,
+        "mean_bank": 81.0,
+        "mean_deaths": 0.0,
+        "mean_collected": 81.0,
+        "zero_bank_games": 0
+      }
+    }
+  },
+  "by_opponent": {
+    "Dirty Coding": {
+      "v83": {
+        "games": 10,
+        "wins": 2,
+        "fuel_exhausted": 0,
+        "faults": 0,
+        "mean_bank": 490.3,
+        "mean_deaths": 38.7,
+        "mean_collected": 684.0,
+        "zero_bank_games": 0
+      },
+      "v84": {
+        "games": 10,
+        "wins": 4,
+        "fuel_exhausted": 0,
+        "faults": 0,
+        "mean_bank": 515.1,
+        "mean_deaths": 40.9,
+        "mean_collected": 721.7,
+        "zero_bank_games": 0
+      }
+    },
+    "Pathfinders": {
+      "v83": {
+        "games": 10,
+        "wins": 3,
+        "fuel_exhausted": 0,
+        "faults": 0,
+        "mean_bank": 542.6,
+        "mean_deaths": 30.9,
+        "mean_collected": 626.8,
+        "zero_bank_games": 0
+      },
+      "v84": {
+        "games": 10,
+        "wins": 5,
+        "fuel_exhausted": 0,
+        "faults": 0,
+        "mean_bank": 484.2,
+        "mean_deaths": 30.0,
+        "mean_collected": 597.0,
+        "zero_bank_games": 0
+      }
+    },
+    "Preyas": {
+      "v83": {
+        "games": 10,
+        "wins": 3,
+        "fuel_exhausted": 10,
+        "faults": 0,
+        "mean_bank": 533.4,
+        "mean_deaths": 8.2,
+        "mean_collected": 590.2,
+        "zero_bank_games": 2
+      },
+      "v84": {
+        "games": 10,
+        "wins": 4,
+        "fuel_exhausted": 0,
+        "faults": 0,
+        "mean_bank": 604.3,
+        "mean_deaths": 8.4,
+        "mean_collected": 673.4,
+        "zero_bank_games": 1
+      }
+    },
+    "Tozo's Disciples": {
+      "v83": {
+        "games": 10,
+        "wins": 6,
+        "fuel_exhausted": 2,
+        "faults": 0,
+        "mean_bank": 663.9,
+        "mean_deaths": 36.7,
+        "mean_collected": 784.0,
+        "zero_bank_games": 1
+      },
+      "v84": {
+        "games": 10,
+        "wins": 3,
+        "fuel_exhausted": 0,
+        "faults": 0,
+        "mean_bank": 540.9,
+        "mean_deaths": 42.3,
+        "mean_collected": 627.5,
+        "zero_bank_games": 2
+      }
+    }
+  }
+}

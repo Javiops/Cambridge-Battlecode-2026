@@ -25,29 +25,30 @@ candidate accuracy against 56.91% constant wait, and 72.98% macro action recall.
 untrained control scores 73.28% exact accuracy but only 0.73% movement-type recall;
 the trained actor has 73.51% movement-type recall and predicts too many casts.
 See STAGE3.md for all per-action metrics, 1,440-turn bit-exact release parity and 24
-paired diagnostic matches. No promotion, live upload, confirmation play, or Stage 4 run.
+paired diagnostic matches. No promotion, live upload or confirmation play.
 
 The first model is a warm start, not a competitive submission. It banks no gems because
 the local proposal contract has no submission action. Future work needs macro/action
 coverage and stronger in-engine learning, with fresh evaluation data for any new tuning.
 Willow/Heart are absent from the dataset; cast imitation has no validation labels.
 
-## Stage 4: outcome critic trained; predictive gate not cleared
+## Stage 4: outcome critic acceptance complete
 
-`outcome-v2` keeps the `bc-v1` actor/encoder frozen and trains a separate 45-parameter
-binary win head. Training uses 81,953 states from 28 clean games on 17 training maps,
-with both perspectives and equal game/team weighting. Two whole fuel-limited games
-(one original, one new) are excluded. The independent 12-game/four-map evaluation has
-Brier 0.1391, log loss 0.4156 and accuracy 78.1%; constant Brier is 0.2500. The simpler
-score/time/seat predictor has Brier 0.1340 and log loss 0.3993, so the predeclared gate
-fails. The paired map bootstrap also cannot establish an improvement over that baseline.
+`outcome-v5` passes `stage4 ready`. Current native inventory and monotone team/economy
+features improve both proper scores on 24 fresh games/eight unseen family-3 maps:
+Brier 0.12508 versus 0.13067,
+log loss 0.38629 versus 0.40075.
+The paired map bootstrap interval supports the Brier improvement. See STAGE4.md for
+training-only selection, provenance, calibration, the failed v1-v4 trials and limitations.
+The BC actor is unchanged; final confirmation maps remain sealed.
 
-See STAGE4.md and `results/stage4-*.json`. The first trial is explicitly invalidated for
-an unsigned-label metric bug, covered by a regression test; its inspected maps are not
-reused for the revised trial's fresh test. Keep the frozen critic as a provisional
-offline experiment. Next work within Stage 4 needs new training/evaluation evidence to
-improve on the simple predictor; Stage 5 PPO remains unstarted. No actor, live submission,
-reference champion, or final confirmation pool changed.
+## Stage 5: PPO, not started
+
+Initialize the actor from `bc-v1` and the offline critic from `outcome-v5`.
+Collect on-policy native rollouts and refit/recalibrate the privileged critic before
+trusting its values for advantages. Resolve the actor's missing submission/macro-action
+coverage as part of the next stage's explicit scope. Passing this offline critic gate
+does not establish actor strength or validate an eventual PPO training run.
 
 ## Foundation (before any real bot)
 

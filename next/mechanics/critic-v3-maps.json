@@ -1,0 +1,56 @@
+{
+  "generator": "g1 geometry, independent critic-v3 seed stream, family 3",
+  "seed": 20261025,
+  "engine_sha256": "f7d27c468024ce20f1f64eb1bd06ec4de6314213314fb0132e8b605cf0a610db",
+  "maps": [
+    {
+      "name": "generated/critic-v3/validation/cv3-val-000",
+      "path": "maps/generated/critic-v3/validation/cv3-val-000.map26a",
+      "sha256": "2f7bc0f4f1987f91021c42d33e5e104abc73b9dd931af5b3df49e644f10b456b",
+      "bytes": 7887
+    },
+    {
+      "name": "generated/critic-v3/validation/cv3-val-001",
+      "path": "maps/generated/critic-v3/validation/cv3-val-001.map26a",
+      "sha256": "ef272c54a1c05a967fcf9d316ddca870ed632a5440238604c4e67b556af64b2b",
+      "bytes": 16851
+    },
+    {
+      "name": "generated/critic-v3/validation/cv3-val-002",
+      "path": "maps/generated/critic-v3/validation/cv3-val-002.map26a",
+      "sha256": "017e98b517c6413e3fcd6335cd5fb63c2ede99ecf930418c36d77fdb4e455cf2",
+      "bytes": 66481
+    },
+    {
+      "name": "generated/critic-v3/validation/cv3-val-003",
+      "path": "maps/generated/critic-v3/validation/cv3-val-003.map26a",
+      "sha256": "a1156423dcd3bc28cb79e74d45019791fcfd2a6997f8e934cd7afe8a446b576f",
+      "bytes": 2152
+    },
+    {
+      "name": "generated/critic-v3/validation/cv3-val-004",
+      "path": "maps/generated/critic-v3/validation/cv3-val-004.map26a",
+      "sha256": "845fd693da7eddfc1dbd0a927ff4bf1bb5332512f837b0540e714b9bcc231fa2",
+      "bytes": 40077
+    },
+    {
+      "name": "generated/critic-v3/validation/cv3-val-005",
+      "path": "maps/generated/critic-v3/validation/cv3-val-005.map26a",
+      "sha256": "114d04762f3d21cfbf6999e02c67054f3f20906456e98c01471d0f8208451856",
+      "bytes": 14441
+    },
+    {
+      "name": "generated/critic-v3/validation/cv3-val-006",
+      "path": "maps/generated/critic-v3/validation/cv3-val-006.map26a",
+      "sha256": "49c54c2bf38c3462803504a5acf945cc456891baaede391ba18d320e5212a2a1",
+      "bytes": 30244
+    },
+    {
+      "name": "generated/critic-v3/validation/cv3-val-007",
+      "path": "maps/generated/critic-v3/validation/cv3-val-007.map26a",
+      "sha256": "91298ca2100e90077ce3d830125abea24b753ad7887a9137d150fa8758be5e09",
+      "bytes": 9107
+    }
+  ],
+  "role": "screening-only critic acceptance; never final confirmation"
+}

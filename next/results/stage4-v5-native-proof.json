@@ -1,0 +1,10 @@
+{
+  "passed": true,
+  "current_native_inventory": true,
+  "initial_wealth_zero": true,
+  "shard_emblem_fusion_verified": true,
+  "purchasing_preserves_wealth": true,
+  "hidden_enemy_gold_does_not_change_actor": true,
+  "past_snapshot_unchanged": true,
+  "engine_sha256": "f7d27c468024ce20f1f64eb1bd06ec4de6314213314fb0132e8b605cf0a610db"
+}

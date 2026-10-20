@@ -46,7 +46,7 @@ def main() -> None:
     t = sub.add_parser("stage3")
     t.add_argument("check", choices=["train", "prepare", "verify", "release", "analyze", "ready"])
     c = sub.add_parser("stage4")
-    c.add_argument("check", choices=["plan", "collect", "train", "audit", "ready"])
+    c.add_argument("check", choices=["maps", "plan", "collect", "develop", "train", "evaluate", "audit", "ready"])
     a = p.parse_args()
     cfg = core.config()
 
@@ -116,8 +116,9 @@ def main() -> None:
         result = cloning.train() if a.check == 'train' else getattr(stage3, a.check)()
         print(json.dumps(result, indent=2))
     elif a.cmd == "stage4":
-        from . import critic
-        result = getattr(critic, a.check)()
+        from . import monotone_critic as central_critic
+        check = {'collect':'prepare','develop':'development'}.get(a.check,a.check)
+        result = getattr(central_critic, check)()
         print(json.dumps(result, indent=2))
         if a.check == 'ready' and not result['passed']:
             raise SystemExit(1)

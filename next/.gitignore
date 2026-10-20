@@ -20,3 +20,7 @@ results/dashboard.html
 datasets/
 # Stage 4's first trial has invalid unsigned-label metrics; rejection is recorded in results/.
 models/outcome-v1/
+maps/generated/critic-v3/
+maps/generated/critic-v4/
+
+maps/generated/critic-v5/

@@ -25,6 +25,17 @@ moves to it.
    (edit `champion` in `lab.toml`).
 7. Write the outcome in `DECISIONS.md`, kept or rejected, with the numbers. Open questions go to `ROADMAP.md`.
 
+### Live experimental versions (Fran's clarification, 20 October)
+
+Do not require a promotion PASS before uploading or selecting a tested experimental
+version for real-game learning. Fran explicitly accepts an initial aggregate win-rate
+regression when a version fixes a targeted mistake. Freeze the source, reproduce the
+release build, check functional/runtime behavior, record the hypothesis and retain a
+rollback. Measure the targeted behavior as well as overall results and iterate in new
+versions. Do not automatically revert solely for a lower win rate. The gate above still
+applies to changing the **lab champion** or claiming proven strength; experimental live
+selection does not make either claim. See `LIVE-EXPERIMENTS.md` for current selection.
+
 ## Rules
 
 - **Version, don't mutate.** Frozen versions in `archive/` are never overwritten. The bot folder is edited in

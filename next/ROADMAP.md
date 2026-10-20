@@ -9,8 +9,10 @@ confirmation maps describe earlier stage milestones; both final cohorts are now 
 
 - Continue the hourly unranked curriculum: most opponents near/moderately above
   our strength, with a repeatable benchmark and at most 10% leader scouting.
-- Keep qualified v12/platform v83 live while the draft fork is developed. Automatic
-  uploads are authorized with short notes once runtime and fresh promotion checks pass.
+- Platform v84 / `ppo-topdraft-v6` is selected as a live experiment, pending server
+  compilation on matchmaking. Retain qualified v12/platform v83 as rollback. Tested
+  experimental uploads are authorized even after a strength regression; reserve the
+  fresh promotion gate for a proven lab champion. See LIVE-EXPERIMENTS.md.
 - `ppo-topdraft-v6` is the working development fork, with bounded movement
   fallback. Its 149/302 versus v12 fails the development minimum; it is not promoted.
 - Profile optional native calls on big-world and ambush. The new 250-game batch

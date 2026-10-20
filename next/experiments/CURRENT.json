@@ -5,7 +5,7 @@
   "last_verified_platform_version": 83,
   "live_batch": "results/stage7-live-curriculum-groups.json",
   "report": "MAP-LEARNING.md",
-  "status": "development_only_failed_strength_minimum",
+  "status": "experimental_uploaded_selected_pending_server_compilation",
   "next_hypotheses": [
     "Profile optional native calls on ambush and big-world; all 96 live fuel losses are on these maps",
     "Pilgrimage fight exposure: 0/6 against three nearby teams and 47.5 mean team deaths",
@@ -15,12 +15,17 @@
   "user_authorizations": {
     "hourly_unranked_all_available": true,
     "automatic_tested_uploads": true,
-    "short_submission_notes": true
+    "short_submission_notes": true,
+    "experimental_live_uploads_without_promotion_pass": true,
+    "initial_strength_regression_accepted": true
   },
   "hourly_automation": "battlecode-hourly-sparring-and-learning",
   "curriculum": {
     "nearby": 0.6,
     "stretch": 0.3,
     "leaders": 0.1
-  }
+  },
+  "selected_platform_version": 84,
+  "selected_candidate": "ppo-topdraft-v6",
+  "deployment": "results/topdraft-v6-deployment.json"
 }

@@ -1,5 +1,10 @@
 # Map learning and development, 20 October 2026
 
+Deployment follow-up: platform v84 / `ppo-topdraft-v6` has since been uploaded and
+selected as an experiment under Fran's clarified iteration policy. Its server
+compilation is pending matchmaking. See [LIVE-EXPERIMENTS.md](LIVE-EXPERIMENTS.md).
+The v83 batch and screening conclusions below remain historical evidence.
+
 All 50 available unranked challenge groups were used for **250 platform-v83 games** across all 35 current maps, always pairing each opponent/map in both seats. The initial allowance was 26; 24 more replenished while work continued. Final observed allowance: zero. Allocation: 150 nearby, 80 stretch, 20 leader games. No ranked matches were initiated.
 
 The unchanged live bot won **96/250**, with 0 bot faults and 96 fuel-exhausted turns. Results against nearby teams, stretch teams and leaders are separate in the JSON. The change from the previous leader-only batch is an opponent-selection change, not evidence of improved bot strength. Opponent-fault games are flagged and separately filtered.

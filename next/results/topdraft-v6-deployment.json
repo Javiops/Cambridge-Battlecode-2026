@@ -1,0 +1,22 @@
+{
+  "source_zip_sha256": "3e9819880e134285a34c84d2f61ae605fe59aea275af9c3f3189c1fe3b246e52",
+  "wasm_sha256": "f21d27dce9cc364a26c61780367fc0b5c16ce39f643c37929e3b599fe471f534",
+  "upload_status": "selected_pending_server_compilation",
+  "rollback_platform_version": 83,
+  "user_authorization": "Explicitly requests live experimental versions despite possible initial regression",
+  "release_status": "experimental_live_test_not_promoted",
+  "created_utc": "2026-10-20T21:32:50.1536421Z",
+  "candidate": "ppo-topdraft-v6",
+  "platform_version": 84,
+  "submission_id": "922f3836-7d6c-49c5-bbbd-e80c39f78c66",
+  "note": "topdraft-v6 | movement trial",
+  "server_source_sha256": "3e9819880e134285a34c84d2f61ae605fe59aea275af9c3f3189c1fe3b246e52",
+  "server_source_matches": true,
+  "team_rank_before": 141,
+  "team_elo_before": 1671,
+  "unranked_allowance": 0,
+  "more_challenges_after_local": "2026-10-20 23:44 CEST",
+  "server_compilation_verified": false,
+  "promotion_claim": false,
+  "updated_utc": "2026-10-20T21:35:40.250123+00:00"
+}

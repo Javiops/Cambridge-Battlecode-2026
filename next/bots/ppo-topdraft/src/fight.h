@@ -258,6 +258,20 @@ inline bool front_line(State& s, bc::champion& me, std::vector<Foe>& foes, int r
     vec2 pos = me.position();
     bool ranged = me.attack_range() > 1;
     int range = static_cast<int>(me.attack_range());
+    // Contact is decided from the already-fresh enemy snapshot. A false
+    // result needs no ally roster scan and must still leave time to farm/bank.
+    std::vector<Foe*> near;
+    int nearest = 99;
+    double theirs = 0;
+    for (auto& f : foes) { stage7_budget_checkpoint();
+        if (f.d > 8 || s.en_spawn.is_set(f.p)) continue;
+        near.push_back(&f);
+        theirs += f.hp;
+        if (!gone(f, me)) nearest = std::min(nearest, f.d);
+    }
+    if (near.empty()) return false;
+    bool fighting = nearest <= P_FRONT_ZONE || (nearest <= P_FRONT_ZONE + 3 && round - s.hit_round <= 2);
+    if (!fighting) return false;
     std::vector<Mate> mates;
     double ours = me.health();
     attempt([&] {
@@ -273,18 +287,6 @@ inline bool front_line(State& s, bc::champion& me, std::vector<Foe>& foes, int r
         }
         return true;
     });
-    std::vector<Foe*> near;
-    int nearest = 99;
-    double theirs = 0;
-    for (auto& f : foes) { stage7_budget_checkpoint(); 
-        if (f.d > 8 || s.en_spawn.is_set(f.p)) continue;
-        near.push_back(&f);
-        theirs += f.hp;
-        if (!gone(f, me)) nearest = std::min(nearest, f.d);
-    }
-    if (near.empty()) return false;
-    bool fighting = nearest <= P_FRONT_ZONE || (nearest <= P_FRONT_ZONE + 3 && round - s.hit_round <= 2);
-    if (!fighting) return false;
     if (theirs * 100.0 > ours * P_FRONT_OUT) return false;
     {  // a team fight only: someone of ours close, and not outnumbered right here
         int mc = 0, fc = 0;

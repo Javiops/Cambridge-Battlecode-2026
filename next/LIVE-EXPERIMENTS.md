@@ -55,3 +55,5 @@ duplicate automation. Current machine-readable state is in
 `results/topdraft-v7-deployment.json`, `experiments/LIVE-HOLD.json` and `experiments/CURRENT.json`.
 
 The first eight live challenge groups are complete and native-verified: 16/40 wins, zero faults/fuel losses. See [V84-SPARRING.md](V84-SPARRING.md) for the historical comparison and next banking-progress hypothesis.
+
+Prepared follow-up: **topdraft v12** checks contact before ally gathering. The targeted B-seat 94 fuel losses become zero, with big-world starter banks still 692/800. Broad results: 157/302 parent v8 (six schedule fuel losses) and 150/302 fixed v6 (five), zero faults. It remains offline through the hold. Follow the staged plan in experiments/banking-live-plan.json; see CONTACT-V12.md.

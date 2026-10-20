@@ -303,3 +303,7 @@ Raising only optional spell-scan entry headroom from 22k to 41k does not fix the
 ## 2026-10-20 · V10/V11 runtime hypotheses rejected
 
 Native PPO tile lookups and failed-planner cost learning each leave the 94-loss B-seat case unchanged. Both have ten canaries, zero faults and exact independent rebuilds; neither receives a broad screen or upload. V11 also weakens stress-map banking. Working source returns to v8. Actor-disabled and phase-only diagnostics change the trajectory, so they narrow investigation without proving cost attribution. See RUNTIME-PROBES.md.
+
+## 2026-10-20 · V12 contact-first combat work retained offline
+
+Move the unchanged contact test before ally metadata gathering. Frozen v8 mirror B loses 94 turns; v12 B versus the same v8 opponent loses zero and banks 245 versus 105. Big-world starter banks remain 692/800. Broad 69/70 starter, 157/302 v8 with six total schedule fuel losses; 150/302 fixed v6 with five. Zero faults and exact independent rebuild. This supports a usable targeted runtime fix, not a proven overall strength gain or lab promotion. Keep the teammate hold; stage v85, v8 and v12 field pairs afterward. See CONTACT-V12.md.

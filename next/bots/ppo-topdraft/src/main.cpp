@@ -1,4 +1,4 @@
-// ppo-topdraft-v8: finish safe existing banking trips with any positive cargo before optional planning; expect fewer late small-load stalls.
+// ppo-topdraft-v12: check front-line contact before gathering allies; expect less non-contact combat work and fewer idle budget retries.
 // team-fight-v1 (design: analysis/claude-api-2026-10-18/team_fight_design_1019.md): recall-api-v1 + P_TEAM_FIGHT (finish layer,
 // below) + P_HP_SHOP (hp shards at the top teams' hp share on the v72 power path).
 // Finish layer: the no-chase doctrine lifted for hurt rivals. The bot let hurt rivals go by

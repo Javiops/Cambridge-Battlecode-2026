@@ -1,13 +1,13 @@
 {
   "schema": 1,
-  "working_candidate": "ppo-topdraft-v8",
+  "working_candidate": "ppo-topdraft-v12",
   "qualified_candidate": "ppo-league-v12",
   "last_verified_platform_version": 85,
   "live_batch": "results/stage7-live-v84-groups.json",
   "report": "V84-SPARRING.md",
   "status": "teammate_live_hold_offline_work_continues",
   "next_hypotheses": [
-    "Locate the unchecked operation behind the repeated Stellar B-seat runtime case; v9 optional spell-scan entry guard failed and should not be repeated without new evidence.",
+    "Field-check v8 positive-cargo banking and v12 contact-first runtime fix; preserve separate version identity and fixed opponent pairs.",
     "Preserve zero observed fuel losses while testing useful gem collection and deposits; do not raise global initialization reserve",
     "Elk-arena sustained objective execution: assault logs exist and deposits rise to 96/144, but both seats still lose",
     "Pilgrimage/reverse-spiral fight exposure and carried-gem loss; preserve multi-camp maps"
@@ -30,20 +30,25 @@
   "deployment": "results/topdraft-v7-deployment.json",
   "live_hold": "experiments/LIVE-HOLD.json",
   "last_completed_batch_platform_version": 84,
-  "working_report": "BANKING-V8.md",
-  "offline_results": "results/topdraft-v8-vs-parent.json",
-  "prepared_candidate": "ppo-topdraft-v8",
+  "working_report": "CONTACT-V12.md",
+  "offline_results": "results/topdraft-v12-vs-parent.json",
+  "prepared_candidate": "ppo-topdraft-v12",
   "prepared_uploaded": false,
   "live_next_steps": [
-    "Honor experiments/LIVE-HOLD.json before live mutations or quota use.",
-    "After hold and teammate batch completion, select frozen v85 and repeat pinned Preyas source 26aefce6-7006-4ece-8bc8-75a679090632, both seats, five-map benchmark.",
-    "Download and native-verify the v85 pair before uploading the next usable prepared fix; persist request and returned IDs immediately."
+    "Honor LIVE-HOLD.json and let active teammate batch finish.",
+    "Follow banking-live-plan.json: v85 pair, v8 pair, then v12 pair, collecting/native-verifying each before the next activation. Preserve actual quota/version and pending-request journal.",
+    "Use remaining actual unranked allowance across nearby/stretch curriculum and broader maps."
   ],
   "rejected_candidates": {
     "ppo-topdraft-v9": "Optional spell-scan guard does not fix the reproduced 94-loss B-seat runtime case.",
     "ppo-topdraft-v10": "PPO roster-lookup optimization leaves target fuel failure unchanged at 94.",
     "ppo-topdraft-v11": "Failed-planner cost learning leaves target fuel failure unchanged at 94 and weakens stress-map canaries."
   },
-  "prepared_source_zip_sha256": "7cb32c43786e6df0cca50de081f619405cd2a65dbc43cf97696bdf3e3081c7cb",
-  "prepared_wasm_sha256": "c92a39613426dab54e4e02363cdf7ec50882865329ac869bcc155da9db0c9b89"
+  "prepared_source_zip_sha256": "63307a7f21d3dc877914fd4f3bbedd24c92ad8777e7275c8e98b3cd93bf6a8de",
+  "prepared_wasm_sha256": "fcd2cdc3c2c69e8defc939f28d1145e60aa8fb176466dc4ef720ccdbf8bd96ea",
+  "live_plan": "experiments/banking-live-plan.json",
+  "prepared_versions": [
+    "ppo-topdraft-v8",
+    "ppo-topdraft-v12"
+  ]
 }

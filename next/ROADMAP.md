@@ -7,6 +7,8 @@ confirmation maps describe earlier stage milestones; both final cohorts are now 
 
 ## Current development after deployment
 
+- Prepared topdraft v12 retains v8 banking and moves the unchanged front-line contact test before ally scans. The reproduced B-seat runtime case drops from 94 losses to zero; broad results and limits are in CONTACT-V12.md. After the teammate hold, use banking-live-plan.json to test v85, v8 and v12 in paired, pinned stages. No requests have been queued for those stages yet.
+
 - Continue the hourly unranked curriculum: most opponents near/moderately above
   our strength, with a repeatable benchmark and at most 10% leader scouting.
 - Platform v85 / `ppo-topdraft-v7` compiled and was live, then Fran requested a

@@ -47,9 +47,23 @@ The BC actor is unchanged; final confirmation maps remain sealed.
 `ppo-v1` starts from `bc-v1` and accepted `outcome-v5`, recalibrates its critic on
 on-policy data, and completes 12 clipped PPO iterations. The native pipeline is audited.
 Fresh matched-controller evaluation scores 60.94% on 64 games/16 maps;
-90% whole-map interval [53.12%, 68.75%]. Stage 5 clears its native training and held-out strength milestone; Stage 6 production integration has not started.
+90% whole-map interval [53.12%, 68.75%]. Stage 5 clears its native training and held-out strength milestone.
 See STAGE5.md for the shared controller, duplicate self-play capture accounting,
 source-bound old-policy checks, model hashes and remaining coverage limits.
+
+## Stage 6 C++ runtime complete
+
+The unchanged PPO checkpoint and controller pass exact native parity for 262,936
+decisions/160,000 turns in 16 full release matches. All six physical champion types,
+both seats, banking and maps up to 80×80 are covered. Official total fuel peaks at
+84,574/100,000 on ordinary turns and 97,603/200,000 on first turns. There are no faults
+or fuel losses, and the source bundle reproduces the frozen WASM. See STAGE6.md and
+`python -m lab stage6 ready`.
+
+Stage 7 is next. The runtime diagnostic cohort loses all 16 games to starter;
+economy, purchases, survival and strategic coverage still need strength work. Keep
+the frozen checkpoint and certificates as the baseline, use fresh development
+cohorts for tuning, and reserve final confirmation maps for the promotion gate.
 
 ## Foundation (before any real bot)
 

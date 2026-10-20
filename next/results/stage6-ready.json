@@ -1,0 +1,55 @@
+{
+  "passed": true,
+  "stage": 6,
+  "next_stage": 7,
+  "version": "ppo-runtime-v1",
+  "weights_sha256": "94c1399f470e7c64f65a203a46d4bd14dff4527057d6eb12fc26fffb79b5402f",
+  "wasm_sha256": "3a8b7f4aba82f3c0ca681ed559167a8913e6341a013d4334b5b50ae7237c607d",
+  "release_games": 16,
+  "turns": 160000,
+  "decisions": 262936,
+  "logit_probes": 3041,
+  "bit_identical_logits": 48656,
+  "actions": {
+    "move": 94221,
+    "wait": 153428,
+    "cast": 4860,
+    "attack": 10423,
+    "submit": 4
+  },
+  "actor_types": [
+    0,
+    3,
+    4,
+    6,
+    11,
+    12
+  ],
+  "diagnostic_wins": 0,
+  "ordinary_fuel_max": 84574,
+  "initial_fuel_max": 97603,
+  "faults": 0,
+  "fuel_exhausted": 0,
+  "confirmation_games": 0,
+  "promoted": false,
+  "bundle": {
+    "path": "results/bundles/ppo-runtime-v1.zip",
+    "sha256": "00ad25648805b8313b45c1337b1cdaab8267a3654058b3347e5a0edb0c4ed238",
+    "rebuild_identical": true
+  },
+  "sources": {
+    "bots/ppo-actor/src/actions.h": "7825d2ed7aa7f9fa8614fe074e22199f048452980684a80dd4e65344dbc98ae1",
+    "bots/ppo-actor/src/controller.h": "1b100ca6f798c5b1bea8f6e7feb2049db2dea9da5df6d76cdd4b29b333c1d4ce",
+    "bots/ppo-actor/src/main.cpp": "b4bdd488938459f78fc8aedb8fa2e0cae107428df0f0ab26d6aeac69e014312e",
+    "bots/ppo-actor/src/observe.h": "c8aa097d6d13672dddfc85b7b425dc5a1470edd9a61e2b0d1efcc5678e9904a3",
+    "bots/ppo-actor/src/policy.h": "f69b5cbd06d4de0c2badc9a7b4292dc5fe32f6aaadfc0b51eca19d639cfed651",
+    "bots/ppo-actor/src/sampling.h": "6d15f569e19c47f693b7040383524b2d47f78a32c50d8287d8b9d2337d0a7a32",
+    "bots/ppo-actor/src/weights.h": "5e6990c172efc7029576d7b04ce326c4c500f69b69ed74bcf5cf9270c8e8fe43",
+    "lab/stage6.py": "f77b14bac5b9141bcd3556e7d9a603ebde3280b73dd63621facb38db86386f4c",
+    "lab/runtime-check.mjs": "c9d21bb33ab828f6eb53118d9787dda12aadf39c3e75454b82829db90a1f967b",
+    "lab/ppo-actor.mjs": "d152076dfcd825d7a9ab8b71d93242c788cbf8d18519b6052e6f719b1a94ed33",
+    "lab/engine.mjs": "390e898cfcc869ddd9e8212a004681da2c69224623deb946111f3c7935356a0b",
+    "lab.toml": "265a83b3493edf7601c6e219d4029af63a94e1798621bb40dfaf2cd896be03f1"
+  },
+  "acceptance": "runtime integration only; no new strength claim, live upload or promotion"
+}

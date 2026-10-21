@@ -347,3 +347,11 @@ All22 requested groups/110 games native-verified:32wins,0faults,1 exhausted turn
 ## 2026-10-21 · Absent screen opponent cohort
 
 The generated-only feature schedule finished every game but lost its generic final report to division by an empty starter cohort. Summarize only present known cohorts; empty captures and unknown opponents fail loudly. Three regression tests added first;142 tests pass with workspace temporary files. Four historical schedules keep identical summary values. No game execution,stats rules,gate or bot change in this correction.
+
+## 2026-10-21 · V17 complete visible quorum scan
+
+Skip hidden rally allies per valid SDK snapshot,instead of aborting the remaining roster. Same thresholds and per-unit latch. Broad178/350 parent,69/70 starter,0faults,4 exhausted turns; feature income not improved although deaths fall and wins rise2. All24 split controls exact. Eligible functional trial,not promotion; shared release remains a separate issue. Exact independent rebuild and494 release runs are in QUORUM-V17.md.
+
+## 2026-10-21 · V91 field window complete
+
+All28 requested groups/140 games native-verified:49wins,0faults,1 exhausted turn. Matched v90 subset35/110 versus32; no promotion claim. Five units release the traced elk campaign while Stellar still waits. Test communicating the existing quorum decision next,with byte-role audit and danger-sharing tradeoff. Actual1.0.1 only;1.0.2 remains a separate announced patch. See V91-FIELD.md.

@@ -1,0 +1,26 @@
+{
+  "candidate": "ppo-topdraft-v17",
+  "parent": "ppo-topdraft-v16",
+  "change": "One visibility-checked SDK snapshot per rally ally; skip ordinary hidden results instead of aborting the whole roster.",
+  "predicted_metrics": [
+    "Complete visible quorum counts",
+    "Earlier/more consistent assault releases across units",
+    "Fresh objective acquisition and deposits, with deaths/runtime alongside wins"
+  ],
+  "unchanged": [
+    "65% entry health",
+    "50% counted-ally health",
+    "Recall rejection",
+    "Distance5",
+    "80% quorum",
+    "Rally clock120/360/240",
+    "Per-unit release latch",
+    "Combat/survival/banking",
+    "Initialization reserve",
+    "Draft/RNG/observation/model"
+  ],
+  "evidence": "V90 Preyas elk A: partial releases176 while healthy others rally200; native round-start probe shows early hidden roster slots before later readable allies. Samples do not alone prove sufficient quorum or every missed release.",
+  "controls": "Same24 predeclared sole/split development geometries and broad35official/140generated maps,both seats. No map/opponent-name cases.",
+  "confirmation_games": 0,
+  "patch": "All proposed local tests1.0.1; official3.0.2 distribution unchanged at start. Verify actual server build before interpreting new games."
+}

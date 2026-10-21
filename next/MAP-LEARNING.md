@@ -1,6 +1,8 @@
 # Map learning and development, 20 October 2026
 
-Latest checkpoint: **v90 / topdraft v16 compiled and live**,22 requested groups/110 games complete native-verified:32wins,0faults,1 exhausted turn on35maps. Other22 planned groups were not requested. Earlier rally still leaves split squad releases; inspect quorum visibility and per-unit release latch. New1.0.2 is announced; these games are actual1.0.1. See V90-FIELD.md and CURRENT.json; older status statements below are historical.
+Latest checkpoint: **v91 / topdraft v17 compiled and live**,all28 requested groups/140 games complete native-verified:49wins,0faults,1 exhausted turn. Matched v90 subset35/110 versus32.16 remaining planned groups were not requested. Five traced teammates release while Stellar still waits; next test a shared release decision after byte-role audit. All games actual1.0.1;1.0.2 announcement is separate. See V91-FIELD.md and CURRENT.json. Older checkpoints below are historical.
+
+Historical checkpoint: **v90 / topdraft v16 compiled and live**,22 requested groups/110 games complete native-verified:32wins,0faults,1 exhausted turn on35maps. Other22 planned groups were not requested. Earlier rally still leaves split squad releases; inspect quorum visibility and per-unit release latch. New1.0.2 is announced; these games are actual1.0.1. See V90-FIELD.md and CURRENT.json; older status statements below are historical.
 
 Current checkpoint: **v89 curriculum complete**,71/220 wins,0 faults,1 exhausted turn on35 maps. Matched v88 subset7/30 versus8/30. Eight nonleader elk opponents collect fresh gems before our350 rally; next test earlier timing with generated geometry controls. Later quota check observes6 available. See V89-CURRICULUM.md and CURRENT.json; older live-status statements below are historical.
 

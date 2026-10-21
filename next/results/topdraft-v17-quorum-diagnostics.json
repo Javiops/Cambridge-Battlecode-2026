@@ -1,0 +1,35 @@
+{
+  "candidate": "ppo-topdraft-v17",
+  "baseline": "ppo-topdraft-v6",
+  "summary": {
+    "sole": {
+      "games": 24,
+      "wins": 12,
+      "faults": 0,
+      "fuel_exhausted": 0,
+      "fresh_before_350": 7,
+      "no_fresh": 6,
+      "mean_first_fresh_or_2001": 832.8333333333334,
+      "mean_bank": 197.33333333333334,
+      "mean_deaths": 31.708333333333332,
+      "first_cycle_any_release": 24,
+      "first_cycle_all_released": 15,
+      "mean_first_cycle_released_fraction": 0.8597222222222223
+    },
+    "split": {
+      "games": 24,
+      "wins": 9,
+      "faults": 0,
+      "fuel_exhausted": 0,
+      "fresh_before_350": 8,
+      "no_fresh": 9,
+      "mean_first_fresh_or_2001": 1051.1666666666667,
+      "mean_bank": 211.5,
+      "mean_deaths": 44.583333333333336,
+      "first_cycle_any_release": 0,
+      "first_cycle_all_released": 0,
+      "mean_first_cycle_released_fraction": 0.0
+    }
+  },
+  "limits": "Procedural development only; sampled full-log releases do not prove sustained damage or rewards. Missing collection censored2001 in descriptive mean."
+}

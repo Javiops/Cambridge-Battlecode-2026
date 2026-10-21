@@ -1,4 +1,4 @@
-// ppo-topdraft-v16: advance sole-objective rally clock from350 to120; expect earlier fresh objective collection without changing survival or multi-camp play.
+// ppo-topdraft-v17: one visible snapshot per rally ally, skipping hidden slots; expect complete quorum counts and fewer split releases without lowering health or quorum.
 // team-fight-v1 (design: analysis/claude-api-2026-10-18/team_fight_design_1019.md): recall-api-v1 + P_TEAM_FIGHT (finish layer,
 // below) + P_HP_SHOP (hp shards at the top teams' hp share on the v72 power path).
 // Finish layer: the no-chase doctrine lifted for hurt rivals. The bot let hurt rivals go by
@@ -1670,8 +1670,17 @@ bool objective_assemble(State& s, bc::champion& me, int round) {
     attempt([&] {
         for (auto& a : my_roster(s)) {
             stage7_budget_checkpoint();
-            if (a.is_alive() && !a.is_recalling() && a.health() >= 0.5f * a.max_health() &&
-                dist(a.position(), *s.objective_stage) <= 5) ++ready;
+            // A hidden cached ally must not prevent later visible allies
+            // from contributing to the same healthy staging quorum.
+            bc::detail::champion_info snapshot{};
+            const auto code = bc::detail::sdk_champion(unit_id(a), &snapshot);
+            if (code == static_cast<std::int32_t>(bc::error_code::api_not_in_vision)) continue;
+            bc::detail::check(code);
+            const auto flags = bc::champion_state::from_bits_retain(static_cast<std::uint32_t>(snapshot.state));
+            if (flags.contains(bc::champion_state::alive) &&
+                !flags.contains(bc::champion_state::recalling) &&
+                snapshot.health >= 0.5f * snapshot.max_health &&
+                dist(vec2{snapshot.x, snapshot.y}, *s.objective_stage) <= 5) ++ready;
         }
         return true;
     });

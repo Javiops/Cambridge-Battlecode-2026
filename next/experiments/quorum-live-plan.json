@@ -1,0 +1,461 @@
+{
+  "status": "current28_requests_complete_native_verified",
+  "tasks": [
+    {
+      "task": 0,
+      "opponent": "Preyas",
+      "sourceGroup": "2fd65bdf-65cb-4f9e-91c2-5f1059f29134",
+      "maps": [
+        "00collision",
+        "00expanse",
+        "00stampede",
+        "01elk_arena",
+        "01big_world"
+      ],
+      "cohort": "nearby",
+      "status": "pair_complete_native_verified",
+      "groups": [
+        "d1b54112-308e-43e5-abce-30700bdd5c8b",
+        "6580ad2d-3a47-4b9a-a782-764202f3b763"
+      ],
+      "v90_matched_subset": true
+    },
+    {
+      "task": 1,
+      "opponent": "Cozy Campfire",
+      "sourceGroup": "c66d10cf-e2f8-44be-883f-8eb16d7648d8",
+      "maps": [
+        "00ambush",
+        "00contest",
+        "00corners",
+        "00eight",
+        "00elkring"
+      ],
+      "cohort": "nearby",
+      "status": "pair_complete_native_verified",
+      "groups": [
+        "93f15143-1a6a-4c55-9fa6-bdc26479db6f",
+        "de8f8089-5913-484f-93c4-574b74633c6c"
+      ],
+      "v90_matched_subset": true
+    },
+    {
+      "task": 2,
+      "opponent": "BitShift",
+      "sourceGroup": "0d5b5f55-5d1c-40d6-98b3-c018900d3228",
+      "maps": [
+        "00stampede",
+        "01elk_arena",
+        "00collision",
+        "00rows",
+        "00monolith"
+      ],
+      "cohort": "stretch",
+      "status": "pair_complete_native_verified",
+      "groups": [
+        "a6f3ec00-0c4f-436e-ac38-c3175867ce84",
+        "4f4e72ca-2774-4800-90e1-c388afe32040"
+      ],
+      "v90_matched_subset": true
+    },
+    {
+      "task": 3,
+      "opponent": "Agentic Loop Builders",
+      "sourceGroup": "df5899a6-7bb9-48d4-ad58-ba46ab9b0975",
+      "maps": [
+        "00fragment",
+        "00interlock",
+        "00lanes",
+        "00packs",
+        "00pilgrimage"
+      ],
+      "cohort": "nearby",
+      "status": "pair_complete_native_verified",
+      "groups": [
+        "65920c7f-9460-4bcc-b998-8bd7477fbeb9",
+        "7f513fae-a4a5-43dc-b67a-90b056ed2bbb"
+      ],
+      "purpose": "Broader geometry coverage; new map/opponent combinations, not a repeated v88 counterfactual.",
+      "v90_matched_subset": true
+    },
+    {
+      "task": 4,
+      "opponent": "Ad Astra",
+      "sourceGroup": "f94de5ea-b34d-4504-8d49-3ff84765e117",
+      "maps": [
+        "00quadrants",
+        "00reverse_spiral",
+        "00rushbait_v2",
+        "00split",
+        "00swirl"
+      ],
+      "cohort": "nearby",
+      "status": "pair_complete_native_verified",
+      "groups": [
+        "108832a0-e8a9-4e4d-805a-af6f72a2ff7a",
+        "cbdc962e-1af7-4fdf-9268-c1e9fb177987"
+      ],
+      "purpose": "Broader geometry coverage; new map/opponent combinations, not a repeated v88 counterfactual.",
+      "v90_matched_subset": true
+    },
+    {
+      "task": 5,
+      "opponent": "Context Overflow",
+      "sourceGroup": "47390419-79e1-420b-b043-d679f5065316",
+      "maps": [
+        "01boss_battle",
+        "01broken_curve",
+        "01concentrated_wealth",
+        "01corridors",
+        "01fracture"
+      ],
+      "cohort": "nearby",
+      "status": "pair_complete_native_verified",
+      "groups": [
+        "91a5c175-d43b-429f-82ad-85d211ac23d7",
+        "6a74f9e0-728f-43fe-a8c5-9406a76c3e19"
+      ],
+      "purpose": "Broader geometry coverage; new map/opponent combinations, not a repeated v88 counterfactual.",
+      "v90_matched_subset": true
+    },
+    {
+      "task": 6,
+      "opponent": "NotSoLonely",
+      "sourceGroup": "8f3fd55f-cdc0-4c3e-92d7-6273540118e0",
+      "maps": [
+        "01gold_rush",
+        "01hooks",
+        "01islands",
+        "01shortcut",
+        "01starfish"
+      ],
+      "cohort": "stretch",
+      "status": "pair_complete_native_verified",
+      "groups": [
+        "fcb85c16-e43d-4ac7-9921-d4ca5d44cc18",
+        "2f5b9d31-d255-4494-bd5e-342bf22b1039"
+      ],
+      "purpose": "Broader geometry coverage; new map/opponent combinations, not a repeated v88 counterfactual.",
+      "v90_matched_subset": true
+    },
+    {
+      "task": 7,
+      "opponent": "Dirty Coding",
+      "sourceGroup": "90de02f1-52f7-48cd-8fed-3e9c724a80ce",
+      "maps": [
+        "01starvation",
+        "01the_farm",
+        "01yellow_brick_road",
+        "01big_world",
+        "01elk_arena"
+      ],
+      "cohort": "stretch",
+      "status": "pair_complete_native_verified",
+      "groups": [
+        "b98474c6-c479-4700-9bfd-52e188d98c11",
+        "71b399b2-9858-4628-8e05-829b174c670b"
+      ],
+      "purpose": "Cover the remaining three official maps plus two repeated controls; historical v87 2/10 makes this a measured stretch opponent.",
+      "v90_matched_subset": true
+    },
+    {
+      "task": 8,
+      "opponent": "Tozo's Disciples",
+      "sourceGroup": "29023ee8-2d57-49c7-b069-3bfa6f2f51e5",
+      "maps": [
+        "00ambush",
+        "00contest",
+        "00corners",
+        "00eight",
+        "00elkring"
+      ],
+      "cohort": "nearby",
+      "status": "pair_complete_native_verified",
+      "groups": [
+        "5b4fa9d5-9393-4a98-8cdb-68520e3d699c",
+        "1c2df574-c59d-45f0-9730-de5262c0fde4"
+      ],
+      "parent_plan_task": 0,
+      "purpose": "Broader frozen-opponent curriculum; original v87 same-label outcomes are descriptive reference, seed equality is not certified.",
+      "v90_matched_subset": true
+    },
+    {
+      "task": 9,
+      "opponent": "Slawomir Zarzycki",
+      "sourceGroup": "08657255-baf4-4efe-b35f-67af791da0b8",
+      "maps": [
+        "00collision",
+        "00expanse",
+        "00stampede",
+        "01elk_arena",
+        "01big_world"
+      ],
+      "cohort": "nearby",
+      "status": "pair_complete_native_verified",
+      "groups": [
+        "cf71c88e-297a-4ef5-a5ba-27d1fb7fc3cf",
+        "3e56f0eb-9e9e-4df2-b155-794e60114bfb"
+      ],
+      "parent_plan_task": 3,
+      "purpose": "Broader frozen-opponent curriculum; original v87 same-label outcomes are descriptive reference, seed equality is not certified.",
+      "v90_matched_subset": true
+    },
+    {
+      "task": 10,
+      "opponent": "Ad Astra",
+      "sourceGroup": "d0195b9a-b25e-4168-83bb-57b23a177e9b",
+      "maps": [
+        "00fragment",
+        "00interlock",
+        "00lanes",
+        "00monolith",
+        "00packs"
+      ],
+      "cohort": "nearby",
+      "status": "pair_complete_native_verified",
+      "groups": [
+        "edce8890-ce31-4869-85e3-002d82adc80d",
+        "28a408fa-0c02-4643-a359-4291c8e6ec52"
+      ],
+      "parent_plan_task": 5,
+      "purpose": "Broader frozen-opponent curriculum; original v87 same-label outcomes are descriptive reference, seed equality is not certified.",
+      "v90_matched_subset": false
+    },
+    {
+      "task": 11,
+      "opponent": "Context Overflow",
+      "sourceGroup": "3da0445d-be46-42f2-b505-1dfd22a7672d",
+      "maps": [
+        "00pilgrimage",
+        "00quadrants",
+        "00reverse_spiral",
+        "00rows",
+        "00rushbait_v2"
+      ],
+      "cohort": "nearby",
+      "status": "planned",
+      "groups": [],
+      "parent_plan_task": 6,
+      "purpose": "Broader frozen-opponent curriculum; original v87 same-label outcomes are descriptive reference, seed equality is not certified.",
+      "v90_matched_subset": false
+    },
+    {
+      "task": 12,
+      "opponent": "Preyas",
+      "sourceGroup": "e73b33d7-c4aa-4576-9935-6010966a1863",
+      "maps": [
+        "00split",
+        "00swirl",
+        "01boss_battle",
+        "01broken_curve",
+        "01concentrated_wealth"
+      ],
+      "cohort": "nearby",
+      "status": "planned",
+      "groups": [],
+      "parent_plan_task": 7,
+      "purpose": "Broader frozen-opponent curriculum; original v87 same-label outcomes are descriptive reference, seed equality is not certified.",
+      "v90_matched_subset": false
+    },
+    {
+      "task": 13,
+      "opponent": "Tozo's Disciples",
+      "sourceGroup": "0e4e114e-93ba-4752-9585-3af243e69446",
+      "maps": [
+        "01corridors",
+        "01fracture",
+        "01gold_rush",
+        "01hooks",
+        "01islands"
+      ],
+      "cohort": "nearby",
+      "status": "planned",
+      "groups": [],
+      "parent_plan_task": 8,
+      "purpose": "Broader frozen-opponent curriculum; original v87 same-label outcomes are descriptive reference, seed equality is not certified.",
+      "v90_matched_subset": false
+    },
+    {
+      "task": 14,
+      "opponent": "Agentic Loop Builders",
+      "sourceGroup": "48a9f6d5-1e09-4119-9c0c-68046d78f7a7",
+      "maps": [
+        "01shortcut",
+        "01starfish",
+        "01starvation",
+        "01the_farm",
+        "01yellow_brick_road"
+      ],
+      "cohort": "nearby",
+      "status": "planned",
+      "groups": [],
+      "parent_plan_task": 9,
+      "purpose": "Broader frozen-opponent curriculum; original v87 same-label outcomes are descriptive reference, seed equality is not certified.",
+      "v90_matched_subset": false
+    },
+    {
+      "task": 15,
+      "opponent": "Slawomir Zarzycki",
+      "sourceGroup": "f4a036b1-e5bf-4ecc-b6c6-b55ec3345b61",
+      "maps": [
+        "00pilgrimage",
+        "00quadrants",
+        "00reverse_spiral",
+        "00rows",
+        "00rushbait_v2"
+      ],
+      "cohort": "nearby",
+      "status": "planned",
+      "groups": [],
+      "parent_plan_task": 10,
+      "purpose": "Broader frozen-opponent curriculum; original v87 same-label outcomes are descriptive reference, seed equality is not certified.",
+      "v90_matched_subset": false
+    },
+    {
+      "task": 16,
+      "opponent": "NotSoLonely",
+      "sourceGroup": "0ff0439c-33dc-47a6-a434-97a38b248e1e",
+      "maps": [
+        "00split",
+        "00swirl",
+        "01boss_battle",
+        "01broken_curve",
+        "01concentrated_wealth"
+      ],
+      "cohort": "stretch",
+      "status": "pair_complete_native_verified",
+      "groups": [
+        "c2058720-d0d2-4380-b06d-928ae9438cdc",
+        "9fa4a38c-e95b-4b4f-9455-5c76684f76e6"
+      ],
+      "parent_plan_task": 12,
+      "purpose": "Broader frozen-opponent curriculum; original v87 same-label outcomes are descriptive reference, seed equality is not certified.",
+      "v90_matched_subset": false
+    },
+    {
+      "task": 17,
+      "opponent": "Pathfinders",
+      "sourceGroup": "046779dc-0345-43d9-bdbd-dbd10871ca87",
+      "maps": [
+        "01corridors",
+        "01fracture",
+        "01gold_rush",
+        "01hooks",
+        "01islands"
+      ],
+      "cohort": "stretch",
+      "status": "pair_complete_native_verified",
+      "groups": [
+        "453804fb-bfbb-4ee4-bd8d-f454b854ee7d",
+        "a4123512-c169-4e5e-8be9-e5dccc47b4d8"
+      ],
+      "parent_plan_task": 13,
+      "purpose": "Broader frozen-opponent curriculum; original v87 same-label outcomes are descriptive reference, seed equality is not certified.",
+      "v90_matched_subset": false
+    },
+    {
+      "task": 18,
+      "opponent": "Antifreeze",
+      "sourceGroup": "2719965e-02b5-4407-b51b-144bd9c12b64",
+      "maps": [
+        "01shortcut",
+        "01starfish",
+        "01starvation",
+        "01the_farm",
+        "01yellow_brick_road"
+      ],
+      "cohort": "stretch",
+      "status": "planned",
+      "groups": [],
+      "parent_plan_task": 14,
+      "purpose": "Broader frozen-opponent curriculum; original v87 same-label outcomes are descriptive reference, seed equality is not certified.",
+      "v90_matched_subset": false
+    },
+    {
+      "task": 19,
+      "opponent": "BitShift",
+      "sourceGroup": "f9ff0be5-54cc-499d-ab71-1d484ae01c12",
+      "maps": [
+        "00split",
+        "00swirl",
+        "01boss_battle",
+        "01broken_curve",
+        "01concentrated_wealth"
+      ],
+      "cohort": "stretch",
+      "status": "planned",
+      "groups": [],
+      "parent_plan_task": 19,
+      "purpose": "Broader frozen-opponent curriculum; original v87 same-label outcomes are descriptive reference, seed equality is not certified.",
+      "v90_matched_subset": false
+    },
+    {
+      "task": 20,
+      "opponent": "Nyx",
+      "sourceGroup": "e534d275-2274-4cc1-ba22-257517b1a098",
+      "maps": [
+        "00collision",
+        "00stampede",
+        "01elk_arena",
+        "01big_world",
+        "00monolith"
+      ],
+      "cohort": "leader",
+      "status": "pair_complete_native_verified",
+      "groups": [
+        "acf24b20-c9fa-4449-b93b-1580bc129381",
+        "3dfd80ed-7b6f-4276-89e8-65b8bfefa6bf"
+      ],
+      "parent_plan_task": 20,
+      "purpose": "Broader frozen-opponent curriculum; original v87 same-label outcomes are descriptive reference, seed equality is not certified.",
+      "v90_matched_subset": true
+    },
+    {
+      "task": 21,
+      "opponent": "Nyx",
+      "sourceGroup": "2834b38e-77d3-4795-8aea-c67e0a7c345f",
+      "maps": [
+        "00ambush",
+        "00contest",
+        "01fracture",
+        "01gold_rush",
+        "01the_farm"
+      ],
+      "cohort": "leader",
+      "status": "planned",
+      "groups": [],
+      "parent_plan_task": 21,
+      "purpose": "Broader frozen-opponent curriculum; original v87 same-label outcomes are descriptive reference, seed equality is not certified.",
+      "v90_matched_subset": false
+    }
+  ],
+  "execution_order": [
+    0,
+    1,
+    2,
+    3,
+    6,
+    4,
+    5,
+    7,
+    8,
+    9,
+    20,
+    17,
+    16,
+    10,
+    14,
+    18,
+    11,
+    12,
+    13,
+    19,
+    15,
+    21
+  ],
+  "requested_groups": 28,
+  "collected_groups": 28,
+  "native_verified_games": 140,
+  "unrequested_plan_groups": 16,
+  "last_observed_allowance": 0
+}

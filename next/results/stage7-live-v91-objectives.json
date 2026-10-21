@@ -1,0 +1,7081 @@
+{
+  "current": {
+    "games": 18,
+    "wins": 4,
+    "mean_bank": 325,
+    "mean_deaths": 42.388888888888886,
+    "mean_fresh": 317.3333333333333,
+    "zero_fresh": 4,
+    "mean_credited_campClear_events": 3.2222222222222223,
+    "first_cycle_all_released": 5,
+    "mean_first_cycle_logged_release_fraction": 0.8703703703703703
+  },
+  "previous": {
+    "games": 18,
+    "wins": 1,
+    "mean_bank": 196.44444444444446,
+    "mean_deaths": 45.55555555555556,
+    "mean_fresh": 210.22222222222223,
+    "zero_fresh": 8,
+    "mean_credited_campClear_events": 1.7222222222222223,
+    "first_cycle_all_released": 8,
+    "mean_first_cycle_logged_release_fraction": 0.8333333333333334
+  },
+  "records": [
+    {
+      "current": {
+        "id": "8498739c-47c2-463a-a588-4f6027c90d63",
+        "group_id": "d1b54112-308e-43e5-abce-30700bdd5c8b",
+        "map": "00stampede",
+        "opponent": "Preyas",
+        "seat": "A",
+        "seed": "5628688039905818090",
+        "won": true,
+        "bank": 800,
+        "deaths": 32,
+        "collected": 960.0,
+        "physical": 6,
+        "fresh": {
+          "first": 704,
+          "value": 800.0,
+          "entries": 11
+        },
+        "foe_fresh": {
+          "first": 422,
+          "value": 640.0,
+          "entries": 4
+        },
+        "campClear": {
+          "first": 404,
+          "value": 5.0,
+          "entries": 5
+        },
+        "foe_campClear": {
+          "first": 698,
+          "value": 4.0,
+          "entries": 4
+        },
+        "releases": [
+          {
+            "round": 156,
+            "unit": 4,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 156,
+            "unit": 5,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 157,
+            "unit": 0,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 157,
+            "unit": 1,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 160,
+            "unit": 2,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 160,
+            "unit": 3,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 516,
+            "unit": 1,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 516,
+            "unit": 2,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 516,
+            "unit": 3,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 516,
+            "unit": 4,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 572,
+            "unit": 5,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 573,
+            "unit": 0,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 876,
+            "unit": 5,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 877,
+            "unit": 1,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 877,
+            "unit": 2,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 877,
+            "unit": 3,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 877,
+            "unit": 4,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1077,
+            "unit": 0,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1250,
+            "unit": 2,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1250,
+            "unit": 3,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1250,
+            "unit": 4,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1251,
+            "unit": 0,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1251,
+            "unit": 1,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1586,
+            "unit": 2,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1586,
+            "unit": 4,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1586,
+            "unit": 5,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1587,
+            "unit": 0,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1587,
+            "unit": 1,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1587,
+            "unit": 3,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1991,
+            "unit": 5,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1992,
+            "unit": 0,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1992,
+            "unit": 1,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1992,
+            "unit": 2,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1992,
+            "unit": 4,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1999,
+            "unit": 3,
+            "ready": 5,
+            "quorum": 5
+          }
+        ],
+        "first_cycle_units": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "first_cycle_all": true,
+        "stdout_bytes": 102641
+      },
+      "previous": {
+        "id": "0d435672-d8bf-4118-bb09-28958f2e603d",
+        "group_id": "2fd65bdf-65cb-4f9e-91c2-5f1059f29134",
+        "map": "00stampede",
+        "opponent": "Preyas",
+        "seat": "A",
+        "seed": "5628688039905818090",
+        "won": true,
+        "bank": 960,
+        "deaths": 32,
+        "collected": 1200.0,
+        "physical": 6,
+        "fresh": {
+          "first": 419,
+          "value": 1120.0,
+          "entries": 15
+        },
+        "foe_fresh": {
+          "first": 722,
+          "value": 480.0,
+          "entries": 3
+        },
+        "campClear": {
+          "first": 1006,
+          "value": 6.0,
+          "entries": 6
+        },
+        "foe_campClear": {
+          "first": 411,
+          "value": 4.0,
+          "entries": 4
+        },
+        "releases": [
+          {
+            "round": 158,
+            "unit": 4,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 159,
+            "unit": 0,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 159,
+            "unit": 1,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 159,
+            "unit": 2,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 159,
+            "unit": 5,
+            "ready": 6,
+            "quorum": 5
+          },
+          {
+            "round": 160,
+            "unit": 3,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 527,
+            "unit": 1,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 527,
+            "unit": 4,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 533,
+            "unit": 0,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 533,
+            "unit": 5,
+            "ready": 6,
+            "quorum": 5
+          },
+          {
+            "round": 534,
+            "unit": 2,
+            "ready": 6,
+            "quorum": 5
+          },
+          {
+            "round": 920,
+            "unit": 0,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 920,
+            "unit": 4,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 923,
+            "unit": 3,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 923,
+            "unit": 5,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 924,
+            "unit": 1,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 925,
+            "unit": 2,
+            "ready": 6,
+            "quorum": 5
+          },
+          {
+            "round": 1314,
+            "unit": 3,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1316,
+            "unit": 0,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1318,
+            "unit": 1,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1318,
+            "unit": 2,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1318,
+            "unit": 4,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1318,
+            "unit": 5,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1589,
+            "unit": 0,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1589,
+            "unit": 1,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1589,
+            "unit": 2,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1589,
+            "unit": 3,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1589,
+            "unit": 4,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1953,
+            "unit": 3,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1954,
+            "unit": 5,
+            "ready": 5,
+            "quorum": 5
+          }
+        ],
+        "first_cycle_units": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "first_cycle_all": true,
+        "stdout_bytes": 103572
+      }
+    },
+    {
+      "current": {
+        "id": "0c360477-4e50-492c-b786-70f42a534577",
+        "group_id": "d1b54112-308e-43e5-abce-30700bdd5c8b",
+        "map": "01elk-arena",
+        "opponent": "Preyas",
+        "seat": "A",
+        "seed": "18346891530149115012",
+        "won": false,
+        "bank": 0,
+        "deaths": 27,
+        "collected": 36.0,
+        "physical": 6,
+        "fresh": {
+          "first": null,
+          "value": 0,
+          "entries": 0
+        },
+        "foe_fresh": {
+          "first": 121,
+          "value": 1008.0,
+          "entries": 25
+        },
+        "campClear": {
+          "first": null,
+          "value": 0,
+          "entries": 0
+        },
+        "foe_campClear": {
+          "first": 111,
+          "value": 14.0,
+          "entries": 14
+        },
+        "releases": [
+          {
+            "round": 175,
+            "unit": 4,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 176,
+            "unit": 1,
+            "ready": 6,
+            "quorum": 5
+          },
+          {
+            "round": 176,
+            "unit": 2,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 176,
+            "unit": 3,
+            "ready": 6,
+            "quorum": 5
+          },
+          {
+            "round": 176,
+            "unit": 5,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 482,
+            "unit": 0,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 482,
+            "unit": 5,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 484,
+            "unit": 2,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 485,
+            "unit": 1,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 486,
+            "unit": 3,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 486,
+            "unit": 4,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 916,
+            "unit": 3,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 916,
+            "unit": 4,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 916,
+            "unit": 5,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 917,
+            "unit": 0,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 917,
+            "unit": 2,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 996,
+            "unit": 1,
+            "ready": 5,
+            "quorum": 5
+          }
+        ],
+        "first_cycle_units": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "first_cycle_all": false,
+        "stdout_bytes": 57969
+      },
+      "previous": {
+        "id": "a75e719c-fad1-4cd2-88ce-54d8ecec42ee",
+        "group_id": "2fd65bdf-65cb-4f9e-91c2-5f1059f29134",
+        "map": "01elk-arena",
+        "opponent": "Preyas",
+        "seat": "A",
+        "seed": "18346891530149115012",
+        "won": false,
+        "bank": 0,
+        "deaths": 21,
+        "collected": 0.0,
+        "physical": 6,
+        "fresh": {
+          "first": null,
+          "value": 0,
+          "entries": 0
+        },
+        "foe_fresh": {
+          "first": 121,
+          "value": 1008.0,
+          "entries": 22
+        },
+        "campClear": {
+          "first": 911,
+          "value": 1.0,
+          "entries": 1
+        },
+        "foe_campClear": {
+          "first": 111,
+          "value": 13.0,
+          "entries": 13
+        },
+        "releases": [
+          {
+            "round": 176,
+            "unit": 1,
+            "ready": 6,
+            "quorum": 5
+          },
+          {
+            "round": 176,
+            "unit": 3,
+            "ready": 6,
+            "quorum": 5
+          },
+          {
+            "round": 176,
+            "unit": 4,
+            "ready": 6,
+            "quorum": 5
+          },
+          {
+            "round": 514,
+            "unit": 2,
+            "ready": 6,
+            "quorum": 5
+          },
+          {
+            "round": 514,
+            "unit": 4,
+            "ready": 6,
+            "quorum": 5
+          },
+          {
+            "round": 514,
+            "unit": 5,
+            "ready": 6,
+            "quorum": 5
+          },
+          {
+            "round": 515,
+            "unit": 0,
+            "ready": 6,
+            "quorum": 5
+          },
+          {
+            "round": 889,
+            "unit": 3,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 889,
+            "unit": 4,
+            "ready": 6,
+            "quorum": 5
+          },
+          {
+            "round": 889,
+            "unit": 5,
+            "ready": 6,
+            "quorum": 5
+          },
+          {
+            "round": 890,
+            "unit": 1,
+            "ready": 6,
+            "quorum": 5
+          },
+          {
+            "round": 894,
+            "unit": 2,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1060,
+            "unit": 0,
+            "ready": 5,
+            "quorum": 5
+          }
+        ],
+        "first_cycle_units": [
+          1,
+          3,
+          4
+        ],
+        "first_cycle_all": false,
+        "stdout_bytes": 57138
+      }
+    },
+    {
+      "current": {
+        "id": "9102a351-c233-4d70-acd9-359674a30db2",
+        "group_id": "6580ad2d-3a47-4b9a-a782-764202f3b763",
+        "map": "00stampede",
+        "opponent": "Preyas",
+        "seat": "B",
+        "seed": "5628688039905818090",
+        "won": true,
+        "bank": 1120,
+        "deaths": 36,
+        "collected": 1120.0,
+        "physical": 6,
+        "fresh": {
+          "first": 455,
+          "value": 1120.0,
+          "entries": 13
+        },
+        "foe_fresh": {
+          "first": null,
+          "value": 0,
+          "entries": 0
+        },
+        "campClear": {
+          "first": 449,
+          "value": 7.0,
+          "entries": 7
+        },
+        "foe_campClear": {
+          "first": null,
+          "value": 0,
+          "entries": 0
+        },
+        "releases": [
+          {
+            "round": 153,
+            "unit": 4,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 153,
+            "unit": 5,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 154,
+            "unit": 0,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 154,
+            "unit": 1,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 501,
+            "unit": 0,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 501,
+            "unit": 2,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 501,
+            "unit": 3,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 501,
+            "unit": 4,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 501,
+            "unit": 5,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 885,
+            "unit": 1,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 885,
+            "unit": 2,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 885,
+            "unit": 4,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 885,
+            "unit": 5,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 886,
+            "unit": 0,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1256,
+            "unit": 4,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1256,
+            "unit": 5,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1257,
+            "unit": 0,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1257,
+            "unit": 1,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1257,
+            "unit": 3,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1611,
+            "unit": 0,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1611,
+            "unit": 2,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1611,
+            "unit": 3,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1611,
+            "unit": 4,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1611,
+            "unit": 5,
+            "ready": 5,
+            "quorum": 5
+          }
+        ],
+        "first_cycle_units": [
+          0,
+          1,
+          4,
+          5
+        ],
+        "first_cycle_all": false,
+        "stdout_bytes": 98931
+      },
+      "previous": {
+        "id": "63371bd4-668b-40a7-9c47-f06564822183",
+        "group_id": "0932e00a-5c28-4fe6-b625-a531c17c3f53",
+        "map": "00stampede",
+        "opponent": "Preyas",
+        "seat": "B",
+        "seed": "5628688039905818090",
+        "won": false,
+        "bank": 320,
+        "deaths": 41,
+        "collected": 480.0,
+        "physical": 6,
+        "fresh": {
+          "first": 447,
+          "value": 480.0,
+          "entries": 6
+        },
+        "foe_fresh": {
+          "first": 725,
+          "value": 480.0,
+          "entries": 3
+        },
+        "campClear": {
+          "first": 441,
+          "value": 3.0,
+          "entries": 3
+        },
+        "foe_campClear": {
+          "first": 712,
+          "value": 3.0,
+          "entries": 3
+        },
+        "releases": [
+          {
+            "round": 167,
+            "unit": 2,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 171,
+            "unit": 4,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 171,
+            "unit": 5,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 172,
+            "unit": 0,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 173,
+            "unit": 1,
+            "ready": 6,
+            "quorum": 5
+          },
+          {
+            "round": 520,
+            "unit": 0,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 520,
+            "unit": 1,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 520,
+            "unit": 2,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 520,
+            "unit": 3,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 520,
+            "unit": 4,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 911,
+            "unit": 2,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 911,
+            "unit": 3,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 911,
+            "unit": 4,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 912,
+            "unit": 0,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 912,
+            "unit": 1,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1286,
+            "unit": 4,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1291,
+            "unit": 1,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1291,
+            "unit": 3,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1292,
+            "unit": 2,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1603,
+            "unit": 4,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1603,
+            "unit": 5,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1604,
+            "unit": 1,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1604,
+            "unit": 2,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1604,
+            "unit": 3,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1948,
+            "unit": 1,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1948,
+            "unit": 2,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1948,
+            "unit": 3,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1948,
+            "unit": 4,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1949,
+            "unit": 0,
+            "ready": 5,
+            "quorum": 5
+          }
+        ],
+        "first_cycle_units": [
+          0,
+          1,
+          2,
+          4,
+          5
+        ],
+        "first_cycle_all": false,
+        "stdout_bytes": 102931
+      }
+    },
+    {
+      "current": {
+        "id": "f2958200-e1e3-43ff-af85-53b709947dd4",
+        "group_id": "6580ad2d-3a47-4b9a-a782-764202f3b763",
+        "map": "01elk-arena",
+        "opponent": "Preyas",
+        "seat": "B",
+        "seed": "18346891530149115012",
+        "won": false,
+        "bank": 156,
+        "deaths": 15,
+        "collected": 288.0,
+        "physical": 6,
+        "fresh": {
+          "first": 899,
+          "value": 144.0,
+          "entries": 5
+        },
+        "foe_fresh": {
+          "first": 93,
+          "value": 1080.0,
+          "entries": 26
+        },
+        "campClear": {
+          "first": 724,
+          "value": 4.0,
+          "entries": 4
+        },
+        "foe_campClear": {
+          "first": 87,
+          "value": 13.0,
+          "entries": 13
+        },
+        "releases": [
+          {
+            "round": 133,
+            "unit": 3,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 133,
+            "unit": 4,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 133,
+            "unit": 5,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 134,
+            "unit": 0,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 134,
+            "unit": 2,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 516,
+            "unit": 1,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 516,
+            "unit": 3,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 550,
+            "unit": 2,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 551,
+            "unit": 0,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 560,
+            "unit": 4,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 702,
+            "unit": 5,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 856,
+            "unit": 4,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 861,
+            "unit": 1,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 861,
+            "unit": 2,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 861,
+            "unit": 3,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 861,
+            "unit": 5,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 976,
+            "unit": 0,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1216,
+            "unit": 0,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1219,
+            "unit": 3,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1219,
+            "unit": 4,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1219,
+            "unit": 5,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1220,
+            "unit": 1,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1351,
+            "unit": 2,
+            "ready": 5,
+            "quorum": 5
+          }
+        ],
+        "first_cycle_units": [
+          0,
+          2,
+          3,
+          4,
+          5
+        ],
+        "first_cycle_all": false,
+        "stdout_bytes": 71085
+      },
+      "previous": {
+        "id": "53cc2238-3982-4ea2-a6a2-edb9967fb825",
+        "group_id": "0932e00a-5c28-4fe6-b625-a531c17c3f53",
+        "map": "01elk-arena",
+        "opponent": "Preyas",
+        "seat": "B",
+        "seed": "18346891530149115012",
+        "won": false,
+        "bank": 36,
+        "deaths": 22,
+        "collected": 36.0,
+        "physical": 6,
+        "fresh": {
+          "first": null,
+          "value": 0,
+          "entries": 0
+        },
+        "foe_fresh": {
+          "first": 93,
+          "value": 1080.0,
+          "entries": 26
+        },
+        "campClear": {
+          "first": 304,
+          "value": 1.0,
+          "entries": 1
+        },
+        "foe_campClear": {
+          "first": 87,
+          "value": 14.0,
+          "entries": 14
+        },
+        "releases": [
+          {
+            "round": 148,
+            "unit": 2,
+            "ready": 6,
+            "quorum": 5
+          },
+          {
+            "round": 148,
+            "unit": 3,
+            "ready": 6,
+            "quorum": 5
+          },
+          {
+            "round": 260,
+            "unit": 4,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 260,
+            "unit": 5,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 261,
+            "unit": 0,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 262,
+            "unit": 1,
+            "ready": 6,
+            "quorum": 5
+          },
+          {
+            "round": 490,
+            "unit": 1,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 490,
+            "unit": 2,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 490,
+            "unit": 3,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 490,
+            "unit": 4,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 491,
+            "unit": 0,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 491,
+            "unit": 5,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 931,
+            "unit": 3,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 931,
+            "unit": 4,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 931,
+            "unit": 5,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 932,
+            "unit": 1,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 932,
+            "unit": 2,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1229,
+            "unit": 4,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1230,
+            "unit": 0,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1230,
+            "unit": 1,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1230,
+            "unit": 2,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1230,
+            "unit": 3,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1234,
+            "unit": 5,
+            "ready": 6,
+            "quorum": 5
+          }
+        ],
+        "first_cycle_units": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "first_cycle_all": true,
+        "stdout_bytes": 62097
+      }
+    },
+    {
+      "current": {
+        "id": "480fa7ae-fc90-4d78-85c8-794200c8dc39",
+        "group_id": "a6f3ec00-0c4f-436e-ac38-c3175867ce84",
+        "map": "00stampede",
+        "opponent": "BitShift",
+        "seat": "A",
+        "seed": "5628688039905818090",
+        "won": false,
+        "bank": 320,
+        "deaths": 73,
+        "collected": 320.0,
+        "physical": 6,
+        "fresh": {
+          "first": null,
+          "value": 0,
+          "entries": 0
+        },
+        "foe_fresh": {
+          "first": 738,
+          "value": 1440.0,
+          "entries": 10
+        },
+        "campClear": {
+          "first": 975,
+          "value": 2.0,
+          "entries": 2
+        },
+        "foe_campClear": {
+          "first": 732,
+          "value": 7.0,
+          "entries": 7
+        },
+        "releases": [
+          {
+            "round": 192,
+            "unit": 5,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 193,
+            "unit": 0,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 193,
+            "unit": 1,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 193,
+            "unit": 2,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 193,
+            "unit": 4,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 608,
+            "unit": 3,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 608,
+            "unit": 4,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 609,
+            "unit": 0,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 609,
+            "unit": 1,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 609,
+            "unit": 2,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 964,
+            "unit": 5,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 965,
+            "unit": 0,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 965,
+            "unit": 1,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 965,
+            "unit": 2,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 965,
+            "unit": 4,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1383,
+            "unit": 2,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1383,
+            "unit": 3,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1383,
+            "unit": 4,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1383,
+            "unit": 5,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1384,
+            "unit": 1,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1612,
+            "unit": 1,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1612,
+            "unit": 2,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1612,
+            "unit": 3,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1612,
+            "unit": 4,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1613,
+            "unit": 0,
+            "ready": 5,
+            "quorum": 5
+          }
+        ],
+        "first_cycle_units": [
+          0,
+          1,
+          2,
+          4,
+          5
+        ],
+        "first_cycle_all": false,
+        "stdout_bytes": 90037
+      },
+      "previous": {
+        "id": "4823fe82-325f-4bf6-bc9d-61f9c5e592df",
+        "group_id": "0d5b5f55-5d1c-40d6-98b3-c018900d3228",
+        "map": "00stampede",
+        "opponent": "BitShift",
+        "seat": "A",
+        "seed": "5628688039905818090",
+        "won": false,
+        "bank": 0,
+        "deaths": 68,
+        "collected": 0.0,
+        "physical": 6,
+        "fresh": {
+          "first": null,
+          "value": 0,
+          "entries": 0
+        },
+        "foe_fresh": {
+          "first": 850,
+          "value": 1280.0,
+          "entries": 8
+        },
+        "campClear": {
+          "first": null,
+          "value": 0,
+          "entries": 0
+        },
+        "foe_campClear": {
+          "first": 844,
+          "value": 8.0,
+          "entries": 8
+        },
+        "releases": [
+          {
+            "round": 193,
+            "unit": 4,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 195,
+            "unit": 1,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 196,
+            "unit": 0,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 196,
+            "unit": 5,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 201,
+            "unit": 2,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 557,
+            "unit": 4,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 558,
+            "unit": 0,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 558,
+            "unit": 1,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 558,
+            "unit": 2,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 558,
+            "unit": 3,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1039,
+            "unit": 4,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1041,
+            "unit": 2,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1042,
+            "unit": 1,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1043,
+            "unit": 0,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1046,
+            "unit": 3,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1046,
+            "unit": 5,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1233,
+            "unit": 1,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1233,
+            "unit": 3,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1234,
+            "unit": 5,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1235,
+            "unit": 4,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1239,
+            "unit": 2,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1625,
+            "unit": 1,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1625,
+            "unit": 2,
+            "ready": 6,
+            "quorum": 5
+          },
+          {
+            "round": 1625,
+            "unit": 3,
+            "ready": 6,
+            "quorum": 5
+          },
+          {
+            "round": 1625,
+            "unit": 4,
+            "ready": 6,
+            "quorum": 5
+          },
+          {
+            "round": 1625,
+            "unit": 5,
+            "ready": 6,
+            "quorum": 5
+          },
+          {
+            "round": 1626,
+            "unit": 0,
+            "ready": 6,
+            "quorum": 5
+          }
+        ],
+        "first_cycle_units": [
+          0,
+          1,
+          2,
+          4,
+          5
+        ],
+        "first_cycle_all": false,
+        "stdout_bytes": 87734
+      }
+    },
+    {
+      "current": {
+        "id": "33177a81-979b-4057-b69e-1347eae3c679",
+        "group_id": "a6f3ec00-0c4f-436e-ac38-c3175867ce84",
+        "map": "01elk-arena",
+        "opponent": "BitShift",
+        "seat": "A",
+        "seed": "18346891530149115012",
+        "won": false,
+        "bank": 72,
+        "deaths": 59,
+        "collected": 72.0,
+        "physical": 6,
+        "fresh": {
+          "first": 175,
+          "value": 72.0,
+          "entries": 2
+        },
+        "foe_fresh": {
+          "first": 298,
+          "value": 1008.0,
+          "entries": 20
+        },
+        "campClear": {
+          "first": 158,
+          "value": 1.0,
+          "entries": 1
+        },
+        "foe_campClear": {
+          "first": 278,
+          "value": 14.0,
+          "entries": 14
+        },
+        "releases": [
+          {
+            "round": 134,
+            "unit": 0,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 136,
+            "unit": 2,
+            "ready": 6,
+            "quorum": 5
+          },
+          {
+            "round": 136,
+            "unit": 3,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 136,
+            "unit": 4,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 136,
+            "unit": 5,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 481,
+            "unit": 3,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 544,
+            "unit": 0,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 545,
+            "unit": 1,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 545,
+            "unit": 4,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 545,
+            "unit": 5,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 635,
+            "unit": 2,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 877,
+            "unit": 4,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 877,
+            "unit": 5,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 878,
+            "unit": 0,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 878,
+            "unit": 1,
+            "ready": 6,
+            "quorum": 5
+          },
+          {
+            "round": 878,
+            "unit": 2,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 878,
+            "unit": 3,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1259,
+            "unit": 5,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1260,
+            "unit": 0,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1260,
+            "unit": 1,
+            "ready": 6,
+            "quorum": 5
+          },
+          {
+            "round": 1260,
+            "unit": 2,
+            "ready": 6,
+            "quorum": 5
+          },
+          {
+            "round": 1260,
+            "unit": 3,
+            "ready": 6,
+            "quorum": 5
+          },
+          {
+            "round": 1260,
+            "unit": 4,
+            "ready": 6,
+            "quorum": 5
+          }
+        ],
+        "first_cycle_units": [
+          0,
+          2,
+          3,
+          4,
+          5
+        ],
+        "first_cycle_all": false,
+        "stdout_bytes": 63150
+      },
+      "previous": {
+        "id": "5cff9951-36ed-4917-a777-cfd53f4cf203",
+        "group_id": "0d5b5f55-5d1c-40d6-98b3-c018900d3228",
+        "map": "01elk-arena",
+        "opponent": "BitShift",
+        "seat": "A",
+        "seed": "18346891530149115012",
+        "won": false,
+        "bank": 0,
+        "deaths": 60,
+        "collected": 0.0,
+        "physical": 6,
+        "fresh": {
+          "first": null,
+          "value": 0,
+          "entries": 0
+        },
+        "foe_fresh": {
+          "first": 202,
+          "value": 1008.0,
+          "entries": 19
+        },
+        "campClear": {
+          "first": null,
+          "value": 0,
+          "entries": 0
+        },
+        "foe_campClear": {
+          "first": 191,
+          "value": 14.0,
+          "entries": 14
+        },
+        "releases": [
+          {
+            "round": 135,
+            "unit": 0,
+            "ready": 6,
+            "quorum": 5
+          },
+          {
+            "round": 136,
+            "unit": 2,
+            "ready": 6,
+            "quorum": 5
+          },
+          {
+            "round": 168,
+            "unit": 3,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 168,
+            "unit": 4,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 168,
+            "unit": 5,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 169,
+            "unit": 1,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 550,
+            "unit": 4,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 551,
+            "unit": 3,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 934,
+            "unit": 3,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 934,
+            "unit": 4,
+            "ready": 6,
+            "quorum": 5
+          },
+          {
+            "round": 934,
+            "unit": 5,
+            "ready": 6,
+            "quorum": 5
+          },
+          {
+            "round": 935,
+            "unit": 0,
+            "ready": 6,
+            "quorum": 5
+          },
+          {
+            "round": 935,
+            "unit": 1,
+            "ready": 6,
+            "quorum": 5
+          },
+          {
+            "round": 935,
+            "unit": 2,
+            "ready": 6,
+            "quorum": 5
+          }
+        ],
+        "first_cycle_units": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "first_cycle_all": true,
+        "stdout_bytes": 58416
+      }
+    },
+    {
+      "current": {
+        "id": "6073954d-d4d0-49da-91f3-e36af0278964",
+        "group_id": "4f4e72ca-2774-4800-90e1-c388afe32040",
+        "map": "00stampede",
+        "opponent": "BitShift",
+        "seat": "B",
+        "seed": "5628688039905818090",
+        "won": false,
+        "bank": 160,
+        "deaths": 54,
+        "collected": 320.0,
+        "physical": 6,
+        "fresh": {
+          "first": 695,
+          "value": 320.0,
+          "entries": 4
+        },
+        "foe_fresh": {
+          "first": 1434,
+          "value": 640.0,
+          "entries": 4
+        },
+        "campClear": {
+          "first": 689,
+          "value": 2.0,
+          "entries": 2
+        },
+        "foe_campClear": {
+          "first": 1428,
+          "value": 4.0,
+          "entries": 4
+        },
+        "releases": [
+          {
+            "round": 182,
+            "unit": 2,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 182,
+            "unit": 3,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 182,
+            "unit": 4,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 182,
+            "unit": 5,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 184,
+            "unit": 0,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 535,
+            "unit": 4,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 536,
+            "unit": 0,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 536,
+            "unit": 1,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 536,
+            "unit": 2,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 536,
+            "unit": 3,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1057,
+            "unit": 5,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1058,
+            "unit": 0,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1058,
+            "unit": 1,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1058,
+            "unit": 2,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1058,
+            "unit": 4,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1252,
+            "unit": 3,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1252,
+            "unit": 4,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1252,
+            "unit": 5,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1253,
+            "unit": 0,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1253,
+            "unit": 1,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1602,
+            "unit": 0,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1602,
+            "unit": 1,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1602,
+            "unit": 2,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1602,
+            "unit": 3,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1602,
+            "unit": 4,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1602,
+            "unit": 5,
+            "ready": 5,
+            "quorum": 5
+          }
+        ],
+        "first_cycle_units": [
+          0,
+          2,
+          3,
+          4,
+          5
+        ],
+        "first_cycle_all": false,
+        "stdout_bytes": 103123
+      },
+      "previous": {
+        "id": "40c449ff-17e4-40fe-a48c-d554729302f5",
+        "group_id": "80ef73e6-6d88-40f2-b113-be91d513f99f",
+        "map": "00stampede",
+        "opponent": "BitShift",
+        "seat": "B",
+        "seed": "5628688039905818090",
+        "won": false,
+        "bank": 320,
+        "deaths": 59,
+        "collected": 320.0,
+        "physical": 6,
+        "fresh": {
+          "first": 653,
+          "value": 160.0,
+          "entries": 1
+        },
+        "foe_fresh": {
+          "first": 1206,
+          "value": 800.0,
+          "entries": 5
+        },
+        "campClear": {
+          "first": 646,
+          "value": 1.0,
+          "entries": 1
+        },
+        "foe_campClear": {
+          "first": 1200,
+          "value": 5.0,
+          "entries": 5
+        },
+        "releases": [
+          {
+            "round": 187,
+            "unit": 4,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 190,
+            "unit": 2,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 190,
+            "unit": 3,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 191,
+            "unit": 0,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 191,
+            "unit": 5,
+            "ready": 6,
+            "quorum": 5
+          },
+          {
+            "round": 192,
+            "unit": 1,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 614,
+            "unit": 0,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 614,
+            "unit": 1,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 614,
+            "unit": 3,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 614,
+            "unit": 4,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 614,
+            "unit": 5,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 945,
+            "unit": 2,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 945,
+            "unit": 3,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 945,
+            "unit": 4,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 945,
+            "unit": 5,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 946,
+            "unit": 0,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1245,
+            "unit": 4,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1246,
+            "unit": 0,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1246,
+            "unit": 1,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1246,
+            "unit": 2,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1246,
+            "unit": 3,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1670,
+            "unit": 2,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1673,
+            "unit": 3,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1673,
+            "unit": 4,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1673,
+            "unit": 5,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1674,
+            "unit": 0,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1674,
+            "unit": 1,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1988,
+            "unit": 2,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1992,
+            "unit": 4,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1992,
+            "unit": 5,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1993,
+            "unit": 0,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1993,
+            "unit": 1,
+            "ready": 5,
+            "quorum": 5
+          }
+        ],
+        "first_cycle_units": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "first_cycle_all": true,
+        "stdout_bytes": 101466
+      }
+    },
+    {
+      "current": {
+        "id": "e77c728d-6cc4-44dc-bb6c-87f79b78cfa3",
+        "group_id": "4f4e72ca-2774-4800-90e1-c388afe32040",
+        "map": "01elk-arena",
+        "opponent": "BitShift",
+        "seat": "B",
+        "seed": "18346891530149115012",
+        "won": false,
+        "bank": 72,
+        "deaths": 45,
+        "collected": 72.0,
+        "physical": 6,
+        "fresh": {
+          "first": 211,
+          "value": 72.0,
+          "entries": 1
+        },
+        "foe_fresh": {
+          "first": 348,
+          "value": 1008.0,
+          "entries": 16
+        },
+        "campClear": {
+          "first": 205,
+          "value": 2.0,
+          "entries": 2
+        },
+        "foe_campClear": {
+          "first": 339,
+          "value": 13.0,
+          "entries": 13
+        },
+        "releases": [
+          {
+            "round": 169,
+            "unit": 0,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 169,
+            "unit": 2,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 169,
+            "unit": 3,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 169,
+            "unit": 5,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 170,
+            "unit": 4,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 259,
+            "unit": 1,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 537,
+            "unit": 5,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 538,
+            "unit": 0,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 538,
+            "unit": 1,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 538,
+            "unit": 3,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 538,
+            "unit": 4,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 591,
+            "unit": 2,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 901,
+            "unit": 1,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 901,
+            "unit": 2,
+            "ready": 6,
+            "quorum": 5
+          },
+          {
+            "round": 901,
+            "unit": 3,
+            "ready": 6,
+            "quorum": 5
+          },
+          {
+            "round": 901,
+            "unit": 4,
+            "ready": 6,
+            "quorum": 5
+          },
+          {
+            "round": 901,
+            "unit": 5,
+            "ready": 6,
+            "quorum": 5
+          },
+          {
+            "round": 902,
+            "unit": 0,
+            "ready": 6,
+            "quorum": 5
+          },
+          {
+            "round": 1241,
+            "unit": 2,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1241,
+            "unit": 3,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1241,
+            "unit": 4,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1241,
+            "unit": 5,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1242,
+            "unit": 0,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1315,
+            "unit": 1,
+            "ready": 5,
+            "quorum": 5
+          }
+        ],
+        "first_cycle_units": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "first_cycle_all": true,
+        "stdout_bytes": 68364
+      },
+      "previous": {
+        "id": "978f860c-19bd-4a7c-95f0-804a857f3a8a",
+        "group_id": "80ef73e6-6d88-40f2-b113-be91d513f99f",
+        "map": "01elk-arena",
+        "opponent": "BitShift",
+        "seat": "B",
+        "seed": "18346891530149115012",
+        "won": false,
+        "bank": 72,
+        "deaths": 46,
+        "collected": 72.0,
+        "physical": 6,
+        "fresh": {
+          "first": 221,
+          "value": 72.0,
+          "entries": 1
+        },
+        "foe_fresh": {
+          "first": 336,
+          "value": 1008.0,
+          "entries": 16
+        },
+        "campClear": {
+          "first": 215,
+          "value": 2.0,
+          "entries": 2
+        },
+        "foe_campClear": {
+          "first": 417,
+          "value": 13.0,
+          "entries": 13
+        },
+        "releases": [
+          {
+            "round": 196,
+            "unit": 2,
+            "ready": 6,
+            "quorum": 5
+          },
+          {
+            "round": 196,
+            "unit": 3,
+            "ready": 6,
+            "quorum": 5
+          },
+          {
+            "round": 196,
+            "unit": 4,
+            "ready": 6,
+            "quorum": 5
+          },
+          {
+            "round": 196,
+            "unit": 5,
+            "ready": 6,
+            "quorum": 5
+          },
+          {
+            "round": 197,
+            "unit": 0,
+            "ready": 6,
+            "quorum": 5
+          },
+          {
+            "round": 197,
+            "unit": 1,
+            "ready": 6,
+            "quorum": 5
+          },
+          {
+            "round": 497,
+            "unit": 3,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 497,
+            "unit": 4,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 497,
+            "unit": 5,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 498,
+            "unit": 1,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 498,
+            "unit": 2,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 643,
+            "unit": 0,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 855,
+            "unit": 4,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 856,
+            "unit": 0,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 931,
+            "unit": 1,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 931,
+            "unit": 2,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 931,
+            "unit": 3,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1244,
+            "unit": 3,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1244,
+            "unit": 4,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1244,
+            "unit": 5,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1245,
+            "unit": 0,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1245,
+            "unit": 1,
+            "ready": 5,
+            "quorum": 5
+          }
+        ],
+        "first_cycle_units": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "first_cycle_all": true,
+        "stdout_bytes": 64778
+      }
+    },
+    {
+      "current": {
+        "id": "595f4bd1-4021-430c-ab27-8898a6a8bb75",
+        "group_id": "b98474c6-c479-4700-9bfd-52e188d98c11",
+        "map": "01elk-arena",
+        "opponent": "Dirty Coding",
+        "seat": "A",
+        "seed": "18346891530149115012",
+        "won": false,
+        "bank": 234,
+        "deaths": 59,
+        "collected": 420.0,
+        "physical": 6,
+        "fresh": {
+          "first": 282,
+          "value": 288.0,
+          "entries": 4
+        },
+        "foe_fresh": {
+          "first": 145,
+          "value": 1008.0,
+          "entries": 23
+        },
+        "campClear": {
+          "first": 407,
+          "value": 2.0,
+          "entries": 2
+        },
+        "foe_campClear": {
+          "first": 133,
+          "value": 16.0,
+          "entries": 16
+        },
+        "releases": [
+          {
+            "round": 183,
+            "unit": 1,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 228,
+            "unit": 2,
+            "ready": 6,
+            "quorum": 5
+          },
+          {
+            "round": 228,
+            "unit": 3,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 228,
+            "unit": 5,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 229,
+            "unit": 0,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 566,
+            "unit": 2,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 567,
+            "unit": 1,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 640,
+            "unit": 3,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 640,
+            "unit": 4,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 640,
+            "unit": 5,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 641,
+            "unit": 0,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 848,
+            "unit": 1,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 857,
+            "unit": 2,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 857,
+            "unit": 3,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 857,
+            "unit": 4,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 858,
+            "unit": 0,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 881,
+            "unit": 5,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1220,
+            "unit": 5,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1221,
+            "unit": 0,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1221,
+            "unit": 2,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1221,
+            "unit": 3,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1221,
+            "unit": 4,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1334,
+            "unit": 1,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1600,
+            "unit": 2,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1600,
+            "unit": 3,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1600,
+            "unit": 4,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1600,
+            "unit": 5,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1601,
+            "unit": 0,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1604,
+            "unit": 1,
+            "ready": 6,
+            "quorum": 5
+          }
+        ],
+        "first_cycle_units": [
+          0,
+          1,
+          2,
+          3,
+          5
+        ],
+        "first_cycle_all": false,
+        "stdout_bytes": 77198
+      },
+      "previous": {
+        "id": "c1b840d8-4c62-4842-ac62-d2e66f881fce",
+        "group_id": "90de02f1-52f7-48cd-8fed-3e9c724a80ce",
+        "map": "01elk-arena",
+        "opponent": "Dirty Coding",
+        "seat": "A",
+        "seed": "18346891530149115012",
+        "won": false,
+        "bank": 444,
+        "deaths": 85,
+        "collected": 462.0,
+        "physical": 6,
+        "fresh": {
+          "first": 457,
+          "value": 288.0,
+          "entries": 5
+        },
+        "foe_fresh": {
+          "first": 145,
+          "value": 1224.0,
+          "entries": 36
+        },
+        "campClear": {
+          "first": 451,
+          "value": 1.0,
+          "entries": 1
+        },
+        "foe_campClear": {
+          "first": 133,
+          "value": 20.0,
+          "entries": 20
+        },
+        "releases": [
+          {
+            "round": 183,
+            "unit": 1,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 228,
+            "unit": 2,
+            "ready": 6,
+            "quorum": 5
+          },
+          {
+            "round": 317,
+            "unit": 3,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 502,
+            "unit": 2,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 506,
+            "unit": 0,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 506,
+            "unit": 1,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 506,
+            "unit": 4,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 506,
+            "unit": 5,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 508,
+            "unit": 3,
+            "ready": 6,
+            "quorum": 5
+          },
+          {
+            "round": 840,
+            "unit": 0,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 840,
+            "unit": 1,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 840,
+            "unit": 2,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 840,
+            "unit": 3,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 840,
+            "unit": 4,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 860,
+            "unit": 5,
+            "ready": 6,
+            "quorum": 5
+          },
+          {
+            "round": 1272,
+            "unit": 5,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1273,
+            "unit": 0,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1273,
+            "unit": 2,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1273,
+            "unit": 3,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1273,
+            "unit": 4,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1415,
+            "unit": 1,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1586,
+            "unit": 1,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1586,
+            "unit": 2,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1586,
+            "unit": 3,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1586,
+            "unit": 4,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1586,
+            "unit": 5,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1786,
+            "unit": 0,
+            "ready": 5,
+            "quorum": 5
+          }
+        ],
+        "first_cycle_units": [
+          1,
+          2,
+          3
+        ],
+        "first_cycle_all": false,
+        "stdout_bytes": 88831
+      }
+    },
+    {
+      "current": {
+        "id": "f325ba3a-f464-4cd9-8742-b0a175ad919d",
+        "group_id": "71b399b2-9858-4628-8e05-829b174c670b",
+        "map": "01elk-arena",
+        "opponent": "Dirty Coding",
+        "seat": "B",
+        "seed": "18346891530149115012",
+        "won": false,
+        "bank": 72,
+        "deaths": 55,
+        "collected": 90.0,
+        "physical": 6,
+        "fresh": {
+          "first": 353,
+          "value": 72.0,
+          "entries": 1
+        },
+        "foe_fresh": {
+          "first": 53,
+          "value": 936.0,
+          "entries": 23
+        },
+        "campClear": {
+          "first": 997,
+          "value": 1.0,
+          "entries": 1
+        },
+        "foe_campClear": {
+          "first": 47,
+          "value": 13.0,
+          "entries": 13
+        },
+        "releases": [
+          {
+            "round": 143,
+            "unit": 1,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 143,
+            "unit": 2,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 143,
+            "unit": 3,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 143,
+            "unit": 4,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 143,
+            "unit": 5,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 240,
+            "unit": 0,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 495,
+            "unit": 4,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 496,
+            "unit": 0,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 496,
+            "unit": 1,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 496,
+            "unit": 2,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 496,
+            "unit": 3,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 858,
+            "unit": 4,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 859,
+            "unit": 0,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 901,
+            "unit": 5,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 902,
+            "unit": 1,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 902,
+            "unit": 2,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 902,
+            "unit": 3,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1208,
+            "unit": 4,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1264,
+            "unit": 0,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1264,
+            "unit": 1,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1264,
+            "unit": 2,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1264,
+            "unit": 3,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1560,
+            "unit": 0,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1560,
+            "unit": 1,
+            "ready": 6,
+            "quorum": 5
+          },
+          {
+            "round": 1560,
+            "unit": 2,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1560,
+            "unit": 3,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1560,
+            "unit": 4,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1560,
+            "unit": 5,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1959,
+            "unit": 1,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1959,
+            "unit": 3,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1959,
+            "unit": 4,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1959,
+            "unit": 5,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1960,
+            "unit": 0,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1967,
+            "unit": 2,
+            "ready": 5,
+            "quorum": 5
+          }
+        ],
+        "first_cycle_units": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "first_cycle_all": true,
+        "stdout_bytes": 80995
+      },
+      "previous": {
+        "id": "645628ed-881c-4cfb-b53b-3deda26686cd",
+        "group_id": "87828c87-1d59-4352-9583-d1dcee19f49e",
+        "map": "01elk-arena",
+        "opponent": "Dirty Coding",
+        "seat": "B",
+        "seed": "18346891530149115012",
+        "won": false,
+        "bank": 168,
+        "deaths": 49,
+        "collected": 240.0,
+        "physical": 6,
+        "fresh": {
+          "first": 289,
+          "value": 144.0,
+          "entries": 5
+        },
+        "foe_fresh": {
+          "first": 53,
+          "value": 1080.0,
+          "entries": 26
+        },
+        "campClear": {
+          "first": 283,
+          "value": 1.0,
+          "entries": 1
+        },
+        "foe_campClear": {
+          "first": 47,
+          "value": 16.0,
+          "entries": 16
+        },
+        "releases": [
+          {
+            "round": 269,
+            "unit": 3,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 269,
+            "unit": 4,
+            "ready": 6,
+            "quorum": 5
+          },
+          {
+            "round": 269,
+            "unit": 5,
+            "ready": 6,
+            "quorum": 5
+          },
+          {
+            "round": 270,
+            "unit": 0,
+            "ready": 6,
+            "quorum": 5
+          },
+          {
+            "round": 270,
+            "unit": 1,
+            "ready": 6,
+            "quorum": 5
+          },
+          {
+            "round": 270,
+            "unit": 2,
+            "ready": 6,
+            "quorum": 5
+          },
+          {
+            "round": 536,
+            "unit": 3,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 536,
+            "unit": 4,
+            "ready": 6,
+            "quorum": 5
+          },
+          {
+            "round": 536,
+            "unit": 5,
+            "ready": 6,
+            "quorum": 5
+          },
+          {
+            "round": 537,
+            "unit": 0,
+            "ready": 6,
+            "quorum": 5
+          },
+          {
+            "round": 537,
+            "unit": 1,
+            "ready": 6,
+            "quorum": 5
+          },
+          {
+            "round": 537,
+            "unit": 2,
+            "ready": 6,
+            "quorum": 5
+          },
+          {
+            "round": 925,
+            "unit": 3,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 925,
+            "unit": 4,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 925,
+            "unit": 5,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 926,
+            "unit": 1,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 926,
+            "unit": 2,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1024,
+            "unit": 0,
+            "ready": 6,
+            "quorum": 5
+          },
+          {
+            "round": 1202,
+            "unit": 5,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1203,
+            "unit": 0,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1203,
+            "unit": 3,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1203,
+            "unit": 4,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1204,
+            "unit": 1,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1576,
+            "unit": 0,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1576,
+            "unit": 5,
+            "ready": 6,
+            "quorum": 5
+          }
+        ],
+        "first_cycle_units": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "first_cycle_all": true,
+        "stdout_bytes": 75875
+      }
+    },
+    {
+      "current": {
+        "id": "757454aa-fcd8-47de-a333-34ffdfc15a4e",
+        "group_id": "cf71c88e-297a-4ef5-a5ba-27d1fb7fc3cf",
+        "map": "00stampede",
+        "opponent": "Slawomir Zarzycki",
+        "seat": "A",
+        "seed": "5628688039905818090",
+        "won": false,
+        "bank": 160,
+        "deaths": 33,
+        "collected": 160.0,
+        "physical": 6,
+        "fresh": {
+          "first": 771,
+          "value": 160.0,
+          "entries": 1
+        },
+        "foe_fresh": {
+          "first": 557,
+          "value": 1120.0,
+          "entries": 15
+        },
+        "campClear": {
+          "first": 765,
+          "value": 1.0,
+          "entries": 1
+        },
+        "foe_campClear": {
+          "first": 545,
+          "value": 7.0,
+          "entries": 7
+        },
+        "releases": [
+          {
+            "round": 208,
+            "unit": 4,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 209,
+            "unit": 0,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 209,
+            "unit": 1,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 209,
+            "unit": 2,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 209,
+            "unit": 3,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 516,
+            "unit": 0,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 516,
+            "unit": 1,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 516,
+            "unit": 2,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 516,
+            "unit": 4,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 516,
+            "unit": 5,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 517,
+            "unit": 3,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 934,
+            "unit": 3,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 934,
+            "unit": 4,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 934,
+            "unit": 5,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 935,
+            "unit": 0,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 935,
+            "unit": 2,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 938,
+            "unit": 1,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1216,
+            "unit": 5,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1217,
+            "unit": 0,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1217,
+            "unit": 1,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1217,
+            "unit": 3,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1217,
+            "unit": 4,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1273,
+            "unit": 2,
+            "ready": 5,
+            "quorum": 5
+          }
+        ],
+        "first_cycle_units": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ],
+        "first_cycle_all": false,
+        "stdout_bytes": 77643
+      },
+      "previous": {
+        "id": "6ec7ca1e-f86d-46e9-8646-885674982d2c",
+        "group_id": "08657255-baf4-4efe-b35f-67af791da0b8",
+        "map": "00stampede",
+        "opponent": "Slawomir Zarzycki",
+        "seat": "A",
+        "seed": "5628688039905818090",
+        "won": false,
+        "bank": 0,
+        "deaths": 38,
+        "collected": 0.0,
+        "physical": 6,
+        "fresh": {
+          "first": null,
+          "value": 0,
+          "entries": 0
+        },
+        "foe_fresh": {
+          "first": 563,
+          "value": 1120.0,
+          "entries": 16
+        },
+        "campClear": {
+          "first": null,
+          "value": 0,
+          "entries": 0
+        },
+        "foe_campClear": {
+          "first": 557,
+          "value": 7.0,
+          "entries": 7
+        },
+        "releases": [
+          {
+            "round": 208,
+            "unit": 4,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 209,
+            "unit": 0,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 209,
+            "unit": 1,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 209,
+            "unit": 2,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 209,
+            "unit": 3,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 517,
+            "unit": 3,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 517,
+            "unit": 4,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 517,
+            "unit": 5,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 518,
+            "unit": 0,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 518,
+            "unit": 1,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 518,
+            "unit": 2,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 922,
+            "unit": 2,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 922,
+            "unit": 3,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 922,
+            "unit": 4,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 922,
+            "unit": 5,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 923,
+            "unit": 0,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 923,
+            "unit": 1,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1273,
+            "unit": 4,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1285,
+            "unit": 1,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1285,
+            "unit": 2,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1285,
+            "unit": 3,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1285,
+            "unit": 5,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1286,
+            "unit": 0,
+            "ready": 5,
+            "quorum": 5
+          }
+        ],
+        "first_cycle_units": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ],
+        "first_cycle_all": false,
+        "stdout_bytes": 67757
+      }
+    },
+    {
+      "current": {
+        "id": "88114f31-a247-4f26-9621-31fc65fe64bb",
+        "group_id": "cf71c88e-297a-4ef5-a5ba-27d1fb7fc3cf",
+        "map": "01elk-arena",
+        "opponent": "Slawomir Zarzycki",
+        "seat": "A",
+        "seed": "18346891530149115012",
+        "won": true,
+        "bank": 794,
+        "deaths": 24,
+        "collected": 818.0,
+        "physical": 6,
+        "fresh": {
+          "first": 182,
+          "value": 648.0,
+          "entries": 21
+        },
+        "foe_fresh": {
+          "first": 295,
+          "value": 936.0,
+          "entries": 46
+        },
+        "campClear": {
+          "first": 176,
+          "value": 9.0,
+          "entries": 9
+        },
+        "foe_campClear": {
+          "first": 289,
+          "value": 13.0,
+          "entries": 13
+        },
+        "releases": [
+          {
+            "round": 140,
+            "unit": 1,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 140,
+            "unit": 3,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 140,
+            "unit": 4,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 140,
+            "unit": 5,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 141,
+            "unit": 0,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 151,
+            "unit": 2,
+            "ready": 6,
+            "quorum": 5
+          },
+          {
+            "round": 516,
+            "unit": 1,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 521,
+            "unit": 3,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 522,
+            "unit": 0,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 524,
+            "unit": 2,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 534,
+            "unit": 5,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 706,
+            "unit": 4,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 850,
+            "unit": 5,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 854,
+            "unit": 3,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 854,
+            "unit": 4,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 855,
+            "unit": 0,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 855,
+            "unit": 1,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 855,
+            "unit": 2,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1225,
+            "unit": 2,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1226,
+            "unit": 1,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1258,
+            "unit": 3,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1651,
+            "unit": 3,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1651,
+            "unit": 4,
+            "ready": 6,
+            "quorum": 5
+          },
+          {
+            "round": 1651,
+            "unit": 5,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1652,
+            "unit": 0,
+            "ready": 6,
+            "quorum": 5
+          },
+          {
+            "round": 1652,
+            "unit": 1,
+            "ready": 6,
+            "quorum": 5
+          },
+          {
+            "round": 1652,
+            "unit": 2,
+            "ready": 6,
+            "quorum": 5
+          },
+          {
+            "round": 1944,
+            "unit": 4,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1945,
+            "unit": 3,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1949,
+            "unit": 2,
+            "ready": 6,
+            "quorum": 5
+          },
+          {
+            "round": 1949,
+            "unit": 5,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1950,
+            "unit": 0,
+            "ready": 5,
+            "quorum": 5
+          }
+        ],
+        "first_cycle_units": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "first_cycle_all": true,
+        "stdout_bytes": 94451
+      },
+      "previous": {
+        "id": "7820c8f6-99c4-45ce-8ee9-38d123c0b023",
+        "group_id": "08657255-baf4-4efe-b35f-67af791da0b8",
+        "map": "01elk-arena",
+        "opponent": "Slawomir Zarzycki",
+        "seat": "A",
+        "seed": "18346891530149115012",
+        "won": false,
+        "bank": 18,
+        "deaths": 20,
+        "collected": 46.0,
+        "physical": 6,
+        "fresh": {
+          "first": null,
+          "value": 0,
+          "entries": 0
+        },
+        "foe_fresh": {
+          "first": 231,
+          "value": 1080.0,
+          "entries": 64
+        },
+        "campClear": {
+          "first": null,
+          "value": 0,
+          "entries": 0
+        },
+        "foe_campClear": {
+          "first": 225,
+          "value": 15.0,
+          "entries": 15
+        },
+        "releases": [
+          {
+            "round": 167,
+            "unit": 4,
+            "ready": 6,
+            "quorum": 5
+          },
+          {
+            "round": 167,
+            "unit": 5,
+            "ready": 6,
+            "quorum": 5
+          },
+          {
+            "round": 168,
+            "unit": 1,
+            "ready": 6,
+            "quorum": 5
+          },
+          {
+            "round": 279,
+            "unit": 2,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 510,
+            "unit": 3,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 510,
+            "unit": 4,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 511,
+            "unit": 0,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 513,
+            "unit": 2,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 521,
+            "unit": 5,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 643,
+            "unit": 1,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 889,
+            "unit": 2,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1245,
+            "unit": 0,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1245,
+            "unit": 1,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1245,
+            "unit": 3,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1245,
+            "unit": 4,
+            "ready": 5,
+            "quorum": 5
+          }
+        ],
+        "first_cycle_units": [
+          1,
+          2,
+          4,
+          5
+        ],
+        "first_cycle_all": false,
+        "stdout_bytes": 63429
+      }
+    },
+    {
+      "current": {
+        "id": "b9289c9a-7a31-40fc-b362-eb72c57601dc",
+        "group_id": "3e56f0eb-9e9e-4df2-b155-794e60114bfb",
+        "map": "00stampede",
+        "opponent": "Slawomir Zarzycki",
+        "seat": "B",
+        "seed": "5628688039905818090",
+        "won": false,
+        "bank": 0,
+        "deaths": 34,
+        "collected": 0.0,
+        "physical": 6,
+        "fresh": {
+          "first": null,
+          "value": 0,
+          "entries": 0
+        },
+        "foe_fresh": {
+          "first": 514,
+          "value": 1120.0,
+          "entries": 11
+        },
+        "campClear": {
+          "first": null,
+          "value": 0,
+          "entries": 0
+        },
+        "foe_campClear": {
+          "first": 508,
+          "value": 7.0,
+          "entries": 7
+        },
+        "releases": [
+          {
+            "round": 164,
+            "unit": 2,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 164,
+            "unit": 3,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 164,
+            "unit": 4,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 165,
+            "unit": 0,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 165,
+            "unit": 1,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 532,
+            "unit": 4,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 533,
+            "unit": 0,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 533,
+            "unit": 1,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 533,
+            "unit": 2,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 533,
+            "unit": 3,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 883,
+            "unit": 1,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 883,
+            "unit": 2,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 883,
+            "unit": 3,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 883,
+            "unit": 4,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 884,
+            "unit": 0,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1002,
+            "unit": 5,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1301,
+            "unit": 1,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1301,
+            "unit": 2,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1301,
+            "unit": 3,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1301,
+            "unit": 4,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1301,
+            "unit": 5,
+            "ready": 5,
+            "quorum": 5
+          }
+        ],
+        "first_cycle_units": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ],
+        "first_cycle_all": false,
+        "stdout_bytes": 65033
+      },
+      "previous": {
+        "id": "dfb3c0b8-9163-4bc3-88dd-b1532043a74f",
+        "group_id": "2a05ccba-22fa-43a9-9fdc-9fdc58dd37c4",
+        "map": "00stampede",
+        "opponent": "Slawomir Zarzycki",
+        "seat": "B",
+        "seed": "5628688039905818090",
+        "won": false,
+        "bank": 0,
+        "deaths": 38,
+        "collected": 0.0,
+        "physical": 6,
+        "fresh": {
+          "first": null,
+          "value": 0,
+          "entries": 0
+        },
+        "foe_fresh": {
+          "first": 514,
+          "value": 1120.0,
+          "entries": 13
+        },
+        "campClear": {
+          "first": null,
+          "value": 0,
+          "entries": 0
+        },
+        "foe_campClear": {
+          "first": 508,
+          "value": 7.0,
+          "entries": 7
+        },
+        "releases": [
+          {
+            "round": 164,
+            "unit": 2,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 164,
+            "unit": 3,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 164,
+            "unit": 4,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 165,
+            "unit": 0,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 165,
+            "unit": 1,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 532,
+            "unit": 4,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 533,
+            "unit": 0,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 533,
+            "unit": 1,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 533,
+            "unit": 2,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 533,
+            "unit": 3,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 693,
+            "unit": 5,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 942,
+            "unit": 3,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 944,
+            "unit": 4,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 944,
+            "unit": 5,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 945,
+            "unit": 0,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 945,
+            "unit": 1,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 945,
+            "unit": 2,
+            "ready": 5,
+            "quorum": 5
+          }
+        ],
+        "first_cycle_units": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ],
+        "first_cycle_all": false,
+        "stdout_bytes": 63230
+      }
+    },
+    {
+      "current": {
+        "id": "c445502a-cff3-4864-a43a-8b30d7108c61",
+        "group_id": "3e56f0eb-9e9e-4df2-b155-794e60114bfb",
+        "map": "01elk-arena",
+        "opponent": "Slawomir Zarzycki",
+        "seat": "B",
+        "seed": "18346891530149115012",
+        "won": false,
+        "bank": 394,
+        "deaths": 18,
+        "collected": 490.0,
+        "physical": 6,
+        "fresh": {
+          "first": 170,
+          "value": 360.0,
+          "entries": 8
+        },
+        "foe_fresh": {
+          "first": 349,
+          "value": 1080.0,
+          "entries": 58
+        },
+        "campClear": {
+          "first": 164,
+          "value": 6.0,
+          "entries": 6
+        },
+        "foe_campClear": {
+          "first": 343,
+          "value": 14.0,
+          "entries": 14
+        },
+        "releases": [
+          {
+            "round": 138,
+            "unit": 3,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 138,
+            "unit": 4,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 139,
+            "unit": 0,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 139,
+            "unit": 1,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 139,
+            "unit": 2,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 498,
+            "unit": 3,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 498,
+            "unit": 4,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 498,
+            "unit": 5,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 499,
+            "unit": 1,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 499,
+            "unit": 2,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 551,
+            "unit": 0,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 856,
+            "unit": 0,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 856,
+            "unit": 4,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 856,
+            "unit": 5,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 858,
+            "unit": 3,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 859,
+            "unit": 2,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 867,
+            "unit": 1,
+            "ready": 6,
+            "quorum": 5
+          },
+          {
+            "round": 1271,
+            "unit": 3,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1271,
+            "unit": 4,
+            "ready": 6,
+            "quorum": 5
+          },
+          {
+            "round": 1271,
+            "unit": 5,
+            "ready": 6,
+            "quorum": 5
+          },
+          {
+            "round": 1272,
+            "unit": 0,
+            "ready": 6,
+            "quorum": 5
+          },
+          {
+            "round": 1272,
+            "unit": 1,
+            "ready": 6,
+            "quorum": 5
+          },
+          {
+            "round": 1272,
+            "unit": 2,
+            "ready": 6,
+            "quorum": 5
+          }
+        ],
+        "first_cycle_units": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ],
+        "first_cycle_all": false,
+        "stdout_bytes": 78690
+      },
+      "previous": {
+        "id": "b610ef0c-0d85-4ba0-bf34-f255dbddaddb",
+        "group_id": "2a05ccba-22fa-43a9-9fdc-9fdc58dd37c4",
+        "map": "01elk-arena",
+        "opponent": "Slawomir Zarzycki",
+        "seat": "B",
+        "seed": "18346891530149115012",
+        "won": false,
+        "bank": 574,
+        "deaths": 16,
+        "collected": 646.0,
+        "physical": 6,
+        "fresh": {
+          "first": 170,
+          "value": 504.0,
+          "entries": 9
+        },
+        "foe_fresh": {
+          "first": 349,
+          "value": 1080.0,
+          "entries": 56
+        },
+        "campClear": {
+          "first": 164,
+          "value": 8.0,
+          "entries": 8
+        },
+        "foe_campClear": {
+          "first": 343,
+          "value": 14.0,
+          "entries": 14
+        },
+        "releases": [
+          {
+            "round": 138,
+            "unit": 3,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 138,
+            "unit": 4,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 139,
+            "unit": 0,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 139,
+            "unit": 1,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 139,
+            "unit": 2,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 498,
+            "unit": 3,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 498,
+            "unit": 4,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 498,
+            "unit": 5,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 499,
+            "unit": 1,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 499,
+            "unit": 2,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 552,
+            "unit": 0,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 857,
+            "unit": 5,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 858,
+            "unit": 0,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 858,
+            "unit": 4,
+            "ready": 6,
+            "quorum": 5
+          },
+          {
+            "round": 1017,
+            "unit": 1,
+            "ready": 6,
+            "quorum": 5
+          },
+          {
+            "round": 1017,
+            "unit": 2,
+            "ready": 6,
+            "quorum": 5
+          },
+          {
+            "round": 1017,
+            "unit": 3,
+            "ready": 6,
+            "quorum": 5
+          },
+          {
+            "round": 1222,
+            "unit": 3,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1222,
+            "unit": 4,
+            "ready": 6,
+            "quorum": 5
+          },
+          {
+            "round": 1222,
+            "unit": 5,
+            "ready": 6,
+            "quorum": 5
+          },
+          {
+            "round": 1223,
+            "unit": 0,
+            "ready": 6,
+            "quorum": 5
+          },
+          {
+            "round": 1223,
+            "unit": 1,
+            "ready": 6,
+            "quorum": 5
+          },
+          {
+            "round": 1223,
+            "unit": 2,
+            "ready": 6,
+            "quorum": 5
+          },
+          {
+            "round": 1617,
+            "unit": 0,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1618,
+            "unit": 2,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1628,
+            "unit": 3,
+            "ready": 6,
+            "quorum": 5
+          },
+          {
+            "round": 1782,
+            "unit": 1,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1782,
+            "unit": 5,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1783,
+            "unit": 4,
+            "ready": 5,
+            "quorum": 5
+          }
+        ],
+        "first_cycle_units": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ],
+        "first_cycle_all": false,
+        "stdout_bytes": 89462
+      }
+    },
+    {
+      "current": {
+        "id": "8e57aa3c-e795-41e1-867a-619a7444373c",
+        "group_id": "acf24b20-c9fa-4449-b93b-1580bc129381",
+        "map": "00stampede",
+        "opponent": "Nyx",
+        "seat": "A",
+        "seed": "5628688039905818090",
+        "won": true,
+        "bank": 640,
+        "deaths": 37,
+        "collected": 800.0,
+        "physical": 6,
+        "fresh": {
+          "first": 777,
+          "value": 800.0,
+          "entries": 8
+        },
+        "foe_fresh": {
+          "first": 484,
+          "value": 320.0,
+          "entries": 2
+        },
+        "campClear": {
+          "first": 771,
+          "value": 5.0,
+          "entries": 5
+        },
+        "foe_campClear": {
+          "first": 475,
+          "value": 2.0,
+          "entries": 2
+        },
+        "releases": [
+          {
+            "round": 176,
+            "unit": 0,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 176,
+            "unit": 1,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 176,
+            "unit": 3,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 176,
+            "unit": 4,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 176,
+            "unit": 5,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 509,
+            "unit": 4,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 510,
+            "unit": 0,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 510,
+            "unit": 1,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 510,
+            "unit": 2,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 510,
+            "unit": 3,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 515,
+            "unit": 5,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 922,
+            "unit": 4,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 922,
+            "unit": 5,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 923,
+            "unit": 0,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 923,
+            "unit": 1,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 923,
+            "unit": 2,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 923,
+            "unit": 3,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1245,
+            "unit": 5,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1246,
+            "unit": 1,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1246,
+            "unit": 2,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1246,
+            "unit": 3,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1246,
+            "unit": 4,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1640,
+            "unit": 5,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1641,
+            "unit": 0,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1641,
+            "unit": 2,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1641,
+            "unit": 3,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1641,
+            "unit": 4,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1642,
+            "unit": 1,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1935,
+            "unit": 5,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1936,
+            "unit": 0,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1936,
+            "unit": 1,
+            "ready": 5,
+            "quorum": 5
+          }
+        ],
+        "first_cycle_units": [
+          0,
+          1,
+          3,
+          4,
+          5
+        ],
+        "first_cycle_all": false,
+        "stdout_bytes": 100920
+      },
+      "previous": {
+        "id": "ade672e4-6bb0-49ab-ab72-7768edac3090",
+        "group_id": "e534d275-2274-4cc1-ba22-257517b1a098",
+        "map": "00stampede",
+        "opponent": "Nyx",
+        "seat": "A",
+        "seed": "5628688039905818090",
+        "won": false,
+        "bank": 320,
+        "deaths": 45,
+        "collected": 480.0,
+        "physical": 6,
+        "fresh": {
+          "first": 777,
+          "value": 480.0,
+          "entries": 5
+        },
+        "foe_fresh": {
+          "first": 484,
+          "value": 640.0,
+          "entries": 4
+        },
+        "campClear": {
+          "first": 771,
+          "value": 3.0,
+          "entries": 3
+        },
+        "foe_campClear": {
+          "first": 475,
+          "value": 5.0,
+          "entries": 5
+        },
+        "releases": [
+          {
+            "round": 176,
+            "unit": 0,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 176,
+            "unit": 1,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 176,
+            "unit": 3,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 176,
+            "unit": 4,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 176,
+            "unit": 5,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 509,
+            "unit": 4,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 510,
+            "unit": 0,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 510,
+            "unit": 1,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 510,
+            "unit": 2,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 510,
+            "unit": 3,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 515,
+            "unit": 5,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 922,
+            "unit": 4,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 922,
+            "unit": 5,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 923,
+            "unit": 0,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 923,
+            "unit": 1,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 923,
+            "unit": 2,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 923,
+            "unit": 3,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1245,
+            "unit": 5,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1246,
+            "unit": 1,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1246,
+            "unit": 2,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1246,
+            "unit": 3,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1246,
+            "unit": 4,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1642,
+            "unit": 1,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1645,
+            "unit": 2,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1645,
+            "unit": 3,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1645,
+            "unit": 4,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1645,
+            "unit": 5,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1646,
+            "unit": 0,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1951,
+            "unit": 3,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1951,
+            "unit": 4,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1951,
+            "unit": 5,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1952,
+            "unit": 0,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1952,
+            "unit": 1,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1952,
+            "unit": 2,
+            "ready": 5,
+            "quorum": 5
+          }
+        ],
+        "first_cycle_units": [
+          0,
+          1,
+          3,
+          4,
+          5
+        ],
+        "first_cycle_all": false,
+        "stdout_bytes": 100118
+      }
+    },
+    {
+      "current": {
+        "id": "c6b195ae-11e2-43b7-860c-c94fedf8e145",
+        "group_id": "acf24b20-c9fa-4449-b93b-1580bc129381",
+        "map": "01elk-arena",
+        "opponent": "Nyx",
+        "seat": "A",
+        "seed": "18346891530149115012",
+        "won": false,
+        "bank": 0,
+        "deaths": 58,
+        "collected": 0.0,
+        "physical": 6,
+        "fresh": {
+          "first": null,
+          "value": 0,
+          "entries": 0
+        },
+        "foe_fresh": {
+          "first": 75,
+          "value": 1008.0,
+          "entries": 18
+        },
+        "campClear": {
+          "first": 814,
+          "value": 2.0,
+          "entries": 2
+        },
+        "foe_campClear": {
+          "first": 67,
+          "value": 12.0,
+          "entries": 12
+        },
+        "releases": [
+          {
+            "round": 149,
+            "unit": 3,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 149,
+            "unit": 4,
+            "ready": 6,
+            "quorum": 5
+          },
+          {
+            "round": 149,
+            "unit": 5,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 155,
+            "unit": 1,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 156,
+            "unit": 0,
+            "ready": 6,
+            "quorum": 5
+          },
+          {
+            "round": 514,
+            "unit": 4,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 514,
+            "unit": 5,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 515,
+            "unit": 0,
+            "ready": 6,
+            "quorum": 5
+          },
+          {
+            "round": 515,
+            "unit": 1,
+            "ready": 6,
+            "quorum": 5
+          },
+          {
+            "round": 515,
+            "unit": 2,
+            "ready": 6,
+            "quorum": 5
+          },
+          {
+            "round": 515,
+            "unit": 3,
+            "ready": 6,
+            "quorum": 5
+          },
+          {
+            "round": 879,
+            "unit": 4,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 880,
+            "unit": 0,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 880,
+            "unit": 1,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 880,
+            "unit": 2,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 880,
+            "unit": 3,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 880,
+            "unit": 5,
+            "ready": 6,
+            "quorum": 5
+          },
+          {
+            "round": 1299,
+            "unit": 4,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1299,
+            "unit": 5,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1300,
+            "unit": 1,
+            "ready": 6,
+            "quorum": 5
+          },
+          {
+            "round": 1300,
+            "unit": 2,
+            "ready": 6,
+            "quorum": 5
+          },
+          {
+            "round": 1300,
+            "unit": 3,
+            "ready": 6,
+            "quorum": 5
+          },
+          {
+            "round": 1301,
+            "unit": 0,
+            "ready": 6,
+            "quorum": 5
+          }
+        ],
+        "first_cycle_units": [
+          0,
+          1,
+          3,
+          4,
+          5
+        ],
+        "first_cycle_all": false,
+        "stdout_bytes": 60388
+      },
+      "previous": {
+        "id": "54934daf-c0ca-4ffd-96c5-5c81bb367f87",
+        "group_id": "e534d275-2274-4cc1-ba22-257517b1a098",
+        "map": "01elk-arena",
+        "opponent": "Nyx",
+        "seat": "A",
+        "seed": "18346891530149115012",
+        "won": false,
+        "bank": 144,
+        "deaths": 71,
+        "collected": 216.0,
+        "physical": 6,
+        "fresh": {
+          "first": 419,
+          "value": 216.0,
+          "entries": 4
+        },
+        "foe_fresh": {
+          "first": 75,
+          "value": 936.0,
+          "entries": 21
+        },
+        "campClear": {
+          "first": 1370,
+          "value": 1.0,
+          "entries": 1
+        },
+        "foe_campClear": {
+          "first": 67,
+          "value": 15.0,
+          "entries": 15
+        },
+        "releases": [
+          {
+            "round": 149,
+            "unit": 3,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 149,
+            "unit": 4,
+            "ready": 6,
+            "quorum": 5
+          },
+          {
+            "round": 156,
+            "unit": 0,
+            "ready": 6,
+            "quorum": 5
+          },
+          {
+            "round": 256,
+            "unit": 2,
+            "ready": 6,
+            "quorum": 5
+          },
+          {
+            "round": 256,
+            "unit": 5,
+            "ready": 6,
+            "quorum": 5
+          },
+          {
+            "round": 257,
+            "unit": 1,
+            "ready": 6,
+            "quorum": 5
+          },
+          {
+            "round": 550,
+            "unit": 1,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 550,
+            "unit": 2,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 550,
+            "unit": 3,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 550,
+            "unit": 4,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 550,
+            "unit": 5,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 588,
+            "unit": 0,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 866,
+            "unit": 3,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 866,
+            "unit": 4,
+            "ready": 6,
+            "quorum": 5
+          },
+          {
+            "round": 866,
+            "unit": 5,
+            "ready": 6,
+            "quorum": 5
+          },
+          {
+            "round": 867,
+            "unit": 0,
+            "ready": 6,
+            "quorum": 5
+          },
+          {
+            "round": 867,
+            "unit": 1,
+            "ready": 6,
+            "quorum": 5
+          },
+          {
+            "round": 867,
+            "unit": 2,
+            "ready": 6,
+            "quorum": 5
+          },
+          {
+            "round": 1244,
+            "unit": 1,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1244,
+            "unit": 3,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1244,
+            "unit": 4,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1245,
+            "unit": 0,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1249,
+            "unit": 2,
+            "ready": 6,
+            "quorum": 5
+          },
+          {
+            "round": 1252,
+            "unit": 5,
+            "ready": 6,
+            "quorum": 5
+          },
+          {
+            "round": 1604,
+            "unit": 0,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1604,
+            "unit": 1,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1604,
+            "unit": 2,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1604,
+            "unit": 3,
+            "ready": 5,
+            "quorum": 5
+          }
+        ],
+        "first_cycle_units": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "first_cycle_all": true,
+        "stdout_bytes": 76347
+      }
+    },
+    {
+      "current": {
+        "id": "63c17ba3-8dd4-42f8-bd79-8be354eddabd",
+        "group_id": "3dfd80ed-7b6f-4276-89e8-65b8bfefa6bf",
+        "map": "00stampede",
+        "opponent": "Nyx",
+        "seat": "B",
+        "seed": "5628688039905818090",
+        "won": false,
+        "bank": 640,
+        "deaths": 52,
+        "collected": 640.0,
+        "physical": 6,
+        "fresh": {
+          "first": 644,
+          "value": 640.0,
+          "entries": 4
+        },
+        "foe_fresh": {
+          "first": 442,
+          "value": 1120.0,
+          "entries": 7
+        },
+        "campClear": {
+          "first": 830,
+          "value": 3.0,
+          "entries": 3
+        },
+        "foe_campClear": {
+          "first": 436,
+          "value": 8.0,
+          "entries": 8
+        },
+        "releases": [
+          {
+            "round": 158,
+            "unit": 4,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 158,
+            "unit": 5,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 159,
+            "unit": 0,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 159,
+            "unit": 1,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 159,
+            "unit": 2,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 496,
+            "unit": 4,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 496,
+            "unit": 5,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 497,
+            "unit": 0,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 497,
+            "unit": 1,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 497,
+            "unit": 3,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 624,
+            "unit": 2,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 890,
+            "unit": 0,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 890,
+            "unit": 2,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 890,
+            "unit": 3,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 890,
+            "unit": 4,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 890,
+            "unit": 5,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1022,
+            "unit": 1,
+            "ready": 6,
+            "quorum": 5
+          },
+          {
+            "round": 1310,
+            "unit": 4,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1310,
+            "unit": 5,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1311,
+            "unit": 1,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1311,
+            "unit": 2,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1311,
+            "unit": 3,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1342,
+            "unit": 0,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1587,
+            "unit": 0,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1587,
+            "unit": 1,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1587,
+            "unit": 2,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1587,
+            "unit": 3,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1587,
+            "unit": 4,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1939,
+            "unit": 4,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1939,
+            "unit": 5,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1940,
+            "unit": 0,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1940,
+            "unit": 2,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1940,
+            "unit": 3,
+            "ready": 5,
+            "quorum": 5
+          }
+        ],
+        "first_cycle_units": [
+          0,
+          1,
+          2,
+          4,
+          5
+        ],
+        "first_cycle_all": false,
+        "stdout_bytes": 97644
+      },
+      "previous": {
+        "id": "168e4612-cec2-4ed3-bde5-2d9c12ef4711",
+        "group_id": "d233da5a-af8f-4733-87c0-b4aa2d0917d5",
+        "map": "00stampede",
+        "opponent": "Nyx",
+        "seat": "B",
+        "seed": "5628688039905818090",
+        "won": false,
+        "bank": 160,
+        "deaths": 52,
+        "collected": 320.0,
+        "physical": 6,
+        "fresh": {
+          "first": 416,
+          "value": 320.0,
+          "entries": 2
+        },
+        "foe_fresh": {
+          "first": 771,
+          "value": 960.0,
+          "entries": 7
+        },
+        "campClear": {
+          "first": 410,
+          "value": 2.0,
+          "entries": 2
+        },
+        "foe_campClear": {
+          "first": 765,
+          "value": 6.0,
+          "entries": 6
+        },
+        "releases": [
+          {
+            "round": 162,
+            "unit": 3,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 162,
+            "unit": 4,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 162,
+            "unit": 5,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 163,
+            "unit": 0,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 163,
+            "unit": 1,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 163,
+            "unit": 2,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 592,
+            "unit": 2,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 595,
+            "unit": 3,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 595,
+            "unit": 4,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 595,
+            "unit": 5,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 596,
+            "unit": 0,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 938,
+            "unit": 0,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 940,
+            "unit": 1,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 940,
+            "unit": 2,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 940,
+            "unit": 3,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 940,
+            "unit": 4,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 940,
+            "unit": 5,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1284,
+            "unit": 0,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1288,
+            "unit": 3,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1290,
+            "unit": 4,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1290,
+            "unit": 5,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1291,
+            "unit": 1,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1291,
+            "unit": 2,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1593,
+            "unit": 0,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1595,
+            "unit": 1,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1595,
+            "unit": 2,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1595,
+            "unit": 3,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1595,
+            "unit": 4,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1595,
+            "unit": 5,
+            "ready": 5,
+            "quorum": 5
+          }
+        ],
+        "first_cycle_units": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "first_cycle_all": true,
+        "stdout_bytes": 93561
+      }
+    },
+    {
+      "current": {
+        "id": "dde69a3f-6639-4209-9e52-ed848e1081fc",
+        "group_id": "3dfd80ed-7b6f-4276-89e8-65b8bfefa6bf",
+        "map": "01elk-arena",
+        "opponent": "Nyx",
+        "seat": "B",
+        "seed": "18346891530149115012",
+        "won": false,
+        "bank": 216,
+        "deaths": 52,
+        "collected": 288.0,
+        "physical": 6,
+        "fresh": {
+          "first": 175,
+          "value": 216.0,
+          "entries": 6
+        },
+        "foe_fresh": {
+          "first": 68,
+          "value": 1008.0,
+          "entries": 20
+        },
+        "campClear": {
+          "first": 169,
+          "value": 6.0,
+          "entries": 6
+        },
+        "foe_campClear": {
+          "first": 60,
+          "value": 11.0,
+          "entries": 11
+        },
+        "releases": [
+          {
+            "round": 128,
+            "unit": 5,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 133,
+            "unit": 2,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 133,
+            "unit": 4,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 134,
+            "unit": 0,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 134,
+            "unit": 1,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 224,
+            "unit": 3,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 503,
+            "unit": 2,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 503,
+            "unit": 4,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 505,
+            "unit": 3,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 505,
+            "unit": 5,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 506,
+            "unit": 0,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 892,
+            "unit": 4,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 892,
+            "unit": 5,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 893,
+            "unit": 0,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 893,
+            "unit": 2,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 893,
+            "unit": 3,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 983,
+            "unit": 1,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1241,
+            "unit": 2,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1241,
+            "unit": 3,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1241,
+            "unit": 4,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1241,
+            "unit": 5,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1242,
+            "unit": 1,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1245,
+            "unit": 0,
+            "ready": 6,
+            "quorum": 5
+          }
+        ],
+        "first_cycle_units": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "first_cycle_all": true,
+        "stdout_bytes": 69597
+      },
+      "previous": {
+        "id": "b0714cc2-429a-445d-965f-ca76d56e5f2e",
+        "group_id": "d233da5a-af8f-4733-87c0-b4aa2d0917d5",
+        "map": "01elk-arena",
+        "opponent": "Nyx",
+        "seat": "B",
+        "seed": "18346891530149115012",
+        "won": false,
+        "bank": 0,
+        "deaths": 57,
+        "collected": 36.0,
+        "physical": 6,
+        "fresh": {
+          "first": null,
+          "value": 0,
+          "entries": 0
+        },
+        "foe_fresh": {
+          "first": 68,
+          "value": 1008.0,
+          "entries": 17
+        },
+        "campClear": {
+          "first": 1144,
+          "value": 1.0,
+          "entries": 1
+        },
+        "foe_campClear": {
+          "first": 60,
+          "value": 13.0,
+          "entries": 13
+        },
+        "releases": [
+          {
+            "round": 129,
+            "unit": 5,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 134,
+            "unit": 1,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 505,
+            "unit": 3,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 505,
+            "unit": 4,
+            "ready": 6,
+            "quorum": 5
+          },
+          {
+            "round": 505,
+            "unit": 5,
+            "ready": 6,
+            "quorum": 5
+          },
+          {
+            "round": 506,
+            "unit": 2,
+            "ready": 6,
+            "quorum": 5
+          },
+          {
+            "round": 591,
+            "unit": 0,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 591,
+            "unit": 1,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 859,
+            "unit": 4,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 860,
+            "unit": 0,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 860,
+            "unit": 1,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 860,
+            "unit": 2,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 860,
+            "unit": 3,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 863,
+            "unit": 5,
+            "ready": 6,
+            "quorum": 5
+          },
+          {
+            "round": 1214,
+            "unit": 0,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1214,
+            "unit": 1,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1214,
+            "unit": 2,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1214,
+            "unit": 3,
+            "ready": 5,
+            "quorum": 5
+          },
+          {
+            "round": 1214,
+            "unit": 4,
+            "ready": 5,
+            "quorum": 5
+          }
+        ],
+        "first_cycle_units": [
+          1,
+          5
+        ],
+        "first_cycle_all": false,
+        "stdout_bytes": 60411
+      }
+    }
+  ],
+  "limits": "CampClear values refer only to official credited campClear events with target campGroup IDs from public metadata. Total monsterDamage is not attributed to the objective. Logged release decisions do not prove actual damage,arrival or rewards."
+}

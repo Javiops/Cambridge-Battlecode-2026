@@ -1,4 +1,4 @@
-// ppo-topdraft-v12: check front-line contact before gathering allies; expect less non-contact combat work and fewer idle budget retries.
+// ppo-topdraft-v14: reject impossible channel-cover scans using public altar distance; expect to restore distant farming while retaining nearby cover.
 // team-fight-v1 (design: analysis/claude-api-2026-10-18/team_fight_design_1019.md): recall-api-v1 + P_TEAM_FIGHT (finish layer,
 // below) + P_HP_SHOP (hp shards at the top teams' hp share on the v72 power path).
 // Finish layer: the no-chase doctrine lifted for hurt rivals. The bot let hurt rivals go by
@@ -3182,6 +3182,38 @@ void play_turn(State& s) {
     }
 
     bool fight_fav = false;  // P_CAMPFOE: step 3's verdict on the fight
+    // Quiet moments during a teammate's tribute are a bounded cover window.
+    // Keep urgent survival, existing captures and shop trips; contact resumes
+    // the unchanged combat policy instead of forcing a losing escort fight.
+    bool cover_altar_near = false;
+    for (auto altar : s.altars)
+        if (dist(altar, pos) <= 13) { cover_altar_near = true; break; }
+    if (cover_altar_near && !on_spawn && gems == 0 && hpr >= 0.65f && nearest_foe > 8 &&
+        s.cap_start < 0 && !cap_pend && gold < P_SHOP_RECALL && fuel_ok(30000)) {
+        std::optional<vec2> channel;
+        int closest = 13;
+        attempt([&] {
+            for (auto& ally : my_roster(s)) {
+                stage7_budget_checkpoint();
+                if (ally == me || !ally.is_alive() || !ally.is_submitting_gems()) continue;
+                vec2 at = ally.position();
+                int d = dist(at, pos);
+                if (d < closest) { closest = d; channel = at; }
+            }
+            return true;
+        });
+        if (channel) {
+            g_mode = "cover-channel";
+            g_farm = "cover-channel";
+            if (closest > 2) {
+                bc::bitboard cover;
+                cover.draw_chebyshev(*channel, 2.0f);
+                step_towards(s, me, cover & ~s.static_block, true);
+            }
+            return;
+        }
+    }
+
     // Healthy, empty-handed champions assemble before choosing solo gold or
     // applying the generic danger skip. Keep urgent self-defence and shop trips.
     if (objective_window(s, round) && gems == 0 && hpr >= 0.65f && nearest_foe > 2 &&

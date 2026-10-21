@@ -7,6 +7,17 @@ an experimental upload gathers evidence about a frozen, functional candidate.
 
 ## Current selection
 
+**V88 / ppo-topdraft-v14 is compiled and live.** The server-downloaded source
+matches the frozen ZIP, the server build log is saved and active LIVE status
+is verified. V87 remains a rollback. V14 adds quiet tribute-channel cover with
+a cheap altar-distance rejection before ally scans. Broad results: 69/70
+starter, 149/302 live v12, 160/302 fixed v6, zero faults and six fuel losses per
+schedule. This is an experimental upload, not a promotion. Last actual quota
+is zero; no v88 games have been requested by this agent. See COVER-V14.md and
+CURRENT.json. The existing 15-minute heartbeat continues the generation loop.
+
+The v87 state and batches below record the completed preceding experiment.
+
 **V87 / ppo-topdraft-v12 is compiled and live.** V86/topdraft v8 and v85/topdraft
 v7 are retained. The teammate hold expired at 23:10:20 UTC with their batch
 complete. Thirty matched banking games are downloaded and native-verified: each

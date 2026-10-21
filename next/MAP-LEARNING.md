@@ -1,5 +1,10 @@
 # Map learning and development, 20 October 2026
 
+Current field candidate: **v88 / topdraft v14 is compiled and live**, with the
+server source hash, build log and active status verified. It tests quiet
+nearby cover for tribute channels; see COVER-V14.md and CURRENT.json. The
+following v87 results are complete and remain the diagnostic baseline.
+
 Current field state: **v87 / ppo-topdraft-v12 is compiled and live**. The teammate's one-hour handoff expired with their batch complete. The three-version banking benchmark is complete: 30 native-verified games, 5/10 wins per version and zero faults/fuel losses. Big-world deposits rise from v85 202/90 to v86/v87 381/336, while elk B acquisition regresses. See [BANKING-FIELD.md](BANKING-FIELD.md).
 
 All 44 broader v87 curriculum groups / 220 games are complete and native-verified across all 35 maps in both seats: 75 wins, zero faults, one fuel loss. Historical same-label v83 data has 87 wins and 70 fuel losses; old opponent-B and seed equivalence are not certified. Overall results regress while runtime improves. Final actual allowance is zero. See [V87-CURRICULUM.md](V87-CURRICULUM.md) and `experiments/CURRENT.json`. Cohort labels preserve historical comparison strata; current ratings overlap, so interpret measured outcomes rather than rank as linear strength. No fresh confirmation maps have been played. The v83 data below is historical.

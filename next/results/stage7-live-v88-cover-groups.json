@@ -1,0 +1,85 @@
+{
+  "schema": 2,
+  "startedUtc": "2026-10-21T00:16:15.209655+00:00",
+  "purpose": "Field-check quiet channel cover after broad release checks; preserve v87 rollback and frozen opponent pairs.",
+  "stages": [
+    {
+      "candidate": "ppo-topdraft-v14",
+      "platform_version": 88,
+      "status": "compiled_live_verified",
+      "source_zip_sha256": "6eb3470a10243206ccdfd406634fc9f884438e654c9ea5c3738d98ca26eee1e1",
+      "wasm_sha256": "29b0658fd0b75956baac1eeb864a2b02ed51d2b7973f2525b42afe5ada744f63",
+      "groups": [],
+      "submission_id": "359be360-3778-40bf-bf67-a8433dc773f7",
+      "server_source_sha256": "6eb3470a10243206ccdfd406634fc9f884438e654c9ea5c3738d98ca26eee1e1",
+      "server_compilation_verified": true,
+      "verifiedUtc": "2026-10-21T00:21:13.537Z"
+    }
+  ],
+  "stageIndex": 0,
+  "groups": [],
+  "pending": null,
+  "initialAllowance": null,
+  "lastObservedAllowance": 0,
+  "plan": [
+    {
+      "task": 0,
+      "opponent": "Preyas",
+      "sourceGroup": "9736fafc-af01-4db0-85dd-6502fe80dd3e",
+      "maps": [
+        "00collision",
+        "00expanse",
+        "00stampede",
+        "01elk_arena",
+        "01big_world"
+      ],
+      "cohort": "nearby",
+      "status": "planned_not_requested",
+      "groups": []
+    },
+    {
+      "task": 1,
+      "opponent": "Cozy Campfire",
+      "sourceGroup": "be5248a7-8e2d-43df-b1fd-96c4119dccf3",
+      "maps": [
+        "00ambush",
+        "00contest",
+        "00corners",
+        "00eight",
+        "00elkring"
+      ],
+      "cohort": "nearby",
+      "status": "planned_not_requested",
+      "groups": []
+    },
+    {
+      "task": 2,
+      "opponent": "BitShift",
+      "sourceGroup": "b265c35b-e3ec-43ea-aa60-9f03c7707702",
+      "maps": [
+        "00stampede",
+        "01elk_arena",
+        "00collision",
+        "00rows",
+        "00monolith"
+      ],
+      "cohort": "stretch",
+      "status": "planned_not_requested",
+      "groups": []
+    }
+  ],
+  "execution_order": [
+    0,
+    1,
+    2
+  ],
+  "uploadIntent": {
+    "candidate": "ppo-topdraft-v14",
+    "source_zip_sha256": "6eb3470a10243206ccdfd406634fc9f884438e654c9ea5c3738d98ca26eee1e1",
+    "note": "topdraft-v14 | quiet channel cover",
+    "status": "uploaded_selected",
+    "requestedUtc": "2026-10-21T00:16:49.110Z",
+    "platform_version": 88,
+    "submission_id": "359be360-3778-40bf-bf67-a8433dc773f7"
+  }
+}

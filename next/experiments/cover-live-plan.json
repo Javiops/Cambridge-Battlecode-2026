@@ -1,0 +1,55 @@
+{
+  "schema": 1,
+  "status": "compiled_live_no_games_requested_waiting_for_quota",
+  "planned_groups": 6,
+  "tasks": [
+    {
+      "task": 0,
+      "opponent": "Preyas",
+      "sourceGroup": "9736fafc-af01-4db0-85dd-6502fe80dd3e",
+      "maps": [
+        "00collision",
+        "00expanse",
+        "00stampede",
+        "01elk_arena",
+        "01big_world"
+      ],
+      "cohort": "nearby",
+      "status": "planned_not_requested",
+      "groups": []
+    },
+    {
+      "task": 1,
+      "opponent": "Cozy Campfire",
+      "sourceGroup": "be5248a7-8e2d-43df-b1fd-96c4119dccf3",
+      "maps": [
+        "00ambush",
+        "00contest",
+        "00corners",
+        "00eight",
+        "00elkring"
+      ],
+      "cohort": "nearby",
+      "status": "planned_not_requested",
+      "groups": []
+    },
+    {
+      "task": 2,
+      "opponent": "BitShift",
+      "sourceGroup": "b265c35b-e3ec-43ea-aa60-9f03c7707702",
+      "maps": [
+        "00stampede",
+        "01elk_arena",
+        "00collision",
+        "00rows",
+        "00monolith"
+      ],
+      "cohort": "stretch",
+      "status": "planned_not_requested",
+      "groups": []
+    }
+  ],
+  "platform_version": 88,
+  "submission_id": "359be360-3778-40bf-bf67-a8433dc773f7",
+  "candidate": "ppo-topdraft-v14"
+}

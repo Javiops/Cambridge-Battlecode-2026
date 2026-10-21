@@ -7,6 +7,13 @@ confirmation maps describe earlier stage milestones; both final cohorts are now 
 
 ## Current development after deployment
 
+- V88 / topdraft v14 is compiled and live; server source delivery and build log
+  are verified. Verify every queued version, then
+  use returning unranked quota with the pinned cover-live-plan.json pairs.
+  V14's quiet channel cover passes 69/70 starter, 149/302 live v12 and 160/302
+  fixed v6, zero faults and six fuel losses per schedule. V13's unfiltered scan
+  regresses farming and stays rejected offline. See COVER-V14.md. No promotion.
+
 - Platform **v87 / topdraft v12 is compiled and live**, retaining v8 banking and checking contact before ally scans. The paired v85/v86/v87 banking benchmark is complete: 30 native-verified games, each version 5/10 with zero faults/fuel losses. Big-world deposits improve; elk B acquisition regresses. See BANKING-FIELD.md and CONTACT-V12.md.
 
 - Continue the hourly unranked curriculum: most opponents near/moderately above

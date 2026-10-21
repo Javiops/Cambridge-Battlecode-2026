@@ -315,3 +315,11 @@ Honored the teammate hold, then collected/native-verified both seats for v85, up
 ## 2026-10-21 · V87 broad field evidence
 
 All 44 groups / 220 games collected and native-verified on 35 maps: 75 wins, zero faults, one fuel loss. Historical same-label v83 subset: 87 wins, 70 fuel losses; this is descriptive, without certified old opponent-B/seed equivalence. Runtime improves while overall results regress. Keep v87 as a usable experiment under Fran's policy; diagnose contest acquisition/delivery and objective fight exposure rather than undo banking automatically. Final actual allowance zero; retain the existing 15-minute check. See V87-CURRICULUM.md.
+
+## 2026-10-21 · Quiet channel cover v13/v14
+
+Field trace shows 400-gem tribute channels started but lost before completion; do not treat this as a start-priority bug. V13 quiet cover regresses big-world to 0/34 despite no cover activation and is rejected offline. V14 avoids impossible scans with public altar distance, restores big-world starter banks to 901/932, and passes 22 full-log release canaries with zero faults/fuel losses. Broad evidence and its limits are recorded in COVER-V14.md; no promotion or model change.
+
+V14 uploaded and selected as platform v88, source delivery hash verified. Server compilation awaits matching; v87 is the last compiled live bot. No v88 games requested with allowance zero. Preserve that distinction and check via the existing 15-minute automation.
+
+V88 server compilation and LIVE status are now verified, with the full server build log saved. No new unranked request yet; the preceding zero-quota observation stands until refreshed.

@@ -1,6 +1,6 @@
 # Next hypothesis: bound the age of a propagated join
 
-Not implemented. Finish the v92 field window before freezing another bot.
+Implemented and frozen as v19 after the complete250-game v92 audit. See AGE-V19.md;the predeclared hypothesis below remains the original request.
 
 The shared protocol fixes the selected first-cycle failure: Preyas elk A,
 game b65f98bf-65bd-46dc-bbfd-b84782ec628c, unit4 authorizes at175; unit0 Stellar

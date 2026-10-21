@@ -1,0 +1,19 @@
+{
+  "candidate": "ppo-topdraft-v19",
+  "platform_version": 93,
+  "submission_id": "e2dfe396-4be8-4d6a-8abc-e4c00565e41a",
+  "source_zip_sha256": "94cafc9c3bbe99deaf3a169ec236f4ef2a3e0f28b02c1776ef12aea60b7190b7",
+  "server_source_sha256": "94cafc9c3bbe99deaf3a169ec236f4ef2a3e0f28b02c1776ef12aea60b7190b7",
+  "wasm_sha256": "301031fc5a4d34b5ddd263605485a349007e54e7ac8817e0a342307c9457851b",
+  "independent_rebuild_sha256": "301031fc5a4d34b5ddd263605485a349007e54e7ac8817e0a342307c9457851b",
+  "server_compilation_verified": false,
+  "status": "uploaded_selected_pending_compile",
+  "uploadedUtc": "2026-10-21T04:21:14.494Z",
+  "compiledLiveUtc": null,
+  "observed_engine_version": null,
+  "observed_engine_build": null,
+  "server_binary_sha256": null,
+  "completed_native_verified_unranked_games": 0,
+  "field_journal": "live/age-20261021-r1/batch.json",
+  "queued_groups": []
+}

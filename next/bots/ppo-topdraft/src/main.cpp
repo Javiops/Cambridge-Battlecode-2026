@@ -1,4 +1,4 @@
-// ppo-topdraft-v18: share an authorized rally release before turn priorities; expect healthy stragglers to join the same push and collect more objective gems.
+// ppo-topdraft-v19: expire propagated joins after16 rounds from first receipt; expect fewer stale respawn joins while preserving prompt rallies and objective income.
 // team-fight-v1 (design: analysis/claude-api-2026-10-18/team_fight_design_1019.md): recall-api-v1 + P_TEAM_FIGHT (finish layer,
 // below) + P_HP_SHOP (hp shards at the top teams' hp share on the v72 power path).
 // Finish layer: the no-chase doctrine lifted for hurt rivals. The bot let hurt rivals go by
@@ -566,6 +566,7 @@ struct State {
     std::optional<vec2> objective_stage;
     int objective_release_cycle = -1;
     int objective_shared_cycle = -1, objective_shared_round = -1000;
+    int objective_stale_logged_cycle = -1;
     int sole_gem_group = -1;  // public map geometry: exactly one gem-paying camp group
     bool mono_only = false;  // P_MONO: every gem on the map sits in a monolith group
     bool jackpot_map = false;  // P_JACKPOT: a jackpot group exists, so gold clusters are worth farming before it
@@ -1679,9 +1680,20 @@ bool objective_assemble(State& s, bc::champion& me, int round) {
     const int cycle = (round - P_OBJECTIVE_START) / P_OBJECTIVE_PERIOD;
     if (s.objective_release_cycle == cycle) return false;
     if (s.objective_shared_cycle == cycle) {
-        s.objective_release_cycle = cycle;
-        std::printf("OBJ r=%d unit=%d group=%d cycle=%d phase=join\n", round, s.ally_idx, s.sole_gem_group, cycle);
-        return false;
+        const int receipt_age = round - s.objective_shared_round;
+        if (receipt_age >= 0 && receipt_age <= P_OBJECTIVE_SHARED_MAX_AGE) {
+            s.objective_release_cycle = cycle;
+            std::printf("OBJ r=%d unit=%d group=%d cycle=%d receipt=%d age=%d phase=join\n",
+                round, s.ally_idx, s.sole_gem_group, cycle, s.objective_shared_round, receipt_age);
+            return false;
+        }
+        // A delayed receiver stages again and can still authorize an ordinary
+        // local quorum. Log only the first stale rejection in this campaign.
+        if (s.objective_stale_logged_cycle != cycle) {
+            s.objective_stale_logged_cycle = cycle;
+            std::printf("OBJ r=%d unit=%d group=%d cycle=%d receipt=%d age=%d phase=stale\n",
+                round, s.ally_idx, s.sole_gem_group, cycle, s.objective_shared_round, receipt_age);
+        }
     }
     const auto& g = s.groups[s.sole_gem_group];
     if (!s.objective_stage) {

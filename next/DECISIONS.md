@@ -363,3 +363,11 @@ Propagate the existing quorum decision with early receipt and two-round danger-b
 ## 2026-10-21 · V92 shared-release field window complete
 
 All250 native-verified:77wins,0faults,1fuel. Matched v91:46/140 versus49;seed-equal140. Sole release5→18/18,bank325.00→314.28,fresh317.33→325.33,deaths42.39→46.50. Target Stellar joins176;not a general strength claim. See V92-FIELD.md.
+
+## 2026-10-21 · V19 limits propagated join age
+
+Expire shared receipts after16 rounds,then use unchanged local assembly/quorum. All511 feature joins within age13;9 stale rejections over16. Sole all-unit first-cycle release stays24/24,bank225.08→242.08,fresh241→267,but deaths32.79→34.29 and wins10/24 unchanged. Split24/24 exact. Broad173/350 parent,69/70 starter,zero faults,4 exhausted turns;26 repeated canaries exact. Exact rebuild,494runs/468unique. Eligible functional trial,not promotion. See AGE-V19.md.
+
+## 2026-10-21 · V19 uploaded as platform93
+
+Status:uploaded and selected; server compilation pending, with v92 live as fallback. Frozen/server source ZIP94cafc9c3bbe99deaf3a169ec236f4ef2a3e0f28b02c1776ef12aea60b7190b7;independent localWASM301031fc5a4d34b5ddd263605485a349007e54e7ac8817e0a342307c9457851b. No unranked groups initiated because actual quota0. Keep compilation/version identity separate from offline release checks. Existing15-minute check continues.

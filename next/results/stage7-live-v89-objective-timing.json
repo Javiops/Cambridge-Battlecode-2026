@@ -14,7 +14,8 @@
       "fresh_foe": 800.0,
       "bank_ours": 640,
       "bank_foe": 800,
-      "deaths": 28
+      "deaths": 28,
+      "cohort": "nearby"
     },
     {
       "id": "439caba2-cf6f-420d-bc5d-711026813188",
@@ -28,7 +29,8 @@
       "fresh_foe": 1080.0,
       "bank_ours": 72,
       "bank_foe": 1008,
-      "deaths": 22
+      "deaths": 22,
+      "cohort": "nearby"
     },
     {
       "id": "09d25c19-18be-457a-a06b-50bf079010c0",
@@ -42,7 +44,8 @@
       "fresh_foe": 320.0,
       "bank_ours": 960,
       "bank_foe": 480,
-      "deaths": 28
+      "deaths": 28,
+      "cohort": "nearby"
     },
     {
       "id": "fa15efe2-8e03-4bac-b1ef-05a6eb50b93e",
@@ -56,7 +59,8 @@
       "fresh_foe": 1080.0,
       "bank_ours": 360,
       "bank_foe": 1008,
-      "deaths": 30
+      "deaths": 30,
+      "cohort": "nearby"
     },
     {
       "id": "52227df3-911d-4512-aa94-6532bf24c615",
@@ -70,7 +74,8 @@
       "fresh_foe": 1120.0,
       "bank_ours": 160,
       "bank_foe": 960,
-      "deaths": 62
+      "deaths": 62,
+      "cohort": "stretch"
     },
     {
       "id": "4ad20a95-dc57-4dee-98fd-00cd8c867900",
@@ -84,7 +89,8 @@
       "fresh_foe": 1080.0,
       "bank_ours": 108,
       "bank_foe": 1044,
-      "deaths": 46
+      "deaths": 46,
+      "cohort": "stretch"
     },
     {
       "id": "2941ec7f-19f2-495b-b6fe-833a08002096",
@@ -98,7 +104,8 @@
       "fresh_foe": 640.0,
       "bank_ours": 240,
       "bank_foe": 560,
-      "deaths": 41
+      "deaths": 41,
+      "cohort": "stretch"
     },
     {
       "id": "739fd6f2-c4f7-489d-93dc-dd2dc6391829",
@@ -112,7 +119,8 @@
       "fresh_foe": 1080.0,
       "bank_ours": 504,
       "bank_foe": 1008,
-      "deaths": 39
+      "deaths": 39,
+      "cohort": "stretch"
     },
     {
       "id": "0e4aee43-6f94-46bb-a739-38e3c7611620",
@@ -126,7 +134,8 @@
       "fresh_foe": 1080.0,
       "bank_ours": 120,
       "bank_foe": 1032,
-      "deaths": 41
+      "deaths": 41,
+      "cohort": "stretch"
     },
     {
       "id": "b87cd210-8b50-4a0b-ba08-42c130699cc0",
@@ -140,7 +149,8 @@
       "fresh_foe": 1152.0,
       "bank_ours": 312,
       "bank_foe": 1020,
-      "deaths": 35
+      "deaths": 35,
+      "cohort": "stretch"
     },
     {
       "id": "e19fa542-595b-47fd-b728-67fb6bd3cfe1",
@@ -154,7 +164,8 @@
       "fresh_foe": 0,
       "bank_ours": 1120,
       "bank_foe": 0,
-      "deaths": 17
+      "deaths": 17,
+      "cohort": "nearby"
     },
     {
       "id": "e4b0b759-3d4f-4a2f-a769-4d5faaa2dc0e",
@@ -168,7 +179,8 @@
       "fresh_foe": 1080.0,
       "bank_ours": 86,
       "bank_foe": 1066,
-      "deaths": 27
+      "deaths": 27,
+      "cohort": "nearby"
     },
     {
       "id": "350109c4-8176-47ef-87c7-6ecebac4316a",
@@ -182,7 +194,8 @@
       "fresh_foe": 1120.0,
       "bank_ours": 480,
       "bank_foe": 960,
-      "deaths": 30
+      "deaths": 30,
+      "cohort": "nearby"
     },
     {
       "id": "63689ddd-e192-41d3-92bf-0504b6c11ca9",
@@ -196,7 +209,8 @@
       "fresh_foe": 1152.0,
       "bank_ours": 216,
       "bank_foe": 1008,
-      "deaths": 18
+      "deaths": 18,
+      "cohort": "nearby"
     },
     {
       "id": "31bf344b-63e3-4b07-b64c-3aea964cfdda",
@@ -210,7 +224,8 @@
       "fresh_foe": 800.0,
       "bank_ours": 240,
       "bank_foe": 880,
-      "deaths": 48
+      "deaths": 48,
+      "cohort": "leader"
     },
     {
       "id": "bf27fa2a-74d7-4452-8f2b-f764bb37123a",
@@ -224,7 +239,8 @@
       "fresh_foe": 432.0,
       "bank_ours": 648,
       "bank_foe": 576,
-      "deaths": 64
+      "deaths": 64,
+      "cohort": "leader"
     },
     {
       "id": "476b08ca-95dc-4d2c-b2c2-1716d0e1a560",
@@ -238,7 +254,8 @@
       "fresh_foe": 480.0,
       "bank_ours": 536,
       "bank_foe": 584,
-      "deaths": 44
+      "deaths": 44,
+      "cohort": "leader"
     },
     {
       "id": "ef9d41af-9962-4b33-a7bc-2eb4aa561447",
@@ -252,7 +269,8 @@
       "fresh_foe": 504.0,
       "bank_ours": 576,
       "bank_foe": 504,
-      "deaths": 56
+      "deaths": 56,
+      "cohort": "leader"
     }
   ],
   "fuel_game": {
@@ -348,5 +366,6 @@
       }
     }
   ],
-  "limits": "Fresh collection is positive gemCollection.value with campGroup context, not amount. No total monster damage is attributed to the sole objective. Pinned opponent/map/seat do not certify equal engine seeds."
+  "limits": "Fresh collection is positive gemCollection.value with campGroup context, not amount. No total monster damage is attributed to the sole objective. Pinned opponent/map/seat do not certify equal engine seeds.",
+  "cohort_note": "The eight nonleader elk games include nearby and stretch labels; exclude only the two Nyx leader games. Historical labels are not current rank strength."
 }

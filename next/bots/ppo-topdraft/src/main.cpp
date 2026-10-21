@@ -1,4 +1,4 @@
-// ppo-topdraft-v15: one visible snapshot per cover ally, skipping hidden entries; expect one native read per ally without ending the scan early.
+// ppo-topdraft-v16: advance sole-objective rally clock from350 to120; expect earlier fresh objective collection without changing survival or multi-camp play.
 // team-fight-v1 (design: analysis/claude-api-2026-10-18/team_fight_design_1019.md): recall-api-v1 + P_TEAM_FIGHT (finish layer,
 // below) + P_HP_SHOP (hp shards at the top teams' hp share on the v72 power path).
 // Finish layer: the no-chase doctrine lifted for hurt rivals. The bot let hurt rivals go by

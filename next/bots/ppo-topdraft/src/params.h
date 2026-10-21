@@ -149,6 +149,6 @@
 #endif
 
 // Single-objective team campaign: shared clock, separate from ordinary solo camp claims.
-#define P_OBJECTIVE_START 350
+#define P_OBJECTIVE_START 120
 #define P_OBJECTIVE_PERIOD 360
 #define P_OBJECTIVE_WINDOW 240

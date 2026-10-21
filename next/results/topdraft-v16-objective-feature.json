@@ -1,0 +1,33 @@
+{
+  "candidate": "ppo-topdraft-v16",
+  "baseline": "ppo-topdraft-v6",
+  "config_sha256": "e4a5ba09738668dbbeb09ca9c45124141c99c89ddce63ac49e6fe64b0b353c5f",
+  "status": "development_only_not_promoted",
+  "capture_note": "Generic topdraft_screen.py finished all48 games but its final summary writer divided by an empty starter group. No match crashed or was skipped; this explicit audit validates every identity, terminal statistic and release log.",
+  "summary": {
+    "sole": {
+      "games": 24,
+      "wins": 10,
+      "faults": 0,
+      "fuel_exhausted": 0,
+      "fresh_before_350": 7,
+      "no_fresh": 5,
+      "mean_first_fresh_or_2001": 814.4166666666666,
+      "mean_bank": 234.5,
+      "mean_deaths": 36.75
+    },
+    "split": {
+      "games": 24,
+      "wins": 9,
+      "faults": 0,
+      "fuel_exhausted": 0,
+      "fresh_before_350": 8,
+      "no_fresh": 9,
+      "mean_first_fresh_or_2001": 1051.1666666666667,
+      "mean_bank": 211.5,
+      "mean_deaths": 44.583333333333336
+    }
+  },
+  "per_game_records": "topdraft-v16-objective-feature-games.jsonl",
+  "source_zip_sha256": "729dd5e0934f55d0172f5c36f94a94702e465620eefb9ef060e8e7d524e42ef0"
+}

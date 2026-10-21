@@ -1,0 +1,16 @@
+{
+  "id": "a75e719c-fad1-4cd2-88ce-54d8ecec42ee",
+  "group_id": "2fd65bdf-65cb-4f9e-91c2-5f1059f29134",
+  "map": "01elk-arena",
+  "opponent": "Preyas",
+  "seat": "A",
+  "early_assault": [
+    "OBJ r=176 unit=1 group=0 ready=6 quorum=5 phase=assault",
+    "OBJ r=176 unit=3 group=0 ready=6 quorum=5 phase=assault",
+    "OBJ r=176 unit=4 group=0 ready=6 quorum=5 phase=assault"
+  ],
+  "bank": 0,
+  "observation": "Units1/3/4 log ready6/quorum5 release at176. Healthy Stellar remains at19,20 through175\u2013200 and keeps rallying; Ren and Ryth also keep rallying at200. This proves split release behavior, not its single cause. The current quorum loop wraps the whole roster in one handler; native visibility and per-unit release-cycle latching are next checks.",
+  "no_patch_mix": true,
+  "diagnostics": "preyas-elk-A-rally.txt"
+}

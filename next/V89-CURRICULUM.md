@@ -30,7 +30,7 @@ See SCAN-V15.md, V88-FIELD.md, the group journal and per-game records for identi
 
 ## Acquisition timing and next isolated experiment
 
-All eight nearby elk-arena games have opponent fresh camp collection before our round-350 coordinated rally: rounds 121, 93, 274, 202, 163, 53, 217, 227. Our first fresh collection is none, 405, 529, 423, 479, 591, 1270, 1331. This supports testing an earlier shared rally clock; it does not establish that timing alone fixes fighting or reward capture. Keep the same health, quorum, survival and banking rules, and test varied generated sole-objective layouts with matched multi-objective controls before uploading. Moving the clock origin shifts later windows too.
+All eight nonleader elk-arena games have opponent fresh camp collection before our round-350 coordinated rally: rounds 121, 93, 274, 202, 163, 53, 217, 227. Our first fresh collection is none, 405, 529, 423, 479, 591, 1270, 1331. This supports testing an earlier shared rally clock; it does not establish that timing alone fixes fighting or reward capture. Keep the same health, quorum, survival and banking rules, and test varied generated sole-objective layouts with matched multi-objective controls before uploading. Moving the clock origin shifts later windows too.
 
 The only exhausted turn is 01big-world versus Slawomir Zarzycki, seat B (2c941864-d9fb-49a6-bdf0-2e54af19c02d); it is not a persistent stall. The game banks 514 with 4 deaths. Full fuel events and acquisition timing are preserved in results/stage7-live-v89-objective-timing.json.
 

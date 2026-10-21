@@ -334,4 +334,12 @@ Replace duplicate per-entry cover queries with one visibility-checked record and
 
 ## 2026-10-21 · V89 curriculum complete
 
-All44 initiated unranked groups /220 games,35 maps both seats, native-verified:71 wins,0 faults,1 exhausted turn. Nearby45/130, stretch24/70, leader2/20. Matched30 vs v88 wins7 vs8; contest deposits600 vs200 from800 collected. Retain the usable visibility correction without a strength claim. Eight nearby elk opponents collect before round350; test earlier coordinated timing on generated sole/split geometries and ordinary multi-camp controls. Seventy confirmation maps remain unused.
+All44 initiated unranked groups /220 games,35 maps both seats, native-verified:71 wins,0 faults,1 exhausted turn. Nearby45/130, stretch24/70, leader2/20. Matched30 vs v88 wins7 vs8; contest deposits600 vs200 from800 collected. Retain the usable visibility correction without a strength claim. Eight nonleader elk opponents collect before round350; test earlier coordinated timing on generated sole/split geometries and ordinary multi-camp controls. Seventy confirmation maps remain unused.
+
+## 2026-10-21 · V16 earlier objective clock
+
+Predeclared350→120 clock origin, same health/quorum/combat/banking.24 generated sole/split maps plus broad checks; targeted early collection improves, deaths and zero-collection cases increase. Eligible experimental trial, no promotion. New1.0.2 notice requires actual patch cohort verification. See RALLY-V16.md.
+
+## 2026-10-21 · V90 first field window complete
+
+All22 requested groups/110 games native-verified:32wins,0faults,1 exhausted turn. Actual1.0.1 build;1.0.2 announcement is separate. Matched v89 comparison and split objective-release trace are in V90-FIELD.md. Do not assume earlier timing fixes camp acquisition; inspect quorum scan and per-unit latch next.

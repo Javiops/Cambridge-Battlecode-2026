@@ -331,3 +331,7 @@ Used six returning challenges for 30 native-verified v88 games: 8 wins, zero fau
 ## 2026-10-21 · V15 visible ally snapshot
 
 Replace duplicate per-entry cover queries with one visibility-checked record and skip hidden entries without ending the whole scan. Native replay confirms a hidden earlier ally before later visible entries, without an active channel in that sampled frame. Keep that evidential limit. Release results and exact rebuild are in SCAN-V15.md; no promotion or model change.
+
+## 2026-10-21 · V89 curriculum complete
+
+All44 initiated unranked groups /220 games,35 maps both seats, native-verified:71 wins,0 faults,1 exhausted turn. Nearby45/130, stretch24/70, leader2/20. Matched30 vs v88 wins7 vs8; contest deposits600 vs200 from800 collected. Retain the usable visibility correction without a strength claim. Eight nearby elk opponents collect before round350; test earlier coordinated timing on generated sole/split geometries and ordinary multi-camp controls. Seventy confirmation maps remain unused.

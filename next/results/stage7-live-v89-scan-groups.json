@@ -61,7 +61,7 @@
       "server_source_sha256": "f7061cf27494acf2f9106326123398f25e38222906be112c62e650d9d5a9a7a9",
       "independent_rebuild_sha256": "7fbba846d2817771ee77fd8b229a1a05c3fb8e25e0e424e14de3426d08963b0c",
       "verifiedUtc": "2026-10-21T00:47:52.033Z",
-      "nativeVerifiedGames": 70
+      "nativeVerifiedGames": 220
     }
   ],
   "stageIndex": 0,
@@ -608,8 +608,18 @@
       "initiatedByThisAgent": true,
       "compilationTrigger": false,
       "id": "adcc2b6d-f559-43ee-9254-23780c440faa",
-      "collectionStatus": "pending",
-      "queuedVersionVerified": 89
+      "collectionStatus": "complete",
+      "queuedVersionVerified": 89,
+      "summaryFiles": [
+        "a4fc9085-4749-4147-839f-5a173379666f.json",
+        "104ac5fe-b4cd-4902-935e-c341cd0bae76.json",
+        "1cc76155-6173-48af-b724-12848a4a88af.json",
+        "c3410933-1e83-4e4d-b562-569c2b5344df.json",
+        "0e4aee43-6f94-46bb-a739-38e3c7611620.json"
+      ],
+      "completedVersionVerified": 89,
+      "collectedUtc": "2026-10-21T01:10:38.949Z",
+      "native_verified": true
     },
     {
       "task": 7,
@@ -635,8 +645,18 @@
       "initiatedByThisAgent": true,
       "compilationTrigger": false,
       "id": "b1f80fc7-8d9a-4177-baa2-5d0a44dbfd40",
-      "collectionStatus": "pending",
-      "queuedVersionVerified": 89
+      "collectionStatus": "complete",
+      "queuedVersionVerified": 89,
+      "summaryFiles": [
+        "9f8068a9-5852-47ca-80e7-37db37da6e32.json",
+        "f0186203-cadc-41f9-a98a-b3475fdc7847.json",
+        "ef754494-d8bf-46b5-8bdb-944a5ed950e4.json",
+        "47952073-507d-49ef-ba6b-c057e200e8bd.json",
+        "b87cd210-8b50-4a0b-ba08-42c130699cc0.json"
+      ],
+      "completedVersionVerified": 89,
+      "collectedUtc": "2026-10-21T01:10:48.636Z",
+      "native_verified": true
     },
     {
       "task": 8,
@@ -662,8 +682,18 @@
       "initiatedByThisAgent": true,
       "compilationTrigger": false,
       "id": "f48f4350-d004-466b-8a02-988d24cddfae",
-      "collectionStatus": "pending",
-      "queuedVersionVerified": 89
+      "collectionStatus": "complete",
+      "queuedVersionVerified": 89,
+      "summaryFiles": [
+        "ef074566-4c46-4dbb-965b-4a7072abc7c4.json",
+        "f53d6b1e-9734-4a50-93af-870cebf7f298.json",
+        "1c1f2331-2eb1-4583-97fc-779eaa057b4e.json",
+        "acf259f0-ad87-4c02-9ab8-855405dab29e.json",
+        "038da2b1-eac4-44ee-b52e-8889308e1709.json"
+      ],
+      "completedVersionVerified": 89,
+      "collectedUtc": "2026-10-21T01:10:58.439Z",
+      "native_verified": true
     },
     {
       "task": 8,
@@ -689,8 +719,18 @@
       "initiatedByThisAgent": true,
       "compilationTrigger": false,
       "id": "7302c361-9232-4e5f-a1c9-5a2dcd0ce512",
-      "collectionStatus": "pending",
-      "queuedVersionVerified": 89
+      "collectionStatus": "complete",
+      "queuedVersionVerified": 89,
+      "summaryFiles": [
+        "061f379a-422e-49b4-86dc-5fa21fe98145.json",
+        "5bf00422-0c9c-4fbe-823d-ab09ae4fe2d0.json",
+        "4a4bef23-e8a4-42b6-acbf-cdb6b81f8c5b.json",
+        "4b1763be-9eae-4a3c-8bb7-a62233b5c0b0.json",
+        "023f105e-9cce-4406-ac56-68c9c13afa41.json"
+      ],
+      "completedVersionVerified": 89,
+      "collectedUtc": "2026-10-21T01:11:09.698Z",
+      "native_verified": true
     },
     {
       "task": 9,
@@ -716,8 +756,18 @@
       "initiatedByThisAgent": true,
       "compilationTrigger": false,
       "id": "bb7c1a40-543e-48e5-a373-0ae4315c73b7",
-      "collectionStatus": "pending",
-      "queuedVersionVerified": 89
+      "collectionStatus": "complete",
+      "queuedVersionVerified": 89,
+      "summaryFiles": [
+        "c5d9d85e-69d0-4085-acf6-aa7c287016a4.json",
+        "1d779b74-055a-4490-b17f-b20d43bdf83f.json",
+        "e19fa542-595b-47fd-b728-67fb6bd3cfe1.json",
+        "e4b0b759-3d4f-4a2f-a769-4d5faaa2dc0e.json",
+        "e02ec4af-7b33-45cc-99d7-8ad03c79e752.json"
+      ],
+      "completedVersionVerified": 89,
+      "collectedUtc": "2026-10-21T01:17:21.049Z",
+      "native_verified": true
     },
     {
       "task": 9,
@@ -743,8 +793,18 @@
       "initiatedByThisAgent": true,
       "compilationTrigger": false,
       "id": "bfbc0b0b-e710-463b-ba6a-33fea699a83a",
-      "collectionStatus": "pending",
-      "queuedVersionVerified": 89
+      "collectionStatus": "complete",
+      "queuedVersionVerified": 89,
+      "summaryFiles": [
+        "7c7a1d9c-7a73-41a7-a8fe-e99f6c3503e7.json",
+        "b6d59640-3452-4add-9c98-e4fe67ad9289.json",
+        "350109c4-8176-47ef-87c7-6ecebac4316a.json",
+        "63689ddd-e192-41d3-92bf-0504b6c11ca9.json",
+        "2c941864-d9fb-49a6-bdf0-2e54af19c02d.json"
+      ],
+      "completedVersionVerified": 89,
+      "collectedUtc": "2026-10-21T01:17:31.335Z",
+      "native_verified": true
     },
     {
       "task": 16,
@@ -770,8 +830,18 @@
       "initiatedByThisAgent": true,
       "compilationTrigger": false,
       "id": "0ff0439c-33dc-47a6-a434-97a38b248e1e",
-      "collectionStatus": "pending",
-      "queuedVersionVerified": 89
+      "collectionStatus": "complete",
+      "queuedVersionVerified": 89,
+      "summaryFiles": [
+        "b2f54f5a-68f5-464c-b123-089a9b9310ce.json",
+        "01bebf5e-2633-4fde-90df-cf7dd55c78e0.json",
+        "a0660f08-f40f-4feb-b2aa-dafac5d0476d.json",
+        "2b79d9e7-4609-45c0-912e-e5b92e7fbdcc.json",
+        "d3a02afc-825c-4df0-ac84-0706e64712b4.json"
+      ],
+      "completedVersionVerified": 89,
+      "collectedUtc": "2026-10-21T01:17:41.304Z",
+      "native_verified": true
     },
     {
       "task": 16,
@@ -797,8 +867,18 @@
       "initiatedByThisAgent": true,
       "compilationTrigger": false,
       "id": "eb62e1e8-b0df-4683-80a1-f18609e68214",
-      "collectionStatus": "pending",
-      "queuedVersionVerified": 89
+      "collectionStatus": "complete",
+      "queuedVersionVerified": 89,
+      "summaryFiles": [
+        "4d97aa11-bc5c-4eb2-a641-8b4d7686e0ba.json",
+        "22a79379-04f7-468f-bc94-ffa6724c159a.json",
+        "9e4dbe1b-a9fe-4393-8e2a-7e22d489db3a.json",
+        "3a5d429d-61a2-4092-9bd4-a4087654dfc7.json",
+        "51ccc802-3ae2-4ee3-aac0-acb92fd19a7e.json"
+      ],
+      "completedVersionVerified": 89,
+      "collectedUtc": "2026-10-21T01:17:54.053Z",
+      "native_verified": true
     },
     {
       "task": 10,
@@ -824,8 +904,18 @@
       "initiatedByThisAgent": true,
       "compilationTrigger": false,
       "id": "d0195b9a-b25e-4168-83bb-57b23a177e9b",
-      "collectionStatus": "pending",
-      "queuedVersionVerified": 89
+      "collectionStatus": "complete",
+      "queuedVersionVerified": 89,
+      "summaryFiles": [
+        "2e1d2999-3be3-4411-b930-77da00771fc0.json",
+        "7686c7fc-2c65-4770-996b-9cdfb6d5f009.json",
+        "4d903e48-cb21-4c8d-b26e-9396e8bb325d.json",
+        "2e1d88f9-829b-4331-a380-d7479fde47dc.json",
+        "efeb33f4-a777-4f4d-8f7f-c8c978bbddd4.json"
+      ],
+      "completedVersionVerified": 89,
+      "collectedUtc": "2026-10-21T01:22:10.043Z",
+      "native_verified": true
     },
     {
       "task": 10,
@@ -851,8 +941,18 @@
       "initiatedByThisAgent": true,
       "compilationTrigger": false,
       "id": "cf422b29-19db-4462-b108-0e793745ef59",
-      "collectionStatus": "pending",
-      "queuedVersionVerified": 89
+      "collectionStatus": "complete",
+      "queuedVersionVerified": 89,
+      "summaryFiles": [
+        "89abfbec-c4b6-40e7-bd1d-2d1bddd6e069.json",
+        "7757235e-63b9-4900-8b36-2fe06fc64c5f.json",
+        "c689f1cc-a0eb-4eab-95a5-8b8bcf0819cd.json",
+        "4d6c09b3-1fd3-4d0a-b8e6-8084c6d6a642.json",
+        "548f96de-d269-49b7-8a71-20b1f6dfd317.json"
+      ],
+      "completedVersionVerified": 89,
+      "collectedUtc": "2026-10-21T01:22:56.150Z",
+      "native_verified": true
     },
     {
       "task": 17,
@@ -878,8 +978,18 @@
       "initiatedByThisAgent": true,
       "compilationTrigger": false,
       "id": "046779dc-0345-43d9-bdbd-dbd10871ca87",
-      "collectionStatus": "pending",
-      "queuedVersionVerified": 89
+      "collectionStatus": "complete",
+      "queuedVersionVerified": 89,
+      "summaryFiles": [
+        "d12459ac-0c7a-4af0-b5e9-d3185d2974fd.json",
+        "e8905575-856e-4d08-a2cd-48479bfefef5.json",
+        "864e6b75-e8f8-4ce2-ad28-31a4e7d39fad.json",
+        "995deea4-342c-4254-a7e8-dfb74443d7f4.json",
+        "fdd3c842-5b8c-43aa-85f5-c502900340fd.json"
+      ],
+      "completedVersionVerified": 89,
+      "collectedUtc": "2026-10-21T01:27:28.322Z",
+      "native_verified": true
     },
     {
       "task": 17,
@@ -905,8 +1015,18 @@
       "initiatedByThisAgent": true,
       "compilationTrigger": false,
       "id": "8ce89df1-2401-4f11-8542-154975cc4018",
-      "collectionStatus": "pending",
-      "queuedVersionVerified": 89
+      "collectionStatus": "complete",
+      "queuedVersionVerified": 89,
+      "summaryFiles": [
+        "fdf51ed7-5b88-4130-b1d0-addfe84665dd.json",
+        "fa015284-a082-4dc5-9c1f-0cceebf212a5.json",
+        "c2009311-2693-47a8-88a9-1181b2197a1d.json",
+        "6f97a0c2-0490-475e-9482-9cfee0e13d9d.json",
+        "a5d94c4d-7c72-4931-b494-352b98e4cea2.json"
+      ],
+      "completedVersionVerified": 89,
+      "collectedUtc": "2026-10-21T01:27:47.410Z",
+      "native_verified": true
     },
     {
       "task": 11,
@@ -932,8 +1052,18 @@
       "initiatedByThisAgent": true,
       "compilationTrigger": false,
       "id": "3da0445d-be46-42f2-b505-1dfd22a7672d",
-      "collectionStatus": "pending",
-      "queuedVersionVerified": 89
+      "collectionStatus": "complete",
+      "queuedVersionVerified": 89,
+      "summaryFiles": [
+        "ee42b829-eb35-41df-9f9e-271128cfb73b.json",
+        "887fec16-884a-468f-99e9-d284e8482ffa.json",
+        "a9d9394b-a517-45db-9ac3-f940c807620d.json",
+        "e718ad4b-bdde-4b24-97d8-6fc9f474ea05.json",
+        "43c340fb-c501-4dec-9dac-a7d93b5c4bb0.json"
+      ],
+      "completedVersionVerified": 89,
+      "collectedUtc": "2026-10-21T01:27:56.932Z",
+      "native_verified": true
     },
     {
       "task": 11,
@@ -959,8 +1089,18 @@
       "initiatedByThisAgent": true,
       "compilationTrigger": false,
       "id": "8b4848f8-7aff-4f2b-8d21-c1ba06d61b49",
-      "collectionStatus": "pending",
-      "queuedVersionVerified": 89
+      "collectionStatus": "complete",
+      "queuedVersionVerified": 89,
+      "summaryFiles": [
+        "f2abd093-e46f-41b5-bab9-a8da91025dd5.json",
+        "f1ba1018-9324-4683-a4b9-edcba3251b8a.json",
+        "6c045144-7193-45aa-a330-c57e1c3b6ce2.json",
+        "74b1316d-0d1d-4cc8-86b8-440f4e2541ca.json",
+        "80d2204c-08e7-4596-8957-b98f0429a66b.json"
+      ],
+      "completedVersionVerified": 89,
+      "collectedUtc": "2026-10-21T01:28:06.548Z",
+      "native_verified": true
     },
     {
       "task": 12,
@@ -986,8 +1126,18 @@
       "initiatedByThisAgent": true,
       "compilationTrigger": false,
       "id": "e73b33d7-c4aa-4576-9935-6010966a1863",
-      "collectionStatus": "pending",
-      "queuedVersionVerified": 89
+      "collectionStatus": "complete",
+      "queuedVersionVerified": 89,
+      "summaryFiles": [
+        "dac9b16b-1395-4a56-87f4-4ee9d3879948.json",
+        "3079c02a-7744-42f8-b1d9-61964c2f3e26.json",
+        "39ae6538-101a-41a0-9f4b-b22979b3a932.json",
+        "24e1b60f-52b5-4484-80ed-84c715db2a13.json",
+        "8d5108bf-3845-4e40-943f-3a1af8beb35f.json"
+      ],
+      "completedVersionVerified": 89,
+      "collectedUtc": "2026-10-21T01:28:25.270Z",
+      "native_verified": true
     },
     {
       "task": 12,
@@ -1013,8 +1163,18 @@
       "initiatedByThisAgent": true,
       "compilationTrigger": false,
       "id": "d1a2a476-3d2d-415a-b6ac-0a751ed5ce87",
-      "collectionStatus": "pending",
-      "queuedVersionVerified": 89
+      "collectionStatus": "complete",
+      "queuedVersionVerified": 89,
+      "summaryFiles": [
+        "519faf55-1cfc-4f95-abec-2ce9c4672e6c.json",
+        "b326de30-6ab3-494e-8df4-45d64586f915.json",
+        "55501f17-a940-4ebc-9be4-dacd50582693.json",
+        "6def12d7-7316-4335-9870-7f8719e99829.json",
+        "a066b21b-63c9-4790-bbeb-5c3d305d2921.json"
+      ],
+      "completedVersionVerified": 89,
+      "collectedUtc": "2026-10-21T01:28:35.742Z",
+      "native_verified": true
     },
     {
       "task": 18,
@@ -1040,8 +1200,18 @@
       "initiatedByThisAgent": true,
       "compilationTrigger": false,
       "id": "2719965e-02b5-4407-b51b-144bd9c12b64",
-      "collectionStatus": "pending",
-      "queuedVersionVerified": 89
+      "collectionStatus": "complete",
+      "queuedVersionVerified": 89,
+      "summaryFiles": [
+        "e294ec8c-b5df-4a13-a8b9-b865842d901e.json",
+        "64edbbd2-b3b7-4fb1-9e33-18f1255f8123.json",
+        "5600d479-cf35-405d-bfbe-1674d7b20b8b.json",
+        "8fdb4945-907b-425a-866e-c738b3883a77.json",
+        "314790ce-fdbe-4937-9edd-424d65bd5ee3.json"
+      ],
+      "completedVersionVerified": 89,
+      "collectedUtc": "2026-10-21T01:28:45.645Z",
+      "native_verified": true
     },
     {
       "task": 18,
@@ -1067,8 +1237,18 @@
       "initiatedByThisAgent": true,
       "compilationTrigger": false,
       "id": "42807e1c-0659-42af-8d32-3d4d11cba50e",
-      "collectionStatus": "pending",
-      "queuedVersionVerified": 89
+      "collectionStatus": "complete",
+      "queuedVersionVerified": 89,
+      "summaryFiles": [
+        "307fd417-e0eb-497d-8737-d08fb699a535.json",
+        "af3d504f-27e3-468d-b947-5084ebdb5230.json",
+        "db17ad6f-62dc-46bb-a38f-a5908551f58b.json",
+        "ff51b7b3-d235-44ce-b7c1-96bd4c434715.json",
+        "7893dc6a-6a4e-41bc-ac4d-4092bec92074.json"
+      ],
+      "completedVersionVerified": 89,
+      "collectedUtc": "2026-10-21T01:29:12.337Z",
+      "native_verified": true
     },
     {
       "task": 13,
@@ -1094,8 +1274,18 @@
       "initiatedByThisAgent": true,
       "compilationTrigger": false,
       "id": "0e4e114e-93ba-4752-9585-3af243e69446",
-      "collectionStatus": "pending",
-      "queuedVersionVerified": 89
+      "collectionStatus": "complete",
+      "queuedVersionVerified": 89,
+      "summaryFiles": [
+        "dcdc1ffd-a229-4d04-8270-d2adce8dfd4f.json",
+        "9c080d13-23c5-4960-803a-243e014b6e6d.json",
+        "ccfead7c-d6b5-4df7-8067-3c9466edccfc.json",
+        "af5b4b89-0508-4726-9e8c-8effbe8c0099.json",
+        "52365b89-37a7-45a7-994f-9b5a69b999a2.json"
+      ],
+      "completedVersionVerified": 89,
+      "collectedUtc": "2026-10-21T01:29:22.784Z",
+      "native_verified": true
     },
     {
       "task": 13,
@@ -1121,8 +1311,18 @@
       "initiatedByThisAgent": true,
       "compilationTrigger": false,
       "id": "abb165b5-22da-43e9-8662-899854ef149f",
-      "collectionStatus": "pending",
-      "queuedVersionVerified": 89
+      "collectionStatus": "complete",
+      "queuedVersionVerified": 89,
+      "summaryFiles": [
+        "836b659a-5a87-4071-9dd1-1f84df43c18a.json",
+        "ad014f9d-1d55-4a26-ac9d-5e3624ffffbe.json",
+        "e5088880-2b55-4412-bfaa-edb349a982ad.json",
+        "e932f6bb-bc77-464e-ad67-bad324482d07.json",
+        "ed978156-1873-419b-9b6a-2f3c9d49ad2c.json"
+      ],
+      "completedVersionVerified": 89,
+      "collectedUtc": "2026-10-21T01:29:32.377Z",
+      "native_verified": true
     },
     {
       "task": 14,
@@ -1148,8 +1348,18 @@
       "initiatedByThisAgent": true,
       "compilationTrigger": false,
       "id": "48a9f6d5-1e09-4119-9c0c-68046d78f7a7",
-      "collectionStatus": "pending",
-      "queuedVersionVerified": 89
+      "collectionStatus": "complete",
+      "queuedVersionVerified": 89,
+      "summaryFiles": [
+        "f3d61189-9684-4673-ae2f-5286a816e2da.json",
+        "112b606a-2361-47ff-aab6-036a81d54517.json",
+        "983bab04-f889-43b2-a829-721e30d2447a.json",
+        "fd78e2a4-fa0e-47be-8d07-4665b116092a.json",
+        "659589a2-ddeb-4ecb-89fd-cf8131604aa8.json"
+      ],
+      "completedVersionVerified": 89,
+      "collectedUtc": "2026-10-21T01:29:55.116Z",
+      "native_verified": true
     },
     {
       "task": 14,
@@ -1175,8 +1385,18 @@
       "initiatedByThisAgent": true,
       "compilationTrigger": false,
       "id": "d62e27a1-95f3-473e-a587-dd267dda744a",
-      "collectionStatus": "pending",
-      "queuedVersionVerified": 89
+      "collectionStatus": "complete",
+      "queuedVersionVerified": 89,
+      "summaryFiles": [
+        "8f39adfa-f5a2-4baa-909a-0b91f12ab5e3.json",
+        "5f460d72-6b7a-4c42-bc66-0fc023bec48d.json",
+        "c539ff99-5548-408f-a79e-3042511b8daa.json",
+        "bffa8c07-6f1b-4ac8-a3fc-e281cfce2d53.json",
+        "5b52197d-2fd4-40e2-872c-30cbb7ddfd07.json"
+      ],
+      "completedVersionVerified": 89,
+      "collectedUtc": "2026-10-21T01:30:05.942Z",
+      "native_verified": true
     },
     {
       "task": 19,
@@ -1202,8 +1422,18 @@
       "initiatedByThisAgent": true,
       "compilationTrigger": false,
       "id": "f9ff0be5-54cc-499d-ab71-1d484ae01c12",
-      "collectionStatus": "pending",
-      "queuedVersionVerified": 89
+      "collectionStatus": "complete",
+      "queuedVersionVerified": 89,
+      "summaryFiles": [
+        "286432d7-8c12-4f73-814a-63841981ad01.json",
+        "c6cf6866-7228-4f4b-a7dd-1cafcbbe747b.json",
+        "a410e24f-77c6-4884-b17d-a360ee5307f3.json",
+        "8c185d4f-b779-4db7-b6b1-066cdf52af16.json",
+        "d30183cc-dda5-4eb1-bc0f-36eab6a79132.json"
+      ],
+      "completedVersionVerified": 89,
+      "collectedUtc": "2026-10-21T01:30:17.257Z",
+      "native_verified": true
     },
     {
       "task": 19,
@@ -1229,8 +1459,18 @@
       "initiatedByThisAgent": true,
       "compilationTrigger": false,
       "id": "6b27b4ca-6150-40c9-93bf-c3f51a563db4",
-      "collectionStatus": "pending",
-      "queuedVersionVerified": 89
+      "collectionStatus": "complete",
+      "queuedVersionVerified": 89,
+      "summaryFiles": [
+        "62f7f675-c48c-4835-abef-5f33a5c7883c.json",
+        "aa0358fb-e2d9-4c7f-a88d-9b34c76e358e.json",
+        "512fe28b-ae69-4666-8d17-672ada012e9f.json",
+        "32391b95-38f5-408e-bf39-d3bb6a29a9e4.json",
+        "b03296f2-3b5d-4104-96ba-bccbb1561b29.json"
+      ],
+      "completedVersionVerified": 89,
+      "collectedUtc": "2026-10-21T01:30:31.533Z",
+      "native_verified": true
     },
     {
       "task": 15,
@@ -1256,8 +1496,18 @@
       "initiatedByThisAgent": true,
       "compilationTrigger": false,
       "id": "f4a036b1-e5bf-4ecc-b6c6-b55ec3345b61",
-      "collectionStatus": "pending",
-      "queuedVersionVerified": 89
+      "collectionStatus": "complete",
+      "queuedVersionVerified": 89,
+      "summaryFiles": [
+        "9be3d017-570b-41d1-a988-2816b3536549.json",
+        "0faef5eb-86e3-43cc-a65d-be0d8ee2bcc0.json",
+        "c16bb2de-546c-47eb-9abd-667334f9dda3.json",
+        "ec86468f-9adc-443b-b0de-96355e255796.json",
+        "0d22d970-f60e-4bea-a370-3b4fc88c164c.json"
+      ],
+      "completedVersionVerified": 89,
+      "collectedUtc": "2026-10-21T01:30:43.323Z",
+      "native_verified": true
     },
     {
       "task": 15,
@@ -1283,8 +1533,18 @@
       "initiatedByThisAgent": true,
       "compilationTrigger": false,
       "id": "e07930e5-b272-4882-8ebf-9d259aa5db3d",
-      "collectionStatus": "pending",
-      "queuedVersionVerified": 89
+      "collectionStatus": "complete",
+      "queuedVersionVerified": 89,
+      "summaryFiles": [
+        "f2f3dd69-d058-446f-951e-3fcf7b98dca9.json",
+        "42a674c7-ef79-4bba-b2d7-848e98a6cd37.json",
+        "5e44f416-eea0-44af-9aa8-3297b6fd9fed.json",
+        "6e35aab2-b19b-4296-adf0-9c3b867ccf3c.json",
+        "e820f2ea-1927-4334-b565-0ed774ef24fb.json"
+      ],
+      "completedVersionVerified": 89,
+      "collectedUtc": "2026-10-21T01:30:53.761Z",
+      "native_verified": true
     },
     {
       "task": 20,
@@ -1310,8 +1570,18 @@
       "initiatedByThisAgent": true,
       "compilationTrigger": false,
       "id": "c663b240-a739-41ef-94b4-23544c384565",
-      "collectionStatus": "pending",
-      "queuedVersionVerified": 89
+      "collectionStatus": "complete",
+      "queuedVersionVerified": 89,
+      "summaryFiles": [
+        "11d271a2-3e65-4c8e-a55b-51c9606a06d1.json",
+        "31bf344b-63e3-4b07-b64c-3aea964cfdda.json",
+        "bf27fa2a-74d7-4452-8f2b-f764bb37123a.json",
+        "7d103d37-48d3-427a-bfb4-79cff1490b88.json",
+        "1c8d06c5-6604-4781-abcd-dda09ad0a35a.json"
+      ],
+      "completedVersionVerified": 89,
+      "collectedUtc": "2026-10-21T01:31:11.099Z",
+      "native_verified": true
     },
     {
       "task": 20,
@@ -1337,8 +1607,18 @@
       "initiatedByThisAgent": true,
       "compilationTrigger": false,
       "id": "9c16ebd6-c6e3-402b-b597-6bcc0b068b79",
-      "collectionStatus": "pending",
-      "queuedVersionVerified": 89
+      "collectionStatus": "complete",
+      "queuedVersionVerified": 89,
+      "summaryFiles": [
+        "7384dbd2-5309-44b2-bb21-d8ff14b3e988.json",
+        "476b08ca-95dc-4d2c-b2c2-1716d0e1a560.json",
+        "ef9d41af-9962-4b33-a7bc-2eb4aa561447.json",
+        "0021a6c1-f162-4578-a257-107a73fb70e1.json",
+        "5f30df5d-18d7-4349-b1d0-34fa642ebf78.json"
+      ],
+      "completedVersionVerified": 89,
+      "collectedUtc": "2026-10-21T01:31:20.487Z",
+      "native_verified": true
     },
     {
       "task": 21,
@@ -1364,8 +1644,18 @@
       "initiatedByThisAgent": true,
       "compilationTrigger": false,
       "id": "2834b38e-77d3-4795-8aea-c67e0a7c345f",
-      "collectionStatus": "pending",
-      "queuedVersionVerified": 89
+      "collectionStatus": "complete",
+      "queuedVersionVerified": 89,
+      "summaryFiles": [
+        "3fc5453e-9434-4639-9d65-cfa2448f0550.json",
+        "f1cb74df-6bae-4278-a11c-15465a45a19a.json",
+        "8fd85118-2db9-4fee-8688-15215493dcef.json",
+        "58ab83cd-15df-40a5-8273-7b25282e8491.json",
+        "3f92254d-ccbe-4310-b714-7c94f6cb0649.json"
+      ],
+      "completedVersionVerified": 89,
+      "collectedUtc": "2026-10-21T01:31:30.522Z",
+      "native_verified": true
     },
     {
       "task": 21,
@@ -1391,8 +1681,18 @@
       "initiatedByThisAgent": true,
       "compilationTrigger": false,
       "id": "bc5379c8-62b3-4882-bdeb-e688d0f2278e",
-      "collectionStatus": "pending",
-      "queuedVersionVerified": 89
+      "collectionStatus": "complete",
+      "queuedVersionVerified": 89,
+      "summaryFiles": [
+        "5d772431-61c7-4ec4-a85e-6fb255675ab8.json",
+        "8eaae6bb-5503-4b3f-9eb0-f2944f5b21f8.json",
+        "1eee42a1-df61-4c1c-9f2b-75b3c197ca9e.json",
+        "d2a9ecbd-174a-4ba6-b881-aa7033f6a5b6.json",
+        "c06cb641-5951-4448-9769-b305e2841b73.json"
+      ],
+      "completedVersionVerified": 89,
+      "collectedUtc": "2026-10-21T01:31:45.213Z",
+      "native_verified": true
     }
   ],
   "pending": null,
@@ -1541,7 +1841,7 @@
         "01elk_arena"
       ],
       "cohort": "stretch",
-      "status": "pair_requested",
+      "status": "pair_complete_native_verified",
       "groups": [
         "adcc2b6d-f559-43ee-9254-23780c440faa",
         "b1f80fc7-8d9a-4177-baa2-5d0a44dbfd40"
@@ -1560,7 +1860,7 @@
         "00elkring"
       ],
       "cohort": "nearby",
-      "status": "pair_requested",
+      "status": "pair_complete_native_verified",
       "groups": [
         "f48f4350-d004-466b-8a02-988d24cddfae",
         "7302c361-9232-4e5f-a1c9-5a2dcd0ce512"
@@ -1580,7 +1880,7 @@
         "01big_world"
       ],
       "cohort": "nearby",
-      "status": "pair_requested",
+      "status": "pair_complete_native_verified",
       "groups": [
         "bb7c1a40-543e-48e5-a373-0ae4315c73b7",
         "bfbc0b0b-e710-463b-ba6a-33fea699a83a"
@@ -1600,7 +1900,7 @@
         "00packs"
       ],
       "cohort": "nearby",
-      "status": "pair_requested",
+      "status": "pair_complete_native_verified",
       "groups": [
         "d0195b9a-b25e-4168-83bb-57b23a177e9b",
         "cf422b29-19db-4462-b108-0e793745ef59"
@@ -1620,7 +1920,7 @@
         "00rushbait_v2"
       ],
       "cohort": "nearby",
-      "status": "pair_requested",
+      "status": "pair_complete_native_verified",
       "groups": [
         "3da0445d-be46-42f2-b505-1dfd22a7672d",
         "8b4848f8-7aff-4f2b-8d21-c1ba06d61b49"
@@ -1640,7 +1940,7 @@
         "01concentrated_wealth"
       ],
       "cohort": "nearby",
-      "status": "pair_requested",
+      "status": "pair_complete_native_verified",
       "groups": [
         "e73b33d7-c4aa-4576-9935-6010966a1863",
         "d1a2a476-3d2d-415a-b6ac-0a751ed5ce87"
@@ -1660,7 +1960,7 @@
         "01islands"
       ],
       "cohort": "nearby",
-      "status": "pair_requested",
+      "status": "pair_complete_native_verified",
       "groups": [
         "0e4e114e-93ba-4752-9585-3af243e69446",
         "abb165b5-22da-43e9-8662-899854ef149f"
@@ -1680,7 +1980,7 @@
         "01yellow_brick_road"
       ],
       "cohort": "nearby",
-      "status": "pair_requested",
+      "status": "pair_complete_native_verified",
       "groups": [
         "48a9f6d5-1e09-4119-9c0c-68046d78f7a7",
         "d62e27a1-95f3-473e-a587-dd267dda744a"
@@ -1700,7 +2000,7 @@
         "00rushbait_v2"
       ],
       "cohort": "nearby",
-      "status": "pair_requested",
+      "status": "pair_complete_native_verified",
       "groups": [
         "f4a036b1-e5bf-4ecc-b6c6-b55ec3345b61",
         "e07930e5-b272-4882-8ebf-9d259aa5db3d"
@@ -1720,7 +2020,7 @@
         "01concentrated_wealth"
       ],
       "cohort": "stretch",
-      "status": "pair_requested",
+      "status": "pair_complete_native_verified",
       "groups": [
         "0ff0439c-33dc-47a6-a434-97a38b248e1e",
         "eb62e1e8-b0df-4683-80a1-f18609e68214"
@@ -1740,7 +2040,7 @@
         "01islands"
       ],
       "cohort": "stretch",
-      "status": "pair_requested",
+      "status": "pair_complete_native_verified",
       "groups": [
         "046779dc-0345-43d9-bdbd-dbd10871ca87",
         "8ce89df1-2401-4f11-8542-154975cc4018"
@@ -1760,7 +2060,7 @@
         "01yellow_brick_road"
       ],
       "cohort": "stretch",
-      "status": "pair_requested",
+      "status": "pair_complete_native_verified",
       "groups": [
         "2719965e-02b5-4407-b51b-144bd9c12b64",
         "42807e1c-0659-42af-8d32-3d4d11cba50e"
@@ -1780,7 +2080,7 @@
         "01concentrated_wealth"
       ],
       "cohort": "stretch",
-      "status": "pair_requested",
+      "status": "pair_complete_native_verified",
       "groups": [
         "f9ff0be5-54cc-499d-ab71-1d484ae01c12",
         "6b27b4ca-6150-40c9-93bf-c3f51a563db4"
@@ -1800,7 +2100,7 @@
         "00monolith"
       ],
       "cohort": "leader",
-      "status": "pair_requested",
+      "status": "pair_complete_native_verified",
       "groups": [
         "c663b240-a739-41ef-94b4-23544c384565",
         "9c16ebd6-c6e3-402b-b597-6bcc0b068b79"
@@ -1820,7 +2120,7 @@
         "01the_farm"
       ],
       "cohort": "leader",
-      "status": "pair_requested",
+      "status": "pair_complete_native_verified",
       "groups": [
         "2834b38e-77d3-4795-8aea-c67e0a7c345f",
         "bc5379c8-62b3-4882-bdeb-e688d0f2278e"
@@ -1863,5 +2163,6 @@
     "submission_id": "be6416ec-9a15-46cf-9d32-bcb963017ba8"
   },
   "allowanceObservedUtc": "2026-10-21T01:02:26.047Z",
-  "finalAllowance": 0
+  "finalAllowance": 0,
+  "completedUtc": "2026-10-21T01:31:59.091416+00:00"
 }

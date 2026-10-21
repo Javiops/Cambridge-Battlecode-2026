@@ -1,5 +1,7 @@
 # Roadmap
 
+Current checkpoint: **v89 curriculum complete**,71/220 wins,0 faults,1 exhausted turn on35 maps. Matched v88 subset7/30 versus8/30. Eight nearby elk opponents collect fresh gems before our350 rally; next test earlier timing with generated geometry controls. Later quota check observes6 available. See V89-CURRICULUM.md and CURRENT.json; older live-status statements below are historical.
+
 Open questions and the next steps, in order. Settled conclusions move to DECISIONS.md.
 
 Current status: Stage 7 qualification is complete. Statements below about sealed

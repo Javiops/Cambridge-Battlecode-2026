@@ -5,12 +5,11 @@
   "last_verified_platform_version": 89,
   "live_batch": "results/stage7-live-v89-scan-groups.json",
   "report": "V89-CURRICULUM.md",
-  "status": "v89_live_curriculum_in_progress",
+  "status": "v89_curriculum_complete_native_verified",
   "next_hypotheses": [
-    "Complete paired v89 tests against the v88 pinned opponents, then broaden across32 maps using the actual remaining quota.",
-    "Preserve zero observed fuel losses while testing useful gem collection and deposits; do not raise global initialization reserve",
-    "Elk-arena sustained objective execution: assault logs exist and deposits rise to 96/144, but both seats still lose",
-    "Pilgrimage/reverse-spiral fight exposure and carried-gem loss; preserve multi-camp maps"
+    "Test an earlier sole-objective rally clock origin: nearby elk opponents first collect at53\u2013274 before our350 start. Use generated sole/split objectives and multi-camp controls, then both-seat field pairs.",
+    "Trace the one big-world Slawomir B fuel loss separately; do not raise initialization reserve.",
+    "Preserve gem delivery improvement and ordinary multi-camp performance; no map/opponent-name exceptions."
   ],
   "user_authorizations": {
     "hourly_unranked_all_available": true,
@@ -29,15 +28,15 @@
   "selected_candidate": "ppo-topdraft-v15",
   "deployment": "results/topdraft-v15-deployment.json",
   "live_hold": "experiments/LIVE-HOLD.json",
-  "last_completed_batch_platform_version": 88,
+  "last_completed_batch_platform_version": 89,
   "working_report": "SCAN-V15.md",
   "offline_results": "results/topdraft-v15-vs-v14.json",
   "prepared_candidate": "ppo-topdraft-v15",
   "prepared_uploaded": true,
   "live_next_steps": [
-    "Complete collection/native audit of all requested v89 groups before interpreting the broad results; never duplicate a recorded request.",
-    "Keep the matched v88 subset separate from new matchups and automatic ranked observations.",
-    "Use actual acquisition, deposit, death and objective-control traces for one next general fix; use existing15-minute quota checks."
+    "V89 all44 groups /220 games complete native-verified; do not duplicate them.",
+    "Use replenished quota with the next runtime-checked experiment or a nonduplicate informative paired benchmark.",
+    "Keep matched30 vs v88 separate from broad scouting and automatic ranked/incoming games."
   ],
   "rejected_candidates": {
     "ppo-topdraft-v9": "Optional spell-scan guard does not fix the reproduced 94-loss B-seat runtime case.",
@@ -104,12 +103,12 @@
     "bc5379c8-62b3-4882-bdeb-e688d0f2278e"
   ],
   "current_requested_groups": 44,
-  "current_collected_groups": 14,
-  "current_allowance_estimate": 0,
-  "current_native_verified_games": 70,
-  "last_completed_live_curriculum": "results/stage7-live-v88-cover.json",
-  "last_observed_team_rank": 142,
-  "last_observed_team_elo": 1670,
+  "current_collected_groups": 44,
+  "current_allowance_estimate": 6,
+  "current_native_verified_games": 220,
+  "last_completed_live_curriculum": "results/stage7-live-v89-scan.json",
+  "last_observed_team_rank": 165,
+  "last_observed_team_elo": 1651,
   "last_completed_field_summary": {
     "games": 30,
     "wins": 8,
@@ -123,21 +122,22 @@
     "ppo_logged_changes": 1805
   },
   "current_field_summary": {
-    "games": 70,
-    "wins": 24,
+    "games": 220,
+    "wins": 71,
     "faults": 0,
-    "fuel_exhausted": 0,
+    "fuel_exhausted": 1,
     "opponent_faults": 0,
-    "mean_banked_gems": 611.2428571428571,
-    "mean_opponent_banked_gems": 780.0428571428571,
-    "zero_bank_games": 3,
-    "ppo_logged_calls": 9059,
-    "ppo_logged_changes": 4648
+    "mean_banked_gems": 551.7545454545455,
+    "mean_opponent_banked_gems": 773.4090909090909,
+    "zero_bank_games": 13,
+    "ppo_logged_calls": 25408,
+    "ppo_logged_changes": 13164
   },
   "observed_automatic_games": {
     "report": "results/stage7-live-v88-observed.json",
     "games": 5,
     "initiated_by_this_agent": false,
     "kind": "ranked"
-  }
+  },
+  "last_allowance_evidence": "live/scan-20261021-r1/allowance-post-complete.txt"
 }

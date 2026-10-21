@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "status": "all_requested_collection_in_progress",
+  "status": "complete_native_verified",
   "candidate": "ppo-topdraft-v15",
   "planned_groups": 44,
   "tasks": [
@@ -146,7 +146,7 @@
         "01elk_arena"
       ],
       "cohort": "stretch",
-      "status": "pair_requested",
+      "status": "pair_complete_native_verified",
       "groups": [
         "adcc2b6d-f559-43ee-9254-23780c440faa",
         "b1f80fc7-8d9a-4177-baa2-5d0a44dbfd40"
@@ -165,7 +165,7 @@
         "00elkring"
       ],
       "cohort": "nearby",
-      "status": "pair_requested",
+      "status": "pair_complete_native_verified",
       "groups": [
         "f48f4350-d004-466b-8a02-988d24cddfae",
         "7302c361-9232-4e5f-a1c9-5a2dcd0ce512"
@@ -185,7 +185,7 @@
         "01big_world"
       ],
       "cohort": "nearby",
-      "status": "pair_requested",
+      "status": "pair_complete_native_verified",
       "groups": [
         "bb7c1a40-543e-48e5-a373-0ae4315c73b7",
         "bfbc0b0b-e710-463b-ba6a-33fea699a83a"
@@ -205,7 +205,7 @@
         "00packs"
       ],
       "cohort": "nearby",
-      "status": "pair_requested",
+      "status": "pair_complete_native_verified",
       "groups": [
         "d0195b9a-b25e-4168-83bb-57b23a177e9b",
         "cf422b29-19db-4462-b108-0e793745ef59"
@@ -225,7 +225,7 @@
         "00rushbait_v2"
       ],
       "cohort": "nearby",
-      "status": "pair_requested",
+      "status": "pair_complete_native_verified",
       "groups": [
         "3da0445d-be46-42f2-b505-1dfd22a7672d",
         "8b4848f8-7aff-4f2b-8d21-c1ba06d61b49"
@@ -245,7 +245,7 @@
         "01concentrated_wealth"
       ],
       "cohort": "nearby",
-      "status": "pair_requested",
+      "status": "pair_complete_native_verified",
       "groups": [
         "e73b33d7-c4aa-4576-9935-6010966a1863",
         "d1a2a476-3d2d-415a-b6ac-0a751ed5ce87"
@@ -265,7 +265,7 @@
         "01islands"
       ],
       "cohort": "nearby",
-      "status": "pair_requested",
+      "status": "pair_complete_native_verified",
       "groups": [
         "0e4e114e-93ba-4752-9585-3af243e69446",
         "abb165b5-22da-43e9-8662-899854ef149f"
@@ -285,7 +285,7 @@
         "01yellow_brick_road"
       ],
       "cohort": "nearby",
-      "status": "pair_requested",
+      "status": "pair_complete_native_verified",
       "groups": [
         "48a9f6d5-1e09-4119-9c0c-68046d78f7a7",
         "d62e27a1-95f3-473e-a587-dd267dda744a"
@@ -305,7 +305,7 @@
         "00rushbait_v2"
       ],
       "cohort": "nearby",
-      "status": "pair_requested",
+      "status": "pair_complete_native_verified",
       "groups": [
         "f4a036b1-e5bf-4ecc-b6c6-b55ec3345b61",
         "e07930e5-b272-4882-8ebf-9d259aa5db3d"
@@ -325,7 +325,7 @@
         "01concentrated_wealth"
       ],
       "cohort": "stretch",
-      "status": "pair_requested",
+      "status": "pair_complete_native_verified",
       "groups": [
         "0ff0439c-33dc-47a6-a434-97a38b248e1e",
         "eb62e1e8-b0df-4683-80a1-f18609e68214"
@@ -345,7 +345,7 @@
         "01islands"
       ],
       "cohort": "stretch",
-      "status": "pair_requested",
+      "status": "pair_complete_native_verified",
       "groups": [
         "046779dc-0345-43d9-bdbd-dbd10871ca87",
         "8ce89df1-2401-4f11-8542-154975cc4018"
@@ -365,7 +365,7 @@
         "01yellow_brick_road"
       ],
       "cohort": "stretch",
-      "status": "pair_requested",
+      "status": "pair_complete_native_verified",
       "groups": [
         "2719965e-02b5-4407-b51b-144bd9c12b64",
         "42807e1c-0659-42af-8d32-3d4d11cba50e"
@@ -385,7 +385,7 @@
         "01concentrated_wealth"
       ],
       "cohort": "stretch",
-      "status": "pair_requested",
+      "status": "pair_complete_native_verified",
       "groups": [
         "f9ff0be5-54cc-499d-ab71-1d484ae01c12",
         "6b27b4ca-6150-40c9-93bf-c3f51a563db4"
@@ -405,7 +405,7 @@
         "00monolith"
       ],
       "cohort": "leader",
-      "status": "pair_requested",
+      "status": "pair_complete_native_verified",
       "groups": [
         "c663b240-a739-41ef-94b4-23544c384565",
         "9c16ebd6-c6e3-402b-b597-6bcc0b068b79"
@@ -425,7 +425,7 @@
         "01the_farm"
       ],
       "cohort": "leader",
-      "status": "pair_requested",
+      "status": "pair_complete_native_verified",
       "groups": [
         "2834b38e-77d3-4795-8aea-c67e0a7c345f",
         "bc5379c8-62b3-4882-bdeb-e688d0f2278e"
@@ -472,7 +472,7 @@
     2
   ],
   "requested_groups": 44,
-  "collected_groups": 14,
-  "native_verified_games": 70,
+  "collected_groups": 44,
+  "native_verified_games": 220,
   "last_observed_allowance": 0
 }

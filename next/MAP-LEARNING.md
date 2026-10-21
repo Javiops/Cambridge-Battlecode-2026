@@ -1,5 +1,7 @@
 # Map learning and development, 20 October 2026
 
+Current checkpoint: **v89 curriculum complete**,71/220 wins,0 faults,1 exhausted turn on35 maps. Matched v88 subset7/30 versus8/30. Eight nearby elk opponents collect fresh gems before our350 rally; next test earlier timing with generated geometry controls. Later quota check observes6 available. See V89-CURRICULUM.md and CURRENT.json; older live-status statements below are historical.
+
 Current field candidate: **v89 / topdraft v15 is compiled and live**. The first
 matched30 games improve Cozy contest paired deposits200 to600 with unchanged
 800 collection, but wins are7/30 versus v88's8/30. All44 groups /220 games on35

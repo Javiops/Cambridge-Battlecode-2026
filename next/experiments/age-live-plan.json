@@ -1,5 +1,5 @@
 {
-  "status": "uploaded_selected_awaiting_compilation",
+  "status": "current50_requests_complete_native_verified",
   "tasks": [
     {
       "task": 0,
@@ -13,8 +13,11 @@
         "01big_world"
       ],
       "cohort": "nearby",
-      "status": "planned",
-      "groups": [],
+      "status": "pair_complete_native_verified",
+      "groups": [
+        "3b5d44c4-933f-4562-8d19-1fef98de05cb",
+        "1842f7ca-a9b3-4b5d-8054-828eaef61380"
+      ],
       "v90_matched_subset": true,
       "v91_matched_subset": true,
       "v92_matched_subset": true
@@ -31,8 +34,11 @@
         "00elkring"
       ],
       "cohort": "nearby",
-      "status": "planned",
-      "groups": [],
+      "status": "pair_complete_native_verified",
+      "groups": [
+        "2b631fa3-ed92-4b41-85c2-0bc13e835c8e",
+        "6b51be2a-3027-4caa-8321-97a8dea4537e"
+      ],
       "v90_matched_subset": true,
       "v91_matched_subset": true,
       "v92_matched_subset": true
@@ -49,8 +55,11 @@
         "00monolith"
       ],
       "cohort": "stretch",
-      "status": "planned",
-      "groups": [],
+      "status": "pair_complete_native_verified",
+      "groups": [
+        "4b116551-bb0c-474f-a7c8-4257a2b948b1",
+        "e8f56af3-9820-40e3-88f6-43ff337397d2"
+      ],
       "v90_matched_subset": true,
       "v91_matched_subset": true,
       "v92_matched_subset": true
@@ -67,8 +76,11 @@
         "00pilgrimage"
       ],
       "cohort": "nearby",
-      "status": "planned",
-      "groups": [],
+      "status": "pair_complete_native_verified",
+      "groups": [
+        "838dd518-ba53-42bd-a943-b798bae6ca2e",
+        "3c2052e4-6cc1-4141-be80-eed2d3e31550"
+      ],
       "purpose": "Broader geometry coverage; new map/opponent combinations, not a repeated v88 counterfactual.",
       "v90_matched_subset": true,
       "v91_matched_subset": true,
@@ -86,8 +98,11 @@
         "00swirl"
       ],
       "cohort": "nearby",
-      "status": "planned",
-      "groups": [],
+      "status": "pair_complete_native_verified",
+      "groups": [
+        "24e13b5d-c2b3-4b43-a712-29b7722f5333",
+        "d4932eae-f34f-4afc-9980-7b2bf4c62085"
+      ],
       "purpose": "Broader geometry coverage; new map/opponent combinations, not a repeated v88 counterfactual.",
       "v90_matched_subset": true,
       "v91_matched_subset": true,
@@ -105,8 +120,11 @@
         "01fracture"
       ],
       "cohort": "nearby",
-      "status": "planned",
-      "groups": [],
+      "status": "pair_complete_native_verified",
+      "groups": [
+        "76117eda-2fc7-42d7-936e-a46456f4f40d",
+        "9c2db2fa-af17-433b-b343-27471fbc5066"
+      ],
       "purpose": "Broader geometry coverage; new map/opponent combinations, not a repeated v88 counterfactual.",
       "v90_matched_subset": true,
       "v91_matched_subset": true,
@@ -124,8 +142,11 @@
         "01starfish"
       ],
       "cohort": "stretch",
-      "status": "planned",
-      "groups": [],
+      "status": "pair_complete_native_verified",
+      "groups": [
+        "705a098d-ac62-4274-a18f-d34eb6056a4a",
+        "595f62cc-1abd-48da-bde7-b1c67e89f4f2"
+      ],
       "purpose": "Broader geometry coverage; new map/opponent combinations, not a repeated v88 counterfactual.",
       "v90_matched_subset": true,
       "v91_matched_subset": true,
@@ -143,8 +164,11 @@
         "01elk_arena"
       ],
       "cohort": "stretch",
-      "status": "planned",
-      "groups": [],
+      "status": "pair_complete_native_verified",
+      "groups": [
+        "f8b083a7-fe21-4ed0-bd77-1df45a130c69",
+        "98f6c134-7ebb-4b3a-b1ee-3577ccbfdc64"
+      ],
       "purpose": "Cover the remaining three official maps plus two repeated controls; historical v87 2/10 makes this a measured stretch opponent.",
       "v90_matched_subset": true,
       "v91_matched_subset": true,
@@ -162,8 +186,11 @@
         "00elkring"
       ],
       "cohort": "nearby",
-      "status": "planned",
-      "groups": [],
+      "status": "pair_complete_native_verified",
+      "groups": [
+        "836bc4a3-a6b0-4ab9-aa32-0ddeea45c0c0",
+        "630bc43e-0815-4754-b54d-11aa3b53e6d7"
+      ],
       "parent_plan_task": 0,
       "purpose": "Broader frozen-opponent curriculum; original v87 same-label outcomes are descriptive reference, seed equality is not certified.",
       "v90_matched_subset": true,
@@ -182,8 +209,11 @@
         "01big_world"
       ],
       "cohort": "nearby",
-      "status": "planned",
-      "groups": [],
+      "status": "pair_complete_native_verified",
+      "groups": [
+        "96de6563-2179-4cfe-b38e-4b2da7004f5c",
+        "8ceb528f-fd53-4d35-bc74-7f926a6fac9b"
+      ],
       "parent_plan_task": 3,
       "purpose": "Broader frozen-opponent curriculum; original v87 same-label outcomes are descriptive reference, seed equality is not certified.",
       "v90_matched_subset": true,
@@ -202,8 +232,11 @@
         "00packs"
       ],
       "cohort": "nearby",
-      "status": "planned",
-      "groups": [],
+      "status": "pair_complete_native_verified",
+      "groups": [
+        "64d6ffbb-46f5-47ea-b1da-e91c1539f0e3",
+        "56ddc1c5-250e-4ee5-9799-794178e4abe7"
+      ],
       "parent_plan_task": 5,
       "purpose": "Broader frozen-opponent curriculum; original v87 same-label outcomes are descriptive reference, seed equality is not certified.",
       "v90_matched_subset": false,
@@ -222,8 +255,11 @@
         "00rushbait_v2"
       ],
       "cohort": "nearby",
-      "status": "planned",
-      "groups": [],
+      "status": "pair_complete_native_verified",
+      "groups": [
+        "7498fe5c-c8e7-4b81-aa20-74815cafd058",
+        "3e656e70-ce2e-4944-8670-439d272c6522"
+      ],
       "parent_plan_task": 6,
       "purpose": "Broader frozen-opponent curriculum; original v87 same-label outcomes are descriptive reference, seed equality is not certified.",
       "v90_matched_subset": false,
@@ -242,8 +278,11 @@
         "01concentrated_wealth"
       ],
       "cohort": "nearby",
-      "status": "planned",
-      "groups": [],
+      "status": "pair_complete_native_verified",
+      "groups": [
+        "dee14ec4-822e-4158-a0a7-45f6a90b0a01",
+        "028f9fab-40db-4654-9249-b4bed297265e"
+      ],
       "parent_plan_task": 7,
       "purpose": "Broader frozen-opponent curriculum; original v87 same-label outcomes are descriptive reference, seed equality is not certified.",
       "v90_matched_subset": false,
@@ -262,8 +301,11 @@
         "01islands"
       ],
       "cohort": "nearby",
-      "status": "planned",
-      "groups": [],
+      "status": "pair_complete_native_verified",
+      "groups": [
+        "773b3a6e-0a2b-41fb-9320-f32c4e8251d3",
+        "7d3c67af-bf68-4e1a-be88-72cd951418a1"
+      ],
       "parent_plan_task": 8,
       "purpose": "Broader frozen-opponent curriculum; original v87 same-label outcomes are descriptive reference, seed equality is not certified.",
       "v90_matched_subset": false,
@@ -282,8 +324,11 @@
         "01yellow_brick_road"
       ],
       "cohort": "nearby",
-      "status": "planned",
-      "groups": [],
+      "status": "pair_complete_native_verified",
+      "groups": [
+        "b7517cba-fcf7-40ff-b44f-c73a727d9c66",
+        "a9eed761-c6a7-4e8b-924d-09027fc7e373"
+      ],
       "parent_plan_task": 9,
       "purpose": "Broader frozen-opponent curriculum; original v87 same-label outcomes are descriptive reference, seed equality is not certified.",
       "v90_matched_subset": false,
@@ -302,8 +347,11 @@
         "00rushbait_v2"
       ],
       "cohort": "nearby",
-      "status": "planned",
-      "groups": [],
+      "status": "pair_complete_native_verified",
+      "groups": [
+        "f5674d99-18a9-4a3c-ad2f-a308e7df89c3",
+        "eea08852-5cfc-4120-a6b4-a359361bd6e7"
+      ],
       "parent_plan_task": 10,
       "purpose": "Broader frozen-opponent curriculum; original v87 same-label outcomes are descriptive reference, seed equality is not certified.",
       "v90_matched_subset": false,
@@ -322,8 +370,11 @@
         "01concentrated_wealth"
       ],
       "cohort": "stretch",
-      "status": "planned",
-      "groups": [],
+      "status": "pair_complete_native_verified",
+      "groups": [
+        "ecd8547d-0d77-4ab6-8b3b-76f1d66a9310",
+        "c9c971c9-8cb1-4e6a-a583-6af679338dad"
+      ],
       "parent_plan_task": 12,
       "purpose": "Broader frozen-opponent curriculum; original v87 same-label outcomes are descriptive reference, seed equality is not certified.",
       "v90_matched_subset": false,
@@ -342,8 +393,11 @@
         "01islands"
       ],
       "cohort": "stretch",
-      "status": "planned",
-      "groups": [],
+      "status": "pair_complete_native_verified",
+      "groups": [
+        "1eb9209f-581a-4e41-8922-978fdac14f51",
+        "efdf0464-c1ff-4fce-9221-11bea188bd25"
+      ],
       "parent_plan_task": 13,
       "purpose": "Broader frozen-opponent curriculum; original v87 same-label outcomes are descriptive reference, seed equality is not certified.",
       "v90_matched_subset": false,
@@ -362,8 +416,11 @@
         "01yellow_brick_road"
       ],
       "cohort": "stretch",
-      "status": "planned",
-      "groups": [],
+      "status": "pair_complete_native_verified",
+      "groups": [
+        "cbe9f1b8-3f92-4216-91b7-87cd4186d9b8",
+        "4bbdfb09-c7a8-49dc-ac91-1bdc04187f34"
+      ],
       "parent_plan_task": 14,
       "purpose": "Broader frozen-opponent curriculum; original v87 same-label outcomes are descriptive reference, seed equality is not certified.",
       "v90_matched_subset": false,
@@ -382,8 +439,11 @@
         "01concentrated_wealth"
       ],
       "cohort": "stretch",
-      "status": "planned",
-      "groups": [],
+      "status": "pair_complete_native_verified",
+      "groups": [
+        "b2b80e65-fa4a-4f94-bd16-22364f6fc3b5",
+        "ead5ef07-3d9f-4013-8de8-262c006d7428"
+      ],
       "parent_plan_task": 19,
       "purpose": "Broader frozen-opponent curriculum; original v87 same-label outcomes are descriptive reference, seed equality is not certified.",
       "v90_matched_subset": false,
@@ -402,8 +462,11 @@
         "00monolith"
       ],
       "cohort": "leader",
-      "status": "planned",
-      "groups": [],
+      "status": "pair_complete_native_verified",
+      "groups": [
+        "48e2a326-78eb-4c28-8d19-3ef6b69cc431",
+        "0967bd8e-6050-4ce1-af72-8168ec641bc8"
+      ],
       "parent_plan_task": 20,
       "purpose": "Broader frozen-opponent curriculum; original v87 same-label outcomes are descriptive reference, seed equality is not certified.",
       "v90_matched_subset": true,
@@ -422,8 +485,11 @@
         "01the_farm"
       ],
       "cohort": "leader",
-      "status": "planned",
-      "groups": [],
+      "status": "pair_complete_native_verified",
+      "groups": [
+        "8fd23420-6d75-4af2-bf03-116becf04f04",
+        "21ec6b78-ad2f-4879-b70d-ee441687fedc"
+      ],
       "parent_plan_task": 21,
       "purpose": "Broader frozen-opponent curriculum; original v87 same-label outcomes are descriptive reference, seed equality is not certified.",
       "v90_matched_subset": false,
@@ -442,8 +508,11 @@
         "00rushbait_v2"
       ],
       "sourceGroup": "5729fb2c-9ea6-40d8-becc-1473748e342f",
-      "groups": [],
-      "status": "planned",
+      "groups": [
+        "49405874-f2f4-483d-93ad-2aad3103e480",
+        "13dc3333-24c4-449a-865f-f6d5478c5e79"
+      ],
+      "status": "pair_complete_native_verified",
       "v91_matched_subset": false,
       "purpose": "Additional predeclared broad-map learning with replenished quota; no duplicate opponent/map/seat in this window.",
       "v92_matched_subset": true
@@ -460,8 +529,11 @@
         "01islands"
       ],
       "sourceGroup": "713b429e-373d-4566-a558-846b144923b3",
-      "groups": [],
-      "status": "planned",
+      "groups": [
+        "083d0575-768d-48c6-82a8-cb64f67b48f9",
+        "d71dcd2d-7b88-4332-88c5-c58be67e68f1"
+      ],
+      "status": "pair_complete_native_verified",
       "v91_matched_subset": false,
       "purpose": "Additional predeclared broad-map learning with replenished quota; no duplicate opponent/map/seat in this window.",
       "v92_matched_subset": true
@@ -478,8 +550,11 @@
         "00monolith"
       ],
       "sourceGroup": "c1d55dc5-5db3-4ba2-a89c-2b5cf6bc7fb5",
-      "groups": [],
-      "status": "planned",
+      "groups": [
+        "14ee98e2-e399-4340-b7c8-2ae276e338ba",
+        "131d3f50-d6e7-430f-95e3-c156b6efdd60"
+      ],
+      "status": "pair_complete_native_verified",
       "v91_matched_subset": false,
       "purpose": "Additional predeclared broad-map learning with replenished quota; no duplicate opponent/map/seat in this window.",
       "v92_matched_subset": true
@@ -512,9 +587,9 @@
     23,
     24
   ],
-  "requested_groups": 0,
-  "collected_groups": 0,
-  "native_verified_games": 0,
-  "unrequested_plan_groups": 50,
+  "requested_groups": 50,
+  "collected_groups": 50,
+  "native_verified_games": 250,
+  "unrequested_plan_groups": 0,
   "last_observed_allowance": 0
 }

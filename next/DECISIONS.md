@@ -371,3 +371,7 @@ Expire shared receipts after16 rounds,then use unchanged local assembly/quorum. 
 ## 2026-10-21 · V19 uploaded as platform93
 
 Status:uploaded and selected; server compilation pending, with v92 live as fallback. Frozen/server source ZIP94cafc9c3bbe99deaf3a169ec236f4ef2a3e0f28b02c1776ef12aea60b7190b7;independent localWASM301031fc5a4d34b5ddd263605485a349007e54e7ac8817e0a342307c9457851b. No unranked groups initiated because actual quota0. Keep compilation/version identity separate from offline release checks. Existing15-minute check continues.
+
+## 2026-10-21 · V93 full field window
+
+All250native-verified:79wins versus77,zero faults,one unchanged fuel event. All250seeds equal,228/228ordinary statistics exact. Sole22games:bank306.05→363.5,fresh322.55→383.64,deaths49.45→47.45,wins3→5,but full first-cycle release22→21and no-fresh4unchanged. All512joins age≤15;23stale rejections,15later local quorum authorizations. Keep functional experiment,not promotion. Next inspect actual post-rally execution in four zero-fresh cases;do not infer from unused focus counters. See V93-FIELD.md.

@@ -1292,5 +1292,10 @@
   "request_window_completedUtc": "2026-10-21T02:03:11.494982+00:00",
   "finalAllowance": 0,
   "unrequested_plan_groups": 22,
-  "unrequested_plan_note": "Optional remaining diagnostics, not pending submissions; re-evaluate after this batch and actual quota."
+  "unrequested_plan_note": "Optional remaining diagnostics, not pending submissions; re-evaluate after this batch and actual quota.",
+  "postWindowAllowance": {
+    "allowance": 28,
+    "observedUtc": "2026-10-21T02:10:38.207Z",
+    "requestedNewGroups": false
+  }
 }

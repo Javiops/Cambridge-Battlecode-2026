@@ -35,7 +35,7 @@
   "prepared_uploaded": true,
   "live_next_steps": [
     "All22 requested v90 groups /110 games complete native-verified. Remaining22 planned groups were never requested and are optional diagnostics, not pending.",
-    "Last actual allowance0 at2026-10-21T01:54:32.562Z; use existing15-minute check, actual site quota on next run.",
+    "Actual allowance28 at2026-10-21T02:10:38.207Z. No new request from that check. Use it with the next runtime-checked rally-scan experiment; optional v90 plan groups remain unrequested.",
     "Isolate one general squad execution correction from the recorded replay. Preserve multi-camp behavior and all70 unused confirmation maps."
   ],
   "rejected_candidates": {
@@ -82,7 +82,7 @@
   ],
   "current_requested_groups": 22,
   "current_collected_groups": 22,
-  "current_allowance_estimate": 0,
+  "current_allowance_estimate": 28,
   "current_native_verified_games": 110,
   "last_completed_live_curriculum": "results/stage7-live-v90-rally.json",
   "last_observed_team_rank": 161,
@@ -117,8 +117,9 @@
     "initiated_by_this_agent": false,
     "kind": "ranked"
   },
-  "last_allowance_evidence": "live/scan-20261021-r1/allowance-post-complete.txt",
+  "last_allowance_evidence": "live/rally-20261021-r1/allowance-after-window.txt",
   "prepared_report": "RALLY-V16.md",
   "patch_notice": "1.0.2 announced; published CLI and fresh incoming sample remain1.0.1. Verify actual runtime before interpreting new field tests.",
-  "last_team_observation_evidence": "live/rally-20261021-r1/team-observed.txt"
+  "last_team_observation_evidence": "live/rally-20261021-r1/team-observed.txt",
+  "allowance_observed_utc": "2026-10-21T02:10:38.207Z"
 }

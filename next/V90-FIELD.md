@@ -4,7 +4,7 @@
 unranked games are collected and native-verified on35 maps,both seats:
 **32/110 wins,0 faults,1 exhausted turn**. Allocation70 nearby,30 stretch,10 leader.
 The other22 groups in the44-group diagnostic plan were not requested; they are
-options,not pending submissions. Last actual allowance0 at2026-10-21T01:54:32.562Z.
+options,not pending submissions. Allowance at the end of these requests:0 at2026-10-21T01:54:32.562Z.
 
 All110 use rules1.0.1 and the expectedc3e9ffc8 build. Source delivery,server build
 log,LIVE status and every queued/completed version90 are verified. The local ZIP
@@ -43,3 +43,5 @@ Keep the usable experiment and fix the next observed mistake. Lower wins alone
 do not trigger rollback; preserve v89 for compile failure,persistent faults or
 stalled play. No new map/opponent-name exceptions;70 fresh confirmation maps
 remain unplayed,and original Stage1–7 certificates/models remain intact.
+
+Post-window quota check:28 available at2026-10-21T02:10:38.207Z. No new request from that read-only check; use returning quota for the next tested generation. The validation archive captures the completed110-game window,whose request-end allowance was0.

@@ -1,0 +1,33 @@
+{
+  "candidate": "ppo-topdraft-v18",
+  "baseline": "ppo-topdraft-v6",
+  "summary": {
+    "sole": {
+      "games": 24,
+      "wins": 10,
+      "faults": 0,
+      "fuel_exhausted": 0,
+      "mean_bank": 225.08333333333334,
+      "mean_deaths": 32.791666666666664,
+      "no_fresh": 4,
+      "fresh_before_350": 8,
+      "first_cycle_all_released": 24,
+      "mean_first_cycle_logged_release_fraction": 1.0,
+      "shared_joins": 512
+    },
+    "split": {
+      "games": 24,
+      "wins": 10,
+      "faults": 0,
+      "fuel_exhausted": 0,
+      "mean_bank": 215.16666666666666,
+      "mean_deaths": 44.375,
+      "no_fresh": 9,
+      "fresh_before_350": 8,
+      "first_cycle_all_released": 0,
+      "mean_first_cycle_logged_release_fraction": 0.0,
+      "shared_joins": 0
+    }
+  },
+  "limits": "Development only. Release includes quorum-authorized assault and eligible shared join. Logged decisions do not prove damage,capture or bank safety."
+}

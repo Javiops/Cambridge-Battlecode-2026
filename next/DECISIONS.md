@@ -355,3 +355,11 @@ Skip hidden rally allies per valid SDK snapshot,instead of aborting the remainin
 ## 2026-10-21 · V91 field window complete
 
 All28 requested groups/140 games native-verified:49wins,0faults,1 exhausted turn. Matched v90 subset35/110 versus32; no promotion claim. Five units release the traced elk campaign while Stellar still waits. Test communicating the existing quorum decision next,with byte-role audit and danger-sharing tradeoff. Actual1.0.1 only;1.0.2 remains a separate announced patch. See V91-FIELD.md.
+
+## 2026-10-21 · V18 shared quorum release
+
+Propagate the existing quorum decision with early receipt and two-round danger-byte protection. All-unit first-cycle release15/24→24/24;512 authorized joins,bank197.33→225.08,nofresh6→4,but wins12→10,deaths31.71→32.79. Split20/24 exact,no join events. Broad172/350 parent,69/70 starter,zero faults,four exhausted turns. Exact rebuild,494runs/468unique. Eligible functional trial,not promotion. See SHARED-V18.md.
+
+## 2026-10-21 · V92 shared-release field window complete
+
+All250 native-verified:77wins,0faults,1fuel. Matched v91:46/140 versus49;seed-equal140. Sole release5→18/18,bank325.00→314.28,fresh317.33→325.33,deaths42.39→46.50. Target Stellar joins176;not a general strength claim. See V92-FIELD.md.

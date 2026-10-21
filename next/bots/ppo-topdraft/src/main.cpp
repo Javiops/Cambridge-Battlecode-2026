@@ -1,4 +1,4 @@
-// ppo-topdraft-v17: one visible snapshot per rally ally, skipping hidden slots; expect complete quorum counts and fewer split releases without lowering health or quorum.
+// ppo-topdraft-v18: share an authorized rally release before turn priorities; expect healthy stragglers to join the same push and collect more objective gems.
 // team-fight-v1 (design: analysis/claude-api-2026-10-18/team_fight_design_1019.md): recall-api-v1 + P_TEAM_FIGHT (finish layer,
 // below) + P_HP_SHOP (hp shards at the top teams' hp share on the v72 power path).
 // Finish layer: the no-chase doctrine lifted for hurt rivals. The bot let hurt rivals go by
@@ -565,6 +565,7 @@ struct State {
     std::vector<Group> groups;
     std::optional<vec2> objective_stage;
     int objective_release_cycle = -1;
+    int objective_shared_cycle = -1, objective_shared_round = -1000;
     int sole_gem_group = -1;  // public map geometry: exactly one gem-paying camp group
     bool mono_only = false;  // P_MONO: every gem on the map sits in a monolith group
     bool jackpot_map = false;  // P_JACKPOT: a jackpot group exists, so gold clusters are worth farming before it
@@ -1595,6 +1596,29 @@ void shoot_back(State& s, bc::champion& me, const std::vector<Foe>& foes) {
     basic_attack(s, me, best->c, best->p);
 }
 
+// Release messages use byte7's otherwise-invalid low-three-bits-zero values.
+// Claims/cooldown bytes0..6 and per-instance PPO sampling remain independent.
+bool objective_window(const State& s, int round);
+std::uint8_t objective_release_tag(int cycle) {
+    return cycle >= 0 && cycle < 31 ? static_cast<std::uint8_t>((cycle + 1) << 3) : 0;
+}
+void sync_objective_release(State& s, int round) {
+    if (!objective_window(s, round)) return;
+    const int cycle = (round - P_OBJECTIVE_START) / P_OBJECTIVE_PERIOD;
+    const auto tag = objective_release_tag(cycle);
+    if (tag && s.objective_shared_cycle != cycle && read_sm()[7] == tag) {
+        s.objective_shared_cycle = cycle;
+        s.objective_shared_round = round;
+    }
+}
+bool protect_objective_release(const State& s, int round) {
+    if (!objective_window(s, round)) return false;
+    const int cycle = (round - P_OBJECTIVE_START) / P_OBJECTIVE_PERIOD;
+    const auto tag = objective_release_tag(cycle);
+    return tag && s.objective_shared_cycle == cycle &&
+        round - s.objective_shared_round < 2 && read_sm()[7] == tag;
+}
+
 // Danger spot: an enemy pack (P_DANGER+ champions within 4 of each other) seen this turn, or
 // one an ally reported in byte 7 (nearest altar index + 1, then round / 8, mod 32).
 void update_danger(State& s, const std::vector<Foe>& foes, int round) {
@@ -1614,7 +1638,10 @@ void update_danger(State& s, const std::vector<Foe>& foes, int round) {
         int ai = -1, ad = P_DANGER_R + 1;
         for (std::size_t i = 0; i < s.altars.size() && i < 7; ++i)
             if (dist(s.altars[i], s.danger_p) < ad) { ad = dist(s.altars[i], s.danger_p); ai = static_cast<int>(i); }
-        if (ai >= 0) write_sm(7, static_cast<std::uint8_t>((ai + 1) | (((round / 8) & 31) << 3)));
+        // Keep direct local danger detection above. A new release gets a
+        // short delivery opportunity, then ordinary danger sharing can reuse7.
+        if (ai >= 0 && !protect_objective_release(s, round))
+            write_sm(7, static_cast<std::uint8_t>((ai + 1) | (((round / 8) & 31) << 3)));
         return;
     }
     int b = read_sm()[7];
@@ -1651,6 +1678,11 @@ bool objective_assemble(State& s, bc::champion& me, int round) {
     if (objective_target(s, me, round) < 0) return false;
     const int cycle = (round - P_OBJECTIVE_START) / P_OBJECTIVE_PERIOD;
     if (s.objective_release_cycle == cycle) return false;
+    if (s.objective_shared_cycle == cycle) {
+        s.objective_release_cycle = cycle;
+        std::printf("OBJ r=%d unit=%d group=%d cycle=%d phase=join\n", round, s.ally_idx, s.sole_gem_group, cycle);
+        return false;
+    }
     const auto& g = s.groups[s.sole_gem_group];
     if (!s.objective_stage) {
         bc::bitboard outer, inner;
@@ -1687,6 +1719,11 @@ bool objective_assemble(State& s, bc::champion& me, int round) {
     const int quorum = std::min(s.roster, std::max(2, (4 * s.roster + 4) / 5));
     if (ready >= quorum) {
         s.objective_release_cycle = cycle;
+        if (const auto tag = objective_release_tag(cycle)) {
+            s.objective_shared_cycle = cycle;
+            s.objective_shared_round = round;
+            write_sm(7, tag);
+        }
         std::printf("OBJ r=%d unit=%d group=%d ready=%d quorum=%d phase=assault\n", round, s.ally_idx, s.sole_gem_group, ready, quorum);
         return false;
     }
@@ -2838,6 +2875,9 @@ void play_turn(State& s) {
         }
     }
     const int round = static_cast<int>(bc::round_number());
+    // Remember the phase even while dead,healing,shopping or banking. Joining
+    // still passes the existing objective_target and turn-priority guards.
+    sync_objective_release(s, round);
     cf_observe(s, me, round);
 
     if (!me.is_alive()) {

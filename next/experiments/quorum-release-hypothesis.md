@@ -1,3 +1,7 @@
+# Implemented as frozen v18; refined protocol
+
+See SHARED-V18.md and topdraft-v18/hypothesis.json. The earlier full-window byte7 reservation below was refined to two rounds of protection after first receipt;normal danger broadcasts then resume. Receipt is remembered before early turn priorities. No second strategy change.
+
 # Candidate next hypothesis, not implemented
 
 V91 Preyas elk A (game0c360477-4e50-492c-b786-70f42a534577) releases units

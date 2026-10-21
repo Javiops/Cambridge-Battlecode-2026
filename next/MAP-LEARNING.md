@@ -1,6 +1,8 @@
 # Map learning and development, 20 October 2026
 
-Latest checkpoint: **v91 / topdraft v17 compiled and live**,all28 requested groups/140 games complete native-verified:49wins,0faults,1 exhausted turn. Matched v90 subset35/110 versus32.16 remaining planned groups were not requested. Five traced teammates release while Stellar still waits; next test a shared release decision after byte-role audit. All games actual1.0.1;1.0.2 announcement is separate. See V91-FIELD.md and CURRENT.json. Older checkpoints below are historical.
+Latest checkpoint: **v92 / topdraft v18 compiled and live**,all50 groups/250 games complete native-verified:77wins,0faults,1fuel. Matched v91:46/140 versus49. Shared release fixes traced Stellar join176;objective metrics remain separate from wins. All actual1.0.1. Next: test a16-round limit from first receipt for propagated joins,with unchanged local quorum and survival/banking rules;see experiments/shared-release-age-hypothesis.md. See V92-FIELD.md and CURRENT.json. Older checkpoints are historical.
+
+Historical checkpoint: **v91 / topdraft v17 compiled and live**,all28 requested groups/140 games complete native-verified:49wins,0faults,1 exhausted turn. Matched v90 subset35/110 versus32.16 remaining planned groups were not requested. Five traced teammates release while Stellar still waits; next test a shared release decision after byte-role audit. All games actual1.0.1;1.0.2 announcement is separate. See V91-FIELD.md and CURRENT.json. Older checkpoints below are historical.
 
 Historical checkpoint: **v90 / topdraft v16 compiled and live**,22 requested groups/110 games complete native-verified:32wins,0faults,1 exhausted turn on35maps. Other22 planned groups were not requested. Earlier rally still leaves split squad releases; inspect quorum visibility and per-unit release latch. New1.0.2 is announced; these games are actual1.0.1. See V90-FIELD.md and CURRENT.json; older status statements below are historical.
 

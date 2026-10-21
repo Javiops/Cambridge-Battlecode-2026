@@ -1,0 +1,18 @@
+{
+  "script_sha256": "b17ae2e9b10b18e830b9bb5bdb80f279587c6dbfdf0d2a5dad36fe1779baf17e",
+  "checks": [
+    {
+      "check": "new_native_parity",
+      "passed": true
+    },
+    {
+      "check": "reject_old_engine",
+      "passed": true
+    },
+    {
+      "check": "reject_old_replay",
+      "passed": true
+    }
+  ],
+  "limits": "Pinned native terminal/per-champion parity and wrong-version rejection;not model or strength evaluation."
+}

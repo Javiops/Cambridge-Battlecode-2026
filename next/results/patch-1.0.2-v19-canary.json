@@ -1,0 +1,66 @@
+{
+  "schema": 1,
+  "experiment": "ppo-topdraft-v19",
+  "parent": "ppo-topdraft-v18",
+  "baseline": "ppo-topdraft-v18",
+  "runtime": {
+    "cli_version": "cambc 3.0.4",
+    "engine_version": "1.0.2",
+    "engine_build_hash": "ff41468c05c7be716f7647aaf7ea7314633f7038815386c806fafcec98629114"
+  },
+  "identities": {
+    "candidate": "301031fc5a4d34b5ddd263605485a349007e54e7ac8817e0a342307c9457851b",
+    "baseline": "061aef4bf4c22e57578978c3742ab70adfa2a7839978281faa1770f9408f972f",
+    "starter": "c9a0ca35cf13686680ef4ea00d0bb99f654a79be78382bdb3283604d5fde9795"
+  },
+  "config_sha256": "cea20de1280687ccb60c32d5e5e59837c9cfa8d5c6ae44dd1e47bc191896616d",
+  "changes": "ppo-topdraft-v19: expire propagated joins after16 rounds from first receipt; expect fewer stale respawn joins while preserving prompt rallies and objective income.",
+  "status": "development_only_not_promoted",
+  "sealed_confirmation_maps_used": false,
+  "promotion_gate_run": false,
+  "uploaded": false,
+  "draft_verified_games": 26,
+  "elapsed_seconds": 10.59267807006836,
+  "summary": {
+    "starter": {
+      "games": 12,
+      "wins": 12,
+      "faults": 0,
+      "fuel_exhausted": 1,
+      "opponent_faults": 0,
+      "by_seat": {
+        "0": {
+          "games": 6,
+          "wins": 6
+        },
+        "1": {
+          "games": 6,
+          "wins": 6
+        }
+      },
+      "mean_banked_gems": 856.75,
+      "mean_opponent_banked_gems": 116.58333333333333
+    },
+    "baseline": {
+      "games": 14,
+      "wins": 6,
+      "faults": 0,
+      "fuel_exhausted": 1,
+      "opponent_faults": 0,
+      "by_seat": {
+        "0": {
+          "games": 7,
+          "wins": 3
+        },
+        "1": {
+          "games": 7,
+          "wins": 3
+        }
+      },
+      "mean_banked_gems": 514.4285714285714,
+      "mean_opponent_banked_gems": 531.5714285714286
+    }
+  },
+  "records": "patch-1.0.2-v19-canary-games.jsonl",
+  "full_capture_archive": "battlecode-patch102-validation.zip: release/v19-canary/results.json"
+}

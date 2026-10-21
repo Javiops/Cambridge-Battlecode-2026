@@ -375,3 +375,8 @@ Status:uploaded and selected; server compilation pending, with v92 live as fallb
 ## 2026-10-21 · V93 full field window
 
 All250native-verified:79wins versus77,zero faults,one unchanged fuel event. All250seeds equal,228/228ordinary statistics exact. Sole22games:bank306.05→363.5,fresh322.55→383.64,deaths49.45→47.45,wins3→5,but full first-cycle release22→21and no-fresh4unchanged. All512joins age≤15;23stale rejections,15later local quorum authorizations. Keep functional experiment,not promotion. Next inspect actual post-rally execution in four zero-fresh cases;do not infer from unused focus counters. See V93-FIELD.md.
+
+
+## 2026-10-21: official 1.0.2 runtime refresh
+
+Kept frozenv19 unchanged/live93 after exact dual3.0.4 rebuild.446release runs/420unique:69/70starter,172/350parent,zero faults,10broad exhausted turns;26full-log repeats exact. All420seeds and allthree WASM identities equal the1.0.1 fixture set. No source-strength claim or promotion. New50unrankedgroups requested;50/250native-verified at checkpoint. See PATCH-1.0.2.md and CURRENT.json for continued collection. Models,certificates and70fresh holdouts unchanged.

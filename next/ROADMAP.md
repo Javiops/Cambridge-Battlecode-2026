@@ -1,5 +1,7 @@
 # Roadmap
 
+Patch checkpoint21October:official1.0.2/CLI3.0.4 verified. Frozen v19 rebuilds exactly;446new release checks,zero faults,10broad fuel turns. New50unrankedgroups requested;10groups/50games native-verified at this checkpoint,40to collect. Read PATCH-1.0.2.md and CURRENT.json;historical1.0.1 results below remain separate.
+
 Latest checkpoint: **v93 / topdraft v19 compiled and live;all50groups/250games complete native-verified**:79wins versus77,zero faults,one unchanged fuel event. All250seeds equal;228/228ordinary controls exact. Sole22bank306.05→363.5,fresh322.55→383.64,deaths49.45→47.45;full first-cycle release22→21,no-fresh4unchanged. Next inspect post-rally execution in the four unchanged zero-fresh cases. See V93-FIELD.md,objective-execution-investigation.md and CURRENT.json.
 
 Historical checkpoint: **v92 / topdraft v18 compiled and live**,all50 groups/250 games complete native-verified:77wins,0faults,1fuel. Matched v91:46/140 versus49. Shared release fixes traced Stellar join176;objective metrics remain separate from wins. All actual1.0.1. Next: test a16-round limit from first receipt for propagated joins,with unchanged local quorum and survival/banking rules;see experiments/shared-release-age-hypothesis.md. See V92-FIELD.md and CURRENT.json. Older checkpoints are historical.

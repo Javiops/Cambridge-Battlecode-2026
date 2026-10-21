@@ -1,0 +1,485 @@
+{
+  "schema": 1,
+  "purpose": "New opponent objective execution diagnostic: both seats on sole objectives and ordinary controls; separate from finalized v93/v92 benchmark. 50 groups:30nearby/16stretch/4leader;new fixtures,all35maps,matchedbothseats. Current ranks are observations,not calibrated strength.",
+  "tasks": [
+    {
+      "task": 0,
+      "opponent": "Plantir \ud83c\udf31",
+      "sourceGroup": "36508df9-0bb7-4afb-9404-9170e143c171",
+      "maps": [
+        "00stampede",
+        "01elk_arena",
+        "00contest",
+        "01big_world",
+        "00pilgrimage"
+      ],
+      "cohort": "nearby",
+      "status": "pair_requested",
+      "groups": [
+        "5c955762-a24b-4ef5-bb78-f47b56d19ccb",
+        "4e10fbd1-3f07-42f7-b296-cc9270ecb18f"
+      ]
+    },
+    {
+      "task": 1,
+      "opponent": "Plantir \ud83c\udf31",
+      "sourceGroup": "36508df9-0bb7-4afb-9404-9170e143c171",
+      "maps": [
+        "00ambush",
+        "00collision",
+        "00corners",
+        "00eight",
+        "00elkring"
+      ],
+      "cohort": "nearby",
+      "status": "pair_requested",
+      "groups": [
+        "3180d3e6-6c1e-414d-88d8-304c304eb2a0",
+        "92f621d1-d14d-4f65-bcb7-36857cef94aa"
+      ]
+    },
+    {
+      "task": 2,
+      "opponent": "Plantir \ud83c\udf31",
+      "sourceGroup": "36508df9-0bb7-4afb-9404-9170e143c171",
+      "maps": [
+        "00expanse",
+        "00fragment",
+        "00interlock",
+        "00lanes",
+        "00monolith"
+      ],
+      "cohort": "nearby",
+      "status": "pair_requested",
+      "groups": [
+        "3cd3402a-f563-4a5b-8961-f7d3abd4aefe",
+        "7ea8a04b-2ff9-4cbb-b3ea-93ec9c326f72"
+      ]
+    },
+    {
+      "task": 3,
+      "opponent": "Plantir \ud83c\udf31",
+      "sourceGroup": "36508df9-0bb7-4afb-9404-9170e143c171",
+      "maps": [
+        "00packs",
+        "00quadrants",
+        "00reverse_spiral",
+        "00rows",
+        "00rushbait_v2"
+      ],
+      "cohort": "nearby",
+      "status": "pair_requested",
+      "groups": [
+        "81d01aa9-b063-4764-bb9f-891e875e9beb",
+        "0a0a4795-87c1-4f96-93af-caade997ebdd"
+      ]
+    },
+    {
+      "task": 4,
+      "opponent": "Plantir \ud83c\udf31",
+      "sourceGroup": "36508df9-0bb7-4afb-9404-9170e143c171",
+      "maps": [
+        "00split",
+        "00swirl",
+        "01boss_battle",
+        "01broken_curve",
+        "01concentrated_wealth"
+      ],
+      "cohort": "nearby",
+      "status": "pair_requested",
+      "groups": [
+        "5e29c790-7cb8-42cc-82df-a49d93e7e526",
+        "66fe5599-6b57-4b25-a752-98057d1d9bdf"
+      ]
+    },
+    {
+      "task": 5,
+      "opponent": "Quantum Bush Campers",
+      "sourceGroup": "38ffda03-74d6-4bda-aa84-ba5569927470",
+      "maps": [
+        "00ambush",
+        "00collision",
+        "00corners",
+        "00eight",
+        "00elkring"
+      ],
+      "cohort": "nearby",
+      "status": "pair_requested",
+      "groups": [
+        "06a1cb51-e816-4b8f-9248-407544be8502",
+        "b8fbc328-29f7-468c-9ac9-45939a16c0f6"
+      ]
+    },
+    {
+      "task": 6,
+      "opponent": "Quantum Bush Campers",
+      "sourceGroup": "38ffda03-74d6-4bda-aa84-ba5569927470",
+      "maps": [
+        "00expanse",
+        "00fragment",
+        "00interlock",
+        "00lanes",
+        "00monolith"
+      ],
+      "cohort": "nearby",
+      "status": "pair_requested",
+      "groups": [
+        "a4a49ef0-1802-4090-ba38-c9c3c22cbf65",
+        "939a0dd1-98c2-48e3-869e-676a144900a4"
+      ]
+    },
+    {
+      "task": 7,
+      "opponent": "Quantum Bush Campers",
+      "sourceGroup": "38ffda03-74d6-4bda-aa84-ba5569927470",
+      "maps": [
+        "00packs",
+        "00quadrants",
+        "00reverse_spiral",
+        "00rows",
+        "00rushbait_v2"
+      ],
+      "cohort": "nearby",
+      "status": "pair_requested",
+      "groups": [
+        "c00e268c-5045-47b7-b3f4-e9f513480242",
+        "ff24ffaa-f3d1-415d-afff-c81ae2643596"
+      ]
+    },
+    {
+      "task": 8,
+      "opponent": "Quantum Bush Campers",
+      "sourceGroup": "38ffda03-74d6-4bda-aa84-ba5569927470",
+      "maps": [
+        "00split",
+        "00swirl",
+        "01boss_battle",
+        "01broken_curve",
+        "01concentrated_wealth"
+      ],
+      "cohort": "nearby",
+      "status": "pair_requested",
+      "groups": [
+        "be5abd39-1d87-45d3-bc46-02f6b33ec595",
+        "29274603-f002-4951-876c-25b482430666"
+      ]
+    },
+    {
+      "task": 9,
+      "opponent": "Quantum Bush Campers",
+      "sourceGroup": "38ffda03-74d6-4bda-aa84-ba5569927470",
+      "maps": [
+        "01corridors",
+        "01fracture",
+        "01gold_rush",
+        "01hooks",
+        "01islands"
+      ],
+      "cohort": "nearby",
+      "status": "pair_requested",
+      "groups": [
+        "7cf91337-780f-467c-8413-4f5420e10871",
+        "b3df6292-3962-4393-b0a9-590a47ff280b"
+      ]
+    },
+    {
+      "task": 10,
+      "opponent": "Crimson Pathfinders",
+      "sourceGroup": "edef52e5-eb3f-480d-8b76-21027a9586d1",
+      "maps": [
+        "00expanse",
+        "00fragment",
+        "00interlock",
+        "00lanes",
+        "00monolith"
+      ],
+      "cohort": "nearby",
+      "status": "pair_requested",
+      "groups": [
+        "9b1b2e72-db72-45b9-8bf0-f86d1de50c1d",
+        "699243da-6606-4f6f-a136-edc64c3962f9"
+      ]
+    },
+    {
+      "task": 11,
+      "opponent": "Crimson Pathfinders",
+      "sourceGroup": "edef52e5-eb3f-480d-8b76-21027a9586d1",
+      "maps": [
+        "00packs",
+        "00quadrants",
+        "00reverse_spiral",
+        "00rows",
+        "00rushbait_v2"
+      ],
+      "cohort": "nearby",
+      "status": "pair_requested",
+      "groups": [
+        "2954f527-b3f7-4e13-b00f-ad48f584bd3a",
+        "c92d4782-f8e7-4826-bbe7-f11d00713f69"
+      ]
+    },
+    {
+      "task": 12,
+      "opponent": "Crimson Pathfinders",
+      "sourceGroup": "edef52e5-eb3f-480d-8b76-21027a9586d1",
+      "maps": [
+        "00split",
+        "00swirl",
+        "01boss_battle",
+        "01broken_curve",
+        "01concentrated_wealth"
+      ],
+      "cohort": "nearby",
+      "status": "pair_requested",
+      "groups": [
+        "a59d4921-9ff4-439c-b2e6-0d2322d1b63a",
+        "4f956711-c747-491e-ac64-d5e32b187ed2"
+      ]
+    },
+    {
+      "task": 13,
+      "opponent": "Crimson Pathfinders",
+      "sourceGroup": "edef52e5-eb3f-480d-8b76-21027a9586d1",
+      "maps": [
+        "01corridors",
+        "01fracture",
+        "01gold_rush",
+        "01hooks",
+        "01islands"
+      ],
+      "cohort": "nearby",
+      "status": "pair_requested",
+      "groups": [
+        "9b1deaf3-4e66-4041-b73d-fd712c326fa8",
+        "a4c2c638-18c2-4650-80de-99afa7205f2a"
+      ]
+    },
+    {
+      "task": 14,
+      "opponent": "Crimson Pathfinders",
+      "sourceGroup": "edef52e5-eb3f-480d-8b76-21027a9586d1",
+      "maps": [
+        "01shortcut",
+        "01starfish",
+        "01starvation",
+        "01the_farm",
+        "01yellow_brick_road"
+      ],
+      "cohort": "nearby",
+      "status": "pair_requested",
+      "groups": [
+        "1dccd5db-7d68-4d7e-ae74-4c913517ae98",
+        "1f1a8719-29ae-44d2-ba9b-955488992aa2"
+      ]
+    },
+    {
+      "task": 15,
+      "opponent": "Hesitation is Defeat",
+      "sourceGroup": "a5751599-651a-4542-a335-3baa407e459e",
+      "maps": [
+        "00stampede",
+        "01elk_arena",
+        "00contest",
+        "01big_world",
+        "00pilgrimage"
+      ],
+      "cohort": "stretch",
+      "status": "pair_requested",
+      "groups": [
+        "6d5820bd-6527-4a4c-9568-a79d633e78e2",
+        "3fd7827f-d529-4486-84c4-b23b4b1a4ea6"
+      ]
+    },
+    {
+      "task": 16,
+      "opponent": "Hesitation is Defeat",
+      "sourceGroup": "a5751599-651a-4542-a335-3baa407e459e",
+      "maps": [
+        "00ambush",
+        "00collision",
+        "00corners",
+        "00eight",
+        "00elkring"
+      ],
+      "cohort": "stretch",
+      "status": "pair_requested",
+      "groups": [
+        "30f3a418-c53e-4a30-a832-e1ed8b6c9e32",
+        "5891a8f3-a9e0-4212-99fc-966769227dc6"
+      ]
+    },
+    {
+      "task": 17,
+      "opponent": "Hesitation is Defeat",
+      "sourceGroup": "a5751599-651a-4542-a335-3baa407e459e",
+      "maps": [
+        "00expanse",
+        "00fragment",
+        "00interlock",
+        "00lanes",
+        "00monolith"
+      ],
+      "cohort": "stretch",
+      "status": "pair_requested",
+      "groups": [
+        "c858a1e5-c6c9-4119-9a78-4a3688a35703",
+        "193522fa-ee7e-4bb2-b6cd-8bd6f22183b1"
+      ]
+    },
+    {
+      "task": 18,
+      "opponent": "Hesitation is Defeat",
+      "sourceGroup": "a5751599-651a-4542-a335-3baa407e459e",
+      "maps": [
+        "00packs",
+        "00quadrants",
+        "00reverse_spiral",
+        "00rows",
+        "00rushbait_v2"
+      ],
+      "cohort": "stretch",
+      "status": "pair_requested",
+      "groups": [
+        "2c6b0ca7-d074-402c-b6ec-1ffc8af95137",
+        "cc06debb-b7a8-42a4-9e7b-1c8c5f9daee3"
+      ]
+    },
+    {
+      "task": 19,
+      "opponent": "Hesitation is Defeat",
+      "sourceGroup": "a5751599-651a-4542-a335-3baa407e459e",
+      "maps": [
+        "00split",
+        "00swirl",
+        "01boss_battle",
+        "01broken_curve",
+        "01concentrated_wealth"
+      ],
+      "cohort": "stretch",
+      "status": "pair_requested",
+      "groups": [
+        "e2439b04-44f9-4224-bd5f-f9e0fce36960",
+        "30fc840f-aeff-469b-930f-f92dfc7aeea3"
+      ]
+    },
+    {
+      "task": 20,
+      "opponent": "Slawomir Zarzycki",
+      "sourceGroup": "8a203b5e-1312-4690-8dd7-39c9d226079c",
+      "maps": [
+        "00contest",
+        "00ambush",
+        "00corners",
+        "00eight",
+        "00elkring"
+      ],
+      "cohort": "stretch",
+      "status": "pair_requested",
+      "groups": [
+        "21b972ee-8c34-4ee8-a179-42e7e4bcd65b",
+        "ddc722ab-3cd2-46f0-b87c-99c5d938820b"
+      ]
+    },
+    {
+      "task": 21,
+      "opponent": "Slawomir Zarzycki",
+      "sourceGroup": "8a203b5e-1312-4690-8dd7-39c9d226079c",
+      "maps": [
+        "00fragment",
+        "00interlock",
+        "00lanes",
+        "00monolith",
+        "00packs"
+      ],
+      "cohort": "stretch",
+      "status": "pair_requested",
+      "groups": [
+        "56ac06e0-39f9-4e3f-bc87-b8e1fa5c52d9",
+        "3ab91ced-b307-435c-a9bd-e3b0468e5e29"
+      ]
+    },
+    {
+      "task": 22,
+      "opponent": "Slawomir Zarzycki",
+      "sourceGroup": "8a203b5e-1312-4690-8dd7-39c9d226079c",
+      "maps": [
+        "00split",
+        "00swirl",
+        "01boss_battle",
+        "01broken_curve",
+        "01concentrated_wealth"
+      ],
+      "cohort": "stretch",
+      "status": "pair_requested",
+      "groups": [
+        "f4e79aaf-d492-4e96-9e87-08a5db7fb80a",
+        "4055532b-9599-4cf6-b16f-7931b1f4f408"
+      ]
+    },
+    {
+      "task": 23,
+      "opponent": "Nyx",
+      "sourceGroup": "6228beb5-25bc-46f1-a203-cee5ab57a1e0",
+      "maps": [
+        "00pilgrimage",
+        "00corners",
+        "00eight",
+        "00elkring",
+        "00expanse"
+      ],
+      "cohort": "leader",
+      "status": "pair_requested",
+      "groups": [
+        "2cf140a6-d265-485f-87bd-0e9bf7f5ebdf",
+        "500d4b2a-5f62-4765-b44b-49a017d15600"
+      ]
+    },
+    {
+      "task": 24,
+      "opponent": "Nyx",
+      "sourceGroup": "6228beb5-25bc-46f1-a203-cee5ab57a1e0",
+      "maps": [
+        "00fragment",
+        "00interlock",
+        "00lanes",
+        "00packs",
+        "00quadrants"
+      ],
+      "cohort": "leader",
+      "status": "pair_requested",
+      "groups": [
+        "46a70660-1a20-4ac0-acbc-af9c45b7be9e",
+        "247613f3-e679-46d7-a450-738cff106ee6"
+      ]
+    }
+  ],
+  "execution_order": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24
+  ],
+  "runtime": "1.0.2",
+  "engine_build_hash": "ff41468c05c7be716f7647aaf7ea7314633f7038815386c806fafcec98629114"
+}

@@ -40,3 +40,26 @@ procedural sole/split maps,both seats,and ordinary-map controls;do not tune on
 not yet chosen. Already-latched release after death and delayed first receipt
 remain known protocol limits,but another small timer change is not automatically
 the right next step for the remaining zero-economy games.
+
+
+## 21 October native execution trace checkpoint
+
+work/objective-execution-investigation has authenticated native actor/action
+frames for PreyaselkA170–215,SlawStampedeA205–240,B162–195,andTozoStampedeA210–245.
+The three Stampede ranges have zero visible foes in every inspected own actor
+frame. Tozo first-wave official deaths all name camp targets at222,229,230,234
+and236(Cassi/Issac share the last round). These are actual camp deaths,not a
+banking failure or evidence for disabling campfoe in that wave. The elk trace is
+different:healthy units stop outside spell range while the opponent damages the
+camp. Do not apply the same diagnosis to both maps.
+
+Observed ground-cast cooldown transitions and surviving-visible camp HP changes
+support examining area aiming:camp casting currently aims directly at its chosen
+monster,whereas champion casting optimizes area placement. The preliminary
+geometry file's damage values exclude dead/hidden camps and are not measured
+counterfactual gains. A disposable native cast attempt at the old replay input
+returnedcode18/acceptedfalse;it did not validate an alternative cast. Preserve
+that failed attempt. No source20 change has been selected or implemented.
+
+The new active cohort is1.0.2,with a fresh decoder/runtime;verify any next source
+hypothesis there. Keep the70unused confirmation maps and old1.0.1 traces intact.

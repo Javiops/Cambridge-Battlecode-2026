@@ -7,6 +7,20 @@ an experimental upload gathers evidence about a frozen, functional candidate.
 
 ## Current selection
 
+**V89 / ppo-topdraft-v15 is compiled and live.** Its visibility-aware cover scan
+uses one SDK snapshot per ally and skips unreadable entries without ending the
+whole scan. Source delivery, independent release rebuild and server build/live
+status are verified. Release results: 69/70 starter, 149/302 v14 and 143/302 fixed
+v6; zero faults, 10/5 schedule fuel losses. V14's fixed-v6 comparison was 160/302,
+so no general strength gain is claimed. See SCAN-V15.md and CURRENT.json.
+
+The v88 field batch is complete (8/30, zero faults/fuel losses). The v89 first
+matched 30 score 7/30, but Cozy contest deposits rise to 600 from 200 with the
+same 800 collected. The extended 44-group /220-game curriculum is requested on
+all35 maps, with collection/native audit in progress. See V89-CURRICULUM.md.
+
+The following v88/v87 deployment receipts are historical; CURRENT.json is current.
+
 **V88 / ppo-topdraft-v14 is compiled and live.** The server-downloaded source
 matches the frozen ZIP, the server build log is saved and active LIVE status
 is verified. V87 remains a rollback. V14 adds quiet tribute-channel cover with

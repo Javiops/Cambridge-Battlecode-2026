@@ -1,4 +1,4 @@
-// ppo-topdraft-v14: reject impossible channel-cover scans using public altar distance; expect to restore distant farming while retaining nearby cover.
+// ppo-topdraft-v15: one visible snapshot per cover ally, skipping hidden entries; expect one native read per ally without ending the scan early.
 // team-fight-v1 (design: analysis/claude-api-2026-10-18/team_fight_design_1019.md): recall-api-v1 + P_TEAM_FIGHT (finish layer,
 // below) + P_HP_SHOP (hp shards at the top teams' hp share on the v72 power path).
 // Finish layer: the no-chase doctrine lifted for hurt rivals. The bot let hurt rivals go by
@@ -3195,8 +3195,18 @@ void play_turn(State& s) {
         attempt([&] {
             for (auto& ally : my_roster(s)) {
                 stage7_budget_checkpoint();
-                if (ally == me || !ally.is_alive() || !ally.is_submitting_gems()) continue;
-                vec2 at = ally.position();
+                if (ally == me) continue;
+                // Same visibility-checked SDK record used by the PPO adapter.
+                // A hidden roster entry is ordinary absence, not a reason to
+                // stop looking for another visible teammate's active channel.
+                bc::detail::champion_info snapshot{};
+                const auto code = bc::detail::sdk_champion(unit_id(ally), &snapshot);
+                if (code == static_cast<std::int32_t>(bc::error_code::api_not_in_vision)) continue;
+                bc::detail::check(code);
+                const auto flags = bc::champion_state::from_bits_retain(static_cast<std::uint32_t>(snapshot.state));
+                if (!flags.contains(bc::champion_state::alive) ||
+                    !flags.contains(bc::champion_state::submitting_gems)) continue;
+                vec2 at{snapshot.x, snapshot.y};
                 int d = dist(at, pos);
                 if (d < closest) { closest = d; channel = at; }
             }

@@ -1,0 +1,55 @@
+{
+  "schema": 2,
+  "startedUtc": "2026-10-21T00:26:36.780223+00:00",
+  "purpose": "Observe the first automatic v88 ranked match, without initiating ranked games or pooling it with the controlled unranked curriculum.",
+  "kind": "ranked",
+  "stages": [
+    {
+      "candidate": "ppo-topdraft-v14",
+      "platform_version": 88,
+      "status": "compiled_live_verified",
+      "source_zip_sha256": "6eb3470a10243206ccdfd406634fc9f884438e654c9ea5c3738d98ca26eee1e1",
+      "wasm_sha256": "29b0658fd0b75956baac1eeb864a2b02ed51d2b7973f2525b42afe5ada744f63",
+      "groups": [
+        "97164481-d313-4832-82b1-b1ac20bffc5f"
+      ],
+      "submission_id": "359be360-3778-40bf-bf67-a8433dc773f7",
+      "server_source_sha256": "6eb3470a10243206ccdfd406634fc9f884438e654c9ea5c3738d98ca26eee1e1",
+      "server_compilation_verified": true,
+      "verifiedUtc": "2026-10-21T00:21:13.537Z"
+    }
+  ],
+  "groups": [
+    {
+      "id": "97164481-d313-4832-82b1-b1ac20bffc5f",
+      "stage": 0,
+      "version": 88,
+      "opponent": "Serious-Wyso",
+      "maps": [
+        "00ambush",
+        "01boss_battle",
+        "01starvation",
+        "01elk_arena",
+        "01concentrated_wealth"
+      ],
+      "seat": "A",
+      "cohort": "automatic_ranked",
+      "kind": "ranked",
+      "initiatedByThisAgent": false,
+      "versionEvidence": "completed_group_page",
+      "completedVersionVerified": 88,
+      "collectionStatus": "complete",
+      "siteExpectedWins": 3,
+      "summaryFiles": [
+        "3d0123b5-9995-4037-bdf3-0755b0ff72d7.json",
+        "06e9a2c6-4bd2-4fd9-80e7-007b39a9a53b.json",
+        "9e646086-3fc7-4219-ae2c-8139cc9d30c7.json",
+        "9f31fc5f-bd77-4aa9-962e-5fc60056d5ad.json",
+        "dde6014e-3288-40e1-b653-b1777887695a.json"
+      ],
+      "collectedUtc": "2026-10-21T00:27:09.586Z"
+    }
+  ],
+  "pending": null,
+  "initialAllowance": null
+}

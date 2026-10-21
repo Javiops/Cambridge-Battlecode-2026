@@ -9,5 +9,8 @@
   "server_compilation_verified": true,
   "status": "compiled_live_verified",
   "completed_native_verified_games": 0,
-  "verified_utc": "2026-10-21T00:21:13.537Z"
+  "verified_utc": "2026-10-21T00:21:13.537Z",
+  "completed_native_verified_unranked_games": 30,
+  "completed_native_verified_automatic_ranked_games": 5,
+  "field_report": "V88-FIELD.md"
 }

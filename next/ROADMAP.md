@@ -7,6 +7,15 @@ confirmation maps describe earlier stage milestones; both final cohorts are now 
 
 ## Current development after deployment
 
+- V89 / topdraft v15 is compiled and live. Its single-snapshot cover scan skips
+  hidden entries without abandoning later visible allies. Exact local rebuild,
+  server source/build and actual queued versions are verified. The first matched
+  30 field games bank600 from800 collected on Cozy contest, versus v88 200/800;
+  wins are7/30 versus8/30. Full44-group /220-game curriculum is requested on35
+  maps; finish collection/native audit. See V89-CURRICULUM.md and SCAN-V15.md.
+  Lower aggregate wins alone do not undo the functional correction. Diagnose
+  acquisition, fight exposure and sustained objective damage separately next.
+
 - V88 / topdraft v14 is compiled and live; server source delivery and build log
   are verified. Verify every queued version, then
   use returning unranked quota with the pinned cover-live-plan.json pairs.

@@ -1,0 +1,136 @@
+{
+  "schema": 2,
+  "platform_versions": [
+    88
+  ],
+  "candidates": {
+    "0": "ppo-topdraft-v14"
+  },
+  "engine_build_hash": "c3e9ffc8d98c106f86660c58344dc26ced9459a504e2f0d90d88b4c8594c7765",
+  "decoder_wasm_sha256": "c03ab26f20263b08e576ebc1a064cd6f9b66a996aca005d69bd9fb9205434354",
+  "kind": "ranked",
+  "collected_groups": 1,
+  "challenged_groups": 0,
+  "allowance_before": null,
+  "allowance_after": null,
+  "maps": 5,
+  "native_verified_games": 5,
+  "summary": {
+    "games": 5,
+    "wins": 3,
+    "faults": 0,
+    "fuel_exhausted": 0,
+    "opponent_faults": 0,
+    "mean_banked_gems": 590.4,
+    "mean_opponent_banked_gems": 602.2,
+    "zero_bank_games": 1,
+    "ppo_logged_calls": 512,
+    "ppo_logged_changes": 231
+  },
+  "by_stage": {
+    "0": {
+      "games": 5,
+      "wins": 3,
+      "faults": 0,
+      "fuel_exhausted": 0,
+      "opponent_faults": 0,
+      "mean_banked_gems": 590.4,
+      "mean_opponent_banked_gems": 602.2,
+      "zero_bank_games": 1,
+      "ppo_logged_calls": 512,
+      "ppo_logged_changes": 231
+    }
+  },
+  "by_cohort": {
+    "automatic_ranked": {
+      "games": 5,
+      "wins": 3,
+      "faults": 0,
+      "fuel_exhausted": 0,
+      "opponent_faults": 0,
+      "mean_banked_gems": 590.4,
+      "mean_opponent_banked_gems": 602.2,
+      "zero_bank_games": 1,
+      "ppo_logged_calls": 512,
+      "ppo_logged_changes": 231
+    }
+  },
+  "by_map": {
+    "00ambush": {
+      "games": 1,
+      "wins": 1,
+      "faults": 0,
+      "fuel_exhausted": 0,
+      "opponent_faults": 0,
+      "mean_banked_gems": 1019.0,
+      "mean_opponent_banked_gems": 919.0,
+      "zero_bank_games": 0,
+      "ppo_logged_calls": 40,
+      "ppo_logged_changes": 20
+    },
+    "01boss-battle": {
+      "games": 1,
+      "wins": 0,
+      "faults": 0,
+      "fuel_exhausted": 0,
+      "opponent_faults": 0,
+      "mean_banked_gems": 0.0,
+      "mean_opponent_banked_gems": 0.0,
+      "zero_bank_games": 1,
+      "ppo_logged_calls": 38,
+      "ppo_logged_changes": 13
+    },
+    "01concentrated-wealth": {
+      "games": 1,
+      "wins": 1,
+      "faults": 0,
+      "fuel_exhausted": 0,
+      "opponent_faults": 0,
+      "mean_banked_gems": 1007.0,
+      "mean_opponent_banked_gems": 802.0,
+      "zero_bank_games": 0,
+      "ppo_logged_calls": 272,
+      "ppo_logged_changes": 115
+    },
+    "01elk-arena": {
+      "games": 1,
+      "wins": 0,
+      "faults": 0,
+      "fuel_exhausted": 0,
+      "opponent_faults": 0,
+      "mean_banked_gems": 198.0,
+      "mean_opponent_banked_gems": 1002.0,
+      "zero_bank_games": 0,
+      "ppo_logged_calls": 71,
+      "ppo_logged_changes": 40
+    },
+    "01starvation": {
+      "games": 1,
+      "wins": 1,
+      "faults": 0,
+      "fuel_exhausted": 0,
+      "opponent_faults": 0,
+      "mean_banked_gems": 728.0,
+      "mean_opponent_banked_gems": 288.0,
+      "zero_bank_games": 0,
+      "ppo_logged_calls": 91,
+      "ppo_logged_changes": 43
+    }
+  },
+  "by_opponent": {
+    "Serious-Wyso": {
+      "games": 5,
+      "wins": 3,
+      "faults": 0,
+      "fuel_exhausted": 0,
+      "opponent_faults": 0,
+      "mean_banked_gems": 590.4,
+      "mean_opponent_banked_gems": 602.2,
+      "zero_bank_games": 1,
+      "ppo_logged_calls": 512,
+      "ppo_logged_changes": 231
+    }
+  },
+  "interpretation": "Observe the first automatic v88 ranked match, without initiating ranked games or pooling it with the controlled unranked curriculum. Runtime, acquisition and deposits accompany wins. PPO counters are log lower bounds; no controlled strength estimate.",
+  "per_game_records": "stage7-live-v88-observed-games.jsonl"
+}

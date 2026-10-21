@@ -323,3 +323,11 @@ Field trace shows 400-gem tribute channels started but lost before completion; d
 V14 uploaded and selected as platform v88, source delivery hash verified. Server compilation awaits matching; v87 is the last compiled live bot. No v88 games requested with allowance zero. Preserve that distinction and check via the existing 15-minute automation.
 
 V88 server compilation and LIVE status are now verified, with the full server build log saved. No new unranked request yet; the preceding zero-quota observation stands until refreshed.
+
+## 2026-10-21 · V88 field pair complete
+
+Used six returning challenges for 30 native-verified v88 games: 8 wins, zero faults/fuel losses versus v87 historical 12 wins. Cozy contest paired deposits remain 200; Preyas elk improves in B, BitShift elk B acquisition collapses. Retain functional v88, without claiming strength or reverting solely on wins. Five automatic ranked games are separately verified, not agent-initiated. Test one scan-visibility/cost refinement next; no new map-name cases or holdout use. See V88-FIELD.md.
+
+## 2026-10-21 · V15 visible ally snapshot
+
+Replace duplicate per-entry cover queries with one visibility-checked record and skip hidden entries without ending the whole scan. Native replay confirms a hidden earlier ally before later visible entries, without an active channel in that sampled frame. Keep that evidential limit. Release results and exact rebuild are in SCAN-V15.md; no promotion or model change.

@@ -1,6 +1,12 @@
 # Map learning and development, 20 October 2026
 
-Current field candidate: **v88 / topdraft v14 is compiled and live**, with the
+Current field candidate: **v89 / topdraft v15 is compiled and live**. The first
+matched30 games improve Cozy contest paired deposits200 to600 with unchanged
+800 collection, but wins are7/30 versus v88's8/30. All44 groups /220 games on35
+maps are requested; collection/native audit is in progress. See SCAN-V15.md,
+V89-CURRICULUM.md and CURRENT.json. No general strength or promotion claim.
+
+Historical field candidate: **v88 / topdraft v14 was compiled and live**, with the
 server source hash, build log and active status verified. It tests quiet
 nearby cover for tribute channels; see COVER-V14.md and CURRENT.json. The
 following v87 results are complete and remain the diagnostic baseline.

@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "status": "compiled_live_no_games_requested_waiting_for_quota",
+  "status": "complete_native_verified",
   "planned_groups": 6,
   "tasks": [
     {
@@ -15,8 +15,11 @@
         "01big_world"
       ],
       "cohort": "nearby",
-      "status": "planned_not_requested",
-      "groups": []
+      "status": "pair_complete_native_verified",
+      "groups": [
+        "ce63f2db-9a1b-4f78-be6e-f1962061b33d",
+        "e6e8077b-78b2-45fc-b93b-d6e6d3731f84"
+      ]
     },
     {
       "task": 1,
@@ -30,8 +33,11 @@
         "00elkring"
       ],
       "cohort": "nearby",
-      "status": "planned_not_requested",
-      "groups": []
+      "status": "pair_complete_native_verified",
+      "groups": [
+        "03ef71fe-eff1-46a7-9a7b-62ecdf2fe8d4",
+        "b152abc8-31e9-4f25-ad00-d68a05e69d30"
+      ]
     },
     {
       "task": 2,
@@ -45,11 +51,17 @@
         "00monolith"
       ],
       "cohort": "stretch",
-      "status": "planned_not_requested",
-      "groups": []
+      "status": "pair_complete_native_verified",
+      "groups": [
+        "9a8837c9-817d-432d-a11f-3cef30fd0d7f",
+        "85e8e958-96a6-4e8f-a722-2c3fc89bc6ec"
+      ]
     }
   ],
   "platform_version": 88,
   "submission_id": "359be360-3778-40bf-bf67-a8433dc773f7",
-  "candidate": "ppo-topdraft-v14"
+  "candidate": "ppo-topdraft-v14",
+  "completed_utc": "2026-10-21T00:35:12.813241+00:00",
+  "native_verified_games": 30,
+  "final_actual_allowance": 0
 }

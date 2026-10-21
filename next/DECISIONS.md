@@ -307,3 +307,11 @@ Native PPO tile lookups and failed-planner cost learning each leave the 94-loss 
 ## 2026-10-20 · V12 contact-first combat work retained offline
 
 Move the unchanged contact test before ally metadata gathering. Frozen v8 mirror B loses 94 turns; v12 B versus the same v8 opponent loses zero and banks 245 versus 105. Big-world starter banks remain 692/800. Broad 69/70 starter, 157/302 v8 with six total schedule fuel losses; 150/302 fixed v6 with five. Zero faults and exact independent rebuild. This supports a usable targeted runtime fix, not a proven overall strength gain or lab promotion. Keep the teammate hold; stage v85, v8 and v12 field pairs afterward. See CONTACT-V12.md.
+
+## 2026-10-21 · V86 and V87 live, matched benchmark complete
+
+Honored the teammate hold, then collected/native-verified both seats for v85, uploaded/tested v86, then uploaded/tested v87. Each wins 5/10 with zero faults/fuel losses. Big-world banks rise from 202/90 to 381/336; elk B collection/deposits regress. Retain v87 for broader learning, without a strength/promotion claim. Server source deliveries and live compilation are verified. Use the remaining actual quota purposefully; BANKING-FIELD.md preserves the tradeoffs.
+
+## 2026-10-21 · V87 broad field evidence
+
+All 44 groups / 220 games collected and native-verified on 35 maps: 75 wins, zero faults, one fuel loss. Historical same-label v83 subset: 87 wins, 70 fuel losses; this is descriptive, without certified old opponent-B/seed equivalence. Runtime improves while overall results regress. Keep v87 as a usable experiment under Fran's policy; diagnose contest acquisition/delivery and objective fight exposure rather than undo banking automatically. Final actual allowance zero; retain the existing 15-minute check. See V87-CURRICULUM.md.

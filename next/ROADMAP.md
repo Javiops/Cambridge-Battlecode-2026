@@ -7,13 +7,13 @@ confirmation maps describe earlier stage milestones; both final cohorts are now 
 
 ## Current development after deployment
 
-- Prepared topdraft v12 retains v8 banking and moves the unchanged front-line contact test before ally scans. The reproduced B-seat runtime case drops from 94 losses to zero; broad results and limits are in CONTACT-V12.md. After the teammate hold, use banking-live-plan.json to test v85, v8 and v12 in paired, pinned stages. No requests have been queued for those stages yet.
+- Platform **v87 / topdraft v12 is compiled and live**, retaining v8 banking and checking contact before ally scans. The paired v85/v86/v87 banking benchmark is complete: 30 native-verified games, each version 5/10 with zero faults/fuel losses. Big-world deposits improve; elk B acquisition regresses. See BANKING-FIELD.md and CONTACT-V12.md.
 
 - Continue the hourly unranked curriculum: most opponents near/moderately above
   our strength, with a repeatable benchmark and at most 10% leader scouting.
-- Platform v85 / `ppo-topdraft-v7` compiled and was live, then Fran requested a
-  temporary teammate handoff. V82 is restored as selected. Read LIVE-HOLD.json
-  before live actions; no uploads, selections or initiated matches through the hold.
+- The teammate handoff was honored through 23:10:20 UTC on 20 October and their
+  batch completed before resuming. Read LIVE-HOLD.json for that historical record
+  and CURRENT.json for the current selection; honor any new handoff.
 - V7 fixes the reproduced large-load banking stall locally: big-world versus
   starter deposits rise from 121/0 to 316/105, both seats, zero faults/fuel losses.
   It wins 148/302 versus v6 across broad development maps; no promotion claim.
@@ -22,10 +22,15 @@ confirmation maps describe earlier stage milestones; both final cohorts are now 
   is 146/302 and 14 fuel losses; parent-v7 comparison is 152/302 and 106 losses.
   A generated B-seat fixture accounts for 94 losses with either v7 or v8.
   The v9 optional spell-scan entry guard leaves those 94 unchanged and is rejected.
-- After the teammate hold, reproduce pinned Preyas in both seats with v85,
-  native-verify the pair, then field-test prepared v8 with a short upload note.
-  Zero v85 unranked groups have been started; the hold takes precedence over quota.
-- Profile optional native calls on big-world and ambush if fuel losses recur. The new 250-game batch
+- All 44 broader v87 curriculum groups / 220 games are complete and
+  native-verified across all 35 maps: 75 wins, zero faults, one fuel loss.
+  The historical same-label v83 subset has 87 wins and 70 fuel losses; opponent-B
+  and seed equivalence are not certified. Overall results regress despite runtime
+  improvement. Final actual allowance is zero. See V87-CURRICULUM.md, then trace
+  carrier/fight exposure and isolate one general fix. Check allowance every 15
+  minutes with the existing heartbeat. Historical cohort labels overlap current
+  ratings; adapt difficulty using measured results.
+- Profile optional native calls on big-world and ambush if fuel losses recur. The historical 250-game v83 batch
   has 55 and 41 fuel losses respectively. Raising the global reserve in v5
   stalled initialization; do not repeat that attempted fix.
 - Elk-arena, big-world and pilgrimage each lose 0/6 against three nearby teams.

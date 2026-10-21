@@ -51,7 +51,14 @@ layouts still have zero games played. No promotion gate was run.
 V9, v10 and v11 failed their targeted runtime hypotheses and remain rejected.
 They are frozen for evidence, not uploaded. See RUNTIME-PROBES.md for limits.
 
-## Live coordination and identity
+## Live deployment and identity
+
+Updated after field tests: this source is platform **v87**, compiled and active.
+The temporary teammate hold expired with their batch complete. The three staged
+banking pairs are complete (30 native-verified games); a further 44 groups / 220
+v87 games are complete with 75 wins, zero faults and one fuel loss. See
+BANKING-FIELD.md and V87-CURRICULUM.md. The coordination plan below records the
+pre-upload state and is historical, not a pending hold or unstarted batch.
 
 The teammate hold takes precedence: v82 was restored as selected, and no live
 uploads, selections or initiated games occur before 23:10:20 UTC / 01:10:20 CEST

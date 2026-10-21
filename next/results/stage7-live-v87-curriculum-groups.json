@@ -1,0 +1,2007 @@
+{
+  "schema": 2,
+  "startedUtc": "2026-10-20T23:34:20.175714+00:00",
+  "purpose": "Broader map learning after three paired banking benchmarks; no strategy tuning on confirmation maps.",
+  "stages": [
+    {
+      "candidate": "ppo-topdraft-v12",
+      "platform_version": 87,
+      "status": "live_verified",
+      "groups": [
+        "9d6135a1-2572-4b7b-9971-80788a18fac4",
+        "09dc657f-38a7-4557-8434-8391d518e947",
+        "fdd570a9-365e-4c0c-9f98-e902db87e97a",
+        "f606ed57-2f8e-434a-8eab-19a3c8bae5d0",
+        "3fef61e5-f79d-454e-9c4f-0827d54aaf98",
+        "d14c5d60-f267-4493-aacc-62b16f64a807",
+        "918a9639-3b83-4463-9aab-e0c6597b048e",
+        "efe06de8-837a-42e3-8e59-2fb6e61ffeac",
+        "6b6418fb-5219-4759-a366-021670a8eb8d",
+        "30bc5aa4-96db-426e-bdaf-ca8a4959c0e5",
+        "b554252a-cfaa-493e-b33f-dd6e287e55e9",
+        "7678f745-e57d-47ae-8205-029226cdf037",
+        "71317caf-1acf-4605-91fa-163d2ad2a06c",
+        "d58a8f81-624d-43ca-b9bd-7e7fc54431bd",
+        "147aa08d-82d4-4cb0-b955-8dde35d6d150",
+        "971ad0d3-1f39-4431-af67-4e40e3b55679",
+        "be5248a7-8e2d-43df-b1fd-96c4119dccf3",
+        "5cc388ed-2a05-4c6a-a696-51e6083f1547",
+        "07fc8124-1b41-4adb-a2b0-6f161a898952",
+        "394652c6-5334-45d4-81cd-d0d8bd85c118",
+        "b265c35b-e3ec-43ea-aa60-9f03c7707702",
+        "ef165626-1820-48e4-a689-286986889ad5",
+        "534e63d1-85e7-471e-a11c-b7c2c435328d",
+        "8821a644-e678-44fb-b446-9a47abe94616",
+        "ef442286-ddd6-48e7-8b7b-b225c333bb42",
+        "3c13b581-152b-47b2-9f09-7f327d3bbd86",
+        "de064c4d-75a1-46b6-aaad-5fddb880d445",
+        "52497eaf-35d1-4742-9eee-54fb9de9ded1",
+        "f31792ba-f5fd-4523-81f5-c713fc19250c",
+        "75aca257-7986-4df9-9395-23374acc9be4",
+        "a0c0d822-cc7a-4753-a51d-b8274beafa9e",
+        "153f67d4-a3dd-466d-aaf0-6148b3d23e7c",
+        "e1cbfed0-3f8d-42a8-8169-0902a73b7ba1",
+        "c597f1fa-109e-4ea2-b735-b885cb945cff",
+        "d2c60427-fdf0-4525-87df-4ba6a93cd8f9",
+        "58109aa0-32b8-4af8-a49b-f0ed9cde4f07",
+        "3a67c118-5ddc-4065-b3b6-d832bb851c2b",
+        "6d1d6ddf-2ecf-42d4-9ee2-22b402455b02",
+        "da50a9d7-131c-42bd-9ff7-cecd9f455596",
+        "3e8c34c4-6684-4b67-bd61-ebd9da67f331",
+        "2e0046fe-5870-40f7-b36f-c2f296aabd81",
+        "ce0ff106-067d-4daf-a01f-e407824d79f5",
+        "f3c18329-28d5-463a-b3cb-1f49bb5ec490",
+        "91e293ff-66ee-474a-bbc1-0ccdc2abee1c"
+      ]
+    }
+  ],
+  "stageIndex": 0,
+  "groups": [
+    {
+      "task": 0,
+      "stage": 0,
+      "version": 87,
+      "opponent": "Tozo's Disciples",
+      "sourceGroup": "44d6496f-e1af-415c-ae6b-6a8e17643495",
+      "maps": [
+        "00ambush",
+        "00contest",
+        "00corners",
+        "00eight",
+        "00elkring"
+      ],
+      "cohort": "nearby",
+      "opponentRankObserved": 104,
+      "opponentRatingObserved": 1712,
+      "seat": "A",
+      "allowanceBefore": 44,
+      "requestedUtc": "2026-10-20T23:36:45.111Z",
+      "outcome": "group_returned",
+      "initiatedByThisAgent": true,
+      "id": "9d6135a1-2572-4b7b-9971-80788a18fac4",
+      "collectionStatus": "complete",
+      "queuedVersionVerified": 87,
+      "summaryFiles": [
+        "2024be55-caa2-45d5-b971-c08d91676dc7.json",
+        "6070f13e-d7f8-4bb8-b09b-aa0ae5b17aba.json",
+        "8cc302bb-8bfd-40b5-8137-8c9c43394c99.json",
+        "dcbf4a54-1560-4ba5-9fa7-0a4323230863.json",
+        "d20d1063-8139-4358-855e-d2b8eeb8e25c.json"
+      ],
+      "completedVersionVerified": 87,
+      "collectedUtc": "2026-10-20T23:43:04.438Z"
+    },
+    {
+      "task": 0,
+      "stage": 0,
+      "version": 87,
+      "opponent": "Tozo's Disciples",
+      "sourceGroup": "44d6496f-e1af-415c-ae6b-6a8e17643495",
+      "maps": [
+        "00ambush",
+        "00contest",
+        "00corners",
+        "00eight",
+        "00elkring"
+      ],
+      "cohort": "nearby",
+      "opponentRankObserved": 104,
+      "opponentRatingObserved": 1712,
+      "seat": "B",
+      "allowanceBefore": 43,
+      "requestedUtc": "2026-10-20T23:36:57.699Z",
+      "outcome": "group_returned",
+      "initiatedByThisAgent": true,
+      "id": "09dc657f-38a7-4557-8434-8391d518e947",
+      "collectionStatus": "complete",
+      "queuedVersionVerified": 87,
+      "summaryFiles": [
+        "2db1999b-1f2b-47a7-942a-c61a5c46e476.json",
+        "2eca9a7b-2b33-421c-8140-12334caff0f8.json",
+        "11192465-3a64-44f8-a3a8-2130863bf09b.json",
+        "6662e0f9-1beb-4277-acb8-67d6011b8f56.json",
+        "93ff6712-d5fb-46a5-93b8-c3e651fe97ba.json"
+      ],
+      "completedVersionVerified": 87,
+      "collectedUtc": "2026-10-20T23:42:54.290Z"
+    },
+    {
+      "task": 1,
+      "stage": 0,
+      "version": 87,
+      "opponent": "Agentic Loop Builders",
+      "sourceGroup": "80f5c4b5-64c2-4a3b-b24a-a5724376d74d",
+      "maps": [
+        "00fragment",
+        "00interlock",
+        "00lanes",
+        "00monolith",
+        "00packs"
+      ],
+      "cohort": "nearby",
+      "opponentRankObserved": 82,
+      "opponentRatingObserved": 1746,
+      "seat": "A",
+      "allowanceBefore": 42,
+      "requestedUtc": "2026-10-20T23:43:45.176Z",
+      "outcome": "group_returned",
+      "initiatedByThisAgent": true,
+      "id": "fdd570a9-365e-4c0c-9f98-e902db87e97a",
+      "collectionStatus": "complete",
+      "queuedVersionVerified": 87,
+      "summaryFiles": [
+        "6ef21d28-957a-4444-9b1f-472da4fe281e.json",
+        "b1f5093f-635a-49ce-8bfd-70208dba77d8.json",
+        "c86301fb-7bf8-4938-aa23-72aba56b6f75.json",
+        "57c0d980-a38e-493f-8f81-988415efffe9.json",
+        "b50a8f17-7c74-45e6-b4fe-d01b9b59d006.json"
+      ],
+      "completedVersionVerified": 87,
+      "collectedUtc": "2026-10-20T23:45:45.898Z"
+    },
+    {
+      "task": 1,
+      "stage": 0,
+      "version": 87,
+      "opponent": "Agentic Loop Builders",
+      "sourceGroup": "80f5c4b5-64c2-4a3b-b24a-a5724376d74d",
+      "maps": [
+        "00fragment",
+        "00interlock",
+        "00lanes",
+        "00monolith",
+        "00packs"
+      ],
+      "cohort": "nearby",
+      "opponentRankObserved": 82,
+      "opponentRatingObserved": 1746,
+      "seat": "B",
+      "allowanceBefore": 41,
+      "requestedUtc": "2026-10-20T23:43:50.507Z",
+      "outcome": "group_returned",
+      "initiatedByThisAgent": true,
+      "id": "f606ed57-2f8e-434a-8eab-19a3c8bae5d0",
+      "collectionStatus": "complete",
+      "queuedVersionVerified": 87,
+      "summaryFiles": [
+        "7c064e96-0211-46b5-bc4a-f6772452e606.json",
+        "41369d78-899c-47ea-b117-a125731758ac.json",
+        "52d7f3f1-b6c1-41ea-9154-a6f2e9b50725.json",
+        "4f1c6b5d-2e90-417f-b428-3017edaf1991.json",
+        "abeea0f5-1a42-4235-b74c-52f5934bf134.json"
+      ],
+      "completedVersionVerified": 87,
+      "collectedUtc": "2026-10-20T23:45:55.210Z"
+    },
+    {
+      "task": 2,
+      "stage": 0,
+      "version": 87,
+      "opponent": "Dirty Coding",
+      "sourceGroup": "712dbee0-8a10-4f5d-b1c4-a80eff50e49b",
+      "maps": [
+        "00pilgrimage",
+        "00quadrants",
+        "00reverse_spiral",
+        "00rows",
+        "00rushbait_v2"
+      ],
+      "cohort": "nearby",
+      "opponentRankObserved": 112,
+      "opponentRatingObserved": 1703,
+      "seat": "A",
+      "allowanceBefore": 40,
+      "requestedUtc": "2026-10-20T23:44:02.227Z",
+      "outcome": "group_returned",
+      "initiatedByThisAgent": true,
+      "id": "3fef61e5-f79d-454e-9c4f-0827d54aaf98",
+      "collectionStatus": "complete",
+      "queuedVersionVerified": 87,
+      "summaryFiles": [
+        "e50b0741-c599-441f-9645-a4a52dfba016.json",
+        "c913d6c4-27f2-4b21-b5cb-91fc80b4f606.json",
+        "8d21dde7-99c6-4df2-aa71-aafe6715aadb.json",
+        "10521056-3490-4996-8488-3164cb07d12b.json",
+        "56e74b94-69fc-447d-9f27-214553295605.json"
+      ],
+      "completedVersionVerified": 87,
+      "collectedUtc": "2026-10-20T23:46:04.838Z"
+    },
+    {
+      "task": 2,
+      "stage": 0,
+      "version": 87,
+      "opponent": "Dirty Coding",
+      "sourceGroup": "712dbee0-8a10-4f5d-b1c4-a80eff50e49b",
+      "maps": [
+        "00pilgrimage",
+        "00quadrants",
+        "00reverse_spiral",
+        "00rows",
+        "00rushbait_v2"
+      ],
+      "cohort": "nearby",
+      "opponentRankObserved": 112,
+      "opponentRatingObserved": 1703,
+      "seat": "B",
+      "allowanceBefore": 39,
+      "requestedUtc": "2026-10-20T23:44:07.221Z",
+      "outcome": "group_returned",
+      "initiatedByThisAgent": true,
+      "id": "d14c5d60-f267-4493-aacc-62b16f64a807",
+      "collectionStatus": "complete",
+      "queuedVersionVerified": 87,
+      "summaryFiles": [
+        "78dd9388-d2c2-4be7-9b44-2f16aa4c7fa6.json",
+        "cf0b6145-a2cc-4bf7-ac2d-a7684eeb240e.json",
+        "0b3bddfc-6cc8-406b-83bc-daf56857870f.json",
+        "807f7c32-64cc-40eb-9f3a-e90cb6ab52aa.json",
+        "5f0582ff-7c16-4f47-a647-05725fd7cc58.json"
+      ],
+      "completedVersionVerified": 87,
+      "collectedUtc": "2026-10-20T23:46:14.706Z"
+    },
+    {
+      "task": 12,
+      "stage": 0,
+      "version": 87,
+      "opponent": "NotSoLonely",
+      "sourceGroup": "1674575d-090d-477e-8b0f-b9722dec4237",
+      "maps": [
+        "00split",
+        "00swirl",
+        "01boss_battle",
+        "01broken_curve",
+        "01concentrated_wealth"
+      ],
+      "cohort": "stretch",
+      "opponentRankObserved": 90,
+      "opponentRatingObserved": 1738,
+      "seat": "A",
+      "allowanceBefore": 38,
+      "requestedUtc": "2026-10-20T23:44:10.175Z",
+      "outcome": "group_returned",
+      "initiatedByThisAgent": true,
+      "id": "918a9639-3b83-4463-9aab-e0c6597b048e",
+      "collectionStatus": "complete",
+      "queuedVersionVerified": 87,
+      "summaryFiles": [
+        "277ac188-4f2c-4933-99f5-7766ad646059.json",
+        "b8afd529-b9fa-4e99-8ba2-aee85d99c71a.json",
+        "75ab7bf7-57f0-41a4-bf20-fdb5937d378f.json",
+        "98d60bad-f9d7-4e0b-b362-c024f8e629e4.json",
+        "9d869226-4a5d-4371-96fb-5ffc3c929d71.json"
+      ],
+      "completedVersionVerified": 87,
+      "collectedUtc": "2026-10-20T23:47:03.736Z"
+    },
+    {
+      "task": 12,
+      "stage": 0,
+      "version": 87,
+      "opponent": "NotSoLonely",
+      "sourceGroup": "1674575d-090d-477e-8b0f-b9722dec4237",
+      "maps": [
+        "00split",
+        "00swirl",
+        "01boss_battle",
+        "01broken_curve",
+        "01concentrated_wealth"
+      ],
+      "cohort": "stretch",
+      "opponentRankObserved": 90,
+      "opponentRatingObserved": 1738,
+      "seat": "B",
+      "allowanceBefore": 37,
+      "requestedUtc": "2026-10-20T23:44:14.695Z",
+      "outcome": "group_returned",
+      "initiatedByThisAgent": true,
+      "id": "efe06de8-837a-42e3-8e59-2fb6e61ffeac",
+      "collectionStatus": "complete",
+      "queuedVersionVerified": 87,
+      "summaryFiles": [
+        "b72a93ca-59cc-46cb-b1f5-9302cb4aeff1.json",
+        "a4aafe13-a9fc-45e1-9d27-9f70ad5d410f.json",
+        "c5a570a9-36b0-4856-a787-af3c84203405.json",
+        "29df08c3-db49-4957-a698-de4e3f29b053.json",
+        "7bad99b8-8cbd-4a2d-a37d-0f833e040b95.json"
+      ],
+      "completedVersionVerified": 87,
+      "collectedUtc": "2026-10-20T23:47:13.950Z"
+    },
+    {
+      "task": 13,
+      "stage": 0,
+      "version": 87,
+      "opponent": "Pathfinders",
+      "sourceGroup": "7c44d5b1-a00e-499c-b028-2f6a20260204",
+      "maps": [
+        "01corridors",
+        "01fracture",
+        "01gold_rush",
+        "01hooks",
+        "01islands"
+      ],
+      "cohort": "stretch",
+      "opponentRankObserved": 95,
+      "opponentRatingObserved": 1728,
+      "seat": "A",
+      "allowanceBefore": 36,
+      "requestedUtc": "2026-10-20T23:44:30.705Z",
+      "outcome": "group_returned",
+      "initiatedByThisAgent": true,
+      "id": "6b6418fb-5219-4759-a366-021670a8eb8d",
+      "collectionStatus": "complete",
+      "queuedVersionVerified": 87,
+      "summaryFiles": [
+        "fcd4b2ef-ddb6-4027-9888-b347174157ad.json",
+        "17d32cfd-5b48-46c6-b368-068bf43617b1.json",
+        "8d8483a2-495f-43db-96e5-3dfd253f1abb.json",
+        "6e35e3e6-3d0f-4803-b793-2307117f7003.json",
+        "62505b07-3105-43ff-9292-9cc50e2057d4.json"
+      ],
+      "completedVersionVerified": 87,
+      "collectedUtc": "2026-10-20T23:47:23.789Z"
+    },
+    {
+      "task": 13,
+      "stage": 0,
+      "version": 87,
+      "opponent": "Pathfinders",
+      "sourceGroup": "7c44d5b1-a00e-499c-b028-2f6a20260204",
+      "maps": [
+        "01corridors",
+        "01fracture",
+        "01gold_rush",
+        "01hooks",
+        "01islands"
+      ],
+      "cohort": "stretch",
+      "opponentRankObserved": 95,
+      "opponentRatingObserved": 1728,
+      "seat": "B",
+      "allowanceBefore": 35,
+      "requestedUtc": "2026-10-20T23:44:35.126Z",
+      "outcome": "group_returned",
+      "initiatedByThisAgent": true,
+      "id": "30bc5aa4-96db-426e-bdaf-ca8a4959c0e5",
+      "collectionStatus": "complete",
+      "queuedVersionVerified": 87,
+      "summaryFiles": [
+        "af900ba0-d822-4cc5-9a03-1df251aa0939.json",
+        "00ae486b-f409-4664-ab97-81c04da98519.json",
+        "ca390ded-aafc-4424-9733-c8f7094f90d8.json",
+        "cfb4192f-79b5-4514-bd51-9c2697a42e79.json",
+        "4c0ef5d2-87b8-4b75-a9fa-b529cceb6ad7.json"
+      ],
+      "completedVersionVerified": 87,
+      "collectedUtc": "2026-10-20T23:47:34.915Z"
+    },
+    {
+      "task": 14,
+      "stage": 0,
+      "version": 87,
+      "opponent": "Antifreeze",
+      "sourceGroup": "182efa1b-e086-4cb0-818f-d70f50f650bb",
+      "maps": [
+        "01shortcut",
+        "01starfish",
+        "01starvation",
+        "01the_farm",
+        "01yellow_brick_road"
+      ],
+      "cohort": "stretch",
+      "opponentRankObserved": 135,
+      "opponentRatingObserved": 1680,
+      "seat": "A",
+      "allowanceBefore": 34,
+      "requestedUtc": "2026-10-20T23:44:37.741Z",
+      "outcome": "group_returned",
+      "initiatedByThisAgent": true,
+      "id": "b554252a-cfaa-493e-b33f-dd6e287e55e9",
+      "collectionStatus": "complete",
+      "queuedVersionVerified": 87,
+      "summaryFiles": [
+        "7ee65f39-4d44-425b-a13d-380f9bb0016e.json",
+        "93257656-0e38-4b72-b499-3252b00e4b83.json",
+        "f83c0686-5273-445d-9204-5677fa7a578c.json",
+        "e97d832b-dfba-4487-8934-ed19d4dcee21.json",
+        "ad0bef3b-25cb-45d2-b9e9-b60826009812.json"
+      ],
+      "completedVersionVerified": 87,
+      "collectedUtc": "2026-10-20T23:50:01.093Z"
+    },
+    {
+      "task": 14,
+      "stage": 0,
+      "version": 87,
+      "opponent": "Antifreeze",
+      "sourceGroup": "182efa1b-e086-4cb0-818f-d70f50f650bb",
+      "maps": [
+        "01shortcut",
+        "01starfish",
+        "01starvation",
+        "01the_farm",
+        "01yellow_brick_road"
+      ],
+      "cohort": "stretch",
+      "opponentRankObserved": 135,
+      "opponentRatingObserved": 1680,
+      "seat": "B",
+      "allowanceBefore": 33,
+      "requestedUtc": "2026-10-20T23:44:42.188Z",
+      "outcome": "group_returned",
+      "initiatedByThisAgent": true,
+      "id": "7678f745-e57d-47ae-8205-029226cdf037",
+      "collectionStatus": "complete",
+      "queuedVersionVerified": 87,
+      "summaryFiles": [
+        "25ff935c-3061-4a09-86ba-13e9a2f786c1.json",
+        "90bafe53-1343-4b7d-a5d4-4f3f5a7f25f0.json",
+        "35325e4a-e45b-467e-84c7-ef2e7acc59f7.json",
+        "ae26bc3f-18bd-4d65-a87d-fc6cfeadc66b.json",
+        "5cc71171-8801-4202-b4f0-842299b9de81.json"
+      ],
+      "completedVersionVerified": 87,
+      "collectedUtc": "2026-10-20T23:50:12.034Z"
+    },
+    {
+      "task": 3,
+      "stage": 0,
+      "version": 87,
+      "opponent": "Slawomir Zarzycki",
+      "sourceGroup": "711bc160-300c-4340-b36f-17908f812ffd",
+      "maps": [
+        "00collision",
+        "00expanse",
+        "00stampede",
+        "01elk_arena",
+        "01big_world"
+      ],
+      "cohort": "nearby",
+      "opponentRankObserved": 99,
+      "opponentRatingObserved": 1720,
+      "seat": "A",
+      "allowanceBefore": 32,
+      "requestedUtc": "2026-10-20T23:44:45.454Z",
+      "outcome": "group_returned",
+      "initiatedByThisAgent": true,
+      "id": "71317caf-1acf-4605-91fa-163d2ad2a06c",
+      "collectionStatus": "complete",
+      "queuedVersionVerified": 87,
+      "summaryFiles": [
+        "daff694d-35da-4985-bfc8-c5f6839877a9.json",
+        "5312c72f-177f-4ea6-bba8-f5c67142b6e1.json",
+        "dd7e5a32-69fd-4a1f-af15-e0a98eae61ed.json",
+        "bc02e6ea-1655-4cac-8000-7f7dd90f073a.json",
+        "8fffac3f-cd2d-48ea-8feb-43c10be31298.json"
+      ],
+      "completedVersionVerified": 87,
+      "collectedUtc": "2026-10-20T23:50:22.366Z"
+    },
+    {
+      "task": 3,
+      "stage": 0,
+      "version": 87,
+      "opponent": "Slawomir Zarzycki",
+      "sourceGroup": "711bc160-300c-4340-b36f-17908f812ffd",
+      "maps": [
+        "00collision",
+        "00expanse",
+        "00stampede",
+        "01elk_arena",
+        "01big_world"
+      ],
+      "cohort": "nearby",
+      "opponentRankObserved": 99,
+      "opponentRatingObserved": 1720,
+      "seat": "B",
+      "allowanceBefore": 31,
+      "requestedUtc": "2026-10-20T23:44:50.061Z",
+      "outcome": "group_returned",
+      "initiatedByThisAgent": true,
+      "id": "d58a8f81-624d-43ca-b9bd-7e7fc54431bd",
+      "collectionStatus": "complete",
+      "queuedVersionVerified": 87,
+      "summaryFiles": [
+        "c6fd0d8d-95f8-4e29-bd88-9817d2fe454c.json",
+        "334fbda1-6a0a-43b3-8fe8-0219a86d695a.json",
+        "99c765c8-7af5-493c-aab5-2e73770e44c7.json",
+        "8ac88ae6-141a-4f2a-b48a-bea9543834f1.json",
+        "d20c3658-95fe-4915-9115-500d7b4fcca6.json"
+      ],
+      "completedVersionVerified": 87,
+      "collectedUtc": "2026-10-20T23:50:32.260Z"
+    },
+    {
+      "task": 20,
+      "stage": 0,
+      "version": 87,
+      "opponent": "Nyx",
+      "sourceGroup": "54827ebc-28a8-41af-9a1d-8f7614042a75",
+      "maps": [
+        "00collision",
+        "00stampede",
+        "01elk_arena",
+        "01big_world",
+        "00monolith"
+      ],
+      "cohort": "leader",
+      "opponentRankObserved": 6,
+      "opponentRatingObserved": 2051,
+      "seat": "A",
+      "allowanceBefore": 30,
+      "requestedUtc": "2026-10-20T23:45:08.663Z",
+      "outcome": "group_returned",
+      "initiatedByThisAgent": true,
+      "id": "147aa08d-82d4-4cb0-b955-8dde35d6d150",
+      "collectionStatus": "complete",
+      "queuedVersionVerified": 87,
+      "summaryFiles": [
+        "2a424766-baa2-4d06-8565-7dd1e24674fe.json",
+        "e62fab07-c7bc-4687-b3d4-f9029f4b9a0e.json",
+        "a70a00eb-daa9-416e-9623-5bd15c256e83.json",
+        "c1e3af34-71be-41ec-836b-6059e64faf02.json",
+        "3d1c89b9-8405-4e48-83b2-f4c08f8bfe66.json"
+      ],
+      "completedVersionVerified": 87,
+      "collectedUtc": "2026-10-20T23:51:17.628Z"
+    },
+    {
+      "task": 20,
+      "stage": 0,
+      "version": 87,
+      "opponent": "Nyx",
+      "sourceGroup": "54827ebc-28a8-41af-9a1d-8f7614042a75",
+      "maps": [
+        "00collision",
+        "00stampede",
+        "01elk_arena",
+        "01big_world",
+        "00monolith"
+      ],
+      "cohort": "leader",
+      "opponentRankObserved": 6,
+      "opponentRatingObserved": 2051,
+      "seat": "B",
+      "allowanceBefore": 29,
+      "requestedUtc": "2026-10-20T23:45:13.593Z",
+      "outcome": "group_returned",
+      "initiatedByThisAgent": true,
+      "id": "971ad0d3-1f39-4431-af67-4e40e3b55679",
+      "collectionStatus": "complete",
+      "queuedVersionVerified": 87,
+      "summaryFiles": [
+        "993e05e1-6eab-4480-878c-5a25ccb67f9f.json",
+        "e953ad66-e070-48ab-aed8-a4d2648f075c.json",
+        "14667b31-e444-47fa-8eea-c6bdc9a846f4.json",
+        "ab3352fc-d404-478b-b47e-5c3fcd86a6e3.json",
+        "645b5e46-1394-4d83-8329-3378f4effc82.json"
+      ],
+      "completedVersionVerified": 87,
+      "collectedUtc": "2026-10-20T23:51:28.430Z"
+    },
+    {
+      "task": 4,
+      "stage": 0,
+      "version": 87,
+      "opponent": "Cozy Campfire",
+      "sourceGroup": "0f3bb94c-63d9-4ef0-9a8f-22d6533affbf",
+      "maps": [
+        "00ambush",
+        "00contest",
+        "00corners",
+        "00eight",
+        "00elkring"
+      ],
+      "cohort": "nearby",
+      "opponentRankObserved": 70,
+      "opponentRatingObserved": 1768,
+      "seat": "A",
+      "allowanceBefore": 28,
+      "requestedUtc": "2026-10-20T23:45:16.113Z",
+      "outcome": "group_returned",
+      "initiatedByThisAgent": true,
+      "id": "be5248a7-8e2d-43df-b1fd-96c4119dccf3",
+      "collectionStatus": "complete",
+      "queuedVersionVerified": 87,
+      "summaryFiles": [
+        "cc1c8417-78c4-4ec9-900e-bf8cdb10828c.json",
+        "cfb28c8a-aef8-4338-bfa4-5700c4c78aed.json",
+        "6c4f09bb-87d8-40c4-8bb8-7114797a705c.json",
+        "cd5c4212-8c84-4aa1-9ef6-66a0ed4a04e9.json",
+        "e8bca509-baf3-42d0-81b7-e9f0213ed73f.json"
+      ],
+      "completedVersionVerified": 87,
+      "collectedUtc": "2026-10-20T23:51:39.242Z"
+    },
+    {
+      "task": 4,
+      "stage": 0,
+      "version": 87,
+      "opponent": "Cozy Campfire",
+      "sourceGroup": "0f3bb94c-63d9-4ef0-9a8f-22d6533affbf",
+      "maps": [
+        "00ambush",
+        "00contest",
+        "00corners",
+        "00eight",
+        "00elkring"
+      ],
+      "cohort": "nearby",
+      "opponentRankObserved": 70,
+      "opponentRatingObserved": 1768,
+      "seat": "B",
+      "allowanceBefore": 27,
+      "requestedUtc": "2026-10-20T23:45:20.333Z",
+      "outcome": "group_returned",
+      "initiatedByThisAgent": true,
+      "id": "5cc388ed-2a05-4c6a-a696-51e6083f1547",
+      "collectionStatus": "complete",
+      "queuedVersionVerified": 87,
+      "summaryFiles": [
+        "9fa84c65-dcb8-471c-8699-a9189e2ad03e.json",
+        "91f5ddb5-1e4a-4139-962a-b889e23d44e6.json",
+        "548f598c-39ae-4dc3-aff2-6c4daece7cfc.json",
+        "fb2bbedf-bd8e-40c8-809e-27dd0b75aecc.json",
+        "e109929a-7bf1-45fa-b0ef-b258cb6b7626.json"
+      ],
+      "completedVersionVerified": 87,
+      "collectedUtc": "2026-10-20T23:51:48.922Z"
+    },
+    {
+      "task": 5,
+      "stage": 0,
+      "version": 87,
+      "opponent": "Ad Astra",
+      "sourceGroup": "1ca32bf4-8ee5-4973-acb9-ed8bc2d7a54f",
+      "maps": [
+        "00fragment",
+        "00interlock",
+        "00lanes",
+        "00monolith",
+        "00packs"
+      ],
+      "cohort": "nearby",
+      "opponentRankObserved": 140,
+      "opponentRatingObserved": 1676,
+      "seat": "A",
+      "allowanceBefore": 26,
+      "requestedUtc": "2026-10-20T23:45:23.455Z",
+      "outcome": "group_returned",
+      "initiatedByThisAgent": true,
+      "id": "07fc8124-1b41-4adb-a2b0-6f161a898952",
+      "collectionStatus": "complete",
+      "queuedVersionVerified": 87,
+      "summaryFiles": [
+        "fc06f13e-3141-4204-b84a-9c467c3034e6.json",
+        "c2847e9b-34a9-43b5-9ecc-93dfa9b3659f.json",
+        "52dbf387-7a32-4999-ab76-66334a3ddceb.json",
+        "e3d9e80b-dc55-4742-a388-722f69fa9451.json",
+        "7c6fb269-5522-4d0d-bb54-a61719aec6ee.json"
+      ],
+      "completedVersionVerified": 87,
+      "collectedUtc": "2026-10-20T23:52:13.721Z"
+    },
+    {
+      "task": 5,
+      "stage": 0,
+      "version": 87,
+      "opponent": "Ad Astra",
+      "sourceGroup": "1ca32bf4-8ee5-4973-acb9-ed8bc2d7a54f",
+      "maps": [
+        "00fragment",
+        "00interlock",
+        "00lanes",
+        "00monolith",
+        "00packs"
+      ],
+      "cohort": "nearby",
+      "opponentRankObserved": 140,
+      "opponentRatingObserved": 1676,
+      "seat": "B",
+      "allowanceBefore": 25,
+      "requestedUtc": "2026-10-20T23:45:27.908Z",
+      "outcome": "group_returned",
+      "initiatedByThisAgent": true,
+      "id": "394652c6-5334-45d4-81cd-d0d8bd85c118",
+      "collectionStatus": "complete",
+      "queuedVersionVerified": 87,
+      "summaryFiles": [
+        "d5a8f586-9919-402e-b17f-36c19178f6f0.json",
+        "44f23824-7422-4837-9143-b4a9f11bf3ac.json",
+        "b390e7b9-2f2e-4a8d-9911-499b3c0b1ae3.json",
+        "032e8dea-d0f8-4fae-b421-2f55ebe904b7.json",
+        "8754dff8-0078-46f0-9eb6-52eccc04ee78.json"
+      ],
+      "completedVersionVerified": 87,
+      "collectedUtc": "2026-10-20T23:52:23.818Z"
+    },
+    {
+      "task": 15,
+      "stage": 0,
+      "version": 87,
+      "opponent": "BitShift",
+      "sourceGroup": "4c4202b6-69fc-4033-ae65-7e4e3937d59f",
+      "maps": [
+        "00stampede",
+        "01elk_arena",
+        "00collision",
+        "00rows",
+        "00monolith"
+      ],
+      "cohort": "stretch",
+      "opponentRankObserved": 80,
+      "opponentRatingObserved": 1747,
+      "seat": "A",
+      "allowanceBefore": 24,
+      "requestedUtc": "2026-10-20T23:46:21.687Z",
+      "outcome": "group_returned",
+      "initiatedByThisAgent": true,
+      "id": "b265c35b-e3ec-43ea-aa60-9f03c7707702",
+      "collectionStatus": "complete",
+      "queuedVersionVerified": 87,
+      "summaryFiles": [
+        "f0e6c546-66d4-4e86-9c37-989a92ac789a.json",
+        "55a5e677-337a-4788-a23e-96a712dc84c9.json",
+        "7d9fcbf1-d511-4898-b10c-493df4161256.json",
+        "e635fab3-0742-4597-865e-3e73df0a7ffb.json",
+        "755c92fe-6daa-4647-b2e1-e38fd9c14ffc.json"
+      ],
+      "completedVersionVerified": 87,
+      "collectedUtc": "2026-10-20T23:52:35.064Z"
+    },
+    {
+      "task": 15,
+      "stage": 0,
+      "version": 87,
+      "opponent": "BitShift",
+      "sourceGroup": "4c4202b6-69fc-4033-ae65-7e4e3937d59f",
+      "maps": [
+        "00stampede",
+        "01elk_arena",
+        "00collision",
+        "00rows",
+        "00monolith"
+      ],
+      "cohort": "stretch",
+      "opponentRankObserved": 80,
+      "opponentRatingObserved": 1747,
+      "seat": "B",
+      "allowanceBefore": 23,
+      "requestedUtc": "2026-10-20T23:46:26.070Z",
+      "outcome": "group_returned",
+      "initiatedByThisAgent": true,
+      "id": "ef165626-1820-48e4-a689-286986889ad5",
+      "collectionStatus": "complete",
+      "queuedVersionVerified": 87,
+      "summaryFiles": [
+        "663bc835-7bdf-4f7f-9f88-ba5fe98ad72d.json",
+        "e7249100-8410-4b63-abbc-f3fe08def209.json",
+        "83bf20e7-5319-4df9-92a3-f35ff5b74668.json",
+        "d9855cb7-edf4-4b93-842a-2245e3ac234e.json",
+        "a76f2133-865c-453f-8335-40fdd06cd5fa.json"
+      ],
+      "completedVersionVerified": 87,
+      "collectedUtc": "2026-10-20T23:52:45.162Z"
+    },
+    {
+      "task": 6,
+      "stage": 0,
+      "version": 87,
+      "opponent": "Context Overflow",
+      "sourceGroup": "42d4d069-cf0e-417f-9f8d-1ac7165d1406",
+      "maps": [
+        "00pilgrimage",
+        "00quadrants",
+        "00reverse_spiral",
+        "00rows",
+        "00rushbait_v2"
+      ],
+      "cohort": "nearby",
+      "opponentRankObserved": 161,
+      "opponentRatingObserved": 1648,
+      "seat": "A",
+      "allowanceBefore": 22,
+      "requestedUtc": "2026-10-20T23:46:28.795Z",
+      "outcome": "group_returned",
+      "initiatedByThisAgent": true,
+      "id": "534e63d1-85e7-471e-a11c-b7c2c435328d",
+      "collectionStatus": "complete",
+      "queuedVersionVerified": 87,
+      "summaryFiles": [
+        "3d5f8ec4-6579-48e5-9d27-1e4511823edc.json",
+        "c0e32007-7137-4c80-bb0d-3a96cef977e4.json",
+        "600df425-8e63-46b9-9b10-b5fd960c1a29.json",
+        "72c764d6-7284-4a85-b98f-2d549229e350.json",
+        "b793595a-5f39-430a-9ace-8d82c7edfba8.json"
+      ],
+      "completedVersionVerified": 87,
+      "collectedUtc": "2026-10-20T23:53:13.522Z"
+    },
+    {
+      "task": 6,
+      "stage": 0,
+      "version": 87,
+      "opponent": "Context Overflow",
+      "sourceGroup": "42d4d069-cf0e-417f-9f8d-1ac7165d1406",
+      "maps": [
+        "00pilgrimage",
+        "00quadrants",
+        "00reverse_spiral",
+        "00rows",
+        "00rushbait_v2"
+      ],
+      "cohort": "nearby",
+      "opponentRankObserved": 161,
+      "opponentRatingObserved": 1648,
+      "seat": "B",
+      "allowanceBefore": 21,
+      "requestedUtc": "2026-10-20T23:46:32.783Z",
+      "outcome": "group_returned",
+      "initiatedByThisAgent": true,
+      "id": "8821a644-e678-44fb-b446-9a47abe94616",
+      "collectionStatus": "complete",
+      "queuedVersionVerified": 87,
+      "summaryFiles": [
+        "d7354d62-7cb0-47f7-8274-4875fa305c41.json",
+        "2159f7bf-2d58-43dc-a501-c854f2ff41f0.json",
+        "bc709ce2-e8aa-4042-b534-5b2b7b700510.json",
+        "e2dbd241-228d-43fd-b43d-269ee1bc04f8.json",
+        "6ac3db48-fb37-4c5d-8aa2-ed97d811cf8d.json"
+      ],
+      "completedVersionVerified": 87,
+      "collectedUtc": "2026-10-20T23:53:23.041Z"
+    },
+    {
+      "task": 16,
+      "stage": 0,
+      "version": 87,
+      "opponent": "NotSoLonely",
+      "sourceGroup": "5b3cee15-80c1-4c38-a842-65546ea0978e",
+      "maps": [
+        "01corridors",
+        "01fracture",
+        "01gold_rush",
+        "01hooks",
+        "01islands"
+      ],
+      "cohort": "stretch",
+      "opponentRankObserved": 90,
+      "opponentRatingObserved": 1738,
+      "seat": "A",
+      "allowanceBefore": 20,
+      "requestedUtc": "2026-10-20T23:46:35.587Z",
+      "outcome": "group_returned",
+      "initiatedByThisAgent": true,
+      "id": "ef442286-ddd6-48e7-8b7b-b225c333bb42",
+      "collectionStatus": "complete",
+      "queuedVersionVerified": 87,
+      "summaryFiles": [
+        "bf73aa13-9337-429c-96e3-45881ffc52ba.json",
+        "006aa200-9876-4d71-9113-d4c47060a60b.json",
+        "62eff50e-58c5-4755-994b-92cbecf635b4.json",
+        "db0b3c66-1680-4b9a-92ae-0126a1daa582.json",
+        "77cbc05d-8a4f-4ac8-987f-5980f1674294.json"
+      ],
+      "completedVersionVerified": 87,
+      "collectedUtc": "2026-10-20T23:53:33.057Z"
+    },
+    {
+      "task": 16,
+      "stage": 0,
+      "version": 87,
+      "opponent": "NotSoLonely",
+      "sourceGroup": "5b3cee15-80c1-4c38-a842-65546ea0978e",
+      "maps": [
+        "01corridors",
+        "01fracture",
+        "01gold_rush",
+        "01hooks",
+        "01islands"
+      ],
+      "cohort": "stretch",
+      "opponentRankObserved": 90,
+      "opponentRatingObserved": 1738,
+      "seat": "B",
+      "allowanceBefore": 19,
+      "requestedUtc": "2026-10-20T23:46:39.755Z",
+      "outcome": "group_returned",
+      "initiatedByThisAgent": true,
+      "id": "3c13b581-152b-47b2-9f09-7f327d3bbd86",
+      "collectionStatus": "complete",
+      "queuedVersionVerified": 87,
+      "summaryFiles": [
+        "96c4ab15-82f9-48f2-9903-6b9d4d05771d.json",
+        "5b729442-7561-4a0d-91dc-efc0a278d40a.json",
+        "daae8a64-944b-4841-9ae9-98ef3b7e9e9f.json",
+        "44d470d5-3824-4827-bc75-0c2f027db497.json",
+        "c8c09373-338c-4624-ad07-c7e2ee9b5994.json"
+      ],
+      "completedVersionVerified": 87,
+      "collectedUtc": "2026-10-20T23:53:43.225Z"
+    },
+    {
+      "task": 7,
+      "stage": 0,
+      "version": 87,
+      "opponent": "Preyas",
+      "sourceGroup": "cb42a00f-94b4-4e3a-9b18-9eabb4881bd1",
+      "maps": [
+        "00split",
+        "00swirl",
+        "01boss_battle",
+        "01broken_curve",
+        "01concentrated_wealth"
+      ],
+      "cohort": "nearby",
+      "opponentRankObserved": 100,
+      "opponentRatingObserved": 1718,
+      "seat": "A",
+      "allowanceBefore": 18,
+      "requestedUtc": "2026-10-20T23:47:51.627Z",
+      "outcome": "group_returned",
+      "initiatedByThisAgent": true,
+      "id": "de064c4d-75a1-46b6-aaad-5fddb880d445",
+      "collectionStatus": "complete",
+      "queuedVersionVerified": 87,
+      "summaryFiles": [
+        "93d12113-07d0-4bf7-a5c8-8dbec1faf166.json",
+        "35d7143c-c9e6-4e3f-bdb0-5ee4cccbf742.json",
+        "ef68ec12-1eae-498e-87fa-a63da41587ba.json",
+        "e2b490ae-351d-41b3-92c5-a760c3320733.json",
+        "95d33a56-99db-429b-ad3c-110280257298.json"
+      ],
+      "completedVersionVerified": 87,
+      "collectedUtc": "2026-10-20T23:54:07.396Z"
+    },
+    {
+      "task": 7,
+      "stage": 0,
+      "version": 87,
+      "opponent": "Preyas",
+      "sourceGroup": "cb42a00f-94b4-4e3a-9b18-9eabb4881bd1",
+      "maps": [
+        "00split",
+        "00swirl",
+        "01boss_battle",
+        "01broken_curve",
+        "01concentrated_wealth"
+      ],
+      "cohort": "nearby",
+      "opponentRankObserved": 100,
+      "opponentRatingObserved": 1718,
+      "seat": "B",
+      "allowanceBefore": 17,
+      "requestedUtc": "2026-10-20T23:47:56.716Z",
+      "outcome": "group_returned",
+      "initiatedByThisAgent": true,
+      "id": "52497eaf-35d1-4742-9eee-54fb9de9ded1",
+      "collectionStatus": "complete",
+      "queuedVersionVerified": 87,
+      "summaryFiles": [
+        "289497df-a367-4bb5-b14e-c6eff459342c.json",
+        "a44bee05-3f74-4230-850e-728a461a88e3.json",
+        "e09be725-4414-4744-8e55-7ec4a2151448.json",
+        "9bb24067-2f33-4d84-9d2b-d77ea7a6ce82.json",
+        "83081a71-9881-4994-b708-fa7985bfbed3.json"
+      ],
+      "completedVersionVerified": 87,
+      "collectedUtc": "2026-10-20T23:54:17.734Z"
+    },
+    {
+      "task": 17,
+      "stage": 0,
+      "version": 87,
+      "opponent": "Pathfinders",
+      "sourceGroup": "b0847249-f772-42f9-a343-b4ec34419a1b",
+      "maps": [
+        "01shortcut",
+        "01starfish",
+        "01starvation",
+        "01the_farm",
+        "01yellow_brick_road"
+      ],
+      "cohort": "stretch",
+      "opponentRankObserved": 95,
+      "opponentRatingObserved": 1728,
+      "seat": "A",
+      "allowanceBefore": 16,
+      "requestedUtc": "2026-10-20T23:47:59.320Z",
+      "outcome": "group_returned",
+      "initiatedByThisAgent": true,
+      "id": "f31792ba-f5fd-4523-81f5-c713fc19250c",
+      "collectionStatus": "complete",
+      "queuedVersionVerified": 87,
+      "summaryFiles": [
+        "8cf619c0-365e-404c-84b4-8af59c6e06ea.json",
+        "6641f746-7a6d-4d04-8e0d-ff83229f934e.json",
+        "74aac0ec-95e9-4790-908c-4bc5227846da.json",
+        "5aa2ccbf-f132-42a8-9486-b0cfceabe2ff.json",
+        "17ffccde-7c6e-497e-aa7b-7c6d35f830a4.json"
+      ],
+      "completedVersionVerified": 87,
+      "collectedUtc": "2026-10-20T23:54:27.844Z"
+    },
+    {
+      "task": 17,
+      "stage": 0,
+      "version": 87,
+      "opponent": "Pathfinders",
+      "sourceGroup": "b0847249-f772-42f9-a343-b4ec34419a1b",
+      "maps": [
+        "01shortcut",
+        "01starfish",
+        "01starvation",
+        "01the_farm",
+        "01yellow_brick_road"
+      ],
+      "cohort": "stretch",
+      "opponentRankObserved": 95,
+      "opponentRatingObserved": 1728,
+      "seat": "B",
+      "allowanceBefore": 15,
+      "requestedUtc": "2026-10-20T23:48:03.612Z",
+      "outcome": "group_returned",
+      "initiatedByThisAgent": true,
+      "id": "75aca257-7986-4df9-9395-23374acc9be4",
+      "collectionStatus": "complete",
+      "queuedVersionVerified": 87,
+      "summaryFiles": [
+        "f6084c24-7711-41f5-8b1b-ee6236fa8d9e.json",
+        "26fef51b-fbb8-4e02-a961-d4d7bd0277d5.json",
+        "08b1dc94-c1ab-43de-bfed-6cb661b84283.json",
+        "4360ff6b-3ba9-4ce6-bcf6-21796c0f6569.json",
+        "778d9c9e-49f2-411d-af1e-1f9660cef79b.json"
+      ],
+      "completedVersionVerified": 87,
+      "collectedUtc": "2026-10-20T23:54:37.963Z"
+    },
+    {
+      "task": 8,
+      "stage": 0,
+      "version": 87,
+      "opponent": "Tozo's Disciples",
+      "sourceGroup": "c0e30cea-54ae-47ab-ad55-772fe0016df9",
+      "maps": [
+        "01corridors",
+        "01fracture",
+        "01gold_rush",
+        "01hooks",
+        "01islands"
+      ],
+      "cohort": "nearby",
+      "opponentRankObserved": 102,
+      "opponentRatingObserved": 1715,
+      "seat": "A",
+      "allowanceBefore": 14,
+      "requestedUtc": "2026-10-20T23:48:27.370Z",
+      "outcome": "group_returned",
+      "initiatedByThisAgent": true,
+      "id": "a0c0d822-cc7a-4753-a51d-b8274beafa9e",
+      "collectionStatus": "complete",
+      "queuedVersionVerified": 87,
+      "summaryFiles": [
+        "f91c3973-fc86-451b-a283-73a236a18fbb.json",
+        "4cb76870-a851-44c7-8c7f-c572beb020a9.json",
+        "7cf47fe4-796c-4480-bcbe-447179ba4667.json",
+        "0fe6bbcf-3527-4601-ad1c-a6a2cd063ac1.json",
+        "b5794a69-6ba4-4627-b14a-ff5203f8f82a.json"
+      ],
+      "completedVersionVerified": 87,
+      "collectedUtc": "2026-10-20T23:55:11.183Z"
+    },
+    {
+      "task": 8,
+      "stage": 0,
+      "version": 87,
+      "opponent": "Tozo's Disciples",
+      "sourceGroup": "c0e30cea-54ae-47ab-ad55-772fe0016df9",
+      "maps": [
+        "01corridors",
+        "01fracture",
+        "01gold_rush",
+        "01hooks",
+        "01islands"
+      ],
+      "cohort": "nearby",
+      "opponentRankObserved": 102,
+      "opponentRatingObserved": 1715,
+      "seat": "B",
+      "allowanceBefore": 13,
+      "requestedUtc": "2026-10-20T23:48:31.803Z",
+      "outcome": "group_returned",
+      "initiatedByThisAgent": true,
+      "id": "153f67d4-a3dd-466d-aaf0-6148b3d23e7c",
+      "collectionStatus": "complete",
+      "queuedVersionVerified": 87,
+      "summaryFiles": [
+        "9185e272-bb3a-4d08-95e6-8be85df367ba.json",
+        "37b062b4-a37f-4756-9db2-62f2ad1e83ba.json",
+        "5d756159-7823-4609-9c48-7d5c2ee90354.json",
+        "d6197bd4-6bf0-438e-9cb0-1da27bd53927.json",
+        "d19b2d96-e7ea-404c-bd65-7e6a4e399003.json"
+      ],
+      "completedVersionVerified": 87,
+      "collectedUtc": "2026-10-20T23:55:21.138Z"
+    },
+    {
+      "task": 18,
+      "stage": 0,
+      "version": 87,
+      "opponent": "Antifreeze",
+      "sourceGroup": "393a5cb3-d365-4dd7-add0-cf0303a1ed2d",
+      "maps": [
+        "00stampede",
+        "01elk_arena",
+        "00collision",
+        "00rows",
+        "00monolith"
+      ],
+      "cohort": "stretch",
+      "opponentRankObserved": 135,
+      "opponentRatingObserved": 1680,
+      "seat": "A",
+      "allowanceBefore": 12,
+      "requestedUtc": "2026-10-20T23:48:34.343Z",
+      "outcome": "group_returned",
+      "initiatedByThisAgent": true,
+      "id": "e1cbfed0-3f8d-42a8-8169-0902a73b7ba1",
+      "collectionStatus": "complete",
+      "queuedVersionVerified": 87,
+      "summaryFiles": [
+        "533b3304-c7fd-418b-a7e8-dc0789648f50.json",
+        "ff68b545-7519-4c65-933b-df779e73e8a5.json",
+        "6ffe2ab9-fe15-40f9-8ba0-99a7d15b4e0a.json",
+        "693f76a9-fb4a-4574-a7f8-e983b84ae98e.json",
+        "72a029e0-fbe6-4a11-8da6-8286c0a31cd6.json"
+      ],
+      "completedVersionVerified": 87,
+      "collectedUtc": "2026-10-20T23:55:30.989Z"
+    },
+    {
+      "task": 18,
+      "stage": 0,
+      "version": 87,
+      "opponent": "Antifreeze",
+      "sourceGroup": "393a5cb3-d365-4dd7-add0-cf0303a1ed2d",
+      "maps": [
+        "00stampede",
+        "01elk_arena",
+        "00collision",
+        "00rows",
+        "00monolith"
+      ],
+      "cohort": "stretch",
+      "opponentRankObserved": 135,
+      "opponentRatingObserved": 1680,
+      "seat": "B",
+      "allowanceBefore": 11,
+      "requestedUtc": "2026-10-20T23:48:38.843Z",
+      "outcome": "group_returned",
+      "initiatedByThisAgent": true,
+      "id": "c597f1fa-109e-4ea2-b735-b885cb945cff",
+      "collectionStatus": "complete",
+      "queuedVersionVerified": 87,
+      "summaryFiles": [
+        "d8488de9-b9a8-486b-9d8f-d46bfade0494.json",
+        "e8673f3f-9fa4-4174-8096-57e8a5bb3198.json",
+        "2af64f64-0186-4d57-8474-e0bcbe64d538.json",
+        "c482cf9b-9eb6-4fde-b8ba-3a264b8249cf.json",
+        "9e5ca94c-3ebc-48c5-a022-ac8c032553c1.json"
+      ],
+      "completedVersionVerified": 87,
+      "collectedUtc": "2026-10-20T23:55:41.141Z"
+    },
+    {
+      "task": 9,
+      "stage": 0,
+      "version": 87,
+      "opponent": "Agentic Loop Builders",
+      "sourceGroup": "b6646778-0e4b-4e0f-a5f8-6fd0734ba2cd",
+      "maps": [
+        "01shortcut",
+        "01starfish",
+        "01starvation",
+        "01the_farm",
+        "01yellow_brick_road"
+      ],
+      "cohort": "nearby",
+      "opponentRankObserved": 82,
+      "opponentRatingObserved": 1746,
+      "seat": "A",
+      "allowanceBefore": 10,
+      "requestedUtc": "2026-10-20T23:48:41.455Z",
+      "outcome": "group_returned",
+      "initiatedByThisAgent": true,
+      "id": "d2c60427-fdf0-4525-87df-4ba6a93cd8f9",
+      "collectionStatus": "complete",
+      "queuedVersionVerified": 87,
+      "summaryFiles": [
+        "9ce3bf56-906f-4849-ab6e-bb422d862337.json",
+        "4b78f75e-4b1e-466c-9df5-84c3edc69d6d.json",
+        "1c21bbce-7e0f-4658-88fb-4ba05cf79a8d.json",
+        "27164367-8477-4bf3-9798-565e3f7fca7a.json",
+        "79db72f3-3602-49ee-a0e6-6adf74e027f9.json"
+      ],
+      "completedVersionVerified": 87,
+      "collectedUtc": "2026-10-20T23:55:59.863Z"
+    },
+    {
+      "task": 9,
+      "stage": 0,
+      "version": 87,
+      "opponent": "Agentic Loop Builders",
+      "sourceGroup": "b6646778-0e4b-4e0f-a5f8-6fd0734ba2cd",
+      "maps": [
+        "01shortcut",
+        "01starfish",
+        "01starvation",
+        "01the_farm",
+        "01yellow_brick_road"
+      ],
+      "cohort": "nearby",
+      "opponentRankObserved": 82,
+      "opponentRatingObserved": 1746,
+      "seat": "B",
+      "allowanceBefore": 9,
+      "requestedUtc": "2026-10-20T23:48:45.643Z",
+      "outcome": "group_returned",
+      "initiatedByThisAgent": true,
+      "id": "58109aa0-32b8-4af8-a49b-f0ed9cde4f07",
+      "collectionStatus": "complete",
+      "queuedVersionVerified": 87,
+      "summaryFiles": [
+        "e9c25145-3a72-42c4-99ee-b646e4cd388c.json",
+        "031af4c5-61e9-4f3e-80f5-3ff9147fca2a.json",
+        "d6e378e5-5102-45bd-94ab-0feeda31c287.json",
+        "e8e28901-b55d-4623-b2eb-04aff5b97189.json",
+        "ff6aef93-7961-4054-a156-ccd417071d1a.json"
+      ],
+      "completedVersionVerified": 87,
+      "collectedUtc": "2026-10-20T23:56:09.626Z"
+    },
+    {
+      "task": 19,
+      "stage": 0,
+      "version": 87,
+      "opponent": "BitShift",
+      "sourceGroup": "c4343b33-055b-4952-86f9-ae5dd28e877e",
+      "maps": [
+        "00split",
+        "00swirl",
+        "01boss_battle",
+        "01broken_curve",
+        "01concentrated_wealth"
+      ],
+      "cohort": "stretch",
+      "opponentRankObserved": 80,
+      "opponentRatingObserved": 1747,
+      "seat": "A",
+      "allowanceBefore": 8,
+      "requestedUtc": "2026-10-20T23:48:48.195Z",
+      "outcome": "group_returned",
+      "initiatedByThisAgent": true,
+      "id": "3a67c118-5ddc-4065-b3b6-d832bb851c2b",
+      "collectionStatus": "complete",
+      "queuedVersionVerified": 87,
+      "summaryFiles": [
+        "fcc873ad-17ac-49b4-9cf8-bb52b84591ba.json",
+        "5fa7da0e-3382-4693-b03c-faa4f2b8d08d.json",
+        "e7bf3d6c-4058-4633-8916-38280ffb471f.json",
+        "78bbd2f0-8177-4901-a194-cb794a46f835.json",
+        "1139a211-60ad-48c6-81e0-3f7574eabe24.json"
+      ],
+      "completedVersionVerified": 87,
+      "collectedUtc": "2026-10-20T23:56:20.089Z"
+    },
+    {
+      "task": 19,
+      "stage": 0,
+      "version": 87,
+      "opponent": "BitShift",
+      "sourceGroup": "c4343b33-055b-4952-86f9-ae5dd28e877e",
+      "maps": [
+        "00split",
+        "00swirl",
+        "01boss_battle",
+        "01broken_curve",
+        "01concentrated_wealth"
+      ],
+      "cohort": "stretch",
+      "opponentRankObserved": 80,
+      "opponentRatingObserved": 1747,
+      "seat": "B",
+      "allowanceBefore": 7,
+      "requestedUtc": "2026-10-20T23:48:52.607Z",
+      "outcome": "group_returned",
+      "initiatedByThisAgent": true,
+      "id": "6d1d6ddf-2ecf-42d4-9ee2-22b402455b02",
+      "collectionStatus": "complete",
+      "queuedVersionVerified": 87,
+      "summaryFiles": [
+        "487caeb1-b961-458b-8c99-5b27125d49c6.json",
+        "653e03f4-f1fe-4411-85dd-fc76907ef07b.json",
+        "67b59b6b-487f-4abb-b0cd-dcd113b99c54.json",
+        "6c1f54fc-c758-4bae-baa8-5d4bc9cfe64d.json",
+        "f3aac9dd-6acf-4298-899c-62ba2ea2823b.json"
+      ],
+      "completedVersionVerified": 87,
+      "collectedUtc": "2026-10-20T23:56:29.813Z"
+    },
+    {
+      "task": 10,
+      "stage": 0,
+      "version": 87,
+      "opponent": "Slawomir Zarzycki",
+      "sourceGroup": "a2bb3e00-92ba-4545-9a9e-9e9b20cfd00c",
+      "maps": [
+        "00pilgrimage",
+        "00quadrants",
+        "00reverse_spiral",
+        "00rows",
+        "00rushbait_v2"
+      ],
+      "cohort": "nearby",
+      "opponentRankObserved": 99,
+      "opponentRatingObserved": 1720,
+      "seat": "A",
+      "allowanceBefore": 6,
+      "requestedUtc": "2026-10-20T23:49:03.520Z",
+      "outcome": "group_returned",
+      "initiatedByThisAgent": true,
+      "id": "da50a9d7-131c-42bd-9ff7-cecd9f455596",
+      "collectionStatus": "complete",
+      "queuedVersionVerified": 87,
+      "summaryFiles": [
+        "aa30b022-5a74-45aa-aa5a-ad33ae9c3861.json",
+        "8d0d582c-b977-421c-9787-2fb52ba38d29.json",
+        "72950239-2050-45f9-a50a-bcbbe8838522.json",
+        "841db4e5-8ffc-4f1d-b2de-df083e5e99c4.json",
+        "0f7cfe6b-2dc8-415c-bc6a-ec9ba2cbe52c.json"
+      ],
+      "completedVersionVerified": 87,
+      "collectedUtc": "2026-10-20T23:56:59.859Z"
+    },
+    {
+      "task": 10,
+      "stage": 0,
+      "version": 87,
+      "opponent": "Slawomir Zarzycki",
+      "sourceGroup": "a2bb3e00-92ba-4545-9a9e-9e9b20cfd00c",
+      "maps": [
+        "00pilgrimage",
+        "00quadrants",
+        "00reverse_spiral",
+        "00rows",
+        "00rushbait_v2"
+      ],
+      "cohort": "nearby",
+      "opponentRankObserved": 99,
+      "opponentRatingObserved": 1720,
+      "seat": "B",
+      "allowanceBefore": 5,
+      "requestedUtc": "2026-10-20T23:49:07.916Z",
+      "outcome": "group_returned",
+      "initiatedByThisAgent": true,
+      "id": "3e8c34c4-6684-4b67-bd61-ebd9da67f331",
+      "collectionStatus": "complete",
+      "queuedVersionVerified": 87,
+      "summaryFiles": [
+        "3114a1eb-fc48-4318-b532-9494b5ba1089.json",
+        "fa875025-acfe-4921-bac9-5c06cd96bf8b.json",
+        "7b0183e9-b434-46fd-b987-dcfb4f8cf735.json",
+        "9b1715f3-bb2d-4a44-acee-0ae9f43ec013.json",
+        "6000dba1-65e2-4b79-8bc9-e7bcc525a406.json"
+      ],
+      "completedVersionVerified": 87,
+      "collectedUtc": "2026-10-20T23:57:09.857Z"
+    },
+    {
+      "task": 21,
+      "stage": 0,
+      "version": 87,
+      "opponent": "Nyx",
+      "sourceGroup": "e956297c-9a94-4054-9852-750262bdc153",
+      "maps": [
+        "00ambush",
+        "00contest",
+        "01fracture",
+        "01gold_rush",
+        "01the_farm"
+      ],
+      "cohort": "leader",
+      "opponentRankObserved": 6,
+      "opponentRatingObserved": 2051,
+      "seat": "A",
+      "allowanceBefore": 4,
+      "requestedUtc": "2026-10-20T23:49:10.862Z",
+      "outcome": "group_returned",
+      "initiatedByThisAgent": true,
+      "id": "2e0046fe-5870-40f7-b36f-c2f296aabd81",
+      "collectionStatus": "complete",
+      "queuedVersionVerified": 87,
+      "summaryFiles": [
+        "94455b5f-133b-48b5-9cc8-3df95edfcc8c.json",
+        "0b6c5c2d-228c-431b-8bdb-e7a9ee024863.json",
+        "c8e727a6-59b7-4138-a2fb-14797e0029a0.json",
+        "2c87be36-be23-4dfc-8144-69a4423f0c7f.json",
+        "03cb2bcd-8da7-42bf-b481-4e6a9e6820bc.json"
+      ],
+      "completedVersionVerified": 87,
+      "collectedUtc": "2026-10-20T23:57:19.999Z"
+    },
+    {
+      "task": 21,
+      "stage": 0,
+      "version": 87,
+      "opponent": "Nyx",
+      "sourceGroup": "e956297c-9a94-4054-9852-750262bdc153",
+      "maps": [
+        "00ambush",
+        "00contest",
+        "01fracture",
+        "01gold_rush",
+        "01the_farm"
+      ],
+      "cohort": "leader",
+      "opponentRankObserved": 6,
+      "opponentRatingObserved": 2051,
+      "seat": "B",
+      "allowanceBefore": 3,
+      "requestedUtc": "2026-10-20T23:49:14.965Z",
+      "outcome": "group_returned",
+      "initiatedByThisAgent": true,
+      "id": "ce0ff106-067d-4daf-a01f-e407824d79f5",
+      "collectionStatus": "complete",
+      "queuedVersionVerified": 87,
+      "summaryFiles": [
+        "940d935f-5618-40cf-a851-a4028e436194.json",
+        "b0e7a004-7f83-4e9d-8b01-88cb87a28595.json",
+        "85bc4ba3-ead3-4163-b818-50a823a044cb.json",
+        "867d1380-d782-46f1-ac8a-45d6659224aa.json",
+        "964999fc-b584-47af-8ee2-69ae0c2efb6a.json"
+      ],
+      "completedVersionVerified": 87,
+      "collectedUtc": "2026-10-20T23:57:30.410Z"
+    },
+    {
+      "task": 11,
+      "stage": 0,
+      "version": 87,
+      "opponent": "Cozy Campfire",
+      "sourceGroup": "cfec517a-d696-407e-ba5b-a189a8e6fb0c",
+      "maps": [
+        "00fragment",
+        "00interlock",
+        "00lanes",
+        "00monolith",
+        "00packs"
+      ],
+      "cohort": "nearby",
+      "opponentRankObserved": 70,
+      "opponentRatingObserved": 1768,
+      "seat": "A",
+      "allowanceBefore": 2,
+      "requestedUtc": "2026-10-20T23:49:17.606Z",
+      "outcome": "group_returned",
+      "initiatedByThisAgent": true,
+      "id": "f3c18329-28d5-463a-b3cb-1f49bb5ec490",
+      "collectionStatus": "complete",
+      "queuedVersionVerified": 87,
+      "summaryFiles": [
+        "d0175722-c9e5-4239-a4d7-3e9f717aaa7a.json",
+        "75a03888-3cbf-4cac-ab73-6fe7a8a7a146.json",
+        "016162f6-664c-4922-b4da-18b0b8514eab.json",
+        "e3020f98-c30b-4e67-8f4d-544e5ce5add8.json",
+        "aa17207f-23d5-47ee-9697-cdf12a410a44.json"
+      ],
+      "completedVersionVerified": 87,
+      "collectedUtc": "2026-10-20T23:57:52.653Z"
+    },
+    {
+      "task": 11,
+      "stage": 0,
+      "version": 87,
+      "opponent": "Cozy Campfire",
+      "sourceGroup": "cfec517a-d696-407e-ba5b-a189a8e6fb0c",
+      "maps": [
+        "00fragment",
+        "00interlock",
+        "00lanes",
+        "00monolith",
+        "00packs"
+      ],
+      "cohort": "nearby",
+      "opponentRankObserved": 70,
+      "opponentRatingObserved": 1768,
+      "seat": "B",
+      "allowanceBefore": 1,
+      "requestedUtc": "2026-10-20T23:49:21.626Z",
+      "outcome": "group_returned",
+      "initiatedByThisAgent": true,
+      "id": "91e293ff-66ee-474a-bbc1-0ccdc2abee1c",
+      "collectionStatus": "complete",
+      "queuedVersionVerified": 87,
+      "summaryFiles": [
+        "4d64d795-c902-417d-b8c7-8cdf35942ea0.json",
+        "1b57c2d9-cb84-451f-ada5-dc57c71659ed.json",
+        "b04f6af3-3d76-44c4-9cd2-22e83377d5e4.json",
+        "301eac68-eb9d-4beb-a80f-57aa1e8977b9.json",
+        "4f251f8b-6adb-47f2-a89b-858ec9c106cb.json"
+      ],
+      "completedVersionVerified": 87,
+      "collectedUtc": "2026-10-20T23:58:02.914Z"
+    }
+  ],
+  "pending": null,
+  "initialAllowance": 44,
+  "lastObservedAllowance": 0,
+  "plan": [
+    {
+      "task": 0,
+      "opponent": "Tozo's Disciples",
+      "sourceGroup": "44d6496f-e1af-415c-ae6b-6a8e17643495",
+      "maps": [
+        "00ambush",
+        "00contest",
+        "00corners",
+        "00eight",
+        "00elkring"
+      ],
+      "cohort": "nearby",
+      "status": "pair_requested",
+      "groups": [
+        "9d6135a1-2572-4b7b-9971-80788a18fac4",
+        "09dc657f-38a7-4557-8434-8391d518e947"
+      ],
+      "note": "Inspect current rating/rank and adapt cohort selection using actual results."
+    },
+    {
+      "task": 1,
+      "opponent": "Agentic Loop Builders",
+      "sourceGroup": "80f5c4b5-64c2-4a3b-b24a-a5724376d74d",
+      "maps": [
+        "00fragment",
+        "00interlock",
+        "00lanes",
+        "00monolith",
+        "00packs"
+      ],
+      "cohort": "nearby",
+      "status": "pair_requested",
+      "groups": [
+        "fdd570a9-365e-4c0c-9f98-e902db87e97a",
+        "f606ed57-2f8e-434a-8eab-19a3c8bae5d0"
+      ],
+      "note": "Inspect current rating/rank and adapt cohort selection using actual results."
+    },
+    {
+      "task": 2,
+      "opponent": "Dirty Coding",
+      "sourceGroup": "712dbee0-8a10-4f5d-b1c4-a80eff50e49b",
+      "maps": [
+        "00pilgrimage",
+        "00quadrants",
+        "00reverse_spiral",
+        "00rows",
+        "00rushbait_v2"
+      ],
+      "cohort": "nearby",
+      "status": "pair_requested",
+      "groups": [
+        "3fef61e5-f79d-454e-9c4f-0827d54aaf98",
+        "d14c5d60-f267-4493-aacc-62b16f64a807"
+      ],
+      "note": "Inspect current rating/rank and adapt cohort selection using actual results."
+    },
+    {
+      "task": 3,
+      "opponent": "Slawomir Zarzycki",
+      "sourceGroup": "711bc160-300c-4340-b36f-17908f812ffd",
+      "maps": [
+        "00collision",
+        "00expanse",
+        "00stampede",
+        "01elk_arena",
+        "01big_world"
+      ],
+      "cohort": "nearby",
+      "status": "pair_requested",
+      "groups": [
+        "71317caf-1acf-4605-91fa-163d2ad2a06c",
+        "d58a8f81-624d-43ca-b9bd-7e7fc54431bd"
+      ],
+      "note": "Inspect current rating/rank and adapt cohort selection using actual results."
+    },
+    {
+      "task": 4,
+      "opponent": "Cozy Campfire",
+      "sourceGroup": "0f3bb94c-63d9-4ef0-9a8f-22d6533affbf",
+      "maps": [
+        "00ambush",
+        "00contest",
+        "00corners",
+        "00eight",
+        "00elkring"
+      ],
+      "cohort": "nearby",
+      "status": "pair_requested",
+      "groups": [
+        "be5248a7-8e2d-43df-b1fd-96c4119dccf3",
+        "5cc388ed-2a05-4c6a-a696-51e6083f1547"
+      ],
+      "note": "Inspect current rating/rank and adapt cohort selection using actual results."
+    },
+    {
+      "task": 5,
+      "opponent": "Ad Astra",
+      "sourceGroup": "1ca32bf4-8ee5-4973-acb9-ed8bc2d7a54f",
+      "maps": [
+        "00fragment",
+        "00interlock",
+        "00lanes",
+        "00monolith",
+        "00packs"
+      ],
+      "cohort": "nearby",
+      "status": "pair_requested",
+      "groups": [
+        "07fc8124-1b41-4adb-a2b0-6f161a898952",
+        "394652c6-5334-45d4-81cd-d0d8bd85c118"
+      ],
+      "note": "Inspect current rating/rank and adapt cohort selection using actual results."
+    },
+    {
+      "task": 6,
+      "opponent": "Context Overflow",
+      "sourceGroup": "42d4d069-cf0e-417f-9f8d-1ac7165d1406",
+      "maps": [
+        "00pilgrimage",
+        "00quadrants",
+        "00reverse_spiral",
+        "00rows",
+        "00rushbait_v2"
+      ],
+      "cohort": "nearby",
+      "status": "pair_requested",
+      "groups": [
+        "534e63d1-85e7-471e-a11c-b7c2c435328d",
+        "8821a644-e678-44fb-b446-9a47abe94616"
+      ],
+      "note": "Inspect current rating/rank and adapt cohort selection using actual results."
+    },
+    {
+      "task": 7,
+      "opponent": "Preyas",
+      "sourceGroup": "cb42a00f-94b4-4e3a-9b18-9eabb4881bd1",
+      "maps": [
+        "00split",
+        "00swirl",
+        "01boss_battle",
+        "01broken_curve",
+        "01concentrated_wealth"
+      ],
+      "cohort": "nearby",
+      "status": "pair_requested",
+      "groups": [
+        "de064c4d-75a1-46b6-aaad-5fddb880d445",
+        "52497eaf-35d1-4742-9eee-54fb9de9ded1"
+      ],
+      "note": "Inspect current rating/rank and adapt cohort selection using actual results."
+    },
+    {
+      "task": 8,
+      "opponent": "Tozo's Disciples",
+      "sourceGroup": "c0e30cea-54ae-47ab-ad55-772fe0016df9",
+      "maps": [
+        "01corridors",
+        "01fracture",
+        "01gold_rush",
+        "01hooks",
+        "01islands"
+      ],
+      "cohort": "nearby",
+      "status": "pair_requested",
+      "groups": [
+        "a0c0d822-cc7a-4753-a51d-b8274beafa9e",
+        "153f67d4-a3dd-466d-aaf0-6148b3d23e7c"
+      ],
+      "note": "Inspect current rating/rank and adapt cohort selection using actual results."
+    },
+    {
+      "task": 9,
+      "opponent": "Agentic Loop Builders",
+      "sourceGroup": "b6646778-0e4b-4e0f-a5f8-6fd0734ba2cd",
+      "maps": [
+        "01shortcut",
+        "01starfish",
+        "01starvation",
+        "01the_farm",
+        "01yellow_brick_road"
+      ],
+      "cohort": "nearby",
+      "status": "pair_requested",
+      "groups": [
+        "d2c60427-fdf0-4525-87df-4ba6a93cd8f9",
+        "58109aa0-32b8-4af8-a49b-f0ed9cde4f07"
+      ],
+      "note": "Inspect current rating/rank and adapt cohort selection using actual results."
+    },
+    {
+      "task": 10,
+      "opponent": "Slawomir Zarzycki",
+      "sourceGroup": "a2bb3e00-92ba-4545-9a9e-9e9b20cfd00c",
+      "maps": [
+        "00pilgrimage",
+        "00quadrants",
+        "00reverse_spiral",
+        "00rows",
+        "00rushbait_v2"
+      ],
+      "cohort": "nearby",
+      "status": "pair_requested",
+      "groups": [
+        "da50a9d7-131c-42bd-9ff7-cecd9f455596",
+        "3e8c34c4-6684-4b67-bd61-ebd9da67f331"
+      ],
+      "note": "Inspect current rating/rank and adapt cohort selection using actual results."
+    },
+    {
+      "task": 11,
+      "opponent": "Cozy Campfire",
+      "sourceGroup": "cfec517a-d696-407e-ba5b-a189a8e6fb0c",
+      "maps": [
+        "00fragment",
+        "00interlock",
+        "00lanes",
+        "00monolith",
+        "00packs"
+      ],
+      "cohort": "nearby",
+      "status": "pair_requested",
+      "groups": [
+        "f3c18329-28d5-463a-b3cb-1f49bb5ec490",
+        "91e293ff-66ee-474a-bbc1-0ccdc2abee1c"
+      ],
+      "note": "Inspect current rating/rank and adapt cohort selection using actual results."
+    },
+    {
+      "task": 12,
+      "opponent": "NotSoLonely",
+      "sourceGroup": "1674575d-090d-477e-8b0f-b9722dec4237",
+      "maps": [
+        "00split",
+        "00swirl",
+        "01boss_battle",
+        "01broken_curve",
+        "01concentrated_wealth"
+      ],
+      "cohort": "stretch",
+      "status": "pair_requested",
+      "groups": [
+        "918a9639-3b83-4463-9aab-e0c6597b048e",
+        "efe06de8-837a-42e3-8e59-2fb6e61ffeac"
+      ],
+      "note": "Inspect current rating/rank and adapt cohort selection using actual results."
+    },
+    {
+      "task": 13,
+      "opponent": "Pathfinders",
+      "sourceGroup": "7c44d5b1-a00e-499c-b028-2f6a20260204",
+      "maps": [
+        "01corridors",
+        "01fracture",
+        "01gold_rush",
+        "01hooks",
+        "01islands"
+      ],
+      "cohort": "stretch",
+      "status": "pair_requested",
+      "groups": [
+        "6b6418fb-5219-4759-a366-021670a8eb8d",
+        "30bc5aa4-96db-426e-bdaf-ca8a4959c0e5"
+      ],
+      "note": "Inspect current rating/rank and adapt cohort selection using actual results."
+    },
+    {
+      "task": 14,
+      "opponent": "Antifreeze",
+      "sourceGroup": "182efa1b-e086-4cb0-818f-d70f50f650bb",
+      "maps": [
+        "01shortcut",
+        "01starfish",
+        "01starvation",
+        "01the_farm",
+        "01yellow_brick_road"
+      ],
+      "cohort": "stretch",
+      "status": "pair_requested",
+      "groups": [
+        "b554252a-cfaa-493e-b33f-dd6e287e55e9",
+        "7678f745-e57d-47ae-8205-029226cdf037"
+      ],
+      "note": "Inspect current rating/rank and adapt cohort selection using actual results."
+    },
+    {
+      "task": 15,
+      "opponent": "BitShift",
+      "sourceGroup": "4c4202b6-69fc-4033-ae65-7e4e3937d59f",
+      "maps": [
+        "00stampede",
+        "01elk_arena",
+        "00collision",
+        "00rows",
+        "00monolith"
+      ],
+      "cohort": "stretch",
+      "status": "pair_requested",
+      "groups": [
+        "b265c35b-e3ec-43ea-aa60-9f03c7707702",
+        "ef165626-1820-48e4-a689-286986889ad5"
+      ],
+      "note": "Inspect current rating/rank and adapt cohort selection using actual results."
+    },
+    {
+      "task": 16,
+      "opponent": "NotSoLonely",
+      "sourceGroup": "5b3cee15-80c1-4c38-a842-65546ea0978e",
+      "maps": [
+        "01corridors",
+        "01fracture",
+        "01gold_rush",
+        "01hooks",
+        "01islands"
+      ],
+      "cohort": "stretch",
+      "status": "pair_requested",
+      "groups": [
+        "ef442286-ddd6-48e7-8b7b-b225c333bb42",
+        "3c13b581-152b-47b2-9f09-7f327d3bbd86"
+      ],
+      "note": "Inspect current rating/rank and adapt cohort selection using actual results."
+    },
+    {
+      "task": 17,
+      "opponent": "Pathfinders",
+      "sourceGroup": "b0847249-f772-42f9-a343-b4ec34419a1b",
+      "maps": [
+        "01shortcut",
+        "01starfish",
+        "01starvation",
+        "01the_farm",
+        "01yellow_brick_road"
+      ],
+      "cohort": "stretch",
+      "status": "pair_requested",
+      "groups": [
+        "f31792ba-f5fd-4523-81f5-c713fc19250c",
+        "75aca257-7986-4df9-9395-23374acc9be4"
+      ],
+      "note": "Inspect current rating/rank and adapt cohort selection using actual results."
+    },
+    {
+      "task": 18,
+      "opponent": "Antifreeze",
+      "sourceGroup": "393a5cb3-d365-4dd7-add0-cf0303a1ed2d",
+      "maps": [
+        "00stampede",
+        "01elk_arena",
+        "00collision",
+        "00rows",
+        "00monolith"
+      ],
+      "cohort": "stretch",
+      "status": "pair_requested",
+      "groups": [
+        "e1cbfed0-3f8d-42a8-8169-0902a73b7ba1",
+        "c597f1fa-109e-4ea2-b735-b885cb945cff"
+      ],
+      "note": "Inspect current rating/rank and adapt cohort selection using actual results."
+    },
+    {
+      "task": 19,
+      "opponent": "BitShift",
+      "sourceGroup": "c4343b33-055b-4952-86f9-ae5dd28e877e",
+      "maps": [
+        "00split",
+        "00swirl",
+        "01boss_battle",
+        "01broken_curve",
+        "01concentrated_wealth"
+      ],
+      "cohort": "stretch",
+      "status": "pair_requested",
+      "groups": [
+        "3a67c118-5ddc-4065-b3b6-d832bb851c2b",
+        "6d1d6ddf-2ecf-42d4-9ee2-22b402455b02"
+      ],
+      "note": "Inspect current rating/rank and adapt cohort selection using actual results."
+    },
+    {
+      "task": 20,
+      "opponent": "Nyx",
+      "sourceGroup": "54827ebc-28a8-41af-9a1d-8f7614042a75",
+      "maps": [
+        "00collision",
+        "00stampede",
+        "01elk_arena",
+        "01big_world",
+        "00monolith"
+      ],
+      "cohort": "leader",
+      "status": "pair_requested",
+      "groups": [
+        "147aa08d-82d4-4cb0-b955-8dde35d6d150",
+        "971ad0d3-1f39-4431-af67-4e40e3b55679"
+      ],
+      "note": "Inspect current rating/rank and adapt cohort selection using actual results."
+    },
+    {
+      "task": 21,
+      "opponent": "Nyx",
+      "sourceGroup": "e956297c-9a94-4054-9852-750262bdc153",
+      "maps": [
+        "00ambush",
+        "00contest",
+        "01fracture",
+        "01gold_rush",
+        "01the_farm"
+      ],
+      "cohort": "leader",
+      "status": "pair_requested",
+      "groups": [
+        "2e0046fe-5870-40f7-b36f-c2f296aabd81",
+        "ce0ff106-067d-4daf-a01f-e407824d79f5"
+      ],
+      "note": "Inspect current rating/rank and adapt cohort selection using actual results."
+    }
+  ],
+  "previous_benchmark": "../banking-20261021-r1/batch.json",
+  "execution_order": [
+    0,
+    1,
+    2,
+    12,
+    13,
+    14,
+    3,
+    20,
+    4,
+    5,
+    15,
+    6,
+    16,
+    7,
+    17,
+    8,
+    18,
+    9,
+    19,
+    10,
+    21,
+    11
+  ],
+  "finalAllowance": 0,
+  "allowanceObservedUtc": "2026-10-20T23:58:03.865Z"
+}

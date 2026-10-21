@@ -1,0 +1,163 @@
+{
+  "schema": 2,
+  "platform_versions": [
+    85,
+    86,
+    87
+  ],
+  "candidates": {
+    "0": "ppo-topdraft-v7",
+    "1": "ppo-topdraft-v8",
+    "2": "ppo-topdraft-v12"
+  },
+  "engine_build_hash": "c3e9ffc8d98c106f86660c58344dc26ced9459a504e2f0d90d88b4c8594c7765",
+  "decoder_wasm_sha256": "c03ab26f20263b08e576ebc1a064cd6f9b66a996aca005d69bd9fb9205434354",
+  "kind": "unranked",
+  "challenged_groups": 6,
+  "allowance_before": 27,
+  "allowance_after": null,
+  "maps": 5,
+  "native_verified_games": 30,
+  "summary": {
+    "games": 30,
+    "wins": 15,
+    "faults": 0,
+    "fuel_exhausted": 0,
+    "opponent_faults": 0,
+    "mean_banked_gems": 668.8666666666667,
+    "mean_opponent_banked_gems": 793.1,
+    "zero_bank_games": 2,
+    "ppo_logged_calls": 2721,
+    "ppo_logged_changes": 1317
+  },
+  "by_stage": {
+    "0": {
+      "games": 10,
+      "wins": 5,
+      "faults": 0,
+      "fuel_exhausted": 0,
+      "opponent_faults": 0,
+      "mean_banked_gems": 663.2,
+      "mean_opponent_banked_gems": 812.1,
+      "zero_bank_games": 1,
+      "ppo_logged_calls": 819,
+      "ppo_logged_changes": 397
+    },
+    "1": {
+      "games": 10,
+      "wins": 5,
+      "faults": 0,
+      "fuel_exhausted": 0,
+      "opponent_faults": 0,
+      "mean_banked_gems": 674.6,
+      "mean_opponent_banked_gems": 824.4,
+      "zero_bank_games": 1,
+      "ppo_logged_calls": 969,
+      "ppo_logged_changes": 473
+    },
+    "2": {
+      "games": 10,
+      "wins": 5,
+      "faults": 0,
+      "fuel_exhausted": 0,
+      "opponent_faults": 0,
+      "mean_banked_gems": 668.8,
+      "mean_opponent_banked_gems": 742.8,
+      "zero_bank_games": 0,
+      "ppo_logged_calls": 933,
+      "ppo_logged_changes": 447
+    }
+  },
+  "by_cohort": {
+    "nearby": {
+      "games": 30,
+      "wins": 15,
+      "faults": 0,
+      "fuel_exhausted": 0,
+      "opponent_faults": 0,
+      "mean_banked_gems": 668.8666666666667,
+      "mean_opponent_banked_gems": 793.1,
+      "zero_bank_games": 2,
+      "ppo_logged_calls": 2721,
+      "ppo_logged_changes": 1317
+    }
+  },
+  "by_map": {
+    "00collision": {
+      "games": 6,
+      "wins": 6,
+      "faults": 0,
+      "fuel_exhausted": 0,
+      "opponent_faults": 0,
+      "mean_banked_gems": 1010.0,
+      "mean_opponent_banked_gems": 709.0,
+      "zero_bank_games": 0,
+      "ppo_logged_calls": 693,
+      "ppo_logged_changes": 307
+    },
+    "00expanse": {
+      "games": 6,
+      "wins": 3,
+      "faults": 0,
+      "fuel_exhausted": 0,
+      "opponent_faults": 0,
+      "mean_banked_gems": 932.5,
+      "mean_opponent_banked_gems": 912.0,
+      "zero_bank_games": 0,
+      "ppo_logged_calls": 362,
+      "ppo_logged_changes": 199
+    },
+    "00stampede": {
+      "games": 6,
+      "wins": 6,
+      "faults": 0,
+      "fuel_exhausted": 0,
+      "opponent_faults": 0,
+      "mean_banked_gems": 1006.1666666666666,
+      "mean_opponent_banked_gems": 320.0,
+      "zero_bank_games": 0,
+      "ppo_logged_calls": 905,
+      "ppo_logged_changes": 443
+    },
+    "01big-world": {
+      "games": 6,
+      "wins": 0,
+      "faults": 0,
+      "fuel_exhausted": 0,
+      "opponent_faults": 0,
+      "mean_banked_gems": 287.6666666666667,
+      "mean_opponent_banked_gems": 1016.5,
+      "zero_bank_games": 0,
+      "ppo_logged_calls": 408,
+      "ppo_logged_changes": 191
+    },
+    "01elk-arena": {
+      "games": 6,
+      "wins": 0,
+      "faults": 0,
+      "fuel_exhausted": 0,
+      "opponent_faults": 0,
+      "mean_banked_gems": 108.0,
+      "mean_opponent_banked_gems": 1008.0,
+      "zero_bank_games": 2,
+      "ppo_logged_calls": 353,
+      "ppo_logged_changes": 177
+    }
+  },
+  "by_opponent": {
+    "Preyas": {
+      "games": 30,
+      "wins": 15,
+      "faults": 0,
+      "fuel_exhausted": 0,
+      "opponent_faults": 0,
+      "mean_banked_gems": 668.8666666666667,
+      "mean_opponent_banked_gems": 793.1,
+      "zero_bank_games": 2,
+      "ppo_logged_calls": 2721,
+      "ppo_logged_changes": 1317
+    }
+  },
+  "interpretation": "Staged frozen-version benchmark against the same previous opponent submission, all maps in both seats. Runtime, collection and banking accompany outcomes. Small deterministic opponent pairs do not establish general strength. PPO counters are log lower bounds.",
+  "per_game_records": "stage7-banking-field-games.jsonl"
+}

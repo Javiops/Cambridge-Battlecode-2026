@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "status": "held_not_requested",
+  "status": "complete_native_verified",
   "hold": "experiments/LIVE-HOLD.json",
   "opponent": "Preyas",
   "source_group": "26aefce6-7006-4ece-8bc8-75a679090632",
@@ -20,24 +20,61 @@
       "candidate": "ppo-topdraft-v7",
       "platform_version": 85,
       "source_zip_sha256": "988b0ec7911e9573da47a5ed61fcd447b68770d194924e5777403986398a5ce2",
-      "status": "planned_not_requested",
-      "groups": []
+      "status": "native_verified",
+      "groups": [
+        "58c230ed-1c02-4fc4-9214-cce78e769511",
+        "d7946a13-aee3-4f79-a690-2d7f8d06e362"
+      ],
+      "nativeVerifiedGames": 10,
+      "server_compilation_verified": true
     },
     {
       "candidate": "ppo-topdraft-v8",
-      "platform_version": null,
+      "platform_version": 86,
       "source_zip_sha256": "7cb32c43786e6df0cca50de081f619405cd2a65dbc43cf97696bdf3e3081c7cb",
-      "status": "planned_not_requested",
-      "groups": []
+      "status": "native_verified",
+      "groups": [
+        "0502e1bf-a0a7-4b44-85c7-8f291777344c",
+        "e8a75ace-0d29-4372-ba82-6819c7b52ec3"
+      ],
+      "uploadIntent": {
+        "note": "topdraft-v8 | complete banking trips",
+        "sourceZipSha256": "7cb32c43786e6df0cca50de081f619405cd2a65dbc43cf97696bdf3e3081c7cb",
+        "wasmSha256": "c92a39613426dab54e4e02363cdf7ec50882865329ac869bcc155da9db0c9b89",
+        "previousLiveVersion": 85,
+        "createdUtc": "2026-10-20T23:18:20.253Z"
+      },
+      "submission_id": "86f123c9-f417-478a-a041-775a6b612f6e",
+      "uploadedUtc": "2026-10-20T23:18:55.580Z",
+      "server_source_sha256": "7cb32c43786e6df0cca50de081f619405cd2a65dbc43cf97696bdf3e3081c7cb",
+      "nativeVerifiedGames": 10,
+      "server_compilation_verified": true
     },
     {
       "candidate": "ppo-topdraft-v12",
-      "platform_version": null,
+      "platform_version": 87,
       "source_zip_sha256": "63307a7f21d3dc877914fd4f3bbedd24c92ad8777e7275c8e98b3cd93bf6a8de",
-      "status": "planned_not_requested",
-      "groups": []
+      "status": "native_verified",
+      "groups": [
+        "9736fafc-af01-4db0-85dd-6502fe80dd3e",
+        "48820e4a-d5ee-4096-a122-8ad7065228c3"
+      ],
+      "uploadIntent": {
+        "note": "topdraft-v12 | contact before scans",
+        "sourceZipSha256": "63307a7f21d3dc877914fd4f3bbedd24c92ad8777e7275c8e98b3cd93bf6a8de",
+        "wasmSha256": "fcd2cdc3c2c69e8defc939f28d1145e60aa8fb176466dc4ef720ccdbf8bd96ea",
+        "previousLiveVersion": 86,
+        "createdUtc": "2026-10-20T23:24:09.241Z"
+      },
+      "submission_id": "dc131234-1554-4b10-bf2d-595765c4351e",
+      "uploadedUtc": "2026-10-20T23:24:28.922Z",
+      "server_source_sha256": "63307a7f21d3dc877914fd4f3bbedd24c92ad8777e7275c8e98b3cd93bf6a8de",
+      "nativeVerifiedGames": 10,
+      "server_compilation_verified": true
     }
   ],
   "pending": null,
-  "policy": "Honor hold and teammate batch; actual quota/versions must be checked. Native-verify each two-group pair before the next stage. Unknown outcomes are resolved before retrying."
+  "policy": "Honor hold and teammate batch; actual quota/versions must be checked. Native-verify each two-group pair before the next stage. Unknown outcomes are resolved before retrying.",
+  "completed_utc": "2026-10-20T23:32:35.183689+00:00",
+  "next_phase": "v87 broad curriculum"
 }

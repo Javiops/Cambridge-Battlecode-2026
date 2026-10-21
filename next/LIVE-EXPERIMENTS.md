@@ -5,7 +5,25 @@ fixing a mistake initially weakens aggregate results. Requiring every upload to 
 the promotion gate was too restrictive. A promotion establishes a proven lab champion;
 an experimental upload gathers evidence about a frozen, functional candidate.
 
-## Current selection and teammate handoff
+## Current selection
+
+**V87 / ppo-topdraft-v12 is compiled and live.** V86/topdraft v8 and v85/topdraft
+v7 are retained. The teammate hold expired at 23:10:20 UTC with their batch
+complete. Thirty matched banking games are downloaded and native-verified: each
+version wins 5/10 with zero faults/fuel losses. Big-world deposits improve from
+202/90 to 381/336; elk B acquisition regresses. See BANKING-FIELD.md.
+
+All 44 broader v87 groups / 220 games are complete and native-verified: 75 wins,
+zero faults and one fuel loss. Historical same-label v83 results have 87 wins and
+70 fuel losses; overall strength has regressed despite runtime improvement.
+Old opponent-B and seed equivalence are not certified. See V87-CURRICULUM.md. Exact IDs,
+queued versions, allowance observations and completed counts are recorded in
+CURRENT.json and v87-curriculum-plan.json. The last request used the last available
+challenge. Do not duplicate planned/completed requests or mistake incoming and
+automatic ranked games for this agent's tests. Historical cohort labels are
+comparison strata, not a claim about current difficulty based on rank.
+
+## Historical teammate handoff
 
 Platform **v85 / ppo-topdraft-v7** compiled and was observed live. It continues
 healthy, quiet existing banking trips before optional planning; see
@@ -56,4 +74,6 @@ duplicate automation. Current machine-readable state is in
 
 The first eight live challenge groups are complete and native-verified: 16/40 wins, zero faults/fuel losses. See [V84-SPARRING.md](V84-SPARRING.md) for the historical comparison and next banking-progress hypothesis.
 
-Prepared follow-up: **topdraft v12** checks contact before ally gathering. The targeted B-seat 94 fuel losses become zero, with big-world starter banks still 692/800. Broad results: 157/302 parent v8 (six schedule fuel losses) and 150/302 fixed v6 (five), zero faults. It remains offline through the hold. Follow the staged plan in experiments/banking-live-plan.json; see CONTACT-V12.md.
+Topdraft v12 checks contact before ally gathering. The targeted B-seat 94 fuel losses become zero, with big-world starter banks still 692/800. Broad results: 157/302 parent v8 (six schedule fuel losses) and 150/302 fixed v6 (five), zero faults. It was uploaded as v87 after the hold. See CONTACT-V12.md.
+
+Latest field state: **v87 / topdraft v12 is compiled and live**. The teammate hold has expired and their batch is complete. Three native-verified paired benchmarks are complete (v85, v86, v87: 5/10 each, zero faults/fuel losses). Big-world banks improve from 202/90 to 381/336, while elk B acquisition regresses. The staged plan is complete; continue v87 on the remaining actual curriculum allowance. See BANKING-FIELD.md and CURRENT.json.

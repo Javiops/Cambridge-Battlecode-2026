@@ -31,6 +31,27 @@ def sha(path):
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
+def summarize_opponents(rows):
+    """Allow an intentionally absent cohort without hiding missing/unknown games."""
+    if not rows:
+        raise ValueError("No completed games to summarize")
+    if any(row["opponent"] not in ("starter", "baseline") for row in rows):
+        raise ValueError("Unexpected opponent in completed captures")
+    summaries = {}
+    for foe in ("starter", "baseline"):
+        group = [r for r in rows if r["opponent"] == foe]
+        if not group:
+            continue
+        summaries[foe] = dict(games=len(group), wins=sum(r["won"] for r in group),
+            faults=sum(r["our"]["faults"] for r in group),
+            fuel_exhausted=sum(r["our"]["fuel_exhausted"] for r in group),
+            opponent_faults=sum(r["foe"]["faults"] for r in group),
+            by_seat={str(s): dict(games=sum(r["seat"] == s for r in group), wins=sum(r["won"] for r in group if r["seat"] == s)) for s in (0, 1)},
+            mean_banked_gems=sum(r["our"]["gems"] for r in group)/len(group),
+            mean_opponent_banked_gems=sum(r["foe"]["gems"] for r in group)/len(group))
+    return summaries
+
+
 def main():
     parser = argparse.ArgumentParser(__doc__)
     parser.add_argument("--cli", type=Path, required=True)
@@ -121,16 +142,7 @@ def main():
             rows.append(row)
             if len(rows) % 40 == 0:
                 print(f"Top draft development {len(rows)}/{len(tasks)}", flush=True)
-    summaries = {}
-    for foe in ("starter", "baseline"):
-        group = [r for r in rows if r["opponent"] == foe]
-        summaries[foe] = dict(games=len(group), wins=sum(r["won"] for r in group),
-            faults=sum(r["our"]["faults"] for r in group),
-            fuel_exhausted=sum(r["our"]["fuel_exhausted"] for r in group),
-            opponent_faults=sum(r["foe"]["faults"] for r in group),
-            by_seat={str(s): dict(games=sum(r["seat"] == s for r in group), wins=sum(r["won"] for r in group if r["seat"] == s)) for s in (0, 1)},
-            mean_banked_gems=sum(r["our"]["gems"] for r in group)/len(group),
-            mean_opponent_banked_gems=sum(r["foe"]["gems"] for r in group)/len(group))
+    summaries = summarize_opponents(rows)
     report = dict(schema=1, experiment=cfg["candidate"], parent=meta["parent"], baseline=cfg["baseline"], runtime=cfg["runtime"],
         identities=identities, config_sha256=sha(args.config), changes=meta["changelog"],
         status="development_only_not_promoted", sealed_confirmation_maps_used=False, promotion_gate_run=False, uploaded=False,

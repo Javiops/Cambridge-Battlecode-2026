@@ -343,3 +343,7 @@ Predeclared350→120 clock origin, same health/quorum/combat/banking.24 generate
 ## 2026-10-21 · V90 first field window complete
 
 All22 requested groups/110 games native-verified:32wins,0faults,1 exhausted turn. Actual1.0.1 build;1.0.2 announcement is separate. Matched v89 comparison and split objective-release trace are in V90-FIELD.md. Do not assume earlier timing fixes camp acquisition; inspect quorum scan and per-unit latch next.
+
+## 2026-10-21 · Absent screen opponent cohort
+
+The generated-only feature schedule finished every game but lost its generic final report to division by an empty starter cohort. Summarize only present known cohorts; empty captures and unknown opponents fail loudly. Three regression tests added first;142 tests pass with workspace temporary files. Four historical schedules keep identical summary values. No game execution,stats rules,gate or bot change in this correction.

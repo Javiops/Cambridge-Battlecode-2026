@@ -1,0 +1,26 @@
+{
+  "candidate": "ppo-topdraft-v18",
+  "parent": "ppo-topdraft-v17",
+  "change": "Broadcast an existing successful rally quorum for the current campaign; remember receipt before early priorities,then eligible allies join without repeating the same local quorum.",
+  "predicted_metrics": [
+    "All-unit first-cycle logged release",
+    "Healthy stragglers join by the next eligible turn",
+    "Fresh sole-objective gems and deposits,with deaths/runtime"
+  ],
+  "unchanged": [
+    "65% entry health",
+    "50% counted-ally health",
+    "Distance5",
+    "80% quorum for authorization",
+    "Clock120/360/240",
+    "Combat/survival/banking priorities",
+    "Initialization reserve",
+    "Draft/RNG/observation/model",
+    "Claim/cooldown bytes0\u20136"
+  ],
+  "protocol": "Nonzero tag(cycle+1)<<3 has low3bits0,unlike legal danger packets. Current cycles0\u20135 map8\u201348;empty/stale cycles reject. Receipt is per-instance persistent. Protect a newly observed release for two rounds,then danger broadcasts may overwrite the byte. Local danger detection never stops.",
+  "limits": "Delivery is best effort for late initialization/reset or same-cycle republication. Receipt alone is not a join. Late healthy joiners can feed an already lost fight; measure deaths and rewards. Two-round danger-broadcast suppression is a communication tradeoff,not a changed danger threshold.",
+  "evidence": "V91 Preyas elk A:five units release175\u2013176 while healthy Stellar0 still rallies200;no fresh gems or credited campClear for sole group.",
+  "confirmation_games": 0,
+  "patch": "Official CLI unchanged3.0.2 at start;local checks1.0.1 only. Verify actual server builds and separate1.0.2 cohorts."
+}

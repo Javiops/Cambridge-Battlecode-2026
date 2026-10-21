@@ -3,3 +3,7 @@ models/** -text whitespace=cr-at-eol
 bots/bc-actor/src/weights.h -text whitespace=cr-at-eol
 bots/bc-untrained/src/weights.h -text whitespace=cr-at-eol
 bots/ppo-actor/src/weights.h -text whitespace=cr-at-eol
+bots/ppo-league/src/weights.h -text whitespace=cr-at-eol
+bots/ppo-ablation/src/weights.h -text whitespace=cr-at-eol
+# Detailed generated evidence remains available without obscuring the code review.
+results/stage7-*.json linguist-generated=true

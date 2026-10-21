@@ -3,6 +3,67 @@
 Conclusions that should outlive one experiment, each with the numbers behind it (after Carson's
 screeps-rl DECISIONS.md). Open questions go to ROADMAP.md.
 
+## 2026-10-20 · Scout leaders; develop the current draft with a measured curriculum
+
+Use Fish's observed Stellar, Heart of Ruin, Ren, Cassi & Issac, Ryth priority in
+a separate `ppo-topdraft` fork. Both observed leaders picked Heart and Ren in
+10/10 post-hotfix drafts. V1 wins 67/70 against starter but 124/270 against v12;
+keep it as a development reference, without claiming a strength gain.
+
+The first single-objective rally (v2) staged around a large camp perimeter while
+counting allies near its centre: zero assault releases in four full-log canaries.
+Reject that implementation. V3 uses one reachable home-side point and latches the
+assault after the quorum arrives. Four canaries record 96 per-champion releases
+with five/six healthy allied bodies assembled. It wins both elk-arena seats,
+banking 288/648 against v1's 72/72, but loses both Stampede seats. It wins 67/70
+versus starter and 136/270 versus v1 overall, with zero faults and 33 fuel losses
+across 340 release games. Retain for research; it is not a promoted replacement.
+See TOPDRAFT.md and results/topdraft-v*.json.
+
+All 24 remaining hourly challenges were used: 120 v83 games across all 35 maps,
+both seats, and the top ten teams. Result 4/120, zero faults, 29 fuel losses (all
+big-world). Every replay and champion statistic matches the official 1.0.1 WASM.
+Such saturated losses are scouting, not the sole progress signal. Hourly testing
+now targets approximately 60% nearby/moderately stronger teams, 30% stretch,
+10% leaders, using economy/objective/fight/runtime measurements as well as wins.
+Fran authorizes automatic tested uploads with short notes; require a fresh
+promotion check before stable live replacement. No additional model was trained.
+
+## 2026-10-20 · Hotfix compatibility and actual v83 deployment verified
+
+The unchanged v12 source builds with CLI 3.0.2 to identical WASM under engine
+1.0.1. Compatibility repeats are 68/70 on current site maps, zero faults and
+17 fuel losses; 140/140 on its locked-map repeat, zero faults/fuel losses.
+These are compatibility checks, not fresh independent confirmation.
+
+Fran authorized reselecting v83 and keeping it live for the PPO test. Server
+compilation succeeded. The initial Nyx group wins 1/5 and automatic ranked TTS
+wins 2/5, both with zero faults/fuel losses. The earlier 0/5 Fish group ran v81
+and stays excluded from PPO evaluation. The source ZIP is hash-verified and all
+130 audited v83 replays reconstruct exactly. See HOTFIX-1.0.1.md.
+
+## 2026-10-20 · Stage 7 hybrid clears the unchanged promotion gate
+
+Keep `ppo-league-v12` as the qualified candidate: 140/140 wins
+(100.00%) on 70 fresh generated confirmation maps, both seats,
+zero bot faults and 0 fuel-exhausted turns
+(0.0000/game against a 1.0 limit). The source ZIP reproduces
+the frozen WASM exactly. Screening wins are 200/200; site stress wins are 12/12;
+the full fixed-panel candidate record is 1,000/1,000. See STAGE7.md.
+
+The original actor alone loses 200/200 screening games. The expert/PPO hybrid's
+matched actor-disabled control also wins 200/200, so attribute this competitive
+improvement to the strategic controller. Six native canaries record
+215 PPO calls and 104 changed targets; the
+unchanged actor is active, but its independent strength gain is unproven.
+
+Bound optional planning cooperatively and provide a cheap camp fallback when
+full planning cannot fit. Keep the checkpoint throw out of line: v11 passed its
+game gate but failed an independent byte-exact source rebuild. V12 fixes packaging;
+it was verified before consuming a fresh outcome-independent confirmation pool.
+The earlier 137/140 result remains historical. Both cohort locks must be retained;
+neither cohort may guide another tuned candidate. No upload or champion change.
+
 ## 2026-10-20 · PPO C++ runtime passes Stage 6
 
 Keep `ppo-runtime-v1` as the exact runtime port of final PPO checkpoint 012.
@@ -218,3 +279,104 @@ So every comparison plays both sides, and a result from one side is never report
 
 Only 17 site maps exist locally. 12 are `screen` and 5 are `confirm` (`lab.toml`). The qualifying
 maps will be new, so the long-term confirm set is generated maps no one has tuned on.
+
+## 2026-10-20 · Nearby curriculum and failed development candidates
+
+Used all 50 available challenge groups for 250 v83 games, both seats and all 35 maps. Keep live strength separated by opponent cohort. Rejected Heart-focus v4 (95/270 versus v3) and global-area-reserve v5 (initialization starvation). V6 reduces fuel losses versus its parent (14 versus 23) but wins 151/302; against qualified v12 it wins 149/302. No promotion or upload, no confirmation outcomes consumed. Preserve v6 as a runtime hypothesis, not a proven strength improvement. See MAP-LEARNING.md and compact results.
+
+## 2026-10-20 · V84 live field test
+
+V84 compiled on the platform and stays live for iterative learning. Used all eight available challenge groups: 16/40 wins and zero faults/fuel losses, versus 14/40 and 12 fuel losses in the corresponding historical v83 blocks. Do not claim overall strength improvement from this small, partly historical comparison. Stampede wins both seats; elk-arena deposits increase but both seats lose. Big-world B carriers repeatedly hold gems at unchanged positions in tribute mode, so the next isolated hypothesis is obstacle-aware banking progress under low fuel. No promotion, rollback or model retraining. Full evidence: V84-SPARRING.md.
+
+## 2026-10-20 · V7 banking priority and teammate handoff
+
+Continue safe existing banking trips before optional group planning. The local big-world starter reproduction rises from 121/0 to 316/105 banked gems in both seats, with zero faults/fuel losses. Broad screening: 67/70 starter and 148/302 v6; 14 fuel losses across 372 games, zero faults. No proven strength gain or lab promotion. V7 uploaded as v85 and compiled; then Fran requested a teammate handoff, so v82 was restored as selected and live actions were held until 23:10:20 UTC unless released earlier. Zero v85 unranked requests were initiated. Small late-game cargo can still stall; next isolate continuation of positive-cargo trips without changing their start policy. See BANKING-V7.md and LIVE-HOLD.json.
+
+## 2026-10-20 · V8 positive-cargo continuation, offline only
+
+Complete already-started healthy/quiet banking trips even below 12 gems. Big-world starter deposits improve from v7 316/105 to 692/800 with zero faults/fuel losses. V8 wins 152/302 against v7 and 146/302 against fixed v6; starter 69/70. Fuel totals 106 versus v7 and 14 versus fixed v6 are matchup-dependent: the reverse-seat v7 also exhausts 94 times on the same generated B-seat fixture. Do not label that difference a new regression without the fixed-opponent control. No promotion or online upload during the teammate hold. Next isolate the optional spell-scan budget guard. See BANKING-V8.md.
+
+## 2026-10-20 · V9 optional spell guard rejected
+
+Raising only optional spell-scan entry headroom from 22k to 41k does not fix the reproduced Stellar failure: 94 B-seat fuel losses persist. Ten targeted canaries have zero faults. Do not broaden or upload a failed target hypothesis. Frozen v9 and its reproducible source remain intact; working source returns to v8. No global initialization reserve or model change. See BANKING-V9-REJECTED.md.
+
+## 2026-10-20 · V10/V11 runtime hypotheses rejected
+
+Native PPO tile lookups and failed-planner cost learning each leave the 94-loss B-seat case unchanged. Both have ten canaries, zero faults and exact independent rebuilds; neither receives a broad screen or upload. V11 also weakens stress-map banking. Working source returns to v8. Actor-disabled and phase-only diagnostics change the trajectory, so they narrow investigation without proving cost attribution. See RUNTIME-PROBES.md.
+
+## 2026-10-20 · V12 contact-first combat work retained offline
+
+Move the unchanged contact test before ally metadata gathering. Frozen v8 mirror B loses 94 turns; v12 B versus the same v8 opponent loses zero and banks 245 versus 105. Big-world starter banks remain 692/800. Broad 69/70 starter, 157/302 v8 with six total schedule fuel losses; 150/302 fixed v6 with five. Zero faults and exact independent rebuild. This supports a usable targeted runtime fix, not a proven overall strength gain or lab promotion. Keep the teammate hold; stage v85, v8 and v12 field pairs afterward. See CONTACT-V12.md.
+
+## 2026-10-21 · V86 and V87 live, matched benchmark complete
+
+Honored the teammate hold, then collected/native-verified both seats for v85, uploaded/tested v86, then uploaded/tested v87. Each wins 5/10 with zero faults/fuel losses. Big-world banks rise from 202/90 to 381/336; elk B collection/deposits regress. Retain v87 for broader learning, without a strength/promotion claim. Server source deliveries and live compilation are verified. Use the remaining actual quota purposefully; BANKING-FIELD.md preserves the tradeoffs.
+
+## 2026-10-21 · V87 broad field evidence
+
+All 44 groups / 220 games collected and native-verified on 35 maps: 75 wins, zero faults, one fuel loss. Historical same-label v83 subset: 87 wins, 70 fuel losses; this is descriptive, without certified old opponent-B/seed equivalence. Runtime improves while overall results regress. Keep v87 as a usable experiment under Fran's policy; diagnose contest acquisition/delivery and objective fight exposure rather than undo banking automatically. Final actual allowance zero; retain the existing 15-minute check. See V87-CURRICULUM.md.
+
+## 2026-10-21 · Quiet channel cover v13/v14
+
+Field trace shows 400-gem tribute channels started but lost before completion; do not treat this as a start-priority bug. V13 quiet cover regresses big-world to 0/34 despite no cover activation and is rejected offline. V14 avoids impossible scans with public altar distance, restores big-world starter banks to 901/932, and passes 22 full-log release canaries with zero faults/fuel losses. Broad evidence and its limits are recorded in COVER-V14.md; no promotion or model change.
+
+V14 uploaded and selected as platform v88, source delivery hash verified. Server compilation awaits matching; v87 is the last compiled live bot. No v88 games requested with allowance zero. Preserve that distinction and check via the existing 15-minute automation.
+
+V88 server compilation and LIVE status are now verified, with the full server build log saved. No new unranked request yet; the preceding zero-quota observation stands until refreshed.
+
+## 2026-10-21 · V88 field pair complete
+
+Used six returning challenges for 30 native-verified v88 games: 8 wins, zero faults/fuel losses versus v87 historical 12 wins. Cozy contest paired deposits remain 200; Preyas elk improves in B, BitShift elk B acquisition collapses. Retain functional v88, without claiming strength or reverting solely on wins. Five automatic ranked games are separately verified, not agent-initiated. Test one scan-visibility/cost refinement next; no new map-name cases or holdout use. See V88-FIELD.md.
+
+## 2026-10-21 · V15 visible ally snapshot
+
+Replace duplicate per-entry cover queries with one visibility-checked record and skip hidden entries without ending the whole scan. Native replay confirms a hidden earlier ally before later visible entries, without an active channel in that sampled frame. Keep that evidential limit. Release results and exact rebuild are in SCAN-V15.md; no promotion or model change.
+
+## 2026-10-21 · V89 curriculum complete
+
+All44 initiated unranked groups /220 games,35 maps both seats, native-verified:71 wins,0 faults,1 exhausted turn. Nearby45/130, stretch24/70, leader2/20. Matched30 vs v88 wins7 vs8; contest deposits600 vs200 from800 collected. Retain the usable visibility correction without a strength claim. Eight nonleader elk opponents collect before round350; test earlier coordinated timing on generated sole/split geometries and ordinary multi-camp controls. Seventy confirmation maps remain unused.
+
+## 2026-10-21 · V16 earlier objective clock
+
+Predeclared350→120 clock origin, same health/quorum/combat/banking.24 generated sole/split maps plus broad checks; targeted early collection improves, deaths and zero-collection cases increase. Eligible experimental trial, no promotion. New1.0.2 notice requires actual patch cohort verification. See RALLY-V16.md.
+
+## 2026-10-21 · V90 first field window complete
+
+All22 requested groups/110 games native-verified:32wins,0faults,1 exhausted turn. Actual1.0.1 build;1.0.2 announcement is separate. Matched v89 comparison and split objective-release trace are in V90-FIELD.md. Do not assume earlier timing fixes camp acquisition; inspect quorum scan and per-unit latch next.
+
+## 2026-10-21 · Absent screen opponent cohort
+
+The generated-only feature schedule finished every game but lost its generic final report to division by an empty starter cohort. Summarize only present known cohorts; empty captures and unknown opponents fail loudly. Three regression tests added first;142 tests pass with workspace temporary files. Four historical schedules keep identical summary values. No game execution,stats rules,gate or bot change in this correction.
+
+## 2026-10-21 · V17 complete visible quorum scan
+
+Skip hidden rally allies per valid SDK snapshot,instead of aborting the remaining roster. Same thresholds and per-unit latch. Broad178/350 parent,69/70 starter,0faults,4 exhausted turns; feature income not improved although deaths fall and wins rise2. All24 split controls exact. Eligible functional trial,not promotion; shared release remains a separate issue. Exact independent rebuild and494 release runs are in QUORUM-V17.md.
+
+## 2026-10-21 · V91 field window complete
+
+All28 requested groups/140 games native-verified:49wins,0faults,1 exhausted turn. Matched v90 subset35/110 versus32; no promotion claim. Five units release the traced elk campaign while Stellar still waits. Test communicating the existing quorum decision next,with byte-role audit and danger-sharing tradeoff. Actual1.0.1 only;1.0.2 remains a separate announced patch. See V91-FIELD.md.
+
+## 2026-10-21 · V18 shared quorum release
+
+Propagate the existing quorum decision with early receipt and two-round danger-byte protection. All-unit first-cycle release15/24→24/24;512 authorized joins,bank197.33→225.08,nofresh6→4,but wins12→10,deaths31.71→32.79. Split20/24 exact,no join events. Broad172/350 parent,69/70 starter,zero faults,four exhausted turns. Exact rebuild,494runs/468unique. Eligible functional trial,not promotion. See SHARED-V18.md.
+
+## 2026-10-21 · V92 shared-release field window complete
+
+All250 native-verified:77wins,0faults,1fuel. Matched v91:46/140 versus49;seed-equal140. Sole release5→18/18,bank325.00→314.28,fresh317.33→325.33,deaths42.39→46.50. Target Stellar joins176;not a general strength claim. See V92-FIELD.md.
+
+## 2026-10-21 · V19 limits propagated join age
+
+Expire shared receipts after16 rounds,then use unchanged local assembly/quorum. All511 feature joins within age13;9 stale rejections over16. Sole all-unit first-cycle release stays24/24,bank225.08→242.08,fresh241→267,but deaths32.79→34.29 and wins10/24 unchanged. Split24/24 exact. Broad173/350 parent,69/70 starter,zero faults,4 exhausted turns;26 repeated canaries exact. Exact rebuild,494runs/468unique. Eligible functional trial,not promotion. See AGE-V19.md.
+
+## 2026-10-21 · V19 uploaded as platform93
+
+Status:uploaded and selected; server compilation pending, with v92 live as fallback. Frozen/server source ZIP94cafc9c3bbe99deaf3a169ec236f4ef2a3e0f28b02c1776ef12aea60b7190b7;independent localWASM301031fc5a4d34b5ddd263605485a349007e54e7ac8817e0a342307c9457851b. No unranked groups initiated because actual quota0. Keep compilation/version identity separate from offline release checks. Existing15-minute check continues.
+
+## 2026-10-21 · V93 full field window
+
+All250native-verified:79wins versus77,zero faults,one unchanged fuel event. All250seeds equal,228/228ordinary statistics exact. Sole22games:bank306.05→363.5,fresh322.55→383.64,deaths49.45→47.45,wins3→5,but full first-cycle release22→21and no-fresh4unchanged. All512joins age≤15;23stale rejections,15later local quorum authorizations. Keep functional experiment,not promotion. Next inspect actual post-rally execution in four zero-fresh cases;do not infer from unused focus counters. See V93-FIELD.md.
+
+
+## 2026-10-21: official 1.0.2 runtime refresh
+
+Kept frozenv19 unchanged/live93 after exact dual3.0.4 rebuild.446release runs/420unique:69/70starter,172/350parent,zero faults,10broad exhausted turns;26full-log repeats exact. All420seeds and allthree WASM identities equal the1.0.1 fixture set. No source-strength claim or promotion. New50unrankedgroups requested;50/250native-verified at checkpoint. See PATCH-1.0.2.md and CURRENT.json for continued collection. Models,certificates and70fresh holdouts unchanged.

@@ -1,0 +1,69 @@
+{
+  "schema": 1,
+  "experiment": "ppo-topdraft-v9",
+  "parent": "ppo-topdraft-v8",
+  "baseline": "ppo-topdraft-v8",
+  "runtime": {
+    "cli_version": "cambc 3.0.2",
+    "engine_version": "1.0.1",
+    "engine_build_hash": "c3e9ffc8d98c106f86660c58344dc26ced9459a504e2f0d90d88b4c8594c7765"
+  },
+  "identities": {
+    "candidate": "ada61beac7d90c7aa19cb70811525ead0fbdb7f4b03d1b95e3493c44070c63df",
+    "baseline": "c92a39613426dab54e4e02363cdf7ec50882865329ac869bcc155da9db0c9b89",
+    "starter": "c9a0ca35cf13686680ef4ea00d0bb99f654a79be78382bdb3283604d5fde9795"
+  },
+  "config_sha256": "c6db4b57292bb079e8c1982f23223531ba53917201796977db1d55bab2191dda",
+  "changes": "ppo-topdraft-v9: skip optional spell scans without 41k fuel remaining; expect fewer repeated Stellar exhausted turns without changing initialization reserve.",
+  "status": "rejected_targeted_runtime_hypothesis",
+  "sealed_confirmation_maps_used": false,
+  "promotion_gate_run": false,
+  "uploaded": false,
+  "draft_verified_games": 10,
+  "elapsed_seconds": 6.427939414978027,
+  "summary": {
+    "starter": {
+      "games": 4,
+      "wins": 4,
+      "faults": 0,
+      "fuel_exhausted": 1,
+      "opponent_faults": 0,
+      "by_seat": {
+        "0": {
+          "games": 2,
+          "wins": 2
+        },
+        "1": {
+          "games": 2,
+          "wins": 2
+        }
+      },
+      "mean_banked_gems": 880.25,
+      "mean_opponent_banked_gems": 321.5
+    },
+    "baseline": {
+      "games": 6,
+      "wins": 3,
+      "faults": 0,
+      "fuel_exhausted": 95,
+      "opponent_faults": 0,
+      "by_seat": {
+        "0": {
+          "games": 3,
+          "wins": 0
+        },
+        "1": {
+          "games": 3,
+          "wins": 3
+        }
+      },
+      "mean_banked_gems": 571.1666666666666,
+      "mean_opponent_banked_gems": 571.1666666666666
+    }
+  },
+  "rejection_reason": "Optional spell-scan entry guard leaves the repeated B-seat exhaustion unchanged at 94.",
+  "broad_screen_run": false,
+  "independent_rebuild_sha256": "ada61beac7d90c7aa19cb70811525ead0fbdb7f4b03d1b95e3493c44070c63df",
+  "source_zip_sha256": "d07d4fc08223dd50aae3081825027b8ce1bb65b158e55526b8ae3cc2e846b625",
+  "per_game_records": "topdraft-v9-canary-games.jsonl"
+}

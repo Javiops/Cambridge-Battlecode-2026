@@ -1,0 +1,17 @@
+{
+  "candidate": "ppo-topdraft-v8",
+  "platform_version": 86,
+  "submission_id": "86f123c9-f417-478a-a041-775a6b612f6e",
+  "source_zip_sha256": "7cb32c43786e6df0cca50de081f619405cd2a65dbc43cf97696bdf3e3081c7cb",
+  "wasm_sha256": "c92a39613426dab54e4e02363cdf7ec50882865329ac869bcc155da9db0c9b89",
+  "server_compilation_verified": true,
+  "completed_native_verified_games": 10,
+  "benchmark_groups": [
+    "0502e1bf-a0a7-4b44-85c7-8f291777344c",
+    "e8a75ace-0d29-4372-ba82-6819c7b52ec3"
+  ],
+  "status": "retained_previous_working",
+  "verified_utc": "2026-10-20T23:32:35.183689+00:00",
+  "server_binary_sha256": null,
+  "server_source_sha256": "7cb32c43786e6df0cca50de081f619405cd2a65dbc43cf97696bdf3e3081c7cb"
+}

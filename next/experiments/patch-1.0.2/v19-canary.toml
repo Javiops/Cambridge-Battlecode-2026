@@ -1,0 +1,18 @@
+# Independent 1.0.2 development schedule; does not change Stage 1-7 pins or holdouts.
+candidate = "ppo-topdraft-v19"
+baseline = "ppo-topdraft-v18"
+jobs = 8
+log_limit = 262144
+timeout_seconds = 300
+
+[runtime]
+cli_version = "cambc 3.0.4"
+engine_version = "1.0.2"
+engine_build_hash = "ff41468c05c7be716f7647aaf7ea7314633f7038815386c806fafcec98629114"
+
+[draft]
+priority = ["Stellar", "Heart of Ruin", "Ren", "Cassi & Issac", "Ryth"]
+
+[maps]
+site = ["01big-world", "00ambush", "00contest", "01elk-arena", "00stampede", "00pilgrimage"]
+screen = ["generated/screen/g1-screen-093"]

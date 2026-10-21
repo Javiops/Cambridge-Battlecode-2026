@@ -1,0 +1,880 @@
+{
+  "engine_sha256": "c03ab26f20263b08e576ebc1a064cd6f9b66a996aca005d69bd9fb9205434354",
+  "replay_sha256": "b8e36e334e62e809241b1ba009b30aeb39d5181c5cc0188705e1e4180da8620a",
+  "frames": [
+    {
+      "state": {
+        "phase": 1,
+        "team": 0,
+        "round": 175,
+        "champion": 0
+      },
+      "queries": [
+        {
+          "actor": 0,
+          "target": 0,
+          "code": 0,
+          "x": 19,
+          "y": 20,
+          "health": 825,
+          "max_health": 825,
+          "state": 2073
+        },
+        {
+          "actor": 0,
+          "target": 1,
+          "code": 97
+        },
+        {
+          "actor": 0,
+          "target": 2,
+          "code": 97
+        },
+        {
+          "actor": 0,
+          "target": 3,
+          "code": 97
+        },
+        {
+          "actor": 0,
+          "target": 4,
+          "code": 97
+        },
+        {
+          "actor": 0,
+          "target": 5,
+          "code": 97
+        },
+        {
+          "actor": 1,
+          "target": 0,
+          "code": 0,
+          "x": 19,
+          "y": 20,
+          "health": 825,
+          "max_health": 825,
+          "state": 2073
+        },
+        {
+          "actor": 1,
+          "target": 1,
+          "code": 0,
+          "x": 13,
+          "y": 20,
+          "health": 1000,
+          "max_health": 1000,
+          "state": 2073
+        },
+        {
+          "actor": 1,
+          "target": 2,
+          "code": 0,
+          "x": 13,
+          "y": 26,
+          "health": 900,
+          "max_health": 900,
+          "state": 2073
+        },
+        {
+          "actor": 1,
+          "target": 3,
+          "code": 97
+        },
+        {
+          "actor": 1,
+          "target": 4,
+          "code": 97
+        },
+        {
+          "actor": 1,
+          "target": 5,
+          "code": 0,
+          "x": 13,
+          "y": 24,
+          "health": 1200,
+          "max_health": 1200,
+          "state": 2073
+        },
+        {
+          "actor": 2,
+          "target": 0,
+          "code": 97
+        },
+        {
+          "actor": 2,
+          "target": 1,
+          "code": 97
+        },
+        {
+          "actor": 2,
+          "target": 2,
+          "code": 0,
+          "x": 13,
+          "y": 26,
+          "health": 900,
+          "max_health": 900,
+          "state": 2073
+        },
+        {
+          "actor": 2,
+          "target": 3,
+          "code": 97
+        },
+        {
+          "actor": 2,
+          "target": 4,
+          "code": 97
+        },
+        {
+          "actor": 2,
+          "target": 5,
+          "code": 0,
+          "x": 13,
+          "y": 24,
+          "health": 1200,
+          "max_health": 1200,
+          "state": 2073
+        },
+        {
+          "actor": 3,
+          "target": 0,
+          "code": 97
+        },
+        {
+          "actor": 3,
+          "target": 1,
+          "code": 97
+        },
+        {
+          "actor": 3,
+          "target": 2,
+          "code": 97
+        },
+        {
+          "actor": 3,
+          "target": 3,
+          "code": 0,
+          "x": -1,
+          "y": -1,
+          "health": 0,
+          "max_health": 600,
+          "state": 0
+        },
+        {
+          "actor": 3,
+          "target": 4,
+          "code": 97
+        },
+        {
+          "actor": 3,
+          "target": 5,
+          "code": 97
+        },
+        {
+          "actor": 4,
+          "target": 0,
+          "code": 97
+        },
+        {
+          "actor": 4,
+          "target": 1,
+          "code": 97
+        },
+        {
+          "actor": 4,
+          "target": 2,
+          "code": 97
+        },
+        {
+          "actor": 4,
+          "target": 3,
+          "code": 97
+        },
+        {
+          "actor": 4,
+          "target": 4,
+          "code": 0,
+          "x": -1,
+          "y": -1,
+          "health": 0,
+          "max_health": 900,
+          "state": 0
+        },
+        {
+          "actor": 4,
+          "target": 5,
+          "code": 97
+        },
+        {
+          "actor": 5,
+          "target": 0,
+          "code": 97
+        },
+        {
+          "actor": 5,
+          "target": 1,
+          "code": 97
+        },
+        {
+          "actor": 5,
+          "target": 2,
+          "code": 0,
+          "x": 13,
+          "y": 26,
+          "health": 900,
+          "max_health": 900,
+          "state": 2073
+        },
+        {
+          "actor": 5,
+          "target": 3,
+          "code": 97
+        },
+        {
+          "actor": 5,
+          "target": 4,
+          "code": 97
+        },
+        {
+          "actor": 5,
+          "target": 5,
+          "code": 0,
+          "x": 13,
+          "y": 24,
+          "health": 1200,
+          "max_health": 1200,
+          "state": 2073
+        }
+      ]
+    },
+    {
+      "state": {
+        "phase": 1,
+        "team": 1,
+        "round": 176,
+        "champion": 6
+      },
+      "queries": [
+        {
+          "actor": 0,
+          "target": 0,
+          "code": 0,
+          "x": 19,
+          "y": 20,
+          "health": 825,
+          "max_health": 825,
+          "state": 2073
+        },
+        {
+          "actor": 0,
+          "target": 1,
+          "code": 97
+        },
+        {
+          "actor": 0,
+          "target": 2,
+          "code": 97
+        },
+        {
+          "actor": 0,
+          "target": 3,
+          "code": 0,
+          "x": 13,
+          "y": 23,
+          "health": 600,
+          "max_health": 600,
+          "state": 2073
+        },
+        {
+          "actor": 0,
+          "target": 4,
+          "code": 0,
+          "x": 13,
+          "y": 22,
+          "health": 900,
+          "max_health": 900,
+          "state": 2073
+        },
+        {
+          "actor": 0,
+          "target": 5,
+          "code": 97
+        },
+        {
+          "actor": 1,
+          "target": 0,
+          "code": 0,
+          "x": 19,
+          "y": 20,
+          "health": 825,
+          "max_health": 825,
+          "state": 2073
+        },
+        {
+          "actor": 1,
+          "target": 1,
+          "code": 0,
+          "x": 13,
+          "y": 20,
+          "health": 1000,
+          "max_health": 1000,
+          "state": 2073
+        },
+        {
+          "actor": 1,
+          "target": 2,
+          "code": 0,
+          "x": 13,
+          "y": 26,
+          "health": 900,
+          "max_health": 900,
+          "state": 2073
+        },
+        {
+          "actor": 1,
+          "target": 3,
+          "code": 0,
+          "x": 13,
+          "y": 23,
+          "health": 600,
+          "max_health": 600,
+          "state": 2073
+        },
+        {
+          "actor": 1,
+          "target": 4,
+          "code": 0,
+          "x": 13,
+          "y": 22,
+          "health": 900,
+          "max_health": 900,
+          "state": 2073
+        },
+        {
+          "actor": 1,
+          "target": 5,
+          "code": 0,
+          "x": 13,
+          "y": 24,
+          "health": 1200,
+          "max_health": 1200,
+          "state": 2073
+        },
+        {
+          "actor": 2,
+          "target": 0,
+          "code": 97
+        },
+        {
+          "actor": 2,
+          "target": 1,
+          "code": 97
+        },
+        {
+          "actor": 2,
+          "target": 2,
+          "code": 0,
+          "x": 13,
+          "y": 26,
+          "health": 900,
+          "max_health": 900,
+          "state": 2073
+        },
+        {
+          "actor": 2,
+          "target": 3,
+          "code": 0,
+          "x": 13,
+          "y": 23,
+          "health": 600,
+          "max_health": 600,
+          "state": 2073
+        },
+        {
+          "actor": 2,
+          "target": 4,
+          "code": 0,
+          "x": 13,
+          "y": 22,
+          "health": 900,
+          "max_health": 900,
+          "state": 2073
+        },
+        {
+          "actor": 2,
+          "target": 5,
+          "code": 0,
+          "x": 13,
+          "y": 24,
+          "health": 1200,
+          "max_health": 1200,
+          "state": 2073
+        },
+        {
+          "actor": 3,
+          "target": 0,
+          "code": 0,
+          "x": 19,
+          "y": 20,
+          "health": 825,
+          "max_health": 825,
+          "state": 2073
+        },
+        {
+          "actor": 3,
+          "target": 1,
+          "code": 97
+        },
+        {
+          "actor": 3,
+          "target": 2,
+          "code": 0,
+          "x": 13,
+          "y": 26,
+          "health": 900,
+          "max_health": 900,
+          "state": 2073
+        },
+        {
+          "actor": 3,
+          "target": 3,
+          "code": 0,
+          "x": 13,
+          "y": 23,
+          "health": 600,
+          "max_health": 600,
+          "state": 2073
+        },
+        {
+          "actor": 3,
+          "target": 4,
+          "code": 0,
+          "x": 13,
+          "y": 22,
+          "health": 900,
+          "max_health": 900,
+          "state": 2073
+        },
+        {
+          "actor": 3,
+          "target": 5,
+          "code": 0,
+          "x": 13,
+          "y": 24,
+          "health": 1200,
+          "max_health": 1200,
+          "state": 2073
+        },
+        {
+          "actor": 4,
+          "target": 0,
+          "code": 0,
+          "x": 19,
+          "y": 20,
+          "health": 825,
+          "max_health": 825,
+          "state": 2073
+        },
+        {
+          "actor": 4,
+          "target": 1,
+          "code": 97
+        },
+        {
+          "actor": 4,
+          "target": 2,
+          "code": 0,
+          "x": 13,
+          "y": 26,
+          "health": 900,
+          "max_health": 900,
+          "state": 2073
+        },
+        {
+          "actor": 4,
+          "target": 3,
+          "code": 0,
+          "x": 13,
+          "y": 23,
+          "health": 600,
+          "max_health": 600,
+          "state": 2073
+        },
+        {
+          "actor": 4,
+          "target": 4,
+          "code": 0,
+          "x": 13,
+          "y": 22,
+          "health": 900,
+          "max_health": 900,
+          "state": 2073
+        },
+        {
+          "actor": 4,
+          "target": 5,
+          "code": 0,
+          "x": 13,
+          "y": 24,
+          "health": 1200,
+          "max_health": 1200,
+          "state": 2073
+        },
+        {
+          "actor": 5,
+          "target": 0,
+          "code": 97
+        },
+        {
+          "actor": 5,
+          "target": 1,
+          "code": 97
+        },
+        {
+          "actor": 5,
+          "target": 2,
+          "code": 0,
+          "x": 13,
+          "y": 26,
+          "health": 900,
+          "max_health": 900,
+          "state": 2073
+        },
+        {
+          "actor": 5,
+          "target": 3,
+          "code": 0,
+          "x": 13,
+          "y": 23,
+          "health": 600,
+          "max_health": 600,
+          "state": 2073
+        },
+        {
+          "actor": 5,
+          "target": 4,
+          "code": 0,
+          "x": 13,
+          "y": 22,
+          "health": 900,
+          "max_health": 900,
+          "state": 2073
+        },
+        {
+          "actor": 5,
+          "target": 5,
+          "code": 0,
+          "x": 13,
+          "y": 24,
+          "health": 1200,
+          "max_health": 1200,
+          "state": 2073
+        }
+      ]
+    },
+    {
+      "state": {
+        "phase": 1,
+        "team": 1,
+        "round": 200,
+        "champion": 6
+      },
+      "queries": [
+        {
+          "actor": 0,
+          "target": 0,
+          "code": 0,
+          "x": 19,
+          "y": 20,
+          "health": 825,
+          "max_health": 825,
+          "state": 2073
+        },
+        {
+          "actor": 0,
+          "target": 1,
+          "code": 97
+        },
+        {
+          "actor": 0,
+          "target": 2,
+          "code": 97
+        },
+        {
+          "actor": 0,
+          "target": 3,
+          "code": 97
+        },
+        {
+          "actor": 0,
+          "target": 4,
+          "code": 97
+        },
+        {
+          "actor": 0,
+          "target": 5,
+          "code": 97
+        },
+        {
+          "actor": 1,
+          "target": 0,
+          "code": 97
+        },
+        {
+          "actor": 1,
+          "target": 1,
+          "code": 0,
+          "x": 20,
+          "y": 27,
+          "health": 1000,
+          "max_health": 1000,
+          "state": 2073
+        },
+        {
+          "actor": 1,
+          "target": 2,
+          "code": 97
+        },
+        {
+          "actor": 1,
+          "target": 3,
+          "code": 0,
+          "x": 18,
+          "y": 26,
+          "health": 600,
+          "max_health": 600,
+          "state": 2073
+        },
+        {
+          "actor": 1,
+          "target": 4,
+          "code": 0,
+          "x": 19,
+          "y": 24,
+          "health": 900,
+          "max_health": 900,
+          "state": 2073
+        },
+        {
+          "actor": 1,
+          "target": 5,
+          "code": 0,
+          "x": 13,
+          "y": 24,
+          "health": 1200,
+          "max_health": 1200,
+          "state": 2073
+        },
+        {
+          "actor": 2,
+          "target": 0,
+          "code": 97
+        },
+        {
+          "actor": 2,
+          "target": 1,
+          "code": 97
+        },
+        {
+          "actor": 2,
+          "target": 2,
+          "code": 0,
+          "x": 13,
+          "y": 26,
+          "health": 900,
+          "max_health": 900,
+          "state": 2073
+        },
+        {
+          "actor": 2,
+          "target": 3,
+          "code": 0,
+          "x": 18,
+          "y": 26,
+          "health": 600,
+          "max_health": 600,
+          "state": 2073
+        },
+        {
+          "actor": 2,
+          "target": 4,
+          "code": 0,
+          "x": 19,
+          "y": 24,
+          "health": 900,
+          "max_health": 900,
+          "state": 2073
+        },
+        {
+          "actor": 2,
+          "target": 5,
+          "code": 0,
+          "x": 13,
+          "y": 24,
+          "health": 1200,
+          "max_health": 1200,
+          "state": 2073
+        },
+        {
+          "actor": 3,
+          "target": 0,
+          "code": 97
+        },
+        {
+          "actor": 3,
+          "target": 1,
+          "code": 97
+        },
+        {
+          "actor": 3,
+          "target": 2,
+          "code": 0,
+          "x": 13,
+          "y": 26,
+          "health": 900,
+          "max_health": 900,
+          "state": 2073
+        },
+        {
+          "actor": 3,
+          "target": 3,
+          "code": 0,
+          "x": 18,
+          "y": 26,
+          "health": 600,
+          "max_health": 600,
+          "state": 2073
+        },
+        {
+          "actor": 3,
+          "target": 4,
+          "code": 0,
+          "x": 19,
+          "y": 24,
+          "health": 900,
+          "max_health": 900,
+          "state": 2073
+        },
+        {
+          "actor": 3,
+          "target": 5,
+          "code": 0,
+          "x": 13,
+          "y": 24,
+          "health": 1200,
+          "max_health": 1200,
+          "state": 2073
+        },
+        {
+          "actor": 4,
+          "target": 0,
+          "code": 97
+        },
+        {
+          "actor": 4,
+          "target": 1,
+          "code": 97
+        },
+        {
+          "actor": 4,
+          "target": 2,
+          "code": 0,
+          "x": 13,
+          "y": 26,
+          "health": 900,
+          "max_health": 900,
+          "state": 2073
+        },
+        {
+          "actor": 4,
+          "target": 3,
+          "code": 0,
+          "x": 18,
+          "y": 26,
+          "health": 600,
+          "max_health": 600,
+          "state": 2073
+        },
+        {
+          "actor": 4,
+          "target": 4,
+          "code": 0,
+          "x": 19,
+          "y": 24,
+          "health": 900,
+          "max_health": 900,
+          "state": 2073
+        },
+        {
+          "actor": 4,
+          "target": 5,
+          "code": 0,
+          "x": 13,
+          "y": 24,
+          "health": 1200,
+          "max_health": 1200,
+          "state": 2073
+        },
+        {
+          "actor": 5,
+          "target": 0,
+          "code": 97
+        },
+        {
+          "actor": 5,
+          "target": 1,
+          "code": 97
+        },
+        {
+          "actor": 5,
+          "target": 2,
+          "code": 0,
+          "x": 13,
+          "y": 26,
+          "health": 900,
+          "max_health": 900,
+          "state": 2073
+        },
+        {
+          "actor": 5,
+          "target": 3,
+          "code": 0,
+          "x": 18,
+          "y": 26,
+          "health": 600,
+          "max_health": 600,
+          "state": 2073
+        },
+        {
+          "actor": 5,
+          "target": 4,
+          "code": 0,
+          "x": 19,
+          "y": 24,
+          "health": 900,
+          "max_health": 900,
+          "state": 2073
+        },
+        {
+          "actor": 5,
+          "target": 5,
+          "code": 0,
+          "x": 13,
+          "y": 24,
+          "health": 1200,
+          "max_health": 1200,
+          "state": 2073
+        }
+      ]
+    }
+  ],
+  "terminal": {
+    "outcome": "teamB",
+    "round": 1170,
+    "banks": [
+      0,
+      1008
+    ]
+  },
+  "limits": "Beginning of the named rounds, not each later champion input. Shows readable/hidden own allies; staging distance and later local release state are not inferred from hidden records."
+}

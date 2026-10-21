@@ -1,0 +1,169 @@
+{
+  "games": 10,
+  "patch": "1.0.1",
+  "pick_game_counts": {
+    "Stellar": 8,
+    "Heart of Ruin": 10,
+    "Ren": 10,
+    "Cassi & Issac": 3,
+    "Ryth": 8,
+    "Tavi": 3
+  },
+  "games_detail": [
+    {
+      "team": "Intercontinental Fish",
+      "rank_at_observation": 1,
+      "match_id": "13a8b3d7-9501-4d09-88ab-cec656a2015d",
+      "seat": "teamB",
+      "picks": [
+        "Stellar",
+        "Heart of Ruin",
+        "Ren"
+      ],
+      "map_sha256": "6e3c67956080f8da5a0042e68ea481189cd6f61061a742a8be0354a9ea5c5620",
+      "source": "cambc-hotfix-1.0.1\\live\\fish-draft-research\\match-13a8b3d7-9501-4d09-88ab-cec656a2015d.json",
+      "source_sha256": "f3b82f75233462bebbcfbc55ab9155622e5a995a434022bdba345fab8f0b658b"
+    },
+    {
+      "team": "Intercontinental Fish",
+      "rank_at_observation": 1,
+      "match_id": "5eab381c-44dd-44a1-8849-11d47702e733",
+      "seat": "teamA",
+      "picks": [
+        "Stellar",
+        "Heart of Ruin",
+        "Ren",
+        "Cassi & Issac",
+        "Ryth"
+      ],
+      "map_sha256": "af4236f408f8450f7da871731f08ef80295f07fac86b541f6547639a78dc2205",
+      "source": "cambc-hotfix-1.0.1\\live\\fish-draft-research\\match-5eab381c-44dd-44a1-8849-11d47702e733.json",
+      "source_sha256": "335b48fc8383853c0ceff5b0eabda2c70234af5b26cb7d7e2ecad75231b4f8e3"
+    },
+    {
+      "team": "Intercontinental Fish",
+      "rank_at_observation": 1,
+      "match_id": "21a8f9e6-4d8e-47f9-9a9f-ee042e1b75f9",
+      "seat": "teamB",
+      "picks": [
+        "Stellar",
+        "Heart of Ruin",
+        "Ren",
+        "Cassi & Issac",
+        "Ryth"
+      ],
+      "map_sha256": "8ca26ed2ea65c7d80ceb9604a7431ca1dc056922912b4e2f46cad06051e4886a",
+      "source": "cambc-hotfix-1.0.1\\live\\fish-draft-research\\match-21a8f9e6-4d8e-47f9-9a9f-ee042e1b75f9.json",
+      "source_sha256": "80b19d277009991c20abe751fa5655444666466e33b5881dae1b70dceb5ed24d"
+    },
+    {
+      "team": "Intercontinental Fish",
+      "rank_at_observation": 1,
+      "match_id": "41ed8988-5c4f-4379-bbf3-5b06aa8a5c35",
+      "seat": "teamA",
+      "picks": [
+        "Stellar",
+        "Heart of Ruin",
+        "Ren"
+      ],
+      "map_sha256": "5cca9ed6eaaf6ef15a170a4ea78488237fda7b256e182a2e3360a14b485e09c3",
+      "source": "cambc-hotfix-1.0.1\\live\\fish-draft-research\\match-41ed8988-5c4f-4379-bbf3-5b06aa8a5c35.json",
+      "source_sha256": "d3a55df0b8099f448f8221aac2c87f57d382920b7e81d4345dfa4b602ea8637d"
+    },
+    {
+      "team": "Intercontinental Fish",
+      "rank_at_observation": 1,
+      "match_id": "50345373-72d9-4305-832e-393776d045a0",
+      "seat": "teamB",
+      "picks": [
+        "Stellar",
+        "Heart of Ruin",
+        "Ren",
+        "Cassi & Issac",
+        "Ryth"
+      ],
+      "map_sha256": "130453395278cdabb1ff80564357a99ca8394afaef006fdede8beb88924a8fa0",
+      "source": "cambc-hotfix-1.0.1\\live\\fish-draft-research\\match-50345373-72d9-4305-832e-393776d045a0.json",
+      "source_sha256": "9d6e1e51490e409d31af5b836cc7352cc600438271ff9b88444fa30e519d0be1"
+    },
+    {
+      "team": "Nyx",
+      "rank_at_observation": 4,
+      "match_id": "1b8254ad-2e74-437b-9c0d-a0135b8965c3",
+      "seat": "teamA",
+      "picks": [
+        "Heart of Ruin",
+        "Ren",
+        "Ryth"
+      ],
+      "map_sha256": "6e3c67956080f8da5a0042e68ea481189cd6f61061a742a8be0354a9ea5c5620",
+      "source": "cambc-hotfix-1.0.1\\live\\nyx\\1b8254ad-2e74-437b-9c0d-a0135b8965c3.json",
+      "source_sha256": "1dccaa038f7a956afa5ec785aa5c37fd4bd51f30472c597954b740c6b1fcb771"
+    },
+    {
+      "team": "Nyx",
+      "rank_at_observation": 4,
+      "match_id": "9334dc7c-c7bb-4497-8abc-9e790319792e",
+      "seat": "teamB",
+      "picks": [
+        "Heart of Ruin",
+        "Ren",
+        "Ryth",
+        "Stellar",
+        "Tavi"
+      ],
+      "map_sha256": "af4236f408f8450f7da871731f08ef80295f07fac86b541f6547639a78dc2205",
+      "source": "cambc-hotfix-1.0.1\\live\\nyx\\9334dc7c-c7bb-4497-8abc-9e790319792e.json",
+      "source_sha256": "bc62723b484c89b01f1c05dfb0301040baa6464cf819b1ab5982594f7d2aeae6"
+    },
+    {
+      "team": "Nyx",
+      "rank_at_observation": 4,
+      "match_id": "57681d63-c901-49f2-81bc-61d3496b7524",
+      "seat": "teamA",
+      "picks": [
+        "Heart of Ruin",
+        "Ren",
+        "Ryth",
+        "Stellar",
+        "Tavi"
+      ],
+      "map_sha256": "8ca26ed2ea65c7d80ceb9604a7431ca1dc056922912b4e2f46cad06051e4886a",
+      "source": "cambc-hotfix-1.0.1\\live\\nyx\\57681d63-c901-49f2-81bc-61d3496b7524.json",
+      "source_sha256": "466d11bdf9203ffbcd58bf4134cc94f3a4128f790f80c942db99d6968b76a7e2"
+    },
+    {
+      "team": "Nyx",
+      "rank_at_observation": 4,
+      "match_id": "993e2600-ad09-4b4f-b5d2-5c84cf10ec03",
+      "seat": "teamB",
+      "picks": [
+        "Heart of Ruin",
+        "Ren",
+        "Ryth"
+      ],
+      "map_sha256": "5cca9ed6eaaf6ef15a170a4ea78488237fda7b256e182a2e3360a14b485e09c3",
+      "source": "cambc-hotfix-1.0.1\\live\\nyx\\993e2600-ad09-4b4f-b5d2-5c84cf10ec03.json",
+      "source_sha256": "4c500f657a1ea660bd469ea1e5e03141513d77bd096729548b390a98901c4ee8"
+    },
+    {
+      "team": "Nyx",
+      "rank_at_observation": 4,
+      "match_id": "ed043044-c157-4f9f-8e71-65c556145760",
+      "seat": "teamA",
+      "picks": [
+        "Heart of Ruin",
+        "Ren",
+        "Ryth",
+        "Stellar",
+        "Tavi"
+      ],
+      "map_sha256": "130453395278cdabb1ff80564357a99ca8394afaef006fdede8beb88924a8fa0",
+      "source": "cambc-hotfix-1.0.1\\live\\nyx\\ed043044-c157-4f9f-8e71-65c556145760.json",
+      "source_sha256": "852f35237f7fb42ced2100899f24bf10588c451f12a6c3939effc08431bb9808"
+    }
+  ],
+  "ladder": "https://2026a.battlecode.co.uk/game/ladder",
+  "ladder_observation": "Ranks 1 and 2 each show Heart of Ruin, Ren and Stellar in all last 50 completed games; this window can include pre-hotfix games.",
+  "limits": "Two teams across five maps each; four-pick prefix is an extrapolation. Fish games used our v81 and remain excluded from PPO evaluation."
+}

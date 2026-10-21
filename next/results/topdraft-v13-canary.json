@@ -1,0 +1,66 @@
+{
+  "schema": 1,
+  "experiment": "ppo-topdraft-v13",
+  "parent": "ppo-topdraft-v12",
+  "baseline": "ppo-topdraft-v12",
+  "runtime": {
+    "cli_version": "cambc 3.0.2",
+    "engine_version": "1.0.1",
+    "engine_build_hash": "c3e9ffc8d98c106f86660c58344dc26ced9459a504e2f0d90d88b4c8594c7765"
+  },
+  "identities": {
+    "candidate": "c893e51c193f9097bd363b2b6f4c4512c22bbbe3e907ab6a6931c17c7183377e",
+    "baseline": "fcd2cdc3c2c69e8defc939f28d1145e60aa8fb176466dc4ef720ccdbf8bd96ea",
+    "starter": "c9a0ca35cf13686680ef4ea00d0bb99f654a79be78382bdb3283604d5fde9795"
+  },
+  "config_sha256": "e55918f92660ab7ff4e89368b1c0bf5c4c575a20f2c3b289a3773fc5754a4181",
+  "changes": "ppo-topdraft-v13: quiet healthy empty-handed allies cover nearby ongoing tribute channels; expect fewer isolated channels and more delivered gems.",
+  "status": "rejected_farming_regression",
+  "sealed_confirmation_maps_used": false,
+  "promotion_gate_run": false,
+  "uploaded": false,
+  "draft_verified_games": 22,
+  "elapsed_seconds": 10.050253868103027,
+  "summary": {
+    "starter": {
+      "games": 10,
+      "wins": 8,
+      "faults": 0,
+      "fuel_exhausted": 3,
+      "opponent_faults": 0,
+      "by_seat": {
+        "0": {
+          "games": 5,
+          "wins": 4
+        },
+        "1": {
+          "games": 5,
+          "wins": 4
+        }
+      },
+      "mean_banked_gems": 801.6,
+      "mean_opponent_banked_gems": 128.6
+    },
+    "baseline": {
+      "games": 12,
+      "wins": 6,
+      "faults": 0,
+      "fuel_exhausted": 1,
+      "opponent_faults": 0,
+      "by_seat": {
+        "0": {
+          "games": 6,
+          "wins": 2
+        },
+        "1": {
+          "games": 6,
+          "wins": 4
+        }
+      },
+      "mean_banked_gems": 408.5833333333333,
+      "mean_opponent_banked_gems": 539.5833333333334
+    }
+  },
+  "per_game_records": "topdraft-v13-canary-games.jsonl",
+  "independent_rebuild_sha256": "c893e51c193f9097bd363b2b6f4c4512c22bbbe3e907ab6a6931c17c7183377e"
+}

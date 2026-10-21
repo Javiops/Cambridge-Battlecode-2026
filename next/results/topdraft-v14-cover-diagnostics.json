@@ -1,0 +1,89 @@
+{
+  "source_game": "cfb28c8a-aef8-4338-bfa4-5700c4c78aed",
+  "trace_sha256": "f78ee56246260d78f9010876b5634b3b0e9f6ebf2788149eb6f91c304745ffef",
+  "inputs": 32170,
+  "sampling": "Start of requested rounds; no continuous-movement claim.",
+  "carrier_samples": [
+    {
+      "round": 1345,
+      "id": 0,
+      "x": 23,
+      "y": 26,
+      "hp": 1125,
+      "max_hp": 1125,
+      "gems": 400,
+      "state": 5
+    },
+    {
+      "round": 1350,
+      "id": 0,
+      "x": 23,
+      "y": 26,
+      "hp": 1125,
+      "max_hp": 1125,
+      "gems": 400,
+      "state": 5
+    },
+    {
+      "round": 1355,
+      "id": 0,
+      "x": 23,
+      "y": 26,
+      "hp": 1125,
+      "max_hp": 1125,
+      "gems": 400,
+      "state": 5
+    },
+    {
+      "round": 1360,
+      "id": 0,
+      "x": 23,
+      "y": 26,
+      "hp": 972,
+      "max_hp": 1125,
+      "gems": 400,
+      "state": 1
+    }
+  ],
+  "canary_cover_logs": [
+    {
+      "map": "01big-world",
+      "seat": 1,
+      "opponent": "starter",
+      "logged_cover": 3,
+      "examples": [
+        "[r1350] stellar pos=(56,78) hp=685/825 gems=0 gold=60 mode=cover-channel farm=cover-channel target=1 errs=175 fuel=64535",
+        "[r1350] heartofruin pos=(56,80) hp=1500/1500 gems=0 gold=16 mode=cover-channel farm=cover-channel target=3 errs=199 fuel=68409"
+      ]
+    },
+    {
+      "map": "00contest",
+      "seat": 1,
+      "opponent": "starter",
+      "logged_cover": 1,
+      "examples": [
+        "[r1075] cassi pos=(28,23) hp=925/925 gems=0 gold=20 mode=cover-channel farm=cover-channel target=3 errs=484 fuel=81763"
+      ]
+    },
+    {
+      "map": "00contest",
+      "seat": 1,
+      "opponent": "baseline",
+      "logged_cover": 1,
+      "examples": [
+        "[r1225] ren pos=(24,24) hp=1500/1500 gems=0 gold=0 mode=cover-channel farm=cover-channel target=4 errs=293 fuel=82053"
+      ]
+    },
+    {
+      "map": "01elk-arena",
+      "seat": 0,
+      "opponent": "starter",
+      "logged_cover": 13,
+      "examples": [
+        "[r775] heartofruin pos=(23,24) hp=1500/1500 gems=0 gold=25 mode=cover-channel farm=cover-channel target=2 errs=345 fuel=73976",
+        "[r775] ren pos=(22,24) hp=1500/1500 gems=0 gold=5 mode=cover-channel farm=cover-channel target=3 errs=729 fuel=73519"
+      ]
+    }
+  ],
+  "limits": "Channel flag is present at sampled round boundaries; this is not a continuous action trace. Exact cancellation cause is not decoded. Cover logs show activation, not independent causal benefit. Optional scans change fuel timing and trajectory."
+}

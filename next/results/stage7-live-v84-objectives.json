@@ -1,0 +1,1910 @@
+[
+  {
+    "match": "70d8163d-d30d-4758-adc7-fbd02ebe1100",
+    "map": "00stampede",
+    "seat": "A",
+    "won": true,
+    "bank": 1000,
+    "assault_logs": 28,
+    "rally_logs": 52,
+    "events": [
+      {
+        "round": 360,
+        "unit": 0,
+        "group": 10,
+        "ready": 0,
+        "quorum": 5,
+        "phase": "rally"
+      },
+      {
+        "round": 360,
+        "unit": 1,
+        "group": 10,
+        "ready": 0,
+        "quorum": 5,
+        "phase": "rally"
+      },
+      {
+        "round": 360,
+        "unit": 2,
+        "group": 10,
+        "ready": 0,
+        "quorum": 5,
+        "phase": "rally"
+      },
+      {
+        "round": 360,
+        "unit": 5,
+        "group": 10,
+        "ready": 0,
+        "quorum": 5,
+        "phase": "rally"
+      },
+      {
+        "round": 400,
+        "unit": 0,
+        "group": 10,
+        "ready": 4,
+        "quorum": 5,
+        "phase": "rally"
+      },
+      {
+        "round": 400,
+        "unit": 1,
+        "group": 10,
+        "ready": 4,
+        "quorum": 5,
+        "phase": "rally"
+      },
+      {
+        "round": 400,
+        "unit": 2,
+        "group": 10,
+        "ready": 4,
+        "quorum": 5,
+        "phase": "rally"
+      },
+      {
+        "round": 400,
+        "unit": 5,
+        "group": 10,
+        "ready": 4,
+        "quorum": 5,
+        "phase": "rally"
+      },
+      {
+        "round": 440,
+        "unit": 0,
+        "group": 10,
+        "ready": 3,
+        "quorum": 5,
+        "phase": "rally"
+      },
+      {
+        "round": 440,
+        "unit": 1,
+        "group": 10,
+        "ready": 3,
+        "quorum": 5,
+        "phase": "rally"
+      },
+      {
+        "round": 440,
+        "unit": 2,
+        "group": 10,
+        "ready": 3,
+        "quorum": 5,
+        "phase": "rally"
+      },
+      {
+        "round": 440,
+        "unit": 3,
+        "group": 10,
+        "ready": 0,
+        "quorum": 5,
+        "phase": "rally"
+      },
+      {
+        "round": 440,
+        "unit": 4,
+        "group": 10,
+        "ready": 5,
+        "quorum": 5,
+        "phase": "assault"
+      },
+      {
+        "round": 440,
+        "unit": 5,
+        "group": 10,
+        "ready": 3,
+        "quorum": 5,
+        "phase": "rally"
+      },
+      {
+        "round": 442,
+        "unit": 2,
+        "group": 10,
+        "ready": 5,
+        "quorum": 5,
+        "phase": "assault"
+      },
+      {
+        "round": 443,
+        "unit": 1,
+        "group": 10,
+        "ready": 5,
+        "quorum": 5,
+        "phase": "assault"
+      },
+      {
+        "round": 443,
+        "unit": 5,
+        "group": 10,
+        "ready": 5,
+        "quorum": 5,
+        "phase": "assault"
+      },
+      {
+        "round": 448,
+        "unit": 0,
+        "group": 10,
+        "ready": 5,
+        "quorum": 5,
+        "phase": "assault"
+      },
+      {
+        "round": 480,
+        "unit": 3,
+        "group": 10,
+        "ready": 0,
+        "quorum": 5,
+        "phase": "rally"
+      },
+      {
+        "round": 560,
+        "unit": 3,
+        "group": 10,
+        "ready": 0,
+        "quorum": 5,
+        "phase": "rally"
+      },
+      {
+        "round": 720,
+        "unit": 0,
+        "group": 10,
+        "ready": 0,
+        "quorum": 5,
+        "phase": "rally"
+      },
+      {
+        "round": 720,
+        "unit": 1,
+        "group": 10,
+        "ready": 0,
+        "quorum": 5,
+        "phase": "rally"
+      },
+      {
+        "round": 720,
+        "unit": 2,
+        "group": 10,
+        "ready": 0,
+        "quorum": 5,
+        "phase": "rally"
+      },
+      {
+        "round": 720,
+        "unit": 3,
+        "group": 10,
+        "ready": 0,
+        "quorum": 5,
+        "phase": "rally"
+      },
+      {
+        "round": 720,
+        "unit": 4,
+        "group": 10,
+        "ready": 0,
+        "quorum": 5,
+        "phase": "rally"
+      },
+      {
+        "round": 720,
+        "unit": 5,
+        "group": 10,
+        "ready": 0,
+        "quorum": 5,
+        "phase": "rally"
+      },
+      {
+        "round": 752,
+        "unit": 0,
+        "group": 10,
+        "ready": 5,
+        "quorum": 5,
+        "phase": "assault"
+      },
+      {
+        "round": 752,
+        "unit": 1,
+        "group": 10,
+        "ready": 5,
+        "quorum": 5,
+        "phase": "assault"
+      },
+      {
+        "round": 752,
+        "unit": 2,
+        "group": 10,
+        "ready": 5,
+        "quorum": 5,
+        "phase": "assault"
+      },
+      {
+        "round": 752,
+        "unit": 3,
+        "group": 10,
+        "ready": 5,
+        "quorum": 5,
+        "phase": "assault"
+      },
+      {
+        "round": 752,
+        "unit": 4,
+        "group": 10,
+        "ready": 5,
+        "quorum": 5,
+        "phase": "assault"
+      },
+      {
+        "round": 752,
+        "unit": 5,
+        "group": 10,
+        "ready": 5,
+        "quorum": 5,
+        "phase": "assault"
+      },
+      {
+        "round": 1080,
+        "unit": 0,
+        "group": 10,
+        "ready": 0,
+        "quorum": 5,
+        "phase": "rally"
+      },
+      {
+        "round": 1080,
+        "unit": 1,
+        "group": 10,
+        "ready": 0,
+        "quorum": 5,
+        "phase": "rally"
+      },
+      {
+        "round": 1080,
+        "unit": 2,
+        "group": 10,
+        "ready": 0,
+        "quorum": 5,
+        "phase": "rally"
+      },
+      {
+        "round": 1080,
+        "unit": 3,
+        "group": 10,
+        "ready": 0,
+        "quorum": 5,
+        "phase": "rally"
+      },
+      {
+        "round": 1080,
+        "unit": 4,
+        "group": 10,
+        "ready": 0,
+        "quorum": 5,
+        "phase": "rally"
+      },
+      {
+        "round": 1080,
+        "unit": 5,
+        "group": 10,
+        "ready": 0,
+        "quorum": 5,
+        "phase": "rally"
+      },
+      {
+        "round": 1108,
+        "unit": 3,
+        "group": 10,
+        "ready": 5,
+        "quorum": 5,
+        "phase": "assault"
+      },
+      {
+        "round": 1109,
+        "unit": 4,
+        "group": 10,
+        "ready": 5,
+        "quorum": 5,
+        "phase": "assault"
+      },
+      {
+        "round": 1110,
+        "unit": 1,
+        "group": 10,
+        "ready": 5,
+        "quorum": 5,
+        "phase": "assault"
+      },
+      {
+        "round": 1110,
+        "unit": 2,
+        "group": 10,
+        "ready": 5,
+        "quorum": 5,
+        "phase": "assault"
+      },
+      {
+        "round": 1110,
+        "unit": 5,
+        "group": 10,
+        "ready": 5,
+        "quorum": 5,
+        "phase": "assault"
+      },
+      {
+        "round": 1120,
+        "unit": 0,
+        "group": 10,
+        "ready": 1,
+        "quorum": 5,
+        "phase": "rally"
+      },
+      {
+        "round": 1160,
+        "unit": 0,
+        "group": 10,
+        "ready": 1,
+        "quorum": 5,
+        "phase": "rally"
+      },
+      {
+        "round": 1200,
+        "unit": 0,
+        "group": 10,
+        "ready": 1,
+        "quorum": 5,
+        "phase": "rally"
+      },
+      {
+        "round": 1237,
+        "unit": 0,
+        "group": 10,
+        "ready": 5,
+        "quorum": 5,
+        "phase": "assault"
+      },
+      {
+        "round": 1440,
+        "unit": 0,
+        "group": 10,
+        "ready": 1,
+        "quorum": 5,
+        "phase": "rally"
+      },
+      {
+        "round": 1440,
+        "unit": 1,
+        "group": 10,
+        "ready": 0,
+        "quorum": 5,
+        "phase": "rally"
+      },
+      {
+        "round": 1440,
+        "unit": 2,
+        "group": 10,
+        "ready": 1,
+        "quorum": 5,
+        "phase": "rally"
+      },
+      {
+        "round": 1440,
+        "unit": 3,
+        "group": 10,
+        "ready": 0,
+        "quorum": 5,
+        "phase": "rally"
+      },
+      {
+        "round": 1440,
+        "unit": 4,
+        "group": 10,
+        "ready": 0,
+        "quorum": 5,
+        "phase": "rally"
+      },
+      {
+        "round": 1440,
+        "unit": 5,
+        "group": 10,
+        "ready": 1,
+        "quorum": 5,
+        "phase": "rally"
+      },
+      {
+        "round": 1476,
+        "unit": 1,
+        "group": 10,
+        "ready": 5,
+        "quorum": 5,
+        "phase": "assault"
+      },
+      {
+        "round": 1476,
+        "unit": 4,
+        "group": 10,
+        "ready": 5,
+        "quorum": 5,
+        "phase": "assault"
+      },
+      {
+        "round": 1480,
+        "unit": 0,
+        "group": 10,
+        "ready": 3,
+        "quorum": 5,
+        "phase": "rally"
+      },
+      {
+        "round": 1480,
+        "unit": 2,
+        "group": 10,
+        "ready": 3,
+        "quorum": 5,
+        "phase": "rally"
+      },
+      {
+        "round": 1480,
+        "unit": 3,
+        "group": 10,
+        "ready": 0,
+        "quorum": 5,
+        "phase": "rally"
+      },
+      {
+        "round": 1480,
+        "unit": 5,
+        "group": 10,
+        "ready": 3,
+        "quorum": 5,
+        "phase": "rally"
+      },
+      {
+        "round": 1481,
+        "unit": 5,
+        "group": 10,
+        "ready": 5,
+        "quorum": 5,
+        "phase": "assault"
+      },
+      {
+        "round": 1483,
+        "unit": 0,
+        "group": 10,
+        "ready": 6,
+        "quorum": 5,
+        "phase": "assault"
+      },
+      {
+        "round": 1483,
+        "unit": 2,
+        "group": 10,
+        "ready": 5,
+        "quorum": 5,
+        "phase": "assault"
+      },
+      {
+        "round": 1560,
+        "unit": 3,
+        "group": 10,
+        "ready": 0,
+        "quorum": 5,
+        "phase": "rally"
+      },
+      {
+        "round": 1600,
+        "unit": 3,
+        "group": 10,
+        "ready": 0,
+        "quorum": 5,
+        "phase": "rally"
+      },
+      {
+        "round": 1640,
+        "unit": 3,
+        "group": 10,
+        "ready": 0,
+        "quorum": 5,
+        "phase": "rally"
+      },
+      {
+        "round": 1800,
+        "unit": 0,
+        "group": 10,
+        "ready": 1,
+        "quorum": 5,
+        "phase": "rally"
+      },
+      {
+        "round": 1800,
+        "unit": 1,
+        "group": 10,
+        "ready": 0,
+        "quorum": 5,
+        "phase": "rally"
+      },
+      {
+        "round": 1800,
+        "unit": 2,
+        "group": 10,
+        "ready": 0,
+        "quorum": 5,
+        "phase": "rally"
+      },
+      {
+        "round": 1800,
+        "unit": 3,
+        "group": 10,
+        "ready": 1,
+        "quorum": 5,
+        "phase": "rally"
+      },
+      {
+        "round": 1800,
+        "unit": 4,
+        "group": 10,
+        "ready": 0,
+        "quorum": 5,
+        "phase": "rally"
+      },
+      {
+        "round": 1800,
+        "unit": 5,
+        "group": 10,
+        "ready": 1,
+        "quorum": 5,
+        "phase": "rally"
+      },
+      {
+        "round": 1810,
+        "unit": 4,
+        "group": 10,
+        "ready": 5,
+        "quorum": 5,
+        "phase": "assault"
+      },
+      {
+        "round": 1812,
+        "unit": 1,
+        "group": 10,
+        "ready": 5,
+        "quorum": 5,
+        "phase": "assault"
+      },
+      {
+        "round": 1813,
+        "unit": 0,
+        "group": 10,
+        "ready": 5,
+        "quorum": 5,
+        "phase": "assault"
+      },
+      {
+        "round": 1880,
+        "unit": 2,
+        "group": 10,
+        "ready": 1,
+        "quorum": 5,
+        "phase": "rally"
+      },
+      {
+        "round": 1880,
+        "unit": 3,
+        "group": 10,
+        "ready": 1,
+        "quorum": 5,
+        "phase": "rally"
+      },
+      {
+        "round": 1880,
+        "unit": 5,
+        "group": 10,
+        "ready": 1,
+        "quorum": 5,
+        "phase": "rally"
+      },
+      {
+        "round": 1904,
+        "unit": 3,
+        "group": 10,
+        "ready": 5,
+        "quorum": 5,
+        "phase": "assault"
+      },
+      {
+        "round": 1907,
+        "unit": 5,
+        "group": 10,
+        "ready": 5,
+        "quorum": 5,
+        "phase": "assault"
+      },
+      {
+        "round": 1908,
+        "unit": 2,
+        "group": 10,
+        "ready": 5,
+        "quorum": 5,
+        "phase": "assault"
+      }
+    ],
+    "state_log_tail": [
+      "[r1925] stellar pos=(5,5) hp=1125/1125 gems=0 gold=15 mode=farm farm=approach target=10 errs=376 fuel=72912",
+      "[r1925] heartofruin pos=(56,24) hp=1235/1500 gems=0 gold=0 mode=farm farm=capture target=10 errs=194 fuel=68297",
+      "[r1925] ren pos=(57,24) hp=1576/1900 gems=0 gold=25 mode=farm farm=capture target=10 errs=289 fuel=66342",
+      "[r1925] cassi pos=(56,22) hp=709/925 gems=0 gold=170 mode=farm farm=leave-reward target=-1 errs=537 fuel=60622",
+      "[r1925] issac pos=(55,24) hp=1140/1140 gems=0 gold=15 mode=farm farm=capture target=10 errs=174 fuel=57784",
+      "[r1925] ryth pos=(58,24) hp=1276/1600 gems=0 gold=5 mode=farm farm=capture target=10 errs=274 fuel=64944",
+      "[r1950] stellar pos=(28,8) hp=1125/1125 gems=0 gold=15 mode=farm farm=wait-respawn target=10 errs=376 fuel=58357",
+      "[r1950] heartofruin pos=(29,0) hp=1235/1500 gems=40 gold=155 mode=tribute farm=- target=-1 errs=194 fuel=40484",
+      "[r1950] ren pos=(25,17) hp=1676/2000 gems=40 gold=0 mode=tribute farm=- target=-1 errs=289 fuel=52313",
+      "[r1950] cassi pos=(50,10) hp=709/925 gems=0 gold=170 mode=farm farm=travel target=-1 errs=537 fuel=69927",
+      "[r1950] issac pos=(30,0) hp=1140/1140 gems=40 gold=170 mode=tribute farm=- target=-1 errs=174 fuel=44748",
+      "[r1950] ryth pos=(37,0) hp=1276/1600 gems=40 gold=160 mode=tribute farm=- target=-1 errs=274 fuel=40125"
+    ]
+  },
+  {
+    "match": "316f553e-8dc5-4827-9814-c80ff952fb80",
+    "map": "01elk-arena",
+    "seat": "A",
+    "won": false,
+    "bank": 96,
+    "assault_logs": 18,
+    "rally_logs": 13,
+    "events": [
+      {
+        "round": 360,
+        "unit": 0,
+        "group": 0,
+        "ready": 2,
+        "quorum": 5,
+        "phase": "rally"
+      },
+      {
+        "round": 360,
+        "unit": 1,
+        "group": 0,
+        "ready": 2,
+        "quorum": 5,
+        "phase": "rally"
+      },
+      {
+        "round": 360,
+        "unit": 2,
+        "group": 0,
+        "ready": 0,
+        "quorum": 5,
+        "phase": "rally"
+      },
+      {
+        "round": 360,
+        "unit": 3,
+        "group": 0,
+        "ready": 5,
+        "quorum": 5,
+        "phase": "assault"
+      },
+      {
+        "round": 360,
+        "unit": 4,
+        "group": 0,
+        "ready": 5,
+        "quorum": 5,
+        "phase": "assault"
+      },
+      {
+        "round": 360,
+        "unit": 5,
+        "group": 0,
+        "ready": 0,
+        "quorum": 5,
+        "phase": "rally"
+      },
+      {
+        "round": 361,
+        "unit": 1,
+        "group": 0,
+        "ready": 5,
+        "quorum": 5,
+        "phase": "assault"
+      },
+      {
+        "round": 397,
+        "unit": 2,
+        "group": 0,
+        "ready": 5,
+        "quorum": 5,
+        "phase": "assault"
+      },
+      {
+        "round": 397,
+        "unit": 5,
+        "group": 0,
+        "ready": 5,
+        "quorum": 5,
+        "phase": "assault"
+      },
+      {
+        "round": 398,
+        "unit": 0,
+        "group": 0,
+        "ready": 5,
+        "quorum": 5,
+        "phase": "assault"
+      },
+      {
+        "round": 720,
+        "unit": 0,
+        "group": 0,
+        "ready": 1,
+        "quorum": 5,
+        "phase": "rally"
+      },
+      {
+        "round": 720,
+        "unit": 1,
+        "group": 0,
+        "ready": 2,
+        "quorum": 5,
+        "phase": "rally"
+      },
+      {
+        "round": 720,
+        "unit": 2,
+        "group": 0,
+        "ready": 1,
+        "quorum": 5,
+        "phase": "rally"
+      },
+      {
+        "round": 720,
+        "unit": 5,
+        "group": 0,
+        "ready": 1,
+        "quorum": 5,
+        "phase": "rally"
+      },
+      {
+        "round": 754,
+        "unit": 5,
+        "group": 0,
+        "ready": 5,
+        "quorum": 5,
+        "phase": "assault"
+      },
+      {
+        "round": 756,
+        "unit": 3,
+        "group": 0,
+        "ready": 6,
+        "quorum": 5,
+        "phase": "assault"
+      },
+      {
+        "round": 756,
+        "unit": 4,
+        "group": 0,
+        "ready": 6,
+        "quorum": 5,
+        "phase": "assault"
+      },
+      {
+        "round": 757,
+        "unit": 1,
+        "group": 0,
+        "ready": 6,
+        "quorum": 5,
+        "phase": "assault"
+      },
+      {
+        "round": 757,
+        "unit": 2,
+        "group": 0,
+        "ready": 6,
+        "quorum": 5,
+        "phase": "assault"
+      },
+      {
+        "round": 758,
+        "unit": 0,
+        "group": 0,
+        "ready": 6,
+        "quorum": 5,
+        "phase": "assault"
+      },
+      {
+        "round": 1079,
+        "unit": 2,
+        "group": 0,
+        "ready": 6,
+        "quorum": 5,
+        "phase": "assault"
+      },
+      {
+        "round": 1080,
+        "unit": 0,
+        "group": 0,
+        "ready": 1,
+        "quorum": 5,
+        "phase": "rally"
+      },
+      {
+        "round": 1080,
+        "unit": 1,
+        "group": 0,
+        "ready": 0,
+        "quorum": 5,
+        "phase": "rally"
+      },
+      {
+        "round": 1080,
+        "unit": 3,
+        "group": 0,
+        "ready": 2,
+        "quorum": 5,
+        "phase": "rally"
+      },
+      {
+        "round": 1080,
+        "unit": 4,
+        "group": 0,
+        "ready": 1,
+        "quorum": 5,
+        "phase": "rally"
+      },
+      {
+        "round": 1080,
+        "unit": 5,
+        "group": 0,
+        "ready": 1,
+        "quorum": 5,
+        "phase": "rally"
+      },
+      {
+        "round": 1089,
+        "unit": 3,
+        "group": 0,
+        "ready": 6,
+        "quorum": 5,
+        "phase": "assault"
+      },
+      {
+        "round": 1090,
+        "unit": 0,
+        "group": 0,
+        "ready": 6,
+        "quorum": 5,
+        "phase": "assault"
+      },
+      {
+        "round": 1090,
+        "unit": 4,
+        "group": 0,
+        "ready": 5,
+        "quorum": 5,
+        "phase": "assault"
+      },
+      {
+        "round": 1091,
+        "unit": 1,
+        "group": 0,
+        "ready": 5,
+        "quorum": 5,
+        "phase": "assault"
+      },
+      {
+        "round": 1104,
+        "unit": 5,
+        "group": 0,
+        "ready": 6,
+        "quorum": 5,
+        "phase": "assault"
+      }
+    ],
+    "state_log_tail": [
+      "[r1325] stellar pos=(11,4) hp=1125/1125 gems=0 gold=140 mode=farm farm=fight-camp target=21 errs=130 fuel=65073",
+      "[r1325] heartofruin pos=(-1,-1) hp=0/1500 gems=0 gold=20 mode=dead farm=- target=-1 errs=67 fuel=99100",
+      "[r1325] ren pos=(20,11) hp=1700/1700 gems=0 gold=80 mode=farm farm=approach target=18 errs=86 fuel=70898",
+      "[r1325] cassi pos=(-1,-1) hp=0/925 gems=0 gold=0 mode=dead farm=- target=-1 errs=76 fuel=99100",
+      "[r1325] issac pos=(-1,-1) hp=0/1140 gems=0 gold=0 mode=dead farm=- target=-1 errs=75 fuel=99100",
+      "[r1325] ryth pos=(5,15) hp=2000/2000 gems=0 gold=50 mode=farm farm=approach target=25 errs=104 fuel=63819",
+      "[r1350] stellar pos=(19,14) hp=1125/1125 gems=0 gold=0 mode=farm farm=approach target=11 errs=132 fuel=37190",
+      "[r1350] heartofruin pos=(-1,-1) hp=0/1500 gems=0 gold=20 mode=dead farm=- target=-1 errs=67 fuel=90535",
+      "[r1350] ren pos=(3,37) hp=1800/1800 gems=0 gold=60 mode=farm farm=approach target=10 errs=86 fuel=60960",
+      "[r1350] cassi pos=(-1,-1) hp=0/925 gems=0 gold=0 mode=dead farm=- target=-1 errs=76 fuel=90580",
+      "[r1350] issac pos=(-1,-1) hp=0/1140 gems=0 gold=0 mode=dead farm=- target=-1 errs=75 fuel=90535",
+      "[r1350] ryth pos=(1,6) hp=2000/2000 gems=0 gold=90 mode=farm farm=wait-respawn target=5 errs=104 fuel=54226"
+    ]
+  },
+  {
+    "match": "22c4980d-a79c-4b8f-b789-50a9eda3a010",
+    "map": "01big-world",
+    "seat": "A",
+    "won": false,
+    "bank": 101,
+    "assault_logs": 0,
+    "rally_logs": 0,
+    "events": [],
+    "state_log_tail": [
+      "[r975] cassi pos=(41,4) hp=600/600 gems=4 gold=60 mode=farm farm=approach target=3 errs=5 fuel=32376",
+      "[r975] issac pos=(41,16) hp=900/900 gems=4 gold=0 mode=farm farm=approach target=2 errs=1 fuel=35984",
+      "[r975] ryth pos=(45,28) hp=1200/1200 gems=4 gold=0 mode=farm farm=approach target=10 errs=0 fuel=32503",
+      "[r1000] stellar pos=(68,19) hp=837/1125 gems=4 gold=80 mode=farm farm=approach target=13 errs=5 fuel=31212",
+      "[r1000] ryth pos=(62,27) hp=1200/1200 gems=4 gold=0 mode=farm farm=approach target=18 errs=0 fuel=28969",
+      "[r1025] cassi pos=(13,26) hp=600/600 gems=4 gold=60 mode=farm farm=approach target=3 errs=5 fuel=32634",
+      "[r1025] issac pos=(47,21) hp=900/900 gems=4 gold=0 mode=unstick farm=- target=-1 errs=1 fuel=34536",
+      "[r1075] stellar pos=(66,17) hp=837/1125 gems=4 gold=80 mode=farm farm=fuel-wait target=-1 errs=5 fuel=31280",
+      "[r1075] ren pos=(11,36) hp=900/900 gems=4 gold=40 mode=farm farm=approach target=0 errs=19 fuel=34187",
+      "[r1075] cassi pos=(15,26) hp=600/600 gems=4 gold=60 mode=farm farm=approach target=3 errs=5 fuel=34877",
+      "[r1075] ryth pos=(60,26) hp=1200/1200 gems=4 gold=0 mode=farm farm=approach target=18 errs=0 fuel=27982",
+      "[r1100] ryth pos=(61,26) hp=1200/1200 gems=4 gold=0 mode=farm farm=approach target=18 errs=0 fuel=28935"
+    ]
+  },
+  {
+    "match": "ad3489d5-038e-47e9-bdb1-663f1ad34727",
+    "map": "00stampede",
+    "seat": "B",
+    "won": true,
+    "bank": 1040,
+    "assault_logs": 22,
+    "rally_logs": 46,
+    "events": [
+      {
+        "round": 360,
+        "unit": 0,
+        "group": 10,
+        "ready": 0,
+        "quorum": 5,
+        "phase": "rally"
+      },
+      {
+        "round": 360,
+        "unit": 1,
+        "group": 10,
+        "ready": 0,
+        "quorum": 5,
+        "phase": "rally"
+      },
+      {
+        "round": 360,
+        "unit": 2,
+        "group": 10,
+        "ready": 1,
+        "quorum": 5,
+        "phase": "rally"
+      },
+      {
+        "round": 360,
+        "unit": 3,
+        "group": 10,
+        "ready": 0,
+        "quorum": 5,
+        "phase": "rally"
+      },
+      {
+        "round": 360,
+        "unit": 4,
+        "group": 10,
+        "ready": 1,
+        "quorum": 5,
+        "phase": "rally"
+      },
+      {
+        "round": 360,
+        "unit": 5,
+        "group": 10,
+        "ready": 0,
+        "quorum": 5,
+        "phase": "rally"
+      },
+      {
+        "round": 386,
+        "unit": 2,
+        "group": 10,
+        "ready": 5,
+        "quorum": 5,
+        "phase": "assault"
+      },
+      {
+        "round": 390,
+        "unit": 4,
+        "group": 10,
+        "ready": 5,
+        "quorum": 5,
+        "phase": "assault"
+      },
+      {
+        "round": 390,
+        "unit": 5,
+        "group": 10,
+        "ready": 5,
+        "quorum": 5,
+        "phase": "assault"
+      },
+      {
+        "round": 391,
+        "unit": 0,
+        "group": 10,
+        "ready": 5,
+        "quorum": 5,
+        "phase": "assault"
+      },
+      {
+        "round": 391,
+        "unit": 1,
+        "group": 10,
+        "ready": 5,
+        "quorum": 5,
+        "phase": "assault"
+      },
+      {
+        "round": 400,
+        "unit": 3,
+        "group": 10,
+        "ready": 0,
+        "quorum": 5,
+        "phase": "rally"
+      },
+      {
+        "round": 480,
+        "unit": 3,
+        "group": 10,
+        "ready": 0,
+        "quorum": 5,
+        "phase": "rally"
+      },
+      {
+        "round": 520,
+        "unit": 3,
+        "group": 10,
+        "ready": 0,
+        "quorum": 5,
+        "phase": "rally"
+      },
+      {
+        "round": 560,
+        "unit": 3,
+        "group": 10,
+        "ready": 0,
+        "quorum": 5,
+        "phase": "rally"
+      },
+      {
+        "round": 720,
+        "unit": 1,
+        "group": 10,
+        "ready": 0,
+        "quorum": 5,
+        "phase": "rally"
+      },
+      {
+        "round": 720,
+        "unit": 2,
+        "group": 10,
+        "ready": 0,
+        "quorum": 5,
+        "phase": "rally"
+      },
+      {
+        "round": 720,
+        "unit": 3,
+        "group": 10,
+        "ready": 0,
+        "quorum": 5,
+        "phase": "rally"
+      },
+      {
+        "round": 720,
+        "unit": 4,
+        "group": 10,
+        "ready": 0,
+        "quorum": 5,
+        "phase": "rally"
+      },
+      {
+        "round": 720,
+        "unit": 5,
+        "group": 10,
+        "ready": 0,
+        "quorum": 5,
+        "phase": "rally"
+      },
+      {
+        "round": 760,
+        "unit": 0,
+        "group": 10,
+        "ready": 0,
+        "quorum": 5,
+        "phase": "rally"
+      },
+      {
+        "round": 760,
+        "unit": 1,
+        "group": 10,
+        "ready": 0,
+        "quorum": 5,
+        "phase": "rally"
+      },
+      {
+        "round": 760,
+        "unit": 2,
+        "group": 10,
+        "ready": 0,
+        "quorum": 5,
+        "phase": "rally"
+      },
+      {
+        "round": 760,
+        "unit": 3,
+        "group": 10,
+        "ready": 0,
+        "quorum": 5,
+        "phase": "rally"
+      },
+      {
+        "round": 760,
+        "unit": 4,
+        "group": 10,
+        "ready": 0,
+        "quorum": 5,
+        "phase": "rally"
+      },
+      {
+        "round": 760,
+        "unit": 5,
+        "group": 10,
+        "ready": 0,
+        "quorum": 5,
+        "phase": "rally"
+      },
+      {
+        "round": 800,
+        "unit": 0,
+        "group": 10,
+        "ready": 1,
+        "quorum": 5,
+        "phase": "rally"
+      },
+      {
+        "round": 800,
+        "unit": 1,
+        "group": 10,
+        "ready": 0,
+        "quorum": 5,
+        "phase": "rally"
+      },
+      {
+        "round": 800,
+        "unit": 2,
+        "group": 10,
+        "ready": 1,
+        "quorum": 5,
+        "phase": "rally"
+      },
+      {
+        "round": 800,
+        "unit": 3,
+        "group": 10,
+        "ready": 1,
+        "quorum": 5,
+        "phase": "rally"
+      },
+      {
+        "round": 800,
+        "unit": 4,
+        "group": 10,
+        "ready": 1,
+        "quorum": 5,
+        "phase": "rally"
+      },
+      {
+        "round": 800,
+        "unit": 5,
+        "group": 10,
+        "ready": 1,
+        "quorum": 5,
+        "phase": "rally"
+      },
+      {
+        "round": 820,
+        "unit": 2,
+        "group": 10,
+        "ready": 5,
+        "quorum": 5,
+        "phase": "assault"
+      },
+      {
+        "round": 820,
+        "unit": 3,
+        "group": 10,
+        "ready": 5,
+        "quorum": 5,
+        "phase": "assault"
+      },
+      {
+        "round": 820,
+        "unit": 5,
+        "group": 10,
+        "ready": 5,
+        "quorum": 5,
+        "phase": "assault"
+      },
+      {
+        "round": 821,
+        "unit": 0,
+        "group": 10,
+        "ready": 5,
+        "quorum": 5,
+        "phase": "assault"
+      },
+      {
+        "round": 821,
+        "unit": 4,
+        "group": 10,
+        "ready": 6,
+        "quorum": 5,
+        "phase": "assault"
+      },
+      {
+        "round": 823,
+        "unit": 1,
+        "group": 10,
+        "ready": 6,
+        "quorum": 5,
+        "phase": "assault"
+      },
+      {
+        "round": 1080,
+        "unit": 0,
+        "group": 10,
+        "ready": 0,
+        "quorum": 5,
+        "phase": "rally"
+      },
+      {
+        "round": 1080,
+        "unit": 1,
+        "group": 10,
+        "ready": 0,
+        "quorum": 5,
+        "phase": "rally"
+      },
+      {
+        "round": 1080,
+        "unit": 2,
+        "group": 10,
+        "ready": 0,
+        "quorum": 5,
+        "phase": "rally"
+      },
+      {
+        "round": 1080,
+        "unit": 3,
+        "group": 10,
+        "ready": 0,
+        "quorum": 5,
+        "phase": "rally"
+      },
+      {
+        "round": 1080,
+        "unit": 4,
+        "group": 10,
+        "ready": 0,
+        "quorum": 5,
+        "phase": "rally"
+      },
+      {
+        "round": 1080,
+        "unit": 5,
+        "group": 10,
+        "ready": 0,
+        "quorum": 5,
+        "phase": "rally"
+      },
+      {
+        "round": 1103,
+        "unit": 3,
+        "group": 10,
+        "ready": 5,
+        "quorum": 5,
+        "phase": "assault"
+      },
+      {
+        "round": 1105,
+        "unit": 4,
+        "group": 10,
+        "ready": 5,
+        "quorum": 5,
+        "phase": "assault"
+      },
+      {
+        "round": 1105,
+        "unit": 5,
+        "group": 10,
+        "ready": 5,
+        "quorum": 5,
+        "phase": "assault"
+      },
+      {
+        "round": 1106,
+        "unit": 0,
+        "group": 10,
+        "ready": 5,
+        "quorum": 5,
+        "phase": "assault"
+      },
+      {
+        "round": 1106,
+        "unit": 1,
+        "group": 10,
+        "ready": 5,
+        "quorum": 5,
+        "phase": "assault"
+      },
+      {
+        "round": 1106,
+        "unit": 2,
+        "group": 10,
+        "ready": 5,
+        "quorum": 5,
+        "phase": "assault"
+      },
+      {
+        "round": 1440,
+        "unit": 0,
+        "group": 10,
+        "ready": 2,
+        "quorum": 5,
+        "phase": "rally"
+      },
+      {
+        "round": 1440,
+        "unit": 1,
+        "group": 10,
+        "ready": 2,
+        "quorum": 5,
+        "phase": "rally"
+      },
+      {
+        "round": 1440,
+        "unit": 3,
+        "group": 10,
+        "ready": 0,
+        "quorum": 5,
+        "phase": "rally"
+      },
+      {
+        "round": 1440,
+        "unit": 4,
+        "group": 10,
+        "ready": 0,
+        "quorum": 5,
+        "phase": "rally"
+      },
+      {
+        "round": 1480,
+        "unit": 0,
+        "group": 10,
+        "ready": 2,
+        "quorum": 5,
+        "phase": "rally"
+      },
+      {
+        "round": 1480,
+        "unit": 1,
+        "group": 10,
+        "ready": 2,
+        "quorum": 5,
+        "phase": "rally"
+      },
+      {
+        "round": 1480,
+        "unit": 2,
+        "group": 10,
+        "ready": 0,
+        "quorum": 5,
+        "phase": "rally"
+      },
+      {
+        "round": 1480,
+        "unit": 3,
+        "group": 10,
+        "ready": 0,
+        "quorum": 5,
+        "phase": "rally"
+      },
+      {
+        "round": 1480,
+        "unit": 4,
+        "group": 10,
+        "ready": 2,
+        "quorum": 5,
+        "phase": "rally"
+      },
+      {
+        "round": 1490,
+        "unit": 3,
+        "group": 10,
+        "ready": 5,
+        "quorum": 5,
+        "phase": "assault"
+      },
+      {
+        "round": 1490,
+        "unit": 4,
+        "group": 10,
+        "ready": 5,
+        "quorum": 5,
+        "phase": "assault"
+      },
+      {
+        "round": 1491,
+        "unit": 0,
+        "group": 10,
+        "ready": 5,
+        "quorum": 5,
+        "phase": "assault"
+      },
+      {
+        "round": 1491,
+        "unit": 1,
+        "group": 10,
+        "ready": 5,
+        "quorum": 5,
+        "phase": "assault"
+      },
+      {
+        "round": 1491,
+        "unit": 2,
+        "group": 10,
+        "ready": 5,
+        "quorum": 5,
+        "phase": "assault"
+      },
+      {
+        "round": 1520,
+        "unit": 5,
+        "group": 10,
+        "ready": 0,
+        "quorum": 5,
+        "phase": "rally"
+      },
+      {
+        "round": 1560,
+        "unit": 5,
+        "group": 10,
+        "ready": 0,
+        "quorum": 5,
+        "phase": "rally"
+      },
+      {
+        "round": 1600,
+        "unit": 5,
+        "group": 10,
+        "ready": 0,
+        "quorum": 5,
+        "phase": "rally"
+      },
+      {
+        "round": 1640,
+        "unit": 5,
+        "group": 10,
+        "ready": 0,
+        "quorum": 5,
+        "phase": "rally"
+      }
+    ],
+    "state_log_tail": [
+      "[r1625] stellar pos=(55,20) hp=988/1125 gems=0 gold=120 mode=kite farm=- target=12 errs=253 fuel=57055",
+      "[r1625] heartofruin pos=(9,45) hp=1500/1500 gems=80 gold=0 mode=tribute farm=- target=-1 errs=222 fuel=67824",
+      "[r1625] ren pos=(51,17) hp=581/1500 gems=80 gold=430 mode=tribute farm=- target=-1 errs=195 fuel=48519",
+      "[r1625] cassi pos=(23,49) hp=925/925 gems=0 gold=30 mode=farm farm=wait-respawn target=10 errs=405 fuel=65854",
+      "[r1625] issac pos=(23,48) hp=1060/1060 gems=0 gold=30 mode=farm farm=wait-respawn target=10 errs=227 fuel=62945",
+      "[r1625] ryth pos=(50,40) hp=5100/5100 gems=0 gold=0 mode=objective-rally farm=objective-rally target=-1 errs=291 fuel=72751",
+      "[r1650] stellar pos=(6,49) hp=1125/1125 gems=0 gold=10 mode=farm farm=wait-respawn target=10 errs=253 fuel=60860",
+      "[r1650] heartofruin pos=(30,24) hp=1500/1500 gems=80 gold=0 mode=channel farm=- target=-1 errs=222 fuel=90234",
+      "[r1650] ren pos=(24,30) hp=1600/1600 gems=80 gold=10 mode=tribute farm=- target=-1 errs=195 fuel=49300",
+      "[r1650] cassi pos=(48,36) hp=925/925 gems=0 gold=30 mode=farm farm=wait-respawn target=10 errs=405 fuel=60506",
+      "[r1650] issac pos=(47,38) hp=1060/1060 gems=0 gold=30 mode=farm farm=wait-respawn target=10 errs=227 fuel=56236",
+      "[r1650] ryth pos=(52,36) hp=5100/5100 gems=0 gold=0 mode=objective-rally farm=objective-rally target=-1 errs=316 fuel=69935"
+    ]
+  },
+  {
+    "match": "83d0bb8d-7217-4c18-b810-5e30971087db",
+    "map": "01elk-arena",
+    "seat": "B",
+    "won": false,
+    "bank": 144,
+    "assault_logs": 14,
+    "rally_logs": 27,
+    "events": [
+      {
+        "round": 389,
+        "unit": 0,
+        "group": 0,
+        "ready": 5,
+        "quorum": 5,
+        "phase": "assault"
+      },
+      {
+        "round": 400,
+        "unit": 1,
+        "group": 0,
+        "ready": 2,
+        "quorum": 5,
+        "phase": "rally"
+      },
+      {
+        "round": 400,
+        "unit": 2,
+        "group": 0,
+        "ready": 0,
+        "quorum": 5,
+        "phase": "rally"
+      },
+      {
+        "round": 400,
+        "unit": 3,
+        "group": 0,
+        "ready": 2,
+        "quorum": 5,
+        "phase": "rally"
+      },
+      {
+        "round": 400,
+        "unit": 4,
+        "group": 0,
+        "ready": 2,
+        "quorum": 5,
+        "phase": "rally"
+      },
+      {
+        "round": 400,
+        "unit": 5,
+        "group": 0,
+        "ready": 2,
+        "quorum": 5,
+        "phase": "rally"
+      },
+      {
+        "round": 462,
+        "unit": 1,
+        "group": 0,
+        "ready": 5,
+        "quorum": 5,
+        "phase": "assault"
+      },
+      {
+        "round": 462,
+        "unit": 2,
+        "group": 0,
+        "ready": 5,
+        "quorum": 5,
+        "phase": "assault"
+      },
+      {
+        "round": 462,
+        "unit": 3,
+        "group": 0,
+        "ready": 5,
+        "quorum": 5,
+        "phase": "assault"
+      },
+      {
+        "round": 462,
+        "unit": 4,
+        "group": 0,
+        "ready": 5,
+        "quorum": 5,
+        "phase": "assault"
+      },
+      {
+        "round": 462,
+        "unit": 5,
+        "group": 0,
+        "ready": 5,
+        "quorum": 5,
+        "phase": "assault"
+      },
+      {
+        "round": 720,
+        "unit": 0,
+        "group": 0,
+        "ready": 1,
+        "quorum": 5,
+        "phase": "rally"
+      },
+      {
+        "round": 720,
+        "unit": 1,
+        "group": 0,
+        "ready": 0,
+        "quorum": 5,
+        "phase": "rally"
+      },
+      {
+        "round": 720,
+        "unit": 2,
+        "group": 0,
+        "ready": 1,
+        "quorum": 5,
+        "phase": "rally"
+      },
+      {
+        "round": 720,
+        "unit": 3,
+        "group": 0,
+        "ready": 1,
+        "quorum": 5,
+        "phase": "rally"
+      },
+      {
+        "round": 720,
+        "unit": 4,
+        "group": 0,
+        "ready": 1,
+        "quorum": 5,
+        "phase": "rally"
+      },
+      {
+        "round": 733,
+        "unit": 3,
+        "group": 0,
+        "ready": 5,
+        "quorum": 5,
+        "phase": "assault"
+      },
+      {
+        "round": 734,
+        "unit": 0,
+        "group": 0,
+        "ready": 5,
+        "quorum": 5,
+        "phase": "assault"
+      },
+      {
+        "round": 734,
+        "unit": 4,
+        "group": 0,
+        "ready": 5,
+        "quorum": 5,
+        "phase": "assault"
+      },
+      {
+        "round": 738,
+        "unit": 1,
+        "group": 0,
+        "ready": 5,
+        "quorum": 5,
+        "phase": "assault"
+      },
+      {
+        "round": 800,
+        "unit": 2,
+        "group": 0,
+        "ready": 0,
+        "quorum": 5,
+        "phase": "rally"
+      },
+      {
+        "round": 800,
+        "unit": 5,
+        "group": 0,
+        "ready": 1,
+        "quorum": 5,
+        "phase": "rally"
+      },
+      {
+        "round": 880,
+        "unit": 5,
+        "group": 0,
+        "ready": 1,
+        "quorum": 5,
+        "phase": "rally"
+      },
+      {
+        "round": 920,
+        "unit": 2,
+        "group": 0,
+        "ready": 0,
+        "quorum": 5,
+        "phase": "rally"
+      },
+      {
+        "round": 920,
+        "unit": 5,
+        "group": 0,
+        "ready": 0,
+        "quorum": 5,
+        "phase": "rally"
+      },
+      {
+        "round": 1080,
+        "unit": 0,
+        "group": 0,
+        "ready": 0,
+        "quorum": 5,
+        "phase": "rally"
+      },
+      {
+        "round": 1080,
+        "unit": 2,
+        "group": 0,
+        "ready": 0,
+        "quorum": 5,
+        "phase": "rally"
+      },
+      {
+        "round": 1080,
+        "unit": 3,
+        "group": 0,
+        "ready": 1,
+        "quorum": 5,
+        "phase": "rally"
+      },
+      {
+        "round": 1080,
+        "unit": 4,
+        "group": 0,
+        "ready": 1,
+        "quorum": 5,
+        "phase": "rally"
+      },
+      {
+        "round": 1120,
+        "unit": 0,
+        "group": 0,
+        "ready": 0,
+        "quorum": 5,
+        "phase": "rally"
+      },
+      {
+        "round": 1120,
+        "unit": 2,
+        "group": 0,
+        "ready": 0,
+        "quorum": 5,
+        "phase": "rally"
+      },
+      {
+        "round": 1120,
+        "unit": 3,
+        "group": 0,
+        "ready": 0,
+        "quorum": 5,
+        "phase": "rally"
+      },
+      {
+        "round": 1120,
+        "unit": 4,
+        "group": 0,
+        "ready": 0,
+        "quorum": 5,
+        "phase": "rally"
+      },
+      {
+        "round": 1152,
+        "unit": 5,
+        "group": 0,
+        "ready": 5,
+        "quorum": 5,
+        "phase": "assault"
+      },
+      {
+        "round": 1153,
+        "unit": 0,
+        "group": 0,
+        "ready": 5,
+        "quorum": 5,
+        "phase": "assault"
+      },
+      {
+        "round": 1153,
+        "unit": 2,
+        "group": 0,
+        "ready": 5,
+        "quorum": 5,
+        "phase": "assault"
+      },
+      {
+        "round": 1153,
+        "unit": 4,
+        "group": 0,
+        "ready": 5,
+        "quorum": 5,
+        "phase": "assault"
+      },
+      {
+        "round": 1160,
+        "unit": 3,
+        "group": 0,
+        "ready": 0,
+        "quorum": 5,
+        "phase": "rally"
+      },
+      {
+        "round": 1200,
+        "unit": 3,
+        "group": 0,
+        "ready": 0,
+        "quorum": 5,
+        "phase": "rally"
+      },
+      {
+        "round": 1240,
+        "unit": 3,
+        "group": 0,
+        "ready": 1,
+        "quorum": 5,
+        "phase": "rally"
+      },
+      {
+        "round": 1280,
+        "unit": 3,
+        "group": 0,
+        "ready": 1,
+        "quorum": 5,
+        "phase": "rally"
+      }
+    ],
+    "state_log_tail": [
+      "[r1275] issac pos=(42,42) hp=1300/1300 gems=0 gold=40 mode=farm farm=capture target=20 errs=128 fuel=66733",
+      "[r1275] ryth pos=(25,21) hp=1628/2200 gems=0 gold=100 mode=farm farm=approach target=23 errs=195 fuel=37143",
+      "[r1300] stellar pos=(37,26) hp=1125/1125 gems=0 gold=10 mode=farm farm=travel target=-1 errs=141 fuel=67821",
+      "[r1300] heartofruin pos=(-1,-1) hp=0/1500 gems=0 gold=0 mode=dead farm=- target=-1 errs=107 fuel=90535",
+      "[r1300] ren pos=(40,17) hp=1700/1700 gems=0 gold=60 mode=farm farm=wait-respawn target=0 errs=285 fuel=57523",
+      "[r1300] cassi pos=(33,23) hp=925/925 gems=0 gold=80 mode=objective-rally farm=objective-rally target=7 errs=252 fuel=62545",
+      "[r1300] issac pos=(46,38) hp=1300/1300 gems=0 gold=80 mode=farm farm=wait-respawn target=0 errs=128 fuel=56310",
+      "[r1300] ryth pos=(-1,-1) hp=0/2300 gems=0 gold=10 mode=dead farm=- target=-1 errs=195 fuel=90535",
+      "[r1325] heartofruin pos=(45,32) hp=1500/1500 gems=0 gold=40 mode=farm farm=approach target=28 errs=108 fuel=32876",
+      "[r1325] cassi pos=(30,22) hp=278/925 gems=0 gold=80 mode=flee/recall farm=- target=0 errs=260 fuel=45708",
+      "[r1325] issac pos=(30,23) hp=380/1300 gems=0 gold=20 mode=flee/recall farm=- target=0 errs=128 fuel=49720",
+      "[r1325] ryth pos=(-1,-1) hp=0/2300 gems=0 gold=10 mode=dead farm=- target=-1 errs=195 fuel=99100"
+    ]
+  },
+  {
+    "match": "ff23018b-277e-46a2-aeae-a43a8b69ca69",
+    "map": "01big-world",
+    "seat": "B",
+    "won": false,
+    "bank": 0,
+    "assault_logs": 0,
+    "rally_logs": 0,
+    "events": [],
+    "state_log_tail": [
+      "[r1025] ren pos=(26,84) hp=1000/1000 gems=15 gold=0 mode=tribute farm=- target=-1 errs=2 fuel=32140",
+      "[r1050] cassi pos=(41,96) hp=600/600 gems=15 gold=130 mode=tribute farm=- target=-1 errs=1 fuel=38499",
+      "[r1050] ryth pos=(41,94) hp=1200/1200 gems=15 gold=130 mode=tribute farm=- target=-1 errs=0 fuel=36101",
+      "[r1075] stellar pos=(29,87) hp=750/750 gems=15 gold=0 mode=tribute farm=- target=-1 errs=4 fuel=30307",
+      "[r1075] heartofruin pos=(41,79) hp=840/1000 gems=4 gold=60 mode=farm farm=approach target=0 errs=0 fuel=33041",
+      "[r1075] ren pos=(26,84) hp=1000/1000 gems=15 gold=0 mode=tribute farm=- target=-1 errs=2 fuel=33133",
+      "[r1075] issac pos=(28,87) hp=900/900 gems=4 gold=0 mode=farm farm=approach target=2 errs=3 fuel=28986",
+      "[r1100] cassi pos=(41,96) hp=600/600 gems=15 gold=130 mode=tribute farm=- target=-1 errs=1 fuel=38499",
+      "[r1100] ryth pos=(41,94) hp=1200/1200 gems=15 gold=130 mode=tribute farm=- target=-1 errs=0 fuel=36101",
+      "[r1125] stellar pos=(29,87) hp=750/750 gems=15 gold=0 mode=tribute farm=- target=-1 errs=4 fuel=30270",
+      "[r1125] heartofruin pos=(44,82) hp=840/1000 gems=4 gold=60 mode=farm farm=approach target=11 errs=0 fuel=34685",
+      "[r1125] ren pos=(26,84) hp=1000/1000 gems=15 gold=0 mode=tribute farm=- target=-1 errs=2 fuel=32140"
+    ]
+  }
+]

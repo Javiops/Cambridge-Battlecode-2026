@@ -1,0 +1,8 @@
+{
+  "fixtures": 220,
+  "v87_wins": 75,
+  "historical_v83_wins": 87,
+  "v87_fuel": 1,
+  "historical_v83_fuel": 70,
+  "limitations": "Historical descriptive comparison with the same map/opponent/seat labels. Current requests pin an earlier opponent submission, but historical B-seat opponent identity and random seed equivalence are not independently certified. Not a controlled causal strength estimate or promotion gate."
+}

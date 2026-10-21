@@ -1,0 +1,65 @@
+{
+  "schema": 1,
+  "experiment": "ppo-topdraft-v8",
+  "parent": "ppo-topdraft-v7",
+  "baseline": "ppo-topdraft-v7",
+  "runtime": {
+    "cli_version": "cambc 3.0.2",
+    "engine_version": "1.0.1",
+    "engine_build_hash": "c3e9ffc8d98c106f86660c58344dc26ced9459a504e2f0d90d88b4c8594c7765"
+  },
+  "identities": {
+    "candidate": "c92a39613426dab54e4e02363cdf7ec50882865329ac869bcc155da9db0c9b89",
+    "baseline": "42650144a523cdd760b320efb067fc3325fb7a1e840b40deb16692a8bc0ba7ea",
+    "starter": "c9a0ca35cf13686680ef4ea00d0bb99f654a79be78382bdb3283604d5fde9795"
+  },
+  "config_sha256": "9c032db0ee82caadd6c21c8eeeac29dc34ef3f1d6b66c5f2600288e01fe6f600",
+  "changes": "ppo-topdraft-v8: finish safe existing banking trips with any positive cargo before optional planning; expect fewer late small-load stalls.",
+  "status": "development_only_not_promoted",
+  "sealed_confirmation_maps_used": false,
+  "promotion_gate_run": false,
+  "uploaded": false,
+  "draft_verified_games": 372,
+  "elapsed_seconds": 90.29821038246155,
+  "summary": {
+    "starter": {
+      "games": 70,
+      "wins": 69,
+      "faults": 0,
+      "fuel_exhausted": 4,
+      "opponent_faults": 0,
+      "by_seat": {
+        "0": {
+          "games": 35,
+          "wins": 35
+        },
+        "1": {
+          "games": 35,
+          "wins": 34
+        }
+      },
+      "mean_banked_gems": 916.8857142857142,
+      "mean_opponent_banked_gems": 105.14285714285714
+    },
+    "baseline": {
+      "games": 302,
+      "wins": 152,
+      "faults": 0,
+      "fuel_exhausted": 102,
+      "opponent_faults": 0,
+      "by_seat": {
+        "0": {
+          "games": 151,
+          "wins": 85
+        },
+        "1": {
+          "games": 151,
+          "wins": 67
+        }
+      },
+      "mean_banked_gems": 696.1556291390729,
+      "mean_opponent_banked_gems": 683.9801324503311
+    }
+  },
+  "per_game_records": "topdraft-v8-vs-parent-games.jsonl"
+}

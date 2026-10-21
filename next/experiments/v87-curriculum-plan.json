@@ -1,0 +1,467 @@
+{
+  "schema": 1,
+  "candidate": "ppo-topdraft-v12",
+  "platform_version": 87,
+  "status": "complete_native_verified",
+  "purpose": "Broader map learning after three paired banking benchmarks; no strategy tuning on confirmation maps.",
+  "planned_groups": 44,
+  "allocation_groups": {
+    "nearby": 24,
+    "stretch": 16,
+    "leader": 4
+  },
+  "combined_with_six_nearby_benchmark_groups": {
+    "nearby_games": 150,
+    "stretch_games": 80,
+    "leader_games": 20
+  },
+  "tasks": [
+    {
+      "task": 0,
+      "opponent": "Tozo's Disciples",
+      "sourceGroup": "44d6496f-e1af-415c-ae6b-6a8e17643495",
+      "maps": [
+        "00ambush",
+        "00contest",
+        "00corners",
+        "00eight",
+        "00elkring"
+      ],
+      "cohort": "nearby",
+      "status": "pair_requested",
+      "groups": [
+        "9d6135a1-2572-4b7b-9971-80788a18fac4",
+        "09dc657f-38a7-4557-8434-8391d518e947"
+      ],
+      "note": "Inspect current rating/rank and adapt cohort selection using actual results."
+    },
+    {
+      "task": 1,
+      "opponent": "Agentic Loop Builders",
+      "sourceGroup": "80f5c4b5-64c2-4a3b-b24a-a5724376d74d",
+      "maps": [
+        "00fragment",
+        "00interlock",
+        "00lanes",
+        "00monolith",
+        "00packs"
+      ],
+      "cohort": "nearby",
+      "status": "pair_requested",
+      "groups": [
+        "fdd570a9-365e-4c0c-9f98-e902db87e97a",
+        "f606ed57-2f8e-434a-8eab-19a3c8bae5d0"
+      ],
+      "note": "Inspect current rating/rank and adapt cohort selection using actual results."
+    },
+    {
+      "task": 2,
+      "opponent": "Dirty Coding",
+      "sourceGroup": "712dbee0-8a10-4f5d-b1c4-a80eff50e49b",
+      "maps": [
+        "00pilgrimage",
+        "00quadrants",
+        "00reverse_spiral",
+        "00rows",
+        "00rushbait_v2"
+      ],
+      "cohort": "nearby",
+      "status": "pair_requested",
+      "groups": [
+        "3fef61e5-f79d-454e-9c4f-0827d54aaf98",
+        "d14c5d60-f267-4493-aacc-62b16f64a807"
+      ],
+      "note": "Inspect current rating/rank and adapt cohort selection using actual results."
+    },
+    {
+      "task": 3,
+      "opponent": "Slawomir Zarzycki",
+      "sourceGroup": "711bc160-300c-4340-b36f-17908f812ffd",
+      "maps": [
+        "00collision",
+        "00expanse",
+        "00stampede",
+        "01elk_arena",
+        "01big_world"
+      ],
+      "cohort": "nearby",
+      "status": "pair_requested",
+      "groups": [
+        "71317caf-1acf-4605-91fa-163d2ad2a06c",
+        "d58a8f81-624d-43ca-b9bd-7e7fc54431bd"
+      ],
+      "note": "Inspect current rating/rank and adapt cohort selection using actual results."
+    },
+    {
+      "task": 4,
+      "opponent": "Cozy Campfire",
+      "sourceGroup": "0f3bb94c-63d9-4ef0-9a8f-22d6533affbf",
+      "maps": [
+        "00ambush",
+        "00contest",
+        "00corners",
+        "00eight",
+        "00elkring"
+      ],
+      "cohort": "nearby",
+      "status": "pair_requested",
+      "groups": [
+        "be5248a7-8e2d-43df-b1fd-96c4119dccf3",
+        "5cc388ed-2a05-4c6a-a696-51e6083f1547"
+      ],
+      "note": "Inspect current rating/rank and adapt cohort selection using actual results."
+    },
+    {
+      "task": 5,
+      "opponent": "Ad Astra",
+      "sourceGroup": "1ca32bf4-8ee5-4973-acb9-ed8bc2d7a54f",
+      "maps": [
+        "00fragment",
+        "00interlock",
+        "00lanes",
+        "00monolith",
+        "00packs"
+      ],
+      "cohort": "nearby",
+      "status": "pair_requested",
+      "groups": [
+        "07fc8124-1b41-4adb-a2b0-6f161a898952",
+        "394652c6-5334-45d4-81cd-d0d8bd85c118"
+      ],
+      "note": "Inspect current rating/rank and adapt cohort selection using actual results."
+    },
+    {
+      "task": 6,
+      "opponent": "Context Overflow",
+      "sourceGroup": "42d4d069-cf0e-417f-9f8d-1ac7165d1406",
+      "maps": [
+        "00pilgrimage",
+        "00quadrants",
+        "00reverse_spiral",
+        "00rows",
+        "00rushbait_v2"
+      ],
+      "cohort": "nearby",
+      "status": "pair_requested",
+      "groups": [
+        "534e63d1-85e7-471e-a11c-b7c2c435328d",
+        "8821a644-e678-44fb-b446-9a47abe94616"
+      ],
+      "note": "Inspect current rating/rank and adapt cohort selection using actual results."
+    },
+    {
+      "task": 7,
+      "opponent": "Preyas",
+      "sourceGroup": "cb42a00f-94b4-4e3a-9b18-9eabb4881bd1",
+      "maps": [
+        "00split",
+        "00swirl",
+        "01boss_battle",
+        "01broken_curve",
+        "01concentrated_wealth"
+      ],
+      "cohort": "nearby",
+      "status": "pair_requested",
+      "groups": [
+        "de064c4d-75a1-46b6-aaad-5fddb880d445",
+        "52497eaf-35d1-4742-9eee-54fb9de9ded1"
+      ],
+      "note": "Inspect current rating/rank and adapt cohort selection using actual results."
+    },
+    {
+      "task": 8,
+      "opponent": "Tozo's Disciples",
+      "sourceGroup": "c0e30cea-54ae-47ab-ad55-772fe0016df9",
+      "maps": [
+        "01corridors",
+        "01fracture",
+        "01gold_rush",
+        "01hooks",
+        "01islands"
+      ],
+      "cohort": "nearby",
+      "status": "pair_requested",
+      "groups": [
+        "a0c0d822-cc7a-4753-a51d-b8274beafa9e",
+        "153f67d4-a3dd-466d-aaf0-6148b3d23e7c"
+      ],
+      "note": "Inspect current rating/rank and adapt cohort selection using actual results."
+    },
+    {
+      "task": 9,
+      "opponent": "Agentic Loop Builders",
+      "sourceGroup": "b6646778-0e4b-4e0f-a5f8-6fd0734ba2cd",
+      "maps": [
+        "01shortcut",
+        "01starfish",
+        "01starvation",
+        "01the_farm",
+        "01yellow_brick_road"
+      ],
+      "cohort": "nearby",
+      "status": "pair_requested",
+      "groups": [
+        "d2c60427-fdf0-4525-87df-4ba6a93cd8f9",
+        "58109aa0-32b8-4af8-a49b-f0ed9cde4f07"
+      ],
+      "note": "Inspect current rating/rank and adapt cohort selection using actual results."
+    },
+    {
+      "task": 10,
+      "opponent": "Slawomir Zarzycki",
+      "sourceGroup": "a2bb3e00-92ba-4545-9a9e-9e9b20cfd00c",
+      "maps": [
+        "00pilgrimage",
+        "00quadrants",
+        "00reverse_spiral",
+        "00rows",
+        "00rushbait_v2"
+      ],
+      "cohort": "nearby",
+      "status": "pair_requested",
+      "groups": [
+        "da50a9d7-131c-42bd-9ff7-cecd9f455596",
+        "3e8c34c4-6684-4b67-bd61-ebd9da67f331"
+      ],
+      "note": "Inspect current rating/rank and adapt cohort selection using actual results."
+    },
+    {
+      "task": 11,
+      "opponent": "Cozy Campfire",
+      "sourceGroup": "cfec517a-d696-407e-ba5b-a189a8e6fb0c",
+      "maps": [
+        "00fragment",
+        "00interlock",
+        "00lanes",
+        "00monolith",
+        "00packs"
+      ],
+      "cohort": "nearby",
+      "status": "pair_requested",
+      "groups": [
+        "f3c18329-28d5-463a-b3cb-1f49bb5ec490",
+        "91e293ff-66ee-474a-bbc1-0ccdc2abee1c"
+      ],
+      "note": "Inspect current rating/rank and adapt cohort selection using actual results."
+    },
+    {
+      "task": 12,
+      "opponent": "NotSoLonely",
+      "sourceGroup": "1674575d-090d-477e-8b0f-b9722dec4237",
+      "maps": [
+        "00split",
+        "00swirl",
+        "01boss_battle",
+        "01broken_curve",
+        "01concentrated_wealth"
+      ],
+      "cohort": "stretch",
+      "status": "pair_requested",
+      "groups": [
+        "918a9639-3b83-4463-9aab-e0c6597b048e",
+        "efe06de8-837a-42e3-8e59-2fb6e61ffeac"
+      ],
+      "note": "Inspect current rating/rank and adapt cohort selection using actual results."
+    },
+    {
+      "task": 13,
+      "opponent": "Pathfinders",
+      "sourceGroup": "7c44d5b1-a00e-499c-b028-2f6a20260204",
+      "maps": [
+        "01corridors",
+        "01fracture",
+        "01gold_rush",
+        "01hooks",
+        "01islands"
+      ],
+      "cohort": "stretch",
+      "status": "pair_requested",
+      "groups": [
+        "6b6418fb-5219-4759-a366-021670a8eb8d",
+        "30bc5aa4-96db-426e-bdaf-ca8a4959c0e5"
+      ],
+      "note": "Inspect current rating/rank and adapt cohort selection using actual results."
+    },
+    {
+      "task": 14,
+      "opponent": "Antifreeze",
+      "sourceGroup": "182efa1b-e086-4cb0-818f-d70f50f650bb",
+      "maps": [
+        "01shortcut",
+        "01starfish",
+        "01starvation",
+        "01the_farm",
+        "01yellow_brick_road"
+      ],
+      "cohort": "stretch",
+      "status": "pair_requested",
+      "groups": [
+        "b554252a-cfaa-493e-b33f-dd6e287e55e9",
+        "7678f745-e57d-47ae-8205-029226cdf037"
+      ],
+      "note": "Inspect current rating/rank and adapt cohort selection using actual results."
+    },
+    {
+      "task": 15,
+      "opponent": "BitShift",
+      "sourceGroup": "4c4202b6-69fc-4033-ae65-7e4e3937d59f",
+      "maps": [
+        "00stampede",
+        "01elk_arena",
+        "00collision",
+        "00rows",
+        "00monolith"
+      ],
+      "cohort": "stretch",
+      "status": "pair_requested",
+      "groups": [
+        "b265c35b-e3ec-43ea-aa60-9f03c7707702",
+        "ef165626-1820-48e4-a689-286986889ad5"
+      ],
+      "note": "Inspect current rating/rank and adapt cohort selection using actual results."
+    },
+    {
+      "task": 16,
+      "opponent": "NotSoLonely",
+      "sourceGroup": "5b3cee15-80c1-4c38-a842-65546ea0978e",
+      "maps": [
+        "01corridors",
+        "01fracture",
+        "01gold_rush",
+        "01hooks",
+        "01islands"
+      ],
+      "cohort": "stretch",
+      "status": "pair_requested",
+      "groups": [
+        "ef442286-ddd6-48e7-8b7b-b225c333bb42",
+        "3c13b581-152b-47b2-9f09-7f327d3bbd86"
+      ],
+      "note": "Inspect current rating/rank and adapt cohort selection using actual results."
+    },
+    {
+      "task": 17,
+      "opponent": "Pathfinders",
+      "sourceGroup": "b0847249-f772-42f9-a343-b4ec34419a1b",
+      "maps": [
+        "01shortcut",
+        "01starfish",
+        "01starvation",
+        "01the_farm",
+        "01yellow_brick_road"
+      ],
+      "cohort": "stretch",
+      "status": "pair_requested",
+      "groups": [
+        "f31792ba-f5fd-4523-81f5-c713fc19250c",
+        "75aca257-7986-4df9-9395-23374acc9be4"
+      ],
+      "note": "Inspect current rating/rank and adapt cohort selection using actual results."
+    },
+    {
+      "task": 18,
+      "opponent": "Antifreeze",
+      "sourceGroup": "393a5cb3-d365-4dd7-add0-cf0303a1ed2d",
+      "maps": [
+        "00stampede",
+        "01elk_arena",
+        "00collision",
+        "00rows",
+        "00monolith"
+      ],
+      "cohort": "stretch",
+      "status": "pair_requested",
+      "groups": [
+        "e1cbfed0-3f8d-42a8-8169-0902a73b7ba1",
+        "c597f1fa-109e-4ea2-b735-b885cb945cff"
+      ],
+      "note": "Inspect current rating/rank and adapt cohort selection using actual results."
+    },
+    {
+      "task": 19,
+      "opponent": "BitShift",
+      "sourceGroup": "c4343b33-055b-4952-86f9-ae5dd28e877e",
+      "maps": [
+        "00split",
+        "00swirl",
+        "01boss_battle",
+        "01broken_curve",
+        "01concentrated_wealth"
+      ],
+      "cohort": "stretch",
+      "status": "pair_requested",
+      "groups": [
+        "3a67c118-5ddc-4065-b3b6-d832bb851c2b",
+        "6d1d6ddf-2ecf-42d4-9ee2-22b402455b02"
+      ],
+      "note": "Inspect current rating/rank and adapt cohort selection using actual results."
+    },
+    {
+      "task": 20,
+      "opponent": "Nyx",
+      "sourceGroup": "54827ebc-28a8-41af-9a1d-8f7614042a75",
+      "maps": [
+        "00collision",
+        "00stampede",
+        "01elk_arena",
+        "01big_world",
+        "00monolith"
+      ],
+      "cohort": "leader",
+      "status": "pair_requested",
+      "groups": [
+        "147aa08d-82d4-4cb0-b955-8dde35d6d150",
+        "971ad0d3-1f39-4431-af67-4e40e3b55679"
+      ],
+      "note": "Inspect current rating/rank and adapt cohort selection using actual results."
+    },
+    {
+      "task": 21,
+      "opponent": "Nyx",
+      "sourceGroup": "e956297c-9a94-4054-9852-750262bdc153",
+      "maps": [
+        "00ambush",
+        "00contest",
+        "01fracture",
+        "01gold_rush",
+        "01the_farm"
+      ],
+      "cohort": "leader",
+      "status": "pair_requested",
+      "groups": [
+        "2e0046fe-5870-40f7-b36f-c2f296aabd81",
+        "ce0ff106-067d-4daf-a01f-e407824d79f5"
+      ],
+      "note": "Inspect current rating/rank and adapt cohort selection using actual results."
+    }
+  ],
+  "execution_order": [
+    0,
+    1,
+    2,
+    12,
+    13,
+    14,
+    3,
+    20,
+    4,
+    5,
+    15,
+    6,
+    16,
+    7,
+    17,
+    8,
+    18,
+    9,
+    19,
+    10,
+    21,
+    11
+  ],
+  "ordering_reason": "Cover all 35 official maps before first leader pair. Keep leader share below 10% as data accrues.",
+  "requested_groups": 44,
+  "collected_groups": 44,
+  "last_observed_allowance": 0,
+  "cohort_interpretation": "Labels preserve the predeclared historical comparison strata. Current observed ratings/ranks are recorded per request; they overlap and do not prove linear strength or a current difficulty ordering. Reassess difficulty using matched outcomes."
+}

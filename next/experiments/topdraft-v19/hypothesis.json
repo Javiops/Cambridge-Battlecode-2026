@@ -1,0 +1,29 @@
+{
+  "candidate": "ppo-topdraft-v19",
+  "parent": "ppo-topdraft-v18",
+  "created_utc": "2026-10-21T04:11:36.509186+00:00",
+  "change": "Propagated joins expire after16 rounds from first receipt; stale receivers fall through to unchanged local assembly/quorum. Log receipt/age on joins and once-per-campaign stale rejections.",
+  "evidence": "V92 Preyas elk A:Stellar joins560 after516 decision,dead at beginning516/517/540;two allies dead and squad scattered at560. Authorization age44,receipt age unlogged in v18.",
+  "predicted_metrics": [
+    "No logged propagated join older than16",
+    "Prompt first-cycle team release preserved",
+    "Stale rejections resume useful local staging/quorum rather than stalling",
+    "Fresh objective collection,credited clears,deposits,deaths and runtime"
+  ],
+  "unchanged": [
+    "65% entry health",
+    "50% counted-ally health",
+    "Distance5",
+    "80% local authorization quorum",
+    "Clock120/360/240",
+    "Two-round message protection",
+    "Local danger detection",
+    "Claims/cooldown bytes0\u20136",
+    "Survival/combat/banking priorities",
+    "Initialization reserve",
+    "Draft/RNG/observation/model"
+  ],
+  "limits": "Late init/reset may first observe an old tag;already-latched local release after later death is outside this change.16 is predeclared development choice,not confirmation-tuned. Stale suppression alone is not improved play.",
+  "confirmation_games": 0,
+  "patch": "Local official1.0.1/buildc3e9ffc8. Verify actual server patch and CLI distribution before live trial."
+}

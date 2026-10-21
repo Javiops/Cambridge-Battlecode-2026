@@ -1,0 +1,41 @@
+{
+  "candidate": "ppo-topdraft-v19",
+  "baseline": "ppo-topdraft-v6",
+  "summary": {
+    "sole": {
+      "games": 24,
+      "wins": 10,
+      "faults": 0,
+      "fuel_exhausted": 0,
+      "mean_bank": 242.08333333333334,
+      "mean_deaths": 34.291666666666664,
+      "mean_fresh": 267.0,
+      "no_fresh": 3,
+      "fresh_before_350": 8,
+      "first_cycle_all_released": 24,
+      "mean_first_cycle_logged_release_fraction": 1.0,
+      "shared_joins": 511,
+      "stale_rejections": 9,
+      "joins_over16_after_latest_logged_authorization": 0,
+      "receipt_age_max": 13
+    },
+    "split": {
+      "games": 24,
+      "wins": 10,
+      "faults": 0,
+      "fuel_exhausted": 0,
+      "mean_bank": 215.16666666666666,
+      "mean_deaths": 44.375,
+      "mean_fresh": 227.0,
+      "no_fresh": 9,
+      "fresh_before_350": 8,
+      "first_cycle_all_released": 0,
+      "mean_first_cycle_logged_release_fraction": 0.0,
+      "shared_joins": 0,
+      "stale_rejections": 0,
+      "joins_over16_after_latest_logged_authorization": 0,
+      "receipt_age_max": null
+    }
+  },
+  "limits": "Development only. V18 has no receipt-age logs; delay since latest logged authorization is a different descriptive metric. V19 age logs validate allowed/rejected receipt decisions. Releases do not prove arrival,damage,capture or safe banking."
+}

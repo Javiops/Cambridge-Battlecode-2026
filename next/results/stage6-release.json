@@ -3655,7 +3655,7 @@
     "lab/runtime-check.mjs": "c9d21bb33ab828f6eb53118d9787dda12aadf39c3e75454b82829db90a1f967b",
     "lab/ppo-actor.mjs": "d152076dfcd825d7a9ab8b71d93242c788cbf8d18519b6052e6f719b1a94ed33",
     "lab/engine.mjs": "390e898cfcc869ddd9e8212a004681da2c69224623deb946111f3c7935356a0b",
-    "lab.toml": "265a83b3493edf7601c6e219d4029af63a94e1798621bb40dfaf2cd896be03f1"
+    "lab.toml": "3d1dec4b9922d856567fb1f5f986a3ba6906f1e390be0c1c4eb8ec4b4bcefd81"
   },
   "confirmation_games": 0,
   "promoted": false

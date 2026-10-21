@@ -1,0 +1,316 @@
+{
+  "schema": 2,
+  "startedUtc": "2026-10-21T00:16:15.209655+00:00",
+  "purpose": "Field-check quiet channel cover after broad release checks; preserve v87 rollback and frozen opponent pairs.",
+  "stages": [
+    {
+      "candidate": "ppo-topdraft-v14",
+      "platform_version": 88,
+      "status": "compiled_live_verified",
+      "source_zip_sha256": "6eb3470a10243206ccdfd406634fc9f884438e654c9ea5c3738d98ca26eee1e1",
+      "wasm_sha256": "29b0658fd0b75956baac1eeb864a2b02ed51d2b7973f2525b42afe5ada744f63",
+      "groups": [
+        "ce63f2db-9a1b-4f78-be6e-f1962061b33d",
+        "e6e8077b-78b2-45fc-b93b-d6e6d3731f84",
+        "03ef71fe-eff1-46a7-9a7b-62ecdf2fe8d4",
+        "b152abc8-31e9-4f25-ad00-d68a05e69d30",
+        "9a8837c9-817d-432d-a11f-3cef30fd0d7f",
+        "85e8e958-96a6-4e8f-a722-2c3fc89bc6ec"
+      ],
+      "submission_id": "359be360-3778-40bf-bf67-a8433dc773f7",
+      "server_source_sha256": "6eb3470a10243206ccdfd406634fc9f884438e654c9ea5c3738d98ca26eee1e1",
+      "server_compilation_verified": true,
+      "verifiedUtc": "2026-10-21T00:21:13.537Z",
+      "nativeVerifiedGames": 30
+    }
+  ],
+  "stageIndex": 0,
+  "groups": [
+    {
+      "task": 0,
+      "stage": 0,
+      "version": 88,
+      "opponent": "Preyas",
+      "sourceGroup": "9736fafc-af01-4db0-85dd-6502fe80dd3e",
+      "maps": [
+        "00collision",
+        "00expanse",
+        "00stampede",
+        "01elk_arena",
+        "01big_world"
+      ],
+      "cohort": "nearby",
+      "opponentRankObserved": 110,
+      "opponentRatingObserved": 1705,
+      "seat": "A",
+      "allowanceBefore": 6,
+      "requestedUtc": "2026-10-21T00:28:27.183Z",
+      "outcome": "group_returned",
+      "kind": "unranked",
+      "initiatedByThisAgent": true,
+      "id": "ce63f2db-9a1b-4f78-be6e-f1962061b33d",
+      "collectionStatus": "complete",
+      "queuedVersionVerified": 88,
+      "summaryFiles": [
+        "f6950569-9bbb-4061-bd26-d69096cbf294.json",
+        "89e8888c-36f2-4ed6-868a-d510755d1f9a.json",
+        "6fa1e406-8e28-4c2b-bc80-4ce2487699af.json",
+        "7db08c63-7301-4818-a315-c83f841f35d3.json",
+        "176a1248-31d9-450b-a212-b052b53bb504.json"
+      ],
+      "completedVersionVerified": 88,
+      "collectedUtc": "2026-10-21T00:29:46.381Z"
+    },
+    {
+      "task": 0,
+      "stage": 0,
+      "version": 88,
+      "opponent": "Preyas",
+      "sourceGroup": "9736fafc-af01-4db0-85dd-6502fe80dd3e",
+      "maps": [
+        "00collision",
+        "00expanse",
+        "00stampede",
+        "01elk_arena",
+        "01big_world"
+      ],
+      "cohort": "nearby",
+      "opponentRankObserved": 110,
+      "opponentRatingObserved": 1705,
+      "seat": "B",
+      "allowanceBefore": 5,
+      "requestedUtc": "2026-10-21T00:28:31.410Z",
+      "outcome": "group_returned",
+      "kind": "unranked",
+      "initiatedByThisAgent": true,
+      "id": "e6e8077b-78b2-45fc-b93b-d6e6d3731f84",
+      "collectionStatus": "complete",
+      "queuedVersionVerified": 88,
+      "summaryFiles": [
+        "f1d1d4c8-4230-4112-b94b-af70e7d02957.json",
+        "a37506a4-657a-45ea-a514-efc3d4aaa9d5.json",
+        "ee25ac6c-7d78-4ec3-8f70-2bd5b9bce02e.json",
+        "303b9776-0bf2-42f9-8e5a-b4c489f23e22.json",
+        "cac249fb-3afb-4531-82f9-795954333a71.json"
+      ],
+      "completedVersionVerified": 88,
+      "collectedUtc": "2026-10-21T00:29:55.733Z"
+    },
+    {
+      "task": 1,
+      "stage": 0,
+      "version": 88,
+      "opponent": "Cozy Campfire",
+      "sourceGroup": "be5248a7-8e2d-43df-b1fd-96c4119dccf3",
+      "maps": [
+        "00ambush",
+        "00contest",
+        "00corners",
+        "00eight",
+        "00elkring"
+      ],
+      "cohort": "nearby",
+      "opponentRankObserved": 72,
+      "opponentRatingObserved": 1762,
+      "seat": "A",
+      "allowanceBefore": 4,
+      "requestedUtc": "2026-10-21T00:28:43.058Z",
+      "outcome": "group_returned",
+      "kind": "unranked",
+      "initiatedByThisAgent": true,
+      "id": "03ef71fe-eff1-46a7-9a7b-62ecdf2fe8d4",
+      "collectionStatus": "complete",
+      "queuedVersionVerified": 88,
+      "summaryFiles": [
+        "2d0d14f3-7b48-403b-b459-aec5026adc51.json",
+        "3b2556f9-b8c4-487a-bb72-77d8e79e25c9.json",
+        "fe12e2c9-4d06-4691-aa65-f01c803242df.json",
+        "ff502bdd-4311-47da-ba9d-e32a217712b4.json",
+        "b156f5db-2e82-46ae-aa7b-a27058448b78.json"
+      ],
+      "completedVersionVerified": 88,
+      "collectedUtc": "2026-10-21T00:30:14.196Z"
+    },
+    {
+      "task": 1,
+      "stage": 0,
+      "version": 88,
+      "opponent": "Cozy Campfire",
+      "sourceGroup": "be5248a7-8e2d-43df-b1fd-96c4119dccf3",
+      "maps": [
+        "00ambush",
+        "00contest",
+        "00corners",
+        "00eight",
+        "00elkring"
+      ],
+      "cohort": "nearby",
+      "opponentRankObserved": 72,
+      "opponentRatingObserved": 1762,
+      "seat": "B",
+      "allowanceBefore": 3,
+      "requestedUtc": "2026-10-21T00:28:48.045Z",
+      "outcome": "group_returned",
+      "kind": "unranked",
+      "initiatedByThisAgent": true,
+      "id": "b152abc8-31e9-4f25-ad00-d68a05e69d30",
+      "collectionStatus": "complete",
+      "queuedVersionVerified": 88,
+      "summaryFiles": [
+        "36936d25-57b6-40b3-acc2-391d5efa3bf1.json",
+        "a5289601-cb3a-4e10-aaf2-ecccf659e012.json",
+        "9ea29bdb-2328-41b9-876d-e07b5f591bd8.json",
+        "2a41c2b0-e802-430c-a79f-2c337ee85d58.json",
+        "068b3b17-d3e5-4cd7-b4c2-be83fa473682.json"
+      ],
+      "completedVersionVerified": 88,
+      "collectedUtc": "2026-10-21T00:30:23.957Z"
+    },
+    {
+      "task": 2,
+      "stage": 0,
+      "version": 88,
+      "opponent": "BitShift",
+      "sourceGroup": "b265c35b-e3ec-43ea-aa60-9f03c7707702",
+      "maps": [
+        "00stampede",
+        "01elk_arena",
+        "00collision",
+        "00rows",
+        "00monolith"
+      ],
+      "cohort": "stretch",
+      "opponentRankObserved": 66,
+      "opponentRatingObserved": 1773,
+      "seat": "A",
+      "allowanceBefore": 2,
+      "requestedUtc": "2026-10-21T00:28:51.014Z",
+      "outcome": "group_returned",
+      "kind": "unranked",
+      "initiatedByThisAgent": true,
+      "id": "9a8837c9-817d-432d-a11f-3cef30fd0d7f",
+      "collectionStatus": "complete",
+      "queuedVersionVerified": 88,
+      "summaryFiles": [
+        "ce0a66d5-9f17-492c-b983-6fe06b0e82bf.json",
+        "83ee813c-b6f4-49a8-949e-3c84e80db842.json",
+        "79bd4813-76fa-45a0-acea-85398eaacf5d.json",
+        "eea6f6e3-eae3-4ad2-87cf-d1d538e0c07f.json",
+        "9b8b380a-f3e4-4a32-9db2-ac96821eb2c8.json"
+      ],
+      "completedVersionVerified": 88,
+      "collectedUtc": "2026-10-21T00:30:34.508Z"
+    },
+    {
+      "task": 2,
+      "stage": 0,
+      "version": 88,
+      "opponent": "BitShift",
+      "sourceGroup": "b265c35b-e3ec-43ea-aa60-9f03c7707702",
+      "maps": [
+        "00stampede",
+        "01elk_arena",
+        "00collision",
+        "00rows",
+        "00monolith"
+      ],
+      "cohort": "stretch",
+      "opponentRankObserved": 66,
+      "opponentRatingObserved": 1773,
+      "seat": "B",
+      "allowanceBefore": 1,
+      "requestedUtc": "2026-10-21T00:28:55.590Z",
+      "outcome": "group_returned",
+      "kind": "unranked",
+      "initiatedByThisAgent": true,
+      "id": "85e8e958-96a6-4e8f-a722-2c3fc89bc6ec",
+      "collectionStatus": "complete",
+      "queuedVersionVerified": 88,
+      "summaryFiles": [
+        "026307b9-c1e8-4a55-9926-c2acf548834d.json",
+        "0e71a1c3-f048-43a3-aa11-f0ca383e0dfa.json",
+        "688f748a-2af5-4cdf-afb9-4cf514c1050f.json",
+        "fcd4b768-c93b-4e83-823d-d8e2c7cbb704.json",
+        "4cd59090-182a-4318-9eea-9ab0a03df089.json"
+      ],
+      "completedVersionVerified": 88,
+      "collectedUtc": "2026-10-21T00:30:45.480Z"
+    }
+  ],
+  "pending": null,
+  "initialAllowance": 6,
+  "lastObservedAllowance": 0,
+  "plan": [
+    {
+      "task": 0,
+      "opponent": "Preyas",
+      "sourceGroup": "9736fafc-af01-4db0-85dd-6502fe80dd3e",
+      "maps": [
+        "00collision",
+        "00expanse",
+        "00stampede",
+        "01elk_arena",
+        "01big_world"
+      ],
+      "cohort": "nearby",
+      "status": "pair_complete_native_verified",
+      "groups": [
+        "ce63f2db-9a1b-4f78-be6e-f1962061b33d",
+        "e6e8077b-78b2-45fc-b93b-d6e6d3731f84"
+      ]
+    },
+    {
+      "task": 1,
+      "opponent": "Cozy Campfire",
+      "sourceGroup": "be5248a7-8e2d-43df-b1fd-96c4119dccf3",
+      "maps": [
+        "00ambush",
+        "00contest",
+        "00corners",
+        "00eight",
+        "00elkring"
+      ],
+      "cohort": "nearby",
+      "status": "pair_complete_native_verified",
+      "groups": [
+        "03ef71fe-eff1-46a7-9a7b-62ecdf2fe8d4",
+        "b152abc8-31e9-4f25-ad00-d68a05e69d30"
+      ]
+    },
+    {
+      "task": 2,
+      "opponent": "BitShift",
+      "sourceGroup": "b265c35b-e3ec-43ea-aa60-9f03c7707702",
+      "maps": [
+        "00stampede",
+        "01elk_arena",
+        "00collision",
+        "00rows",
+        "00monolith"
+      ],
+      "cohort": "stretch",
+      "status": "pair_complete_native_verified",
+      "groups": [
+        "9a8837c9-817d-432d-a11f-3cef30fd0d7f",
+        "85e8e958-96a6-4e8f-a722-2c3fc89bc6ec"
+      ]
+    }
+  ],
+  "execution_order": [
+    0,
+    1,
+    2
+  ],
+  "uploadIntent": {
+    "candidate": "ppo-topdraft-v14",
+    "source_zip_sha256": "6eb3470a10243206ccdfd406634fc9f884438e654c9ea5c3738d98ca26eee1e1",
+    "note": "topdraft-v14 | quiet channel cover",
+    "status": "uploaded_selected",
+    "requestedUtc": "2026-10-21T00:16:49.110Z",
+    "platform_version": 88,
+    "submission_id": "359be360-3778-40bf-bf67-a8433dc773f7"
+  },
+  "allowanceObservedUtc": "2026-10-21T00:29:30.323Z",
+  "finalAllowance": 0,
+  "completedUtc": "2026-10-21T00:35:12.813241+00:00"
+}

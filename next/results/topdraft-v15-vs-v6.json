@@ -1,0 +1,67 @@
+{
+  "schema": 1,
+  "experiment": "ppo-topdraft-v15",
+  "parent": "ppo-topdraft-v14",
+  "baseline": "ppo-topdraft-v6",
+  "runtime": {
+    "cli_version": "cambc 3.0.2",
+    "engine_version": "1.0.1",
+    "engine_build_hash": "c3e9ffc8d98c106f86660c58344dc26ced9459a504e2f0d90d88b4c8594c7765"
+  },
+  "identities": {
+    "candidate": "7fbba846d2817771ee77fd8b229a1a05c3fb8e25e0e424e14de3426d08963b0c",
+    "baseline": "f21d27dce9cc364a26c61780367fc0b5c16ce39f643c37929e3b599fe471f534",
+    "starter": "c9a0ca35cf13686680ef4ea00d0bb99f654a79be78382bdb3283604d5fde9795"
+  },
+  "config_sha256": "a3a8dec77a1be9860e316730d1258730d4bbebf593ff7d8b77539c8c16275755",
+  "changes": "ppo-topdraft-v15: one visible snapshot per cover ally, skipping hidden entries; expect one native read per ally without ending the scan early.",
+  "status": "development_only_not_promoted",
+  "sealed_confirmation_maps_used": false,
+  "promotion_gate_run": false,
+  "uploaded": false,
+  "draft_verified_games": 372,
+  "elapsed_seconds": 151.68948316574097,
+  "summary": {
+    "starter": {
+      "games": 70,
+      "wins": 69,
+      "faults": 0,
+      "fuel_exhausted": 0,
+      "opponent_faults": 0,
+      "by_seat": {
+        "0": {
+          "games": 35,
+          "wins": 35
+        },
+        "1": {
+          "games": 35,
+          "wins": 34
+        }
+      },
+      "mean_banked_gems": 922.3,
+      "mean_opponent_banked_gems": 103.35714285714286
+    },
+    "baseline": {
+      "games": 302,
+      "wins": 143,
+      "faults": 0,
+      "fuel_exhausted": 5,
+      "opponent_faults": 0,
+      "by_seat": {
+        "0": {
+          "games": 151,
+          "wins": 74
+        },
+        "1": {
+          "games": 151,
+          "wins": 69
+        }
+      },
+      "mean_banked_gems": 681.8907284768212,
+      "mean_opponent_banked_gems": 717.8609271523179
+    }
+  },
+  "per_game_records": "topdraft-v15-vs-v6-games.jsonl",
+  "independent_rebuild_sha256": "7fbba846d2817771ee77fd8b229a1a05c3fb8e25e0e424e14de3426d08963b0c",
+  "source_zip_sha256": "f7061cf27494acf2f9106326123398f25e38222906be112c62e650d9d5a9a7a9"
+}

@@ -1,0 +1,100 @@
+{
+  "checked_utc": "2026-10-21T07:04:15.597814+00:00",
+  "patch_notes_url": "https://2026a.battlecode.co.uk/game/patch-notes/e251fa42-fb2a-4d9b-ab8c-2e044f21d599",
+  "cli_url": "https://2026a.battlecode.co.uk/game/download",
+  "cli_version": "cambc 3.0.4",
+  "cli_sha256": "8de9dc6bbd3972f53720bb4299e09ac3aa07dc3cfabd3ae0e62911b4c2060a7a",
+  "engine_version": "1.0.2",
+  "engine_build_hash": "ff41468c05c7be716f7647aaf7ea7314633f7038815386c806fafcec98629114",
+  "engine_wasm_sha256": "742919b4454b427912eece99e5675752791fe5d83167b2fee1766c908e9cccee",
+  "engine_version_export": 131073,
+  "replay_format": 131073,
+  "source_candidate": "ppo-topdraft-v19",
+  "platform_version": 93,
+  "source_zip_sha256": "94cafc9c3bbe99deaf3a169ec236f4ef2a3e0f28b02c1776ef12aea60b7190b7",
+  "wasm_sha256": "301031fc5a4d34b5ddd263605485a349007e54e7ac8817e0a342307c9457851b",
+  "independent_new_sdk_builds_exact": true,
+  "official_maps_unchanged": 35,
+  "broad_summary": {
+    "starter": {
+      "games": 70,
+      "wins": 69,
+      "faults": 0,
+      "fuel_exhausted": 1,
+      "opponent_faults": 0,
+      "by_seat": {
+        "0": {
+          "games": 35,
+          "wins": 35
+        },
+        "1": {
+          "games": 35,
+          "wins": 34
+        }
+      },
+      "mean_banked_gems": 896.7142857142857,
+      "mean_opponent_banked_gems": 102.92857142857143
+    },
+    "baseline": {
+      "games": 350,
+      "wins": 172,
+      "faults": 0,
+      "fuel_exhausted": 9,
+      "opponent_faults": 0,
+      "by_seat": {
+        "0": {
+          "games": 175,
+          "wins": 97
+        },
+        "1": {
+          "games": 175,
+          "wins": 75
+        }
+      },
+      "mean_banked_gems": 624.0142857142857,
+      "mean_opponent_banked_gems": 625.0628571428572
+    }
+  },
+  "full_log_canary_summary": {
+    "starter": {
+      "games": 12,
+      "wins": 12,
+      "faults": 0,
+      "fuel_exhausted": 1,
+      "opponent_faults": 0,
+      "by_seat": {
+        "0": {
+          "games": 6,
+          "wins": 6
+        },
+        "1": {
+          "games": 6,
+          "wins": 6
+        }
+      },
+      "mean_banked_gems": 856.75,
+      "mean_opponent_banked_gems": 116.58333333333333
+    },
+    "baseline": {
+      "games": 14,
+      "wins": 6,
+      "faults": 0,
+      "fuel_exhausted": 1,
+      "opponent_faults": 0,
+      "by_seat": {
+        "0": {
+          "games": 7,
+          "wins": 3
+        },
+        "1": {
+          "games": 7,
+          "wins": 3
+        }
+      },
+      "mean_banked_gems": 514.4285714285714,
+      "mean_opponent_banked_gems": 531.5714285714286
+    }
+  },
+  "canary_exact_statistic_repeats": 26,
+  "limits": "Unchanged frozen v19 and v18 under one new rules/build. Not a promotion or calibrated strength estimate. Historical1.0.1 evidence is preserved. No newupload or model/draft change."
+}

@@ -1,0 +1,538 @@
+{
+  "startedUtc": "2026-10-20T19:57:51.289Z",
+  "platformVersion": 83,
+  "initialAllowance": 24,
+  "plannedGroups": 24,
+  "requestedBy": "Fran: use all hourly unranked challenges",
+  "groups": [
+    {
+      "id": "843e3808-c745-4855-8548-8873e0042bbb",
+      "opponent": "Intercontinental Fish",
+      "maps": [
+        "00collision",
+        "00expanse",
+        "00lanes",
+        "01the_farm",
+        "01yellow_brick_road"
+      ],
+      "seat": "A",
+      "version": 83,
+      "summaryFiles": [
+        "bdfb27de-ec78-47be-90aa-41c636baf5e5.json",
+        "ca7ee28f-e97b-4e3c-9184-885d754c763b.json",
+        "3a90628e-d6ec-44c5-8984-94c66143c049.json",
+        "18835f53-68ba-4ce5-9d47-9c471b787d80.json",
+        "43f9615c-d119-4c50-98c4-76efcb796e75.json"
+      ],
+      "collectionStatus": "complete"
+    },
+    {
+      "opponent": "Intercontinental Fish",
+      "maps": [
+        "00collision",
+        "00expanse",
+        "00lanes",
+        "01the_farm",
+        "01yellow_brick_road"
+      ],
+      "seat": "B",
+      "allowanceBefore": 23,
+      "id": "3095cc0f-b3ac-4081-9989-059f6405ff9a",
+      "version": 83,
+      "summaryFiles": [
+        "e99ab5c2-246d-462f-b34c-23990b9bac9a.json",
+        "9c48be8b-aef4-4dae-acdf-92919dc69909.json",
+        "d5e7df0b-1e86-4e4e-a09b-05b124f4704b.json",
+        "78d335cd-6bc6-4694-8a36-6fbfdf221b23.json",
+        "c0662885-3ea1-4f51-b024-fd94e39aa026.json"
+      ],
+      "collectionStatus": "complete"
+    },
+    {
+      "opponent": "Sponge(Albert and Bob)",
+      "maps": [
+        "00elkring",
+        "00expanse",
+        "00fragment",
+        "00interlock",
+        "00lanes"
+      ],
+      "seat": "A",
+      "allowanceBefore": 22,
+      "id": "4566e436-5335-4be1-866b-8475f45ddc00",
+      "version": 83,
+      "summaryFiles": [
+        "8dee7820-4e58-4355-87af-a34c47e28de4.json",
+        "3b3fe140-a0f4-4e05-a21f-7772144ddadf.json",
+        "3a1ddb6e-034d-44e1-a9ac-49e603887fad.json",
+        "0cff892e-c04b-452a-bd98-4a6879e33fd7.json",
+        "39245838-3517-416d-85dd-51a8bc7639ea.json"
+      ],
+      "collectionStatus": "complete"
+    },
+    {
+      "opponent": "Sponge(Albert and Bob)",
+      "maps": [
+        "00elkring",
+        "00expanse",
+        "00fragment",
+        "00interlock",
+        "00lanes"
+      ],
+      "seat": "B",
+      "allowanceBefore": 21,
+      "id": "8f6f2c2e-3920-4ff1-98ae-ba840a4e7599",
+      "version": 83,
+      "summaryFiles": [
+        "534d1abd-a05a-46cb-9b01-a2b96f872bec.json",
+        "f176138a-76fd-40f2-baf5-ea921caadd01.json",
+        "db598cc6-0d7a-4e8b-9375-52b4aa8aa305.json",
+        "96588c9a-75b1-4200-82e2-6ffaddd04cf4.json",
+        "fbf7fcd1-f291-4e84-aafd-2861111db415.json"
+      ],
+      "collectionStatus": "complete"
+    },
+    {
+      "opponent": ":3",
+      "maps": [
+        "00monolith",
+        "00packs",
+        "00pilgrimage",
+        "00quadrants",
+        "00reverse_spiral"
+      ],
+      "seat": "A",
+      "allowanceBefore": 20,
+      "id": "e2c8d99b-3e92-4ab1-aae6-ff26715a3f23",
+      "version": 83,
+      "summaryFiles": [
+        "bac052d6-b6b5-446b-9a70-533f1742a97e.json",
+        "8d9bd680-0cad-4cd9-80e4-ca20949f0280.json",
+        "2bb1216e-5a21-4b66-8da8-e7c581af30b6.json",
+        "58122ff2-c716-4c03-8934-360faa23f6f2.json",
+        "d75dbe10-270f-497a-9a4f-f0f5b38c4e19.json"
+      ],
+      "collectionStatus": "complete"
+    },
+    {
+      "opponent": ":3",
+      "maps": [
+        "00monolith",
+        "00packs",
+        "00pilgrimage",
+        "00quadrants",
+        "00reverse_spiral"
+      ],
+      "seat": "B",
+      "allowanceBefore": 19,
+      "id": "ea44488a-9413-4fba-81dd-7558473a24ec",
+      "version": 83,
+      "summaryFiles": [
+        "e1fddb29-3425-47e9-8992-b7600985b014.json",
+        "70700875-56d7-4fcf-8927-15541edda188.json",
+        "778826e1-d964-4b86-a5cf-6958c220c413.json",
+        "c6ba1f76-7735-49db-8350-810e37bd5a30.json",
+        "33bbe70e-f75d-4434-938d-bd2aa9e3bd48.json"
+      ],
+      "collectionStatus": "complete"
+    },
+    {
+      "opponent": "Nyx",
+      "maps": [
+        "00rows",
+        "00rushbait_v2",
+        "00split",
+        "00stampede",
+        "00swirl"
+      ],
+      "seat": "A",
+      "allowanceBefore": 18,
+      "id": "d56ffe57-4bc1-4687-a476-6fffb2aa1357",
+      "version": 83,
+      "summaryFiles": [
+        "977600d0-8e9a-4157-bd3e-e02f6ba9df10.json",
+        "36fef153-8e45-4d79-8141-316ebd8ab1fa.json",
+        "d1d75108-0925-4f17-a949-3b8151b1b393.json",
+        "03ed0802-bd9b-4ab4-9a9c-10a172922856.json",
+        "ef92bc2e-4412-4b63-9343-42a31e2207da.json"
+      ],
+      "collectionStatus": "complete"
+    },
+    {
+      "opponent": "Nyx",
+      "maps": [
+        "00rows",
+        "00rushbait_v2",
+        "00split",
+        "00stampede",
+        "00swirl"
+      ],
+      "seat": "B",
+      "allowanceBefore": 17,
+      "id": "fde34621-463d-426a-a6e5-3f40a3f035cc",
+      "version": 83,
+      "summaryFiles": [
+        "86ea8a17-0903-415a-9ea6-20d91e1f1069.json",
+        "3191422b-c139-4225-8b8b-d28cc6e629c0.json",
+        "d678f274-b016-4970-84ee-1a4823ddc08b.json",
+        "e92cbcb0-c99a-4935-907c-36f0435bc584.json",
+        "eaa79352-3ee1-4be1-8549-7a14e55dcad2.json"
+      ],
+      "collectionStatus": "complete"
+    },
+    {
+      "opponent": "Sneaky Bush Campers",
+      "maps": [
+        "01big_world",
+        "01boss_battle",
+        "01broken_curve",
+        "01concentrated_wealth",
+        "01corridors"
+      ],
+      "seat": "A",
+      "allowanceBefore": 16,
+      "id": "cc1ca430-049f-4a65-a0b8-011c8518007f",
+      "version": 83,
+      "summaryFiles": [
+        "1e91c47d-276a-43a5-9a47-d37e2ecc22b8.json",
+        "499471f7-f08d-49e9-b3e7-ebd0a28ab895.json",
+        "859bc8a8-68d3-42b4-9005-383fc8555397.json",
+        "c8f3cb92-c252-4535-affa-52be4ecfad7f.json",
+        "03474a8f-bfc3-4f39-803d-77f2d8248172.json"
+      ],
+      "collectionStatus": "complete"
+    },
+    {
+      "opponent": "Sneaky Bush Campers",
+      "maps": [
+        "01big_world",
+        "01boss_battle",
+        "01broken_curve",
+        "01concentrated_wealth",
+        "01corridors"
+      ],
+      "seat": "B",
+      "allowanceBefore": 15,
+      "id": "d6345ae4-33be-4b7d-beb2-4abcb04145b3",
+      "version": 83,
+      "summaryFiles": [
+        "8b403be8-cf2b-48c5-9156-1adf242bb2be.json",
+        "24a2d494-0361-4761-bd6a-f4a483dc16e8.json",
+        "9ab621cc-8dc4-4d34-8c65-22768c4c1574.json",
+        "4232633d-7e39-481e-ad2c-b023fd690119.json",
+        "bd9c4e01-0f09-4491-9e1d-12a97b182164.json"
+      ],
+      "collectionStatus": "complete"
+    },
+    {
+      "opponent": "EMPEROR Tung",
+      "maps": [
+        "01elk_arena",
+        "01fracture",
+        "01gold_rush",
+        "01hooks",
+        "01islands"
+      ],
+      "seat": "A",
+      "allowanceBefore": 14,
+      "id": "3a0d9b47-2786-4ccd-a300-2a94fe6a8e91",
+      "version": 83,
+      "summaryFiles": [
+        "010b8b85-30b6-4b58-9fee-4434348cdb5a.json",
+        "5ec5a3a9-3043-461c-9ce9-bdbb3baf684b.json",
+        "83eac5ba-2cbd-4da2-a0a5-db0e9ecd9aa7.json",
+        "8623d89b-94d8-4927-b8a1-af2b85c32a7e.json",
+        "bbd0f3c4-3a41-4cc8-b594-b31ae8b3b822.json"
+      ],
+      "collectionStatus": "complete"
+    },
+    {
+      "opponent": "EMPEROR Tung",
+      "maps": [
+        "01elk_arena",
+        "01fracture",
+        "01gold_rush",
+        "01hooks",
+        "01islands"
+      ],
+      "seat": "B",
+      "allowanceBefore": 13,
+      "id": "18b2b759-3508-4768-87e9-e40baeb46bd2",
+      "version": 83,
+      "summaryFiles": [
+        "17ef7fbe-8b1b-44a7-85d3-bbb5f4b48d5e.json",
+        "cdf44b0c-4057-44a4-8675-0cfc87cd1e76.json",
+        "688a9472-d2ee-4da8-8638-145caa054725.json",
+        "4562dfa5-8b10-4f98-863d-35f24ad0447a.json",
+        "d00f06cd-2843-4c1c-920b-49a8846b8b95.json"
+      ],
+      "collectionStatus": "complete"
+    },
+    {
+      "opponent": "FürFortnite",
+      "maps": [
+        "01shortcut",
+        "01starfish",
+        "01starvation",
+        "01the_farm",
+        "01yellow_brick_road"
+      ],
+      "seat": "A",
+      "allowanceBefore": 12,
+      "id": "9b570ca5-6bed-44e4-bf1f-331bd1108112",
+      "version": 83,
+      "summaryFiles": [
+        "b34dd3e8-d467-470f-8101-5aa2ef72ecb8.json",
+        "96382236-5484-448e-a704-7e86877d9338.json",
+        "b30d144d-80ca-4d3e-94eb-4c3c800b2338.json",
+        "221b8a8f-f1cc-4501-a2ed-ff626a0af985.json",
+        "a57620b6-a908-4fc1-a3aa-1b6bb30f378f.json"
+      ],
+      "collectionStatus": "complete"
+    },
+    {
+      "opponent": "FürFortnite",
+      "maps": [
+        "01shortcut",
+        "01starfish",
+        "01starvation",
+        "01the_farm",
+        "01yellow_brick_road"
+      ],
+      "seat": "B",
+      "allowanceBefore": 11,
+      "id": "04ed0204-4e7b-4c93-a85b-6efba16b0a19",
+      "version": 83,
+      "summaryFiles": [
+        "97b7bd77-52f4-4746-abbf-0a5f0051de8c.json",
+        "3369456d-d4e9-4cd6-83b2-d142e40878d4.json",
+        "8550337f-7a01-4090-9aff-6d35310c1678.json",
+        "61582ab8-dd28-4bed-9e05-ee84c72287bc.json",
+        "acdfc4ae-bcb8-4911-8c96-3a528e1a6bc5.json"
+      ],
+      "collectionStatus": "complete"
+    },
+    {
+      "opponent": "Let's LARP again",
+      "maps": [
+        "00ambush",
+        "00collision",
+        "00contest",
+        "00corners",
+        "00eight"
+      ],
+      "seat": "A",
+      "allowanceBefore": 10,
+      "id": "c0a259fc-69c4-49de-a02d-310a24996135",
+      "version": 83,
+      "summaryFiles": [
+        "1081f59d-bd36-4bc6-83f4-d2cf7d546b13.json",
+        "247f455c-901f-4089-8814-7d2bc68cfb72.json",
+        "cd03f9f8-0568-4f3b-a58b-fea62df1f35b.json",
+        "b262d3de-2eb8-4f07-941a-6b488316da9b.json",
+        "6b35be1a-c2b7-4720-b267-da3c26e2d427.json"
+      ],
+      "collectionStatus": "complete"
+    },
+    {
+      "opponent": "Let's LARP again",
+      "maps": [
+        "00ambush",
+        "00collision",
+        "00contest",
+        "00corners",
+        "00eight"
+      ],
+      "seat": "B",
+      "allowanceBefore": 9,
+      "id": "4e42992c-e666-4d3a-aa2a-2aaa07ab3ec4",
+      "version": 83,
+      "summaryFiles": [
+        "034ab357-02b7-47d1-9010-de4f83296f7b.json",
+        "50afe54b-de5b-43f6-b371-68f80eda195c.json",
+        "7fa7324e-9682-41fe-be5e-9ce65b82ad5b.json",
+        "1177b768-550c-494a-bbaf-23d74e4c4e6f.json",
+        "8d72d2b0-4278-4236-8f17-a7d49ca2c29e.json"
+      ],
+      "collectionStatus": "complete"
+    },
+    {
+      "opponent": "Tartarus",
+      "maps": [
+        "00elkring",
+        "00expanse",
+        "00fragment",
+        "00interlock",
+        "00lanes"
+      ],
+      "seat": "A",
+      "allowanceBefore": 8,
+      "id": "263c6c31-cae4-4b61-b19b-ad88aacf733a",
+      "version": 83,
+      "summaryFiles": [
+        "6cfcfefd-f3ad-4418-bc2e-3854dd39e09d.json",
+        "f2783a1d-ebe1-45fc-87e3-82d65a286d38.json",
+        "ecc1ea3c-f641-4b50-8ac0-5dd5bee7afab.json",
+        "3e469950-cfa9-41ae-a9a6-68a7a4f122d3.json",
+        "5749d5a4-331b-4104-9c69-9aa45cf2495a.json"
+      ],
+      "collectionStatus": "complete"
+    },
+    {
+      "opponent": "Tartarus",
+      "maps": [
+        "00elkring",
+        "00expanse",
+        "00fragment",
+        "00interlock",
+        "00lanes"
+      ],
+      "seat": "B",
+      "allowanceBefore": 7,
+      "id": "bf3876a9-7b21-456f-a6e9-f02e2c0a8a75",
+      "version": 83,
+      "summaryFiles": [
+        "e5dab9a0-6d35-4ffc-b1ed-42dc12a06533.json",
+        "2ae9a3f2-ddab-4773-a6ab-c8c9dcab2f9b.json",
+        "070fb57e-de58-4bc2-93db-c8fc8e5333e7.json",
+        "9393e0e0-b167-4384-9a21-4960ad559ebd.json",
+        "fc9948a2-e102-488d-964e-b9320a6da195.json"
+      ],
+      "collectionStatus": "complete"
+    },
+    {
+      "opponent": "Trzy Kwaterki",
+      "maps": [
+        "00monolith",
+        "00packs",
+        "00pilgrimage",
+        "00quadrants",
+        "00reverse_spiral"
+      ],
+      "seat": "A",
+      "allowanceBefore": 6,
+      "id": "e9da9a01-2ecd-4811-9ac8-bab05b38b4cd",
+      "version": 83,
+      "summaryFiles": [
+        "0872af5a-7e0f-4b11-be47-d077916db24f.json",
+        "10fafaaf-8a11-4d05-b259-e6d976e2cc67.json",
+        "42477e19-02b8-4cef-afb9-98f4bd2436a6.json",
+        "45763dea-b2fa-41ee-bffd-b4bf3263e750.json",
+        "a593d57f-7563-4aad-abd3-803717c6ee6b.json"
+      ],
+      "collectionStatus": "complete"
+    },
+    {
+      "opponent": "Trzy Kwaterki",
+      "maps": [
+        "00monolith",
+        "00packs",
+        "00pilgrimage",
+        "00quadrants",
+        "00reverse_spiral"
+      ],
+      "seat": "B",
+      "allowanceBefore": 5,
+      "id": "3afa337f-e353-4768-aecb-61faa632b225",
+      "version": 83,
+      "summaryFiles": [
+        "0aea3d25-75b2-4af8-948d-1284a6be646a.json",
+        "65429d0e-d31a-4758-a84e-7cfb64010789.json",
+        "a3a008de-b133-4c34-ab00-285aaabeb95a.json",
+        "ada6bd6c-a92c-4d26-88f5-4cfb8436b94f.json",
+        "ca0a207d-3c42-4099-8996-3bea6c9d453d.json"
+      ],
+      "collectionStatus": "complete"
+    },
+    {
+      "opponent": "Intercontinental Fish",
+      "maps": [
+        "00rows",
+        "00rushbait_v2",
+        "00split",
+        "00stampede",
+        "00swirl"
+      ],
+      "seat": "A",
+      "allowanceBefore": 4,
+      "id": "de49e1f2-c503-4005-935a-342ba4ee91fa",
+      "version": 83,
+      "summaryFiles": [
+        "7300e9b5-c05c-4729-8228-1a872f2db77b.json",
+        "7ce18b1d-eeec-4cdb-8018-a235123ce9f2.json",
+        "cf6875eb-f9b4-4847-8c32-da946ec2c255.json",
+        "d1126009-8fe2-4f53-b223-235a817ef6f7.json",
+        "03108434-c9b2-4b46-b362-1e2ed492374b.json"
+      ],
+      "collectionStatus": "complete"
+    },
+    {
+      "opponent": "Intercontinental Fish",
+      "maps": [
+        "00rows",
+        "00rushbait_v2",
+        "00split",
+        "00stampede",
+        "00swirl"
+      ],
+      "seat": "B",
+      "allowanceBefore": 3,
+      "id": "56d68a02-dfa5-46dc-a947-683deb2d58e8",
+      "version": 83,
+      "summaryFiles": [
+        "281a5030-30b9-4907-9d75-e57bfa13bf93.json",
+        "c2e79cd3-14e2-48ea-9632-036b6739766b.json",
+        "9b8f6042-7ade-4fb8-9296-69ed627843a4.json",
+        "346e08dd-68c5-4db8-9828-85d0307ac1c4.json",
+        "a0e2215c-9c9d-49f7-b901-bdb1598544e4.json"
+      ],
+      "collectionStatus": "complete"
+    },
+    {
+      "opponent": "Sponge(Albert and Bob)",
+      "maps": [
+        "01big_world",
+        "01boss_battle",
+        "01broken_curve",
+        "01concentrated_wealth",
+        "01corridors"
+      ],
+      "seat": "A",
+      "allowanceBefore": 2,
+      "id": "ada61628-59eb-4eac-bbcd-77839de3d32b",
+      "version": 83,
+      "summaryFiles": [
+        "759faef4-f229-40d8-a25c-40519b15be72.json",
+        "100cae2f-1c07-4950-a9d0-e0ca7f917a1c.json",
+        "8d2ccc8c-1aa7-4452-9565-774908bf413a.json",
+        "2e8c349c-16ee-4a7a-a6fa-54a66d0cbe1e.json",
+        "2f3323ba-b32b-46f2-93f0-1ec42cda8f9a.json"
+      ],
+      "collectionStatus": "complete"
+    },
+    {
+      "opponent": "Sponge(Albert and Bob)",
+      "maps": [
+        "01big_world",
+        "01boss_battle",
+        "01broken_curve",
+        "01concentrated_wealth",
+        "01corridors"
+      ],
+      "seat": "B",
+      "allowanceBefore": 1,
+      "id": "090bd2c7-157f-45a3-8aaa-d5b610b48b6c",
+      "version": 83,
+      "summaryFiles": [
+        "fd7e1ecf-103e-4cdc-9723-f055b0b1e520.json",
+        "0b2348d1-3abe-4486-bb19-dea388aa33b2.json",
+        "3fb5d2d8-b893-4ff4-9615-9a67b69ef9df.json",
+        "9db01c5c-9fcc-4157-96c9-f3dba1b7f9cc.json",
+        "ad9e6762-37c7-4da5-8cf7-16adb70960e3.json"
+      ],
+      "collectionStatus": "complete"
+    }
+  ],
+  "finishedQueueUtc": "2026-10-20T20:01:06.360Z",
+  "remainingAllowance": 0
+}

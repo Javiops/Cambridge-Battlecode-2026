@@ -1,0 +1,48 @@
+{
+  "schema": 1,
+  "experiment": "ppo-topdraft-v18",
+  "parent": "ppo-topdraft-v17",
+  "baseline": "ppo-topdraft-v6",
+  "runtime": {
+    "cli_version": "cambc 3.0.2",
+    "engine_version": "1.0.1",
+    "engine_build_hash": "c3e9ffc8d98c106f86660c58344dc26ced9459a504e2f0d90d88b4c8594c7765"
+  },
+  "identities": {
+    "candidate": "061aef4bf4c22e57578978c3742ab70adfa2a7839978281faa1770f9408f972f",
+    "baseline": "f21d27dce9cc364a26c61780367fc0b5c16ce39f643c37929e3b599fe471f534",
+    "starter": "c9a0ca35cf13686680ef4ea00d0bb99f654a79be78382bdb3283604d5fde9795"
+  },
+  "config_sha256": "fa6023b7768d269f22566cc43ae650edf7f6cc8f7418cc5a5d347bf7eceda1e0",
+  "changes": "ppo-topdraft-v18: share an authorized rally release before turn priorities; expect healthy stragglers to join the same push and collect more objective gems.",
+  "status": "development_only_not_promoted",
+  "sealed_confirmation_maps_used": false,
+  "promotion_gate_run": false,
+  "uploaded": false,
+  "draft_verified_games": 48,
+  "elapsed_seconds": 19.854470252990723,
+  "summary": {
+    "baseline": {
+      "games": 48,
+      "wins": 20,
+      "faults": 0,
+      "fuel_exhausted": 0,
+      "opponent_faults": 0,
+      "by_seat": {
+        "0": {
+          "games": 24,
+          "wins": 8
+        },
+        "1": {
+          "games": 24,
+          "wins": 12
+        }
+      },
+      "mean_banked_gems": 220.125,
+      "mean_opponent_banked_gems": 307.2083333333333
+    }
+  },
+  "per_game_records": "topdraft-v18-objective-feature-games.jsonl",
+  "source_zip_sha256": "c1b3514b1702c7822e3fd1deeb20e846c510165a7c9902fc7a040aa34cc5c7e3",
+  "independent_rebuild_sha256": "061aef4bf4c22e57578978c3742ab70adfa2a7839978281faa1770f9408f972f"
+}

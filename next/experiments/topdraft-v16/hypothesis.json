@@ -1,0 +1,12 @@
+{
+  "candidate": "ppo-topdraft-v16",
+  "parent": "ppo-topdraft-v15",
+  "change": "P_OBJECTIVE_START350->120",
+  "predicted_metric": "Earlier fresh sole-objective camp collection, with bank and deaths alongside wins",
+  "limits": "Clock origin shifts later360-round windows too; health/quorum/camp affordability/survival stay unchanged. Geometry validation does not guarantee competitive difficulty.",
+  "procedural_maps": 24,
+  "sole": 12,
+  "split_control": 12,
+  "generated_before_outcomes": true,
+  "confirmation_games": 0
+}

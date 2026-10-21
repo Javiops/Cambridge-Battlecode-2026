@@ -1,0 +1,63 @@
+{
+  "parent": {
+    "sole": {
+      "games": 24,
+      "wins": 12,
+      "faults": 0,
+      "fuel_exhausted": 0,
+      "mean_bank": 197.33333333333334,
+      "mean_deaths": 31.708333333333332,
+      "no_fresh": 6,
+      "fresh_before_350": 7,
+      "first_cycle_all_released": 15,
+      "mean_first_cycle_logged_release_fraction": 0.8597222222222223,
+      "shared_joins": 0
+    },
+    "split": {
+      "games": 24,
+      "wins": 9,
+      "faults": 0,
+      "fuel_exhausted": 0,
+      "mean_bank": 211.5,
+      "mean_deaths": 44.583333333333336,
+      "no_fresh": 9,
+      "fresh_before_350": 8,
+      "first_cycle_all_released": 0,
+      "mean_first_cycle_logged_release_fraction": 0.0,
+      "shared_joins": 0
+    }
+  },
+  "candidate": {
+    "sole": {
+      "games": 24,
+      "wins": 10,
+      "faults": 0,
+      "fuel_exhausted": 0,
+      "mean_bank": 225.08333333333334,
+      "mean_deaths": 32.791666666666664,
+      "no_fresh": 4,
+      "fresh_before_350": 8,
+      "first_cycle_all_released": 24,
+      "mean_first_cycle_logged_release_fraction": 1.0,
+      "shared_joins": 512
+    },
+    "split": {
+      "games": 24,
+      "wins": 10,
+      "faults": 0,
+      "fuel_exhausted": 0,
+      "mean_bank": 215.16666666666666,
+      "mean_deaths": 44.375,
+      "no_fresh": 9,
+      "fresh_before_350": 8,
+      "first_cycle_all_released": 0,
+      "mean_first_cycle_logged_release_fraction": 0.0,
+      "shared_joins": 0
+    }
+  },
+  "split_exact_statistic_matches": 20,
+  "split_games": 24,
+  "all_logged_joins_have_same_cycle_quorum": true,
+  "confirmation_games": 0,
+  "no_promotion_claim": true
+}

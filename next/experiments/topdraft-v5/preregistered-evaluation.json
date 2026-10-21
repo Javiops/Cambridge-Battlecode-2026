@@ -1,0 +1,24 @@
+{
+  "schema": 1,
+  "candidate": "ppo-topdraft-v5",
+  "champion": "ppo-league-v12",
+  "thresholds": {
+    "vs_champion": 0.5,
+    "vs_starter": 0.9,
+    "max_faults": 0,
+    "max_fuel_exhausted_per_game": 1
+  },
+  "gate_seed": 202610205605,
+  "gate_maps": 70,
+  "gate_splits": "35 standard independent g1 maps, 35 independently seeded padded large maps; both seats against qualified v12 and starter",
+  "stopping_rule": "One final gate after development passes; reject failures without tuning on gate outcomes. All seen confirmation cohorts remain consumed.",
+  "development": "35 site maps + 100 old generated screen maps, both seats",
+  "online": "Nearby repeated paired benchmarks, stretch opponents, one leader pair; no map-name or opponent-name strategy exceptions",
+  "parent": "ppo-topdraft-v3",
+  "development_large_seed": 202610205515,
+  "development_large_maps": 16,
+  "jobs": 8,
+  "engine_build_hash": "c3e9ffc8d98c106f86660c58344dc26ced9459a504e2f0d90d88b4c8594c7765",
+  "engine_wasm_sha256": "c03ab26f20263b08e576ebc1a064cd6f9b66a996aca005d69bd9fb9205434354",
+  "wasm_sha256": "b261b44a7444a309a87bc0945366763bc265196a0d600895fcc9b9bf3539ec5b"
+}

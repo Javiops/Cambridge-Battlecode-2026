@@ -1,0 +1,43 @@
+# Independent 1.0.1 development schedule; does not change Stage 1-7 pins or holdouts.
+candidate = "ppo-topdraft-v18"
+baseline = "ppo-topdraft-v6"
+jobs = 8
+log_limit = 1048576
+timeout_seconds = 300
+
+[runtime]
+cli_version = "cambc 3.0.2"
+engine_version = "1.0.1"
+engine_build_hash = "c3e9ffc8d98c106f86660c58344dc26ced9459a504e2f0d90d88b4c8594c7765"
+
+[draft]
+priority = ["Stellar", "Heart of Ruin", "Ren", "Cassi & Issac", "Ryth"]
+
+[maps]
+site = []
+screen = [
+  "generated/objective-v16-screen/obj16-sole-000",
+  "generated/objective-v16-screen/obj16-split-000",
+  "generated/objective-v16-screen/obj16-sole-001",
+  "generated/objective-v16-screen/obj16-split-001",
+  "generated/objective-v16-screen/obj16-sole-002",
+  "generated/objective-v16-screen/obj16-split-002",
+  "generated/objective-v16-screen/obj16-sole-003",
+  "generated/objective-v16-screen/obj16-split-003",
+  "generated/objective-v16-screen/obj16-sole-004",
+  "generated/objective-v16-screen/obj16-split-004",
+  "generated/objective-v16-screen/obj16-sole-005",
+  "generated/objective-v16-screen/obj16-split-005",
+  "generated/objective-v16-screen/obj16-sole-006",
+  "generated/objective-v16-screen/obj16-split-006",
+  "generated/objective-v16-screen/obj16-sole-007",
+  "generated/objective-v16-screen/obj16-split-007",
+  "generated/objective-v16-screen/obj16-sole-008",
+  "generated/objective-v16-screen/obj16-split-008",
+  "generated/objective-v16-screen/obj16-sole-009",
+  "generated/objective-v16-screen/obj16-split-009",
+  "generated/objective-v16-screen/obj16-sole-010",
+  "generated/objective-v16-screen/obj16-split-010",
+  "generated/objective-v16-screen/obj16-sole-011",
+  "generated/objective-v16-screen/obj16-split-011"
+]

@@ -1,0 +1,66 @@
+{
+  "schema": 1,
+  "experiment": "ppo-topdraft-v16",
+  "parent": "ppo-topdraft-v15",
+  "baseline": "ppo-topdraft-v15",
+  "runtime": {
+    "cli_version": "cambc 3.0.2",
+    "engine_version": "1.0.1",
+    "engine_build_hash": "c3e9ffc8d98c106f86660c58344dc26ced9459a504e2f0d90d88b4c8594c7765"
+  },
+  "identities": {
+    "candidate": "42dc60ec591f3d7184910ce662543312baa2691c23063d3c20705e69a09681f8",
+    "baseline": "7fbba846d2817771ee77fd8b229a1a05c3fb8e25e0e424e14de3426d08963b0c",
+    "starter": "c9a0ca35cf13686680ef4ea00d0bb99f654a79be78382bdb3283604d5fde9795"
+  },
+  "config_sha256": "b333ad134c996d30c5a4b260b75a08815d03739517a70d42e4f5c48caeba7e7f",
+  "changes": "ppo-topdraft-v16: advance sole-objective rally clock from350 to120; expect earlier fresh objective collection without changing survival or multi-camp play.",
+  "status": "development_only_not_promoted",
+  "sealed_confirmation_maps_used": false,
+  "promotion_gate_run": false,
+  "uploaded": false,
+  "draft_verified_games": 420,
+  "elapsed_seconds": 106.60131788253784,
+  "summary": {
+    "starter": {
+      "games": 70,
+      "wins": 69,
+      "faults": 0,
+      "fuel_exhausted": 0,
+      "opponent_faults": 0,
+      "by_seat": {
+        "0": {
+          "games": 35,
+          "wins": 35
+        },
+        "1": {
+          "games": 35,
+          "wins": 34
+        }
+      },
+      "mean_banked_gems": 916.7571428571429,
+      "mean_opponent_banked_gems": 104.57142857142857
+    },
+    "baseline": {
+      "games": 350,
+      "wins": 170,
+      "faults": 0,
+      "fuel_exhausted": 6,
+      "opponent_faults": 0,
+      "by_seat": {
+        "0": {
+          "games": 175,
+          "wins": 89
+        },
+        "1": {
+          "games": 175,
+          "wins": 81
+        }
+      },
+      "mean_banked_gems": 639.52,
+      "mean_opponent_banked_gems": 660.2542857142857
+    }
+  },
+  "per_game_records": "topdraft-v16-vs-v15-games.jsonl",
+  "source_zip_sha256": "729dd5e0934f55d0172f5c36f94a94702e465620eefb9ef060e8e7d524e42ef0"
+}

@@ -1,0 +1,1327 @@
+{
+  "logs": {
+    "schema": 1,
+    "scope": "Official big-world, both seats versus starter; development diagnostics only.",
+    "limits": "Logs are sampled every 25 rounds and may omit turns. Identical sampled positions do not prove no intervening movement. No match outcome or collection inferred solely from logs.",
+    "fixtures": [
+      {
+        "fixture": "v6-0",
+        "states": 243,
+        "modes": {
+          "init-fuel": 3,
+          "farm": 200,
+          "channel": 3,
+          "tribute": 21,
+          "flee": 4,
+          "fuel-yield": 8,
+          "recall-shop": 1,
+          "near-recall": 1,
+          "cap-recall": 1,
+          "unstick": 1
+        },
+        "bank_ge12_observations": 18,
+        "stationary_sample_sequences": [
+          {
+            "name": "heartofruin",
+            "position": [
+              16,
+              16
+            ],
+            "gems": 14,
+            "start": 1875,
+            "end": 1975,
+            "sampled_span": 100,
+            "observations": 3
+          }
+        ]
+      },
+      {
+        "fixture": "v6-1",
+        "states": 230,
+        "modes": {
+          "init-fuel": 3,
+          "farm": 68,
+          "channel": 2,
+          "fuel-yield": 4,
+          "flee": 1,
+          "tribute": 151,
+          "unstick": 1
+        },
+        "bank_ge12_observations": 143,
+        "stationary_sample_sequences": [
+          {
+            "name": "ren",
+            "position": [
+              26,
+              84
+            ],
+            "gems": 15,
+            "start": 225,
+            "end": 1975,
+            "sampled_span": 1750,
+            "observations": 36
+          },
+          {
+            "name": "stellar",
+            "position": [
+              29,
+              87
+            ],
+            "gems": 15,
+            "start": 725,
+            "end": 1975,
+            "sampled_span": 1250,
+            "observations": 26
+          },
+          {
+            "name": "ryth",
+            "position": [
+              41,
+              94
+            ],
+            "gems": 15,
+            "start": 650,
+            "end": 1850,
+            "sampled_span": 1200,
+            "observations": 25
+          },
+          {
+            "name": "cassi",
+            "position": [
+              41,
+              96
+            ],
+            "gems": 15,
+            "start": 950,
+            "end": 1850,
+            "sampled_span": 900,
+            "observations": 19
+          },
+          {
+            "name": "stellar",
+            "position": [
+              29,
+              87
+            ],
+            "gems": 15,
+            "start": 525,
+            "end": 625,
+            "sampled_span": 100,
+            "observations": 3
+          }
+        ]
+      },
+      {
+        "fixture": "v7-0",
+        "states": 305,
+        "modes": {
+          "init-fuel": 3,
+          "farm": 244,
+          "channel": 8,
+          "bank-first": 17,
+          "heal-spawn": 4,
+          "flee": 5,
+          "tribute": 14,
+          "fuel-yield": 7,
+          "unstick": 3
+        },
+        "bank_ge12_observations": 17,
+        "stationary_sample_sequences": [
+          {
+            "name": "ryth",
+            "position": [
+              70,
+              12
+            ],
+            "gems": 4,
+            "start": 1875,
+            "end": 1975,
+            "sampled_span": 100,
+            "observations": 3
+          }
+        ]
+      },
+      {
+        "fixture": "v7-1",
+        "states": 307,
+        "modes": {
+          "init-fuel": 3,
+          "farm": 252,
+          "fuel-yield": 7,
+          "tribute": 30,
+          "bank-first": 8,
+          "channel": 1,
+          "unstick": 4,
+          "flee": 2
+        },
+        "bank_ge12_observations": 8,
+        "stationary_sample_sequences": [
+          {
+            "name": "ryth",
+            "position": [
+              26,
+              84
+            ],
+            "gems": 4,
+            "start": 1875,
+            "end": 1975,
+            "sampled_span": 100,
+            "observations": 3
+          }
+        ]
+      },
+      {
+        "fixture": "v8-0",
+        "states": 366,
+        "modes": {
+          "init-fuel": 3,
+          "farm": 285,
+          "flee": 8,
+          "tribute": 2,
+          "channel": 14,
+          "fuel-yield": 13,
+          "bank-first": 40,
+          "near-recall": 1
+        },
+        "bank_ge12_observations": 30,
+        "stationary_sample_sequences": []
+      },
+      {
+        "fixture": "v8-1",
+        "states": 360,
+        "modes": {
+          "init-fuel": 3,
+          "farm": 287,
+          "fuel-yield": 11,
+          "bank-first": 33,
+          "flee": 6,
+          "channel": 11,
+          "recall-shop": 1,
+          "cap-recall": 1,
+          "tribute": 3,
+          "heal-spawn": 4
+        },
+        "bank_ge12_observations": 29,
+        "stationary_sample_sequences": []
+      }
+    ]
+  },
+  "native": {
+    "v8-0": {
+      "engine_sha256": "c03ab26f20263b08e576ebc1a064cd6f9b66a996aca005d69bd9fb9205434354",
+      "replay_sha256": "3fd717c563f6dd4ff58461045d5e0c8c00b8dc0f1f4453cf3c6280eac43fdef4",
+      "map_sha256": "f1ecb726472858efb1d75d00b0d7668be18d83a010b2abf9a1f8c38aab456aa5",
+      "inputs": 41632,
+      "terminal": {
+        "outcome": "teamA",
+        "round": 2000,
+        "banks": [
+          692,
+          401
+        ]
+      },
+      "seat": 0,
+      "sampling": "Start of requested rounds; no continuous-movement claim.",
+      "records": [
+        {
+          "round": 250,
+          "id": 0,
+          "x": -1,
+          "y": -1,
+          "hp": 0,
+          "max_hp": 750,
+          "gems": 0,
+          "state": 0
+        },
+        {
+          "round": 250,
+          "id": 1,
+          "x": 79,
+          "y": 11,
+          "hp": 1000,
+          "max_hp": 1000,
+          "gems": 21,
+          "state": 2073
+        },
+        {
+          "round": 250,
+          "id": 2,
+          "x": 75,
+          "y": 6,
+          "hp": 900,
+          "max_hp": 900,
+          "gems": 0,
+          "state": 2073
+        },
+        {
+          "round": 250,
+          "id": 3,
+          "x": 64,
+          "y": 7,
+          "hp": 600,
+          "max_hp": 600,
+          "gems": 0,
+          "state": 2073
+        },
+        {
+          "round": 250,
+          "id": 4,
+          "x": 57,
+          "y": 6,
+          "hp": 900,
+          "max_hp": 900,
+          "gems": 20,
+          "state": 2073
+        },
+        {
+          "round": 250,
+          "id": 5,
+          "x": 78,
+          "y": 11,
+          "hp": 1300,
+          "max_hp": 1300,
+          "gems": 0,
+          "state": 2073
+        },
+        {
+          "round": 500,
+          "id": 0,
+          "x": 84,
+          "y": 8,
+          "hp": 975,
+          "max_hp": 975,
+          "gems": 0,
+          "state": 2073
+        },
+        {
+          "round": 500,
+          "id": 1,
+          "x": 54,
+          "y": 10,
+          "hp": 1000,
+          "max_hp": 1000,
+          "gems": 0,
+          "state": 2073
+        },
+        {
+          "round": 500,
+          "id": 2,
+          "x": 42,
+          "y": 21,
+          "hp": 900,
+          "max_hp": 900,
+          "gems": 14,
+          "state": 5
+        },
+        {
+          "round": 500,
+          "id": 3,
+          "x": 70,
+          "y": 15,
+          "hp": 600,
+          "max_hp": 600,
+          "gems": 0,
+          "state": 2073
+        },
+        {
+          "round": 500,
+          "id": 4,
+          "x": 78,
+          "y": 11,
+          "hp": 980,
+          "max_hp": 980,
+          "gems": 4,
+          "state": 2073
+        },
+        {
+          "round": 500,
+          "id": 5,
+          "x": 56,
+          "y": 14,
+          "hp": 1400,
+          "max_hp": 1400,
+          "gems": 0,
+          "state": 2073
+        },
+        {
+          "round": 750,
+          "id": 0,
+          "x": 58,
+          "y": 0,
+          "hp": 1125,
+          "max_hp": 1125,
+          "gems": 4,
+          "state": 2073
+        },
+        {
+          "round": 750,
+          "id": 1,
+          "x": 27,
+          "y": 26,
+          "hp": 784,
+          "max_hp": 1000,
+          "gems": 0,
+          "state": 2073
+        },
+        {
+          "round": 750,
+          "id": 2,
+          "x": 60,
+          "y": 13,
+          "hp": 900,
+          "max_hp": 900,
+          "gems": 0,
+          "state": 2073
+        },
+        {
+          "round": 750,
+          "id": 3,
+          "x": 67,
+          "y": 4,
+          "hp": 925,
+          "max_hp": 925,
+          "gems": 0,
+          "state": 2073
+        },
+        {
+          "round": 750,
+          "id": 4,
+          "x": 53,
+          "y": 5,
+          "hp": 980,
+          "max_hp": 980,
+          "gems": 15,
+          "state": 2073
+        },
+        {
+          "round": 750,
+          "id": 5,
+          "x": 65,
+          "y": 6,
+          "hp": 1120,
+          "max_hp": 1600,
+          "gems": 0,
+          "state": 2073
+        },
+        {
+          "round": 1000,
+          "id": 0,
+          "x": 58,
+          "y": 14,
+          "hp": 747,
+          "max_hp": 1125,
+          "gems": 0,
+          "state": 2073
+        },
+        {
+          "round": 1000,
+          "id": 1,
+          "x": 55,
+          "y": 0,
+          "hp": 1500,
+          "max_hp": 1500,
+          "gems": 0,
+          "state": 2073
+        },
+        {
+          "round": 1000,
+          "id": 2,
+          "x": 67,
+          "y": 4,
+          "hp": 900,
+          "max_hp": 900,
+          "gems": 0,
+          "state": 2073
+        },
+        {
+          "round": 1000,
+          "id": 3,
+          "x": 64,
+          "y": 14,
+          "hp": 853,
+          "max_hp": 925,
+          "gems": 0,
+          "state": 2073
+        },
+        {
+          "round": 1000,
+          "id": 4,
+          "x": 74,
+          "y": 15,
+          "hp": 1060,
+          "max_hp": 1060,
+          "gems": 4,
+          "state": 2073
+        },
+        {
+          "round": 1000,
+          "id": 5,
+          "x": 78,
+          "y": 11,
+          "hp": 1900,
+          "max_hp": 1900,
+          "gems": 0,
+          "state": 2073
+        },
+        {
+          "round": 1250,
+          "id": 0,
+          "x": 72,
+          "y": 11,
+          "hp": 1125,
+          "max_hp": 1125,
+          "gems": 0,
+          "state": 2073
+        },
+        {
+          "round": 1250,
+          "id": 1,
+          "x": 28,
+          "y": 16,
+          "hp": 1500,
+          "max_hp": 1500,
+          "gems": 0,
+          "state": 2073
+        },
+        {
+          "round": 1250,
+          "id": 2,
+          "x": 11,
+          "y": 13,
+          "hp": 900,
+          "max_hp": 900,
+          "gems": 14,
+          "state": 2073
+        },
+        {
+          "round": 1250,
+          "id": 3,
+          "x": 60,
+          "y": 16,
+          "hp": 817,
+          "max_hp": 925,
+          "gems": 0,
+          "state": 2073
+        },
+        {
+          "round": 1250,
+          "id": 4,
+          "x": 69,
+          "y": 4,
+          "hp": 1060,
+          "max_hp": 1060,
+          "gems": 4,
+          "state": 2073
+        },
+        {
+          "round": 1250,
+          "id": 5,
+          "x": 60,
+          "y": 15,
+          "hp": 1319.599365234375,
+          "max_hp": 2000,
+          "gems": 0,
+          "state": 2073
+        },
+        {
+          "round": 1500,
+          "id": 0,
+          "x": 58,
+          "y": 14,
+          "hp": 1125,
+          "max_hp": 1125,
+          "gems": 0,
+          "state": 2073
+        },
+        {
+          "round": 1500,
+          "id": 1,
+          "x": 72,
+          "y": 23,
+          "hp": 1374.000244140625,
+          "max_hp": 1500,
+          "gems": 0,
+          "state": 2073
+        },
+        {
+          "round": 1500,
+          "id": 2,
+          "x": 41,
+          "y": 12,
+          "hp": 900,
+          "max_hp": 900,
+          "gems": 0,
+          "state": 2073
+        },
+        {
+          "round": 1500,
+          "id": 3,
+          "x": -1,
+          "y": -1,
+          "hp": 0,
+          "max_hp": 925,
+          "gems": 0,
+          "state": 0
+        },
+        {
+          "round": 1500,
+          "id": 4,
+          "x": -1,
+          "y": -1,
+          "hp": 0,
+          "max_hp": 1060,
+          "gems": 0,
+          "state": 0
+        },
+        {
+          "round": 1500,
+          "id": 5,
+          "x": 52,
+          "y": 12,
+          "hp": 2262.199951171875,
+          "max_hp": 2300,
+          "gems": 0,
+          "state": 2073
+        },
+        {
+          "round": 1750,
+          "id": 0,
+          "x": 66,
+          "y": 7,
+          "hp": 261,
+          "max_hp": 1125,
+          "gems": 0,
+          "state": 3
+        },
+        {
+          "round": 1750,
+          "id": 1,
+          "x": 46,
+          "y": 13,
+          "hp": 1500,
+          "max_hp": 1500,
+          "gems": 0,
+          "state": 2073
+        },
+        {
+          "round": 1750,
+          "id": 2,
+          "x": 26,
+          "y": 16,
+          "hp": 900,
+          "max_hp": 900,
+          "gems": 0,
+          "state": 2073
+        },
+        {
+          "round": 1750,
+          "id": 3,
+          "x": 73,
+          "y": 24,
+          "hp": 799,
+          "max_hp": 925,
+          "gems": 4,
+          "state": 2073
+        },
+        {
+          "round": 1750,
+          "id": 4,
+          "x": 74,
+          "y": 9,
+          "hp": 674,
+          "max_hp": 1220,
+          "gems": 0,
+          "state": 2073
+        },
+        {
+          "round": 1750,
+          "id": 5,
+          "x": 69,
+          "y": 19,
+          "hp": 2262.199951171875,
+          "max_hp": 2300,
+          "gems": 0,
+          "state": 2073
+        },
+        {
+          "round": 1900,
+          "id": 0,
+          "x": 83,
+          "y": 4,
+          "hp": 801,
+          "max_hp": 1125,
+          "gems": 0,
+          "state": 2073
+        },
+        {
+          "round": 1900,
+          "id": 1,
+          "x": 20,
+          "y": 14,
+          "hp": 1500,
+          "max_hp": 1500,
+          "gems": 14,
+          "state": 2073
+        },
+        {
+          "round": 1900,
+          "id": 2,
+          "x": 46,
+          "y": 13,
+          "hp": 900,
+          "max_hp": 900,
+          "gems": 0,
+          "state": 2073
+        },
+        {
+          "round": 1900,
+          "id": 3,
+          "x": 87,
+          "y": 3,
+          "hp": 925,
+          "max_hp": 925,
+          "gems": 0,
+          "state": 2073
+        },
+        {
+          "round": 1900,
+          "id": 4,
+          "x": 58,
+          "y": 12,
+          "hp": 1052,
+          "max_hp": 1220,
+          "gems": 0,
+          "state": 2073
+        },
+        {
+          "round": 1900,
+          "id": 5,
+          "x": 69,
+          "y": 19,
+          "hp": 2262.199951171875,
+          "max_hp": 2300,
+          "gems": 0,
+          "state": 2073
+        },
+        {
+          "round": 1975,
+          "id": 0,
+          "x": 76,
+          "y": 0,
+          "hp": 1125,
+          "max_hp": 1125,
+          "gems": 0,
+          "state": 2073
+        },
+        {
+          "round": 1975,
+          "id": 1,
+          "x": 20,
+          "y": 15,
+          "hp": 1500,
+          "max_hp": 1500,
+          "gems": 0,
+          "state": 2073
+        },
+        {
+          "round": 1975,
+          "id": 2,
+          "x": 13,
+          "y": 16,
+          "hp": 900,
+          "max_hp": 900,
+          "gems": 0,
+          "state": 2073
+        },
+        {
+          "round": 1975,
+          "id": 3,
+          "x": 56,
+          "y": 14,
+          "hp": 925,
+          "max_hp": 925,
+          "gems": 0,
+          "state": 2073
+        },
+        {
+          "round": 1975,
+          "id": 4,
+          "x": 50,
+          "y": 8,
+          "hp": 1220,
+          "max_hp": 1220,
+          "gems": 4,
+          "state": 2073
+        },
+        {
+          "round": 1975,
+          "id": 5,
+          "x": 69,
+          "y": 19,
+          "hp": 2262.199951171875,
+          "max_hp": 2300,
+          "gems": 0,
+          "state": 2073
+        }
+      ]
+    },
+    "v8-1": {
+      "engine_sha256": "c03ab26f20263b08e576ebc1a064cd6f9b66a996aca005d69bd9fb9205434354",
+      "replay_sha256": "c1da432dfccdffb0ac66ca04e39ac431eec2ec6d3915079ed920223c1cecf95d",
+      "map_sha256": "f1ecb726472858efb1d75d00b0d7668be18d83a010b2abf9a1f8c38aab456aa5",
+      "inputs": 42318,
+      "terminal": {
+        "outcome": "teamB",
+        "round": 2000,
+        "banks": [
+          210,
+          800
+        ]
+      },
+      "seat": 1,
+      "sampling": "Start of requested rounds; no continuous-movement claim.",
+      "records": [
+        {
+          "round": 250,
+          "id": 5,
+          "x": 35,
+          "y": 85,
+          "hp": 750,
+          "max_hp": 750,
+          "gems": 0,
+          "state": 2073
+        },
+        {
+          "round": 250,
+          "id": 6,
+          "x": 57,
+          "y": 80,
+          "hp": 1000,
+          "max_hp": 1000,
+          "gems": 0,
+          "state": 2073
+        },
+        {
+          "round": 250,
+          "id": 7,
+          "x": 14,
+          "y": 94,
+          "hp": 660,
+          "max_hp": 900,
+          "gems": 15,
+          "state": 2073
+        },
+        {
+          "round": 250,
+          "id": 8,
+          "x": 32,
+          "y": 95,
+          "hp": 600,
+          "max_hp": 600,
+          "gems": 0,
+          "state": 2073
+        },
+        {
+          "round": 250,
+          "id": 9,
+          "x": 32,
+          "y": 81,
+          "hp": 900,
+          "max_hp": 900,
+          "gems": 0,
+          "state": 2073
+        },
+        {
+          "round": 250,
+          "id": 10,
+          "x": 41,
+          "y": 87,
+          "hp": 1400,
+          "max_hp": 1400,
+          "gems": 0,
+          "state": 2073
+        },
+        {
+          "round": 500,
+          "id": 5,
+          "x": -1,
+          "y": -1,
+          "hp": 0,
+          "max_hp": 750,
+          "gems": 0,
+          "state": 0
+        },
+        {
+          "round": 500,
+          "id": 6,
+          "x": 12,
+          "y": 96,
+          "hp": 826,
+          "max_hp": 1000,
+          "gems": 0,
+          "state": 2073
+        },
+        {
+          "round": 500,
+          "id": 7,
+          "x": 16,
+          "y": 94,
+          "hp": 1000,
+          "max_hp": 1000,
+          "gems": 0,
+          "state": 2073
+        },
+        {
+          "round": 500,
+          "id": 8,
+          "x": -1,
+          "y": -1,
+          "hp": 0,
+          "max_hp": 600,
+          "gems": 0,
+          "state": 0
+        },
+        {
+          "round": 500,
+          "id": 9,
+          "x": -1,
+          "y": -1,
+          "hp": 0,
+          "max_hp": 900,
+          "gems": 0,
+          "state": 0
+        },
+        {
+          "round": 500,
+          "id": 10,
+          "x": 17,
+          "y": 94,
+          "hp": 1500,
+          "max_hp": 1500,
+          "gems": 0,
+          "state": 2073
+        },
+        {
+          "round": 750,
+          "id": 5,
+          "x": 22,
+          "y": 98,
+          "hp": 750,
+          "max_hp": 750,
+          "gems": 0,
+          "state": 2073
+        },
+        {
+          "round": 750,
+          "id": 6,
+          "x": 39,
+          "y": 87,
+          "hp": 696.4000854492188,
+          "max_hp": 1000,
+          "gems": 0,
+          "state": 2073
+        },
+        {
+          "round": 750,
+          "id": 7,
+          "x": 32,
+          "y": 77,
+          "hp": 940,
+          "max_hp": 1000,
+          "gems": 4,
+          "state": 2073
+        },
+        {
+          "round": 750,
+          "id": 8,
+          "x": -1,
+          "y": -1,
+          "hp": 0,
+          "max_hp": 600,
+          "gems": 0,
+          "state": 0
+        },
+        {
+          "round": 750,
+          "id": 9,
+          "x": -1,
+          "y": -1,
+          "hp": 0,
+          "max_hp": 900,
+          "gems": 0,
+          "state": 0
+        },
+        {
+          "round": 750,
+          "id": 10,
+          "x": -1,
+          "y": -1,
+          "hp": 0,
+          "max_hp": 1800,
+          "gems": 0,
+          "state": 0
+        },
+        {
+          "round": 1000,
+          "id": 5,
+          "x": -1,
+          "y": -1,
+          "hp": 0,
+          "max_hp": 750,
+          "gems": 0,
+          "state": 0
+        },
+        {
+          "round": 1000,
+          "id": 6,
+          "x": 31,
+          "y": 80,
+          "hp": 1500,
+          "max_hp": 1500,
+          "gems": 0,
+          "state": 2073
+        },
+        {
+          "round": 1000,
+          "id": 7,
+          "x": 58,
+          "y": 81,
+          "hp": 1500,
+          "max_hp": 1500,
+          "gems": 21,
+          "state": 2073
+        },
+        {
+          "round": 1000,
+          "id": 8,
+          "x": 17,
+          "y": 89,
+          "hp": 600,
+          "max_hp": 600,
+          "gems": 0,
+          "state": 2073
+        },
+        {
+          "round": 1000,
+          "id": 9,
+          "x": 42,
+          "y": 98,
+          "hp": 980,
+          "max_hp": 980,
+          "gems": 20,
+          "state": 2073
+        },
+        {
+          "round": 1000,
+          "id": 10,
+          "x": 12,
+          "y": 94,
+          "hp": 1800,
+          "max_hp": 1800,
+          "gems": 0,
+          "state": 2073
+        },
+        {
+          "round": 1250,
+          "id": 5,
+          "x": 34,
+          "y": 94,
+          "hp": 750,
+          "max_hp": 750,
+          "gems": 0,
+          "state": 2073
+        },
+        {
+          "round": 1250,
+          "id": 6,
+          "x": 24,
+          "y": 85,
+          "hp": 1500,
+          "max_hp": 1500,
+          "gems": 4,
+          "state": 2073
+        },
+        {
+          "round": 1250,
+          "id": 7,
+          "x": 45,
+          "y": 95,
+          "hp": 1600,
+          "max_hp": 1600,
+          "gems": 15,
+          "state": 2073
+        },
+        {
+          "round": 1250,
+          "id": 8,
+          "x": 53,
+          "y": 88,
+          "hp": 600,
+          "max_hp": 600,
+          "gems": 0,
+          "state": 2073
+        },
+        {
+          "round": 1250,
+          "id": 9,
+          "x": 46,
+          "y": 86,
+          "hp": 1140,
+          "max_hp": 1140,
+          "gems": 0,
+          "state": 2073
+        },
+        {
+          "round": 1250,
+          "id": 10,
+          "x": 49,
+          "y": 89,
+          "hp": 1673.19970703125,
+          "max_hp": 1900,
+          "gems": 0,
+          "state": 2073
+        },
+        {
+          "round": 1500,
+          "id": 5,
+          "x": -1,
+          "y": -1,
+          "hp": 0,
+          "max_hp": 750,
+          "gems": 0,
+          "state": 0
+        },
+        {
+          "round": 1500,
+          "id": 6,
+          "x": 84,
+          "y": 87,
+          "hp": 1500,
+          "max_hp": 1500,
+          "gems": 0,
+          "state": 2073
+        },
+        {
+          "round": 1500,
+          "id": 7,
+          "x": 41,
+          "y": 88,
+          "hp": 1298,
+          "max_hp": 2000,
+          "gems": 0,
+          "state": 2073
+        },
+        {
+          "round": 1500,
+          "id": 8,
+          "x": 55,
+          "y": 84,
+          "hp": 545,
+          "max_hp": 665,
+          "gems": 0,
+          "state": 2073
+        },
+        {
+          "round": 1500,
+          "id": 9,
+          "x": 55,
+          "y": 85,
+          "hp": 1000,
+          "max_hp": 1140,
+          "gems": 4,
+          "state": 2073
+        },
+        {
+          "round": 1500,
+          "id": 10,
+          "x": 18,
+          "y": 88,
+          "hp": 2100,
+          "max_hp": 2100,
+          "gems": 7,
+          "state": 2073
+        },
+        {
+          "round": 1750,
+          "id": 5,
+          "x": 29,
+          "y": 78,
+          "hp": 690,
+          "max_hp": 750,
+          "gems": 0,
+          "state": 2073
+        },
+        {
+          "round": 1750,
+          "id": 6,
+          "x": 90,
+          "y": 90,
+          "hp": 1500,
+          "max_hp": 1500,
+          "gems": 0,
+          "state": 2073
+        },
+        {
+          "round": 1750,
+          "id": 7,
+          "x": 92,
+          "y": 89,
+          "hp": 2200,
+          "max_hp": 2200,
+          "gems": 0,
+          "state": 2073
+        },
+        {
+          "round": 1750,
+          "id": 8,
+          "x": 42,
+          "y": 98,
+          "hp": 925,
+          "max_hp": 925,
+          "gems": 4,
+          "state": 2073
+        },
+        {
+          "round": 1750,
+          "id": 9,
+          "x": 50,
+          "y": 91,
+          "hp": 1300,
+          "max_hp": 1300,
+          "gems": 15,
+          "state": 2073
+        },
+        {
+          "round": 1750,
+          "id": 10,
+          "x": 45,
+          "y": 85,
+          "hp": 2100,
+          "max_hp": 2100,
+          "gems": 0,
+          "state": 2073
+        },
+        {
+          "round": 1900,
+          "id": 5,
+          "x": 25,
+          "y": 86,
+          "hp": 825,
+          "max_hp": 825,
+          "gems": 0,
+          "state": 2073
+        },
+        {
+          "round": 1900,
+          "id": 6,
+          "x": 38,
+          "y": 87,
+          "hp": 874.199462890625,
+          "max_hp": 1500,
+          "gems": 0,
+          "state": 2073
+        },
+        {
+          "round": 1900,
+          "id": 7,
+          "x": 73,
+          "y": 83,
+          "hp": 2200,
+          "max_hp": 2200,
+          "gems": 0,
+          "state": 2073
+        },
+        {
+          "round": 1900,
+          "id": 8,
+          "x": 48,
+          "y": 92,
+          "hp": 925,
+          "max_hp": 925,
+          "gems": 4,
+          "state": 2073
+        },
+        {
+          "round": 1900,
+          "id": 9,
+          "x": 11,
+          "y": 96,
+          "hp": 657.3997802734375,
+          "max_hp": 1300,
+          "gems": 15,
+          "state": 3
+        },
+        {
+          "round": 1900,
+          "id": 10,
+          "x": 40,
+          "y": 89,
+          "hp": 2124.3994140625,
+          "max_hp": 2200,
+          "gems": 0,
+          "state": 2073
+        },
+        {
+          "round": 1975,
+          "id": 5,
+          "x": 14,
+          "y": 92,
+          "hp": 825,
+          "max_hp": 825,
+          "gems": 0,
+          "state": 2073
+        },
+        {
+          "round": 1975,
+          "id": 6,
+          "x": 24,
+          "y": 87,
+          "hp": 1500,
+          "max_hp": 1500,
+          "gems": 0,
+          "state": 2073
+        },
+        {
+          "round": 1975,
+          "id": 7,
+          "x": 57,
+          "y": 78,
+          "hp": 2200,
+          "max_hp": 2200,
+          "gems": 14,
+          "state": 5
+        },
+        {
+          "round": 1975,
+          "id": 8,
+          "x": 15,
+          "y": 92,
+          "hp": 925,
+          "max_hp": 925,
+          "gems": 0,
+          "state": 2073
+        },
+        {
+          "round": 1975,
+          "id": 9,
+          "x": 42,
+          "y": 86,
+          "hp": 1380,
+          "max_hp": 1380,
+          "gems": 0,
+          "state": 2073
+        },
+        {
+          "round": 1975,
+          "id": 10,
+          "x": 48,
+          "y": 88,
+          "hp": 2500,
+          "max_hp": 2500,
+          "gems": 0,
+          "state": 2073
+        }
+      ]
+    }
+  }
+}

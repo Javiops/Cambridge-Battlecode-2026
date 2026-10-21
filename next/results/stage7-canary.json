@@ -1,0 +1,238 @@
+{
+  "candidate": "ppo-league-v12",
+  "wasm_sha256": "7cdeca594e68bc9e5aeaa2a19116fd7eb990ffdafa9c911a7dbd69bcd5866bcc",
+  "weights_sha256": "94c1399f470e7c64f65a203a46d4bd14dff4527057d6eb12fc26fffb79b5402f",
+  "runtime": {
+    "cli": "cambc 3.0.1",
+    "sdk_sha256": "478d64d6b611ffbe584d18352c449eaebb0d79465729811788a1e972860a1a9d",
+    "engine_build_hash": "2b36d9c61b2710d06036680d07fc4b7a8319ba35f634e4f1445725e0d99a1e16",
+    "ruleset": "cambc2026a-week2-2026-10-20",
+    "release": true
+  },
+  "sources": {
+    "bots/ppo-league/src/de_rules.h": "b84ccee773f9ed9c93151e8a822efa7b533ab10d4f7401f6e890eb8ffb42f76c",
+    "bots/ppo-league/src/fight.h": "4647e1efa39823e7c47f9ec35a1920e88c34dc4f6feb0d51a3e8f3c9cd2166d8",
+    "bots/ppo-league/src/main.cpp": "c96f7d77dcbb648968a60e7f72d5473cbeff156b753ed5223db2ca7ee8c183cc",
+    "bots/ppo-league/src/map-seed.h": "6d15f569e19c47f693b7040383524b2d47f78a32c50d8287d8b9d2337d0a7a32",
+    "bots/ppo-league/src/mapplan.h": "07d39f52be0a15d9a402b8c2dac13a4eabfbb723c0433fcf4257b317a1e6116c",
+    "bots/ppo-league/src/mapplan_game.h": "73702f92ad7ec47eec1eea3d28997dd818457f05973e2d4826cbd572ce0f52bc",
+    "bots/ppo-league/src/observe.h": "e1e13ca1ac4b834f3adc0cbae3c678fb3c3e7f82098ffe589f94054258d6cbae",
+    "bots/ppo-league/src/opening_replace.h": "dfa3d10167869ce2da2785f8dcf7bddd6aaefc081b05c986b46b996f4c6f489c",
+    "bots/ppo-league/src/params.h": "15d6b0654bdac8b4717a04a10661784d27e8bc6b788c77e0e8aa62a78f55cef7",
+    "bots/ppo-league/src/policy.h": "f69b5cbd06d4de0c2badc9a7b4292dc5fe32f6aaadfc0b51eca19d639cfed651",
+    "bots/ppo-league/src/ppo-adapter.h": "3d9b16180c549f67d59cfb1a1afaf8b646979083c52ceed5575f90582773be77",
+    "bots/ppo-league/src/profile.h": "de33330813654e32bfceb890494b770e6f2832e751da9c1bd2b85f408ed3964f",
+    "bots/ppo-league/src/track.h": "2d4bb01be0749cfc94b57041a30711682c9ee9160d3714664510667ecc77709d",
+    "bots/ppo-league/src/utility.h": "841154cebf69b88a05bc73660f8bc7e5405b767700fafca9ba1840afcd9b0f97",
+    "bots/ppo-league/src/verdict.h": "adde5fb241fbe466f75b05c894e469b899f87052bb53eb989cd1030bc04d40ca",
+    "bots/ppo-league/src/weights.h": "5e6990c172efc7029576d7b04ce326c4c500f69b69ed74bcf5cf9270c8e8fe43",
+    "lab/stage7.py": "6d1622768f10015256a6e0357f75e4dc146ab817bb6bdd6f1b142e1575ece7e3",
+    "lab/gate.py": "1257fe4b21eefc0dd6b9786ce80f5ed3881927b1b6e8e34455568b211462654e",
+    "lab/core.py": "a22268763ba7be333a99bd41ed9e951bde2a9395f0879de1762b9e2513806021",
+    "lab/stats.py": "8d907514521f7125e0e2e616df710ce3ef3be16fb1c5c5abe1f6cd4c47f278fa",
+    "lab.toml": "3d1dec4b9922d856567fb1f5f986a3ba6906f1e390be0c1c4eb8ec4b4bcefd81"
+  },
+  "passed": true,
+  "games": [
+    {
+      "map": "generated/screen/g1-screen-000",
+      "seat": 0,
+      "replay": ".cambc/stage7-proof/generated_screen_g1-screen-000-0/ppo-league-v12-vs-starter-week2-v1-1792523018563.repl26a",
+      "sha256": "1b6f26c31ad37802ed3018545e5b2942d83062ce9f18b367ce154c583fe9b381",
+      "champions": {
+        "0": {
+          "calls": 34,
+          "changes": 18,
+          "choices": 91
+        },
+        "1": {
+          "calls": 5,
+          "changes": 2,
+          "choices": 10
+        },
+        "2": {
+          "calls": 0,
+          "changes": 0,
+          "choices": 0
+        },
+        "3": {
+          "calls": 45,
+          "changes": 15,
+          "choices": 90
+        }
+      }
+    },
+    {
+      "map": "generated/screen/g1-screen-000",
+      "seat": 1,
+      "replay": ".cambc/stage7-proof/generated_screen_g1-screen-000-1/starter-week2-v1-vs-ppo-league-v12-1792523019537.repl26a",
+      "sha256": "fbd311990ca709a1cb314695a4199ad81664663334b71efa8414f3dd5d228b50",
+      "champions": {
+        "3": {
+          "calls": 36,
+          "changes": 16,
+          "choices": 74
+        },
+        "4": {
+          "calls": 0,
+          "changes": 0,
+          "choices": 0
+        },
+        "5": {
+          "calls": 0,
+          "changes": 0,
+          "choices": 0
+        },
+        "6": {
+          "calls": 30,
+          "changes": 14,
+          "choices": 61
+        }
+      }
+    },
+    {
+      "map": "generated/screen/g1-screen-002",
+      "seat": 0,
+      "replay": ".cambc/stage7-proof/generated_screen_g1-screen-002-0/ppo-league-v12-vs-starter-week2-v1-1792523020819.repl26a",
+      "sha256": "e8bc326cf474815bce1973c52912dddd9dec4286591088bc5068916b558c28d8",
+      "champions": {
+        "0": {
+          "calls": 0,
+          "changes": 0,
+          "choices": 0
+        },
+        "1": {
+          "calls": 0,
+          "changes": 0,
+          "choices": 0
+        },
+        "2": {
+          "calls": 0,
+          "changes": 0,
+          "choices": 0
+        },
+        "3": {
+          "calls": 0,
+          "changes": 0,
+          "choices": 0
+        },
+        "4": {
+          "calls": 0,
+          "changes": 0,
+          "choices": 0
+        }
+      }
+    },
+    {
+      "map": "generated/screen/g1-screen-002",
+      "seat": 1,
+      "replay": ".cambc/stage7-proof/generated_screen_g1-screen-002-1/starter-week2-v1-vs-ppo-league-v12-1792523023905.repl26a",
+      "sha256": "1a7b46d69e225e8de5dcf263df08a0c4e024398d1b65f96ba6fed0112d8ff288",
+      "champions": {
+        "6": {
+          "calls": 0,
+          "changes": 0,
+          "choices": 0
+        },
+        "7": {
+          "calls": 0,
+          "changes": 0,
+          "choices": 0
+        },
+        "8": {
+          "calls": 0,
+          "changes": 0,
+          "choices": 0
+        },
+        "9": {
+          "calls": 0,
+          "changes": 0,
+          "choices": 0
+        },
+        "10": {
+          "calls": 0,
+          "changes": 0,
+          "choices": 0
+        }
+      }
+    },
+    {
+      "map": "00expanse",
+      "seat": 0,
+      "replay": ".cambc/stage7-proof/00expanse-0/ppo-league-v12-vs-starter-week2-v1-1792523026213.repl26a",
+      "sha256": "b3c4b7d04eef7268077894967a1897a7d8488ee421fd111fff002e88e65f9dc8",
+      "champions": {
+        "0": {
+          "calls": 9,
+          "changes": 6,
+          "choices": 18
+        },
+        "1": {
+          "calls": 25,
+          "changes": 14,
+          "choices": 50
+        },
+        "2": {
+          "calls": 0,
+          "changes": 0,
+          "choices": 0
+        },
+        "3": {
+          "calls": 0,
+          "changes": 0,
+          "choices": 0
+        },
+        "4": {
+          "calls": 0,
+          "changes": 0,
+          "choices": 0
+        },
+        "5": {
+          "calls": 0,
+          "changes": 0,
+          "choices": 0
+        }
+      }
+    },
+    {
+      "map": "00expanse",
+      "seat": 1,
+      "replay": ".cambc/stage7-proof/00expanse-1/starter-week2-v1-vs-ppo-league-v12-1792523028488.repl26a",
+      "sha256": "fa91a5d65e8231a6c38d122042bcfdf045cbe192255cf7696e860c41b70f4b63",
+      "champions": {
+        "6": {
+          "calls": 8,
+          "changes": 4,
+          "choices": 16
+        },
+        "7": {
+          "calls": 12,
+          "changes": 8,
+          "choices": 24
+        },
+        "8": {
+          "calls": 0,
+          "changes": 0,
+          "choices": 0
+        },
+        "9": {
+          "calls": 11,
+          "changes": 7,
+          "choices": 22
+        },
+        "10": {
+          "calls": 0,
+          "changes": 0,
+          "choices": 0
+        },
+        "11": {
+          "calls": 0,
+          "changes": 0,
+          "choices": 0
+        }
+      }
+    }
+  ],
+  "policy_calls": 215,
+  "changed_targets": 104
+}

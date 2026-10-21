@@ -1,0 +1,256 @@
+{
+  "schema": 2,
+  "platform_versions": [
+    88
+  ],
+  "candidates": {
+    "0": "ppo-topdraft-v14"
+  },
+  "engine_build_hash": "c3e9ffc8d98c106f86660c58344dc26ced9459a504e2f0d90d88b4c8594c7765",
+  "decoder_wasm_sha256": "c03ab26f20263b08e576ebc1a064cd6f9b66a996aca005d69bd9fb9205434354",
+  "kind": "unranked",
+  "collected_groups": 6,
+  "challenged_groups": 6,
+  "allowance_before": 6,
+  "allowance_after": 0,
+  "maps": 12,
+  "native_verified_games": 30,
+  "summary": {
+    "games": 30,
+    "wins": 8,
+    "faults": 0,
+    "fuel_exhausted": 0,
+    "opponent_faults": 0,
+    "mean_banked_gems": 581.1666666666666,
+    "mean_opponent_banked_gems": 883.7333333333333,
+    "zero_bank_games": 2,
+    "ppo_logged_calls": 3626,
+    "ppo_logged_changes": 1805
+  },
+  "by_stage": {
+    "0": {
+      "games": 30,
+      "wins": 8,
+      "faults": 0,
+      "fuel_exhausted": 0,
+      "opponent_faults": 0,
+      "mean_banked_gems": 581.1666666666666,
+      "mean_opponent_banked_gems": 883.7333333333333,
+      "zero_bank_games": 2,
+      "ppo_logged_calls": 3626,
+      "ppo_logged_changes": 1805
+    }
+  },
+  "by_cohort": {
+    "nearby": {
+      "games": 20,
+      "wins": 6,
+      "faults": 0,
+      "fuel_exhausted": 0,
+      "opponent_faults": 0,
+      "mean_banked_gems": 642.75,
+      "mean_opponent_banked_gems": 866.6,
+      "zero_bank_games": 2,
+      "ppo_logged_calls": 2026,
+      "ppo_logged_changes": 1006
+    },
+    "stretch": {
+      "games": 10,
+      "wins": 2,
+      "faults": 0,
+      "fuel_exhausted": 0,
+      "opponent_faults": 0,
+      "mean_banked_gems": 458.0,
+      "mean_opponent_banked_gems": 918.0,
+      "zero_bank_games": 0,
+      "ppo_logged_calls": 1600,
+      "ppo_logged_changes": 799
+    }
+  },
+  "by_map": {
+    "00ambush": {
+      "games": 2,
+      "wins": 0,
+      "faults": 0,
+      "fuel_exhausted": 0,
+      "opponent_faults": 0,
+      "mean_banked_gems": 717.0,
+      "mean_opponent_banked_gems": 1028.5,
+      "zero_bank_games": 0,
+      "ppo_logged_calls": 207,
+      "ppo_logged_changes": 97
+    },
+    "00collision": {
+      "games": 4,
+      "wins": 1,
+      "faults": 0,
+      "fuel_exhausted": 0,
+      "opponent_faults": 0,
+      "mean_banked_gems": 473.25,
+      "mean_opponent_banked_gems": 1016.5,
+      "zero_bank_games": 0,
+      "ppo_logged_calls": 394,
+      "ppo_logged_changes": 173
+    },
+    "00contest": {
+      "games": 2,
+      "wins": 0,
+      "faults": 0,
+      "fuel_exhausted": 0,
+      "opponent_faults": 0,
+      "mean_banked_gems": 100.0,
+      "mean_opponent_banked_gems": 1000.0,
+      "zero_bank_games": 1,
+      "ppo_logged_calls": 242,
+      "ppo_logged_changes": 145
+    },
+    "00corners": {
+      "games": 2,
+      "wins": 2,
+      "faults": 0,
+      "fuel_exhausted": 0,
+      "opponent_faults": 0,
+      "mean_banked_gems": 1008.0,
+      "mean_opponent_banked_gems": 841.5,
+      "zero_bank_games": 0,
+      "ppo_logged_calls": 188,
+      "ppo_logged_changes": 108
+    },
+    "00eight": {
+      "games": 2,
+      "wins": 1,
+      "faults": 0,
+      "fuel_exhausted": 0,
+      "opponent_faults": 0,
+      "mean_banked_gems": 884.0,
+      "mean_opponent_banked_gems": 500.0,
+      "zero_bank_games": 0,
+      "ppo_logged_calls": 338,
+      "ppo_logged_changes": 157
+    },
+    "00elkring": {
+      "games": 2,
+      "wins": 1,
+      "faults": 0,
+      "fuel_exhausted": 0,
+      "opponent_faults": 0,
+      "mean_banked_gems": 834.0,
+      "mean_opponent_banked_gems": 803.0,
+      "zero_bank_games": 0,
+      "ppo_logged_calls": 58,
+      "ppo_logged_changes": 27
+    },
+    "00expanse": {
+      "games": 2,
+      "wins": 0,
+      "faults": 0,
+      "fuel_exhausted": 0,
+      "opponent_faults": 0,
+      "mean_banked_gems": 860.0,
+      "mean_opponent_banked_gems": 1000.5,
+      "zero_bank_games": 0,
+      "ppo_logged_calls": 216,
+      "ppo_logged_changes": 121
+    },
+    "00monolith": {
+      "games": 2,
+      "wins": 0,
+      "faults": 0,
+      "fuel_exhausted": 0,
+      "opponent_faults": 0,
+      "mean_banked_gems": 864.5,
+      "mean_opponent_banked_gems": 1014.5,
+      "zero_bank_games": 0,
+      "ppo_logged_calls": 345,
+      "ppo_logged_changes": 156
+    },
+    "00rows": {
+      "games": 2,
+      "wins": 2,
+      "faults": 0,
+      "fuel_exhausted": 0,
+      "opponent_faults": 0,
+      "mean_banked_gems": 1017.0,
+      "mean_opponent_banked_gems": 622.5,
+      "zero_bank_games": 0,
+      "ppo_logged_calls": 854,
+      "ppo_logged_changes": 445
+    },
+    "00stampede": {
+      "games": 4,
+      "wins": 1,
+      "faults": 0,
+      "fuel_exhausted": 0,
+      "opponent_faults": 0,
+      "mean_banked_gems": 430.0,
+      "mean_opponent_banked_gems": 690.0,
+      "zero_bank_games": 0,
+      "ppo_logged_calls": 453,
+      "ppo_logged_changes": 222
+    },
+    "01big-world": {
+      "games": 2,
+      "wins": 0,
+      "faults": 0,
+      "fuel_exhausted": 0,
+      "opponent_faults": 0,
+      "mean_banked_gems": 356.5,
+      "mean_opponent_banked_gems": 1016.5,
+      "zero_bank_games": 0,
+      "ppo_logged_calls": 122,
+      "ppo_logged_changes": 54
+    },
+    "01elk-arena": {
+      "games": 4,
+      "wins": 0,
+      "faults": 0,
+      "fuel_exhausted": 0,
+      "opponent_faults": 0,
+      "mean_banked_gems": 135.0,
+      "mean_opponent_banked_gems": 1008.0,
+      "zero_bank_games": 1,
+      "ppo_logged_calls": 209,
+      "ppo_logged_changes": 100
+    }
+  },
+  "by_opponent": {
+    "Preyas": {
+      "games": 10,
+      "wins": 2,
+      "faults": 0,
+      "fuel_exhausted": 0,
+      "opponent_faults": 0,
+      "mean_banked_gems": 576.9,
+      "mean_opponent_banked_gems": 898.6,
+      "zero_bank_games": 1,
+      "ppo_logged_calls": 993,
+      "ppo_logged_changes": 472
+    },
+    "Cozy Campfire": {
+      "games": 10,
+      "wins": 4,
+      "faults": 0,
+      "fuel_exhausted": 0,
+      "opponent_faults": 0,
+      "mean_banked_gems": 708.6,
+      "mean_opponent_banked_gems": 834.6,
+      "zero_bank_games": 1,
+      "ppo_logged_calls": 1033,
+      "ppo_logged_changes": 534
+    },
+    "BitShift": {
+      "games": 10,
+      "wins": 2,
+      "faults": 0,
+      "fuel_exhausted": 0,
+      "opponent_faults": 0,
+      "mean_banked_gems": 458.0,
+      "mean_opponent_banked_gems": 918.0,
+      "zero_bank_games": 0,
+      "ppo_logged_calls": 1600,
+      "ppo_logged_changes": 799
+    }
+  },
+  "interpretation": "Field-check quiet channel cover after broad release checks; preserve v87 rollback and frozen opponent pairs. Runtime, acquisition and deposits accompany wins. PPO counters are log lower bounds; no controlled strength estimate.",
+  "per_game_records": "stage7-live-v88-cover-games.jsonl"
+}

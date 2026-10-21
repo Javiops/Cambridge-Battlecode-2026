@@ -1,0 +1,267 @@
+{
+  "probe": {
+    "engine_sha256": "c03ab26f20263b08e576ebc1a064cd6f9b66a996aca005d69bd9fb9205434354",
+    "replay_sha256": "b2b429fc25568e7c04129704055d920da40ce96de68264b0ac2e519c8ecdd525",
+    "round": 500,
+    "queries": [
+      {
+        "actor": 0,
+        "target": 0,
+        "code": 0,
+        "x": 69,
+        "y": 10,
+        "state": 2073
+      },
+      {
+        "actor": 0,
+        "target": 1,
+        "code": 97
+      },
+      {
+        "actor": 0,
+        "target": 2,
+        "code": 0,
+        "x": 68,
+        "y": 7,
+        "state": 2073
+      },
+      {
+        "actor": 0,
+        "target": 3,
+        "code": 97
+      },
+      {
+        "actor": 0,
+        "target": 4,
+        "code": 0,
+        "x": 72,
+        "y": 11,
+        "state": 2073
+      },
+      {
+        "actor": 0,
+        "target": 5,
+        "code": 0,
+        "x": 70,
+        "y": 12,
+        "state": 2073
+      },
+      {
+        "actor": 1,
+        "target": 0,
+        "code": 97
+      },
+      {
+        "actor": 1,
+        "target": 1,
+        "code": 0,
+        "x": 56,
+        "y": 14,
+        "state": 2073
+      },
+      {
+        "actor": 1,
+        "target": 2,
+        "code": 97
+      },
+      {
+        "actor": 1,
+        "target": 3,
+        "code": 97
+      },
+      {
+        "actor": 1,
+        "target": 4,
+        "code": 97
+      },
+      {
+        "actor": 1,
+        "target": 5,
+        "code": 97
+      },
+      {
+        "actor": 2,
+        "target": 0,
+        "code": 0,
+        "x": 69,
+        "y": 10,
+        "state": 2073
+      },
+      {
+        "actor": 2,
+        "target": 1,
+        "code": 97
+      },
+      {
+        "actor": 2,
+        "target": 2,
+        "code": 0,
+        "x": 68,
+        "y": 7,
+        "state": 2073
+      },
+      {
+        "actor": 2,
+        "target": 3,
+        "code": 97
+      },
+      {
+        "actor": 2,
+        "target": 4,
+        "code": 0,
+        "x": 72,
+        "y": 11,
+        "state": 2073
+      },
+      {
+        "actor": 2,
+        "target": 5,
+        "code": 0,
+        "x": 70,
+        "y": 12,
+        "state": 2073
+      },
+      {
+        "actor": 3,
+        "target": 0,
+        "code": 97
+      },
+      {
+        "actor": 3,
+        "target": 1,
+        "code": 97
+      },
+      {
+        "actor": 3,
+        "target": 2,
+        "code": 97
+      },
+      {
+        "actor": 3,
+        "target": 3,
+        "code": 0,
+        "x": 78,
+        "y": 12,
+        "state": 2073
+      },
+      {
+        "actor": 3,
+        "target": 4,
+        "code": 0,
+        "x": 72,
+        "y": 11,
+        "state": 2073
+      },
+      {
+        "actor": 3,
+        "target": 5,
+        "code": 0,
+        "x": 70,
+        "y": 12,
+        "state": 2073
+      },
+      {
+        "actor": 4,
+        "target": 0,
+        "code": 0,
+        "x": 69,
+        "y": 10,
+        "state": 2073
+      },
+      {
+        "actor": 4,
+        "target": 1,
+        "code": 97
+      },
+      {
+        "actor": 4,
+        "target": 2,
+        "code": 0,
+        "x": 68,
+        "y": 7,
+        "state": 2073
+      },
+      {
+        "actor": 4,
+        "target": 3,
+        "code": 0,
+        "x": 78,
+        "y": 12,
+        "state": 2073
+      },
+      {
+        "actor": 4,
+        "target": 4,
+        "code": 0,
+        "x": 72,
+        "y": 11,
+        "state": 2073
+      },
+      {
+        "actor": 4,
+        "target": 5,
+        "code": 0,
+        "x": 70,
+        "y": 12,
+        "state": 2073
+      },
+      {
+        "actor": 5,
+        "target": 0,
+        "code": 0,
+        "x": 69,
+        "y": 10,
+        "state": 2073
+      },
+      {
+        "actor": 5,
+        "target": 1,
+        "code": 97
+      },
+      {
+        "actor": 5,
+        "target": 2,
+        "code": 0,
+        "x": 68,
+        "y": 7,
+        "state": 2073
+      },
+      {
+        "actor": 5,
+        "target": 3,
+        "code": 0,
+        "x": 78,
+        "y": 12,
+        "state": 2073
+      },
+      {
+        "actor": 5,
+        "target": 4,
+        "code": 0,
+        "x": 72,
+        "y": 11,
+        "state": 2073
+      },
+      {
+        "actor": 5,
+        "target": 5,
+        "code": 0,
+        "x": 70,
+        "y": 12,
+        "state": 2073
+      }
+    ],
+    "terminal": {
+      "outcome": "teamB",
+      "round": 1122,
+      "banks": [
+        327,
+        1017
+      ]
+    },
+    "limits": "One sampled round; does not establish frequency or apply hidden state to a policy."
+  },
+  "probe_sha256": "80803e3971c95f8680a36125e03fbf9bdea8c17366db5b1f877ac2f0e3734a19",
+  "claim": "An earlier cached ally can be hidden while later allies are readable. One snapshot per entry avoids duplicated per-entry state/position reads and does not terminate the scan for that ordinary hidden result.",
+  "limits": "The sampled frame has no active tribute. It proves the visibility condition, not a particular missed escort. Continuing past a hidden entry may query more total entries than the old premature exit; lower total fuel is not guaranteed."
+}

@@ -1,0 +1,67 @@
+{
+  "schema": 1,
+  "status": "complete_native_verified",
+  "planned_groups": 6,
+  "tasks": [
+    {
+      "task": 0,
+      "opponent": "Preyas",
+      "sourceGroup": "9736fafc-af01-4db0-85dd-6502fe80dd3e",
+      "maps": [
+        "00collision",
+        "00expanse",
+        "00stampede",
+        "01elk_arena",
+        "01big_world"
+      ],
+      "cohort": "nearby",
+      "status": "pair_complete_native_verified",
+      "groups": [
+        "ce63f2db-9a1b-4f78-be6e-f1962061b33d",
+        "e6e8077b-78b2-45fc-b93b-d6e6d3731f84"
+      ]
+    },
+    {
+      "task": 1,
+      "opponent": "Cozy Campfire",
+      "sourceGroup": "be5248a7-8e2d-43df-b1fd-96c4119dccf3",
+      "maps": [
+        "00ambush",
+        "00contest",
+        "00corners",
+        "00eight",
+        "00elkring"
+      ],
+      "cohort": "nearby",
+      "status": "pair_complete_native_verified",
+      "groups": [
+        "03ef71fe-eff1-46a7-9a7b-62ecdf2fe8d4",
+        "b152abc8-31e9-4f25-ad00-d68a05e69d30"
+      ]
+    },
+    {
+      "task": 2,
+      "opponent": "BitShift",
+      "sourceGroup": "b265c35b-e3ec-43ea-aa60-9f03c7707702",
+      "maps": [
+        "00stampede",
+        "01elk_arena",
+        "00collision",
+        "00rows",
+        "00monolith"
+      ],
+      "cohort": "stretch",
+      "status": "pair_complete_native_verified",
+      "groups": [
+        "9a8837c9-817d-432d-a11f-3cef30fd0d7f",
+        "85e8e958-96a6-4e8f-a722-2c3fc89bc6ec"
+      ]
+    }
+  ],
+  "platform_version": 88,
+  "submission_id": "359be360-3778-40bf-bf67-a8433dc773f7",
+  "candidate": "ppo-topdraft-v14",
+  "completed_utc": "2026-10-21T00:35:12.813241+00:00",
+  "native_verified_games": 30,
+  "final_actual_allowance": 0
+}

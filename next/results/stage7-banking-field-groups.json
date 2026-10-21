@@ -1,0 +1,299 @@
+{
+  "schema": 2,
+  "startedUtc": "2026-10-20T23:11:30.576074+00:00",
+  "purpose": "Pinned paired benchmark: v85, v8 positive-cargo banking, then v12 contact-first combat work.",
+  "sourceGroup": "26aefce6-7006-4ece-8bc8-75a679090632",
+  "opponent": "Preyas",
+  "maps": [
+    "00collision",
+    "00expanse",
+    "00stampede",
+    "01elk_arena",
+    "01big_world"
+  ],
+  "stages": [
+    {
+      "candidate": "ppo-topdraft-v7",
+      "platform_version": 85,
+      "source_zip_sha256": "988b0ec7911e9573da47a5ed61fcd447b68770d194924e5777403986398a5ce2",
+      "status": "native_verified",
+      "groups": [
+        "58c230ed-1c02-4fc4-9214-cce78e769511",
+        "d7946a13-aee3-4f79-a690-2d7f8d06e362"
+      ],
+      "nativeVerifiedGames": 10,
+      "server_compilation_verified": true
+    },
+    {
+      "candidate": "ppo-topdraft-v8",
+      "platform_version": 86,
+      "source_zip_sha256": "7cb32c43786e6df0cca50de081f619405cd2a65dbc43cf97696bdf3e3081c7cb",
+      "status": "native_verified",
+      "groups": [
+        "0502e1bf-a0a7-4b44-85c7-8f291777344c",
+        "e8a75ace-0d29-4372-ba82-6819c7b52ec3"
+      ],
+      "uploadIntent": {
+        "note": "topdraft-v8 | complete banking trips",
+        "sourceZipSha256": "7cb32c43786e6df0cca50de081f619405cd2a65dbc43cf97696bdf3e3081c7cb",
+        "wasmSha256": "c92a39613426dab54e4e02363cdf7ec50882865329ac869bcc155da9db0c9b89",
+        "previousLiveVersion": 85,
+        "createdUtc": "2026-10-20T23:18:20.253Z"
+      },
+      "submission_id": "86f123c9-f417-478a-a041-775a6b612f6e",
+      "uploadedUtc": "2026-10-20T23:18:55.580Z",
+      "server_source_sha256": "7cb32c43786e6df0cca50de081f619405cd2a65dbc43cf97696bdf3e3081c7cb",
+      "nativeVerifiedGames": 10,
+      "server_compilation_verified": true
+    },
+    {
+      "candidate": "ppo-topdraft-v12",
+      "platform_version": 87,
+      "source_zip_sha256": "63307a7f21d3dc877914fd4f3bbedd24c92ad8777e7275c8e98b3cd93bf6a8de",
+      "status": "native_verified",
+      "groups": [
+        "9736fafc-af01-4db0-85dd-6502fe80dd3e",
+        "48820e4a-d5ee-4096-a122-8ad7065228c3"
+      ],
+      "uploadIntent": {
+        "note": "topdraft-v12 | contact before scans",
+        "sourceZipSha256": "63307a7f21d3dc877914fd4f3bbedd24c92ad8777e7275c8e98b3cd93bf6a8de",
+        "wasmSha256": "fcd2cdc3c2c69e8defc939f28d1145e60aa8fb176466dc4ef720ccdbf8bd96ea",
+        "previousLiveVersion": 86,
+        "createdUtc": "2026-10-20T23:24:09.241Z"
+      },
+      "submission_id": "dc131234-1554-4b10-bf2d-595765c4351e",
+      "uploadedUtc": "2026-10-20T23:24:28.922Z",
+      "server_source_sha256": "63307a7f21d3dc877914fd4f3bbedd24c92ad8777e7275c8e98b3cd93bf6a8de",
+      "nativeVerifiedGames": 10,
+      "server_compilation_verified": true
+    }
+  ],
+  "stageIndex": 2,
+  "groups": [
+    {
+      "stage": 0,
+      "version": 85,
+      "opponent": "Preyas",
+      "sourceGroup": "26aefce6-7006-4ece-8bc8-75a679090632",
+      "maps": [
+        "00collision",
+        "00expanse",
+        "00stampede",
+        "01elk_arena",
+        "01big_world"
+      ],
+      "seat": "A",
+      "allowanceBefore": 27,
+      "requestedUtc": "2026-10-20T23:13:50.201Z",
+      "outcome": "group_returned",
+      "id": "58c230ed-1c02-4fc4-9214-cce78e769511",
+      "collectionStatus": "complete",
+      "queuedVersionVerified": 85,
+      "opponentRankObserved": 118,
+      "opponentRatingObserved": 1696,
+      "cohort": "nearby",
+      "summaryFiles": [
+        "e05d3116-56a2-4635-aad3-7bc5a6bdac50.json",
+        "cbd44c27-aff3-4e3f-b2e7-c6fcaec7ef3e.json",
+        "bee0607b-03b3-4032-9d48-a65ef2e2ad54.json",
+        "d57cf692-ad5b-4db6-a2a2-3832d8e5c67c.json",
+        "fbd94fd7-e8c8-4e66-8bbc-1f04be579037.json"
+      ],
+      "completedVersionVerified": 85,
+      "collectedUtc": "2026-10-20T23:16:34.584Z",
+      "purpose": "benchmark",
+      "initiatedByThisAgent": true
+    },
+    {
+      "stage": 0,
+      "version": 85,
+      "opponent": "Preyas",
+      "sourceGroup": "26aefce6-7006-4ece-8bc8-75a679090632",
+      "maps": [
+        "00collision",
+        "00expanse",
+        "00stampede",
+        "01elk_arena",
+        "01big_world"
+      ],
+      "seat": "B",
+      "allowanceBefore": 26,
+      "requestedUtc": "2026-10-20T23:14:35.080Z",
+      "outcome": "group_returned",
+      "id": "d7946a13-aee3-4f79-a690-2d7f8d06e362",
+      "collectionStatus": "complete",
+      "cohort": "nearby",
+      "opponentRankObserved": 118,
+      "opponentRatingObserved": 1696,
+      "queuedVersionVerified": 85,
+      "summaryFiles": [
+        "2d3a3f93-923a-46fc-ae5d-5ff5eece8803.json",
+        "55119c87-e3bf-4185-9318-9d1a6f5c3920.json",
+        "c4a842e4-cd83-4920-85c3-32d11076d503.json",
+        "af7799b0-67cd-4aed-98cd-f49b9f828c5e.json",
+        "4fb32e18-f4fb-4b6f-8999-1ba58f52062d.json"
+      ],
+      "completedVersionVerified": 85,
+      "collectedUtc": "2026-10-20T23:16:53.886Z",
+      "purpose": "benchmark",
+      "initiatedByThisAgent": true
+    },
+    {
+      "stage": 1,
+      "version": 86,
+      "opponent": "Preyas",
+      "sourceGroup": "26aefce6-7006-4ece-8bc8-75a679090632",
+      "maps": [
+        "00collision",
+        "00expanse",
+        "00stampede",
+        "01elk_arena",
+        "01big_world"
+      ],
+      "seat": "A",
+      "allowanceBefore": 25,
+      "requestedUtc": "2026-10-20T23:19:39.639Z",
+      "outcome": "group_returned",
+      "initiatedByThisAgent": true,
+      "id": "0502e1bf-a0a7-4b44-85c7-8f291777344c",
+      "collectionStatus": "complete",
+      "cohort": "nearby",
+      "opponentRankObserved": 118,
+      "opponentRatingObserved": 1696,
+      "queuedVersionVerified": 86,
+      "summaryFiles": [
+        "01fb46f2-07f5-42f3-9c2a-6d8df52d30a6.json",
+        "cb264d0e-3ec3-4d2a-8f90-725f5c91495f.json",
+        "67f26923-535b-475c-98f2-a5806d0df257.json",
+        "8609d978-abcb-4f0e-999f-380a7a824665.json",
+        "52324d13-4cb8-4639-8e4b-5570520d622b.json"
+      ],
+      "completedVersionVerified": 86,
+      "collectedUtc": "2026-10-20T23:22:42.570Z",
+      "purpose": "benchmark"
+    },
+    {
+      "stage": 1,
+      "version": 86,
+      "opponent": "Preyas",
+      "sourceGroup": "26aefce6-7006-4ece-8bc8-75a679090632",
+      "maps": [
+        "00collision",
+        "00expanse",
+        "00stampede",
+        "01elk_arena",
+        "01big_world"
+      ],
+      "seat": "B",
+      "allowanceBefore": 24,
+      "requestedUtc": "2026-10-20T23:19:57.164Z",
+      "outcome": "group_returned",
+      "initiatedByThisAgent": true,
+      "id": "e8a75ace-0d29-4372-ba82-6819c7b52ec3",
+      "collectionStatus": "complete",
+      "cohort": "nearby",
+      "opponentRankObserved": 118,
+      "opponentRatingObserved": 1696,
+      "queuedVersionVerified": 86,
+      "summaryFiles": [
+        "a5adf773-7d96-4ccd-9c8d-9c3e4fd6f251.json",
+        "f5f164cd-c3be-4447-ba73-e4f5ccf73e68.json",
+        "8b8aca2e-2565-4081-96d8-4e03743c6543.json",
+        "3d2ae80f-2b09-4b53-9622-facb04f6493f.json",
+        "e927d31c-75b6-460c-97a4-4599bae4066a.json"
+      ],
+      "completedVersionVerified": 86,
+      "collectedUtc": "2026-10-20T23:22:51.423Z",
+      "purpose": "benchmark"
+    },
+    {
+      "stage": 2,
+      "version": 87,
+      "opponent": "Preyas",
+      "sourceGroup": "26aefce6-7006-4ece-8bc8-75a679090632",
+      "maps": [
+        "00collision",
+        "00expanse",
+        "00stampede",
+        "01elk_arena",
+        "01big_world"
+      ],
+      "seat": "A",
+      "allowanceBefore": 46,
+      "requestedUtc": "2026-10-20T23:25:23.861Z",
+      "outcome": "group_returned",
+      "initiatedByThisAgent": true,
+      "id": "9736fafc-af01-4db0-85dd-6502fe80dd3e",
+      "collectionStatus": "complete",
+      "cohort": "nearby",
+      "opponentRankObserved": 118,
+      "opponentRatingObserved": 1696,
+      "queuedVersionVerified": 87,
+      "summaryFiles": [
+        "4353729a-ce41-470d-979c-a19e9f10bfeb.json",
+        "2f9f767d-bd34-470d-9579-80bc3820e3e9.json",
+        "435c2dc3-abb9-4805-ab1e-3e03e3366c8e.json",
+        "525fb45c-07ef-4041-9578-e0524f8c9fa6.json",
+        "29115b22-b1ca-48d2-ba3c-ce47f78088bf.json"
+      ],
+      "completedVersionVerified": 87,
+      "collectedUtc": "2026-10-20T23:27:58.094Z",
+      "purpose": "benchmark"
+    },
+    {
+      "stage": 2,
+      "version": 87,
+      "opponent": "Preyas",
+      "sourceGroup": "26aefce6-7006-4ece-8bc8-75a679090632",
+      "maps": [
+        "00collision",
+        "00expanse",
+        "00stampede",
+        "01elk_arena",
+        "01big_world"
+      ],
+      "seat": "B",
+      "allowanceBefore": 45,
+      "requestedUtc": "2026-10-20T23:25:43.448Z",
+      "outcome": "group_returned",
+      "initiatedByThisAgent": true,
+      "id": "48820e4a-d5ee-4096-a122-8ad7065228c3",
+      "collectionStatus": "complete",
+      "cohort": "nearby",
+      "opponentRankObserved": 118,
+      "opponentRatingObserved": 1696,
+      "queuedVersionVerified": 87,
+      "summaryFiles": [
+        "7be6b224-813a-496e-ad01-059e83ee0f69.json",
+        "47163779-217c-45e4-9aba-712b154f4180.json",
+        "d19b7aed-920d-426e-adc1-2dcd753fe440.json",
+        "17158791-1efb-48cd-855d-6e0f3c074da5.json",
+        "92fae60a-2e0a-4d88-8c39-d398bedc9232.json"
+      ],
+      "completedVersionVerified": 87,
+      "collectedUtc": "2026-10-20T23:28:15.276Z",
+      "purpose": "benchmark"
+    }
+  ],
+  "pending": null,
+  "initialAllowance": 27,
+  "lastObservedAllowance": 44,
+  "teamRank": 128,
+  "teamRating": 1683,
+  "observedQueue": {
+    "oursPlaying": 0,
+    "oursQueued": 0
+  },
+  "holdHonoredThrough": "2026-10-20T23:10:20+00:00",
+  "externalObservations": [
+    {
+      "id": "77c3f15f-c29d-4911-aa6a-ebe2f0936403",
+      "opponent": "Crimson Pathfinders",
+      "version": 85,
+      "type": "unranked",
+      "initiatedByThisAgent": false
+    }
+  ],
+  "benchmarkCompleteUtc": "2026-10-20T23:32:35.183689+00:00"
+}

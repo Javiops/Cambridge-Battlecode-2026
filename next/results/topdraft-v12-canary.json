@@ -1,0 +1,66 @@
+{
+  "schema": 1,
+  "experiment": "ppo-topdraft-v12",
+  "parent": "ppo-topdraft-v8",
+  "baseline": "ppo-topdraft-v8",
+  "runtime": {
+    "cli_version": "cambc 3.0.2",
+    "engine_version": "1.0.1",
+    "engine_build_hash": "c3e9ffc8d98c106f86660c58344dc26ced9459a504e2f0d90d88b4c8594c7765"
+  },
+  "identities": {
+    "candidate": "fcd2cdc3c2c69e8defc939f28d1145e60aa8fb176466dc4ef720ccdbf8bd96ea",
+    "baseline": "c92a39613426dab54e4e02363cdf7ec50882865329ac869bcc155da9db0c9b89",
+    "starter": "c9a0ca35cf13686680ef4ea00d0bb99f654a79be78382bdb3283604d5fde9795"
+  },
+  "config_sha256": "e89fe21863dbfd588e97325b3ccce8b99753f516535798311b36e24819cc6059",
+  "changes": "ppo-topdraft-v12: check front-line contact before gathering allies; expect less non-contact combat work and fewer idle budget retries.",
+  "status": "development_only_not_promoted",
+  "sealed_confirmation_maps_used": false,
+  "promotion_gate_run": false,
+  "uploaded": false,
+  "draft_verified_games": 10,
+  "elapsed_seconds": 7.011178970336914,
+  "summary": {
+    "starter": {
+      "games": 4,
+      "wins": 4,
+      "faults": 0,
+      "fuel_exhausted": 1,
+      "opponent_faults": 0,
+      "by_seat": {
+        "0": {
+          "games": 2,
+          "wins": 2
+        },
+        "1": {
+          "games": 2,
+          "wins": 2
+        }
+      },
+      "mean_banked_gems": 880.25,
+      "mean_opponent_banked_gems": 321.5
+    },
+    "baseline": {
+      "games": 6,
+      "wins": 3,
+      "faults": 0,
+      "fuel_exhausted": 1,
+      "opponent_faults": 0,
+      "by_seat": {
+        "0": {
+          "games": 3,
+          "wins": 0
+        },
+        "1": {
+          "games": 3,
+          "wins": 3
+        }
+      },
+      "mean_banked_gems": 596.5,
+      "mean_opponent_banked_gems": 579.1666666666666
+    }
+  },
+  "per_game_records": "topdraft-v12-canary-games.jsonl",
+  "independent_rebuild_sha256": "fcd2cdc3c2c69e8defc939f28d1145e60aa8fb176466dc4ef720ccdbf8bd96ea"
+}

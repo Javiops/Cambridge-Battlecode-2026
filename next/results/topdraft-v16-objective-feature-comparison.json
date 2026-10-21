@@ -1,0 +1,53 @@
+{
+  "parent": {
+    "sole": {
+      "games": 24,
+      "wins": 9,
+      "faults": 0,
+      "fuel_exhausted": 0,
+      "fresh_before_350": 3,
+      "no_fresh": 2,
+      "mean_first_fresh_or_2001": 930.9166666666666,
+      "mean_bank": 181.5,
+      "mean_deaths": 33.458333333333336
+    },
+    "split": {
+      "games": 24,
+      "wins": 9,
+      "faults": 0,
+      "fuel_exhausted": 0,
+      "fresh_before_350": 8,
+      "no_fresh": 9,
+      "mean_first_fresh_or_2001": 1051.1666666666667,
+      "mean_bank": 211.5,
+      "mean_deaths": 44.583333333333336
+    }
+  },
+  "candidate": {
+    "sole": {
+      "games": 24,
+      "wins": 10,
+      "faults": 0,
+      "fuel_exhausted": 0,
+      "fresh_before_350": 7,
+      "no_fresh": 5,
+      "mean_first_fresh_or_2001": 814.4166666666666,
+      "mean_bank": 234.5,
+      "mean_deaths": 36.75
+    },
+    "split": {
+      "games": 24,
+      "wins": 9,
+      "faults": 0,
+      "fuel_exhausted": 0,
+      "fresh_before_350": 8,
+      "no_fresh": 9,
+      "mean_first_fresh_or_2001": 1051.1666666666667,
+      "mean_bank": 211.5,
+      "mean_deaths": 44.583333333333336
+    }
+  },
+  "split_exact_statistic_matches": 24,
+  "split_games": 24,
+  "limits": "Development only. Missing fresh collection censored at2001 for descriptive mean; no general strength or promotion claim. First logged assault is a diagnostic lower-bound when logs truncate."
+}

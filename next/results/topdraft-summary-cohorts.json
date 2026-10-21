@@ -1,0 +1,29 @@
+{
+  "change": "Explicitly absent opponent cohort is omitted; empty/unknown captures fail loudly.",
+  "regression": "Generated-only48-game schedule no longer loses its final report to empty starter division.",
+  "tests": "142 passed",
+  "temporary_directory_note": "Default sandbox temp path blocked fixtures; full suite passed with a fresh workspace basetemp.",
+  "existing_summary_checks": [
+    {
+      "schedule": "topdraft-v15-vs-parent",
+      "games": 372,
+      "summary_unchanged": true
+    },
+    {
+      "schedule": "topdraft-v15-canary",
+      "games": 22,
+      "summary_unchanged": true
+    },
+    {
+      "schedule": "topdraft-v16-vs-parent",
+      "games": 420,
+      "summary_unchanged": true
+    },
+    {
+      "schedule": "topdraft-v16-canary",
+      "games": 26,
+      "summary_unchanged": true
+    }
+  ],
+  "no_match_execution_or_statistics_rule_change": true
+}

@@ -6,7 +6,8 @@
 # screen  = where we look while developing; tune freely.
 # confirm = only for the promotion gate; never look at these games while tuning.
 # Site maps remain a separate diagnostic line. Generate the g1 pools with python -m lab stage1 maps.
-# Confirm combines the 10 sealed 01* site maps and 60 generated holdouts; never tune on these games.
+# Original reservation cohort for immutable Stage 1-6 provenance; consumed by Stage 7 v11.
+# Stage 7 uses its own guarded replacement cohort below.
 site = [
     "00ambush", "00collision", "00contest",
     "00corners", "00eight", "00elkring",
@@ -49,6 +50,7 @@ screen = [
     "generated/screen/g1-screen-096", "generated/screen/g1-screen-097", "generated/screen/g1-screen-098",
     "generated/screen/g1-screen-099",
 ]
+# Original confirmation pool was consumed by v11; preserve its immutable attempt record.
 confirm = [
     "01big-world", "01boss-battle", "01broken-curve",
     "01concentrated-wealth", "01corridors", "01elk-arena",
@@ -75,6 +77,7 @@ confirm = [
     "generated/confirm/g1-confirm-056", "generated/confirm/g1-confirm-057", "generated/confirm/g1-confirm-058",
     "generated/confirm/g1-confirm-059",
 ]
+
 
 [runtime]
 ruleset = "cambc2026a-week2-2026-10-20"
@@ -250,3 +253,98 @@ opponents = ["starter-week2-v1"]
 jobs = 4
 max_turn_fuel = 90000
 max_initial_fuel = 180000
+
+[stage7]
+baseline = "ppo-runtime-v1"
+opponent = "starter-week2-v1"
+jobs = 8
+development_maps = ["generated/screen/g1-screen-000", "generated/screen/g1-screen-001", "generated/screen/g1-screen-002", "generated/screen/g1-screen-003", "generated/screen/g1-screen-004", "generated/screen/g1-screen-005", "generated/screen/g1-screen-006", "generated/screen/g1-screen-007", "generated/screen/g1-screen-008", "generated/screen/g1-screen-009", "generated/screen/g1-screen-010", "generated/screen/g1-screen-011"]
+
+
+candidate = "ppo-league-v12"
+ablation = "ppo-disabled-v3"
+strategy = "v76 expert macro with frozen PPO safe-target sampling"
+seed = 20261029
+minimum_screen = 0.95
+minimum_stress = 0.90
+minimum_policy_calls = 1
+stress_maps = ["00collision", "00corners", "00expanse", "00lanes", "00monolith", "00interlock"]
+canary_maps = ["generated/screen/g1-screen-000", "generated/screen/g1-screen-002", "00expanse"]
+# Fresh, outcome-independent replacement after v11 failed source reproducibility.
+confirmation_seed = 2026103001
+confirmation_count = 70
+confirmation_attempt = "results/stage7-confirmation-attempt-r2.json"
+retired_attempts = ["results/stage7-confirmation-attempt.json"]
+
+confirmation_maps = [
+    "generated/stage7-confirm-r2/g1-stage7-r2-000",
+    "generated/stage7-confirm-r2/g1-stage7-r2-001",
+    "generated/stage7-confirm-r2/g1-stage7-r2-002",
+    "generated/stage7-confirm-r2/g1-stage7-r2-003",
+    "generated/stage7-confirm-r2/g1-stage7-r2-004",
+    "generated/stage7-confirm-r2/g1-stage7-r2-005",
+    "generated/stage7-confirm-r2/g1-stage7-r2-006",
+    "generated/stage7-confirm-r2/g1-stage7-r2-007",
+    "generated/stage7-confirm-r2/g1-stage7-r2-008",
+    "generated/stage7-confirm-r2/g1-stage7-r2-009",
+    "generated/stage7-confirm-r2/g1-stage7-r2-010",
+    "generated/stage7-confirm-r2/g1-stage7-r2-011",
+    "generated/stage7-confirm-r2/g1-stage7-r2-012",
+    "generated/stage7-confirm-r2/g1-stage7-r2-013",
+    "generated/stage7-confirm-r2/g1-stage7-r2-014",
+    "generated/stage7-confirm-r2/g1-stage7-r2-015",
+    "generated/stage7-confirm-r2/g1-stage7-r2-016",
+    "generated/stage7-confirm-r2/g1-stage7-r2-017",
+    "generated/stage7-confirm-r2/g1-stage7-r2-018",
+    "generated/stage7-confirm-r2/g1-stage7-r2-019",
+    "generated/stage7-confirm-r2/g1-stage7-r2-020",
+    "generated/stage7-confirm-r2/g1-stage7-r2-021",
+    "generated/stage7-confirm-r2/g1-stage7-r2-022",
+    "generated/stage7-confirm-r2/g1-stage7-r2-023",
+    "generated/stage7-confirm-r2/g1-stage7-r2-024",
+    "generated/stage7-confirm-r2/g1-stage7-r2-025",
+    "generated/stage7-confirm-r2/g1-stage7-r2-026",
+    "generated/stage7-confirm-r2/g1-stage7-r2-027",
+    "generated/stage7-confirm-r2/g1-stage7-r2-028",
+    "generated/stage7-confirm-r2/g1-stage7-r2-029",
+    "generated/stage7-confirm-r2/g1-stage7-r2-030",
+    "generated/stage7-confirm-r2/g1-stage7-r2-031",
+    "generated/stage7-confirm-r2/g1-stage7-r2-032",
+    "generated/stage7-confirm-r2/g1-stage7-r2-033",
+    "generated/stage7-confirm-r2/g1-stage7-r2-034",
+    "generated/stage7-confirm-r2/g1-stage7-r2-035",
+    "generated/stage7-confirm-r2/g1-stage7-r2-036",
+    "generated/stage7-confirm-r2/g1-stage7-r2-037",
+    "generated/stage7-confirm-r2/g1-stage7-r2-038",
+    "generated/stage7-confirm-r2/g1-stage7-r2-039",
+    "generated/stage7-confirm-r2/g1-stage7-r2-040",
+    "generated/stage7-confirm-r2/g1-stage7-r2-041",
+    "generated/stage7-confirm-r2/g1-stage7-r2-042",
+    "generated/stage7-confirm-r2/g1-stage7-r2-043",
+    "generated/stage7-confirm-r2/g1-stage7-r2-044",
+    "generated/stage7-confirm-r2/g1-stage7-r2-045",
+    "generated/stage7-confirm-r2/g1-stage7-r2-046",
+    "generated/stage7-confirm-r2/g1-stage7-r2-047",
+    "generated/stage7-confirm-r2/g1-stage7-r2-048",
+    "generated/stage7-confirm-r2/g1-stage7-r2-049",
+    "generated/stage7-confirm-r2/g1-stage7-r2-050",
+    "generated/stage7-confirm-r2/g1-stage7-r2-051",
+    "generated/stage7-confirm-r2/g1-stage7-r2-052",
+    "generated/stage7-confirm-r2/g1-stage7-r2-053",
+    "generated/stage7-confirm-r2/g1-stage7-r2-054",
+    "generated/stage7-confirm-r2/g1-stage7-r2-055",
+    "generated/stage7-confirm-r2/g1-stage7-r2-056",
+    "generated/stage7-confirm-r2/g1-stage7-r2-057",
+    "generated/stage7-confirm-r2/g1-stage7-r2-058",
+    "generated/stage7-confirm-r2/g1-stage7-r2-059",
+    "generated/stage7-confirm-r2/g1-stage7-r2-060",
+    "generated/stage7-confirm-r2/g1-stage7-r2-061",
+    "generated/stage7-confirm-r2/g1-stage7-r2-062",
+    "generated/stage7-confirm-r2/g1-stage7-r2-063",
+    "generated/stage7-confirm-r2/g1-stage7-r2-064",
+    "generated/stage7-confirm-r2/g1-stage7-r2-065",
+    "generated/stage7-confirm-r2/g1-stage7-r2-066",
+    "generated/stage7-confirm-r2/g1-stage7-r2-067",
+    "generated/stage7-confirm-r2/g1-stage7-r2-068",
+    "generated/stage7-confirm-r2/g1-stage7-r2-069",
+]

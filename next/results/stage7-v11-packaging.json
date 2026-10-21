@@ -1,0 +1,10 @@
+{
+  "candidate": "ppo-league-v11",
+  "promotion_passed": true,
+  "stage7_ready": false,
+  "reason": "Fresh source build changed compiler-generated exception wrappers; exact WASM rebuild failed.",
+  "frozen_wasm_sha256": "97931f870c3348096957c15bd4059595c7582687cc3ad653e3192afb07ef7b6b",
+  "rebuilt_wasm_sha256": "e3db720becd4e5e95c38e52f783a3ca0e6b0846ca2d2f0c23e88f87dfa21e5e8",
+  "changed_bytes": 186,
+  "followup": "No strategic tuning on consumed confirm maps; v12 adds noinline to the cooperative checkpoint and uses fresh r2 confirmation maps."
+}

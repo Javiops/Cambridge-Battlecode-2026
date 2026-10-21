@@ -1,0 +1,108 @@
+{
+  "source_unchanged": true,
+  "paired_fixtures": 420,
+  "old_runtime": {
+    "cli_version": "cambc 3.0.2",
+    "engine_version": "1.0.1",
+    "engine_build_hash": "c3e9ffc8d98c106f86660c58344dc26ced9459a504e2f0d90d88b4c8594c7765"
+  },
+  "new_runtime": {
+    "cli_version": "cambc 3.0.4",
+    "engine_version": "1.0.2",
+    "engine_build_hash": "ff41468c05c7be716f7647aaf7ea7314633f7038815386c806fafcec98629114"
+  },
+  "old": {
+    "starter": {
+      "games": 70,
+      "wins": 69,
+      "faults": 0,
+      "fuel_exhausted": 0,
+      "opponent_faults": 0,
+      "by_seat": {
+        "0": {
+          "games": 35,
+          "wins": 35
+        },
+        "1": {
+          "games": 35,
+          "wins": 34
+        }
+      },
+      "mean_banked_gems": 924.5571428571428,
+      "mean_opponent_banked_gems": 102.92857142857143
+    },
+    "baseline": {
+      "games": 350,
+      "wins": 173,
+      "faults": 0,
+      "fuel_exhausted": 4,
+      "opponent_faults": 0,
+      "by_seat": {
+        "0": {
+          "games": 175,
+          "wins": 91
+        },
+        "1": {
+          "games": 175,
+          "wins": 82
+        }
+      },
+      "mean_banked_gems": 639.1028571428571,
+      "mean_opponent_banked_gems": 639.2171428571429
+    }
+  },
+  "new": {
+    "starter": {
+      "games": 70,
+      "wins": 69,
+      "faults": 0,
+      "fuel_exhausted": 1,
+      "opponent_faults": 0,
+      "by_seat": {
+        "0": {
+          "games": 35,
+          "wins": 35
+        },
+        "1": {
+          "games": 35,
+          "wins": 34
+        }
+      },
+      "mean_banked_gems": 896.7142857142857,
+      "mean_opponent_banked_gems": 102.92857142857143
+    },
+    "baseline": {
+      "games": 350,
+      "wins": 172,
+      "faults": 0,
+      "fuel_exhausted": 9,
+      "opponent_faults": 0,
+      "by_seat": {
+        "0": {
+          "games": 175,
+          "wins": 97
+        },
+        "1": {
+          "games": 175,
+          "wins": 75
+        }
+      },
+      "mean_banked_gems": 624.0142857142857,
+      "mean_opponent_banked_gems": 625.0628571428572
+    }
+  },
+  "equal_outcomes": 275,
+  "limits": "Same source/WASM,CLI/rules changed. This is patch sensitivity,not a source improvement or promotion. Opponent source identity fixed within each matched fixture.",
+  "seed_equal_pairs": 420,
+  "source_wasm_identities_equal": true,
+  "old_wasm_identities": {
+    "candidate": "301031fc5a4d34b5ddd263605485a349007e54e7ac8817e0a342307c9457851b",
+    "baseline": "061aef4bf4c22e57578978c3742ab70adfa2a7839978281faa1770f9408f972f",
+    "starter": "c9a0ca35cf13686680ef4ea00d0bb99f654a79be78382bdb3283604d5fde9795"
+  },
+  "new_wasm_identities": {
+    "candidate": "301031fc5a4d34b5ddd263605485a349007e54e7ac8817e0a342307c9457851b",
+    "baseline": "061aef4bf4c22e57578978c3742ab70adfa2a7839978281faa1770f9408f972f",
+    "starter": "c9a0ca35cf13686680ef4ea00d0bb99f654a79be78382bdb3283604d5fde9795"
+  }
+}

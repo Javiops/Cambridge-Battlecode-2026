@@ -1,0 +1,16 @@
+{
+  "candidate": "ppo-topdraft-v14",
+  "platform_version": 88,
+  "submission_id": "359be360-3778-40bf-bf67-a8433dc773f7",
+  "source_zip_sha256": "6eb3470a10243206ccdfd406634fc9f884438e654c9ea5c3738d98ca26eee1e1",
+  "server_source_sha256": "6eb3470a10243206ccdfd406634fc9f884438e654c9ea5c3738d98ca26eee1e1",
+  "wasm_sha256": "29b0658fd0b75956baac1eeb864a2b02ed51d2b7973f2525b42afe5ada744f63",
+  "server_binary_sha256": null,
+  "server_compilation_verified": true,
+  "status": "compiled_live_verified",
+  "completed_native_verified_games": 0,
+  "verified_utc": "2026-10-21T00:21:13.537Z",
+  "completed_native_verified_unranked_games": 30,
+  "completed_native_verified_automatic_ranked_games": 5,
+  "field_report": "V88-FIELD.md"
+}

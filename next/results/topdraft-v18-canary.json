@@ -1,0 +1,67 @@
+{
+  "schema": 1,
+  "experiment": "ppo-topdraft-v18",
+  "parent": "ppo-topdraft-v17",
+  "baseline": "ppo-topdraft-v17",
+  "runtime": {
+    "cli_version": "cambc 3.0.2",
+    "engine_version": "1.0.1",
+    "engine_build_hash": "c3e9ffc8d98c106f86660c58344dc26ced9459a504e2f0d90d88b4c8594c7765"
+  },
+  "identities": {
+    "candidate": "061aef4bf4c22e57578978c3742ab70adfa2a7839978281faa1770f9408f972f",
+    "baseline": "5564c3a8a67d4347a483db4a6a6a77df9b7f1d348fb93d22da8399898a788769",
+    "starter": "c9a0ca35cf13686680ef4ea00d0bb99f654a79be78382bdb3283604d5fde9795"
+  },
+  "config_sha256": "5c9ea3e3c80f4ef787f78ae8db51c74d4f53566ad8ab11b58a637884a63a93c3",
+  "changes": "ppo-topdraft-v18: share an authorized rally release before turn priorities; expect healthy stragglers to join the same push and collect more objective gems.",
+  "status": "development_only_not_promoted",
+  "sealed_confirmation_maps_used": false,
+  "promotion_gate_run": false,
+  "uploaded": false,
+  "draft_verified_games": 26,
+  "elapsed_seconds": 10.693102836608887,
+  "summary": {
+    "starter": {
+      "games": 12,
+      "wins": 12,
+      "faults": 0,
+      "fuel_exhausted": 0,
+      "opponent_faults": 0,
+      "by_seat": {
+        "0": {
+          "games": 6,
+          "wins": 6
+        },
+        "1": {
+          "games": 6,
+          "wins": 6
+        }
+      },
+      "mean_banked_gems": 922.8333333333334,
+      "mean_opponent_banked_gems": 101.66666666666667
+    },
+    "baseline": {
+      "games": 14,
+      "wins": 7,
+      "faults": 0,
+      "fuel_exhausted": 1,
+      "opponent_faults": 0,
+      "by_seat": {
+        "0": {
+          "games": 7,
+          "wins": 5
+        },
+        "1": {
+          "games": 7,
+          "wins": 2
+        }
+      },
+      "mean_banked_gems": 521.4285714285714,
+      "mean_opponent_banked_gems": 518.5
+    }
+  },
+  "per_game_records": "topdraft-v18-canary-games.jsonl",
+  "source_zip_sha256": "c1b3514b1702c7822e3fd1deeb20e846c510165a7c9902fc7a040aa34cc5c7e3",
+  "independent_rebuild_sha256": "061aef4bf4c22e57578978c3742ab70adfa2a7839978281faa1770f9408f972f"
+}

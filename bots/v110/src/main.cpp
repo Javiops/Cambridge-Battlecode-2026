@@ -1735,8 +1735,8 @@ int squad_needed(double hp_g, double str_g, double dps, double afford) {
     if (str_g <= 0) return 1;
     const bool focus = false;
     for (int n = 1; n <= 5; ++n)
-        if (hp_g * str_g / (dps * n * (focus ? 1 : n)) <= afford) return n;
-    return 6;
+        if (hp_g * str_g / (dps * n * (focus ? 1 : n)) <= afford) return std::min(n, P_NEED_CAP);  // feas-a: rivals take any camp with 2 (elk opening at r29 as a pair); the kite/heal they use is not in this formula
+    return P_NEED_CAP < 6 ? P_NEED_CAP : 6;
 }
 
 int allies_near(State& s, bc::champion& me, vec2 at, int radius) {

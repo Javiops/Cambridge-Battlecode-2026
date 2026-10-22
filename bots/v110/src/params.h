@@ -196,6 +196,9 @@
 #define P_KINDFIX 1  // draft-meta-v1b: melee and dash read from attack_range()/is_dash(), not name lists
 #endif
 
+#ifndef P_NEED_CAP
+#define P_NEED_CAP 2  // feas-a: a camp group never "needs" more than this many champions
+#endif
 #ifndef P_ISLEFIX
 #define P_ISLEFIX 10  // islefix-v1: fight-camp turns with no step and no hit before the group is dropped
 #endif

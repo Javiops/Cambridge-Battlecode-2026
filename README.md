@@ -2,8 +2,13 @@
 
 > **[Tactics handbook](docs/tactics/README.md)** — Our living bot specification: 12 chapters, 96 decision topics, and detailed tactics maintained in English.
 
-Bot en C++ para [CAMBC 2026a](https://2026a.battlecode.co.uk). La versión actual es la **v30** (`bots/v30`),
-la misma que está subida a la web como versión 30. Con la v29 llegamos al puesto 25 del ranking.
+Bot en C++ para [CAMBC 2026a](https://2026a.battlecode.co.uk). La versión actual es la **v110** (`bots/v110`),
+la misma que está activa en la web como versión 110 (need2-v1). La historia del bot desde study27 está en los
+commits de `bots/v110` (`git log --follow bots/v110/src/main.cpp`): v102 mate-dash, v105 stallfix, v110 need2.
+
+**Para probar un cambio en local, usa el panel de rivales: [panel/README.md](panel/README.md)** (9 rivales con drafts
+del ranking, los 40 mapas de la web en `maps_site40/`, juez emparejado como el online). Lo de abajo sobre la v30,
+`ab.py` y `gate.py` es el método anterior: sigue funcionando, pero el cara a cara contra la base no predice online.
 
 ## Cómo trabajamos: el harness
 

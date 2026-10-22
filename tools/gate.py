@@ -140,7 +140,7 @@ def online_maps_line(per):
 
 
 def export_ref(ref, cand):
-    """`gate.py bots/study27-economy main`: the base is the candidate's folder as it is in git ref `ref` (main, origin/main, a sha).
+    """`gate.py bots/v110 main`: the base is the candidate's folder as it is in git ref `ref` (main, origin/main, a sha).
     A bare branch name means the branch on origin (fetched first), so a stale local `main` never becomes the base."""
     def rev(r):
         x = subprocess.run(['git', 'rev-parse', '--verify', '--quiet', r + '^{commit}'], capture_output=True, text=True)

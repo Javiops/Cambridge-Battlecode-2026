@@ -1,0 +1,134 @@
+// mapplan_game.h - the in-game half of the map plan (mapplan.h): features that need the camp groups and the
+// walking distances of init_paths (camp groups are not readable during the draft). Included after State.
+#pragma once
+#include <algorithm>
+#include <vector>
+
+inline int mp_median(std::vector<int> v) {
+    if (v.empty()) return -1;
+    std::sort(v.begin(), v.end());
+    return v[v.size() / 2];
+}
+
+// Rule 3, walk around awake camps. Monsters focus one champion, and an awake camp (an ally is fighting it) hits whoever
+// walks within its range. On ambush the caster draft lost Cassi&Issac at r70 walking past the elks Stellar had woken, on
+// the way to the gem cluster 5 tiles further: 48 camp deaths in 6 local games (34 before r300) vs 26 with the old draft.
+// With P_MP_CAMPAVOID, a path to anything but that camp avoids the range of every damaged monster in sight (falls back
+// to the plain path when that is blocked).
+inline bc::bitboard mp_awake_camp_zone(State& s, vec2 pos) {
+    bc::bitboard z;
+    attempt([&] {
+        for (const auto& c : bc::vision::camps()) {
+            if (c.health() <= 0 || c.strength() <= 0 || c.health() >= c.max_health()) continue;
+            vec2 cp = c.position();
+            if (dist(cp, pos) > 12) continue;
+            if (s.target >= 0 && s.target < static_cast<int>(s.groups.size()) && s.groups[s.target].mask.is_set(cp)) continue;
+            z.draw_chebyshev(cp, static_cast<float>(c.attack_range()) + 1.0f);
+        }
+        return true;
+    });
+    z.set(pos, false);
+    return z;
+}
+
+// Rule 5, dash over holes. A dash moves 2 tiles and may cross a hole (not a wall). Ambush has 1-tile hole lines inside
+// its wall lines (row 37 x16-26 above the 106-gem camp, row 62, x72 ...): the walking field treats holes as walls, so
+// Ren, Tavi, Issac and Vendetta walk around them (Varg and Ren went round via the bushes at x36-42, ~15 tiles more).
+// With P_MP_DASHHOLE, a dash champion also plans with the crossable hole tiles open; when that route is at least
+// P_MP_DASHHOLE tiles shorter than the walk and the dash cooldown is shorter than the saving, it walks that route,
+// keeps the dash for the crossing and waits at the edge if the dash is not back yet.
+inline void mp_find_dashholes(State& s) {
+    s.mp_hole_all = bc::map::holes();
+    bc::bitboard bad = bc::map::walls() | s.mp_hole_all | bc::map::altars();
+    attempt([&] {
+        for (auto h : bc::map::holes().positions())
+            for (int dx = -1; dx <= 1; ++dx)
+                for (int dy = -1; dy <= 1; ++dy) {
+                    if (!dx && !dy) continue;
+                    vec2 a = h - vec2(dx, dy), b = h + vec2(dx, dy);
+                    if (!bc::map::is_in_bounds(a) || !bc::map::is_in_bounds(b) || bad.is_set(a) || bad.is_set(b)) continue;
+                    s.mp_dashholes.set(h);
+                }
+        return true;
+    });
+}
+// 1 = moved (or dashed), -1 = wait at the hole edge for the dash, 0 = no gain: the caller walks as before.
+inline int mp_dash_hole_step(State& s, bc::champion& me, const bc::bitboard& goals, const bc::bitboard& vblock, vec2 pos) {
+    if (!s.visited.is_set(pos)) return 0;
+    int here = s.df.get(pos);
+    auto ab = me.abilities()[s.dash_slot];
+    int cd = 99;
+    attempt([&] { cd = ab.cooldown(); return true; });
+    if (here - P_MP_DASHHOLE <= cd) return 0;  // the walk is as fast as waiting for the dash
+    bool ok = attempt([&] {
+        s.mp_hdf.compute_to(vblock & ~s.mp_dashholes, goals, s.dest, s.mp_hvis);
+        return s.mp_hvis.is_set(pos);
+    });
+    if (!ok) return 0;
+    int hh = s.mp_hdf.get(pos);
+    if (hh > here - P_MP_DASHHOLE || hh <= cd) return 0;  // no crossing on the way, or it does not pay
+    if (cd <= 0 && me.can_cast()) {  // dash across a hole tile next to us toward the goal
+        std::optional<vec2> best;
+        int bestd = hh - 1;
+        for (int dx = -2; dx <= 2; ++dx)
+            for (int dy = -2; dy <= 2; ++dy) {
+                if (std::max(std::abs(dx), std::abs(dy)) < 2) continue;
+                vec2 t = pos + vec2(dx, dy);
+                if (!bc::map::is_in_bounds(t) || s.blocked.is_set(t) || !s.mp_hvis.is_set(t)) continue;
+                int d = s.mp_hdf.get(t);
+                if (d >= bestd) continue;
+                bool over = false;  // a crossable hole on a tile adjacent to both ends
+                for (int mx = -1; mx <= 1 && !over; ++mx)
+                    for (int my = -1; my <= 1 && !over; ++my) {
+                        vec2 m = pos + vec2(mx, my);
+                        if (std::max(std::abs(m.x - t.x), std::abs(m.y - t.y)) <= 1 && bc::map::is_in_bounds(m) && s.mp_dashholes.is_set(m)) over = true;
+                    }
+                if (over) { bestd = d; best = t; }
+            }
+        if (best && attempt([&] { return ab.use(*best); })) {
+            pos = *best;
+            if (me.can_move()) {
+                std::vector<vec2> st;
+                attempt([&] { st = s.mp_hdf.next_moves_from(pos); return true; });
+                for (auto d : st)
+                    if (!s.mp_hole_all.is_set(pos + d) && attempt([&] { return me.move(d); })) break;
+            }
+            return 1;
+        }
+    }
+    if (!me.can_move()) return 0;
+    std::vector<vec2> st;
+    attempt([&] { st = s.mp_hdf.next_moves_from(pos); return true; });
+    bool edge = false;
+    for (auto d : st) {
+        if (s.mp_hole_all.is_set(pos + d)) { edge = true; continue; }
+        if (attempt([&] { return me.move(d); })) return 1;
+    }
+    return edge ? -1 : 0;
+}
+
+// Rule 9, the squad moves on to the next camp. The top teams on ambush capture the 106-gem camp at r73-77; the carrier
+// goes home and the others walk 10 tiles to the 72-gem elks and take them at r96-111. v52 re-chooses alone every 6
+// rounds and takes the 72 camp at r190-243. With P_MP_CHAINPLAN, on maps whose gem camps are P_MP_SPREAD_D+ from home,
+// for P_MP_CHAIN_T rounds after a gem camp next to us was captured, a champion carrying no gems scores the gem camps
+// within P_MP_CHAIN_N tiles of it at P_MP_CHAINPLAN % (all the non-carriers there see the same camp, so they go together).
+inline bool mp_chain_next(const State& s, bc::champion& me, const Group& g, int i, int round) {
+    if (true) return false;
+    if (round - s.mp_last_r > P_MP_CHAIN_T || g.gems <= 0) return false;
+    if (dist(g.center, s.groups[s.mp_last_g].center) > P_MP_CHAIN_N) return false;
+    bool empty = false;
+    attempt([&] { empty = me.gem_count() == 0; return true; });
+    return empty;
+}
+
+// Called once, after init_paths. Fills s.mp_* from the map's features.
+inline void mp_game_plan(State& s) {
+    std::vector<int> bank, home;
+    for (auto& g : s.groups) {
+        if (g.gems <= 0 || g.monolith) continue;
+        if (g.altar_pd >= 0) bank.push_back(g.altar_pd);
+        if (g.spawn_pd >= 0) home.push_back(g.spawn_pd);
+    }
+    s.mp_bank_d = mp_median(bank);
+    s.mp_home_d = mp_median(home);
+}

@@ -17,7 +17,9 @@
 //
 // Call conventions (verified against the visualiser JS and a known game):
 //   Game_FromReplayFileBytes(ptr, len, out)            -> code; u64 game handle at out
-//   Game_Visualiser_SnapshotSize()                    -> 184696 (snapshot ABI 1)
+//   Game_Visualiser_SnapshotSize()                    -> 184696 (wasms v0_0_*, engine 2.x) or 184760 (v0_1_0 and
+//                                                     v1_0_0; v1_0_0 = engine 3.0): ABI 1 both; 3.0 appends f32 passiveDamageBonus[16] at 184696
+//                                                     (per champion index; Heart of Ruin missing-health bonus). Other offsets unchanged.
 //   Game_Visualiser_Timeline_GetMain(h, out)          -> u64 timeline handle at out
 //   Game_Visualiser_Timeline_Info(h, tl, pSize, pParent, pParentPos) -> u32 size (number of input positions)
 //   Game_Visualiser_Timeline_Seek(h, tl, position, substep)
@@ -27,7 +29,7 @@
 //   Game_API_GetRoundNumber(h, out)                   -> u32 round at out
 //   Game_API_GetSubmittedGemCount(h, team, out)       -> u64 gems at out (team 0/1)
 //   Game_Statistics_GetSummary(h, buf)                -> 80-byte struct (see readSummary)
-//   Game_Statistics_GetChampion(h, index, buf)        -> 664-byte struct (see readChampionStats)
+//   Game_Statistics_GetChampion(h, index, buf)        -> 664-byte struct, same in 2.x and 3.0 (see readChampionStats)
 //   Game_GetBitboardMetadata(h, out) -> i32 width, i32 height, ...; Game_GetSymmetry(h, out) -> i32
 //   Game_GetNumCamps(h, out) -> u32; Game_GetCampHandle(h, i, out) -> u64; Game_GetCamp(h, campHandle, out) -> i32 type, i32 x, i32 y
 //   Game_GetNumCampGroups(h, out) -> u32; Game_GetCampGroupHandle(h, i, out) -> u64;
@@ -50,8 +52,10 @@ function emitLine(s) {
   }
 }
 
-// The engine wasm ships with the cambc visualiser assets (any cambc version); CAMBC_VIS_WASM overrides.
-const WASM = process.env.CAMBC_VIS_WASM || (() => {
+// The engine wasms ship with the cambc visualiser assets, one per engine version (v<maj>_<min>_<patch>-<hash>.wasm;
+// engine 3.0 replays need v1_0_0). The wasm matching the replay's engine version (inner replay header bytes 8..10) is
+// preferred; otherwise the newest wasm is used. CAMBC_VIS_WASM overrides.
+const findWasm = (want) => process.env.CAMBC_VIS_WASM || (() => {
   const roots = [path.join(require('os').homedir(), '.cache', 'cambc', 'assets'),
                  path.join(process.env.LOCALAPPDATA || '', 'cambc', 'assets')];
   let best = null;
@@ -61,21 +65,22 @@ const WASM = process.env.CAMBC_VIS_WASM || (() => {
       const a = path.join(r, d, 'visualiser', 'assets'); let fl = [];
       try { fl = fs.readdirSync(a); } catch (e) { continue; }
       for (const f of fl) if (f.endsWith('.wasm')) {
-        const fp = path.join(a, f), t = fs.statSync(fp).mtimeMs;
-        if (!best || t > best.t) best = { fp, t };
+        const fp = path.join(a, f), t = fs.statSync(fp).mtimeMs, m = want && f.startsWith(want + '-') ? 1 : 0;
+        if (!best || m > best.m || (m === best.m && (t > best.t || (t === best.t && f > best.f)))) best = { fp, t, m, f };
       }
     }
   }
+  if (best && want && !best.m) process.stderr.write(`replaydump: no wasm for engine ${want} found; using ${best.f}\n`);
   if (!best) { process.stderr.write('replaydump: engine wasm not found; run `cambc view` once or set CAMBC_VIS_WASM\n'); process.exit(2); }
   return best.fp;
 })();
-const SNAPSHOT_SIZE = 184696;
+const SNAPSHOT_SIZES = [184696, 184760]; // 2.x, 3.0 (see header comment)
 const SNAPSHOT_ABI = 1;
 const OMNISCIENT = { team: 2, champion: 0xffffffff };
 const CHAMP = { countOffset: 120, dataOffset: 140, stride: 456, capacity: 16 };
 const CAMPS = { countOffset: 124, dataOffset: 7436, stride: 232, capacity: 500 };
 const GROUPS = { countOffset: 128, dataOffset: 123436, stride: 20, capacity: 500 };
-const CAMP_TYPES = ['wolf', 'elk', 'gem_cluster', 'gold_cluster', 'monolith'];
+const CAMP_TYPES = ['wolf', 'elk', 'gem_cluster', 'gold_cluster', 'monolith', 'golem']; // golem: engine 3.0
 const GROUP_STATES = ['unknown', 'alive', 'reward_available', 'respawning']; // engine: Unknown, HasCamps, WaitingForRewardClaim, WaitingToRespawn
 const SYMMETRY = ['HORIZONTAL', 'VERTICAL', 'ROTATIONAL180'];
 const CHAMPION_TYPES = ['Ryth', 'VesperVale', 'Vendetta', 'Cassi', 'Issac', 'Stellar', 'Prism', 'Marcella', 'Willow', 'Ren', 'Varg', 'Tavi', 'HeartOfRuin'];
@@ -122,7 +127,11 @@ function loadReplayBytes(file) {
 }
 
 // --- wasm engine ---------------------------------------------------------------------------------
-async function createEngine() {
+function replayEngineVersion(replay) { // 'v1_0_0' for engine 3.0; null if not a replay header
+  if (replay.length < 14 || replay.readBigUInt64LE(0) !== 125779999602273n) return null;
+  return `v${replay[8]}_${replay[9]}_${replay[10]}`;
+}
+async function createEngine(WASM) {
   const bytes = fs.readFileSync(WASM);
   let mem = null; const td = new TextDecoder();
   const rd = (p) => { const u = new Uint8Array(mem.buffer); let e = p; while (u[e]) e++; return td.decode(u.subarray(p, e)); };
@@ -154,7 +163,7 @@ async function createEngine() {
 // --- snapshot parsing (layout from the visualiser's PanelChrome chunk) ----------------------------
 function readHeader(d, p) {
   const u = (o) => d.getUint32(p + o, true);
-  if (u(0) !== SNAPSHOT_ABI || u(4) !== SNAPSHOT_SIZE) throw new Error('Unsupported game snapshot ABI');
+  if (u(0) !== SNAPSHOT_ABI || !SNAPSHOT_SIZES.includes(u(4))) throw new Error('Unsupported game snapshot ABI');
   return {
     round: u(8), turn: u(12), team: u(16), awaitingInput: !!u(20), phase: u(24), outcome: u(28),
     submittedGems: [Number(d.getBigUint64(p + 32, true)), Number(d.getBigUint64(p + 40, true))],
@@ -254,7 +263,7 @@ function readChampionStats(d, p) {
   const arr = (o, n, w) => Array.from({ length: n }, (_, k) => (w === 8 ? U(o + k * 8) : u(o + k * 4)));
   return { index: u(0), team: u(4), type: u(8), typeName: CHAMPION_TYPES[u(8)] ?? String(u(8)),
     kills: u(12), deaths: u(16), assists: u(20),
-    earnedGold: U(24), collectedGems: U(32), submittedGems: U(40), spentGold: U(48), gold: U(56),
+    earnedGold: U(24), collectedGems: U(32), submittedGems: U(40), spentGold: U(48), gold: u(56), gems: u(60), // gold/gems are u32 (was read as u64 gold)
     itemsBought: arr(64, 42, 8), consumablesBought: arr(400, 4, 8), items: arr(432, 42, 4), consumables: arr(600, 4, 4),
     monsterDamageDone: f(616), monsterDamageTaken: f(624), championDamageDone: f(632), championDamageTaken: f(640), healingDone: f(648), shieldingDone: f(656) };
 }
@@ -267,9 +276,12 @@ async function main() {
   const file = argv.find((a) => !a.startsWith('--'));
   if (!file) { process.stderr.write('usage: node replaydump.js <replay.repl26a | bundle.zip> [--draft] [--every-step] [--camps]\n'); process.exit(2); }
   const replay = loadReplayBytes(file);
-  const E = await createEngine();
+  const engineVersion = replayEngineVersion(replay), WASM = findWasm(engineVersion);
+  process.stderr.write(`[replaydump] replay engine ${engineVersion}, wasm ${path.basename(WASM)}\n`);
+  const E = await createEngine(WASM);
   const { X, rd, dv, check } = E;
-  if (X.Game_Visualiser_SnapshotSize() !== SNAPSHOT_SIZE) throw new Error('Unsupported snapshot layout: ' + X.Game_Visualiser_SnapshotSize());
+  const SNAPSHOT_SIZE = X.Game_Visualiser_SnapshotSize();
+  if (!SNAPSHOT_SIZES.includes(SNAPSHOT_SIZE)) throw new Error('Unsupported snapshot layout: ' + SNAPSHOT_SIZE);
 
   const out = X.Engine_Malloc(64), args = X.Engine_Malloc(128);
   const snapA = X.Engine_Malloc(SNAPSHOT_SIZE), snapB = X.Engine_Malloc(SNAPSHOT_SIZE);

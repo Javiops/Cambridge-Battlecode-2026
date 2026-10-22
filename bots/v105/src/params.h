@@ -196,6 +196,12 @@
 #define P_KINDFIX 1  // draft-meta-v1b: melee and dash read from attack_range()/is_dash(), not name lists
 #endif
 
+#ifndef P_ISLEFIX
+#define P_ISLEFIX 10  // islefix-v1: fight-camp turns with no step and no hit before the group is dropped
+#endif
+#ifndef P_HOLEFIX
+#define P_HOLEFIX 12  // holefix-v1: drop a dash-over-hole route after this many rounds without progress (0 = off)
+#endif
 #ifndef P_HORFOCUS
 #define P_HORFOCUS 1  // horfocus-v1: HoR buys focus and casts its dash onto targets
 #endif

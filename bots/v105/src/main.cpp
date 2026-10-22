@@ -585,6 +585,9 @@ struct State {
     unsigned cf_reach = 0, cf_focus_wait = 0, cf_focus_exit = 0, cf_focus_hit = 0, cf_evac = 0;
     unsigned cf_reward_gain_observed = 0, cf_death_after_camp = 0;
     int cf_recent_camp = -1000, cf_log_round = -1000;
+    int target_gd = 0;  // respawnfix-v1: walking distance to the target when it was chosen
+    bool cf_stepfail = false;
+    int cf_noact = 0;  // islefix-v1: consecutive fight-camp turns with no step and no attack
     bool cf_was_alive = false;
     std::optional<bc::team> my, en;
     bc::bitboard static_block, my_spawn, en_spawn;
@@ -601,6 +604,7 @@ struct State {
     std::vector<Step> plan;
     std::array<Slot, 2> slots{Slot::None, Slot::None};
     int dash_slot = -1, reset_slot = -1;
+    int hf_best = 1 << 30, hf_best_r = -1000, hf_last_r = -1000, hf_off_until = -1;  // holefix-v1 (mapplan_game.h)
     bool melee = true;
     std::string name;
     int ally_idx = -1;
@@ -1494,7 +1498,9 @@ bool engage_camp_e4(State& s, bc::champion& me, const bc::camp* tgt, const std::
     if (dist(me.position(), tpos) > range) {
         bc::bitboard ring;
         ring.draw_chebyshev(tpos, static_cast<float>(range));
-        acted = step_towards(s, me, ring, true) || acted;
+        const bool st = step_towards(s, me, ring, true);
+        s.cf_stepfail = !st;  // islefix-v1: out of range and no step possible
+        acted = st || acted;
         acted = basic_attack(s, me, *tgt, tpos) || acted;
     }
     return acted;
@@ -1824,6 +1830,7 @@ int choose_target_impl(State& s, bc::champion& me, int round) {
 #endif
     int best = -1;
     double best_score = 0;
+    int best_gd = 0;
     int lead_group = -1;
     std::optional<vec2> lead_p;
     if (ball_on(s, round) && s.ally_idx > 0)
@@ -1861,17 +1868,24 @@ int choose_target_impl(State& s, bc::champion& me, int round) {
             return true;
         });
     }
+    // islefix-v1: a group with no walking path (hole-enclosed island, islands/fracture) used to be priced at
+    // 1.5x the straight-line distance, so champions walked to the hole edge and stood there for hundreds of
+    // rounds. Without a dash it is unreachable: skip it. With a dash keep it, priced as a long detour.
+    auto unreach = [&](int d) {
+        if (s.dash_slot < 0 || s.mp_dashholes.is_empty()) return -1;
+        return d * 2 + 10;
+    };
     auto walk = [&](const Group& g) {
         int d = dist(pos, g.center);
         if (!have_pd) return d;
         if (s.pd_pos == pos && s.pd_gd.size() == s.groups.size()) {
             int b = s.pd_gd[static_cast<std::size_t>(&g - s.groups.data())];
-            return b >= 0 ? b : d * 3 / 2;
+            return b >= 0 ? b : unreach(d);
         }
         int b = 1 << 20;
         for (auto t : g.tiles)
             if (s.pdv.is_set(t)) b = std::min(b, static_cast<int>(s.pdf.get(t)));
-        return b < (1 << 20) ? b : d * 3 / 2;
+        return b < (1 << 20) ? b : unreach(d);
     };
     for (int i = 0; i < static_cast<int>(s.groups.size()); ++i) {
         Group& g = s.groups[i];
@@ -1881,6 +1895,7 @@ int choose_target_impl(State& s, bc::champion& me, int round) {
         if (!held && round - s.danger_r <= P_DANGER_T && dist(g.center, s.danger_p) <= P_DANGER_R) continue;
         int wait = g.next_ok - round;  // > 0: respawning
         int gd = walk(g);
+        if (gd < 0) continue;  // islefix-v1: no path and no dash
         const bool jack_go = g.jackpot && round >= P_JACKGO;
         if (wait > 0 && !(jack_go && wait <= gd + 40) && (g.monolith || wait > gd + P_RESPAWN)) continue;
         if (g.gems + g.gold <= 0) continue;
@@ -1933,8 +1948,9 @@ int choose_target_impl(State& s, bc::champion& me, int round) {
 #if P_E2 == 1
         if (g.wolf_only) score *= P_E2_WOLF / 100.0;  // measured value per champion-round, wolf vs elk groups
 #endif
-        if (score > best_score) { best_score = score; best = i; }
+        if (score > best_score) { best_score = score; best = i; best_gd = gd; }
     }
+    s.target_gd = best >= 0 ? best_gd : 0;  // respawnfix-v1: the walking distance this choice was priced with
     return best;
 }
 
@@ -2621,7 +2637,7 @@ void farm(State& s, bc::champion& me, int round, const std::vector<bc::camp>& ca
                 committed = true;
     }
     bool expired = s.target >= 0 && (s.groups[s.target].bad_until > round ||
-                                     s.groups[s.target].next_ok > round + (dist(pos, s.groups[s.target].center) + P_RESPAWN));
+                                     s.groups[s.target].next_ok > round + (std::max(dist(pos, s.groups[s.target].center), s.target_gd) + P_RESPAWN));
     int target_refresh = 20;
     target_refresh = P_E_RETARGET;
     // A damaged camp or active capture remains committed. Only travel plans
@@ -2855,7 +2871,15 @@ void farm(State& s, bc::champion& me, int round, const std::vector<bc::camp>& ca
         }
         s.cf_recent_camp = round;
 #if P_E4
-        engage_camp_e4(s, me, tgt, live, g);
+        s.cf_stepfail = false;
+        const bool acted = engage_camp_e4(s, me, tgt, live, g);
+        if (acted || !s.cf_stepfail) s.cf_noact = 0;
+        else if (++s.cf_noact >= P_ISLEFIX) {  // islefix-v1: neither a step nor a hit for this long: the camp is across a hole
+            g_farm = "camp-unreach";
+            g.bad_until = round + 300;
+            s.cf_noact = 0;
+            drop_target(s);
+        }
 #else
         engage(s, me, *tgt, tgt->position(), false, true);
 #endif
@@ -2900,7 +2924,10 @@ void farm(State& s, bc::champion& me, int round, const std::vector<bc::camp>& ca
         return;
     }
     if (g.next_ok > round) {  // refresh_groups saw it respawning
-        if (g.next_ok <= round + dist(pos, g.center) + P_RESPAWN) {
+        // respawnfix-v1: choose_target accepts a respawning group when wait <= walking distance + P_RESPAWN, but this
+        // test used the straight-line distance, which is shorter: the champion dropped the group, chose it again next
+        // turn, dropped it again... and stood still for 30-50 rounds (elk_arena, 4.3k champion-rounds / 20 games).
+        if (g.next_ok <= round + std::max(dist(pos, g.center), s.target_gd) + P_RESPAWN) {
             g_farm = "wait-respawn";  // stand 2-3 tiles off its spawn tiles until it is back
             bc::bitboard r3, r1;
             for (auto t : g.tiles) {

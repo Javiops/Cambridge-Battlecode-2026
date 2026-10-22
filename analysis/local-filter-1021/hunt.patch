@@ -1,0 +1,62 @@
+--- pInv/src/main.cpp	2026-10-21 14:50:17.651815670 +0000
++++ pHunt/src/main.cpp	2026-10-22 17:29:14.179094165 +0000
+@@ -3323,6 +3323,22 @@
+                 }
+         }
+     }
++    // pHunt: any lone champion within 10 (no other foe within 5) is hunted with a mate, or alone when healthier
++    Foe* hunt = nullptr;
++    {
++        for (auto& f : foes) {
++            if (f.d > 10 || s.en_spawn.is_set(f.p)) continue;
++            bool lone = true;
++            for (auto& o : foes)
++                if (&o != &f && dist(o.p, f.p) <= 5) lone = false;
++            if (!lone) continue;
++            int nb = 1;
++            for (auto& ap : allies) if (dist(ap, f.p) <= 9) ++nb;
++            bool solo_ok = hpr >= 0.6f && me.health() >= 1.3f * f.hp;
++            if (nb < 2 && !solo_ok) continue;
++            if (!hunt || f.hp < hunt->hp) hunt = &f;
++        }
++    }
+     bool pv_fight = false;  // P_PV: the first-contact verdict, held for the engagement (verdict.h)
+     {
+         int v = pv::verdict(s, me, foes, round, on_spawn);
+@@ -3332,6 +3348,7 @@
+             for (auto& f : foes)
+                 if (f.d <= 3) keep = false;
+         }
++        if (hunt) keep = true;
+         if (v == 2 && !on_spawn && !foes.empty() && !keep) {
+             g_mode = "pv-leave";
+             fight::back_off(s, me, foes, round);
+@@ -3397,27 +3414,7 @@
+         }
+         // Top-10 habit: gang up on a lone foe that is hurt (< 65% hp) or carrying gems, with
+         // P_GANG of us (me included) within 8 of it; never chase further than 8 tiles.
+-        if (false) {
+-            Foe* best = nullptr;
+-            for (auto& f : foes) {
+-                if (f.d > 8 || s.en_spawn.is_set(f.p) || gone(f)) continue;
+-                bool lone = true;
+-                for (auto& o : foes)
+-                    if (&o != &f && dist(o.p, f.p) <= 4) lone = false;
+-                if (!lone) continue;
+-                float mh = 0;
+-                attempt([&] {
+-                    mh = f.c.max_health();
+-                    return true;
+-                });
+-                if (!(f.channeling || f.gems >= 20 || (mh > 0 && f.hp < 0.65f * mh))) continue;
+-                int nb = 1;
+-                for (auto& ap : allies) if (dist(ap, f.p) <= 8) ++nb;
+-                if (nb < P_GANG) continue;
+-                if (!best || f.hp < best->hp) best = &f;
+-            }
+-            if (best) { tgt = best; favourable = true; helping = true; }
+-        }
++        if (hunt) { tgt = hunt; favourable = true; helping = true; }  // pHunt
+         if (false) {  // a lone enemy the allies near it kill fast
+             Foe* iso = track::isolated(s, me, foes, round, gone);
+             if (iso) { tgt = iso; favourable = true; helping = true; }

@@ -730,6 +730,7 @@ Slot classify(const bc::ability& a) {
     return Slot::None;
 }
 
+#include "champions.h"  // per-champion hooks (definitions included at the end of this file)
 #include "opening_replace.h"
 #include "bcfight.h"
 
@@ -762,46 +763,9 @@ void build_shop(State& s, bc::champion& me) {
         });
     }
     // Emblem build per champion. Families are matched by name prefix.
-    if (starts_with(s.name, "ryth")) {
-        s.plan = {{"jungle", 'h', 1}, {"durab", 'h', 1}, {"monster", 'h', 1}, {"power", 'h', 99}};
-    } else if (starts_with(s.name, "vesper")) {
-        s.plan = {{"monster", 's', 1}, {"treasure", 's', 1}, {"jungle", 'h', 1}, {"power", 's', 99}};
-    } else if (s.melee) {
-        s.plan = {{"jungle", 'h', 1}, {"monster", 's', 1}, {"durab", 'h', 1}, {"power", 's', 99}};
-    } else {
-        s.plan = {{"monster", 's', 1}, {"jungle", 'h', 1}, {"power", 's', 99}};
-    }
-    // what the top teams buy: the monster emblem first, then power
-    if (starts_with(s.name, "cassi"))
-        s.plan = {{"monster", 'f', 1}, {"power", 'f', 99}};
-    else if (starts_with(s.name, "ryth"))
-        s.plan = {{"monster", 's', 1}, {"power", 's', 2}, {"jungle", 'h', 1}, {"power", 's', 99}};
-    else
-        s.plan = {{"monster", 's', 1}, {"power", 's', 3}, {"jungle", 'h', 1}, {"power", 's', 99}};
-    if (!starts_with(s.name, "cassi"))  // Mite's tank build: survive camps solo, then raw power
-        s.plan = {{"durab", 's', 1}, {"jungle", 's', 1}, {"bruiser", 'h', 1}, {"power", 's', 99}};
-    // what the top-10 winners buy (2026-10-14 study of 169 games)
-    if (starts_with(s.name, "issac"))      // their Issac: 11 power-s shards a game, ours 5.5
-        s.plan = {{"power", 's', 2}, {"jungle", 's', 1}, {"power", 's', 99}};
-    else if (starts_with(s.name, "tavi"))  // their Tavi buys focus; ours bought strength
-        s.plan = {{"power", 'f', 1}, {"bruiser", 'f', 1}, {"power", 'f', 99}};
-    else if (starts_with(s.name, "cassi")) // little gold on Cassi: power-f and one durability-h
-        s.plan = {{"power", 'f', 1}, {"durab", 'h', 1}, {"power", 'f', 99}};
-    else if (starts_with(s.name, "stellar"))  // top Stellar: power-f x10, durability-h
-        s.plan = {{"power", 'f', 1}, {"durab", 'h', 1}, {"power", 'f', 99}};
-    else if (starts_with(s.name, "ren"))      // top Ren: power-s, some power-f (retaliation is focus)
-        s.plan = {{"power", 's', 1}, {"bruiser", 'h', 1}, {"power", 'f', 1}, {"power", 's', 99}};
-
-
-    if ((starts_with(s.name, "ren") || starts_with(s.name, "prism") || starts_with(s.name, "stellar")))
-        s.plan = {{"power", 'f', 1}, {"durab", 'h', 1}, {"power", 'f', 99}};  // the #1's casters: 8-13 power-f a game
-    // One offensive opening emblem, then the complete original melee core.
-    // Preserve Jungle camp mitigation and Bruiser health for later farming.
-    if (starts_with(s.name, "ryth") || starts_with(s.name, "varg") || starts_with(s.name, "vendetta"))
-        s.plan = {{"power", 's', 1}, {"durab", 's', 1}, {"jungle", 's', 1},
-                  {"bruiser", 'h', 1}, {"power", 's', 99}};
-    if (P_HORFOCUS && starts_with(s.name, "heart"))  // horfocus-v1: rivals' HoR 71% focus shards (top 10 67%), ours 0%
-        s.plan = {{"power", 'f', 1}, {"bruiser", 'f', 1}, {"power", 's', 1}, {"power", 'f', 99}};
+    // Emblem build per champion (champions.h): the historical layers, then (below) the champion's own plan.
+    // Families are matched by name prefix.
+    champ::legacy_plan(s);
     // O36_REPLACE_HOOK: one quota replaces one quota; no extra150-gold step.
     opening36::replace(s.plan, s.de_map, s.name, ((s.de_map == v34de::Rows) ? P_O36_REPLACE : 0));
 #if P_BRUISER_FILL
@@ -811,22 +775,8 @@ void build_shop(State& s, bc::champion& me) {
     for (auto& st : s.plan)
         if (st.want >= 99 && starts_with(st.family, "power")) st.family = "bruiser";
 #endif
-#if P_T10SHOP
-    // t10shop-v1: top-10 builds for the t10 draft (45 top-10 games on 1.0.3, 10-22; emblem order and late shard mix).
-    // All five open with a Treasure emblem (35-58% first), then Jungle, then Bruiser-health / Durability-health;
-    // late fill: Vesper Power-s (28 shards a game), the others Bruiser with health first. Ours opened Durability-s /
-    // Power and filled Bruiser-s, no Treasure. hp_pick is off for these five (the plan holds the health).
-    if (P_T10SHOP & 1) {
-        if (starts_with(s.name, "vendetta"))
-            s.plan = {{"treasure", 'h', 1}, {"jungle", 's', 1}, {"bruiser", 'h', 1}, {"durab", 'h', 1}, {"bruiser", 's', 99}};
-        else if (starts_with(s.name, "marcella"))
-            s.plan = {{"treasure", 'h', 1}, {"jungle", 's', 1}, {"bruiser", 'h', 2}, {"durab", 'h', 1}, {"bruiser", 'f', 2}, {"bruiser", 'h', 99}};
-        else if (starts_with(s.name, "ryth"))
-            s.plan = {{"treasure", 'h', 1}, {"jungle", 's', 1}, {"bruiser", 'h', 1}, {"durab", 'h', 1}, {"bruiser", 's', 1}, {"bruiser", 'h', 99}};
-        else if (starts_with(s.name, "heart"))
-            s.plan = {{"treasure", 'h', 1}, {"jungle", 'f', 1}, {"bruiser", 'h', 1}, {"durab", 'h', 1}, {"bruiser", 'h', 2}, {"bruiser", 'f', 99}};
-    }
-#endif
+    // t10shop-v1: the champion's own final plan (heart_of_ruin.h, marcella.h, ryth.h, vendetta.h)
+    champ::shop_plan(s);
 }
 
 // Start-up runs in three parts (map and camp groups, fixed walking distances, roles and shop). P_FUELGUARD lets a
@@ -993,8 +943,7 @@ void init_roles(State& s, bc::champion& me) {
     attempt([&] {
             bool st = false;
             for (auto& a : my_roster(s))
-                if (starts_with(norm(bc::to_string(a.champion_name())), "stellar") ||
-                    (P_VESP_CASTER && starts_with(norm(bc::to_string(a.champion_name())), "vesper")))
+                if (champ::caster_mode(a))
                     st = true;  // t10draft-v2: the caster mode (hold altar, kite, cast-first sweep, recall near foes, flee %)
                                 // keyed only on Stellar; with Vesper in her slot the whole team dropped it and lost_world
                                 // went 1/18 (local 198-330 gems vs 1000)
@@ -1111,19 +1060,7 @@ template <class C>
 const Shard* hp_pick(State& s, const C& counts) {
     float share = 0;
     const char* fam = "durab";
-    if (starts_with(s.name, "issac")) share = 0.16f;
-    else if (starts_with(s.name, "varg")) share = 0.12f;
-    else if (starts_with(s.name, "ryth")) { share = 0.34f; fam = "bruiser"; }
-    else if (starts_with(s.name, "ren")) { share = 0.25f; fam = "bruiser"; }
-    else if (starts_with(s.name, "tavi")) share = 0.06f;
-    if (P_HPSHARE2) {  // engine-3 hp share of shop gold by r300, rivals' (51-75) in our losses: HoR 37%, Ren 53%, Ryth 52%, Varg 40%, Stellar 16%
-        fam = "durab";
-        if (starts_with(s.name, "heart")) share = P_HORFOCUS ? 0.25f : 0.40f;
-        else if (starts_with(s.name, "varg")) share = 0.40f;
-        else if (starts_with(s.name, "ryth")) { share = 0.50f; fam = "bruiser"; }
-        else if (starts_with(s.name, "ren")) { share = 0.50f; fam = "bruiser"; }
-        else if (starts_with(s.name, "stellar")) share = 0.20f;
-    }
+    champ::hp_share(s, share, fam);  // per champion (champions.h)
     if (share <= 0) return nullptr;
     float all = 0, hp = 0;
     const Shard* want = nullptr;
@@ -1167,8 +1104,7 @@ void shop(State& s, bc::champion& me) {
         if (me.gold_count() < 30) return;
         auto counts = me.item_count();
         const Shard* pick = nullptr;
-        const bool t10plan = P_T10SHOP && (starts_with(s.name, "vendetta") || starts_with(s.name, "marcella") ||
-                                           starts_with(s.name, "ryth") || starts_with(s.name, "heart"));
+        const bool t10plan = champ::own_plan(s);
         if (P_HP_SHOP && !t10plan) pick = hp_pick(s, counts);
         if (!pick) for (auto& st : s.plan) {
             const Shard* sh = nullptr;
@@ -1472,7 +1408,7 @@ bool step_towards(State& s, bc::champion& me, const bc::bitboard& goals_in, bool
         if (r) return r > 0;
     }
     bool moved = false;
-    if (use_dash && s.dash_slot >= 0 && me.can_cast() && !(P_HORFOCUS && starts_with(s.name, "heart"))) {  // horfocus-v1: HoR keeps the dash for attacks
+    if (use_dash && s.dash_slot >= 0 && me.can_cast() && !heart_of_ruin::keeps_dash_for_attacks(s)) {
         auto ab = me.abilities()[s.dash_slot];
         int here = s.df.get(pos);
         if (here >= 3 && ab.is_ready()) {
@@ -1536,86 +1472,7 @@ template <class U>
 bool cast_offense(State& s, bc::champion& me, const U& tgt, vec2 tpos, bool champ) {
     if (!me.can_cast() || dist(me.position(), tpos) > SPELL_RANGE) return false;
     auto abs = me.abilities();
-    if (P_HORFOCUS && s.dash_slot >= 0 && starts_with(s.name, "heart") && abs[s.dash_slot].is_ready()) {
-        // Previously tried r=3 from our tile (actual dash range is 2) and
-        // scanned positions in arbitrary order, causing bad-destination SDK
-        // errors and poor multi-target landings. Get the SDK range mask once;
-        // filter terrain/occupancy, require the intended target in the radius-1
-        // landing hitbox and score other visible units in the SAME encounter.
-        auto& ab = abs[s.dash_slot];
-        const vec2 origin = me.position();
-        bc::bitboard in_range, walls;
-        const bool have_range = attempt([&] {
-            in_range = ab.valid_tiles();
-            walls = bc::map::walls();
-            return true;
-        });
-        if (have_range && fuel_ok(19000)) {
-            struct Landing { vec2 p; double score; };
-            std::vector<Landing> choices;
-            std::vector<vec2> others;
-            // Stay away from unrelated camps: damaging them would wake them.
-            if (champ) {
-                for (auto& enemy : bc::vision::champions(*s.en)) {
-                    if (!fuel_ok(9500)) break;
-                    attempt([&] {
-                        if (enemy.is_alive() && enemy.is_visible() && enemy.position() != tpos)
-                            others.push_back(enemy.position());
-                        return true;
-                    });
-                }
-            } else if (s.target >= 0 && s.target < static_cast<int>(s.groups.size())) {
-                const auto& group = s.groups[s.target];
-                for (auto& other : bc::vision::camps()) {
-                    if (!fuel_ok(9500)) break;
-                    attempt([&] {
-                        if (other.health() > 0 && group.mask.is_set(other.spawn_position()) && other.position() != tpos)
-                            others.push_back(other.position());
-                        return true;
-                    });
-                }
-            }
-            const int dash_range = 2;  // the patched Heart of Ruin kit
-            for (int dx = -dash_range; dx <= dash_range; ++dx)
-                for (int dy = -dash_range; dy <= dash_range; ++dy) {
-                    vec2 p = origin + vec2(dx,dy);
-                    if (!bc::map::is_in_bounds(p) || s.blocked.is_set(p) || !in_range.is_set(p)) continue;
-                    if (!patch_v1::dash_landing_geometry(X(origin),Y(origin),X(p),Y(p),X(tpos),Y(tpos))) continue;
-                    // A two-step dash must have at least one legal intermediate
-                    // step not crossing a wall. Holes may be crossed by dash.
-                    if (dist(origin,p) == 2) {
-                        bool path = false;
-                        for (int x=-1; x<=1 && !path; ++x)
-                            for (int y=-1; y<=1 && !path; ++y) {
-                                vec2 mid=origin+vec2(x,y);
-                                if ((x || y) && dist(mid,p)==1 &&
-                                    bc::map::is_in_bounds(mid) && !walls.is_set(mid)) path = true;
-                            }
-                        if (!path) continue;
-                    }
-                    int hits = 1;
-                    for (auto other : others) if (dist(other,p) <= 1) ++hits;
-                    // In PvP don't dash into extreme fire merely to hit one.
-                    const double exposure = champ ? danger_at(s.thr,p) : 0.0;
-                    const double score = patch_v1::dash_score(hits,exposure,me.health(),dist(origin,p),champ);
-                    choices.push_back({p,score});
-                }
-            std::sort(choices.begin(),choices.end(),[](const Landing& a,const Landing& b){
-                return a.score>b.score;
-            });
-            for (const auto& c : choices) {
-                if (!fuel_ok(11000)) break;
-                if (attempt([&] { return ab.use(c.p); })) {
-                    ++g_dash_corrected;
-                    if (g_dash_corrected <= 8 || g_dash_corrected % 100 == 0)
-                        std::printf("[patch-dash] who=%s r=%u casts=%d landing=(%d,%d) score=%.1f\n",
-                                    s.name.c_str(), static_cast<unsigned>(bc::round_number()),g_dash_corrected,
-                                    X(c.p),Y(c.p),c.score);
-                    return true;
-                }
-            }
-        }
-    }
+    if (heart_of_ruin::dash_strike(s, me, abs, tgt, tpos, champ)) return true;
     for (int k = 0; k < 2; ++k) {
         auto& ab = abs[k];
         if (s.slots[k] == Slot::Targeted) {
@@ -1826,7 +1683,6 @@ int count_claimers(const State& s, const std::array<std::uint8_t, 8>& sm, int gr
 }
 
 // P_DPSFARM: which allies are tanks (anyone but Stellar, the casters and Ren), learned once.
-inline int cap_rank(const std::string& n, bool ranged);
 int tank_bits(State& s) {
     if (s.tank_bits >= 0) return s.tank_bits;
     int bits = 0;
@@ -1834,10 +1690,9 @@ int tank_bits(State& s) {
         auto allies = my_roster(s);
         for (int k = 0; k < static_cast<int>(allies.size()) && k < 16; ++k) {
             std::string n = norm(bc::to_string(allies[k].champion_name()));
-            bool ranged = !(starts_with(n, "issac") || starts_with(n, "vend") || starts_with(n, "varg") ||
-                            starts_with(n, "ren") || starts_with(n, "marcella") || starts_with(n, "vesper"));
+            bool ranged = !champ::melee_by_name(n);
             if (P_KINDFIX) attempt([&] { ranged = allies[k].attack_range() > 1; return true; });  // engine query, not a name list (Heart of Ruin)
-            if (cap_rank(n, ranged) == 3) bits |= 1 << k;
+            if (champ::cap_rank(n, ranged) == 3) bits |= 1 << k;
         }
         return true;
     });
@@ -1912,13 +1767,6 @@ std::vector<bc::camp> near_camps(State& s, vec2 pos) {
     return out;
 }
 
-// P_CAPPRIO: capture priority by champion (lower first): Stellar, casters, Ren, tanks.
-inline int cap_rank(const std::string& n, bool ranged) {
-    if (starts_with(n, "stellar")) return 0;
-    if (ranged) return 1;
-    if (starts_with(n, "ren")) return 2;
-    return 3;
-}
 void refresh_groups(State& s, int round) {
     auto sm = read_sm();
     int bg = static_cast<int>(sm[SM_BC_GROUP]) - 1;
@@ -1926,7 +1774,7 @@ void refresh_groups(State& s, int round) {
         int stamp = sm[SM_BC_READY] - 251, now = (round / 16) & 3;
         Group& g = s.groups[bg];
         if ((stamp == now || stamp == ((now + 3) & 3)) && g.reward_seen < round - 1 && g.next_ok <= round &&
-            cap_rank(s.name, s.ranged_me) <= 2) {
+            champ::cap_rank(s.name, s.ranged_me) <= 2) {
             g.reward_seen = round - 1;  // a free reward for choose_target (posted by a tank)
             g.next_ok = 0;
         }
@@ -1994,7 +1842,7 @@ double my_dps(State& s, bc::champion& me) {
     if (s.slots[0] == Slot::Targeted || s.slots[0] == Slot::Ground || s.slots[1] == Slot::Targeted ||
         s.slots[1] == Slot::Ground)
         d += me.focus() * 1.5 / 8.0;
-    if (starts_with(s.name, "varg")) d *= 1.5;  // splash
+    if (varg::splashes(s)) d *= varg::SPLASH;
     return std::max(d, 10.0);
 }
 
@@ -2769,7 +2617,7 @@ bool other_captures_impl(State& s, bc::champion& me, const Group& g, int gi) {
     bool other = false;
     g_cap_other_on = false;
     if (i_am_tank(s)) return true;  // P_DPSFARM: a tank never takes a reward
-    const int my_rank = PR.capprio ? cap_rank(s.name, me.attack_range() > 1) : 0;
+    const int my_rank = PR.capprio ? champ::cap_rank(s.name, me.attack_range() > 1) : 0;
     std::vector<bc::champion> seen;  // P_FUELGUARD: allies in vision (position() of any other one throws)
     attempt([&] { seen = bc::vision::champions(*s.my); return true; });
     attempt([&] {
@@ -2786,7 +2634,7 @@ bool other_captures_impl(State& s, bc::champion& me, const Group& g, int gi) {
             bool claims = k < static_cast<std::size_t>(claim_slots(s)) && claim_value(s, sm, static_cast<int>(k)) == gi + 1;
             if (PR.capprio) {
                 if (a.is_recalling() || a.is_teleporting()) continue;
-                int ar = cap_rank(norm(bc::to_string(a.champion_name())), a.attack_range() > 1);
+                int ar = champ::cap_rank(norm(bc::to_string(a.champion_name())), a.attack_range() > 1);
                 bool counts = ar == 0 && my_rank > 0 ? ((claims && d <= PR.capprio) || d <= 1) : ((claims && d <= 4) || d == 0);
                 if (!counts) continue;
                 if (ar < my_rank || (ar == my_rank && (d < mine || (d == mine && static_cast<int>(k) < s.ally_idx)))) {
@@ -2943,7 +2791,7 @@ void farm(State& s, bc::champion& me, int round, const std::vector<bc::camp>& ca
     if (i_am_tank(s)) {  // P_DPSFARM: go where a DPS farms
         auto sm = read_sm();
         int best = -1, bd = 1 << 30, tb = tank_bits(s);
-        bool issac = starts_with(s.name, "issac");
+        bool issac = cassi_issac::is_issac(s.name);
         attempt([&] {
             auto allies = my_roster(s);
             for (int k = 0; k < claim_slots(s) && k < static_cast<int>(allies.size()); ++k) {
@@ -2951,7 +2799,7 @@ void farm(State& s, bc::champion& me, int round, const std::vector<bc::camp>& ca
                 int c = static_cast<int>(claim_value(s, sm, k)) - 1;
                 if (c < 0 || c >= static_cast<int>(s.groups.size()) || s.groups[c].bad_until > round) continue;
                 int d = dist(pos, s.groups[c].center);
-                if (issac && starts_with(norm(bc::to_string(allies[k].champion_name())), "cassi")) d -= 1000;
+                if (issac && cassi_issac::is_cassi(norm(bc::to_string(allies[k].champion_name())))) d -= 1000;  // Issac to Cassi's camp
                 if (d < bd) { bd = d; best = c; }
             }
             return true;
@@ -2978,36 +2826,8 @@ void farm(State& s, bc::champion& me, int round, const std::vector<bc::camp>& ca
         }
         if (best >= 0) s.target_round = round;  // keep following: no periodic re-choice of our own
     }
-    if (PR.twinfarm && starts_with(s.name, "issac")) {
-        int ck = -1;
-        std::optional<vec2> cp;
-        attempt([&] {
-            auto allies = my_roster(s);
-            for (int k = 0; k < static_cast<int>(allies.size()); ++k) {
-                if (!starts_with(norm(bc::to_string(allies[k].champion_name())), "cassi") || !allies[k].is_alive()) continue;
-                ck = k;
-                try { cp = allies[k].position(); } catch (...) {}
-            }
-            return true;
-        });
-        if (ck >= 0) {
-            int claim = static_cast<int>(claim_value(s, read_sm(), ck)) - 1;
-            if (claim >= 0 && claim < static_cast<int>(s.groups.size())) {
-                if (claim != s.target) {
-                    s.target = claim;
-                    s.target_round = round;
-                    s.cap_start = -1;
-                    write_claim(s, claim);
-                }
-            } else if (cp && dist(*cp, pos) > PR.twinfarm && !s.my_spawn.is_set(*cp)) {
-                g_farm = "twin-join";
-                drop_target(s);
-                bc::bitboard ring;
-                ring.draw_chebyshev(*cp, 2.0f);
-                step_towards(s, me, ring, false);
-                return;
-            }
-        }
+    if (PR.twinfarm && cassi_issac::is_issac(s.name)) {
+        if (cassi_issac::twin_farm(s, me, round, pos)) return;
     }
 
     // Committed = a camp of our group is already damaged, or we are capturing.
@@ -3472,7 +3292,7 @@ int cr_return_walk(State& s, vec2 pos, int round) {
 }
 
 bool cr_capture_extra(State& s, bc::champion& me, float hpr, int gold, int round) {
-    const bool tavi = starts_with(s.name, "tavi");
+    const bool tavi = tavi::shops_in_field(s);
     const bool old_optional = hpr < 0.9f || gold >= 90;
     const bool eligible_reward = s.target >= 0 && s.target < static_cast<int>(s.groups.size()) &&
         s.groups[s.target].reward_seen == round && s.groups[s.target].mask.is_set(me.position());
@@ -3487,23 +3307,6 @@ bool cr_capture_extra(State& s, bc::champion& me, float hpr, int gold, int round
         cr_trace(s, round);
     }
     return result;
-}
-
-// P_TEAM_FIGHT: Cassi and Issac die together, so each commits only while its partner also has half hp or more.
-bool tf_pair_ok(State& s, bc::champion& me) {
-    if (!starts_with(s.name, "cassi") && !starts_with(s.name, "issac")) return true;
-    bool ok = true;
-    attempt([&] {
-        for (auto& a : bc::vision::champions(*s.my))
-            attempt([&] {
-                if (a == me || !a.is_alive()) return false;
-                std::string n = norm(bc::to_string(a.champion_name()));
-                if ((starts_with(n, "cassi") || starts_with(n, "issac")) && a.health() < 0.5f * a.max_health()) ok = false;
-                return true;
-            });
-        return true;
-    });
-    return ok;
 }
 
 void play_turn(State& s) {
@@ -3742,7 +3545,7 @@ void play_turn(State& s) {
     }
 
     if (PR.noleave && !awake_camp_near && hpr >= 0.15f && fuel_ok(25000)) {
-        const bool carry = cap_rank(s.name, me.attack_range() > 1) <= 2;
+        const bool carry = champ::cap_rank(s.name, me.attack_range() > 1) <= 2;
         auto sm = read_sm();
         int gi = -1, gd = 99;
         for (int i = 0; i < static_cast<int>(s.groups.size()); ++i) {
@@ -3763,7 +3566,7 @@ void play_turn(State& s) {
                     if (a == me || !a.is_alive()) continue;
                     bool ar = false;
                     try { ar = a.attack_range() > 1; } catch (...) {}
-                    if (cap_rank(norm(bc::to_string(a.champion_name())), ar) > 2) continue;
+                    if (champ::cap_rank(norm(bc::to_string(a.champion_name())), ar) > 2) continue;
                     carry_alive = true;
                     try { if (dist(a.position(), pos) <= 6) carry_near = true; } catch (...) {}
                 }
@@ -3916,7 +3719,7 @@ void play_turn(State& s) {
     FP(9, "fight");
     g_mode = "fight";
     // P_CHASE: go after a hurt (<50%) or recalling rival within 4 (followed up to 4 rounds, out to 6 tiles).
-    if (P_TEAM_FIGHT && hpr >= 0.5f && tf_pair_ok(s, me) && !on_spawn && !awake_camp_near && !foes.empty() && fuel_ok(12000)) {
+    if (P_TEAM_FIGHT && hpr >= 0.5f && cassi_issac::pair_ok(s, me) && !on_spawn && !awake_camp_near && !foes.empty() && fuel_ok(12000)) {
         auto hurt = [&](const Foe& f) {
             bool rc = false;
             float mh = 1;
@@ -4004,7 +3807,7 @@ void play_turn(State& s) {
     if (!on_spawn && !awake_camp_near && tgt && tgt->d <= 5 && fuel_ok(14000) && static_cast<int>(me.gem_count()) < P.tribute_gems &&
         !(s.target >= 0 && s.target < static_cast<int>(s.groups.size()) && s.groups[s.target].reward_seen == round &&
           s.groups[s.target].mask.is_set(pos)) &&
-        (!P_TEAM_FIGHT || tf_pair_ok(s, me))) {
+        (!P_TEAM_FIGHT || cassi_issac::pair_ok(s, me))) {
         const Foe* nf = nullptr;
         for (auto& f : foes)
             if (!nf || f.d < nf->d) nf = &f;
@@ -4090,7 +3893,7 @@ void play_turn(State& s) {
     }
     if (!foes.empty()) {
         if (false) fight::call_help(s, foes, round);
-        if (PR.twin && !on_spawn && (s.cap_start < 0 || round - s.cap_start > 10) && fight::twin_guard(s, me, foes)) {
+        if (PR.twin && !on_spawn && (s.cap_start < 0 || round - s.cap_start > 10) && cassi_issac::twin_guard(s, me, foes)) {
             g_mode = "twin";
             return;
         }
@@ -4237,7 +4040,7 @@ void play_turn(State& s) {
     int home = dist(pos, s.spawn_center);
     bool want_recall = hpr * 100 < P.recall_pct || (gold >= P_SHOP_GOLD && hpr < 0.5f) ||
                        (round - s.need_heal <= 2 && hpr < 0.8f);
-    bool shop_trip = P_SHOP_RECALL && gold >= P_SHOP_RECALL && !starts_with(s.name, "tavi") &&
+    bool shop_trip = P_SHOP_RECALL && gold >= P_SHOP_RECALL && !tavi::shops_in_field(s) &&
                      (!P_SHOPFIX || round - s.shop_fail > 150) &&
                      s.cap_start < 0 && round - s.shop_recall > 40;
     want_recall = want_recall || shop_trip;
@@ -4733,6 +4536,19 @@ void ward_turn(State& s) {
         bc::end_turn();
     }
 }
+
+// Per-champion behaviour (champions.h has the interface). Included last, so they can use every generic helper.
+#include "heart_of_ruin.h"
+#include "vesper.h"
+#include "marcella.h"
+#include "ryth.h"
+#include "vendetta.h"
+#include "ren.h"
+#include "stellar.h"
+#include "prism.h"
+#include "tavi.h"
+#include "varg.h"
+#include "cassi_issac.h"
 
 }  // namespace
 

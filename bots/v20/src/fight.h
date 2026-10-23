@@ -191,46 +191,6 @@ inline Foe* help_target(State& s, std::vector<Foe>& foes, int round) {
 }
 
 
-// Step 4: Cassi and Issac share one life. Returns true if this turn's move was used.
-inline bool twin_guard(State& s, bc::champion& me, const std::vector<Foe>& foes) {
-    bool cassi = starts_with(s.name, "cassi"), issac = starts_with(s.name, "issac");
-    if (!cassi && !issac) return false;
-    vec2 pos = me.position();
-    std::optional<vec2> partner, nearest;
-    int nd = 99;
-    attempt([&] {
-        for (auto& a : bc::vision::champions(*s.my)) {
-            if (a == me || !a.is_alive()) continue;
-            vec2 ap = a.position();
-            if (dist(ap, pos) < nd) { nd = dist(ap, pos); nearest = ap; }
-            std::string n = norm(bc::to_string(a.champion_name()));
-            if ((issac && starts_with(n, "cassi")) || (cassi && starts_with(n, "issac"))) partner = ap;
-        }
-        return true;
-    });
-    if (cassi) {
-        int fd = 99;
-        for (auto& f : foes) if (!s.en_spawn.is_set(f.p)) fd = std::min(fd, f.d);
-        if (fd > 8 || nd <= 3 || !nearest) return false;
-        vec2 goal = partner && dist(*partner, pos) <= nd + 4 ? *partner : *nearest;
-        bool hit = hit_now(s, me, foes);
-        bc::bitboard ring;
-        ring.draw_chebyshev(goal, 1.0f);
-        bool moved = step_towards(s, me, ring, true);
-        if (!hit) shoot_back(s, me, foes);
-        return moved || hit;
-    }
-    if (!partner || dist(*partner, pos) <= 2) return false;
-    int fd = 99;
-    for (auto& f : foes) fd = std::min(fd, dist(f.p, *partner));
-    if (fd > 8) return false;
-    bool hit = hit_now(s, me, foes);
-    bc::bitboard ring;
-    ring.draw_chebyshev(*partner, 1.0f);
-    bool moved = step_towards(s, me, ring, true);
-    return moved || hit;
-}
-
 // Backing off: optionally hit first, then step (safe tile, retreat or flee), then hit if we have not yet.
 inline void back_off(State& s, bc::champion& me, const std::vector<Foe>& foes, int round) {
     bool hit = hit_now(s, me, foes);

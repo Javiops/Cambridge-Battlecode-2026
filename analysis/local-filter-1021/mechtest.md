@@ -112,3 +112,26 @@ python3 likeness.py profile                    # rehace likeness_ref.json
 python3 likeness.py gate BASE CAND [pHuntF,rRushHunt]
 ```
 Necesita los JSON compactados con el compact.py de las 12:00, que guarda las curvas de gemas y de oro gastado.
+
+## Rival "tipo top 10": rTop1 (12:20)
+- **Qué es.** V18 (nightpack-v2) más tres cambios sacados de las diferencias D1 y D2 de `analysis/bc-top10-1023/README.md`:
+  - **Vesper como en vtreas:** Treasure primero y luego Power.
+  - **D1, entrar:** si va por delante (vida propia en 6 casillas >= 1.25 veces la suya), con 60%+ de vida, y hay un rival sano (50%+) a 3-4 casillas, entra.
+  - **D2, salir:** si va por detrás (ratio < 0.6) con un rival sano a 3-4 casillas, se retira.
+  - Contador: `[t10] commit= leave=` en su stdout. Código en `panel17/rTop1/src`.
+- **Es el rival más duro que tenemos.** V18 le gana el 54% y V17 el 51%. Contra rRushHunt ganan el 76% y el 72%; contra pHuntF, el 90% y el 84%.
+- **Qué pieza hace qué.** % que gana V18 contra cada variante, 80 partidas, sd ~5.5 puntos:
+
+| rival | V18 gana |
+|---|---|
+| vtreas (solo la build de Vesper) | 57.5% |
+| vtreas + D1 | 65.0% |
+| vtreas + D1 + D2 = **rTop1** | **53.7%** |
+| vtreas + D1 + D2 + D3 (recall con 70% de vida) | 63.7% |
+
+- **Lectura:**
+  - Entrar (D1) sin la regla de salir (D2) hace al bot más débil.
+  - D1 y D2 juntas lo hacen un poco más fuerte que vtreas.
+  - Volver a casa antes (D3) lo debilita unos 10 puntos.
+  - Aviso para quien implemente D1, D2 o D3 en nuestro bot: van juntas o no van, y D3 tal cual no.
+- `runmech.sh` juega ahora 240 partidas por defecto (pHuntF, rRushHunt y rTop1). Las bases de rTop1 están en `base-results-mech/`.

@@ -4,7 +4,7 @@
 # (gold@400, deaths, Vesper deaths, fuel cuts, first 20+ capture, clears@400) + the rule's counter.
 # usage: runmech.sh WORKDIR CAND_ZIP_OR_SRC_DIR NAME ['COUNTER_REGEX'] [JOBS]
 #   COUNTER_REGEX  regex of the status-line tag the new rule prints, e.g. '\[rally\]' (lines should carry r<round>)
-# ~7 min with 4 jobs. Same toolchain/setup as runpanel17.sh (run that once, or let this do it).
+# ~10 min with 4 jobs (240 games). Same toolchain/setup as runpanel17.sh (run that once, or let this do it).
 set -e
 W=$1; CAND=$2; NAME=$3; CTR=$4; J=${5:-4}; BASE=${BASE:-nightpack-v2}
 L=/mnt/project-files/analysis/local-filter-1021; S=$L/scripts
@@ -20,9 +20,10 @@ if [ ! -f ws/cambc.toml ]; then
 fi
 cd ws
 [ $(ls maps/*.map26a | wc -l) -eq 40 ] || { echo "expected 40 maps in ws/maps"; exit 1; }
-RIVS=${RIVS:-"pHuntF rRushHunt"}   # pHuntF = the farm/econ veto; rRushHunt = hard rival closest to the online band (t10shop wins 72%)
+RIVS=${RIVS:-"pHuntF rRushHunt rTop1"}   # pHuntF = farm/econ veto; rRushHunt = hard mid-table rival; rTop1 = top-10 behaviour (V18 wins 54%)
 [ -d bots/pHuntF ] || { mkdir -p bots/pHuntF && cp -r $L/panel/pHuntF/src bots/pHuntF/; }
 [ -d bots/rRushHunt ] || { mkdir -p bots/rRushHunt && cp -r $L/panel17/rRushHunt/src bots/rRushHunt/; }
+[ -d bots/rTop1 ] || { mkdir -p bots/rTop1 && cp -r $L/panel17/rTop1/src bots/rTop1/; }
 rm -rf bots/$NAME; mkdir -p bots/$NAME
 if [ -f "$CAND" ]; then (cd bots/$NAME && unzip -oq "$CAND"); else cp -r "$CAND"/src bots/$NAME/; fi
 # guard: the candidate must be built on $BASE (10-23: a V17-based candidate judged vs the V18 default showed flips on maps where its rule never fires)

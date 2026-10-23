@@ -71,3 +71,44 @@ Por rival:
 - **Subconjunto de control** = partidas donde la regla no actúa. Primero por contador: replays online con 0 disparos en team-a.stdout. Si no hay contador, por clase: mapas cercanos/lejanos según mapfeat40, o draft rival sin el campeón que activa la regla.
 - Si el control se mueve 5 pares o más entre base y candidato, el lote es deriva y no se juzga.
 - Efecto esperado < +6/120 (panel17 < +80/800): no va solo a un lote. Se apila, y la pila se prueba junta vs pHuntF antes del lote (punto 8; sfflp).
+
+## Añadido 12:10: base equivocada y suelo de caos
+- **Base equivocada.** Desde que V18 es la base por defecto, un candidato construido sobre V17 se comparaba contra V18. Le pasó a openbig-gf-v1: dio -7, y contra su base de verdad da +1.
+  - `runmech.sh` compara ahora el src del candidato con `base-src/` (t10shop-v2, nightpack-v1, nightpack-v2) y se para si BASE no es la más cercana. Se fuerza con `FORCE_BASE=1`.
+- **Las bases se reproducen.** nightpack-v2 reconstruida desde el bundle: 16 de 16 partidas idénticas.
+- **Suelo de caos.** Cualquier cambio de código cambia el combustible gastado por turno y la partida diverge. openbig solo actúa en gem_fields y aun así cambia el finalInput en 95 de 160 partidas; de esas, 13 cambian de resultado.
+  - Con cualquier cambio cabe esperar unas 10 partidas cambiadas por cada 160 aunque la regla no actúe.
+  - Hay que informar siempre de las partidas cambiadas en mapas con 0 disparos del contador. Ese es el suelo, no exposición.
+- El trazador P_XP (tools/exposure) cuesta combustible y cambia partidas en todos los mapas: sirve para contar exposición, nunca para la puerta.
+
+## Puerta de parecido al top 10 (`scripts/likeness.py`, 12:10)
+- **Qué compara:**
+  - Perfil del top 10: los 45 resúmenes top10 vs top10 del 10-22.
+  - Nuestro perfil: v122 online, 1500 partidas sin duplicados y con el sidefix.
+  - Indicadores por equipo: oro y gemas en r150 y r400, oro gastado en r150, ronda en que llevamos 300 de oro gastado, muertes antes de r150 y r400, limpiezas@400 y primera captura de 20+ gemas.
+- **Qué da:** para cada indicador, el cambio local del candidato como % del hueco con el top 10. LIKENESS es la media sobre los indicadores donde el hueco supera 0.15 sd.
+- **Para qué sirve:** léelo como dirección (si nos acerca o nos aleja). El tamaño no vale, porque los rivales locales no son el top 10.
+
+| | top10 | v122 online |
+|---|---|---|
+| gemas@150 | 72 | 48 |
+| gemas@400 | 224 | 162 |
+| oro@150 | 588 | 537 |
+| oro@400 | 1889 | 1788 |
+| oro gastado@150 | 433 | 384 |
+| ronda con 300 gastados | r140 | r152 |
+| primera captura 20+ | r261 | r336 |
+| muertes antes de r150 | 0.72 | 0.79 |
+| limpiezas@400 | 21 | 22 |
+
+Calibración con 160 partidas (pHuntF + rRushHunt):
+- **nightpack-v2:** +31%. Oro@150 +33%, compras: gastado@150 +69% y ronda de 300 gastados +78% (las tres significativas).
+- **gemrace-v4:** 0%. Gemas +20% (hacia el top 10) a cambio de oro@400 -76% (alejándose), la misma factura que online.
+- **shootfirst:** +11%. **fixpack:** +7%. Nada significativo.
+
+Uso:
+```
+python3 likeness.py profile                    # rehace likeness_ref.json
+python3 likeness.py gate BASE CAND [pHuntF,rRushHunt]
+```
+Necesita los JSON compactados con el compact.py de las 12:00, que guarda las curvas de gemas y de oro gastado.

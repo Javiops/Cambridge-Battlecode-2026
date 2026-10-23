@@ -25,6 +25,10 @@ RIVS=${RIVS:-"pHuntF rRushHunt"}   # pHuntF = the farm/econ veto; rRushHunt = ha
 [ -d bots/rRushHunt ] || { mkdir -p bots/rRushHunt && cp -r $L/panel17/rRushHunt/src bots/rRushHunt/; }
 rm -rf bots/$NAME; mkdir -p bots/$NAME
 if [ -f "$CAND" ]; then (cd bots/$NAME && unzip -oq "$CAND"); else cp -r "$CAND"/src bots/$NAME/; fi
+# guard: the candidate must be built on $BASE (10-23: a V17-based candidate judged vs the V18 default showed flips on maps where its rule never fires)
+best=""; bestn=999999
+for bs in $L/base-src/*/; do b=$(basename $bs); n=$(diff -r bots/$NAME/src $bs/src 2>/dev/null | grep -c '^[<>]'); echo "diff lines vs $b: $n"; [ $n -lt $bestn ] && { bestn=$n; best=$b; }; done
+if [ "$best" != "$BASE" ] && [ -z "$FORCE_BASE" ]; then echo "STOP: $NAME is closest to $best ($bestn lines), not BASE=$BASE. Rerun with BASE=$best (or FORCE_BASE=1)."; exit 2; fi
 M=man_m_$NAME.txt; : > $M
 for R in $RIVS; do
   d=res/cal_${BASE}_$R; [ -f $d/A_ambush.json ] || { mkdir -p $d && cp $L/base-results-mech/cal_${BASE}_$R/* $d/; }
@@ -40,3 +44,4 @@ for R in $RIVS; do d=res/cal_${NAME}_$R
   (cd res && python3 $S/compact.py cal_${NAME}_$R); find $d -name '*.repl26a' -delete
 done
 RIV="$RIVS" python3 $S/mechgate.py $BASE $NAME
+python3 $S/likeness.py gate $BASE $NAME ${RIVS// /,}

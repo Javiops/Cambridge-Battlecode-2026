@@ -1,12 +1,12 @@
 #!/bin/bash
 # Mechanism test of process-audit-1023 §3.5 (mandatory before panel17 / online): CAND vs pHuntF and rRushHunt (RIVS env), 40 site maps x 2 sides = 80 games each,
-# judged vs $BASE (default t10shop-v2 = V17; nightpack-v1 also has base results) on the result net + 6 side-effect gauges
+# judged vs $BASE (default nightpack-v2 = V18 since 10-23 10:56; t10shop-v2 = V17 and nightpack-v1 also have base results) on the result net + 6 side-effect gauges
 # (gold@400, deaths, Vesper deaths, fuel cuts, first 20+ capture, clears@400) + the rule's counter.
 # usage: runmech.sh WORKDIR CAND_ZIP_OR_SRC_DIR NAME ['COUNTER_REGEX'] [JOBS]
 #   COUNTER_REGEX  regex of the status-line tag the new rule prints, e.g. '\[rally\]' (lines should carry r<round>)
 # ~7 min with 4 jobs. Same toolchain/setup as runpanel17.sh (run that once, or let this do it).
 set -e
-W=$1; CAND=$2; NAME=$3; CTR=$4; J=${5:-4}; BASE=${BASE:-t10shop-v2}
+W=$1; CAND=$2; NAME=$3; CTR=$4; J=${5:-4}; BASE=${BASE:-nightpack-v2}
 L=/mnt/project-files/analysis/local-filter-1021; S=$L/scripts
 mkdir -p "$W" && cd "$W"
 [ -x cv/bin/cambc ] || { python3 -m venv cv && cv/bin/pip install -q /mnt/project-files/cambc-3.0.5-*.whl; }

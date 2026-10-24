@@ -1,0 +1,680 @@
+diff -ru kvvl/src/cassi_issac.h kopt/src/cassi_issac.h
+--- kvvl/src/cassi_issac.h	2026-10-23 22:52:10.000000000 +0000
++++ kopt/src/cassi_issac.h	1980-01-02 00:00:00.000000000 +0000
+@@ -13,7 +13,7 @@
+     if (!is_cassi(s.name) && !is_issac(s.name)) return true;
+     bool ok = true;
+     attempt([&] {
+-        for (auto& a : bc::vision::champions(*s.my))
++        for (auto& a : vis_champions(*s.my))
+             attempt([&] {
+                 if (a == me || !a.is_alive()) return false;
+                 std::string n = norm(bc::to_string(a.champion_name()));
+@@ -33,7 +33,7 @@
+     std::optional<vec2> partner, nearest;
+     int nd = 99;
+     attempt([&] {
+-        for (auto& a : bc::vision::champions(*s.my)) {
++        for (auto& a : vis_champions(*s.my)) {
+             if (a == me || !a.is_alive()) continue;
+             vec2 ap = a.position();
+             if (dist(ap, pos) < nd) { nd = dist(ap, pos); nearest = ap; }
+diff -ru kvvl/src/fight.h kopt/src/fight.h
+--- kvvl/src/fight.h	2026-10-24 17:10:52.000000000 +0000
++++ kopt/src/fight.h	1980-01-02 00:00:00.000000000 +0000
+@@ -109,7 +109,7 @@
+     for (auto& f : foes) reaches.push_back(reach(f));
+     std::vector<vec2> allies;
+     attempt([&] {
+-        for (auto& a : bc::vision::champions(*s.my))
++        for (auto& a : vis_champions(*s.my))
+             if (!(a == me) && a.is_alive() && a.health() > 0.4f * a.max_health()) allies.push_back(a.position());
+         return true;
+     });
+@@ -133,7 +133,7 @@
+                     int sc = score(t);
+                     if (sc < bests - 500) { bests = sc; best = t; }
+                 }
+-            if (best && attempt([&] { return ab.use(*best); })) {
++            if (best && attempt([&] { return dm_use(ab).use(*best); })) {
+                 moved = true;
+                 pos = me.position();
+                 here = score(pos);
+@@ -228,7 +228,7 @@
+     std::vector<Mate> mates;
+     double ours = me.health();
+     attempt([&] {
+-        for (auto& a : bc::vision::champions(*s.my)) {
++        for (auto& a : vis_champions(*s.my)) {
+             try {
+                 if (a == me || !a.is_alive()) continue;
+                 vec2 p = a.position();
+@@ -262,7 +262,7 @@
+             if (f->d <= 5) { ++fc; tc += f->hp; }
+         if (mc == 0 || fc > mc + 1) return false;
+         attempt([&] {
+-            for (auto& a : bc::vision::champions(*s.my))
++            for (auto& a : vis_champions(*s.my))
+                 try {
+                     if (!(a == me) && a.is_alive() && dist(a.position(), pos) <= 4) oc += a.health();
+                 } catch (...) {
+@@ -325,9 +325,9 @@
+             if ((s.slots[k] != Slot::Targeted && s.slots[k] != Slot::Ground) || !ab.is_ready()) continue;
+             if (s.slots[k] == Slot::Targeted) {
+                 if (!attempt([&] { return ab.can_target_enemies(); })) continue;
+-                cast = attempt([&] { return ab.use(focus->c); });
++                cast = attempt([&] { return dm_use(ab).use(focus->c); });
+             } else {
+-                cast = attempt([&] { return ab.use(focus->p); });
++                cast = attempt([&] { return dm_use(ab).use(focus->p); });
+             }
+         }
+         if (cast) {
+@@ -403,7 +403,7 @@
+     double oc = me.health(), tc = 0;
+     std::vector<vec2> mates;
+     attempt([&] {
+-        for (auto& a : bc::vision::champions(*s.my))
++        for (auto& a : vis_champions(*s.my))
+             try {
+                 if (a == me || !a.is_alive()) continue;
+                 vec2 p = a.position();
+@@ -422,7 +422,7 @@
+     std::vector<vec2> pull;  // P_KITEALLY: allies we kite toward
+     if (PR.kiteally)
+         attempt([&] {
+-            for (auto& a : bc::vision::champions(*s.my))
++            for (auto& a : vis_champions(*s.my))
+                 try {
+                     if (a == me || !a.is_alive() || a.is_recalling()) continue;
+                     vec2 p = a.position();
+@@ -509,10 +509,10 @@
+                 if (cc != want_cc || !ab.is_ready()) continue;
+                 if (s.slots[k] == Slot::Targeted) {
+                     if (!attempt([&] { return ab.can_target_enemies(); })) continue;
+-                    cast = attempt([&] { return ab.use(t->c); });
++                    cast = attempt([&] { return dm_use(ab).use(t->c); });
+                 } else {
+                     vec2 c = aoe_centre(s, me, k, t->p);
+-                    cast = attempt([&] { return ab.use(c); });
++                    cast = attempt([&] { return dm_use(ab).use(c); });
+                 }
+             }
+         };
+@@ -522,7 +522,7 @@
+                 if (s.slots[k] != Slot::Ground || aoe_slot(me, k).radius <= 0 || !abs[k].is_ready()) continue;
+                 int hits = 0;
+                 vec2 c = aoe_centre(s, me, k, focus->p, &hits);
+-                if (hits >= 2) cast = attempt([&] { return abs[k].use(c); });
++                if (hits >= 2) cast = attempt([&] { return dm_use(abs[k]).use(c); });
+             }
+         if (!cast && dist(pos, focus->p) <= SPELL_RANGE) try_use(false, focus);
+         if (!cast && dist(pos, focus->p) <= SPELL_RANGE) try_use(true, focus);
+diff -ru kvvl/src/heart_of_ruin.h kopt/src/heart_of_ruin.h
+--- kvvl/src/heart_of_ruin.h	2026-10-24 17:10:54.000000000 +0000
++++ kopt/src/heart_of_ruin.h	1980-01-02 00:00:00.000000000 +0000
+@@ -43,7 +43,7 @@
+             std::vector<vec2> others;
+             // Stay away from unrelated camps: damaging them would wake them.
+             if (champ) {
+-                for (auto& enemy : bc::vision::champions(*s.en)) {
++                for (auto& enemy : vis_champions(*s.en)) {
+                     if (!fuel_ok(9500)) break;
+                     attempt([&] {
+                         if (enemy.is_alive() && enemy.is_visible() && enemy.position() != tpos)
+@@ -92,7 +92,7 @@
+             });
+             for (const auto& c : choices) {
+                 if (!fuel_ok(11000)) break;
+-                if (attempt([&] { return ab.use(c.p); })) {
++                if (attempt([&] { return dm_use(ab).use(c.p); })) {
+                     ++g_dash_corrected;
+                     if (g_dash_corrected <= 8 || g_dash_corrected % 100 == 0)
+                         std::printf("[patch-dash] who=%s r=%u casts=%d landing=(%d,%d) score=%.1f\n",
+diff -ru kvvl/src/main.cpp kopt/src/main.cpp
+--- kvvl/src/main.cpp	2026-10-24 17:10:56.000000000 +0000
++++ kopt/src/main.cpp	1980-01-02 00:00:00.000000000 +0000
+@@ -41,6 +41,7 @@
+ #include <optional>
+ #include <span>
+ #include <string>
++#include <string_view>
+ #include <vector>
+ #include <variant>
+ #include <cstdio>
+@@ -121,6 +122,26 @@
+ inline int dist(vec2 a, vec2 b) { return static_cast<int>(a.chebyshev_distance(b)); }
+ inline bool fuel_ok(std::uint64_t need) { return bc::fuel_remaining() > need + FUEL_RESERVE; }
+ 
++// fuelfit-v1: the visible champions of a side, re-read only when that side's champion tiles changed this turn
++// (the SDK rebuilds the list from the tiles on every call, ~3000 fuel with 4 in view, 6.5 calls on a heavy turn).
++int g_ward_n = 0, g_kill = 0;
++template <class T> T& dm_use(T& x) { ++g_kill; return x; }
++template <class T> const T& dm_use(const T& x) { ++g_kill; return x; }
++const std::vector<bc::champion>& vis_champions(bc::team side) {
++    static int r[2] = {-1, -1}, kx[2], ky[2], kw[2], kk[2];
++    static std::vector<bc::champion> val[2];
++    const int i = side == bc::team::ally ? 0 : 1;
++    const int round = static_cast<int>(bc::round_number());
++    const vec2 mp = bc::self().position();
++    if (r[i] == round && kx[i] == X(mp) && ky[i] == Y(mp) && kw[i] == g_ward_n && kk[i] == g_kill) return val[i];
++    const auto ps = bc::vision::champion_tiles(side).positions();
++    val[i].clear();
++    val[i].reserve(ps.size());
++    for (const auto p : ps) val[i].push_back(bc::vision::champion_at(p));
++    r[i] = round; kx[i] = X(mp); ky[i] = Y(mp); kw[i] = g_ward_n; kk[i] = g_kill;
++    return val[i];
++}
++
+ // Every SDK action can throw (cambc::error, out_of_range, ...). An uncaught
+ // exception restarts the C++ guest and loses all state, so wrap everything.
+ // Diagnostics go to stdout, which the runner saves as team-x.stdout.
+@@ -1109,13 +1130,18 @@
+ int g_ls_cur = -1, g_ls_emb0 = -1, g_ls_n[4] = {0, 0, 0, 0}, g_ls_log = 0;
+ template <class C>
+ const Shard* lshop_pick(State& s, const C& counts, const Shard* base) {
+-    std::vector<LateFill> o;
+-    if (!champ::late_mix(s, o) || o.empty() || o.size() > 4) return base;
+-    auto find = [&](int k) -> const Shard* {
+-        for (auto& x : s.shards)
+-            if (x.stat == o[k].stat && starts_with(x.family, o[k].fam)) return &x;
+-        return nullptr;
+-    };
++    static std::vector<LateFill> o;  // fuelfit o05: the late mix depends on the champion only; resolved once
++    static int o_ok = -1;
++    static const Shard* o_sh[4] = {nullptr, nullptr, nullptr, nullptr};
++    if (o_ok < 0) {
++        o_ok = champ::late_mix(s, o) && !o.empty() && o.size() <= 4;
++        if (o_ok)
++            for (int k = 0; k < static_cast<int>(o.size()); ++k)
++                for (auto& x : s.shards)
++                    if (x.stat == o[k].stat && starts_with(x.family, o[k].fam)) { o_sh[k] = &x; break; }
++    }
++    if (!o_ok) return base;
++    auto find = [&](int k) -> const Shard* { return o_sh[k]; };
+     if (g_ls_cur >= 0 && g_ls_cur < static_cast<int>(o.size())) {  // keep it until its emblem count has gone up
+         const Shard* cur = find(g_ls_cur);
+         int emb = -1;
+@@ -1165,15 +1191,30 @@
+         const bool t10plan = champ::own_plan(s);
+         if (P_HP_SHOP && !t10plan) pick = hp_pick(s, counts);
+         bool fill = false;
+-        if (!pick) for (auto& st : s.plan) {
+-            const Shard* sh = nullptr;
+-            for (auto& x : s.shards)
+-                if (x.stat == st.stat && starts_with(x.family, st.family)) { sh = &x; break; }
+-            if (!sh) continue;
+-            if (static_cast<int>(counts[sh->emblem]) >= st.want) continue;
+-            pick = sh;
+-            fill = st.want >= 99;
+-            break;
++        if (!pick) {
++            // fuelfit o04: the shard of each plan step, resolved once per plan (plan and shards only change at init)
++            static std::vector<const Shard*> plan_sh;
++            static std::size_t plan_n = ~std::size_t(0), shards_n = 0, plan_sig = 0;
++            std::size_t sig = 0;
++            for (auto& st : s.plan) sig = sig * 1000003u + std::hash<std::string_view>{}(std::string_view(st.family)) * 31u + static_cast<std::size_t>(st.stat) * 7u + static_cast<std::size_t>(st.want);
++            if (plan_n != s.plan.size() || shards_n != s.shards.size() || plan_sig != sig) {
++                plan_sh.clear();
++                for (auto& st : s.plan) {
++                    const Shard* sh = nullptr;
++                    for (auto& x : s.shards)
++                        if (x.stat == st.stat && starts_with(x.family, st.family)) { sh = &x; break; }
++                    plan_sh.push_back(sh);
++                }
++                plan_n = s.plan.size(); shards_n = s.shards.size(); plan_sig = sig;
++            }
++            for (std::size_t k = 0; k < s.plan.size(); ++k) {
++                const Shard* sh = plan_sh[k];
++                if (!sh) continue;
++                if (static_cast<int>(counts[sh->emblem]) >= s.plan[k].want) continue;
++                pick = sh;
++                fill = s.plan[k].want >= 99;
++                break;
++            }
+         }
+ #if P_LSHOP
+         if (fill && static_cast<int>(bc::round_number()) >= P_LSHOP_R) pick = lshop_pick(s, counts, pick);
+@@ -1441,7 +1482,7 @@
+         bool foe_near = false;
+         if (own && here >= P_TPC_GAIN + 3)
+             attempt([&] {
+-                for (auto& e : bc::vision::champions(*s.en))
++                for (auto& e : vis_champions(*s.en))
+                     if (e.is_alive() && dist(e.position(), pos) <= 7) { foe_near = true; break; }
+                 return true;
+             });
+@@ -1484,7 +1525,7 @@
+                     int d = s.df.get(t);
+                     if (d < bestd) { bestd = d; best = t; }
+                 }
+-            if (best && attempt([&] { return ab.use(*best); })) {
++            if (best && attempt([&] { return dm_use(ab).use(*best); })) {
+                 moved = true;
+                 pos = *best;
+             }
+@@ -1540,12 +1581,12 @@
+         auto& ab = abs[k];
+         if (s.slots[k] == Slot::Targeted) {
+             if (!(champ ? ab.can_target_enemies() : ab.can_target_camps())) continue;
+-            if (ab.is_ready() && attempt([&] { return ab.use(tgt); })) return true;
++            if (ab.is_ready() && attempt([&] { return dm_use(ab).use(tgt); })) return true;
+         } else if (s.slots[k] == Slot::Ground) {
+             if (!ab.is_ready()) continue;
+             vec2 c = tpos;
+             if (champ) c = aoe_centre(s, me, k, tpos);
+-            if (attempt([&] { return ab.use(c); })) return true;
++            if (attempt([&] { return dm_use(ab).use(c); })) return true;
+         }
+     }
+     return false;
+@@ -1556,7 +1597,7 @@
+     if (dist(me.position(), tpos) > me.attack_range() || !me.can_attack()) return false;
+     if (false) return false;
+     bool hit = attempt([&] {
+-        me.attack(tgt);
++        dm_use(me).attack(tgt);
+         return true;
+     });
+     // Preserve a reset cooldown when its only selected target disappeared.
+@@ -1566,9 +1607,9 @@
+         (!(P_U34_RESET_LIVE >= 2 || (P_U34_RESET_LIVE && (s.de_map == v34de::Corners || s.de_map == v34de::Interlock))) ||
+          u34_target_visible(tgt))) {
+         auto ab = me.abilities()[s.reset_slot];
+-        if (ab.is_ready() && attempt([&] { return ab.use(); }))
++        if (ab.is_ready() && attempt([&] { return dm_use(ab).use(); }))
+             attempt([&] {
+-                me.attack(tgt);
++                dm_use(me).attack(tgt);
+                 return true;
+             });
+     }
+@@ -1652,15 +1693,15 @@
+     for (int k = 0; k < 2; ++k) {
+         auto& ab = abs[k];
+         if (s.slots[k] == Slot::Shield && in_combat && me.health() < 0.85f * me.max_health()) {
+-            if (ab.is_ready() && attempt([&] { return ab.use(); })) return;
++            if (ab.is_ready() && attempt([&] { return dm_use(ab).use(); })) return;
+         }
+         if (s.slots[k] == Slot::Heal && ab.is_ready()) {
+-            for (auto& a : bc::vision::champions(*s.my)) {
++            for (auto& a : vis_champions(*s.my)) {
+                 if (a == me) continue;
+                 bool done = attempt([&] {
+                     if (!a.is_alive() || dist(a.position(), me.position()) > SPELL_RANGE) return false;
+                     if (ab.heal_amount(a) < 0.5f * ab.heal_amount()) return false;
+-                    return ab.use(a);
++                    return dm_use(ab).use(a);
+                 });
+                 if (done) return;
+             }
+@@ -1923,7 +1964,7 @@
+ int allies_near(State& s, bc::champion& me, vec2 at, int radius) {
+     int n = 0;
+     attempt([&] {
+-        for (auto& a : bc::vision::champions(*s.my))
++        for (auto& a : vis_champions(*s.my))
+             if (!(a == me) && a.is_alive() && dist(a.position(), at) <= radius) ++n;
+         return true;
+     });
+@@ -2103,6 +2144,14 @@
+         if (s.dash_slot < 0 || s.mp_dashholes.is_empty()) return -1;
+         return d * 2 + 10;
+     };
++    auto share_pow = [](int team, int e100) {  // fuelfit o05: std::pow once per (team, exponent)
++        static double tbl[2][9];
++        static bool have[2][9];
++        const int ei = e100 == 100 ? 0 : 1;
++        if (team < 0 || team > 8 || (ei == 1 && e100 != P_SHAREEXP)) return std::pow(static_cast<double>(team), e100 / 100.0);
++        if (!have[ei][team]) { tbl[ei][team] = std::pow(static_cast<double>(team), e100 / 100.0); have[ei][team] = true; }
++        return tbl[ei][team];
++    };
+     auto walk = [&](const Group& g) {
+         int d = dist(pos, g.center);
+         if (!have_pd) return d;
+@@ -2161,7 +2210,7 @@
+         if ((s.de_map == v34de::Expanse || s.de_map == v34de::Monolith) && g.gems > 0 && g.altar_pd >= 0)
+             rounds += ((s.de_map == v34de::Monolith ? 100 : P_R34_BANKCOST) / 100.0) * 2.0 * std::max(0, g.altar_pd - 1) / team;
+         bool pack = false;  // opening: everybody on the best camp together
+-        double value = (g.gems + gold_w * g.gold) / (pack ? 1.0 : std::pow(static_cast<double>(team), ((g.monolith || g.hp < P_STACK_HP || false) ? 100 : P_SHAREEXP) / 100.0));  // big camps (P_STACK_HP+): a joiner keeps more of the value, so champions stack there
++        double value = (g.gems + gold_w * g.gold) / (pack ? 1.0 : share_pow(team, (g.monolith || g.hp < P_STACK_HP || false) ? 100 : P_SHAREEXP));  // big camps (P_STACK_HP+): a joiner keeps more of the value, so champions stack there
+         double score = value / std::max(1.0, rounds);
+         if (needed > 1 + claimers) score *= (false && P_MP_COMPANY) ? P_MP_COMPANY / 100.0 : 0.7;  // still needs company (rule 8)
+         if (claimers > 0 && g.str == 0 && !(g.gems > 0 && claimers < P_PAIR) && !(pot && claimers < 2) && !(P_RC2 && g.gems >= 20)) score *= pack ? 1.0 : 0.3;  // clusters are a solo job (richcap-v2: not 20+ gem groups)
+@@ -2224,7 +2273,7 @@
+         if (s.lock_until[i] > round) d += s.lock_until[i] - round;
+         if (false)  // an enemy champion next to the altar: prefer another one
+             attempt([&] {
+-                for (auto& e : bc::vision::champions(*s.en))
++                for (auto& e : vis_champions(*s.en))
+                     if (e.is_alive() && dist(e.position(), a) <= 3) { d += P_ALTAR_SAFE; break; }
+                 return true;
+             });
+@@ -2255,7 +2304,7 @@
+     int cost = std::max(0, s.lock_until[i] - round);
+     if (false)
+         attempt([&] {
+-            for (auto& e : bc::vision::champions(*s.en))
++            for (auto& e : vis_champions(*s.en))
+                 if (e.is_alive() && dist(e.position(), a) <= 3) { cost += P_ALTAR_SAFE; break; }
+             return true;
+         });
+@@ -2275,7 +2324,7 @@
+ 
+ bool br_threat_block(State& s, vec2 pos, int round, bc::bitboard& block) {
+     block = s.blocked;
+-    auto enemies = bc::vision::champions(*s.en);
++    auto enemies = vis_champions(*s.en);
+     if (enemies.size() > 16) return false;
+     for (auto& enemy : enemies) {
+         if (!fuel_ok(26000)) return false;
+@@ -2517,7 +2566,7 @@
+                     int distance = field.get(p);
+                     if (distance < bestd) { best = p; bestd = distance; }
+                 }
+-            if (best && attempt([&] { return ability.use(*best); })) { moved = true; pos = me.position(); }
++            if (best && attempt([&] { return dm_use(ability).use(*best); })) { moved = true; pos = me.position(); }
+         }
+     }
+     if (me.can_move())
+@@ -2666,7 +2715,7 @@
+     });
+     std::vector<std::pair<vec2, double>> en;
+     attempt([&] {
+-        for (auto& c : bc::vision::champions(*s.en))
++        for (auto& c : vis_champions(*s.en))
+             try {
+                 if (!c.is_alive() || s.en_spawn.is_set(c.position())) continue;
+                 en.push_back({c.position(), c.health()});
+@@ -2735,7 +2784,7 @@
+     auto rank_of = [&](const std::string& n, bool ranged) { return vc ? vesper::carry_rank(n) : champ::cap_rank(n, ranged); };
+     const int my_rank = prio_r ? rank_of(s.name, me.attack_range() > 1) : 0;
+     std::vector<bc::champion> seen;  // P_FUELGUARD: allies in vision (position() of any other one throws)
+-    attempt([&] { seen = bc::vision::champions(*s.my); return true; });
++    attempt([&] { seen = vis_champions(*s.my); return true; });
+     attempt([&] {
+     auto allies = my_roster(s);
+     for (std::size_t k = 0; k < allies.size() && !other; ++k) {
+@@ -2811,7 +2860,7 @@
+     const vec2 pos = me.position();
+     if (!g.mask.is_set(pos) || !me.can_move() || !fuel_ok(28000)) return false;
+     bool present = false;
+-    for (auto& a : bc::vision::champions(*s.my)) {
++    for (auto& a : vis_champions(*s.my)) {
+         attempt([&] {
+             if (a == me || !cf_available(a) || !g.mask.is_set(a.position())) return false;
+             // In particular do not rely on a recalling/teleporting ally remaining.
+@@ -3096,7 +3145,7 @@
+                 return true;
+             });
+             std::vector<vec2> ally_positions;
+-            for (auto& ally : bc::vision::champions(*s.my)) {
++            for (auto& ally : vis_champions(*s.my)) {
+                 if (!fuel_ok(11500)) break;
+                 attempt([&] {
+                     if (!(ally == me) && ally.is_alive() && ally.is_visible())
+@@ -3367,7 +3416,7 @@
+         if (exclusive && (!allow_exclusive || free_only || escape)) continue;
+         std::optional<vec2> best;
+         double best_score = -1e30;
+-        for (auto& c : bc::vision::champions(*s.en)) {
++        for (auto& c : vis_champions(*s.en)) {
+             if (!fuel_ok(8000)) return false;
+             attempt([&] {
+                 if (!c.is_visible() || !c.is_alive() || c.health() <= 0) return false;
+@@ -3382,7 +3431,7 @@
+                 return true;
+             });
+         }
+-        if (best && attempt([&] { return abs[k].use(*best); })) {
++        if (best && attempt([&] { return dm_use(abs[k]).use(*best); })) {
+             if (track_root && exclusive) s.rooted_r = static_cast<int>(bc::round_number());
+             return true;
+         }
+@@ -3531,7 +3580,7 @@
+     FP(5, "foes");
+ 
+     std::vector<Foe> foes;
+-    for (auto& c : bc::vision::champions(*s.en)) {
++    for (auto& c : vis_champions(*s.en)) {
+         attempt([&] {
+             if (!c.is_alive()) return false;
+             Foe f{c, c.position(), c.health(), 0, 0, false};
+@@ -3807,7 +3856,7 @@
+         if (k) {
+             int nb = 1, eb = 0;
+             attempt([&] {
+-                for (auto& a : bc::vision::champions(*s.my))
++                for (auto& a : vis_champions(*s.my))
+                     if (!(a == me) && a.is_alive() && !a.is_recalling() && dist(a.position(), pos) <= 4) ++nb;
+                 return true;
+             });
+@@ -3890,7 +3939,7 @@
+                 if (f.c == *s.chase && f.d <= 6 && hurt(f)) k = &f;
+         if (!k) {
+             std::vector<vec2> mates;
+-            for (auto& a : bc::vision::champions(*s.my))
++            for (auto& a : vis_champions(*s.my))
+                 attempt([&] {
+                     if (!(a == me) && a.is_alive()) mates.push_back(a.position());
+                     return true;
+@@ -3910,7 +3959,7 @@
+         }
+         if (!k && P_TF_GUARD) {  // a rival on one of our hurt champions (within 3 of it) is the next target
+             std::vector<vec2> hurt_mates;
+-            for (auto& a : bc::vision::champions(*s.my))
++            for (auto& a : vis_champions(*s.my))
+                 attempt([&] {
+                     if (!(a == me) && a.is_alive() && a.health() < 0.5f * a.max_health()) hurt_mates.push_back(a.position());
+                     return true;
+@@ -3970,7 +4019,7 @@
+         for (auto& f : foes)
+             if (!nf || f.d < nf->d) nf = &f;
+         double ours = hp, theirs = 0;
+-        for (auto& a : bc::vision::champions(*s.my))
++        for (auto& a : vis_champions(*s.my))
+             attempt([&] {
+                 if (!(a == me) && a.is_alive() && dist(a.position(), pos) <= 6) ours += a.health();
+                 return true;
+@@ -4001,7 +4050,7 @@
+     }
+ #endif
+     std::vector<vec2> allies;
+-    for (auto& a : bc::vision::champions(*s.my))
++    for (auto& a : vis_champions(*s.my))
+         attempt([&] {
+             if (!(a == me) && a.is_alive()) allies.push_back(a.position());
+             return true;
+@@ -4056,7 +4105,7 @@
+             return;
+         }
+         double ours = hp, theirs = 0;
+-        for (auto& a : bc::vision::champions(*s.my))
++        for (auto& a : vis_champions(*s.my))
+             attempt([&] {
+                 if (!(a == me) && a.is_alive() && dist(a.position(), pos) <= 6) ours += a.health();
+                 return true;
+@@ -4070,7 +4119,7 @@
+             for (auto& ap : allies)
+                 if (dist(ap, tgt->p) <= 8) ++nb;
+             attempt([&] {
+-                for (auto& a : bc::vision::champions(*s.my))
++                for (auto& a : vis_champions(*s.my))
+                     if (!(a == me) && a.is_alive() && dist(a.position(), tgt->p) <= 8) oh += a.health();
+                 return true;
+             });
+@@ -4152,7 +4201,7 @@
+         if (PR.outnum && !on_spawn && !(killable && reachable) && nearest_foe <= PR.outnum) {
+             int nb = 1, eb = 0;
+             attempt([&] {
+-                for (auto& a : bc::vision::champions(*s.my))
++                for (auto& a : vis_champions(*s.my))
+                     if (!(a == me) && a.is_alive() && !a.is_recalling() && dist(a.position(), pos) <= PR.outnum) ++nb;
+                 return true;
+             });
+@@ -4497,7 +4546,7 @@
+     if (!fuel_ok(6000)) return;
+     vec2 pos = me.position();
+     std::vector<Foe> foes;
+-    for (auto& c : bc::vision::champions(*s.en))
++    for (auto& c : vis_champions(*s.en))
+         attempt([&] {
+             if (!c.is_alive()) return false;
+             Foe f{c, c.position(), c.health(), 0, 0, false};
+@@ -4520,9 +4569,9 @@
+     if (false) {
+         int nf = 0, na = 1;
+         attempt([&] {
+-            for (auto& c : bc::vision::champions(*s.en))
++            for (auto& c : vis_champions(*s.en))
+                 if (c.is_alive() && dist(c.position(), pos) <= 5) ++nf;
+-            for (auto& a : bc::vision::champions(*s.my))
++            for (auto& a : vis_champions(*s.my))
+                 if (!(a == me) && a.is_alive() && dist(a.position(), pos) <= 4) ++na;
+             return true;
+         });
+@@ -4533,7 +4582,7 @@
+     bool guard = false;
+     if (false) {
+         if (me.health() < P_UNI_STAND_HP / 100.0f * me.max_health()) stand_ok = false;
+-        for (auto& c : bc::vision::champions(*s.en))
++        for (auto& c : vis_champions(*s.en))
+             attempt([&] {
+                 if (!c.is_alive() || s.en_spawn.is_set(c.position())) return false;
+                 Foe f{c, c.position(), c.health(), dist(c.position(), pos), 0, false};
+@@ -4550,7 +4599,7 @@
+         } else {
+             std::vector<Threat> th;
+             attempt([&] {
+-                for (auto& c : bc::vision::champions(*s.en)) {
++                for (auto& c : vis_champions(*s.en)) {
+                     if (!c.is_alive() || s.en_spawn.is_set(c.position())) continue;
+                     int ar = static_cast<int>(c.attack_range());
+                     th.push_back(threat_of(c, c.position(), ar <= 1 ? 2 : ar + 1));
+@@ -4616,10 +4665,10 @@
+             }
+             if (s.slots[k] == Slot::Targeted) {
+                 if (!attempt([&] { return ab.can_target_enemies(); })) continue;
+-                cast = attempt([&] { return ab.use(t->c); });
++                cast = attempt([&] { return dm_use(ab).use(t->c); });
+             } else {
+                 vec2 c = aoe_centre(s, me, k, t->p);
+-                cast = attempt([&] { return ab.use(c); });
++                cast = attempt([&] { return dm_use(ab).use(c); });
+             }
+             if (cast && ex && pre) s.rooted_r = static_cast<int>(bc::round_number());
+         }
+@@ -4635,7 +4684,7 @@
+             int hits = 0;
+             vec2 c = aoe_centre(s, me, k, weak->p, &hits);
+             if (hits < 2) continue;
+-            cast = attempt([&] { return abs[k].use(c); });
++            cast = attempt([&] { return dm_use(abs[k]).use(c); });
+             if (cast && ex && pre) s.rooted_r = static_cast<int>(bc::round_number());
+         }
+     }
+@@ -4651,7 +4700,7 @@
+     if (!me.is_alive() || !me.can_attack()) return;
+     vec2 pos = me.position();
+     std::vector<Foe> foes;
+-    for (auto& c : bc::vision::champions(*s.en))
++    for (auto& c : vis_champions(*s.en))
+         attempt([&] {
+             if (!c.is_alive() || s.en_spawn.is_set(c.position())) return false;
+             foes.push_back(Foe{c, c.position(), c.health(), dist(c.position(), pos), 0, false});
+@@ -4663,7 +4712,6 @@
+ // P_WARD (vision-v1): a champion in a bush is hidden from anyone not next to it (local probe: 0 of 310 in-bush
+ // rivals 3-6 tiles away were seen, 64% of open-ground ones), and rivals ward bushes ~270 times a game while we never
+ // did. With the ward ready, put it where it lights the most bush tiles within P_WARD_R that we cannot see now.
+-int g_ward_n = 0;
+ void ward_turn(State& s) {
+     if (!P_WARD || !s.ready) return;
+     static int has_bush = -1;
+@@ -4676,15 +4724,17 @@
+     if (cd > 0) return;
+     vec2 pos = me.position();
+     if (s.my_spawn.is_set(pos)) return;
++    static const bc::bitboard bushes = bc::map::bushes();  // fuelfit o04: static map data
+     bc::bitboard dark;
+     dark.draw_chebyshev(pos, static_cast<float>(P_WARD_R));
+-    dark &= bc::map::bushes();
++    dark &= bushes;
+     if (dark.is_empty()) return;
+     attempt([&] { dark &= ~bc::vision::visible_tiles(); return true; });
+     if (dark.count() < P_WARD_MIN) return;
+     bc::bitboard place = me.ward_placement_tiles() & ~s.static_block;
+     std::vector<vec2> cand = (place & dark).positions();  // dark bush tiles in reach first, then the rest
+-    for (auto p : (place & ~dark).positions()) cand.push_back(p);
++    if (static_cast<int>(cand.size()) < P_WARD_TRY)  // fuelfit o05: only the first P_WARD_TRY are ever evaluated
++        for (auto p : (place & ~dark).positions()) cand.push_back(p);
+     int best_n = 0, tried = 0;
+     vec2 best = pos;
+     for (auto p : cand) {
+@@ -4726,7 +4776,7 @@
+         bc::champion& me = bc::self();
+         if (r >= 60 && r <= 150 && me.is_alive() && !s.my_spawn.is_set(me.position())) {
+             int md = 20;
+-            for (auto& a : bc::vision::champions(*s.my))
++            for (auto& a : vis_champions(*s.my))
+                 if (!(a == me) && a.is_alive()) md = std::min(md, dist(a.position(), me.position()));
+             ++n; alone += md > 4; dsum += md;
+         }
+diff -ru kvvl/src/mapplan_game.h kopt/src/mapplan_game.h
+--- kvvl/src/mapplan_game.h	2026-10-23 22:47:10.000000000 +0000
++++ kopt/src/mapplan_game.h	1980-01-02 00:00:00.000000000 +0000
+@@ -135,7 +135,7 @@
+                     }
+                 if (over) { bestd = d; best = t; }
+             }
+-        if (best && attempt([&] { return ab.use(*best); })) {
++        if (best && attempt([&] { return dm_use(ab).use(*best); })) {
+             pos = *best;
+             if (me.can_move()) {
+                 std::vector<vec2> st;
+diff -ru kvvl/src/track.h kopt/src/track.h
+--- kvvl/src/track.h	2026-10-23 22:47:10.000000000 +0000
++++ kopt/src/track.h	1980-01-02 00:00:00.000000000 +0000
+@@ -94,7 +94,7 @@
+     }
+     }
+     attempt([&] {
+-        for (auto& a : bc::vision::champions(*s.my)) {
++        for (auto& a : vis_champions(*s.my)) {
+             int k = -1;
+             for (int j = 0; j < M.na; ++j)
+                 if (M.aroster[j] == a) { k = j; break; }
+diff -ru kvvl/src/utility.h kopt/src/utility.h
+--- kvvl/src/utility.h	2026-10-23 22:47:10.000000000 +0000
++++ kopt/src/utility.h	1980-01-02 00:00:00.000000000 +0000
+@@ -29,6 +29,6 @@
+             const int score = dist(a, s.en_center);
+             if (score < rank) { rank = score; best = static_cast<int>(i); }
+         }
+-        return best >= 0 && fuel_ok(4000) && lock.use(s.altars[best]);
++        return best >= 0 && fuel_ok(4000) && dm_use(lock).use(s.altars[best]);
+     });
+ }
+diff -ru kvvl/src/verdict.h kopt/src/verdict.h
+--- kvvl/src/verdict.h	2026-10-23 22:47:10.000000000 +0000
++++ kopt/src/verdict.h	1980-01-02 00:00:00.000000000 +0000
+@@ -31,7 +31,7 @@
+     vec2 pos = me.position();
+     double oh = me.health(), od = fight::unit_dps(me), th = 0, td = 0;
+     attempt([&] {
+-        for (auto& a : bc::vision::champions(*s.my)) {
++        for (auto& a : vis_champions(*s.my)) {
+             try {
+                 if (a == me || !a.is_alive() || a.is_recalling()) continue;
+                 if (dist(a.position(), pos) > 6) continue;
+diff -ru kvvl/src/vesper.h kopt/src/vesper.h
+--- kvvl/src/vesper.h	2026-10-24 17:10:56.000000000 +0000
++++ kopt/src/vesper.h	1980-01-02 00:00:00.000000000 +0000
+@@ -43,7 +43,7 @@
+                             int v = sc(t);
+                             if (v > bs + 500) { bs = v; bt = t; }
+                         }
+-                    if (bt && attempt([&] { return ab.use(*bt); })) moved = 1;
++                    if (bt && attempt([&] { return dm_use(ab).use(*bt); })) moved = 1;
+                 }
+             }
+             if (hit) {

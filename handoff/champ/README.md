@@ -21,3 +21,25 @@ v2 se apaga si el camino entre spawns es >= 35 (P_HOR_NEAR, el mismo corte "near
 | hortgt-v2a | v1a solo en cercanos | 150 / 50 / 100, NEAR 35 |
 | hortgt-v2b | solo quita los grupos de solo oro (x0.5), sin subir los guardados, en cercanos | 100 / 50 / 100, NEAR 35 |
 | hortgt-v2c | v1b solo en cercanos y solo antes de r150 | 200 / 30 / 70, NEAR 35, RMAX 150 |
+
+## hortgt v2 (J2 +1,0 / -0,9 / +0,4): línea HoR CERRADA
+
+## fightnum-v1 (24-10 18:15): Vesper / Marcella / Vendetta pelean con números (champions.h `champ::outnum_margin`)
+Antes de r150 en cercanos el top 10 cambia daño a campeones 1,45 / 1,45 / 1,08 (hecho/recibido) con Vesper / Marcella / Vendetta; nosotros 0,88 / 1,08 / 0,68.
+Sus rondas de pelea superando al rival en 2: 41 / 43 / 36%; las nuestras 21 / 19 / 12% (y a la par 38 / 34 / 47% frente a 25 / 26 / 22%).
+La regla genérica "outnumbered" (retirarse si rivales >= nosotros + 2, en play_turn y fight::kite) pasa a + P_FN_MARGIN para esas tres.
+
+| carpeta | qué cambia |
+|---|---|
+| fightnum-v1a | Vesper / Marcella / Vendetta se retiran con rivales >= nosotros + 1 |
+| fightnum-v1b | todos los campeones con + 1 |
+| fightnum-v1c | Vesper / Marcella / Vendetta con + 0 (solo pelean superando en número o si matan) |
+
+## earlysafe-v1 (24-10 18:15): campamentos antes de r150 (champions.h `champ::early_safe`)
+Muertes antes de r150 (cercanos): Marcella 0,37 vs 0,11, Vesper 0,33 vs 0,17, Vendetta 0,31 vs 0,17.
+
+| carpeta | qué cambia |
+|---|---|
+| earlysafe-v1a | esas tres antes de r150: no empiezan un campamento guardado con < 50% de vida; se retiran al 25% (genérico 12%). Local +8/160 |
+| earlysafe-v1b | solo la entrada (50%), retirada al 12% de siempre |
+| earlysafe-v1c | v1a hasta r400 |

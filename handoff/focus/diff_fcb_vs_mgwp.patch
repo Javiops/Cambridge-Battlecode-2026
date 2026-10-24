@@ -1,0 +1,80 @@
+diff -ru mgwp/src/fight.h fcb/src/fight.h
+--- mgwp/src/fight.h	2026-10-24 13:16:13.403859301 +0000
++++ fcb/src/fight.h	2026-10-24 14:40:35.814414204 +0000
+@@ -292,7 +292,7 @@
+     if (!focus)
+         for (auto* f : near) {
+             if (gone(*f, me)) continue;
+-            double sc = dist(f->p, anchor) * 100.0 + f->hp / 10.0 - (f->channeling ? 150.0 : 0.0);
++            double sc = dist(f->p, anchor) * 100.0 + f->hp / 10.0 - (f->channeling ? 150.0 : 0.0) - (f->mate_hit ? P_FOCUS_W / 2.0 : 0.0);
+             if (sc < best) { best = sc; focus = f; }
+         }
+     if (!focus) return false;
+@@ -450,7 +450,7 @@
+         double tb = 1e18;
+         for (auto* f : near) {
+             if (f->d > SPELL_RANGE + 1 || gone(*f, me)) continue;
+-            double sc = dist(f->p, anchor) * 100.0 + f->hp / 10.0 - (f->channeling ? 150.0 : 0.0);
++            double sc = dist(f->p, anchor) * 100.0 + f->hp / 10.0 - (f->channeling ? 150.0 : 0.0) - (f->mate_hit ? P_FOCUS_W / 2.0 : 0.0);
+             if (sc < tb) { tb = sc; tf = f; }
+         }
+         if (tf) focus = tf;
+diff -ru mgwp/src/main.cpp fcb/src/main.cpp
+--- mgwp/src/main.cpp	2026-10-24 13:16:13.574056349 +0000
++++ fcb/src/main.cpp	2026-10-24 14:40:35.814312331 +0000
+@@ -575,11 +575,13 @@
+     int gems;
+     bool channeling;
+     bool away = false;  // moved farther from us since last round (P_NOCHASE)
++    bool mate_hit = false;  // focus-v1: lost health since last round with one of our allies within 3 of it
+ };
+ struct Seen {
+     bc::champion c;
+     vec2 p;
+     int away_until;
++    float hp = 0;
+ };
+ 
+ struct State {
+@@ -3503,6 +3505,14 @@
+                 for (auto& o : s.seen)
+                     if (o.c == f.c) {
+                         until = o.away_until;
++                        // focus-v1 (top 10 near r30-150: two of theirs hit the same rival in 25% of hit rounds vs our
++                        // 15%, kills with 1.8 hitters vs 1.2): a rival an ally is hitting is the one to hit.
++                        if (P_FOCUS && f.hp < o.hp - 1.0f)
++                            attempt([&] {
++                                for (auto& a : bc::vision::champions(*s.my))
++                                    if (!(a == me) && a.is_alive() && dist(a.position(), f.p) <= 3) { f.mate_hit = true; break; }
++                                return true;
++                            });
+                         bool moved = !(o.p == f.p);
+                         bool off = dist(f.p, s.seen_me) > dist(o.p, s.seen_me);
+                         bool home = dist(f.p, s.en_center) < dist(o.p, s.en_center) && dist(f.p, pos) >= dist(o.p, pos);
+@@ -3511,7 +3521,7 @@
+                     }
+             if (f.d <= 2) until = -1;
+             f.away = until >= round;
+-            now.push_back({f.c, f.p, until});
++            now.push_back({f.c, f.p, until, f.hp});
+         }
+         s.seen = std::move(now);
+         s.seen_r = round;
+@@ -3622,7 +3632,7 @@
+     };
+     for (auto& f : foes) {
+         if (f.d > 6 || s.en_spawn.is_set(f.p) || gone(f)) continue;
+-        double sc = f.hp - (f.channeling ? 300 : 0) - 5.0 * f.gems + 40.0 * f.d;
++        double sc = f.hp - (f.channeling ? 300 : 0) - 5.0 * f.gems + 40.0 * f.d - (f.mate_hit ? P_FOCUS_W : 0);
+         if (sc < tgt_score) { tgt_score = sc; tgt = &f; }
+     }
+ 
+diff -ru mgwp/src/params.h fcb/src/params.h
+--- mgwp/src/params.h	2026-10-24 13:16:13.574352829 +0000
++++ fcb/src/params.h	2026-10-24 14:40:35.816495640 +0000
+@@ -324,3 +324,5 @@
+ #define P_WAITPAIR 1     // waitpair-v1: wait for a respawn next to an ally (near maps, r30-150)
+ #endif
+ #define P_WAITPAIR_D 12  // the ally (seen or estimated) at most this far from the camp
++#define P_FOCUS 1        // focus-v1: prefer the rival an ally is hitting
++#define P_FOCUS_W 150    // target score bonus (score ~ hp + 40/tile; channeling 300)

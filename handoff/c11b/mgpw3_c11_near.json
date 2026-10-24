@@ -1,0 +1,1625 @@
+{
+"note": "mgpw3-on-v139c11 and its V20 source groups, near maps only",
+"games": [
+{
+"match": "052e50bf-803a-4858-87c4-9379c242984f",
+"version": 139,
+"group": "66868051-6d18-4ef8-b9a0-e79e0dd1e0b8",
+"map": "01gold_rush",
+"side": "a",
+"opp": "BBL",
+"result": "win",
+"replay": "/mnt/project-files/online/data/replays/052e50bf-803a-4858-87c4-9379c242984f.zip"
+},
+{
+"match": "3f50bc35-7a3d-44af-bb18-d07d31ea1057",
+"version": 139,
+"group": "66868051-6d18-4ef8-b9a0-e79e0dd1e0b8",
+"map": "00contest",
+"side": "a",
+"opp": "BBL",
+"result": "loss",
+"replay": "/mnt/project-files/online/data/replays/3f50bc35-7a3d-44af-bb18-d07d31ea1057.zip"
+},
+{
+"match": "536a5eeb-e725-497c-849f-e9c14ed26745",
+"version": 139,
+"group": "66868051-6d18-4ef8-b9a0-e79e0dd1e0b8",
+"map": "01starfish",
+"side": "a",
+"opp": "BBL",
+"result": "win",
+"replay": "/mnt/project-files/online/data/replays/536a5eeb-e725-497c-849f-e9c14ed26745.zip"
+},
+{
+"match": "c674aca7-d4bb-4d4c-899c-20fca6c3d0f1",
+"version": 139,
+"group": "66868051-6d18-4ef8-b9a0-e79e0dd1e0b8",
+"map": "01hooks",
+"side": "a",
+"opp": "BBL",
+"result": "loss",
+"replay": "/mnt/project-files/online/data/replays/c674aca7-d4bb-4d4c-899c-20fca6c3d0f1.zip"
+},
+{
+"match": "8cb4f557-cade-42f6-8224-9dfd83248726",
+"version": 139,
+"group": "1bd10e46-8c04-46c0-9cd4-26e1240df0f7",
+"map": "00corners",
+"side": "a",
+"opp": "meow",
+"result": "win",
+"replay": "/mnt/project-files/online/data/replays/8cb4f557-cade-42f6-8224-9dfd83248726.zip"
+},
+{
+"match": "9e682ab7-0fda-41cc-b70b-b904ba4417ed",
+"version": 139,
+"group": "1bd10e46-8c04-46c0-9cd4-26e1240df0f7",
+"map": "00packs",
+"side": "a",
+"opp": "meow",
+"result": "win",
+"replay": "/mnt/project-files/online/data/replays/9e682ab7-0fda-41cc-b70b-b904ba4417ed.zip"
+},
+{
+"match": "831c59c2-5fdb-416c-bd88-5f826dc3f370",
+"version": 139,
+"group": "92a36fae-8daa-4f12-87bc-64061addf7c7",
+"map": "00interlock",
+"side": "a",
+"opp": "EggsAfter11AM",
+"result": "loss",
+"replay": "/mnt/project-files/online/data/replays/831c59c2-5fdb-416c-bd88-5f826dc3f370.zip"
+},
+{
+"match": "fd69c509-857b-41c2-a667-09cb53be23b4",
+"version": 139,
+"group": "b89579f8-5324-40e3-9218-f41116babae6",
+"map": "00rushbait_v2",
+"side": "a",
+"opp": "PENTAKILL",
+"result": "win",
+"replay": "/mnt/project-files/online/data/replays/fd69c509-857b-41c2-a667-09cb53be23b4.zip"
+},
+{
+"match": "884b6de7-edaf-40f3-ac0d-249520077686",
+"version": 139,
+"group": "b89579f8-5324-40e3-9218-f41116babae6",
+"map": "00lost_world",
+"side": "a",
+"opp": "PENTAKILL",
+"result": "loss",
+"replay": "/mnt/project-files/online/data/replays/884b6de7-edaf-40f3-ac0d-249520077686.zip"
+},
+{
+"match": "70393ee0-5bb8-4781-963a-cc45aded7c79",
+"version": 139,
+"group": "b89579f8-5324-40e3-9218-f41116babae6",
+"map": "00gem_fields",
+"side": "a",
+"opp": "PENTAKILL",
+"result": "loss",
+"replay": "/mnt/project-files/online/data/replays/70393ee0-5bb8-4781-963a-cc45aded7c79.zip"
+},
+{
+"match": "7f630d00-2be5-4a88-af71-d25fda97532c",
+"version": 139,
+"group": "b89579f8-5324-40e3-9218-f41116babae6",
+"map": "00elkring",
+"side": "a",
+"opp": "PENTAKILL",
+"result": "loss",
+"replay": "/mnt/project-files/online/data/replays/7f630d00-2be5-4a88-af71-d25fda97532c.zip"
+},
+{
+"match": "2edcee71-8c54-45b3-9d83-c80eaab04bce",
+"version": 139,
+"group": "b89579f8-5324-40e3-9218-f41116babae6",
+"map": "01the_farm",
+"side": "a",
+"opp": "PENTAKILL",
+"result": "loss",
+"replay": "/mnt/project-files/online/data/replays/2edcee71-8c54-45b3-9d83-c80eaab04bce.zip"
+},
+{
+"match": "9e934fbe-be1c-4d17-bac3-7360a1fd755e",
+"version": 139,
+"group": "18faaf92-3ab2-42dd-8060-92a8464dd137",
+"map": "01hooks",
+"side": "a",
+"opp": "SilverSamurai",
+"result": "win",
+"replay": "/mnt/project-files/online/data/replays/9e934fbe-be1c-4d17-bac3-7360a1fd755e.zip"
+},
+{
+"match": "7b195043-eac2-4952-a911-a4fd120cb679",
+"version": 139,
+"group": "18faaf92-3ab2-42dd-8060-92a8464dd137",
+"map": "00rushbait_v2",
+"side": "a",
+"opp": "SilverSamurai",
+"result": "win",
+"replay": "/mnt/project-files/online/data/replays/7b195043-eac2-4952-a911-a4fd120cb679.zip"
+},
+{
+"match": "d183b98f-0bbc-41b5-8b30-612658859032",
+"version": 139,
+"group": "b978e92b-73c8-4b22-ab15-e8c78b6717c4",
+"map": "00lost_world",
+"side": "a",
+"opp": "The Party of Heroes",
+"result": "win",
+"replay": "/mnt/project-files/online/data/replays/d183b98f-0bbc-41b5-8b30-612658859032.zip"
+},
+{
+"match": "e5884393-f2ed-4f51-8ce6-7d4339f48ab9",
+"version": 139,
+"group": "b978e92b-73c8-4b22-ab15-e8c78b6717c4",
+"map": "00elkring",
+"side": "a",
+"opp": "The Party of Heroes",
+"result": "loss",
+"replay": "/mnt/project-files/online/data/replays/e5884393-f2ed-4f51-8ce6-7d4339f48ab9.zip"
+},
+{
+"match": "45db8f6a-6a4c-486b-bdc9-0f0f00e8f586",
+"version": 139,
+"group": "b978e92b-73c8-4b22-ab15-e8c78b6717c4",
+"map": "01gold_rush",
+"side": "a",
+"opp": "The Party of Heroes",
+"result": "win",
+"replay": "/mnt/project-files/online/data/replays/45db8f6a-6a4c-486b-bdc9-0f0f00e8f586.zip"
+},
+{
+"match": "ad0180aa-c885-4721-beb4-7ee126fd2cd4",
+"version": 139,
+"group": "c9a69d36-41c4-4b65-9082-baaf9480d646",
+"map": "00rushbait_v2",
+"side": "a",
+"opp": "Sneaky Bush Campers",
+"result": "win",
+"replay": "/mnt/project-files/online/data/replays/ad0180aa-c885-4721-beb4-7ee126fd2cd4.zip"
+},
+{
+"match": "5fa15263-cdc7-4764-bee6-a1ca9878add3",
+"version": 139,
+"group": "c9a69d36-41c4-4b65-9082-baaf9480d646",
+"map": "00quadrants",
+"side": "a",
+"opp": "Sneaky Bush Campers",
+"result": "win",
+"replay": "/mnt/project-files/online/data/replays/5fa15263-cdc7-4764-bee6-a1ca9878add3.zip"
+},
+{
+"match": "b6e736e6-68c6-440c-9935-44961f35c243",
+"version": 139,
+"group": "c9a69d36-41c4-4b65-9082-baaf9480d646",
+"map": "01yellow_brick_road",
+"side": "a",
+"opp": "Sneaky Bush Campers",
+"result": "win",
+"replay": "/mnt/project-files/online/data/replays/b6e736e6-68c6-440c-9935-44961f35c243.zip"
+},
+{
+"match": "382de2ea-a582-4511-85e4-d09e8f884c15",
+"version": 139,
+"group": "c9a69d36-41c4-4b65-9082-baaf9480d646",
+"map": "01boss_battle",
+"side": "a",
+"opp": "Sneaky Bush Campers",
+"result": "win",
+"replay": "/mnt/project-files/online/data/replays/382de2ea-a582-4511-85e4-d09e8f884c15.zip"
+},
+{
+"match": "731210d0-518c-465c-bed9-7da7a44b9218",
+"version": 139,
+"group": "038ff244-7ac9-49b8-bdc9-b54394139f1f",
+"map": "01starfish",
+"side": "a",
+"opp": "SkibidiSloppers",
+"result": "win",
+"replay": "/mnt/project-files/online/data/replays/731210d0-518c-465c-bed9-7da7a44b9218.zip"
+},
+{
+"match": "7a43f73e-bc46-4da5-811a-87fab12d2ac8",
+"version": 139,
+"group": "038ff244-7ac9-49b8-bdc9-b54394139f1f",
+"map": "00collision",
+"side": "a",
+"opp": "SkibidiSloppers",
+"result": "loss",
+"replay": "/mnt/project-files/online/data/replays/7a43f73e-bc46-4da5-811a-87fab12d2ac8.zip"
+},
+{
+"match": "624fbf14-a104-4159-bf1d-e425aadebe10",
+"version": 139,
+"group": "038ff244-7ac9-49b8-bdc9-b54394139f1f",
+"map": "01gold_rush",
+"side": "a",
+"opp": "SkibidiSloppers",
+"result": "win",
+"replay": "/mnt/project-files/online/data/replays/624fbf14-a104-4159-bf1d-e425aadebe10.zip"
+},
+{
+"match": "2d1ae53e-e692-41c7-b86f-332fc94edba8",
+"version": 139,
+"group": "038ff244-7ac9-49b8-bdc9-b54394139f1f",
+"map": "00corners",
+"side": "a",
+"opp": "SkibidiSloppers",
+"result": "win",
+"replay": "/mnt/project-files/online/data/replays/2d1ae53e-e692-41c7-b86f-332fc94edba8.zip"
+},
+{
+"match": "ea0c1f7d-ba21-476f-859b-e73e7cf75334",
+"version": 139,
+"group": "61c5b4bc-bab7-4d41-9c64-bdc5a98b022a",
+"map": "00contest",
+"side": "a",
+"opp": "Still Testing",
+"result": "win",
+"replay": "/mnt/project-files/online/data/replays/ea0c1f7d-ba21-476f-859b-e73e7cf75334.zip"
+},
+{
+"match": "c5e73874-0aa0-40c9-9a57-835d7579102a",
+"version": 139,
+"group": "61c5b4bc-bab7-4d41-9c64-bdc5a98b022a",
+"map": "00swirl",
+"side": "a",
+"opp": "Still Testing",
+"result": "win",
+"replay": "/mnt/project-files/online/data/replays/c5e73874-0aa0-40c9-9a57-835d7579102a.zip"
+},
+{
+"match": "4bb0a4fe-c566-414f-9c39-9c838beac11c",
+"version": 139,
+"group": "61c5b4bc-bab7-4d41-9c64-bdc5a98b022a",
+"map": "00collision",
+"side": "a",
+"opp": "Still Testing",
+"result": "loss",
+"replay": "/mnt/project-files/online/data/replays/4bb0a4fe-c566-414f-9c39-9c838beac11c.zip"
+},
+{
+"match": "f52ed07d-2ebd-4517-a80f-366e9e0a4c8a",
+"version": 139,
+"group": "61c5b4bc-bab7-4d41-9c64-bdc5a98b022a",
+"map": "01yellow_brick_road",
+"side": "a",
+"opp": "Still Testing",
+"result": "loss",
+"replay": "/mnt/project-files/online/data/replays/f52ed07d-2ebd-4517-a80f-366e9e0a4c8a.zip"
+},
+{
+"match": "1b98f091-251a-4fb4-bfed-8ded19080800",
+"version": 139,
+"group": "61c5b4bc-bab7-4d41-9c64-bdc5a98b022a",
+"map": "01starfish",
+"side": "a",
+"opp": "Still Testing",
+"result": "win",
+"replay": "/mnt/project-files/online/data/replays/1b98f091-251a-4fb4-bfed-8ded19080800.zip"
+},
+{
+"match": "8e23bdd9-d679-4a62-a73f-b745af88a8e9",
+"version": 139,
+"group": "e833241c-059c-4fc7-9622-a7e972b6a1e0",
+"map": "00reverse_spiral",
+"side": "a",
+"opp": "SkuBap",
+"result": "loss",
+"replay": "/mnt/project-files/online/data/replays/8e23bdd9-d679-4a62-a73f-b745af88a8e9.zip"
+},
+{
+"match": "893df59c-9551-42a0-bb0c-fc1c24e6e518",
+"version": 139,
+"group": "e833241c-059c-4fc7-9622-a7e972b6a1e0",
+"map": "00quadrants",
+"side": "a",
+"opp": "SkuBap",
+"result": "win",
+"replay": "/mnt/project-files/online/data/replays/893df59c-9551-42a0-bb0c-fc1c24e6e518.zip"
+},
+{
+"match": "32a0fc76-d3f3-4a6d-acd3-b5aa37095f80",
+"version": 139,
+"group": "c254a316-4a30-40f0-950f-cf1ff01be893",
+"map": "00elkring",
+"side": "a",
+"opp": "\u5251\u6865\u591c\u722c\u8005",
+"result": "loss",
+"replay": "/mnt/project-files/online/data/replays/32a0fc76-d3f3-4a6d-acd3-b5aa37095f80.zip"
+},
+{
+"match": "592070e2-103c-4798-af14-509c7f82375e",
+"version": 139,
+"group": "c254a316-4a30-40f0-950f-cf1ff01be893",
+"map": "01corridors",
+"side": "a",
+"opp": "\u5251\u6865\u591c\u722c\u8005",
+"result": "win",
+"replay": "/mnt/project-files/online/data/replays/592070e2-103c-4798-af14-509c7f82375e.zip"
+},
+{
+"match": "d7dddeec-884e-4eac-87cc-35a8f8df9279",
+"version": 139,
+"group": "c254a316-4a30-40f0-950f-cf1ff01be893",
+"map": "00reverse_spiral",
+"side": "a",
+"opp": "\u5251\u6865\u591c\u722c\u8005",
+"result": "win",
+"replay": "/mnt/project-files/online/data/replays/d7dddeec-884e-4eac-87cc-35a8f8df9279.zip"
+},
+{
+"match": "d03604ea-3822-4532-914e-81a7fcc6cbc9",
+"version": 139,
+"group": "c254a316-4a30-40f0-950f-cf1ff01be893",
+"map": "01the_farm",
+"side": "a",
+"opp": "\u5251\u6865\u591c\u722c\u8005",
+"result": "win",
+"replay": "/mnt/project-files/online/data/replays/d03604ea-3822-4532-914e-81a7fcc6cbc9.zip"
+},
+{
+"match": "f8cb8853-6d35-437b-9490-813ef08922ec",
+"version": 139,
+"group": "143adaca-228f-48df-a609-8d5ae2819b68",
+"map": "00rushbait_v2",
+"side": "a",
+"opp": "\u7ea2\u5305\u63a7\u80a1",
+"result": "loss",
+"replay": "/mnt/project-files/online/data/replays/f8cb8853-6d35-437b-9490-813ef08922ec.zip"
+},
+{
+"match": "64262d05-d605-4031-94f3-a80724557d0b",
+"version": 139,
+"group": "143adaca-228f-48df-a609-8d5ae2819b68",
+"map": "00monolith",
+"side": "a",
+"opp": "\u7ea2\u5305\u63a7\u80a1",
+"result": "loss",
+"replay": "/mnt/project-files/online/data/replays/64262d05-d605-4031-94f3-a80724557d0b.zip"
+},
+{
+"match": "7fcbaef2-18e7-4b3e-9a33-dfa5581a8e98",
+"version": 139,
+"group": "143adaca-228f-48df-a609-8d5ae2819b68",
+"map": "01the_farm",
+"side": "a",
+"opp": "\u7ea2\u5305\u63a7\u80a1",
+"result": "loss",
+"replay": "/mnt/project-files/online/data/replays/7fcbaef2-18e7-4b3e-9a33-dfa5581a8e98.zip"
+},
+{
+"match": "bc71dd14-f8a3-4922-8920-67029dd0aadc",
+"version": 139,
+"group": "143adaca-228f-48df-a609-8d5ae2819b68",
+"map": "00fragment",
+"side": "a",
+"opp": "\u7ea2\u5305\u63a7\u80a1",
+"result": "loss",
+"replay": "/mnt/project-files/online/data/replays/bc71dd14-f8a3-4922-8920-67029dd0aadc.zip"
+},
+{
+"match": "1a079b5d-8b2f-47de-8f0c-0a104c3d6480",
+"version": 139,
+"group": "afd93921-d158-4a33-8e5d-6daee0be1095",
+"map": "00reverse_spiral",
+"side": "a",
+"opp": "E=mc^2+AI^3",
+"result": "loss",
+"replay": "/mnt/project-files/online/data/replays/1a079b5d-8b2f-47de-8f0c-0a104c3d6480.zip"
+},
+{
+"match": "d321bf48-32b7-48f4-a3f1-55d8f4b7d44a",
+"version": 139,
+"group": "afd93921-d158-4a33-8e5d-6daee0be1095",
+"map": "01elk_arena",
+"side": "a",
+"opp": "E=mc^2+AI^3",
+"result": "loss",
+"replay": "/mnt/project-files/online/data/replays/d321bf48-32b7-48f4-a3f1-55d8f4b7d44a.zip"
+},
+{
+"match": "a498eb13-7e03-42ad-9c5e-584bf46b4612",
+"version": 139,
+"group": "afd93921-d158-4a33-8e5d-6daee0be1095",
+"map": "00eight",
+"side": "a",
+"opp": "E=mc^2+AI^3",
+"result": "win",
+"replay": "/mnt/project-files/online/data/replays/a498eb13-7e03-42ad-9c5e-584bf46b4612.zip"
+},
+{
+"match": "5e3b80cb-1041-4c1b-a2b4-0535d410c18c",
+"version": 139,
+"group": "73a4bf6e-0448-4628-a0fa-8a5630816a28",
+"map": "01starfish",
+"side": "a",
+"opp": "Shawn",
+"result": "loss",
+"replay": "/mnt/project-files/online/data/replays/5e3b80cb-1041-4c1b-a2b4-0535d410c18c.zip"
+},
+{
+"match": "0d323987-3e80-4299-b38b-6033efe431dc",
+"version": 139,
+"group": "73a4bf6e-0448-4628-a0fa-8a5630816a28",
+"map": "00eight",
+"side": "a",
+"opp": "Shawn",
+"result": "loss",
+"replay": "/mnt/project-files/online/data/replays/0d323987-3e80-4299-b38b-6033efe431dc.zip"
+},
+{
+"match": "e7cd2b3d-075e-4f10-823b-d15decb1edc5",
+"version": 139,
+"group": "73a4bf6e-0448-4628-a0fa-8a5630816a28",
+"map": "00contest",
+"side": "a",
+"opp": "Shawn",
+"result": "win",
+"replay": "/mnt/project-files/online/data/replays/e7cd2b3d-075e-4f10-823b-d15decb1edc5.zip"
+},
+{
+"match": "c19f1638-b82a-4155-b2bc-6d5177c386e9",
+"version": 139,
+"group": "73a4bf6e-0448-4628-a0fa-8a5630816a28",
+"map": "00monolith",
+"side": "a",
+"opp": "Shawn",
+"result": "loss",
+"replay": "/mnt/project-files/online/data/replays/c19f1638-b82a-4155-b2bc-6d5177c386e9.zip"
+},
+{
+"match": "0495742c-f37d-4b63-895f-c7a4e09040ea",
+"version": 139,
+"group": "1fa030e9-c683-4b7d-81a7-f14a3989d9b2",
+"map": "00stampede",
+"side": "a",
+"opp": "Bamboo Teahouse",
+"result": "loss",
+"replay": "/mnt/project-files/online/data/replays/0495742c-f37d-4b63-895f-c7a4e09040ea.zip"
+},
+{
+"match": "27846cb2-67d5-41c9-8854-8b689b3900a1",
+"version": 139,
+"group": "714ee05f-434a-4fa1-998f-af5af66c6e5c",
+"map": "00gemfight",
+"side": "a",
+"opp": "\u5929\u5929\u5f00\u5fc3 :(",
+"result": "loss",
+"replay": "/mnt/project-files/online/data/replays/27846cb2-67d5-41c9-8854-8b689b3900a1.zip"
+},
+{
+"match": "22714e1b-f115-4f50-a772-368165940bc0",
+"version": 139,
+"group": "714ee05f-434a-4fa1-998f-af5af66c6e5c",
+"map": "01the_farm",
+"side": "a",
+"opp": "\u5929\u5929\u5f00\u5fc3 :(",
+"result": "loss",
+"replay": "/mnt/project-files/online/data/replays/22714e1b-f115-4f50-a772-368165940bc0.zip"
+},
+{
+"match": "8e259f23-7eed-4cd4-ac5d-4bf66f0504c5",
+"version": 139,
+"group": "714ee05f-434a-4fa1-998f-af5af66c6e5c",
+"map": "01starfish",
+"side": "a",
+"opp": "\u5929\u5929\u5f00\u5fc3 :(",
+"result": "loss",
+"replay": "/mnt/project-files/online/data/replays/8e259f23-7eed-4cd4-ac5d-4bf66f0504c5.zip"
+},
+{
+"match": "691e83eb-c4e9-4638-9437-7457a96766ca",
+"version": 139,
+"group": "714ee05f-434a-4fa1-998f-af5af66c6e5c",
+"map": "00interlock",
+"side": "a",
+"opp": "\u5929\u5929\u5f00\u5fc3 :(",
+"result": "loss",
+"replay": "/mnt/project-files/online/data/replays/691e83eb-c4e9-4638-9437-7457a96766ca.zip"
+},
+{
+"match": "71e792aa-c8bf-4a7e-b10a-d101379d813b",
+"version": 139,
+"group": "6c4e6d8d-e596-4f2d-96a8-6ccadcb5532d",
+"map": "01yellow_brick_road",
+"side": "a",
+"opp": "SSSA",
+"result": "loss",
+"replay": "/mnt/project-files/online/data/replays/71e792aa-c8bf-4a7e-b10a-d101379d813b.zip"
+},
+{
+"match": "afec53e8-b25b-4026-84b4-402d52ecec7f",
+"version": 139,
+"group": "6c4e6d8d-e596-4f2d-96a8-6ccadcb5532d",
+"map": "00eight",
+"side": "a",
+"opp": "SSSA",
+"result": "loss",
+"replay": "/mnt/project-files/online/data/replays/afec53e8-b25b-4026-84b4-402d52ecec7f.zip"
+},
+{
+"match": "03b6d25d-6595-48f2-8ba9-256d56cac229",
+"version": 139,
+"group": "719f7d25-c8fa-41cc-b870-41fe9cb01408",
+"map": "00interlock",
+"side": "a",
+"opp": "Jupiter",
+"result": "loss",
+"replay": "/mnt/project-files/online/data/replays/03b6d25d-6595-48f2-8ba9-256d56cac229.zip"
+},
+{
+"match": "17687c5e-b1b3-4879-ba7c-3f6fed7392c7",
+"version": 139,
+"group": "dd47c3c3-0418-4ddd-a6f0-2054819f7c45",
+"map": "00gemfight",
+"side": "a",
+"opp": "filter",
+"result": "win",
+"replay": "/mnt/project-files/online/data/replays/17687c5e-b1b3-4879-ba7c-3f6fed7392c7.zip"
+},
+{
+"match": "ed9b56e7-6bce-4234-9430-61e60584f304",
+"version": 139,
+"group": "dd47c3c3-0418-4ddd-a6f0-2054819f7c45",
+"map": "01gold_rush",
+"side": "a",
+"opp": "filter",
+"result": "win",
+"replay": "/mnt/project-files/online/data/replays/ed9b56e7-6bce-4234-9430-61e60584f304.zip"
+},
+{
+"match": "26399b50-9a1d-409b-8f05-2a2b34634213",
+"version": 139,
+"group": "dd47c3c3-0418-4ddd-a6f0-2054819f7c45",
+"map": "00corners",
+"side": "a",
+"opp": "filter",
+"result": "win",
+"replay": "/mnt/project-files/online/data/replays/26399b50-9a1d-409b-8f05-2a2b34634213.zip"
+},
+{
+"match": "1b6ec40c-e7ff-452a-ba3d-92c25247d52a",
+"version": 139,
+"group": "dd47c3c3-0418-4ddd-a6f0-2054819f7c45",
+"map": "01yellow_brick_road",
+"side": "a",
+"opp": "filter",
+"result": "loss",
+"replay": "/mnt/project-files/online/data/replays/1b6ec40c-e7ff-452a-ba3d-92c25247d52a.zip"
+},
+{
+"match": "acd1b318-a3ff-4da0-97d1-adbe30847a12",
+"version": 139,
+"group": "dd47c3c3-0418-4ddd-a6f0-2054819f7c45",
+"map": "01hooks",
+"side": "a",
+"opp": "filter",
+"result": "win",
+"replay": "/mnt/project-files/online/data/replays/acd1b318-a3ff-4da0-97d1-adbe30847a12.zip"
+},
+{
+"match": "6da14978-7c6a-4a04-8f13-7e863dd599b1",
+"version": 139,
+"group": "a54fc2cc-6abe-4fa2-8d43-554113380c04",
+"map": "01gold_rush",
+"side": "a",
+"opp": "SquidProxyLovers",
+"result": "win",
+"replay": "/mnt/project-files/online/data/replays/6da14978-7c6a-4a04-8f13-7e863dd599b1.zip"
+},
+{
+"match": "d61025bf-3579-4ea7-b7e7-9687705bcd89",
+"version": 139,
+"group": "843c5c89-0d37-478b-8537-f38c9eb4d43f",
+"map": "01broken_curve",
+"side": "a",
+"opp": "AlphaSlop",
+"result": "loss",
+"replay": "/mnt/project-files/online/data/replays/d61025bf-3579-4ea7-b7e7-9687705bcd89.zip"
+},
+{
+"match": "3af19b8c-8d3c-4248-b43b-11705058cbaa",
+"version": 139,
+"group": "843c5c89-0d37-478b-8537-f38c9eb4d43f",
+"map": "00fragment",
+"side": "a",
+"opp": "AlphaSlop",
+"result": "win",
+"replay": "/mnt/project-files/online/data/replays/3af19b8c-8d3c-4248-b43b-11705058cbaa.zip"
+},
+{
+"match": "d1bcd397-a70c-46de-a101-6c2be0a973fd",
+"version": 139,
+"group": "843c5c89-0d37-478b-8537-f38c9eb4d43f",
+"map": "00collision",
+"side": "a",
+"opp": "AlphaSlop",
+"result": "loss",
+"replay": "/mnt/project-files/online/data/replays/d1bcd397-a70c-46de-a101-6c2be0a973fd.zip"
+},
+{
+"match": "ef31bbe0-2533-4ad6-8f40-c6edc7f9f8d9",
+"version": 139,
+"group": "843c5c89-0d37-478b-8537-f38c9eb4d43f",
+"map": "01elk_arena",
+"side": "a",
+"opp": "AlphaSlop",
+"result": "loss",
+"replay": "/mnt/project-files/online/data/replays/ef31bbe0-2533-4ad6-8f40-c6edc7f9f8d9.zip"
+},
+{
+"match": "56521dce-9649-49c7-8234-4d9e69e32fe6",
+"version": 139,
+"group": "6b685dad-2838-4465-899a-2b51da9c39e2",
+"map": "00fragment",
+"side": "a",
+"opp": "Valenki",
+"result": "loss",
+"replay": "/mnt/project-files/online/data/replays/56521dce-9649-49c7-8234-4d9e69e32fe6.zip"
+},
+{
+"match": "2f059eb2-ae7d-45bd-8902-4014edcd5fd6",
+"version": 139,
+"group": "6b685dad-2838-4465-899a-2b51da9c39e2",
+"map": "00stampede",
+"side": "a",
+"opp": "Valenki",
+"result": "loss",
+"replay": "/mnt/project-files/online/data/replays/2f059eb2-ae7d-45bd-8902-4014edcd5fd6.zip"
+},
+{
+"match": "4afb1f4b-f700-489c-8d68-9b3977d19c40",
+"version": 139,
+"group": "6b685dad-2838-4465-899a-2b51da9c39e2",
+"map": "00lost_world",
+"side": "a",
+"opp": "Valenki",
+"result": "win",
+"replay": "/mnt/project-files/online/data/replays/4afb1f4b-f700-489c-8d68-9b3977d19c40.zip"
+},
+{
+"match": "f05dab38-ff06-495d-8f25-d82aa3df1b8f",
+"version": 139,
+"group": "6b685dad-2838-4465-899a-2b51da9c39e2",
+"map": "00elkring",
+"side": "a",
+"opp": "Valenki",
+"result": "loss",
+"replay": "/mnt/project-files/online/data/replays/f05dab38-ff06-495d-8f25-d82aa3df1b8f.zip"
+},
+{
+"match": "85bd8030-380b-4942-992b-20d1675f239d",
+"version": 139,
+"group": "ac1ed9b1-23a3-4182-8fdf-b95eb8bd048a",
+"map": "01starfish",
+"side": "a",
+"opp": "OneTap",
+"result": "win",
+"replay": "/mnt/project-files/online/data/replays/85bd8030-380b-4942-992b-20d1675f239d.zip"
+},
+{
+"match": "5cb7d2b8-3d88-4496-b8d8-a1e7dbedac88",
+"version": 139,
+"group": "ac1ed9b1-23a3-4182-8fdf-b95eb8bd048a",
+"map": "01boss_battle",
+"side": "a",
+"opp": "OneTap",
+"result": "win",
+"replay": "/mnt/project-files/online/data/replays/5cb7d2b8-3d88-4496-b8d8-a1e7dbedac88.zip"
+},
+{
+"match": "d01458f6-667b-4268-9df4-787f5803dffb",
+"version": 139,
+"group": "ac1ed9b1-23a3-4182-8fdf-b95eb8bd048a",
+"map": "01corridors",
+"side": "a",
+"opp": "OneTap",
+"result": "loss",
+"replay": "/mnt/project-files/online/data/replays/d01458f6-667b-4268-9df4-787f5803dffb.zip"
+},
+{
+"match": "b66f796b-1bc3-487a-a778-52743021fd9f",
+"version": 139,
+"group": "ac1ed9b1-23a3-4182-8fdf-b95eb8bd048a",
+"map": "00gemfight",
+"side": "a",
+"opp": "OneTap",
+"result": "loss",
+"replay": "/mnt/project-files/online/data/replays/b66f796b-1bc3-487a-a778-52743021fd9f.zip"
+},
+{
+"match": "7d769feb-7bbd-4370-bcf7-661c88d72b36",
+"version": 139,
+"group": "167e62a7-2a8f-42c6-b9dd-26311571b150",
+"map": "00lost_world",
+"side": "a",
+"opp": "smurphy",
+"result": "win",
+"replay": "/mnt/project-files/online/data/replays/7d769feb-7bbd-4370-bcf7-661c88d72b36.zip"
+},
+{
+"match": "35a09921-2d6c-4273-9f87-b7676ac4e2f6",
+"version": 139,
+"group": "167e62a7-2a8f-42c6-b9dd-26311571b150",
+"map": "00gemfight",
+"side": "a",
+"opp": "smurphy",
+"result": "loss",
+"replay": "/mnt/project-files/online/data/replays/35a09921-2d6c-4273-9f87-b7676ac4e2f6.zip"
+},
+{
+"match": "0cf29a2e-e909-497e-9a58-4bbd13888ca1",
+"version": 139,
+"group": "167e62a7-2a8f-42c6-b9dd-26311571b150",
+"map": "01boss_battle",
+"side": "a",
+"opp": "smurphy",
+"result": "win",
+"replay": "/mnt/project-files/online/data/replays/0cf29a2e-e909-497e-9a58-4bbd13888ca1.zip"
+},
+{
+"match": "86618427-7af8-4332-9ad0-2db6a8c27527",
+"version": 139,
+"group": "167e62a7-2a8f-42c6-b9dd-26311571b150",
+"map": "00collision",
+"side": "a",
+"opp": "smurphy",
+"result": "win",
+"replay": "/mnt/project-files/online/data/replays/86618427-7af8-4332-9ad0-2db6a8c27527.zip"
+},
+{
+"match": "f72624ca-9e9d-4110-8246-5aba2f1635c5",
+"version": 139,
+"group": "167e62a7-2a8f-42c6-b9dd-26311571b150",
+"map": "00elkring",
+"side": "a",
+"opp": "smurphy",
+"result": "loss",
+"replay": "/mnt/project-files/online/data/replays/f72624ca-9e9d-4110-8246-5aba2f1635c5.zip"
+},
+{
+"match": "f0a9ea98-b12f-4d18-8919-3c4f6ac7d1f6",
+"version": 139,
+"group": "e346a679-0f21-4bf2-8a19-3d3179921db8",
+"map": "01hooks",
+"side": "a",
+"opp": "geese geese go",
+"result": "loss",
+"replay": "/mnt/project-files/online/data/replays/f0a9ea98-b12f-4d18-8919-3c4f6ac7d1f6.zip"
+},
+{
+"match": "5077f6fa-1ca6-4e43-b527-8da6e3455a7f",
+"version": 139,
+"group": "e346a679-0f21-4bf2-8a19-3d3179921db8",
+"map": "01yellow_brick_road",
+"side": "a",
+"opp": "geese geese go",
+"result": "win",
+"replay": "/mnt/project-files/online/data/replays/5077f6fa-1ca6-4e43-b527-8da6e3455a7f.zip"
+},
+{
+"match": "1fdbe812-addc-42ac-af5b-e87168d2fe2e",
+"version": 139,
+"group": "e346a679-0f21-4bf2-8a19-3d3179921db8",
+"map": "00stampede",
+"side": "a",
+"opp": "geese geese go",
+"result": "loss",
+"replay": "/mnt/project-files/online/data/replays/1fdbe812-addc-42ac-af5b-e87168d2fe2e.zip"
+},
+{
+"match": "09f09fb7-52af-4057-b83b-bf44492dc69f",
+"version": 160,
+"group": "1deaefbd-2e40-4a73-84c0-abfe5c572c65",
+"map": "00corners",
+"side": "a",
+"opp": "meow",
+"result": "win",
+"replay": "/mnt/project-files/online/data/replays/09f09fb7-52af-4057-b83b-bf44492dc69f.zip"
+},
+{
+"match": "9394f1f3-a46e-4280-a645-36853c585406",
+"version": 160,
+"group": "1deaefbd-2e40-4a73-84c0-abfe5c572c65",
+"map": "00packs",
+"side": "a",
+"opp": "meow",
+"result": "win",
+"replay": "/mnt/project-files/online/data/replays/9394f1f3-a46e-4280-a645-36853c585406.zip"
+},
+{
+"match": "4ec928bd-2d68-4bf8-b5ec-09fec45cc611",
+"version": 160,
+"group": "887fa0a7-6fa2-4312-b746-f10daafa0e25",
+"map": "00interlock",
+"side": "a",
+"opp": "EggsAfter11AM",
+"result": "win",
+"replay": "/mnt/project-files/online/data/replays/4ec928bd-2d68-4bf8-b5ec-09fec45cc611.zip"
+},
+{
+"match": "474981a8-919e-4610-a90a-3a55c6ef79cf",
+"version": 160,
+"group": "50a7756c-bddb-4a63-b25a-cd74ee2a9f19",
+"map": "00rushbait_v2",
+"side": "a",
+"opp": "PENTAKILL",
+"result": "loss",
+"replay": "/mnt/project-files/online/data/replays/474981a8-919e-4610-a90a-3a55c6ef79cf.zip"
+},
+{
+"match": "09af60a7-b8bc-449d-a8c9-1c9857ce4c4f",
+"version": 160,
+"group": "50a7756c-bddb-4a63-b25a-cd74ee2a9f19",
+"map": "00lost_world",
+"side": "a",
+"opp": "PENTAKILL",
+"result": "loss",
+"replay": "/mnt/project-files/online/data/replays/09af60a7-b8bc-449d-a8c9-1c9857ce4c4f.zip"
+},
+{
+"match": "7aab37d5-7247-44bd-a55c-0674e1e83e0c",
+"version": 160,
+"group": "50a7756c-bddb-4a63-b25a-cd74ee2a9f19",
+"map": "00gem_fields",
+"side": "a",
+"opp": "PENTAKILL",
+"result": "loss",
+"replay": "/mnt/project-files/online/data/replays/7aab37d5-7247-44bd-a55c-0674e1e83e0c.zip"
+},
+{
+"match": "f4181538-65ed-4e8c-82c5-1898651cef95",
+"version": 160,
+"group": "50a7756c-bddb-4a63-b25a-cd74ee2a9f19",
+"map": "00elkring",
+"side": "a",
+"opp": "PENTAKILL",
+"result": "loss",
+"replay": "/mnt/project-files/online/data/replays/f4181538-65ed-4e8c-82c5-1898651cef95.zip"
+},
+{
+"match": "e9b62330-a510-423f-9ce0-a7d7e86fa60b",
+"version": 160,
+"group": "50a7756c-bddb-4a63-b25a-cd74ee2a9f19",
+"map": "01the_farm",
+"side": "a",
+"opp": "PENTAKILL",
+"result": "loss",
+"replay": "/mnt/project-files/online/data/replays/e9b62330-a510-423f-9ce0-a7d7e86fa60b.zip"
+},
+{
+"match": "9c588d50-e930-4fe0-b40e-c452ec8b4341",
+"version": 160,
+"group": "68306878-0461-4358-91aa-2bc44aeeb821",
+"map": "01hooks",
+"side": "a",
+"opp": "SilverSamurai",
+"result": "win",
+"replay": "/mnt/project-files/online/data/replays/9c588d50-e930-4fe0-b40e-c452ec8b4341.zip"
+},
+{
+"match": "e9cd7a25-8e17-4234-920d-d3be3e66b487",
+"version": 160,
+"group": "68306878-0461-4358-91aa-2bc44aeeb821",
+"map": "00rushbait_v2",
+"side": "a",
+"opp": "SilverSamurai",
+"result": "win",
+"replay": "/mnt/project-files/online/data/replays/e9cd7a25-8e17-4234-920d-d3be3e66b487.zip"
+},
+{
+"match": "1f367dfd-91ac-4fc8-9523-b6ea0c1e62ab",
+"version": 160,
+"group": "c8a92cd7-76fd-4883-9ee1-80db304c1cd3",
+"map": "00lost_world",
+"side": "a",
+"opp": "The Party of Heroes",
+"result": "win",
+"replay": "/mnt/project-files/online/data/replays/1f367dfd-91ac-4fc8-9523-b6ea0c1e62ab.zip"
+},
+{
+"match": "4602d4a6-81c1-475f-a066-d5134dd53b4e",
+"version": 160,
+"group": "c8a92cd7-76fd-4883-9ee1-80db304c1cd3",
+"map": "00elkring",
+"side": "a",
+"opp": "The Party of Heroes",
+"result": "win",
+"replay": "/mnt/project-files/online/data/replays/4602d4a6-81c1-475f-a066-d5134dd53b4e.zip"
+},
+{
+"match": "3770cd38-6b47-43d3-a498-0d8736691783",
+"version": 160,
+"group": "c8a92cd7-76fd-4883-9ee1-80db304c1cd3",
+"map": "01gold_rush",
+"side": "a",
+"opp": "The Party of Heroes",
+"result": "win",
+"replay": "/mnt/project-files/online/data/replays/3770cd38-6b47-43d3-a498-0d8736691783.zip"
+},
+{
+"match": "82eb3d69-dfe1-4232-8064-14f60b416fe6",
+"version": 160,
+"group": "d04b3544-a4c7-47b9-887b-f5a39993ee1e",
+"map": "00rushbait_v2",
+"side": "a",
+"opp": "Sneaky Bush Campers",
+"result": "win",
+"replay": "/mnt/project-files/online/data/replays/82eb3d69-dfe1-4232-8064-14f60b416fe6.zip"
+},
+{
+"match": "3f6344e3-7b0b-4631-bb19-82a7b4269cbb",
+"version": 160,
+"group": "d04b3544-a4c7-47b9-887b-f5a39993ee1e",
+"map": "00quadrants",
+"side": "a",
+"opp": "Sneaky Bush Campers",
+"result": "win",
+"replay": "/mnt/project-files/online/data/replays/3f6344e3-7b0b-4631-bb19-82a7b4269cbb.zip"
+},
+{
+"match": "32ce32f9-16b5-4e20-9ec2-73dc68c8c7cf",
+"version": 160,
+"group": "d04b3544-a4c7-47b9-887b-f5a39993ee1e",
+"map": "01yellow_brick_road",
+"side": "a",
+"opp": "Sneaky Bush Campers",
+"result": "win",
+"replay": "/mnt/project-files/online/data/replays/32ce32f9-16b5-4e20-9ec2-73dc68c8c7cf.zip"
+},
+{
+"match": "72f70ccd-9435-4f09-b83c-07d403da67f2",
+"version": 160,
+"group": "d04b3544-a4c7-47b9-887b-f5a39993ee1e",
+"map": "01boss_battle",
+"side": "a",
+"opp": "Sneaky Bush Campers",
+"result": "win",
+"replay": "/mnt/project-files/online/data/replays/72f70ccd-9435-4f09-b83c-07d403da67f2.zip"
+},
+{
+"match": "ad7762ff-2e99-4aca-90d7-f73130efa4ef",
+"version": 160,
+"group": "cdf07075-c7f8-421a-976a-695a84ec50d6",
+"map": "01starfish",
+"side": "a",
+"opp": "SkibidiSloppers",
+"result": "win",
+"replay": "/mnt/project-files/online/data/replays/ad7762ff-2e99-4aca-90d7-f73130efa4ef.zip"
+},
+{
+"match": "610015b1-e74d-4e61-ac0d-911927ae5b0e",
+"version": 160,
+"group": "cdf07075-c7f8-421a-976a-695a84ec50d6",
+"map": "00collision",
+"side": "a",
+"opp": "SkibidiSloppers",
+"result": "loss",
+"replay": "/mnt/project-files/online/data/replays/610015b1-e74d-4e61-ac0d-911927ae5b0e.zip"
+},
+{
+"match": "0d621bae-61e5-4951-8380-ba869b586cd6",
+"version": 160,
+"group": "cdf07075-c7f8-421a-976a-695a84ec50d6",
+"map": "01gold_rush",
+"side": "a",
+"opp": "SkibidiSloppers",
+"result": "win",
+"replay": "/mnt/project-files/online/data/replays/0d621bae-61e5-4951-8380-ba869b586cd6.zip"
+},
+{
+"match": "9a372191-b2ff-4758-85b8-0e6ca8c1ca8e",
+"version": 160,
+"group": "cdf07075-c7f8-421a-976a-695a84ec50d6",
+"map": "00corners",
+"side": "a",
+"opp": "SkibidiSloppers",
+"result": "win",
+"replay": "/mnt/project-files/online/data/replays/9a372191-b2ff-4758-85b8-0e6ca8c1ca8e.zip"
+},
+{
+"match": "96cadf16-b81e-49a3-8eef-4bef3a566781",
+"version": 160,
+"group": "e59bda80-d893-4795-b3bf-2063eea5e740",
+"map": "00contest",
+"side": "a",
+"opp": "Still Testing",
+"result": "win",
+"replay": "/mnt/project-files/online/data/replays/96cadf16-b81e-49a3-8eef-4bef3a566781.zip"
+},
+{
+"match": "e936f2e1-5c80-4072-a683-290dfe25bf94",
+"version": 160,
+"group": "e59bda80-d893-4795-b3bf-2063eea5e740",
+"map": "00swirl",
+"side": "a",
+"opp": "Still Testing",
+"result": "win",
+"replay": "/mnt/project-files/online/data/replays/e936f2e1-5c80-4072-a683-290dfe25bf94.zip"
+},
+{
+"match": "b6b7a2e1-889a-47f2-881d-755af5654822",
+"version": 160,
+"group": "e59bda80-d893-4795-b3bf-2063eea5e740",
+"map": "00collision",
+"side": "a",
+"opp": "Still Testing",
+"result": "loss",
+"replay": "/mnt/project-files/online/data/replays/b6b7a2e1-889a-47f2-881d-755af5654822.zip"
+},
+{
+"match": "106dfcfb-fb97-4508-bb62-9e44a918acfb",
+"version": 160,
+"group": "e59bda80-d893-4795-b3bf-2063eea5e740",
+"map": "01yellow_brick_road",
+"side": "a",
+"opp": "Still Testing",
+"result": "loss",
+"replay": "/mnt/project-files/online/data/replays/106dfcfb-fb97-4508-bb62-9e44a918acfb.zip"
+},
+{
+"match": "d1a3a5ef-4b2c-4cfd-a56d-963b4f0a124d",
+"version": 160,
+"group": "e59bda80-d893-4795-b3bf-2063eea5e740",
+"map": "01starfish",
+"side": "a",
+"opp": "Still Testing",
+"result": "win",
+"replay": "/mnt/project-files/online/data/replays/d1a3a5ef-4b2c-4cfd-a56d-963b4f0a124d.zip"
+},
+{
+"match": "615d9c8d-bdad-446b-abff-ade6363a15b6",
+"version": 160,
+"group": "b5c11137-8091-4dd4-ad52-0e675ea5e230",
+"map": "00reverse_spiral",
+"side": "a",
+"opp": "SkuBap",
+"result": "win",
+"replay": "/mnt/project-files/online/data/replays/615d9c8d-bdad-446b-abff-ade6363a15b6.zip"
+},
+{
+"match": "18e9b266-7ee5-4f3d-a304-37cef0375d1d",
+"version": 160,
+"group": "b5c11137-8091-4dd4-ad52-0e675ea5e230",
+"map": "00quadrants",
+"side": "a",
+"opp": "SkuBap",
+"result": "win",
+"replay": "/mnt/project-files/online/data/replays/18e9b266-7ee5-4f3d-a304-37cef0375d1d.zip"
+},
+{
+"match": "b1b06224-265b-4afd-a71e-c946f1ffcda5",
+"version": 160,
+"group": "251696f6-5c5c-4928-acc9-c4690d51fa4d",
+"map": "00elkring",
+"side": "a",
+"opp": "\u5251\u6865\u591c\u722c\u8005",
+"result": "win",
+"replay": "/mnt/project-files/online/data/replays/b1b06224-265b-4afd-a71e-c946f1ffcda5.zip"
+},
+{
+"match": "ea201807-6ca6-4d37-879b-0f970b4bc129",
+"version": 160,
+"group": "251696f6-5c5c-4928-acc9-c4690d51fa4d",
+"map": "01corridors",
+"side": "a",
+"opp": "\u5251\u6865\u591c\u722c\u8005",
+"result": "win",
+"replay": "/mnt/project-files/online/data/replays/ea201807-6ca6-4d37-879b-0f970b4bc129.zip"
+},
+{
+"match": "513061f8-388e-4767-9d85-ee5328790001",
+"version": 160,
+"group": "251696f6-5c5c-4928-acc9-c4690d51fa4d",
+"map": "00reverse_spiral",
+"side": "a",
+"opp": "\u5251\u6865\u591c\u722c\u8005",
+"result": "loss",
+"replay": "/mnt/project-files/online/data/replays/513061f8-388e-4767-9d85-ee5328790001.zip"
+},
+{
+"match": "101d5102-1f78-4ea3-b9dd-da33d4d493af",
+"version": 160,
+"group": "251696f6-5c5c-4928-acc9-c4690d51fa4d",
+"map": "01the_farm",
+"side": "a",
+"opp": "\u5251\u6865\u591c\u722c\u8005",
+"result": "loss",
+"replay": "/mnt/project-files/online/data/replays/101d5102-1f78-4ea3-b9dd-da33d4d493af.zip"
+},
+{
+"match": "402ba5bb-551d-48e8-bf02-41fd78929027",
+"version": 160,
+"group": "81e8367c-92b5-4425-900b-878100c1b66e",
+"map": "00rushbait_v2",
+"side": "a",
+"opp": "\u7ea2\u5305\u63a7\u80a1",
+"result": "loss",
+"replay": "/mnt/project-files/online/data/replays/402ba5bb-551d-48e8-bf02-41fd78929027.zip"
+},
+{
+"match": "e7bb4e64-035f-4d17-a8e0-e9c9885640a2",
+"version": 160,
+"group": "81e8367c-92b5-4425-900b-878100c1b66e",
+"map": "00monolith",
+"side": "a",
+"opp": "\u7ea2\u5305\u63a7\u80a1",
+"result": "win",
+"replay": "/mnt/project-files/online/data/replays/e7bb4e64-035f-4d17-a8e0-e9c9885640a2.zip"
+},
+{
+"match": "4b9b7f10-466f-49e5-9a42-f213bb79b33f",
+"version": 160,
+"group": "81e8367c-92b5-4425-900b-878100c1b66e",
+"map": "01the_farm",
+"side": "a",
+"opp": "\u7ea2\u5305\u63a7\u80a1",
+"result": "loss",
+"replay": "/mnt/project-files/online/data/replays/4b9b7f10-466f-49e5-9a42-f213bb79b33f.zip"
+},
+{
+"match": "da4cee59-d84c-4f0b-a0cb-31e435f3bb79",
+"version": 160,
+"group": "81e8367c-92b5-4425-900b-878100c1b66e",
+"map": "00fragment",
+"side": "a",
+"opp": "\u7ea2\u5305\u63a7\u80a1",
+"result": "loss",
+"replay": "/mnt/project-files/online/data/replays/da4cee59-d84c-4f0b-a0cb-31e435f3bb79.zip"
+},
+{
+"match": "9dcaf95b-e866-4e31-8510-b30d10708d05",
+"version": 160,
+"group": "d980a52b-7e34-4472-bca3-e1f75fb4fbb6",
+"map": "00reverse_spiral",
+"side": "a",
+"opp": "E=mc^2+AI^3",
+"result": "win",
+"replay": "/mnt/project-files/online/data/replays/9dcaf95b-e866-4e31-8510-b30d10708d05.zip"
+},
+{
+"match": "8597f7f8-df67-431f-8fef-c7ff679d6ced",
+"version": 160,
+"group": "d980a52b-7e34-4472-bca3-e1f75fb4fbb6",
+"map": "01elk_arena",
+"side": "a",
+"opp": "E=mc^2+AI^3",
+"result": "loss",
+"replay": "/mnt/project-files/online/data/replays/8597f7f8-df67-431f-8fef-c7ff679d6ced.zip"
+},
+{
+"match": "a87c43a4-1477-40b5-9f88-7913ef791c53",
+"version": 160,
+"group": "d980a52b-7e34-4472-bca3-e1f75fb4fbb6",
+"map": "00eight",
+"side": "a",
+"opp": "E=mc^2+AI^3",
+"result": "loss",
+"replay": "/mnt/project-files/online/data/replays/a87c43a4-1477-40b5-9f88-7913ef791c53.zip"
+},
+{
+"match": "618f9904-4c3f-4702-9df8-6c61a67ac8e6",
+"version": 160,
+"group": "d3196aaf-4110-441d-8281-f1c359ce4b37",
+"map": "01starfish",
+"side": "a",
+"opp": "Shawn",
+"result": "win",
+"replay": "/mnt/project-files/online/data/replays/618f9904-4c3f-4702-9df8-6c61a67ac8e6.zip"
+},
+{
+"match": "365d8b1a-69de-422d-b4b4-0ef93d80cbda",
+"version": 160,
+"group": "d3196aaf-4110-441d-8281-f1c359ce4b37",
+"map": "00eight",
+"side": "a",
+"opp": "Shawn",
+"result": "win",
+"replay": "/mnt/project-files/online/data/replays/365d8b1a-69de-422d-b4b4-0ef93d80cbda.zip"
+},
+{
+"match": "e75f813e-843b-42f0-b3cd-f15605dc139b",
+"version": 160,
+"group": "d3196aaf-4110-441d-8281-f1c359ce4b37",
+"map": "00contest",
+"side": "a",
+"opp": "Shawn",
+"result": "win",
+"replay": "/mnt/project-files/online/data/replays/e75f813e-843b-42f0-b3cd-f15605dc139b.zip"
+},
+{
+"match": "cff76d7a-a9cf-4e22-965b-0e4ff26f3d4f",
+"version": 160,
+"group": "d3196aaf-4110-441d-8281-f1c359ce4b37",
+"map": "00monolith",
+"side": "a",
+"opp": "Shawn",
+"result": "loss",
+"replay": "/mnt/project-files/online/data/replays/cff76d7a-a9cf-4e22-965b-0e4ff26f3d4f.zip"
+},
+{
+"match": "44c6a1d6-08be-4ac0-ba67-ddde89068b81",
+"version": 160,
+"group": "87a05f02-d8e2-4d25-b4d4-03e0a4d9fe9d",
+"map": "00stampede",
+"side": "a",
+"opp": "Bamboo Teahouse",
+"result": "win",
+"replay": "/mnt/project-files/online/data/replays/44c6a1d6-08be-4ac0-ba67-ddde89068b81.zip"
+},
+{
+"match": "2af7c34d-6c1c-48f5-a608-7137b8ec30d3",
+"version": 160,
+"group": "4e5829a9-e76b-4f0b-a119-169fb0e24f31",
+"map": "00gemfight",
+"side": "a",
+"opp": "\u5929\u5929\u5f00\u5fc3 :(",
+"result": "loss",
+"replay": "/mnt/project-files/online/data/replays/2af7c34d-6c1c-48f5-a608-7137b8ec30d3.zip"
+},
+{
+"match": "d986365b-a342-44c2-b514-f4ad4d81c480",
+"version": 160,
+"group": "4e5829a9-e76b-4f0b-a119-169fb0e24f31",
+"map": "01the_farm",
+"side": "a",
+"opp": "\u5929\u5929\u5f00\u5fc3 :(",
+"result": "loss",
+"replay": "/mnt/project-files/online/data/replays/d986365b-a342-44c2-b514-f4ad4d81c480.zip"
+},
+{
+"match": "0903f023-538a-41ba-8780-083b307aa510",
+"version": 160,
+"group": "4e5829a9-e76b-4f0b-a119-169fb0e24f31",
+"map": "01starfish",
+"side": "a",
+"opp": "\u5929\u5929\u5f00\u5fc3 :(",
+"result": "loss",
+"replay": "/mnt/project-files/online/data/replays/0903f023-538a-41ba-8780-083b307aa510.zip"
+},
+{
+"match": "93b37a1e-6f54-4c60-b79f-48763afcfe86",
+"version": 160,
+"group": "4e5829a9-e76b-4f0b-a119-169fb0e24f31",
+"map": "00interlock",
+"side": "a",
+"opp": "\u5929\u5929\u5f00\u5fc3 :(",
+"result": "loss",
+"replay": "/mnt/project-files/online/data/replays/93b37a1e-6f54-4c60-b79f-48763afcfe86.zip"
+},
+{
+"match": "47048cb8-3ae3-46cf-8d6f-0039cfef590c",
+"version": 160,
+"group": "bebaa328-0fbe-47ba-8c2b-cdb68c7ed9cc",
+"map": "01yellow_brick_road",
+"side": "a",
+"opp": "SSSA",
+"result": "loss",
+"replay": "/mnt/project-files/online/data/replays/47048cb8-3ae3-46cf-8d6f-0039cfef590c.zip"
+},
+{
+"match": "cd194cc5-8a68-4dc7-99d0-28bcb6127266",
+"version": 160,
+"group": "bebaa328-0fbe-47ba-8c2b-cdb68c7ed9cc",
+"map": "00eight",
+"side": "a",
+"opp": "SSSA",
+"result": "loss",
+"replay": "/mnt/project-files/online/data/replays/cd194cc5-8a68-4dc7-99d0-28bcb6127266.zip"
+},
+{
+"match": "ef4e86af-af8c-4315-bc35-e80763814baa",
+"version": 160,
+"group": "b9210154-8ade-4a75-975f-dec6e1a71ffc",
+"map": "00interlock",
+"side": "a",
+"opp": "Jupiter",
+"result": "loss",
+"replay": "/mnt/project-files/online/data/replays/ef4e86af-af8c-4315-bc35-e80763814baa.zip"
+},
+{
+"match": "c3eebc7c-800d-4123-9e96-237743c02031",
+"version": 160,
+"group": "c07b7c3c-7827-4492-a270-a62a2adf700d",
+"map": "00gemfight",
+"side": "a",
+"opp": "filter",
+"result": "win",
+"replay": "/mnt/project-files/online/data/replays/c3eebc7c-800d-4123-9e96-237743c02031.zip"
+},
+{
+"match": "33eb7e15-8502-479c-87fd-1974413a1354",
+"version": 160,
+"group": "c07b7c3c-7827-4492-a270-a62a2adf700d",
+"map": "01gold_rush",
+"side": "a",
+"opp": "filter",
+"result": "win",
+"replay": "/mnt/project-files/online/data/replays/33eb7e15-8502-479c-87fd-1974413a1354.zip"
+},
+{
+"match": "b9671f5e-0a14-4e22-a249-60176179152e",
+"version": 160,
+"group": "c07b7c3c-7827-4492-a270-a62a2adf700d",
+"map": "00corners",
+"side": "a",
+"opp": "filter",
+"result": "win",
+"replay": "/mnt/project-files/online/data/replays/b9671f5e-0a14-4e22-a249-60176179152e.zip"
+},
+{
+"match": "1fcf2d4f-805b-4380-95ca-e7e762fbf16f",
+"version": 160,
+"group": "c07b7c3c-7827-4492-a270-a62a2adf700d",
+"map": "01yellow_brick_road",
+"side": "a",
+"opp": "filter",
+"result": "loss",
+"replay": "/mnt/project-files/online/data/replays/1fcf2d4f-805b-4380-95ca-e7e762fbf16f.zip"
+},
+{
+"match": "18031bb8-1653-46f0-b1a6-9267905a4d8b",
+"version": 160,
+"group": "c07b7c3c-7827-4492-a270-a62a2adf700d",
+"map": "01hooks",
+"side": "a",
+"opp": "filter",
+"result": "win",
+"replay": "/mnt/project-files/online/data/replays/18031bb8-1653-46f0-b1a6-9267905a4d8b.zip"
+},
+{
+"match": "ca6bdb84-d17d-4151-836e-1f9cd5b481a8",
+"version": 160,
+"group": "aaa1b87b-6b8a-4eb8-87db-93b20dd2a077",
+"map": "01gold_rush",
+"side": "a",
+"opp": "SquidProxyLovers",
+"result": "loss",
+"replay": "/mnt/project-files/online/data/replays/ca6bdb84-d17d-4151-836e-1f9cd5b481a8.zip"
+},
+{
+"match": "a9642a63-e5d5-4cdf-94b0-1352bcdda0d9",
+"version": 160,
+"group": "f60b66af-89db-4af5-8eba-4306183a74cd",
+"map": "01broken_curve",
+"side": "a",
+"opp": "AlphaSlop",
+"result": "loss",
+"replay": "/mnt/project-files/online/data/replays/a9642a63-e5d5-4cdf-94b0-1352bcdda0d9.zip"
+},
+{
+"match": "2f64b708-01a0-415a-a8df-39ce59fdbd2c",
+"version": 160,
+"group": "f60b66af-89db-4af5-8eba-4306183a74cd",
+"map": "00fragment",
+"side": "a",
+"opp": "AlphaSlop",
+"result": "loss",
+"replay": "/mnt/project-files/online/data/replays/2f64b708-01a0-415a-a8df-39ce59fdbd2c.zip"
+},
+{
+"match": "6830db65-1c9a-443d-81fb-7e33571c64db",
+"version": 160,
+"group": "f60b66af-89db-4af5-8eba-4306183a74cd",
+"map": "00collision",
+"side": "a",
+"opp": "AlphaSlop",
+"result": "loss",
+"replay": "/mnt/project-files/online/data/replays/6830db65-1c9a-443d-81fb-7e33571c64db.zip"
+},
+{
+"match": "f74fe628-43ef-45e5-8068-f2fd2ae5a0bf",
+"version": 160,
+"group": "f60b66af-89db-4af5-8eba-4306183a74cd",
+"map": "01elk_arena",
+"side": "a",
+"opp": "AlphaSlop",
+"result": "loss",
+"replay": "/mnt/project-files/online/data/replays/f74fe628-43ef-45e5-8068-f2fd2ae5a0bf.zip"
+},
+{
+"match": "a83037ed-66cc-45f5-b4fe-32ff90948942",
+"version": 160,
+"group": "d63df51a-8df9-487e-9f4c-793417f141ff",
+"map": "00fragment",
+"side": "a",
+"opp": "Valenki",
+"result": "win",
+"replay": "/mnt/project-files/online/data/replays/a83037ed-66cc-45f5-b4fe-32ff90948942.zip"
+},
+{
+"match": "359daf9c-ceb9-4866-b213-6c2add843200",
+"version": 160,
+"group": "d63df51a-8df9-487e-9f4c-793417f141ff",
+"map": "00stampede",
+"side": "a",
+"opp": "Valenki",
+"result": "loss",
+"replay": "/mnt/project-files/online/data/replays/359daf9c-ceb9-4866-b213-6c2add843200.zip"
+},
+{
+"match": "fce1f0fc-48c1-4a9b-9504-d69bd21aeba8",
+"version": 160,
+"group": "d63df51a-8df9-487e-9f4c-793417f141ff",
+"map": "00lost_world",
+"side": "a",
+"opp": "Valenki",
+"result": "win",
+"replay": "/mnt/project-files/online/data/replays/fce1f0fc-48c1-4a9b-9504-d69bd21aeba8.zip"
+},
+{
+"match": "47a42b04-f564-413a-92a9-a820c55c6374",
+"version": 160,
+"group": "d63df51a-8df9-487e-9f4c-793417f141ff",
+"map": "00elkring",
+"side": "a",
+"opp": "Valenki",
+"result": "loss",
+"replay": "/mnt/project-files/online/data/replays/47a42b04-f564-413a-92a9-a820c55c6374.zip"
+},
+{
+"match": "c32604a5-2b48-430c-8e4c-6dad499c3e59",
+"version": 160,
+"group": "96de9188-75e8-49b5-9116-4d60a066ab29",
+"map": "01starfish",
+"side": "a",
+"opp": "OneTap",
+"result": "win",
+"replay": "/mnt/project-files/online/data/replays/c32604a5-2b48-430c-8e4c-6dad499c3e59.zip"
+},
+{
+"match": "f3d0bd3c-113f-447f-8fea-e190c382a7cf",
+"version": 160,
+"group": "96de9188-75e8-49b5-9116-4d60a066ab29",
+"map": "01boss_battle",
+"side": "a",
+"opp": "OneTap",
+"result": "loss",
+"replay": "/mnt/project-files/online/data/replays/f3d0bd3c-113f-447f-8fea-e190c382a7cf.zip"
+},
+{
+"match": "a3329db4-e77c-479c-acb8-cdfc3c2dde74",
+"version": 160,
+"group": "96de9188-75e8-49b5-9116-4d60a066ab29",
+"map": "01corridors",
+"side": "a",
+"opp": "OneTap",
+"result": "win",
+"replay": "/mnt/project-files/online/data/replays/a3329db4-e77c-479c-acb8-cdfc3c2dde74.zip"
+},
+{
+"match": "cd16016f-86e9-4b73-9af2-617f5416dec1",
+"version": 160,
+"group": "96de9188-75e8-49b5-9116-4d60a066ab29",
+"map": "00gemfight",
+"side": "a",
+"opp": "OneTap",
+"result": "loss",
+"replay": "/mnt/project-files/online/data/replays/cd16016f-86e9-4b73-9af2-617f5416dec1.zip"
+},
+{
+"match": "e2410528-fd89-4ccb-9441-80a8978be129",
+"version": 160,
+"group": "008fc159-02fe-4f6c-a596-dcb97866ce5e",
+"map": "00lost_world",
+"side": "a",
+"opp": "smurphy",
+"result": "loss",
+"replay": "/mnt/project-files/online/data/replays/e2410528-fd89-4ccb-9441-80a8978be129.zip"
+},
+{
+"match": "817457f9-1a96-4210-b476-ebb8e16a4f3b",
+"version": 160,
+"group": "008fc159-02fe-4f6c-a596-dcb97866ce5e",
+"map": "00gemfight",
+"side": "a",
+"opp": "smurphy",
+"result": "loss",
+"replay": "/mnt/project-files/online/data/replays/817457f9-1a96-4210-b476-ebb8e16a4f3b.zip"
+},
+{
+"match": "15487f5a-c9fa-4948-8669-b75610c51d29",
+"version": 160,
+"group": "008fc159-02fe-4f6c-a596-dcb97866ce5e",
+"map": "01boss_battle",
+"side": "a",
+"opp": "smurphy",
+"result": "win",
+"replay": "/mnt/project-files/online/data/replays/15487f5a-c9fa-4948-8669-b75610c51d29.zip"
+},
+{
+"match": "2ce18ba2-720e-445e-8cd8-06a07f7e4132",
+"version": 160,
+"group": "008fc159-02fe-4f6c-a596-dcb97866ce5e",
+"map": "00collision",
+"side": "a",
+"opp": "smurphy",
+"result": "loss",
+"replay": "/mnt/project-files/online/data/replays/2ce18ba2-720e-445e-8cd8-06a07f7e4132.zip"
+},
+{
+"match": "31c610cb-3f94-43cb-9bfe-be3acdf077a4",
+"version": 160,
+"group": "008fc159-02fe-4f6c-a596-dcb97866ce5e",
+"map": "00elkring",
+"side": "a",
+"opp": "smurphy",
+"result": "loss",
+"replay": "/mnt/project-files/online/data/replays/31c610cb-3f94-43cb-9bfe-be3acdf077a4.zip"
+},
+{
+"match": "83fe7072-3720-4bb7-8a03-5750a1677177",
+"version": 160,
+"group": "9898fba0-c3eb-4778-ba51-6fa84c6fab40",
+"map": "01hooks",
+"side": "a",
+"opp": "geese geese go",
+"result": "win",
+"replay": "/mnt/project-files/online/data/replays/83fe7072-3720-4bb7-8a03-5750a1677177.zip"
+},
+{
+"match": "c9459a8b-4660-4872-8821-37418cf5771c",
+"version": 160,
+"group": "9898fba0-c3eb-4778-ba51-6fa84c6fab40",
+"map": "01yellow_brick_road",
+"side": "a",
+"opp": "geese geese go",
+"result": "loss",
+"replay": "/mnt/project-files/online/data/replays/c9459a8b-4660-4872-8821-37418cf5771c.zip"
+},
+{
+"match": "ec2d37bf-7051-44be-8c30-387f432fa6b7",
+"version": 160,
+"group": "9898fba0-c3eb-4778-ba51-6fa84c6fab40",
+"map": "00stampede",
+"side": "a",
+"opp": "geese geese go",
+"result": "win",
+"replay": "/mnt/project-files/online/data/replays/ec2d37bf-7051-44be-8c30-387f432fa6b7.zip"
+},
+{
+"match": "779d9947-457d-49fd-9a44-1c42611ccc16",
+"version": 160,
+"group": "107cada5-0db7-4fdd-8d73-2ed8305373ed",
+"map": "01gold_rush",
+"side": "a",
+"opp": "BBL",
+"result": "win",
+"replay": "/mnt/project-files/online/data/replays/779d9947-457d-49fd-9a44-1c42611ccc16.zip"
+},
+{
+"match": "c200a228-c58e-4fed-aaf2-450cfb151116",
+"version": 160,
+"group": "107cada5-0db7-4fdd-8d73-2ed8305373ed",
+"map": "00contest",
+"side": "a",
+"opp": "BBL",
+"result": "loss",
+"replay": "/mnt/project-files/online/data/replays/c200a228-c58e-4fed-aaf2-450cfb151116.zip"
+},
+{
+"match": "acf541f6-752e-4684-a939-3db26107989f",
+"version": 160,
+"group": "107cada5-0db7-4fdd-8d73-2ed8305373ed",
+"map": "01starfish",
+"side": "a",
+"opp": "BBL",
+"result": "win",
+"replay": "/mnt/project-files/online/data/replays/acf541f6-752e-4684-a939-3db26107989f.zip"
+},
+{
+"match": "57140936-213d-45ed-a897-3b048c415164",
+"version": 160,
+"group": "107cada5-0db7-4fdd-8d73-2ed8305373ed",
+"map": "01hooks",
+"side": "a",
+"opp": "BBL",
+"result": "loss",
+"replay": "/mnt/project-files/online/data/replays/57140936-213d-45ed-a897-3b048c415164.zip"
+}
+]
+}

@@ -1,0 +1,402 @@
+diff -ru kvvl/src/heart_of_ruin.h kvdet8/src/heart_of_ruin.h
+--- kvvl/src/heart_of_ruin.h	2026-10-24 17:10:54.000000000 +0000
++++ kvdet8/src/heart_of_ruin.h	1980-01-02 00:00:00.000000000 +0000
+@@ -37,14 +37,14 @@
+             walls = bc::map::walls();
+             return true;
+         });
+-        if (have_range && fuel_ok(19000)) {
++        if (have_range && fuel_okc(19000, 2600)) {
+             struct Landing { vec2 p; double score; };
+             std::vector<Landing> choices;
+             std::vector<vec2> others;
+             // Stay away from unrelated camps: damaging them would wake them.
+             if (champ) {
+                 for (auto& enemy : bc::vision::champions(*s.en)) {
+-                    if (!fuel_ok(9500)) break;
++                    if (!fuel_okc(9500, 4400)) break;
+                     attempt([&] {
+                         if (enemy.is_alive() && enemy.is_visible() && enemy.position() != tpos)
+                             others.push_back(enemy.position());
+@@ -54,7 +54,7 @@
+             } else if (s.target >= 0 && s.target < static_cast<int>(s.groups.size())) {
+                 const auto& group = s.groups[s.target];
+                 for (auto& other : bc::vision::camps()) {
+-                    if (!fuel_ok(9500)) break;
++                    if (!fuel_okc(9500, 550)) break;
+                     attempt([&] {
+                         if (other.health() > 0 && group.mask.is_set(other.spawn_position()) && other.position() != tpos)
+                             others.push_back(other.position());
+@@ -91,7 +91,7 @@
+                 return a.score>b.score;
+             });
+             for (const auto& c : choices) {
+-                if (!fuel_ok(11000)) break;
++                if (!fuel_okc(11000, 5300)) break;
+                 if (attempt([&] { return ab.use(c.p); })) {
+                     ++g_dash_corrected;
+                     if (g_dash_corrected <= 8 || g_dash_corrected % 100 == 0)
+diff -ru kvvl/src/main.cpp kvdet8/src/main.cpp
+--- kvvl/src/main.cpp	2026-10-24 17:10:56.000000000 +0000
++++ kvdet8/src/main.cpp	1980-01-02 00:00:00.000000000 +0000
+@@ -119,7 +119,66 @@
+ inline int X(vec2 v) { return static_cast<int>(v.dot(vec2(1, 0))); }
+ inline int Y(vec2 v) { return static_cast<int>(v.dot(vec2(0, 1))); }
+ inline int dist(vec2 a, vec2 b) { return static_cast<int>(a.chebyshev_distance(b)); }
+-inline bool fuel_ok(std::uint64_t need) { return bc::fuel_remaining() > need + FUEL_RESERVE; }
++// det-fuel (10-24, kvvl-det v8): decisions must not depend on the fuel left. Any code change shifts the real fuel
++// use of every turn, which flips some fuel_ok() from round 2 on, so online A/B pairs diverged by r3 and a 20-instruction
++// probe changed 248/312 local games. fuel_ok() now reads a deterministic meter g_dm: each play_turn section (FP marks)
++// is charged DM_BASE[section][foes within 10], each check DM_CALL, and a check that lets dear work through charges that
++// work (fuel_okc(need, charge); charges = mean real cost after the check, 52 games). Fitted so the meter averages the
++// real fuel per section. The real fuel only vetoes below DM_EMERG (heavy turns; counted as dm=meter/vetoes in the
++// status line). Local 312 g: same strength as kvvl; the probe now changes 33 games before r300 (kvvl 105).
++std::uint64_t g_dm = 0;   // this turn's charged fuel so far
++int g_dm_sec = 0;         // current FP section (0 pre-sweep .. 13 log, 21-29 init parts)
++int g_dm_turn = 0;        // turns played (the first turn has a 2x budget)
++int g_dm_emerg = 0;       // vetoes by the real fuel (counter, status line)
++constexpr std::uint64_t DM_Q = 99000;
++constexpr std::uint64_t DM_CALL = 400;
++constexpr std::uint64_t DM_EMERG = 9000;
++// A purchase (gold spent in shop()) is charged 70000 after the fact.
++int g_dm_nf = 0;  // foes within 10 (set in play_turn after the foe scan; kept to the next turn's pre-sweep)
++// Base charge per section (rows 0 pre-sweep .. 13 log) by foes within 10 (columns 0..4+).
++constexpr std::uint64_t DM_BASE[14][5] = {
++    {0, 700, 2000, 2700, 3300},
++    {600, 300, 0, 0, 0},
++    {0, 0, 0, 0, 0},
++    {2500, 2300, 2300, 2400, 2500},
++    {4000, 3700, 3800, 3900, 4000},
++    {1700, 5400, 9400, 14000, 17300},
++    {4800, 5200, 5700, 6300, 6000},
++    {400, 400, 400, 400, 400},
++    {400, 700, 1100, 1400, 1400},
++    {3500, 5600, 7400, 11000, 16700},
++    {1900, 1900, 2900, 4100, 4600},
++    {2500, 3700, 6400, 6300, 6500},
++    {0, 0, 0, 0, 0},
++    {100, 100, 100, 100, 100}};
++inline std::uint64_t dm_cost(int sec) {
++    const int nf = g_dm_nf < 0 ? 0 : g_dm_nf > 4 ? 4 : g_dm_nf;
++    if (sec >= 0 && sec < 14) return DM_BASE[sec][nf];
++    switch (sec) {
++        case 21: return 170000;            // init-groups (first turn, 2x budget)
++        case 22: return 2200;
++        case 23: return 4300;
++        case 25: return 6500;
++        case 27: return 8600;
++        case 28: return 2900;
++        case 29: return 7000;
++        default: return 0;
++    }
++}
++inline void dm_mark(int i) {
++    g_dm += dm_cost(g_dm_sec);
++    g_dm_sec = i;
++}
++inline void dm_turn_start() { g_dm = 0; g_dm_sec = 0; ++g_dm_turn; }
++inline bool fuel_okc(std::uint64_t need, std::uint64_t charge) {
++    g_dm += DM_CALL;
++    const std::uint64_t q = g_dm_turn <= 1 ? 2 * DM_Q : DM_Q;
++    if (g_dm + need + FUEL_RESERVE >= q) return false;
++    if (bc::fuel_remaining() <= DM_EMERG) { ++g_dm_emerg; return false; }
++    g_dm += charge;  // the work this check lets through
++    return true;
++}
++inline bool fuel_ok(std::uint64_t need) { return fuel_okc(need, 0); }
+ 
+ // Every SDK action can throw (cambc::error, out_of_range, ...). An uncaught
+ // exception restarts the C++ guest and loses all state, so wrap everything.
+@@ -197,7 +256,7 @@
+ //  - when the turn cannot pay for it: start-up finishes over the first turns (the champion waits on its spawn), an
+ //    optional camp re-choice waits for a later turn, log lines are skipped, and the low-fuel fallback step is a
+ //    plain greedy step instead of one more path search.
+-#define FP(i, name) ((void)0)
++#define FP(i, name) dm_mark(i)
+ #define FP_SCOPE(i, name) ((void)0)
+ 
+ std::string norm(const std::string& s) {
+@@ -762,7 +821,7 @@
+         return true;
+     });
+     std::size_t i0 = s.shop_next;
+-    for (std::size_t i = i0; i < n && fuel_ok(20000); ++i) {
++    for (std::size_t i = i0; i < n && fuel_okc(20000, 650); ++i) {
+         s.shop_next = i + 1;
+         if (s.shop_next >= n) s.shop_done = true;
+         attempt([&] {
+@@ -1064,13 +1123,13 @@
+ bool init(State& s, bc::champion& me) {
+     if (s.init_stage == 0) { s.init_stage = 1; init_map(s, me); }
+     if (s.init_stage == 1) {
+-        if (!fuel_ok(35000)) return false;
++        if (!fuel_okc(35000, 20300)) return false;
+         s.init_stage = 2;
+         init_paths(s);
+         if (false) mp_game_plan(s);  // only the rules that need it: off = v52 games
+     }
+     if (s.init_stage == 2) {
+-        if (!fuel_ok(50000)) return false;
++        if (!fuel_okc(50000, 15500)) return false;
+         s.init_stage = 3;
+         init_roles(s, me);
+         if (s.dash_slot >= 0 && !P_DHFUEL) mp_find_dashholes(s);  // mapplan_game.h rule 5 (P_DHFUEL: scanned in play_turn)
+@@ -1158,7 +1217,7 @@
+         return true;
+     });
+ #endif
+-    for (int it = 0; it < 12 && fuel_ok(10000); ++it) {
++    for (int it = 0; it < 12 && fuel_okc(10000, 2800); ++it) {
+         if (me.gold_count() < 30) return;
+         auto counts = me.item_count();
+         const Shard* pick = nullptr;
+@@ -1377,13 +1436,13 @@
+         }
+     }
+ 
+-    if (!fuel_ok(25000)) {
++    if (!fuel_okc(25000, 4800)) {
+         auto ps = goals.positions();
+         if (ps.empty()) return false;
+         vec2 best = ps[0];
+         for (auto p : ps)
+             if (dist(p, pos) < dist(best, pos)) best = p;
+-        if (!fuel_ok(14000)) return greedy_step(s, me, best);  // move_towards is one more path search
++        if (!fuel_okc(14000, 6900)) return greedy_step(s, me, best);  // move_towards is one more path search
+         return attempt([&] { return me.move_towards(best); });
+     }
+ 
+@@ -1990,10 +2049,10 @@
+     std::uint64_t f0 = bc::fuel_remaining();
+     int t = choose_target_impl(s, me, round);
+     std::uint64_t f1 = bc::fuel_remaining();
+-    if (f0 > f1 && !g_nopd) s.ct_cost = std::max<std::uint64_t>(s.ct_cost, f0 - f1);
++    (void)f0; (void)f1;  // det-fuel-v1: ct_cost stays fixed (a measured cost would bring the real fuel back into decisions)
+     return t;
+ }
+-bool can_choose(const State& s) { return fuel_ok(s.ct_cost + 12000); }
++bool can_choose(const State& s) { return fuel_okc(s.ct_cost + 12000, 24500); }
+ 
+ // pairfarm-v1: walking length between the spawn regions, read once (same field as the draft's).
+ inline int pf_spawn_path() {
+@@ -2326,7 +2385,7 @@
+         g_brs.f.resize(s.altars.size());
+         g_brs.reached.resize(s.altars.size());
+     }
+-    while (g_brs.built < static_cast<int>(s.altars.size()) && fuel_ok(P_BRC_BUILD)) {
++    while (g_brs.built < static_cast<int>(s.altars.size()) && fuel_okc(P_BRC_BUILD, 5200)) {
+         const int i = g_brs.built++;
+         attempt([&] {
+             bc::bitboard roots;
+@@ -2809,7 +2868,7 @@
+ bool cf_evac_reward(State& s, bc::champion& me, Group& g, int round, const std::vector<bc::camp>* near = nullptr) {
+     FP_SCOPE(26, "evac");
+     const vec2 pos = me.position();
+-    if (!g.mask.is_set(pos) || !me.can_move() || !fuel_ok(28000)) return false;
++    if (!g.mask.is_set(pos) || !me.can_move() || !fuel_okc(28000, 4600)) return false;
+     bool present = false;
+     for (auto& a : bc::vision::champions(*s.my)) {
+         attempt([&] {
+@@ -2970,7 +3029,7 @@
+         // Not enough fuel to choose and still act: a periodic re-choice waits for a later turn (we keep farming the
+         // current target); with no usable target the turn ends here, cleanly, instead of being cut off half way
+         // and finished one round late.
+-        if ((s.target < 0 || expired) && !(P_FUELFIX && fuel_ok(P_FUELFIX_NEED))) { g_farm = "fuel-wait"; return; }
++        if ((s.target < 0 || expired) && !(P_FUELFIX && fuel_okc(P_FUELFIX_NEED, 19400))) { g_farm = "fuel-wait"; return; }
+         if (s.target < 0 || expired) g_nopd = true;  // P_FUELFIX: a cheap choice now beats waiting all game
+         else refresh = false;
+     }
+@@ -3088,7 +3147,7 @@
+         // Only intervene after a monster has been damaged, when a *single*
+         // next-round camp-action burst looks lethal. Do not change normal
+         // admission thresholds or retreat from ordinary nonfatal damage.
+-        if (engaged && fuel_ok(19000) && me.can_move()) {
++        if (engaged && fuel_okc(19000, 2600) && me.can_move()) {
+             double incoming = 0.0, shield = 0.0;
+             attempt([&] {
+                 auto buffs = me.buffs();
+@@ -3097,7 +3156,7 @@
+             });
+             std::vector<vec2> ally_positions;
+             for (auto& ally : bc::vision::champions(*s.my)) {
+-                if (!fuel_ok(11500)) break;
++                if (!fuel_okc(11500, 450)) break;
+                 attempt([&] {
+                     if (!(ally == me) && ally.is_alive() && ally.is_visible())
+                         ally_positions.push_back(ally.position());
+@@ -3105,7 +3164,7 @@
+                 });
+             }
+             for (const auto* c : live) {
+-                if (!fuel_ok(10500)) break;
++                if (!fuel_okc(10500, 950)) break;
+                 attempt([&] {
+                     const vec2 cp = c->position();
+                     const int mine = dist(pos,cp);
+@@ -3180,7 +3239,7 @@
+             float lowest = 1e30f;
+             int checked = 0;
+             for (auto* c : live) {
+-                if (++checked > 8 || !fuel_ok(7000)) break;
++                if (++checked > 8 || !fuel_okc(7000, 1400)) break;
+                 attempt([&] {
+                     float health = c->health();
+                     if (health > 0 && health < lowest && dist(pos, c->position()) <= ar) {
+@@ -3334,7 +3393,7 @@
+     if (camp_probe_exhausted(goals.is_empty(), s.probe_near_turns, s.probe_fail)) {
+         g_farm = "probe-exhausted";
+         g.bad_until = round + 90;
+-        if (fuel_ok(6000)) {
++        if (fuel_okc(6000, 6900)) {
+             std::printf("[camp-probe] r=%d who=%s group=%d near=%d failures=%d searched=%u; retarget\n",
+                         round, s.name.c_str(), s.target, s.probe_near_turns,
+                         s.probe_fail, static_cast<unsigned>(s.probe_seen.count()));
+@@ -3414,7 +3473,7 @@
+ int cr_return_walk(State& s, vec2 pos, int round) {
+     if (!s.cr_home_ready && round >= s.cr_home_retry) {
+         s.cr_home_retry = round + 16;
+-        if (fuel_ok(22000)) {
++        if (fuel_okc(22000, 3600)) {
+             s.cr_home_ready = attempt([&] {
+                 bc::bitboard roots = s.my_spawn & ~s.static_block;
+                 s.cr_home_df.compute(s.static_block, roots, s.cr_home_seen, 200);
+@@ -3494,6 +3553,7 @@
+ #endif
+     if (gold >= 30) {
+         shop(s, me);  // only succeeds on spawn / dead (or anywhere for Tavi)
++        if (static_cast<int>(me.gold_count()) != gold) g_dm += 70000;  // det-fuel-v5: a purchase costs ~70k (charged after, so a visit that buys nothing is not)
+         if (on_spawn && me.gold_count() >= 30 && static_cast<int>(me.gold_count()) == gold) s.shop_fail = round;
+     }
+     s.last_gold = static_cast<int>(me.gold_count());
+@@ -3588,6 +3648,7 @@
+         s.thr_r = round;
+     }
+     if (!foes.empty()) s.foe_r = round;
++    { int nf10 = 0; for (auto& f : foes) nf10 += f.d <= 10; g_dm_nf = std::min(nf10, 4); }  // det-fuel-v3 meter
+     FP(6, "camps");
+     std::vector<bc::camp> camps = near_camps(s, pos);
+     if (P_MG && s.mono_guard) {  // monoguard-v1: see params.h
+@@ -3603,7 +3664,7 @@
+             });
+         }
+         if (any) {
+-            if (zone.is_set(pos) && me.can_move() && fuel_ok(20000)) {
++            if (zone.is_set(pos) && me.can_move() && fuel_okc(20000, 2600)) {
+                 bc::bitboard out = ~zone & ~s.blocked;
+                 if (step_towards(s, me, out, false)) { pos = me.position(); g_mode = "mono-out"; }
+             }
+@@ -3828,7 +3889,7 @@
+                 }
+                 if (hit) ++g_fin_hit;
+                 if (cast || hit) {
+-                    if (fuel_ok(30000)) std::printf("[fin] r%d %d/%d/%d\n", round, g_fin_trig, g_fin_hurt, g_fin_hit);
++                    if (fuel_okc(30000, 4000)) std::printf("[fin] r%d %d/%d/%d\n", round, g_fin_trig, g_fin_hurt, g_fin_hit);
+                     return;
+                 }
+             }
+@@ -3877,7 +3938,7 @@
+     FP(9, "fight");
+     g_mode = "fight";
+     // P_CHASE: go after a hurt (<50%) or recalling rival within 4 (followed up to 4 rounds, out to 6 tiles).
+-    if (P_TEAM_FIGHT && hpr >= 0.5f && cassi_issac::pair_ok(s, me) && !on_spawn && !awake_camp_near && !foes.empty() && fuel_ok(12000)) {
++    if (P_TEAM_FIGHT && hpr >= 0.5f && cassi_issac::pair_ok(s, me) && !on_spawn && !awake_camp_near && !foes.empty() && fuel_okc(12000, 14500)) {
+         auto hurt = [&](const Foe& f) {
+             bool rc = false;
+             float mh = 1;
+@@ -3962,7 +4023,7 @@
+     // P_BCF: the engage decision learned from top-10 vs top-10 replays (bcfight.h). With a rival 2-5 tiles away, the top 10
+     // step in when the nearby hp favours them (V18 waited for reach or an ally next to the rival, and farmed meanwhile).
+     // Never on our spawn, next to an awake camp, on the capture of our reward, with a tribute-sized bag, or for a lone twin.
+-    if (!on_spawn && !awake_camp_near && tgt && tgt->d <= 5 && fuel_ok(14000) && static_cast<int>(me.gem_count()) < P.tribute_gems &&
++    if (!on_spawn && !awake_camp_near && tgt && tgt->d <= 5 && fuel_okc(14000, 16500) && static_cast<int>(me.gem_count()) < P.tribute_gems &&
+         !(s.target >= 0 && s.target < static_cast<int>(s.groups.size()) && s.groups[s.target].reward_seen == round &&
+           s.groups[s.target].mask.is_set(pos)) &&
+         (!P_TEAM_FIGHT || cassi_issac::pair_ok(s, me))) {
+@@ -4400,7 +4461,7 @@
+     // the top 10's paired rounds are walking or waiting together. On the way to our camp (4+ tiles from it), an ally in
+     // sight 5-10 tiles away whose claimed camp is within P_PF_R of ours: step toward it, at most P_PF_WAIT rounds per target.
+     if (P_PF_WALK && pf_on(round) && !on_spawn && foes.empty() && s.target >= 0 && s.target < static_cast<int>(s.groups.size()) &&
+-        me.can_move() && dist(pos, s.groups[s.target].center) >= 4 && fuel_ok(12000)) {
++        me.can_move() && dist(pos, s.groups[s.target].center) >= 4 && fuel_okc(12000, 2100)) {
+         static int pw_target = -1, pw_n = 0;
+         if (pw_target != s.target) { pw_target = s.target; pw_n = 0; }
+         if (pw_n < P_PF_WAIT) {
+@@ -4474,13 +4535,13 @@
+         int round = static_cast<int>(bc::round_number());
+         bool every = false;
+         if (round % STATUS_EVERY != 0 && round > 3 && !every) return false;
+-        if (!fuel_ok(12000)) return false;  // a log line is not worth a turn cut short
++        if (!fuel_okc(12000, 20600)) return false;  // a log line is not worth a turn cut short
+         bc::champion& me = bc::self();
+         vec2 p = me.position();
+-        std::printf("[r%d] %s pos=(%d,%d) hp=%.0f/%.0f gems=%u gold=%u mode=%s farm=%s target=%d errs=%d fuel=%llu tpc=%d/%d wd=%d unreach=%d holdto=%d gskip=%d trip=%d isle=%d bcf=%d rc=%d/%d\n",
++        std::printf("[r%d] %s pos=(%d,%d) hp=%.0f/%.0f gems=%u gold=%u mode=%s farm=%s target=%d errs=%d fuel=%llu tpc=%d/%d wd=%d unreach=%d holdto=%d gskip=%d trip=%d isle=%d bcf=%d rc=%d/%d dm=%d/%d\n",
+                     round, s.name.c_str(), X(p), Y(p), me.health(), me.max_health(), me.gem_count(),
+                     me.gold_count(), g_mode, g_farm, s.target, g_errors,
+-                    static_cast<unsigned long long>(bc::fuel_remaining()), g_tpc_buys, g_tpc_uses, g_wd_drops, g_cap_unreach, g_hold_to, g_guard_skip, g_trip_keep, g_isle, g_bcf, g_rc_big, g_rc_tiny);
++                    static_cast<unsigned long long>(bc::fuel_remaining()), g_tpc_buys, g_tpc_uses, g_wd_drops, g_cap_unreach, g_hold_to, g_guard_skip, g_trip_keep, g_isle, g_bcf, g_rc_big, g_rc_tiny, static_cast<int>(g_dm), g_dm_emerg);
+         std::fflush(stdout);
+         return true;
+     });
+@@ -4494,7 +4555,7 @@
+     bc::champion& me = bc::self();
+     if (!s.ready || !me.is_alive() || !me.can_cast()) return;
+     if (me.is_submitting_gems() || me.is_teleporting() || me.is_recalling()) return;
+-    if (!fuel_ok(6000)) return;
++    if (!fuel_okc(6000, 2600)) return;
+     vec2 pos = me.position();
+     std::vector<Foe> foes;
+     for (auto& c : bc::vision::champions(*s.en))
+@@ -4668,7 +4729,7 @@
+     if (!P_WARD || !s.ready) return;
+     static int has_bush = -1;
+     if (has_bush < 0) has_bush = bc::map::bushes().is_empty() ? 0 : 1;
+-    if (!has_bush || !fuel_ok(P_WARD_FUEL)) return;
++    if (!has_bush || !fuel_okc(P_WARD_FUEL, 2400)) return;
+     bc::champion& me = bc::self();
+     if (!me.is_alive() || me.is_recalling() || me.is_teleporting() || me.is_submitting_gems()) return;
+     int cd = 1;
+@@ -4688,7 +4749,7 @@
+     int best_n = 0, tried = 0;
+     vec2 best = pos;
+     for (auto p : cand) {
+-        if (++tried > P_WARD_TRY || !fuel_ok(P_WARD_FUEL)) break;
++        if (++tried > P_WARD_TRY || !fuel_okc(P_WARD_FUEL, 550)) break;
+         int n = 0;
+         attempt([&] { n = static_cast<int>((bc::ward::visible_tiles_from(p) & dark).count()); return true; });
+         if (n > best_n) { best_n = n; best = p; }
+@@ -4711,7 +4772,7 @@
+         }
+         prev_gold = g; prev_gems = m;
+         const int r = static_cast<int>(bc::round_number());
+-        if (r % 100 == 0 && fuel_ok(30000)) std::printf("[inc] r%d %.4s caps %d capgold %d other %d\n", r, s.name.c_str(), cap_n, cap_gold, other_gold);
++        if (r % 100 == 0 && fuel_okc(30000, 4500)) std::printf("[inc] r%d %.4s caps %d capgold %d other %d\n", r, s.name.c_str(), cap_n, cap_gold, other_gold);
+         return true;
+     });
+ }
+@@ -4738,7 +4799,7 @@
+ inline void pe_update(State& s) {
+     attempt([&] {
+         const int r = static_cast<int>(bc::round_number());
+-        if (!pf_on(r) || s.ally_idx < 0 || !fuel_ok(15000)) return true;
++        if (!pf_on(r) || s.ally_idx < 0 || !fuel_okc(15000, 7200)) return true;
+         auto sm = read_sm();
+         auto allies = my_roster(s);
+         for (int k = 0; k < static_cast<int>(allies.size()) && k < 8; ++k) {
+@@ -4779,6 +4840,7 @@
+     for (;;) {
+         g_mode = "?";
+         g_farm = "-";
++        dm_turn_start();
+         try {
+             if (s.sweep >= 3) spell_sweep(s, true);  // before moving: most targeted spells cannot be cast after a step
+             play_turn(s);
+@@ -4803,7 +4865,7 @@
+             note_error("unknown exception in turn");
+         }
+         FP(13, "log");
+-        if (s.ready && !logged_init && (!P_FUELGUARD || fuel_ok(20000))) {
++        if (s.ready && !logged_init && (!P_FUELGUARD || fuel_okc(20000, 9600))) {
+             logged_init = true;
+             log_init(s);
+         }

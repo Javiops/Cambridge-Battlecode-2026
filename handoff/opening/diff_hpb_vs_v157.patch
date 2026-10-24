@@ -1,0 +1,54 @@
+diff -ru mg/src/main.cpp hpb/src/main.cpp
+--- mg/src/main.cpp	2026-10-24 10:03:57.000000000 +0000
++++ hpb/src/main.cpp	2026-10-24 16:46:22.333369500 +0000
+@@ -4534,6 +4534,7 @@
+ 
+ #include "utility.h"
+ 
++int g_hitlast = 0;  // hitpass-v1: end-of-turn camp hits
+ [[noreturn]] void run_game() {
+     State s;
+     bool logged_init = false;
+@@ -4543,6 +4544,32 @@
+         try {
+             if (s.sweep >= 3) spell_sweep(s, true);  // before moving: most targeted spells cannot be cast after a step
+             play_turn(s);
++            // hitlast-v1 (local r30-150: rounds next to a live camp with no hit while the attack was still available,
++            // in approach/fight-camp/front: Vendetta hits 35% of such rounds, top 10 69%): a turn that ends with the
++            // attack unused and a camp of our target group in reach hits it.
++            if (P_HITLAST && fuel_ok(9000))
++                attempt([&] {
++                    bc::champion& me = bc::self();
++                    if (!me.is_alive() || !me.can_attack()) return true;
++                    const vec2 pos = me.position();
++                    // hitpass-v1 (stall thread): any camp in reach that is already awake (no wolf/elk is woken) or is
++                    // a cluster of a guardless group; never monoliths or golems (monoguard).
++                    for (auto& c : near_camps(s, pos)) {
++                        if (c.is_monolith() || c.is_golem() || c.health() <= 0) continue;
++                        const vec2 cp = c.position();
++                        if (dist(pos, cp) > me.attack_range()) continue;
++                        // hitpass-v2: only finishing blows (two of our hits or less), where the kill pays.
++                        const double hit = std::max(1.0, static_cast<double>(me.strength()));
++                        bool ok = c.is_awake() && c.health() <= 2.0 * hit;
++                        if (!ok && (c.is_gem_cluster() || c.is_gold_cluster()) && c.health() <= hit)
++                            for (auto& g : s.groups)
++                                if (g.mask.is_set(c.spawn_position())) { ok = g.str == 0 && !g.monolith; break; }
++                        if (!ok) continue;
++                        if (basic_attack(s, me, c, cp)) { ++g_hitlast; break; }
++                    }
++                    return true;
++                });
++            if (P_HITLAST && (bc::round_number() == 150 || bc::round_number() == 400) && fuel_ok(20000)) std::printf("[hl] r%d %.4s hits %d\n", static_cast<int>(bc::round_number()), s.name.c_str(), g_hitlast);
+             FP(12, "post-sweep");
+             if (s.sweep && s.sweep < 3) spell_sweep(s);
+             if (s.sweep == 5) {
+diff -ru mg/src/params.h hpb/src/params.h
+--- mg/src/params.h	2026-10-24 10:03:57.000000000 +0000
++++ hpb/src/params.h	2026-10-24 16:46:22.319305584 +0000
+@@ -308,3 +308,6 @@
+ #define P_RC2 1
+ #define P_RC2_R 150
+ #define P_RC2_GW 45
++#ifndef P_HITLAST
++#define P_HITLAST 1      // hitlast-v1: an unused attack at the end of the turn hits a camp of the target group in reach
++#endif

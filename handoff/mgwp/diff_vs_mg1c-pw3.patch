@@ -1,0 +1,57 @@
+diff -ru mgpw/src/main.cpp mgwp/src/main.cpp
+--- mgpw/src/main.cpp	2026-10-24 11:19:03.918231268 +0000
++++ mgwp/src/main.cpp	2026-10-24 13:16:13.574056349 +0000
+@@ -1962,6 +1962,7 @@
+     }
+     return sp;
+ }
++int g_wp = 0;  // waitpair-v1: rounds waiting for a respawn next to an ally
+ int g_pw = 0;  // pairfarm-v3: rounds spent walking toward an ally
+ // pairfarm-v4: where each ally probably is. Allies out of vision have no position; their claim says where they go.
+ // Seen: its real position. Unseen: one tile a round from where it was last placed toward the centre of its claimed group.
+@@ -3222,6 +3223,25 @@
+         // turn, dropped it again... and stood still for 30-50 rounds (elk_arena, 4.3k champion-rounds / 20 games).
+         if (g.next_ok <= round + std::max(dist(pos, g.center), s.target_gd) + P_RESPAWN) {
+             g_farm = "wait-respawn";  // stand 2-3 tiles off its spawn tiles until it is back
++            // waitpair-v1 (near maps r30-150: 63% of our wait-respawn rounds have no ally within 4): with time to spare,
++            // wait next to the nearest ally (seen or estimated) instead of alone; back in time for the respawn or a little late.
++            if (P_WAITPAIR && pf_on(round) && me.can_move() && s.ally_idx >= 0) {
++                const int wait = g.next_ok - round;
++                std::optional<vec2> mate;
++                int md = 99;
++                for (int k = 0; k < s.roster && k < 8; ++k) {
++                    if (k == s.ally_idx || g_pe[k].r < 0) continue;
++                    const vec2 ap(g_pe[k].x, g_pe[k].y);
++                    const int d = dist(ap, g.center);
++                    if (d >= 3 && d <= P_WAITPAIR_D && d + 2 <= wait && d < md && !s.my_spawn.is_set(ap)) { md = d; mate = ap; }
++                }
++                if (mate) {
++                    bc::bitboard ring;
++                    ring.draw_chebyshev(*mate, 2.0f);
++                    ring &= ~s.en_spawn;
++                    if (ring.is_set(pos) || step_towards(s, me, ring, false)) { ++g_wp; g_farm = "wait-pair"; return; }
++                }
++            }
+             bc::bitboard r3, r1;
+             for (auto t : g.tiles) {
+                 r3.draw_chebyshev(t, 3.0f);
+@@ -4636,7 +4656,7 @@
+                 if (!(a == me) && a.is_alive()) md = std::min(md, dist(a.position(), me.position()));
+             ++n; alone += md > 4; dsum += md;
+         }
+-        if (r == 150 && fuel_ok(30000)) std::printf("[pf] r150 %.4s n %d alone %d dsum %d walk %d\n", s.name.c_str(), n, alone, dsum, g_pw);
++        if (r == 150 && fuel_ok(30000)) std::printf("[pf] r150 %.4s n %d alone %d dsum %d walk %d wp %d\n", s.name.c_str(), n, alone, dsum, g_pw, g_wp);
+         return true;
+     });
+ }
+diff -ru mgpw/src/params.h mgwp/src/params.h
+--- mgpw/src/params.h	2026-10-24 11:19:03.918758388 +0000
++++ mgwp/src/params.h	2026-10-24 13:16:13.574352829 +0000
+@@ -320,3 +320,7 @@
+ #define P_PF_WALK 1      // pairfarm-v3: walk with an ally bound for a neighbouring camp (step toward it, at most P_PF_WAIT rounds per target)
+ #endif
+ #define P_PF_WAIT 8
++#ifndef P_WAITPAIR
++#define P_WAITPAIR 1     // waitpair-v1: wait for a respawn next to an ally (near maps, r30-150)
++#endif
++#define P_WAITPAIR_D 12  // the ally (seen or estimated) at most this far from the camp

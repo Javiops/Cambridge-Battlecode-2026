@@ -23,3 +23,11 @@ fightnum no cambiaba nada porque V20/kvvl tiene la regla "outnumbered" APAGADA (
 | qB | pA + P_OUTNUM 5, todos con + 1 |
 | qC | pA con mstick a cualquier vida (P_MS_HP 100: Marcella pegada y sin ventaja se retira siempre) |
 | qD | qA + qC |
+
+## Ronda 2: qA +13,2 qB +10,9 qC +6,7 qD +13,2 (pA +16,7). P_OUTNUM no mueve el +2. Queda pA.
+## Ronda 3 (24-10 20:50): ajuste de mstick sobre pA
+| carpeta | qué cambia |
+|---|---|
+| rA | mstick con < 55% de vida (pA 70%) |
+| rB | mstick con < 85% de vida |
+| rC | mstick también a +1 (se retira salvo que superen en 2), vida < 70% |

@@ -1,0 +1,12 @@
+diff -ru -x .cambc ws/bots/vop_ve/src/vendetta.h ws/bots/vop_vf/src/vendetta.h
+--- ws/bots/vop_ve/src/vendetta.h	2026-10-24 19:21:11.749162316 +0000
++++ ws/bots/vop_vf/src/vendetta.h	2026-10-24 19:21:11.769258607 +0000
+@@ -26,7 +26,7 @@
+ // near maps, gem groups farther than P_VOP_D tiles of walking are priced down: score x (P_VOP_D / travel)^P_VOP_EXP.
+ // Vendetta only: the other champions keep their opening (opening-near-v1 on all heavies cost r300 gold locally).
+ CHAMP_HOOK double open_k(const State& s, int round, int gems, double travel) {
+-    if (!P_VOP || round > P_VOP_UNTIL || gems <= 0 || travel <= P_VOP_D || !is(s.name)) return 1.0;
++    if (!P_VOP || round > P_VOP_UNTIL || travel <= P_VOP_D || !is(s.name)) return 1.0;
+     const int sp = pf_spawn_path();
+     if (sp < 0 || sp >= P_VOP_MAX) return 1.0;
+     return std::pow(P_VOP_D / travel, P_VOP_EXP);

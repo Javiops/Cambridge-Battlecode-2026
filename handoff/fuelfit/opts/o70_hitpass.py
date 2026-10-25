@@ -1,4 +1,9 @@
 # fuelfit port of hitpass-v2 (copy-decisions thread, online +7 on c16 as hpb): a turn that ends with the attack unused
+# v6: g_draft_sp does not survive the draft (globals reset for the game: v5 had hitpass off everywhere); g_tpc_path is the
+# same walk sent through draft memory byte 29 and read in init_map (idlefix-v4).
+# v5: reads g_draft_sp (farswap's draft BFS) instead of running pf_spawn_path in init: on big maps the start-up is already
+# over budget and any extra init work shifts when play starts (v4: 12/56 far games changed vs b15).
+# v4: the far gate is decided in the start-up turn (a pf_spawn_path() BFS at r2 shifted the fuel of big maps: 14/56 far games changed vs b15, probe 2/56).
 # v3: off on far maps (spawn-to-spawn walk >= 60, the far definition of mapfeat40/farswap): PC b21hp vs b15 far -20, mid +4, near -2.
 # v2: reuses the camps list play_turn built this round (near_camps is 5-97k) instead of a second near_camps call.
 # takes a finishing blow (<= 2 of our hits) on an awake camp in reach, or a guardless cluster at <= 1 hit. Port rules:
@@ -8,7 +13,7 @@ import sys
 d=sys.argv[1]; p=d+'/main.cpp'; s=open(p,newline='').read()
 a="            play_turn(s);\n"
 assert s.count(a)==1
-s=s.replace(a,a+'''            if (P_HITLAST && (P_HITLAST_FAR <= 0 || (pf_spawn_path() >= 0 && pf_spawn_path() < P_HITLAST_FAR)))  // hitpass-v2 port (fuelfit o70); v3: not on far maps
+s=s.replace(a,a+'''            if (P_HITLAST && !s.hp_far)  // hitpass-v2 port (fuelfit o70); v3: not on far maps
                 attempt([&] {
                     bc::champion& me = bc::self();
                     if (!me.is_alive() || !me.can_attack()) return true;
@@ -34,7 +39,13 @@ assert s.count(a)==1
 s=s.replace(a,"    s.hp_camps = near_camps(s, pos); s.hp_camps_r = round;  // fuelfit o70 v2: kept for the end-of-turn hit\n    std::vector<bc::camp>& camps = s.hp_camps;\n")
 a="    bool ready = false;\n"
 assert s.count(a)==1
-s=s.replace(a,a+"    std::vector<bc::camp> hp_camps; int hp_camps_r = -1;  // fuelfit o70 v2\n")
+s=s.replace(a,a+"    std::vector<bc::camp> hp_camps; int hp_camps_r = -1;  // fuelfit o70 v2\n    bool hp_far = true;  // fuelfit o70 v4: hitpass off on far maps, decided in the start-up turn\n")
+a="        farm_warmup(s, 1000000);  // fuelfit o47/o48"
+assert s.count(a)==1
+s=s.replace(a,"        s.hp_far = P_HITLAST_FAR > 0 && !(g_tpc_path >= 0 && g_tpc_path < P_HITLAST_FAR);  // fuelfit o70 v6: the spawn walk the draft sent in draft-memory byte 29 (g_tpc_path, read in init_map); no BFS in the start-up turn\n"+a)
+a="bool init(State& s, bc::champion& me) {\n"
+assert s.count(a)==1
+pass
 open(p,'w',newline='').write(s)
 p=d+'/params.h'; s=open(p,newline='').read()
 assert 'P_HITLAST' not in s

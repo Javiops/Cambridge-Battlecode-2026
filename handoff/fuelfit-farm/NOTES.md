@@ -75,3 +75,12 @@ histograms); `fph_pct.py RESDIR` percentiles per scope; `fpt_agg.py RESDIR [THR]
 | `o45_ctrev.py` | choose_target: (A) per-group REVERSE fields (one `compute` from the group's tiles over static walls, once per game: 42k on corridors/12 groups .. 551k on big_world/24; then `is_set` + `get` at pos per group, 1.2-3.3k per call) replace the forward search from pos (3.4k-30k every retarget turn); the original path stays for the turns before all fields exist and when pos is a static-block tile. `P_FARM_PD_PER_TURN` (default all) lets the integrator spread the precompute over turns: same decisions, different fuel schedule. (B) scoring loop: claimers counted in one pass over the claim slots, per-group constants (doorstep / half-map booleans, recall cycle) once per game, `walk()` computes the straight-line distance only when used | (A) undirected unit grid with fixed walls: d(pos, group) = min over tiles of the forward BFS = the group field at pos; verified identical on 6 maps, 287 positions, 0 mismatches. (B) same integers and the same double expressions in the same order |
 
 Profile after o41..o45 pending (RESULTS in the farm thread). `o46_groupvis.py` (refresh_groups / near_camps read one exported vision board) is in its 80-game check.
+
+| `o46_groupvis.py` | refresh_groups: "any tile of the group visible" from ONE export of `s.vis` (static buffer) and per-game tile indices instead of `is_set` per tile (100-300 imports every turn); near_camps: the engine vision board `tv` exported once instead of `is_set` per camp spawn tile | same bits read after the board was written (s.vis assigned once per turn before refresh_groups; tv filled in near_camps); `any` is order-independent. 80/80 identical. Needs BitSnap from o42 |
+
+Profile after o41..o45 (80 games, 108 270 turns): farm section p90 20k -> 17.5k, p99 52.5k -> 35k, p99.9 70k -> 47.5k,
+turns >= 50k 1401 -> 87; choose_target p99 32.5k -> 17.5k, p99.9 50k -> 27.5k; step_towards unchanged (p99.9 37.5k;
+heavy-turn mean 15.5k = exhaustive compute_to 7.9k + dash-holes 9.6k + move 4.1k + tpc 4.8k); turn total p90 62.5k -> 57.5k,
+p99 90k -> 82.5k. The remaining choose_target cost is the pure C++ scoring loop (~500 fuel per group). Exact pieces plateau
+around farm p99.9 ~45k: the 25k goal needs decision changes (K nearest groups scored, one path search per turn, isle_escape
+every 10 rounds), judged by strength, never by fuel.

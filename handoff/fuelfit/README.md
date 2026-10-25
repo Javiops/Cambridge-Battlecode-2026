@@ -118,8 +118,9 @@ recall 60k / 32k, shop 55k / 32k, init(dead-shop) 50k / 22k, decide 42k / 25k.
 | b19 | b16 + o60-o62 exactas | +6.0 | +17.0 | 2% (+200 19%, +2000 73%) |
 | b20hp | b19 + o70 (hitpass-v2 sin fuel) | pendiente | pendiente | local 0/52, lejos 1/56 (r1322) |
 | b21hp | b15 + o70 v1 (hitpass sobre la base elegida) | +10.4 (cerca -11/b15 -9, medios +27/+23, lejos -1/+19) | +16.6 | 2% (+200 24%) | local cerca 0/52, lejos 3/56 |
+| b25 | **b15 + o71** (exacta: el campo al spawn enemigo del init solo si hay candidato a jackpot; arranque -6k..-32k en los 14 lejanos) | pendiente | pendiente | cerca idéntica a b15 (52/52); lejos 16/56 distintas (el juego empieza antes), 42/56 frente a 45, sonda 3/56 |
 | b24hp | **b15 + o70 v6** (hitpass apagado en lejanos con el camino que el draft envía por memoria, byte 29: cero trabajo en el init) | pendiente | pendiente | cerca = v2 (52/52 idénticas); lejos 12/56 difieren de b15, las mismas 12 que con hitpass compilado fuera |
-| b23hp | **b15 + o70 v3** (hitpass apagado si el camino spawn-spawn >= 60: PC b21hp lejanos -20, medios +4, cercanos -2) | pendiente | pendiente | cerca = v2 (52/52 idénticas); lejos 14/56 difieren de b15 = cola de fuel de b15 en mapas grandes |
+| b23hp | b15 + o70 v3 (hitpass apagado si el camino spawn-spawn >= 60: PC b21hp lejanos -20, medios +4, cercanos -2) | +12.2 (lejos +14) | +17.4 | 2% (+200 22%) | cerca = v2 (52/52 idénticas); lejos 14/56 difieren de b15 = cola de fuel de b15 en mapas grandes |
 | b22hp | b15 + o70 v2 (hitpass reutilizando la lista de campamentos del turno) | +12.3 (cerca -11, medios +29/+23, lejos +12/+19) | +16.8 | 1% (+200 18%) | local cerca 1/52 (r801), lejos 1/56 |
 
 hitpass local frente a b15: cerca 37/52 = 37 (neto 0 en 10 cambiadas); lejos 39/56 frente a 45 (neto -6 en 16, barra 8.0; v1 -7/17). Dispara desde la apertura (divergencia mediana r62) en las 56 partidas lejanas: cambio de decisión, lo juzga el PC. Si el PC confirma la pérdida en lejanos, variante = hitpass solo en mapas cercanos (d_spawn < 60).
@@ -143,6 +144,13 @@ el momento en que empieza el juego y la partida cambia. La sonda +20 solo cambia
 de instrucciones por turno, no a decenas. Para que la base sea robusta en lejanos hay que bajar el arranque y los turnos
 de r2-r10 en 100x100 por debajo del presupuesto, sin añadir trabajo (v5 enseñó que las variables del draft no
 sobreviven: usar la memoria del draft, byte 29 = camino spawn-spawn, que init_map ya lee en g_tpc_path).
+
+Perfil del arranque con fuel ilimitado en los 14 lejanos (kidbg, `[dbgI]`): mapa 30-74k, grupos 25-100k (2k por grupo:
+spawn_tiles+positions+camps+5 is_* por campamento), caminos 25-92k (tres distance_field.compute; exportar los campos en vez
+de leer por casilla sale un 10% peor: la exportación se mide por tamaño), roles+tienda 43-52k, dash 11-15k, warmup 15-51k
+(600 por grupo). Suma 149k (rows) a 330k (big_world) frente a 186k del turno 1. Primer turno de juego (r2 o r3): 77-168k
+frente a 86k (big_world r3 168k, islands 109k, expanse 104k, fracture 103k, road_of_riches 98k); picos de 60-90k en r8-r9.
+Siguiente: grupos (2k/grupo exacto) y el primer turno de juego (choose_target con 24-51 grupos: hilo farm).
 
 ## Reglas para portar una pieza a la base sin fuel
 

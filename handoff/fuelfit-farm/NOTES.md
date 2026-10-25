@@ -264,31 +264,51 @@ So the queue never changes a decision: br_plan's uncached path before the altar 
 computed later and the recall fallback all give the same answers as computing them on the first turn. o64 is exact
 and adds no init work and no idle-round work: safe for the b15 line (and b24hp/b26).
 
-## o65_fieldreuse.py (over b15 + o59 + o63 + o64; 07:40 UTC): the two goal fields of a walking turn are kept and reused
+## o65_fieldreuse.py (over b15 + o59 + o63 + o64): the two goal fields of a walking turn kept and reused -- CLOSED 10-25 10:30 UTC, NOT ADOPTED
 
-Profile of e64 (b15 + o59 + o63 + o64), far maps, every turn r2-r10: step_towards computes the goal's walking field
-(roots = goal tiles, walls = s.blocked, search stopped at our tile) EVERY turn of every champion, 14-17k on ambush, 13-17k
-on starvation, 8-9k on big_world; dash champions (ren, vesper, vendetta) compute a second field with the crossable holes
-open (mp_dash_hole_step): 14-20k ambush, 13-16k starvation, 4-8k big_world. r3-r10 turns of dash champions on ambush
-sit at 78-86k (ren r3 83k, vendetta r4 86k), i.e. on the 86k boundary every turn.
+Script kept in opts/not-adopted/ (v6; exact by construction, v1-v3 verified 56/56 far + 80/80 near, v4-v6 not re-verified
+because none saves fuel where it matters). Do not apply it.
 
-Two measurement builds over the 56 far games (x65m, x65n; bench only, printf of the conditions, no code change):
-- "No tile within hole_bound-1 of the goal touches a crossable hole" (exact skip of the hole field) holds on 15%
-  (ambush) to 87% (pilgrimage) of the calls, but NEVER on r2-r6 of ambush/starvation (hole lines next to the camps):
-  not the first-turn tool. Dropped.
-- Reuse rule (below) with static walls: holds on 63-80% of walking searches (ambush 73%, starvation 63%, big_world 63%)
-  and 61-77% of hole searches; 0 mismatches between the cached and the fresh distance in 240k checks.
+What it does: step_towards' goal field (roots = goal tiles, walls = s.blocked, stopped at our tile, 14-17k on ambush,
+13-17k starvation, 8-9k big_world) and mp_dash_hole_step's field (holes open, 14-20k / 13-16k / 4-8k) are kept in State
+and reused when every read is provably the same: (a) each tile that became a wall has cached distance >= D, (b) each tile
+that stopped being a wall has all 8 neighbours at cached distance >= D - 1, (c) no changed tile inside the goal mask
+(roots unchanged); exhausted bounded searches are a negative cache (D = B + 1); after a pass with changes the kept walls
+become today's. The rule is right (0 mismatches cached vs fresh in 240k checks, x65n) and holds on 60-72% of walking
+searches overall (x65p) -- but almost only on quiet turns.
 
-The rule (field_reuse): a search stopped at our tile (distance D) holds the exact distance and reach of every tile
-within D. With other walls and the same roots the reads stay the same when (a) every tile that became a wall has cached
-distance >= D (it is on no shortest path of a tile within D) and (b) every tile that stopped being a wall has all its
-neighbours at cached distance >= D - 1 (a shorter route through a freed tile reaches the tile before it at <= D - 3).
-step_towards reads: our distance, ring tiles at distance < D - 1 (dash/crystal scans), the neighbours at D - 1
-(next_moves_from), reached-or-not of our tile: all within D. The stuck scan (neighbours at D + 1, reached or not,
-which depends on where the search stopped) gets a fresh search first. mp_dash_hole_step reads the same of its own
-field plus "reached within here - 4": the cached distance tells. Both fields are kept in State with their roots and
-walls (s.wf_*, s.hf_*); the kept one is the last computed (dynamic walls), so a unit that stands still nearer than us
-does not break the rule, only units that moved/appeared/vanished nearer than us do. Test cost ~1-2.5k (one reached
-test + get for us, roots compare, one get per changed wall tile, 8 per freed tile); not tried when the cached distance
-is < P_FR_MIN = 20 (short searches cost less than the test). No fuel read, no init work, no idle-round work.
-Exactness over b15 (07:38 UTC): b15+o59+o63+o64+o65 far 56/56 byte-identical; near 80 running.
+Six versions, full-game profiles against e64 (14 far maps vs rTop1, unlimited fuel, prof_fp48 + ct_prof48, cmpprof.py):
+- v1-v4 (bitboard copies of roots/walls, == compares, 8 reads per freed tile): turns >= 86k WORSE (ambush 25 -> 54/43,
+  big_world 26 -> 59/53). Microbenchmark on 100x100 (x65m): bitboard copy 480 (alloc ~280 + import 199), == 222,
+  xor/and/not/shift ~390, is_empty 217, count 215, positions(n) ~450 + 45n, is_set 61, get 64, camp_tiles 384,
+  champion_tiles 1007, compute_to minimum 2.9k (+~3.4 per visited tile), std::vector of 1250 B 1.7k. On 41x41 about half.
+  => a reuse test that copies anything costs more than the field it saves on short searches, and the miss path is what
+  heavy turns pay.
+- v5 (no copies: s.blocked double-buffered by swap with a generation counter, goals keyed by object pointer, one shared
+  wall diff per step_towards, lazy goal bbox): heavy turns no longer worse (ambush 25/25, starvation 7/7, big_world
+  26/31) but not fewer; common turns +0.4-0.9k.
+- v6 (chebyshev rings keyed by centre+radius from engage, cf, bank, group, fight, cassi: zero-cost compare): same
+  picture (ambush 25/25, big_world 26/33, 77.5k: ambush 79/75, big_world 74/81).
+Why it cannot land (x65q, miss reasons printed per turn on 6 heavy maps): of 87 turns >= 86k, 58 come from the camp
+probe (goals = g.mask & ~probe_seen & ~s.blocked, a new mask each turn; keyable but see next), 11 from the bank ring,
+11 from cf. Among keyed checks on printed (heavy/early) turns the dominant miss is "a tile that became a wall has
+cached distance < D" (ambush 116 of ~170, big_world 328): a teammate stepping ahead of us in the group walk. Target
+changes (key miss) are the next. Hits happen on quiet solo walks, which never reach 86k. Each failed check on a churn
+turn costs == 222 + xor 394 + count 215 (+ positions and reads when listed) ~0.8-1.5k: exactly the turns at the
+boundary pay it. Relaxing the rule to "only the tiles we read keep their distance" needs a chain of reads down to the
+changed tile (50-100 gets = 3-6k) and a delicate proof: not worth it.
+
+Also measured (x65q, same 6 maps): the exact skip of the hole search "no crossable hole within Chebyshev hole_bound of
+the goal bbox" applies to 3% (ambush, fracture, islands), 6% (starvation), 22% (big_world), 38% (lanes) of the hole
+searches and to 1/42, 0/13, 1/45, 0/12, 7/31, 2/3 of the heavy turns: not a lever. The hole route IS the behaviour on
+ambush/starvation/fracture (reached and used on 56-82% of calls) and pure cost on big_world/lanes (reached 0/766,
+0/168: ~11k per call for nothing) and islands (30/952).
+
+Finding for the stall thread: main.cpp step_towards gates the hole step with `fuel_ok(40000)`; on r2-r20 of the
+100x100 maps the turn arrives there with ~30-45k left (choose_target 37-49k incl. the 26-31k forward field, goal field
+11-18k), so +-200 instructions flip whether the 13-20k hole search runs. That is the first-turn chaos the PC sees, not
+the field cost itself: the search is behaviour on ambush/starvation, so a fixed rule replacing the gate changes games
+(to be judged by strength); on big_world/lanes it could be dropped by a map feature (not exact either).
+
+Lesson (fuelfit): an exact cache only pays if the MISS path costs ~0 and the misses are not the heavy turns. Here the
+heavy turns are the misses by construction (group walks, new targets).

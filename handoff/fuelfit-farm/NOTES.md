@@ -506,3 +506,18 @@ candidate as is. Losses with v1 (gemfight, packs, gold_rush, trace.py): the lead
 to the rich centre group (gemfight 78 gems, 12 camps; packs 28; gold_rush) and two champions die there at r27-r45.
 v2 = P_TO_OWN 1: the team valuation applies only to groups on our side (closer to our spawn by P_TO_OWN_D 2); the top
 10's elk captures are own-side in 47 of 68. v2 panel over b32 running.
+
+### o69 v2 (P_TO_OWN 1) over b32 (10-25 11:55 UTC) - line closed
+
+| panel | b32 | b32 + o69 v2 | flips |
+|---|---|---|---|
+| near 80 | 58/80 (+22201, 43 deaths <= r100) | 59/80 (+27000, 42) | +13 -12 |
+| far 56 | 48/56 (+15546, 13) | 42/56 (+14198, 35) | +7 -13 |
+
+Own-side-only valuation removed the centre-group losses (gemfight, packs, gold_rush now even or won) but the near
+panel stays neutral and the far panel loses the same games as v1 (big_world 12 deaths <= r100, great_wall 10,
+concentrated_wealth 4->1, islands 4->2): on 100x100 maps the team arriving together does not stop the early deaths.
+Over b29, b32 and 408 local games the opening ball moves the mechanism (first capture with 3 champions, elk first) but
+not the result: neutral on near maps, negative on far maps. teamopen is NOT a PC candidate (P_TO_NEAR 1 would only be a
+neutral near-only piece). The opening shape of the top 10 is therefore a correlate, not the lever; the deaths that
+separate us (0.65-0.70 vs 0.35 per game by r100, 62-71% of them with an enemy within 3) are fight outcomes.

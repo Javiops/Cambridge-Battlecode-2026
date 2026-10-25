@@ -84,3 +84,17 @@ heavy-turn mean 15.5k = exhaustive compute_to 7.9k + dash-holes 9.6k + move 4.1k
 p99 90k -> 82.5k. The remaining choose_target cost is the pure C++ scoring loop (~500 fuel per group). Exact pieces plateau
 around farm p99.9 ~45k: the 25k goal needs decision changes (K nearest groups scored, one path search per turn, isle_escape
 every 10 rounds), judged by strength, never by fuel.
+
+## o5x: decision-changing caps (NOT exact), judged by strength against the base on the same games
+
+Paired comparison: same 80 games (40 maps x 2 sides, 6 deterministic rivals rotating), base = a1 (== a1+o41..o46).
+`pair.py` net = wins gained - lost over the games whose result changed, bar = 2*sqrt(changed); `vstat.py` a14 = state at
+r300 (gems, gold, deaths, monster damage; +0.637 for the base), `divloc.py` = games whose timelines differ.
+
+| patch | rule | 80 games | verdict so far |
+|---|---|---|---|
+| `o51_onesearch.py` | step_towards: when the first field does not reach us, no second ("corridor jammed") search this turn (P_ONE_SEARCH) | 11 games differ, 3 results changed, net -3 (bar 3.5); a14 +0.637 -> +0.612 | doubtful: 240 more games running |
+| `o52_ctk.py` | choose_target scores only the P_CT_K = 12 nearest groups by walking distance (+ current target + leader's group) | 57 differ, 22 results changed, net +2 (bar 9.4); a14 +0.637 -> +0.827, gems300 +19.7 -> +26.0, gold300 +256 -> +321 | neutral-to-positive on strength, cuts the scoring loop on 24-46-group maps; 240 more games queued |
+| `o53_isle10.py` | isle_escape plans at most once every P_ISLE_EVERY = 10 rounds off the mainland | 2 differ (first divergence r502+), 0 results changed | neutral: safe to take |
+
+Fuel effect is not measured here (unlimited-fuel bench); the integrator's worst-turn fit decides what each cap buys.

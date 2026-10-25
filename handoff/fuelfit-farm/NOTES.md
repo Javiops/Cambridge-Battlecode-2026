@@ -242,3 +242,5 @@ Per champion (min..max over the 5), b15 -> b15+o59+o63:
   171k sits just under 172k. After o59+o63: lanes 70-79k and split/shortcut/great_wall clear of it; islands 78-95k and
   road 83-90k now straddle it, pilgrimage 83-92k too: cutting the home field (26-31k) as well is what moves ambush,
   starvation, expanse, fracture, islands, pilgrimage, road under 86k together.
+Exactness over b15 (06:10 UTC): o59 56/56 far + 80/80 near; o59+o63 56/56 far + 80/80 near byte-identical replays.
+Both add no init work and no idle-round work: safe for the b15 line.

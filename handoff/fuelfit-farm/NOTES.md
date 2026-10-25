@@ -244,3 +244,18 @@ Per champion (min..max over the 5), b15 -> b15+o59+o63:
   starvation, expanse, fracture, islands, pilgrimage, road under 86k together.
 Exactness over b15 (06:10 UTC): o59 56/56 far + 80/80 near; o59+o63 56/56 far + 80/80 near byte-identical replays.
 Both add no init work and no idle-round work: safe for the b15 line.
+
+## o64_staticq.py (over b15 + o59 + o63; 06:30 UTC): the end-of-turn slot becomes the static-work queue
+
+One engine field per turn that did not pay the forward field and is not a tribute walk, fixed order: recall home field
+(cr_home_prepare, factored out of cr_return_walk, which keeps the on-demand compute as fallback) > altar fields
+(br_static_step, no longer at the start of play_turn; br_plan keeps its cached/uncached paths) > mainland (o55) >
+reverse group fields (o45). cr_capture_extra asks for the home walk only when it can change the answer (hp < 90% or
+gold >= 90: cr_optional_value is false otherwise whatever the walk; the counters are under the same condition).
+First playing turn, b15 -> b15+o59+o63+o64 (per champion, 14 far maps): big_world 155-171k -> 91-105k, ambush 108-139k
+-> 82-113k, starvation 101-124k -> 77-99k, islands 87-111k -> 62-78k, expanse 96-108k -> 64-76k, fracture 99-106k ->
+67-74k, road 92-100k -> 66-74k, pilgrimage 88-96k -> 61-69k, lanes 78-86k -> 58-67k, concentrated_wealth 75-92k ->
+62-79k, great_wall 68-80k -> 50-62k, shortcut 76-81k -> 57-62k, split 74-79k -> 55-60k, rows 52-61k -> 45-54k.
+Ten of the 14 maps are now under 86k for every champion on the first turn; big_world stays over (forward field 31k +
+step_towards 9-28k + base), ambush and starvation straddle it (step_towards 16-40k: dash champions pay the dash-hole
+search). Exactness runs (56 far + 80 near vs b15) in progress.

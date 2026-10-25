@@ -38,7 +38,13 @@ turnos pesados y el veto del fuel real sigue saltando. La única salida robusta:
 - **Manifiesto:** `mk.sh NAME` (26 mapas no lejanos x 6 rivales del panel17 x 2 lados = 312) y `subq.sh FUEL NAME...`
   (subconjunto de 52 con `--fuel-quantum`). Rivales: `analysis/local-filter-1021/panel17/{rTop1,rD,rF,rHunt,mV19,mV10d}`.
 
-Base actual: **`fuelfit-b3.zip`** = kvvl (k_vvl_mgwp) + o01-o10 (este hilo) + o21-o26 (pelea) + o31-o33 (recall/altares/
+Base actual: **`fuelfit-b6.zip`** = b3 + o11 (tienda exacta: 52k → ~17k por visita) + farmeo o43-o46 + o47 (campos
+inversos de o45 como paso de la init, 32k cada uno, 2 turnos máximo). Local 40/52 (kvvl 41), sonda +20: 4/52 cambiadas,
+3 antes de r150: el PRIMER turno de juego tras la init pesa 100-148k (choose_target 41-54k exclusivo de precálculos de
+o41/o45, refresh_groups 16-27k en su primera llamada, step_towards 28k en lost_world): pedido a farmeo un
+`farm_warmup(s, quota)` para hacerlo en la init (o48). `tools/heavy.py MAIN` imprime cada turno > 80k con ronda y modo.
+
+Anterior: **`fuelfit-b3.zip`** = kvvl (k_vvl_mgwp) + o01-o10 (este hilo) + o21-o26 (pelea) + o31-o33 (recall/altares/
 campamentos) + o41-o42 (farmeo). `diff_b3_vs_kvvl.patch`. Ya **no lee el fuel en ninguna decisión** (`fuel_ok()` es
 siempre true). Anterior: `fuelfit-a1.zip` = kvvl + o01-o05 (exacta).
 

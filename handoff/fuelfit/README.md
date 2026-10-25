@@ -117,7 +117,10 @@ recall 60k / 32k, shop 55k / 32k, init(dead-shop) 50k / 22k, decide 42k / 25k.
 | b18 | b19 + o57 | +8.3 | +15.0 | 2% (+200 15%, +2000 68%) |
 | b19 | b16 + o60-o62 exactas | +6.0 | +17.0 | 2% (+200 19%, +2000 73%) |
 | b20hp | b19 + o70 (hitpass-v2 sin fuel) | pendiente | pendiente | local 0/52, lejos 1/56 (r1322) |
-| b21hp | **b15 + o70** (hitpass sobre la base elegida) | pendiente | pendiente | local en marcha |
+| b21hp | b15 + o70 v1 (hitpass sobre la base elegida) | pendiente | pendiente | local cerca 0/52, lejos 3/56 |
+| b22hp | **b15 + o70 v2** (hitpass reutilizando la lista de campamentos del turno) | pendiente | pendiente | local cerca 1/52 (r801), lejos 1/56 |
+
+hitpass local frente a b15: cerca 37/52 = 37 (neto 0 en 10 cambiadas); lejos 39/56 frente a 45 (neto -6 en 16, barra 8.0; v1 -7/17). Dispara desde la apertura (divergencia mediana r62) en las 56 partidas lejanas: cambio de decisión, lo juzga el PC. Si el PC confirma la pérdida en lejanos, variante = hitpass solo en mapas cercanos (d_spawn < 60).
 
 **Base elegida: b15.** b19 (o58-o62, exactas a fuel ilimitado) pierde 5.8 de J2 (cambia 189/800, lejanos +19 -> +3,
 castigadores +23 -> +11) sin ganar determinismo: a fuel normal el primer turno de juego en mapas grandes sigue por

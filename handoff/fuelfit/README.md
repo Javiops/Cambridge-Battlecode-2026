@@ -38,7 +38,13 @@ turnos pesados y el veto del fuel real sigue saltando. La única salida robusta:
 - **Manifiesto:** `mk.sh NAME` (26 mapas no lejanos x 6 rivales del panel17 x 2 lados = 312) y `subq.sh FUEL NAME...`
   (subconjunto de 52 con `--fuel-quantum`). Rivales: `analysis/local-filter-1021/panel17/{rTop1,rD,rF,rHunt,mV19,mV10d}`.
 
-Base actual: **`fuelfit-b10.zip`** (10-25 01:10 UTC) = kvvl + o01-o12 (este hilo) + pelea o17-o30 + recall o31-o34 +
+Candidata: **`fuelfit-b12.zip`** (10-25 02:10 UTC) = b10 + o13 (ward solo con arbusto cerca, exacta) + farmeo o52 (K=12
+grupos en choose_target, cambia decisiones), o53 (isle_escape cada 10 rondas), o54-o56 (exactas: calentamiento de
+campos inversos al final del turno, sin búsquedas exhaustivas fuera del continente, caché de isla). Local a fuel normal:
+cercanas 37/52 (kvvl 41; neto -4 en 16 cambiadas, barra 8), lejanas **48/56** (kvvl 42); sonda +20: 0/52 cercanas,
+3/56 lejanas. El Juez 2 decide entre b10 y b12.
+
+Base validada: **`fuelfit-b10.zip`** (10-25 01:10 UTC) = kvvl + o01-o12 (este hilo) + pelea o17-o30 + recall o31-o34 +
 farmeo o41-o49. 36 piezas; `fuel_ok()` es siempre true. **Inicialización v3 (o08):** toda en el turno 1 de golpe (no
 se emite ninguna acción, así que si no cabe en los 186k el motor la termina en la ronda 2 sin que nada pueda divergir);
 primera ronda de juego fija por mapa: 2 si el mapa tiene ≤ 14 grupos (init medida ≤ 143k), 3 si no (hasta 252k con 31

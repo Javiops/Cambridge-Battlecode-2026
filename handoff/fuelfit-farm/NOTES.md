@@ -169,3 +169,7 @@ What remains on far maps (mean on heavy farm turns after o54-o56, present%): ste
 max 88k: one outlier to look at), and outside farm: play_turn start "init" section 23k on 27% (cf_observe /
 br_static_step: recall thread), post-sweep 15.5k on 51% and log 12.8k on 22% (pelea / integrator), shop 25k on 31% of
 tribute turns. Tribute turns: step_towards 24k (st:ct1 8k, dash holes 9k), not 44k: the 44k figure was isle_escape.
+
+Final check (01:50 UTC): o52 on top of o54+o55+o56 (f52) gives exactly the same 56 far + 80 near games as o52 on b10 (0
+replays differ), so the three exact pieces are exact also with the cap on; strength as o52: far net +4/14, wins 40/56,
+a14 +0.131; near net +2/10, a14 +0.643. b12 (integrator) = b10 + o52-o56.

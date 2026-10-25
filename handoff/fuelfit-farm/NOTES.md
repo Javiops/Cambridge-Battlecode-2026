@@ -386,3 +386,21 @@ With that default every game of this panel is byte-identical to b15 (far 56 re-r
 panel o67 behaves as an exact piece; the PC's 800 games decide whether other big maps change.
 o67 with P_RF_DEFER_AREA = 5000 (11:20 UTC): far 56/56 byte-identical to b15 (near 80 were identical already below the
 threshold). On this panel o67 only removes fuel (r8-r9 re-choice field on ambush, big_world, starvation, expanse).
+
+## o68_nohole.py (over b29; 10-25 12:30 UTC): the dash-hole shortcut (mapplan rule 5) off, or only when it does not split the group (NOT EXACT)
+
+Why near fight maps lose (user: c19 b27 -41 gems/game on near maps; reverse_spiral -337, rushbait_v2 -228). Local, b27 vs
+kvvl (bot/mgwp), 2 maps x rTop1/rD/rF/mV10d x 2 sides, normal fuel: reverse_spiral b27 0/8 (kvvl 7/8). Same target
+(group 9) in both, but in b27 Heart of Ruin and Vesper die at r24-r27 in every game (17 deaths <= r100 over 8 games,
+kvvl 0), so the camp is cleared at r100+ instead of r74: 7 gems / 0 gold at r100 over 8 games (kvvl 366 / 1528).
+Per-round trace (status line every round): HoR and Vesper take the dash-hole shortcut (mp_dash_hole_step; HoR dash r7
+(10,10)->(7,9), Vesper r9) through the middle, alone, next to the enemy spawn (spawn-to-spawn path 1), and the enemy
+Marcella kills them; Marcella and Ryth walk the long way (y = 21) like all four of kvvl. kvvl never did this: the step is
+behind fuel_ok(40000) and, as the stall thread then measured, kvvl's mp_find_dashholes gate (P_DHFUEL_NEED) said no
+3699 times and yes 0 on 26 near maps, so kvvl had no dash holes at all; b15+ computes them in init (o06) and fuel_ok is
+a stub. b27 with the step off (b27nh): reverse_spiral 7/8, 0 deaths <= r100, net gems +2238 (b27 -2770, kvvl +887);
+rushbait_v2 7/8, +2859 (b27 +506, kvvl +642).
+P_MP_HOLE: 0 = never (kvvl's behaviour everywhere, near and far: proposed as b31), 1 = as b29, 2 = only when no ally
+without a dash (by name: ren, vesper, vendetta, heart) claims the same target group while we farm (dash_bits +
+hole_splits_group, ~30 fuel per call). Panels running on b29 / b29h0 / b29h2: 6 losing maps (reverse_spiral,
+rushbait_v2, fragment, hooks, contest, starfish) x 6 rivals x 2 sides, far 56, near 80.

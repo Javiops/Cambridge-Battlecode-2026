@@ -173,3 +173,8 @@ tribute turns. Tribute turns: step_towards 24k (st:ct1 8k, dash holes 9k), not 4
 Final check (01:50 UTC): o52 on top of o54+o55+o56 (f52) gives exactly the same 56 far + 80 near games as o52 on b10 (0
 replays differ), so the three exact pieces are exact also with the cap on; strength as o52: far net +4/14, wins 40/56,
 a14 +0.131; near net +2/10, a14 +0.643. b12 (integrator) = b10 + o52-o56.
+
+b14 (integrator: b12 + o35 altar fields 1/turn on big maps + o57 first playing round by init cost model) vs b10 on the
+same panels (02:15 UTC): far 56: 15 changed, net +5 (bar 7.7), wins 36 -> 41/56, a14 -0.106 -> +0.029 (below o52's
++0.131: the later first round on 100x100 maps costs early state, not results); near 80: 15 changed, net +9 (bar 7.7,
+passes), WR 0.66 -> 0.78, a14 +0.437 -> +0.700. vs o52-on-b10: far +1/11, near +7/11.

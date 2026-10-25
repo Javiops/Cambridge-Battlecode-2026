@@ -521,3 +521,43 @@ Over b29, b32 and 408 local games the opening ball moves the mechanism (first ca
 not the result: neutral on near maps, negative on far maps. teamopen is NOT a PC candidate (P_TO_NEAR 1 would only be a
 neutral near-only piece). The opening shape of the top 10 is therefore a correlate, not the lever; the deaths that
 separate us (0.65-0.70 vs 0.35 per game by r100, 62-71% of them with an enemy within 3) are fight outcomes.
+
+## b35 on the bench (10-25 11:30 UTC) and the r150-300 elk gap
+
+b35 (= b32 + o74 start-up) near 80: 62/80 (+27328, 53 deaths <= r100) vs b32 58/80 and kvvl 54/80; far 56 identical to b32
+(48/56, 56/56 same replays). Near maps where b35 is still behind kvvl (kvvl 2/2, b35 1/2): elkring, gem_fields, rows,
+split, stampede, starfish. On all six b35 farms as much as or more than kvvl in r0-150 (same opening sequences, one round
+later; elkring vs rD 6 captures / 132 gems vs 4 / 88); the losses are team fights (elkring: 4v4 clashes r44-58 on our side
+vs the mirror) or decided after r150.
+
+### Where the top 10 out-farm us: elk+gem groups in r150-300 (19 common maps, t10 40 games vs b32 38)
+
+| | top 10 | b32 |
+|---|---|---|
+| captures r150-300 per game | 8.15 | 8.11 |
+| of them elk+gem / wolf+gem / gem cluster / gold cluster | 2.27 / 2.80 / 0.90 / 2.17 | 1.11 / 3.24 / 1.66 / 2.11 |
+| group gems r150-300 per game | 106 | 80 |
+| group gems r0-300 per game | 187 | 146 |
+| own-side elk+gem groups captured by r300 | 43% | 31% |
+| elk episode (first approach -> capture): duration, champions involved, deaths | 23 rounds, 4, 0.05 | 25 rounds, 3, 0.05 |
+
+Same number of captures, different mix: the top 10 go back to the elk groups (27 gems each), we take wolves (10) and gem
+clusters (10-14). When we do go, the episode costs the same as theirs, so the gap is the choice. Scripts: gem/elk300.py,
+episodes.py, calib.py, deathdetail.py (farm container).
+
+### Cause: the cost model charges the group's full strength for the whole clear
+
+choose_target: rounds = travel + hp/(dps x team) + 6 + (incoming / mhp) x cycle with incoming = str x t_clear / team and
+team = max(1 + claimers, needed <= P_NEED_CAP 2). Debug print (b35, the_farm r167, Heart of Ruin choosing, dps 30, mhp
+1000): a 2-elk group (4800 hp, 120 str, 30 gems) is charged 4800 incoming = 4.8 heal cycles -> 277 modelled rounds,
+score 0.17; a 3-wolf group (2640 hp, 60 str, 29 gems) 85 rounds, 0.29; gem clusters 0.3-0.5. Measured on the replays (hp
+of every participant from first approach to capture, b35 near 80, rounds <= 300): hp lost = 0.46 x (str x duration) for
+elk groups (133 episodes) and 0.63 for wolf groups (343); top 10 0.34 / 0.47. Camps die one by one and monsters focus one
+champion, so the full-strength charge is 2x reality, and the error grows with the group's strength: exactly the elk
+groups. The per-champion dps model is right (measured solo camp damage per round: Marcella 45-50, Ryth 47-55, Vesper
+55-90, Vendetta 70, Ren 35, Heart 34-38 median).
+
+### o70_incoming.py (P_INC_PCT 50; NOT exact, judge by strength)
+incoming x 0.5 in choose_target and the same factor in squad_needed (needed / too-strong). One parameter, no fuel read,
+whole system (every monster group), biggest effect on elk groups. Expected mechanism: elk+gem captures r150-300 up from
+1.1 towards 2.3 per game, group gems r300 up; watch deaths (the model now tolerates stronger groups). Panel vs b35 running.

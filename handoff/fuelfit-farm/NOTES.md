@@ -311,3 +311,53 @@ next round), not a fuel-read branch.
 
 Lesson (fuelfit): an exact cache only pays if the MISS path costs ~0 and the misses are not the heavy turns. Here the
 heavy turns are the misses by construction (group walks, new targets).
+
+## First-turn forward field of choose_target: NOT reducible exactly on ambush/starvation (10-25 09:00 UTC, x65r bench build)
+
+Per group on the first turn (r2/r3), Chebyshev distance vs walking distance, and the forward field's distance histogram,
+14 far maps. A bounded search (max_distance B) reads the same as the full one only if (1) the P_CT_K = 12 nearest
+groups are reached within B (their exact distances feed the K-cut and the scores) and (2) every unreached group is
+provably beyond the cut: without a dash it is skipped either way; with a dash unreach() prices it 2*cheb+10, so
+2*cheb+10 > cut is needed, else the fake value enters the scoring where the true one would not. s.target and the lead
+group are scored beyond the cut and must be reached too. With n <= 12 groups there is no cut and every group needs its
+true distance, unreachable ones included (which cannot be told from "beyond B" without the full search).
+| map | n | unreachable | bound needed | area needed / full | B from 1.3*cheb+6 |
+| ambush | 12 | 2 | 107 (all groups) | 6680 / 7542 | 100 (fails: unreachable groups) |
+| starvation | 14 | 0 | 160-180 | 4387-5484 / 5667 | 85 (fails) |
+| big_world | 24 | 4 | 83-88 | 4523 / 8780 | 72 (fails, close) |
+| expanse | 24 | 0 | 63 | 3751 / 6134 | 78 (ok) |
+| fracture | 28 | 2 | 78-89 | 1755 / 3386 | 55 (fails) |
+| pilgrimage | 23 | 0 | 107-152 | 1685-2533 / 2583 | 48 (fails) |
+| lanes | 42 | 0 | 37 | 1163 / 2597 | 54 (ok) |
+Chebyshev underestimates the walking distance 1.5-2x on these maps (ambush: farthest group cheb 74, walking 107), so
+the bound cannot be guessed; a short bound plus the full search costs more than today. big_world would save ~48% of
+31k with the right bound, ambush 11%, starvation 3-22%: no exact lever on the three chaos maps. Not pursued.
+
+## r8-r9 peak on 11 of 14 far maps (integrator's kidbg profile): the periodic re-choice
+
+e64pf full-game profile, r6-r10 turns >= 60k: the dominant scope is choose_target (15 = 27-46k, forward field 23 =
+13-30k) on ambush r8 (all five, 77-95k), starvation r8 (71-90k), big_world r9 (vendetta 86k), fracture r9 (62-66k),
+road_of_riches r9 (68-71k), expanse r9, islands r9, concentrated_wealth r8. It is `refresh` in the farm step:
+round - s.target_round >= P_E_RETARGET = 6 (the first choice is r2 on 12-14-group maps, r3 on the others), no fuel
+involved. The champion has moved since r2, so the per-position cache misses and the reverse fields (o54: one static
+field per cheap turn, 26k each on 100x100; farm_pd_done needs all 12-24) are not complete until ~r15-r27: the full
+forward field is paid again. Exact ways out: none found. Two reverse fields per warm-up turn would put r3-r7 (60-75k
+with the 22-26k warm-up field already inside) over 86k; a hybrid read (reverse fields where they exist, Chebyshev
+bound for the rest) needs cheb > cut for every missing group, which the 1.5-2x gap defeats; the r2 forward field kept in
+s.pdf is from another position (triangle bounds only). Non-exact option for the stall thread: defer the periodic
+refresh until farm_pd_done (the re-choice then costs ~1.5k instead of 26-31k, but it happens at r15-r27 instead of
+r8-r9: a decision change, judge by strength). The other half of those turns is the first step_towards to the new target
+(goal field + hole field, 20-35k): the same two engine searches as on the first turn.
+
+## o66_readout.py (over b15 + o59 + o63 + o64; 09:15 UTC): mask-free read-out, direct scans on big maps (EXACT)
+
+(a) choose_target's read-out of the forward field (o41) tested the reached bit of every group tile before taking its
+distance (24-51 groups x ~30 tiles: 8-13k, scope 25). The export holds 65535 on every unreached tile, larger than any
+reached distance, so the reached mask export and the bit tests go: one min() per tile; -1 when the min is 65535.
+(b) step_towards' dash scan (25 tiles) and tp-crystal scan (29 tiles) took three snapshots first (o42: s.blocked,
+s.visited, s.df = 2.9k on 100x100, ~840 on 41x41). On maps of 4096+ tiles they now read directly: an unreached tile
+reads 65535 and never beats bestd, so the reach test is implied; the wall test only for a tile that would win. Same
+candidates in the same order, same best. Smaller maps keep the snapshots.
+Profile e66p vs e64pf, r2-r12, common turns: ambush -578 per turn (first turn 113k -> 108k), big_world -796 (105k ->
+101k), expanse -658, fracture -783, road -440, great_wall -386, others -30..-350. (The e66p profile build's scope 38
+anchor did not match, so 38 is folded into 16/37 there; the totals are right.)

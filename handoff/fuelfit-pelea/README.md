@@ -23,3 +23,16 @@ Lo que queda en la cola: step_towards 10k inclusivo (flee, engage, chase, anillo
 vis_champions 4k, front_line 1.6k excl, danger_at 1.2k (anillo de volea dentro de step_towards), y ~2k de pe_update /
 pf_log / income_log que corren en run_game tras play_turn y antes de FP(12), y por eso se cuentan en la sección 9.
 Por tramos (fseg): back_off (avoid / lowhp / pv-leave) ≈ 15k, front_line 6k, ally duty 2.5k, chase 2.4k, engage final 2.4k.
+
+## 10-25 00:xx: medido sin autoprof (solo ungate; el perfilador por función inflaba la sección 3-5k)
+
+| build | pelea p99.9 | pelea máx | decide p99.9 |
+|---|---|---|---|
+| det8 + o01-o05 | 35k | 77.5k | 25k |
+| + o21, o23-o27 | 32.5k | 60k | 20k |
+| + c01 (1 búsqueda de camino en pelea; cambia decisiones) | 32.5k | 60k | 20k |
+
+o27_fplog: contabilidad (los logs de run_game abren la sección 13). Exacta.
+rejected/c01_fightpath: sin efecto en p99.9; 312 partidas pair −5/7 (barra 5.3), a14 igual.
+o28 (registro de campeón memorizado hasta la siguiente acción): exacta 52/52 pero más cara que la llamada (p99.9 35k): descartada.
+Cola > 25k: 0.58% de los turnos, media 29k: front_line 4.8k, back_off 7.7k, pv-leave 2.7k, kite 2.6k, aliados 2.4k, chase 2.3k.

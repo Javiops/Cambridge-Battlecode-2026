@@ -716,3 +716,19 @@ champions also stacked on 120-hp clusters and the full-game net gems fell (17641
 monster groups only (g.str > 0), clusters keep the even split (bots/e81c 0.75, e81d 0.50), launched 12:16 UTC.
 Trios (buddy thread's form.py, g3 = share of rounds with 3+ allies within 3): top 10 39.7 / 29.7 / 26.1% in r30-90 / 90-150 /
 150-300, b35 30.4 / 19.0 / 15.0, b35 + o79b 29.0 / 15.9 / 14.5 (o79b does not form trios; it just roams better).
+
+### o81 stacking: CLOSED (13:40 UTC; 4 variants, 544 games)
+v2 (exponent for monster groups only) = v1 to the game: 0.75 near 59/80 vs 62, far 49/56 vs 48; 0.50 near 54/80, far 40/56.
+Mechanism of 0.50 (either version): trios g3 41 / 31 / 22% = top-10 level (40 / 30 / 26), paired 51 / 44 / 39% (top 10 58 /
+54 / 47), gems collected r150 44 (b35 38, top 10 65), monster damage r300 +15%; BUT rounds within 4 of a monster unchanged
+(329 vs 328 per game; top 10 419) and the far maps collapse (40/56). Champions walk together and stand together, not
+at monsters longer; the top 10's trios are trios AT camps. The share exponent is not the lever, and trio formation by
+itself does not win (useful for the buddy thread: forming trios with a value split reproduces the top-10 formation
+numbers and loses). Line closed; the remaining question for the farm front is why our team is near monsters 91 fewer
+champion-rounds per game with the same contact share: fewer simultaneous members per camp (3-4 vs 2) AND less
+range-3-4 presence (16% vs 9%: the top 10 keep ranged champions and extra members at distance 3-4 of the camp).
+
+### Method (user 12:10 UTC via coordinator): the judge is online (each candidate alone on 15 pinned groups, ~3 an hour);
+local panels are prediction only; the one local requirement is beating kvvl head-to-head (ws/h2h.sh NAME, 26 near maps x
+2 sides). b35 loses online near maps (-4 vs kvvl, fight-camp deaths); the stall thread is isolating the piece. Running h2h
+vs kvvl for b35, o79b, o81 v2, o70 to know which candidates pass the local gate.

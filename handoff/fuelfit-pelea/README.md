@@ -40,7 +40,7 @@ Cola > 25k: 0.58% de los turnos, media 29k: front_line 4.8k, back_off 7.7k, pv-l
 ## 10-25 ~02:00: sobre b3 (cb88bb5), piezas exactas nuevas
 
 Aplicar sobre b3 en orden: o18, o19, o20, o29 (o27 es solo contabilidad de perfil). same.py 52/52 con fuel ilimitado
-(cada una y juntas); restarts.py 0; las líneas [fin]/[bcf] salen idénticas (quitando los \0 del fichero del equipo).
+(acumuladas: o29; +o20; +o19; +o18); restarts.py 0; las líneas [fin]/[bcf] salen idénticas (quitando los \0 del fichero del equipo).
 
 - o18_fightlogs: [fin] y [bcf] con LineOut en vez de printf (~2.5k cada una, en los turnos de pelea más pesados).
 - o19_vdash: escaneo de dash de Vesper (7x7) con poda por cota antes de leer bitboards (~12k → ~2k por escaneo).
@@ -60,3 +60,27 @@ b3 + o18-o29 (52 partidas, fuel ilimitado, percentiles con cubos de 1k, `fh.py`)
 
 Media por turno 32.75k → 31.94k. Tramos de pelea en turnos > 25k (gseg.py + speck): huida de back_off (flee =
 step_towards) 3.4k, safe_step aliados/alcances 3k, chase 2.5k, ally duty 2.2k, dash de Vesper 2k, engage 1.3-1.6k...
+
+## 10-25 ~03:00: copias de bc::champion (o16, o17, o30)
+
+Un `bc::champion` es un objeto pesado (vtable, dos vistas de habilidad, una vista por consumible) y sin constructor
+de movimiento (el destructor virtual de `unit` lo suprime): cada push_back/crecimiento de vector lo copia.
+
+- o16_rosterref: my_roster / en_roster devuelven referencia constante (antes, copia del vector en cada llamada); los
+  llamadores de solo lectura la toman por `const auto&`.
+- o17_foecopy: la lista de foes con reserve y emplace_back; la lista Seen igual; threat_of por referencia constante.
+- o30_sweepcopy (después de o29): lo mismo en la lista de spell_sweep.
+
+Orden sobre b3: o16, o17, o18, o19, o20, o29, o30. Validado acumulado: same.py 52/52, restarts 0.
+
+| sección | p99.9 antes (b3) | ahora | máx antes | ahora |
+|---|---|---|---|---|
+| pre | 17.5k | 15k | 27k | 25k |
+| foes | 17.5k | 14k | 25k | 18k |
+| decide | 22.5k | 19k | 45k | 38k |
+| post | 17.5k | 17k | 25k | 23k |
+| pelea | 32.5k | 31k | 57k | 71k (un turno) |
+
+Media por turno 32.75k → 31.55k. Turnos con pelea > 25k que llegan a 75k en total: 111 de 264k (por eso no hay
+contador de pelea). Fuera de mi parte, mismas copias evitables: `auto enemies = vis_champions(*s.en)` en
+br_threat_block (recall) y `seen = vis_champions(*s.my)` en other_captures_impl (farm).

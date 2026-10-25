@@ -361,3 +361,18 @@ candidates in the same order, same best. Smaller maps keep the snapshots.
 Profile e66p vs e64pf, r2-r12, common turns: ambush -578 per turn (first turn 113k -> 108k), big_world -796 (105k ->
 101k), expanse -658, fracture -783, road -440, great_wall -386, others -30..-350. (The e66p profile build's scope 38
 anchor did not match, so 38 is folded into 16/37 there; the totals are right.)
+Exactness of o66 over b15 (b15+o59+o63+o64+o66; 09:45 UTC): far 56/56 and near 80/80 byte-identical replays.
+
+## o67_rfdefer.py (over b15 + o59 + o63 + o64 (+ o66); 10:00 UTC): the periodic target refresh waits for the reverse fields (NOT EXACT)
+
+Decision change, for the PC to judge by strength against b27. `refresh` (round - target_round >= P_E_RETARGET = 6) is
+skipped while the reverse fields are not complete (farm_pd_done) and we are not on the tile the cached distances were
+measured at, only on maps of P_RF_DEFER_AREA = 4096 tiles or more (near maps play exactly as before: the forward field
+costs 4-14k there) and only while round < P_RF_DEFER_R = 60. A missing or expired target chooses at once, as before.
+Profile e67p vs e64pf (14 far maps, r2-r40, unlimited fuel): choose_target turns >= 15k on r4-r12 per map 3-5 -> 0
+(islands 1: an expired target); max turn r4-r12 ambush 95k -> 86k, starvation 90k -> 80k, big_world 91k -> 88k,
+road 71k -> 62k, split 53k -> 41k, concentrated_wealth 67k -> 60k; turns >= 77.5k over r2-r40: ambush 27 -> 14,
+starvation 16 -> 6, big_world 23 -> 16, others unchanged. Behaviour: the first periodic re-choice happens when the
+reverse fields are complete (~r15-r27 on 12-24-group maps) and costs ~1.5k instead of 26-31k; until then the champion
+keeps its first target unless it expires. Near 80 (must be byte-identical: the rule is off below 4096 tiles) and far 56
+(strength vs rTop1/rD) running.

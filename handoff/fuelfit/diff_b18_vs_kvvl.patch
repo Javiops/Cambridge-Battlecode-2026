@@ -1,6 +1,6 @@
 diff -ruN kvvl/src/cassi_issac.h kopt/src/cassi_issac.h
 --- kvvl/src/cassi_issac.h	2026-10-23 22:52:10.000000000 +0000
-+++ kopt/src/cassi_issac.h	2026-10-25 02:39:00.224181557 +0000
++++ kopt/src/cassi_issac.h	2026-10-25 02:53:44.324421476 +0000
 @@ -13,7 +13,7 @@
      if (!is_cassi(s.name) && !is_issac(s.name)) return true;
      bool ok = true;
@@ -21,7 +21,7 @@ diff -ruN kvvl/src/cassi_issac.h kopt/src/cassi_issac.h
              if (dist(ap, pos) < nd) { nd = dist(ap, pos); nearest = ap; }
 diff -ruN kvvl/src/fight.h kopt/src/fight.h
 --- kvvl/src/fight.h	2026-10-24 17:10:52.000000000 +0000
-+++ kopt/src/fight.h	2026-10-25 02:39:00.575486492 +0000
++++ kopt/src/fight.h	2026-10-25 02:53:44.705466214 +0000
 @@ -49,7 +49,7 @@
      }
  }
@@ -212,7 +212,7 @@ diff -ruN kvvl/src/fight.h kopt/src/fight.h
          if (!cast && dist(pos, focus->p) <= SPELL_RANGE) try_use(true, focus);
 diff -ruN kvvl/src/heart_of_ruin.h kopt/src/heart_of_ruin.h
 --- kvvl/src/heart_of_ruin.h	2026-10-24 17:10:54.000000000 +0000
-+++ kopt/src/heart_of_ruin.h	2026-10-25 02:39:00.608271789 +0000
++++ kopt/src/heart_of_ruin.h	2026-10-25 02:53:44.733801890 +0000
 @@ -31,10 +31,12 @@
          // landing hitbox and score other visible units in the SAME encounter.
          auto& ab = abs[s.dash_slot];
@@ -281,7 +281,7 @@ diff -ruN kvvl/src/heart_of_ruin.h kopt/src/heart_of_ruin.h
                          std::printf("[patch-dash] who=%s r=%u casts=%d landing=(%d,%d) score=%.1f\n",
 diff -ruN kvvl/src/main.cpp kopt/src/main.cpp
 --- kvvl/src/main.cpp	2026-10-24 17:10:56.000000000 +0000
-+++ kopt/src/main.cpp	2026-10-25 02:39:01.083233684 +0000
++++ kopt/src/main.cpp	2026-10-25 02:53:45.184005822 +0000
 @@ -32,6 +32,12 @@
  // iterating enum values and matching to_string() names.
  
@@ -504,7 +504,7 @@ diff -ruN kvvl/src/main.cpp kopt/src/main.cpp
  }
  
  static int g_tpc_path = -1;
-@@ -1058,22 +1124,121 @@
+@@ -1058,22 +1124,137 @@
      apply_profile(mf);
  }
  
@@ -585,9 +585,25 @@ diff -ruN kvvl/src/main.cpp kopt/src/main.cpp
 +bool br_static_one(State& s);  // fuelfit o58, defined with br_static_step
 +// fuelfit o47 v3: the idle round of big maps (o08 v3) computes reverse group fields (o45), priced 1.2k + 2.5 fuel per
 +// map tile each (measured 3.4k on 41x41, 30.6k on 100x100), while they fit 70k; the rest go one per choose_target call.
++bool farm_pd_prefill(State& s, vec2 pos);  // fuelfit o60, defined with choose_target
 +void init_wait(State& s) {
 +    const long price = 1200 + (static_cast<long>(bc::map::width()) * static_cast<long>(bc::map::height()) * 5) / 2;
 +    long left = 60000;  // fuelfit o58: 70k measured 80-83k on road_of_riches
++    {  // fuelfit o60: the first playing turn's forward field and group distances, from where we stand now
++        const vec2 pos = bc::self().position();
++        if (!(s.pd_pos == pos && s.pd_gd.size() == s.groups.size()) && farm_pd_prefill(s, pos)) {
++            left -= price + 6000;
++            s.pd_fwd_round = s.play_from;  // the first playing turn counts as having paid its field: no o54 warm-up there
++        }
++    }
++    if (!s.cr_home_ready && left >= price) {  // fuelfit o62: the recall home field (cr_return_walk's first call)
++        s.cr_home_ready = attempt([&] {
++            bc::bitboard roots = s.my_spawn & ~s.static_block;
++            s.cr_home_df.compute(s.static_block, roots, s.cr_home_seen, 200);
++            return true;
++        });
++        left -= price;
++    }
 +    while (left >= price && s.pd_rf_done < s.groups.size()) {
 +        const std::size_t before = s.pd_rf_done;
 +        farm_pd_ready(s);
@@ -635,7 +651,7 @@ diff -ruN kvvl/src/main.cpp kopt/src/main.cpp
      }
      return true;
  }
-@@ -1109,13 +1274,18 @@
+@@ -1109,13 +1290,18 @@
  int g_ls_cur = -1, g_ls_emb0 = -1, g_ls_n[4] = {0, 0, 0, 0}, g_ls_log = 0;
  template <class C>
  const Shard* lshop_pick(State& s, const C& counts, const Shard* base) {
@@ -661,7 +677,7 @@ diff -ruN kvvl/src/main.cpp kopt/src/main.cpp
      if (g_ls_cur >= 0 && g_ls_cur < static_cast<int>(o.size())) {  // keep it until its emblem count has gone up
          const Shard* cur = find(g_ls_cur);
          int emb = -1;
-@@ -1128,7 +1298,7 @@
+@@ -1128,7 +1314,7 @@
      if (best < 0) return base;
      g_ls_cur = best; ++g_ls_n[best];
      attempt([&] { g_ls_emb0 = static_cast<int>(counts[find(best)->emblem]); return true; });
@@ -670,7 +686,7 @@ diff -ruN kvvl/src/main.cpp kopt/src/main.cpp
      return find(best);
  }
  #endif
-@@ -1158,6 +1328,8 @@
+@@ -1158,6 +1344,8 @@
          return true;
      });
  #endif
@@ -679,7 +695,7 @@ diff -ruN kvvl/src/main.cpp kopt/src/main.cpp
      for (int it = 0; it < 12 && fuel_ok(10000); ++it) {
          if (me.gold_count() < 30) return;
          auto counts = me.item_count();
-@@ -1165,15 +1337,28 @@
+@@ -1165,15 +1353,28 @@
          const bool t10plan = champ::own_plan(s);
          if (P_HP_SHOP && !t10plan) pick = hp_pick(s, counts);
          bool fill = false;
@@ -717,7 +733,7 @@ diff -ruN kvvl/src/main.cpp kopt/src/main.cpp
          }
  #if P_LSHOP
          if (fill && static_cast<int>(bc::round_number()) >= P_LSHOP_R) pick = lshop_pick(s, counts, pick);
-@@ -1265,57 +1450,101 @@
+@@ -1265,57 +1466,101 @@
      std::printf("[isle] r%d %s (%d,%d)->(%d,%d)\n", r, s.name.c_str(), X(pos), Y(pos), X(g_isle_to), Y(g_isle_to));
      return true;
  }
@@ -852,7 +868,7 @@ diff -ruN kvvl/src/main.cpp kopt/src/main.cpp
      if (!from) {
          g_isle_off = static_cast<int>(bc::round_number()) + 50;  // no landing left: look again in 50 rounds
          return false;
-@@ -1337,7 +1566,8 @@
+@@ -1337,7 +1582,8 @@
      if (goals.is_empty() || goals.is_set(pos)) return false;
      if (!me.can_move() && !(use_dash && s.dash_slot >= 0)) return false;
  
@@ -862,7 +878,7 @@ diff -ruN kvvl/src/main.cpp kopt/src/main.cpp
      bool vol_on = false;
      if (!s.thr.empty() && s.thr_r == static_cast<int>(bc::round_number()) && volley_mode(me)) {
          double lim = me.health() * P_VOLLEY / 100.0;
-@@ -1370,12 +1600,26 @@
+@@ -1370,12 +1616,26 @@
                  for (int dy = -P_VOLLEY_R; dy <= P_VOLLEY_R; ++dy) {
                      vec2 t = pos + vec2(dx, dy);
                      if ((dx || dy) && bc::map::is_in_bounds(t) && !s.blocked.is_set(t) && danger_at(s.thr, t) >= lim) {
@@ -890,7 +906,7 @@ diff -ruN kvvl/src/main.cpp kopt/src/main.cpp
  
      if (!fuel_ok(25000)) {
          auto ps = goals.positions();
-@@ -1397,6 +1641,11 @@
+@@ -1397,6 +1657,11 @@
              if (dist(p, pos) < dist(best, pos)) best = p;
          return attempt([&] { return me.move_towards(best); });
      };
@@ -902,7 +918,7 @@ diff -ruN kvvl/src/main.cpp kopt/src/main.cpp
      bool ok_field = false;
      if (false) {  // mapplan_game.h rule 3: walk around awake camps we do not fight
          bc::bitboard avoid = mp_awake_camp_zone(s, pos);
-@@ -1406,13 +1655,13 @@
+@@ -1406,13 +1671,13 @@
                  return s.visited.is_set(pos);
              });
      }
@@ -918,7 +934,7 @@ diff -ruN kvvl/src/main.cpp kopt/src/main.cpp
          ok_field = attempt([&] {
              bc::bitboard b2 = s.static_block | bc::vision::camp_tiles();
              b2.set(pos, false);
-@@ -1441,19 +1690,20 @@
+@@ -1441,19 +1706,20 @@
          bool foe_near = false;
          if (own && here >= P_TPC_GAIN + 3)
              attempt([&] {
@@ -942,7 +958,7 @@ diff -ruN kvvl/src/main.cpp kopt/src/main.cpp
                      if (d < bestd) { bestd = d; best = q; }
                  }
              if (best && attempt([&] { return me.consumables()[bc::consumable_type::tp_crystal].use(*best); })) {
-@@ -1477,14 +1727,15 @@
+@@ -1477,14 +1743,15 @@
          if (here >= 3 && ab.is_ready()) {
              std::optional<vec2> best;
              int bestd = here - 1;  // only dash if it beats a plain step
@@ -961,7 +977,7 @@ diff -ruN kvvl/src/main.cpp kopt/src/main.cpp
                  moved = true;
                  pos = *best;
              }
-@@ -1501,13 +1752,19 @@
+@@ -1501,13 +1768,19 @@
          if (!moved && !steps.empty()) moved = fallback();
          if (steps.empty() && !moved) moved = fallback();
          if (!moved && me.can_move()) {  // still stuck: any free tile that is not farther
@@ -984,7 +1000,7 @@ diff -ruN kvvl/src/main.cpp kopt/src/main.cpp
                      moved = attempt([&] { return me.move_absolute(t); });
                  }
          }
-@@ -1540,12 +1797,12 @@
+@@ -1540,12 +1813,12 @@
          auto& ab = abs[k];
          if (s.slots[k] == Slot::Targeted) {
              if (!(champ ? ab.can_target_enemies() : ab.can_target_camps())) continue;
@@ -999,7 +1015,7 @@ diff -ruN kvvl/src/main.cpp kopt/src/main.cpp
          }
      }
      return false;
-@@ -1556,7 +1813,7 @@
+@@ -1556,7 +1829,7 @@
      if (dist(me.position(), tpos) > me.attack_range() || !me.can_attack()) return false;
      if (false) return false;
      bool hit = attempt([&] {
@@ -1008,7 +1024,7 @@ diff -ruN kvvl/src/main.cpp kopt/src/main.cpp
          return true;
      });
      // Preserve a reset cooldown when its only selected target disappeared.
-@@ -1566,9 +1823,9 @@
+@@ -1566,9 +1839,9 @@
          (!(P_U34_RESET_LIVE >= 2 || (P_U34_RESET_LIVE && (s.de_map == v34de::Corners || s.de_map == v34de::Interlock))) ||
           u34_target_visible(tgt))) {
          auto ab = me.abilities()[s.reset_slot];
@@ -1020,7 +1036,7 @@ diff -ruN kvvl/src/main.cpp kopt/src/main.cpp
                  return true;
              });
      }
-@@ -1652,15 +1909,15 @@
+@@ -1652,15 +1925,15 @@
      for (int k = 0; k < 2; ++k) {
          auto& ab = abs[k];
          if (s.slots[k] == Slot::Shield && in_combat && me.health() < 0.85f * me.max_health()) {
@@ -1039,7 +1055,7 @@ diff -ruN kvvl/src/main.cpp kopt/src/main.cpp
                  });
                  if (done) return;
              }
-@@ -1795,17 +2052,29 @@
+@@ -1795,17 +2068,29 @@
  // Camps of the live groups around us, through the group handles (cheap) instead of the
  // vision scan (very expensive). Only camps whose spawn area is in view are returned, so the
  // callers' health() queries do not throw.
@@ -1071,7 +1087,7 @@ diff -ruN kvvl/src/main.cpp kopt/src/main.cpp
          if (!seen) continue;
          if (g.next_ok > 0 && g.reward_seen < 0) {  // refresh_groups saw it respawning this turn
              bool resp = false;
-@@ -1822,7 +2091,7 @@
+@@ -1822,7 +2107,7 @@
              if (resp) continue;
          }
          attempt([&] {
@@ -1080,7 +1096,7 @@ diff -ruN kvvl/src/main.cpp kopt/src/main.cpp
                  if (c.is_visible()) out.push_back(c);
              return true;
          });
-@@ -1849,12 +2118,17 @@
+@@ -1849,12 +2134,17 @@
      }
      bc::bitboard rg_tv{ bc::uninitialized };
      bool rg_tv_ok = false;
@@ -1100,7 +1116,7 @@ diff -ruN kvvl/src/main.cpp kopt/src/main.cpp
          if (!visible) continue;
  #if P_FUELCUT
          if (!rg_tv_ok) {
-@@ -1923,7 +2197,7 @@
+@@ -1923,7 +2213,7 @@
  int allies_near(State& s, bc::champion& me, vec2 at, int radius) {
      int n = 0;
      attempt([&] {
@@ -1109,7 +1125,7 @@ diff -ruN kvvl/src/main.cpp kopt/src/main.cpp
              if (!(a == me) && a.is_alive() && dist(a.position(), at) <= radius) ++n;
          return true;
      });
-@@ -2028,6 +2302,31 @@
+@@ -2028,6 +2318,67 @@
      return sp >= 0 && sp < P_PF_MAX;
  }
  
@@ -1138,57 +1154,93 @@ diff -ruN kvvl/src/main.cpp kopt/src/main.cpp
 +}
 +// fuelfit o54: true when every group has its reverse field (no computing here; see the warm-up in run_game)
 +inline bool farm_pd_done(State& s) { return s.pd_rf.size() == s.groups.size() && s.pd_rf_done == s.groups.size(); }
++// fuelfit o60: the forward walking field from pos (as choose_target always computed it) and its per-group read-out
++// (o41) into the per-position cache; also run by init_wait on the idle round for the first playing turn.
++bool farm_pd_forward(State& s, vec2 pos) {
++    return attempt([&] {
++        bc::bitboard roots, wall = s.static_block;
++        roots.set(pos);
++        wall.set(pos, false);
++        s.pdf.compute(wall, roots, s.pdv, 200);
++        return true;
++    });
++}
++void farm_pd_readout(State& s, vec2 pos) {  // the walking distance to each group, read once per tile
++    s.pd_gd.assign(s.groups.size(), -1);
++    attempt([&] {
++        farm_warmup_now(s);  // fuelfit o48: shared tile index lists, buffers without zero-fill
++        const std::vector<std::vector<int>>& gidx = s.fw_gidx;
++        static BitSnap vb;
++        static DistSnap db;
++        vb.load(s.pdv);
++        db.load(s.pdf);
++        for (std::size_t i = 0; i < s.groups.size(); ++i) {
++            int b = 1 << 20;
++            for (int k : gidx[i])
++                if ((vb.b[k >> 3] >> (k & 7)) & 1) b = std::min(b, static_cast<int>(db.d[k]));
++            s.pd_gd[i] = b < (1 << 20) ? b : -1;
++        }
++        s.pd_pos = pos;
++        return true;
++    });
++}
++bool farm_pd_prefill(State& s, vec2 pos) {
++    if (!P_PATHD || g_nopd || s.static_block.is_set(pos) || s.groups.empty()) return false;
++    if (!farm_pd_forward(s, pos)) return false;
++    farm_pd_readout(s, pos);
++    return true;
++}
  int choose_target_impl(State& s, bc::champion& me, int round) {
      FP_SCOPE(15, "choose_target");
      auto sm = read_sm();
-@@ -2076,20 +2375,42 @@
+@@ -2076,64 +2427,99 @@
              if (claim > 0 && claim - 1 < static_cast<int>(s.groups.size())) pf_claims.push_back(s.groups[claim - 1].center);
          }
      bool cached = s.pd_pos == pos && s.pd_gd.size() == s.groups.size();
 -    bool have_pd = cached || (P_PATHD && !g_nopd && attempt([&] {  // walking distance from here to every camp group
+-        bc::bitboard roots, wall = s.static_block;
+-        roots.set(pos);
+-        wall.set(pos, false);
+-        s.pdf.compute(wall, roots, s.pdv, 200);
+-        return true;
+-    }));
+-    if (have_pd && !cached) {  // the walking distance to each group, read once per tile
 +    bool have_pd = cached;
 +    if (!cached && P_PATHD && !g_nopd && farm_pd_done(s) && !s.static_block.is_set(pos)) {
 +        // fuelfit o45 (A): the group fields read at pos give the same walking distances as the forward search
-+        s.pd_gd.assign(s.groups.size(), -1);
+         s.pd_gd.assign(s.groups.size(), -1);
+-        attempt([&] {
+-            for (std::size_t i = 0; i < s.groups.size(); ++i) {
+-                int b = 1 << 20;
+-                for (auto t : s.groups[i].tiles)
+-                    if (s.pdv.is_set(t)) b = std::min(b, static_cast<int>(s.pdf.get(t)));
+-                s.pd_gd[i] = b < (1 << 20) ? b : -1;
+-            }
 +        if (attempt([&] {
 +                for (std::size_t i = 0; i < s.groups.size(); ++i)
 +                    s.pd_gd[i] = s.pd_rv[i].is_set(pos) ? static_cast<int>(s.pd_rf[i].get(pos)) : -1;
 +                return true;
 +            })) {
-+            s.pd_pos = pos;
+             s.pd_pos = pos;
+-            return true;
+-        });
 +            cached = have_pd = true;
 +        }
 +    }
-+    have_pd = have_pd || (P_PATHD && !g_nopd && attempt([&] {  // walking distance from here to every camp group
-         bc::bitboard roots, wall = s.static_block;
-         roots.set(pos);
-         wall.set(pos, false);
++    if (!cached && P_PATHD && !g_nopd) {  // walking distance from here to every camp group (fuelfit o60: shared code)
 +        s.pd_fwd_round = round;  // fuelfit o54
-         s.pdf.compute(wall, roots, s.pdv, 200);
-         return true;
-     }));
-     if (have_pd && !cached) {  // the walking distance to each group, read once per tile
-         s.pd_gd.assign(s.groups.size(), -1);
-         attempt([&] {
-+            // fuelfit o41: one export of the reached mask and one of the distances, then plain C++ over the
-+            // groups' tile indices (fixed after init_groups, computed once) instead of is_set + get per tile.
-+            farm_warmup_now(s);  // fuelfit o48: shared tile index lists, buffers without zero-fill
-+            const std::vector<std::vector<int>>& gidx = s.fw_gidx;
-+            static BitSnap vb;
-+            static DistSnap db;
-+            vb.load(s.pdv);
-+            db.load(s.pdf);
-             for (std::size_t i = 0; i < s.groups.size(); ++i) {
-                 int b = 1 << 20;
--                for (auto t : s.groups[i].tiles)
--                    if (s.pdv.is_set(t)) b = std::min(b, static_cast<int>(s.pdf.get(t)));
-+                for (int k : gidx[i])
-+                    if ((vb.b[k >> 3] >> (k & 7)) & 1) b = std::min(b, static_cast<int>(db.d[k]));
-                 s.pd_gd[i] = b < (1 << 20) ? b : -1;
-             }
-             s.pd_pos = pos;
-@@ -2103,37 +2424,71 @@
-         if (s.dash_slot < 0 || s.mp_dashholes.is_empty()) return -1;
++        have_pd = farm_pd_forward(s, pos);
++        if (have_pd) farm_pd_readout(s, pos);
+     }
+     // islefix-v1: a group with no walking path (hole-enclosed island, islands/fracture) used to be priced at
+     // 1.5x the straight-line distance, so champions walked to the hole edge and stood there for hundreds of
+     // rounds. Without a dash it is unreachable: skip it. With a dash keep it, priced as a long detour.
++    int dh_empty = -1;  // fuelfit o59: s.mp_dashholes.is_empty() asked once per call (it was one SDK call per unreachable group)
+     auto unreach = [&](int d) {
+-        if (s.dash_slot < 0 || s.mp_dashholes.is_empty()) return -1;
++        if (s.dash_slot < 0) return -1;
++        if (dh_empty < 0) dh_empty = s.mp_dashholes.is_empty() ? 1 : 0;
++        if (dh_empty) return -1;
          return d * 2 + 10;
      };
 -    auto walk = [&](const Group& g) {
@@ -1269,7 +1321,7 @@ diff -ruN kvvl/src/main.cpp kopt/src/main.cpp
          bool free_reward = g.reward_seen >= 0 && round - g.reward_seen < 30;
          double afford = std::max(1.0, mhp * (1.0 - P_RESERVE_PCT / 100.0));
          int needed = free_reward ? 1 : squad_needed(g.hp, g.str, dps, afford);
-@@ -2156,18 +2511,18 @@
+@@ -2156,18 +2542,18 @@
          double t_clear = free_reward ? 0.0 : g.hp / (dps * team);
          double incoming = g.str * t_clear / team;
          double travel = std::max(gd, wait);
@@ -1292,7 +1344,7 @@ diff -ruN kvvl/src/main.cpp kopt/src/main.cpp
          if (held) score *= P_HOLD / 100.0;
          if (lead) score *= P_GROUP_W;
          else if (lead_p && dist(g.center, *lead_p) > 8) score *= 0.3;
-@@ -2224,7 +2579,7 @@
+@@ -2224,7 +2610,7 @@
          if (s.lock_until[i] > round) d += s.lock_until[i] - round;
          if (false)  // an enemy champion next to the altar: prefer another one
              attempt([&] {
@@ -1301,7 +1353,7 @@ diff -ruN kvvl/src/main.cpp kopt/src/main.cpp
                      if (e.is_alive() && dist(e.position(), a) <= 3) { d += P_ALTAR_SAFE; break; }
                  return true;
              });
-@@ -2255,7 +2610,7 @@
+@@ -2255,7 +2641,7 @@
      int cost = std::max(0, s.lock_until[i] - round);
      if (false)
          attempt([&] {
@@ -1310,7 +1362,7 @@ diff -ruN kvvl/src/main.cpp kopt/src/main.cpp
                  if (e.is_alive() && dist(e.position(), a) <= 3) { cost += P_ALTAR_SAFE; break; }
              return true;
          });
-@@ -2275,10 +2630,9 @@
+@@ -2275,10 +2661,9 @@
  
  bool br_threat_block(State& s, vec2 pos, int round, bc::bitboard& block) {
      block = s.blocked;
@@ -1322,7 +1374,7 @@ diff -ruN kvvl/src/main.cpp kopt/src/main.cpp
          bool ok = attempt([&] {
              if (!enemy.is_alive()) return true;
              vec2 p = enemy.position();
-@@ -2320,13 +2674,43 @@
+@@ -2320,13 +2705,43 @@
  BrStatic g_brs;
  int g_brc_n = 0;
  bool br_static_ready(State& s) {
@@ -1334,11 +1386,12 @@ diff -ruN kvvl/src/main.cpp kopt/src/main.cpp
 +// fuelfit o58: one altar field; true if one was built (false when done or not applicable)
 +bool br_static_one(State& s) {
 +    if (!P_BRCACHE || s.altars.size() > 64) return false;
-+    if (!g_brs.init) {
-+        g_brs.init = true;
-+        g_brs.f.resize(s.altars.size());
-+        g_brs.reached.resize(s.altars.size());
-+    }
+     if (!g_brs.init) {
+         g_brs.init = true;
+         g_brs.f.resize(s.altars.size());
+         g_brs.reached.resize(s.altars.size());
+     }
+-    while (g_brs.built < static_cast<int>(s.altars.size()) && fuel_ok(P_BRC_BUILD)) {
 +    if (g_brs.built >= static_cast<int>(s.altars.size())) return false;
 +    const int i = g_brs.built++;
 +    attempt([&] {
@@ -1357,18 +1410,17 @@ diff -ruN kvvl/src/main.cpp kopt/src/main.cpp
 +}
 +void br_static_step(State& s, int round) {
 +    if (!P_BRCACHE || round < P_BRC_R0 || round < s.play_from + 3 || s.altars.size() > 64) return;  // fuelfit o58
-     if (!g_brs.init) {
-         g_brs.init = true;
-         g_brs.f.resize(s.altars.size());
-         g_brs.reached.resize(s.altars.size());
-     }
--    while (g_brs.built < static_cast<int>(s.altars.size()) && fuel_ok(P_BRC_BUILD)) {
++    if (!g_brs.init) {
++        g_brs.init = true;
++        g_brs.f.resize(s.altars.size());
++        g_brs.reached.resize(s.altars.size());
++    }
 +    static const int per = (static_cast<long>(bc::map::width()) * static_cast<long>(bc::map::height()) > 2500) ? 1 : P_BRC_PER;  // fuelfit o35
 +    for (int k = 0; k < per && g_brs.built < static_cast<int>(s.altars.size()); ++k) {
          const int i = g_brs.built++;
          attempt([&] {
              bc::bitboard roots;
-@@ -2341,7 +2725,6 @@
+@@ -2341,7 +2756,6 @@
              return true;
          });
      }
@@ -1376,7 +1428,7 @@ diff -ruN kvvl/src/main.cpp kopt/src/main.cpp
  }
  
  bool br_plan(State& s, vec2 pos, int round) {
-@@ -2369,7 +2752,7 @@
+@@ -2369,7 +2783,7 @@
              return true;
          });
      }
@@ -1385,7 +1437,7 @@ diff -ruN kvvl/src/main.cpp kopt/src/main.cpp
      return attempt([&] {
          bc::bitboard block = s.blocked, roots, reached;
          block.set(pos, false);
-@@ -2378,7 +2761,6 @@
+@@ -2378,7 +2792,6 @@
          field.compute(block, roots, reached, 400);
          std::vector<int> ordinary(s.altars.size(), -1), safe(s.altars.size(), -1);
          for (std::size_t i = 0; i < s.altars.size(); ++i) {
@@ -1393,7 +1445,7 @@ diff -ruN kvvl/src/main.cpp kopt/src/main.cpp
              if (s.altar_ok[i]) ordinary[i] = br_ring_distance(field, reached, block, s.altars[i]);
          }
          if (br_policy == 2) {
-@@ -2387,8 +2769,7 @@
+@@ -2387,8 +2800,7 @@
              bc::bitboard safe_reached;
              safe_field.compute(s.br_risk_block, roots, safe_reached, 400);
              for (std::size_t i = 0; i < s.altars.size(); ++i) {
@@ -1403,7 +1455,7 @@ diff -ruN kvvl/src/main.cpp kopt/src/main.cpp
              }
          }
          int best = -1, best_cost = 1 << 30, best_home = 1 << 30;
-@@ -2442,9 +2823,12 @@
+@@ -2442,9 +2854,12 @@
          if (ring.is_empty()) return true;
          bool open = false;
          attempt([&] {
@@ -1419,7 +1471,7 @@ diff -ruN kvvl/src/main.cpp kopt/src/main.cpp
              return true;
          });
          return !open;
-@@ -2517,7 +2901,7 @@
+@@ -2517,7 +2932,7 @@
                      int distance = field.get(p);
                      if (distance < bestd) { best = p; bestd = distance; }
                  }
@@ -1428,7 +1480,7 @@ diff -ruN kvvl/src/main.cpp kopt/src/main.cpp
          }
      }
      if (me.can_move())
-@@ -2581,7 +2965,7 @@
+@@ -2581,7 +2996,7 @@
          return acted;
      }
      bool moved = false, used_safe = false;
@@ -1437,7 +1489,7 @@ diff -ruN kvvl/src/main.cpp kopt/src/main.cpp
          used_safe = true;
          moved = br_safe_move(s, me, *a);
          if (!moved) ++s.br_stops;
-@@ -2600,7 +2984,7 @@
+@@ -2600,7 +3015,7 @@
      else still_n = 0;
      still_pos = me.position();
      still_r = round;
@@ -1446,7 +1498,7 @@ diff -ruN kvvl/src/main.cpp kopt/src/main.cpp
          still_n = 0;
          bc::bitboard ring;
          ring.draw_chebyshev(*a, 1.0f);
-@@ -2666,7 +3050,7 @@
+@@ -2666,7 +3081,7 @@
      });
      std::vector<std::pair<vec2, double>> en;
      attempt([&] {
@@ -1455,7 +1507,7 @@ diff -ruN kvvl/src/main.cpp kopt/src/main.cpp
              try {
                  if (!c.is_alive() || s.en_spawn.is_set(c.position())) continue;
                  en.push_back({c.position(), c.health()});
-@@ -2735,7 +3119,7 @@
+@@ -2735,7 +3150,7 @@
      auto rank_of = [&](const std::string& n, bool ranged) { return vc ? vesper::carry_rank(n) : champ::cap_rank(n, ranged); };
      const int my_rank = prio_r ? rank_of(s.name, me.attack_range() > 1) : 0;
      std::vector<bc::champion> seen;  // P_FUELGUARD: allies in vision (position() of any other one throws)
@@ -1464,7 +1516,7 @@ diff -ruN kvvl/src/main.cpp kopt/src/main.cpp
      attempt([&] {
      auto allies = my_roster(s);
      for (std::size_t k = 0; k < allies.size() && !other; ++k) {
-@@ -2811,7 +3195,7 @@
+@@ -2811,7 +3226,7 @@
      const vec2 pos = me.position();
      if (!g.mask.is_set(pos) || !me.can_move() || !fuel_ok(28000)) return false;
      bool present = false;
@@ -1473,7 +1525,7 @@ diff -ruN kvvl/src/main.cpp kopt/src/main.cpp
          attempt([&] {
              if (a == me || !cf_available(a) || !g.mask.is_set(a.position())) return false;
              // In particular do not rely on a recalling/teleporting ally remaining.
-@@ -3096,7 +3480,7 @@
+@@ -3096,7 +3511,7 @@
                  return true;
              });
              std::vector<vec2> ally_positions;
@@ -1482,7 +1534,7 @@ diff -ruN kvvl/src/main.cpp kopt/src/main.cpp
                  if (!fuel_ok(11500)) break;
                  attempt([&] {
                      if (!(ally == me) && ally.is_alive() && ally.is_visible())
-@@ -3367,7 +3751,7 @@
+@@ -3367,7 +3782,7 @@
          if (exclusive && (!allow_exclusive || free_only || escape)) continue;
          std::optional<vec2> best;
          double best_score = -1e30;
@@ -1491,7 +1543,7 @@ diff -ruN kvvl/src/main.cpp kopt/src/main.cpp
              if (!fuel_ok(8000)) return false;
              attempt([&] {
                  if (!c.is_visible() || !c.is_alive() || c.health() <= 0) return false;
-@@ -3382,7 +3766,7 @@
+@@ -3382,7 +3797,7 @@
                  return true;
              });
          }
@@ -1500,7 +1552,7 @@ diff -ruN kvvl/src/main.cpp kopt/src/main.cpp
              if (track_root && exclusive) s.rooted_r = static_cast<int>(bc::round_number());
              return true;
          }
-@@ -3414,13 +3798,11 @@
+@@ -3414,13 +3829,11 @@
  int cr_return_walk(State& s, vec2 pos, int round) {
      if (!s.cr_home_ready && round >= s.cr_home_retry) {
          s.cr_home_retry = round + 16;
@@ -1519,7 +1571,7 @@ diff -ruN kvvl/src/main.cpp kopt/src/main.cpp
      }
      if (!s.cr_home_ready || !s.cr_home_seen.is_set(pos)) return -1;
      return static_cast<int>(s.cr_home_df.get(pos));
-@@ -3444,6 +3826,21 @@
+@@ -3444,6 +3857,21 @@
      return result;
  }
  
@@ -1541,7 +1593,7 @@ diff -ruN kvvl/src/main.cpp kopt/src/main.cpp
  void play_turn(State& s) {
      bc::champion& me = bc::self();
      FP(1, "init");
-@@ -3451,17 +3848,21 @@
+@@ -3451,17 +3879,21 @@
          // P_FUELGUARD: start-up can eat most of the first turn's double budget on big maps; the turn then ends
          // cleanly on the spawn (start-up finishes next turn) rather than run out half way and play the rest late.
          if (!init(s, me)) {
@@ -1568,7 +1620,7 @@ diff -ruN kvvl/src/main.cpp kopt/src/main.cpp
  
      if (!me.is_alive()) {
          g_mode = "dead";
-@@ -3531,10 +3932,14 @@
+@@ -3531,10 +3963,14 @@
      FP(5, "foes");
  
      std::vector<Foe> foes;
@@ -1585,7 +1637,7 @@ diff -ruN kvvl/src/main.cpp kopt/src/main.cpp
              f.d = dist(f.p, pos);
              attempt([&] {
                  f.gems = static_cast<int>(c.gem_count());
-@@ -3544,7 +3949,6 @@
+@@ -3544,7 +3980,6 @@
                  f.channeling = c.is_submitting_gems() || c.is_recalling();
                  return true;
              });
@@ -1593,7 +1645,7 @@ diff -ruN kvvl/src/main.cpp kopt/src/main.cpp
              return true;
          });
      }
-@@ -3552,6 +3956,7 @@
+@@ -3552,6 +3987,7 @@
          // Away: it stepped farther from where we stood, or toward its spawn without coming closer to us;
          // it stays "away" for 3 rounds unless it comes back within 2 of us.
          std::vector<Seen> now;
@@ -1601,7 +1653,7 @@ diff -ruN kvvl/src/main.cpp kopt/src/main.cpp
          for (auto& f : foes) {
              int until = -1;
              if (s.seen_r == round - 1)
-@@ -3566,7 +3971,7 @@
+@@ -3566,7 +4002,7 @@
                      }
              if (f.d <= 2) until = -1;
              f.away = until >= round;
@@ -1610,7 +1662,7 @@ diff -ruN kvvl/src/main.cpp kopt/src/main.cpp
          }
          s.seen = std::move(now);
          s.seen_r = round;
-@@ -3603,7 +4008,7 @@
+@@ -3603,7 +4039,7 @@
              });
          }
          if (any) {
@@ -1619,7 +1671,7 @@ diff -ruN kvvl/src/main.cpp kopt/src/main.cpp
                  bc::bitboard out = ~zone & ~s.blocked;
                  if (step_towards(s, me, out, false)) { pos = me.position(); g_mode = "mono-out"; }
              }
-@@ -3613,15 +4018,19 @@
+@@ -3613,15 +4049,19 @@
      }
  
      bool awake_camp_near = false;
@@ -1641,7 +1693,7 @@ diff -ruN kvvl/src/main.cpp kopt/src/main.cpp
      int nearest_foe = 99;
      for (auto& f : foes) nearest_foe = std::min(nearest_foe, f.d);
      bool in_combat = nearest_foe <= 4 || awake_camp_near;
-@@ -3807,7 +4216,7 @@
+@@ -3807,7 +4247,7 @@
          if (k) {
              int nb = 1, eb = 0;
              attempt([&] {
@@ -1650,7 +1702,7 @@ diff -ruN kvvl/src/main.cpp kopt/src/main.cpp
                      if (!(a == me) && a.is_alive() && !a.is_recalling() && dist(a.position(), pos) <= 4) ++nb;
                  return true;
              });
-@@ -3828,7 +4237,12 @@
+@@ -3828,7 +4268,12 @@
                  }
                  if (hit) ++g_fin_hit;
                  if (cast || hit) {
@@ -1664,7 +1716,7 @@ diff -ruN kvvl/src/main.cpp kopt/src/main.cpp
                      return;
                  }
              }
-@@ -3890,7 +4304,7 @@
+@@ -3890,7 +4335,7 @@
                  if (f.c == *s.chase && f.d <= 6 && hurt(f)) k = &f;
          if (!k) {
              std::vector<vec2> mates;
@@ -1673,7 +1725,7 @@ diff -ruN kvvl/src/main.cpp kopt/src/main.cpp
                  attempt([&] {
                      if (!(a == me) && a.is_alive()) mates.push_back(a.position());
                      return true;
-@@ -3910,7 +4324,7 @@
+@@ -3910,7 +4355,7 @@
          }
          if (!k && P_TF_GUARD) {  // a rival on one of our hurt champions (within 3 of it) is the next target
              std::vector<vec2> hurt_mates;
@@ -1682,7 +1734,7 @@ diff -ruN kvvl/src/main.cpp kopt/src/main.cpp
                  attempt([&] {
                      if (!(a == me) && a.is_alive() && a.health() < 0.5f * a.max_health()) hurt_mates.push_back(a.position());
                      return true;
-@@ -3970,7 +4384,7 @@
+@@ -3970,7 +4415,7 @@
          for (auto& f : foes)
              if (!nf || f.d < nf->d) nf = &f;
          double ours = hp, theirs = 0;
@@ -1691,7 +1743,7 @@ diff -ruN kvvl/src/main.cpp kopt/src/main.cpp
              attempt([&] {
                  if (!(a == me) && a.is_alive() && dist(a.position(), pos) <= 6) ours += a.health();
                  return true;
-@@ -3990,7 +4404,13 @@
+@@ -3990,7 +4435,13 @@
              g_mode = "bcf";
              ++g_bcf;
              if (g_bcf_last != round - 1)
@@ -1706,7 +1758,7 @@ diff -ruN kvvl/src/main.cpp kopt/src/main.cpp
              g_bcf_last = round;
              if (engage(s, me, tgt->c, tgt->p, true, true)) return;
          } else if (P_BCF >= 2 && dec == bcf::LEAVE) {
-@@ -4001,7 +4421,7 @@
+@@ -4001,7 +4452,7 @@
      }
  #endif
      std::vector<vec2> allies;
@@ -1715,7 +1767,7 @@ diff -ruN kvvl/src/main.cpp kopt/src/main.cpp
          attempt([&] {
              if (!(a == me) && a.is_alive()) allies.push_back(a.position());
              return true;
-@@ -4056,7 +4476,7 @@
+@@ -4056,7 +4507,7 @@
              return;
          }
          double ours = hp, theirs = 0;
@@ -1724,7 +1776,7 @@ diff -ruN kvvl/src/main.cpp kopt/src/main.cpp
              attempt([&] {
                  if (!(a == me) && a.is_alive() && dist(a.position(), pos) <= 6) ours += a.health();
                  return true;
-@@ -4070,7 +4490,7 @@
+@@ -4070,7 +4521,7 @@
              for (auto& ap : allies)
                  if (dist(ap, tgt->p) <= 8) ++nb;
              attempt([&] {
@@ -1733,7 +1785,7 @@ diff -ruN kvvl/src/main.cpp kopt/src/main.cpp
                      if (!(a == me) && a.is_alive() && dist(a.position(), tgt->p) <= 8) oh += a.health();
                  return true;
              });
-@@ -4152,7 +4572,7 @@
+@@ -4152,7 +4603,7 @@
          if (PR.outnum && !on_spawn && !(killable && reachable) && nearest_foe <= PR.outnum) {
              int nb = 1, eb = 0;
              attempt([&] {
@@ -1742,7 +1794,7 @@ diff -ruN kvvl/src/main.cpp kopt/src/main.cpp
                      if (!(a == me) && a.is_alive() && !a.is_recalling() && dist(a.position(), pos) <= PR.outnum) ++nb;
                  return true;
              });
-@@ -4293,13 +4713,15 @@
+@@ -4293,13 +4744,15 @@
          if (chain_gems && gems < chain_gems && !late && ad > 2) {
              auto sm = read_sm();
              int gi = -1, gd = 99;
@@ -1759,7 +1811,7 @@ diff -ruN kvvl/src/main.cpp kopt/src/main.cpp
                  gi = i;
                  gd = d;
              }
-@@ -4400,7 +4822,7 @@
+@@ -4400,7 +4853,7 @@
      // the top 10's paired rounds are walking or waiting together. On the way to our camp (4+ tiles from it), an ally in
      // sight 5-10 tiles away whose claimed camp is within P_PF_R of ours: step toward it, at most P_PF_WAIT rounds per target.
      if (P_PF_WALK && pf_on(round) && !on_spawn && foes.empty() && s.target >= 0 && s.target < static_cast<int>(s.groups.size()) &&
@@ -1768,7 +1820,7 @@ diff -ruN kvvl/src/main.cpp kopt/src/main.cpp
          static int pw_target = -1, pw_n = 0;
          if (pw_target != s.target) { pw_target = s.target; pw_n = 0; }
          if (pw_n < P_PF_WAIT) {
-@@ -4473,15 +4895,20 @@
+@@ -4473,15 +4926,20 @@
      attempt([&] {
          int round = static_cast<int>(bc::round_number());
          bool every = false;
@@ -1795,7 +1847,7 @@ diff -ruN kvvl/src/main.cpp kopt/src/main.cpp
          return true;
      });
  }
-@@ -4495,20 +4922,31 @@
+@@ -4495,20 +4953,31 @@
      if (!s.ready || !me.is_alive() || !me.can_cast()) return;
      if (me.is_submitting_gems() || me.is_teleporting() || me.is_recalling()) return;
      if (!fuel_ok(6000)) return;
@@ -1832,7 +1884,7 @@ diff -ruN kvvl/src/main.cpp kopt/src/main.cpp
              return true;
          });
      if (foes.empty()) {
-@@ -4520,9 +4958,9 @@
+@@ -4520,9 +4989,9 @@
      if (false) {
          int nf = 0, na = 1;
          attempt([&] {
@@ -1844,7 +1896,7 @@ diff -ruN kvvl/src/main.cpp kopt/src/main.cpp
                  if (!(a == me) && a.is_alive() && dist(a.position(), pos) <= 4) ++na;
              return true;
          });
-@@ -4533,7 +4971,7 @@
+@@ -4533,7 +5002,7 @@
      bool guard = false;
      if (false) {
          if (me.health() < P_UNI_STAND_HP / 100.0f * me.max_health()) stand_ok = false;
@@ -1853,7 +1905,7 @@ diff -ruN kvvl/src/main.cpp kopt/src/main.cpp
              attempt([&] {
                  if (!c.is_alive() || s.en_spawn.is_set(c.position())) return false;
                  Foe f{c, c.position(), c.health(), dist(c.position(), pos), 0, false};
-@@ -4550,7 +4988,7 @@
+@@ -4550,7 +5019,7 @@
          } else {
              std::vector<Threat> th;
              attempt([&] {
@@ -1862,7 +1914,7 @@ diff -ruN kvvl/src/main.cpp kopt/src/main.cpp
                      if (!c.is_alive() || s.en_spawn.is_set(c.position())) continue;
                      int ar = static_cast<int>(c.attack_range());
                      th.push_back(threat_of(c, c.position(), ar <= 1 ? 2 : ar + 1));
-@@ -4616,10 +5054,10 @@
+@@ -4616,10 +5085,10 @@
              }
              if (s.slots[k] == Slot::Targeted) {
                  if (!attempt([&] { return ab.can_target_enemies(); })) continue;
@@ -1875,7 +1927,7 @@ diff -ruN kvvl/src/main.cpp kopt/src/main.cpp
              }
              if (cast && ex && pre) s.rooted_r = static_cast<int>(bc::round_number());
          }
-@@ -4635,7 +5073,7 @@
+@@ -4635,7 +5104,7 @@
              int hits = 0;
              vec2 c = aoe_centre(s, me, k, weak->p, &hits);
              if (hits < 2) continue;
@@ -1884,7 +1936,7 @@ diff -ruN kvvl/src/main.cpp kopt/src/main.cpp
              if (cast && ex && pre) s.rooted_r = static_cast<int>(bc::round_number());
          }
      }
-@@ -4651,7 +5089,7 @@
+@@ -4651,7 +5120,7 @@
      if (!me.is_alive() || !me.can_attack()) return;
      vec2 pos = me.position();
      std::vector<Foe> foes;
@@ -1893,7 +1945,7 @@ diff -ruN kvvl/src/main.cpp kopt/src/main.cpp
          attempt([&] {
              if (!c.is_alive() || s.en_spawn.is_set(c.position())) return false;
              foes.push_back(Foe{c, c.position(), c.health(), dist(c.position(), pos), 0, false});
-@@ -4663,12 +5101,12 @@
+@@ -4663,12 +5132,12 @@
  // P_WARD (vision-v1): a champion in a bush is hidden from anyone not next to it (local probe: 0 of 310 in-bush
  // rivals 3-6 tiles away were seen, 64% of open-ground ones), and rivals ward bushes ~270 times a game while we never
  // did. With the ward ready, put it where it lights the most bush tiles within P_WARD_R that we cannot see now.
@@ -1907,7 +1959,7 @@ diff -ruN kvvl/src/main.cpp kopt/src/main.cpp
      bc::champion& me = bc::self();
      if (!me.is_alive() || me.is_recalling() || me.is_teleporting() || me.is_submitting_gems()) return;
      int cd = 1;
-@@ -4676,15 +5114,24 @@
+@@ -4676,15 +5145,24 @@
      if (cd > 0) return;
      vec2 pos = me.position();
      if (s.my_spawn.is_set(pos)) return;
@@ -1934,7 +1986,7 @@ diff -ruN kvvl/src/main.cpp kopt/src/main.cpp
      int best_n = 0, tried = 0;
      vec2 best = pos;
      for (auto p : cand) {
-@@ -4726,7 +5173,7 @@
+@@ -4726,7 +5204,7 @@
          bc::champion& me = bc::self();
          if (r >= 60 && r <= 150 && me.is_alive() && !s.my_spawn.is_set(me.position())) {
              int md = 20;
@@ -1943,7 +1995,7 @@ diff -ruN kvvl/src/main.cpp kopt/src/main.cpp
                  if (!(a == me) && a.is_alive()) md = std::min(md, dist(a.position(), me.position()));
              ++n; alone += md > 4; dsum += md;
          }
-@@ -4774,6 +5221,7 @@
+@@ -4774,6 +5252,7 @@
  }
  
  [[noreturn]] void run_game() {
@@ -1951,7 +2003,7 @@ diff -ruN kvvl/src/main.cpp kopt/src/main.cpp
      State s;
      bool logged_init = false;
      for (;;) {
-@@ -4782,6 +5230,7 @@
+@@ -4782,6 +5261,7 @@
          try {
              if (s.sweep >= 3) spell_sweep(s, true);  // before moving: most targeted spells cannot be cast after a step
              play_turn(s);
@@ -1959,7 +2011,7 @@ diff -ruN kvvl/src/main.cpp kopt/src/main.cpp
              income_log(s);
              pe_update(s);
              pf_log(s);
-@@ -4807,6 +5256,13 @@
+@@ -4807,6 +5287,13 @@
              logged_init = true;
              log_init(s);
          }
@@ -1975,7 +2027,7 @@ diff -ruN kvvl/src/main.cpp kopt/src/main.cpp
      }
 diff -ruN kvvl/src/mapplan_game.h kopt/src/mapplan_game.h
 --- kvvl/src/mapplan_game.h	2026-10-23 22:47:10.000000000 +0000
-+++ kopt/src/mapplan_game.h	2026-10-25 02:39:00.830609703 +0000
++++ kopt/src/mapplan_game.h	2026-10-25 02:53:44.911854671 +0000
 @@ -47,8 +47,19 @@
      if (s.dh_stage == 0) {
          s.mp_hole_all = bc::map::holes();
@@ -2050,7 +2102,7 @@ diff -ruN kvvl/src/mapplan_game.h kopt/src/mapplan_game.h
                  std::vector<vec2> st;
 diff -ruN kvvl/src/params.h kopt/src/params.h
 --- kvvl/src/params.h	2026-10-24 17:10:56.000000000 +0000
-+++ kopt/src/params.h	2026-10-25 02:39:00.703771158 +0000
++++ kopt/src/params.h	2026-10-25 02:53:44.815800370 +0000
 @@ -218,7 +218,7 @@
  #define P_WARD 1           // vision-v1: ward the unseen bushes near us whenever the ward is ready
  #define P_WARD_R 6         // look for dark bush tiles within this Chebyshev radius
@@ -2075,7 +2127,7 @@ diff -ruN kvvl/src/params.h kopt/src/params.h
  #endif
 diff -ruN kvvl/src/track.h kopt/src/track.h
 --- kvvl/src/track.h	2026-10-23 22:47:10.000000000 +0000
-+++ kopt/src/track.h	2026-10-25 02:39:00.224343089 +0000
++++ kopt/src/track.h	2026-10-25 02:53:44.324703546 +0000
 @@ -94,7 +94,7 @@
      }
      }
@@ -2087,7 +2139,7 @@ diff -ruN kvvl/src/track.h kopt/src/track.h
                  if (M.aroster[j] == a) { k = j; break; }
 diff -ruN kvvl/src/utility.h kopt/src/utility.h
 --- kvvl/src/utility.h	2026-10-23 22:47:10.000000000 +0000
-+++ kopt/src/utility.h	2026-10-25 02:39:00.303283607 +0000
++++ kopt/src/utility.h	2026-10-25 02:53:44.396704207 +0000
 @@ -29,6 +29,6 @@
              const int score = dist(a, s.en_center);
              if (score < rank) { rank = score; best = static_cast<int>(i); }
@@ -2098,7 +2150,7 @@ diff -ruN kvvl/src/utility.h kopt/src/utility.h
  }
 diff -ruN kvvl/src/verdict.h kopt/src/verdict.h
 --- kvvl/src/verdict.h	2026-10-23 22:47:10.000000000 +0000
-+++ kopt/src/verdict.h	2026-10-25 02:39:00.224649451 +0000
++++ kopt/src/verdict.h	2026-10-25 02:53:44.325144693 +0000
 @@ -31,7 +31,7 @@
      vec2 pos = me.position();
      double oh = me.health(), od = fight::unit_dps(me), th = 0, td = 0;
@@ -2110,7 +2162,7 @@ diff -ruN kvvl/src/verdict.h kopt/src/verdict.h
                  if (dist(a.position(), pos) > 6) continue;
 diff -ruN kvvl/src/vesper.h kopt/src/vesper.h
 --- kvvl/src/vesper.h	2026-10-24 17:10:56.000000000 +0000
-+++ kopt/src/vesper.h	2026-10-25 02:39:00.592855421 +0000
++++ kopt/src/vesper.h	2026-10-25 02:53:44.719967563 +0000
 @@ -36,19 +36,25 @@
                      };
                      int bs = sc(pos);

@@ -114,8 +114,15 @@ recall 60k / 32k, shop 55k / 32k, init(dead-shop) 50k / 22k, decide 42k / 25k.
 | b14 | b12 + o35 + o57 | +9.5 | +14.4 | 0.5% |
 | **b15** | b12 + o35 (sin o57) | **+11.8** | **+17.0** | 2% |
 | b16 | b15 + o58/o59 | +11.2 | +14.4 | 2% |
-| b19 | b16 + o60-o62 exactas | pendiente | pendiente | local 0/52 + 0/56 |
-| b20hp | b19 + o70 (hitpass-v2 sin fuel) | pendiente | pendiente | local 0/52 |
+| b18 | b19 + o57 | +8.3 | +15.0 | 2% (+200 15%, +2000 68%) |
+| b19 | b16 + o60-o62 exactas | +6.0 | +17.0 | 2% (+200 19%, +2000 73%) |
+| b20hp | b19 + o70 (hitpass-v2 sin fuel) | pendiente | pendiente | local 0/52, lejos 1/56 (r1322) |
+| b21hp | **b15 + o70** (hitpass sobre la base elegida) | pendiente | pendiente | local en marcha |
+
+**Base elegida: b15.** b19 (o58-o62, exactas a fuel ilimitado) pierde 5.8 de J2 (cambia 189/800, lejanos +19 -> +3,
+castigadores +23 -> +11) sin ganar determinismo: a fuel normal el primer turno de juego en mapas grandes sigue por
+encima de 86k y el trabajo extra del turno de espera mueve dónde se corta. b16 ya había perdido reserva (+14.4). o58-o62
+quedan fuera (opts_off/) hasta que el turno de espera quepa de verdad en 100x100.
 
 El PC recomienda b15 como base; o57 (esperar rondas según modelo de coste) cuesta -2.7 de reserva y se descarta
 (opts_off/o57). pA (o61 antiguo, vkite-v3+mstick) sobre b6: J2 +6.7 frente a +9.1 -> descartada. monoguard, vco,

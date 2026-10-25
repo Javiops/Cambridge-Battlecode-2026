@@ -178,3 +178,24 @@ b14 (integrator: b12 + o35 altar fields 1/turn on big maps + o57 first playing r
 same panels (02:15 UTC): far 56: 15 changed, net +5 (bar 7.7), wins 36 -> 41/56, a14 -0.106 -> +0.029 (below o52's
 +0.131: the later first round on 100x100 maps costs early state, not results); near 80: 15 changed, net +9 (bar 7.7,
 passes), WR 0.66 -> 0.78, a14 +0.437 -> +0.700. vs o52-on-b10: far +1/11, near +7/11.
+
+## First playing turn on 100x100 maps (b16, 02:40-03:00 UTC; prof_fp48 printing every turn <= r8; 8 games)
+
+Measured (per champion, unlimited fuel): ambush r4 131-162k, big_world r5 155-171k, islands r4 104-126k, road_of_riches
+r4 102-113k. Parts: choose_target 38-57k (forward field 26-31k + o41 read-out 6-16k + K-cut/score), recall section
+26-31k (cr_return_walk computes the home field on its first call: recall thread), br_static altar field 23-27k (o58 moves
+it), step_towards 16-40k (goal search 11-14k, dash-hole search 14-20k, move 8k), fight 6k, decide 3.6k, post 6.5k.
+On islands/road_of_riches the forward field is cheap (6k: few passable tiles) but choose_target still paid 20-25k outside
+the scoring loop: unreach() asked s.mp_dashholes.is_empty() (SDK, ~200) for every unreachable group, twice per call.
+
+- **o59_unreach.py** (exact): is_empty() once per choose_target call. Saves 7k (big_world) to 11-17k (islands) per call,
+  every call, not only the first.
+- **o60_pdprefill.py** (exact): the forward field from the spawn and its read-out are computed in init_wait (idle round),
+  into the per-position cache; the first turn finds `cached` and skips both (keyed by position: a moved champion misses
+  and pays as before). The first playing turn is marked as having paid its field so the o54 warm-up slot skips it
+  (otherwise the end-of-turn reverse field, which profiles in the "log" section, ate the saving).
+  First turn after o59+o60: ambush 100-130k, big_world 116-131k, islands 91-108k, road_of_riches 87-99k.
+  Idle round cost grows by ~14k (prefill 32k minus one reverse field less).
+What is left on the first turn that is not the engine's goal search: recall home field 26-31k and altar field 23-27k
+(both static: idle-round material), then ambush/big_world would be ~50-80k. Exactness runs (56 far + 80 near vs b16) in
+progress.

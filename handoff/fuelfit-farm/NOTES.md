@@ -732,3 +732,15 @@ range-3-4 presence (16% vs 9%: the top 10 keep ranged champions and extra member
 local panels are prediction only; the one local requirement is beating kvvl head-to-head (ws/h2h.sh NAME, 26 near maps x
 2 sides). b35 loses online near maps (-4 vs kvvl, fight-camp deaths); the stall thread is isolating the piece. Running h2h
 vs kvvl for b35, o79b, o81 v2, o70 to know which candidates pass the local gate.
+
+### Head-to-head vs kvvl (ws/h2h.sh: 26 near maps x 2 sides, 13:40 UTC)
+| bot | W/52 | net gems | deaths <= r100 |
+|---|---|---|---|
+| b35 | 34 | +15102 | 46 |
+| b35 + o70 incoming50 | 35 | +10013 | 39 |
+| b35 + o79b nohold | 31 | +9507 | 43 |
+| b35 + o81 v2 0.75 | 29 | +6217 | 52 |
+| b35 + o81 v2 0.50 | 31 | +8196 | 46 |
+All pass the local gate (> 26) but only o70 is at the base's level; nohold is 3 below b35 here while +1 on the rival
+panel: at this size (52 games) a 3-game difference is noise, and b35 itself wins 34/52 locally while losing -4 online, so
+the head-to-head is a weak predictor too. Candidates for online over the next base: incoming50 first, nohold second.

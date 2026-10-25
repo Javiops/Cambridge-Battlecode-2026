@@ -581,12 +581,12 @@ in the right direction but only a fifth of the way to the top 10 (2.27 elk captu
 champions into groups they cannot finish on the sparse 100x100 maps. P_INC_PCT 50 also drops starvation (4 -> 1) while
 winning ambush/expanse/great_wall/rows; it stays the only PC candidate of this line (zips/incoming50-b35.zip).
 
-### o70 variant P_SHAREEXP 40 (10-25 13:10 UTC; the reward of a group is ONE pickup for one champion, so the value share
+### o70 variant P_SHAREEXP 40 (10-25 11:05 UTC; the reward of a group is ONE pickup for one champion, so the value share
 by team^0.75 was suspected of keeping champions off big groups): near 62/80 (+26394, 50 deaths) = b35; far 46/56
 (+14529, 40 deaths: great_wall 13, starvation 7) vs 48. Elk+gem captures unchanged vs o70 (1.01 / 1.32 per game r0-150 /
 r150-300), group gems r0-300 234 -> 207. The share exponent does not drive the elk choice; discarded.
 
-### Why o70 loses starvation (12:15 UTC; far_b35 vs far_e70 statistics + replay camp map)
+### Why o70 loses starvation (11:15 UTC; far_b35 vs far_e70 statistics + replay camp map)
 starvation (80x80): 22 gold clusters in pairs/triples, two monoliths (200 gems each) and ONE gem group: 4 elks + 4 gold + 4
 gem clusters (240 strength, 9600 hp, 88 gems, 440 gold) with a 4-cluster gem group next to it. b35 4/4, b35 + o70 1/4.
 Deaths per game: b35 2/7/8/9 (camp deaths 1/0/3/3), o70 21/29/15/25 (camp deaths 9/26/11/17), all after r300, 71 of them

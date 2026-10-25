@@ -3,6 +3,7 @@ import sys
 d=sys.argv[1]; p=d+'/main.cpp'; s=open(p,newline='').read()
 def rep(a,b):
     global s
+    if s.count(a)==0: print('ct_prof: anchor skipped:', a.strip().splitlines()[0][:70]); return
     assert s.count(a)==1,(a,s.count(a)); s=s.replace(a,b)
 rep("""    FP_SCOPE(15, "choose_target");
     auto sm = read_sm();
@@ -27,6 +28,10 @@ rep("""    bool cached = s.pd_pos == pos && s.pd_gd.size() == s.groups.size();
     bool have_pd =""","""    fpx.reset(); fpx.emplace(23);
     bool cached = s.pd_pos == pos && s.pd_gd.size() == s.groups.size();
     bool have_pd =""")
+rep("""    bool cached = s.pd_pos == pos && s.pd_gd.size() == s.groups.size();
+    bool have_pd = cached;""","""    fpx.reset(); fpx.emplace(23);
+    bool cached = s.pd_pos == pos && s.pd_gd.size() == s.groups.size();
+    bool have_pd = cached;""")
 rep("""    if (have_pd && !cached) {  // the walking distance to each group, read once per tile""","""    fpx.reset(); fpx.emplace(25);
     if (have_pd && !cached) {  // the walking distance to each group, read once per tile""")
 rep("""    for (int i = 0; i < static_cast<int>(s.groups.size()); ++i) {
@@ -37,6 +42,8 @@ rep("""    for (int i = 0; i < static_cast<int>(s.groups.size()); ++i) {
         Group& g = s.groups[i];
         if (g.bad_until > round) continue;
         bool lead = i == lead_group;""")
+rep("""    struct GroupConst { bool near_en, half; double cycle; };""","""    fpx.reset(); fpx.emplace(27);
+    struct GroupConst { bool near_en, half; double cycle; };""")
 # step_towards
 rep("""    vec2 pos = me.position();
     bc::bitboard goals = goals_in & ~s.blocked;

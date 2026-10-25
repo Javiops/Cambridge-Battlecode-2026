@@ -21,4 +21,4 @@ def pct(h,q):
 print(f"{'id':16s} {'turns>0':>8s} {'p50':>5s} {'p90':>5s} {'p99':>5s} {'p99.9':>6s} {'max':>6s}  (k fuel; turns with cost>=1k counted from bucket 1)")
 for k in sorted(H):
     h=H[k]; n=sum(h.values()); nz=n-h.get(0,0)
-    print(f"{N.get(k,k):16s} {nz/n:8.1%} {pct(h,.5):5d} {pct(h,.9):5d} {pct(h,.99):5d} {pct(h,.999):6d} {M[k]/1000:6.1f}")
+    print(f"{str(N.get(k,k)):16s} {nz/n:8.1%} {pct(h,.5):5d} {pct(h,.9):5d} {pct(h,.99):5d} {pct(h,.999):6d} {M[k]/1000:6.1f}")

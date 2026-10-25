@@ -34,3 +34,15 @@ Cada error del motor lanzado y capturado por `attempt()` cuesta ~5-8k de fuel (l
 los más comunes: 32 "Destination is unreachable" (365), 97 "Unit is not in vision" (169), 63 "Champion cannot act" (118),
 42 "Target must be a visible enemy" (91), 22 "Known occupied destination" (82). Una media de ~25 por campeón y partida,
 cada uno un pico de 5-8k en su turno. Comprobar antes (o leer el código de retorno crudo como `camp_snap`) los quita.
+
+## o34 sobre fuelfit-b6 (25-10)
+`python3 opts/o34_sealed.py b6/src`. Exacta: `same.py b6 b6+o34` 52/52 idénticas con fuel ilimitado.
+- altar_sealed: lee visión y campamentos en tableros estáticos (`*_into`) y la prueba "alguna casilla del anillo en visión sin campamento vivo" pasa a álgebra de tableros, sin `positions()` ni `is_set` por casilla.
+- cr_return_walk: el campo a casa ya no espera `fuel_ok(22000)`.
+- Probado y descartado: mover la preparación estática de altar_sealed (~11k la primera vez de cada campeón) a un turno fijo temprano NO es exacto (boss_battle 2/2 cambian: las casillas de campamento que lee cambian después de r5).
+
+Turnos > 76k en modo tribute en b6 (52 partidas, herramienta [hv] por sección): el coste está repartido en fight (10-27k),
+foes (5-18k), post-sweep (12-17k) y step_towards dentro de go_tribute (6-16k). Lo propio del viaje (go_tribute sin
+step_towards, best_altar, br_plan) es 2-8k. Dos picos de log fijos: `[econ]` de br_note cuesta 8k en las rondas
+múltiplo de 50 (printf de 9 enteros) y la sección init marca 9k en esas mismas rondas. Back-home > 76k: 50k es
+choose_target (32k) + step_towards (17-19k).

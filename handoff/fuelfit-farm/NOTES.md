@@ -461,3 +461,34 @@ Two test games (elkring, hooks vs rTop1): hooks first capture elk+gem r27 with 4
 with 2, the elk group at r90); elkring both bots send the team to the altar-held group 20 tiles away (P_HOLD 200), the
 rival contests it and o69's five fight there (2 deaths) while b29's four captured it at r30. Local panel (near 80 +
 far 56 vs b29) running; results below when done.
+
+### o69 teamopen-v1: local panel vs b29 (10-25 10:15 UTC)
+
+| panel | b29 | b29 + o69 | flips |
+|---|---|---|---|
+| near 80 | 55/80 (+17615 gems, 52 deaths <= r100) | 61/80 (+25457, 56) | +13 -7 |
+| far 56 | 43/56 (+13822, 18) | 47/56 (+16848, 33) | +10 -6 |
+| total 136 | 98 | 108 | +23 -13 (bar 2*sqrt(36) = 12) |
+
+Near maps gained: collision, elk_arena, elkring, gem_fields, great_wall, hooks, lost_world, pilgrimage, road_of_riches,
+rows, starfish, starvation; lost: boss_battle, gemfight, gold_rush, islands, packs, shortcut. Far: ambush 1->3,
+starvation 2->4, pilgrimage 2->3, islands/road/split 3->4; big_world 4->3 (12 deaths <= r100), concentrated_wealth
+4->3, great_wall 3->2 (10 deaths), rows 3->2. Far deaths <= r100 double (18 -> 33): the team walks together into
+contested middles on 100x100 maps. If the PC confirms the far loss, P_TO_NEAR 1 keeps far maps identical to b29.
+
+Mechanism (ebmetrics/openshape on the same near 80; top 10 for reference):
+
+| rounds <= 150 | top 10 | b29 | b29 + o69 |
+|---|---|---|---|
+| first capture: round, champions within 4 | r22, 3 | r25, 2 | r29, 3 |
+| first three captures with 3+ champions / solo | 55% / 17% | 31% / 45% | 50% / 27% |
+| first capture is elk+gem / gold cluster | 13 / 10 of 40 | 9 / 47 of 80 | 39 / 20 of 80 |
+| elk+gem captures by r50 / r150 | 0.62 / 1.70 | 0.29 / 0.86 | 0.51 / 1.09 |
+| gold-cluster captures by r50 | 0.75 | 1.35 | 0.79 |
+| group gems captured <= r150 per game | 80.5 | 106.7 | 85.4 |
+| deaths <= r100 per game | 0.35 | 0.65 | 0.70 |
+
+The opening now has the top-10 shape (3 champions on the first group, elk first); early group gems drop (fewer solo
+gold clusters) while the final gem margin rises (+25457 vs +17615 over 80 games); early deaths do not fall yet (the
+team fights where it meets the rival). Package for the PC: /mnt/project-files/bundles/teamopen-v1-b29.zip (644d36e9,
+b29 src + o69, P_TO 1 / P_TO_R 40 / P_TO_NEAR 0). Variants worth a PC run: P_TO_NEAR 1; P_TO_R 25.

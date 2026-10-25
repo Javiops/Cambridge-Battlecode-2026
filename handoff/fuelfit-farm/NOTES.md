@@ -580,3 +580,25 @@ in the right direction but only a fifth of the way to the top 10 (2.27 elk captu
 (+7 -13; starvation 4/4 -> 0/4 with 7 deaths, concentrated_wealth 4 -> 2, rows 3 -> 2). Discarded: the lower charge sends
 champions into groups they cannot finish on the sparse 100x100 maps. P_INC_PCT 50 also drops starvation (4 -> 1) while
 winning ambush/expanse/great_wall/rows; it stays the only PC candidate of this line (zips/incoming50-b35.zip).
+
+### o70 variant P_SHAREEXP 40 (10-25 13:10 UTC; the reward of a group is ONE pickup for one champion, so the value share
+by team^0.75 was suspected of keeping champions off big groups): near 62/80 (+26394, 50 deaths) = b35; far 46/56
+(+14529, 40 deaths: great_wall 13, starvation 7) vs 48. Elk+gem captures unchanged vs o70 (1.01 / 1.32 per game r0-150 /
+r150-300), group gems r0-300 234 -> 207. The share exponent does not drive the elk choice; discarded.
+
+### Why o70 loses starvation (12:15 UTC; far_b35 vs far_e70 statistics + replay camp map)
+starvation (80x80): 22 gold clusters in pairs/triples, two monoliths (200 gems each) and ONE gem group: 4 elks + 4 gold + 4
+gem clusters (240 strength, 9600 hp, 88 gems, 440 gold) with a 4-cluster gem group next to it. b35 4/4, b35 + o70 1/4.
+Deaths per game: b35 2/7/8/9 (camp deaths 1/0/3/3), o70 21/29/15/25 (camp deaths 9/26/11/17), all after r300, 71 of them
+within 5 tiles of the 4-elk group and its clusters, 16 at the monoliths. Mechanism: squad_needed caps needed at
+P_NEED_CAP 2 even when no team of 5 could afford the group, and the cost model only PRICES the hp lost (heal cycles);
+the inflated incoming kept such groups out of range, the calibrated one brings them back: two champions arrive, take
+120 a round each (elk range 4, all four alive at the start) and die in 10 rounds, before the retreat rules act. The
+P_INC_PCT 35 and P_SHAREEXP 40 variants lose starvation the same way (0/4 each).
+
+### o78_feasible.py (P_TTD 20, P_FEAS_PCT 100; NOT exact; companion of o70, apply after it)
+A group is an option for a team of t only if its full strength leaves each member >= P_TTD rounds to live
+(mhp / (str / t)) or the clear is over first; needed grows to the smallest t that passes, and if the roster cannot, the
+group is skipped (the existing needed > roster check). Monolith trips (mono_only) and the jackpot team keep their rules.
+Examples (mhp 1200, dps 50): 4-elk group needs 4 (ttd 20), 3 elks 3, 2 elks or a golem 2, 1 elk or wolves 1.
+Panel b35 + o70 + o78 (bots/e72): far 56 first (starvation), then near 80.

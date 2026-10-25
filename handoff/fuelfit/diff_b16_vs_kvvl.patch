@@ -1,6 +1,6 @@
 diff -ruN kvvl/src/cassi_issac.h kopt/src/cassi_issac.h
 --- kvvl/src/cassi_issac.h	2026-10-23 22:52:10.000000000 +0000
-+++ kopt/src/cassi_issac.h	2026-10-25 02:30:52.027861660 +0000
++++ kopt/src/cassi_issac.h	2026-10-25 02:32:09.296482011 +0000
 @@ -13,7 +13,7 @@
      if (!is_cassi(s.name) && !is_issac(s.name)) return true;
      bool ok = true;
@@ -21,7 +21,7 @@ diff -ruN kvvl/src/cassi_issac.h kopt/src/cassi_issac.h
              if (dist(ap, pos) < nd) { nd = dist(ap, pos); nearest = ap; }
 diff -ruN kvvl/src/fight.h kopt/src/fight.h
 --- kvvl/src/fight.h	2026-10-24 17:10:52.000000000 +0000
-+++ kopt/src/fight.h	2026-10-25 02:30:52.432816140 +0000
++++ kopt/src/fight.h	2026-10-25 02:32:09.731776385 +0000
 @@ -49,7 +49,7 @@
      }
  }
@@ -212,7 +212,7 @@ diff -ruN kvvl/src/fight.h kopt/src/fight.h
          if (!cast && dist(pos, focus->p) <= SPELL_RANGE) try_use(true, focus);
 diff -ruN kvvl/src/heart_of_ruin.h kopt/src/heart_of_ruin.h
 --- kvvl/src/heart_of_ruin.h	2026-10-24 17:10:54.000000000 +0000
-+++ kopt/src/heart_of_ruin.h	2026-10-25 02:30:52.471287645 +0000
++++ kopt/src/heart_of_ruin.h	2026-10-25 02:32:09.764708064 +0000
 @@ -31,10 +31,12 @@
          // landing hitbox and score other visible units in the SAME encounter.
          auto& ab = abs[s.dash_slot];
@@ -281,7 +281,7 @@ diff -ruN kvvl/src/heart_of_ruin.h kopt/src/heart_of_ruin.h
                          std::printf("[patch-dash] who=%s r=%u casts=%d landing=(%d,%d) score=%.1f\n",
 diff -ruN kvvl/src/main.cpp kopt/src/main.cpp
 --- kvvl/src/main.cpp	2026-10-24 17:10:56.000000000 +0000
-+++ kopt/src/main.cpp	2026-10-25 02:30:52.928438339 +0000
++++ kopt/src/main.cpp	2026-10-25 02:32:10.204761985 +0000
 @@ -32,6 +32,12 @@
  // iterating enum values and matching to_string() names.
  
@@ -619,7 +619,7 @@ diff -ruN kvvl/src/main.cpp kopt/src/main.cpp
 +           // map falls back to the fitted model 68k + 18/tile + 5k/group + 20k. Rounds needed: 1 if <= 186k, then one
 +           // more per 86k; the champion plays from the next round.
 +            struct InitCost { int tiles, groups, altars, k; };
-+            static const InitCost table[] = {{{900, 6, 2, 118}, {900, 10, 2, 146}, {900, 14, 2, 163}, {900, 19, 2, 167}, {961, 8, 6, 138}, {961, 12, 1, 144}, {961, 15, 4, 153}, {1085, 34, 3, 235}, {1200, 28, 10, 263}, {1230, 8, 1, 142}, {1350, 22, 2, 207}, {1575, 32, 3, 249}, {1600, 14, 4, 163}, {1600, 21, 2, 217}, {1600, 22, 4, 200}, {1600, 51, 2, 337}, {1681, 20, 2, 196}, {2000, 17, 4, 212}, {2000, 18, 4, 202}, {2000, 28, 6, 260}, {2025, 21, 4, 228}, {2040, 12, 2, 189}, {2050, 31, 1, 279}, {2400, 18, 2, 192}, {2500, 9, 2, 177}, {2500, 14, 2, 173}, {2500, 16, 2, 194}, {2500, 20, 6, 222}, {2500, 29, 2, 238}, {2700, 42, 18, 298}, {3000, 13, 2, 195}, {3250, 23, 4, 251}, {3600, 46, 10, 324}, {3721, 11, 2, 212}, {4331, 28, 3, 299}, {5041, 30, 5, 269}, {6400, 14, 2, 258}, {6400, 24, 10, 272}, {10000, 12, 4, 289}, {10000, 24, 6, 383}}};
++            static const InitCost table[] = {{900, 6, 2, 118}, {900, 10, 2, 146}, {900, 14, 2, 163}, {900, 19, 2, 167}, {961, 8, 6, 138}, {961, 12, 1, 144}, {961, 15, 4, 153}, {1085, 34, 3, 235}, {1200, 28, 10, 263}, {1230, 8, 1, 142}, {1350, 22, 2, 207}, {1575, 32, 3, 249}, {1600, 14, 4, 163}, {1600, 21, 2, 217}, {1600, 22, 4, 200}, {1600, 51, 2, 337}, {1681, 20, 2, 196}, {2000, 17, 4, 212}, {2000, 18, 4, 202}, {2000, 28, 6, 260}, {2025, 21, 4, 228}, {2040, 12, 2, 189}, {2050, 31, 1, 279}, {2400, 18, 2, 192}, {2500, 9, 2, 177}, {2500, 14, 2, 173}, {2500, 16, 2, 194}, {2500, 20, 6, 222}, {2500, 29, 2, 238}, {2700, 42, 18, 298}, {3000, 13, 2, 195}, {3250, 23, 4, 251}, {3600, 46, 10, 324}, {3721, 11, 2, 212}, {4331, 28, 3, 299}, {5041, 30, 5, 269}, {6400, 14, 2, 258}, {6400, 24, 10, 272}, {10000, 12, 4, 289}, {10000, 24, 6, 383}};
 +            const long tiles = static_cast<long>(bc::map::width()) * static_cast<long>(bc::map::height());
 +            long est = 68000 + 18 * tiles + 5000 * static_cast<long>(s.groups.size()) + 20000;
 +            for (const auto& e : table)
@@ -1947,7 +1947,7 @@ diff -ruN kvvl/src/main.cpp kopt/src/main.cpp
      }
 diff -ruN kvvl/src/mapplan_game.h kopt/src/mapplan_game.h
 --- kvvl/src/mapplan_game.h	2026-10-23 22:47:10.000000000 +0000
-+++ kopt/src/mapplan_game.h	2026-10-25 02:30:52.688332810 +0000
++++ kopt/src/mapplan_game.h	2026-10-25 02:32:09.980267854 +0000
 @@ -47,8 +47,19 @@
      if (s.dh_stage == 0) {
          s.mp_hole_all = bc::map::holes();
@@ -2022,7 +2022,7 @@ diff -ruN kvvl/src/mapplan_game.h kopt/src/mapplan_game.h
                  std::vector<vec2> st;
 diff -ruN kvvl/src/params.h kopt/src/params.h
 --- kvvl/src/params.h	2026-10-24 17:10:56.000000000 +0000
-+++ kopt/src/params.h	2026-10-25 02:30:52.571972742 +0000
++++ kopt/src/params.h	2026-10-25 02:32:09.864530770 +0000
 @@ -218,7 +218,7 @@
  #define P_WARD 1           // vision-v1: ward the unseen bushes near us whenever the ward is ready
  #define P_WARD_R 6         // look for dark bush tiles within this Chebyshev radius
@@ -2047,7 +2047,7 @@ diff -ruN kvvl/src/params.h kopt/src/params.h
  #endif
 diff -ruN kvvl/src/track.h kopt/src/track.h
 --- kvvl/src/track.h	2026-10-23 22:47:10.000000000 +0000
-+++ kopt/src/track.h	2026-10-25 02:30:52.028020859 +0000
++++ kopt/src/track.h	2026-10-25 02:32:09.296729523 +0000
 @@ -94,7 +94,7 @@
      }
      }
@@ -2059,7 +2059,7 @@ diff -ruN kvvl/src/track.h kopt/src/track.h
                  if (M.aroster[j] == a) { k = j; break; }
 diff -ruN kvvl/src/utility.h kopt/src/utility.h
 --- kvvl/src/utility.h	2026-10-23 22:47:10.000000000 +0000
-+++ kopt/src/utility.h	2026-10-25 02:30:52.101784491 +0000
++++ kopt/src/utility.h	2026-10-25 02:32:09.378288746 +0000
 @@ -29,6 +29,6 @@
              const int score = dist(a, s.en_center);
              if (score < rank) { rank = score; best = static_cast<int>(i); }
@@ -2070,7 +2070,7 @@ diff -ruN kvvl/src/utility.h kopt/src/utility.h
  }
 diff -ruN kvvl/src/verdict.h kopt/src/verdict.h
 --- kvvl/src/verdict.h	2026-10-23 22:47:10.000000000 +0000
-+++ kopt/src/verdict.h	2026-10-25 02:30:52.028332644 +0000
++++ kopt/src/verdict.h	2026-10-25 02:32:09.297237486 +0000
 @@ -31,7 +31,7 @@
      vec2 pos = me.position();
      double oh = me.health(), od = fight::unit_dps(me), th = 0, td = 0;
@@ -2082,7 +2082,7 @@ diff -ruN kvvl/src/verdict.h kopt/src/verdict.h
                  if (dist(a.position(), pos) > 6) continue;
 diff -ruN kvvl/src/vesper.h kopt/src/vesper.h
 --- kvvl/src/vesper.h	2026-10-24 17:10:56.000000000 +0000
-+++ kopt/src/vesper.h	2026-10-25 02:30:52.448874813 +0000
++++ kopt/src/vesper.h	2026-10-25 02:32:09.748241782 +0000
 @@ -36,19 +36,25 @@
                      };
                      int bs = sc(pos);

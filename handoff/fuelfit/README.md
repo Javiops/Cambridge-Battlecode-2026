@@ -104,6 +104,24 @@ Cola de turnos que queda (fuel ilimitado, 295k turnos): 1,76% ≥ 75k, 0,58% ≥
 sección (máx / p99.9): farm 100k+ / 52k (choose_target_impl 23k y step_towards 8k en turnos pesados), fight 90k / 35k,
 recall 60k / 32k, shop 55k / 32k, init(dead-shop) 50k / 22k, decide 42k / 25k.
 
+## Resultados PC (800 partidas, J2 listón ~8.3, reserva listón ~4.5) y estado al 10-25 04:00 UTC
+
+| versión | qué es | J2 | reserva | pad +20 |
+|---|---|---|---|---|
+| kvvl | base V20 + counter | +10.4 | +15.8 | 42% |
+| b10 | init entero en turno 1, primer turno fijo | +11.7 | +16.9 | 4% (+200 22%, +2000 74%) |
+| b12 | b10 + o13 + farm o52-o56 | +11.3 | +17.2 | 2% |
+| b14 | b12 + o35 + o57 | +9.5 | +14.4 | 0.5% |
+| **b15** | b12 + o35 (sin o57) | **+11.8** | **+17.0** | 2% |
+| b16 | b15 + o58/o59 | +11.2 | +14.4 | 2% |
+| b19 | b16 + o60-o62 exactas | pendiente | pendiente | local 0/52 + 0/56 |
+| b20hp | b19 + o70 (hitpass-v2 sin fuel) | pendiente | pendiente | local 0/52 |
+
+El PC recomienda b15 como base; o57 (esperar rondas según modelo de coste) cuesta -2.7 de reserva y se descarta
+(opts_off/o57). pA (o61 antiguo, vkite-v3+mstick) sobre b6: J2 +6.7 frente a +9.1 -> descartada. monoguard, vco,
+lshop y vkite ya están dentro de kvvl: no hay nada que portar salvo hitpass-v2 (o70, `fuelfit-b20hp.zip`): local
+35/52 frente a 36 de b19 (11 cambiadas, neto -1, barra 6.6).
+
 ## Reglas para portar una pieza a la base sin fuel
 
 1. Nada de `fuel_ok()` ni `bc::fuel_remaining()` en decisiones (solo como dato en la línea de estado).

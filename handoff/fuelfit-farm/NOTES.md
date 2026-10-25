@@ -602,3 +602,37 @@ A group is an option for a team of t only if its full strength leaves each membe
 group is skipped (the existing needed > roster check). Monolith trips (mono_only) and the jackpot team keep their rules.
 Examples (mhp 1200, dps 50): 4-elk group needs 4 (ttd 20), 3 elks 3, 2 elks or a golem 2, 1 elk or wolves 1.
 Panel b35 + o70 + o78 (bots/e72): far 56 first (starvation), then near 80.
+
+### o78 feasible-team gate: CLOSED (10-25 11:30 UTC; 136 + 136 games)
+v1 (team grows until str / team is survivable): far 45/56 vs b35 48, 38 deaths <= r100 vs 13; 4-5 champions walked to the
+4-elk group from r75 and died the same way (monsters focus one champion). v2 (skip a group whose full strength kills the
+focused champion in < 10 rounds unless the roster clears it first): near 57/80 vs 62, far 44/56 vs 48 (islands 4/4 -> 1/4:
+its gem groups are 3 elks, 180 strength, which b35 clears with 0 deaths by r300; starvation still 2/4). The premise is
+wrong: 180-strength groups are routine, 240 is not, and a threshold between them is a per-map tuning with mhp 1000-1200.
+o70 stays as offered (incoming50-b35.zip); its starvation loss is a trade the PC judge weighs. Script kept for the record.
+
+### Measurement correction (11:40 UTC): the replay dump mixes group ids in ~5-9% of games
+Checked captureTeam against the champions standing within 6 tiles at the capture: it matches in 96% of 2529 local captures
+and 93% of 1101 top-10 captures, so the team attribution is right. But in 7/80 local games (quadrants, concentrated_wealth,
+...) and 5/40 top-10 games the camp list of round 0 pairs an elk with clusters 13 tiles away, captures toggle group ids and
+each toggle counted as a capture: those games inflated our gem counts (99 -> 61 gems r0-150 after excluding them). Tool
+gem/cmpwin2.py excludes a game when < 80% of its captures have the capturing team present. CORRECTED TABLE (clean games,
+captures per game, group gems per game):
+
+| window | top 10 (35 g) | b35 (73 g) | b35 + o70 (72 g) |
+|---|---|---|---|
+| r0-150 | 7.66 caps, 81 gems; elk+gem 1.77 (1-elk 1.43), wolf 2.71, gold cl 2.06 | 8.33, 61; elk 0.75 (1-elk 0.51), wolf 1.96, gold cl 4.63 | 7.49, 50; elk 0.86 (0.68), wolf 1.94, gold cl 4.14 |
+| r150-300 | 8.23, 107; elk 2.51 (1-elk 1.94), wolf 2.89, gold cl 1.89 | 9.30, 66; elk 0.88 (0.59), wolf 2.81, gold cl 4.08 | 8.68, 74; elk 1.19 (0.81), wolf 2.44, gold cl 3.90 |
+
+So the gap is bigger than the earlier sheet said (group gems r0-300 188 vs 127), it sits in SINGLE-elk groups (60
+strength: top 10 take 1.4-1.9 per game per window, we 0.5-0.8) and in time spent on gold-only clusters (4.1-4.6 per game
+vs 2.0). o70 moves elk +15-35% but total group gems do not rise (124 vs 127): it trades clusters for elks. Nobody takes
+180+ strength groups before r300 (top 10 0.03 per game).
+
+### Why the single elk next to spawn is never taken (11:50 UTC; e70dbg = e70 + every choose_target candidate and pick printed)
+the_farm vs rD, A side: 67 decisions in r20-300; in 39 of them a single-elk group (29 gems, 11-13 tiles) had a HIGHER raw
+value/rounds than the pick, and in 32 of those the pick won only by its multiplier: x2 (P_HOLD, a group near the altar we
+hold) x 1.25 (P_STICK hysteresis) = x2.5 on g16, a 2-wolf group with 8 gems and 120 gold. The team farms that 8-gem group
+all game while the 29-gem elk 11 tiles away is never approached. elkring (all groups single elks): the same x2.5 just picks
+the held elk, harmless. shortcut: both candidates 29-gem elks. Running e70dbg on the near 80 panel to count, over all
+decisions, how many gems the pick gives up to the hold multiplier.

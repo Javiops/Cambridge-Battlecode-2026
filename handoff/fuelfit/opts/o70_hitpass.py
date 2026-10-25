@@ -1,4 +1,6 @@
 # fuelfit port of hitpass-v2 (copy-decisions thread, online +7 on c16 as hpb): a turn that ends with the attack unused
+# (v7, off on fight maps, tried and dropped: on b29 reverse_spiral stayed 1/12; the real cause there is the dash-hole
+# shortcut that the real fuel kept dormant in kvvl, farm thread o68.)
 # v6: g_draft_sp does not survive the draft (globals reset for the game: v5 had hitpass off everywhere); g_tpc_path is the
 # same walk sent through draft memory byte 29 and read in init_map (idlefix-v4).
 # v5: reads g_draft_sp (farswap's draft BFS) instead of running pf_spawn_path in init: on big maps the start-up is already

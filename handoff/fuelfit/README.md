@@ -168,6 +168,24 @@ con <= 19 grupos y <= 1000 casillas. Es o72 (b28). Turno 1 completo de b28 con f
 gold_rush 159k, reverse_spiral 175k, elkring 178k, gemfight 178k; margen mínimo 7.7k frente a 185,984. reverse_spiral y rushbait empiezan igual que kvvl: ahí la causa es
 otra (hitpass o pelea), pendiente.
 
+## Auditoría de puertas de fuel dormidas en kvvl (10-25, 26 cercanos x rD, r1-60, 5 campeones)
+
+Al convertir `fuel_ok()` en `true` (o07) se ENCENDIÓ código que en kvvl el fuel real mantenía apagado al principio.
+Contadores por sitio (build kvgate: cuántas veces la puerta dijo NO / SÍ en r<=10 y r11-60):
+
+| sitio (kvvl main.cpp) | NO r<=10 | NO r11-60 | SÍ r<=10 | SÍ r11-60 | qué apagaba |
+|---|---|---|---|---|---|
+| 3506 `mp_find_dashholes` (P_DHFUEL_NEED) | 585 | 3114 | 0 | 0 | **los agujeros de dash nunca se calculaban**: en kvvl el atajo por agujeros (regla 5 de mapplan) no existía en cercanos; en b15+ el init los calcula y HoR/Vesper cortan solos por el centro (reverse_spiral 8/8 perdidas, hilo farm) |
+| 1393 step_towards 25000 | 64 | 194 | 826 | 2870 | paso barato en vez de búsqueda (7%) |
+| 4684/4704 ward (P_WARD_FUEL) | 98/14 | 246/248 | 971/3631 | 5226/22401 | 5-9% de las búsquedas de ward |
+| 2009 can_choose (ct_cost+12000) | 25 | 35 | 199 | 443 | 10% de las elecciones de objetivo esperaban un turno (fuel-wait, 2986) |
+| 4754 pairfarm 15000 | 0 | 81 | 0 | 1264 | 6% |
+| 3104 engage 19000 / 3190 ataque 12000 | 0/6 | 36/42 | 65/209 | 1203/1833 | 2-3% |
+| 3471 dash-hole step 40000 | 72 | 0 | 40 | 0 | (sin agujeros conocidos no hacía nada) |
+
+La dominante es la primera: o68 del hilo farm con P_MP_HOLE = 0 reproduce kvvl; el atajo "solo cuando no separe al
+grupo" es una pieza nueva a juzgar por fuerza. Las demás eran ruido de fuel (5-10%) y no se reproducen.
+
 ## Reglas para portar una pieza a la base sin fuel
 
 1. Nada de `fuel_ok()` ni `bc::fuel_remaining()` en decisiones (solo como dato en la línea de estado).

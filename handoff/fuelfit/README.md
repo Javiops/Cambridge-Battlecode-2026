@@ -117,7 +117,8 @@ recall 60k / 32k, shop 55k / 32k, init(dead-shop) 50k / 22k, decide 42k / 25k.
 | b18 | b19 + o57 | +8.3 | +15.0 | 2% (+200 15%, +2000 68%) |
 | b19 | b16 + o60-o62 exactas | +6.0 | +17.0 | 2% (+200 19%, +2000 73%) |
 | b20hp | b19 + o70 (hitpass-v2 sin fuel) | pendiente | pendiente | local 0/52, lejos 1/56 (r1322) |
-| b21hp | b15 + o70 v1 (hitpass sobre la base elegida) | pendiente | pendiente | local cerca 0/52, lejos 3/56 |
+| b21hp | b15 + o70 v1 (hitpass sobre la base elegida) | +10.4 (cerca -11/b15 -9, medios +27/+23, lejos -1/+19) | +16.6 | 2% (+200 24%) | local cerca 0/52, lejos 3/56 |
+| b23hp | **b15 + o70 v3** (hitpass apagado si el camino spawn-spawn >= 60: PC b21hp lejanos -20, medios +4, cercanos -2) | pendiente | pendiente | cerca = v2 (52/52 idénticas); lejos 14/56 difieren de b15 = cola de fuel de b15 en mapas grandes |
 | b22hp | **b15 + o70 v2** (hitpass reutilizando la lista de campamentos del turno) | pendiente | pendiente | local cerca 1/52 (r801), lejos 1/56 |
 
 hitpass local frente a b15: cerca 37/52 = 37 (neto 0 en 10 cambiadas); lejos 39/56 frente a 45 (neto -6 en 16, barra 8.0; v1 -7/17). Dispara desde la apertura (divergencia mediana r62) en las 56 partidas lejanas: cambio de decisión, lo juzga el PC. Si el PC confirma la pérdida en lejanos, variante = hitpass solo en mapas cercanos (d_spawn < 60).

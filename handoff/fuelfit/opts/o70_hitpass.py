@@ -1,4 +1,5 @@
 # fuelfit port of hitpass-v2 (copy-decisions thread, online +7 on c16 as hpb): a turn that ends with the attack unused
+# v3: off on far maps (spawn-to-spawn walk >= 60, the far definition of mapfeat40/farswap): PC b21hp vs b15 far -20, mid +4, near -2.
 # v2: reuses the camps list play_turn built this round (near_camps is 5-97k) instead of a second near_camps call.
 # takes a finishing blow (<= 2 of our hits) on an awake camp in reach, or a guardless cluster at <= 1 hit. Port rules:
 # no fuel reads (the original gated on fuel_ok(9000)); the [hl] log is dropped. Cost: near_camps() only when the attack
@@ -7,7 +8,7 @@ import sys
 d=sys.argv[1]; p=d+'/main.cpp'; s=open(p,newline='').read()
 a="            play_turn(s);\n"
 assert s.count(a)==1
-s=s.replace(a,a+'''            if (P_HITLAST)  // hitpass-v2 port (fuelfit o70)
+s=s.replace(a,a+'''            if (P_HITLAST && (P_HITLAST_FAR <= 0 || (pf_spawn_path() >= 0 && pf_spawn_path() < P_HITLAST_FAR)))  // hitpass-v2 port (fuelfit o70); v3: not on far maps
                 attempt([&] {
                     bc::champion& me = bc::self();
                     if (!me.is_alive() || !me.can_attack()) return true;
@@ -37,5 +38,5 @@ s=s.replace(a,a+"    std::vector<bc::camp> hp_camps; int hp_camps_r = -1;  // fu
 open(p,'w',newline='').write(s)
 p=d+'/params.h'; s=open(p,newline='').read()
 assert 'P_HITLAST' not in s
-s+="#ifndef P_HITLAST\n#define P_HITLAST 1      // hitpass-v2: an unused attack at the end of the turn takes a finishing blow on a camp in reach\n#endif\n"
+s+="#ifndef P_HITLAST\n#define P_HITLAST 1      // hitpass-v2: an unused attack at the end of the turn takes a finishing blow on a camp in reach\n#endif\n#ifndef P_HITLAST_FAR\n#define P_HITLAST_FAR 60  // o70 v3: hitpass off when the spawn-to-spawn walk (pf_spawn_path, cached) is 60+ (far maps: PC 800 g lejanos -20, medios +4, cercanos -2)\n#endif\n"
 open(p,'w',newline='').write(s)

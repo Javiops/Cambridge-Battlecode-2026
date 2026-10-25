@@ -118,6 +118,7 @@ recall 60k / 32k, shop 55k / 32k, init(dead-shop) 50k / 22k, decide 42k / 25k.
 | b19 | b16 + o60-o62 exactas | +6.0 | +17.0 | 2% (+200 19%, +2000 73%) |
 | b20hp | b19 + o70 (hitpass-v2 sin fuel) | pendiente | pendiente | local 0/52, lejos 1/56 (r1322) |
 | b21hp | b15 + o70 v1 (hitpass sobre la base elegida) | +10.4 (cerca -11/b15 -9, medios +27/+23, lejos -1/+19) | +16.6 | 2% (+200 24%) | local cerca 0/52, lejos 3/56 |
+| b35 | **b32 + o74** (turno 1 = solo el arranque: sin campos de espera; agujeros de dash a r6 en mapas de 12+ grupos; jugar r1 solo con ≤8 grupos o ≤12 y 4 campeones en ≤1000 casillas; r2 si ≤16 grupos en ≤2500 casillas o ≤19 en ≤1000; r3 el resto) | pendiente (local sonda +20: cerca 0/52) | pendiente | Causa 3: en b15-b32 el turno 1 se pasa de 200k en 124/234 campeones de los 52 cercanos (ficheros .fuel, tools/fuelturns.py) y la ronda 2 se consume → primera acción r3; o72 clase B añadía 29-37k de campos y se pasaba en reverse_spiral (HoR/Vesper 210k), gemfight, gold_rush. b35: turno 1 ≤ 190k en todos los mapas r1/r2 (0 pasados). Local vs b32: cerca 42/52 vs 41 (18 partidas cambian desde r2-r11), lejos 0 cambios, reverse_spiral 6/12 (b32 4/12, kvvl 6/12). **Candidata** |
 | b33 | **b32 + P_MP_HOLE_SMALL 2500** (además sin atajo en mapas < 2500 casillas: reverse_spiral, rushbait_v2) | pendiente | pendiente | local vs b29: cerca -2/2, lejos +2/12 (ruido). Peor que b32 |
 | b32 | **b29 + farm o68 v2** (P_MP_HOLE = 2: atajo por agujeros solo cuando no deja atrás a un aliado sin dash con el mismo objetivo) | pendiente (local sonda +20: cerca 0/52, lejos 0/56) | pendiente | local vs b29: cerca 41/52 = 0 cambios, lejos 48/56 vs 43 (+5/11, listón 6.6); farm 128 g: h2 97, h0 93, b29 88. **Candidata** |
 | b31 | **b29 + farm o68** (P_MP_HOLE = 0: sin atajo por agujeros de dash = kvvl, donde la puerta de fuel nunca lo dejó calcular los agujeros) | pendiente (local: sonda +20 cerca 0/52, lejos 1/56 en r1476) | pendiente (local vs b29: cerca -2/2, lejos -3/13, ruido) | farm, 6 mapas perdedores x 6 rivales x 2: b29 45/72 (reverse_spiral 0/12, 83 muertes ≤r100) → h0 53/72 (6/12, 48 muertes), +8 -2 cambios; h2 (solo si no separa) 49/72, peor |
@@ -158,6 +159,10 @@ de leer por casilla sale un 10% peor: la exportación se mide por tamaño), role
 (600 por grupo). Suma 149k (rows) a 330k (big_world) frente a 186k del turno 1. Primer turno de juego (r2 o r3): 77-168k
 frente a 86k (big_world r3 168k, islands 109k, expanse 104k, fracture 103k, road_of_riches 98k); picos de 60-90k en r8-r9.
 Siguiente: grupos (2k/grupo exacto) y el primer turno de juego (choose_target con 24-51 grupos: hilo farm).
+
+## Turno 1: el arranque se pasa del presupuesto (10-25)
+
+Los `team-x.fuel` de cada repetición (cabecera 13 bytes, luego un u64 por turno con el fuel usado, techo 200000 en el turno 1 y 100000 después, incluido el ~14k del motor; `tools/fuelturns.py RES`) muestran que b15-b32 se pasan del turno 1 en 124 de 234 campeones de las 52 partidas cercanas. Un turno pasado se termina en la ronda siguiente y el campeón pierde esa ronda: primera acción en r3. Coste por paso (`tools/idbg.py` sobre un build con `[dbgI]`, fuel ilimitado, 40 mapas): mapa 14-56k, grupos ~2k cada uno, caminos 7-40k, roles+tienda 42-55k, agujeros de dash 7-13k, warmup 11-49k, campos de espera (o72 clase B) 29-37k; resto del turno ~33k. Un modelo lineal (casillas, grupos, dash) falla ±20k, así que o74 usa reglas por grupos/casillas/equipo medidas sobre los 40 mapas del pool. Mapas que siguen en r3 (arranque solo > 165k): collision, broken_curve, swirl, shortcut, great_wall, gem_fields, monolith, quadrants y todos los de ≥23 grupos o >2500 casillas.
 
 ## Online c19 (10-25 08:54 UTC): b27 -7 frente a V20, toda la pérdida en cercanos
 

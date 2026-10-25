@@ -109,4 +109,4 @@ decision never depends on when they were built. BitSnap/DistSnap now keep an uni
 export overwrites every byte) instead of a zero-filled std::vector: the first load of a 20KB distance snapshot no longer
 costs ~10k. Measured (b6wm, unlimited fuel): first group 1.5-2.6k (includes the table allocation), then ~450-520 per group
 (corridors 12 groups 68 tiles: 1483 + 5753; big_world 24/92: 1923 + 10775; islands 46/118: 2613 + 20171).
-Price to budget: 2.5k + 600 per group. Exactness check (80 games b6 vs b6+o48) running.
+Price to budget: 2.5k + 600 per group. 80/80 byte-identical replays (b6 vs b6+o48).

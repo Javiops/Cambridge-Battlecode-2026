@@ -376,3 +376,11 @@ starvation 16 -> 6, big_world 23 -> 16, others unchanged. Behaviour: the first p
 reverse fields are complete (~r15-r27 on 12-24-group maps) and costs ~1.5k instead of 26-31k; until then the champion
 keeps its first target unless it expires. Near 80 (must be byte-identical: the rule is off below 4096 tiles) and far 56
 (strength vs rTop1/rD) running.
+o67 runs (10:50 UTC, unlimited fuel, P_RF_DEFER_AREA = 4096): near 80 and far 56 vs b15: 132 of 136 replays
+byte-identical, including both sides of ambush, big_world, starvation, expanse (far) and corners (near): the deferred
+refresh confirms the target the r8-r9 refresh would have chosen, so only the fuel changes there. The 4 that differ are
+the A side of fracture (61x71 = 4331 tiles, 28 groups): b15 won all four by ~1030-340 gems; e67 lost two (936-1199 vs
+rD, 781-1070 vs rF) and won two narrowly. Keeping the first target ~30 rounds on fracture is a real loss, and its forward
+field is only 15k. => P_RF_DEFER_AREA raised to 5000 (fracture excluded; 100x100 and 80x80 maps and corners kept).
+With that default every game of this panel is byte-identical to b15 (far 56 re-run in progress to confirm): on this
+panel o67 behaves as an exact piece; the PC's 800 games decide whether other big maps change.

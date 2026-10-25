@@ -11,7 +11,9 @@
 # round < P_RF_DEFER_R (default 60: a cap in case the reverse fields never complete). Effect on the far maps (e67p vs
 # e64pf, r2-r40): no choose_target >= 15k on r4-r12 (b15: 3-5 per map); max turn r4-r12 ambush 95k -> 86k, starvation
 # 90k -> 80k, big_world 91k -> 88k, road 71k -> 62k, split 53k -> 41k; turns >= 77.5k r2-r40 ambush 27 -> 14,
-# starvation 16 -> 6, big_world 23 -> 16. No fuel read.
+# starvation 16 -> 6, big_world 23 -> 16. Replays (unlimited fuel) on ambush, big_world, starvation, expanse, corners:
+# byte-identical to b15 on both sides (the deferred refresh confirms the same target): the fuel goes, the game stays.
+# No fuel read.
 import sys
 d=sys.argv[1]; p=d+'/main.cpp'; s=open(p,newline='').read()
 def rep(a,b):
@@ -32,7 +34,7 @@ rep("""#ifndef P_HOLEFIX""","""#ifndef P_RF_DEFER
 #define P_RF_DEFER 1  // fuelfit o67: the periodic target refresh waits until the reverse fields exist (1) or not (0 = b15)
 #endif
 #ifndef P_RF_DEFER_AREA
-#define P_RF_DEFER_AREA 4096  // fuelfit o67: only on maps with at least this many tiles (the forward field is cheap below)
+#define P_RF_DEFER_AREA 5000  // fuelfit o67: only on maps with at least this many tiles (the forward field is cheap below; fracture 61x71 = 4331 lost its first-target correction)
 #endif
 #ifndef P_RF_DEFER_R
 #define P_RF_DEFER_R 60  // fuelfit o67: no deferral from this round on

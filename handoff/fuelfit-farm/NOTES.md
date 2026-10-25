@@ -199,3 +199,7 @@ the scoring loop: unreach() asked s.mp_dashholes.is_empty() (SDK, ~200) for ever
 What is left on the first turn that is not the engine's goal search: recall home field 26-31k and altar field 23-27k
 (both static: idle-round material), then ambush/big_world would be ~50-80k. Exactness runs (56 far + 80 near vs b16) in
 progress.
+Exactness of o59+o60 over b16 (03:08 UTC): 56/56 far and 80/80 near byte-identical replays. Both are in the integrator's
+b18 (with o58 altar fields and o62 recall home field on the idle round): first playing turn on 100x100 ambush 97k,
+big_world 100k, islands 91k, starvation 89k, road_of_riches 81k; what is left there is the engine's goal searches of
+the first step_towards. b18 is the night's candidate; the PC's Judge 2 decides between b15/b16/b18.

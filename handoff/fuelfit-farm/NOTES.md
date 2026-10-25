@@ -258,4 +258,8 @@ First playing turn, b15 -> b15+o59+o63+o64 (per champion, 14 far maps): big_worl
 62-79k, great_wall 68-80k -> 50-62k, shortcut 76-81k -> 57-62k, split 74-79k -> 55-60k, rows 52-61k -> 45-54k.
 Ten of the 14 maps are now under 86k for every champion on the first turn; big_world stays over (forward field 31k +
 step_towards 9-28k + base), ambush and starvation straddle it (step_towards 16-40k: dash champions pay the dash-hole
-search). Exactness runs (56 far + 80 near vs b15) in progress.
+search).
+Exactness over b15 (06:35 UTC): b15+o59+o63+o64 56/56 far + 80/80 near byte-identical replays (same.py differ 0).
+So the queue never changes a decision: br_plan's uncached path before the altar fields are ready, the home field
+computed later and the recall fallback all give the same answers as computing them on the first turn. o64 is exact
+and adds no init work and no idle-round work: safe for the b15 line (and b24hp/b26).

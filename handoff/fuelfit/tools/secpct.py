@@ -1,5 +1,5 @@
 import zipfile,glob,sys
-H=[[0]*40 for _ in range(14)]; T=[[0.0]*14 for _ in range(3)]; NT=0
+H=[[0]*40 for _ in range(14)]; T=[[0.0]*30 for _ in range(3)]; NT=0
 for f in glob.glob(sys.argv[1]+'/*/*.repl26a'):
     side='a' if '/A_' in f else 'b'
     t=zipfile.ZipFile(f).read(f'team-{side}.stdout').decode('latin1').splitlines()

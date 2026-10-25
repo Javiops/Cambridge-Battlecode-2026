@@ -38,7 +38,54 @@ turnos pesados y el veto del fuel real sigue saltando. La única salida robusta:
 - **Manifiesto:** `mk.sh NAME` (26 mapas no lejanos x 6 rivales del panel17 x 2 lados = 312) y `subq.sh FUEL NAME...`
   (subconjunto de 52 con `--fuel-quantum`). Rivales: `analysis/local-filter-1021/panel17/{rTop1,rD,rF,rHunt,mV19,mV10d}`.
 
-Base actual: `fuelfit-a1.zip` = kvvl (k_vvl_mgwp) + o01-o05, exacta frente a kvvl. `diff_a1_vs_kvvl.patch`.
+Base actual: **`fuelfit-b3.zip`** = kvvl (k_vvl_mgwp) + o01-o10 (este hilo) + o21-o26 (pelea) + o31-o33 (recall/altares/
+campamentos) + o41-o42 (farmeo). `diff_b3_vs_kvvl.patch`. Ya **no lee el fuel en ninguna decisión** (`fuel_ok()` es
+siempre true). Anterior: `fuelfit-a1.zip` = kvvl + o01-o05 (exacta).
+
+## Dos hechos del motor medidos el 10-24 (noche)
+
+- **El fuel disponible al empezar nuestro código es `quantum - 14.016`**: 85.984 en un turno normal, 185.984 en el
+  primero (no 100k/200k). Objetivo de peor turno: ≤ 76k.
+- **Una función `bool` sin `return` al final es un trap de wasm y el motor reinicia el programa del campeón** (estado
+  perdido, vuelve al turno 1 de inicialización cada turno: el campeón queda muerto en la práctica). Por eso b3 imprime
+  `[boot]` una vez por campeón al arrancar: `tools/restarts.py RES` cuenta reinicios (debe dar 0).
+- Pasarse del fuel en un turno **no** reinicia: el turno continúa en la ronda siguiente (las acciones ya emitidas se
+  quedan; las que faltan se emiten tarde). Por eso una base sin lecturas de fuel todavía puede divergir con +20
+  instrucciones si algún turno pasa de 86k.
+
+## Inicialización en pasos (o07-o08)
+
+Cada paso tiene un precio fijo de peor caso (medido con fuel ilimitado en 52 partidas x 4 campeones, redondeado hacia
+arriba): mapa 56k (tableros, altares, spawn, `camp_groups`), un grupo 8k, campos de camino 31k, roles + tienda 56k,
+agujeros de dash 14k. Un turno ejecuta pasos mientras quepan en su presupuesto (176k en la ronda 1, 76k después). El
+calendario depende solo de la ronda y del número de grupos. El campeón juega desde el turno siguiente al que acaba.
+
+## Resultado b3 (52 partidas, fuel normal)
+
+| | kvvl | a1 | b1 | b2 | b3 |
+|---|---|---|---|---|---|
+| victorias /52 | 41 | - | 38 | 39 | 40 |
+| +20 instr.: partidas cambiadas | 41 | 17 | 5 | 1 | 2 |
+| ... antes de r300 | - | - | 0 | 0 | 1 |
+| ganador cambiado | - | - | 0 | 0 | 0 |
+
+pair.py b3 frente a kvvl: neto -1 en 11 cambiadas (barra 6.6): sin pérdida medible. Reinicios: 0.
+
+Cola de turnos que queda (fuel ilimitado, 295k turnos): 1,76% ≥ 75k, 0,58% ≥ 85k, 0,13% ≥ 100k, máximo 170k. Por
+sección (máx / p99.9): farm 100k+ / 52k (choose_target_impl 23k y step_towards 8k en turnos pesados), fight 90k / 35k,
+recall 60k / 32k, shop 55k / 32k, init(dead-shop) 50k / 22k, decide 42k / 25k.
+
+## Reglas para portar una pieza a la base sin fuel
+
+1. Nada de `fuel_ok()` ni `bc::fuel_remaining()` en decisiones (solo como dato en la línea de estado).
+2. Todo bucle con tope fijo de iteraciones; nada de "mientras quede fuel".
+3. Trabajo opcional en calendario fijo de rondas (`round % N == 0`), no "cuando sobra".
+4. Sin `printf` nuevos en el turno (2,5k cada uno; la línea de estado con `LineOut` cuesta ~1k). Un `printf` por partida
+   está bien.
+5. `std::vector` estático o con `reserve`; buffers estáticos (el fuel cuenta instrucciones: zero-fill de 20KB = 10k).
+6. Toda función que devuelve `bool` termina en `return`.
+7. Pieza = `opts/oNN_nombre.py` con reemplazos exactos (assert si no casan) y comentario de qué cambia y por qué es
+   exacta; exactas se validan con `same.py` a fuel ilimitado; con cambio de decisión, por fuerza (pair/vstat/J2).
 
 ## Lo medido (kvvl con fuel ilimitado, 52 partidas, 270k turnos)
 

@@ -203,3 +203,42 @@ Exactness of o59+o60 over b16 (03:08 UTC): 56/56 far and 80/80 near byte-identic
 b18 (with o58 altar fields and o62 recall home field on the idle round): first playing turn on 100x100 ambush 97k,
 big_world 100k, islands 91k, starvation 89k, road_of_riches 81k; what is left there is the engine's goal searches of
 the first step_towards. b18 is the night's candidate; the PC's Judge 2 decides between b15/b16/b18.
+
+## b15 (chosen base, no idle-round work): first playing turn on the 14 far maps (05:50-06:10 UTC, unlimited fuel)
+
+Per champion (min..max over the 5), b15 -> b15+o59+o63:
+
+| map | groups | first turn b15 | +o59+o63 | choose_target | forward field | recall (home field) | altar field (init-sec) | step_towards |
+|---|---|---|---|---|---|---|---|---|
+| ambush | 12 | r2 108-139k | 108-139k | 39k -> 39k | 26k | 26k | 0 | 16-40k |
+| big_world | 24 | r3 155-171k | 150-164k | 56k -> 50k | 31k | 31.5k | 27.5k | 9-28k |
+| starvation | 14 | r2 101-124k | 98-120k | 37k -> 34k | 21.6k | 21.8k | 0 | 17-35k |
+| expanse | 24 | r3 96-108k | 91-103k | 34k -> 28k | 11.8k | 12k | 15.7k | 8-21k |
+| fracture | 28 | r3 99-106k | 93-101k | 39k -> 33k | 15k | 15.3k | 11.4k | 7-15k |
+| islands | 46 | r3 87-111k | 78-95k | 42k -> 28k | 6k | 6.4k | 10.7k | 7-19k |
+| road_of_riches | 51 | r3 92-100k | 83-90k | 39k -> 30k | 6k | 6.6k | 10.4k | 5-10k |
+| pilgrimage | 23 | r3 88-96k | 83-92k | 32k -> 28k | 11.8k | 12.1k | 11.4k | 7-17k |
+| lanes | 42 | r3 78-86k | 70-79k | 33k -> 25k | 5.7k | 0 | 12.1k | 7-15k |
+| concentrated_wealth | 11 | r2 75-92k | 75-92k | 24k -> 24k | 13.5k | 13.9k | 0 | 12-22k |
+| great_wall | 17 | r3 68-80k | 64-76k | 23k -> 19k | 4.5k | 5k | 9.8k | 5-18k |
+| shortcut | 21 | r3 76-81k | 71-76k | 24k -> 19k | 3.9k | 4.4k | 10.1k | 5-9k |
+| split | 32 | r3 74-79k | 67-73k | 29k -> 23k | 3.8k | 4.3k | 9k | 6-12k |
+| rows | 9 | r2 52-61k | 52-61k | 17k -> 17k | 7k | 7.2k | 0 | 6-11k |
+
+- **o63_gdonce.py** (exact, after o52): each group's walking distance computed once per call (pre-sized static array)
+  and reused by the scoring loop; with o59 it takes 5-13k off choose_target on 24-51-group maps, on every call (islands
+  42k -> 28k, road 39k -> 30k, lanes 33k -> 25k). On 9-12-group maps it is neutral (+0.1-0.2k).
+- What remains in choose_target's own code on big maps: 3k exports, ~4k claim reads, ~200 per group in walk() (dist +
+  cache checks), 4-6k scoring of the 12 nearest. The forward field (engine) is 4-31k and cannot be prefilled on b15
+  (no idle-round work: the PC rejected b19); the field export writes 65535 for unreached tiles (probe), so the reached
+  mask is not needed for the read-out (190 fuel: not worth a patch).
+- The same static engine fields appear three times on the first turn of big maps: forward field (farm), home field
+  (recall: cr_return_walk's first call, 26-31k on ambush/big_world/starvation) and an altar field (o35, 10-27k). The
+  recall and altar ones are not needed on the first turn (no gems); moving them to the o54 end-of-turn slot (one static
+  field per turn that did not pay a forward field and is not a tribute) would take 26-59k off it with no init work.
+- Boundary view (budget 85,984 per round, ~172k for two): a turn that always spills by a wide margin and emits its
+  action at the end is as deterministic as one that fits. The risky first turns are the ones within ~2k of a multiple:
+  lanes 78-86k and concentrated_wealth 75-92k straddle 86k; islands 87k and pilgrimage 88k sit just over it; big_world
+  171k sits just under 172k. After o59+o63: lanes 70-79k and split/shortcut/great_wall clear of it; islands 78-95k and
+  road 83-90k now straddle it, pilgrimage 83-92k too: cutting the home field (26-31k) as well is what moves ambush,
+  starvation, expanse, fracture, islands, pilgrimage, road under 86k together.

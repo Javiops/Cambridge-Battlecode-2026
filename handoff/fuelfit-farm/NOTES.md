@@ -656,3 +656,25 @@ far 48/56 identical outcomes (11 games changed, same winners). Mechanism (clean 
 0.88 -> 0.97 (r150-300), gold clusters unchanged, group gems r0-150 61 -> 53, r150-300 66 -> 68. Small and safe; a rider,
 not a candidate on its own. Variant without any hold bonus (P_HOLD_MIN 1000, bots/e79b) and o80 (gold weight 50 / 70 before
 r600, bots/e80 / e80b) queued on the same panels.
+
+### Ground truth from the statistics JSON (12:20 UTC; gem/goldcmp.py: team medians at r150 / r300, top-10 online near
+summaries (40, their side) vs local near 80 (our side))
+
+| bot | gold earned | gold spent | gems collected | monster damage done |
+|---|---|---|---|---|
+| top 10 | 562 / 1410 | 480 / 1250 | 65 / 159 | 12102 / 25392 |
+| b35 | 496 / 1112 | 380 / 980 | 38 / 106 | 8010 / 15852 |
+| b35 + o70 | 486 / 1144 | 360 / 1015 | 38 / 99 | 8409 / 17288 |
+| b35 + o79 | 516 / 1139 | 380 / 995 | 42 / 107 | 8240 / 16881 |
+| b35 + o79b (no hold bonus) | 557 / 1155 | 380 / 1005 | 42 / 110 | 9309 / 20008 |
+
+The top 10 deal 50-60% more monster damage in the same rounds, earn 13-27% more gold and collect 50-70% more gems: it is
+THROUGHPUT (time on monsters), not only which group. Our picks are 30% gold-only clusters (120 hp: no damage, a trip of
+~20 rounds each) -> 2.5 more trips per champion per 150 rounds than the top 10. Different opponents (they play ranked
+bands ~40, we play our own older bots), so absolute numbers are indicative; monster damage depends mostly on us.
+
+### o79b (P_HOLD_MIN 1000 = no hold-altar bonus) over b35 (12:20 UTC)
+near 63/80 (+8 -7, 46 identical) vs 62; far 49/56 (+1 -0) vs 48. Mechanism (clean games): captures 8.33 -> 8.97 (r0-150)
+and 9.30 -> 9.78; elk+gem 0.75 -> 0.85 and 0.88 -> 1.12; gold clusters unchanged; group gems r0-300 127 -> 132; gold
+earned r150 496 -> 557 (top 10 562), monster damage +16% / +26%. Bigger than o79 and still safe; the hold bonus is the
+closed territory line and removing it only helps. Candidate rider / small piece. o80 (gold weight 50 / 70) running next.

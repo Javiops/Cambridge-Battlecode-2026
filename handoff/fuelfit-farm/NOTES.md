@@ -98,3 +98,15 @@ r300 (gems, gold, deaths, monster damage; +0.637 for the base), `divloc.py` = ga
 | `o53_isle10.py` | isle_escape plans at most once every P_ISLE_EVERY = 10 rounds off the mainland | 2 differ (first divergence r502+), 0 results changed | neutral: safe to take |
 
 Fuel effect is not measured here (unlimited-fuel bench); the integrator's worst-turn fit decides what each cap buys.
+
+## o48_warmup.py (over b6 = o01-o11, o21-o26, o31-o33, o41-o47; anchors on the integrator's reanchored o46)
+
+The once-per-game farm tables out of the first playing turn: `bool farm_warmup(State& s, int quota)` builds, for up to
+`quota` groups per call, the shared per-group tile index list (used by o41 and o46, which each built their own) and the
+o45 scoring constants; returns true when every group is done. Call it from the init steps after stage 3 (needs groups,
+centres, spawn_pd). Any farm code needing the tables before that completes them on the spot (`farm_warmup_now`), so the
+decision never depends on when they were built. BitSnap/DistSnap now keep an uninitialised heap array (`new T[n]`, the
+export overwrites every byte) instead of a zero-filled std::vector: the first load of a 20KB distance snapshot no longer
+costs ~10k. Measured (b6wm, unlimited fuel): first group 1.5-2.6k (includes the table allocation), then ~450-520 per group
+(corridors 12 groups 68 tiles: 1483 + 5753; big_world 24/92: 1923 + 10775; islands 46/118: 2613 + 20171).
+Price to budget: 2.5k + 600 per group. Exactness check (80 games b6 vs b6+o48) running.

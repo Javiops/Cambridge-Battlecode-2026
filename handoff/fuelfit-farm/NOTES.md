@@ -687,3 +687,24 @@ round (50%) against the single elk's 0.81, and the lost gold weakens the shop. T
 as a pair with the value shared) is what keeps it out, and the top 10 take it with 3-4 champions from r30. Line closed:
 the next step is to decompose the throughput gap (rounds in contact with monsters vs damage per contact round) before
 touching the model again.
+
+### Time budget per champion, r1-300 (13:00 UTC; gem/contact.py on replays + statistics JSON; top 10 = 40 online near
+games, b35 / o79b = near 80 panel; "near" = within 4 tiles of an awake monster, "contact" = within 2)
+
+| | alive champion-rounds/game | contact | at 3-4 | cluster | altar | moving | idle | monster dmg r300 (mean) | dmg per near round |
+|---|---|---|---|---|---|---|---|---|---|
+| top 10 | 1205 | 0.19 | 0.16 | 0.04 | 0.02 | 0.42 | 0.17 | 26726 | 63.8 |
+| b35 | 1252 | 0.17 | 0.09 | 0.04 | 0.02 | 0.51 | 0.17 | 19198 | 58.6 |
+| b35 + o79b | 1255 | 0.17 | 0.09 | 0.03 | 0.02 | 0.51 | 0.17 | 20928 | 62.7 |
+
+Rounds near a monster per game: top 10 419, us 328 (+28%); damage per near round +9%; together the +39% monster damage.
+The top 10 stand at distance 3-4 of monsters almost twice as often (ranged champions and extra members at the same
+group) and walk 9 points less of their time. The farm gap is champions standing at the SAME group (present at capture
+median 3 vs our 2), not the damage each deals when there. This is the same mechanism the buddy thread measures from the
+walking side (paired walking 37-39% vs 55%).
+
+### o81_stack.py (P_STACK_HP 0; variant + P_SHAREEXP 50) over b35
+choose_target splits a group's value evenly (value / team) below P_STACK_HP 3000 hp and by team^0.75 above (study27).
+A third champion joining a 2640-hp single-elk group sees a third of it. o81 makes the stacking exponent apply to every
+monster group (and the variant lowers it to 0.50). Expected: more champions per capture, more rounds near monsters, less
+walking, fewer separate cluster trips; watch deaths and far maps. Panels (bots/e81, e81b) launched 12:05 UTC.

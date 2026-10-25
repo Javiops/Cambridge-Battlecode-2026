@@ -177,6 +177,37 @@ con <= 19 grupos y <= 1000 casillas. Es o72 (b28). Turno 1 completo de b28 con f
 gold_rush 159k, reverse_spiral 175k, elkring 178k, gemfight 178k; margen mínimo 7.7k frente a 185,984. reverse_spiral y rushbait empiezan igual que kvvl: ahí la causa es
 otra (hitpass o pelea), pendiente.
 
+## Online c20 (10-25 11:00 UTC): b32 (v172) -1 frente a kvvl v164, cercanos -5; por qué pierde en cercanos (10-25 12:30 UTC)
+
+27 parejas cambiadas (mismo rival, mapa y lado), repeticiones decodificadas con replaydump.js (tools/online_*.py; c19 igual, 37 parejas).
+Lo que separa a los deterministas (b27 en c19, b32 en c20) de kvvl/V20 en cercanos:
+
+- Mueren ANTES: primera muerte propia mediana r66 vs r87 (c20) y r52 vs r120 (c19). Muertes r100-300: 42 vs 24 (c20), 43 vs 38 (c19);
+  casi todas con un campeón rival a <=4 (34/42), en inferioridad local (19 vs 7) y con gemas encima (119 vs 34 gemas perdidas) ->
+  gemas entregadas a r300 58 vs 76 por partida. Modo (stdout) en la última línea de estado antes de morir: farm/fight-camp 12 vs 3,
+  bcf 6 vs 2 (kvvl muere en wait-respawn/kite). En el panel local sale el MISMO patrón (tools/deathmode.py, 52 partidas, mismos
+  rivales): fight-camp kvvl 13, b32 21, b35 22, b27 20 (linaje b1-b31: 14-25; ruido ~±4). Es un proxy local medible a 800 partidas.
+- NO es: separación del grupo (clusters y distancia al aliado más cercano idénticos), acarreo de gemas (3.6 vs 3.9 por campeón),
+  campamentos (muertes sin rival cerca 8 vs 1 pero pocas), posición/contacto (fracción de rondas con rival a <=6: 0.35 vs 0.34,
+  distancia al spawn rival 24.6 vs 24.9), dashers lejos del grupo (en c20 mueren MÁS cerca de Marcella/Ryth que en kvvl; en c19,
+  con los agujeros de dash originales, sí: mediana 8 vs 4), puertas de fuel de kvvl (low-fuel 2 y fuel-wait 41 líneas en 52 partidas
+  locales), turnos cortados (online b32 0.05 turnos cortados/partida vs kvvl 3.3; ninguna muerte con un turno cortado en las 3 rondas
+  anteriores, ni en base ni en candidato).
+- Arranque: b32 pasa el turno 1 en 52 de ~90 campeones online (kvvl 10) -> primera acción r3. b35 lo arregla en 23/26 cercanos.
+
+Conclusión: la pérdida es micro (peleas en campamento perdidas en las mismas situaciones de contacto), no macro, y el panel local
+no la castiga porque los rivales locales son nuestro linaje. Siguiente paso propuesto: medir el proxy fight-camp a 800 partidas en el
+PC (deathmode.py sobre res/<bot>/<rival>/{A,B}_*.json+.repl26a) para kvvl, b32, b35 y las piezas sospechosas (farm o59/o63/o64,
+hitpass o70, bcf).
+
+## o76 (b38 = b35 + warm-up del farm fuera del turno 1): aparcado
+
+El warm-up (índices de tiles por grupo, 20-26k) es precomputación pura que farm_warmup_now() construye al primer uso. Sin él, el
+turno 1 cabe en swirl, broken_curve, gem_fields, collision, rushbait, stampede, great_wall y shortcut (campeones pasados en 40 mapas:
+111 -> 93). Pero el primer turno de juego pasa de 50-70k a 83-100k (warm-up 22k + primer refresh_groups/choose_target/BFS ~20k extra):
+stampede HoR cortado a 100k, rushbait 97k, gem_fields 96k. Sin margen para el pad: no se propone. Para ganar la ronda en esos 8 mapas
+hace falta recortar el primer turno de juego (~20k de trabajo de primera vez) o repartir el warm-up por cuota en el turno 1.
+
 ## Auditoría de puertas de fuel dormidas en kvvl (10-25, 26 cercanos x rD, r1-60, 5 campeones)
 
 Al convertir `fuel_ok()` en `true` (o07) se ENCENDIÓ código que en kvvl el fuel real mantenía apagado al principio.

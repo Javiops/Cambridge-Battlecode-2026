@@ -678,3 +678,12 @@ near 63/80 (+8 -7, 46 identical) vs 62; far 49/56 (+1 -0) vs 48. Mechanism (clea
 and 9.30 -> 9.78; elk+gem 0.75 -> 0.85 and 0.88 -> 1.12; gold clusters unchanged; group gems r0-300 127 -> 132; gold
 earned r150 496 -> 557 (top 10 562), monster damage +16% / +26%. Bigger than o79 and still safe; the hold bonus is the
 closed territory line and removing it only helps. Candidate rider / small piece. o80 (gold weight 50 / 70) running next.
+
+### o80_goldw.py over b35: CLOSED (12:50 UTC; 136 + 136 games)
+P_GOLD_W_EARLY 50: near 54/80 (+7 -15) vs 62, far 46/56 vs 48. 70: near 60/80 (+5 -7), far 45/56. Ground truth unchanged:
+gold earned r150 496 -> 496 / 500, gems collected r150 38 -> 40 / 42, monster damage r150 8010 -> 7436 / 7980. Halving the
+gold weight does not cut the gold-cluster trips nor raise gem income: at 7 tiles a 40-gold cluster still scores 0.95 a
+round (50%) against the single elk's 0.81, and the lost gold weakens the shop. The elk's modelled cost (79 rounds solo, 44
+as a pair with the value shared) is what keeps it out, and the top 10 take it with 3-4 champions from r30. Line closed:
+the next step is to decompose the throughput gap (rounds in contact with monsters vs damage per contact round) before
+touching the model again.

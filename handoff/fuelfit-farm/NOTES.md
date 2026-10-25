@@ -384,3 +384,5 @@ rD, 781-1070 vs rF) and won two narrowly. Keeping the first target ~30 rounds on
 field is only 15k. => P_RF_DEFER_AREA raised to 5000 (fracture excluded; 100x100 and 80x80 maps and corners kept).
 With that default every game of this panel is byte-identical to b15 (far 56 re-run in progress to confirm): on this
 panel o67 behaves as an exact piece; the PC's 800 games decide whether other big maps change.
+o67 with P_RF_DEFER_AREA = 5000 (11:20 UTC): far 56/56 byte-identical to b15 (near 80 were identical already below the
+threshold). On this panel o67 only removes fuel (r8-r9 re-choice field on ambush, big_world, starvation, expanse).

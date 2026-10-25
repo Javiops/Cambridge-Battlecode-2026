@@ -263,3 +263,32 @@ Exactness over b15 (06:35 UTC): b15+o59+o63+o64 56/56 far + 80/80 near byte-iden
 So the queue never changes a decision: br_plan's uncached path before the altar fields are ready, the home field
 computed later and the recall fallback all give the same answers as computing them on the first turn. o64 is exact
 and adds no init work and no idle-round work: safe for the b15 line (and b24hp/b26).
+
+## o65_fieldreuse.py (over b15 + o59 + o63 + o64; 07:40 UTC): the two goal fields of a walking turn are kept and reused
+
+Profile of e64 (b15 + o59 + o63 + o64), far maps, every turn r2-r10: step_towards computes the goal's walking field
+(roots = goal tiles, walls = s.blocked, search stopped at our tile) EVERY turn of every champion, 14-17k on ambush, 13-17k
+on starvation, 8-9k on big_world; dash champions (ren, vesper, vendetta) compute a second field with the crossable holes
+open (mp_dash_hole_step): 14-20k ambush, 13-16k starvation, 4-8k big_world. r3-r10 turns of dash champions on ambush
+sit at 78-86k (ren r3 83k, vendetta r4 86k), i.e. on the 86k boundary every turn.
+
+Two measurement builds over the 56 far games (x65m, x65n; bench only, printf of the conditions, no code change):
+- "No tile within hole_bound-1 of the goal touches a crossable hole" (exact skip of the hole field) holds on 15%
+  (ambush) to 87% (pilgrimage) of the calls, but NEVER on r2-r6 of ambush/starvation (hole lines next to the camps):
+  not the first-turn tool. Dropped.
+- Reuse rule (below) with static walls: holds on 63-80% of walking searches (ambush 73%, starvation 63%, big_world 63%)
+  and 61-77% of hole searches; 0 mismatches between the cached and the fresh distance in 240k checks.
+
+The rule (field_reuse): a search stopped at our tile (distance D) holds the exact distance and reach of every tile
+within D. With other walls and the same roots the reads stay the same when (a) every tile that became a wall has cached
+distance >= D (it is on no shortest path of a tile within D) and (b) every tile that stopped being a wall has all its
+neighbours at cached distance >= D - 1 (a shorter route through a freed tile reaches the tile before it at <= D - 3).
+step_towards reads: our distance, ring tiles at distance < D - 1 (dash/crystal scans), the neighbours at D - 1
+(next_moves_from), reached-or-not of our tile: all within D. The stuck scan (neighbours at D + 1, reached or not,
+which depends on where the search stopped) gets a fresh search first. mp_dash_hole_step reads the same of its own
+field plus "reached within here - 4": the cached distance tells. Both fields are kept in State with their roots and
+walls (s.wf_*, s.hf_*); the kept one is the last computed (dynamic walls), so a unit that stands still nearer than us
+does not break the rule, only units that moved/appeared/vanished nearer than us do. Test cost ~1-2.5k (one reached
+test + get for us, roots compare, one get per changed wall tile, 8 per freed tile); not tried when the cached distance
+is < P_FR_MIN = 20 (short searches cost less than the test). No fuel read, no init work, no idle-round work.
+Exactness over b15 (07:38 UTC): b15+o59+o63+o64+o65 far 56/56 byte-identical; near 80 running.

@@ -118,6 +118,7 @@ recall 60k / 32k, shop 55k / 32k, init(dead-shop) 50k / 22k, decide 42k / 25k.
 | b19 | b16 + o60-o62 exactas | +6.0 | +17.0 | 2% (+200 19%, +2000 73%) |
 | b20hp | b19 + o70 (hitpass-v2 sin fuel) | pendiente | pendiente | local 0/52, lejos 1/56 (r1322) |
 | b21hp | b15 + o70 v1 (hitpass sobre la base elegida) | +10.4 (cerca -11/b15 -9, medios +27/+23, lejos -1/+19) | +16.6 | 2% (+200 24%) | local cerca 0/52, lejos 3/56 |
+| b28 | **b27 + o72** (arranque temprano por regla de mapa: ≤12 grupos y ≤1000 casillas juega en r1; ≤19 grupos y ≤1000 casillas hace el trabajo de la ronda ociosa en el turno 1 y juega en r2) | pendiente | pendiente | cerca 0/52; cerca 41/52 (b27 37, kvvl 41; 6 mapas cambian: fragment, packs, hooks, elkring, gold_rush, reverse_spiral) |
 | **b27** | **b26 + farm o64** (cola estática de final de turno: casa > altares > continente > inversos; primer turno de juego bajo 86k en 10 de 14 lejanos) | +9.6 | +17.4 | **1% (7/800, 2 ganadores; lejos 2/280), +200 11%** (kvvl 96%) | lejos 1/56 (r383), cerca 0/52; lejos 45/56 (b26 44, 9 cambiadas), cerca 3/52 tarde |
 | b26 | b24hp + farm o59 + o63 (exactas: choose_target -5k..-13k con 24-51 grupos) | +9.2 (castigadores +16) | **+17.5** | **3/800 (0 ganadores; lejos 2/280)**, +200 18% | **lejos 0/56** (primera vez en 0 sobre b15), cerca 3/52 (r351+, mismo resultado); lejos 44/56 = b24hp |
 | b25 | b15 + o71 (exacta: el campo al spawn enemigo del init solo si hay candidato a jackpot; arranque -6k..-32k en los 14 lejanos) | +12.0 (lejos +14) | +16.5 | 2% (lejos 13/280, b15 14) → sin ganancia, a opts_off | cerca idéntica a b15 (52/52); lejos 16/56 distintas (el juego empieza antes), 42/56 frente a 45, sonda 3/56 |
@@ -153,6 +154,17 @@ de leer por casilla sale un 10% peor: la exportación se mide por tamaño), role
 (600 por grupo). Suma 149k (rows) a 330k (big_world) frente a 186k del turno 1. Primer turno de juego (r2 o r3): 77-168k
 frente a 86k (big_world r3 168k, islands 109k, expanse 104k, fracture 103k, road_of_riches 98k); picos de 60-90k en r8-r9.
 Siguiente: grupos (2k/grupo exacto) y el primer turno de juego (choose_target con 24-51 grupos: hilo farm).
+
+## Online c19 (10-25 08:54 UTC): b27 -7 frente a V20, toda la pérdida en cercanos
+
+Cercanos 37 -> 32/81, -41 gemas/partida, concentrada en starfish (-739), contest (-600), fragment (-512), hooks (-506),
+reverse_spiral (-337), rushbait (-228); lejanos +0.6 gemas. Causa encontrada: kvvl jugaba desde la ronda 1 cuando el
+arranque dejaba 40k (contest, fragment, hooks, eight) y desde la 2 en mapas de 15-19 grupos (starfish, gold_rush,
+gemfight); b15-b27 juegan desde la 2 (<= 14 grupos) o la 3, una ronda más tarde en 7 de esos mapas. Arranque y primer
+turno medidos con fuel ilimitado en los 26 cercanos (init 97k fragment .. 256k boss_battle; primer turno 33-90k):
+cabe jugar en r1 con <= 12 grupos y <= 1000 casillas (init+turno <= 180k) y hacer la ronda ociosa dentro del turno 1
+con <= 19 grupos y <= 1000 casillas. Es o72 (b28). reverse_spiral y rushbait empiezan igual que kvvl: ahí la causa es
+otra (hitpass o pelea), pendiente.
 
 ## Reglas para portar una pieza a la base sin fuel
 

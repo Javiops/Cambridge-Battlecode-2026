@@ -304,11 +304,10 @@ searches and to 1/42, 0/13, 1/45, 0/12, 7/31, 2/3 of the heavy turns: not a leve
 ambush/starvation/fracture (reached and used on 56-82% of calls) and pure cost on big_world/lanes (reached 0/766,
 0/168: ~11k per call for nothing) and islands (30/952).
 
-Finding for the stall thread: main.cpp step_towards gates the hole step with `fuel_ok(40000)`; on r2-r20 of the
-100x100 maps the turn arrives there with ~30-45k left (choose_target 37-49k incl. the 26-31k forward field, goal field
-11-18k), so +-200 instructions flip whether the 13-20k hole search runs. That is the first-turn chaos the PC sees, not
-the field cost itself: the search is behaviour on ambush/starvation, so a fixed rule replacing the gate changes games
-(to be judged by strength); on big_world/lanes it could be dropped by a map feature (not exact either).
+Correction (integrator, 08:46 UTC): in b15 and everything above it fuel_ok() is a stub returning true (o07), so the
+`fuel_ok(40000)` in front of the hole step decides nothing: the hole search always runs and its cost is deterministic.
+The first-turn chaos on ambush/starvation/big_world is the total turn cost against 86k (overflow pushes actions to the
+next round), not a fuel-read branch.
 
 Lesson (fuelfit): an exact cache only pays if the MISS path costs ~0 and the misses are not the heavy turns. Here the
 heavy turns are the misses by construction (group walks, new targets).

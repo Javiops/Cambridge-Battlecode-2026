@@ -38,11 +38,14 @@ turnos pesados y el veto del fuel real sigue saltando. La única salida robusta:
 - **Manifiesto:** `mk.sh NAME` (26 mapas no lejanos x 6 rivales del panel17 x 2 lados = 312) y `subq.sh FUEL NAME...`
   (subconjunto de 52 con `--fuel-quantum`). Rivales: `analysis/local-filter-1021/panel17/{rTop1,rD,rF,rHunt,mV19,mV10d}`.
 
-Candidata: **`fuelfit-b12.zip`** (10-25 02:10 UTC) = b10 + o13 (ward solo con arbusto cerca, exacta) + farmeo o52 (K=12
-grupos en choose_target, cambia decisiones), o53 (isle_escape cada 10 rondas), o54-o56 (exactas: calentamiento de
-campos inversos al final del turno, sin búsquedas exhaustivas fuera del continente, caché de isla). Local a fuel normal:
-cercanas 37/52 (kvvl 41; neto -4 en 16 cambiadas, barra 8), lejanas **48/56** (kvvl 42); sonda +20: 0/52 cercanas,
-3/56 lejanas. El Juez 2 decide entre b10 y b12.
+Candidata: **`fuelfit-b14.zip`** (10-25 02:40 UTC) = b10 + o13 (ward solo con arbusto cerca) + o35 (campos de altar
+1 por turno en mapas > 2500 casillas) + o57 (primera ronda de juego por modelo de coste de la init: 68k + 18/casilla +
+5k/grupo, 1 ronda si ≤ 186k, si no 1 + ceil((est-186k)/86k); mapas pequeños ≤ 14 grupos siguen en la ronda 2) + farmeo
+o52 (K=12 grupos en choose_target, cambia decisiones), o53 (isle cada 10 rondas), o54-o56 (exactas). Las exactas se
+comprobaron con same.py (52 cercanas / 56 lejanas idénticas). Local a fuel normal: **+20 instrucciones cambia 0/52
+cercanas y 0/56 lejanas**; victorias cercanas 39/52 (kvvl 41, barra 7,5), lejanas 48/56 (kvvl 42). El Juez 2 decide.
+Costes de init medidos por mapa (40 mapas): fragment 101k … monolith 199k, ambush 280k, islands 315k, road_of_riches
+328k, big_world 373k (`tools/heavy.py`).
 
 Base validada: **`fuelfit-b10.zip`** (10-25 01:10 UTC) = kvvl + o01-o12 (este hilo) + pelea o17-o30 + recall o31-o34 +
 farmeo o41-o49. 36 piezas; `fuel_ok()` es siempre true. **Inicialización v3 (o08):** toda en el turno 1 de golpe (no

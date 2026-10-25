@@ -38,11 +38,25 @@ turnos pesados y el veto del fuel real sigue saltando. La única salida robusta:
 - **Manifiesto:** `mk.sh NAME` (26 mapas no lejanos x 6 rivales del panel17 x 2 lados = 312) y `subq.sh FUEL NAME...`
   (subconjunto de 52 con `--fuel-quantum`). Rivales: `analysis/local-filter-1021/panel17/{rTop1,rD,rF,rHunt,mV19,mV10d}`.
 
-Base actual: **`fuelfit-b6.zip`** = b3 + o11 (tienda exacta: 52k → ~17k por visita) + farmeo o43-o46 + o47 (campos
-inversos de o45 como paso de la init, 32k cada uno, 2 turnos máximo). Local 40/52 (kvvl 41), sonda +20: 4/52 cambiadas,
-3 antes de r150: el PRIMER turno de juego tras la init pesa 100-148k (choose_target 41-54k exclusivo de precálculos de
-o41/o45, refresh_groups 16-27k en su primera llamada, step_towards 28k en lost_world): pedido a farmeo un
-`farm_warmup(s, quota)` para hacerlo en la init (o48). `tools/heavy.py MAIN` imprime cada turno > 80k con ronda y modo.
+Base actual: **`fuelfit-b10.zip`** (10-25 01:10 UTC) = kvvl + o01-o12 (este hilo) + pelea o17-o30 + recall o31-o34 +
+farmeo o41-o49. 36 piezas; `fuel_ok()` es siempre true. **Inicialización v3 (o08):** toda en el turno 1 de golpe (no
+se emite ninguna acción, así que si no cabe en los 186k el motor la termina en la ronda 2 sin que nada pueda divergir);
+primera ronda de juego fija por mapa: 2 si el mapa tiene ≤ 14 grupos (init medida ≤ 143k), 3 si no (hasta 252k con 31
+grupos). La ronda ociosa de los mapas grandes calcula campos inversos de farmeo (o47) con precio fijo por casilla.
+La init por pasos anterior (v1) hacía perder 3-5 rondas de apertura: a14@300 +0,64 → +0,25 (medido por farmeo).
+
+Local a fuel normal (52 cercanas x 6 rivales; 56 lejanas x 2 rivales):
+
+| | kvvl | b9/b10 |
+|---|---|---|
+| victorias cercanas /52 | 41 | 40 / 41 |
+| victorias lejanas /56 | 42 | 43 / 41 |
+| +20 instr.: cambiadas cercanas | 41 | 0 / 2 |
+| +20 instr.: cambiadas lejanas | - | 3 / 6 (todas antes de r50: primeros turnos de farmeo en mapas 100x100) |
+| +200 instr.: cambiadas cercanas | - | 7 (2 ganadores) |
+
+Lo que queda: en mapas lejanos los primeros turnos de farmeo (choose_target 28k + step_towards 13k + campo inverso
+7k + ward) pasan de 86k; farmeo prueba o51-o53 (topes con cambio de decisión, por fuerza).
 
 Anterior: **`fuelfit-b3.zip`** = kvvl (k_vvl_mgwp) + o01-o10 (este hilo) + o21-o26 (pelea) + o31-o33 (recall/altares/
 campamentos) + o41-o42 (farmeo). `diff_b3_vs_kvvl.patch`. Ya **no lee el fuel en ninguna decisión** (`fuel_ok()` es

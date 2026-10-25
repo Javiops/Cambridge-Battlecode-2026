@@ -492,3 +492,17 @@ The opening now has the top-10 shape (3 champions on the first group, elk first)
 gold clusters) while the final gem margin rises (+25457 vs +17615 over 80 games); early deaths do not fall yet (the
 team fights where it meets the rival). Package for the PC: /mnt/project-files/bundles/teamopen-v1-b29.zip (644d36e9,
 b29 src + o69, P_TO 1 / P_TO_R 40 / P_TO_NEAR 0). Variants worth a PC run: P_TO_NEAR 1; P_TO_R 25.
+
+### o69 v1 over b32 (10-25 11:00 UTC; local b29h2 = b32 up to the inert P_MP_HOLE_SMALL 0)
+
+| panel | b32 | b32 + o69 v1 | flips |
+|---|---|---|---|
+| near 80 | 58/80 (+22201, 43 deaths <= r100) | 58/80 (+26645, 52) | +11 -11 |
+| far 56 | 48/56 (+15546, 13) | 44/56 (+16002, 34) | +7 -11 |
+
+Over the stronger base v1 is neutral on near maps and loses far maps (deaths <= r100 13 -> 34: big_world 12, great_wall
+10, fracture/shortcut 4). Part of the gain seen over b29 was reverse_spiral-type games that o68 already fixes. Not a PC
+candidate as is. Losses with v1 (gemfight, packs, gold_rush, trace.py): the leader's team valuation sends the whole team
+to the rich centre group (gemfight 78 gems, 12 camps; packs 28; gold_rush) and two champions die there at r27-r45.
+v2 = P_TO_OWN 1: the team valuation applies only to groups on our side (closer to our spawn by P_TO_OWN_D 2); the top
+10's elk captures are own-side in 47 of 68. v2 panel over b32 running.

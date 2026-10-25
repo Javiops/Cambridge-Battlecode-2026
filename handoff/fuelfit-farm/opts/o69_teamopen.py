@@ -10,7 +10,8 @@
 # choose_target); the others take the leader's claimed group (x P_GROUP_W, existing ball code) and discount groups
 # more than 8 tiles from the leader (x 0.3), re-choosing every 3 rounds like the ball. After P_TO_R the usual choice
 # resumes (hysteresis keeps a group under capture). P_TO_NEAR 1 limits it to near maps (spawn-to-spawn path <
-# P_PF_MAX). No fuel read.
+# P_PF_MAX). P_TO_OWN 1 (v2): the team valuation applies to own-side groups only; with 0 the leader parked the team on the
+# centre group (gemfight 78 gems, packs, gold_rush) and two champions died at r27-r45 in each of those games. No fuel read.
 import sys
 d=sys.argv[1]; p=d+'/main.cpp'; s=open(p,newline='').read()
 def rep(a,b):
@@ -42,7 +43,7 @@ rep("""    if (ball_on(s, round) && s.ally_idx > 0)
                 to_leader = false;  // o69""")
 rep("""        int team = std::max(1 + claimers, needed);""",
 """        int team = std::max(1 + claimers, needed);
-        const bool pack = to_leader;  // o69 teamopen-v1: the leader values the group for the whole team
+        const bool pack = to_leader && (!P_TO_OWN || dist(g.center, s.spawn_center) + P_TO_OWN_D < dist(g.center, s.en_center));  // o69 teamopen-v1: the leader values the group for the whole team (P_TO_OWN: own-side groups only)
         if (pack) team = std::max(team, s.roster);""")
 rep("""        bool pack = false;  // opening: everybody on the best camp together
 """, "")
@@ -56,6 +57,8 @@ rep("""#ifndef P_HOLEFIX""","""#ifndef P_TO
 #define P_TO 1        // o69 teamopen-v1: the team opens together (first alive ally leads, the rest take its group x P_GROUP_W) until round P_TO_R
 #define P_TO_R 40
 #define P_TO_NEAR 0   // 1 = near maps only (spawn-to-spawn path < P_PF_MAX)
+#define P_TO_OWN 1    // the leader values for the team only groups on our side (closer to our spawn by P_TO_OWN_D); v1 panel: with 0 the team walked into the centre groups (gemfight 78 gems, packs, gold_rush) and lost 2 champions at r27-45
+#define P_TO_OWN_D 2
 #endif
 #ifndef P_HOLEFIX""")
 open(p,'w',newline='').write(s)

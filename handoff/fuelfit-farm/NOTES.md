@@ -744,3 +744,14 @@ vs kvvl for b35, o79b, o81 v2, o70 to know which candidates pass the local gate.
 All pass the local gate (> 26) but only o70 is at the base's level; nohold is 3 below b35 here while +1 on the rival
 panel: at this size (52 games) a 3-game difference is noise, and b35 itself wins 34/52 locally while losing -4 online, so
 the head-to-head is a weak predictor too. Candidates for online over the next base: incoming50 first, nohold second.
+
+### Who stands at the same monster group (13:45 UTC; gem/contact.py, group-rounds per game with 1/2/3/4+ own champions
+within 4 of an awake monster of that group, r1-300)
+top 10 116 / 63 / 32 / 22; b35 98 / 65 / 29 / 12. The top 10 engage more groups solo (+18%) AND with 4+ (x1.8); pairs and
+trios equal. Their 4+ engagements are on WEAK groups (total strength <= 60, a single elk or wolf): 8.0 / 4.8 / 6.4
+group-rounds per game in r0-50 / 50-150 / 150-300 vs our 5.2 / 2.0 / 2.1; on 61-120 and 121+ groups both sides stay under
+1.5. They sweep weak groups with the whole team all game; we do it only in the opening. o81 stacked on every monster
+group (including 2-3 elk groups) and lost the far maps.
+
+### o82_sweep.py (P_SWEEP_STR 60, P_SWEEP_R 50) over b35: a weak monster group (0 < str <= 60, hp < 3000) is not value-split
+among the champions heading there from r50; everything else as b35. Panels near 80 + far 56 + h2h vs kvvl launched 12:45 UTC.

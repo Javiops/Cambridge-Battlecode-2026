@@ -575,3 +575,8 @@ Mechanism (80 near games, replays): elk+gem captures r0-150 0.84 -> 1.05 per gam
 episodes unchanged (26 rounds, 3 champions, 0.06 deaths). W/N neutral on both panels, net gems +1-4%. The mechanism moves
 in the right direction but only a fifth of the way to the top 10 (2.27 elk captures r150-300). Package for the PC:
 /mnt/project-files/bundles/incoming50-b35.zip. Variant P_INC_PCT 35 (the top-10 ratio) running.
+
+### o70 variant P_INC_PCT 35 (10-25 13:35 UTC): near 63/80 (+27949, 56 deaths) vs b35 62; far 42/56 (+12258, 32 deaths) vs 48
+(+7 -13; starvation 4/4 -> 0/4 with 7 deaths, concentrated_wealth 4 -> 2, rows 3 -> 2). Discarded: the lower charge sends
+champions into groups they cannot finish on the sparse 100x100 maps. P_INC_PCT 50 also drops starvation (4 -> 1) while
+winning ambush/expanse/great_wall/rows; it stays the only PC candidate of this line (zips/incoming50-b35.zip).

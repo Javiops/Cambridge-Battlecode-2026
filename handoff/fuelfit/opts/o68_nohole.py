@@ -6,8 +6,9 @@
 # 8 local games (17 deaths <= r100; kvvl 0): the camp is cleared at r100+ instead of r74, 7 gems and 0 gold at r100 over
 # 8 games (kvvl 366 / 1528). With the step off (b27): reverse_spiral 7/8 (b27 0/8, kvvl 7/8; net gems +2238 / -2770 /
 # +887), rushbait_v2 7/8 (b27 5/8, kvvl 4/8; +2859 / +506 / +642).
-# P_MP_HOLE: 0 = no hole routes at all (what was measured); 1 = as before; 2 = a hole route only when it does not split
-# the group: in farm mode, if an ally without a dash (by champion name) claims the same target group, walk with it.
+# P_MP_HOLE: 0 = no hole routes at all (b31: near losers +8/72 but far -3/56); 1 = as before; 2 = a hole route only when it
+# does not split the group: in farm mode, if an ally without a dash (by champion name) claims the same target group, walk
+# with it (b32: farm 128 g: h2 97, h0 93, b29 88). P_MP_HOLE_SMALL (b33 = 2500): no hole routes on small maps either.
 # No fuel read.
 import sys
 d=sys.argv[1]; p=d+'/main.cpp'; s=open(p,newline='').read()
@@ -52,7 +53,8 @@ int tank_bits(State& s) {
 rep("""    if (use_dash && s.dash_slot >= 0 && !s.mp_dashholes.is_empty() && fuel_ok(40000)) {
         int r = mp_dash_hole_step(s, me, goals, vblock, pos);  // mapplan_game.h rule 5: plan across holes we can dash""",
 """    if (P_MP_HOLE && use_dash && s.dash_slot >= 0 && !s.mp_dashholes.is_empty() && fuel_ok(40000) &&
-        (P_MP_HOLE != 2 || !hole_splits_group(s))) {  // o68: 0 = no hole routes; 2 = not when it leaves a dash-less ally behind
+        (P_MP_HOLE_SMALL <= 0 || static_cast<long>(bc::map::width()) * static_cast<long>(bc::map::height()) >= P_MP_HOLE_SMALL) &&
+        (P_MP_HOLE != 2 || !hole_splits_group(s))) {  // o68: 0 = no hole routes; 2 = not when it leaves a dash-less ally behind; off on maps < P_MP_HOLE_SMALL tiles
         int r = mp_dash_hole_step(s, me, goals, vblock, pos);  // mapplan_game.h rule 5: plan across holes we can dash""")
 # hole_splits_group needs claim helpers and g_mode declared before step_towards: forward declarations
 rep("""bool step_towards(State& s, bc::champion& me, const bc::bitboard& goals_in, bool use_dash) {""",
@@ -61,7 +63,10 @@ bool step_towards(State& s, bc::champion& me, const bc::bitboard& goals_in, bool
 open(p,'w',newline='').write(s)
 p=d+'/params.h'; s=open(p,newline='').read()
 rep("""#ifndef P_HOLEFIX""","""#ifndef P_MP_HOLE
-#define P_MP_HOLE 0  // o68: 1 = dash champions plan across crossable holes (mapplan rule 5); 0 = never; 2 = only when no dash-less ally shares the target
+#define P_MP_HOLE 2  // o68: 1 = dash champions plan across crossable holes (mapplan rule 5); 0 = never; 2 = only when no dash-less ally shares the target
+#endif
+#ifndef P_MP_HOLE_SMALL
+#define P_MP_HOLE_SMALL 0  // o68 v3: no hole routes at all on maps with fewer tiles than this (0 = no size rule); 2500 covers reverse_spiral (900) and rushbait_v2 (2400)
 #endif
 #ifndef P_HOLEFIX""")
 open(p,'w',newline='').write(s)

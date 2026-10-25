@@ -120,3 +120,52 @@ farm_pd_ready's first call (the 12k "first field"). `my_roster` returns a const 
 call, also in vcarry_on). Exact: same values computed earlier / not copied. 2/2 games identical to b6; 80-game check running.
 Per-game price of the first farm_warmup call: 18 pows 5.4k + roster/tank_bits ~2.5k + N x ~260 for the field objects + 2.5k
 tables; later calls 600 per group.
+
+## o49 check: 80/80 byte-identical replays (b6 vs b6+o48+o49), 10-25 00:48 UTC.
+
+## o5x on the integrator's b10 (10-25 01:10-01:50 UTC; unlimited fuel; 56 far = far.sh, 80 near = subq)
+
+| patch | far 56: differ / results changed / net | far wins | far a14 | near 80: changed / net | near a14 |
+|---|---|---|---|---|---|
+| b10 | - | 36/56 | -0.106 | - | +0.437 |
+| o52 K=12 | 14 changed, net +4 (bar 7.5) | 40/56 | +0.131 | 10 changed, net +2 | +0.643 |
+| o51+o52+o53 | 16 changed, net +2 | 38/56 | +0.137 | 11 changed, net +3 | - |
+| o51 | 2 changed, net 0 | 36/56 | | | |
+| o53 | 0 changed | 36/56 | | (earlier: 2 differ, 0 results) | |
+
+Verdict: **o52 yes** (positive on every panel so far: 80 a1 +2/22, 80 b10 +2/10, 56 far +4/14, a14 and gems300 up each
+time; it is the piece that cuts the scoring loop on 24-46-group maps). **o53 neutral** (take it for the cap). **o51 drop**
+(nothing to gain, doubtful on 160 earlier games).
+
+## Far-map profile of b10 (12 games: islands, ambush, big_world, great_wall, expanse, fracture x rTop1 x 2 sides)
+
+tools/prof_fp48.py + ct_prof48.py (48 scopes; [fpt] also on tribute >= 25k), fpt_st.py (heavy turns by section),
+fph_tot.py (turns by total cost from the [fph] histograms). b10: 15438 turns, 286 >= 77.5k (1.85%), 132 >= 87.5k.
+
+Finding 1 (fixed by **o54_pdsched.py**, exact): choose_target_impl runs only every few rounds per champion on far maps, so
+the o45 reverse fields (one per call) took 250-500 rounds to warm up, and every call meanwhile paid the forward field AND
+one reverse field: ct:compute 30-35k from r11 to r300 (present on 95-100% of heavy farm turns). o54: choose_target never
+computes a reverse field (uses them only once all exist, else the forward field); the warm-up runs at the end of every
+playing turn that did not pay the forward field and is not a tribute walk (dead, fight, approach-cached, recall turns), one
+field per turn, fixed rule, no fuel read. init_wait (o47) keeps computing them on the idle round.
+
+Finding 2 (fixed by **o55_stskip.py**, exact): step_towards off the mainland (big_world (71,80) after a dash over holes,
+ambush's moated room, islands) ran two exhaustive searches (live block, then static+camps; 26-30k each on 100x100)
+before isle_escape's third. Both block sets contain s.static_block, so with every goal on the mainland neither can reach
+us: skipped. The mainland bitboard (component of our spawn over static walls) is global now (g_mainland), computed in the
+first o54 warm-up slot or by isle_escape as before.
+
+Finding 3 (**o56_islecache.py**, exact, small): isle_escape's landing scan (<= 80 pocket tiles x 24 landings x wall
+check, ~30k C++) is built once per island and kept with the pocket; the pocket field runs before the goal field so an
+island over P_ISLE_MAX returns before the exhaustive search. isle still costs ~55k when it runs (the goal field is
+exhaustive by nature: dest unreachable) -> o53 (every 10 rounds) stays useful.
+
+After o54+o55(+o56), same 12 games: turns >= 77.5k 286 -> 156 (1.0%), >= 87.5k 132 -> 57; heavy farm turns (farm section
+>= 30k and total >= 76k) 1153 -> 547; ct:compute mean on them 21k -> 4.4k. 12/12 replays identical to b10 (profile builds).
+Exactness runs: o54 far 56/56 identical; near 80 and o55/o56 runs in progress (see table below when filled).
+
+What remains on far maps (mean on heavy farm turns after o54-o56, present%): step_towards 25.6k (99%: goal search st:ct1
+9k, dash holes 11.5k when present, isle 55k on 5%), choose_target 24k (74%: ct:score 15k -> o52), engage_camp 15k (15%,
+max 88k: one outlier to look at), and outside farm: play_turn start "init" section 23k on 27% (cf_observe /
+br_static_step: recall thread), post-sweep 15.5k on 51% and log 12.8k on 22% (pelea / integrator), shop 25k on 31% of
+tribute turns. Tribute turns: step_towards 24k (st:ct1 8k, dash holes 9k), not 44k: the 44k figure was isle_escape.

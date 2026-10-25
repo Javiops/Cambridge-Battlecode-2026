@@ -163,7 +163,8 @@ arranque dejaba 40k (contest, fragment, hooks, eight) y desde la 2 en mapas de 1
 gemfight); b15-b27 juegan desde la 2 (<= 14 grupos) o la 3, una ronda más tarde en 7 de esos mapas. Arranque y primer
 turno medidos con fuel ilimitado en los 26 cercanos (init 97k fragment .. 256k boss_battle; primer turno 33-90k):
 cabe jugar en r1 con <= 12 grupos y <= 1000 casillas (init+turno <= 180k) y hacer la ronda ociosa dentro del turno 1
-con <= 19 grupos y <= 1000 casillas. Es o72 (b28). reverse_spiral y rushbait empiezan igual que kvvl: ahí la causa es
+con <= 19 grupos y <= 1000 casillas. Es o72 (b28). Turno 1 completo de b28 con fuel ilimitado (máximo por campeón): fragment 128k, packs 150k, hooks 155k,
+gold_rush 159k, reverse_spiral 175k, elkring 178k, gemfight 178k; margen mínimo 7.7k frente a 185,984. reverse_spiral y rushbait empiezan igual que kvvl: ahí la causa es
 otra (hitpass o pelea), pendiente.
 
 ## Reglas para portar una pieza a la base sin fuel

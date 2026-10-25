@@ -636,3 +636,23 @@ hold) x 1.25 (P_STICK hysteresis) = x2.5 on g16, a 2-wolf group with 8 gems and 
 all game while the 29-gem elk 11 tiles away is never approached. elkring (all groups single elks): the same x2.5 just picks
 the held elk, harmless. shortcut: both candidates 29-gem elks. Running e70dbg on the near 80 panel to count, over all
 decisions, how many gems the pick gives up to the hold multiplier.
+
+### Decision dump of b35 + o70 on the near 80 panel (12:00 UTC; e70dbg prints every choose_target candidate and pick; run
+with --fuel-quantum 2000000 because the prints cost fuel: with normal fuel the instrumented bot won 47/80 instead of 60)
+7604 decisions in r20-300 (gem/ctparse.py on the team stdout of each replay bundle):
+- The hold-altar x2 (P_HOLD) is on the pick in 17% of decisions (1256; 305 of them groups under 15 gems). In 548 (7%,
+  21/80 games: corridors, gem_fields, eight, the_farm, shortcut, yellow_brick_road, collision) a richer gem group (>= 15
+  gems, <= 120 strength) had a higher raw value / rounds and lost to the multiplier alone: 27 gems difference per decision.
+- A single-elk group (>= 15 gems) within 25 walking tiles exists in 2427 decisions; we pick it in 49%. In 989 the MODEL
+  prefers the pick (median raw ratio elk / pick 0.67): 448 times a gold-only cluster (40 gold, 7 tiles, 21 rounds = 1.86 a
+  round vs the elk's 29 gems + 90 gold in 79 rounds = 0.81), then 2-wolf (137), 1-wolf (124), other elk (106) groups. In
+  240 the elk wins on raw and loses to a multiplier.
+- Gold-only clusters are 30% of all picks (2317), flat over r0-300. gold_w = P_GOLD_W_EARLY / 100 = 1.0 before r600: 40
+  gold counts as 40 gems. The top 10 take 2.0 gold-only clusters per game per window, we 4.1-4.6.
+
+### o79_holdgems.py (P_HOLD_MIN 15; the hold x2 only for groups with >= 15 gems) over b35 (12:05 UTC)
+near 63/80 (+25634, 45 deaths <= r100) vs b35 62/80 (+27328, 53): flips +3 -2, 58 identical games (the piece touches 22).
+far 48/56 identical outcomes (11 games changed, same winners). Mechanism (clean games): elk+gem 0.75 -> 0.86 (r0-150) and
+0.88 -> 0.97 (r150-300), gold clusters unchanged, group gems r0-150 61 -> 53, r150-300 66 -> 68. Small and safe; a rider,
+not a candidate on its own. Variant without any hold bonus (P_HOLD_MIN 1000, bots/e79b) and o80 (gold weight 50 / 70 before
+r600, bots/e80 / e80b) queued on the same panels.

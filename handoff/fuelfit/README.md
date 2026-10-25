@@ -200,6 +200,9 @@ no la castiga porque los rivales locales son nuestro linaje. Siguiente paso prop
 PC (deathmode.py sobre res/<bot>/<rival>/{A,B}_*.json+.repl26a) para kvvl, b32, b35 y las piezas sospechosas (farm o59/o63/o64,
 hitpass o70, bcf).
 
+Online b35 (12:04 UTC, los 24 grupos de c20): vs kvvl -4 (cercanos 44/76; kvvl 52, b32 47; lejanos 20/44 idénticos a b32). Jugar
+desde r1 NO arregla los cercanos online: la pista queda en las muertes fight-camp.
+
 ## o76 (b38 = b35 + warm-up del farm fuera del turno 1): aparcado
 
 El warm-up (índices de tiles por grupo, 20-26k) es precomputación pura que farm_warmup_now() construye al primer uso. Sin él, el

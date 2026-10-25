@@ -162,7 +162,7 @@ exhaustive by nature: dest unreachable) -> o53 (every 10 rounds) stays useful.
 
 After o54+o55(+o56), same 12 games: turns >= 77.5k 286 -> 156 (1.0%), >= 87.5k 132 -> 57; heavy farm turns (farm section
 >= 30k and total >= 76k) 1153 -> 547; ct:compute mean on them 21k -> 4.4k. 12/12 replays identical to b10 (profile builds).
-Exactness runs: o54 far 56/56 identical; near 80 and o55/o56 runs in progress (see table below when filled).
+Exactness (b10 vs b10+patch, byte-identical replays): o54 80/80 near + 56/56 far; o55 80/80 near + 56/56 far; o54+o55+o56 80/80 near + 56/56 far. All three integrated in the integrator's b12 (commit fbc87a3) with o52+o53.
 
 What remains on far maps (mean on heavy farm turns after o54-o56, present%): step_towards 25.6k (99%: goal search st:ct1
 9k, dash holes 11.5k when present, isle 55k on 5%), choose_target 24k (74%: ct:score 15k -> o52), engage_camp 15k (15%,

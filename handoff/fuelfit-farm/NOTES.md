@@ -404,3 +404,60 @@ P_MP_HOLE: 0 = never (kvvl's behaviour everywhere, near and far: proposed as b31
 without a dash (by name: ren, vesper, vendetta, heart) claims the same target group while we farm (dash_bits +
 hole_splits_group, ~30 fuel per call). Panels running on b29 / b29h0 / b29h2: 6 losing maps (reverse_spiral,
 rushbait_v2, fragment, hooks, contest, starfish) x 6 rivals x 2 sides, far 56, near 80.
+
+## o68 panels (10-25, local, b29 = b28 + o66 + o67; h0 = P_MP_HOLE 0, h2 = P_MP_HOLE 2)
+
+| panel | b29 | b29h0 | b29h2 |
+|---|---|---|---|
+| 6 losing near maps x 6 rivals x 2 sides (72) | 45 (+19984 gems, 83 deaths <= r100) | 53 (+28533, 48) | 49 (+24053) |
+| far 56 (rTop1, rD, both sides) | 43 (+13822, 18) | 40 (+9764, 16) | 48 (+15546, 13) |
+| near 80 (one game per map and rival) | 55 (+17615, 52) | 56 (+21853, 40) | 58 (+22201, 43) |
+| sum (208) | 143 | 149 | 155 |
+
+reverse_spiral in the 72: b29 0/12, h0 6/12, h2 4/12; contest/fragment/hooks identical (no dash champion uses a hole
+there). h0 loses the far maps where the hole routes are real shortcuts (road_of_riches 3->1, shortcut 4->3, islands
+3->2, concentrated_wealth 4->3). Recommended P_MP_HOLE 2 (integrator: b31 = h0, b32 = h2, b33 = h2 + small holes).
+
+kvvl on the same near 80: 54/80 (+23271, 41 deaths). b29 vs kvvl: 33 outcome flips (+17 -16), no identical game
+(different lineages). Near maps where b29h2 is still below kvvl (kvvl 2/2, h2 1/2): elkring (gems 330 vs 1320),
+gem_fields (243 vs 905), gemfight (191 vs 1648; b29 2/2, an h2 regression), lost_world (647 vs 1797), rows (148 vs
+1094), split (273 vs 680), stampede (480 vs 1280), starfish (30 vs 983), swirl (-39 vs 1927). Where h2 beats kvvl:
+broken_curve, corridors, eight, expanse, fracture (kvvl 0/2), fragment, interlock, islands (kvvl 0/2), quadrants,
+shortcut, pilgrimage. Results: farm container /tmp/claude-0/ff/ws/res/{kvvl,b29,b29h0,b29h2}_n80; table by
+`python3 -I cmpbots.py "" kvvl_n80 b29_n80 b29h2_n80`.
+
+## Gem macro: how the top 10 take gem-bearing elk groups (10-25, coordinator's request)
+
+Data: 40 top-10 near-map games (analysis/top10-micro-1023/dec300, rounds <= 150) vs b29 and kvvl on the near 80
+panel above (replays decoded with capkind_light.dump; scripts in the farm container /tmp/claude-0/ff/gem: capseq.py,
+elkdetail.py, ebmetrics.py, openshape.py, perteam.py, trace.py). A capture = the group's captureTeam switching to us.
+
+| per game, rounds <= 150 | top 10 (40) | b29 (80) | kvvl (80) |
+|---|---|---|---|
+| elk+gem captures by r50 / by r150 | 0.62 / 1.70 | 0.29 / 0.86 | 0.23 / 0.74 |
+| own-side elk+gem groups available (>= 15 gems) | 2.92 | 2.60 | 2.60 |
+| gold-cluster captures by r50 | 0.75 | 1.35 | 1.31 |
+| first capture: round, champions within 4 | r22, 3 | r25, 2 | r26, 2 |
+| first capture is a gold cluster | 10/40 | 47/80 | 43/80 |
+| first three captures with 3+ champions / solo | 55% / 17% | 31% / 45% | 26% / - |
+| champions within 5 of the nearest own-side elk+gem group at r10 | 1.31 | 0.80 | 0.72 |
+| deaths <= r100 | 0.35 | 0.65 | 0.51 |
+
+Elk+gem captures by the top 10 arrive with 3 champions (median; 57% with 3+), arrival spread 8 rounds, first approach
+to capture 55 rounds (median; the opening ones r1 -> r12-r26). From r50 on our elk capture rate matches theirs
+(0.57 vs 1.08 per game between r50 and r150, with the same number of champions). The whole gap is the opening: the
+top 10 open with the team on one group (elk+gem when it is the nearest rich group, else wolf+gem or a gold cluster),
+capture it at r12-r26 with 3-5 champions and then spread; we open with 5 solo gold clusters (median 1 champion) and
+reach the first elk group at r48-r54. Per team (perteam.py): Fish, willow best girl, :3, Shingtonwash, Claudus,
+policy wonk and procless all show first captures with 3-5 champions; Mite and Trzy Kwaterki open more spread.
+
+### o69_teamopen.py (teamopen-v1; NOT exact, judge by strength)
+Until round P_TO_R (40) the first alive ally in draft order leads: its choose_target values every group for the
+whole team (the dormant `pack` hook: value not shared, clear time with the roster, no "needs company" discount); the
+others take the leader's claimed group x P_GROUP_W (the existing ball code, groups > 8 tiles from the leader x 0.3)
+and re-choose every 3 rounds. P_TO_NEAR 1 limits it to near maps (spawn-to-spawn path < P_PF_MAX). No fuel read;
+followers' extra choose_target calls in r0-r40 cost fuel on 100x100 maps (the forward field) - measure on the PC.
+Two test games (elkring, hooks vs rTop1): hooks first capture elk+gem r27 with 4 champions (b29: gold cluster r23
+with 2, the elk group at r90); elkring both bots send the team to the altar-held group 20 tiles away (P_HOLD 200), the
+rival contests it and o69's five fight there (2 deaths) while b29's four captured it at r30. Local panel (near 80 +
+far 56 vs b29) running; results below when done.

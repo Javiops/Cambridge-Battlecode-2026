@@ -110,3 +110,13 @@ export overwrites every byte) instead of a zero-filled std::vector: the first lo
 costs ~10k. Measured (b6wm, unlimited fuel): first group 1.5-2.6k (includes the table allocation), then ~450-520 per group
 (corridors 12 groups 68 tiles: 1483 + 5753; big_world 24/92: 1923 + 10775; islands 46/118: 2613 + 20171).
 Price to budget: 2.5k + 600 per group. 80/80 byte-identical replays (b6 vs b6+o48).
+
+## o49_warmup2.py (over b6 + o48)
+
+More once-per-game work into `farm_warmup`'s first call: share_pow's std::pow table (o05; 303 fuel per pow, up to 18 on the
+first choose_target calls) is global and filled in the warm-up; `tank_bits(s)` and the roster handles are learned there;
+the reverse-field objects (`s.pd_rf` / `s.pd_rv`, N bitboard constructors at 251 each) are allocated there instead of in
+farm_pd_ready's first call (the 12k "first field"). `my_roster` returns a const reference (it copied the vector on every
+call, also in vcarry_on). Exact: same values computed earlier / not copied. 2/2 games identical to b6; 80-game check running.
+Per-game price of the first farm_warmup call: 18 pows 5.4k + roster/tank_bits ~2.5k + N x ~260 for the field objects + 2.5k
+tables; later calls 600 per group.

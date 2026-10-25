@@ -15,3 +15,14 @@ fuerza 1,9, vida 4,7, focus 0,2 de 6,5.
 
 Lo que se deja de comprar: vida (Treasure-h 5 fragmentos = 500 hp). Sonda +20 sobre la variante 1: 0/52 cambian.
 El mecanismo se mueve (focus como el top 10, +8% daño a monstruos y +11% oro a r400), pero las victorias no: 2 es la mejor (-3, ruido).
+
+## Daño por golpe en pelea (mstep.py, cada acción con daño a un campeón, r30-300)
+| | básico r30-150 / r150-300 | hechizo r30-150 / r150-300 | hechizos por partida r<150 |
+|---|---|---|---|
+| top 10 (81 online) | 45 / 56 | 128 / 200 | 2,2 |
+| b32 (312 local) | 44 / 48 | 117 / 116 | 3,6 |
+| o81 v2 (focus) | 44 / 48 | 133 / **196** | 3,5 |
+| o81 v3 (Treasure-s) | 47 / **59** | 117 / 116 | 3,5 |
+
+Las dos variantes cierran la brecha de daño por golpe (v2 el hechizo, v3 el básico) y ninguna gana partidas (241 y 233 frente a 244):
+el daño por golpe de Marcella no es la palanca mientras se pague con vida. Línea cerrada.

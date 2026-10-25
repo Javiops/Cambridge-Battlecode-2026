@@ -561,3 +561,17 @@ groups. The per-champion dps model is right (measured solo camp damage per round
 incoming x 0.5 in choose_target and the same factor in squad_needed (needed / too-strong). One parameter, no fuel read,
 whole system (every monster group), biggest effect on elk groups. Expected mechanism: elk+gem captures r150-300 up from
 1.1 towards 2.3 per game, group gems r300 up; watch deaths (the model now tolerates stronger groups). Panel vs b35 running.
+
+### o70 (P_INC_PCT 50) over b35: local panel (10-25 12:50 UTC)
+
+| panel | b35 | b35 + o70 | flips |
+|---|---|---|---|
+| near 80 | 62/80 (+27328, 53 deaths <= r100) | 60/80 (+27601, 37) | +8 -10 |
+| far 56 | 48/56 (+15546, 13) | 48/56 (+16154, 25) | +7 -7 |
+
+Mechanism (80 near games, replays): elk+gem captures r0-150 0.84 -> 1.05 per game (group gems 50 -> 67), r150-300 1.09
+-> 1.31 (56 -> 67); gold clusters 4.33 -> 3.99 and 3.85 -> 3.60, gem clusters 0.96 -> 0.65; group gems r0-300 213 -> 234
+(+10%); deaths <= r100 0.66 -> 0.46 per game on near maps (far 13 -> 25 in 56 games: road_of_riches 6, shortcut 5). Elk
+episodes unchanged (26 rounds, 3 champions, 0.06 deaths). W/N neutral on both panels, net gems +1-4%. The mechanism moves
+in the right direction but only a fifth of the way to the top 10 (2.27 elk captures r150-300). Package for the PC:
+/mnt/project-files/bundles/incoming50-b35.zip. Variant P_INC_PCT 35 (the top-10 ratio) running.

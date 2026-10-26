@@ -1,0 +1,20 @@
+---
+name: cambc-teammate-fixes2
+description: 2026-10-16 18:29 round 3 on the teammate base: protect allies + decide retreat first pass on site maps (131 vs 113 of 170, p=0.005) = mybot_teammate_fixes2.zip (PR #31); chase, DPS-only farming, OUTNUM, NOLEAVE, CAPPRIO rejected; 18:55 fixes3 = fixes2 + map draft 136/170, upload candidate; 19:20 panel noise ±5-9/170, fixes built on v49 capture_fix not v50 anti_feed; 19:21 user: all fixes build on v52
+metadata:
+  type: project
+  modified: 2026-10-16T19:21:00.000Z
+---
+
+Continuation of [[cambc-teammate-fixes]] for the thread "Arreglar comportamientos del bot del compañero" (root cmsg_017gbamt2g1g8hMHRHQBc6qbJCcNsUuvE7oieoatFWTfJv). The user's 18:11 list (6 fight ideas from GA champion b672) measured one by one on the fixes base, site maps first (17 official maps, both sides, 5 panel bots = 170 games).
+
+- Idea 2 protect allies (foe adjacent to an ally becomes our target) + idea 6 decide retreat before taking the front line: 131/170 vs 113 for mybot_teammate_fixes1.zip; flips 28 wins / 10 losses (p=0.005). Per map: swirl 5->9, collision 4->7, fragment 4->7, elkring 5->7; interlock 7->5, eight 6->4.
+- Zip /mnt/project-files/bot/mybot_teammate_fixes2.zip = fixes1 + those two; PR #31 of Javiops/Cambridge-Battlecode-2026 (thread watches it). Not uploaded as of 18:30; v51 (fixes1) online as bot B until the 19:46 batch.
+- Noise: call for help, 40% and 54% thresholds alone. Chase again (idea 3) worst: collision 4 -> 0 of 10, excluded.
+- Rejected: farming where only DPS capture (first build) 101/170 and 0/10 on expanse; P_OUTNUM (Tavi in corners), P_NOLEAVE with the caster cache, gold priority to Stellar (P_CAPPRIO): noise or worse.
+- Caveats from the thread: one version varies ±5 games of 170 between runs; local fight gains have been smaller online ([[cambc-online-ab]]).
+- Also 18:23: the GA farm's b672 port onto the fixes bot gave no site-map win (all 7: 2-4 vs v51; six without no-kite 2-3, pairs 17-10 p=0.25); patch teammate_fixes1_b672.patch and zips in /mnt/project-files/bot/. Farm paused its champion run; the user has a decision card (wind down / re-base / keep).
+- **18:55 fixes3** /mnt/project-files/bot/mybot_teammate_fixes3_mapdraft.zip = fixes2 + the new-maps draft rule P_MAPPLAN from [[cambc-new-maps-strategy-1016]]: site maps 136/170 (fixes2 131, v51 113); stampede 5->9, eight 4->6; draft off = identical to fixes2. Also in PR #31. User says it is online as site v52 (19:05); first online batch 18:5x 38-87 (30%) vs v49 39%, see [[cambc-online-versions-1016]].
+- **19:20 reconciliation (fixes thread):** the site-map panel cannot resolve differences under ~10 games of 170: recompiling the same code moves ±5-9 games through fuel use; on the v51-built panel fixes3 = 124 (new-maps thread got 120), the two fixes2 switches give +6 there (124 with both, 118 without, 115 without protect-allies) vs +18 on the first panel and -9 on the new-maps panel: not solid. On elkring (where we lose online) fixes3 wins 6/10, 8/10 without either switch, anti_feed 10/10. **Base mismatch:** the fixes were built on the teammate's capture_fix upload (site v49), not anti_feed (v50, the latest, and the one v52 only ties online). Thread recommendation (coordinator agreed 19:21): new zip = anti_feed + P_CAMPFOE + P_BACKHOME + the new-maps draft rule, P_ALLYDUTY and P_AVOIDFIRST off, and let online decide vs v52. User asked to upload the anti_feed source files. Next in the thread: ward ahead before entering (no face-check), never die to a camp (fragment), no pushing covered zones without a goal, Ren's dash feint at r342 vs QS2, Cassi hitting the stampede centre clusters with 5 foes and 0 allies in sight (suspect P_JACKGO). **19:21 user rule: all fixes are built on v52 (the fixes3 zip as uploaded); no rebase onto anti_feed, the anti_feed zip was not prepared, fixes3 switches stay on; new fixes are switches on top of v52.**
+
+Related: [[cambc-teammate-base-1630]] [[cambc-online-versions-1016]] [[cambc-local-judge]] [[cambc-official-maps-first]].

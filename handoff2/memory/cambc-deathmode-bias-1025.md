@@ -1,0 +1,18 @@
+---
+name: cambc-deathmode-bias-1025
+description: deathmode.py (deaths by last logged mode) is biased against kvvl; use the replay-based campdeath.py/campdiff.py; hitpass confirmed as the camp-fight death piece, kvvl->b15 jump was an artifact
+metadata:
+  type: project
+---
+Found 2026-10-25 ~14:20 Madrid on the PC bench (lab\j2, 200 near games per bot, J2 panel).
+
+- **Bias:** kvvl's log_status skips the status line when `!fuel_ok(12000)` (heavy turns = fights). kvvl misses 7.2% of its r25..r300 status lines; 68/516 near deaths (13%) were attributed to a mode logged 25+ rounds earlier. Deterministic bots print every line (0-0.2% missing). So deathmode's "fight-camp" count is too low for kvvl (75) and the "kvvl -> b15 +16" jump is an artifact. The online "12 vs 3 in c20" came from the same stdout-mode method: probably the same bias (not checked, online data not on the PC).
+- **Unbiased tool:** lab\ffp\campdeath.py and campdiff.py (paired per rival/side/map) read only the game json: death context (camp/champion), championTimelines monsterDamageDone / championDamageTaken / gems. "campfight" = death with monster damage dealt in the 10 rounds before it; "champhit" = campfight and hit by a champion in those rounds. lab\ffp\statgap.py measures the logging gap.
+- **Near-map results (campfight / champhit / all deaths r20-300):** kvvl 153/87/516, b3 162/94/618, b10 150/88/547, b12 = b15 133/72/512 (identical games), b26nohp 137/69/523, b26 172/100/564, b32 184/104/526, b35 183/116/521, b35nohp 134/77/492. Paired: hitpass +35 (z 2.5) on b26, +49 (z 3.5) on b35; champhit +31 (z 2.7), +39 (z 3.8). kvvl -> b15 -20 (z -1.3). b3 dies more overall than kvvl (+102 all deaths, z 2.75), fixed by b12.
+- **Mechanism:** hitpass (o70, P_HITLAST) spends an unused attack at end of turn on a finishing blow to an awake camp in reach. In kvvl it sat behind fuel_ok(9000), so it never fired on heavy (fight) turns; the deterministic port fires it always, also with rivals on top. Same pattern as o68 (dash-hole shortcut the real fuel kept dormant): porting a kvvl piece to the det base removes the implicit "skip optional work in fight turns".
+
+- **hpcalm (o83, b35 + hitpass only with no living foe within 8, `lab\ffp\hpcalm\`), 14:53 Madrid:** near campfight 156 / champhit 97 (between b35 183/116 and b35nohp 134/77; vs nohp +22 z 2.0, +20 z 2.35). H2H vs kvvl 304/600 (+8), b35nohp 319/600 (+38), b35 307/600 (+14), bar 49. J2 +9.1 (nohp +9.3). Probe +20: 1/800. So the foe-distance gate removes only half the harm; b35nohp stays the base, hpcalm parked pending the evaluator's look at what happens between the hit and the death.
+- Evaluator 15:32 (41 near pairs b35hpc vs b35nohp, logged rerun identical): hitpass hits ~17/game, 95% finish gold/gem clusters; games split at the first hit (27/41 before r20: Vendetta/Ryth hitting a cluster at r10-16). Only 4 of 70 camp-fight deaths come ≤40 rounds after a hit (killed by the camp, no rival). The rest is trajectory (median 119 rounds after the split). hpcalm only sees visible foes: 285 hits had a foe ≤8 in fog. Decision: hitpass stays out of the base (b35nohp online +11 in c21); not worth more work now.
+- kvvl self-noise on campfight (4 fuel-pad samples): 153, 162, 133, 156. All det builds without hitpass fall inside (det8 139, a1 131, b3 162, b6 162, b10 150, b15 133, b26nohp 137, b35nohp 134); with hitpass all above (b26 172, b32 184, b35 183).
+
+**How to apply:** never compare kvvl and det bots with deathmode; use campdeath/campdiff. When porting a fuel-gated piece, replace the gate with an explicit no-fight condition. Related [[cambc-fuelfit-1025]], [[cambc-det-base-rule-1025]], [[cambc-stall-root-cause-1024]].

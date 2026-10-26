@@ -1,0 +1,21 @@
+---
+name: cambc-online-loop
+description: Automated online testing loop (/mnt/project-files/online): challenge API facts (30 groups/rolling hour, cookie event_session), scripts, version history; 2026-10-16 15:46 fixed A/B plan (same 25 rivals, 5 fight maps, im_p vs bot B two hours each); loop owned by the Dissect thread only; stopped 15:45/restarted 15:51; stopped 19:32 by the user; restarted 21:47 on v53; report versions by the site's per-group label
+metadata:
+  type: project
+  modified: 2026-10-16T21:50:16.255Z
+---
+
+2026-10-15: online testing like Mite (only new games matter). Scripts in `/mnt/project-files/online/` (README): collect.py (results -> data/games.jsonl; `match-groups?scope=all&team=<id>`), challenge.py (POST /api/v1/challenges {teamId, mapIds?} with cookie; GET /challenges: quota/maps/opponentRanks), report.py, loop.py (collect 10 min, challenge hourly), lfl.py (like-for-like A/B).
+**Site facts:** 30 challenge groups/team/hour = 150 games, rolling 60-min window per group; maxRankGap null; challenger always side a; 150 games play in ~4 min. Cookie `event_session=<hex>` only in container ~/.cambc_cookie (never in project files/memory); expires on sign-out/maintenance.
+**Running:** loop.py dies with its container; restart via setsid nohup. Liveness `ps -eo cmd | grep "[l]oop.py"`, never `pgrep -f`/`pkill -f` in a bash -c string (once killed the loop). Active version in data/versions.jsonl (user names it). Hourly task appends online/data/hourly.md.
+**10-15:** v35/study27/study28 all 25-39%, l-f-l noise.
+**10-16 03:40:** new maps stampede, pilgrimage, ambush (12 maps); replays data/newmaps/*.zip.
+Related: [[cambc-site-access]] [[cambc-public-match-data]] [[cambc-mite-offscreen]] [[cambc-online-is-economy]]
+**10-16:** 07:47 maintenance expired the cookie; 10:46 ga65a6 (GA micro params) uploaded, A/B vs study27-economy via lfl.py. 10:58 API dropped `statistics` from match-groups; result/score/draft now in matches[].sides[] (collect.py patched; readers of data/groups/*.json need the fallback). First GA batch: noise.
+**10-16 15:38 loop plan (from the local-judge study), live from 15:46:** every hour the same 25 rivals on the same 5 fight maps (collision, interlock, lanes, elkring, corners) + 4 stampede groups for the centre rule (I045), so each game pairs with the prior hour; eight, contest, pilgrimage, race rarely flip online, checked locally. Config online/data/loop_config.json, sender online/send_batch.py (challenge.py --targets/--maps). Alternate 2 h each, user uploads by hand: im_p (15:20; 12:52 bot + stampede centre rule + paired retreat) 15:46/16:46; bot B (17:40, card in Dissect thread; rec. study27-economy) 17:46/18:46; im_p again 19:40. Decide on flips; tie if flip share < 57% after 2 h each. Related: [[cambc-local-judge]] [[cambc-online-versions-1016]].
+**10-16 15:45-15:51:** user STOP THE LOOP (task disabled, no 15:46 batch); 15:51 "continue with the active bot aka v49": task re-enabled, Dissect sent the hour's batch at once; v49 = 15:20 im_p zip.
+**2026-10-16 19:32 UTC user: 'stop the loop'.** Hourly task disabled by the coordinator (19:46 batch not sent); Dissect told to stop senders and keep collecting. Site labels each match group with our version number (read with the cookie): report by that label, not upload time (see [[cambc-online-versions-1016]]).
+**2026-10-16 21:47 UTC user: 'run the loop with version v53'.** Coordinator re-enabled hourly task trig_01UJvsLsP87W3R5rKZtcRCHD (next tick 22:46 UTC) and told the Dissect/loop thread (cmsg_017gbamt2g1g8hMHRHQBc6qbWeKMaoE8NCQvPbmGsL7Q11) to record v53 (zip bot/mybot_v53.zip, see [[cambc-v53-decision]]) in versions.jsonl, send the hour's batch at once, and report v53 by site label vs v52 (18:5x) and v49 (15:46-17:5x) after the first clean batch. The user uploads the zip by hand. 21:49 user: 'remember to do it on 1-30': from now on the loop challenges the teams ranked 1-30 (not 11-30 as the local-judge plan advised); the Dissect thread refreshes the fixed rival list to the current top 30 and keeps it fixed hour to hour.
+
+10-18 11:12 USER DECISION: for the new plan only loop games from 10:59 UTC (12:59 Madrid, v63 BASELINE V1) are valid; v53 replay backfill stopped at 159 zips (unused); fetch_replays.py now backs off on 429 (bundle endpoint rate-limits, main API unaffected), use --since 2026-10-18T10:59 --gap 6.

@@ -1,0 +1,20 @@
+---
+name: cambc-judge-power-1018
+description: 2026-10-18 18:30 UTC measured power of the online loop (second batch repeats the first, 5-8% hourly flips from rival drift, only ~10-point gains visible) and the death census vs top 10 (escape + recall deaths = half the gap); judge-rule card pending
+metadata:
+  type: project
+  modified: 2026-10-18T18:20:07.681Z
+---
+Audit thread, after user said 18:10 UTC "ideas not making a difference, judges not proper judges". Report /mnt/project-files/analysis/judge-and-deaths-2026-10-18/README.md (scripts judge.py, deaths.py).
+FACTS (online data since BASELINE V1):
+- Every loop batch = same 29-30 rivals x same 5 maps (collision, interlock, lanes, elkring, corners), always side a; groups are exactly 5 maps; `cambc match-groups create` has no version option (active version plays). 17 site maps exist.
+- Same bot, consecutive hours: ~65% of games identical, 5-8% results flip (rival drift; coinflip field always false). v66 16h vs 17h UTC: 145 pairs, 11 flips, 8-3 for -> a null "candidate" passes the >57% rule.
+- Win/loss on changed games sees bank-v1b vs v63 (26-4, z+4) but barely defense-v2 (18-28, z-1.5); our final score per pair sees defense-v2 (lower in 94 of 127, z-5.4) but not bank-v1b. Use both.
+- Only ~10-point win-rate gains separate from noise with ~38 changed games per candidate.
+- Death census vs top 10 (67 v65 games, deaths/game us/them): running away 2.57/0.63, recall/tribute channel 1.42/0.22, fighting not outnumbered 1.21/0.34, walking 1.30/0.54, hitting camp 0.84/0.10, total 8.78/2.69; own half 5.28/1.04; within 2 rounds of first hit 2.39/0.48. Same pattern vs top 30 and for v63. foe-v2's ceiling ~12% of the gap -> told the user not to paste it.
+ADOPTED 18:22 UTC by the user (card): one batch per candidate; keep if (for - against) >= 2*sqrt(for + against) and our final score not lower in clearly more pairs; second hour goes to the next candidate; check the idea's Expected in replays each batch. draft-v1 (18:46 UTC batch) verdict to be given under both rules (old >57% once, for comparison).
+NEXT: study what separates our escapes/recalls that die from theirs that survive; only ideas worth >= 1 death/game.
+Related: [[cambc-online-decides-rule-1018]] [[cambc-macro-foe-v1-1018]] [[cambc-local-judge-rival-1018]].
+18:24 UTC USER: loop maps must be random -> each base batch draws 5 of the 17 site maps per rival (saved in data/), the candidate replays that draw next hour (reference = hour before); draft-v1 18:46 keeps the fixed 5. Loop session told; STRATEGY.md/DECISIONS.md updated.
+18:40-18:50 UTC FUNDAMENTAL GAP (67 v65 games vs top 10, README section 3): champion damage dealt/taken equal (12.8k/12.5k) but kills 2.4 vs 8.2. Not grouping, not mean hp (83/84%), not retreat count/timing: 'within visible rivals' burst' episodes 17.3 vs 17.1/game at 45% hp both, yet we die within 10 rounds 30% vs 12% whatever we do (even from 58% hp, fleeing 21% vs 6%) -> the 'leave by burst' rule I first proposed was RETRACTED. What differs: (1) they FINISH: hunters near a killable champion hit camps 3% vs our 9% of turns, step closer 15% vs 9%, kill within 5 rounds 20% vs 8%; (2) strength from +50% gold (26 vs 17 emblems, spells +30-70% at r300; camp damage +28%, captures already higher in r0-99 -> draft). 18:50 block given: kill-v1 on bank-v1b-clean (killable rival = hp <= our in-reach champions' spell-if-ready + attack over 2 turns; hunters within 5 drop camps except capture hit, hit or step toward lowest killable; never step where rivals within 4 > allies within 4; <45% hp unchanged); port to draft-v1 if it passes.
+22:20 UTC FACT: rivals now ranks 31-55 (25 teams, user 21:19 so base+candidate fit one 50/hour quota). v65 draw 2026-10-18T220950Z 37-88; caprecall-v1 (v70) same draw 6 min later 37-88, changed 16-16 -> REJECT. 32/125 changed, but games ARE deterministic (same bot minutes apart: 98/100 identical, draft-v1 double-send); any code change reshuffles ~1 in 4 results chaotically (v68 vs v69 same decisions 35/145). One batch cannot see small gains.

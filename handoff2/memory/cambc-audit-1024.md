@@ -1,0 +1,13 @@
+---
+name: cambc-audit-1024
+description: 10-24 day audit (user "underwhelming, esto no se puede repetir"): 16 online candidate slots, none passed; 5 big causes + rules + plan "pelea-v1" for 10-25
+metadata:
+  type: project
+  modified: 2026-10-24T18:11:24.233Z
+---
+Thread "Auditar por qué hoy no hemos avanzado" cmsg_017gbamt2g1g8hMHRHQBc6qbBWagZSTwAEb4cNuhfTwZNJ (user 10-24 18:05 UTC). Doc: https://claude.ai/artifact/GXhTiFPVKd6oWnE71uKJJx
+FIVE CAUSES: (1) every online piece worth +1-3% (vco +14/500, monoguard +6/250, kvvl +4) under a method that sees >=+8%; 7 of 16 slots were repeats. (2) chased symptom (loneliness: >25 pair variants, 08:41-15:43, all 0) instead of cause: top10 fights with +2 numbers 36-43% vs ours 12-21%, measured only 17:48 because user pointed it. (3) local judges inflate: pw3 hard panel +6 -> online -1; kvvl J2 +10.4 -> online +4; J2 was calibrated on old big pieces, not V20 small ones. (4) champion files idle 17.5 h (10-23 21:16 -> 10-24 14:42); first piece picked HoR on a mis-measured datum (range 3 vs melee 1) and changed targets, not micro; vkite in vesper.h fires online only 2.1% of rounds. (5) operational rules are memory notes, not code: 15-min report missed 3 times (55, 61, 34 min gaps), 20 min quota lost 13:20, chain14 duplicated 15:47, disk full 14:00; fixes for quota/duplicate/activation held, report rule did not.
+RULES PROPOSED: no lone online piece <+8 expected; max 2 online draws per piece; verify datum vs engine before building; big lines not closed on local; every piece prints its firing rate online; fights first; one micro piece/day in vesper.h, marcella.h, vendetta.h. Loop: timer-based status every 15 min, pre-send checks (single script instance, 25 distinct rivals, next base queued, V20 active), auto-retry uploads, disk alert at 45k files/9 GB.
+PLAN 10-25 "pelea-v1" on kvvl: (1) enter fights only with +1 numbers / converge on isolated foe / revive P_GANG & help_target (off by default, why unknown); (2) Vesper max-range shoot+leave, fix vkite firing 2.1%->15%; (3) Marcella not adjacent (31%->18%), build; (4) Vendetta first camp hit r24->r12. Judge first by behaviour metric in ~60 near games, then wins; J2 only as veto (>= -5).
+Related: [[cambc-stall-root-cause-1024]] [[cambc-champion-headers-1023]] [[cambc-chain-tools-1024]] [[cambc-process-audit-1023]]
+- USER 10-24 18:12 UTC "todavía queda día... perseguir esto": APPROVED starting pelea-v1 the same evening. Dispatched via coordinator 18:14: copy-decisions = enter with numbers + P_GANG; champ thread = vesper.h/marcella.h; stall thread = vendetta.h opening; PC = J2 as veto; loop = next slot after c16 for first package, behaviour metrics first.

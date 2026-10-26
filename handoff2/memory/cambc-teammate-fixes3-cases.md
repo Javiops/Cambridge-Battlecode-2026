@@ -1,0 +1,19 @@
+---
+name: cambc-teammate-fixes3-cases
+description: 2026-10-16 19:43-20:03 replay-case fixes on v52 (ward ahead, wait-safe, farm-foe, camp-bail, cap-first, capture+DPS): causes found, none passes the two-panel >10 bar; camp-avoid and tank-check rejected too (farms 14% less); next = P_CARRY 20 for Varg, r76 chase trace
+metadata:
+  type: project
+  modified: 2026-10-16T20:18:00.000Z
+---
+
+Continuation of [[cambc-teammate-fixes2]] (thread root cmsg_017gbamt2g1g8hMHRHQBc6qbJCcNsUuvE7oieoatFWTfJv), all on v52 (user rule: all fixes build on v52), each a switch identical when off, judged by flips vs v52 on both specialist panels (v51-built and 12:52-built), site maps both sides; bar = >10 on both ([[cambc-panel-noise]]).
+
+Causes from v52 replays (19:43): Ren vs QS2 fragment r340 was not a failed dash: waiting for a respawning enemy-side camp with 3 foes at 4-7 tiles, no fight rule fires until hit, then kite-back dash, next turn nearest foe at 6 so back to farming; died r352 (same for the other 2 deaths). Cassi on stampede vs Electric Tributers: the cluster was already damaged = committed target, 5 foes not hitting her so no fight rule; centre rule (r350) not involved. Camp deaths on fragment: bail only under 18% hp while an elk takes ~25%/round from Issac. Corners vs VU cops: Ryth recalled 1 tile from a free reward (rule needed 2 tiles and that camp as target); 11% of camp deaths on corners.
+
+Results (20:03), flips won-lost vs v52 on panel v51 / panel 12:52: P_WAITSAFE (no waiting/blind entry at enemy-side camps with a foe seen in 20 rounds, never dash to approach) 17-22 / 10-31 worse; ward ahead before entering 18-18 / 9-23 noise/worse (deaths -1.1, -0.6/game); P_FARMFOE (leave camp if foes within 8 outnumber by 2) 17-13 / 8-28 worse, loses farming; P_CAMPBAIL (leave when hp cannot take 2 rounds of awake monsters) 2-3 / 3-3 rarely fires; P_CAPFIRST (free reward within 3 becomes target, capture before recall) 18-7 / 10-22 split; attack another camp while capturing 0-3 / 0-13 rejected (+0.7 deaths). Thread's reading: causes real, simple fixes change more than they fix; nothing merged.
+
+User's camp rules (19:58) measured 20:10, flips vs v52 panel v51 / panel 12:52: tank-check before starting a camp (auto-attack + 1/8 ability + items, all damage on one body) 15-26 / 7-32, farms 14% less (92 vs 107 gems/100 rounds), +0.7-1.0 deaths, same at 10% and 30% margin: rejected; path around awake camps when passing (P_MP_CAMPAVOID reused) 17-12 / 8-24: rejected. Varg on eight vs print dont int r50-58 (user 20:01): oscillates between avoid (foe at <=2) and the tribute walk (44 gems, 76% hp above the 45% cut; map holes send the first altar step back toward Ren); fix under test = P_CARRY 20 (existing teammate switch, off in v52). Round 76 chase to their base in the same game with 0-gem targets (user 20:10): under trace.
+
+Eternal Wisdom group (user 20:12-20:15, causes 20:18): ambush r54-62 and r353-363, Cassi&Issac die (shared hp): Issac opens a 2-elk camp alone (2400 hp each, 120 dmg/round) while Stellar, Tavi, Varg wait at 2-4 tiles on the rally ring and never hit; once the camp is damaged the need-more-allies check stops; flee cut 33% reached r59, flees r60, dies r62 in elk range. P_CAMPBAIL counted only damaged monsters: fixed to count all in range (leaves one round earlier). Collision r213-288: a dead wolf uncaptured 76 rounds; Cassi killed it from 3 tiles at 40% hp and recalled, her claim stayed in shared memory, so Stellar, Issac, Ren skipped it while walking over (free reward is single-claimant). Fix P_CLAIMCLR: a claim by a dead or recalling ally does not count; measured alone and with P_CAPFIRST. Pending numbers: corrected camp-bail, P_CARRY 20, P_CLAIMCLR. Round-76 chase on eight not found by the thread (nobody past the centre r64-92); user asked for map/link.
+
+Related: [[cambc-teammate-base-1630]] [[cambc-micro-tracking]]. Final numbers: [[cambc-teammate-fixes4-claims]].

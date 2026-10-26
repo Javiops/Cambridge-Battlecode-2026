@@ -8,7 +8,9 @@ Qué hay en esta carpeta (`handoff2/`):
 - `memory/`: copia íntegra de la memoria del proyecto tal como está hoy en el PC. `memory/MEMORY.md` es el índice. **Léela entera antes de empezar**: son reglas del usuario y aprendizajes, y valen como si los dijera él.
 - `sesiones/README.md`: resumen de cada sesión local de estos dos días (qué hizo, dónde dejó sus ficheros, en qué punto quedó y su id para reabrirla).
 
-No contiene cookies, contraseñas ni tokens. Las transcripciones de las sesiones **no** se exportan: en la de la coordinadora el usuario pegó una vez la cookie del sitio, y por eso ninguna transcripción va a git.
+- `sesiones/hilos/`: cada sesión del PC exportada a un `.md` (9 hilos, añadidos a las 22:00 del 26-10); índice en `sesiones/README.md`.
+
+No contiene cookies, contraseñas ni tokens: los hilos exportados se revisaron antes de subirlos. La transcripción de la coordinadora **no** se exporta, porque en ella el usuario pegó una vez la cookie del sitio.
 
 ---
 

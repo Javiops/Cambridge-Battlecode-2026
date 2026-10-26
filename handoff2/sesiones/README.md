@@ -1,6 +1,24 @@
 # Sesiones locales del 25 y 26-10 (PC del usuario, app de escritorio)
 
-Todas se abrieron desde la sesión coordinadora, trabajan en `C:\Users\Javier\Cambc2026` y van en modo auto. Para escribirles: SendMessage con `to` = su id `local_…`. Para reabrirlas: con el enlace `claude://claude.ai/epitaxy/<id>` desde la app. Sus transcripciones no están en git (ver `../HANDOFF.md`).
+Todas se abrieron desde la sesión coordinadora, trabajan en `C:\Users\Javier\Cambc2026` y van en modo auto. Para escribirles: SendMessage con `to` = su id `local_…`. Para reabrirlas: con el enlace `claude://claude.ai/epitaxy/<id>` desde la app.
+
+## Hilos exportados (`hilos/`)
+
+Cada sesión del PC exportada a un `.md` el 26-10 a las 22:00. Incluye el texto de cada mensaje y una línea por llamada a herramienta; las salidas de las herramientas no. Antes de subirlo se buscó la cookie del sitio, tokens y correos: no aparecía ninguno, y el id de la cuenta del usuario en las cabeceras de los hilos del proyecto se cambió por `[id]`. Horas en UTC (Madrid = UTC+1).
+
+**La transcripción de la coordinadora no se exporta**: el usuario pegó en ella una vez la cookie del sitio. Su traspaso es `../HANDOFF.md`.
+
+| Hilo | Sesión | Desde – hasta (UTC) | Mensajes |
+|---|---|---|---|
+| [ML: optimizar y aprender la pelea del bot (UPV)](hilos/01_ml-upv.md) | `local_a95718dc-d977-4619-839a-31ea3332d097` | 26-10 14:53 – 26-10 19:54 | 452 |
+| [Loop online en el PC](hilos/02_loop-online.md) | `local_aa12b548-0edc-4d79-b52c-8c72c9ed3efb` | 25-10 13:46 – 26-10 19:54 | 1172 |
+| [Peleas sobre la base determinista](hilos/03_peleas.md) | `local_61ed6f3b-ad46-45d2-9cf5-eb0540f864cc` | 25-10 13:46 – 26-10 11:00 | 1066 |
+| [Evaluador de nuestras partidas](hilos/04_evaluador.md) | `local_a91af4ae-a0ed-4c17-a15d-c2d0f7a95f01` | 25-10 13:46 – 26-10 10:16 | 673 |
+| [Análisis del top 10](hilos/05_top10.md) | `local_96101b90-5ab6-46c1-8557-bbb277293da3` | 25-10 13:46 – 26-10 10:02 | 774 |
+| [Farmeo y macro sobre la base determinista](hilos/06_farmeo.md) | `local_cbdea81d-6258-4a48-acbd-287381cebc06` | 25-10 13:46 – 26-10 07:34 | 1015 |
+| [Banco del PC (Juez 2)](hilos/07_banco-pc.md) | `local_f455491e-5c80-4da3-b2e5-1c78a3b8a765` | 25-10 13:46 – 26-10 03:03 | 512 |
+| [Iterar rápido con el PC al 100%](hilos/08_iterar-pc-remote.md) (hilo del proyecto por Remote Control) | hilo del proyecto | 24-10 14:08 – 25-10 12:56 | 865 |
+| [Hilo del proyecto en el PC, corto](hilos/09_hilo-pc-24oct.md) | hilo del proyecto | 24-10 14:15 – 24-10 14:38 | 50 |
 
 ## Coordinadora (esta sesión)
 - **Qué hizo:**

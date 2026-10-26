@@ -195,8 +195,8 @@ Todas en `C:\Users\Javier\Cambc2026`, en modo auto, arrancadas por la coordinado
 
 | Sesión | Id | Estado |
 |---|---|---|
-| ML: optimizar y aprender la pelea del bot (UPV) | local_a95718dc-d977-4619-839a-31ea3332d097 | En marcha (fases 1 y 3). Es la apuesta. |
-| Loop online en el PC | local_aa12b548-0edc-4d79-b52c-8c72c9ed3efb | Cola vacía, v164 activa. Único que toca el sitio. |
+| ML: optimizar y aprender la pelea del bot (UPV) | local_a95718dc-d977-4619-839a-31ea3332d097 | Parada por orden del usuario desde las ~20:45 (ver sección 10). Es la apuesta. |
+| Loop online en el PC | local_aa12b548-0edc-4d79-b52c-8c72c9ed3efb | Parado por orden del usuario (cola, descargador y bajada para ML). v164 activa. Único que toca el sitio. |
 | Peleas sobre la base determinista | local_61ed6f3b-ad46-45d2-9cf5-eb0540f864cc | En espera; no toca el controlador por orden del coordinador. |
 | Evaluador de nuestras partidas | local_a91af4ae-a0ed-4c17-a15d-c2d0f7a95f01 | En espera (sumchain, wingap, metas r1-100). |
 | Análisis del top 10 | local_96101b90-5ab6-46c1-8557-bbb277293da3 | En espera (juez_t5b, herido, invasiones). |
@@ -230,3 +230,16 @@ Antes de subir un zip, se añade un marcador a la línea `[fuelfit]` de `main.cp
    - el loop solo funciona en el PC.
 4. Siguiente decisión del usuario: qué candidata de ML va a la brújula t5b y, si pasa, a los 15 de delante. Hasta entonces, kvvl v164 sigue en ranked.
 5. Fechas: ideas nuevas hasta el **30-10**, bot final el **3-11**.
+
+## 10. Adenda de las 21:20 del 26-10 (lo que pasó después de escribir esto)
+
+- **Validación ML (20:48, `lab\ml\poolval.py`, 840 partidas del pool emparejadas con co_v7):**
+  - el vector medio de p1c gen 0 da **+0,055 ± 0,023**: gana el 62,5 % frente al 57,6 % de co_v7 (contra kvvl 0,65 frente a 0,53; contra co_v7 0,49);
+  - en la mitad de partidas que no se usó para seleccionar, la mejora estimada es ≈ +0,045;
+  - es la primera mejora local real de la línea ML. Contra el top 5 no se sabe: el pool local es de nuestra familia de código;
+  - detalle en `lab\ml\INFORME.md`.
+- **No está empaquetado.** El único zip de ML es `lab\ml\export\ml_q1d10.zip` (el modelo Q, 71/140 frente a E1; no merece la pena mandarlo). Para empaquetar p1c gen 0: `lab\ml\mkzip.py NOMBRE HASH_WASM MARCA` (reconstruye, comprueba que el wasm decide igual e imprime el sha256). Va online solo a través del loop; promoverlo, solo con palabras del usuario.
+- **USER ~20:45: «stop the jobs».** La coordinadora paró todo: p1c, n2, la cola t5b, el descargador de repeticiones y la bajada de partidas del top 5 para ML (`ml_t5vs.py`). El loop y la sesión ML lo tomaron por un fallo y lo relanzaron; se les dijo que era orden del usuario y lo volvieron a parar (confirmado hacia las 21:00). No queda ningún proceso Python ni cambc. **No relanzar nada sin el usuario.**
+- Todo es reanudable: el estado de CMA-ES está en `lab\ml\runs\p1c\state.pkl` y `gen_000.json`; la cola del loop estaba vacía.
+- **El top 5 ha cambiado** (registro del loop, 20:52): Intercontinental Fish, Mite, Trzy Kwaterki, willow best girl, Claudus Maximus. Entra Trzy Kwaterki y sale prism best girl. Las referencias de la brújula t5b son del top 5 anterior.
+- La segunda pasada de partidas del top 5 contra otros equipos se cortó a medias; lo bajado está en `lab\eval\t10out\` y `lab\loop\replays\`.

@@ -96,4 +96,4 @@
 - [Parche 2.0.0](cambc-patch-2-0-0-1026.md) — 26-10 00:15: motor 2.0.0/CLI 4.0.0, objetos nuevos, nerfs a nuestro draft, referencias 1.0.3 anuladas, pool 70 mapas
 - [Bundles solo el loop](cambc-bundles-loop-only-1026.md) — 10-26: solo el loop baja bundles de repeticiones; el resto se los pide; resúmenes por API libres
 - [Vesper step+reset, ranged move XOR attack](cambc-vesper-step-reset-1026.md) — 10-26 engine rule and top-5 Vesper closing pattern; vstep candidate co_vs; local bench biased vs E1
-- [Laboratorio ML](cambc-ml-lab-1026.md) — 10-26 sesión ML en lab\ml (CMA-ES, imitación top 5, ES de red); orden de turnos, código 11, visión de aliados, coste de combustible de la red
+- [Laboratorio ML](cambc-ml-lab-1026.md) — 10-26 sesión ML en lab\ml (CMA-ES, imitación top 5, ES de red); p1c gen 0 +0,055 local (sin empaquetar); PARADA por el usuario 20:45, no relanzar

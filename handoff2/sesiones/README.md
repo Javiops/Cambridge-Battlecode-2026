@@ -25,6 +25,7 @@ Todas se abrieron desde la sesión coordinadora, trabajan en `C:\Users\Javier\Ca
   - la imitación no transfiere: el clon de acciones gana 7-13 de 140 a E1;
   - Q offline: 71 de 140, por debajo de co_v7 (79);
   - empaquetó `ml q1d10`, sin enviarlo.
+- **21:20:** p1c gen 0 validado (+0,055 frente a co_v7, sin empaquetar); todo parado por orden del usuario desde las 20:45 (ver HANDOFF sección 10).
 - **Pendiente:** saber cuánto cómputo da la UPV (núcleos, GPU, sistema, acceso).
 
 ## Loop online en el PC — `local_aa12b548-0edc-4d79-b52c-8c72c9ed3efb`
@@ -35,7 +36,7 @@ Todas se abrieron desde la sesión coordinadora, trabajan en `C:\Users\Javier\Ca
   - se compara partida a partida con la referencia de kvvl;
   - un control de kvvl cada dos candidatas;
   - después, v164 vuelve a quedar activa.
-- **Estado:** cola vacía, v164 activa. Bajó las 715 partidas del top 5 contra otros para la sesión ML: `lab\eval\t10out\ml_t5vs_1.json`, con un segundo pase en curso.
+- **Estado (21:20):** parado por orden del usuario desde las 20:45; cola vacía, v164 activa. Bajó las 715 partidas del top 5 contra otros para la sesión ML: `lab\eval\t10out\ml_t5vs_1.json`; el segundo pase se cortó a medias con la parada.
 
 ## Peleas sobre la base determinista — `local_61ed6f3b-ad46-45d2-9cf5-eb0540f864cc`
 - **Qué hizo:** bisección de muertes en campamento (hitpass culpable), c95shop, o104 cf4, arranque (o105), t10pv (o106), foco o107/o108, corte o109, aliado o110 y controlador o111 (`fight_ctl.h`, `ARQUITECTURA_PELEA.md`).

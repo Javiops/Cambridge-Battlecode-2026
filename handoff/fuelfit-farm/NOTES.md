@@ -1162,3 +1162,25 @@ choose_target cost model of every gem group with str >= 100 every 10 rounds).
   Does not pass and worsens the base. Awaiting the PC's per-game deaths r151-300 and gems of o101 vs e1foco (reference e1foco vs
   kvvl in c34: deaths r151-300 1.23 vs 1.19; gems r150 62 vs 52, r300 137 vs 113) to see whether the mechanism moved online.
   Nothing more is built on o101 until the c34 replays arrive.
+
+## REAL GAMES vs RANKS 56-70 (c34; farm thread 10-27 20:35 UTC; pcassets/replays_c34 commit 24276ef, 75 games per bot, same pinned games)
+Cache gem/cache/c34_{e1foco,kvvl,o101}__*.r300h.pkl (67/66 clean). Scripts: c34_winlose.py, c34_lossanatomy.py, c34_lossdeep.py, c34_midcaps.py.
+- o101 outcamp ONLINE: 32-43 vs kvvl (+1 of 21 changed, bar 9.2), 32 wins vs e1foco's 37 on the same games; PC metrics o101 vs e1foco:
+  deaths r1-150 1.12 vs 1.07, r151-300 1.24 vs 1.23, gems r150 57 vs 62, r300 125 vs 137. CLOSED (coordinator 20:32): avoiding camps
+  with visible enemies does not cut deaths against these rivals and costs 12 gems.
+- vs 56-70 we are EQUAL through r300 on everything (e1foco): capture gold 3365 vs 3315, gems 163 vs 154, elk groups 1.7 vs 1.7, gold
+  clusters 8.3 vs 7.3, deaths r151-300 1.19 vs 0.96, contested arrivals 32% vs 33% with death 10% vs 7% (top 5: 19% vs 4%). The
+  fight gap is only vs the top 5 (champ thread agrees). Result is bimodal: e1foco 34-33, kvvl 29-37.
+- WINS: we lead from r0 (gems r0-150 466 vs 266, r151-300 469 vs 276, deaths 0.82/0.56 vs 1.06/1.21). LOSSES: r0-150 even (309 vs
+  282 gems, deaths 1.21 vs 0.73), then r151-300 collapse: gems 213 vs 1018, deaths 1.85 vs 0.70. kvvl loses earlier (behind at r150
+  in 20 of 37 losses) = what e1foco fixed. Gem lead at r300 >= +40 -> 22 of 31 won; <= -40 -> 8 of 22.
+- WHERE THE 1018 GEMS COME FROM (c34_lossdeep/midcaps): NOT our half (rival gems on our half 25/game) but the MID: 878 gems/game from
+  2.0 mid captures; 22 captures of groups holding a median 81% of the map's gems (= the JACKPOT: elk + gem clusters, str 60), median
+  round 246, 2 rival champions within 3, our nearest champion 5.4 tiles away with 4 alive. The jackpot is first taken by the rival at
+  a median r121 (kvvl games: r67). Our bot skips the jackpot until P_JACKPOT = 550 (I042 "farm gold and buy first, as the top teams do
+  (stampede r350-475)", from 1.0.3) and commits P_JACKN 3 from P_JACKGO 550. Maps: elk_arena (8 of the 22), crossing 4, gato_gemcombat3
+  3, gemfight 3. In WINS nobody takes a jackpot before r300 (rival big mid captures: 10, share 0.37, not jackpots). Jackpot maps are
+  28 of 67 games (13 wins, 15 losses).
+- o104 jackearly (opts/o104_jackearly.py): P_JACKPOT / P_JACKGO / P_JACKN. Variants on e1foco launched 20:35 UTC: o4a 100/550/3 (normal
+  scoring from r100, no team commit), o4b 100/100/3 (team of 3 from r100), o4c 150/150/2. Judge: bench W/N on the 70 maps (stampede,
+  gemfight, rows, contest, pilgrimage, elk_arena, crossing are in maps70), h2h kvvl, deaths, the jackpot's first capture round.

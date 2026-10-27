@@ -5,7 +5,7 @@ dump(path) accepts a raw .repl26a or a bundle zip (local run-batch bundle or sit
 dicts (round, champions[], camps[], submittedGems...) or None. CLI: dump2.py REPLAY [--every-step] prints JSON lines."""
 import os, sys, json, subprocess
 HERE = os.path.dirname(os.path.abspath(__file__))
-JS = os.path.join(HERE, 'replaydump2.js'); WASM = os.path.join(HERE, 'v2_0_0-hWOQ1R8f.wasm')
+JS = os.path.join(HERE, 'replaydump_pc.js'); WASM = os.path.join(HERE, 'v2_0_0-hWOQ1R8f.wasm')
 def cheb(a, b): return max(abs(a[0] - b[0]), abs(a[1] - b[1]))
 def dump(path, camps=True, every_step=False, timeout=300):
     args = ['node', JS, path] + (['--camps'] if camps else []) + (['--every-step'] if every_step else [])

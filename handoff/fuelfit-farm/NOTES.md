@@ -1115,3 +1115,14 @@ death rate within 15 rounds), all over the cached rows gem/cache/t5b_e1__*.r300h
 - CANDIDATE for the online loop on e1foco: zips/e1foco-o101outcamp.zip = e1foco + o101 slack 0 (P_OUTC_SLACK 0, RE 8, RA 6, R0 0),
   marker "[fuelfit] ... o101_outcamp" (sha in SHA256SUMS). Judge online: deaths r151-300 and gems r150-300 vs the e1foco games on the
   same pinned groups vs the 15 teams ahead. Variants o1a/o1c kept in ws4 only. Debug build bots/o1dbg deleted after measuring.
+- o102 allynear (opts/o102_allynear.py, on top of o101 slack 0; coordinator 19:20 UTC "elk and gem clusters with an ally near before
+  gold alone far from everyone"): gold-only group with no visible ally within 6 and no claimer x P_ALONE_W (50%); gem group with an
+  ally within 6 or a claimer x P_TOGETHER_W. Results 19:36 UTC (n80/far/h2h/new30/h2hnew = total): o1d (together 120) 56/42/26/88/35 =
+  247; o1e (together 100) 52/43/24/81/40 = 240; o1b (o101 alone) 260. MECHANISM did move as designed (gem/bench_caps.py, our group
+  clears per game by kind from the statistics JSON + gem/mapgroups.py table): gold-only clears r151-300 2.82 -> 1.21 (n80), 0.96 ->
+  0.49 (new30); elk 1.04 -> 1.43 (n80); gems r151-300 +25-50%. But games lost: h2h kvvl 26 and 24 of 52 (vs 34), n80 56 and 52 (vs
+  61), net gems negative in h2h. Same pattern as e93/e94 on E1: giving up gold-only clusters costs the r300 shop and loses to our own
+  line. o102 CLOSED; the lever "gems with company instead of gold alone" is not available without more income.
+- FINAL CANDIDATE (19:40 UTC): e1foco + o101 slack 0 = zips/e1foco-o101outcamp.zip (sha c29f60431c07b7d9a4fab97167fadc61ceea97150046d4a1b5863f0ce6cbd760,
+  marker "o101_outcamp"). The superioridad thread stacks its flee-to-ally and pre-contact retreat on this zip (they do not touch
+  choose_target). Online judge: deaths r151-300 and gems r150-300 vs the e1foco games on the same pinned groups vs the 15 teams ahead.

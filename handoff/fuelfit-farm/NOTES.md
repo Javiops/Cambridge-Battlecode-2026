@@ -1004,3 +1004,19 @@ o92_farguard"), 368-game run launched 17:38 UTC.
 - e97 = E1 + o92 + o95(40) (17:44 UTC): n80 64/80, far 50/56, h2h kvvl 33/52 + 42/60, new30 89/120 = 278/368 (e92 285, E1 275).
   packopen adds nothing locally (-7 vs e92, all on h2h). Zip zips/e1-o92-o95packopen.zip (sha in SHA256SUMS) exists only so the
   online judge CAN test the top-5 opening shape if the user wants; ranking for the PC queue: e92 first, e97 optional.
+
+## Where the elk gap sits in the real games: REPEAT captures — 10-27 18:00 UTC (gem/t5b_recap.py, t5b_elk.py)
+Per clean game (118), captures r<=300 split into first capture of a group and repeat captures (same team again after respawn):
+| team | elk first (gems) | elk repeat | wolf first / repeat | gem cluster first / repeat | gold-only first / repeat |
+|---|---|---|---|---|---|
+| top 5 | 1.64 (53 g) | 1.83 (59 g) | 1.97 / 1.95 | 0.90 / 1.25 | 2.09 / 3.84 |
+| E1 | 1.21 (40 g) | 0.95 (30 g) | 1.66 / 1.61 | 0.95 / 0.97 | 2.36 / 4.19 |
+- Elk gap = -0.43 first (-13 g) and -0.88 REPEAT (-29 g): the top 5 go back to the elk groups they already cleared (median gap 95
+  rounds, respawn ~80 by the p25 of the gaps), we go back to gold-only clusters (4.19 repeats vs 3.84; median gap 65-70 = respawn 60).
+  Total repeats 8.9 vs 7.7 per game: they recycle more, and recycle elks. Same picture by map side: our-side elk groups 2.31/game,
+  first-captured by us 39% (top 5 on their side 48%), 53% never captured by anyone in 300 rounds.
+- Reading: the choice model is consistent (first pick and revisit both prefer the 40-gold cluster at gold weight 0.45) and every
+  re-weighting fails the local judge (e85/e91/e93/e94). The top 5's elk preference is cheap for them because they arrive as a trio
+  (t_clear 18 rounds) where our roamer alone faces 53 rounds: elk choice follows from pack formation, not from the weight. That
+  belongs to the "superioridad" thread's r40-150 pack piece (told 18:05 UTC); its judge should include elk captures r150-300.
+- e98 = E1 + P_NEED_CAP 3 (a group may "need" 3) launched 17:52 UTC as the last cheap farm-side test of this cause.

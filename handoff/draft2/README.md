@@ -15,3 +15,12 @@ Local filter on E1 (420 games: p17_rTop1, p17_rD, p17_mV19, 70 maps, both sides;
 
 dA passes the gate (neutral locally). zips/e1farhor.zip, stdout marker "[init] drdA". dB/dC fail: Prism has no
 champion code (prism.h is a stub), so taking Ryth out for Prism loses locally.
+
+## Prism (2026-10-27, prism/)
+Top-5 Prism in t5b (prismst.py, prisma.py): 150 games, but only two rivals draft her (willow best girl 75, prism best girl 75).
+Per game: 307 gems, 1618 gold, 42k camp damage (their best farmer), 0.55 deaths. Build about half health (Bruiser-f 18.8,
+Bruiser-h 10.2, Jungle-h 4.4, Durab-h 3.9, Home-h 3.4, Monster-h 2.9 shards). Spells: slot 0 targeted stun 1.5x focus range 4,
+slot 1 ground area 1.0x range 4+1; both exclusive with movement; 78% of their casts with no enemy champion within 5 (camps).
+Our generic Prism casts as often (pcast.py: 47/47 per 1000 alive rounds vs their 47/54), so spells are not the gap.
+dB2 = dB + prism.h shop_plan/late_mix copying their build: 280/420 (dB 284, E1 298; vs dB +27/-31). Our Prism stays at
+98 gems, 638 gold, 2.7 deaths (local), 6 gems in r1-150 (chact2). The gap is the generic farm loop, not her code.

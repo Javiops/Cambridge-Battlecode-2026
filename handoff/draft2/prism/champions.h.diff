@@ -1,0 +1,38 @@
+--- dB/src/champions.h	2026-10-27 17:02:24.806491876 +0000
++++ dB2/src/champions.h	2026-10-27 17:36:38.700868116 +0000
+@@ -66,6 +66,8 @@
+ }
+ namespace prism {
+ CHAMP_HOOK bool is(const std::string& n);
++CHAMP_HOOK bool late_mix(const State& s, std::vector<LateFill>& o);
++CHAMP_HOOK bool shop_plan(State& s);
+ }
+ namespace tavi {
+ CHAMP_HOOK bool is(const std::string& n);
+@@ -140,13 +142,15 @@
+ CHAMP_HOOK void shop_plan(State& s) {
+ #if P_T10SHOP
+     if (P_T10SHOP & 1)
+-        vendetta::shop_plan(s) || marcella::shop_plan(s) || ryth::shop_plan(s) || heart_of_ruin::shop_plan(s);
++        vendetta::shop_plan(s) || marcella::shop_plan(s) || ryth::shop_plan(s) || heart_of_ruin::shop_plan(s) ||
++            prism::shop_plan(s);
+ #endif
+ }
+ 
+ // Shop, every buy (shop()): true = the champion's own plan holds its health shards, so hp_pick is off.
+ CHAMP_HOOK bool own_plan(const State& s) {
+-    return P_T10SHOP && (vendetta::is(s.name) || marcella::is(s.name) || ryth::is(s.name) || heart_of_ruin::is(s.name));
++    return P_T10SHOP && (vendetta::is(s.name) || marcella::is(s.name) || ryth::is(s.name) || heart_of_ruin::is(s.name) ||
++                           prism::is(s.name));
+ }
+ 
+ // Shop, every buy (hp_pick): the share of shards that should be health, and the family to buy it in.
+@@ -191,7 +195,7 @@
+ // Shop, every fill buy from P_LSHOP_R (shop()): the champion's late fill mix; false = keep the plan's fill.
+ CHAMP_HOOK bool late_mix(const State& s, std::vector<LateFill>& o) {
+     return marcella::late_mix(s, o) || vesper::late_mix(s, o) || ryth::late_mix(s, o) || vendetta::late_mix(s, o) ||
+-           heart_of_ruin::late_mix(s, o);
++           heart_of_ruin::late_mix(s, o) || prism::late_mix(s, o);
+ }
+ 
+ }  // namespace champ

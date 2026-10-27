@@ -1273,3 +1273,20 @@ t10_plan.md (per map and 50-round window) is the data for that thread.
   plan 70 vs capture share 29 (x2.4), camps 400 vs 311 (x1.3), CLUSTERS 182 vs 320 (x0.57; clusters are 48% of the winners' captures,
   the plan gives them 28%); plan ~ presence within 2 (corr 0.82) more than captures (0.69); the plan's top group is the most captured
   in 35% of cells. Told the plan thread: use capture share (or 50/50 with presence), winners only, exclude monoliths before r300.
+
+## Decoder fix (pcassets/viewer/replaydump.js 6746f59) applied and validated; tables recomputed — 10-28 00:05 UTC
+- The old decoder gave wrong spawnX/Y and rewardGems/Gold for unpaired camps on 18 maps (anvil, boss_battle, concentrated_wealth, crater,
+  dunes, galaxy, gato_gemcombat2, gato_gemcombat5, gold_rush, guardians, lost_world, packs, quadrants, quarry, ribs, the_line,
+  treasure_box, vault); group ids and camp types were right. /tmp/claude-0/ff/replay2/replaydump2.js is now the fixed one (old copy
+  replaydump2_old_index2.js). VALIDATION: a debug build prints every engine camp group ([jgrp] gems gold tiles) on the 70 maps
+  (tools/enginegroups.json): the fixed decoder's groups match the engine on all 1238 groups the print captured (tiles, gems, gold),
+  0 mismatches (102 groups missing from the print are garbled stdout lines, not decoder errors).
+- Re-decoded 138 top-10 games and 54 c34 games on those maps; cache/mapgroups.json regenerated (70 maps). cmpwin2.ok now accepts all 75
+  c34 games per bot (37 wins / 38 losses for e1foco; was 34/33 of 67).
+- WHAT CHANGED: total gems (the reward was wrong on those maps): top 10 r151-300 winners 151 -> 128 per game (16.7 -> 14.2 per capture),
+  losers 120 -> 101 (13.1); e1foco c34 losses r151-300 57 vs 99 -> 54 vs 106 (6.9 vs 12.5 per capture), wins 110 vs 73 -> 111 vs 70;
+  "no champion within 4 at capture" 8% -> 0% (positions). WHAT HOLDS: the top 10 capture MIX r151-300 (wolf 2.8, gold-only 2.5, gem 2.1,
+  elk 1.56; 1-2 champions in 78%), our loss mix (gold-only 4.1 vs 4.2, wolf 1.9 vs 1.8, gem 1.1 vs 1.3, elk 0.8 vs 1.2), deaths 1.82 vs
+  0.76, strong groups 11 ours vs 24 rival (3-4 champions, 0 deaths), pack 62% vs 48%. Every conclusion of this thread stands.
+- plan_t10.h (plan thread): its group centres are wrong on 17 of those 18 maps (built from old decodes: 1040 groups of my re-decoded
+  cache do not match its centres within 2); the hit-share bias is unchanged (strong x2.3, camps x1.3, clusters x0.51). Told the thread.

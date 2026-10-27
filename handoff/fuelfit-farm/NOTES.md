@@ -1126,3 +1126,23 @@ death rate within 15 rounds), all over the cached rows gem/cache/t5b_e1__*.r300h
 - FINAL CANDIDATE (19:40 UTC): e1foco + o101 slack 0 = zips/e1foco-o101outcamp.zip (sha c29f60431c07b7d9a4fab97167fadc61ceea97150046d4a1b5863f0ce6cbd760,
   marker "o101_outcamp"). The superioridad thread stacks its flee-to-ally and pre-contact retreat on this zip (they do not touch
   choose_target). Online judge: deaths r151-300 and gems r150-300 vs the e1foco games on the same pinned groups vs the 15 teams ahead.
+
+## ELK GROUPS LEFT ON OUR HALF (farm thread, 10-27 19:45 UTC; coordinator 19:40: "the 10% of elks they take and we do not")
+Scripts gem/t5b_elkleft.py (our-half elk groups by r300: first taken by us / them / nobody, with strength, distance, approach,
+contest), gem/t5b_cleartime.py (real clear time by strength and champions present), instrumented build bots/o1dbg2 (prints the
+choose_target cost model of every gem group with str >= 100 every 10 rounds).
+- 2.31 elk groups a game on our half: first taken by us 39% (median r79), by the top 5 8% (r118, those are contested: median 212
+  rounds with an enemy within 8), untouched 53% = 1.24 a game. The untouched ones are NOT contested (median 0 rounds with an enemy
+  near), we came within 6 of 76% of them (within 3 of 51%), and they are the BIG ones: str 120 (two elks) 56 of 78 untouched (72%),
+  140+ 30 of 36; str 60 only 38 of 122. Median untouched group: 148 gems, 720 gold, 15.6 tiles from our spawn. By strength (us /
+  top 5 / nobody): 60 -> 69/15/38, 80 -> 11/1/20, 120 -> 18/4/56, 180 -> 1/0/10, 240 -> 0/0/7.
+- COST MODEL vs REALITY: choose_target prices a 2-elk group (hp 5040, str 120) at r10 with dps 30 (my_dps = strength, +focus for
+  casters) as t_clear = hp/(dps x team) = 84 rounds for a pair, incoming = str x t_clear / team x 0.5 = 2520 -> rounds = travel + 84
+  + 6 + 2.8 recall cycles = 145, score 0.53 against 0.82 for a 1-wolf gem camp (gd 6); 3-elk 8910 hp -> 322 rounds. Real games
+  (both teams, r<=300): a str-120 group is cleared in a median 16 rounds by 2 of ours (15 cases), 23 by 3 (18), 20 by 3 of theirs
+  (58 cases); a single elk (hp 2520) in 11 rounds by one champion (65 cases). The model overestimates the clearing of multi-elk groups
+  4-5x (the dps estimate is the basic attack only; abilities, item strength and 2-3 attackers focusing are not in it), so the big
+  gem groups never win the score and are left. Not gold renunciation: those groups carry 720 gold each.
+- o103 cleartime (opts/o103_cleartime.py): t_clear x P_TCLEAR_PCT/100 (incoming scales with it; squad_needed untouched). Variants on
+  e1foco + o101: o1f 50%, o1g 25%; 368-game protocol launched 19:44 UTC. Judge: W/N, h2h kvvl, elk captures r0-300 by strength
+  (gem/bench_caps.py), deaths (gem/bench_deaths.py), gold r300 intact.

@@ -1254,3 +1254,11 @@ Zips: e1foco-o107goldlate30.zip sha b8c5f1e9... and e1foco-o107goldlate30-wolf13
 Local: both compile and play; h2h kvvl o7a 32-20, o7b 31-21 (e1foco 34-18): nothing broken; the own-lineage bench does not judge this.
 Online expectation vs e1foco on the same c34 games (pairmet): gold-only captures down, wolf/elk up, gems r300 up; if deaths r151-300
 rise, we go alone to wolves/elks and the piece needs the pack first.
+
+## o107 goldlate ONLINE: FAILS — 10-27 22:16 UTC (coordinator, c34 pinned groups)
+vs kvvl 31-44 (22 changed games, 11 for / 11 against = +0, bar 9.4); vs e1foco on the same games 31 wins against 37. The wolf x1.3
+variant (o107w) plays next. With this, every choose_target pricing piece on e1foco is closed: o101, o102, o103, o104/o105, o106, o107.
+Reading for the "copy the top-10 game plan" thread: lowering gold is not enough; the gems-per-capture deficit (7-11 vs the top 10's 16)
+goes with WHERE the champions are and WITH WHOM, not with group prices. Any weight that pushes champions to wolves/elks without the
+group formed turns into camp deaths (o103, o106). The unit of decision (who goes with whom, group order) is what the top 10 have.
+t10_plan.md (per map and 50-round window) is the data for that thread.

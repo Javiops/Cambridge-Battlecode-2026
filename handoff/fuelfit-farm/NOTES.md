@@ -1071,3 +1071,34 @@ passive, more stats), collectors (+1% dmg per completed family); treasure 20->10
   income (kills at 100 gold, a third of our dead time) and the order of emblems copied from them does not move the local judge
   (health first on HoR/Ryth is what our bot needs; bruiser-strength first on Vesper is neutral). No shop zip is worth the queue.
   The 2.0.0 shop plan stays c95shop; the lever is deaths. Scripts kept: opts/o99_shop2.py (whole copy), bench_items.py.
+
+## DEATH CONTEXT r151-300 vs the top 5 (farm thread, 10-27 19:00 UTC; engine 2.0.0, 118 clean real games of E1)
+Coordinator 18:48 UTC: what was our champion doing when it dies in r151-300 (camp, value, allies, enemy visible before) vs the
+top 5 in the same phase; if the fault is target choice, build the piece on e1foco. Scripts gem/t5b_deathctx.py (death context),
+gem/t5b_deathctx2.py (what happened between first sight and death), gem/t5b_arrive.py (every arrival at a live camp group and the
+death rate within 15 rounds), all over the cached rows gem/cache/t5b_e1__*.r300h.pkl (both sides of the 118 games).
+- Deaths r151-300: ours 1.80/game (212) vs 0.60 (71). Side: own half 60% vs 52%. No ally within 6 at death 45% vs 35%.
+  Enemies within 8 in the last 5 rounds 3+: 57% vs 30% (0: 10% vs 23%). Was at a live camp (>=50% of the last 10 rounds): 43% vs 45%.
+  Nearest live group at death: none 23% vs 13%, gold cluster 17/15, gem cluster 12/17, elk groups ~27/26; big gold group (>=300)
+  47% vs 55%; str>=60 group 32% vs 44%; killed by monsters alone (0 enemies, at camp) 9% vs 15%. => NOT the kind or value of
+  the camp: the dying champion is at the same camps as theirs. It dies to 3+ enemies on our own half.
+- Between first sight and death (enemy within 10, 20-round lookback): 93% of our victims had an enemy within 10 for the whole
+  20 rounds (theirs 83%): deaths happen in sustained contact zones, no ambush. At first sight our victim had its nearest ally
+  within 3 in 38% (top 5: 59%) and 7+ away in 45% (19%); health median 1000 vs 865. It kept farming 3+ rounds after sight 67%
+  (81%); approach/stay/retreat 38/23/39 vs 37/27/36 (same behaviour). Their ally goes AWAY in 49% (ours 37%): the top 5 die
+  when the pack splits; we die because we were never together.
+- ARRIVALS at a live camp in r151-300 (34.6/game vs 43.2): died within 15 rounds 8% vs 2%. Allies within 6 at arrival 0/1/2+:
+  43/33/24% vs 26/29/45%. Enemies within 10 at arrival 0/1/2+: 54/15/31% vs 49/23/28% (same exposure!), death rate 1/6/19% vs
+  0/2/4%. Alone with an enemy visible: 17% of arrivals, 17% die (top 5 10%, 4%). Side own/mid/their 73/15/12 vs 59/21/19.
+  LOCAL BALANCE at arrival (visible enemies within 10 minus (me + allies within 6)): we arrive outnumbered (balance >= +1) in
+  41% of the contested arrivals vs 17%; death rate by balance -2/-1/0/+1/+2/+3: ours 2/7/13/20/24/35%, theirs 2/3/3/5/6/19%.
+  If our balance distribution were theirs, contested-arrival deaths would fall 15.2% -> 9.5% (choice part); if our per-balance
+  rate were theirs, to 4.8% (fight part). Both are real; the choice part is this thread's.
+- VERDICT: choose_target is part of it. It ignores visible enemies around a candidate group except P_DANGER (4+ enemies within 4
+  of each other, 45 rounds, radius 5) and gc.near_en (< 8 from the enemy spawn centre). A champion walks into a camp with 2-3
+  visible enemies and no ally and dies there 1 in 5 times.
+- o101 outcamp (opts/o101_outcamp.py): State.foe_pos = every enemy champion visible this round (not only within 10 of us, en_spawn
+  excluded); in choose_target a group is skipped when enemies within P_OUTC_RE (8) of its centre >= max(1 + visible allies within
+  P_OUTC_RA (6), 1 + claimers) + P_OUTC_SLACK, from round P_OUTC_R0. Marker "o101_outcamp". Variants on e1foco, full 368-game
+  protocol launched 19:00 UTC: o1a slack 1 (enemies > ours), o1b slack 0 (enemies >= ours), o1c slack 1 from r150 only.
+  e1foco baseline: n80 61/80, far 40/56, h2h 34/52, new30 (pending in this table), h2hnew 37/60 = 260/368.

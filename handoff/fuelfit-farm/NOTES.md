@@ -1262,3 +1262,14 @@ Reading for the "copy the top-10 game plan" thread: lowering gold is not enough;
 goes with WHERE the champions are and WITH WHOM, not with group prices. Any weight that pushes champions to wolves/elks without the
 group formed turns into camp deaths (o103, o106). The unit of decision (who goes with whom, group order) is what the top 10 have.
 t10_plan.md (per map and 50-round window) is the data for that thread.
+
+## o107 CLOSED by pairmet; plan_t10.h check for the plan thread — 10-27 23:00 UTC
+- pairmet o107 vs e1foco (per game, to r600, coordinator 22:47): gold-only captures 12.5 / 13.3, wolves 7.4 / 8.2, elks 3.3 / 3.4, small
+  8.4 / 8.1, gems r300 131 / 137, deaths r151-300 1.43 / 1.23. Lowering the gold weight did NOT move the capture mix (wolves even down)
+  and raised deaths. o107 and o107w CLOSED. The farm thread now only serves the "copy the top-10 plan" thread (branch
+  claude/project-thread-w1dkw0, handoff4/t10plan).
+- tools/t10_plancheck.py: plan_t10.h (share of camp-HIT champion-rounds per group/side/50-round bin, winners x2, losers x1) vs my cache
+  (599 games, winners only, r0-299): maps, group centres and spawn sides match 100%. Bias by kind (sum over 660 cells): strong groups
+  plan 70 vs capture share 29 (x2.4), camps 400 vs 311 (x1.3), CLUSTERS 182 vs 320 (x0.57; clusters are 48% of the winners' captures,
+  the plan gives them 28%); plan ~ presence within 2 (corr 0.82) more than captures (0.69); the plan's top group is the most captured
+  in 35% of cells. Told the plan thread: use capture share (or 50/50 with presence), winners only, exclude monoliths before r300.

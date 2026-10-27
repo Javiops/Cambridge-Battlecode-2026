@@ -1055,3 +1055,11 @@ passive, more stats), collectors (+1% dmg per completed family); treasure 20->10
   HoR jungle-f, treasure-h, bruiser-h, bruiser-f, durab-h, bruiser-f fill (was treasure-h first); Ryth jungle-s, bruiser-h,
   treasure-h, bruiser-s, durab-h, bruiser-h fill (was treasure-h first). Marker "o99_shop2". e99 = E1 + o99 launched 18:14 UTC.
   Judge: first-emblem round and max hp r300 on the bench toward the top-5 numbers, deaths, h2h kvvl, 70-map W/N.
+- e99 (E1 + o99 all five plans) on the bench, 18:21 UTC: n80 60/80 vs 68, far 42 = 42, h2h kvvl 32/52 + 33/60 vs 35 + 44, new30 77/120
+  vs 86: WORSE. Mechanism (gem/bench_items.py on the decoded n80 replays): Vesper max hp r300/r600 1468/2008 vs 1243/1618 and
+  bruiser-s 1.05 emblems at r300 (top 5 .56), Marcella 1333/2129 vs 1262/1966 — these two moved toward the top 5; but HoR max hp
+  1270/2072 vs 1429/2460 and Ryth 1395/1979 vs 1598/2218 FELL (treasure-h = health shards moved behind jungle-f/jungle-s), and
+  first-emblem rounds barely moved (Marcella r293 vs 313, Vendetta r310 vs 293: our income, not the order, sets the date; on the
+  bench we earn 366/175/186 shard value by r300 for Vesper/Marcella/Vendetta vs the top 5's real 430/355/350).
+  So the whole-plan copy loses on health for HoR/Ryth. Bisect per champion (s1 Vesper, s2 Marcella, s3 Vendetta, s4 HoR, s5 Ryth)
+  on the new base e1foco (coordinator 18:21 UTC: e1foco online +6 vs E1 +3), reduced filter n80 + h2h kvvl new (140 games each).

@@ -763,3 +763,29 @@ our champions stack (o69 teamopen, o81 share exponent, o82 sweep) reproduces the
 in this bot "together" means walking together to one group while the rest of the map stays unfarmed; the top 10 clear
 weak groups in 8-10 rounds and are already elsewhere. Line closed on the farm side; what remains measured and unexplained
 is the +28% champion-rounds near monsters, and the local candidates that survive are incoming50 (o70) and nohold (o79b).
+
+### CORRECTION with the fresh top-10 vs top-10 sample (10-27 14:40 UTC; 40 near games of 10-25, both sides = 80, from the
+"stats anticuadas" thread: /mnt/project-files/analysis/top10-fresh-1025/, decodes dec300_1025.tgz; gem/fresh.py)
+The 10-24 reference (top 10 vs ranks 30-60) overstated the throughput gap: against weak rivals the top 10 farm freely.
+Among themselves:
+
+| metric (per side, r1-300 or at r150 / r300) | top 10 vs top 10 | b35 (near 80) |
+|---|---|---|
+| gold earned r150 / r300 | 496 / 1330 | 496 / 1112 |
+| gems collected r150 / r300 | 80 / 184 | 38 / 106 |
+| monster damage r150 / r300 | 11038 / 22662 | 8010 / 15852 |
+| rounds within 4 of a monster per game | 361 | 328 |
+| damage per such round | 68.0 | 58.6 |
+| engaged group-rounds with 1 / 2 / 3 / 4+ members | 94 / 59 / 30 / 16 | 98 / 65 / 29 / 12 |
+| time moving / idle | 0.45 / 0.19 | 0.51 / 0.17 |
+| captures r0-150: gem clusters / gold-only clusters / elk+gem / wolf+gem | 3.06 (34g) / 2.11 / 1.74 (69g) / 1.57 (19g) | 0.99 (14g) / 4.63 / 0.75 (19g) / 1.96 (18g) |
+| captures r150-300 | 3.15 (42g) / 2.11 / 2.04 (97g) / 1.80 (20g) | 1.53 (19g) / 4.08 / 0.88 (23g) / 2.81 (25g) |
+| group gems r0-150 / r150-300 | 123 / 160 | 61 / 66 |
+
+So: same gold, same time budget, same team structure (members per engaged group equal, trios equal), only +10% rounds
+near monsters and +16% damage per round. The gap is WHAT they kill: 3x the gem clusters, 2.3x the elk groups, half the
+gold-only clusters; gems from groups 283 vs 127 per 300 rounds. Everything I said about throughput and trios on 10-25 was
+measured against the vs-band sample and does not hold among the top 10; the choice line (elk and gem-cluster groups over
+gold-only clusters) is the farm front, and the local judge cannot see it: our rivals farm like us, so a bot that trades
+gold for gems looks neutral or worse locally (o80 at gold weight 50 / 70: gems r150 40 / 42, W/N down). Testing gold
+weight 30 (bots/e83) for the mechanism (gems r150, capture mix) and the kvvl head-to-head gate, as an ONLINE candidate.

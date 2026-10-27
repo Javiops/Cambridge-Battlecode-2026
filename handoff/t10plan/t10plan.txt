@@ -1,0 +1,109 @@
+games 60 (per champion-round rates; al4 = mean allies within 4; dhome = mean Chebyshev to own spawn; deaths per champion-game in the bucket)
+== ALL
+  r  1- 50 W: camp 0.21 fight 0.08 walk 0.54 idle 0.17 dead 0.01 al4 2.23 dhome 14.7 own 0.89 gems  1.6 deaths 0.05 || L: camp 0.22 fight 0.08 walk 0.53 idle 0.17 dead 0.01 al4 2.09 dhome 14.5 own 0.91 gems  1.7 deaths 0.05
+  r 51-100 W: camp 0.20 fight 0.09 walk 0.51 idle 0.19 dead 0.08 al4 1.06 dhome 21.7 own 0.71 gems  7.2 deaths 0.07 || L: camp 0.19 fight 0.09 walk 0.54 idle 0.18 dead 0.09 al4 0.95 dhome 21.0 own 0.77 gems  5.5 deaths 0.08
+  r101-150 W: camp 0.21 fight 0.08 walk 0.52 idle 0.19 dead 0.10 al4 0.97 dhome 20.1 own 0.76 gems 10.1 deaths 0.08 || L: camp 0.20 fight 0.08 walk 0.52 idle 0.20 dead 0.12 al4 0.86 dhome 19.4 own 0.74 gems  8.7 deaths 0.11
+  r151-200 W: camp 0.20 fight 0.09 walk 0.53 idle 0.18 dead 0.07 al4 0.94 dhome 20.6 own 0.72 gems 11.1 deaths 0.03 || L: camp 0.17 fight 0.08 walk 0.56 idle 0.19 dead 0.12 al4 0.87 dhome 19.3 own 0.79 gems 10.5 deaths 0.09
+  r201-250 W: camp 0.21 fight 0.08 walk 0.52 idle 0.20 dead 0.05 al4 1.03 dhome 21.2 own 0.70 gems 13.8 deaths 0.06 || L: camp 0.19 fight 0.08 walk 0.54 idle 0.19 dead 0.11 al4 0.78 dhome 19.8 own 0.80 gems 11.4 deaths 0.10
+  r251-300 W: camp 0.20 fight 0.08 walk 0.54 idle 0.19 dead 0.07 al4 0.89 dhome 21.6 own 0.71 gems 16.0 deaths 0.05 || L: camp 0.19 fight 0.07 walk 0.53 idle 0.21 dead 0.13 al4 0.61 dhome 19.2 own 0.80 gems 12.1 deaths 0.12
+  r301-350 W: camp 0.21 fight 0.07 walk 0.54 idle 0.19 dead 0.06 al4 0.78 dhome 21.9 own 0.69 gems 17.1 deaths 0.04 || L: camp 0.19 fight 0.07 walk 0.54 idle 0.20 dead 0.15 al4 0.63 dhome 19.8 own 0.80 gems 14.4 deaths 0.11
+  r351-400 W: camp 0.20 fight 0.08 walk 0.52 idle 0.20 dead 0.06 al4 0.85 dhome 21.7 own 0.66 gems 18.0 deaths 0.05 || L: camp 0.17 fight 0.08 walk 0.56 idle 0.19 dead 0.12 al4 0.67 dhome 18.6 own 0.80 gems 16.0 deaths 0.11
+== HeartOfRuin
+  r  1- 50 W: camp 0.27 fight 0.08 walk 0.53 idle 0.13 dead 0.02 al4 2.08 dhome 15.2 own 0.89 gems  1.2 deaths 0.08 || L: camp 0.28 fight 0.09 walk 0.51 idle 0.12 dead 0.02 al4 1.89 dhome 15.5 own 0.87 gems  1.6 deaths 0.08
+  r 51-100 W: camp 0.24 fight 0.12 walk 0.48 idle 0.16 dead 0.09 al4 0.93 dhome 20.9 own 0.68 gems  6.6 deaths 0.08 || L: camp 0.28 fight 0.10 walk 0.49 idle 0.13 dead 0.10 al4 0.82 dhome 20.6 own 0.84 gems  5.0 deaths 0.08
+  r101-150 W: camp 0.27 fight 0.11 walk 0.45 idle 0.17 dead 0.13 al4 0.87 dhome 20.9 own 0.77 gems 11.7 deaths 0.10 || L: camp 0.27 fight 0.11 walk 0.48 idle 0.13 dead 0.11 al4 0.76 dhome 19.6 own 0.70 gems 10.4 deaths 0.10
+  r151-200 W: camp 0.25 fight 0.12 walk 0.48 idle 0.15 dead 0.08 al4 0.90 dhome 22.7 own 0.67 gems 14.0 deaths 0.02 || L: camp 0.22 fight 0.12 walk 0.54 idle 0.12 dead 0.13 al4 0.80 dhome 19.4 own 0.73 gems 12.7 deaths 0.13
+  r201-250 W: camp 0.26 fight 0.10 walk 0.49 idle 0.15 dead 0.05 al4 0.86 dhome 21.0 own 0.70 gems 18.3 deaths 0.08 || L: camp 0.25 fight 0.11 walk 0.48 idle 0.16 dead 0.18 al4 0.84 dhome 20.2 own 0.76 gems 10.1 deaths 0.12
+  r251-300 W: camp 0.30 fight 0.08 walk 0.48 idle 0.14 dead 0.07 al4 0.81 dhome 21.3 own 0.68 gems 15.9 deaths 0.02 || L: camp 0.22 fight 0.10 walk 0.51 idle 0.16 dead 0.12 al4 0.58 dhome 18.9 own 0.82 gems  8.9 deaths 0.12
+  r301-350 W: camp 0.28 fight 0.09 walk 0.46 idle 0.17 dead 0.03 al4 0.69 dhome 21.8 own 0.70 gems 13.3 deaths 0.04 || L: camp 0.26 fight 0.11 walk 0.48 idle 0.14 dead 0.14 al4 0.60 dhome 20.4 own 0.77 gems  9.9 deaths 0.12
+  r351-400 W: camp 0.28 fight 0.10 walk 0.47 idle 0.15 dead 0.04 al4 0.80 dhome 21.7 own 0.63 gems 16.4 deaths 0.02 || L: camp 0.26 fight 0.10 walk 0.50 idle 0.14 dead 0.15 al4 0.63 dhome 20.4 own 0.74 gems  9.2 deaths 0.15
+== VesperVale
+  r  1- 50 W: camp 0.11 fight 0.07 walk 0.49 idle 0.34 dead 0.00 al4 2.16 dhome 14.0 own 0.92 gems  2.2 deaths 0.02 || L: camp 0.12 fight 0.10 walk 0.49 idle 0.29 dead 0.00 al4 1.99 dhome 14.2 own 0.93 gems  2.5 deaths 0.02
+  r 51-100 W: camp 0.15 fight 0.09 walk 0.45 idle 0.31 dead 0.03 al4 0.97 dhome 20.2 own 0.71 gems  9.9 deaths 0.04 || L: camp 0.08 fight 0.09 walk 0.52 idle 0.31 dead 0.05 al4 0.80 dhome 19.8 own 0.81 gems  9.6 deaths 0.06
+  r101-150 W: camp 0.14 fight 0.08 walk 0.49 idle 0.29 dead 0.05 al4 0.85 dhome 19.1 own 0.78 gems 11.7 deaths 0.06 || L: camp 0.12 fight 0.10 walk 0.52 idle 0.27 dead 0.11 al4 0.78 dhome 19.8 own 0.76 gems 12.4 deaths 0.10
+  r151-200 W: camp 0.13 fight 0.08 walk 0.49 idle 0.29 dead 0.05 al4 0.86 dhome 19.8 own 0.73 gems  9.5 deaths 0.02 || L: camp 0.10 fight 0.09 walk 0.54 idle 0.27 dead 0.11 al4 0.76 dhome 18.3 own 0.82 gems 11.4 deaths 0.08
+  r201-250 W: camp 0.11 fight 0.08 walk 0.49 idle 0.32 dead 0.04 al4 1.00 dhome 20.6 own 0.70 gems 12.6 deaths 0.04 || L: camp 0.12 fight 0.06 walk 0.56 idle 0.26 dead 0.07 al4 0.69 dhome 18.3 own 0.83 gems 11.2 deaths 0.04
+  r251-300 W: camp 0.11 fight 0.06 walk 0.52 idle 0.31 dead 0.05 al4 0.82 dhome 22.8 own 0.65 gems 18.4 deaths 0.04 || L: camp 0.13 fight 0.07 walk 0.51 idle 0.30 dead 0.12 al4 0.58 dhome 18.2 own 0.84 gems 11.9 deaths 0.12
+  r301-350 W: camp 0.11 fight 0.08 walk 0.53 idle 0.29 dead 0.07 al4 0.67 dhome 21.9 own 0.64 gems 22.1 deaths 0.06 || L: camp 0.10 fight 0.07 walk 0.55 idle 0.28 dead 0.09 al4 0.61 dhome 17.9 own 0.88 gems 16.1 deaths 0.04
+  r351-400 W: camp 0.13 fight 0.05 walk 0.52 idle 0.30 dead 0.06 al4 0.70 dhome 21.1 own 0.70 gems 21.9 deaths 0.04 || L: camp 0.13 fight 0.07 walk 0.54 idle 0.26 dead 0.09 al4 0.62 dhome 17.3 own 0.84 gems 20.1 deaths 0.15
+== Marcella
+  r  1- 50 W: camp 0.21 fight 0.10 walk 0.57 idle 0.12 dead 0.01 al4 2.18 dhome 14.8 own 0.85 gems  2.6 deaths 0.04 || L: camp 0.23 fight 0.10 walk 0.56 idle 0.11 dead 0.01 al4 2.06 dhome 13.1 own 0.93 gems  1.5 deaths 0.02
+  r 51-100 W: camp 0.20 fight 0.09 walk 0.56 idle 0.16 dead 0.05 al4 0.94 dhome 21.4 own 0.72 gems  7.3 deaths 0.02 || L: camp 0.23 fight 0.09 walk 0.57 idle 0.11 dead 0.05 al4 0.92 dhome 19.0 own 0.79 gems  4.6 deaths 0.04
+  r101-150 W: camp 0.21 fight 0.09 walk 0.55 idle 0.14 dead 0.07 al4 0.96 dhome 20.0 own 0.76 gems  9.2 deaths 0.08 || L: camp 0.21 fight 0.08 walk 0.56 idle 0.15 dead 0.06 al4 0.80 dhome 17.0 own 0.78 gems  7.2 deaths 0.10
+  r151-200 W: camp 0.21 fight 0.08 walk 0.57 idle 0.14 dead 0.05 al4 0.90 dhome 21.4 own 0.69 gems 10.0 deaths 0.02 || L: camp 0.18 fight 0.10 walk 0.60 idle 0.12 dead 0.08 al4 0.84 dhome 20.8 own 0.76 gems  9.5 deaths 0.04
+  r201-250 W: camp 0.22 fight 0.08 walk 0.55 idle 0.15 dead 0.06 al4 0.95 dhome 21.2 own 0.69 gems 11.7 deaths 0.08 || L: camp 0.23 fight 0.09 walk 0.53 idle 0.15 dead 0.09 al4 0.63 dhome 19.1 own 0.82 gems 12.0 deaths 0.10
+  r251-300 W: camp 0.21 fight 0.09 walk 0.53 idle 0.17 dead 0.11 al4 0.88 dhome 21.8 own 0.69 gems 11.5 deaths 0.10 || L: camp 0.20 fight 0.06 walk 0.58 idle 0.16 dead 0.10 al4 0.59 dhome 17.1 own 0.85 gems 12.2 deaths 0.10
+  r301-350 W: camp 0.23 fight 0.04 walk 0.56 idle 0.16 dead 0.07 al4 0.72 dhome 20.6 own 0.72 gems 12.1 deaths 0.00 || L: camp 0.22 fight 0.06 walk 0.55 idle 0.18 dead 0.12 al4 0.60 dhome 19.5 own 0.86 gems 12.6 deaths 0.08
+  r351-400 W: camp 0.24 fight 0.08 walk 0.52 idle 0.16 dead 0.00 al4 0.76 dhome 21.8 own 0.64 gems 12.9 deaths 0.02 || L: camp 0.14 fight 0.09 walk 0.61 idle 0.16 dead 0.07 al4 0.61 dhome 17.5 own 0.81 gems 16.5 deaths 0.04
+== Vendetta
+  r  1- 50 W: camp 0.36 fight 0.05 walk 0.46 idle 0.13 dead 0.01 al4 1.95 dhome 13.8 own 0.91 gems  2.5 deaths 0.05 || L: camp 0.34 fight 0.06 walk 0.46 idle 0.14 dead 0.02 al4 2.02 dhome 14.7 own 0.90 gems  1.9 deaths 0.07
+  r 51-100 W: camp 0.30 fight 0.07 walk 0.49 idle 0.14 dead 0.08 al4 0.80 dhome 20.7 own 0.79 gems  9.0 deaths 0.05 || L: camp 0.27 fight 0.08 walk 0.49 idle 0.16 dead 0.10 al4 0.85 dhome 20.8 own 0.72 gems  6.4 deaths 0.07
+  r101-150 W: camp 0.32 fight 0.05 walk 0.50 idle 0.13 dead 0.08 al4 0.95 dhome 18.6 own 0.73 gems 11.0 deaths 0.07 || L: camp 0.25 fight 0.06 walk 0.49 idle 0.21 dead 0.11 al4 0.84 dhome 17.3 own 0.77 gems 11.4 deaths 0.10
+  r151-200 W: camp 0.29 fight 0.05 walk 0.49 idle 0.16 dead 0.03 al4 0.83 dhome 18.4 own 0.80 gems 13.8 deaths 0.00 || L: camp 0.22 fight 0.07 walk 0.53 idle 0.18 dead 0.11 al4 0.91 dhome 18.6 own 0.77 gems 13.1 deaths 0.10
+  r201-250 W: camp 0.31 fight 0.06 walk 0.48 idle 0.15 dead 0.04 al4 0.86 dhome 18.6 own 0.76 gems 12.5 deaths 0.05 || L: camp 0.22 fight 0.06 walk 0.58 idle 0.14 dead 0.10 al4 0.77 dhome 19.3 own 0.86 gems 10.8 deaths 0.07
+  r251-300 W: camp 0.27 fight 0.06 walk 0.53 idle 0.15 dead 0.04 al4 0.85 dhome 18.7 own 0.83 gems 10.8 deaths 0.05 || L: camp 0.26 fight 0.08 walk 0.50 idle 0.16 dead 0.08 al4 0.62 dhome 19.2 own 0.81 gems 14.8 deaths 0.07
+  r301-350 W: camp 0.27 fight 0.04 walk 0.52 idle 0.16 dead 0.06 al4 0.76 dhome 19.7 own 0.77 gems 15.7 deaths 0.05 || L: camp 0.26 fight 0.05 walk 0.54 idle 0.16 dead 0.09 al4 0.67 dhome 18.8 own 0.78 gems 20.9 deaths 0.12
+  r351-400 W: camp 0.27 fight 0.10 walk 0.44 idle 0.19 dead 0.11 al4 0.83 dhome 18.9 own 0.71 gems 16.8 deaths 0.12 || L: camp 0.20 fight 0.06 walk 0.56 idle 0.19 dead 0.15 al4 0.63 dhome 18.0 own 0.84 gems 20.1 deaths 0.12
+== Ryth
+  r  1- 50 W: camp 0.22 fight 0.12 walk 0.58 idle 0.09 dead 0.00 al4 2.33 dhome 15.5 own 0.87 gems  0.1 deaths 0.00 || L: camp 0.26 fight 0.04 walk 0.57 idle 0.12 dead 0.02 al4 2.02 dhome 14.3 own 0.89 gems  2.3 deaths 0.04
+  r 51-100 W: camp 0.18 fight 0.09 walk 0.61 idle 0.12 dead 0.04 al4 1.21 dhome 21.8 own 0.74 gems  5.1 deaths 0.07 || L: camp 0.22 fight 0.08 walk 0.62 idle 0.08 dead 0.09 al4 1.01 dhome 22.5 own 0.69 gems  4.2 deaths 0.08
+  r101-150 W: camp 0.25 fight 0.09 walk 0.53 idle 0.13 dead 0.14 al4 1.02 dhome 23.0 own 0.68 gems  5.6 deaths 0.13 || L: camp 0.24 fight 0.12 walk 0.50 idle 0.14 dead 0.17 al4 0.90 dhome 20.9 own 0.74 gems  3.7 deaths 0.17
+  r151-200 W: camp 0.19 fight 0.11 walk 0.59 idle 0.11 dead 0.08 al4 1.00 dhome 21.4 own 0.63 gems  3.9 deaths 0.03 || L: camp 0.27 fight 0.03 walk 0.54 idle 0.16 dead 0.08 al4 0.87 dhome 16.8 own 0.88 gems  8.5 deaths 0.00
+  r201-250 W: camp 0.24 fight 0.11 walk 0.53 idle 0.12 dead 0.07 al4 1.30 dhome 21.4 own 0.69 gems  3.6 deaths 0.07 || L: camp 0.21 fight 0.06 walk 0.57 idle 0.16 dead 0.01 al4 0.86 dhome 21.3 own 0.74 gems 14.1 deaths 0.04
+  r251-300 W: camp 0.22 fight 0.12 walk 0.55 idle 0.11 dead 0.06 al4 1.07 dhome 22.5 own 0.68 gems  7.8 deaths 0.07 || L: camp 0.32 fight 0.09 walk 0.47 idle 0.12 dead 0.13 al4 0.68 dhome 23.2 own 0.63 gems  9.5 deaths 0.17
+  r301-350 W: camp 0.22 fight 0.07 walk 0.56 idle 0.14 dead 0.11 al4 0.83 dhome 24.9 own 0.63 gems  7.8 deaths 0.10 || L: camp 0.28 fight 0.05 walk 0.56 idle 0.12 dead 0.15 al4 0.62 dhome 24.8 own 0.63 gems 10.8 deaths 0.04
+  r351-400 W: camp 0.15 fight 0.11 walk 0.60 idle 0.14 dead 0.07 al4 0.83 dhome 22.8 own 0.64 gems 11.8 deaths 0.03 || L: camp 0.25 fight 0.10 walk 0.47 idle 0.17 dead 0.05 al4 0.79 dhome 21.3 own 0.75 gems 15.0 deaths 0.08
+== Tavi
+  r  1- 50 W: camp 0.12 fight 0.06 walk 0.58 idle 0.24 dead 0.02 al4 2.01 dhome 12.0 own 0.90 gems  0.6 deaths 0.13 || L: camp 0.10 fight 0.07 walk 0.64 idle 0.19 dead 0.01 al4 2.35 dhome 14.8 own 0.95 gems  0.4 deaths 0.06
+  r 51-100 W: camp 0.16 fight 0.09 walk 0.48 idle 0.27 dead 0.13 al4 0.96 dhome 18.4 own 0.80 gems  5.3 deaths 0.00 || L: camp 0.05 fight 0.07 walk 0.60 idle 0.28 dead 0.19 al4 1.15 dhome 26.4 own 0.66 gems  1.7 deaths 0.19
+  r101-150 W: camp 0.11 fight 0.05 walk 0.56 idle 0.28 dead 0.01 al4 0.73 dhome 16.5 own 0.81 gems 11.4 deaths 0.00 || L: camp 0.13 fight 0.05 walk 0.51 idle 0.30 dead 0.15 al4 0.93 dhome 24.2 own 0.80 gems  2.8 deaths 0.12
+  r151-200 W: camp 0.17 fight 0.09 walk 0.49 idle 0.25 dead 0.06 al4 0.93 dhome 19.8 own 0.80 gems 15.9 deaths 0.07 || L: camp 0.11 fight 0.06 walk 0.55 idle 0.28 dead 0.26 al4 1.04 dhome 17.6 own 0.94 gems  2.7 deaths 0.19
+  r201-250 W: camp 0.14 fight 0.08 walk 0.53 idle 0.25 dead 0.09 al4 0.92 dhome 17.8 own 0.77 gems 25.8 deaths 0.07 || L: camp 0.10 fight 0.05 walk 0.54 idle 0.31 dead 0.12 al4 0.56 dhome 19.0 own 0.94 gems  5.5 deaths 0.06
+  r251-300 W: camp 0.11 fight 0.10 walk 0.48 idle 0.32 dead 0.01 al4 0.87 dhome 18.6 own 0.72 gems 32.2 deaths 0.00 || L: camp 0.03 fight 0.08 walk 0.58 idle 0.31 dead 0.12 al4 0.70 dhome 20.9 own 0.82 gems  7.3 deaths 0.19
+  r301-350 W: camp 0.12 fight 0.06 walk 0.52 idle 0.30 dead 0.06 al4 0.94 dhome 20.6 own 0.66 gems 22.3 deaths 0.07 || L: camp 0.02 fight 0.07 walk 0.53 idle 0.39 dead 0.27 al4 0.76 dhome 19.7 own 0.84 gems  6.7 deaths 0.19
+  r351-400 W: camp 0.14 fight 0.07 walk 0.48 idle 0.30 dead 0.14 al4 0.92 dhome 19.6 own 0.74 gems  9.3 deaths 0.13 || L: camp 0.07 fight 0.08 walk 0.56 idle 0.30 dead 0.13 al4 0.71 dhome 16.9 own 0.79 gems  6.5 deaths 0.12
+== Prism
+  r  1- 50 W: camp 0.07 fight 0.09 walk 0.60 idle 0.24 dead 0.00 al4 2.32 dhome 15.2 own 0.89 gems  1.9 deaths 0.00 || L: camp 0.07 fight 0.07 walk 0.59 idle 0.28 dead 0.04 al4 1.89 dhome 13.5 own 0.94 gems  1.5 deaths 0.13
+  r 51-100 W: camp 0.09 fight 0.06 walk 0.60 idle 0.24 dead 0.04 al4 1.36 dhome 23.2 own 0.63 gems  4.7 deaths 0.08 || L: camp 0.07 fight 0.09 walk 0.52 idle 0.33 dead 0.16 al4 1.03 dhome 20.2 own 0.80 gems  5.8 deaths 0.07
+  r101-150 W: camp 0.02 fight 0.04 walk 0.65 idle 0.29 dead 0.08 al4 1.13 dhome 22.1 own 0.78 gems 18.0 deaths 0.08 || L: camp 0.05 fight 0.05 walk 0.58 idle 0.31 dead 0.05 al4 0.83 dhome 19.6 own 0.77 gems 12.5 deaths 0.07
+  r151-200 W: camp 0.04 fight 0.11 walk 0.55 idle 0.29 dead 0.15 al4 1.21 dhome 20.5 own 0.66 gems 32.9 deaths 0.17 || L: camp 0.02 fight 0.06 walk 0.51 idle 0.41 dead 0.09 al4 0.62 dhome 19.7 own 0.80 gems 20.8 deaths 0.07
+  r201-250 W: camp 0.04 fight 0.04 walk 0.57 idle 0.34 dead 0.12 al4 1.10 dhome 21.3 own 0.70 gems 44.3 deaths 0.00 || L: camp 0.09 fight 0.06 walk 0.49 idle 0.36 dead 0.15 al4 0.89 dhome 20.9 own 0.72 gems 30.7 deaths 0.20
+  r251-300 W: camp 0.06 fight 0.04 walk 0.70 idle 0.20 dead 0.05 al4 0.79 dhome 26.2 own 0.62 gems 57.0 deaths 0.08 || L: camp 0.05 fight 0.04 walk 0.49 idle 0.42 dead 0.15 al4 0.58 dhome 20.2 own 0.85 gems 35.0 deaths 0.00
+  r301-350 W: camp 0.07 fight 0.05 walk 0.60 idle 0.28 dead 0.09 al4 0.57 dhome 29.2 own 0.59 gems 76.8 deaths 0.08 || L: camp 0.06 fight 0.05 walk 0.58 idle 0.32 dead 0.17 al4 0.51 dhome 19.7 own 0.79 gems 42.3 deaths 0.20
+  r351-400 W: camp 0.03 fight 0.03 walk 0.64 idle 0.31 dead 0.07 al4 0.85 dhome 27.0 own 0.52 gems 86.9 deaths 0.00 || L: camp 0.08 fight 0.03 walk 0.62 idle 0.27 dead 0.10 al4 0.60 dhome 19.4 own 0.79 gems 45.1 deaths 0.07
+== Issac
+  r  1- 50 W: camp 0.21 fight 0.10 walk 0.62 idle 0.07 dead 0.09 al4 3.44 dhome 17.3 own 0.86 gems  0.0 deaths 0.25 || L: camp 0.34 fight 0.12 walk 0.48 idle 0.06 dead 0.00 al4 3.44 dhome 16.1 own 0.78 gems  0.0 deaths 0.00
+  r 51-100 W: camp 0.27 fight 0.10 walk 0.54 idle 0.08 dead 0.34 al4 2.07 dhome 30.9 own 0.50 gems 13.2 deaths 0.38 || L: camp 0.28 fight 0.08 walk 0.56 idle 0.09 dead 0.18 al4 2.02 dhome 27.4 own 0.54 gems  1.0 deaths 0.33
+  r101-150 W: camp 0.33 fight 0.17 walk 0.41 idle 0.09 dead 0.35 al4 1.91 dhome 13.6 own 0.82 gems  8.6 deaths 0.12 || L: camp 0.24 fight 0.07 walk 0.56 idle 0.13 dead 0.34 al4 2.14 dhome 20.4 own 0.37 gems  0.5 deaths 0.17
+  r151-200 W: camp 0.34 fight 0.04 walk 0.53 idle 0.09 dead 0.12 al4 1.44 dhome 15.6 own 0.88 gems  1.3 deaths 0.00 || L: camp 0.20 fight 0.04 walk 0.72 idle 0.05 dead 0.20 al4 2.18 dhome 21.2 own 0.64 gems  0.7 deaths 0.17
+  r201-250 W: camp 0.24 fight 0.10 walk 0.48 idle 0.18 dead 0.07 al4 1.69 dhome 27.3 own 0.58 gems  2.1 deaths 0.12 || L: camp 0.20 fight 0.19 walk 0.49 idle 0.11 dead 0.19 al4 1.80 dhome 24.8 own 0.43 gems  6.6 deaths 0.33
+  r251-300 W: camp 0.24 fight 0.00 walk 0.60 idle 0.16 dead 0.08 al4 0.93 dhome 16.6 own 0.86 gems  5.2 deaths 0.00 || L: camp 0.41 fight 0.06 walk 0.45 idle 0.09 dead 0.48 al4 0.83 dhome 21.1 own 0.35 gems 16.5 deaths 0.33
+  r301-350 W: camp 0.27 fight 0.07 walk 0.57 idle 0.09 dead 0.00 al4 1.31 dhome 24.0 own 0.68 gems  9.5 deaths 0.00 || L: camp 0.17 fight 0.02 walk 0.65 idle 0.16 dead 0.42 al4 1.13 dhome 16.1 own 0.75 gems  3.7 deaths 0.33
+  r351-400 W: camp 0.23 fight 0.06 walk 0.58 idle 0.12 dead 0.12 al4 1.71 dhome 21.6 own 0.58 gems  7.5 deaths 0.12 || L: camp 0.25 fight 0.04 walk 0.57 idle 0.14 dead 0.35 al4 1.03 dhome 17.2 own 0.78 gems  2.9 deaths 0.17
+== Cassi
+  r  1- 50 W: camp 0.01 fight 0.10 walk 0.74 idle 0.15 dead 0.09 al4 3.19 dhome 15.8 own 0.84 gems  0.0 deaths 0.25 || L: camp 0.14 fight 0.04 walk 0.65 idle 0.17 dead 0.00 al4 3.00 dhome 14.9 own 0.82 gems  3.5 deaths 0.00
+  r 51-100 W: camp 0.05 fight 0.10 walk 0.52 idle 0.32 dead 0.34 al4 2.04 dhome 33.3 own 0.50 gems  0.4 deaths 0.38 || L: camp 0.02 fight 0.02 walk 0.75 idle 0.20 dead 0.18 al4 1.96 dhome 26.4 own 0.51 gems  1.0 deaths 0.33
+  r101-150 W: camp 0.12 fight 0.10 walk 0.56 idle 0.23 dead 0.35 al4 1.95 dhome 17.2 own 0.79 gems  0.3 deaths 0.12 || L: camp 0.13 fight 0.00 walk 0.67 idle 0.21 dead 0.34 al4 1.52 dhome 26.6 own 0.17 gems  0.5 deaths 0.17
+  r151-200 W: camp 0.03 fight 0.08 walk 0.69 idle 0.20 dead 0.12 al4 1.59 dhome 18.7 own 0.76 gems  0.5 deaths 0.00 || L: camp 0.03 fight 0.05 walk 0.70 idle 0.23 dead 0.20 al4 1.75 dhome 18.1 own 0.59 gems  1.3 deaths 0.17
+  r201-250 W: camp 0.12 fight 0.02 walk 0.58 idle 0.28 dead 0.07 al4 1.98 dhome 26.6 own 0.74 gems  1.1 deaths 0.12 || L: camp 0.08 fight 0.06 walk 0.72 idle 0.14 dead 0.19 al4 1.42 dhome 21.8 own 0.76 gems  2.6 deaths 0.33
+  r251-300 W: camp 0.11 fight 0.03 walk 0.68 idle 0.18 dead 0.08 al4 1.09 dhome 19.3 own 0.89 gems  4.1 deaths 0.00 || L: camp 0.08 fight 0.03 walk 0.65 idle 0.25 dead 0.48 al4 1.17 dhome 15.1 own 0.84 gems  2.0 deaths 0.33
+  r301-350 W: camp 0.09 fight 0.02 walk 0.73 idle 0.16 dead 0.00 al4 1.55 dhome 20.4 own 0.73 gems  4.1 deaths 0.00 || L: camp 0.07 fight 0.02 walk 0.73 idle 0.18 dead 0.42 al4 0.99 dhome 12.5 own 0.79 gems  2.5 deaths 0.33
+  r351-400 W: camp 0.07 fight 0.01 walk 0.58 idle 0.34 dead 0.12 al4 1.66 dhome 21.9 own 0.76 gems  3.6 deaths 0.12 || L: camp 0.07 fight 0.04 walk 0.69 idle 0.20 dead 0.36 al4 1.23 dhome 21.2 own 0.62 gems  2.7 deaths 0.17
+== Varg
+  r  1- 50 W: camp 0.13 fight 0.12 walk 0.72 idle 0.03 dead 0.00 al4 3.25 dhome 17.1 own 0.81 gems  0.0 deaths 0.00 || L: camp 0.17 fight 0.00 walk 0.80 idle 0.03 dead 0.00 al4 2.61 dhome 21.7 own 1.00 gems  0.0 deaths 0.00
+  r 51-100 W: camp 0.21 fight 0.14 walk 0.57 idle 0.07 dead 0.00 al4 2.67 dhome 23.2 own 0.80 gems  0.0 deaths 0.00 || L: camp 0.14 fight 0.00 walk 0.80 idle 0.06 dead 0.00 al4 1.24 dhome 32.7 own 0.71 gems  0.0 deaths 0.00
+  r101-150 W: camp 0.07 fight 0.10 walk 0.80 idle 0.03 dead 0.00 al4 1.34 dhome 27.0 own 0.78 gems  0.0 deaths 0.00 || L: camp 0.17 fight 0.10 walk 0.73 idle 0.00 dead 0.00 al4 0.95 dhome 44.9 own 0.39 gems  0.0 deaths 0.00
+  r151-200 W: camp 0.29 fight 0.05 walk 0.57 idle 0.09 dead 0.00 al4 1.30 dhome 25.4 own 0.80 gems  0.3 deaths 0.00 || L: camp 0.12 fight 0.06 walk 0.77 idle 0.05 dead 0.00 al4 0.02 dhome 39.1 own 0.36 gems  0.0 deaths 0.00
+  r201-250 W: camp 0.17 fight 0.07 walk 0.68 idle 0.09 dead 0.00 al4 1.68 dhome 29.6 own 0.55 gems 18.6 deaths 0.00 || L: camp 0.40 fight 0.00 walk 0.55 idle 0.05 dead 0.00 al4 0.00 dhome 35.1 own 0.69 gems  0.0 deaths 0.00
+  r251-300 W: camp 0.10 fight 0.06 walk 0.69 idle 0.15 dead 0.00 al4 1.22 dhome 32.3 own 0.58 gems 18.9 deaths 0.00 || L: camp 0.13 fight 0.00 walk 0.86 idle 0.01 dead 0.00 al4 0.07 dhome 37.1 own 0.60 gems  0.0 deaths 0.00
+  r301-350 W: camp 0.21 fight 0.15 walk 0.58 idle 0.06 dead 0.00 al4 1.28 dhome 25.8 own 0.55 gems  1.0 deaths 0.00 || L: camp 0.20 fight 0.03 walk 0.72 idle 0.05 dead 0.00 al4 0.08 dhome 36.9 own 0.42 gems  0.0 deaths 0.00
+  r351-400 W: camp 0.26 fight 0.11 walk 0.57 idle 0.06 dead 0.00 al4 1.12 dhome 30.4 own 0.57 gems  1.0 deaths 0.00 || L: camp 0.28 fight 0.00 walk 0.65 idle 0.07 dead 0.00 al4 0.09 dhome 28.9 own 0.64 gems  0.6 deaths 0.00
+== Willow
+  r  1- 50 W: camp 0.02 fight 0.00 walk 0.65 idle 0.33 dead 0.00 al4 2.58 dhome 13.9 own 1.00 gems  0.0 deaths 0.00 || L: camp 0.11 fight 0.02 walk 0.60 idle 0.26 dead 0.00 al4 2.19 dhome 13.4 own 1.00 gems  0.1 deaths 0.00
+  r 51-100 W: camp 0.09 fight 0.00 walk 0.61 idle 0.29 dead 0.00 al4 1.47 dhome 26.8 own 0.78 gems  0.0 deaths 0.00 || L: camp 0.05 fight 0.07 walk 0.67 idle 0.21 dead 0.07 al4 1.13 dhome 19.0 own 1.00 gems  2.4 deaths 0.12
+  r101-150 W: camp 0.08 fight 0.00 walk 0.56 idle 0.36 dead 0.00 al4 1.42 dhome 29.6 own 0.81 gems  1.4 deaths 0.00 || L: camp 0.05 fight 0.10 walk 0.65 idle 0.20 dead 0.19 al4 1.03 dhome 18.1 own 0.95 gems  2.8 deaths 0.12
+  r151-200 W: camp 0.00 fight 0.01 walk 0.67 idle 0.32 dead 0.00 al4 0.67 dhome 26.0 own 0.67 gems  2.7 deaths 0.00 || L: camp 0.08 fight 0.15 walk 0.58 idle 0.18 dead 0.12 al4 0.81 dhome 19.9 own 0.95 gems  3.1 deaths 0.12
+  r201-250 W: camp 0.09 fight 0.07 walk 0.67 idle 0.17 dead 0.00 al4 0.57 dhome 26.2 own 0.67 gems  3.0 deaths 0.00 || L: camp 0.06 fight 0.08 walk 0.73 idle 0.13 dead 0.26 al4 1.14 dhome 18.8 own 0.86 gems  3.6 deaths 0.25
+  r251-300 W: camp 0.00 fight 0.11 walk 0.74 idle 0.15 dead 0.16 al4 1.05 dhome 21.8 own 0.79 gems 10.7 deaths 0.33 || L: camp 0.07 fight 0.04 walk 0.64 idle 0.25 dead 0.25 al4 0.45 dhome 20.7 own 0.69 gems  0.8 deaths 0.25
+  r301-350 W: camp 0.17 fight 0.00 walk 0.59 idle 0.25 dead 0.24 al4 0.61 dhome 13.3 own 1.00 gems 18.3 deaths 0.00 || L: camp 0.07 fight 0.06 walk 0.59 idle 0.27 dead 0.18 al4 0.70 dhome 20.4 own 0.87 gems  1.1 deaths 0.12
+  r351-400 W: camp 0.00 fight 0.00 walk 0.67 idle 0.33 dead 0.00 al4 0.85 dhome 25.6 own 0.93 gems  4.7 deaths 0.00 || L: camp 0.06 fight 0.06 walk 0.67 idle 0.21 dead 0.14 al4 0.94 dhome 16.6 own 1.00 gems  2.2 deaths 0.00

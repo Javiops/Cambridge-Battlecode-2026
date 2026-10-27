@@ -824,3 +824,18 @@ Capture mix r0-150 per game (73 clean games), target = top 10 vs top 10:
 
 - 15 keeps raising gems and cutting early deaths, but gold r300 falls 12%, far maps drop 5 and the kvvl gate fails (20/52): the shop runs dry. 30 stays the candidate; no finer sweep (the user wants mechanisms, not parameter fits).
 - The elk side of the gap (0.90-0.96 vs 1.74) is not a gold-weight matter: the single elk loses to the hold x2 and the strength terms (see "why the single elk is never taken"). Next: e85 = e83 + nohold (o79_holdgems.py with P_HOLD_MIN 1000), the two surviving farm pieces as one candidate (small pieces ride together).
+
+## e85 = b35 + gold weight 30 + no hold-altar x2 (o80_goldw.py SRCDIR 30; o79_holdgems.py then P_HOLD_MIN 1000) — 10-27 16:00 UTC — NEW CANDIDATE
+
+| bot | gems r150/r300 | gold r150/r300 | monster dmg r150/r300 | near W/N | deaths<=100 | far W/N | h2h vs kvvl |
+|---|---|---|---|---|---|---|---|
+| b35 | 38/106 | 496/1112 | 8010/15852 | 62/80 | 53 | 48/56 | 34/52 |
+| e83 gold30 | 50/113 | 499/1154 | 8091/17167 | 56/80 | 44 | 48/56 | 35/52 |
+| e79b nohold | n/a | 557/- | +16/+26% | 63/80 | 54 | 49/56 | 31/52 |
+| e85 both | 55/128 | 520/1172 | 9717/20244 | 57/80 | 43 | 48/56 | 40/52 |
+| top 10 vs top 10 | 80/184 | 496/1330 | 11038/22662 | | | | |
+
+Capture mix per game (73 clean): r0-150 gold-only 3.96 / gem clusters 1.88 (22g) / elk+gems 0.97 (33g) / wolf+gems 1.96, gems 77 (b35 61, e83 72, top 10 123); r150-300 elk+gems 1.25 (57g), gems 102 (b35 66, top 10 160).
+- The two pieces add up: gems, gold and monster damage all rise together (monster damage closes 60% of the gap to the top 10), early deaths fall, far maps unchanged, and the kvvl head-to-head is the best of the thread (40/52). Near W/N against our own lineage stays below b35 (57 vs 62), as with every gold->gem trade.
+- Online candidate: zips/gold30nohold-b35.zip (sha in SHA256SUMS). Replaces gold30-b35.zip as the first choice. Not sent (user paused sends).
+- Remaining gap: elks 0.97 vs 1.74 and gem clusters 1.88 vs 3.06, gold-only clusters 3.96 vs 2.11. Next: e86 = e85 + incoming50 (o70, the third surviving piece: +elk choice, fewer starvation deaths) as one combined candidate.

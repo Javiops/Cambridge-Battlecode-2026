@@ -1,0 +1,184 @@
+diff -ru a/src/main.cpp b/src/main.cpp
+--- a/src/main.cpp	2026-10-26 06:38:34.000000000 +0000
++++ b/src/main.cpp	2026-10-27 21:16:27.007758554 +0000
+@@ -1805,7 +1805,50 @@
+     return moved;
+ }
+ 
+-bool flee(State& s, bc::champion& me) { return step_towards(s, me, s.my_spawn, true); }
++#ifndef P_AA
++#define P_AA 1
++#endif
++#ifndef P_AA_HOME
++#define P_AA_HOME 2  // the ally must be this much nearer home than we are (0 = anywhere)
++#endif
++#ifndef P_AA_R
++#define P_AA_R 10
++#endif
++#ifndef P_AA_GR
++#define P_AA_GR 3
++#endif
++#ifndef P_AA_GW
++#define P_AA_GW 150
++#endif
++int g_aa_flee = 0;
++bool flee(State& s, bc::champion& me) {
++    if (P_AA && s.seen_r == static_cast<int>(bc::round_number()) && !s.seen.empty()) {
++        const vec2 pos = me.position();
++        vec2 fp = s.seen.front().p;
++        for (auto& o : s.seen) if (dist(o.p, pos) < dist(fp, pos)) fp = o.p;
++        const int myd = dist(pos, fp);
++        vec2 best{0, 0};
++        int bd = 99;
++        attempt([&] {
++            for (auto& a : vis_champions(*s.my)) {
++                if (a == me || !a.is_alive() || a.is_recalling() || a.health() < 0.4f * a.max_health()) continue;
++                const vec2 q = a.position();
++                const int d = dist(q, pos);
++                if (d < 2 || d > P_AA_R || dist(q, fp) < myd || d >= bd) continue;
++                if (P_AA_HOME && dist(q, s.spawn_center) > dist(pos, s.spawn_center) - P_AA_HOME) continue;  // on the way home
++                bd = d; best = q;
++            }
++            return true;
++        });
++        if (bd < 99) {
++            bc::bitboard ring;
++            ring.draw_chebyshev(best, 1.0f);
++            ring &= ~s.blocked;
++            if (step_towards(s, me, ring, true)) { ++g_aa_flee; return true; }
++        }
++    }
++    return step_towards(s, me, s.my_spawn, true);
++}
+ 
+ // ---------------------------------------------------------------------------
+ // Combat helpers
+@@ -2380,6 +2423,7 @@
+     }
+     return sp;
+ }
++int g_aw = 0;  // aw: early-warning leaves
+ int g_wp = 0;  // waitpair-v1: rounds waiting for a respawn next to an ally
+ int g_pw = 0;  // pairfarm-v3: rounds spent walking toward an ally
+ // pairfarm-v4: where each ally probably is. Allies out of vision have no position; their claim says where they go.
+@@ -2473,6 +2517,13 @@
+             const int claim = claim_value(s, sm, k);
+             if (claim > 0 && claim - 1 < static_cast<int>(s.groups.size())) pf_claims.push_back(s.groups[claim - 1].center);
+         }
++    std::vector<vec2> aa_mates;  // aa (2): visible allies' tiles
++    if (P_AA && P_AA_GW != 100)
++        attempt([&] {
++            for (auto& a : vis_champions(*s.my))
++                if (!(a == me) && a.is_alive() && !a.is_recalling()) aa_mates.push_back(a.position());
++            return true;
++        });
+     bool cached = s.pd_pos == pos && s.pd_gd.size() == s.groups.size();
+     bool have_pd = cached;
+     if (!cached && P_PATHD && !g_nopd && farm_pd_done(s) && !s.static_block.is_set(pos)) {
+@@ -2641,6 +2692,11 @@
+ #if P_E2 == 1
+         if (g.wolf_only) score *= P_E2_WOLF / 100.0;  // measured value per champion-round, wolf vs elk groups
+ #endif
++        if (!aa_mates.empty()) {
++            bool near = false;
++            for (auto q : aa_mates) near |= dist(q, g.center) <= P_AA_GR;
++            if (near) score *= P_AA_GW / 100.0;
++        }
+         if (score > best_score) { best_score = score; best = i; best_gd = gd; }
+     }
+ #if P_RC2
+@@ -4497,6 +4553,74 @@
+             return;
+     }
+ 
++#ifndef P_AW
++#define P_AW 1
++#endif
++#ifndef P_AW_FROM
++#define P_AW_FROM 21
++#endif
++#ifndef P_AW_R
++#define P_AW_R 8
++#endif
++#ifndef P_AW_AR
++#define P_AW_AR 6
++#endif
++#ifndef P_AW_N
++#define P_AW_N 2      // at least this many rivals
++#endif
++#ifndef P_AW_M
++#define P_AW_M 1      // and at least this many more than us
++#endif
++#ifndef P_AW_OWN
++#define P_AW_OWN 0    // 1: only on our half (nearer our spawn than theirs)
++#endif
++    if (P_AW && round >= P_AW_FROM && !on_spawn && nearest_foe <= P_AW_R && fuel_ok(12000) &&
++        (!P_AW_OWN || dist(pos, s.spawn_center) < dist(pos, s.en_center))) {
++        int eb = 0;
++        const Foe* nf = nullptr;
++        for (auto& f : foes)
++            if (f.d <= P_AW_R && !s.en_spawn.is_set(f.p) && !gone(f)) { ++eb; if (!nf || f.d < nf->d) nf = &f; }
++        if (eb >= P_AW_N) {
++            int nb = 1;
++            vec2 ap{0, 0};
++            int apd = 99;
++            attempt([&] {
++                for (auto& a : vis_champions(*s.my)) {
++                    if (a == me || !a.is_alive() || a.is_recalling()) continue;
++                    const vec2 q = a.position();
++                    const int d = dist(q, pos);
++                    if (d <= P_AW_AR) ++nb;
++                    if (d < apd && !s.my_spawn.is_set(q)) { apd = d; ap = q; }
++                }
++                return true;
++            });
++            const bool kill = nf && nf->d <= static_cast<int>(me.attack_range()) && nf->hp <= me.strength() * (P_GA_KILL_X / 10.0f);
++#ifndef P_AW_PERS
++#define P_AW_PERS 1   // the condition must hold this many rounds in a row
++#endif
++            static int aw_last = -10, aw_run = 0;
++            const bool aw_cond = eb >= nb + P_AW_M && !kill;
++            if (aw_cond) { aw_run = (aw_last == round - 1) ? aw_run + 1 : 1; aw_last = round; }
++            if (aw_cond && aw_run >= P_AW_PERS) {
++                g_mode = "aw";
++                ++g_aw;
++                if (gems > 0 && nearest_foe > 3) {
++                    auto al = best_altar(s, pos, round);
++                    if (al && dist(*al, pos) <= 1 && go_tribute(s, me, round)) return;
++                }
++                bool hit = fight::hit_now(s, me, foes);
++                bool moved = false;
++                if (apd > P_AW_AR && apd <= 12 && me.can_move()) {
++                    bc::bitboard ring;
++                    ring.draw_chebyshev(ap, 1.0f);
++                    moved = step_towards(s, me, ring & ~s.blocked, true);
++                }
++                if (!moved) { if (!fight::safe_step(s, me, foes)) flee(s, me); }
++                if (!hit) shoot_back(s, me, foes);
++                return;
++            }
++        }
++    }
+     bool fight_fav = false;  // P_CAMPFOE: step 3's verdict on the fight
+     // 3. Enemy champions: back away from a stronger group, fight an even or weaker one.
+     FP(9, "fight");
+@@ -5094,6 +5218,8 @@
+ 
+ void log_init(State& s) {
+     std::printf("[fuelfit] b35nohp o74 nohitpass det + farmeo c95go45e1 o100_incoming o125_holdlate o129_goldopen45\n");
++    std::printf("[sup] aw%d own%d p%d r%d R%d AR%d N%d M%d\n", P_AW, P_AW_OWN, P_AW_PERS, P_AW_FROM, P_AW_R, P_AW_AR, P_AW_N, P_AW_M);
++    std::printf("[sup] aa%d H%d R%d GR%d GW%d\n", P_AA, P_AA_HOME, P_AA_R, P_AA_GR, P_AA_GW);
+     std::printf("[init] %s melee=%d ally=%d groups=%zu altars=%zu spawn=%zu shards=%zu slots=%s/%s pots=%zu sm=%zu\n",
+                 s.name.c_str(), s.melee ? 1 : 0, s.ally_idx, s.groups.size(), s.altars.size(),
+                 s.spawn_tiles.size(), s.shards.size(), slot_name(s.slots[0]), slot_name(s.slots[1]), s.pots.size(),
+diff -ru a/src/params.h b/src/params.h
+--- a/src/params.h	2026-10-26 06:38:34.000000000 +0000
++++ b/src/params.h	2026-10-27 21:16:27.008623805 +0000
+@@ -1,3 +1,7 @@
++#define P_AA_GW 100
++#define P_AW_FROM 151
++#define P_AW_R 6
++#define P_AW_PERS 2
+ #define P_TRIBUTE_GEMS 12
+ #define P_TRIBUTE_NEAR 8
+ #define P_SHOP_GOLD 240

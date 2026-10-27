@@ -1029,3 +1029,29 @@ mV10d; 14 far maps x 2 sides = 112 games) e92 is 80/112 vs E1 83/112, and e92 vs
 So o92 is rival-specific noise, not a far-map fix: e92 ≈ E1 (identical on near maps by construction). The zip stays available
 as a safe online test (nothing changes on near maps), but it is not a local winner. Day's verdict for the farm front on E1: no local
 piece; the remaining farm gap in real games follows from deaths (fight thread) and from pack formation (superioridad thread).
+
+## SHOP 2.0.0 — what the top 5 buy vs E1 in the same 375 real games — 10-27 18:15 UTC
+Tools: /tmp/claude-0/ff/replay2/replaydump2_items.js (replaydump2 + per-champion item words, 84 u32 at +240 of the 624-byte
+champion entry: id = family*6 + stat*2 + tier, tier 1 = emblem), gem/itemdump.py (events whenever a champion's items change,
+gold/maxHealth every 25 rounds), gem/t5b_items.py (emblems by champion at r150/300/600), gem/t5b_gold.py (gold in hand, visits).
+Catalogue (sdk/cpp/cambc.h): 14 families x 3 stats; shard 30 gold, emblem = 5 shards. New in 2.0.0: tribute (-33% tribute time),
+capture (5->3 turns), prospector (+25% cluster gold/gems), hunter (+50 gold per kill), skirmish (+5% champion damage), greed (no
+passive, more stats), collectors (+1% dmg per completed family); treasure 20->10% gold, monster 10->15% camp damage.
+1. The top 5 use NONE of the seven new families (0 emblems at r600 over 125 games x 5 champions). Emblems at r600: bruiser 1402,
+   jungle 376, treasure 361, durability 272, power 174, monster 150, home 19. Ours: bruiser 669, treasure 313, jungle 282, durab 167.
+2. VOLUME: shard value bought per champion r0-150 / 150-300 / 300-600: top 5 105 / 182 / 480 gold, E1 83 / 108 / 258; purchase
+   visits 0.83 / 1.24 / 2.62 vs 0.71 / 0.87 / 1.82; gold in hand the same (mean 30-70, median 0-9: both spend what they have).
+   So they EARN ~1.5x our gold after r150 (kills pay 100, they are dead a third of our time). Max hp r600: Vesper 2416 vs 1468,
+   Marcella 2331 vs 1608, Vendetta 2327 vs 1383, HoR 2098 vs 2226 (HoR is the one champion we build like them).
+3. COMPOSITION: their carries open with Bruiser-STRENGTH (Vesper r300 bruiser-s .56, treasure-s .54, jungle-s .50; r600 bruiser-s
+   2.98 of 7.25 emblems; Marcella r600 bruiser-s 2.28, bruiser-h .92, bruiser-f .64; Vendetta jungle-s .89, bruiser-s 1.79,
+   bruiser-h 1.09, monster-s .42). We open 4 champions with TREASURE (HoR, Marcella, Ryth, Vendetta: c95shop tuned at 20% gold)
+   and our first emblem is 80-140 rounds later (Marcella r274 vs r190, Vendetta r334 vs r194, Ryth r337 vs r264, HoR r248 vs r219;
+   Vesper r106 vs r151 is the exception: her legacy plan opens with durability-s).
+- o99_shop2.py (opts/): per-champion plans copied from the top-5 r300 order, Treasure moved behind the fighting emblems:
+  Vesper bruiser-s, jungle-s, bruiser-h, durab-h, bruiser-s fill (was durab-s, jungle-s, bruiser-h, power->bruiser fill);
+  Marcella bruiser-s, jungle-s, bruiser-h, durab-h, bruiser-s fill (was treasure-f, bruiser-f, jungle-s, bruiser-h x2, bruiser-f);
+  Vendetta jungle-s, bruiser-s, bruiser-h, monster-s, bruiser-s fill (was treasure-s, jungle-s, bruiser-h, bruiser-s);
+  HoR jungle-f, treasure-h, bruiser-h, bruiser-f, durab-h, bruiser-f fill (was treasure-h first); Ryth jungle-s, bruiser-h,
+  treasure-h, bruiser-s, durab-h, bruiser-h fill (was treasure-h first). Marker "o99_shop2". e99 = E1 + o99 launched 18:14 UTC.
+  Judge: first-emblem round and max hp r300 on the bench toward the top-5 numbers, deaths, h2h kvvl, 70-map W/N.

@@ -914,3 +914,35 @@ Coordinator 16:02 UTC: build farm pieces on E1 from now on, compare with E1 and 
 + o125 hold-altar x2 only FROM r150 (P_HOLD_FROM). So E1 already carries the e85 mechanism for the opening only; what e85 adds over E1
 is the same rule for r150-600 (gold 0.30 all early game, no hold at all). Bench bots ws4/bots/e1, e1foco built with cambc 4.0.0.
 E1 baseline running (run_e1.sh: 40 old maps near/far/h2h + 30 new maps vs rTop1,rD + h2h kvvl = 368 games).
+
+## E1 baseline on 2.0.0 and the e85 rule on E1 — 10-27 16:30 UTC
+Protocol per bot (run_var.sh, 368 games, deterministic): "n80" = the 40 old maps x 2 sides vs a rotating rival (rTop1/rD/rF/rHunt/
+mV19/mV10d; NOTE mk.sh's FAR filter never matched, so this set contains the 14 far maps too), far = 14 far maps x rTop1,rD x 2 (56),
+h2h = kvvl on the 26 old near maps x 2 (52), new30 = the 30 new maps x rTop1,rD x 2 (120), h2hnew = kvvl on the 30 new maps x 2 (60).
+
+| bot | n80 | far | h2h kvvl old | new30 | h2h kvvl new | total | gems r150 old/new | gold r150 old/new |
+|---|---|---|---|---|---|---|---|---|
+| b35 | 55/80 | 48/56 | 30/52 | 78/120 | 35/60 | 246/368 | 38 / 52 | 519 / 406 |
+| e85 (gold30+nohold on b35) | 60 | 50 | 28 | 82 | 33 | 253 | 52 / 76 | 485 / 352 |
+| E1 (PC base) | 68 | 42 | 35 | 86 | 44 | 275 | 45 / 84 | 517 / 399 |
+| e88 = E1 + gold 0.45 until r600 | = E1 everywhere: b35 already weighs gold 0.45 from r150 (P_RC2_GW), E1 adds the opening only |
+| e89 = E1 + no hold-altar x2 ever | 66 | 41 | 30 | 86 | 41 | 264 | 45 / 84 | — CLOSED (h2h) |
+| e91 = E1 + gold 0.30 opening + no hold (the e85 rule) | 60 | 44 | 37 | 84 | 36 | 261 | 60 / 76 | 479 / 350 — CLOSED |
+| **e92 = E1 + o92 farguard** | 65 | **50** | 35 | **90** | 45 | **285** | 42 / 70 | 522 / 416 |
+
+- E1 beats b35 everywhere except the far maps (42/56 vs 48): rows 0/4, islands 2/4, starvation 2/4, concentrated_wealth 1/4, with
+  the same economy to r300 as e85 (rows: gems 131, gold 1585, monster dmg 37910). On rows the game is decided by a ~570-gem jackpot
+  around r1050-1200: e85 takes it (collected 656 -> 1240), E1 fights it (monster dmg keeps growing) and the rival captures it
+  (rival collected 459 -> 1024), E1 dies 3 times r900-1050.
+- Bisect of E1 on the far set (one piece reverted each): cut o95 off 44/56; incoming 100 (o100 off) **49/56**; gold opening 1.0
+  (o129 off) **49/56**; hold from r0 40/56; hitpass on 42 (hitpass is already off on far maps via P_HITLAST_FAR). So the two
+  opening pieces that make E1 strong on near maps are what loses the far maps: with incoming x0.5 and gold 0.45 the champions
+  commit to bigger / gem-bearing groups early on maps where the walk is long and the gold shop lags.
+- o92 farguard (opts/o92_farguard.py SRCDIR): on far maps — the bot's existing hp_far flag, spawn walk >= P_HITLAST_FAR 60 from the
+  draft byte 29 — o100 and o129 revert to the b35 values (P_FAR_INC 100, P_FAR_GWO 100). Near maps are identical to E1 by
+  construction (every path<60 map in n80 reproduces E1 exactly). Far set 50/56 (+8), new30 90/120 (+4: dunes 1->4, ribs 2->4,
+  famine 4->2), n80 far maps -3 (great_wall, islands, road_of_riches down; concentrated_wealth, lanes up), h2h kvvl 35/52 and 45/60.
+  Net +10 over E1 on 368 games, all of it on long-walk maps. The marker line is "[fuelfit] ... o129_goldopen45 o92_farguard".
+- ZIP for the PC loop: zips/e1-o92farguard.zip sha 4bbf67de4feb222cd375f0f8abe6597a82e5d20cf9b79fcc6be267268a518830 (src/ only,
+  built from pcassets/zips/e1.zip f967edfe… + o92). Caveat: the online judge is the 15 teams ahead on pinned groups; the local far
+  set is rTop1/rD only, and 14 far maps = 1/5 of the old pool, 11/30 of the new one.

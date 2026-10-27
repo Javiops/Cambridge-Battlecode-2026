@@ -26,17 +26,23 @@ s = s.replace(a, """#ifndef P_AW
 #ifndef P_AW_M
 #define P_AW_M 1      // and at least this many more than us
 #endif
+#ifndef P_AW_NOAL4
+#define P_AW_NOAL4 0  // 1: no retreat when an ally is already within 4 (same fight: keep shooting)
+#endif
+#ifndef P_AW_MIND
+#define P_AW_MIND 0   // only before contact: nearest rival at least this far
+#endif
 #ifndef P_AW_OWN
 #define P_AW_OWN 0    // 1: only on our half (nearer our spawn than theirs)
 #endif
     if (P_AW && round >= P_AW_FROM && !on_spawn && nearest_foe <= P_AW_R && fuel_ok(12000) &&
-        (!P_AW_OWN || dist(pos, s.spawn_center) < dist(pos, s.en_center))) {
+        (!P_AW_OWN || dist(pos, s.spawn_center) < dist(pos, s.en_center)) && nearest_foe >= P_AW_MIND) {
         int eb = 0;
         const Foe* nf = nullptr;
         for (auto& f : foes)
             if (f.d <= P_AW_R && !s.en_spawn.is_set(f.p) && !gone(f)) { ++eb; if (!nf || f.d < nf->d) nf = &f; }
         if (eb >= P_AW_N) {
-            int nb = 1;
+            int nb = 1, aw_al4 = 0;
             vec2 ap{0, 0};
             int apd = 99;
             attempt([&] {
@@ -45,6 +51,7 @@ s = s.replace(a, """#ifndef P_AW
                     const vec2 q = a.position();
                     const int d = dist(q, pos);
                     if (d <= P_AW_AR) ++nb;
+                    if (d <= 4) ++aw_al4;
                     if (d < apd && !s.my_spawn.is_set(q)) { apd = d; ap = q; }
                 }
                 return true;
@@ -54,7 +61,7 @@ s = s.replace(a, """#ifndef P_AW
 #define P_AW_PERS 1   // the condition must hold this many rounds in a row
 #endif
             static int aw_last = -10, aw_run = 0;
-            const bool aw_cond = eb >= nb + P_AW_M && !kill;
+            const bool aw_cond = eb >= nb + P_AW_M && !kill && !(P_AW_NOAL4 && aw_al4 > 0);
             if (aw_cond) { aw_run = (aw_last == round - 1) ? aw_run + 1 : 1; aw_last = round; }
             if (aw_cond && aw_run >= P_AW_PERS) {
                 g_mode = "aw";
@@ -82,6 +89,6 @@ assert s.count(a) == 1
 s = s.replace(a, "int g_aw = 0;  // aw: early-warning leaves\nint g_wp = 0;")
 import re
 m = re.search(r'    std::printf\("\[fuelfit\][^\n]*\n', s)
-s = s[:m.end()] + '    std::printf("[sup] aw%d own%d p%d r%d R%d AR%d N%d M%d\\n", P_AW, P_AW_OWN, P_AW_PERS, P_AW_FROM, P_AW_R, P_AW_AR, P_AW_N, P_AW_M);\n' + s[m.end():]
+s = s[:m.end()] + '    std::printf("[sup] aw%d own%d p%d d%d n4%d r%d R%d AR%d N%d M%d\\n", P_AW, P_AW_OWN, P_AW_PERS, P_AW_MIND, P_AW_NOAL4, P_AW_FROM, P_AW_R, P_AW_AR, P_AW_N, P_AW_M);\n' + s[m.end():]
 open(p, 'w').write(s)
 print('ok aw')

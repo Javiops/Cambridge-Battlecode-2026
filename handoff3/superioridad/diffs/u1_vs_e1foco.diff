@@ -1,0 +1,97 @@
+diff -ru a/src/main.cpp b/src/main.cpp
+--- a/src/main.cpp	2026-10-26 06:38:34.000000000 +0000
++++ b/src/main.cpp	2026-10-27 20:55:33.526998526 +0000
+@@ -1805,7 +1805,50 @@
+     return moved;
+ }
+ 
+-bool flee(State& s, bc::champion& me) { return step_towards(s, me, s.my_spawn, true); }
++#ifndef P_AA
++#define P_AA 1
++#endif
++#ifndef P_AA_HOME
++#define P_AA_HOME 2  // the ally must be this much nearer home than we are (0 = anywhere)
++#endif
++#ifndef P_AA_R
++#define P_AA_R 10
++#endif
++#ifndef P_AA_GR
++#define P_AA_GR 3
++#endif
++#ifndef P_AA_GW
++#define P_AA_GW 150
++#endif
++int g_aa_flee = 0;
++bool flee(State& s, bc::champion& me) {
++    if (P_AA && s.seen_r == static_cast<int>(bc::round_number()) && !s.seen.empty()) {
++        const vec2 pos = me.position();
++        vec2 fp = s.seen.front().p;
++        for (auto& o : s.seen) if (dist(o.p, pos) < dist(fp, pos)) fp = o.p;
++        const int myd = dist(pos, fp);
++        vec2 best{0, 0};
++        int bd = 99;
++        attempt([&] {
++            for (auto& a : vis_champions(*s.my)) {
++                if (a == me || !a.is_alive() || a.is_recalling() || a.health() < 0.4f * a.max_health()) continue;
++                const vec2 q = a.position();
++                const int d = dist(q, pos);
++                if (d < 2 || d > P_AA_R || dist(q, fp) < myd || d >= bd) continue;
++                if (P_AA_HOME && dist(q, s.spawn_center) > dist(pos, s.spawn_center) - P_AA_HOME) continue;  // on the way home
++                bd = d; best = q;
++            }
++            return true;
++        });
++        if (bd < 99) {
++            bc::bitboard ring;
++            ring.draw_chebyshev(best, 1.0f);
++            ring &= ~s.blocked;
++            if (step_towards(s, me, ring, true)) { ++g_aa_flee; return true; }
++        }
++    }
++    return step_towards(s, me, s.my_spawn, true);
++}
+ 
+ // ---------------------------------------------------------------------------
+ // Combat helpers
+@@ -2473,6 +2516,13 @@
+             const int claim = claim_value(s, sm, k);
+             if (claim > 0 && claim - 1 < static_cast<int>(s.groups.size())) pf_claims.push_back(s.groups[claim - 1].center);
+         }
++    std::vector<vec2> aa_mates;  // aa (2): visible allies' tiles
++    if (P_AA && P_AA_GW != 100)
++        attempt([&] {
++            for (auto& a : vis_champions(*s.my))
++                if (!(a == me) && a.is_alive() && !a.is_recalling()) aa_mates.push_back(a.position());
++            return true;
++        });
+     bool cached = s.pd_pos == pos && s.pd_gd.size() == s.groups.size();
+     bool have_pd = cached;
+     if (!cached && P_PATHD && !g_nopd && farm_pd_done(s) && !s.static_block.is_set(pos)) {
+@@ -2641,6 +2691,11 @@
+ #if P_E2 == 1
+         if (g.wolf_only) score *= P_E2_WOLF / 100.0;  // measured value per champion-round, wolf vs elk groups
+ #endif
++        if (!aa_mates.empty()) {
++            bool near = false;
++            for (auto q : aa_mates) near |= dist(q, g.center) <= P_AA_GR;
++            if (near) score *= P_AA_GW / 100.0;
++        }
+         if (score > best_score) { best_score = score; best = i; best_gd = gd; }
+     }
+ #if P_RC2
+@@ -5094,6 +5149,7 @@
+ 
+ void log_init(State& s) {
+     std::printf("[fuelfit] b35nohp o74 nohitpass det + farmeo c95go45e1 o100_incoming o125_holdlate o129_goldopen45\n");
++    std::printf("[sup] aa%d H%d R%d GR%d GW%d\n", P_AA, P_AA_HOME, P_AA_R, P_AA_GR, P_AA_GW);
+     std::printf("[init] %s melee=%d ally=%d groups=%zu altars=%zu spawn=%zu shards=%zu slots=%s/%s pots=%zu sm=%zu\n",
+                 s.name.c_str(), s.melee ? 1 : 0, s.ally_idx, s.groups.size(), s.altars.size(),
+                 s.spawn_tiles.size(), s.shards.size(), slot_name(s.slots[0]), slot_name(s.slots[1]), s.pots.size(),
+diff -ru a/src/params.h b/src/params.h
+--- a/src/params.h	2026-10-26 06:38:34.000000000 +0000
++++ b/src/params.h	2026-10-27 20:55:33.527751691 +0000
+@@ -1,3 +1,4 @@
++#define P_AA_GW 100
+ #define P_TRIBUTE_GEMS 12
+ #define P_TRIBUTE_NEAR 8
+ #define P_SHOP_GOLD 240

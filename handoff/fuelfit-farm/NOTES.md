@@ -868,3 +868,24 @@ Capture mix r0-150 per game (2.0.0, 73-74 clean): b35 gold-only 4.23 / gem clust
 - Head-to-head vs kvvl (both rebuilt with the 2.0.0 SDK): 28/52 vs b35 30/52 — gate passed by 2, no longer the clear win of 1.0.3. The 2.0.0 nerfs (Vesper/Marcella/HoR/Ryth) change fights; the farm gain is unchanged.
 - gold30nohold-b35.zip is source-only, so it is the same candidate under 2.0.0. Still not sent (user paused sends).
 - The PC's go45/E1 (c95shop + gold 0.45 to r150 + no hold x2 in the opening (+ incoming x0.5)) is the same direction on another base; E1 was the best on the top-5 compass (11-114 vs kvvl 5-120). Not duplicated: e85 removes the hold x2 for the whole game and weights gold 0.3 to r600.
+
+## ENGINE 2.0.0 — the 30 NEW maps (19 near / 11 far by spawn path; 6 are 3-champion maps) — 10-27 16:45 UTC
+
+b35 and e85 vs rTop1 + rD both sides (120 games each) and vs kvvl both sides (60 each). All bots rebuilt with the 2.0.0 SDK.
+
+| | b35 | e85 |
+|---|---|---|
+| vs rTop1/rD, 30 new maps | 78/120 (net gems 12183) | 82/120 (19698); flips +16 -12 |
+| of which near / far | 44/76 / 34/44 | 49/76 / 33/44 |
+| of which 3-champion maps / 4-5 | 15/24 / 63/96 | 17/24 / 65/96 |
+| h2h vs kvvl, 30 new maps | 35/60 | 33/60 (near 22 vs 20, far 13 vs 13) |
+| gems collected r150/r300 | 52/158 | 76/182 |
+| gold earned r150/r300 | 406/822 | 352/769 |
+| monster dmg r150/r300 | 6318/13863 | 6590/14178 |
+| deaths<=r100 | 68 | 67 |
+| captures r0-150 /game: gem clusters / gold-only / elk+gems / wolf+gems | 3.52 (67g) / 2.44 / 0.31 / 2.97 | 4.22 (81g) / 1.92 / 0.43 / 2.43 |
+
+Whole 2.0.0 pool (70 maps): vs our rivals e85 142/200 near-type vs b35 133/200, far 50 vs 48 (old far maps); h2h vs kvvl 61/112 vs b35 65/112 (both above half; e85 is not better than b35 at beating kvvl under 2.0.0, it was 40 vs 34 under 1.0.3).
+- The new maps are gem-rich and elk-poor (b35 already captures 3.5 gem clusters/game, 0.3 elks): e85 adds +24 gems at r150 there too, but gold r150 falls 13% (fewer gold-only clusters, nothing else to farm). Under 1.0.3 gold went up with e85 (nohold), under 2.0.0 it goes down on both map sets.
+- Decision: e85 (gold30nohold-b35.zip, sha 48095c56…) stays the farm candidate for the online loop; its gain is the gem mechanism, its cost is gold (-7% old maps, -13% new maps at r150) and no head-to-head edge over b35 vs kvvl under 2.0.0. Online decides; nothing sent (user paused sends 10-25).
+- Bench scripts for 2.0.0: /tmp/claude-0/ff/ws4 (mk.sh/far.sh/h2h.sh use ../cv4/bin/cambc; run_new30.sh builds the new-map manifests; plan30.txt classifies the new maps from the bot's [mapplan] line: ts, altars, size, spawn path).

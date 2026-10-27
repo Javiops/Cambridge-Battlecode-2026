@@ -1184,3 +1184,42 @@ Cache gem/cache/c34_{e1foco,kvvl,o101}__*.r300h.pkl (67/66 clean). Scripts: c34_
 - o104 jackearly (opts/o104_jackearly.py): P_JACKPOT / P_JACKGO / P_JACKN. Variants on e1foco launched 20:35 UTC: o4a 100/550/3 (normal
   scoring from r100, no team commit), o4b 100/100/3 (team of 3 from r100), o4c 150/150/2. Judge: bench W/N on the 70 maps (stampede,
   gemfight, rows, contest, pilgrimage, elk_arena, crossing are in maps70), h2h kvvl, deaths, the jackpot's first capture round.
+
+## CORRECTION of the c34 "jackpot" finding — 10-27 21:25 UTC (farm thread)
+The group table (tools/mapgroups.py) and the c34 scripts (c34_lossanatomy.py, c34_lossdeep.py, c34_midcaps.py) SUMMED rewardGems over the
+camps of a group. The engine pays the group reward once per capture and every camp of the group carries the group total, so a group
+was inflated x members (the_pack's 48 wolves: 9216 instead of 192). Verified against the value the engine gives the bot (g.gem_value():
+gemfight centre 78 of 200 = 39%, vault 343, stampede 160, elk_arena 72, the_pack 192 = 49%, pilgrimage 88 = 47%, stalactites 168 = 37%;
+rows 470/584, corridors 428/752 and contest 200/400 are monolith groups, excluded from the jackpot flag). All four scripts fixed
+(per-capture value), mapgroups.json regenerated for the 70 maps (with members). EVERYTHING in the previous section about "1018 gems",
+"878 from the jackpot", "81% share" and the jackpot taken at r121 is VOID. Corrected numbers (c34_lossanatomy.py, c34_farmanat.py):
+- e1foco WINS (34): r1-150 gems 87 vs 69, r151-300 110 vs 73; deaths 0.82/0.56 vs 1.06/1.21.
+- e1foco LOSSES (33): r1-150 gems 71 vs 64 (even), deaths 1.21 vs 0.73; r151-300 gems 57 vs 99 (x1.7, not x4.8), deaths 1.85 vs 0.70.
+  Alive champion-rounds r151-300: 569 vs 653 (3.79 vs 4.35 alive). Gems per 100 alive champion-rounds 10.0 vs 15.1 (in wins 18.0 vs
+  12.3). Captures 8.5 vs 9.2 per game, gems per capture 6.7 vs 10.8 (wins 11.0 vs 9.2). Gold-only captures EQUAL (4.67 vs 4.79);
+  the rival takes more elk (1.21 vs 0.82) and gem (1.45 vs 1.12) groups, 3.9 of its captures in the mid vs our 3.0, 0.7 on OUR half.
+- kvvl LOSSES (37): r1-150 58 vs 92 with deaths 1.49 vs 0.62 (kvvl loses early); r151-300 69 vs 117, deaths 1.43 vs 0.78.
+- Rival big captures (>= 150 gems) r151-300 in the 33 losses: ONE (vault). There is no jackpot the rival farms.
+- o104 jackearly on the bench: o4a 261, o4b 255, o4c 256, o4d (P_JACKSTR 150) 259, o4e (JACKN 2) 260 vs e1foco 260; the flag only exists
+  on elk_arena, stampede, vault, the_line among the maps70; it wins stampede (+2) and loses vault (-3) and the_line (-1) where the
+  whole team walks into the 343-gem cluster at r100 and submits 68 gems. o5a (P_JACK_SHARE 35, also gemfight 39%/stalactites 37%):
+  250. CLOSED: o104, o105 (anchor), the jackpot line. Scripts kept: tools/bench_jack.py, c34_jacktake.py (gem/).
+- Memory and the other threads were told at 21:27 UTC (coordinator, champ, superioridad).
+
+## THE REAL FARM GAP vs 56-70: strong groups taken by squads — 10-27 21:50 UTC (c34_choice.py, c34_elkcost.py)
+- CHOICE TEST (c34_choice.py, r151-300, captures by us in the 33 losses: 280): 85% are poor (<20 gems: 154 gold-only, 85 tiny gem
+  clusters); at 55% of those poor captures a FREE rich group (median 72 gems, str 120 = two elks) stood within 15 tiles on our half or
+  the mid, and the capturer had 0 allies within 6 (median). The rival's poor captures look the same (83%, free rich group 65%) but
+  its capturer has 1 ally within 6 and it makes 51 rich captures (median 32 gems, 34 in the mid, 2 allies within 6) to our 41 (26 gems,
+  1 ally). In kvvl's losses the rival's gems per capture is 13.1 vs ours 7.1 (95 rich captures vs 58).
+- COST OF A STRONG GROUP (c34_elkcost.py, str >= 120, r1-300): the rival takes 23 in the 33 losses (0.7/game, 72 gems median) with
+  3-4 champions within 4 (3: 6, 4: 9, 2: 5), duration median 25 rounds (n=3: 12), health lost by the whole squad median 840 (n=2: 900,
+  n=3: 500 = 230 per champion), ZERO capturer deaths; we take 10 (0.3/game, 41 gems) with 2-3 champions, 720 lost, zero deaths. In
+  wins we take 14 to its 9. The bot's model (squad_needed capped at P_NEED_CAP 2, incoming = str x t_clear / team x 0.5) prices a 2-elk
+  group at 2520 incoming for a pair (dps 60) = (2520/300) x cycle 40 = 300+ rounds, so its score is 72 / 300 = 0.24 per round
+  against a gold cluster's 18 / 16 = 1.1 (40 gold x gold_w 0.45): the pair never forms because nobody is first. Real: 0.28 x str x
+  duration for the whole squad, divided by its size.
+- o106 elksquad (opts/o106_elksquad.py SRC [STR=120] [R=10] [N=3] [INC=28] [R0=0]): for groups with str >= STR, team = max(team,
+  min(N, 1 + living allies visible within R of me)); incoming uses INC instead of P_INC_PCT when that squad is 2+; the "still needs
+  company" x0.7 is lifted when the squad is there. Marker o106_elksquad. Bench launched 21:53 UTC: o6a 120/10/3/28, o6b 120/10/3/50
+  (squad size only), o6c 120/10/4/28. Judge: W/N, deaths at camps (bench_deaths.py), elk captures (bench_caps.py), h2h kvvl.

@@ -11,7 +11,7 @@ for f in glob.glob(f'/tmp/claude-0/ff/gem/cache/{pref}__*.r300h.pkl'):
     g=idx.get(name)
     if not g: continue
     r0=rows[0]; ggems={}
-    for c in r0['camps']: ggems[c['group']]=ggems.get(c['group'],0)+c['rewardGems']
+    for c in r0['camps']: ggems[c['group']]=c['rewardGems']  # per-capture group reward (an earlier version summed it over the group's camps, x members)
     d={'res':g['result'],'rival':g['rival'],'map':g['map']}
     for w,(lo,hi) in (('a',(0,150)),('b',(150,300))):
         gems={0:0,1:0}; prev={}; deaths={0:0,1:0}; pv={}

@@ -19,7 +19,7 @@ for f in glob.glob(f'/tmp/claude-0/ff/gem/cache/{pref}__*.r300h.pkl'):
     res='win' if g['result']=='win' else 'loss'; N[res]+=1; C=A[res]
     r0=rows[0]; groups=collections.defaultdict(list)
     for c in r0['camps']: groups[c['group']].append(c)
-    G={gi:{'cen':(st.mean(c['spawnX'] for c in cs), st.mean(c['spawnY'] for c in cs)),'gems':sum(c['rewardGems'] for c in cs),'gold':sum(c['rewardGold'] for c in cs),'str':sum(STR.get(c['typeName'],0) for c in cs),'elk':any(c['typeName']=='elk' for c in cs)} for gi,cs in groups.items()}
+    G={gi:{'cen':(st.mean(c['spawnX'] for c in cs), st.mean(c['spawnY'] for c in cs)),'gems':max(c['rewardGems'] for c in cs),'gold':max(c['rewardGold'] for c in cs),'str':sum(STR.get(c['typeName'],0) for c in cs),'elk':any(c['typeName']=='elk' for c in cs)} for gi,cs in groups.items()}
     sp={t:[(c['x'],c['y']) for c in r0['champions'] if c['team']==t] for t in (0,1)}
     spc={t:(st.mean(p[0] for p in sp[t]), st.mean(p[1] for p in sp[t])) for t in (0,1)}
     prev={}; pv={}; inside={}

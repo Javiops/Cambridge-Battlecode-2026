@@ -789,3 +789,27 @@ measured against the vs-band sample and does not hold among the top 10; the choi
 gold-only clusters) is the farm front, and the local judge cannot see it: our rivals farm like us, so a bot that trades
 gold for gems looks neutral or worse locally (o80 at gold weight 50 / 70: gems r150 40 / 42, W/N down). Testing gold
 weight 30 (bots/e83) for the mechanism (gems r150, capture mix) and the kvvl head-to-head gate, as an ONLINE candidate.
+
+## e83 = b35 + P_GOLD_W_EARLY 30 (o80_goldw.py SRCDIR 30) — 10-27 15:45 UTC — first piece that moves the gem mechanism
+
+Dose-response of the gold weight before r600 (near 80, same manifest; collectedGems medians from the statistics JSON):
+
+| gold weight | gems r150 | gems r300 | near W/N | deaths<=100 | far W/N | h2h vs kvvl |
+|---|---|---|---|---|---|---|
+| 100 (b35) | 38 | 106 | 62/80 | 53 | 48/56 | 34/52 |
+| 70 (e80b) | 42 | 101 | closed | | | |
+| 50 (e80) | 40 | 102 | 54/80 | 47 | | |
+| 30 (e83) | 50 | 113 | 56/80 | 44 | 48/56 | 35/52 |
+
+Capture mix r0-150 per game (73 clean games), target = top 10 vs top 10:
+
+| | gold-only clusters | gem clusters | elk+gems | wolf+gems | gems/game |
+|---|---|---|---|---|---|
+| b35 | 4.63 | 0.99 (14g) | 0.75 (19g) | 1.96 (18g) | 61 |
+| e83 | 3.74 | 1.77 (24g) | 0.90 (25g) | 1.75 (23g) | 72 |
+| top 10 | 2.11 | 3.06 (34g) | 1.74 (69g) | 1.57 (19g) | 123 |
+
+- Earned gold r150 unchanged (499 vs 496), r300 +4%; monster damage r300 +8%; deaths<=r100 44 vs 53.
+- Near W/N drops 62 -> 56 against our own lineage (the local judge cannot price a gold->gem trade, as predicted). Far identical. h2h gate passed (35/52 > 26).
+- The jump is non-linear: 70 and 50 did nothing, 30 moves gem clusters +0.8/game and halves the gold-only surplus. Half of the gap remains (gem clusters 1.77 vs 3.06, elks 0.90 vs 1.74) -> e84 = weight 15 running (near + far + h2h).
+- Online candidate: zips/gold30-b35.zip (sha in SHA256SUMS). Not sent: user paused sends 10-25 12:50 UTC.

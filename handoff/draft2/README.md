@@ -24,3 +24,17 @@ slot 1 ground area 1.0x range 4+1; both exclusive with movement; 78% of their ca
 Our generic Prism casts as often (pcast.py: 47/47 per 1000 alive rounds vs their 47/54), so spells are not the gap.
 dB2 = dB + prism.h shop_plan/late_mix copying their build: 280/420 (dB 284, E1 298; vs dB +27/-31). Our Prism stays at
 98 gems, 638 gold, 2.7 deaths (local), 6 gems in r1-150 (chact2). The gap is the generic farm loop, not her code.
+
+## Ryth (2026-10-27)
+rdeath.py on t5b e1 (125 games), deaths r1-400 per drafted game: Ryth 0.98, Vesper 1.02, Marcella 1.02, HoR 1.24,
+Vendetta 1.17; top 5 0.06-0.34. Ryth is not our outlier. Common to all our deaths: 10 rounds before, nearest ally at
+4-7 tiles (Vesper 7) and 0.4-0.9 allies within 4; theirs 2-3 tiles and 1.0-1.7 allies. No ryth.h piece.
+Drafts without Ryth on E1 (298): Tavi 280, Willow 300; Ryth last (Vendetta 4th) 291.
+
+## On e1foco (pcassets/zips/e1foco.zip sha 659ded19), base 304/420
+| variant | wins | + / - | bar |
+|---|---|---|---|
+| efA e1focofarhor (P_FAR_SWAP "heart") | 309 | +29 / -24 | 14.6 |
+| efW (Willow for Ryth) | 301 | +58 / -61 | 21.8 |
+| efAW (both) | 298 | +52 / -58 | 21.0 |
+zips/e1focofarhor.zip, marker "[init] efA".

@@ -839,3 +839,15 @@ Capture mix per game (73 clean): r0-150 gold-only 3.96 / gem clusters 1.88 (22g)
 - The two pieces add up: gems, gold and monster damage all rise together (monster damage closes 60% of the gap to the top 10), early deaths fall, far maps unchanged, and the kvvl head-to-head is the best of the thread (40/52). Near W/N against our own lineage stays below b35 (57 vs 62), as with every gold->gem trade.
 - Online candidate: zips/gold30nohold-b35.zip (sha in SHA256SUMS). Replaces gold30-b35.zip as the first choice. Not sent (user paused sends).
 - Remaining gap: elks 0.97 vs 1.74 and gem clusters 1.88 vs 3.06, gold-only clusters 3.96 vs 2.11. Next: e86 = e85 + incoming50 (o70, the third surviving piece: +elk choice, fewer starvation deaths) as one combined candidate.
+
+## e86 = e85 + incoming50 (o70_incoming.py) — CLOSED 10-27 16:05 UTC: elks up, but early deaths and the kvvl gate pay for it
+
+| bot | gems r150/r300 | gold r150/r300 | monster dmg r150/r300 | near W/N | deaths<=100 | far W/N | h2h vs kvvl | elk+gems r0-150 / r150-300 |
+|---|---|---|---|---|---|---|---|---|
+| e85 | 55/128 | 520/1172 | 9717/20244 | 57/80 | 43 | 48/56 | 40/52 | 0.97 / 1.25 |
+| e70 (incoming50 alone) | n/a | | | 60/80 | 37 | 48/56 | 35/52 | 0.86 / 1.19 |
+| e86 | 56/136 | 478/1144 | 10202/21822 | 55/80 | 55 | 47/56 | 27/52 | 1.01 / 1.66 |
+
+- incoming50 on top of gold30+nohold does buy the elks (single elk r150-300 1.03/game, top 10 1.46) and monster damage reaches 92-96% of the top 10, but gold r150 drops 8%, deaths<=r100 rise 43 -> 55 and the head-to-head falls to 27/52 (gate barely passed, 13 games below e85). The three pieces together over-commit lone champions to strength groups.
+- e85 stays the candidate. incoming50 remains a known separate piece, not combined.
+- Remaining gap in e85: gem clusters 1.88 vs 3.06 and gold-only clusters 3.96 vs 2.11 (r0-150). Next: decision dump on e85 (instrumented build, --fuel-quantum 2000000) to see what gem clusters lose to now that gold is weighted 0.3.

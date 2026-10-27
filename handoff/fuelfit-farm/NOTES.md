@@ -946,3 +946,28 @@ h2h = kvvl on the 26 old near maps x 2 (52), new30 = the 30 new maps x rTop1,rD 
 - ZIP for the PC loop: zips/e1-o92farguard.zip sha 4bbf67de4feb222cd375f0f8abe6597a82e5d20cf9b79fcc6be267268a518830 (src/ only,
   built from pcassets/zips/e1.zip f967edfe… + o92). Caveat: the online judge is the 15 teams ahead on pinned groups; the local far
   set is rTop1/rD only, and 14 far maps = 1/5 of the old pool, 11/30 of the new one.
+
+## REAL 2.0.0 games vs the top 5 (pcassets/replays_t5b, branch claude/pc-e1-assets commit bcc5124) — 10-27 17:05 UTC
+375 online replays (kvvl/E1/e1foco x 125, 25 pinned groups vs Intercontinental Fish, Mite, willow best girl, Claudus Maximus,
+prism best girl; results kvvl 5, E1 11, e1foco 14 wins). Decoded r<=300 with dump2 (cache gem/cache/t5b_*.r300h.pkl); both sides of
+the SAME games (gem/ebmetrics.py + cmpwin2.py with SWAP=1 for the rival side; t5b_mid.py for the activity split). Clean games 116-119.
+
+| window | side | gems/game | caps | gold-only | wolf+gem | elk+gem (gems) | gem clusters | champ-rounds alive / dead | deaths | at camp / idle / moving |
+|---|---|---|---|---|---|---|---|---|---|---|
+| r0-150 | top5 (in E1 games) | 81 | 7.10 | 2.79 | 1.75 | 1.54 (49) | 1.02 | 661 / 38 | 0.74 | 50 / 9 / 41 % |
+| r0-150 | E1 | 63 | 7.35 | 3.70 | 1.44 | 1.07 (32) | 1.14 | 601 / 69 | 1.51 | 49 / 9 / 43 % |
+| r0-150 | kvvl | 42 | 6.95 | 3.84 | 1.71 | 0.63 (15) | 0.77 | 605 / 64 | 1.34 | 47 / 8 / 45 % |
+| r150-300 | top5 (in E1 games) | 106 | 8.36 | 3.14 | 2.17 | 1.92 (63) | 1.13 | 662 / 37 | 0.60 | 51 / 9 / 41 % |
+| r150-300 | E1 | 66 | 6.55 | 2.84 | 1.83 | 1.09 (38) | 0.79 | 559 / 111 | 1.80 | 46 / 8 / 45 % |
+| r150-300 | kvvl | 58 | 7.71 | 3.53 | 2.00 | 0.79 (21) | 1.39 | 560 / 109 | 1.84 | 46 / 7 / 46 % |
+
+- The farm gap under 2.0.0 is two multiplicative halves. TIME: in r150-300 we are dead 111 champion-rounds/game vs 37 (deaths 1.80
+  vs 0.60); alive time is used the same way (46-49% next to camps, 8% idle); champion-rounds at camps 259 vs 337 = -23% = the
+  capture deficit (6.55 vs 8.36). CHOICE: gems per capture 10 vs 12.7 because they take elk groups (1.5-1.9/game, 30-33 gems each)
+  where we take gold-only clusters (3.7 vs 2.8 in r0-150; by r50 1.33 vs 0.74, elks 0.32 vs 0.53). Gem clusters are equal now.
+  66/106 = 0.62 = 0.78 (time) x 0.79 (choice). Deaths r100-300 belong to the fight thread (told 17:10 UTC); choice is ours.
+- E1 vs kvvl in the same conditions: gems r0-150 63 vs 42 (the o129/o100 opening works online: elks 1.07 vs 0.63), r150-300 66 vs 58.
+- Top-5 elk captures by group strength r0-150: 60-str 1.10, 120-str 0.29 per game; ours 0.75 / 0.18 — they take the big ones too.
+- Pieces launched on E1 for the choice half: e93 = P_GWO 30 (opening gold weight 0.30, hold rule kept), e94 = o94 elkw (opts/
+  o94_elkw.py: score x1.3 for gem-bearing elk groups, new Group::has_elk flag). Judge: elk+gem caps r0-150/r150-300 and gems r150
+  toward 81/106 on the bench (cmpwin2 on n80), h2h kvvl gate, far unchanged.

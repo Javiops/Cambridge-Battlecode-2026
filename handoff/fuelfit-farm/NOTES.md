@@ -1157,3 +1157,8 @@ choose_target cost model of every gem group with str >= 100 every 10 rounds).
   that pricing big groups cheaper only sends champions to die at them. The untouched 2-elk groups on our half are not a pricing
   error we can fix alone: they need 2-3 champions arriving together (the top 5 take them with 3 in 58 of 84 cases), which is the
   pack formation the superioridad thread owns. Nothing in choose_target's own cost model is a piece without losing games.
+- ONLINE VERDICT o101 outcamp (coordinator 20:24 UTC, c34 groups vs the 15 teams ahead, compared with e1foco on the same games):
+  32-43 vs kvvl 31-44 (21 changed, 11 for / 10 against = +1, bar 9.2) and 5 wins BELOW e1foco (32 vs 37) on the same games.
+  Does not pass and worsens the base. Awaiting the PC's per-game deaths r151-300 and gems of o101 vs e1foco (reference e1foco vs
+  kvvl in c34: deaths r151-300 1.23 vs 1.19; gems r150 62 vs 52, r300 137 vs 113) to see whether the mechanism moved online.
+  Nothing more is built on o101 until the c34 replays arrive.

@@ -813,3 +813,14 @@ Capture mix r0-150 per game (73 clean games), target = top 10 vs top 10:
 - Near W/N drops 62 -> 56 against our own lineage (the local judge cannot price a gold->gem trade, as predicted). Far identical. h2h gate passed (35/52 > 26).
 - The jump is non-linear: 70 and 50 did nothing, 30 moves gem clusters +0.8/game and halves the gold-only surplus. Half of the gap remains (gem clusters 1.77 vs 3.06, elks 0.90 vs 1.74) -> e84 = weight 15 running (near + far + h2h).
 - Online candidate: zips/gold30-b35.zip (sha in SHA256SUMS). Not sent: user paused sends 10-25 12:50 UTC.
+
+## e84 = b35 + P_GOLD_W_EARLY 15 — CLOSED 10-27 15:51 UTC (gold starvation: the cliff lies between 30 and 15)
+
+| gold weight | gems r150/r300 | gold r300 | near W/N | deaths<=100 | far W/N | h2h vs kvvl | gold-only / gem clusters / elks r0-150 |
+|---|---|---|---|---|---|---|---|
+| 100 (b35) | 38/106 | 1112 | 62/80 | 53 | 48/56 | 34/52 | 4.63 / 0.99 / 0.75 |
+| 30 (e83) | 50/113 | 1154 | 56/80 | 44 | 48/56 | 35/52 | 3.74 / 1.77 / 0.90 |
+| 15 (e84) | 57/122 | 1017 | 58/80 | 35 | 43/56 | 20/52 | 3.10 / 1.64 / 0.96 |
+
+- 15 keeps raising gems and cutting early deaths, but gold r300 falls 12%, far maps drop 5 and the kvvl gate fails (20/52): the shop runs dry. 30 stays the candidate; no finer sweep (the user wants mechanisms, not parameter fits).
+- The elk side of the gap (0.90-0.96 vs 1.74) is not a gold-weight matter: the single elk loses to the hold x2 and the strength terms (see "why the single elk is never taken"). Next: e85 = e83 + nohold (o79_holdgems.py with P_HOLD_MIN 1000), the two surviving farm pieces as one candidate (small pieces ride together).

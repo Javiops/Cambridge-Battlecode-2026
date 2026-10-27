@@ -6073,5 +6073,1544 @@
   "rival": "Brakence Fan Club",
   "result": "loss",
   "side": "a"
+ },
+ {
+  "bot": "o107",
+  "file": "o107/fracture_GermanEmpireDest_923a410.repl26a",
+  "match": "818f143b-520c-4fc7-b1f5-eefce32b5026",
+  "map": "fracture",
+  "rival": "German Empire Destroyers",
+  "result": "win",
+  "side": "a"
+ },
+ {
+  "bot": "o107",
+  "file": "o107/reverse_spiral_GermanEmpireDest_923a411.repl26a",
+  "match": "6d7b8c89-8c6d-45b3-8bae-5c592644ee3c",
+  "map": "reverse_spiral",
+  "rival": "German Empire Destroyers",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "o107",
+  "file": "o107/galaxy_GermanEmpireDest_923a412.repl26a",
+  "match": "417e2235-eb86-4539-80ed-2ee5457e9ed4",
+  "map": "galaxy",
+  "rival": "German Empire Destroyers",
+  "result": "win",
+  "side": "a"
+ },
+ {
+  "bot": "o107",
+  "file": "o107/treasure_box_GermanEmpireDest_923a413.repl26a",
+  "match": "4e43bbd3-86b6-47e3-a9ab-7f24f2b847e8",
+  "map": "treasure_box",
+  "rival": "German Empire Destroyers",
+  "result": "win",
+  "side": "b"
+ },
+ {
+  "bot": "o107",
+  "file": "o107/ribs_GermanEmpireDest_923a414.repl26a",
+  "match": "744881fa-fd2d-4246-a821-0e7832aba931",
+  "map": "ribs",
+  "rival": "German Empire Destroyers",
+  "result": "loss",
+  "side": "a"
+ },
+ {
+  "bot": "o107",
+  "file": "o107/reverse_spiral_SkuBap_751d5a0.repl26a",
+  "match": "c33f54a5-9ae3-478b-ab6a-f99a18b56eda",
+  "map": "reverse_spiral",
+  "rival": "SkuBap",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "o107",
+  "file": "o107/harvest_SkuBap_751d5a1.repl26a",
+  "match": "f07aef04-abec-4a44-afed-b84c9f267b12",
+  "map": "harvest",
+  "rival": "SkuBap",
+  "result": "loss",
+  "side": "a"
+ },
+ {
+  "bot": "o107",
+  "file": "o107/breadcrumbs_SkuBap_751d5a2.repl26a",
+  "match": "98851a0d-b0b0-40d4-bdb3-1e71324b3014",
+  "map": "breadcrumbs",
+  "rival": "SkuBap",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "o107",
+  "file": "o107/treasure_box_SkuBap_751d5a3.repl26a",
+  "match": "899ada81-b45a-44db-8a5f-44da6f2ef140",
+  "map": "treasure_box",
+  "rival": "SkuBap",
+  "result": "win",
+  "side": "a"
+ },
+ {
+  "bot": "o107",
+  "file": "o107/gato_gemcombat2_SkuBap_751d5a4.repl26a",
+  "match": "b6efb5d2-7572-4bfb-aa7e-6e86b69fe0dc",
+  "map": "gato_gemcombat2",
+  "rival": "SkuBap",
+  "result": "win",
+  "side": "b"
+ },
+ {
+  "bot": "o107",
+  "file": "o107/gato_gemcombat1_Ding_c53ae60.repl26a",
+  "match": "271e341b-0aa0-48cf-b9e8-70b0804581f6",
+  "map": "gato_gemcombat1",
+  "rival": "Ding",
+  "result": "win",
+  "side": "a"
+ },
+ {
+  "bot": "o107",
+  "file": "o107/broken_curve_Ding_c53ae61.repl26a",
+  "match": "8a5fefac-7776-41b0-9969-ad0e46da5e9b",
+  "map": "broken_curve",
+  "rival": "Ding",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "o107",
+  "file": "o107/packs_Ding_c53ae62.repl26a",
+  "match": "fbbfa3db-27c9-4548-b45a-ce8b5d61e8f5",
+  "map": "packs",
+  "rival": "Ding",
+  "result": "loss",
+  "side": "a"
+ },
+ {
+  "bot": "o107",
+  "file": "o107/elk_arena_Ding_c53ae63.repl26a",
+  "match": "be7b477f-4dbd-43a5-94b3-5ae5358c9b38",
+  "map": "elk_arena",
+  "rival": "Ding",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "o107",
+  "file": "o107/pilgrimage_Ding_c53ae64.repl26a",
+  "match": "2c696554-cca2-4ae9-a955-10d58be0f236",
+  "map": "pilgrimage",
+  "rival": "Ding",
+  "result": "loss",
+  "side": "a"
+ },
+ {
+  "bot": "o107",
+  "file": "o107/concentrated_wealth_hat_4613410.repl26a",
+  "match": "2023bec7-efb5-4196-88ce-7d02ca02dc6f",
+  "map": "concentrated_wealth",
+  "rival": "ha\u00b2t",
+  "result": "win",
+  "side": "b"
+ },
+ {
+  "bot": "o107",
+  "file": "o107/fields_hat_4613411.repl26a",
+  "match": "d8bca7b1-1b78-4ae7-8d32-d9cf90a516ee",
+  "map": "fields",
+  "rival": "ha\u00b2t",
+  "result": "loss",
+  "side": "a"
+ },
+ {
+  "bot": "o107",
+  "file": "o107/stalactites_hat_4613412.repl26a",
+  "match": "483051a0-3cdd-4264-87d3-01303373a7b3",
+  "map": "stalactites",
+  "rival": "ha\u00b2t",
+  "result": "win",
+  "side": "b"
+ },
+ {
+  "bot": "o107",
+  "file": "o107/pilgrimage_hat_4613413.repl26a",
+  "match": "5c9b443d-8dc3-45ab-b4e2-a19774504952",
+  "map": "pilgrimage",
+  "rival": "ha\u00b2t",
+  "result": "loss",
+  "side": "a"
+ },
+ {
+  "bot": "o107",
+  "file": "o107/hooks_hat_4613414.repl26a",
+  "match": "eb74fadf-d5cb-4ea8-8973-fecdf8c519e7",
+  "map": "hooks",
+  "rival": "ha\u00b2t",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "o107",
+  "file": "o107/elkring_GemSimons_1eae840.repl26a",
+  "match": "04580281-da7b-48e0-93d7-7d1e846df74b",
+  "map": "elkring",
+  "rival": "Gem Simons",
+  "result": "loss",
+  "side": "a"
+ },
+ {
+  "bot": "o107",
+  "file": "o107/gato_gemcombat3_GemSimons_1eae841.repl26a",
+  "match": "af96b69e-b80e-43fc-920a-bc5aaf0a475c",
+  "map": "gato_gemcombat3",
+  "rival": "Gem Simons",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "o107",
+  "file": "o107/monolith_GemSimons_1eae842.repl26a",
+  "match": "e7db4890-81df-4893-8337-76dc0821c2c3",
+  "map": "monolith",
+  "rival": "Gem Simons",
+  "result": "loss",
+  "side": "a"
+ },
+ {
+  "bot": "o107",
+  "file": "o107/gato_gemcombat5_GemSimons_1eae843.repl26a",
+  "match": "0deb9745-6431-4a9f-b592-1d3a8bc055a2",
+  "map": "gato_gemcombat5",
+  "rival": "Gem Simons",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "o107",
+  "file": "o107/swirl_GemSimons_1eae844.repl26a",
+  "match": "81b1ac5d-d09d-4939-83b8-d3fd354bb654",
+  "map": "swirl",
+  "rival": "Gem Simons",
+  "result": "win",
+  "side": "a"
+ },
+ {
+  "bot": "o107",
+  "file": "o107/rushbait_v2_SquidProxyLovers_153ea40.repl26a",
+  "match": "a6cf670d-b3ff-405d-8394-cc2269434313",
+  "map": "rushbait_v2",
+  "rival": "SquidProxyLovers",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "o107",
+  "file": "o107/quarry_SquidProxyLovers_153ea41.repl26a",
+  "match": "0d01569e-3919-484c-8fd4-1d73c6a32630",
+  "map": "quarry",
+  "rival": "SquidProxyLovers",
+  "result": "loss",
+  "side": "a"
+ },
+ {
+  "bot": "o107",
+  "file": "o107/rows_SquidProxyLovers_153ea42.repl26a",
+  "match": "c4ffe3aa-069d-4004-b0f8-96ae90e9ca44",
+  "map": "rows",
+  "rival": "SquidProxyLovers",
+  "result": "win",
+  "side": "b"
+ },
+ {
+  "bot": "o107",
+  "file": "o107/concentrated_wealth_SquidProxyLovers_153ea43.repl26a",
+  "match": "3f71ef60-9670-40a9-8de2-09b6a69bd4d2",
+  "map": "concentrated_wealth",
+  "rival": "SquidProxyLovers",
+  "result": "loss",
+  "side": "a"
+ },
+ {
+  "bot": "o107",
+  "file": "o107/stampede_SquidProxyLovers_153ea44.repl26a",
+  "match": "7d796fe7-b025-42fa-9ba6-da49d74ee495",
+  "map": "stampede",
+  "rival": "SquidProxyLovers",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "o107",
+  "file": "o107/contest_r_ee61340.repl26a",
+  "match": "7c65a0ac-6b3b-4232-bb91-b66daace14ad",
+  "map": "contest",
+  "rival": "\u5929\u5929\u5f00\u5fc3 :(",
+  "result": "win",
+  "side": "a"
+ },
+ {
+  "bot": "o107",
+  "file": "o107/crossing_r_ee61341.repl26a",
+  "match": "ed1f5c4e-be3c-4f40-83d1-efa4f38c89c5",
+  "map": "crossing",
+  "rival": "\u5929\u5929\u5f00\u5fc3 :(",
+  "result": "win",
+  "side": "b"
+ },
+ {
+  "bot": "o107",
+  "file": "o107/gemfight_r_ee61342.repl26a",
+  "match": "24462e4d-0741-498e-b74d-802bc499e012",
+  "map": "gemfight",
+  "rival": "\u5929\u5929\u5f00\u5fc3 :(",
+  "result": "win",
+  "side": "a"
+ },
+ {
+  "bot": "o107",
+  "file": "o107/famine_r_ee61343.repl26a",
+  "match": "ecb032aa-8738-4127-bfea-ae0cc7dbae05",
+  "map": "famine",
+  "rival": "\u5929\u5929\u5f00\u5fc3 :(",
+  "result": "win",
+  "side": "b"
+ },
+ {
+  "bot": "o107",
+  "file": "o107/elk_arena_r_ee61344.repl26a",
+  "match": "3efc3223-f024-411f-b7e6-e09fbe76a7ad",
+  "map": "elk_arena",
+  "rival": "\u5929\u5929\u5f00\u5fc3 :(",
+  "result": "loss",
+  "side": "a"
+ },
+ {
+  "bot": "o107",
+  "file": "o107/stampede_aniqtoohigh_1fc08f0.repl26a",
+  "match": "d28deaec-d766-44d4-adf9-fe351e21f0c5",
+  "map": "stampede",
+  "rival": "an iq too high",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "o107",
+  "file": "o107/rows_aniqtoohigh_1fc08f1.repl26a",
+  "match": "961a2161-191c-43d3-9721-0113caafe43d",
+  "map": "rows",
+  "rival": "an iq too high",
+  "result": "loss",
+  "side": "a"
+ },
+ {
+  "bot": "o107",
+  "file": "o107/elkring_aniqtoohigh_1fc08f2.repl26a",
+  "match": "6f8b1ce1-3ae6-4b68-9a80-d92568d6ff75",
+  "map": "elkring",
+  "rival": "an iq too high",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "o107",
+  "file": "o107/swirl_aniqtoohigh_1fc08f3.repl26a",
+  "match": "13bdf6c5-39ec-4a53-b93c-f55530e5d0fc",
+  "map": "swirl",
+  "rival": "an iq too high",
+  "result": "loss",
+  "side": "a"
+ },
+ {
+  "bot": "o107",
+  "file": "o107/contest_aniqtoohigh_1fc08f4.repl26a",
+  "match": "30c8e18b-3a31-47f0-b16c-073bfceb5620",
+  "map": "contest",
+  "rival": "an iq too high",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "o107",
+  "file": "o107/big_world_BBL_1b939c0.repl26a",
+  "match": "89d51075-d854-4317-adf3-78ebf9139d7a",
+  "map": "big_world",
+  "rival": "BBL",
+  "result": "win",
+  "side": "a"
+ },
+ {
+  "bot": "o107",
+  "file": "o107/fragment_BBL_1b939c1.repl26a",
+  "match": "a4df9185-2728-4944-a436-e4423266e306",
+  "map": "fragment",
+  "rival": "BBL",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "o107",
+  "file": "o107/the_pack_BBL_1b939c2.repl26a",
+  "match": "1e9d89de-b725-459f-b061-96a3227357a2",
+  "map": "the_pack",
+  "rival": "BBL",
+  "result": "win",
+  "side": "a"
+ },
+ {
+  "bot": "o107",
+  "file": "o107/corridors_BBL_1b939c3.repl26a",
+  "match": "3fb84c6c-9775-4161-9996-8cd94b2a21f3",
+  "map": "corridors",
+  "rival": "BBL",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "o107",
+  "file": "o107/eight_BBL_1b939c4.repl26a",
+  "match": "6ab6d2c4-87c0-4a93-a609-336dcd96c2e6",
+  "map": "eight",
+  "rival": "BBL",
+  "result": "loss",
+  "side": "a"
+ },
+ {
+  "bot": "o107",
+  "file": "o107/packs_MartinShkrelisDe_d15e660.repl26a",
+  "match": "41569fe1-5c9c-4d7a-8033-9b4ac156b70c",
+  "map": "packs",
+  "rival": "Martin Shkreli's Defense Team",
+  "result": "win",
+  "side": "b"
+ },
+ {
+  "bot": "o107",
+  "file": "o107/starfish_MartinShkrelisDe_d15e661.repl26a",
+  "match": "e11b1abb-fdb6-4138-9abe-b7a2212c6524",
+  "map": "starfish",
+  "rival": "Martin Shkreli's Defense Team",
+  "result": "win",
+  "side": "a"
+ },
+ {
+  "bot": "o107",
+  "file": "o107/big_world_MartinShkrelisDe_d15e662.repl26a",
+  "match": "3409dd89-bf2b-43a0-a88a-e5e7f45aaa99",
+  "map": "big_world",
+  "rival": "Martin Shkreli's Defense Team",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "o107",
+  "file": "o107/gift_wrapping_MartinShkrelisDe_d15e663.repl26a",
+  "match": "ae95c8e0-0c9a-4032-8a4e-9ae5ebff4074",
+  "map": "gift_wrapping",
+  "rival": "Martin Shkreli's Defense Team",
+  "result": "win",
+  "side": "a"
+ },
+ {
+  "bot": "o107",
+  "file": "o107/crater_MartinShkrelisDe_d15e664.repl26a",
+  "match": "23c1d792-e2f5-4aa2-8a3e-7a6ff5bc9e1e",
+  "map": "crater",
+  "rival": "Martin Shkreli's Defense Team",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "o107",
+  "file": "o107/rows_ZkeyFarming_772edf0.repl26a",
+  "match": "ed674523-f02c-431d-9dff-f56ee4049424",
+  "map": "rows",
+  "rival": "Zkey Farming",
+  "result": "win",
+  "side": "a"
+ },
+ {
+  "bot": "o107",
+  "file": "o107/gemfight_ZkeyFarming_772edf1.repl26a",
+  "match": "dc2dac8b-7855-40d0-89e2-448fdb0feed0",
+  "map": "gemfight",
+  "rival": "Zkey Farming",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "o107",
+  "file": "o107/tangle_ZkeyFarming_772edf2.repl26a",
+  "match": "23180d00-4e95-49f8-84a5-b8dfc11798c1",
+  "map": "tangle",
+  "rival": "Zkey Farming",
+  "result": "win",
+  "side": "a"
+ },
+ {
+  "bot": "o107",
+  "file": "o107/road_of_riches_ZkeyFarming_772edf3.repl26a",
+  "match": "9de182a4-124b-4790-aa58-9541f44b89ac",
+  "map": "road_of_riches",
+  "rival": "Zkey Farming",
+  "result": "win",
+  "side": "b"
+ },
+ {
+  "bot": "o107",
+  "file": "o107/stampede_ZkeyFarming_772edf4.repl26a",
+  "match": "f5f7f051-f7d8-41f8-852f-3f833e4bd910",
+  "map": "stampede",
+  "rival": "Zkey Farming",
+  "result": "loss",
+  "side": "a"
+ },
+ {
+  "bot": "o107",
+  "file": "o107/fields_HiddenAltarKeepe_42b5070.repl26a",
+  "match": "8b7d205c-b9fc-41eb-a1d2-51958c3d2d89",
+  "map": "fields",
+  "rival": "Hidden Altar Keepers",
+  "result": "win",
+  "side": "b"
+ },
+ {
+  "bot": "o107",
+  "file": "o107/gemfight_HiddenAltarKeepe_42b5071.repl26a",
+  "match": "3515e460-697b-4648-b79d-dd9278901511",
+  "map": "gemfight",
+  "rival": "Hidden Altar Keepers",
+  "result": "win",
+  "side": "a"
+ },
+ {
+  "bot": "o107",
+  "file": "o107/great_wall_HiddenAltarKeepe_42b5072.repl26a",
+  "match": "93c08e7d-7d3b-437a-aea3-578e96de8cef",
+  "map": "great_wall",
+  "rival": "Hidden Altar Keepers",
+  "result": "win",
+  "side": "b"
+ },
+ {
+  "bot": "o107",
+  "file": "o107/elk_arena_HiddenAltarKeepe_42b5073.repl26a",
+  "match": "bec223f2-7a3f-46e9-b84e-d6876be53169",
+  "map": "elk_arena",
+  "rival": "Hidden Altar Keepers",
+  "result": "loss",
+  "side": "a"
+ },
+ {
+  "bot": "o107",
+  "file": "o107/dunes_HiddenAltarKeepe_42b5074.repl26a",
+  "match": "80c19b8a-033c-4762-b14d-d21ef45bbb04",
+  "map": "dunes",
+  "rival": "Hidden Altar Keepers",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "o107",
+  "file": "o107/quarry_SneakyBushCamper_fac6620.repl26a",
+  "match": "fa7a1ebf-f79e-4e85-bce0-60a96a93cef9",
+  "map": "quarry",
+  "rival": "Sneaky Bush Campers",
+  "result": "loss",
+  "side": "a"
+ },
+ {
+  "bot": "o107",
+  "file": "o107/gato_gemcombat1_SneakyBushCamper_fac6621.repl26a",
+  "match": "e89a0639-5dfc-4620-ad7f-0535473c4ed1",
+  "map": "gato_gemcombat1",
+  "rival": "Sneaky Bush Campers",
+  "result": "win",
+  "side": "b"
+ },
+ {
+  "bot": "o107",
+  "file": "o107/vault_SneakyBushCamper_fac6622.repl26a",
+  "match": "893bb065-0775-4620-89f3-5d952eeb5fb5",
+  "map": "vault",
+  "rival": "Sneaky Bush Campers",
+  "result": "loss",
+  "side": "a"
+ },
+ {
+  "bot": "o107",
+  "file": "o107/cuts_SneakyBushCamper_fac6623.repl26a",
+  "match": "5736ac0e-8810-4463-986b-3b06ad9d09a2",
+  "map": "cuts",
+  "rival": "Sneaky Bush Campers",
+  "result": "win",
+  "side": "b"
+ },
+ {
+  "bot": "o107",
+  "file": "o107/pilgrimage_SneakyBushCamper_fac6624.repl26a",
+  "match": "55afb6c6-f6a8-48ea-9563-9892ab56629a",
+  "map": "pilgrimage",
+  "rival": "Sneaky Bush Campers",
+  "result": "win",
+  "side": "a"
+ },
+ {
+  "bot": "o107",
+  "file": "o107/interlock_Gamblr_a85b120.repl26a",
+  "match": "d75ac7c2-1702-42dc-8a71-5728b0ddecd2",
+  "map": "interlock",
+  "rival": "Gamblr",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "o107",
+  "file": "o107/crossing_Gamblr_a85b121.repl26a",
+  "match": "f115f600-4b0f-409e-90db-df4b90b85a67",
+  "map": "crossing",
+  "rival": "Gamblr",
+  "result": "loss",
+  "side": "a"
+ },
+ {
+  "bot": "o107",
+  "file": "o107/eight_Gamblr_a85b122.repl26a",
+  "match": "d9797bd2-e8e3-45d6-bfc9-570dec0a728d",
+  "map": "eight",
+  "rival": "Gamblr",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "o107",
+  "file": "o107/quarry_Gamblr_a85b123.repl26a",
+  "match": "717570da-b3bf-41b1-b65a-d64ea20227ae",
+  "map": "quarry",
+  "rival": "Gamblr",
+  "result": "loss",
+  "side": "a"
+ },
+ {
+  "bot": "o107",
+  "file": "o107/islands_Gamblr_a85b124.repl26a",
+  "match": "99ed0216-b8e5-4361-89e9-fc017dd5f8dd",
+  "map": "islands",
+  "rival": "Gamblr",
+  "result": "win",
+  "side": "b"
+ },
+ {
+  "bot": "o107",
+  "file": "o107/the_line_BrakenceFanClub_319da90.repl26a",
+  "match": "b4884cf9-3a68-43c8-9479-04d93589b693",
+  "map": "the_line",
+  "rival": "Brakence Fan Club",
+  "result": "loss",
+  "side": "a"
+ },
+ {
+  "bot": "o107",
+  "file": "o107/gemfight_BrakenceFanClub_319da91.repl26a",
+  "match": "53f51f6f-b9e1-4816-969a-062fb2524a74",
+  "map": "gemfight",
+  "rival": "Brakence Fan Club",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "o107",
+  "file": "o107/contest_BrakenceFanClub_319da92.repl26a",
+  "match": "7de87060-cb01-4a62-8537-e1373ea7453c",
+  "map": "contest",
+  "rival": "Brakence Fan Club",
+  "result": "win",
+  "side": "a"
+ },
+ {
+  "bot": "o107",
+  "file": "o107/crossing_BrakenceFanClub_319da93.repl26a",
+  "match": "35c5428c-7ec6-483f-a266-4f9d645f4a5b",
+  "map": "crossing",
+  "rival": "Brakence Fan Club",
+  "result": "win",
+  "side": "b"
+ },
+ {
+  "bot": "o107",
+  "file": "o107/gold_rush_BrakenceFanClub_319da94.repl26a",
+  "match": "a070669e-edc9-4a98-a103-9d1d68deb12a",
+  "map": "gold_rush",
+  "rival": "Brakence Fan Club",
+  "result": "loss",
+  "side": "a"
+ },
+ {
+  "bot": "o107w",
+  "file": "o107w/fracture_GermanEmpireDest_923a410.repl26a",
+  "match": "6e033117-ae25-4183-b0e7-0ab13305e8cd",
+  "map": "fracture",
+  "rival": "German Empire Destroyers",
+  "result": "win",
+  "side": "a"
+ },
+ {
+  "bot": "o107w",
+  "file": "o107w/reverse_spiral_GermanEmpireDest_923a411.repl26a",
+  "match": "12179800-e166-47f8-8aac-62e4ac3caa69",
+  "map": "reverse_spiral",
+  "rival": "German Empire Destroyers",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "o107w",
+  "file": "o107w/galaxy_GermanEmpireDest_923a412.repl26a",
+  "match": "7ba4e10d-fdde-4ae8-ac7d-cda93819d919",
+  "map": "galaxy",
+  "rival": "German Empire Destroyers",
+  "result": "win",
+  "side": "a"
+ },
+ {
+  "bot": "o107w",
+  "file": "o107w/treasure_box_GermanEmpireDest_923a413.repl26a",
+  "match": "8ccf0371-ded0-4efc-b0ab-57813d9e3110",
+  "map": "treasure_box",
+  "rival": "German Empire Destroyers",
+  "result": "win",
+  "side": "b"
+ },
+ {
+  "bot": "o107w",
+  "file": "o107w/ribs_GermanEmpireDest_923a414.repl26a",
+  "match": "36b473e9-de7b-4c37-9d89-f550a9bd8b14",
+  "map": "ribs",
+  "rival": "German Empire Destroyers",
+  "result": "loss",
+  "side": "a"
+ },
+ {
+  "bot": "o107w",
+  "file": "o107w/reverse_spiral_SkuBap_751d5a0.repl26a",
+  "match": "49c867f2-920c-4aeb-bbc4-16145ebd8dc0",
+  "map": "reverse_spiral",
+  "rival": "SkuBap",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "o107w",
+  "file": "o107w/harvest_SkuBap_751d5a1.repl26a",
+  "match": "7ce47426-5810-4324-a554-678050647d5d",
+  "map": "harvest",
+  "rival": "SkuBap",
+  "result": "loss",
+  "side": "a"
+ },
+ {
+  "bot": "o107w",
+  "file": "o107w/breadcrumbs_SkuBap_751d5a2.repl26a",
+  "match": "84801eac-121b-474a-bf70-fa23d5fd228a",
+  "map": "breadcrumbs",
+  "rival": "SkuBap",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "o107w",
+  "file": "o107w/treasure_box_SkuBap_751d5a3.repl26a",
+  "match": "986be127-5475-4170-9c3c-61298aeb6781",
+  "map": "treasure_box",
+  "rival": "SkuBap",
+  "result": "win",
+  "side": "a"
+ },
+ {
+  "bot": "o107w",
+  "file": "o107w/gato_gemcombat2_SkuBap_751d5a4.repl26a",
+  "match": "8fe6ebf0-0924-4394-a64e-57f7d5e6a132",
+  "map": "gato_gemcombat2",
+  "rival": "SkuBap",
+  "result": "win",
+  "side": "b"
+ },
+ {
+  "bot": "o107w",
+  "file": "o107w/gato_gemcombat1_Ding_c53ae60.repl26a",
+  "match": "f23486c2-189e-4a98-baa4-a05d9a84c10f",
+  "map": "gato_gemcombat1",
+  "rival": "Ding",
+  "result": "win",
+  "side": "a"
+ },
+ {
+  "bot": "o107w",
+  "file": "o107w/broken_curve_Ding_c53ae61.repl26a",
+  "match": "37dc8983-44bf-46fe-8b33-dddf0fa4e81e",
+  "map": "broken_curve",
+  "rival": "Ding",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "o107w",
+  "file": "o107w/packs_Ding_c53ae62.repl26a",
+  "match": "b1fd2ff3-ece7-4560-b344-243b76f0b597",
+  "map": "packs",
+  "rival": "Ding",
+  "result": "loss",
+  "side": "a"
+ },
+ {
+  "bot": "o107w",
+  "file": "o107w/elk_arena_Ding_c53ae63.repl26a",
+  "match": "935a0c14-a077-428e-9643-380a53b16588",
+  "map": "elk_arena",
+  "rival": "Ding",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "o107w",
+  "file": "o107w/pilgrimage_Ding_c53ae64.repl26a",
+  "match": "3d5b1bc8-71ae-41f4-8dc4-9303597ba5f0",
+  "map": "pilgrimage",
+  "rival": "Ding",
+  "result": "loss",
+  "side": "a"
+ },
+ {
+  "bot": "o107w",
+  "file": "o107w/concentrated_wealth_hat_4613410.repl26a",
+  "match": "9033d2b9-fd32-4e59-8a55-0f9c648396fd",
+  "map": "concentrated_wealth",
+  "rival": "ha\u00b2t",
+  "result": "win",
+  "side": "b"
+ },
+ {
+  "bot": "o107w",
+  "file": "o107w/fields_hat_4613411.repl26a",
+  "match": "c84db8cf-90a6-4e0a-886c-f669a7ab6967",
+  "map": "fields",
+  "rival": "ha\u00b2t",
+  "result": "loss",
+  "side": "a"
+ },
+ {
+  "bot": "o107w",
+  "file": "o107w/stalactites_hat_4613412.repl26a",
+  "match": "75d034b8-dc46-44e4-a4fd-a268bff161dc",
+  "map": "stalactites",
+  "rival": "ha\u00b2t",
+  "result": "win",
+  "side": "b"
+ },
+ {
+  "bot": "o107w",
+  "file": "o107w/pilgrimage_hat_4613413.repl26a",
+  "match": "f599d793-cf95-4109-ab08-281685b4e729",
+  "map": "pilgrimage",
+  "rival": "ha\u00b2t",
+  "result": "loss",
+  "side": "a"
+ },
+ {
+  "bot": "o107w",
+  "file": "o107w/hooks_hat_4613414.repl26a",
+  "match": "67db2b30-a1b1-455e-993f-c16a9a20298b",
+  "map": "hooks",
+  "rival": "ha\u00b2t",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "o107w",
+  "file": "o107w/elkring_GemSimons_1eae840.repl26a",
+  "match": "604caece-192c-450c-87e7-964fccc29ca4",
+  "map": "elkring",
+  "rival": "Gem Simons",
+  "result": "loss",
+  "side": "a"
+ },
+ {
+  "bot": "o107w",
+  "file": "o107w/gato_gemcombat3_GemSimons_1eae841.repl26a",
+  "match": "4dbcf6ef-344f-471a-b168-b94e26bffe9d",
+  "map": "gato_gemcombat3",
+  "rival": "Gem Simons",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "o107w",
+  "file": "o107w/monolith_GemSimons_1eae842.repl26a",
+  "match": "c14e6c3a-ec4a-4744-8611-0438fbc25683",
+  "map": "monolith",
+  "rival": "Gem Simons",
+  "result": "loss",
+  "side": "a"
+ },
+ {
+  "bot": "o107w",
+  "file": "o107w/gato_gemcombat5_GemSimons_1eae843.repl26a",
+  "match": "d24f6e03-c5c2-455a-bfbd-a7800379012e",
+  "map": "gato_gemcombat5",
+  "rival": "Gem Simons",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "o107w",
+  "file": "o107w/swirl_GemSimons_1eae844.repl26a",
+  "match": "e251eab2-4669-4f65-a3d9-1034b8d9a95d",
+  "map": "swirl",
+  "rival": "Gem Simons",
+  "result": "win",
+  "side": "a"
+ },
+ {
+  "bot": "o107w",
+  "file": "o107w/rushbait_v2_SquidProxyLovers_153ea40.repl26a",
+  "match": "592aa14d-fb23-4f40-b649-6c2bb75b6d22",
+  "map": "rushbait_v2",
+  "rival": "SquidProxyLovers",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "o107w",
+  "file": "o107w/quarry_SquidProxyLovers_153ea41.repl26a",
+  "match": "9deac52c-0adf-4d32-8c06-efa6a0182908",
+  "map": "quarry",
+  "rival": "SquidProxyLovers",
+  "result": "loss",
+  "side": "a"
+ },
+ {
+  "bot": "o107w",
+  "file": "o107w/rows_SquidProxyLovers_153ea42.repl26a",
+  "match": "6c724ad3-8931-41b0-aeed-31f165a36d52",
+  "map": "rows",
+  "rival": "SquidProxyLovers",
+  "result": "win",
+  "side": "b"
+ },
+ {
+  "bot": "o107w",
+  "file": "o107w/concentrated_wealth_SquidProxyLovers_153ea43.repl26a",
+  "match": "60aceb65-42f3-41d4-969d-02f071b5d731",
+  "map": "concentrated_wealth",
+  "rival": "SquidProxyLovers",
+  "result": "loss",
+  "side": "a"
+ },
+ {
+  "bot": "o107w",
+  "file": "o107w/stampede_SquidProxyLovers_153ea44.repl26a",
+  "match": "aefed470-2d53-448d-af53-d1ee487b207b",
+  "map": "stampede",
+  "rival": "SquidProxyLovers",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "o107w",
+  "file": "o107w/contest_r_ee61340.repl26a",
+  "match": "b9e45d95-de87-4e02-898a-0ee653378360",
+  "map": "contest",
+  "rival": "\u5929\u5929\u5f00\u5fc3 :(",
+  "result": "win",
+  "side": "a"
+ },
+ {
+  "bot": "o107w",
+  "file": "o107w/crossing_r_ee61341.repl26a",
+  "match": "65a69db7-35a8-42e6-8261-8799afc27413",
+  "map": "crossing",
+  "rival": "\u5929\u5929\u5f00\u5fc3 :(",
+  "result": "win",
+  "side": "b"
+ },
+ {
+  "bot": "o107w",
+  "file": "o107w/gemfight_r_ee61342.repl26a",
+  "match": "7bf47dfd-8784-4003-adc1-b653815178be",
+  "map": "gemfight",
+  "rival": "\u5929\u5929\u5f00\u5fc3 :(",
+  "result": "win",
+  "side": "a"
+ },
+ {
+  "bot": "o107w",
+  "file": "o107w/famine_r_ee61343.repl26a",
+  "match": "c135d005-d638-4d11-b878-933d2ec3165d",
+  "map": "famine",
+  "rival": "\u5929\u5929\u5f00\u5fc3 :(",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "o107w",
+  "file": "o107w/elk_arena_r_ee61344.repl26a",
+  "match": "b69a508c-7f2d-4b10-998b-b6a66ebfced2",
+  "map": "elk_arena",
+  "rival": "\u5929\u5929\u5f00\u5fc3 :(",
+  "result": "loss",
+  "side": "a"
+ },
+ {
+  "bot": "o107w",
+  "file": "o107w/stampede_aniqtoohigh_1fc08f0.repl26a",
+  "match": "d2853dd1-631e-412f-bb66-e42e8bc334b9",
+  "map": "stampede",
+  "rival": "an iq too high",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "o107w",
+  "file": "o107w/rows_aniqtoohigh_1fc08f1.repl26a",
+  "match": "fdf614e2-2299-4799-89bd-bf3dae9293fd",
+  "map": "rows",
+  "rival": "an iq too high",
+  "result": "loss",
+  "side": "a"
+ },
+ {
+  "bot": "o107w",
+  "file": "o107w/elkring_aniqtoohigh_1fc08f2.repl26a",
+  "match": "813494e1-0110-4c3f-be3f-9b266324b989",
+  "map": "elkring",
+  "rival": "an iq too high",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "o107w",
+  "file": "o107w/swirl_aniqtoohigh_1fc08f3.repl26a",
+  "match": "5dd9e493-a583-49f6-a7ca-5e9da97c5f8d",
+  "map": "swirl",
+  "rival": "an iq too high",
+  "result": "loss",
+  "side": "a"
+ },
+ {
+  "bot": "o107w",
+  "file": "o107w/contest_aniqtoohigh_1fc08f4.repl26a",
+  "match": "52d7f69a-83e4-4a11-8b55-3e21f84e50f6",
+  "map": "contest",
+  "rival": "an iq too high",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "o107w",
+  "file": "o107w/big_world_BBL_1b939c0.repl26a",
+  "match": "f9dfaf32-eb98-43f5-8346-d3b493e62ec5",
+  "map": "big_world",
+  "rival": "BBL",
+  "result": "loss",
+  "side": "a"
+ },
+ {
+  "bot": "o107w",
+  "file": "o107w/fragment_BBL_1b939c1.repl26a",
+  "match": "3a69b1a7-8dc0-40e3-92cd-485ad8c7568b",
+  "map": "fragment",
+  "rival": "BBL",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "o107w",
+  "file": "o107w/the_pack_BBL_1b939c2.repl26a",
+  "match": "078a1b71-dfbf-48fe-a5c2-8421b77f01b1",
+  "map": "the_pack",
+  "rival": "BBL",
+  "result": "win",
+  "side": "a"
+ },
+ {
+  "bot": "o107w",
+  "file": "o107w/corridors_BBL_1b939c3.repl26a",
+  "match": "f0436d91-65d9-4dbd-b3eb-d3aa223a3efe",
+  "map": "corridors",
+  "rival": "BBL",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "o107w",
+  "file": "o107w/eight_BBL_1b939c4.repl26a",
+  "match": "008d8deb-6d0e-42ce-aae5-417e5f0fb862",
+  "map": "eight",
+  "rival": "BBL",
+  "result": "loss",
+  "side": "a"
+ },
+ {
+  "bot": "o107w",
+  "file": "o107w/packs_MartinShkrelisDe_d15e660.repl26a",
+  "match": "33e887c9-87d0-4159-8ff4-ee885a7f9ba9",
+  "map": "packs",
+  "rival": "Martin Shkreli's Defense Team",
+  "result": "win",
+  "side": "b"
+ },
+ {
+  "bot": "o107w",
+  "file": "o107w/starfish_MartinShkrelisDe_d15e661.repl26a",
+  "match": "1733d659-89b4-4b3c-af75-2a84620ead7d",
+  "map": "starfish",
+  "rival": "Martin Shkreli's Defense Team",
+  "result": "win",
+  "side": "a"
+ },
+ {
+  "bot": "o107w",
+  "file": "o107w/big_world_MartinShkrelisDe_d15e662.repl26a",
+  "match": "de3ccd68-0979-493f-8e6f-f26b30a43614",
+  "map": "big_world",
+  "rival": "Martin Shkreli's Defense Team",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "o107w",
+  "file": "o107w/gift_wrapping_MartinShkrelisDe_d15e663.repl26a",
+  "match": "5676a942-8823-4c51-a261-a1fb45084797",
+  "map": "gift_wrapping",
+  "rival": "Martin Shkreli's Defense Team",
+  "result": "win",
+  "side": "a"
+ },
+ {
+  "bot": "o107w",
+  "file": "o107w/crater_MartinShkrelisDe_d15e664.repl26a",
+  "match": "8aefd9a7-a068-4559-9278-0045c0b486f2",
+  "map": "crater",
+  "rival": "Martin Shkreli's Defense Team",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "o107w",
+  "file": "o107w/rows_ZkeyFarming_772edf0.repl26a",
+  "match": "dc19f436-9fbc-4fbd-8bc9-6798eeb252da",
+  "map": "rows",
+  "rival": "Zkey Farming",
+  "result": "win",
+  "side": "a"
+ },
+ {
+  "bot": "o107w",
+  "file": "o107w/gemfight_ZkeyFarming_772edf1.repl26a",
+  "match": "1d117934-b7d1-4cb6-a93a-1bf634face0e",
+  "map": "gemfight",
+  "rival": "Zkey Farming",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "o107w",
+  "file": "o107w/tangle_ZkeyFarming_772edf2.repl26a",
+  "match": "9d0722b3-1b6e-4bbc-a292-d5fe2500e74d",
+  "map": "tangle",
+  "rival": "Zkey Farming",
+  "result": "loss",
+  "side": "a"
+ },
+ {
+  "bot": "o107w",
+  "file": "o107w/road_of_riches_ZkeyFarming_772edf3.repl26a",
+  "match": "251dfbfd-c918-4468-be80-1ffcce7119f5",
+  "map": "road_of_riches",
+  "rival": "Zkey Farming",
+  "result": "win",
+  "side": "b"
+ },
+ {
+  "bot": "o107w",
+  "file": "o107w/stampede_ZkeyFarming_772edf4.repl26a",
+  "match": "aba09355-e519-4cf6-9b38-3bed836d77e6",
+  "map": "stampede",
+  "rival": "Zkey Farming",
+  "result": "loss",
+  "side": "a"
+ },
+ {
+  "bot": "o107w",
+  "file": "o107w/fields_HiddenAltarKeepe_42b5070.repl26a",
+  "match": "ec6fa5aa-fcde-4469-a732-7bd2f1a5571c",
+  "map": "fields",
+  "rival": "Hidden Altar Keepers",
+  "result": "win",
+  "side": "b"
+ },
+ {
+  "bot": "o107w",
+  "file": "o107w/gemfight_HiddenAltarKeepe_42b5071.repl26a",
+  "match": "5f0e0c46-b009-498a-a78c-2a8e5cc08ca1",
+  "map": "gemfight",
+  "rival": "Hidden Altar Keepers",
+  "result": "win",
+  "side": "a"
+ },
+ {
+  "bot": "o107w",
+  "file": "o107w/great_wall_HiddenAltarKeepe_42b5072.repl26a",
+  "match": "45e276df-cda0-4972-9b41-e7354218e0b3",
+  "map": "great_wall",
+  "rival": "Hidden Altar Keepers",
+  "result": "win",
+  "side": "b"
+ },
+ {
+  "bot": "o107w",
+  "file": "o107w/elk_arena_HiddenAltarKeepe_42b5073.repl26a",
+  "match": "28e75c07-b6fe-4b7c-a7ce-7676feee59c2",
+  "map": "elk_arena",
+  "rival": "Hidden Altar Keepers",
+  "result": "loss",
+  "side": "a"
+ },
+ {
+  "bot": "o107w",
+  "file": "o107w/dunes_HiddenAltarKeepe_42b5074.repl26a",
+  "match": "7e89b508-c41a-43a4-ae13-7bbe2154b08c",
+  "map": "dunes",
+  "rival": "Hidden Altar Keepers",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "o107w",
+  "file": "o107w/quarry_SneakyBushCamper_fac6620.repl26a",
+  "match": "0c6f6f68-2057-45ae-8bbe-fc4eb8c36f01",
+  "map": "quarry",
+  "rival": "Sneaky Bush Campers",
+  "result": "loss",
+  "side": "a"
+ },
+ {
+  "bot": "o107w",
+  "file": "o107w/gato_gemcombat1_SneakyBushCamper_fac6621.repl26a",
+  "match": "f2f8de57-63f8-47f9-89f4-a50a1210536c",
+  "map": "gato_gemcombat1",
+  "rival": "Sneaky Bush Campers",
+  "result": "win",
+  "side": "b"
+ },
+ {
+  "bot": "o107w",
+  "file": "o107w/vault_SneakyBushCamper_fac6622.repl26a",
+  "match": "be077639-352c-48ba-b926-a6fe888d7fe5",
+  "map": "vault",
+  "rival": "Sneaky Bush Campers",
+  "result": "loss",
+  "side": "a"
+ },
+ {
+  "bot": "o107w",
+  "file": "o107w/cuts_SneakyBushCamper_fac6623.repl26a",
+  "match": "7c9f18ab-5e5f-44a0-a722-ccaabade172a",
+  "map": "cuts",
+  "rival": "Sneaky Bush Campers",
+  "result": "win",
+  "side": "b"
+ },
+ {
+  "bot": "o107w",
+  "file": "o107w/pilgrimage_SneakyBushCamper_fac6624.repl26a",
+  "match": "f46f3b8c-115e-4a2e-b029-939a0e7b323e",
+  "map": "pilgrimage",
+  "rival": "Sneaky Bush Campers",
+  "result": "win",
+  "side": "a"
+ },
+ {
+  "bot": "o107w",
+  "file": "o107w/interlock_Gamblr_a85b120.repl26a",
+  "match": "41675a83-07f7-425a-ada0-422938796b58",
+  "map": "interlock",
+  "rival": "Gamblr",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "o107w",
+  "file": "o107w/crossing_Gamblr_a85b121.repl26a",
+  "match": "3139d7c7-e526-4309-8212-a30bb1f21fe4",
+  "map": "crossing",
+  "rival": "Gamblr",
+  "result": "loss",
+  "side": "a"
+ },
+ {
+  "bot": "o107w",
+  "file": "o107w/eight_Gamblr_a85b122.repl26a",
+  "match": "0a391e16-172b-470e-8414-c2385e5667b9",
+  "map": "eight",
+  "rival": "Gamblr",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "o107w",
+  "file": "o107w/quarry_Gamblr_a85b123.repl26a",
+  "match": "519e97a3-76ef-4f0a-b689-bfbc00739ae4",
+  "map": "quarry",
+  "rival": "Gamblr",
+  "result": "loss",
+  "side": "a"
+ },
+ {
+  "bot": "o107w",
+  "file": "o107w/islands_Gamblr_a85b124.repl26a",
+  "match": "6aeadb8d-6c16-4f56-a7f1-92ba5c857b99",
+  "map": "islands",
+  "rival": "Gamblr",
+  "result": "win",
+  "side": "b"
+ },
+ {
+  "bot": "o107w",
+  "file": "o107w/the_line_BrakenceFanClub_319da90.repl26a",
+  "match": "3bf0ed96-5c6c-4152-86aa-a11c26a2ceae",
+  "map": "the_line",
+  "rival": "Brakence Fan Club",
+  "result": "loss",
+  "side": "a"
+ },
+ {
+  "bot": "o107w",
+  "file": "o107w/gemfight_BrakenceFanClub_319da91.repl26a",
+  "match": "8dd76185-74be-496b-b0c3-9353bd45098e",
+  "map": "gemfight",
+  "rival": "Brakence Fan Club",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "o107w",
+  "file": "o107w/contest_BrakenceFanClub_319da92.repl26a",
+  "match": "8a9f2918-62d8-444f-89ba-fa0b5ae405b1",
+  "map": "contest",
+  "rival": "Brakence Fan Club",
+  "result": "win",
+  "side": "a"
+ },
+ {
+  "bot": "o107w",
+  "file": "o107w/crossing_BrakenceFanClub_319da93.repl26a",
+  "match": "f5f46870-4b51-4fa6-b27e-89a7da974e40",
+  "map": "crossing",
+  "rival": "Brakence Fan Club",
+  "result": "win",
+  "side": "b"
+ },
+ {
+  "bot": "o107w",
+  "file": "o107w/gold_rush_BrakenceFanClub_319da94.repl26a",
+  "match": "5858a8d6-377d-499d-a091-454bfc9f629d",
+  "map": "gold_rush",
+  "rival": "Brakence Fan Club",
+  "result": "loss",
+  "side": "a"
+ },
+ {
+  "bot": "t10plan",
+  "file": "t10plan/fracture_GermanEmpireDest_923a410.repl26a",
+  "match": "7e6a1990-90fa-4230-9db1-0bc9062c5f2c",
+  "map": "fracture",
+  "rival": "German Empire Destroyers",
+  "result": "loss",
+  "side": "a"
+ },
+ {
+  "bot": "t10plan",
+  "file": "t10plan/packs_Ding_c53ae62.repl26a",
+  "match": "fd1ea80b-6acf-4639-b599-c579542ddf9a",
+  "map": "packs",
+  "rival": "Ding",
+  "result": "win",
+  "side": "a"
+ },
+ {
+  "bot": "t10plan",
+  "file": "t10plan/pilgrimage_Ding_c53ae64.repl26a",
+  "match": "a5ea4a70-7615-443a-b54e-c3cea20b8dff",
+  "map": "pilgrimage",
+  "rival": "Ding",
+  "result": "loss",
+  "side": "a"
+ },
+ {
+  "bot": "t10plan",
+  "file": "t10plan/concentrated_wealth_hat_4613410.repl26a",
+  "match": "3f9a4109-7ed8-47d6-8ebb-cfd616a827e3",
+  "map": "concentrated_wealth",
+  "rival": "ha\u00b2t",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "t10plan",
+  "file": "t10plan/hooks_hat_4613414.repl26a",
+  "match": "57ec8e1d-ccf2-4db5-9522-d1564943514a",
+  "map": "hooks",
+  "rival": "ha\u00b2t",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "t10plan",
+  "file": "t10plan/elkring_GemSimons_1eae840.repl26a",
+  "match": "0a4fc549-6a6a-46b3-beab-109198cecf00",
+  "map": "elkring",
+  "rival": "Gem Simons",
+  "result": "win",
+  "side": "a"
+ },
+ {
+  "bot": "t10plan",
+  "file": "t10plan/swirl_GemSimons_1eae844.repl26a",
+  "match": "88e25263-8e11-475f-bf71-746324a6e6bc",
+  "map": "swirl",
+  "rival": "Gem Simons",
+  "result": "win",
+  "side": "a"
+ },
+ {
+  "bot": "t10plan",
+  "file": "t10plan/contest_r_ee61340.repl26a",
+  "match": "55cabc7c-248b-4f7e-abea-b6512275b31c",
+  "map": "contest",
+  "rival": "\u5929\u5929\u5f00\u5fc3 :(",
+  "result": "win",
+  "side": "a"
+ },
+ {
+  "bot": "t10plan",
+  "file": "t10plan/crossing_r_ee61341.repl26a",
+  "match": "f20b2ca2-c709-4e0f-9872-abaff7296322",
+  "map": "crossing",
+  "rival": "\u5929\u5929\u5f00\u5fc3 :(",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "t10plan",
+  "file": "t10plan/gemfight_r_ee61342.repl26a",
+  "match": "774e197f-0a2f-4302-ae4d-6f3ba092e43b",
+  "map": "gemfight",
+  "rival": "\u5929\u5929\u5f00\u5fc3 :(",
+  "result": "win",
+  "side": "a"
+ },
+ {
+  "bot": "t10plan",
+  "file": "t10plan/contest_aniqtoohigh_1fc08f4.repl26a",
+  "match": "a5123f1a-be95-46c2-acbc-0dd37e46f5df",
+  "map": "contest",
+  "rival": "an iq too high",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "t10plan",
+  "file": "t10plan/stampede_ZkeyFarming_772edf4.repl26a",
+  "match": "44ffa291-2590-4dcb-ac6e-2d54d4b8b8c3",
+  "map": "stampede",
+  "rival": "Zkey Farming",
+  "result": "win",
+  "side": "a"
+ },
+ {
+  "bot": "t10plan",
+  "file": "t10plan/gemfight_HiddenAltarKeepe_42b5071.repl26a",
+  "match": "19ce10a2-bf35-4533-9080-888237bb89ad",
+  "map": "gemfight",
+  "rival": "Hidden Altar Keepers",
+  "result": "win",
+  "side": "a"
+ },
+ {
+  "bot": "t10plan",
+  "file": "t10plan/vault_SneakyBushCamper_fac6622.repl26a",
+  "match": "2b917af5-2233-48c1-849f-da34b24016f0",
+  "map": "vault",
+  "rival": "Sneaky Bush Campers",
+  "result": "win",
+  "side": "a"
+ },
+ {
+  "bot": "t10plan",
+  "file": "t10plan/cuts_SneakyBushCamper_fac6623.repl26a",
+  "match": "c7947c30-6d91-43af-b549-dfb8d84ffd9c",
+  "map": "cuts",
+  "rival": "Sneaky Bush Campers",
+  "result": "win",
+  "side": "b"
+ },
+ {
+  "bot": "t10plan",
+  "file": "t10plan/pilgrimage_SneakyBushCamper_fac6624.repl26a",
+  "match": "36b8a84c-a339-4df7-86cb-7ebb4304aa19",
+  "map": "pilgrimage",
+  "rival": "Sneaky Bush Campers",
+  "result": "win",
+  "side": "a"
+ },
+ {
+  "bot": "t10plan",
+  "file": "t10plan/interlock_Gamblr_a85b120.repl26a",
+  "match": "0ec9f093-9c26-4635-905f-cd247cbdc87e",
+  "map": "interlock",
+  "rival": "Gamblr",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "t10plan",
+  "file": "t10plan/crossing_Gamblr_a85b121.repl26a",
+  "match": "1d085aaf-4f27-4aeb-b166-cd15b7fbedf8",
+  "map": "crossing",
+  "rival": "Gamblr",
+  "result": "loss",
+  "side": "a"
+ },
+ {
+  "bot": "t10plan",
+  "file": "t10plan/eight_Gamblr_a85b122.repl26a",
+  "match": "6f2da1da-f1b9-4f92-b7cc-168c9be9d599",
+  "map": "eight",
+  "rival": "Gamblr",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "t10plan",
+  "file": "t10plan/the_line_BrakenceFanClub_319da90.repl26a",
+  "match": "cd541d0a-bf28-4b3f-91e2-c751dbbf362e",
+  "map": "the_line",
+  "rival": "Brakence Fan Club",
+  "result": "win",
+  "side": "a"
+ },
+ {
+  "bot": "t10plan",
+  "file": "t10plan/gemfight_BrakenceFanClub_319da91.repl26a",
+  "match": "95614a38-e56d-4b55-ad46-30d6c46a601f",
+  "map": "gemfight",
+  "rival": "Brakence Fan Club",
+  "result": "win",
+  "side": "b"
  }
 ]

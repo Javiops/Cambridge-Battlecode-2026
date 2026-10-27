@@ -971,3 +971,18 @@ the SAME games (gem/ebmetrics.py + cmpwin2.py with SWAP=1 for the rival side; t5
 - Pieces launched on E1 for the choice half: e93 = P_GWO 30 (opening gold weight 0.30, hold rule kept), e94 = o94 elkw (opts/
   o94_elkw.py: score x1.3 for gem-bearing elk groups, new Group::has_elk flag). Judge: elk+gem caps r0-150/r150-300 and gems r150
   toward 81/106 on the bench (cmpwin2 on n80), h2h kvvl gate, far unchanged.
+
+## e93 / e94 CLOSED; the opening in the real games — 10-27 17:25 UTC
+| bot (on E1) | n80 | far | h2h old | new30 | h2h new | gems r150/r300 old | gold r150 old | gems new |
+|---|---|---|---|---|---|---|---|---|
+| E1 | 68 | 42 | 35 | 86 | 44 | 45/104 | 517 | 84/196 |
+| e93 = P_GWO 30 | 56 | 44 | 34 | 81 | 38 | 60/120 | 479 | 76/176 |
+| e94 = o94 elkw x1.3 | 65 | 40 | 28 | 87 | 43 | 50/122 | 492 | 76/176 |
+Both buy gems and lose games (e93 deaths<=100 63 vs 52; e94 h2h old 28/52). Same wall as e85/e91: in this bot a gem-ward
+choice costs gold or deaths; the top 5 take the elks AND die less. The choice half is not separable from the fight half.
+- Opening in the 375 real games (t5b_open.py): top-5 first capture median r24, 3.0 champions within 3 of the camp (3+ in
+  72/118 games), kinds gold-only 34% / elk 31% / wolf 29%; ours r28, 1.9 champions (3+ in 31/118), gold-only 53% / elk 15%.
+  By r30/r50/r100 they capture 1.0/1.9/4.4 groups worth 8/23/52 gems, we 1.3/2.5/5.0 worth 7/15/40: more captures, fewer gems.
+  Champion-rounds dead by r100: 35 vs 23. (o81 stacking in 1.0.3 produced top-10 trios and lost; "opening" line closed then.)
+- o95 packopen (opts/o95_packopen.py): the dormant `pack` switch in choose_target (no team split, clusters not solo) on near maps
+  (hp_far false) for round < P_PACK_R. e95 = 40, e96 = 80 launched 17:26 UTC. Far maps identical to E1 by construction.

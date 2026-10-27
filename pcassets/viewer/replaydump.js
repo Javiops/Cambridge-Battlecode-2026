@@ -204,6 +204,7 @@ function readGroups(d, p) {
   }
   return out;
 }
+const FIRSTPOS = new Map();
 function readCamps(d, p, map) {
   const n = d.getUint32(p + CAMPS.countOffset, true);
   if (n > CAMPS.capacity) throw new Error('Invalid snapshot camp count');
@@ -213,7 +214,9 @@ function readCamps(d, p, map) {
     const b = p + CAMPS.dataOffset + i * CAMPS.stride;
     const u = (o) => d.getUint32(b + o, true);
     const index = u(4), type = u(12), x = d.getInt32(b + 20, true), y = d.getInt32(b + 24, true), health = r2(d.getFloat32(b + 28, true));
-    const group = u(224), g = groups[group], spawn = map.spawn(index), reward = map.reward(index);
+    // spawn = first position seen (the index/2 mirror mapping is wrong on maps with unmirrored camps, e.g. vault); reward by that position
+    if (!FIRSTPOS.has(index) && x >= 0 && y >= 0) FIRSTPOS.set(index, { x, y });
+    const group = u(224), g = groups[group], spawn = FIRSTPOS.get(index) || map.spawn(index), reward = map.rewardAt(spawn) || map.reward(index);
     const e = { index, team: u(8), type, typeName: CAMP_TYPES[type] ?? String(type), spawnX: spawn ? spawn.x : null, spawnY: spawn ? spawn.y : null, x, y,
       health, maxHealth: r2(d.getFloat32(b + 32, true)), alive: health > 0 && x >= 0 && y >= 0, awake: !!u(228), group,
       groupState: g ? g.state : null, groupStateName: g ? (GROUP_STATES[g.state] ?? String(g.state)) : null,
@@ -247,7 +250,12 @@ function readMapCamps(E, H) {
   return { width, height, symmetry, numCamps, numGroups,
     spawn(e) { const c = camps[Math.floor(e / 2)]; if (!c) return null; if (e % 2 === 0) return { x: c.x, y: c.y };
       return { x: symmetry === 'VERTICAL' ? c.x : width - 1 - c.x, y: symmetry === 'HORIZONTAL' ? c.y : height - 1 - c.y }; },
-    reward(e) { return rewardByCamp.get(Math.floor(e / 2)); } };
+    reward(e) { return rewardByCamp.get(Math.floor(e / 2)); },
+    rewardAt(s) { if (!s) return null; // map camp at this position or at its mirror
+      const m = { x: symmetry === 'VERTICAL' ? s.x : width - 1 - s.x, y: symmetry === 'HORIZONTAL' ? s.y : height - 1 - s.y };
+      for (let i = 0; i < camps.length; i++) { const c = camps[i];
+        if ((c.x === s.x && c.y === s.y) || (c.x === m.x && c.y === m.y)) return rewardByCamp.get(i) || null; }
+      return null; } };
 }
 
 // --- statistics ----------------------------------------------------------------------------------

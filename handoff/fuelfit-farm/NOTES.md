@@ -1223,3 +1223,26 @@ rows 470/584, corridors 428/752 and contest 200/400 are monolith groups, exclude
   min(N, 1 + living allies visible within R of me)); incoming uses INC instead of P_INC_PCT when that squad is 2+; the "still needs
   company" x0.7 is lifted when the squad is there. Marker o106_elksquad. Bench launched 21:53 UTC: o6a 120/10/3/28, o6b 120/10/3/50
   (squad size only), o6c 120/10/4/28. Judge: W/N, deaths at camps (bench_deaths.py), elk captures (bench_caps.py), h2h kvvl.
+
+## o106 elksquad CLOSED; TOP 10 vs TOP 10 farm anatomy (600 games of 10-27) — 10-27 22:35 UTC (tools/t10_farmanat.py, c34_pack.py)
+- o106 bench: o6a (INC 28) 227, o6b (INC 50, squad size only) 233, o6c (N 4) 225 vs e1foco 260. Camp deaths r1-150 0.44 -> 0.99 per
+  game (n80), elk captures NOT up (1.05 -> 1.00), gems -16. Same failure as o103: pricing strong groups cheaper sends our champions to
+  die at them; the squad is "around me" (allies within 10: 48% of our alive champion-rounds have 2+, rivals 60%) but does not fight as
+  one. The price is not the fault; the formation and the fight at the camp are (superioridad / champ). CLOSED. Mechanism check on six
+  rich-elk maps (300 rounds vs kvvl): strong captures 6 vs 5, nothing moved.
+- TOP 10 vs TOP 10 (pcassets/replays_t10 commit aa287d7, 599 games decoded to r300, both sides; our reference = e1foco in c34):
+  r151-300 WINNERS: alive 4.39 champions, captures 9.0, gems 151, gems per 100 alive champion-rounds 22.9, gems per capture 16.7;
+  LOSERS: alive 4.12, captures 7.7, gems 120, 19.3 per 100 alive-rounds, 15.5 per capture. Ours: wins 110 gems (18.0 / 11.0 per
+  capture), losses 57 (10.0 / 6.7). The top 10 make the SAME number of captures as we do; each one is worth 16 gems against our 7-11:
+  kinds per game (winners) wolf 2.8, gold-only 2.5, gem cluster 2.1, elk 1.56 (ours in losses: gold-only 4.7, wolf 1.9, gem 1.1, elk
+  0.8). Poor captures (<20 gems) are 72% of theirs too. Champions within 4 of the camp at capture: 1 in 46%, 2 in 26%, 3 in 13%, 4 in
+  7%, none within 4 in 8% (ordinary camps are a 1-2 champion job for them too). Strong groups (str >= 120): 0.42 per game in wins,
+  0.28 in losses, 41 gems, taken by 2-4 champions. Pack: 2+ allies within 10 in 62% (wins) / 58% (losses) of alive champion-rounds,
+  exactly the c34 rivals' 60%; ours 48%. Per team r151-300: Intercontinental Fish 4.93 alive, 1.14 strong/game, 141 gems; Mite 162;
+  newer team 177; NEETCoders 138 with 0.23 strong/game (so strong groups are a style, not the recipe); Sponge 95.
+- What this says for the farm: (1) the yield gap is the KIND of group, not the count: wolves and elks instead of gold-only clusters
+  and 7-gem clusters, by 1-2 champions; (2) our model prices a gold cluster (40 gold x gold_w 0.45 = 18 in ~16 rounds) above a wolf
+  camp (12 gems + 60 gold in ~67 modelled rounds), the top 10 do the opposite from r150; (3) every pricing change tested on the own-
+  lineage bench (o102 gold-only x0.5: 247/240; o103 cheaper clear: 197-229; o106: 225-233) LOSES there, because the bench rivals are
+  our own bots that farm gold and because our champions die at camps the rivals clear. The bench cannot judge a gold->gems value shift;
+  only online can (o102-lite: gold_w 0.45 -> 0.30 from r150 would be the test). That decision is the user's; not launched.

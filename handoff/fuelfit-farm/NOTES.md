@@ -790,7 +790,7 @@ gold-only clusters) is the farm front, and the local judge cannot see it: our ri
 gold for gems looks neutral or worse locally (o80 at gold weight 50 / 70: gems r150 40 / 42, W/N down). Testing gold
 weight 30 (bots/e83) for the mechanism (gems r150, capture mix) and the kvvl head-to-head gate, as an ONLINE candidate.
 
-## e83 = b35 + P_GOLD_W_EARLY 30 (o80_goldw.py SRCDIR 30) — 10-27 15:45 UTC — first piece that moves the gem mechanism
+## e83 = b35 + P_GOLD_W_EARLY 30 (o80_goldw.py SRCDIR 30) — 10-27 14:45 UTC — first piece that moves the gem mechanism
 
 Dose-response of the gold weight before r600 (near 80, same manifest; collectedGems medians from the statistics JSON):
 
@@ -814,7 +814,7 @@ Capture mix r0-150 per game (73 clean games), target = top 10 vs top 10:
 - The jump is non-linear: 70 and 50 did nothing, 30 moves gem clusters +0.8/game and halves the gold-only surplus. Half of the gap remains (gem clusters 1.77 vs 3.06, elks 0.90 vs 1.74) -> e84 = weight 15 running (near + far + h2h).
 - Online candidate: zips/gold30-b35.zip (sha in SHA256SUMS). Not sent: user paused sends 10-25 12:50 UTC.
 
-## e84 = b35 + P_GOLD_W_EARLY 15 — CLOSED 10-27 15:51 UTC (gold starvation: the cliff lies between 30 and 15)
+## e84 = b35 + P_GOLD_W_EARLY 15 — CLOSED 10-27 14:51 UTC (gold starvation: the cliff lies between 30 and 15)
 
 | gold weight | gems r150/r300 | gold r300 | near W/N | deaths<=100 | far W/N | h2h vs kvvl | gold-only / gem clusters / elks r0-150 |
 |---|---|---|---|---|---|---|---|
@@ -825,7 +825,7 @@ Capture mix r0-150 per game (73 clean games), target = top 10 vs top 10:
 - 15 keeps raising gems and cutting early deaths, but gold r300 falls 12%, far maps drop 5 and the kvvl gate fails (20/52): the shop runs dry. 30 stays the candidate; no finer sweep (the user wants mechanisms, not parameter fits).
 - The elk side of the gap (0.90-0.96 vs 1.74) is not a gold-weight matter: the single elk loses to the hold x2 and the strength terms (see "why the single elk is never taken"). Next: e85 = e83 + nohold (o79_holdgems.py with P_HOLD_MIN 1000), the two surviving farm pieces as one candidate (small pieces ride together).
 
-## e85 = b35 + gold weight 30 + no hold-altar x2 (o80_goldw.py SRCDIR 30; o79_holdgems.py then P_HOLD_MIN 1000) — 10-27 16:00 UTC — NEW CANDIDATE
+## e85 = b35 + gold weight 30 + no hold-altar x2 (o80_goldw.py SRCDIR 30; o79_holdgems.py then P_HOLD_MIN 1000) — 10-27 15:00 UTC — NEW CANDIDATE
 
 | bot | gems r150/r300 | gold r150/r300 | monster dmg r150/r300 | near W/N | deaths<=100 | far W/N | h2h vs kvvl |
 |---|---|---|---|---|---|---|---|
@@ -840,7 +840,7 @@ Capture mix per game (73 clean): r0-150 gold-only 3.96 / gem clusters 1.88 (22g)
 - Online candidate: zips/gold30nohold-b35.zip (sha in SHA256SUMS). Replaces gold30-b35.zip as the first choice. Not sent (user paused sends).
 - Remaining gap: elks 0.97 vs 1.74 and gem clusters 1.88 vs 3.06, gold-only clusters 3.96 vs 2.11. Next: e86 = e85 + incoming50 (o70, the third surviving piece: +elk choice, fewer starvation deaths) as one combined candidate.
 
-## e86 = e85 + incoming50 (o70_incoming.py) — CLOSED 10-27 16:05 UTC: elks up, but early deaths and the kvvl gate pay for it
+## e86 = e85 + incoming50 (o70_incoming.py) — CLOSED 10-27 15:05 UTC: elks up, but early deaths and the kvvl gate pay for it
 
 | bot | gems r150/r300 | gold r150/r300 | monster dmg r150/r300 | near W/N | deaths<=100 | far W/N | h2h vs kvvl | elk+gems r0-150 / r150-300 |
 |---|---|---|---|---|---|---|---|---|
@@ -852,7 +852,7 @@ Capture mix per game (73 clean): r0-150 gold-only 3.96 / gem clusters 1.88 (22g)
 - e85 stays the candidate. incoming50 remains a known separate piece, not combined.
 - Remaining gap in e85: gem clusters 1.88 vs 3.06 and gold-only clusters 3.96 vs 2.11 (r0-150). Next: decision dump on e85 (instrumented build, --fuel-quantum 2000000) to see what gem clusters lose to now that gold is weighted 0.3.
 
-## ENGINE 2.0.0 (site since 10-26; cambc 4.0.0) — e85 reproduced on the 40 old maps — 10-27 16:30 UTC (PROVISIONAL: 30 new maps running)
+## ENGINE 2.0.0 (site since 10-26; cambc 4.0.0) — e85 reproduced on the 40 old maps — 10-27 15:30 UTC (PROVISIONAL: 30 new maps running)
 
 Setup: `pip install cambc==4.0.0` in a separate venv (/tmp/claude-0/ff/cv4), `cambc init --yes` workspace /tmp/claude-0/ff/ws4, maps from branch claude/project-thread-l6gm1j handoff/maps2/ (70 .map26a: the 40 old ones unchanged byte for byte + 30 new, 6 of them 3-champion maps), replay decoder handoff/replay2/dump2.py (ebmetrics falls back to it). b35, e85, kvvl and the 6 rivals compile and play unchanged with the 2.0.0 SDK. Camp group rewards are identical between engines (checked on split).
 
@@ -869,7 +869,7 @@ Capture mix r0-150 per game (2.0.0, 73-74 clean): b35 gold-only 4.23 / gem clust
 - gold30nohold-b35.zip is source-only, so it is the same candidate under 2.0.0. Still not sent (user paused sends).
 - The PC's go45/E1 (c95shop + gold 0.45 to r150 + no hold x2 in the opening (+ incoming x0.5)) is the same direction on another base; E1 was the best on the top-5 compass (11-114 vs kvvl 5-120). Not duplicated: e85 removes the hold x2 for the whole game and weights gold 0.3 to r600.
 
-## ENGINE 2.0.0 — the 30 NEW maps (19 near / 11 far by spawn path; 6 are 3-champion maps) — 10-27 16:45 UTC
+## ENGINE 2.0.0 — the 30 NEW maps (19 near / 11 far by spawn path; 6 are 3-champion maps) — 10-27 15:45 UTC
 
 b35 and e85 vs rTop1 + rD both sides (120 games each) and vs kvvl both sides (60 each). All bots rebuilt with the 2.0.0 SDK.
 
@@ -889,3 +889,28 @@ Whole 2.0.0 pool (70 maps): vs our rivals e85 142/200 near-type vs b35 133/200, 
 - The new maps are gem-rich and elk-poor (b35 already captures 3.5 gem clusters/game, 0.3 elks): e85 adds +24 gems at r150 there too, but gold r150 falls 13% (fewer gold-only clusters, nothing else to farm). Under 1.0.3 gold went up with e85 (nohold), under 2.0.0 it goes down on both map sets.
 - Decision: e85 (gold30nohold-b35.zip, sha 48095c56…) stays the farm candidate for the online loop; its gain is the gem mechanism, its cost is gold (-7% old maps, -13% new maps at r150) and no head-to-head edge over b35 vs kvvl under 2.0.0. Online decides; nothing sent (user paused sends 10-25).
 - Bench scripts for 2.0.0: /tmp/claude-0/ff/ws4 (mk.sh/far.sh/h2h.sh use ../cv4/bin/cambc; run_new30.sh builds the new-map manifests; plan30.txt classifies the new maps from the bot's [mapplan] line: ts, altars, size, spawn path).
+
+## Map features in the 2.0.0 pool: enclosed altars — o87 "breach" (opts/o87_breach.py) — 10-27 16:05 UTC — PARKED
+Three of the 30 new maps have every altar enclosed by camps: 01boss_battle and 02guardians (altar (20,20), monoliths at (19,20)/(21,20),
+the other neighbours walls/holes; P_SEALED already handles them, we win both vs rD but die 33/game vs 13 and often submit 0) and
+02the_pack (altar (22,22) in a free pocket inside a ring of 48 wolves = one camp group). On the_pack our whole lineage never submits in
+2000 rounds (8/8 games): the bank route finds no reachable ring tile, br_decisions grows, champions freeze at distance 4 from r~500.
+Rivals (rD/rTop1/kvvl) submit 0 there too; the game is decided by the tiebreak.
+- o87 v1 (static map test "every ok altar unreachable with camps as walls, some ring tile not a camp" -> pick a gate = camp tile adjacent
+  to the reached region minimising dist-to-altar; force s.target to the gate's group; fight-camp attacks only the gate camp):
+  e87 (= e85 + o87) vs rD/rTop1/kvvl both sides: pocket opens r117-191, we submit 508-862 gems (was 0) BUT the rival walks through our
+  hole and submits 631-1039; we win 2/6; our deaths 12-15 (was 1-2). Death list: every early death has 9-14 awake wolves within 3 and
+  the nearest enemy 7-18 tiles away -> the ring kills us (hitpass P_HITLAST=1 in b35 hits any camp in reach, and standing in the
+  pocket wakes the neighbours), not the rival.
+- o87 v2 (gate cost adds 300 per camp within 3 of the gate; admission strength adds the gate's neighbours within 3; re-close detection):
+  the admission never passes -> the pocket never opens (0 opens in 5/6 games, r1866 in the sixth); deaths unchanged (5-24). Worse.
+- Verdict: 1 map of 70, no rival exploits it either, and the honest fix (open late with the whole team carrying gems, deliver in one
+  trip, hold the hole) is a new mechanism. PARKED; E1 (P_HITLAST 0) at least does not wake the ring with finishing blows. Not in any zip.
+- adgato_gemcombat maps (gem clusters only): gemcombat5 lost 0/4 by deaths -> fight thread's problem, not farm.
+
+## New base E1 (PC base, branch claude/pc-e1-assets pcassets/zips/e1.zip sha f967edfe…) — 10-27 16:10 UTC
+Coordinator 16:02 UTC: build farm pieces on E1 from now on, compare with E1 and kvvl on 2.0.0. E1 = b35 + P_HITLAST 0 (no hitpass)
++ o95 cut (Vendetta/Marcella leave a contact at <40% hp) + o100 incoming x0.5 + o129 gold weight 0.45 UNTIL r150 (P_GWO/P_GWO_R)
++ o125 hold-altar x2 only FROM r150 (P_HOLD_FROM). So E1 already carries the e85 mechanism for the opening only; what e85 adds over E1
+is the same rule for r150-600 (gold 0.30 all early game, no hold at all). Bench bots ws4/bots/e1, e1foco built with cambc 4.0.0.
+E1 baseline running (run_e1.sh: 40 old maps near/far/h2h + 30 new maps vs rTop1,rD + h2h kvvl = 368 games).

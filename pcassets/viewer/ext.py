@@ -21,7 +21,7 @@ def run(rep, args):
 
 def extract(rep):
     p = run(rep, ['--camps', '--vis'])
-    rounds = []; camps = None; caps = []; prevgs = {}; prevct = {}; summ = None
+    rounds = []; camps = None; caps = []; ctc = []; prevgs = {}; prevct = {}; summ = None
     for l in p.stdout:
         d = json.loads(l)
         if d.get('summary'): summ = d; continue
@@ -40,6 +40,8 @@ def extract(rep):
         for g, s in gs.items():
             if prevgs.get(g) == 2 and s == 3:
                 caps.append([g, prevct.get(g, ct.get(g, -1)), r])
+            if ct.get(g, 2) != prevct.get(g, 2):          # captureTeam change of the group: [group, team (2 = none), round]
+                ctc.append([g, ct.get(g, 2), r])
         hp = [[k['index'], int(k['health'])] for k in K if k['alive'] and k['health'] < k['maxHealth']]
         aw = [k['index'] for k in K if k['alive'] and k['awake']]
         rounds.append({'r': r, 'c': C, 'v': d.get('vis'), 'ka': alive, 'kaw': aw, 'khp': hp, 'gs': gs, 'sg': d.get('submittedGems')})
@@ -69,7 +71,7 @@ def extract(rep):
     p.wait()
     meta = {'file': os.path.basename(rep), 'final': summ and summ.get('finalRound'), 'outcome': summ and summ.get('outcome'),
             'gems': summ and summ.get('submittedGems'), 'stats': summ and summ.get('statistics')}
-    return {'meta': meta, 'camps': camps, 'caps': caps, 'rounds': rounds, 'cc': cc, 'ck': ck, 'kc': kc, 'heal': heal, 'kinds': kinds}
+    return {'meta': meta, 'camps': camps, 'caps': caps, 'ctc': ctc, 'rounds': rounds, 'cc': cc, 'ck': ck, 'kc': kc, 'heal': heal, 'kinds': kinds}
 
 if __name__ == '__main__':
     rep, out = sys.argv[1], sys.argv[2]

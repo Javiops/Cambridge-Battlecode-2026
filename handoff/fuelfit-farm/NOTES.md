@@ -1146,3 +1146,14 @@ choose_target cost model of every gem group with str >= 100 every 10 rounds).
 - o103 cleartime (opts/o103_cleartime.py): t_clear x P_TCLEAR_PCT/100 (incoming scales with it; squad_needed untouched). Variants on
   e1foco + o101: o1f 50%, o1g 25%; 368-game protocol launched 19:44 UTC. Judge: W/N, h2h kvvl, elk captures r0-300 by strength
   (gem/bench_caps.py), deaths (gem/bench_deaths.py), gold r300 intact.
+- o103 RESULTS (20:10 UTC; n80/far/h2h/new30/h2hnew = total, e1foco 260, o1b 260): v1 plain discount o1f (50%) 50/44/23/73/32 = 222,
+  o1g (25%) 46/41/20/63/27 = 197; v2 pair-gated (claimer or ally within 6 of me) o1h (40% from r60) 50/43/21/83/31 = 228, o1i (50%
+  from r0) 54/42/18/82/33 = 229. Camp-caused deaths x2-3 (r0-150 0.44 -> 1.04/1.18/0.71/0.93 on n80; r151-300 0.38 -> 0.70/0.97/
+  0.88/0.71), elk captures r0-300 flat (n80 1.07+1.21 -> 1.04-1.18 + 1.25-1.43; new30 unchanged), h2h kvvl 18-23/52. CLOSED.
+- CORRECTION of the clear-time measurement: the 16-20 rounds counted only the last continuous stretch within 3 of the group; our
+  champions kite out and back. Allowing 6-round gaps (gem/t5b_cleartime2.py): a 2-elk group takes a median 51 rounds for 2 of ours,
+  24 for 3, 38/36 for 2/3 of theirs; a single elk 28-30 (us) and 20-35 (them); over all elk captures median 29 (us) vs 28 (them).
+  So the model's 84 rounds for a pair at r10 (dps 30) is 1.5-2x high early and roughly right later, not 5x; and the bench shows
+  that pricing big groups cheaper only sends champions to die at them. The untouched 2-elk groups on our half are not a pricing
+  error we can fix alone: they need 2-3 champions arriving together (the top 5 take them with 3 in 58 of 84 cases), which is the
+  pack formation the superioridad thread owns. Nothing in choose_target's own cost model is a piece without losing games.

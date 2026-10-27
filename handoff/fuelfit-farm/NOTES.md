@@ -1101,4 +1101,17 @@ death rate within 15 rounds), all over the cached rows gem/cache/t5b_e1__*.r300h
   excluded); in choose_target a group is skipped when enemies within P_OUTC_RE (8) of its centre >= max(1 + visible allies within
   P_OUTC_RA (6), 1 + claimers) + P_OUTC_SLACK, from round P_OUTC_R0. Marker "o101_outcamp". Variants on e1foco, full 368-game
   protocol launched 19:00 UTC: o1a slack 1 (enemies > ours), o1b slack 0 (enemies >= ours), o1c slack 1 from r150 only.
-  e1foco baseline: n80 61/80, far 40/56, h2h 34/52, new30 (pending in this table), h2hnew 37/60 = 260/368.
+  e1foco baseline: n80 61/80, far 40/56, h2h 34/52, new30 88/120, h2hnew 37/60 = 260/368.
+- o101 RESULTS (19:20 UTC; n80 / far / h2h kvvl / new30 / h2hnew = total): e1foco 61/40/34/88/37 = 260; o1a (slack 1) 63/43/29/87/35 =
+  257; o1b (slack 0: skip at equal numbers too) 65/45/28/82/40 = 260; o1c (slack 1 from r150) 61/43/31/89/37 = 261. All neutral on
+  the local judge. MECHANISM on the bench (gem/bench_deaths.py from the statistics JSON, our champion-caused deaths r151-300 per
+  game, n80 / new30 / h2hnew): e1foco 0.61/0.72/0.72; o1a 0.56/0.65/0.82; o1b 0.39/0.52/0.67; o1c 0.65/0.68/0.68. Only slack 0
+  moves it (-35% / -28% / -7%). Camp-caused deaths unchanged (0.38). BUT the bench cannot judge this piece: against rTop1/rD/kvvl we
+  die 0.6-0.7 times a game in r151-300 to champions, online vs the top 5 it is 1.80; the debug build (bots/o1dbg, prints every
+  skip) fires 0-4 times a game here. The local filter only says "no harm" (o1b 260 = 260; its h2h kvvl 28/52 vs 34 is offset by
+  far +5, n80 +4, h2hnew +3). Team vision check on the real games (gem/t5b_arrive_vis.py): with team vision 6, 54% of our contested
+  arrivals had 2+ of those enemies in sight 5 rounds before arrival, 65% at arrival (vision 8: 74% / 87%), so the rule can act in
+  about half of the cases; the rest arrive unseen (the superioridad thread's early-warning piece).
+- CANDIDATE for the online loop on e1foco: zips/e1foco-o101outcamp.zip = e1foco + o101 slack 0 (P_OUTC_SLACK 0, RE 8, RA 6, R0 0),
+  marker "[fuelfit] ... o101_outcamp" (sha in SHA256SUMS). Judge online: deaths r151-300 and gems r150-300 vs the e1foco games on the
+  same pinned groups vs the 15 teams ahead. Variants o1a/o1c kept in ws4 only. Debug build bots/o1dbg deleted after measuring.

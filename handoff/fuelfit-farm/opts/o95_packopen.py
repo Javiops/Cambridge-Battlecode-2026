@@ -9,6 +9,8 @@ p = os.path.join(src, 'main.cpp'); s = open(p).read()
 a = "        bool pack = false;  // opening: everybody on the best camp together\n"
 assert s.count(a) == 1
 s = s.replace(a, "        bool pack = P_PACK_R > 0 && round < P_PACK_R && !s.hp_far;  // o95 packopen: opening on near maps, everybody on the best camp together\n")
+m = 'o129_goldopen45'; assert s.count(m) == 1
+s = s.replace(m, m + ' o95_packopen')  # stdout marker on the [fuelfit] line
 open(p, 'w').write(s)
 with open(os.path.join(src, 'params.h'), 'a') as f:
     f.write(f"#ifndef P_PACK_R\n#define P_PACK_R {R}   // o95 packopen: rounds of the opening in which the team packs on one camp (near maps); 0 = off\n#endif\n")

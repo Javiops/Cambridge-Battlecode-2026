@@ -986,3 +986,18 @@ choice costs gold or deaths; the top 5 take the elks AND die less. The choice ha
   Champion-rounds dead by r100: 35 vs 23. (o81 stacking in 1.0.3 produced top-10 trios and lost; "opening" line closed then.)
 - o95 packopen (opts/o95_packopen.py): the dormant `pack` switch in choose_target (no team split, clusters not solo) on near maps
   (hp_far false) for round < P_PACK_R. e95 = 40, e96 = 80 launched 17:26 UTC. Far maps identical to E1 by construction.
+
+## o95 packopen results — 10-27 17:40 UTC
+| bot (on E1) | n80 | far | h2h old | new30 | h2h new | gems r150/r300 old | gold r150 old |
+|---|---|---|---|---|---|---|---|
+| E1 | 68 | 42 | 35 | 86 | 44 | 45/104 | 517 |
+| e95 = packopen r<40 | 67 | 42 (identical) | 33 | 84 | 41 | 46/106 | 510 |
+| e96 = packopen r<80 | 60 | 42 (identical) | 31 | 92 | 41 | 44/104 | 486 |
+Mechanism on the bench (t5b_open.py / cmpwin2 on n80, 72-74 clean games): e95 first capture median r26 with 2.57 champions within
+3 (3+ in 42/72; E1 r28, 1.93, 22/74), first-capture kinds elk 21 / gold-only 36 (E1 12 / 40), gems by r50 24 (E1 17; real top 5 23),
+by r100 48 (43), champion-rounds dead by r100 21.5 (24.5); r0-150 gems 76 vs 67 (elk+gem 1.19 = 50 g vs 1.03 = 34 g), r150-300
+84 vs 95 (gem clusters 1.00 vs 1.39: the packed opening clears the nearby groups and the mid game finds less). Games neutral,
+h2h -5/112 (noise-level, wrong sign). r<80 (e96) packs too long: n80 60/80. So the top-5 opening SHAPE is reproducible with one
+switch and does not change the local verdict ("copy X rule"): the opening alone is not what beats us; the fight after it is.
+Kept as an online candidate only because the judge is online: e97 = E1 + o92 farguard + o95 packopen (markers "o95_packopen
+o92_farguard"), 368-game run launched 17:38 UTC.

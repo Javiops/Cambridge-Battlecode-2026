@@ -1063,3 +1063,11 @@ passive, more stats), collectors (+1% dmg per completed family); treasure 20->10
   bench we earn 366/175/186 shard value by r300 for Vesper/Marcella/Vendetta vs the top 5's real 430/355/350).
   So the whole-plan copy loses on health for HoR/Ryth. Bisect per champion (s1 Vesper, s2 Marcella, s3 Vendetta, s4 HoR, s5 Ryth)
   on the new base e1foco (coordinator 18:21 UTC: e1foco online +6 vs E1 +3), reduced filter n80 + h2h kvvl new (140 games each).
+- Bisect on e1foco (18:45 UTC; reduced filter n80 + h2h kvvl new = 140 games; base e1foco 61 + 37 = 98): Vesper plan only (s1) 63 + 38 =
+  101; Marcella only 58 + 39 = 97; Vendetta only 60 + 34 = 94; HoR only 62 + 33 = 95; Ryth only 59 + 36 = 95; all five (e99f) 57 + 32
+  = 89. Only the Vesper plan is not negative (+3 = noise). Per-visit purchase size is the same on both sides (ours 117-142 gold of
+  shards per visit, theirs 127-183): they visit more because they have more gold, not because of a different trip rule.
+- SHOP VERDICT (farm thread, 10-27 18:50 UTC): nothing to copy in 2.0.0 items — the top 5 buy no new family; their shop edge is
+  income (kills at 100 gold, a third of our dead time) and the order of emblems copied from them does not move the local judge
+  (health first on HoR/Ryth is what our bot needs; bruiser-strength first on Vesper is neutral). No shop zip is worth the queue.
+  The 2.0.0 shop plan stays c95shop; the lever is deaths. Scripts kept: opts/o99_shop2.py (whole copy), bench_items.py.

@@ -1,0 +1,199 @@
+diff -ru --strip-trailing-cr -x plan_t10.h e1foco/src/main.cpp t10plan/src/main.cpp
+--- e1foco/src/main.cpp	2026-10-26 06:38:34.000000000 +0000
++++ t10plan/src/main.cpp	2026-10-27 22:30:36.608052402 +0000
+@@ -2419,6 +2419,53 @@
+ }
+ // fuelfit o54: true when every group has its reverse field (no computing here; see the warm-up in run_game)
+ inline bool farm_pd_done(State& s) { return s.pd_rf.size() == s.groups.size() && s.pd_rf_done == s.groups.size(); }
++// t10plan-v1: the top-10 teams' camp schedule (plan_t10.h). Matched once per game: the map whose group centres all
++// sit within 2 tiles of ours, the side whose spawn centre is nearest ours. pl_w(i, round) is the group's share of the
++// top-10 camp-hit champion-rounds in this 50-round window, in % of the window's main group (-1: no plan for the map).
++#include "plan_t10.h"
++const plan_t10::Map* g_pl_map = nullptr;
++int g_pl_side = 0, g_pl_state = 0;  // state 0 not matched yet, 1 matched, 2 no plan
++std::vector<int> g_pl_idx;           // our group -> plan group
++int g_pl_on = 0, g_pl_off = 0;       // choices on / off the plan
++void pl_match(State& s) {
++    g_pl_state = 2;
++    const int ng = static_cast<int>(s.groups.size());
++    for (int m = 0; m < plan_t10::NMAPS; ++m) {
++        const plan_t10::Map& M = plan_t10::MAPS[m];
++        if (M.ng != ng) continue;
++        std::vector<int> idx(ng, -1);
++        bool ok = true;
++        for (int i = 0; i < ng && ok; ++i) {
++            int best = -1, bd = 3;
++            for (int k = 0; k < ng; ++k) {
++                const int d = std::max(std::abs(X(s.groups[i].center) - M.gx[k]), std::abs(Y(s.groups[i].center) - M.gy[k]));
++                if (d < bd) { bd = d; best = k; }
++            }
++            ok = best >= 0; idx[i] = best;
++        }
++        if (!ok) continue;
++        g_pl_map = &M; g_pl_idx = idx; g_pl_state = 1;
++        const vec2 c = s.spawn_center;
++        const int d0 = std::max(std::abs(X(c) - M.sx[0]), std::abs(Y(c) - M.sy[0]));
++        const int d1 = std::max(std::abs(X(c) - M.sx[1]), std::abs(Y(c) - M.sy[1]));
++        g_pl_side = d1 < d0 ? 1 : 0;
++        break;
++    }
++    std::printf("[t10plan] who=%s map=%s side=%d games=%d groups=%d\n", s.name.c_str(), g_pl_map ? g_pl_map->name : "none",
++                g_pl_side, g_pl_map ? g_pl_map->games : 0, ng);
++}
++inline int pl_w(State& s, int i, int round) {
++    if (!P_T10PLAN || round >= P_T10_UNTIL) return -1;
++    if (g_pl_state == 0) pl_match(s);
++    if (g_pl_state != 1 || i < 0 || i >= static_cast<int>(g_pl_idx.size())) return -1;
++    const plan_t10::Map& M = *g_pl_map;
++    const int b = std::min(plan_t10::NB - 1, std::max(0, round) / 50);
++    const unsigned char* row = M.share + (g_pl_side * plan_t10::NB + b) * M.ng;
++    static int mx_b = -1, mx = 0;  // the window's main share, once per window
++    if (mx_b != b) { mx_b = b; mx = 0; for (int k = 0; k < M.ng; ++k) mx = std::max(mx, static_cast<int>(row[k])); }
++    if (mx == 0) return -1;
++    return 100 * row[g_pl_idx[i]] / mx;
++}
+ int choose_target_impl(State& s, bc::champion& me, int round) {
+     FP_SCOPE(15, "choose_target");
+     auto sm = read_sm();
+@@ -2462,6 +2509,33 @@
+             }
+             return true;
+         });
++    // t10plan-v1 roles: in the top-10 winners Vesper and Marcella are the carries (0.28 / 0.30 of the gems, 2.1k / 2.0k gold,
++    // 0.7 deaths) and HoR / Vendetta / Ryth escort them (0.17 / 0.22 / 0.12 of the gems, 0.6-1.2k gold); ours are five equal
++    // farmers (gems 0.17-0.26, gold 0.8-1.2k each, 2.3-2.9 deaths). An escort takes its carry's claimed group as the lead
++    // group (HoR -> Vesper, Ryth -> Marcella, others -> the nearest carry) and stays within 8 of the carry.
++    bool esc = false;
++    if (P_T10ROLES && round < P_T10_UNTIL && s.ally_idx >= 0 && lead_group < 0 && !starts_with(s.name, "vesper") && !starts_with(s.name, "marcella"))
++        attempt([&] {
++            const auto& allies = my_roster(s);
++            const char* want = starts_with(s.name, "heartofruin") ? "vesper" : starts_with(s.name, "ryth") ? "marcella" : nullptr;
++            int pick = -1, pd = 1 << 30;
++            for (int k = 0; k < static_cast<int>(allies.size()) && k < claim_slots(s); ++k) {
++                if (k == s.ally_idx || !allies[k].is_alive()) continue;
++                const std::string n = norm(bc::to_string(allies[k].champion_name()));
++                if (!starts_with(n, "vesper") && !starts_with(n, "marcella")) continue;
++                const int claim = claim_value(s, sm, k);
++                if (claim <= 0 || claim - 1 >= static_cast<int>(s.groups.size())) continue;
++                int d = dist(pos, s.groups[claim - 1].center);
++                if (want && starts_with(n, want)) d -= 1000;  // the fixed carry first
++                if (d < pd) { pd = d; pick = k; }
++            }
++            if (pick < 0) return true;
++            lead_group = claim_value(s, sm, pick) - 1;
++            lead_p = s.groups[lead_group].center;
++            try { lead_p = allies[pick].position(); } catch (...) {}
++            esc = true;
++            return true;
++        });
+     // pairfarm-v2 (stall thread + top 10 thread 10-24, top 10 vs our rivals on near maps r30-150): the top 10 team is
+     // never fully spread (no pair at all in 19-23% of rounds, ours 41-43%) but pairs do not farm the same camp: they walk
+     // together and split at neighbouring camps. Allies out of vision have no position, so the claims stand for them:
+@@ -2607,6 +2681,10 @@
+         if ((s.de_map == v34de::Monolith) && !free_reward) cap = std::min(cap, std::max(needed, P_R34_SHARE));
+         if (free_reward) cap = 1;
+         if (false) cap = std::max(cap, s.roster);
++        const int plw = pl_w(s, i, round);  // t10plan-v1
++        const bool pl_main = plw >= P_T10_FREE;
++        if (pl_main && g.str > 0) cap = std::max(cap, 2);  // the top 10 take their scheduled wolves/elks 1.5-1.7 per camp
++        if (pl_main && g.str <= 0 && g.gems > 0) cap = std::max(cap, P_PAIR);
+         if (claimers >= cap && i != s.target && !lead) continue;
+         int team = std::max(1 + claimers, needed);
+         double t_clear = free_reward ? 0.0 : g.hp / (dps * team);
+@@ -2620,15 +2698,16 @@
+         double value = (g.gems + gold_w * g.gold) / (pack ? 1.0 : share_pow(team, (g.monolith || g.hp < P_STACK_HP || false) ? 100 : P_SHAREEXP));  // big camps (P_STACK_HP+): a joiner keeps more of the value, so champions stack there
+         double score = value / std::max(1.0, rounds);
+         if (needed > 1 + claimers) score *= (false && P_MP_COMPANY) ? P_MP_COMPANY / 100.0 : 0.7;  // still needs company (rule 8)
+-        if (claimers > 0 && g.str == 0 && !(g.gems > 0 && claimers < P_PAIR) && !(pot && claimers < 2) && !(P_RC2 && g.gems >= 20)) score *= pack ? 1.0 : 0.3;  // clusters are a solo job (richcap-v2: not 20+ gem groups)
++        if (claimers > 0 && g.str == 0 && !pl_main && !lead && !(g.gems > 0 && claimers < P_PAIR) && !(pot && claimers < 2) && !(P_RC2 && g.gems >= 20)) score *= pack ? 1.0 : 0.3;  // clusters are a solo job (richcap-v2: not 20+ gem groups)
+         if (pot) score *= P_POT / 100.0;  // the centre pot pays 48 a pair next to the altar
+-        if (gc[i].near_en) score *= 0.6;    // stay off their doorstep
+-        if (gc[i].half) score *= P_HALF / 100.0;
++        if (gc[i].near_en && !pl_main) score *= 0.6;    // stay off their doorstep (t10plan-v1: unless the top 10 farm it now)
++        if (gc[i].half && !pl_main) score *= P_HALF / 100.0;
++        if (plw >= 0) score *= (P_T10_LO + (P_T10_HI - P_T10_LO) * plw / 100.0) / 100.0;  // t10plan-v1
+ #ifndef P_HOLD_FROM
+ #define P_HOLD_FROM 150  // o125 holdlate: the hold-altar x2 only from this round (opening: nearest rich group first)
+ #endif
+         if (held && round >= P_HOLD_FROM) score *= P_HOLD / 100.0;  // o125
+-        if (lead) score *= P_GROUP_W;
++        if (lead) score *= esc ? P_T10_ESCW / 100.0 : P_GROUP_W;
+         else if (lead_p && dist(g.center, *lead_p) > 8) score *= 0.3;
+         if (mp_chain_next(s, me, g, i, round)) score *= P_MP_CHAINPLAN / 100.0;  // rule 9: the squad moves on to the next camp
+         if (i == s.target) score *= (P_MAPPLAN && P_MP_STICK && gd >= P_MP_STICK_D) ? P_MP_STICK / 100.0 : P_STICK / 100.0;  // hysteresis (mapplan_game.h rule 6)
+@@ -2650,6 +2729,7 @@
+         if (round >= P_RC2_R && (g_rc_big + g_rc_tiny) % 10 == 1) std::printf("[rcap2] who=%s r=%d gems=%d gold=%d big=%d tiny=%d\n", s.name.c_str(), round, bg.gems, bg.gold, g_rc_big, g_rc_tiny);
+     }
+ #endif
++    if (best >= 0 && g_pl_state == 1) { if (pl_w(s, best, round) >= P_T10_FREE) ++g_pl_on; else ++g_pl_off; }  // t10plan-v1 counter
+     s.target_gd = best >= 0 ? best_gd : 0;  // respawnfix-v1: the walking distance this choice was priced with
+     return best;
+ }
+@@ -5094,6 +5174,7 @@
+ 
+ void log_init(State& s) {
+     std::printf("[fuelfit] b35nohp o74 nohitpass det + farmeo c95go45e1 o100_incoming o125_holdlate o129_goldopen45\n");
++    std::printf("[init] t10plan-v2 until=%d lo=%d hi=%d free=%d roles=%d escw=%d maps=%d\n", P_T10_UNTIL, P_T10_LO, P_T10_HI, P_T10_FREE, P_T10ROLES, P_T10_ESCW, plan_t10::NMAPS);
+     std::printf("[init] %s melee=%d ally=%d groups=%zu altars=%zu spawn=%zu shards=%zu slots=%s/%s pots=%zu sm=%zu\n",
+                 s.name.c_str(), s.melee ? 1 : 0, s.ally_idx, s.groups.size(), s.altars.size(),
+                 s.spawn_tiles.size(), s.shards.size(), slot_name(s.slots[0]), slot_name(s.slots[1]), s.pots.size(),
+@@ -5122,7 +5203,7 @@
+         o.s(" target="); o.i(s.target); o.s(" errs="); o.i(g_errors); o.s(" fuel="); o.u(bc::fuel_remaining());
+         o.s(" tpc="); o.i(g_tpc_buys); o.s("/"); o.i(g_tpc_uses); o.s(" wd="); o.i(g_wd_drops); o.s(" unreach="); o.i(g_cap_unreach);
+         o.s(" holdto="); o.i(g_hold_to); o.s(" gskip="); o.i(g_guard_skip); o.s(" trip="); o.i(g_trip_keep); o.s(" isle="); o.i(g_isle);
+-        o.s(" bcf="); o.i(g_bcf); o.s(" foco="); o.i(g_foco_w); o.s("/"); o.i(g_foco_use); o.s(" shot="); o.i(g_shot); o.s("/"); o.i(g_shot_f); o.s(" cut="); o.i(g_cut); o.s(" rc="); o.i(g_rc_big); o.s("/"); o.i(g_rc_tiny);
++        o.s(" bcf="); o.i(g_bcf); o.s(" foco="); o.i(g_foco_w); o.s("/"); o.i(g_foco_use); o.s(" shot="); o.i(g_shot); o.s("/"); o.i(g_shot_f); o.s(" cut="); o.i(g_cut); o.s(" rc="); o.i(g_rc_big); o.s("/"); o.i(g_rc_tiny); o.s(" pl="); o.i(g_pl_on); o.s("/"); o.i(g_pl_off);
+         o.end();
+         return true;
+     });
+diff -ru --strip-trailing-cr -x plan_t10.h e1foco/src/params.h t10plan/src/params.h
+--- e1foco/src/params.h	2026-10-26 06:38:34.000000000 +0000
++++ t10plan/src/params.h	2026-10-27 22:30:36.603968384 +0000
+@@ -1,3 +1,25 @@
++// t10plan-v1: the whole-game camp plan copied from the top 10 (plan_t10.h, 600 top10-vs-top10 games of 2026-10-27).
++#ifndef P_T10PLAN
++#define P_T10PLAN 1      // choose_target follows the top-10 teams' per-map, per-side, per-50-round camp-group schedule
++#endif
++#ifndef P_T10_UNTIL
++#define P_T10_UNTIL 650  // the plan covers r1-650 (the replays were decoded to r700); later rounds play the base game
++#endif
++#ifndef P_T10ROLES
++#define P_T10ROLES 1     // escorts (HoR, Vendetta, Ryth, ...) farm their carry's (Vesper, Marcella) claimed group, within 8 of it
++#endif
++#ifndef P_T10_ESCW
++#define P_T10_ESCW 300   // score % of the carry's group for its escort
++#endif
++#ifndef P_T10_LO
++#define P_T10_LO 50      // score % for a group outside the top-10 plan of this window (plan known for the map)
++#endif
++#ifndef P_T10_HI
++#define P_T10_HI 250     // score % for the window's main group (linear in its share from P_T10_LO)
++#endif
++#ifndef P_T10_FREE
++#define P_T10_FREE 25    // share % of the window's main group from which the half/doorstep penalties and the solo-cluster rule are lifted
++#endif
+ #define P_TRIBUTE_GEMS 12
+ #define P_TRIBUTE_NEAR 8
+ #define P_SHOP_GOLD 240
+@@ -365,9 +387,18 @@
+ #ifndef P_PAIRFARM
+ #define P_PAIRFARM 1     // pairfarm-v2: near maps, r30-150, prefer camps next to an ally's camp (the top 10 are never fully spread)
+ #endif
+-#define P_PF_FROM 30     // first round it applies
+-#define P_PF_UNTIL 150   // last round it applies
+-#define P_PF_MAX 35      // near maps: spawn-to-spawn path length below this
++#ifndef P_PF_FROM
++#define P_PF_FROM 30
++#endif
++// first round it applies
++#ifndef P_PF_UNTIL
++#define P_PF_UNTIL 150
++#endif
++// last round it applies
++#ifndef P_PF_MAX
++#define P_PF_MAX 35
++#endif
++// near maps: spawn-to-spawn path length below this
+ #define P_PF_FAR 40      // score % for a group with no ally's claimed group within P_PF_R
+ #define P_PF_R 6
+ #ifndef P_PF_WALK

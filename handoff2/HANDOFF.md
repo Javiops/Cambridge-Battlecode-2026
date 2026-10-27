@@ -8,6 +8,7 @@ Qué hay en esta carpeta (`handoff2/`):
 - `memory/`: copia íntegra de la memoria del proyecto tal como está hoy en el PC. `memory/MEMORY.md` es el índice. **Léela entera antes de empezar**: son reglas del usuario y aprendizajes, y valen como si los dijera él.
 - `sesiones/README.md`: resumen de cada sesión local de estos dos días (qué hizo, dónde dejó sus ficheros, en qué punto quedó y su id para reabrirla).
 
+- Adendas: sección 10 (21:20 del 26-10) y sección 11 (10:05 del 27-10: clústeres de la UPV y propuestas de ML pendientes).
 - `sesiones/hilos/`: cada sesión del PC exportada a un `.md` (9 hilos, añadidos a las 22:00 del 26-10); índice en `sesiones/README.md`.
 
 No contiene cookies, contraseñas ni tokens: los hilos exportados se revisaron antes de subirlos. La transcripción de la coordinadora **no** se exporta, porque en ella el usuario pegó una vez la cookie del sitio.
@@ -245,3 +246,53 @@ Antes de subir un zip, se añade un marcador a la línea `[fuelfit]` de `main.cp
 - Todo es reanudable: el estado de CMA-ES está en `lab\ml\runs\p1c\state.pkl` y `gen_000.json`; la cola del loop estaba vacía.
 - **El top 5 ha cambiado** (registro del loop, 20:52): Intercontinental Fish, Mite, Trzy Kwaterki, willow best girl, Claudus Maximus. Entra Trzy Kwaterki y sale prism best girl. Las referencias de la brújula t5b son del top 5 anterior.
 - La segunda pasada de partidas del top 5 contra otros equipos se cortó a medias; lo bajado está en `lab\eval\t10out\` y `lab\loop\replays\`.
+
+## 11. Adenda de las 10:05 del 27-10 (clústeres de la UPV y qué hacer con el ML)
+
+**Estado:** no hay nada en marcha. La sesión ML está parada desde las 20:45 del 26-10 por orden del usuario, con el estado guardado para reanudar (sección 10). kvvl v164 sigue activa. Los 9 hilos del PC están exportados en `sesiones/hilos/` (índice en `sesiones/README.md`).
+
+**USER 27-10 por la mañana:** «nos han dado acceso a un clúster de CMTS con GPUs Ampere 100 y luego otro de 10 máquinas con GPUs Volta 100».
+- No se sabe aún: núcleos por nodo, gestor de colas (¿SLURM?), si tienen internet para `pip install cambc==4.0.0`, límite de tiempo por trabajo ni cómo se entra.
+- La app no tiene ninguna conexión SSH guardada (comprobado con `list_start_targets`). La vía propuesta: el usuario añade los clústeres como conexiones SSH en la app y la coordinadora arranca allí la sesión ML. **Las contraseñas no van al chat.** El puerto ya está hecho: `lab\ml\setup_linux.sh` y `lab\ml\PITCH_UPV.md`.
+
+**Lo que se le explicó (con datos):**
+- **Las GPUs casi no sirven; lo que vale son los núcleos de CPU.**
+  - Cada partida es un proceso de CPU que corre el motor WASM.
+  - En el PC (16 núcleos, 14 procesos) salen ≈ 2,3 partidas/s.
+  - Una generación de CMA-ES (24 candidatas × 420 partidas = 10.080 partidas) tarda unos 75 min.
+  - Cada 100 núcleos son ≈ 16 partidas/s, unos 10 min por generación.
+  - La GPU solo acelera entrenar modelos (imitación, Q).
+- **Imitar al top 5 ya se probó y no transfiere** (fase 2, `lab\ml\INFORME.md`):
+  - datos: 2,4 M decisiones de 1.234 partidas;
+  - precisión de movimiento: 46 % (adivinar la clase más común: 36 %);
+  - el clon gana 7-13 de 140 a E1, con ~23 muertes por partida;
+  - copiando solo la postura: 21-39 de 140 (co_v7: 79).
+- **Por qué falla la imitación:**
+  1. Lo que decide no se ve: su postura solo es predecible al 51 % con nuestros rasgos (plan, memoria de rivales, coordinación).
+  2. Los errores se acumulan: el clon llega a situaciones que el top 5 nunca vive.
+  3. Sus decisiones van con su bot entero (objetos, foco, draft, macro).
+  4. Pocos datos para los momentos clave y una red limitada por el combustible.
+- **Entrenar online no da:** 50 grupos/hora son ≈ 250 partidas/hora, frente a 10.080 partidas por generación. El online sirve para elegir: la brújula t5b mide unas 2 candidatas por hora (125 partidas deterministas contra el top 5 real). También sirve para afinar unos pocos parámetros y como fuente de partidas del top 5.
+- **Receta propuesta (la de AlphaStar):** la imitación como punto de partida y luego mejorar jugando.
+  - La red n1 lo hace: arranca de los pesos de la imitación.
+  - En su única generación (1,9 h en el PC) quedó en 0,487, por debajo del vector por defecto (0,566).
+  - El modelo Q (aprender de resultados) llegó a 71 de 140, frente a 79 de co_v7.
+- **USER: «¿por qué no meter los pesos en el bot y megaoptimizarlo?»**
+  - Los pesos ya van en el bot (`lab\ml\cpp\pol.h`).
+  - El límite es el combustible: ≈ 100k por turno. La MLP 140→64→48 gasta 24k con simd128 y embeddings plegados (130k sin SIMD), y el resto del bot también necesita combustible.
+  - Pesos en 8 bits y calcular la red solo con un rival cerca dan para una red 2-4 veces mayor, no 100 veces.
+  - Además, la precisión subió de 37 % a 46 % al añadir información a la entrada, no al agrandar la red. **No se sabe si el tamaño es lo que falla.**
+
+**Propuestas pendientes del sí del usuario** (estaban en el cuadro de siguiente paso cuando pidió este traspaso):
+1. **Plan del clúster.**
+   - Máquinas V100: una búsqueda CMA-ES independiente por máquina (p1c continuada, otras semillas, 48 candidatas, 840 partidas por candidata). Las bases sqlite se juntan sin problema porque las partidas son deterministas. Liga: las élites entran al pool.
+   - Clúster A100: ES de la red de pelea (n2) con muchas más muestras por generación, y la GPU para reentrenar imitación y Q.
+   - Online: la mejor del clúster va a t5b cada 2-3 horas a través del loop. Decidir antes del 30-10.
+2. **Prueba de la red grande (≈ 1 día):**
+   1. Bajar muchas más partidas del top 10, no solo del top 5 (lo baja el loop).
+   2. Entrenar en una A100 una red con 10-100 veces más pesos y medir su precisión.
+   3. Jugarla en local con combustible ilimitado contra E1 (el simulador lo permite; la sesión ML ya lo usa).
+   4. Si gana con claridad: el tamaño era el problema. Destilarla y pasarla a 8 bits para que quepa en el combustible.
+   5. Si pierde: el problema es lo que no se ve y los errores acumulados. La imitación solo como arranque, y evolución o refuerzo encima.
+
+**Siguiente paso:** obtener del usuario el acceso SSH a los clústeres y su sí a las propuestas 1 y 2. Hasta entonces, no se relanza nada.

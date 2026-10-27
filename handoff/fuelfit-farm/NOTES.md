@@ -1246,3 +1246,11 @@ rows 470/584, corridors 428/752 and contest 200/400 are monolith groups, exclude
   lineage bench (o102 gold-only x0.5: 247/240; o103 cheaper clear: 197-229; o106: 225-233) LOSES there, because the bench rivals are
   our own bots that farm gold and because our champions die at camps the rivals clear. The bench cannot judge a gold->gems value shift;
   only online can (o102-lite: gold_w 0.45 -> 0.30 from r150 would be the test). That decision is the user's; not launched.
+
+## o107 goldlate (o102-lite) built for the online loop — 10-27 22:52 UTC (coordinator's decision under the user's blanket permission)
+opts/o107_goldlate.py SRC [W=30] [R0=150] [WOLF=100]: from r150 gold_w = min(gold_w, W/100); the o129 opening (0.45 until r150) is
+untouched; WOLF != 100 scores wolf-only groups (str == 20 x members) x WOLF/100 from r150. Marker o107_goldlate on the [fuelfit] line.
+Zips: e1foco-o107goldlate30.zip sha b8c5f1e9... and e1foco-o107goldlate30-wolf130.zip sha 67245682... (zips/SHA256SUMS, commit 5b389ab).
+Local: both compile and play; h2h kvvl o7a 32-20, o7b 31-21 (e1foco 34-18): nothing broken; the own-lineage bench does not judge this.
+Online expectation vs e1foco on the same c34 games (pairmet): gold-only captures down, wolf/elk up, gems r300 up; if deaths r151-300
+rise, we go alone to wolves/elks and the piece needs the pack first.

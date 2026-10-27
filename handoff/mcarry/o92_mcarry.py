@@ -30,6 +30,6 @@ edit('vesper.h',[("""CHAMP_HOOK int carry_rank(const std::string& n) { return is
 """CHAMP_HOOK int carry_rank(const std::string& n) { return P_MCARRY ? (marcella::carries(n) ? 0 : is(n) ? 1 : 2) : (is(n) ? 0 : 1); }""")])
 edit('main.cpp',[("""                if (starts_with(norm(bc::to_string(a.champion_name())), "vesper")) v = 1;""",
 """                if (starts_with(norm(bc::to_string(a.champion_name())), "vesper") ||
-                    (P_MCARRY && marcella::carries(norm(bc::to_string(a.champion_name()))))) v = 1;"""),
+                    (P_MCARRY && starts_with(norm(bc::to_string(a.champion_name())), "marcella"))) v = 1;  // o92 (marcella.h not yet declared here)"""),
 ("""vcarry_on(s) && vesper::is(s.name) && nearest_foe > P_VCARRY_FOE;""",
 """vcarry_on(s) && (vesper::is(s.name) || (P_MCARRY >= 2 && marcella::carries(s.name))) && nearest_foe > P_VCARRY_FOE;""")])

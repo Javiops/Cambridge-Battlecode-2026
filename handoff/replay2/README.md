@@ -19,3 +19,8 @@ and group states; the step headers in --every-step.
 KNOWN GAP: the final `statistics` block (Game_Statistics_GetChampion) is still read with the 1.0.3 layout, and its
 numbers are wrong in 2.0.0 (damage 0, 42 items). Take statistics from run-batch `--statistics X.json`, or from
 `cambc summary`, instead.
+
+## Update (2026-10-27 17:50 UTC)
+`replaydump_pc.js` is a copy of the PC's patched decoder (branch claude/pc-e1-assets, commit 16f4d0b, `pcassets/viewer/`).
+On a local 2.0.0 game, its champion and camp rows are identical to `replaydump2.js` (0 differences in 1654 rounds), and
+its final statistics block is correct (mine gives 0 damage). It also has --vis and --deltas. `dump2.py` now uses it.

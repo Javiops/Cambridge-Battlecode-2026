@@ -1020,3 +1020,5 @@ Per clean game (118), captures r<=300 split into first capture of a group and re
   (t_clear 18 rounds) where our roamer alone faces 53 rounds: elk choice follows from pack formation, not from the weight. That
   belongs to the "superioridad" thread's r40-150 pack piece (told 18:05 UTC); its judge should include elk captures r150-300.
 - e98 = E1 + P_NEED_CAP 3 (a group may "need" 3) launched 17:52 UTC as the last cheap farm-side test of this cause.
+- e98 = E1 + P_NEED_CAP 3 CLOSED 17:54 UTC: n80 57/80 vs 68, h2h 33/42 vs 35/44, gems unchanged (44/105): letting a group "need" 3
+  only delays picks. Farm-side choice levers on E1 are exhausted locally; e92 stays the only piece. Waiting for the online judge.

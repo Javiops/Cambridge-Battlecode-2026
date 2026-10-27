@@ -1022,3 +1022,10 @@ Per clean game (118), captures r<=300 split into first capture of a group and re
 - e98 = E1 + P_NEED_CAP 3 (a group may "need" 3) launched 17:52 UTC as the last cheap farm-side test of this cause.
 - e98 = E1 + P_NEED_CAP 3 CLOSED 17:54 UTC: n80 57/80 vs 68, h2h 33/42 vs 35/44, gems unchanged (44/105): letting a group "need" 3
   only delays picks. Farm-side choice levers on E1 are exhausted locally; e92 stays the only piece. Waiting for the online judge.
+
+## CORRECTION on e92 — 10-27 18:10 UTC
+The far-map gain of o92 farguard (+8/56) was measured against rTop1/rD only. Against the other four local rivals (rF, rHunt, mV19,
+mV10d; 14 far maps x 2 sides = 112 games) e92 is 80/112 vs E1 83/112, and e92 vs E1 head to head on the 14 far maps is 13/28.
+So o92 is rival-specific noise, not a far-map fix: e92 ≈ E1 (identical on near maps by construction). The zip stays available
+as a safe online test (nothing changes on near maps), but it is not a local winner. Day's verdict for the farm front on E1: no local
+piece; the remaining farm gap in real games follows from deaths (fight thread) and from pack formation (superioridad thread).

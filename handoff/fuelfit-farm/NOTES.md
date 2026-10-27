@@ -1001,3 +1001,6 @@ h2h -5/112 (noise-level, wrong sign). r<80 (e96) packs too long: n80 60/80. So t
 switch and does not change the local verdict ("copy X rule"): the opening alone is not what beats us; the fight after it is.
 Kept as an online candidate only because the judge is online: e97 = E1 + o92 farguard + o95 packopen (markers "o95_packopen
 o92_farguard"), 368-game run launched 17:38 UTC.
+- e97 = E1 + o92 + o95(40) (17:44 UTC): n80 64/80, far 50/56, h2h kvvl 33/52 + 42/60, new30 89/120 = 278/368 (e92 285, E1 275).
+  packopen adds nothing locally (-7 vs e92, all on h2h). Zip zips/e1-o92-o95packopen.zip (sha in SHA256SUMS) exists only so the
+  online judge CAN test the top-5 opening shape if the user wants; ranking for the PC queue: e92 first, e97 optional.

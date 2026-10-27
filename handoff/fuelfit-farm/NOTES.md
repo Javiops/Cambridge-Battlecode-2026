@@ -755,3 +755,11 @@ group (including 2-3 elk groups) and lost the far maps.
 
 ### o82_sweep.py (P_SWEEP_STR 60, P_SWEEP_R 50) over b35: a weak monster group (0 < str <= 60, hp < 3000) is not value-split
 among the champions heading there from r50; everything else as b35. Panels near 80 + far 56 + h2h vs kvvl launched 12:45 UTC.
+
+### o82 sweep: CLOSED (10-27; 188 games)
+near 56/80 (+8 -14) vs 62, far 37/56 (+2 -13) vs 48, head-to-head vs kvvl 35/52 (b35 34). Not splitting weak groups'
+value sends the team together after single elks and wolves and loses the far maps badly, like o81. Every way of making
+our champions stack (o69 teamopen, o81 share exponent, o82 sweep) reproduces the top 10's formation numbers and loses:
+in this bot "together" means walking together to one group while the rest of the map stays unfarmed; the top 10 clear
+weak groups in 8-10 rounds and are already elsewhere. Line closed on the farm side; what remains measured and unexplained
+is the +28% champion-rounds near monsters, and the local candidates that survive are incoming50 (o70) and nohold (o79b).

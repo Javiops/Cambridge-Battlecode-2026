@@ -851,3 +851,20 @@ Capture mix per game (73 clean): r0-150 gold-only 3.96 / gem clusters 1.88 (22g)
 - incoming50 on top of gold30+nohold does buy the elks (single elk r150-300 1.03/game, top 10 1.46) and monster damage reaches 92-96% of the top 10, but gold r150 drops 8%, deaths<=r100 rise 43 -> 55 and the head-to-head falls to 27/52 (gate barely passed, 13 games below e85). The three pieces together over-commit lone champions to strength groups.
 - e85 stays the candidate. incoming50 remains a known separate piece, not combined.
 - Remaining gap in e85: gem clusters 1.88 vs 3.06 and gold-only clusters 3.96 vs 2.11 (r0-150). Next: decision dump on e85 (instrumented build, --fuel-quantum 2000000) to see what gem clusters lose to now that gold is weighted 0.3.
+
+## ENGINE 2.0.0 (site since 10-26; cambc 4.0.0) — e85 reproduced on the 40 old maps — 10-27 16:30 UTC (PROVISIONAL: 30 new maps running)
+
+Setup: `pip install cambc==4.0.0` in a separate venv (/tmp/claude-0/ff/cv4), `cambc init --yes` workspace /tmp/claude-0/ff/ws4, maps from branch claude/project-thread-l6gm1j handoff/maps2/ (70 .map26a: the 40 old ones unchanged byte for byte + 30 new, 6 of them 3-champion maps), replay decoder handoff/replay2/dump2.py (ebmetrics falls back to it). b35, e85, kvvl and the 6 rivals compile and play unchanged with the 2.0.0 SDK. Camp group rewards are identical between engines (checked on split).
+
+| engine | bot | gems r150/r300 | gold r150/r300 | monster dmg r150/r300 | near W/N | deaths<=100 | far W/N | h2h vs kvvl |
+|---|---|---|---|---|---|---|---|---|
+| 1.0.3 | b35 | 38/106 | 496/1112 | 8010/15852 | 62/80 | 53 | 48/56 | 34/52 |
+| 1.0.3 | e85 | 55/128 | 520/1172 | 9717/20244 | 57/80 | 43 | 48/56 | 40/52 |
+| 2.0.0 | b35 | 38/84 | 519/1135 | 8242/16685 | 55/80 | 50 | 48/56 | 30/52 |
+| 2.0.0 | e85 | 52/112 | 485/1126 | 10190/19027 | 60/80 | 41 | 50/56 | 28/52 |
+
+Capture mix r0-150 per game (2.0.0, 73-74 clean): b35 gold-only 4.23 / gem clusters 0.90 (12g) / elk+gems 0.74 (30g) / wolf+gems 1.92, gems 61; e85 3.92 / 1.57 (18g) / 0.97 (39g) / 2.12, gems 76.
+- The mechanism survives the patch: gems r150 +14, gem clusters +0.67/game, elks +0.23, monster damage +24%, early deaths 50 -> 41. Near W/N now favours e85 (+15 -10), far +2. Gold r150 -7% (was +5% on 1.0.3).
+- Head-to-head vs kvvl (both rebuilt with the 2.0.0 SDK): 28/52 vs b35 30/52 — gate passed by 2, no longer the clear win of 1.0.3. The 2.0.0 nerfs (Vesper/Marcella/HoR/Ryth) change fights; the farm gain is unchanged.
+- gold30nohold-b35.zip is source-only, so it is the same candidate under 2.0.0. Still not sent (user paused sends).
+- The PC's go45/E1 (c95shop + gold 0.45 to r150 + no hold x2 in the opening (+ incoming x0.5)) is the same direction on another base; E1 was the best on the top-5 compass (11-114 vs kvvl 5-120). Not duplicated: e85 removes the hold x2 for the whole game and weights gold 0.3 to r600.

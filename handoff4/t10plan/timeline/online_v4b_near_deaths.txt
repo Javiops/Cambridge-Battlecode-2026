@@ -1,0 +1,69 @@
+## reverse_spiral German Empire Destroyers side b: v4b win caps r<600 21 (gold-only 0) | e1foco loss caps 21 (gold-only 0)
+   v4b deaths r1-150: r150 Ves allies<=4 0 foes<=5 0 from-spawn 10
+   e1f deaths r1-150: r34 HoR allies<=4 0 foes<=5 2 from-spawn 5; r61 Ryt allies<=4 1 foes<=5 0 from-spawn 9
+## treasure_box German Empire Destroyers side b: v4b win caps r<600 43 (gold-only 0) | e1foco win caps 67 (gold-only 0)
+   v4b deaths r1-150: -
+   e1f deaths r1-150: -
+## reverse_spiral SkuBap side b: v4b loss caps r<600 18 (gold-only 0) | e1foco loss caps 12 (gold-only 0)
+   v4b deaths r1-150: r33 Ves allies<=4 1 foes<=5 2 from-spawn 6; r44 HoR allies<=4 0 foes<=5 3 from-spawn 7; r53 Ryt allies<=4 1 foes<=5 0 from-spawn 10
+   e1f deaths r1-150: r63 Ryt allies<=4 1 foes<=5 0 from-spawn 11; r64 HoR allies<=4 0 foes<=5 4 from-spawn 12; r101 Ves allies<=4 0 foes<=5 2 from-spawn 6; r115 Mar allies<=4 0 foes<=5 1 from-spawn 11
+## treasure_box SkuBap side a: v4b win caps r<600 53 (gold-only 0) | e1foco win caps 34 (gold-only 0)
+   v4b deaths r1-150: r24 HoR allies<=4 3 foes<=5 3 from-spawn 1
+   e1f deaths r1-150: r53 Ves allies<=4 0 foes<=5 2 from-spawn 3; r95 Mar allies<=4 0 foes<=5 3 from-spawn 1; r145 Ves allies<=4 0 foes<=5 3 from-spawn 1
+## gato_gemcombat1 Ding side a: v4b win caps r<600 26 (gold-only 0) | e1foco win caps 29 (gold-only 0)
+   v4b deaths r1-150: -
+   e1f deaths r1-150: -
+## packs Ding side a: v4b win caps r<600 19 (gold-only 0) | e1foco win caps 12 (gold-only 0)
+   v4b deaths r1-150: r32 HoR allies<=4 2 foes<=5 2 from-spawn 8
+   e1f deaths r1-150: r26 Ves allies<=4 0 foes<=5 2 from-spawn 9; r37 Mar allies<=4 1 foes<=5 3 from-spawn 14
+## elk_arena Ding side b: v4b loss caps r<600 42 (gold-only 42) | e1foco loss caps 102 (gold-only 102)
+   v4b deaths r1-150: -
+   e1f deaths r1-150: -
+## stalactites ha²t side b: v4b win caps r<600 19 (gold-only 0) | e1foco win caps 21 (gold-only 0)
+   v4b deaths r1-150: r27 HoR allies<=4 3 foes<=5 4 from-spawn 12
+   e1f deaths r1-150: r69 Mar allies<=4 2 foes<=5 2 from-spawn 16
+## hooks ha²t side b: v4b win caps r<600 26 (gold-only 18) | e1foco win caps 31 (gold-only 19)
+   v4b deaths r1-150: r58 Ves allies<=4 1 foes<=5 0 from-spawn 10; r97 HoR allies<=4 0 foes<=5 0 from-spawn 9; r114 Ryt allies<=4 0 foes<=5 0 from-spawn 11
+   e1f deaths r1-150: r46 HoR allies<=4 1 foes<=5 0 from-spawn 10
+## elkring Gem Simons side a: v4b loss caps r<600 16 (gold-only 0) | e1foco loss caps 22 (gold-only 0)
+   v4b deaths r1-150: -
+   e1f deaths r1-150: -
+## gato_gemcombat5 Gem Simons side b: v4b win caps r<600 6 (gold-only 0) | e1foco win caps 11 (gold-only 0)
+   v4b deaths r1-150: r34 Ves allies<=4 1 foes<=5 3 from-spawn 13
+   e1f deaths r1-150: r35 Ves allies<=4 1 foes<=5 2 from-spawn 17; r130 Ves allies<=4 0 foes<=5 4 from-spawn 14
+## swirl Gem Simons side a: v4b win caps r<600 20 (gold-only 10) | e1foco win caps 31 (gold-only 11)
+   v4b deaths r1-150: r116 Ves allies<=4 2 foes<=5 4 from-spawn 5; r120 Mar allies<=4 1 foes<=5 4 from-spawn 8; r126 Ryt allies<=4 0 foes<=5 4 from-spawn 11
+   e1f deaths r1-150: r27 HoR allies<=4 2 foes<=5 4 from-spawn 6; r51 Ves allies<=4 1 foes<=5 2 from-spawn 8
+## rushbait_v2 SquidProxyLovers side b: v4b loss caps r<600 12 (gold-only 0) | e1foco loss caps 25 (gold-only 0)
+   v4b deaths r1-150: r34 HoR allies<=4 1 foes<=5 3 from-spawn 9; r85 Ryt allies<=4 0 foes<=5 0 from-spawn 9; r111 Ves allies<=4 0 foes<=5 2 from-spawn 13; r129 Mar allies<=4 0 foes<=5 1 from-spawn 9; r141 HoR allies<=4 0 foes<=5 2 from-spawn 9
+   e1f deaths r1-150: r29 Ves allies<=4 0 foes<=5 3 from-spawn 12; r117 HoR allies<=4 0 foes<=5 3 from-spawn 7
+## elk_arena 天天开心 :( side a: v4b loss caps r<600 40 (gold-only 40) | e1foco loss caps 100 (gold-only 100)
+   v4b deaths r1-150: r25 Ven allies<=4 1 foes<=5 3 from-spawn 8
+   e1f deaths r1-150: r121 Ven allies<=4 1 foes<=5 0 from-spawn 6
+## elkring an iq too high side b: v4b loss caps r<600 16 (gold-only 0) | e1foco loss caps 26 (gold-only 0)
+   v4b deaths r1-150: -
+   e1f deaths r1-150: -
+## swirl an iq too high side a: v4b win caps r<600 20 (gold-only 9) | e1foco loss caps 7 (gold-only 6)
+   v4b deaths r1-150: r27 HoR allies<=4 2 foes<=5 4 from-spawn 7; r98 Ryt allies<=4 1 foes<=5 3 from-spawn 9
+   e1f deaths r1-150: r47 Ryt allies<=4 1 foes<=5 4 from-spawn 11; r53 HoR allies<=4 0 foes<=5 3 from-spawn 11; r65 Mar allies<=4 0 foes<=5 4 from-spawn 8; r68 Ves allies<=4 0 foes<=5 2 from-spawn 11; r126 Ryt allies<=4 0 foes<=5 4 from-spawn 8
+## fragment BBL side b: v4b win caps r<600 12 (gold-only 0) | e1foco loss caps 11 (gold-only 0)
+   v4b deaths r1-150: r119 Ves allies<=4 0 foes<=5 3 from-spawn 13
+   e1f deaths r1-150: -
+## the_pack BBL side a: v4b win caps r<600 19 (gold-only 7) | e1foco win caps 23 (gold-only 11)
+   v4b deaths r1-150: -
+   e1f deaths r1-150: r97 HoR allies<=4 0 foes<=5 1 from-spawn 12
+## packs Martin Shkreli's Defense Team side b: v4b win caps r<600 21 (gold-only 0) | e1foco win caps 21 (gold-only 0)
+   v4b deaths r1-150: r40 HoR allies<=4 1 foes<=5 3 from-spawn 14
+   e1f deaths r1-150: r40 HoR allies<=4 0 foes<=5 2 from-spawn 19
+## elk_arena Hidden Altar Keepers side a: v4b loss caps r<600 43 (gold-only 43) | e1foco loss caps 95 (gold-only 95)
+   v4b deaths r1-150: r31 Mar allies<=4 1 foes<=5 3 from-spawn 9; r89 Ryt allies<=4 0 foes<=5 3 from-spawn 4
+   e1f deaths r1-150: r101 Ves allies<=4 0 foes<=5 1 from-spawn 4
+## gato_gemcombat1 Sneaky Bush Campers side b: v4b loss caps r<600 24 (gold-only 0) | e1foco win caps 26 (gold-only 0)
+   v4b deaths r1-150: -
+   e1f deaths r1-150: r140 Mar allies<=4 0 foes<=5 2 from-spawn 18
+## vault Sneaky Bush Campers side a: v4b win caps r<600 19 (gold-only 8) | e1foco loss caps 19 (gold-only 10)
+   v4b deaths r1-150: r125 Ves allies<=4 1 foes<=5 3 from-spawn 10; r133 HoR allies<=4 0 foes<=5 1 from-spawn 8
+   e1f deaths r1-150: r68 Mar allies<=4 0 foes<=5 4 from-spawn 13
+## the_line Brakence Fan Club side a: v4b loss caps r<600 19 (gold-only 0) | e1foco loss caps 24 (gold-only 0)
+   v4b deaths r1-150: -
+   e1f deaths r1-150: r104 Ryt allies<=4 0 foes<=5 5 from-spawn 22

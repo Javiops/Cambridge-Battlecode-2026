@@ -141,3 +141,9 @@ Mapas cercanos (42 partidas), e1foco / v4b / v4n: aliado ≤4 47% / 60% / 60%, m
 Todo el banco: v4n aliado 45%, muertes 4.4, capturas 17.4, rondas por captura del carry 44.
 Carry mapa a mapa (an/mapcmp.py, timeline/mapcmp_v4b.md, 53 mapas comunes): top 10 ganador vs v4b cúmulo ≥50 0.16/0.10, cúmulo <50 1.89/2.11,
 oro 2.03/2.69, lobos 2.33/2.63, alces 1.79/1.81: el objetivo del carry no es la diferencia.
+
+# t10plan-v4o (2026-10-28 ~03:20 UTC): v4n + pareja desde r50 + Vendetta libre + la escolta acaba su grupo
+Zip `zips/e1foco-t10plan-v4o.zip` sha256 `767a00f7568a6859e0e0656af93707abe873a93fa958ee5664b382a4803af8d3`, diff `src/t10plan-v4o_vs_e1foco.diff`, marcador `[init] t10plan-v4o rolefrom=50 freeven=1 keep=1 nearp=35 ...`.
+vs kvvl: total 80/140 (cercanos 19/42, lejanos 61/98); cercanos: aliado ≤4 55%, muertes 5.4, capturas r<400 14.6 (e1foco 16.6, v4n 13.3).
+Primera captura en cercanos vuelve a la de e1foco salvo fragment a (r114). elk_arena 53/53 (e1foco 63/73, v4n 35/35).
+Online v4b en cercanos (timeline/online_v4b_near_deaths.txt): muertes tempranas de HoR siguiendo al carry; capturas perdidas casi todas en elk_arena.

@@ -224,3 +224,47 @@ Diseño previsto:
 2. **Que llegue el compañero.** P_V7J 1 (bigjoin) para que el aliado libre más cercano acuda.
 3. **No abandonar** (pedido de coordinación). Con dos cuerpos a ≤3 del grupo y el campamento despierto, sin rival nuevo a ≤8, mantener s.target, sin re-choice ni recall por vida salvo flee_pct.
 4. **Comprobación.** Réplicas idénticas a v8a donde no dispara la regla.
+
+# t10plan-v9 "escuadras" (2026-10-28 ~13:30 UTC): una política de equipo por ronda desde r30 — NO PASA LA PUERTA
+Zip `zips/e1foco-t10plan-v9.zip` sha256 `bc2910825675efafc89105ef312a5ec8ff2e964caee6607ebf7ef442fdd6d2f1` (src/ como v4o2 + `v9.h`), diff `src/t10plan-v9_vs_v4o2.diff`.
+Todo bajo `P_V9` (params.h). Con `P_V9 0` el juego es el de v4o2: 8 partidas (elk_arena, crossing, starvation, gem_fields x 2 lados) con las líneas de estado
+(posición, vida, modo, objetivo) idénticas a v4o2; con `P_V9 1` las reglas v4 (t10_on/t10_act) quedan apagadas y nada nuevo corre antes de r30 (ni init, ni printf).
+
+**Diseño** (`v9.h` + main.cpp):
+1. **Plan** (`v9::plan`, cada ronda desde r30, misma entrada en todos: roster propio, posiciones vistas, reclamaciones): líderes Vesper y Marcella (si falta uno, el vivo con más vida);
+   los otros 3 van al líder más cercano con histéresis de 4 casillas, nunca 4+1 (el más lejano pasa al otro); con ≥16 grupos (P_V9_MANY) el más lejano de ambos farmea libre (2+2+1).
+   Un aliado no visto se sitúa en el centro de su grupo reclamado (o el spawn). Línea `[v9-plan]` en el primer plan y cada 100 rondas.
+2. **Objetivo del líder** (choose_target_impl): valor (gemas + gold_w·oro) / (camino del más lento = camino del líder + distancia del miembro más rezagado, + espera de respawn + hp_grupo / dps combinado de la escuadra + 6 + daño recibido repartido · ciclo de recall);
+   sin tope de squad_needed; nunca el grupo del otro líder ni uno reclamado fuera de la escuadra; rivales vistos a ≤8 del grupo > miembros ×0.3; mitad rival ×0.5 antes de r300; puerta ×0.6; grupo a ≤12 del recién capturado ×1.5 (rotación); objetivo actual ×1.25. El líder publica su siguiente grupo al capturar (como el carry v4).
+3. **Seguidor**: su objetivo es el grupo reclamado por el líder (acaba antes un grupo vivo a ≤3 ya dañado); si el líder no tiene grupo vivo, el grupo libre más cercano a ≤8 del líder.
+4. **Marcha**: el seguidor camina al líder (visto) hasta ≤6 (P_V9_FOLLOW) salvo si ya está a ≤6 de su grupo, y no se adelanta más de 2 (P_V9_AHEAD) al líder hacia el objetivo (espera ≤8 rondas); el líder espera (≤8 rondas por objetivo, P_V9_LAGWAIT) a un miembro visto a >5 por detrás. `[v9-wait]`.
+5. **Despertar** (farm): con campamentos vivos y ninguno dañado, needed = lo que pide el dps combinado (tope = tamaño de escuadra); se espera (≤8 rondas, anillo fuera de alcance) a que todos los miembros vistos a ≤10 estén a ≤4; `[v9-wake]` al empezar. Todos reclaman el mismo grupo y golpean el campamento de menos vida (fuego concentrado).
+6. **Pelea** (antes de chase/bcf/veredicto, cada ronda): rival a ≤6: n = miembros a ≤6 con ≥40% (yo incluido), m = rivales a ≤6; n ≥ m → pelea (pv_fight = true, el veredicto "irse" no manda); n < m o yo <40% → flee() a casa (`[v9-retreat]`), un `[v9-fight]`/`[v9-retreat]` por episodio.
+   Línea de estado: `v9=rol/líder/n pk= wt= wk= fi= rt=`.
+
+**Comprobación local** (70 mapas x 2 lados vs kvvl, motor 2.0.0; an/v9an.py sobre dec/ con MAXR=700, an/decall.sh; ours = lado del bot):
+
+| | v4o2 | v9 it.0 (follow 4, esperas 15/20, cuenta miembros no vistos) | **v9 (zip: follow 6, esperas 8/8, solo miembros vistos a ≤10)** | v9b (= v9 + grupos 40+ ×2, ciclo ×0.5; src/t10plan-v9b_vs_v4o2.diff, sin zip) |
+|---|---|---|---|---|
+| victorias | 72 | 11 | **32** | 22 |
+| aliado a ≤4 fuera del spawn r50-600 | 44.5% | 54.4% | 48.8% | 46.9% |
+| muertes r151-600 (con 3+ rivales a ≤6) | 3.74 (1.04) | 3.12 (0.71) | 2.81 (0.48) | 3.86 (0.54) |
+| rondas-campeón muerto r151-600 | 226 | 186 | 170 | 233 |
+| capturas hasta r600 | 27.1 | 19.6 | 23.2 | 18.5 |
+| capturas de grupos de 40+ | 1.50 | 0.86 | 1.08 | 1.54 |
+| gemas de captura hasta r600 | 328 | 228 | 268 | 235 |
+| gemas entregadas r300 / r600 | 114 / 277 | 83 / 186 | 92 / 224 | 90 / 208 |
+| líneas por partida fight / retreat / wait / wake | — | 99 / 56 / 25 / 54 | 110 / 63 / 26 / 70 | 110 / 64 / 25 / 57 |
+| rondas de estado en v9-wake-wait / v9-follow (muestras cada 25 r, lado a) | — | 934 / 708 | 509 / ? | — |
+
+- Divergencia antes de r30 frente a v4o2 (posiciones del replay): 3 de 140, las mismas en las tres variantes: gato_gemcombat5_a r4, starvation_a r4 (las dos ya divergían en v7r por combustible del tamaño del código), stalactites_b r25. Mediana de la primera divergencia: r32 (la regla).
+- Combustible: 0 líneas de estado con low-fuel / fuel-wait en v4o2 y en las tres variantes v9.
+- vs e1foco: no jugado (sin tiempo; e1foco se reconstruye con `patch -R` del diff v4o2_vs_e1foco sobre v4o2, está en bots/e1foco del workspace).
+
+**Lo que dice el mecanismo.** Las escuadras se forman a medias (49-54% frente a 44.5%, la meta era >55%) y mueren menos (2.8 frente a 3.7; en inferioridad de 3+ la mitad), pero
+farmean menos: −4 capturas y −60 gemas, y las capturas de 40+ no suben (1.08; con ×2 suben a 1.54 = v4o2, a costa de 4.6 capturas y 11 victorias). Causas vistas:
+1. El tiempo en espera: it.0 pasaba el 11% de las rondas en `v9-wake-wait` (920 esperas de 20 rondas con 0/2 miembros, esperando a un aliado que no venía) y el 9% en `v9-follow`; el zip lo baja a la mitad, no a cero.
+2. El líder sigue eligiendo grupos pequeños: 1210 despertares en grupos de 40+ frente a 9935 en pequeños (it.0); el modelo valor/rondas con el dps real de 2 cuerpos (elk 2400 hp x2) da 30+ rondas de limpieza y el daño recibido pesa; con ×2 toma los grandes pero el equipo pierde más (muertes 3.86).
+3. 110 episodios de pelea por partida: n ≥ m pone pv_fight y el equipo entra en peleas igualadas que v4o2 evitaba por vida; las muertes bajan igualmente, pero el tiempo en pelea sale del farmeo.
+
+**Huecos conocidos / siguientes pasos:** (a) la espera de despertar debería exigir que el miembro esperado se acerque (distancia bajando) y limitarse a grupos de 40+; (b) la rotación ×1.5 y la mitad propia ×0.5 no se han medido por separado; (c) el seguidor tarda hasta 6 rondas (P_E_RETARGET) en leer el nuevo grupo del líder; (d) la pelea n ≥ m debería contar vida (power_ratio) además de cuerpos; (e) sin partidas vs e1foco; (f) el banco local vs kvvl no juzga (README v7); online decide.

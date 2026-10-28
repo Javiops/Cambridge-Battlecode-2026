@@ -268,3 +268,33 @@ farmean menos: −4 capturas y −60 gemas, y las capturas de 40+ no suben (1.08
 3. 110 episodios de pelea por partida: n ≥ m pone pv_fight y el equipo entra en peleas igualadas que v4o2 evitaba por vida; las muertes bajan igualmente, pero el tiempo en pelea sale del farmeo.
 
 **Huecos conocidos / siguientes pasos:** (a) la espera de despertar debería exigir que el miembro esperado se acerque (distancia bajando) y limitarse a grupos de 40+; (b) la rotación ×1.5 y la mitad propia ×0.5 no se han medido por separado; (c) el seguidor tarda hasta 6 rondas (P_E_RETARGET) en leer el nuevo grupo del líder; (d) la pelea n ≥ m debería contar vida (power_ratio) además de cuerpos; (e) sin partidas vs e1foco; (f) el banco local vs kvvl no juzga (README v7); online decide.
+
+# t10plan-v9c "escuadras sin esperas" (2026-10-28 ~12:45 UTC): v9 sin esperas explícitas, objetivo compartido, pelea solo con ventaja — NO PASA LA PUERTA (47/140 vs kvvl)
+Zip `zips/e1foco-t10plan-v9c.zip` sha256 `fda7417ee470e59bf5073682f9b59700322a05628bdcdab8481d1f186cbd6c71` (src/ como v9 + cambios abajo), diff `src/t10plan-v9c_vs_v9.diff` (297 líneas).
+Mismo `P_V9` (params.h); nada corre antes de r30; una línea por disparo (`[v9-plan]`, `[v9-pick]` (≤40 por partida), `[v9-wake]`, `[v9-slack]`, `[v9-fight]`, `[v9-retreat]`).
+
+**Cambios sobre v9** (main.cpp, v9.h, params.h):
+1. Sin esperas: se eliminan `v9-wake-wait`, `v9-wait` (líder), `v9-hold` (adelantado) y `v9-follow`. Líder y seguidores caminan cada uno al grupo compartido; el líder (y cualquier miembro) golpea al llegar: needed = 1 si el daño recibido con el dps combinado es asumible, si no nsq+1 (too-strong).
+2. Holgura del seguidor (`P_V9_SLACK 25`, `P_V9_SLACK_R 10`): a >25 del grupo del líder toma el grupo vivo con gemas más cercano a ≤10 que no alargue el camino más de 10, publica la reclamación (`[v9-slack]`, 2.4/partida) y vuelve.
+3. Objetivo del líder: valor = gemas + oro/5.4; dps combinado = miembros vivos (no recall, fuera del spawn) a ≤10 del líder (`P_V9_DPS_R`); sin término de rezago. Volcado `[v9-pick]` con el mejor grupo de 40+ a ≤15.
+4. Pelea: entra solo con n > m, o n == m y suma de vida (miembros a ≤6 con ≥40%) > la de los rivales a ≤6; si no, sigue el juego v4o2 (veredicto) y solo huye (`v9-retreat`) con rival a ≤3 o vida <40%.
+5. Reparto: con menos de 6 grupos de valor ≥40 (`P_V9_BIGMAPS`) solo la pareja de Vesper (+ el vivo más cercano, con histéresis); los otros tres farmean solos como v4o2. Con 6+ el 2+3 / 2+2+1 de v9.
+
+**Comprobación local** (70 mapas x 2 lados vs kvvl; an/v9an.py; base de divergencia dec/v4o2k):
+
+| | v4o2 | v9 | **v9c (zip)** | v9d (= v9c sin término de daño en rondas, dps de miembros a ≤20 o no vistos) |
+|---|---|---|---|---|
+| victorias vs kvvl | 72 | 32 | **47** | 33 |
+| aliado a ≤4 fuera del spawn r50-600 | 44.5% | 48.8% | 42.5% | — |
+| muertes r151-600 (con 3+ rivales a ≤6) | 3.74 (1.04) | 2.81 (0.48) | 2.89 (0.63) | — |
+| rondas-campeón muerto r151-600 | 226 | 170 | 175 | — |
+| capturas hasta r600 | 27.1 | 23.2 | 25.8 | — |
+| capturas de grupos de 40+ | 1.50 | 1.08 | 1.31 | — |
+| gemas de captura hasta r600 | 328 | 268 | 319 | — |
+| gemas entregadas r300 / r600 | 114 / 277 | 92 / 224 | 111 / 247 | — |
+| líneas por partida fight / retreat / wake / pick / slack | — | 110 / 63 / 70 | 60 / 44 / 64 / 23 / 2.4 | — |
+| % de líneas de estado de miembros de escuadra: fight-camp / approach / tribute / dead / capture / wait / v9-retreat | — | — | 23.5 / 23.2 / 10.9 / 8.6 / 5.5 / 3.6 / 3.5 | — |
+
+- Divergencia antes de r30 frente a v4o2: **5 de 140** (límite 3): gato_gemcombat5_a r4, starvation_a r4, stalactites_b r25 (las de v9) + gemfight_a r2 y gemfight_b r2 (nuevas: el movimiento de apertura cambia en r2; nada de v9c corre antes de r30, así que es combustible/tamaño de código como en gato/starvation). Mediana de la primera divergencia: r35.
+- Combustible: 0 marcadores low-fuel / fuel-wait (base 0).
+- `[v9-pick]` (volcado de decisión): el grupo de 40+ a ≤15 NO gana la puntuación con 2 cuerpos: ej. ambush r41 pick=8 (gd 28, 0.36) frente a big=11 (gd 10, 0.30, rounds=257, sdps=50); anvil r69 pick=9 (1.03) frente a big=10 (0.61, rounds=418, sdps=109). Con dps real (50-65 por cuerpo) un 2-elk (4800 hp) son 40-50 rondas de limpieza más el daño recibido (×ciclo): nunca 15-25. v9d quitó el término de daño y contó a todos los miembros vivos: los grandes ganan la puntuación, pero 33 victorias (el equipo se desangra en ellos, como v9b).

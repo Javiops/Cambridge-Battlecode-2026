@@ -1,0 +1,297 @@
+diff -ru --strip-trailing-cr v9/src/main.cpp v9c/src/main.cpp
+--- v9/src/main.cpp	2026-10-28 11:59:47.834487731 +0000
++++ v9c/src/main.cpp	2026-10-28 12:34:26.829415646 +0000
+@@ -2607,7 +2607,24 @@
+                 if (s.groups[s.target].mask.is_set(c.spawn_position()) && attempt([&] { return c.health() > 0 && c.health() < c.max_health(); })) damaged = true;
+             if (damaged) return s.target;
+         }
+-        if (lg >= 0 && s.groups[lg].next_ok <= round && s.groups[lg].bad_until <= round) { s.target_gd = gds_cheb(s, pos, lg); return lg; }
++        if (lg >= 0 && s.groups[lg].next_ok <= round && s.groups[lg].bad_until <= round) {
++            const int dl = gds_cheb(s, pos, lg);
++            if (dl > P_V9_SLACK) {  // v9c slack: far from the leader's group, take a live group of value within P_V9_SLACK_R on the way
++                int bi = -1, bd = 1 << 30;
++                for (int i = 0; i < static_cast<int>(s.groups.size()); ++i) {
++                    const Group& g = s.groups[i];
++                    if (i == lg || g.next_ok > round || g.bad_until > round || g.monolith || g.jackpot || g.gems <= 0) continue;
++                    const int d = dist(pos, g.center);
++                    if (d > P_V9_SLACK_R || count_claimers(s, sm, i) > 0 || d + dist(g.center, s.groups[lg].center) > dl + P_V9_SLACK_R) continue;
++                    if (d < bd) { bd = d; bi = i; }
++                }
++                if (bi >= 0) {
++                    if (bi != s.target) { ++v9::g_slack; std::printf("[v9-slack] r=%d who=%s grp=%d d=%d lead_grp=%d dl=%d\n", round, s.name.c_str(), bi, bd, lg, dl); }
++                    s.target_gd = bd; return bi;
++                }
++            }
++            s.target_gd = dl; return lg;
++        }
+         int bi = -1, bd = 1 << 30;
+         for (int i = 0; i < static_cast<int>(s.groups.size()); ++i) {
+             const Group& g = s.groups[i];
+@@ -2766,16 +2783,10 @@
+     if (v9::leader()) {
+         const int other = v9::g_other_leader >= 0 ? v9::g_al[v9::g_other_leader].claim : -1;
+         const int nsq = std::max(1, v9::g_nsq);
+-        const double sdps = std::max(10.0, static_cast<double>(v9::squad_dps_sum()));
+-        int lag = 0;
+-        for (int q = 0; q < v9::g_nsq; ++q) {
+-            const int k = v9::g_squad[q];
+-            const v9::Ally& a = v9::g_al[k];
+-            if (k == s.ally_idx || !a.seen || a.recalling || a.home) continue;
+-            lag = std::max(lag, dist(a.p, pos));
+-        }
+-        lag = std::min(lag, 12);
++        const double sdps = std::max(10.0, static_cast<double>(v9::squad_dps_near(pos, P_V9_DPS_R, s.ally_idx)));  // v9c: members within 10 of me
++        const int lag = 0;
+         int vb = -1, vgd = 0; double vs = 0;
++        int bb = -1, bgd = 0; double bs = 0, br = 0;  // best 40+ group within 15 (decision dump)
+         for (int i = 0; i < static_cast<int>(s.groups.size()); ++i) {
+             const Group& g = s.groups[i];
+             if (g.bad_until > round || i == other) continue;
+@@ -2798,7 +2809,7 @@
+             const double cycle = gc[i].cycle;
+             double rounds = std::max(gd + lag, wait) + t_clear + 6.0 + (incoming / mhp) * cycle;
+             if (incoming > mhp * 0.7) rounds += cycle;  // it costs a recall in the middle
+-            double value = g.gems + gold_w * g.gold;
++            double value = g.gems + g.gold / 5.4;  // v9c: gems-equivalent
+             double score = value / std::max(1.0, rounds);
+             int riv = 0;
+             if (s.seen_r >= round - 1) for (auto& o : s.seen) if (dist(o.p, g.center) <= 8) ++riv;
+@@ -2809,8 +2820,12 @@
+             if (v9::g_last_cap >= 0 && i != v9::g_last_cap && v9::g_last_cap < static_cast<int>(s.groups.size()) && dist(g.center, s.groups[v9::g_last_cap].center) <= P_V9_ROT) score *= 1.5;
+             if (i == s.target) score *= P_STICK / 100.0;
+             if (score > vs) { vs = score; vb = i; vgd = gd; }
++            if (value >= 40 && gd <= 15 && score > bs) { bs = score; bb = i; bgd = gd; br = rounds; }
++        }
++        if (vb >= 0 && vb != s.target) {
++            ++v9::g_picks;
++            if (bb >= 0 && v9::g_pickdump < 40) { ++v9::g_pickdump; std::printf("[v9-pick] r=%d who=%s pick=%d gd=%d score=%.2f big=%d gd=%d score=%.2f rounds=%.0f sdps=%.0f nsq=%d\n", round, s.name.c_str(), vb, vgd, vs, bb, bgd, bs, br, sdps, nsq); }
+         }
+-        if (vb >= 0 && vb != s.target) ++v9::g_picks;
+         s.target_gd = vb >= 0 ? vgd : 0;
+         return vb;
+     }
+@@ -3874,28 +3889,12 @@
+         int needed = squad_needed(rem, str, dps, afford);
+         int here = 1 + allies_near(s, me, g.center, 7);
+         int coming = 1 + count_claimers(s, read_sm(), s.target);
+-        if (v9::active()) {  // t10plan-v9: priced for the squad: needed = what the squad's combined damage needs, at most the squad
+-            const double sd = std::max(10.0, static_cast<double>(v9::squad_dps_sum()));
++        if (v9::active()) {  // v9c: priced for the squad (combined dps within P_V9_DPS_R of me); affordable -> hit on arrival, no wait
++            const double sd = std::max(10.0, static_cast<double>(v9::squad_dps_near(pos, P_V9_DPS_R, s.ally_idx)));
+             const int nsq = std::max(1, v9::g_nsq);
+             const double tc = rem / sd, inc = str * tc * (P_INC_PCT / 100.0) / nsq;
+-            needed = inc <= std::max(afford, mhp * 0.7) ? std::min(nsq, std::max(1, squad_needed(rem, str, dps, afford))) : nsq + 1;
+-            if (!engaged && needed <= nsq) {  // camp wake: everybody counted within P_V9_WAKE of the group, up to P_V9_WAKEWAIT rounds
+-                if (v9::g_wake_t != s.target) { v9::g_wake_t = s.target; v9::g_wake_n = 0; }
+-                const int exp_n = v9::near(g.center, 10, s.ally_idx, true), here4 = v9::near(g.center, P_V9_WAKE, s.ally_idx, true);
+-                if (here4 < exp_n && v9::g_wake_n < P_V9_WAKEWAIT && s.foe_r != round) {
+-                    ++v9::g_wake_n;
+-                    g_farm = "v9-wake-wait";
+-                    bc::bitboard r5, r4;
+-                    for (auto* c : live) {
+-                        const int ar = camp_range(*c);
+-                        r5.draw_chebyshev(c->position(), static_cast<float>(ar + 2));
+-                        r4.draw_chebyshev(c->position(), static_cast<float>(ar + 1));
+-                    }
+-                    if (!(r5 & ~r4).is_set(pos)) step_towards(s, me, r5 & ~r4, true);
+-                    return;
+-                }
+-                if (v9::g_wake_done != s.target) { v9::g_wake_done = s.target; ++v9::g_wakes; std::printf("[v9-wake] r=%d who=%s grp=%d here=%d/%d waited=%d gems=%d\n", round, s.name.c_str(), s.target, here4, exp_n, v9::g_wake_n, g.gems); }
+-            }
++            needed = inc <= std::max(afford, mhp * 0.7) ? 1 : nsq + 1;
++            if (!engaged && needed <= nsq && v9::g_wake_done != s.target) { v9::g_wake_done = s.target; ++v9::g_wakes; std::printf("[v9-wake] r=%d who=%s grp=%d near=%d sdps=%.0f gems=%d\n", round, s.name.c_str(), s.target, v9::near(g.center, P_V9_DPS_R, s.ally_idx, true), sd, g.gems); }
+         }
+         const bool mono_go = (s.mono_only && g.monolith) || (g.jackpot && round >= P_JACKGO);
+         if (mono_go) needed = std::min(needed, std::max(1, std::min(g.monolith ? s.roster : P_JACKN, s.roster)));
+@@ -4840,7 +4839,16 @@
+             const v9::Ally& a = v9::g_al[k];
+             if (a.alive && a.seen && !a.recalling && a.hpr >= 0.4 && dist(a.p, pos) <= 6) ++n;
+         }
+-        if (m > 0 && (n < m || hpr < 0.4f)) {
++        double hs_ours = hpr >= 0.4f ? hp : 0, hs_theirs = 0;
++        for (int q = 0; q < v9::g_nsq; ++q) {
++            const int k = v9::g_squad[q];
++            if (k == s.ally_idx) continue;
++            const v9::Ally& a = v9::g_al[k];
++            if (a.alive && a.seen && !a.recalling && a.hpr >= 0.4 && dist(a.p, pos) <= 6) hs_ours += a.hp;
++        }
++        for (auto& f : foes) if (f.d <= 6 && !s.en_spawn.is_set(f.p)) hs_theirs += f.hp;
++        const bool win = n > m || (n == m && hs_ours > hs_theirs);  // v9c: enter only with more bodies, or equal bodies and more health
++        if (m > 0 && !win && (nearest_foe <= 3 || hpr < 0.4f)) {
+             if (v9::g_fstate != 2) { v9::g_fstate = 2; ++v9::g_retreats; std::printf("[v9-retreat] r=%d who=%s n=%d m=%d hp=%d\n", round, s.name.c_str(), n, m, static_cast<int>(hpr * 100)); }
+             g_mode = "v9-retreat";
+             const bool hit = fight::hit_now(s, me, foes);
+@@ -4848,7 +4856,7 @@
+             else if (!hit) shoot_back(s, me, foes);
+             return;
+         }
+-        if (m > 0) {
++        if (m > 0 && win) {
+             v9_fight = true;
+             if (v9::g_fstate != 1) { v9::g_fstate = 1; ++v9::g_fights; std::printf("[v9-fight] r=%d who=%s n=%d m=%d\n", round, s.name.c_str(), n, m); }
+         }
+@@ -5429,60 +5437,7 @@
+         }
+     }
+ 
+-    // t10plan-v9 synchronised walking. Follower: walk to the leader (seen: its tile; unseen: its claimed group) until within
+-    // P_V9_FOLLOW, and never more than P_V9_AHEAD tiles nearer the target than the leader. Leader: with a member more than
+-    // P_V9_LAG behind (farther from the target), hold for at most P_V9_LAGWAIT rounds per target. Neither while a camp is
+-    // awake next to us, a rival is in sight, or we stand on the spawn.
+-    if (v9::active() && !on_spawn && foes.empty() && me.can_move() && fuel_ok(10000)) {
+-        const bool have_t = s.target >= 0 && s.target < static_cast<int>(s.groups.size());
+-        const vec2 tc = have_t ? s.groups[s.target].center : pos;
+-        const bool clearing = have_t && s.groups[s.target].next_ok <= round && dist(pos, tc) <= 3;
+-        if (v9::follower()) {
+-            const v9::Ally& L = v9::lead_ally();
+-            const bool l_out = L.alive && !L.recalling && !L.home;
+-            const bool at_group = have_t && dist(pos, tc) <= 6;
+-            if (l_out && L.seen && !clearing && !at_group && !(awake_camp_near && dist(L.p, pos) <= 6)) {
+-                const int dl = dist(L.p, pos);
+-                const bool ahead = have_t && L.seen && dist(pos, tc) + P_V9_AHEAD < dist(L.p, tc) && dist(pos, tc) > 1;
+-                if (dl > P_V9_FOLLOW) {
+-                    bc::bitboard ring;
+-                    ring.draw_chebyshev(L.p, 2.0f);
+-                    ring &= ~s.en_spawn;
+-                    if (step_towards(s, me, ring, false)) {
+-                        g_mode = "v9-follow";
+-                        if (tgt && me.can_attack()) basic_attack(s, me, tgt->c, tgt->p);
+-                        return;
+-                    }
+-                } else if (ahead) {
+-                    if (v9::g_ahead_t != s.target) { v9::g_ahead_t = s.target; v9::g_ahead_n = 0; }
+-                    if (v9::g_ahead_n < P_V9_LAGWAIT) {
+-                        if (v9::g_ahead_n == 0) { ++v9::g_waits; std::printf("[v9-wait] r=%d who=%s ahead=1 d=%d\n", round, s.name.c_str(), dl); }
+-                        ++v9::g_ahead_n;
+-                        g_mode = "v9-hold";
+-                        if (tgt && me.can_attack()) basic_attack(s, me, tgt->c, tgt->p);
+-                        return;
+-                    }
+-                }
+-            }
+-        } else if (v9::leader() && have_t && !clearing && !awake_camp_near) {
+-            int behind = 0, bk = -1;
+-            for (int q = 0; q < v9::g_nsq; ++q) {
+-                const int k = v9::g_squad[q];
+-                const v9::Ally& a = v9::g_al[k];
+-                if (k == s.ally_idx || !a.alive || a.recalling || a.home || !a.seen) continue;
+-                const int d = dist(a.p, pos);
+-                if (d > P_V9_LAG && dist(a.p, tc) > dist(pos, tc) && d > behind) { behind = d; bk = k; }
+-            }
+-            if (v9::g_wait_t != s.target) { v9::g_wait_t = s.target; v9::g_wait_n = 0; }
+-            if (bk >= 0 && v9::g_wait_n < P_V9_LAGWAIT) {
+-                if (v9::g_wait_n == 0) { ++v9::g_waits; std::printf("[v9-wait] r=%d who=%s for=%d d=%d\n", round, s.name.c_str(), bk, behind); }
+-                ++v9::g_wait_n;
+-                g_mode = "v9-wait";
+-                if (tgt && me.can_attack()) basic_attack(s, me, tgt->c, tgt->p);
+-                return;
+-            }
+-        }
+-    }
++    // v9c: no synchronised walking: leader and followers path to the shared group independently.
+     // t10plan-v3i positional link (coordinator 01:28): an escort alive off spawn walks to its carry (seen: its tile; unseen:
+     // its claimed group's centre) until within P_T10_FOLLOW, then farms the carry's group as chosen by choose_target.
+     if (P_T10_FOLLOW && t10_act() && g_esc_k >= 0 && !on_spawn && foes.empty() && me.can_move() && fuel_ok(10000)) {
+@@ -5627,7 +5582,7 @@
+         o.s(" tpc="); o.i(g_tpc_buys); o.s("/"); o.i(g_tpc_uses); o.s(" wd="); o.i(g_wd_drops); o.s(" unreach="); o.i(g_cap_unreach);
+         o.s(" holdto="); o.i(g_hold_to); o.s(" gskip="); o.i(g_guard_skip); o.s(" trip="); o.i(g_trip_keep); o.s(" isle="); o.i(g_isle);
+         o.s(" bcf="); o.i(g_bcf); o.s(" foco="); o.i(g_foco_w); o.s("/"); o.i(g_foco_use); o.s(" shot="); o.i(g_shot); o.s("/"); o.i(g_shot_f); o.s(" cut="); o.i(g_cut); o.s(" rc="); o.i(g_rc_big); o.s("/"); o.i(g_rc_tiny); if (g_esc_k >= 0 || g_v4pub > 0) { o.s(" pl="); o.i(g_pl_on); o.s("/"); o.i(g_pl_off); o.s(" dep="); o.i(g_dep_wait); o.s(" rtog="); o.i(g_rtog); o.s(" eh="); o.i(g_eh); o.s(" fol="); o.i(g_fol); o.s(" v4="); o.i(g_v4pub); o.s("/"); o.i(g_v4f); o.s("/"); o.i(g_v4n); o.s("/"); o.i(g_v4k); o.s(" ball="); o.i(g_ball); o.s(" bw="); o.i(g_bw); o.s(" ef="); o.i(g_ef_rec); o.s("/"); o.i(g_ef_vis); o.s("/"); o.i(g_ef_grp); o.s("/"); o.i(g_ef_n); }
+-        if (P_V9) { o.s(" v9="); o.i(v9::g_role); o.s("/"); o.i(v9::g_leader); o.s("/"); o.i(v9::g_nsq); o.s(" pk="); o.i(v9::g_picks); o.s(" wt="); o.i(v9::g_waits); o.s(" wk="); o.i(v9::g_wakes); o.s(" fi="); o.i(v9::g_fights); o.s(" rt="); o.i(v9::g_retreats); }
++        if (P_V9) { o.s(" v9="); o.i(v9::g_role); o.s("/"); o.i(v9::g_leader); o.s("/"); o.i(v9::g_nsq); o.s(" pk="); o.i(v9::g_picks); o.s(" wt="); o.i(v9::g_waits); o.s(" wk="); o.i(v9::g_wakes); o.s(" fi="); o.i(v9::g_fights); o.s(" rt="); o.i(v9::g_retreats); o.s(" sl="); o.i(v9::g_slack); }
+         o.end();
+         return true;
+     });
+diff -ru --strip-trailing-cr v9/src/params.h v9c/src/params.h
+--- v9/src/params.h	2026-10-28 11:59:47.835644897 +0000
++++ v9c/src/params.h	2026-10-28 12:34:26.825440079 +0000
+@@ -512,3 +512,7 @@
+ #define P_V9_WAKEWAIT 8 // for at most this many rounds per target
+ #define P_V9_ROT 12      // rotation: the next group within this of the one just captured scores x1.5
+ #define P_V9_THREAT 30   // score % of a group with more rivals seen within 8 than squad members
++#define P_V9_BIGMAPS 6   // v9c: fewer groups of value 40+ than this -> only the Vesper pair (2+1+1+1)
++#define P_V9_SLACK 25    // v9c: a follower farther than this from the leader's group takes a group within P_V9_SLACK_R on the way
++#define P_V9_SLACK_R 10
++#define P_V9_DPS_R 10    // v9c: squad dps = members within this of the leader
+diff -ru --strip-trailing-cr v9/src/v9.h v9c/src/v9.h
+--- v9/src/v9.h	2026-10-28 11:51:57.646109522 +0000
++++ v9c/src/v9.h	2026-10-28 12:34:26.824780295 +0000
+@@ -9,6 +9,7 @@
+     bool alive = false, seen = false, recalling = false, home = false;
+     vec2 p{0, 0};      // seen: its tile; unseen: its claimed group's centre, else our spawn centre
+     double hpr = 1.0;  // health fraction (unseen: 1)
++    double hp = 0;     // absolute health (seen)
+     int claim = -1;    // claimed group (-1 none)
+     double dps = 60;
+ };
+@@ -30,6 +31,8 @@
+ inline int g_fstate = 0;                                    // 0 none, 1 fighting, 2 retreating (episode lines)
+ inline int g_last_cap = -1;                                 // group captured last (rotation bonus)
+ inline int g_ahead_t = -1, g_ahead_n = 0;
++inline int g_big = -1;          // groups of value >= 40 (gems + gold/5.4) on the map (-1 unknown)
++inline int g_slack = 0, g_pickdump = 0;
+ 
+ inline bool on(int round) { return P_V9 && round >= P_V9_FROM; }
+ inline bool is_lead_name(const std::string& n) { return starts_with(n, "vesper") || starts_with(n, "marcella"); }
+@@ -58,6 +61,7 @@
+         if (k == s.ally_idx) {
+             a.alive = true; a.seen = true; a.p = me.position();
+             a.hpr = me.health() / std::max(1.0, static_cast<double>(me.max_health()));
++            a.hp = me.health();
+             a.home = s.my_spawn.is_set(a.p);
+             a.dps = my_dps(s, me);
+             continue;
+@@ -70,12 +74,35 @@
+             a.seen = true; a.p = ap;
+             a.home = s.my_spawn.is_set(ap);
+             a.hpr = allies[k].health() / std::max(1.0, static_cast<double>(allies[k].max_health()));
++            a.hp = allies[k].health();
+             double str = 60, foc = 0;
+             try { str = allies[k].strength(); foc = allies[k].focus(); } catch (...) {}
+             a.dps = std::max(10.0, str + foc * 1.5 / 8.0);
+         } catch (...) {
+         }
+     }
++    if (g_big < 0) { g_big = 0; for (auto& g : s.groups) if (g.gems + g.gold / 5.4 >= 40) ++g_big; }
++    // v9c: on maps with fewer than P_V9_BIGMAPS groups of value 40+, only the Vesper pair (2+1+1+1); the rest farm solo as v4o2
++    if (g_big < P_V9_BIGMAPS) {
++        int Lv = -1;
++        for (int k = 0; k < g_nal; ++k) if (lead_name[k] == 1 && g_al[k].alive && starts_with(norm(bc::to_string(allies[k].champion_name())), "vesper")) Lv = k;
++        if (Lv < 0) { double bh = -1; for (int k = 0; k < g_nal; ++k) if (g_al[k].alive && g_al[k].hpr > bh) { bh = g_al[k].hpr; Lv = k; } }
++        if (Lv < 0) return;
++        int mk = -1, md = 1 << 30;
++        if (g_mem_init && g_mem_of[Lv] >= 0 && g_al[g_mem_of[Lv]].alive && g_mem_of[Lv] != Lv) mk = g_mem_of[Lv];  // hysteresis: keep the partner while alive
++        else for (int k = 0; k < g_nal; ++k) { if (!g_al[k].alive || k == Lv) continue; const int d = dist(g_al[k].p, g_al[Lv].p); if (d < md) { md = d; mk = k; } }
++        for (int k = 0; k < 8; ++k) g_mem_of[k] = -1;
++        if (mk < 0) return;
++        g_mem_of[Lv] = mk;  // partner stored on the leader's slot (hysteresis)
++        const int me_k = s.ally_idx;
++        if (me_k == Lv) { g_role = 1; g_leader = Lv; }
++        else if (me_k == mk) { g_role = 2; g_leader = Lv; }
++        else return;
++        g_squad[g_nsq++] = Lv; g_squad[g_nsq++] = mk;
++        ++g_plans;
++        if (g_plans == 1 || round % 100 == 0) std::printf("[v9-plan] r=%d who=%s pair=%d:%d big=%d role=%d\n", round, s.name.c_str(), Lv, mk, g_big, g_role);
++        return;
++    }
+     // leaders: Vesper and Marcella when alive; a missing one is replaced by the highest-hp alive non-leader
+     int L[2] = {-1, -1};
+     int nl = 0;
+@@ -143,6 +170,18 @@
+     for (int i = 0; i < g_nsq; ++i) d += g_al[g_squad[i]].dps;
+     return static_cast<int>(d);
+ }
++// v9c: combined dps of the alive squad members (not recalling, off the spawn) within r of a tile (me always counted)
++inline int squad_dps_near(vec2 at, int r, int me_k) {
++    double d = 0;
++    for (int i = 0; i < g_nsq; ++i) {
++        const int k = g_squad[i];
++        const Ally& a = g_al[k];
++        if (k == me_k) { d += a.dps; continue; }
++        if (!a.alive || a.recalling || a.home || !a.seen) continue;
++        if (dist(a.p, at) <= r) d += a.dps;
++    }
++    return static_cast<int>(d);
++}
+ // squad members (alive, not recalling, off the spawn) within r of a tile, me included when I am
+ inline int near(vec2 at, int r, int me_k, bool count_me) {
+     int n = 0;

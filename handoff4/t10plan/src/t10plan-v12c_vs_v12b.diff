@@ -1,0 +1,10 @@
+diff -ru bots/v12b/src/params.h bots/v12c/src/params.h
+--- bots/v12b/src/params.h	2026-10-28 20:58:24.658517583 +0000
++++ bots/v12c/src/params.h	2026-10-28 21:08:23.772056553 +0000
+@@ -533,5 +533,5 @@
+ // one waiter per reward (the others lock the next group within P_V12_NEXT at once). P_V12 0: v11g play.
+ #define P_V12 1
+ #define P_V12_SYNC_D 2    // a member has arrived when within camp range + this of a live camp of the target
+-#define P_V12_SYNC_WAIT 6 // rounds the block waits for the rest from the first arrival
++#define P_V12_SYNC_WAIT 12// rounds the block waits for the rest from the first arrival
+ #define P_V12_NEXT 16     // the non-waiting members lock the next live group within this of the captured one      // rival-side groups of this value are contested before r300 with a full block and no rival pack

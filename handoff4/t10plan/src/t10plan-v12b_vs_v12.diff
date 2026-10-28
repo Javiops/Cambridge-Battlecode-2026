@@ -1,0 +1,14 @@
+diff -ru bots/v12/src/main.cpp bots/v12b/src/main.cpp
+--- bots/v12/src/main.cpp	2026-10-28 20:47:54.466521699 +0000
++++ bots/v12b/src/main.cpp	2026-10-28 20:58:24.694391054 +0000
+@@ -4023,8 +4023,9 @@
+                     const int k = v9::g_squad[q];
+                     const v9::Ally& a = v9::g_al[k];
+                     if (!a.alive || a.recalling || a.home) continue;
+-                    if (k != s.ally_idx && (!a.seen || a.claim != s.target)) continue;
++                    if (k != s.ally_idx && a.claim != s.target) continue;
+                     ++sync_want;
++                    if (k != s.ally_idx && !a.seen) continue;  // v12b: an unseen member claiming this group is wanted and has not arrived
+                     int d = 1 << 30;
+                     for (auto* c : live) d = std::min(d, dist(a.p, c->position()));
+                     if (d <= ar + P_V12_SYNC_D) ++sync_arr;

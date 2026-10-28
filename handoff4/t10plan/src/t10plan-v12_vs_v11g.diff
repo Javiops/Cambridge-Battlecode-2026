@@ -1,0 +1,144 @@
+diff -ru bots/v11g/src/main.cpp bots/v12/src/main.cpp
+--- bots/v11g/src/main.cpp	2026-10-28 20:13:07.004645030 +0000
++++ bots/v12/src/main.cpp	2026-10-28 20:47:54.466521699 +0000
+@@ -2597,6 +2597,20 @@
+         });
+     // t10plan-v9 follower: the target is the leader's claimed group (finishing a live group within 3 first); while the
+     // leader's group respawns or is unknown, the nearest live unclaimed group within 8 of the leader; none -> no target.
++    if (P_V12 && v9::active()) {  // v12: the waiter keeps the reward group until captured; a follower keeps its locked next group
++        if (v9::g_v12_wait >= 0) {
++            const Group& g = v9::g_v12_wait < static_cast<int>(s.groups.size()) ? s.groups[v9::g_v12_wait] : s.groups[0];
++            if (v9::g_v12_wait < static_cast<int>(s.groups.size()) && g.next_ok <= round && g.bad_until <= round && g.gems + g.gold > 0 && g.reward_seen >= 0 && round - g.reward_seen <= 3) { s.target_gd = dist(pos, g.center); return v9::g_v12_wait; }
++            v9::g_v12_wait = -1;
++        }
++        if (v9::g_v12_next >= 0) {
++            const int n = v9::g_v12_next;
++            if (n < static_cast<int>(s.groups.size()) && s.groups[n].next_ok <= round && s.groups[n].bad_until <= round && s.groups[n].gems + s.groups[n].gold > 0) {
++                if (v9::follower() && v9::lead_ally().claim != n) { s.target_gd = gds_cheb(s, pos, n); return n; }
++            }
++            v9::g_v12_next = -1;
++        }
++    }
+     if (v9::follower()) {
+         const v9::Ally& L = v9::lead_ally();
+         const int lg = L.claim;
+@@ -2834,6 +2848,21 @@
+                 if (v9::g_pickdump < 40) { ++v9::g_pickdump; std::printf("[v11-unlock] r=%d who=%s grp=%d riv=%d next_ok=%d bad=%d\n", round, s.name.c_str(), s.target, riv, g.next_ok - round, g.bad_until - round); }
+             }
+             int best = -1, bd = 1 << 30; double bv = 0;
++            if (P_V12) {  // v12: the leader (back from a reward) adopts the live group the other members already locked
++                int ck = -1, cd = 1 << 30;
++                for (int q = 0; q < v9::g_nsq; ++q) {
++                    const int k = v9::g_squad[q];
++                    const v9::Ally& a = v9::g_al[k];
++                    if (k == s.ally_idx || !a.alive || a.recalling || a.claim < 0 || a.claim >= static_cast<int>(s.groups.size())) continue;
++                    const Group& g = s.groups[a.claim];
++                    if (g.bad_until > round || g.next_ok > round || gds[a.claim] < 0 || g.monolith || g.jackpot || g.gems + g.gold <= 0) continue;
++                    if (gds[a.claim] < cd) { cd = gds[a.claim]; ck = a.claim; }
++                }
++                if (ck >= 0) {
++                    if (ck != s.target) { ++v9::g_picks; if (v9::g_pickdump < 40) { ++v9::g_pickdump; std::printf("[v11-pick] r=%d who=%s adopt=%d d=%d\n", round, s.name.c_str(), ck, cd); } }
++                    s.target_gd = cd; return ck;
++                }
++            }
+             int fb = -1, fbd = 0; double fr = 1e9, fv = 0;  // v11e: best-ratio gated group (fallback: never idle the block)
+             const double sd_all = std::max(10.0, v9::block_dps_all(s.ally_idx));
+             const double hs_all = std::max(1.0, v9::block_hp_all(s.ally_idx, static_cast<double>(me.health())));
+@@ -3987,6 +4016,23 @@
+             const int need = std::min(P_V11_RALLY_N, nblk);
+             if (dc <= ar + 3 && v9::g_rally_r0 < 0) { v9::g_rally_r0 = round; ++v9::g_rallies; std::printf("[v11-rally] r=%d who=%s grp=%d near3=%d need=%d nblk=%d since_pick=%d\n", round, s.name.c_str(), s.target, nh, need, nblk, round - v9::g_pick_r); }
+             bool go = nh >= need || round - v9::g_pick_r >= P_V11_RALLY;
++            int sync_want = 0, sync_arr = 0;
++            if (P_V12) {  // v12: synchronized engage: nobody hits until every (seen) member whose claim is this group is at the ring, capped at P_V12_SYNC_WAIT from the first arrival
++                if (v9::g_sync_t != s.target) { v9::g_sync_t = s.target; v9::g_sync_r0 = -1; v9::g_sync_logged = false; }
++                for (int q = 0; q < v9::g_nsq; ++q) {
++                    const int k = v9::g_squad[q];
++                    const v9::Ally& a = v9::g_al[k];
++                    if (!a.alive || a.recalling || a.home) continue;
++                    if (k != s.ally_idx && (!a.seen || a.claim != s.target)) continue;
++                    ++sync_want;
++                    int d = 1 << 30;
++                    for (auto* c : live) d = std::min(d, dist(a.p, c->position()));
++                    if (d <= ar + P_V12_SYNC_D) ++sync_arr;
++                }
++                if (sync_arr > 0 && v9::g_sync_r0 < 0) v9::g_sync_r0 = round;
++                go = v9::g_sync_r0 >= 0 && (sync_arr >= sync_want || round - v9::g_sync_r0 >= P_V12_SYNC_WAIT);
++                if (go && !v9::g_sync_logged) { v9::g_sync_logged = true; ++v9::g_syncs; std::printf("[v12-sync] r=%d ch=%s grp=%d wait=%d n=%d/%d\n", round, s.name.c_str(), s.target, round - v9::g_sync_r0, sync_arr, sync_want); }
++            }
+             if (v9::g_go_t == s.target) go = true;  // v11f: the rally condition met once for this target stays met (no ring hold while monsters live)
+             if (engaged) {  // v11c: a damaged camp does not let one champion solo it: alone (no ally within 4) for P_V11_SOLO rounds -> rally, unless the camp is nearly dead
+                 const bool alone = v9::near(pos, 4, s.ally_idx, false) == 0 && dc <= ar + 1;
+@@ -4160,7 +4206,7 @@
+                     return true;
+                 });
+             }
+-            if (local) { if (local != tgt) ++s.cf_reach; tgt = local; }
++            if (local && !(P_V12 && v11_go)) { if (local != tgt) ++s.cf_reach; tgt = local; }  // v12: the block hits the same (lowest) monster
+         }
+         s.cf_recent_camp = round;
+ #if P_E4
+@@ -4198,6 +4244,7 @@
+                 if (d < bd || (d == bd && k < bk)) { bd = d; bk = k; }
+             }
+             if (bk == s.ally_idx || bk < 0) {
++                if (P_V12) v9::g_v12_wait = s.target;
+                 if (g.mask.is_set(pos)) { v11_idle(s, round, pos, "capture-hold"); return; }
+                 v11_idle(s, round, pos, "capture-reward");
+                 step_towards(s, me, g.mask, true);
+@@ -4209,10 +4256,17 @@
+                 const Group& o = s.groups[i];
+                 if (i == s.target || o.next_ok > round || o.bad_until > round || o.monolith || o.jackpot || o.gems + o.gold <= 0) continue;
+                 const int d = dist(o.center, g.center);
+-                if (d > 10) continue;
+-                const int dm = dist(pos, o.center);
++                if (d > (P_V12 ? P_V12_NEXT : 10)) continue;
++                const int dm = P_V12 ? d : dist(pos, o.center);  // v12: the same next group for every member (nearest to the captured one)
+                 if (dm < nd) { nd = dm; ni = i; }
+             }
++            if (P_V12) v9::g_v12_wait = -1;
++            if (P_V12 && ni >= 0) {  // v12: lock the next group now (the waiter rejoins after the capture)
++                ++v9::g_nexts; std::printf("[v12-next] r=%d ch=%s grp=%d prev=%d d=%d\n", round, s.name.c_str(), ni, s.target, nd);
++                v9::g_v12_next = ni; s.target = ni; s.target_round = round; s.cap_start = -1; write_claim(s, ni);
++                if (nd > 2) step_towards(s, me, s.groups[ni].mask, false);
++                return;
++            }
+             if (ni >= 0 && nd > 2) { step_towards(s, me, s.groups[ni].mask, false); return; }
+             v11_idle(s, round, pos, "capture-wait");
+             if (g.mask.is_set(pos) && bk >= 0 && v9::g_al[bk].p != pos) {  // off the tiles: two bodies on them would split the reward
+@@ -5810,7 +5864,7 @@
+         o.s(" tpc="); o.i(g_tpc_buys); o.s("/"); o.i(g_tpc_uses); o.s(" wd="); o.i(g_wd_drops); o.s(" unreach="); o.i(g_cap_unreach);
+         o.s(" holdto="); o.i(g_hold_to); o.s(" gskip="); o.i(g_guard_skip); o.s(" trip="); o.i(g_trip_keep); o.s(" isle="); o.i(g_isle);
+         o.s(" bcf="); o.i(g_bcf); o.s(" foco="); o.i(g_foco_w); o.s("/"); o.i(g_foco_use); o.s(" shot="); o.i(g_shot); o.s("/"); o.i(g_shot_f); o.s(" cut="); o.i(g_cut); o.s(" rc="); o.i(g_rc_big); o.s("/"); o.i(g_rc_tiny); if (g_esc_k >= 0 || g_v4pub > 0) { o.s(" pl="); o.i(g_pl_on); o.s("/"); o.i(g_pl_off); o.s(" dep="); o.i(g_dep_wait); o.s(" rtog="); o.i(g_rtog); o.s(" eh="); o.i(g_eh); o.s(" fol="); o.i(g_fol); o.s(" v4="); o.i(g_v4pub); o.s("/"); o.i(g_v4f); o.s("/"); o.i(g_v4n); o.s("/"); o.i(g_v4k); o.s(" ball="); o.i(g_ball); o.s(" bw="); o.i(g_bw); o.s(" ef="); o.i(g_ef_rec); o.s("/"); o.i(g_ef_vis); o.s("/"); o.i(g_ef_grp); o.s("/"); o.i(g_ef_n); }
+-        if (P_V9) { o.s(" v9="); o.i(v9::g_role); o.s("/"); o.i(v9::g_leader); o.s("/"); o.i(v9::g_nsq); o.s(" pk="); o.i(v9::g_picks); o.s(" wt="); o.i(v9::g_waits); o.s(" wk="); o.i(v9::g_wakes); o.s(" fi="); o.i(v9::g_fights); o.s(" rt="); o.i(v9::g_retreats); o.s(" sl="); o.i(v9::g_slack); if (P_V11) { o.s(" v11="); o.i(v9::g_nblock); o.s("/"); o.i(X(v9::g_cent)); o.s(","); o.i(Y(v9::g_cent)); o.s(" rl="); o.i(v9::g_rallies); o.s(" ht="); o.i(v9::g_hits); o.s(" rj="); o.i(v9::g_rejoins); o.s(" vr="); o.i(v9::g_vretreats); o.s(" so="); o.i(v9::g_solos); o.s(" id="); o.i(v9::g_idle); o.s(" gt="); o.i(v9::g_gated); o.s("/"); o.i(v9::g_gfall); o.s(" np="); o.i(v9::g_nopre); } }
++        if (P_V9) { o.s(" v9="); o.i(v9::g_role); o.s("/"); o.i(v9::g_leader); o.s("/"); o.i(v9::g_nsq); o.s(" pk="); o.i(v9::g_picks); o.s(" wt="); o.i(v9::g_waits); o.s(" wk="); o.i(v9::g_wakes); o.s(" fi="); o.i(v9::g_fights); o.s(" rt="); o.i(v9::g_retreats); o.s(" sl="); o.i(v9::g_slack); if (P_V11) { o.s(" v11="); o.i(v9::g_nblock); o.s("/"); o.i(X(v9::g_cent)); o.s(","); o.i(Y(v9::g_cent)); o.s(" rl="); o.i(v9::g_rallies); o.s(" ht="); o.i(v9::g_hits); o.s(" rj="); o.i(v9::g_rejoins); o.s(" vr="); o.i(v9::g_vretreats); o.s(" so="); o.i(v9::g_solos); o.s(" id="); o.i(v9::g_idle); o.s(" gt="); o.i(v9::g_gated); o.s("/"); o.i(v9::g_gfall); o.s(" np="); o.i(v9::g_nopre); if (P_V12) { o.s(" v12="); o.i(v9::g_syncs); o.s("/"); o.i(v9::g_nexts); } } }
+         o.end();
+         return true;
+     });
+diff -ru bots/v11g/src/params.h bots/v12/src/params.h
+--- bots/v11g/src/params.h	2026-10-28 20:13:07.005231661 +0000
++++ bots/v12/src/params.h	2026-10-28 20:46:05.338175784 +0000
+@@ -528,4 +528,10 @@
+ #define P_V11_NEAR 15     // v11c: the next target is within this walk of the leader when one of P_V11_MINVAL+ exists, else the nearest
+ #define P_V11_SOLO 5      // v11c: rounds a member may hit a damaged camp with no ally within 4 before it rallies (camp >= 40%)
+ #define P_V11_TCLEAR 35   // v11e: a block target must be clearable in this many rounds with the dps of ALL alive block members (roster, minus the carrier), costing < 80% of the block's health; else the best-ratio group anyway
+-#define P_V11_BIG 80      // rival-side groups of this value are contested before r300 with a full block and no rival pack
++#define P_V11_BIG 80
++// t10plan-v12: synchronized engage (the block hits a camp only once every member targeting it is at the ring, capped) and
++// one waiter per reward (the others lock the next group within P_V12_NEXT at once). P_V12 0: v11g play.
++#define P_V12 1
++#define P_V12_SYNC_D 2    // a member has arrived when within camp range + this of a live camp of the target
++#define P_V12_SYNC_WAIT 6 // rounds the block waits for the rest from the first arrival
++#define P_V12_NEXT 16     // the non-waiting members lock the next live group within this of the captured one      // rival-side groups of this value are contested before r300 with a full block and no rival pack
+diff -ru bots/v11g/src/v9.h bots/v12/src/v9.h
+--- bots/v11g/src/v9.h	2026-10-28 20:13:07.002004543 +0000
++++ bots/v12/src/v9.h	2026-10-28 20:46:05.338426069 +0000
+@@ -45,6 +45,9 @@
+ inline bool g_hit_logged = false, g_was_home = false, g_lead_changed = false;
+ inline int g_lead_prev = -1, g_prev_claim = -1;
+ inline int g_pick_r = -1, g_solo_r0 = -1, g_solos = 0;  // v11c: pick round of the rally target; first round hitting alone
++inline int g_sync_t = -1, g_sync_r0 = -1, g_syncs = 0, g_nexts = 0;  // v12: sync target / first arrival round / counters
++inline int g_v12_next = -1, g_v12_wait = -1;                          // v12: group locked as the next one / reward I wait for
++inline bool g_sync_logged = false;
+ inline bool v11_on(int round) { return P_V9 && P_V11 && round >= P_V9_FROM; }
+ 
+ inline bool on(int round) { return P_V9 && round >= P_V9_FROM; }

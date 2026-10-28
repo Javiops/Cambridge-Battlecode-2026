@@ -147,3 +147,12 @@ Zip `zips/e1foco-t10plan-v4o.zip` sha256 `767a00f7568a6859e0e0656af93707abe873a9
 vs kvvl: total 80/140 (cercanos 19/42, lejanos 61/98); cercanos: aliado ≤4 55%, muertes 5.4, capturas r<400 14.6 (e1foco 16.6, v4n 13.3).
 Primera captura en cercanos vuelve a la de e1foco salvo fragment a (r114). elk_arena 53/53 (e1foco 63/73, v4n 35/35).
 Online v4b en cercanos (timeline/online_v4b_near_deaths.txt): muertes tempranas de HoR siguiendo al carry; capturas perdidas casi todas en elk_arena.
+
+# t10plan-v4o2 (2026-10-28 ~03:45 UTC): v4o con roles=0 idéntico a e1foco
+`zips/e1foco-t10plan-v4o2.zip` sha256 `0b7ff143bc6f726c10bf41ab3f794c9125e49df66e12d394a50d50b266a7cbd2`, diff `src/t10plan-v4o2_vs_e1foco.diff`.
+Marcador sólo en mapas con roles: `[t10plan] v4o roles=1 spawn_path=<n> nearp=35 rolefrom=50 freeven=1 keep=1 neigh=6 follow=4 bigwait=25 eshome=1`.
+Causa de la diferencia v4n vs e1foco en lejanos: el printf largo de init y la primera llamada a t10_on() (spawn_path en la apertura) movían el init de un
+campeón un turno; 27/98 partidas lejanas divergían (desde r2-3 en algunas). v4o2: sin printf de init, t10_act mira la ronda antes de spawn_path,
+horario plegado en compilación, línea de estado sin campos nuevos con roles=0. Lejanas idénticas a e1foco posición a posición: 94/98
+(las 4 restantes por diferencias de combustible de ~300 en r25: starvation a r4, crossing a r324, gem_fields a r517, road_of_riches b r551).
+vs kvvl 80/140 (cercanos 21/42, lejanos 59/98); cercanos: aliado 53%, muertes 5.6, capturas r<400 14.8.

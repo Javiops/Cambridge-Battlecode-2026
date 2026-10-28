@@ -1,0 +1,49 @@
+diff -ru v14/src/main.cpp v15b/src/main.cpp
+--- v14/src/main.cpp	2026-10-28 21:59:50.017139359 +0000
++++ v15b/src/main.cpp	2026-10-28 22:51:39.246819269 +0000
+@@ -4894,7 +4894,34 @@
+                     }))
+                     return;
+                 bool hit = fight::hit_now(s, me, foes);
+-                if (!flee(s, me)) fight::safe_step(s, me, foes);
++                bool went = false;
++                if (P_V15) {  // t10plan-v15: run to an ally that stands farther from the foes than we do (not to the spawn alone)
++                    int fd = 99;
++                    vec2 fp = pos;
++                    for (auto& f : foes)
++                        if (f.d < fd) { fd = f.d; fp = f.p; }
++                    vec2 best = pos;
++                    int bd = 99;
++                    attempt([&] {
++                        for (auto& a : vis_champions(*s.my)) {
++                            try {
++                                if (a == me || !a.is_alive() || a.is_recalling()) continue;
++                                vec2 ap = a.position();
++                                int d = dist(ap, pos);
++                                if (d > 2 && d <= P_V15_ER && dist(ap, fp) > fd && d < bd && d < dist(pos, s.spawn_center)) { bd = d; best = ap; }
++                            } catch (...) {
++                            }
++                        }
++                        return true;
++                    });
++                    if (bd < 99) {
++                        bc::bitboard g;
++                        g.set(best);
++                        went = step_towards(s, me, g, true);
++                        if (went) std::printf("[v15-ally] r=%d ch=%s d=%d foe=%d\n", round, s.name.c_str(), bd, fd);
++                    }
++                }
++                if (!went && !flee(s, me)) fight::safe_step(s, me, foes);
+                 if (!hit) shoot_back(s, me, foes);
+                 return;
+             }
+diff -ru v14/src/params.h v15b/src/params.h
+--- v14/src/params.h	2026-10-28 21:59:50.014502362 +0000
++++ v15b/src/params.h	2026-10-28 22:49:42.417017955 +0000
+@@ -511,3 +511,6 @@
+ #define P_V14_RATIO 80
+ #define P_V14_LOWHP 50
+ #define P_V14_BAIL 25
++// t10plan-v15: a v14 leave walks to the nearest ally within P_V15_ER that is farther from the nearest foe than we are and nearer than the spawn
++#define P_V15 1
++#define P_V15_ER 10

@@ -1,0 +1,57 @@
+diff -ru v14/src/params.h v15a/src/params.h
+--- v14/src/params.h	2026-10-28 21:59:50.014502362 +0000
++++ v15a/src/params.h	2026-10-28 22:45:15.776970279 +0000
+@@ -511,3 +511,7 @@
+ #define P_V14_RATIO 80
+ #define P_V14_LOWHP 50
+ #define P_V14_BAIL 25
++// t10plan-v15: leave at 1 foe within P_PV_ER when a 2nd approaches within P_V15_ER and the ratio over all of them < P_V15_RATIO
++#define P_V15 1
++#define P_V15_ER 10
++#define P_V15_RATIO 80
+diff -ru v14/src/verdict.h v15a/src/verdict.h
+--- v14/src/verdict.h	2026-10-28 21:59:50.014862727 +0000
++++ v15a/src/verdict.h	2026-10-28 22:45:15.776724773 +0000
+@@ -29,7 +29,7 @@
+ inline int g_v14n = 0;       // t10plan-v14: firings this game
+ 
+ // Health x damage of me + allies within 6 (alive, not recalling) over the enemies in view within 8.
+-inline double power_ratio(State& s, bc::champion& me, const std::vector<Foe>& foes) {
++inline double power_ratio(State& s, bc::champion& me, const std::vector<Foe>& foes, int er = P_PV_ER) {
+     vec2 pos = me.position();
+     double oh = me.health(), od = fight::unit_dps(me), th = 0, td = 0;
+     attempt([&] {
+@@ -45,7 +45,7 @@
+         return true;
+     });
+     for (auto& f : foes)
+-        if (f.d <= P_PV_ER && !s.en_spawn.is_set(f.p)) {
++        if (f.d <= er && !s.en_spawn.is_set(f.p)) {
+             th += f.hp;
+             td += fight::unit_dps(f.c);
+         }
+@@ -102,6 +102,24 @@
+         }
+         return true;
+     });
++    if (P_V15 && n == 1) {  // t10plan-v15: 1 foe in reach and a 2nd approaching within P_V15_ER: judge the coming fight now
++        int n2 = 0;
++        for (auto& f : foes)
++            if (f.d <= P_V15_ER && !f.away && !s.en_spawn.is_set(f.p)) ++n2;
++        if (n2 >= 2) {
++            double r2 = power_ratio(s, me, foes, P_V15_ER) * 100.0;
++            if (r2 < P_V15_RATIO) {
++                g_verdict = 2;
++                g_judged = true;
++                g_last = round;
++                g_v14 = true;
++                ++g_v14n;
++                std::printf("[v15-early] r=%d ch=%s foes=%d allies=%d ratio=%d hp=%d n=%d\n", round, s.name.c_str(), n2, al,
++                            static_cast<int>(r2), static_cast<int>(hpr * 100), g_v14n);
++                return;
++            }
++        }
++    }
+     if (!(n >= 2 || (al == 0 && hpr * 100 < P_V14_LOWHP))) return;
+     double r = power_ratio(s, me, foes) * 100.0;
+     const bool leave = (n >= 2 && r < P_V14_RATIO) || (al == 0 && hpr * 100 < P_V14_LOWHP && r < 100);

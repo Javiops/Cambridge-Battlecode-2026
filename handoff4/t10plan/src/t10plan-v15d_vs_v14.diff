@@ -1,0 +1,28 @@
+diff -ru v14/src/main.cpp v15/src/main.cpp
+--- v14/src/main.cpp	2026-10-28 21:59:50.017139359 +0000
++++ v15/src/main.cpp	2026-10-28 22:58:16.140968606 +0000
+@@ -3791,6 +3791,14 @@
+         double afford = std::max(1.0, hp - mhp * P_RESERVE_PCT / 100.0);
+         int needed = squad_needed(rem, str, dps, afford);
+         int here = 1 + allies_near(s, me, g.center, 7);
++        if (P_V15 && round >= P_V14_R && !engaged && here == 1 && needed <= 1) {  // t10plan-v15: alone, keep a real reserve before the first hit
++            int n2 = squad_needed(rem, str, dps, std::max(1.0, hp - mhp * P_V15_RESERVE / 100.0));
++            if (n2 > 1) {
++                std::printf("[v15-reserve] r=%d ch=%s hp=%d rem=%d need=%d\n", round, s.name.c_str(), static_cast<int>(100 * hp / mhp),
++                            static_cast<int>(rem), n2);
++                needed = n2;
++            }
++        }
+         int coming = 1 + count_claimers(s, read_sm(), s.target);
+         const bool mono_go = (s.mono_only && g.monolith) || (g.jackpot && round >= P_JACKGO);
+         if (mono_go) needed = std::min(needed, std::max(1, std::min(g.monolith ? s.roster : P_JACKN, s.roster)));
+diff -ru v14/src/params.h v15/src/params.h
+--- v14/src/params.h	2026-10-28 21:59:50.014502362 +0000
++++ v15/src/params.h	2026-10-28 22:58:16.141417869 +0000
+@@ -511,3 +511,6 @@
+ #define P_V14_RATIO 80
+ #define P_V14_LOWHP 50
+ #define P_V14_BAIL 25
++// t10plan-v15: alone (no ally within 7 of the group), not yet engaged, from P_V14_R: afford = hp - P_V15_RESERVE % max hp (v4o2 -60 = hp + 60%)
++#define P_V15 1
++#define P_V15_RESERVE -20

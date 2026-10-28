@@ -464,3 +464,39 @@ Zip `zips/e1foco-t10plan-v11e.zip` sha256 `d9e86cf79a6b9f390268c01910a2b917dd9e8
 - Puertas: victorias 3 (<40: rota); cohesión 58.1% (<60%); golpe→captura 18.4 (objetivo ≤12); capturas 19.2 (v10 25.7); gemas r600 175 (v10 241); divergencia 3/140 y combustible 0 (pasan).
 - La puerta ya no es la causa: 4 rechazos por partida y 10 repliegues en todo el lote (gt=0/0 en la mayoría de partidas). La ociosidad dominante es `capture-reward` (23063 líneas cada 5 rondas = ~165/partida): miembros a ≤6 de un campamento con la recompensa en el suelo que no la capturan (el reparto v11d `prio_r=1` no basta, o la recompensa la espera otro). En el 53 % de las rondas de una captura de 20+ oro nadie golpea y en el 27 % uno solo.
 - Pendiente: trazar `capture-reward` en una réplica (an/trace.py) — quién tiene la recompensa asignada y por qué no la pisa; comparar con v11dk decodificado (no decodificado en este tope).
+
+# t10plan-v11f (2026-10-28 ~14:25 UTC): el miembro más cercano pisa la recompensa, el resto va al siguiente grupo, rally pegajoso — SIGUE ROTO (2/140 vs kvvl)
+Zip `zips/e1foco-t10plan-v11f.zip` sha256 `b510a3e8e84beb6c440ed716a6c92a16397f7e55b6245483a42063b0a0013c7d`, diff `src/t10plan-v11f_vs_v11e.diff` (77 líneas: main.cpp, v9.h). Bot local `bots/v11f`; lote `rep/v11fk` / `res/v11fk.log` (140 partidas vs kvvl), decodificado en `dec/v11fk`. Scripts nuevos: `an/idlecr.py` (clasifica cada línea `capture-reward` contra el estado decodificado: quién sostiene la captura, quién está sobre las losas, si el campeón se movió, rivales a ≤6) y `an/rw2.py` (episodios de recompensa en el suelo sin nadie encima con un miembro a ≤6).
+
+**Traza (an/trace.py + stdout, arena_a r55-75, big_world_a r110-135, ambush_a/b, anvil_a; an/idlecr.py sobre las 10092 líneas `capture-reward` de v11ek muestreadas cada 5 rondas)**:
+- Mecánica del motor (medida en 976 capturas): pisar la losa → `captureTeam` nuestro a la ronda siguiente → captura 5 rondas después. Un campeón que pisa a la ronda siguiente de morir el último monstruo tarda 7 rondas por captura.
+- 52 % de las líneas `capture-reward` son esa espera de 6-7 rondas (`holder=us`): 20 % un miembro quieto junto al capturador (`mate_on still`), 12 % el propio capturador (`on still`), 9 % miembros moviéndose. 9.8 % `holder=none mate_on still` y 8.5 % `on still` son el retardo de 1 ronda del `captureTeam`. Sólo 14 % (`holder=none nobody_on still`: 1170 sin rival a ≤6 + 263 con rival) es un miembro a ≤6 quieto con la recompensa en el suelo y nadie encima; de ellos la mitad son peleas ([v9-fight]/[v9-retreat], anvil_a r102-116) y el resto el retardo de 1-2 rondas hasta que Vesper/Marcella llega a la losa (ambush_a r320-321: la recompensa aparece en r320, Vesper hace dash a la losa en r321, captura r327).
+- Causa de la ociosidad real: `main.cpp:4183-4219` (v11e): la rama `g.reward_seen == round` imprime `capture-reward` para todo miembro a ≤6 y luego `other_captures` (main.cpp:3618-3676, `prio_r=1` en v11d, rango `cap_rank`/`carry_rank` y la regla de portador `pl_carry`) decide que otro la toma → `cap-handoff`/`leave-reward`/`return` sin paso útil: los no capturadores se quedan parados 6-7 rondas por captura al lado del capturador (el líder mantiene el lock y los seguidores lo copian, main.cpp:2601-2626), y el que la toma es el portador por rango aunque haya otro miembro a 1 losa. La puerta `rally-hold` (main.cpp:3989-4007) puede volver a `go=false` cuando `nh` baja de `need` tras cumplirse una vez (7168 líneas en v11e).
+
+**Cambios** (bajo `P_V11`):
+1. main.cpp rama recompensa: con bloque de 2+, el miembro vivo visto más cercano a las losas (empate: menor índice; tanques excluidos) pisa la recompensa ya (sin rango, sin portador, sin elección del líder): sobre las losas `capture-hold`, si no `capture-reward` + paso (dash permitido). Los demás, sin cambiar de objetivo (el líder conserva el lock hasta la captura), caminan al grupo vivo de valor más cercano a ≤10 del capturado (`cap-next`); si no hay, `capture-wait` (y se bajan de las losas para no partir la recompensa).
+2. v9.h `g_go_t` + main.cpp rally: cumplida una vez la condición de rally para un objetivo, `go` queda en true para ese objetivo (no hay anillo de espera mientras queden monstruos).
+
+**Comprobación** (70 mapas × 2 lados vs kvvl; an/v11an.py, an/cap6.py, an/capdur.py, an/idlecr.py; base de divergencia dec/v4o2k):
+
+| | v11e | **v11f** |
+|---|---|---|
+| victorias vs kvvl | 3/140 | **2/140** (dunes, vault) |
+| aliado a ≤4 fuera del spawn r50-600 | 68.9% | 66.8% |
+| cohesión del bloque | 58.1% | 56.9% |
+| muertes r151-600 (3+ rivales a ≤6) | 2.44 (0.81) | 2.21 (0.76) |
+| muertes 1-contra-N | 1.17 | 1.03 |
+| capturas ≤600 / de 40+ / gemas de captura | 19.2 / 0.99 / 234 | 20.56 / 0.96 / 237 |
+| grupos de 20+ oro: capturas / rondas golpe→captura | 5.12 / 18.4 | 5.41 / 18.9 (cap6: 830 capturas, media 22.9, mediana 18) |
+| golpeadores por ronda en capturas de 20+ (0/1/2/3/4+) | 53.1% / 26.8% / 11.2% / 6.3% / 2.6% (17751 rondas) | 52.2% / 26.8% / 12.4% / 6.3% / 2.3% (19808 rondas; 9718 con un miembro ocioso a ≤6 de un golpeador) |
+| capdur 40+: capturas (intentos) / media / mediana / cuerpos | 0.51 (2.11) / 27.7 / 23 / 3.62 | 0.49 (2.22) / 28.4 / 25 / 3.50 |
+| gemas r300 / r600 | 89 / 175 | 85 / 168 |
+| líneas/partida pick / unlock / rally / hit / solo / gate | 31.6 / 12.2 / 121 / 120 / 1.5 / 4.0 | 26.4 / 18.1 / 120 / 118 / 2.4 / 4.0 |
+| `[v11-idle]` por razón (total 140 partidas) | capture-reward 23063, rally-hold 7168, solo-hold 324 | capture-reward 4764, capture-hold 5156, capture-wait 6253, rally-hold 4270, solo-hold 404 |
+| `capture-reward` muestreadas: nadie encima y quieto | 14.2% de 10092 | 4.2% de 1997 |
+| episodios de recompensa en el suelo sin nadie encima ≥4 rondas / rondas | 552 / 6450 | 510 / 5873 |
+| divergencia antes de r30 vs v4o2 / combustible | 3 / 0 | 3 / 0 |
+
+- Puertas: victorias 2 (<40: rota); cohesión 56.9% (<60%); golpe→captura 18.9 (objetivo ≤12); capturas 20.56 (v10 25.7); gemas r600 168 (v10 241); divergencia 3/140 y combustible 0 (pasan).
+- Lectura: la ociosidad `capture-reward` era en su mayoría la espera mecánica de 6-7 rondas por captura, no un bloqueo; quitarla no cambia la tasa de golpeadores (52 % de rondas sin golpe, 27 % con uno) ni el golpe→captura (18.9). `capture-wait` 6253 = en 45 partidas de cada 100 no hay otro grupo vivo de valor a ≤10 del capturado, el bloque espera igual. El cuello sigue en la fase de golpeo: la mitad de las rondas de una captura de 20+ oro nadie golpea (rally-hold 4270 aún, retreat 86.6 líneas/partida, fight 53.2).
+- Pendiente: trazar las rondas con 0 golpeadores dentro de una captura (an/cap6.py) contra `[v9-retreat]`/`[v9-fight]`/`rally-hold` para ver cuál de los tres preempta el golpe; medir si el capturador por cercanía (v11f) retrasa al portador para el siguiente grupo.

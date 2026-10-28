@@ -1,0 +1,77 @@
+diff -ru v11e/src/main.cpp v11f/src/main.cpp
+--- v11e/src/main.cpp	2026-10-28 13:58:54.386991162 +0000
++++ v11f/src/main.cpp	2026-10-28 14:12:53.635091190 +0000
+@@ -3987,6 +3987,7 @@
+             const int need = std::min(P_V11_RALLY_N, nblk);
+             if (dc <= ar + 3 && v9::g_rally_r0 < 0) { v9::g_rally_r0 = round; ++v9::g_rallies; std::printf("[v11-rally] r=%d who=%s grp=%d near3=%d need=%d nblk=%d since_pick=%d\n", round, s.name.c_str(), s.target, nh, need, nblk, round - v9::g_pick_r); }
+             bool go = nh >= need || round - v9::g_pick_r >= P_V11_RALLY;
++            if (v9::g_go_t == s.target) go = true;  // v11f: the rally condition met once for this target stays met (no ring hold while monsters live)
+             if (engaged) {  // v11c: a damaged camp does not let one champion solo it: alone (no ally within 4) for P_V11_SOLO rounds -> rally, unless the camp is nearly dead
+                 const bool alone = v9::near(pos, 4, s.ally_idx, false) == 0 && dc <= ar + 1;
+                 if (!alone) v9::g_solo_r0 = -1;
+@@ -4006,6 +4007,7 @@
+                 return;
+             }
+             v11_go = true;
++            v9::g_go_t = s.target;
+             if (!v9::g_hit_logged) { v9::g_hit_logged = true; ++v9::g_hits; std::printf("[v11-hit] r=%d who=%s grp=%d near3=%d waited=%d\n", round, s.name.c_str(), s.target, nh, v9::g_rally_r0 >= 0 ? round - v9::g_rally_r0 : -1); }
+         }
+         const bool mono_go = (s.mono_only && g.monolith) || (g.jackpot && round >= P_JACKGO);
+@@ -4180,6 +4182,46 @@
+     // Nothing of this group is visible alive.
+     if (g.reward_seen == round) {  // the engine says the reward is waiting: stand on it
+         g_farm = "capture";
++        // v11f: in the block the NEAREST alive member (seen; ties: lower index) steps on the reward at once, no rank /
++        // carry / leader rule; every other member walks toward the next live group of value (<= 10 of this one) without
++        // changing its target (the leader keeps the lock until the capture ends). v11e: ~165 [v11-idle] capture-reward
++        // lines a game, 52% of them the 6-round hold with the rest of the block standing next to the capturer.
++        if (P_V11 && v9::active() && v9::g_nsq >= 2) {
++            int bk = -1, bd = 1 << 30;
++            auto mdist = [&](vec2 p) { int d = 1 << 30; for (auto t : g.tiles) d = std::min(d, dist(p, t)); return d; };
++            for (int i = 0; i < v9::g_nsq; ++i) {
++                const int k = v9::g_squad[i];
++                const v9::Ally& a = v9::g_al[k];
++                if (!a.alive || !a.seen || a.recalling || (a.home && k != s.ally_idx)) continue;
++                if (k != s.ally_idx && (P_DPSFARM && ((tank_bits(s) >> k) & 1))) continue;  // a tank never captures
++                const int d = mdist(a.p);
++                if (d < bd || (d == bd && k < bk)) { bd = d; bk = k; }
++            }
++            if (bk == s.ally_idx || bk < 0) {
++                if (g.mask.is_set(pos)) { v11_idle(s, round, pos, "capture-hold"); return; }
++                v11_idle(s, round, pos, "capture-reward");
++                step_towards(s, me, g.mask, true);
++                return;
++            }
++            g_farm = "cap-next";
++            int ni = -1, nd = 1 << 30;
++            for (int i = 0; i < static_cast<int>(s.groups.size()); ++i) {
++                const Group& o = s.groups[i];
++                if (i == s.target || o.next_ok > round || o.bad_until > round || o.monolith || o.jackpot || o.gems + o.gold <= 0) continue;
++                const int d = dist(o.center, g.center);
++                if (d > 10) continue;
++                const int dm = dist(pos, o.center);
++                if (dm < nd) { nd = dm; ni = i; }
++            }
++            if (ni >= 0 && nd > 2) { step_towards(s, me, s.groups[ni].mask, false); return; }
++            v11_idle(s, round, pos, "capture-wait");
++            if (g.mask.is_set(pos) && bk >= 0 && v9::g_al[bk].p != pos) {  // off the tiles: two bodies on them would split the reward
++                bc::bitboard r2;
++                for (auto t : g.tiles) r2.draw_chebyshev(t, 2.0f);
++                step_towards(s, me, r2 & ~g.mask, false);
++            }
++            return;
++        }
+         v11_idle(s, round, pos, "capture-reward");
+         if (other_captures(s, me, g, s.target)) {
+             // idlefix-v1: v122 champions stood on such a reward for 300-700 rounds when the other champion never came
+diff -ru v11e/src/v9.h v11f/src/v9.h
+--- v11e/src/v9.h	2026-10-28 13:58:54.383914345 +0000
++++ v11f/src/v9.h	2026-10-28 14:12:53.635595988 +0000
+@@ -39,6 +39,7 @@
+ inline vec2 g_cent = vec2(0, 0);       // centroid of the block (alive, not recalling, off the spawn)
+ inline int g_nblock = 0;        // members in the block
+ inline bool g_top_gems = true;  // I carry at least as many gems as every other alive member (the carrier)
++inline int g_go_t = -1;  // v11f: target whose rally condition was met once
+ inline int g_rally_t = -1, g_rally_r0 = -1, g_rallies = 0, g_hits = 0, g_rejoins = 0, g_vretreats = 0;
+ inline bool g_hit_logged = false, g_was_home = false, g_lead_changed = false;
+ inline int g_lead_prev = -1, g_prev_claim = -1;

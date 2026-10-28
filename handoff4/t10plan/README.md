@@ -156,3 +156,9 @@ campeón un turno; 27/98 partidas lejanas divergían (desde r2-3 en algunas). v4
 horario plegado en compilación, línea de estado sin campos nuevos con roles=0. Lejanas idénticas a e1foco posición a posición: 94/98
 (las 4 restantes por diferencias de combustible de ~300 en r25: starvation a r4, crossing a r324, gem_fields a r517, road_of_riches b r551).
 vs kvvl 80/140 (cercanos 21/42, lejanos 59/98); cercanos: aliado 53%, muertes 5.6, capturas r<400 14.8.
+
+# t10plan-v4q (2026-10-28 ~04:10 UTC): v4o2 + juntarse en 4 ante 3+ rivales
+`zips/e1foco-t10plan-v4q.zip` sha256 `33d0d2a582eb3b206e99a7941017e62d0132b39beb1524f8c09ec8309fb33ac7`, diff `src/t10plan-v4q_vs_e1foco.diff`, marcador `[t10plan] v4q roles=1 ... join=1`.
+Online v4b cercanos (an/pairfoe.py): 4.35 episodios/partida de pareja viendo 3+ rivales a ≤6; otra pareja a ≤10 en 76%: muertes 0.18 vs 0.33, kills 0.41 vs 0.17.
+Regla: miembro de pareja con 3+ rivales a ≤6, ninguno a ≤2, <4 aliados a ≤4 y 4 alcanzables a ≤10: camina hacia el aliado más cercano a 5-10 (join4).
+vs kvvl 81/140 (cercanos 22/42, lejanos 59/98); cercanos: aliado 54%, muertes 5.3, capturas 15.3. Dispara 1.3 rondas por partida en local.

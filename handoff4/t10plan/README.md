@@ -72,3 +72,28 @@ pairfarm hasta r400 86 pero sin cohesión (49%); recall en pareja 73 (dispara 1 
 Ruido local: dos bots casi iguales (el recall en pareja dispara 1 vez por partida) dan 85 frente a 71 y 82 frente a 73: ±7 en 140 partidas.
 12 partidas con timeline.py en `timeline/` (6 mapas x 2 lados): v3 aliado 50% frente a 31%, muertes 4.2 frente a 4.1, 9/12 frente a 7/12.
 Puerta del coordinador (>55% y ≥87): NO pasa (51%, 82).
+
+# t10plan-v3i (2026-10-28 ~01:45 UTC), SIN horario (orden del coordinador tras v3 online −11)
+Zip `zips/e1foco-t10plan-v3i.zip` sha256 `d2501443e78844d39de45418dc6adf42fa9643fccc278cbd499b45230a8c0057`, diff `src/t10plan-v3i_vs_e1foco.diff`.
+Marcador: `[init] t10plan-v3i plan=0 cmem=0 ballw=200 bigwait=0 eshome=1 rtog=0 depart=10 ... ball=0 ... roles=1 escw=150 maps=70`.
+Contiene: roles carry/escolta (la escolta toma el grupo de su carry, x1.5), el carry captura, la escolta hace recall cuando su carry
+hace recall o está en el spawn (ESCHOME). Horario apagado (P_T10PLAN 0): la elección de campamento es la de e1foco salvo el vínculo escolta→carry.
+Bola r0-50, memoria del grupo del carry y espera de 3 ante grupo grande están en el código, apagadas por parámetro (P_T10_BALL, P_T10_CMEM, P_T10_BIGWAIT).
+
+Alternativa `zips/e1foco-t10plan-v3i2.zip` sha256 `0ffe399e8e351d5ec2e7e675db949a4a6bd2d23a9ef1ac735e249cf90e3eca30` = v3 (con horario) + ESCHOME.
+
+| bot vs kvvl (140, 70 mapas x 2 lados) | victorias | aliado a ≤4 fuera del spawn r50-600 | muertes r50-600 |
+|---|---|---|---|
+| e1foco | 87 | 43% | 4.9 |
+| v3i2 = v3 + ESCHOME (dos tiradas) | 84 / 83 | 54% | 4.0 / 3.7 |
+| v3i2 + bola r0-50 | 71 | 55% | 4.1 |
+| v3i2 + espera de 3 ante grupo grande | 68 | 54% | 3.7 |
+| v3i2 + memoria del grupo del carry | 74 | 54% | 3.6 |
+| v3i2 + las tres + recall en pareja | 43 | 49% | 6.0 (2 partidas) |
+| **v3i** (sin horario, roles + ESCHOME) | **67** | **52%** | **4.3** |
+| v3i + escolta x3 | 65 | 54% | 4.5 |
+| v3i + bola suave (x2 sin correa) + espera sólo si vienen 2 más | 54 | 51% | 5.0 |
+| sin horario con las cuatro piezas | 55 | 52% | 4.6 |
+
+12 partidas con timeline.py (`timeline/summary_v3i.md`, `timeline/timelines_v3i.md`): aliado 44% (v3 50%, e1foco 31%), muertes 4.4 (4.2 / 4.1), 3/12 (9/12 / 7/12).
+Puerta (>55% y muertes < e1foco): ninguna variante pasa del 55%. El log de distancia escolta-carry (`ef=` en la línea de estado) no sale en local: run-batch no guarda el stdout.

@@ -1,0 +1,28 @@
+diff -ru /tmp/claude-0/w/ws/bots/v7r/src/main.cpp /tmp/claude-0/w/ws/bots/v8a/src/main.cpp
+--- /tmp/claude-0/w/ws/bots/v7r/src/main.cpp	2026-10-28 10:19:49.267114944 +0000
++++ /tmp/claude-0/w/ws/bots/v8a/src/main.cpp	2026-10-28 11:28:41.271186910 +0000
+@@ -2841,6 +2841,7 @@
+ #if P_E2 == 1
+         if (g.wolf_only) score *= P_E2_WOLF / 100.0;  // measured value per champion-round, wolf vs elk groups
+ #endif
++        if (P_V8BIG && round >= 30 && g.gems >= P_V7J_GEMS && !gc[i].near_en) score *= P_V8BIG / 100.0;  // v8: 40+ gem groups (81% of the gap in our losses)
+         if (score > best_score) { best_score = score; best = i; best_gd = gd; }
+     }
+ #if P_RC2
+@@ -2851,6 +2852,8 @@
+     }
+ #endif
+     if (P_T10PLAN && best >= 0 && g_pl_state == 1 && round < P_T10_END) { if (pl_w(s, best, round) >= P_T10_FREE) ++g_pl_on; else ++g_pl_off; }  // t10plan-v1 counter
++    if (P_V8BIG && round >= 30 && best >= 0 && best != s.target && s.groups[best].gems >= P_V7J_GEMS)
++        std::printf("[v8-big] r=%d who=%s g=%d gems=%d\n", round, s.name.c_str(), best, s.groups[best].gems);
+     s.target_gd = best >= 0 ? best_gd : 0;  // respawnfix-v1: the walking distance this choice was priced with
+     return best;
+ }
+diff -ru /tmp/claude-0/w/ws/bots/v7r/src/params.h /tmp/claude-0/w/ws/bots/v8a/src/params.h
+--- /tmp/claude-0/w/ws/bots/v7r/src/params.h	2026-10-28 10:19:49.283605571 +0000
++++ /tmp/claude-0/w/ws/bots/v8a/src/params.h	2026-10-28 11:21:32.150306706 +0000
+@@ -503,3 +503,4 @@
+ #define P_V7J 0
+ #define P_V7J_R 12
+ #define P_V7J_GEMS 40
++#define P_V8BIG 150

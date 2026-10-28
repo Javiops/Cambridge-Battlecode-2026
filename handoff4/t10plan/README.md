@@ -201,3 +201,12 @@ Diffs: src/t10plan-v7_vs_v4o2.diff y src/t10plan-v7r_vs_v4o2.diff.
 - Zips (estructura src/ como v4o2):
   - zips/e1foco-t10plan-v7r.zip, sha256 a6dd4c0f05aaeade2a4f38f45fc9d12141d84c28411c0dcb4f905b838d080633;
   - zips/e1foco-t10plan-v7.zip, sha256 d5821a543ee7dfc9e28a3dab8b3b8a30b521d2da514f227ad96151bf654af16a.
+
+# t10plan-v8a (2026-10-28 ~11:45 UTC): v7r con los grupos de 40+ gemas ×1.5 en choose_target
+Desde r30, en grupos de 40+ gemas que no estén en su puerta. Línea `[v8-big] r= who= g= gems=` cuando el objetivo nuevo es un grupo de 40+; si el bonus solo mantiene el objetivo actual, no se registra.
+- Combustible: ninguna partida diverge de v4o2 antes de r35. Hay 7 de 140 que divergen entre r35 y r79, antes de la primera línea registrada; son los casos de mantener objetivo, que no se registran.
+- Mecanismo local contra kvvl (kvvl farmea oro, no es juez):
+  - capturas de 40+: 2.11 frente a 1.46 de v7r;
+  - capturas totales: 23.7 frente a 26.9;
+  - gemas: 317 frente a 330.
+- Diff: src/t10plan-v8a_vs_v7r.diff. Zip: zips/e1foco-t10plan-v8a.zip.

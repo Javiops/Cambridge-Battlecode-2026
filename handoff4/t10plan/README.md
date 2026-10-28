@@ -434,3 +434,33 @@ Zip `zips/e1foco-t10plan-v11d.zip` sha256 `96945e13004cfba962e9e17594406ca6ac760
 5. `[v11-idle] r= who= grp= target= reason=` cada 5 rondas cuando un miembro a ≤6 del campamento bloqueado no ataca (razones: wait, no-target, rally-hold, solo-hold, lethal-escape, bail, capture-reward, no-live-on-mask); contadores `id=`/`gt=` en la línea de estado.
 
 **Comprobación**: lote 140 vs kvvl en curso al cerrar (0/19); sin medir todavía golpeadores por ronda (an/cap6.py), golpe→captura, cohesión, capturas, gemas, muertes, divergencia ni combustible. Pendiente: decodificar `rep/v11dk` (an/decall.sh v11dk) y pasar an/v11an.py, an/cap6.py, an/capdur.py. Hipótesis a vigilar: con la puerta de fuerza el bloque rechaza casi todo al inicio (dps 61 con el líder solo a ≤12) y el `nearest de cualquier valor` lo manda a grupos de 4 oro.
+
+# t10plan-v11e (2026-10-28 ~14:25 UTC): puerta de fuerza con el dps de TODO el bloque (plantilla, no visión) + repliegue al mejor ratio — SIGUE ROTO (3/140 vs kvvl)
+Zip `zips/e1foco-t10plan-v11e.zip` sha256 `d9e86cf79a6b9f390268c01910a2b917dd9e885b567a0782346bf638959b895b`, diff `src/t10plan-v11e_vs_v11d.diff` (89 líneas: main.cpp, v9.h, params.h). Bot local `bots/v11e`; lote `rep/v11ek` / `res/v11ek.log` (140 partidas vs kvvl), decodificado en `dec/v11ek`.
+
+**Cambios** (todos bajo `P_V11`; se mantienen los arreglos de ociosidad de v11d):
+1. v9.h: `carrier_k` (el miembro con más gemas que no soy yo), `block_dps_all` / `block_hp_all` = suma de dps / vida de TODOS los miembros vivos del bloque por plantilla (no por visión), sin los que vuelven a casa y sin el portador.
+2. Puerta de fuerza (`[v11-gate]`): t_clear = hp / dps_bloque ≤ `P_V11_TCLEAR`=35 (antes 25) y str × 0.5 × t_clear < 80 % (antes 60 %) de la vida sumada del bloque.
+3. Si ningún grupo de 20+ pasa la puerta (o sólo quedan grupos de <20), se toma de todos modos el rechazado de mejor ratio (max(t_clear/35, dmg/(0.8·hp)) × (1 + d/60)), línea `[v11-gate] fallback r= who= grp= val= ratio=`; contador `gt=rechazos/repliegues` en la línea de estado. El bloque nunca se queda sin objetivo ni se va a grupos de 4 oro por la puerta.
+
+**Comprobación** (70 mapas × 2 lados vs kvvl; an/v11an.py, an/cap6.py, an/capdur.py; base de divergencia dec/v4o2k):
+
+| | v11ck2 | v11d | **v11e** |
+|---|---|---|---|
+| victorias vs kvvl | 9/140 | 0/140 | **3/140** (corridors_b, oasis_a, yellow_brick_road_a) |
+| aliado a ≤4 fuera del spawn r50-600 | 64.2% | — | 68.9% |
+| cohesión del bloque | 52.0% | — | 58.1% |
+| muertes r151-600 (3+ rivales a ≤6) | 2.67 (0.72) | — | 2.44 (0.81) |
+| muertes 1-contra-N | 1.13 | — | 1.17 |
+| capturas ≤600 / de 40+ / gemas de captura | 20.3 / 0.99 / 241 | — | 19.2 / 0.99 / 234 |
+| grupos de 20+ oro: capturas / rondas golpe→captura | 5.43 / 18.9 | — | 5.12 / 18.4 (cap6: 786 capturas, media 21.6, mediana 17) |
+| golpeadores por ronda en capturas de 20+ (0/1/2/3/4+) | — | — | 53.1% / 26.8% / 11.2% / 6.3% / 2.6% (17751 rondas; 8272 con un miembro ocioso a ≤6 de un golpeador) |
+| capdur 40+: capturas (intentos) / media / mediana / cuerpos | 0.52 (2.62) / 27.2 / 26 / 3.40 | — | 0.51 (2.11) / 27.7 / 23 / 3.62 |
+| gemas r300 / r600 | 87 / 185 | — | 89 / 175 |
+| líneas/partida pick / unlock / rally / hit / solo / gate | 30.0 / 12.7 / 129 / 124 / 2.4 / — | — | 31.6 / 12.2 / 121 / 120 / 1.5 / 4.0 (548 rechazos, 10 repliegues en 140 partidas) |
+| `[v11-idle]` por razón (total 140 partidas) | — | — | capture-reward 23063, rally-hold 7168, solo-hold 324 |
+| divergencia antes de r30 vs v4o2 / combustible | 3 / 0 | — | 3 / 0 |
+
+- Puertas: victorias 3 (<40: rota); cohesión 58.1% (<60%); golpe→captura 18.4 (objetivo ≤12); capturas 19.2 (v10 25.7); gemas r600 175 (v10 241); divergencia 3/140 y combustible 0 (pasan).
+- La puerta ya no es la causa: 4 rechazos por partida y 10 repliegues en todo el lote (gt=0/0 en la mayoría de partidas). La ociosidad dominante es `capture-reward` (23063 líneas cada 5 rondas = ~165/partida): miembros a ≤6 de un campamento con la recompensa en el suelo que no la capturan (el reparto v11d `prio_r=1` no basta, o la recompensa la espera otro). En el 53 % de las rondas de una captura de 20+ oro nadie golpea y en el 27 % uno solo.
+- Pendiente: trazar `capture-reward` en una réplica (an/trace.py) — quién tiene la recompensa asignada y por qué no la pisa; comparar con v11dk decodificado (no decodificado en este tope).

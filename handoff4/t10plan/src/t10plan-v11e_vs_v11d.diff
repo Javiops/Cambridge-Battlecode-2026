@@ -1,0 +1,89 @@
+diff -ru v11d/src/main.cpp v11e/src/main.cpp
+--- v11d/src/main.cpp	2026-10-28 13:54:24.403078973 +0000
++++ v11e/src/main.cpp	2026-10-28 13:58:54.386991162 +0000
+@@ -2834,6 +2834,9 @@
+                 if (v9::g_pickdump < 40) { ++v9::g_pickdump; std::printf("[v11-unlock] r=%d who=%s grp=%d riv=%d next_ok=%d bad=%d\n", round, s.name.c_str(), s.target, riv, g.next_ok - round, g.bad_until - round); }
+             }
+             int best = -1, bd = 1 << 30; double bv = 0;
++            int fb = -1, fbd = 0; double fr = 1e9, fv = 0;  // v11e: best-ratio gated group (fallback: never idle the block)
++            const double sd_all = std::max(10.0, v9::block_dps_all(s.ally_idx));
++            const double hs_all = std::max(1.0, v9::block_hp_all(s.ally_idx, static_cast<double>(me.health())));
+             for (int pass = 0; pass < 2 && best < 0; ++pass)
+             for (int i = 0; i < static_cast<int>(s.groups.size()); ++i) {
+                 const Group& g = s.groups[i];
+@@ -2846,12 +2849,13 @@
+                 if (s.seen_r >= round - 1) for (auto& o : s.seen) if (dist(o.p, g.center) <= 8) ++riv;
+                 if (danger_on && dist(g.center, s.danger_p) <= P_DANGER_R) riv = std::max(riv, nsq + 1);
+                 if (riv >= 3) continue;
+-                if (value >= P_V11_MINVAL && !(g.reward_seen >= 0 && round - g.reward_seen < 30)) {  // v11d: strength gate (v9 pricing): clear time with the block's dps within 12 of me and the damage it costs
+-                    const double sd = std::max(10.0, static_cast<double>(v9::squad_dps_near(pos, 12, s.ally_idx)));
+-                    const double hsum = std::max(1.0, v9::squad_hp_near(pos, 12, s.ally_idx, static_cast<double>(me.health())));
++                if (value >= P_V11_MINVAL && !(g.reward_seen >= 0 && round - g.reward_seen < 30)) {  // v11e: strength gate with the dps/hp of ALL alive block members (roster, minus the carrier)
++                    const double sd = sd_all, hsum = hs_all;
+                     const double tc = g.hp / sd, dmg = g.str * (P_INC_PCT / 100.0) * tc;
+-                    if (tc > P_V11_TCLEAR || dmg >= 0.6 * hsum) {
++                    if (tc > P_V11_TCLEAR || dmg >= 0.8 * hsum) {
+                         if (i < 64 && !((v9::g_gate_logged >> i) & 1)) { v9::g_gate_logged |= 1ull << i; ++v9::g_gated; std::printf("[v11-gate] r=%d who=%s grp=%d val=%.0f hp=%.0f str=%.0f sdps=%.0f tclear=%.1f dmg=%.0f hpsum=%.0f\n", round, s.name.c_str(), i, value, g.hp, g.str, sd, tc, dmg, hsum); }
++                        const double ratio = std::max(tc / P_V11_TCLEAR, dmg / (0.8 * hsum)) * (1.0 + (gds[i] + std::max(0, wait)) / 60.0);
++                        if (ratio < fr) { fr = ratio; fb = i; fbd = gds[i] + std::max(0, wait); fv = value; }
+                         continue;
+                     }
+                 }
+@@ -2861,6 +2865,10 @@
+                 if (gc[i].near_en) d += 10;
+                 if (d < bd || (d == bd && value > bv)) { bd = d; best = i; bv = value; }
+             }
++            if ((best < 0 || bv < P_V11_MINVAL) && fb >= 0) {  // v11e: no 20+ group passes the gate: the best-ratio one anyway (never idle the block / no 4-gold trips)
++                if (fb != s.target) { ++v9::g_gfall; if (v9::g_pickdump < 40) { ++v9::g_pickdump; std::printf("[v11-gate] fallback r=%d who=%s grp=%d val=%.0f ratio=%.2f sdps=%.0f hpsum=%.0f nblock=%d\n", round, s.name.c_str(), fb, fv, fr, sd_all, hs_all, v9::g_nblock); } }
++                best = fb; bd = fbd; bv = fv;
++            }
+             if (best >= 0 && bv >= P_V11_MINVAL) {  // a small group (wolves, 4 gold) within 3 of the way is cleared first
+                 const int dt = dist(cent, s.groups[best].center);
+                 int sb = -1, sd = 1 << 30;
+@@ -5729,7 +5737,7 @@
+         o.s(" tpc="); o.i(g_tpc_buys); o.s("/"); o.i(g_tpc_uses); o.s(" wd="); o.i(g_wd_drops); o.s(" unreach="); o.i(g_cap_unreach);
+         o.s(" holdto="); o.i(g_hold_to); o.s(" gskip="); o.i(g_guard_skip); o.s(" trip="); o.i(g_trip_keep); o.s(" isle="); o.i(g_isle);
+         o.s(" bcf="); o.i(g_bcf); o.s(" foco="); o.i(g_foco_w); o.s("/"); o.i(g_foco_use); o.s(" shot="); o.i(g_shot); o.s("/"); o.i(g_shot_f); o.s(" cut="); o.i(g_cut); o.s(" rc="); o.i(g_rc_big); o.s("/"); o.i(g_rc_tiny); if (g_esc_k >= 0 || g_v4pub > 0) { o.s(" pl="); o.i(g_pl_on); o.s("/"); o.i(g_pl_off); o.s(" dep="); o.i(g_dep_wait); o.s(" rtog="); o.i(g_rtog); o.s(" eh="); o.i(g_eh); o.s(" fol="); o.i(g_fol); o.s(" v4="); o.i(g_v4pub); o.s("/"); o.i(g_v4f); o.s("/"); o.i(g_v4n); o.s("/"); o.i(g_v4k); o.s(" ball="); o.i(g_ball); o.s(" bw="); o.i(g_bw); o.s(" ef="); o.i(g_ef_rec); o.s("/"); o.i(g_ef_vis); o.s("/"); o.i(g_ef_grp); o.s("/"); o.i(g_ef_n); }
+-        if (P_V9) { o.s(" v9="); o.i(v9::g_role); o.s("/"); o.i(v9::g_leader); o.s("/"); o.i(v9::g_nsq); o.s(" pk="); o.i(v9::g_picks); o.s(" wt="); o.i(v9::g_waits); o.s(" wk="); o.i(v9::g_wakes); o.s(" fi="); o.i(v9::g_fights); o.s(" rt="); o.i(v9::g_retreats); o.s(" sl="); o.i(v9::g_slack); if (P_V11) { o.s(" v11="); o.i(v9::g_nblock); o.s("/"); o.i(X(v9::g_cent)); o.s(","); o.i(Y(v9::g_cent)); o.s(" rl="); o.i(v9::g_rallies); o.s(" ht="); o.i(v9::g_hits); o.s(" rj="); o.i(v9::g_rejoins); o.s(" vr="); o.i(v9::g_vretreats); o.s(" so="); o.i(v9::g_solos); o.s(" id="); o.i(v9::g_idle); o.s(" gt="); o.i(v9::g_gated); } }
++        if (P_V9) { o.s(" v9="); o.i(v9::g_role); o.s("/"); o.i(v9::g_leader); o.s("/"); o.i(v9::g_nsq); o.s(" pk="); o.i(v9::g_picks); o.s(" wt="); o.i(v9::g_waits); o.s(" wk="); o.i(v9::g_wakes); o.s(" fi="); o.i(v9::g_fights); o.s(" rt="); o.i(v9::g_retreats); o.s(" sl="); o.i(v9::g_slack); if (P_V11) { o.s(" v11="); o.i(v9::g_nblock); o.s("/"); o.i(X(v9::g_cent)); o.s(","); o.i(Y(v9::g_cent)); o.s(" rl="); o.i(v9::g_rallies); o.s(" ht="); o.i(v9::g_hits); o.s(" rj="); o.i(v9::g_rejoins); o.s(" vr="); o.i(v9::g_vretreats); o.s(" so="); o.i(v9::g_solos); o.s(" id="); o.i(v9::g_idle); o.s(" gt="); o.i(v9::g_gated); o.s("/"); o.i(v9::g_gfall); } }
+         o.end();
+         return true;
+     });
+diff -ru v11d/src/params.h v11e/src/params.h
+--- v11d/src/params.h	2026-10-28 13:53:09.907546150 +0000
++++ v11e/src/params.h	2026-10-28 13:58:54.384391713 +0000
+@@ -525,5 +525,5 @@
+ #define P_V11_RALLY 10    // ... waited for at most this many rounds at the rally ring
+ #define P_V11_NEAR 15     // v11c: the next target is within this walk of the leader when one of P_V11_MINVAL+ exists, else the nearest
+ #define P_V11_SOLO 5      // v11c: rounds a member may hit a damaged camp with no ally within 4 before it rallies (camp >= 40%)
+-#define P_V11_TCLEAR 25   // v11d: a block target must be clearable in this many rounds with the block's dps (within 12 of the leader), costing < 60% of the block's health
++#define P_V11_TCLEAR 35   // v11e: a block target must be clearable in this many rounds with the dps of ALL alive block members (roster, minus the carrier), costing < 80% of the block's health; else the best-ratio group anyway
+ #define P_V11_BIG 80      // rival-side groups of this value are contested before r300 with a full block and no rival pack
+diff -ru v11d/src/v9.h v11e/src/v9.h
+--- v11d/src/v9.h	2026-10-28 13:53:09.907391245 +0000
++++ v11e/src/v9.h	2026-10-28 13:58:54.383914345 +0000
+@@ -239,7 +239,23 @@
+     }
+     return h;
+ }
+-inline int g_idle = 0, g_gated = 0;   // v11d counters
++// v11e: dps / health of ALL alive block members by roster (not vision), not recalling, minus the carrier (most gems, not me)
++inline int carrier_k(int me_k) {
++    int c = -1, tg = 0;
++    for (int i = 0; i < g_nsq; ++i) { const int k = g_squad[i]; if (k != me_k && g_al[k].alive && g_al[k].gems > tg) { tg = g_al[k].gems; c = k; } }
++    return c;
++}
++inline double block_dps_all(int me_k) {
++    double d = 0; const int c = carrier_k(me_k);
++    for (int i = 0; i < g_nsq; ++i) { const int k = g_squad[i]; const Ally& a = g_al[k]; if (k == me_k) { d += a.dps; continue; } if (!a.alive || a.recalling || k == c) continue; d += a.dps; }
++    return d;
++}
++inline double block_hp_all(int me_k, double my_hp) {
++    double h = 0; const int c = carrier_k(me_k);
++    for (int i = 0; i < g_nsq; ++i) { const int k = g_squad[i]; const Ally& a = g_al[k]; if (k == me_k) { h += my_hp; continue; } if (!a.alive || a.recalling || k == c) continue; h += a.hp; }
++    return h;
++}
++inline int g_idle = 0, g_gated = 0, g_gfall = 0;   // v11d counters (v11e: gate fallbacks)
+ inline unsigned long long g_gate_logged = 0;
+ // squad members (alive, not recalling, off the spawn) within r of a tile, me included when I am
+ inline int near(vec2 at, int r, int me_k, bool count_me) {

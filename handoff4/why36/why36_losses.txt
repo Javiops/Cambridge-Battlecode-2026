@@ -1,0 +1,116 @@
+chain bot map rival | final gems us/riv | deaths r1-150 us/riv | deaths r151-600 us/riv | of which 3+ foes within 6 us/riv | big caps (>=40) r<=600 us/riv | dead champion-rounds r1-600 us/riv
+c34 e1foco big_world BBL | 415/468 | 2/0 | 0/0 | 0/0 | 6/5 | 120/0
+c34 e1foco big_world Martin Shkreli's Defense Team | 367/455 | 0/0 | 1/0 | 0/0 | 5/1 | 60/0
+c34 e1foco broken_curve Ding | 293/512 | 0/1 | 2/4 | 0/0 | 1/2 | 70/301
+c34 e1foco concentrated_wealth SquidProxyLovers | 96/293 | 2/1 | 7/4 | 1/1 | 0/3 | 467/298
+c34 e1foco contest an iq too high | 0/0 | 3/2 | 13/1 | 8/1 | 0/0 | 866/182
+c34 e1foco corridors BBL | 80/270 | 0/1 | 3/0 | 2/0 | 0/7 | 143/60
+c34 e1foco crater Martin Shkreli's Defense Team | 398/412 | 1/0 | 4/0 | 1/0 | 2/0 | 246/0
+c34 e1foco crossing Gamblr | 514/594 | 0/0 | 4/6 | 0/2 | 4/7 | 111/363
+c34 e1foco crossing Brakence Fan Club | 484/768 | 1/0 | 7/5 | 4/0 | 4/5 | 464/300
+c34 e1foco dunes Hidden Altar Keepers | 115/662 | 3/1 | 9/2 | 0/0 | 1/9 | 655/172
+c34 e1foco eight BBL | 67/593 | 5/0 | 19/1 | 13/0 | 0/3 | 1348/61
+c34 e1foco elk_arena Ding | 0/540 | 0/0 | 2/4 | 2/1 | 0/6 | 121/241
+c34 e1foco elk_arena 天天开心 :( | 82/318 | 1/4 | 2/1 | 1/0 | 0/4 | 181/300
+c34 e1foco elk_arena Hidden Altar Keepers | 0/360 | 1/1 | 4/4 | 1/1 | 0/4 | 233/278
+c34 e1foco elkring Gem Simons | 484/583 | 0/1 | 4/2 | 2/0 | 0/0 | 191/182
+c34 e1foco elkring an iq too high | 660/572 | 0/0 | 4/2 | 2/0 | 0/0 | 241/88
+c34 e1foco fields ha²t | 245/677 | 0/0 | 8/0 | 1/0 | 2/9 | 480/0
+c34 e1foco fragment BBL | 38/235 | 0/1 | 9/1 | 3/0 | 0/0 | 508/120
+c34 e1foco gato_gemcombat3 Gem Simons | 350/1002 | 2/1 | 11/0 | 7/0 | 5/5 | 771/60
+c34 e1foco gemfight Zkey Farming | 65/1029 | 3/1 | 13/1 | 6/1 | 0/7 | 964/120
+c34 e1foco gemfight Brakence Fan Club | 322/635 | 1/1 | 9/3 | 7/1 | 1/4 | 534/241
+c34 e1foco gift_wrapping Martin Shkreli's Defense Team | 430/600 | 0/0 | 8/3 | 6/0 | 4/3 | 398/182
+c34 e1foco gold_rush Brakence Fan Club | 11/143 | 2/1 | 10/2 | 3/0 | 0/0 | 673/180
+c34 e1foco interlock Gamblr | 206/300 | 1/1 | 5/2 | 3/0 | 0/3 | 317/181
+c34 e1foco pilgrimage Ding | 193/123 | 0/0 | 4/4 | 0/0 | 1/0 | 240/244
+c34 e1foco pilgrimage ha²t | 120/193 | 0/0 | 3/1 | 0/0 | 0/1 | 180/61
+c34 e1foco quarry Gamblr | 418/328 | 2/0 | 3/1 | 0/0 | 2/5 | 257/18
+c34 e1foco reverse_spiral German Empire Destroyers | 217/153 | 2/3 | 4/5 | 1/2 | 1/0 | 362/484
+c34 e1foco reverse_spiral SkuBap | 35/343 | 4/0 | 9/1 | 3/0 | 0/2 | 785/60
+c34 e1foco ribs German Empire Destroyers | 185/200 | 1/0 | 3/8 | 1/2 | 2/6 | 222/425
+c34 e1foco rows SquidProxyLovers | 390/312 | 0/0 | 1/1 | 0/0 | 0/0 | 60/61
+c34 e1foco rushbait_v2 SquidProxyLovers | 204/398 | 2/2 | 0/2 | 0/0 | 0/0 | 122/244
+c34 e1foco stampede SquidProxyLovers | 0/160 | 0/1 | 2/2 | 0/0 | 0/1 | 120/182
+c34 e1foco stampede an iq too high | 0/0 | 1/2 | 5/3 | 2/0 | 0/0 | 314/301
+c34 e1foco stampede Zkey Farming | 0/0 | 1/0 | 2/5 | 1/0 | 0/0 | 181/260
+c34 e1foco swirl an iq too high | 0/652 | 5/0 | 18/0 | 10/0 | 0/1 | 1361/0
+c34 e1foco the_line Brakence Fan Club | 52/639 | 1/0 | 6/1 | 3/0 | 0/3 | 423/60
+c34 e1foco vault Sneaky Bush Campers | 28/698 | 1/0 | 0/2 | 0/2 | 1/2 | 61/122
+c34 t10plan4o2 big_world BBL | 415/468 | 2/0 | 0/0 | 0/0 | 6/5 | 120/0
+c34 t10plan4o2 big_world Martin Shkreli's Defense Team | 367/455 | 0/0 | 1/0 | 0/0 | 5/1 | 60/0
+c34 t10plan4o2 broken_curve Ding | 293/512 | 0/1 | 2/4 | 0/0 | 1/2 | 70/301
+c34 t10plan4o2 concentrated_wealth SquidProxyLovers | 96/293 | 2/1 | 7/4 | 1/1 | 0/3 | 467/298
+c34 t10plan4o2 contest an iq too high | 0/0 | 3/2 | 13/1 | 8/1 | 0/0 | 866/182
+c34 t10plan4o2 corridors BBL | 80/270 | 0/1 | 3/0 | 2/0 | 0/7 | 143/60
+c34 t10plan4o2 crater Martin Shkreli's Defense Team | 398/412 | 1/0 | 4/0 | 1/0 | 2/0 | 246/0
+c34 t10plan4o2 crossing Gamblr | 514/594 | 0/0 | 4/6 | 0/2 | 4/7 | 111/363
+c34 t10plan4o2 crossing Brakence Fan Club | 484/768 | 1/0 | 7/5 | 4/0 | 4/5 | 464/300
+c34 t10plan4o2 dunes Hidden Altar Keepers | 115/662 | 3/1 | 9/2 | 0/0 | 1/9 | 655/172
+c34 t10plan4o2 eight BBL | 67/593 | 5/0 | 19/1 | 13/0 | 0/3 | 1348/61
+c34 t10plan4o2 elk_arena Ding | 0/621 | 0/0 | 0/5 | 0/0 | 0/6 | 0/303
+c34 t10plan4o2 elk_arena 天天开心 :( | 0/245 | 0/3 | 1/1 | 1/0 | 0/2 | 3/240
+c34 t10plan4o2 elk_arena Hidden Altar Keepers | 0/432 | 0/2 | 2/5 | 2/0 | 0/5 | 70/422
+c34 t10plan4o2 elkring Gem Simons | 484/704 | 0/1 | 4/1 | 1/0 | 0/0 | 241/121
+c34 t10plan4o2 elkring an iq too high | 418/770 | 0/0 | 4/1 | 4/0 | 0/0 | 241/61
+c34 t10plan4o2 fields ha²t | 245/677 | 0/0 | 8/0 | 1/0 | 2/9 | 480/0
+c34 t10plan4o2 gato_gemcombat3 Gem Simons | 350/1002 | 2/1 | 11/0 | 7/0 | 5/5 | 771/60
+c34 t10plan4o2 gemfight Zkey Farming | 65/1029 | 3/1 | 13/1 | 6/1 | 0/7 | 964/120
+c34 t10plan4o2 gemfight Brakence Fan Club | 322/635 | 1/1 | 9/3 | 7/1 | 1/4 | 534/241
+c34 t10plan4o2 gift_wrapping Martin Shkreli's Defense Team | 430/600 | 0/0 | 8/3 | 6/0 | 4/3 | 398/182
+c34 t10plan4o2 gold_rush Brakence Fan Club | 11/143 | 2/1 | 10/2 | 3/0 | 0/0 | 673/180
+c34 t10plan4o2 interlock Gamblr | 206/300 | 1/1 | 5/2 | 3/0 | 0/3 | 317/181
+c34 t10plan4o2 pilgrimage Ding | 193/123 | 0/0 | 4/4 | 0/0 | 1/0 | 240/244
+c34 t10plan4o2 pilgrimage ha²t | 120/193 | 0/0 | 3/1 | 0/0 | 0/1 | 180/61
+c34 t10plan4o2 quarry Gamblr | 418/328 | 2/0 | 3/1 | 0/0 | 2/5 | 257/18
+c34 t10plan4o2 reverse_spiral German Empire Destroyers | 21/438 | 2/1 | 7/1 | 1/0 | 0/2 | 544/86
+c34 t10plan4o2 reverse_spiral SkuBap | 64/326 | 4/0 | 9/4 | 1/1 | 0/1 | 783/181
+c34 t10plan4o2 ribs German Empire Destroyers | 185/200 | 1/0 | 3/8 | 1/2 | 2/6 | 222/425
+c34 t10plan4o2 rows SquidProxyLovers | 390/312 | 0/0 | 1/1 | 0/0 | 0/0 | 60/61
+c34 t10plan4o2 rushbait_v2 SquidProxyLovers | 94/404 | 2/2 | 7/2 | 1/1 | 0/0 | 517/243
+c34 t10plan4o2 stampede SquidProxyLovers | 0/160 | 0/1 | 2/2 | 0/0 | 0/1 | 120/182
+c34 t10plan4o2 stampede an iq too high | 0/0 | 1/2 | 5/3 | 2/0 | 0/0 | 314/301
+c34 t10plan4o2 stampede Zkey Farming | 0/0 | 1/0 | 2/5 | 1/0 | 0/0 | 181/260
+c34 t10plan4o2 swirl an iq too high | 0/713 | 5/0 | 19/0 | 9/0 | 0/2 | 1397/0
+c34 t10plan4o2 the_line Brakence Fan Club | 76/1011 | 2/2 | 3/5 | 1/0 | 0/4 | 261/420
+c36 e1foco anvil BBL | 88/213 | 2/1 | 9/7 | 0/0 | 0/0 | 661/480
+c36 e1foco concentrated_wealth an iq too high | 148/504 | 2/0 | 1/3 | 0/1 | 0/4 | 181/145
+c36 e1foco crater Zkey Farming | 206/529 | 1/3 | 9/4 | 3/1 | 0/4 | 507/379
+c36 e1foco eight German Empire Destroyers | 373/260 | 0/3 | 3/6 | 1/3 | 2/0 | 182/509
+c36 e1foco elkring Ding | 418/746 | 1/0 | 4/4 | 1/0 | 0/0 | 267/142
+c36 e1foco fields Hidden Altar Keepers | 124/520 | 1/0 | 8/0 | 0/0 | 1/3 | 540/0
+c36 e1foco fields Gamblr | 491/502 | 1/0 | 5/2 | 0/0 | 4/4 | 360/120
+c36 e1foco galaxy Gamblr | 332/528 | 0/0 | 4/1 | 0/0 | 0/0 | 242/61
+c36 e1foco gato_gemcombat5 German Empire Destroyers | 378/1263 | 1/0 | 12/4 | 3/0 | 2/14 | 769/242
+c36 e1foco gift_wrapping ha²t | 376/940 | 3/1 | 6/3 | 4/0 | 4/7 | 497/171
+c36 e1foco gift_wrapping Sneaky Bush Campers | 402/607 | 1/2 | 8/2 | 5/0 | 2/5 | 504/241
+c36 e1foco gold_rush Sneaky Bush Campers | 11/203 | 2/0 | 11/0 | 3/0 | 0/0 | 776/0
+c36 e1foco gold_rush Brakence Fan Club | 11/143 | 2/1 | 10/2 | 3/0 | 0/0 | 673/180
+c36 e1foco pilgrimage Ding | 193/123 | 0/0 | 4/4 | 0/0 | 1/0 | 240/244
+c36 e1foco quarry Gem Simons | 402/278 | 0/0 | 6/1 | 4/0 | 2/3 | 361/61
+c36 e1foco tangle German Empire Destroyers | 382/391 | 0/0 | 0/1 | 0/0 | 0/1 | 0/60
+c36 e1foco tangle Ding | 433/235 | 0/0 | 1/0 | 0/0 | 0/0 | 60/0
+c36 e1foco the_line SkuBap | 209/760 | 2/1 | 5/3 | 2/2 | 1/4 | 379/241
+c36 e1foco vault Hidden Altar Keepers | 0/1081 | 3/0 | 7/1 | 2/0 | 0/3 | 556/60
+c36 t10plan4o2 ambush SkuBap | 214/246 | 0/0 | 6/0 | 2/0 | 0/0 | 281/0
+c36 t10plan4o2 anvil BBL | 235/121 | 0/1 | 9/10 | 0/0 | 0/0 | 499/657
+c36 t10plan4o2 concentrated_wealth an iq too high | 148/504 | 2/0 | 1/3 | 0/1 | 0/4 | 181/145
+c36 t10plan4o2 crater Zkey Farming | 206/529 | 1/3 | 9/4 | 3/1 | 0/4 | 507/379
+c36 t10plan4o2 dunes Sneaky Bush Campers | 72/626 | 3/1 | 13/2 | 0/0 | 1/8 | 939/181
+c36 t10plan4o2 elkring Ding | 618/719 | 2/1 | 3/5 | 1/0 | 0/0 | 263/319
+c36 t10plan4o2 expanse Gamblr | 246/390 | 0/0 | 0/0 | 0/0 | 1/3 | 0/0
+c36 t10plan4o2 fields Hidden Altar Keepers | 124/520 | 1/0 | 8/0 | 0/0 | 1/3 | 540/0
+c36 t10plan4o2 fields Gamblr | 491/502 | 1/0 | 5/2 | 0/0 | 4/4 | 360/120
+c36 t10plan4o2 galaxy Gamblr | 332/528 | 0/0 | 4/1 | 0/0 | 0/0 | 242/61
+c36 t10plan4o2 gato_gemcombat1 German Empire Destroyers | 399/765 | 1/0 | 4/2 | 1/0 | 0/0 | 257/122
+c36 t10plan4o2 gemfight Zkey Farming | 285/747 | 1/2 | 11/3 | 6/2 | 2/4 | 676/302
+c36 t10plan4o2 gift_wrapping ha²t | 376/940 | 3/1 | 6/3 | 4/0 | 4/7 | 497/171
+c36 t10plan4o2 gift_wrapping Sneaky Bush Campers | 402/607 | 1/2 | 8/2 | 5/0 | 2/5 | 504/241
+c36 t10plan4o2 gold_rush Sneaky Bush Campers | 11/203 | 2/0 | 11/0 | 3/0 | 0/0 | 776/0
+c36 t10plan4o2 gold_rush Brakence Fan Club | 11/143 | 2/1 | 10/2 | 3/0 | 0/0 | 673/180
+c36 t10plan4o2 pilgrimage Ding | 193/123 | 0/0 | 4/4 | 0/0 | 1/0 | 240/244
+c36 t10plan4o2 quarry Gem Simons | 402/278 | 0/0 | 6/1 | 4/0 | 2/3 | 361/61
+c36 t10plan4o2 split Martin Shkreli's Defense Team | 527/693 | 0/0 | 1/2 | 0/1 | 2/1 | 60/121
+c36 t10plan4o2 starfish Gamblr | 268/370 | 2/3 | 7/2 | 0/0 | 2/3 | 540/300
+c36 t10plan4o2 the_line Hidden Altar Keepers | 282/679 | 0/2 | 5/1 | 0/0 | 1/4 | 297/182
+c36 t10plan4o2 vault Hidden Altar Keepers | 10/1071 | 2/1 | 5/1 | 0/0 | 1/2 | 404/120

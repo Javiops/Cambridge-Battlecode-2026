@@ -30,3 +30,23 @@
 3. ¿Qué falta en los lejanos (60% de las partidas, donde seguimos siendo e1foco)? Lo decidiría una comparación por tramos del top 10 ganador frente a e1foco en mapas ≥35: muertes en inferioridad r151-300 y gemas a r300, el mismo análisis de pareja que ya se hizo con los cercanos.
 
 Todo está en la rama claude/project-thread-w1dkw0, carpeta handoff4/t10plan: README (cifras locales por versión), zips con su sha y an/ (escort, cyc, carryanal, mapcmp, pairfoe, divq).
+
+**Respuestas a las preguntas 2 y 3** (an/night23.py, 03:55 UTC; top 10 = lado ganador de las partidas top 10 contra top 10, decodificación nueva, o la antigua en los mapas que la corrección no toca; nuestros = c34 online. Los mapas no coinciden del todo y los rivales tampoco: los suyos son top 10, los nuestros 56-70.)
+
+2. Mapas cercanos, r0-400, top 10 / v4o2 / e1foco:
+   - capturas por partida: 19.5 / 19.0 / 22.1;
+   - rondas de campeón en campamento: 844 / 655 / 686;
+   - capturas por cada 100 rondas en campamento: 2.31 / 2.91 / 3.23;
+   - aliado a ≤4: 64 / 55 / 45%;
+   - muertes: 2.4 / 3.6 / 3.3.
+
+   El top 10 no captura más rápido por cuerpo, captura incluso más despacio. Su ventaja es estar vivo y en campamento más rondas. Implicación: la pareja vale por las muertes que evita, no por limpiar antes, y mientras cueste rondas de campamento no compensa.
+3. Mapas lejanos (≥35), por tramos de 50 rondas, top 10 (140 partidas, 36 mapas) frente a e1foco (52, 33 mapas); tabla completa en timeline/far_t10_vs_e1foco.md:
+   - aliado a ≤4: 52-63% frente a 37-43%;
+   - en su mitad: 72-75% frente a 80-84%;
+   - en campamento: 50-53% frente a 43-48%;
+   - muertes por tramo: 0.18-0.29 frente a 0.33-0.63, casi la mitad desde r150;
+   - capturas por tramo: 3.2-3.4 frente a 2.6-3.0, con más cúmulos (1.1-1.2 frente a 0.6-0.8) y menos oro solo (0.6 frente a 1.0);
+   - gemas entregadas por tramo: +20-70%.
+
+   Implicación: en lejanos lo que falta es no morir en r150-600 (la mitad de muertes) estando más juntos y más adelantados. Es el mismo eje que la pareja en cercanos, pero allí la pareja que sigue al carry costó −5. Haría falta otra forma de estar juntos que no cueste rondas de campamento.

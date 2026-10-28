@@ -1,0 +1,138 @@
+diff -ru --strip-trailing-cr /tmp/claude-0/w/ws/bots/v4o2/src/main.cpp /tmp/claude-0/w/ws/bots/v6/src/main.cpp
+--- /tmp/claude-0/w/ws/bots/v4o2/src/main.cpp	2026-10-28 02:47:20.218215095 +0000
++++ /tmp/claude-0/w/ws/bots/v6/src/main.cpp	2026-10-28 03:53:55.942938032 +0000
+@@ -2440,6 +2440,60 @@
+     return on == 1;
+ }
+ // v4o: the pair only after the opening (e1foco's own opening r0-P_T10_ROLEFROM)
++// t10plan-v6 (far maps, spawn path >= P_T10_NEARP): two regions of groups split by angle from our spawn (relative to the
++// direction of theirs); the richer region gets 3 champions (Vendetta + the next two in roster order), the other 2. Each
++// champion farms its region (others x P_V6_OUT/100); with a rival in sight it keeps within P_V6_R of its nearest region mate.
++// Top 10 on far maps: ally within 4 52-63% vs ours 37-43%, deaths per 50 rounds about half from r150.
++std::vector<int> g_v6_reg;  // group -> region 0/1
++int g_v6_state = 0, g_v6_my = -1, g_v6_mates = 0, g_v6_fire = 0;  // state 0 not computed, 1 on, 2 off
++inline bool t10_on();
++inline bool v6_on(State& s) {
++    if (g_v6_state) return g_v6_state == 1;
++    const int round = static_cast<int>(bc::round_number());
++    if (!P_V6 || round < 30 || s.ally_idx < 0) return false;
++    g_v6_state = 2;
++    if (t10_on()) return false;  // near maps: v4o2's pair
++    attempt([&] {
++        double ex = 0, ey = 0; int en = 0;
++        for (auto p : bc::map::spawn_region(bc::team::enemy).positions()) { ex += X(p); ey += Y(p); ++en; }
++        if (!en) return true;
++        ex /= en; ey /= en;
++        const double sx = X(s.spawn_center), sy = Y(s.spawn_center), dx = ex - sx, dy = ey - sy;
++        const int ng = static_cast<int>(s.groups.size());
++        std::vector<std::pair<double, int>> ang;
++        for (int i = 0; i < ng; ++i) {
++            const double gx = X(s.groups[i].center) - sx, gy = Y(s.groups[i].center) - sy;
++            ang.push_back({std::atan2(dx * gy - dy * gx, dx * gx + dy * gy), i});
++        }
++        std::sort(ang.begin(), ang.end());
++        g_v6_reg.assign(ng, 0);
++        double val[2] = {0, 0};
++        for (int k = 0; k < ng; ++k) {
++            const int i = ang[k].second, r = k * 2 < ng ? 0 : 1;
++            g_v6_reg[i] = r;
++            val[r] += s.groups[i].gems + 0.45 * s.groups[i].gold;
++        }
++        const int rich = val[1] > val[0] ? 1 : 0;
++        const auto& allies = my_roster(s);
++        const int n = static_cast<int>(allies.size());
++        std::vector<int> reg(n, 1 - rich);
++        int ven = -1;
++        for (int k = 0; k < n; ++k)
++            if (starts_with(norm(bc::to_string(allies[k].champion_name())), "vendetta")) ven = k;
++        int big = 0;
++        if (ven >= 0) { reg[ven] = rich; ++big; }
++        for (int k = 0; k < n && big < (n + 1) / 2; ++k)
++            if (k != ven) { reg[k] = rich; ++big; }
++        g_v6_my = s.ally_idx < n ? reg[s.ally_idx] : -1;
++        g_v6_mates = 0;
++        for (int k = 0; k < n; ++k)
++            if (k != s.ally_idx && reg[k] == g_v6_my) g_v6_mates |= 1 << k;
++        if (g_v6_my >= 0) g_v6_state = 1;
++        std::printf("[v6] r=%d who=%s region=%d rich=%d mates=%d groups=%d\n", round, s.name.c_str(), g_v6_my, rich, g_v6_mates, ng);
++        return true;
++    });
++    return g_v6_state == 1;
++}
+ inline bool t10_act() { return static_cast<int>(bc::round_number()) >= P_T10_ROLEFROM && t10_on(); }  // round first: no spawn-path work in the opening
+ int g_dep_wait = 0, g_rtog = 0, g_esc_k = -1, g_eh = 0;
+ int g_carry_last[8] = {-1, -1, -1, -1, -1, -1, -1, -1};  // v3i: last group each carry claimed (the lead survives the carry's recall)
+@@ -2504,6 +2558,7 @@
+     return 100 * g_pl_gs[b * ng + i] / g_pl_mx[b];
+ }
+ int choose_target_impl(State& s, bc::champion& me, int round) {
++    if (P_V6 && round >= 30 && !g_v6_state) v6_on(s);  // t10plan-v6: regions on far maps, computed once from r30
+     FP_SCOPE(15, "choose_target");
+     auto sm = read_sm();
+     vec2 pos = me.position();
+@@ -2798,6 +2853,7 @@
+ #define P_HOLD_FROM 150  // o125 holdlate: the hold-altar x2 only from this round (opening: nearest rich group first)
+ #endif
+         if (held && round >= P_HOLD_FROM) score *= P_HOLD / 100.0;  // o125
++        if (P_V6 && g_v6_state == 1 && i < static_cast<int>(g_v6_reg.size()) && g_v6_reg[i] != g_v6_my) score *= P_V6_OUT / 100.0;  // v6: our region first
+         if (lead) score *= esc ? P_T10_ESCW / 100.0 : (ballm ? P_T10_BALLW / 100.0 : P_GROUP_W);
+         else if (lead_p && dist(g.center, *lead_p) > 8 && !ballm) score *= 0.3;  // v3i: the ball is a pull, not a leash
+         if (mp_chain_next(s, me, g, i, round)) score *= P_MP_CHAINPLAN / 100.0;  // rule 9: the squad moves on to the next camp
+@@ -4858,6 +4914,38 @@
+             if (!(a == me) && a.is_alive()) allies.push_back(a.position());
+             return true;
+         });
++    // t10plan-v6: with a rival in sight, keep within P_V6_R of the nearest region mate (a far-map subgroup); no rival: farm free.
++    if (P_V6 && round >= 30 && v6_on(s) && !on_spawn && nearest_foe > 2 && nearest_foe <= 8 && fuel_ok(9000)) {
++        std::optional<vec2> mate;
++        int md = 99;
++        std::string mn;
++        attempt([&] {
++            const auto& all = my_roster(s);
++            for (int k = 0; k < static_cast<int>(all.size()); ++k) {
++                if (!((g_v6_mates >> k) & 1)) continue;
++                try {
++                    if (!all[k].is_alive() || all[k].is_recalling()) continue;
++                    const vec2 ap = all[k].position();
++                    if (s.my_spawn.is_set(ap)) continue;
++                    const int d = dist(ap, pos);
++                    if (d < md) { md = d; mate = ap; mn = norm(bc::to_string(all[k].champion_name())); }
++                } catch (...) {}
++            }
++            return true;
++        });
++        if (mate && md > P_V6_R && md <= 16) {
++            bc::bitboard ring;
++            ring.draw_chebyshev(*mate, 2.0f);
++            ring &= ~s.en_spawn;
++            if (step_towards(s, me, ring, true)) {
++                ++g_v6_fire;
++                std::printf("[v6-join] r=%d who=%s mate=%s d=%d foe=%d\n", round, s.name.c_str(), mn.c_str(), md, nearest_foe);
++                g_mode = "v6-join";
++                if (tgt && me.can_attack()) basic_attack(s, me, tgt->c, tgt->p);
++                return;
++            }
++        }
++    }
+     // Ally duty: a foe near an ally of ours (within 8 of us) becomes our target.
+     if (!tgt) {
+         for (auto& f : foes) {
+diff -ru --strip-trailing-cr /tmp/claude-0/w/ws/bots/v4o2/src/params.h /tmp/claude-0/w/ws/bots/v6/src/params.h
+--- /tmp/claude-0/w/ws/bots/v4o2/src/params.h	2026-10-28 02:47:20.219203562 +0000
++++ /tmp/claude-0/w/ws/bots/v6/src/params.h	2026-10-28 03:53:26.327790463 +0000
+@@ -29,6 +29,15 @@
+ #ifndef P_T10_KEEP
+ #define P_T10_KEEP 1  // t10plan-v4o: an escort finishes the live group it is clearing before following
+ #endif
++#ifndef P_V6
++#define P_V6 1  // t10plan-v6: far maps, two regions of groups (3 + 2 champions)
++#endif
++#ifndef P_V6_OUT
++#define P_V6_OUT 30  // t10plan-v6: score % of a group outside our region
++#endif
++#ifndef P_V6_R
++#define P_V6_R 6  // t10plan-v6: with a rival in sight, stay within this of the nearest region mate
++#endif
+ #ifndef P_T10_NEARP
+ #define P_T10_NEARP 35  // t10plan-v4n: roles only when the spawn-to-spawn walk is shorter than this (0 = every map)
+ #endif

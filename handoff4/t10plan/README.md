@@ -162,3 +162,9 @@ vs kvvl 80/140 (cercanos 21/42, lejanos 59/98); cercanos: aliado 53%, muertes 5.
 Online v4b cercanos (an/pairfoe.py): 4.35 episodios/partida de pareja viendo 3+ rivales a ≤6; otra pareja a ≤10 en 76%: muertes 0.18 vs 0.33, kills 0.41 vs 0.17.
 Regla: miembro de pareja con 3+ rivales a ≤6, ninguno a ≤2, <4 aliados a ≤4 y 4 alcanzables a ≤10: camina hacia el aliado más cercano a 5-10 (join4).
 vs kvvl 81/140 (cercanos 22/42, lejanos 59/98); cercanos: aliado 54%, muertes 5.3, capturas 15.3. Dispara 1.3 rondas por partida en local.
+
+# t10plan-v6 / v6b (2026-10-28 ~04:30 UTC): subgrupos por región en mapas lejanos — CERRADA
+Diff sobre v4o2 `src/t10plan-v6_vs_v4o2.diff` (sin zip). En ≥35: grupos partidos en 2 regiones por ángulo desde el spawn (3+2 campeones, Vendetta en la rica),
+fuera de región x0.3 (v6) o x1.0 (v6b); con rival a ≤8, ir a ≤6 del compañero de región (línea `[v6-join]` por disparo, 24.5 por partida).
+Lejanos vs kvvl (98), aliado ≤4 / con rival a ≤8 / capturas r<400 / muertes r150-600 / victorias: e1foco 40% / 50% / 19.4 / 3.10 / 62; v4o2 40 / 50 / 19.4 / 3.11 / 59;
+v6 32 / 42 / 18.7 / 3.67 / 41; v6b 41 / 51 / 19.0 / 3.06 / 59. Las regiones separan al equipo; la regla de juntarse sola no mueve nada.

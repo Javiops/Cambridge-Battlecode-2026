@@ -301,3 +301,37 @@ Mismo `P_V9` (params.h); nada corre antes de r30; una línea por disparo (`[v9-p
 - **vs e1foco** (140 partidas, v9c lado del bot): victorias 44/140; aliado a ≤4 43.4%; muertes r151-600 3.52 (3+ rivales 0.70); rondas-campeón muerto 204; capturas 25.3, de 40+ 1.14, gemas de captura 308; gemas entregadas r300/r600 100/259; líneas fight/retreat/wake/pick/slack 59/42/60/23/2.2; combustible 0.
 
 **Lo que dice el mecanismo (v9c).** Quitar las esperas recupera farmeo (capturas 23.2→25.8, gemas de captura 268→319, entregadas r600 224→247) y victorias (32→47) manteniendo las muertes bajas (2.89 vs 3.74 de v4o2), pero sigue 25 victorias por debajo de v4o2: la cohesión cae a 42.5% (sin esperas, las escuadras no se forman: el 23% de las rondas de los miembros es `approach` caminando por separado al mismo grupo), las capturas de 40+ (1.31) no llegan a v4o2 (1.50) porque con el dps real nunca ganan la puntuación, y la pelea con ventaja sigue dando 60 episodios por partida. v9d (grupos grandes más baratos) baja a 33. Lo que aún gasta rondas: `approach` 23%, `tribute` 11%, `wait` (respawn/needed) 3.6%, `v9-retreat` 3.5%.
+
+# t10plan-v10 "escuadras + tienda del top 5" (2026-10-28 ~13:20 UTC): v9c con los planes de emblemas del top 5 (bruiser-fuerza de apertura, sin Treasure) — NO MEJORA (41/140 vs kvvl)
+Zip `zips/e1foco-t10plan-v10.zip` sha256 `fa561dc39ae649de647811cb3a0f3592bb5f50dbef06d4747b325f085f0fc5bb` (src/ como v9c + cambios abajo), diff `src/t10plan-v10_vs_v9c.diff` (72 líneas, solo tablas estáticas `s.plan` + marcador `[fuelfit] ... o99_shop2 t10plan-v10`).
+
+**Cambios sobre v9c** (champions.h, marcella.h, vendetta.h, heart_of_ruin.h, ryth.h, main.cpp): los planes de `o99_shop2.py` (rama `claude/project-thread-jhnqzy`, `handoff/fuelfit-farm/opts/`), copiados de lo que el top 5 lleva a r300/r600 en 375 partidas 2.0.0 (bruiser 1402 emblemas, jungle 376, treasure 361):
+- Vesper (línea genérica "Mite tank" de champions.h): `durab-s, jungle-s, bruiser-h, power-s*` → `bruiser-s, jungle-s, bruiser-h, durab-h, bruiser-s*`.
+- Marcella: `treasure-f, bruiser-f, jungle-s, bruiser-h x2, bruiser-f*` → `bruiser-s, jungle-s, bruiser-h, durab-h, bruiser-s*`.
+- Vendetta: `treasure-s, jungle-s, bruiser-h, bruiser-s*` → `jungle-s, bruiser-s, bruiser-h, monster-s, bruiser-s*`.
+- HoR: `treasure-h, jungle-f, bruiser-h, durab-h, bruiser-h x2, bruiser-f*` → `jungle-f, treasure-h, bruiser-h, bruiser-f, durab-h, bruiser-f*`.
+- Ryth: `treasure-h, jungle-s, bruiser-h, durab-h, bruiser-s, bruiser-h*` → `jungle-s, bruiser-h, treasure-h, bruiser-s, durab-h, bruiser-h*`.
+- Nada nuevo corre antes de r30 (las tablas son datos estáticos; la tienda compra en los mismos momentos que antes). El precio de objetivo de la escuadra ya lee la fuerza real: `my_dps` usa `me.strength()` y `v9.h` usa `allies[k].strength()` para cada miembro (el 60 es solo el valor si la llamada falla), así que los grupos grandes se abaratan según caen los emblemas sin cambio de código.
+
+**Comprobación local** (70 mapas x 2 lados; an/v9an.py, an/capdur.py (nuevo: rondas del primer golpe a la captura en grupos de 40+); base de divergencia dec/v4o2k):
+
+| | v4o2 | v9c | **v10 (zip)** |
+|---|---|---|---|
+| victorias vs kvvl | 72 | 47 | **41** |
+| aliado a ≤4 fuera del spawn r50-600 | 44.5% | 42.5% | 42.8% |
+| muertes r151-600 (con 3+ rivales a ≤6) | 3.74 (1.04) | 2.89 (0.63) | 3.18 (0.71) |
+| rondas-campeón muerto r151-600 | 226 | 175 | 191 |
+| capturas hasta r600 | 27.1 | 25.8 | 25.7 |
+| capturas de grupos de 40+ (v9an) | 1.50 | 1.31 | 1.29 |
+| capturas de 40+ con episodio de golpes (capdur) / intentos | 0.59 / 4.04 | 0.55 / 4.06 | 0.56 / 4.02 |
+| rondas del primer golpe a la captura (40+), media / mediana | 31.0 / 24 | 27.6 / 24 | 28.6 / 26 |
+| cuerpos por captura de 40+ | 2.39 | 2.00 | 2.19 |
+| gemas de captura hasta r600 | 328 | 319 | 315 |
+| gemas entregadas r300 / r600 | 114 / 277 | 111 / 247 | 106 / 241 |
+| líneas por partida fight / retreat / wake / pick / slack | — | 60 / 44 / 64 / 23 / 2.4 | 61 / 45 / 63 / 23 / 2.4 |
+
+- Divergencia antes de r30 frente a v4o2: **3 de 140** (gato_gemcombat5_a r4, starvation_a r4, stalactites_b r25: las de v9; gemfight r2 de v9c desaparece). Mediana de la primera divergencia: r35.
+- Combustible: 0 marcadores low-fuel / fuel-wait (base 0).
+- **vs e1foco** (140 partidas): victorias 39/140 (v9c 44); aliado a ≤4 43.3%; muertes r151-600 3.54 (3+ rivales 0.78); rondas-campeón muerto 206; capturas 25.5, de 40+ 1.31 (v9c 1.14), gemas de captura 313; gemas entregadas r300/r600 107/249 (v9c 100/259); capdur: 0.59/partida de 4.33 intentos, 27.0 rondas de media / 23 mediana (v9c 0.49 de 4.02, 24.7 / 24); líneas fight/retreat/wake/pick/slack 57/41/59/21/2.3; combustible 0.
+
+**Lo que dice el mecanismo (v10).** Cambiar la tienda sola no mueve las capturas de 40+ (1.31→1.29 vs kvvl, 1.14→1.31 vs e1foco) ni el tiempo de limpieza (27.6→28.6 vs kvvl, 24.7→27.0 vs e1foco): con 2 cuerpos por captura y 4 intentos por partida de los que solo 0.55 acaban en captura propia, el cuello sigue siendo que la escuadra no se forma (aliado a ≤4 42.8%) y abandona el grupo, no el dps por cuerpo. La mediana de captura de 40+ sigue en r495 (v9c 496): los emblemas de fuerza no adelantan la primera limpieza grande. Victorias 47→41 vs kvvl y 44→39 vs e1foco (rivales locales que farmean oro; no es el juez).

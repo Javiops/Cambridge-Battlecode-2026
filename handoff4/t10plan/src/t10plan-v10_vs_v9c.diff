@@ -1,0 +1,72 @@
+diff -ru bots/v9c/src/champions.h bots/v10/src/champions.h
+--- bots/v9c/src/champions.h	2026-10-28 12:33:19.252697378 +0000
++++ bots/v10/src/champions.h	2026-10-28 12:52:42.476536251 +0000
+@@ -110,7 +110,7 @@
+     else
+         s.plan = {{"monster", 's', 1}, {"power", 's', 3}, {"jungle", 'h', 1}, {"power", 's', 99}};
+     if (!cassi_issac::is_cassi(s.name))  // Mite's tank build: survive camps solo, then raw power
+-        s.plan = {{"durab", 's', 1}, {"jungle", 's', 1}, {"bruiser", 'h', 1}, {"power", 's', 99}};
++        s.plan = {{"bruiser", 's', 1}, {"jungle", 's', 1}, {"bruiser", 'h', 1}, {"durab", 'h', 1}, {"bruiser", 's', 99}};  // o99 shop2: top-5 Vesper r300 bruiser-s .56 jungle-s .50 durab-h .28 bruiser-h .24; r600 bruiser-s 2.98
+     // what the top-10 winners buy (2026-10-14 study of 169 games)
+     if (cassi_issac::is_issac(s.name))      // their Issac: 11 power-s shards a game, ours 5.5
+         s.plan = {{"power", 's', 2}, {"jungle", 's', 1}, {"power", 's', 99}};
+diff -ru bots/v9c/src/heart_of_ruin.h bots/v10/src/heart_of_ruin.h
+--- bots/v9c/src/heart_of_ruin.h	2026-10-28 12:33:19.252715779 +0000
++++ bots/v10/src/heart_of_ruin.h	2026-10-28 12:52:42.476754580 +0000
+@@ -11,7 +11,7 @@
+ // then Bruiser-f.
+ CHAMP_HOOK bool shop_plan(State& s) {
+     if (!is(s.name)) return false;
+-    s.plan = {{"treasure", 'h', 1}, {"jungle", 'f', 1}, {"bruiser", 'h', 1}, {"durab", 'h', 1}, {"bruiser", 'h', 2}, {"bruiser", 'f', 99}};
++    s.plan = {{"jungle", 'f', 1}, {"treasure", 'h', 1}, {"bruiser", 'h', 1}, {"bruiser", 'f', 1}, {"durab", 'h', 1}, {"bruiser", 'f', 99}};  // o99 shop2: top-5 HoR r300 treasure-h .44 jungle-f .30; r600 bruiser-f .80 bruiser-h .75 jungle-f .73 treasure-h .67 durab-h .35
+     return true;
+ }
+ 
+diff -ru bots/v9c/src/main.cpp bots/v10/src/main.cpp
+--- bots/v9c/src/main.cpp	2026-10-28 12:34:26.829415646 +0000
++++ bots/v10/src/main.cpp	2026-10-28 12:52:42.482600076 +0000
+@@ -5533,7 +5533,7 @@
+ }
+ 
+ void log_init(State& s) {
+-    std::printf("[fuelfit] b35nohp o74 nohitpass det + farmeo c95go45e1 o100_incoming o125_holdlate o129_goldopen45\n");
++    std::printf("[fuelfit] b35nohp o74 nohitpass det + farmeo c95go45e1 o100_incoming o125_holdlate o129_goldopen45 o99_shop2 t10plan-v10\n");
+     // v4o: no init line here (an extra printf in the init turn shifted the init of one champion by a round; roles=0 must be e1foco)
+     std::printf("[init] %s melee=%d ally=%d groups=%zu altars=%zu spawn=%zu shards=%zu slots=%s/%s pots=%zu sm=%zu\n",
+                 s.name.c_str(), s.melee ? 1 : 0, s.ally_idx, s.groups.size(), s.altars.size(),
+diff -ru bots/v9c/src/marcella.h bots/v10/src/marcella.h
+--- bots/v9c/src/marcella.h	2026-10-28 12:33:19.252645611 +0000
++++ bots/v10/src/marcella.h	2026-10-28 12:52:42.476660722 +0000
+@@ -14,7 +14,7 @@
+ // Durab-h, 2 Bruiser-f, then Bruiser-h.
+ CHAMP_HOOK bool shop_plan(State& s) {
+     if (!is(s.name)) return false;
+-    s.plan = {{"treasure", 'f', 1}, {"bruiser", 'f', 1}, {"jungle", 's', 1}, {"bruiser", 'h', 2}, {"bruiser", 'f', 99}};  // o110 (measurement): Focus first
++    s.plan = {{"bruiser", 's', 1}, {"jungle", 's', 1}, {"bruiser", 'h', 1}, {"durab", 'h', 1}, {"bruiser", 's', 99}};  // o99 shop2: top-5 Marcella r300 bruiser-s .39 jungle-s .29 bruiser-h .27 durab-h .20; r600 bruiser-s 2.28 bruiser-h .92 bruiser-f .64  // o110 (measurement): Focus first
+     return true;
+ }
+ 
+diff -ru bots/v9c/src/ryth.h bots/v10/src/ryth.h
+--- bots/v9c/src/ryth.h	2026-10-28 12:33:19.252561426 +0000
++++ bots/v10/src/ryth.h	2026-10-28 12:52:42.476816326 +0000
+@@ -8,7 +8,7 @@
+ // t10shop-v1: top-10 Ryth build: Treasure first, Jungle-s, Bruiser-h, Durab-h, Bruiser-s, then Bruiser-h.
+ CHAMP_HOOK bool shop_plan(State& s) {
+     if (!is(s.name)) return false;
+-    s.plan = {{"treasure", 'h', 1}, {"jungle", 's', 1}, {"bruiser", 'h', 1}, {"durab", 'h', 1}, {"bruiser", 's', 1}, {"bruiser", 'h', 99}};
++    s.plan = {{"jungle", 's', 1}, {"bruiser", 'h', 1}, {"treasure", 'h', 1}, {"bruiser", 's', 1}, {"durab", 'h', 1}, {"bruiser", 'h', 99}};  // o99 shop2: top-5 Ryth r300 treasure-h .29 jungle-s .25; r600 jungle-s .75 bruiser-h .67 treasure-h .42
+     return true;
+ }
+ 
+diff -ru bots/v9c/src/vendetta.h bots/v10/src/vendetta.h
+--- bots/v9c/src/vendetta.h	2026-10-28 12:33:19.252772981 +0000
++++ bots/v10/src/vendetta.h	2026-10-28 12:52:42.476703000 +0000
+@@ -13,7 +13,7 @@
+ // t10shop-v1: top-10 Vendetta build: Treasure first, Jungle-s, Bruiser-h, Durab-h, then Bruiser-s.
+ CHAMP_HOOK bool shop_plan(State& s) {
+     if (!is(s.name)) return false;
+-    s.plan = {{"treasure", 's', 1}, {"jungle", 's', 1}, {"bruiser", 'h', 1}, {"bruiser", 's', 99}};  // o109: Strength first (top 10 Vendetta 8-9 Strength shards at r400, ours 2-3)
++    s.plan = {{"jungle", 's', 1}, {"bruiser", 's', 1}, {"bruiser", 'h', 1}, {"monster", 's', 1}, {"bruiser", 's', 99}};  // o99 shop2: top-5 Vendetta r300 jungle-s .54 bruiser-s .19 monster-s .16; r600 bruiser-s 1.79 bruiser-h 1.09 jungle-s .89 monster-s .42  // o109: Strength first (top 10 Vendetta 8-9 Strength shards at r400, ours 2-3)
+     return true;
+ }
+ 

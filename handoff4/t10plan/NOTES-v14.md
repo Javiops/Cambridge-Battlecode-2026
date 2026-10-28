@@ -105,3 +105,30 @@ Why the 25% bail never fires (an/campd analysis in NOTES): our camp-killed champ
 last 10 rounds (0.5 foes within 6, hitting until r-3): a strong group kills from full in 7-8 rounds; at 25% there are 1-2 rounds
 left and P_BAIL_PCT 12 takes it. The affordable test (`squad_needed` with hp + 60% of max hp, `P_RESERVE_PCT -60`) is judged only
 before the first hit.
+
+## 4. v14b: v14 + the alone-affordability check while engaged (diff `src/t10plan-v14b_vs_v14.diff`, zip `zips/e1foco-t10plan-v14b.zip`)
+
+From r30, farming with no ally within 6 and nobody else claiming the group, every round while engaged: `squad_needed(rem, str, dps,
+hp - 25% max hp)` > 1 drops the group for 30 rounds and leaves (`[v14-camp] r= ch= hp= rem= str= need=`); bail backstop 35%
+(`[v14-bail]`); not on a monolith / jackpot run. The bench was interrupted by a container restart at 110 games and the missing 30
+were played afterwards with the same binaries (an/gems14.py reads wins from the replays).
+
+| | v4o2 | v14 | v14b |
+|---|---|---|---|
+| wins vs kvvl | 80/140 | **91/140** | 86/140 |
+| `[v14-camp]` / `[v14-bail]` a game (r30-150) | - | 0 / 0 | 1.00 / 0.18 (6.4 / 1.4 whole game) |
+| deaths r30-150: total / champion-killed / camp-killed | 1.01 / 0.63 / 0.38 | 0.86 / 0.52 / 0.34 | 0.90 / 0.54 / 0.36 |
+| champion-rounds dead / hitting r30-150 | 52.9 / 97.1 | 43.1 / 99.6 | 45.1 / 95.8 |
+| deaths <= r600 / whole game | 4.58 / 10.51 | 3.64 / 8.22 | 3.81 / 8.71 |
+| gold captures r30-150 / hitter-rounds per capture | 4.28 / 20.6 | 4.36 / 20.5 | 4.38 / 19.9 |
+| captures <= r600 | 27.5 | 27.8 | 27.7 |
+| gems r300 / r600 / end (rival end) | 118 / 263 / 790 (718) | 120 / 269 / 835 (702) | 116 / 259 / 820 (742) |
+
+The camp rule fires once a game in the window but the camp-killed deaths do not move (0.36 vs 0.34): the champion that dies to a
+camp at r30-150 loses 84% -> 9% in 10 rounds, and at the round the formula first says "no" it is already inside the group's range;
+what the rule does drop are groups the champion would have finished (hitting rounds 99.6 -> 95.8, -5 games). **Deliverable: v14**
+(`zips/e1foco-t10plan-v14.zip`). The camp deaths need the decision before the first hit (the afford reserve of `squad_needed`,
+P_RESERVE_PCT -60), which is a v4o2 farm rule outside this task's "remove the bucket" scope; left as a follow-up.
+
+Tools: `an/state14.py DIR [--index] [--pertype]` (buckets, travel, engagements, target choice, deaths with context), `an/v14lines.py TAG`
+(`[v14-*]` lines from the local replays' stdout), `an/gems14.py TAG BOT` (wins, gems r300/r600/end, deaths, captures from replaydump).

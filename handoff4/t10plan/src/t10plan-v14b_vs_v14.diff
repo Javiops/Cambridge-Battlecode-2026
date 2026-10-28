@@ -1,0 +1,42 @@
+diff -ru /home/user/ws/bots/v14/src/main.cpp /home/user/ws/bots/v14b/src/main.cpp
+--- /home/user/ws/bots/v14/src/main.cpp	2026-10-28 21:59:50.017139359 +0000
++++ /home/user/ws/bots/v14b/src/main.cpp	2026-10-28 22:13:53.833301879 +0000
+@@ -3905,9 +3905,21 @@
+                 // intervention; keep fighting instead of throwing a turn.
+             }
+         }
+-        const bool v14_bail = P_V14 && round >= P_V14_R && hp < mhp * P_V14_BAIL / 100.0 && hp >= mhp * P_BAIL_PCT / 100.0 &&
+-                              fuel_ok(14000) && allies_near(s, me, pos, 6) == 0;
+-        if (v14_bail) std::printf("[v14-bail] r=%d ch=%s hp=%d rem=%d\n", round, s.name.c_str(), static_cast<int>(100 * hp / mhp), static_cast<int>(rem));
++        bool v14_bail = false;
++        if (P_V14 && round >= P_V14_R && hp >= mhp * P_BAIL_PCT / 100.0 && fuel_ok(14000) && allies_near(s, me, pos, 6) == 0 &&
++            !(mono_go || (g.jackpot && round >= P_JACKGO))) {
++            if (hp < mhp * P_V14_BAIL / 100.0) {
++                v14_bail = true;
++                std::printf("[v14-bail] r=%d ch=%s hp=%d rem=%d\n", round, s.name.c_str(), static_cast<int>(100 * hp / mhp), static_cast<int>(rem));
++            } else if (engaged && coming <= 1) {
++                const int need1 = squad_needed(rem, str, dps, std::max(1.0, hp - mhp * P_V14_RES / 100.0));
++                if (need1 > 1) {
++                    v14_bail = true;
++                    std::printf("[v14-camp] r=%d ch=%s hp=%d rem=%d str=%d need=%d\n", round, s.name.c_str(), static_cast<int>(100 * hp / mhp),
++                                static_cast<int>(rem), static_cast<int>(str), need1);
++                }
++            }
++        }
+         if (hp < mhp * P_BAIL_PCT / 100.0 || v14_bail) {
+             g_farm = "bail";
+             g.bad_until = round + 30;
+diff -ru /home/user/ws/bots/v14/src/params.h /home/user/ws/bots/v14b/src/params.h
+--- /home/user/ws/bots/v14/src/params.h	2026-10-28 21:59:50.014502362 +0000
++++ /home/user/ws/bots/v14b/src/params.h	2026-10-28 22:13:53.832065671 +0000
+@@ -510,4 +510,9 @@
+ #define P_V14_R 30
+ #define P_V14_RATIO 80
+ #define P_V14_LOWHP 50
+-#define P_V14_BAIL 25
++#define P_V14_BAIL 35
++// v14b: alone (no ally within 6, nobody else claiming) and engaged on a group from r30, judge every round whether the rest of the
++// group is affordable with hp minus P_V14_RES % of max hp (v4o2: hp plus 60% for everybody, judged only before the first hit);
++// if squad_needed says more than one body, leave the group now (state14: our camp deaths go 84% -> 59% -> 36% -> 22% -> 9% hp in the
++// last 10 rounds while still hitting; a 25% bail had 1-2 rounds and never fired).
++#define P_V14_RES 25

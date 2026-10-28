@@ -210,3 +210,17 @@ Desde r30, en grupos de 40+ gemas que no estén en su puerta. Línea `[v8-big] r
   - capturas totales: 23.7 frente a 26.9;
   - gemas: 317 frente a 330.
 - Diff: src/t10plan-v8a_vs_v7r.diff. Zip: zips/e1foco-t10plan-v8a.zip.
+
+# t10plan-v8b: NO CONSTRUIDA (28-10 11:37 UTC), traspaso a coordinación
+No hay código: la edición se paró antes de escribirse. Base: v8a (6665a2c).
+
+Dato de an/big40.py sobre 140 derrotas online c34+c36, intentos sobre grupos de 40+ hasta r600 (nosotros / rival):
+- intentos por partida 4.0 / 5.2, de los que acaban en captura propia 0.96 / 2.76;
+- primer golpe con 2-3 cuerpos: 21 de 563 nuestros frente a 102 de 724 del rival;
+- por intento: vida perdida 1155 / 850, muertes 0.22 / 0.06.
+
+Diseño previsto:
+1. **Esperar.** Bloque antes de `if (PR.campfoe ...)` en play_turn. Desde r30, sin rivales a la vista y sin campamento despierto cerca: si el objetivo es un grupo de 40+ gemas con str>0, vivo, a 5-8 tiles, y otro aliado lo reclama (count_claimers ≥1) pero no hay ninguno a ≤5, esperar hasta P_V8W=20 rondas en modo "v8-wait", con una línea `[v8-wait]` por objetivo.
+2. **Que llegue el compañero.** P_V7J 1 (bigjoin) para que el aliado libre más cercano acuda.
+3. **No abandonar** (pedido de coordinación). Con dos cuerpos a ≤3 del grupo y el campamento despierto, sin rival nuevo a ≤8, mantener s.target, sin re-choice ni recall por vida salvo flee_pct.
+4. **Comprobación.** Réplicas idénticas a v8a donde no dispara la regla.

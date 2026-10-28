@@ -42,3 +42,33 @@ No se mueve: posición (mitad propia 91% / 89%; el top 10 está al 77%).
 feat.py (rasgos por campeón y tramo de un .json.gz de ext.py), agg.py + report.py (tabla top10 vs e1foco), pertype.py, pairs.py,
 build_plan.py (genera plan_t10.h), localcmp.py, h2h.sh, score.sh. Decodificado con viewer/ext.py + replaydump_maxr.js (MAXR=700) y el wasm
 v2_0_0 de la rama del hilo de campeones (commit 715ca79).
+
+# t10plan-v3 (2026-10-28 ~00:40 UTC)
+Zip `zips/e1foco-t10plan-v3.zip` sha256 `6036727fb08a866ef7803e90dd64f3fad2aec3f455d2793d013c88aa15f9b231`, diff `src/t10plan-v3_vs_e1foco.diff`.
+Marcadores: `[init] t10plan-v3 rtog=0 depart=10 farcut=0 until=650 end=800 ball=50 bigstr=120 lo=50 hi=250 free=25 roles=1 escw=150 maps=70`;
+desde r150 una vez por campeón `[t10plan] who=.. map=<mapa|none> side=.. games=.. groups=.. camps=.. tried=..`; estado `pl=on/off dep=.. rtog=..`.
+
+Cambios frente a la v2:
+1. **Horario por posición de campamento** (no por id de grupo), solo ganadores, con el decodificador corregido del PC (6746f59) en los 18 mapas
+   afectados; peso = rondas golpeando x (120 / vida máxima)^0.35, para no sobrevalorar alces lentos frente a cúmulos. El bot suma los campamentos
+   de cada grupo suyo. La huella del mapa es el número de campamentos y que todos caigan sobre una casilla de un grupo: reconoce 70/70 en local.
+2. **Horario desde r150** (la apertura de oro queda como en e1foco; online la v2 cobraba -44% de grupos de solo oro). Los grupos de solo oro
+   nunca bajan por el horario. Salida suave de r650 a r800 (sin acantilado).
+3. **El carry captura**: una escolta deja la recompensa a Vesper o Marcella si están en el grupo o al lado; el carry ignora a las escoltas.
+4. Roles toda la partida; mitad rival y puerta enemiga solo con compañía (otro aliado reclama el grupo o es el grupo del carry), sin incursiones
+   en solitario; grupo grande del horario hasta 4 cuerpos (jackpot incluido cuando el top 10 lo toma); salir del spawn esperando a un aliado
+   que se cura o hace recall (≤10 rondas; dispara poco).
+
+Probado y descartado (vs kvvl, e1foco 87): horario solo en cercanos 71-84; escolta en el campamento vecino 75-79; escolta x3 73-75;
+pairfarm hasta r400 86 pero sin cohesión (49%); recall en pareja 73 (dispara 1 vez por partida); suelo x1.5 del oro 76.
+
+| bot vs kvvl (140) | victorias | aliado a ≤4 fuera del spawn r50-600 | muertes r50-600 por partida |
+|---|---|---|---|
+| e1foco | 87 | 43% | 4.9 |
+| solo roles + captura del carry | 85 | 48% | 4.8 |
+| **v3** | **82** | **51%** | **4.2** |
+| v3 con horario desde r0 | 74 | 53% | 4.0 |
+
+Ruido local: dos bots casi iguales (el recall en pareja dispara 1 vez por partida) dan 85 frente a 71 y 82 frente a 73: ±7 en 140 partidas.
+12 partidas con timeline.py en `timeline/` (6 mapas x 2 lados): v3 aliado 50% frente a 31%, muertes 4.2 frente a 4.1, 9/12 frente a 7/12.
+Puerta del coordinador (>55% y ≥87): NO pasa (51%, 82).

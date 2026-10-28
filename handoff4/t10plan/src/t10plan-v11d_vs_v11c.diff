@@ -1,0 +1,183 @@
+diff -ru v11c/src/main.cpp v11d/src/main.cpp
+--- v11c/src/main.cpp	2026-10-28 13:33:37.874451449 +0000
++++ v11d/src/main.cpp	2026-10-28 13:54:24.403078973 +0000
+@@ -2607,7 +2607,7 @@
+                 if (s.groups[s.target].mask.is_set(c.spawn_position()) && attempt([&] { return c.health() > 0 && c.health() < c.max_health(); })) damaged = true;
+             if (damaged) return s.target;
+         }
+-        if (lg >= 0 && s.groups[lg].next_ok <= round && s.groups[lg].bad_until <= round) {
++        if (lg >= 0 && (P_V11 ? s.groups[lg].gems + s.groups[lg].gold > 0 : (s.groups[lg].next_ok <= round && s.groups[lg].bad_until <= round))) {  // v11d: the leader's LOCKED group is the target whatever my own cooldown / bad_until belief (the leader unlocks it)
+             const int dl = gds_cheb(s, pos, lg);
+             if (!P_V11 && dl > P_V9_SLACK) {  // v9c slack (off in v11: the block walks together): far from the leader's group, take a live group of value within P_V9_SLACK_R on the way
+                 int bi = -1, bd = 1 << 30;
+@@ -2846,6 +2846,15 @@
+                 if (s.seen_r >= round - 1) for (auto& o : s.seen) if (dist(o.p, g.center) <= 8) ++riv;
+                 if (danger_on && dist(g.center, s.danger_p) <= P_DANGER_R) riv = std::max(riv, nsq + 1);
+                 if (riv >= 3) continue;
++                if (value >= P_V11_MINVAL && !(g.reward_seen >= 0 && round - g.reward_seen < 30)) {  // v11d: strength gate (v9 pricing): clear time with the block's dps within 12 of me and the damage it costs
++                    const double sd = std::max(10.0, static_cast<double>(v9::squad_dps_near(pos, 12, s.ally_idx)));
++                    const double hsum = std::max(1.0, v9::squad_hp_near(pos, 12, s.ally_idx, static_cast<double>(me.health())));
++                    const double tc = g.hp / sd, dmg = g.str * (P_INC_PCT / 100.0) * tc;
++                    if (tc > P_V11_TCLEAR || dmg >= 0.6 * hsum) {
++                        if (i < 64 && !((v9::g_gate_logged >> i) & 1)) { v9::g_gate_logged |= 1ull << i; ++v9::g_gated; std::printf("[v11-gate] r=%d who=%s grp=%d val=%.0f hp=%.0f str=%.0f sdps=%.0f tclear=%.1f dmg=%.0f hpsum=%.0f\n", round, s.name.c_str(), i, value, g.hp, g.str, sd, tc, dmg, hsum); }
++                        continue;
++                    }
++                }
+                 int d = gds[i] + std::max(0, wait);
+                 if (riv > v9::g_nblock) d += 30;
+                 if (gc[i].half && round < 300 && !(value >= P_V11_BIG && v9::g_nblock >= 4 && riv < 3)) d += 20;
+@@ -3614,7 +3623,8 @@
+     // a carry ignores escorts. Between two carries or two escorts the usual rule below decides.
+     const bool pl_me_carry = t10_act() && pl_carry(s.name);
+     const bool vc = !PR.capprio && vcarry_on(s);  // P_VCARRY: Vesper first, everybody else equal
+-    const int prio_r = PR.capprio ? PR.capprio : vc ? P_VCARRY : 0;
++    const bool v11b = P_V11 && v9::active();  // v11d: in the block only an ally ON / next to the reward takes it (corners_a: 2 members stood 15-25 rounds on a waiting reward for the leader's rank)
++    const int prio_r = v11b ? 1 : PR.capprio ? PR.capprio : vc ? P_VCARRY : 0;
+     auto rank_of = [&](const std::string& n, bool ranged) { return vc ? vesper::carry_rank(n) : champ::cap_rank(n, ranged); };
+     const int my_rank = prio_r ? rank_of(s.name, me.attack_range() > 1) : 0;
+     std::vector<bc::champion> seen;  // P_FUELGUARD: allies in vision (position() of any other one throws)
+@@ -3634,7 +3644,7 @@
+             if (t10_act()) {
+                 const bool a_carry = pl_carry(norm(bc::to_string(a.champion_name())));
+                 if (pl_me_carry && !a_carry) continue;
+-                if (!pl_me_carry && a_carry && !a.is_recalling() && !a.is_teleporting() && ((claims && d <= 4) || d <= 1)) {
++                if (!pl_me_carry && a_carry && !a.is_recalling() && !a.is_teleporting() && ((claims && d <= (v11b ? 1 : 4)) || d <= 1)) {
+                     other = true; g_cap_other_on = d == 0; continue;
+                 }
+             }
+@@ -3763,6 +3773,17 @@
+     return true;
+ }
+ 
++// v11d: a block member within 6 of the locked camp that is not attacking it, logged once per 5 rounds
++void v11_idle(const State& s, int round, vec2 pos, const char* reason) {
++    if (!(P_V11 && v9::active())) return;
++    const int lg = v9::leader() ? s.target : (v9::follower() ? v9::lead_ally().claim : -1);
++    if (lg < 0 || lg >= static_cast<int>(s.groups.size()) || dist(pos, s.groups[lg].center) > 6) return;
++    static int last = -100;
++    if (round - last < 5) return;
++    last = round;
++    ++v9::g_idle;
++    std::printf("[v11-idle] r=%d who=%s grp=%d target=%d reason=%s\n", round, s.name.c_str(), lg, s.target, reason);
++}
+ void farm(State& s, bc::champion& me, int round, const std::vector<bc::camp>& camps) {
+     vec2 pos = me.position();
+     double hp = me.health();
+@@ -3892,6 +3913,7 @@
+         }
+         if (wi >= 0 && wbest < 120 && hp >= 0.6 * mhp) {
+             g_farm = "wait";
++            v11_idle(s, round, pos, "wait");
+             Group& g = s.groups[wi];
+             bc::bitboard r5, r4;
+             for (auto t : g.tiles) {
+@@ -3902,6 +3924,7 @@
+             return;
+         }
+         g_farm = "no-target";
++        v11_idle(s, round, pos, "no-target");
+         if (!s.my_spawn.is_set(pos)) {
+             if (hp < 0.9 * mhp && dist(pos, s.spawn_center) > 8) s.need_heal = round;
+             else flee(s, me);
+@@ -3946,6 +3969,7 @@
+             needed = inc <= std::max(afford, mhp * 0.7) ? 1 : nsq + 1;
+             if (!engaged && needed <= nsq && v9::g_wake_done != s.target) { v9::g_wake_done = s.target; ++v9::g_wakes; std::printf("[v9-wake] r=%d who=%s grp=%d near=%d sdps=%.0f gems=%d\n", round, s.name.c_str(), s.target, v9::near(g.center, P_V9_DPS_R, s.ally_idx, true), sd, g.gems); }
+         }
++        bool v11_go = false;  // v11d: the rally condition is met -> every member hits, no wait / cooldown / ring
+         if (P_V11 && v9::active() && v9::g_nblock >= 2 && !g.monolith && !g.jackpot) {  // v11c: rally before the first hit, capped from the pick round
+             if (v9::g_rally_t != s.target) { v9::g_rally_t = s.target; v9::g_rally_r0 = -1; v9::g_pick_r = round; v9::g_solo_r0 = -1; v9::g_hit_logged = false; }
+             int dc = 1 << 30, ar = 3; double mx = 0;
+@@ -3967,16 +3991,18 @@
+             }
+             if (!go) {
+                 g_farm = "v11-rally";
++                v11_idle(s, round, pos, engaged ? "solo-hold" : "rally-hold");
+                 bc::bitboard r5, r4;
+                 for (auto* c : live) { r5.draw_chebyshev(c->position(), static_cast<float>(ar + 2)); r4.draw_chebyshev(c->position(), static_cast<float>(ar + 1)); }
+                 if (!(r5 & ~r4).is_set(pos)) step_towards(s, me, r5 & ~r4, true);
+                 return;
+             }
++            v11_go = true;
+             if (!v9::g_hit_logged) { v9::g_hit_logged = true; ++v9::g_hits; std::printf("[v11-hit] r=%d who=%s grp=%d near3=%d waited=%d\n", round, s.name.c_str(), s.target, nh, v9::g_rally_r0 >= 0 ? round - v9::g_rally_r0 : -1); }
+         }
+         const bool mono_go = (s.mono_only && g.monolith) || (g.jackpot && round >= P_JACKGO);
+         if (mono_go) needed = std::min(needed, std::max(1, std::min(g.monolith ? s.roster : P_JACKN, s.roster)));
+-        if (!engaged && needed > here) {
++        if (!v11_go && !engaged && needed > here) {  // v11d: not for a rallied block (the strength gate is at the pick)
+             if (needed > std::max(coming, s.roster) || (!mono_go && needed > squad_needed(rem, str, dps, mhp * 0.75))) {
+                 g_farm = "too-strong";  // not even a full-health squad would do it
+                 g.bad_until = round + 60;
+@@ -4077,6 +4103,7 @@
+                     }
+                 if (best != pos && attempt([&] { return me.move_absolute(best); })) {
+                     g_farm = "lethal-camp-escape";
++                    v11_idle(s, round, pos, "lethal-escape");
+                     g.bad_until = round + 12;
+                     std::printf("[patch-camp] r=%d who=%s avoided-hit=%.0f hp=%.0f shield=%.0f target=%d\n",
+                                 round,s.name.c_str(),incoming,hp,shield,s.target);
+@@ -4089,6 +4116,7 @@
+         }
+         if (hp < mhp * P_BAIL_PCT / 100.0) {
+             g_farm = "bail";
++            v11_idle(s, round, pos, "bail");
+             g.bad_until = round + 30;
+             drop_target(s);
+             bool awake_near = false;
+@@ -4144,6 +4172,7 @@
+     // Nothing of this group is visible alive.
+     if (g.reward_seen == round) {  // the engine says the reward is waiting: stand on it
+         g_farm = "capture";
++        v11_idle(s, round, pos, "capture-reward");
+         if (other_captures(s, me, g, s.target)) {
+             // idlefix-v1: v122 champions stood on such a reward for 300-700 rounds when the other champion never came
+             // (online idle champion-rounds a game: shortcut 621, fracture 407, concentrated_wealth 291, great_wall 123).
+@@ -4184,6 +4213,7 @@
+             return;
+         }
+         if (g.mask.is_set(pos)) {
++            v11_idle(s, round, pos, "no-live-on-mask");
+             if (s.cap_start < 0) s.cap_start = round;
+             if (round - s.cap_start > 12) {  // nothing came: someone else holds it
+                 g.next_ok = round + 20;
+@@ -5699,7 +5729,7 @@
+         o.s(" tpc="); o.i(g_tpc_buys); o.s("/"); o.i(g_tpc_uses); o.s(" wd="); o.i(g_wd_drops); o.s(" unreach="); o.i(g_cap_unreach);
+         o.s(" holdto="); o.i(g_hold_to); o.s(" gskip="); o.i(g_guard_skip); o.s(" trip="); o.i(g_trip_keep); o.s(" isle="); o.i(g_isle);
+         o.s(" bcf="); o.i(g_bcf); o.s(" foco="); o.i(g_foco_w); o.s("/"); o.i(g_foco_use); o.s(" shot="); o.i(g_shot); o.s("/"); o.i(g_shot_f); o.s(" cut="); o.i(g_cut); o.s(" rc="); o.i(g_rc_big); o.s("/"); o.i(g_rc_tiny); if (g_esc_k >= 0 || g_v4pub > 0) { o.s(" pl="); o.i(g_pl_on); o.s("/"); o.i(g_pl_off); o.s(" dep="); o.i(g_dep_wait); o.s(" rtog="); o.i(g_rtog); o.s(" eh="); o.i(g_eh); o.s(" fol="); o.i(g_fol); o.s(" v4="); o.i(g_v4pub); o.s("/"); o.i(g_v4f); o.s("/"); o.i(g_v4n); o.s("/"); o.i(g_v4k); o.s(" ball="); o.i(g_ball); o.s(" bw="); o.i(g_bw); o.s(" ef="); o.i(g_ef_rec); o.s("/"); o.i(g_ef_vis); o.s("/"); o.i(g_ef_grp); o.s("/"); o.i(g_ef_n); }
+-        if (P_V9) { o.s(" v9="); o.i(v9::g_role); o.s("/"); o.i(v9::g_leader); o.s("/"); o.i(v9::g_nsq); o.s(" pk="); o.i(v9::g_picks); o.s(" wt="); o.i(v9::g_waits); o.s(" wk="); o.i(v9::g_wakes); o.s(" fi="); o.i(v9::g_fights); o.s(" rt="); o.i(v9::g_retreats); o.s(" sl="); o.i(v9::g_slack); if (P_V11) { o.s(" v11="); o.i(v9::g_nblock); o.s("/"); o.i(X(v9::g_cent)); o.s(","); o.i(Y(v9::g_cent)); o.s(" rl="); o.i(v9::g_rallies); o.s(" ht="); o.i(v9::g_hits); o.s(" rj="); o.i(v9::g_rejoins); o.s(" vr="); o.i(v9::g_vretreats); o.s(" so="); o.i(v9::g_solos); } }
++        if (P_V9) { o.s(" v9="); o.i(v9::g_role); o.s("/"); o.i(v9::g_leader); o.s("/"); o.i(v9::g_nsq); o.s(" pk="); o.i(v9::g_picks); o.s(" wt="); o.i(v9::g_waits); o.s(" wk="); o.i(v9::g_wakes); o.s(" fi="); o.i(v9::g_fights); o.s(" rt="); o.i(v9::g_retreats); o.s(" sl="); o.i(v9::g_slack); if (P_V11) { o.s(" v11="); o.i(v9::g_nblock); o.s("/"); o.i(X(v9::g_cent)); o.s(","); o.i(Y(v9::g_cent)); o.s(" rl="); o.i(v9::g_rallies); o.s(" ht="); o.i(v9::g_hits); o.s(" rj="); o.i(v9::g_rejoins); o.s(" vr="); o.i(v9::g_vretreats); o.s(" so="); o.i(v9::g_solos); o.s(" id="); o.i(v9::g_idle); o.s(" gt="); o.i(v9::g_gated); } }
+         o.end();
+         return true;
+     });
+diff -ru v11c/src/params.h v11d/src/params.h
+--- v11c/src/params.h	2026-10-28 13:33:37.875936427 +0000
++++ v11d/src/params.h	2026-10-28 13:53:09.907546150 +0000
+@@ -525,4 +525,5 @@
+ #define P_V11_RALLY 10    // ... waited for at most this many rounds at the rally ring
+ #define P_V11_NEAR 15     // v11c: the next target is within this walk of the leader when one of P_V11_MINVAL+ exists, else the nearest
+ #define P_V11_SOLO 5      // v11c: rounds a member may hit a damaged camp with no ally within 4 before it rallies (camp >= 40%)
++#define P_V11_TCLEAR 25   // v11d: a block target must be clearable in this many rounds with the block's dps (within 12 of the leader), costing < 60% of the block's health
+ #define P_V11_BIG 80      // rival-side groups of this value are contested before r300 with a full block and no rival pack
+diff -ru v11c/src/v9.h v11d/src/v9.h
+--- v11c/src/v9.h	2026-10-28 13:41:42.730231482 +0000
++++ v11d/src/v9.h	2026-10-28 13:53:09.907391245 +0000
+@@ -227,6 +227,20 @@
+     }
+     return static_cast<int>(d);
+ }
++// v11d: combined health of the alive squad members (not recalling, off the spawn) within r of a tile, me counted as my_hp
++inline double squad_hp_near(vec2 at, int r, int me_k, double my_hp) {
++    double h = 0;
++    for (int i = 0; i < g_nsq; ++i) {
++        const int k = g_squad[i];
++        const Ally& a = g_al[k];
++        if (k == me_k) { h += my_hp; continue; }
++        if (!a.alive || a.recalling || a.home || !a.seen) continue;
++        if (dist(a.p, at) <= r) h += a.hp;
++    }
++    return h;
++}
++inline int g_idle = 0, g_gated = 0;   // v11d counters
++inline unsigned long long g_gate_logged = 0;
+ // squad members (alive, not recalling, off the spawn) within r of a tile, me included when I am
+ inline int near(vec2 at, int r, int me_k, bool count_me) {
+     int n = 0;

@@ -1,0 +1,279 @@
+diff -ru /home/user/ws/bots/v4o2/src/main.cpp /home/user/ws/bots/v14/src/main.cpp
+--- /home/user/ws/bots/v4o2/src/main.cpp	2026-10-28 21:33:36.127158221 +0000
++++ /home/user/ws/bots/v14/src/main.cpp	2026-10-28 21:59:50.017139359 +0000
+@@ -3905,7 +3905,10 @@
+                 // intervention; keep fighting instead of throwing a turn.
+             }
+         }
+-        if (hp < mhp * P_BAIL_PCT / 100.0) {
++        const bool v14_bail = P_V14 && round >= P_V14_R && hp < mhp * P_V14_BAIL / 100.0 && hp >= mhp * P_BAIL_PCT / 100.0 &&
++                              fuel_ok(14000) && allies_near(s, me, pos, 6) == 0;
++        if (v14_bail) std::printf("[v14-bail] r=%d ch=%s hp=%d rem=%d\n", round, s.name.c_str(), static_cast<int>(100 * hp / mhp), static_cast<int>(rem));
++        if (hp < mhp * P_BAIL_PCT / 100.0 || v14_bail) {
+             g_farm = "bail";
+             g.bad_until = round + 30;
+             drop_target(s);
+@@ -4808,7 +4811,7 @@
+     // P_BCF: the engage decision learned from top-10 vs top-10 replays (bcfight.h). With a rival 2-5 tiles away, the top 10
+     // step in when the nearby hp favours them (V18 waited for reach or an ally next to the rival, and farmed meanwhile).
+     // Never on our spawn, next to an awake camp, on the capture of our reward, with a tribute-sized bag, or for a lone twin.
+-    if (!on_spawn && !awake_camp_near && tgt && tgt->d <= 5 && fuel_ok(14000) && static_cast<int>(me.gem_count()) < P.tribute_gems &&
++    if (!on_spawn && !awake_camp_near && tgt && tgt->d <= 5 && !(P_V14 && pv::g_v14 && pv::g_verdict == 2) && fuel_ok(14000) && static_cast<int>(me.gem_count()) < P.tribute_gems &&
+         !(s.target >= 0 && s.target < static_cast<int>(s.groups.size()) && s.groups[s.target].reward_seen == round &&
+           s.groups[s.target].mask.is_set(pos)) &&
+         (!P_TEAM_FIGHT || cassi_issac::pair_ok(s, me))) {
+@@ -4872,6 +4875,10 @@
+     bool pv_fight = false;  // P_PV: the first-contact verdict, held for the engagement (verdict.h)
+     {
+         int v = pv::verdict(s, me, foes, round, on_spawn);
++        if (P_V14 && round >= P_V14_R && !capture_before_recall && fuel_ok(14000)) {
++            pv::v14_judge(s, me, foes, round, on_spawn, hpr);
++            v = pv::g_verdict;
++        }
+         bool keep = false;
+         if (false) {
+             keep = true;
+@@ -4879,6 +4886,18 @@
+                 if (f.d <= 3) keep = false;
+         }
+         if (v == 2 && !on_spawn && !foes.empty() && !keep) {
++            if (P_V14 && pv::g_v14) {  // v14: walk home (safe_step can stand still out of reach), recall when nobody can interrupt
++                g_mode = "v14-leave";
++                if (rsafe && dist(pos, s.spawn_center) > 6 && attempt([&] {
++                        me.recall();
++                        return true;
++                    }))
++                    return;
++                bool hit = fight::hit_now(s, me, foes);
++                if (!flee(s, me)) fight::safe_step(s, me, foes);
++                if (!hit) shoot_back(s, me, foes);
++                return;
++            }
+             g_mode = "pv-leave";
+             fight::back_off(s, me, foes, round);
+             return;
+diff -ru /home/user/ws/bots/v4o2/src/params.h /home/user/ws/bots/v14/src/params.h
+--- /home/user/ws/bots/v4o2/src/params.h	2026-10-28 21:33:36.126590071 +0000
++++ /home/user/ws/bots/v14/src/params.h	2026-10-28 21:59:50.014502362 +0000
+@@ -496,3 +496,18 @@
+ #ifndef P_SHOT
+ #define P_SHOT 1         // o108 disparo: one firing point (focus in reach, else lowest health in reach) for attacks and damage spells (0 = off)
+ #endif
++
++// t10plan-v14 (an/state14.py on the 160 online games vs ranks 5-20, r30-150): every alive bucket (hitting, walking, waiting,
++// recalling, fighting, fleeing) is the same per alive round; the missing 25 hitter-rounds are 45 champion-rounds DEAD per game
++// (1.54 deaths vs 0.65, 60 rounds each). 73% of ours are champion kills: 2+ foes come within 6 about 16 rounds before the death
++// with us at 90% hp and 0.8 allies near, the held "stay" is never judged again and we trade down to 0 (5 rounds before:
++// 2.7 foes, 0.8 allies, 43% hp). 27% die to a camp, farming alone at ~50% hp.
++//   P_V14        0 off (v4o2 byte for byte); 1 on, from round P_V14_R
++//   P_V14_RATIO  with 2+ foes within 6, a power ratio x100 under this makes the verdict "leave" (judged every turn, not once)
++//   P_V14_LOWHP  alone (no ally within 6) under this hp %, any foe within 6 and ratio < 1: leave
++//   P_V14_BAIL   farming with no ally within 6: bail out of the camp under this hp % (v4o2: P_BAIL_PCT 12 for all)
++#define P_V14 1
++#define P_V14_R 30
++#define P_V14_RATIO 80
++#define P_V14_LOWHP 50
++#define P_V14_BAIL 25
+diff -ru /home/user/ws/bots/v4o2/src/verdict.h /home/user/ws/bots/v14/src/verdict.h
+--- /home/user/ws/bots/v4o2/src/verdict.h	2026-10-28 21:33:36.127391619 +0000
++++ /home/user/ws/bots/v14/src/verdict.h	2026-10-28 21:59:50.014862727 +0000
+@@ -1,81 +1,118 @@
+-// verdict.h - decide a fight once, at first contact, and hold the decision (2026-10-16, thread
+-// "Decidir la pelea antes de empezar"). Included by main.cpp after fight.h.
+-//
+-// Why (63 online v52 games, 1,843 of our fight episodes, first contact = first round an enemy champion is
+-// within 6): our own hp at first contact does not predict a lost fight (AUC 0.51) but the power ratio of the
+-// two groups does (health x damage of us + allies within 6 against the enemies in view). Below 0.8 we lose
+-// 40% and win 4%; we stay in 85% of those fights; the few times we left at once we lost 24%; our rivals leave
+-// at once 42% of the time and lose 19%. Above 4 we win only 24% where the top two win 41%.
+-//
+-//   P_PV        0 off (v52 unchanged); 1 = leave verdict only; 2 = leave and fight verdicts
+-//   P_PV_LEAVE  ratio x100 below which the first-contact verdict is "leave" (held until contact ends)
+-//   P_PV_FIGHT  ratio x100 at or above which the verdict is "fight": v52's "unfavourable" back-offs stop
+-//   P_PV_R      first contact = nearest enemy champion within this many tiles
+-//   P_PV_GAP    rounds without an enemy within 8 that end the engagement
+-//   P_PV_ER     enemies within this many tiles enter the ratio (8 = all in view)
+-//   P_PV_KEEPCAP 1: a leave verdict waits while capturing, unless a foe is within 3
+-// Hysteresis: "leave" flips to "fight" only if the ratio climbs to P_PV_FIGHT x 1.5 (allies arrived);
+-// "fight" flips to "leave" if it drops under P_PV_LEAVE x 0.75 (enemies arrived). The hp cuts of step 2
+-// (P_FLEE_PCT, P_UNI_FLEE) and P_LOWHP still apply.
+-
+-
+-namespace pv {
+-
+-// Each champion runs its own program, so these globals are per champion.
+-inline int g_verdict = 0;    // 0 none (v52 rules), 1 fight, 2 leave
+-inline int g_last = -100;    // last round with an enemy champion within 8
+-inline bool g_judged = false;
+-
+-// Health x damage of me + allies within 6 (alive, not recalling) over the enemies in view within 8.
+-inline double power_ratio(State& s, bc::champion& me, const std::vector<Foe>& foes) {
+-    vec2 pos = me.position();
+-    double oh = me.health(), od = fight::unit_dps(me), th = 0, td = 0;
+-    attempt([&] {
+-        for (auto& a : vis_champions(*s.my)) {
+-            try {
+-                if (a == me || !a.is_alive() || a.is_recalling()) continue;
+-                if (dist(a.position(), pos) > 6) continue;
+-                oh += a.health();
+-                od += fight::unit_dps(a);
+-            } catch (...) {
+-            }
+-        }
+-        return true;
+-    });
+-    for (auto& f : foes)
+-        if (f.d <= P_PV_ER && !s.en_spawn.is_set(f.p)) {
+-            th += f.hp;
+-            td += fight::unit_dps(f.c);
+-        }
+-    if (th <= 0) return 99.0;
+-    return (oh * od) / (th * td);
+-}
+-
+-// Called once per turn at the start of step 3. Returns the verdict held for this engagement.
+-inline int verdict(State& s, bc::champion& me, const std::vector<Foe>& foes, int round, bool on_spawn) {
+-    int nearest = 99;
+-    for (auto& f : foes)
+-        if (!s.en_spawn.is_set(f.p)) nearest = std::min(nearest, f.d);
+-    if (nearest > 8) {
+-        if (round - g_last > P_PV_GAP) { g_verdict = 0; g_judged = false; }
+-        return g_verdict;
+-    }
+-    if (round - g_last > P_PV_GAP) { g_verdict = 0; g_judged = false; }
+-    g_last = round;
+-    if (on_spawn) return g_verdict;
+-    if (!g_judged) {
+-        if (nearest > P_PV_R) return 0;
+-        g_judged = true;
+-        double r = power_ratio(s, me, foes) * 100.0;
+-        g_verdict = r < P_PV_LEAVE ? 2 : false;
+-        return g_verdict;
+-    }
+-    if (g_verdict) {
+-        double r = power_ratio(s, me, foes) * 100.0;
+-        if (g_verdict == 2 && r >= P_PV_FIGHT * 1.5) g_verdict = P_PV >= 2 ? 1 : 0;
+-        else if (g_verdict == 1 && r < P_PV_LEAVE * 0.75) g_verdict = 2;
+-    }
+-    return g_verdict;
+-}
+-
+-}  // namespace pv
++// verdict.h - decide a fight once, at first contact, and hold the decision (2026-10-16, thread
++// "Decidir la pelea antes de empezar"). Included by main.cpp after fight.h.
++//
++// Why (63 online v52 games, 1,843 of our fight episodes, first contact = first round an enemy champion is
++// within 6): our own hp at first contact does not predict a lost fight (AUC 0.51) but the power ratio of the
++// two groups does (health x damage of us + allies within 6 against the enemies in view). Below 0.8 we lose
++// 40% and win 4%; we stay in 85% of those fights; the few times we left at once we lost 24%; our rivals leave
++// at once 42% of the time and lose 19%. Above 4 we win only 24% where the top two win 41%.
++//
++//   P_PV        0 off (v52 unchanged); 1 = leave verdict only; 2 = leave and fight verdicts
++//   P_PV_LEAVE  ratio x100 below which the first-contact verdict is "leave" (held until contact ends)
++//   P_PV_FIGHT  ratio x100 at or above which the verdict is "fight": v52's "unfavourable" back-offs stop
++//   P_PV_R      first contact = nearest enemy champion within this many tiles
++//   P_PV_GAP    rounds without an enemy within 8 that end the engagement
++//   P_PV_ER     enemies within this many tiles enter the ratio (8 = all in view)
++//   P_PV_KEEPCAP 1: a leave verdict waits while capturing, unless a foe is within 3
++// Hysteresis: "leave" flips to "fight" only if the ratio climbs to P_PV_FIGHT x 1.5 (allies arrived);
++// "fight" flips to "leave" if it drops under P_PV_LEAVE x 0.75 (enemies arrived). The hp cuts of step 2
++// (P_FLEE_PCT, P_UNI_FLEE) and P_LOWHP still apply.
++
++
++namespace pv {
++
++// Each champion runs its own program, so these globals are per champion.
++inline int g_verdict = 0;    // 0 none (v52 rules), 1 fight, 2 leave
++inline int g_last = -100;    // last round with an enemy champion within 8
++inline bool g_judged = false;
++inline bool g_v14 = false;   // t10plan-v14: the current leave came from the every-turn judgement
++inline int g_v14n = 0;       // t10plan-v14: firings this game
++
++// Health x damage of me + allies within 6 (alive, not recalling) over the enemies in view within 8.
++inline double power_ratio(State& s, bc::champion& me, const std::vector<Foe>& foes) {
++    vec2 pos = me.position();
++    double oh = me.health(), od = fight::unit_dps(me), th = 0, td = 0;
++    attempt([&] {
++        for (auto& a : vis_champions(*s.my)) {
++            try {
++                if (a == me || !a.is_alive() || a.is_recalling()) continue;
++                if (dist(a.position(), pos) > 6) continue;
++                oh += a.health();
++                od += fight::unit_dps(a);
++            } catch (...) {
++            }
++        }
++        return true;
++    });
++    for (auto& f : foes)
++        if (f.d <= P_PV_ER && !s.en_spawn.is_set(f.p)) {
++            th += f.hp;
++            td += fight::unit_dps(f.c);
++        }
++    if (th <= 0) return 99.0;
++    return (oh * od) / (th * td);
++}
++
++// Called once per turn at the start of step 3. Returns the verdict held for this engagement.
++inline int verdict(State& s, bc::champion& me, const std::vector<Foe>& foes, int round, bool on_spawn) {
++    int nearest = 99;
++    for (auto& f : foes)
++        if (!s.en_spawn.is_set(f.p)) nearest = std::min(nearest, f.d);
++    if (nearest > 8) {
++        if (round - g_last > P_PV_GAP) { g_verdict = 0; g_judged = false; g_v14 = false; }
++        return g_verdict;
++    }
++    if (round - g_last > P_PV_GAP) { g_verdict = 0; g_judged = false; g_v14 = false; }
++    g_last = round;
++    if (on_spawn) return g_verdict;
++    if (!g_judged) {
++        if (nearest > P_PV_R) return 0;
++        g_judged = true;
++        double r = power_ratio(s, me, foes) * 100.0;
++        g_verdict = r < P_PV_LEAVE ? 2 : false;
++        return g_verdict;
++    }
++    if (g_verdict) {
++        double r = power_ratio(s, me, foes) * 100.0;
++        if (g_verdict == 2 && r >= P_PV_FIGHT * 1.5) { g_verdict = P_PV >= 2 ? 1 : 0; g_v14 = false; }
++        else if (g_verdict == 1 && r < P_PV_LEAVE * 0.75) g_verdict = 2;
++    }
++    return g_verdict;
++}
++
++// t10plan-v14: judged every turn from r30 (state14.py: our champion kills begin as an even contact; the 2nd and 3rd rival
++// arrive over the next 10 rounds and the held "stay" is never looked at again). With 2+ foes within P_PV_ER and the power
++// ratio under P_V14_RATIO, or alone under P_V14_LOWHP % hp with any foe within P_PV_ER and the ratio under 1, the verdict
++// becomes "leave" and holds like a first-contact leave (ends P_PV_GAP rounds after the last foe within 8).
++inline void v14_judge(State& s, bc::champion& me, const std::vector<Foe>& foes, int round, bool on_spawn, float hpr) {
++    if (on_spawn || g_verdict == 2) return;
++    int n = 0;
++    for (auto& f : foes)
++        if (f.d <= P_PV_ER && !s.en_spawn.is_set(f.p)) ++n;
++    if (n == 0) return;
++    int al = 0;
++    vec2 pos = me.position();
++    attempt([&] {
++        for (auto& a : vis_champions(*s.my)) {
++            try {
++                if (a == me || !a.is_alive() || a.is_recalling()) continue;
++                if (dist(a.position(), pos) <= 6) ++al;
++            } catch (...) {
++            }
++        }
++        return true;
++    });
++    if (!(n >= 2 || (al == 0 && hpr * 100 < P_V14_LOWHP))) return;
++    double r = power_ratio(s, me, foes) * 100.0;
++    const bool leave = (n >= 2 && r < P_V14_RATIO) || (al == 0 && hpr * 100 < P_V14_LOWHP && r < 100);
++    if (!leave) return;
++    g_verdict = 2;
++    g_judged = true;
++    g_last = round;
++    g_v14 = true;
++    ++g_v14n;
++    std::printf("[v14-leave] r=%d ch=%s foes=%d allies=%d ratio=%d hp=%d n=%d\n", round, s.name.c_str(), n, al, static_cast<int>(r),
++                static_cast<int>(hpr * 100), g_v14n);
++}
++
++}  // namespace pv

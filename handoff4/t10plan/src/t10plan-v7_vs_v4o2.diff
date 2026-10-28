@@ -1,0 +1,277 @@
+diff -ru /tmp/claude-0/w/ws/bots/v4o2/src/main.cpp /tmp/claude-0/w/ws/bots/v7/src/main.cpp
+--- /tmp/claude-0/w/ws/bots/v4o2/src/main.cpp	2026-10-28 02:47:20.218215095 +0000
++++ /tmp/claude-0/w/ws/bots/v7/src/main.cpp	2026-10-28 10:13:39.151301858 +0000
+@@ -2346,6 +2346,7 @@
+ bool ball_on(const State& s, int round) { return grouped(s, round); }
+ 
+ int choose_target_impl(State& s, bc::champion& me, int round);
++int g_v7j = 0;  // t10plan-v7 bigjoin firings
+ // P_FUELGUARD: the dearest choose_target seen so far (it grows with the number of camp groups and with walls),
+ // so a caller can skip an optional re-choice when the turn could not pay for it plus a step afterwards.
+ // P_FUELFIX: g_nopd makes one choice skip the walking-distance field (Chebyshev distances instead). Used when a
+@@ -2621,6 +2622,35 @@
+         }
+         return bi;
+     }
++    // t10plan-v7 bigjoin (why36: in our losses the rival takes 40+ gem groups 3.7 times a game with 2.47 bodies, we take 1.4 with
++    // 1.93, same damage per capture): a free champion (not clearing a group within 3, not bound for a 40+ group itself) takes
++    // the 40+ gem group that exactly one ally has claimed, if it is the nearest such group within P_V7J_R.
++    if (P_V7J && round >= 30 && !esc && lead_group < 0 && s.ally_idx >= 0) {
++        const bool clearing = s.target >= 0 && s.target < static_cast<int>(s.groups.size()) && s.groups[s.target].next_ok <= round &&
++                              dist(pos, s.groups[s.target].center) <= 3;
++        const bool mine_big = s.target >= 0 && s.target < static_cast<int>(s.groups.size()) && s.groups[s.target].gems >= P_V7J_GEMS;
++        if (!clearing && !mine_big) {
++            int bj = -1, bjd = P_V7J_R + 1, bk = -1;
++            for (int k = 0; k < claim_slots(s) && k < s.roster; ++k) {
++                if (k == s.ally_idx) continue;
++                const int claim = claim_value(s, sm, k);
++                if (claim <= 0 || claim - 1 >= static_cast<int>(s.groups.size())) continue;
++                const int gi = claim - 1;
++                const Group& g = s.groups[gi];
++                if (g.gems < P_V7J_GEMS || g.next_ok > round || g.bad_until > round || g.monolith || g.jackpot) continue;
++                if (count_claimers(s, sm, gi) != 1) continue;  // count_claimers skips our own slot
++                const int d = dist(pos, g.center);
++                if (d < bjd) { bjd = d; bj = gi; bk = k; }
++            }
++            if (bj >= 0) {
++                if (bj != s.target) {
++                    ++g_v7j;
++                    std::printf("[v7-join] r=%d who=%s g=%d gems=%d ally=%d d=%d n=%d\n", round, s.name.c_str(), bj, s.groups[bj].gems, bk, bjd, g_v7j);
++                }
++                return bj;
++            }
++        }
++    }
+     // pairfarm-v2 (stall thread + top 10 thread 10-24, top 10 vs our rivals on near maps r30-150): the top 10 team is
+     // never fully spread (no pair at all in 19-23% of rounds, ours 41-43%) but pairs do not farm the same camp: they walk
+     // together and split at neighbouring camps. Allies out of vision have no position, so the claims stand for them:
+@@ -4808,7 +4838,7 @@
+     // P_BCF: the engage decision learned from top-10 vs top-10 replays (bcfight.h). With a rival 2-5 tiles away, the top 10
+     // step in when the nearby hp favours them (V18 waited for reach or an ally next to the rival, and farmed meanwhile).
+     // Never on our spawn, next to an awake camp, on the capture of our reward, with a tribute-sized bag, or for a lone twin.
+-    if (!on_spawn && !awake_camp_near && tgt && tgt->d <= 5 && fuel_ok(14000) && static_cast<int>(me.gem_count()) < P.tribute_gems &&
++    if (!on_spawn && !awake_camp_near && tgt && tgt->d <= 5 && !(P_V7RJ && pv::g_rj && pv::g_verdict == 2) && fuel_ok(14000) && static_cast<int>(me.gem_count()) < P.tribute_gems &&
+         !(s.target >= 0 && s.target < static_cast<int>(s.groups.size()) && s.groups[s.target].reward_seen == round &&
+           s.groups[s.target].mask.is_set(pos)) &&
+         (!P_TEAM_FIGHT || cassi_issac::pair_ok(s, me))) {
+@@ -4872,6 +4902,7 @@
+     bool pv_fight = false;  // P_PV: the first-contact verdict, held for the engagement (verdict.h)
+     {
+         int v = pv::verdict(s, me, foes, round, on_spawn);
++        if (P_V7RJ && v == 2 && pv::g_rj && awake_camp_near) v = 0;  // v7: a re-judged leave never leaves a camp being cleared
+         bool keep = false;
+         if (false) {
+             keep = true;
+@@ -4879,7 +4910,8 @@
+                 if (f.d <= 3) keep = false;
+         }
+         if (v == 2 && !on_spawn && !foes.empty() && !keep) {
+-            g_mode = "pv-leave";
++            g_mode = pv::g_rj ? "v7-leave" : "pv-leave";
++            if (pv::g_rj && flee(s, me)) return;  // v7: a re-judged leave walks home (safe_step can stand still out of reach)
+             fight::back_off(s, me, foes, round);
+             return;
+         }
+diff -ru /tmp/claude-0/w/ws/bots/v4o2/src/params.h /tmp/claude-0/w/ws/bots/v7/src/params.h
+--- /tmp/claude-0/w/ws/bots/v4o2/src/params.h	2026-10-28 02:47:20.219203562 +0000
++++ /tmp/claude-0/w/ws/bots/v7/src/params.h	2026-10-28 10:01:23.468672870 +0000
+@@ -496,3 +496,10 @@
+ #ifndef P_SHOT
+ #define P_SHOT 1         // o108 disparo: one firing point (focus in reach, else lowest health in reach) for attacks and damage spells (0 = off)
+ #endif
++
++// t10plan-v7 (why36, 10-28): P_V7RJ re-judges a held stay when another rival arrives; P_V7J the nearest free ally joins
++// a 40+ gem group an ally has opened (claimed, only claimer), within P_V7J_R tiles.
++#define P_V7RJ 1
++#define P_V7J 1
++#define P_V7J_R 12
++#define P_V7J_GEMS 40
+diff -ru /tmp/claude-0/w/ws/bots/v4o2/src/verdict.h /tmp/claude-0/w/ws/bots/v7/src/verdict.h
+--- /tmp/claude-0/w/ws/bots/v4o2/src/verdict.h	2026-10-28 02:47:20.218779847 +0000
++++ /tmp/claude-0/w/ws/bots/v7/src/verdict.h	2026-10-28 10:13:45.978909906 +0000
+@@ -1,81 +1,104 @@
+-// verdict.h - decide a fight once, at first contact, and hold the decision (2026-10-16, thread
+-// "Decidir la pelea antes de empezar"). Included by main.cpp after fight.h.
+-//
+-// Why (63 online v52 games, 1,843 of our fight episodes, first contact = first round an enemy champion is
+-// within 6): our own hp at first contact does not predict a lost fight (AUC 0.51) but the power ratio of the
+-// two groups does (health x damage of us + allies within 6 against the enemies in view). Below 0.8 we lose
+-// 40% and win 4%; we stay in 85% of those fights; the few times we left at once we lost 24%; our rivals leave
+-// at once 42% of the time and lose 19%. Above 4 we win only 24% where the top two win 41%.
+-//
+-//   P_PV        0 off (v52 unchanged); 1 = leave verdict only; 2 = leave and fight verdicts
+-//   P_PV_LEAVE  ratio x100 below which the first-contact verdict is "leave" (held until contact ends)
+-//   P_PV_FIGHT  ratio x100 at or above which the verdict is "fight": v52's "unfavourable" back-offs stop
+-//   P_PV_R      first contact = nearest enemy champion within this many tiles
+-//   P_PV_GAP    rounds without an enemy within 8 that end the engagement
+-//   P_PV_ER     enemies within this many tiles enter the ratio (8 = all in view)
+-//   P_PV_KEEPCAP 1: a leave verdict waits while capturing, unless a foe is within 3
+-// Hysteresis: "leave" flips to "fight" only if the ratio climbs to P_PV_FIGHT x 1.5 (allies arrived);
+-// "fight" flips to "leave" if it drops under P_PV_LEAVE x 0.75 (enemies arrived). The hp cuts of step 2
+-// (P_FLEE_PCT, P_UNI_FLEE) and P_LOWHP still apply.
+-
+-
+-namespace pv {
+-
+-// Each champion runs its own program, so these globals are per champion.
+-inline int g_verdict = 0;    // 0 none (v52 rules), 1 fight, 2 leave
+-inline int g_last = -100;    // last round with an enemy champion within 8
+-inline bool g_judged = false;
+-
+-// Health x damage of me + allies within 6 (alive, not recalling) over the enemies in view within 8.
+-inline double power_ratio(State& s, bc::champion& me, const std::vector<Foe>& foes) {
+-    vec2 pos = me.position();
+-    double oh = me.health(), od = fight::unit_dps(me), th = 0, td = 0;
+-    attempt([&] {
+-        for (auto& a : vis_champions(*s.my)) {
+-            try {
+-                if (a == me || !a.is_alive() || a.is_recalling()) continue;
+-                if (dist(a.position(), pos) > 6) continue;
+-                oh += a.health();
+-                od += fight::unit_dps(a);
+-            } catch (...) {
+-            }
+-        }
+-        return true;
+-    });
+-    for (auto& f : foes)
+-        if (f.d <= P_PV_ER && !s.en_spawn.is_set(f.p)) {
+-            th += f.hp;
+-            td += fight::unit_dps(f.c);
+-        }
+-    if (th <= 0) return 99.0;
+-    return (oh * od) / (th * td);
+-}
+-
+-// Called once per turn at the start of step 3. Returns the verdict held for this engagement.
+-inline int verdict(State& s, bc::champion& me, const std::vector<Foe>& foes, int round, bool on_spawn) {
+-    int nearest = 99;
+-    for (auto& f : foes)
+-        if (!s.en_spawn.is_set(f.p)) nearest = std::min(nearest, f.d);
+-    if (nearest > 8) {
+-        if (round - g_last > P_PV_GAP) { g_verdict = 0; g_judged = false; }
+-        return g_verdict;
+-    }
+-    if (round - g_last > P_PV_GAP) { g_verdict = 0; g_judged = false; }
+-    g_last = round;
+-    if (on_spawn) return g_verdict;
+-    if (!g_judged) {
+-        if (nearest > P_PV_R) return 0;
+-        g_judged = true;
+-        double r = power_ratio(s, me, foes) * 100.0;
+-        g_verdict = r < P_PV_LEAVE ? 2 : false;
+-        return g_verdict;
+-    }
+-    if (g_verdict) {
+-        double r = power_ratio(s, me, foes) * 100.0;
+-        if (g_verdict == 2 && r >= P_PV_FIGHT * 1.5) g_verdict = P_PV >= 2 ? 1 : 0;
+-        else if (g_verdict == 1 && r < P_PV_LEAVE * 0.75) g_verdict = 2;
+-    }
+-    return g_verdict;
+-}
+-
+-}  // namespace pv
++// verdict.h - decide a fight once, at first contact, and hold the decision (2026-10-16, thread
++// "Decidir la pelea antes de empezar"). Included by main.cpp after fight.h.
++//
++// Why (63 online v52 games, 1,843 of our fight episodes, first contact = first round an enemy champion is
++// within 6): our own hp at first contact does not predict a lost fight (AUC 0.51) but the power ratio of the
++// two groups does (health x damage of us + allies within 6 against the enemies in view). Below 0.8 we lose
++// 40% and win 4%; we stay in 85% of those fights; the few times we left at once we lost 24%; our rivals leave
++// at once 42% of the time and lose 19%. Above 4 we win only 24% where the top two win 41%.
++//
++//   P_PV        0 off (v52 unchanged); 1 = leave verdict only; 2 = leave and fight verdicts
++//   P_PV_LEAVE  ratio x100 below which the first-contact verdict is "leave" (held until contact ends)
++//   P_PV_FIGHT  ratio x100 at or above which the verdict is "fight": v52's "unfavourable" back-offs stop
++//   P_PV_R      first contact = nearest enemy champion within this many tiles
++//   P_PV_GAP    rounds without an enemy within 8 that end the engagement
++//   P_PV_ER     enemies within this many tiles enter the ratio (8 = all in view)
++//   P_PV_KEEPCAP 1: a leave verdict waits while capturing, unless a foe is within 3
++// Hysteresis: "leave" flips to "fight" only if the ratio climbs to P_PV_FIGHT x 1.5 (allies arrived);
++// "fight" flips to "leave" if it drops under P_PV_LEAVE x 0.75 (enemies arrived). The hp cuts of step 2
++// (P_FLEE_PCT, P_UNI_FLEE) and P_LOWHP still apply.
++
++
++namespace pv {
++
++// Each champion runs its own program, so these globals are per champion.
++inline int g_verdict = 0;    // 0 none (v52 rules), 1 fight, 2 leave
++inline int g_last = -100;    // last round with an enemy champion within 8
++inline bool g_judged = false;
++inline int g_nf = 0;         // P_V7RJ: foes within P_PV_ER when the stay verdict was last judged
++inline bool g_rj = false;    // P_V7RJ: the current leave came from a re-judgement
++inline int g_rjn = 0;        // P_V7RJ: firings this game
++
++// Health x damage of me + allies within 6 (alive, not recalling) over the enemies in view within 8.
++inline double power_ratio(State& s, bc::champion& me, const std::vector<Foe>& foes) {
++    vec2 pos = me.position();
++    double oh = me.health(), od = fight::unit_dps(me), th = 0, td = 0;
++    attempt([&] {
++        for (auto& a : vis_champions(*s.my)) {
++            try {
++                if (a == me || !a.is_alive() || a.is_recalling()) continue;
++                if (dist(a.position(), pos) > 6) continue;
++                oh += a.health();
++                od += fight::unit_dps(a);
++            } catch (...) {
++            }
++        }
++        return true;
++    });
++    for (auto& f : foes)
++        if (f.d <= P_PV_ER && !s.en_spawn.is_set(f.p)) {
++            th += f.hp;
++            td += fight::unit_dps(f.c);
++        }
++    if (th <= 0) return 99.0;
++    return (oh * od) / (th * td);
++}
++
++// Called once per turn at the start of step 3. Returns the verdict held for this engagement.
++inline int verdict(State& s, bc::champion& me, const std::vector<Foe>& foes, int round, bool on_spawn) {
++    int nearest = 99;
++    for (auto& f : foes)
++        if (!s.en_spawn.is_set(f.p)) nearest = std::min(nearest, f.d);
++    if (nearest > 8) {
++        if (round - g_last > P_PV_GAP) { g_verdict = 0; g_judged = false; g_rj = false; }
++        return g_verdict;
++    }
++    if (round - g_last > P_PV_GAP) { g_verdict = 0; g_judged = false; g_rj = false; }
++    g_last = round;
++    if (on_spawn) return g_verdict;
++    if (!g_judged) {
++        if (nearest > P_PV_R) return 0;
++        g_judged = true;
++        double r = power_ratio(s, me, foes) * 100.0;
++        g_verdict = r < P_PV_LEAVE ? 2 : false;
++        g_nf = -1;  // v7: counted on the first turn of the engagement from r30 (no extra work here)
++        return g_verdict;
++    }
++    // t10plan-v7 (why36: 91% of our deaths with 3+ rivals within 6 began as an even contact; the third rival arrived 8.7
++    // rounds later and the held "stay" was never judged again): a stay is judged again whenever another rival comes in.
++    if (P_V7RJ && round >= 30 && g_verdict == 0) {
++        int n = 0;
++        for (auto& f : foes)
++            if (f.d <= P_PV_ER && !s.en_spawn.is_set(f.p)) ++n;
++        if (g_nf < 0) g_nf = n;
++        else if (n > g_nf) {
++            g_nf = n;
++            double r = power_ratio(s, me, foes) * 100.0;
++            if (r < P_PV_LEAVE) {
++                g_verdict = 2;
++                g_rj = true;
++                ++g_rjn;
++                std::printf("[v7-rejudge] r=%d who=%s foes=%d ratio=%d n=%d\n", round, s.name.c_str(), n, static_cast<int>(r), g_rjn);
++            }
++        }
++        return g_verdict;
++    }
++    if (g_verdict) {
++        double r = power_ratio(s, me, foes) * 100.0;
++        if (g_verdict == 2 && r >= P_PV_FIGHT * 1.5) g_verdict = P_PV >= 2 ? 1 : 0;
++        else if (g_verdict == 1 && r < P_PV_LEAVE * 0.75) g_verdict = 2;
++    }
++    return g_verdict;
++}
++
++}  // namespace pv

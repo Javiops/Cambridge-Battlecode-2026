@@ -168,3 +168,36 @@ Diff sobre v4o2 `src/t10plan-v6_vs_v4o2.diff` (sin zip). En ≥35: grupos partid
 fuera de región x0.3 (v6) o x1.0 (v6b); con rival a ≤8, ir a ≤6 del compañero de región (línea `[v6-join]` por disparo, 24.5 por partida).
 Lejanos vs kvvl (98), aliado ≤4 / con rival a ≤8 / capturas r<400 / muertes r150-600 / victorias: e1foco 40% / 50% / 19.4 / 3.10 / 62; v4o2 40 / 50 / 19.4 / 3.11 / 59;
 v6 32 / 42 / 18.7 / 3.67 / 41; v6b 41 / 51 / 19.0 / 3.06 / 59. Las regiones separan al equipo; la regla de juntarse sola no mueve nada.
+
+# t10plan-v7 / v7r (2026-10-28 ~10:50 UTC): las dos causas de why36 sobre v4o2
+Diffs: src/t10plan-v7_vs_v4o2.diff y src/t10plan-v7r_vs_v4o2.diff.
+
+**Regla 1, P_V7RJ** (verdict.h; main.cpp en pv-leave y bcf). Desde r30, un "quedarse" se vuelve a juzgar cada vez que entra otro rival a ≤6. Si power_ratio < 0.60, el veredicto pasa a "irse":
+- el campeón camina a casa con flee(), porque safe_step se quedaba quieto fuera de alcance;
+- bcf no lo vuelve a meter en la pelea;
+- nunca deja un campamento a medias (awake_camp_near);
+- escribe una línea `[v7-rejudge] r= who= foes= ratio= n=` por disparo.
+
+**Regla 2, P_V7J** (choose_target_impl). El campeón libre (sin despejar un grupo a ≤3 y sin ir él mismo a uno de 40+) toma el grupo de 40+ gemas que reclama un solo aliado, si está a ≤12. Escribe `[v7-join]` por disparo.
+
+**Mecanismo, local, 140 partidas contra kvvl, frente a v4o2.** El banco local no juzga; solo sirve para ver si la regla hace lo que debe.
+
+| | v4o2 | v7 (las dos reglas) | v7r (solo regla 1) |
+|---|---|---|---|
+| disparos de rejudge por partida | — | 11.3 | 11.4 |
+| disparos de join por partida | — | 3.5 | 0 |
+| muertes r151-600 con 3+ rivales a ≤6 | 0.96 | 0.83 | 0.89 |
+| muertes r151-600 | 3.49 | 3.47 | 3.35 |
+| capturas de 40+ hasta r600 | 1.50 | 1.40 | 1.46 |
+| capturas hasta r600 | 27.51 | 26.68 | 26.89 |
+| gemas de captura hasta r600 | 336 | 326 | 330 |
+
+- La regla 2 dispara, pero no sube las capturas grandes y cuesta capturas. No cumple su propio mecanismo, así que se manda **v7r**.
+- Réplicas idénticas a v4o2 hasta el primer disparo: 138 de 140.
+- Las otras 2 divergen antes:
+  - gato_gemcombat5_a en r4: en el stdout las posiciones de r25 son iguales y el combustible difiere en unas 30 unidades;
+  - crossing_a en r35.
+  - Las dos se repiten igual al volver a jugar v4o2, así que es combustible (código distinto), no una regla.
+- Zips (estructura src/ como v4o2):
+  - zips/e1foco-t10plan-v7r.zip, sha256 a6dd4c0f05aaeade2a4f38f45fc9d12141d84c28411c0dcb4f905b838d080633;
+  - zips/e1foco-t10plan-v7.zip, sha256 d5821a543ee7dfc9e28a3dab8b3b8a30b521d2da514f227ad96151bf654af16a.

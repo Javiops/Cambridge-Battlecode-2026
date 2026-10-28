@@ -1,0 +1,25 @@
+diff -ru bots/v11g/src/main.cpp bots/v11g2/src/main.cpp
+--- bots/v11g/src/main.cpp	2026-10-28 20:13:07.004645030 +0000
++++ bots/v11g2/src/main.cpp	2026-10-28 20:24:57.297661555 +0000
+@@ -4209,7 +4209,7 @@
+                 const Group& o = s.groups[i];
+                 if (i == s.target || o.next_ok > round || o.bad_until > round || o.monolith || o.jackpot || o.gems + o.gold <= 0) continue;
+                 const int d = dist(o.center, g.center);
+-                if (d > 10) continue;
++                if (d > P_V11G_NEXT) continue;  // v11g2: the next group may be farther (v11f: 10)
+                 const int dm = dist(pos, o.center);
+                 if (dm < nd) { nd = dm; ni = i; }
+             }
+diff -ru bots/v11g/src/params.h bots/v11g2/src/params.h
+--- bots/v11g/src/params.h	2026-10-28 20:13:07.005231661 +0000
++++ bots/v11g2/src/params.h	2026-10-28 20:24:57.298112674 +0000
+@@ -522,7 +522,8 @@
+ #define P_V11 1
+ #define P_V11_MINVAL 20   // gold-equivalent (gold + gems x 5.4) a block target needs; smaller groups only on the way
+ #define P_V11G_D 4        // v11g: no-preempt while within this many tiles of a camp of the locked, rallied target
+-#define P_V11G_HP 30      // v11g: ... unless my hp is below this % (or 2+ rivals within 6 outnumber us within 6)
++#define P_V11G_HP 30
++#define P_V11G_NEXT 16    // v11g2: non-capturing members walk to the next live group of value within this many tiles of the captured one (v11f: 10)      // v11g: ... unless my hp is below this % (or 2+ rivals within 6 outnumber us within 6)
+ #define P_V11_RALLY_N 3   // block members within 3 of each other before the camp is hit ...
+ #define P_V11_RALLY 10    // ... waited for at most this many rounds at the rally ring
+ #define P_V11_NEAR 15     // v11c: the next target is within this walk of the leader when one of P_V11_MINVAL+ exists, else the nearest

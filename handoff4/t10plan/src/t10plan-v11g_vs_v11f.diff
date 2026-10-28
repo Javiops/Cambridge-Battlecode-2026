@@ -1,0 +1,90 @@
+diff -ru bots/v11f/src/main.cpp bots/v11g/src/main.cpp
+--- bots/v11f/src/main.cpp	2026-10-28 14:12:53.000000000 +0000
++++ bots/v11g/src/main.cpp	2026-10-28 20:13:07.004645030 +0000
+@@ -4994,7 +4994,37 @@
+     // t10plan-v9 fight: on contact (a rival within 6) the squad engages only while its members within 6 of me (hp >= 40%,
+     // me included) are at least as many as the rivals within 6; otherwise everybody walks home (flee) and the squad is
+     // judged again every round. A wounded member (< 40%) walks home on its own (the recall rules take it from there).
++    // t10plan-v11g no-preempt: while the block has a locked target whose rally was met (g_go_t) and I am inside the
++    // capture (<= P_V11G_D of a camp of that group), the per-champion retreat / fight / campfoe steps do not fire unless
++    // there is a real threat: 2+ rivals within 6 with fewer of us (me + block members) within 6 than rivals, or my hp
++    // < P_V11G_HP %. Everyone keeps hitting the same monster. Draft, shop and the micro of fight.h are untouched.
++    bool v11g_skip = false;
++    if (P_V11 && v9::v11_on(round) && v9::active() && !on_spawn && !foes.empty() && nearest_foe <= 8 && s.target >= 0 &&
++        s.target < static_cast<int>(s.groups.size()) && v9::g_go_t == s.target && fuel_ok(12000)) {
++        const Group& gg = s.groups[s.target];
++        int dc = 1 << 30;
++        for (auto& c : camps)
++            if (gg.mask.is_set(c.spawn_position())) dc = std::min(dc, dist(pos, c.position()));
++        if (dc <= P_V11G_D) {
++            int m = 0, n = 1;
++            for (auto& f : foes) if (f.d <= 6 && !s.en_spawn.is_set(f.p)) ++m;
++            for (int q = 0; q < v9::g_nsq; ++q) {
++                const int k = v9::g_squad[q];
++                if (k == s.ally_idx) continue;
++                const v9::Ally& a = v9::g_al[k];
++                if (a.alive && a.seen && !a.recalling && dist(a.p, pos) <= 6) ++n;
++            }
++            const bool threat = (m >= 2 && n < m) || hpr * 100 < P_V11G_HP;
++            if (!threat) {
++                v11g_skip = true;
++                if (round - v9::g_nopre_r > 1) { ++v9::g_nopre; std::printf("[v11g-nopreempt] r=%d ch=%s grp=%d m=%d n=%d hp=%d dc=%d\n", round, s.name.c_str(), s.target, m, n, static_cast<int>(hpr * 100), dc); }
++                v9::g_nopre_r = round;
++                g_mode = "v11g-nopreempt";
++            }
++        }
++    }
+     bool v9_fight = false;
++    if (!v11g_skip) {  // v11g: the whole step 3 (v9 fight / retreat, pv verdict, kite, engage) is skipped inside a block capture without a real threat
+     if (v9::active() && !on_spawn && nearest_foe <= 6 && fuel_ok(12000)) {
+         int m = 0;
+         for (auto& f : foes) if (f.d <= 6 && !s.en_spawn.is_set(f.p)) ++m;
+@@ -5373,6 +5403,7 @@
+             // ordinary recall/tribute/farm flow to use this otherwise idle turn.
+         }
+     }
++    }  // v11g !v11g_skip
+ 
+     // 4. Recall to heal / spend gold when safe; bank the bag first if an altar is close.
+     FP(10, "recall/tribute");
+@@ -5620,7 +5651,7 @@
+             if (coming >= std::min(3, s.roster) && near < std::min(3, s.roster)) { ++bw_n; ++g_bw; g_mode = "big-wait"; return; }
+         }
+     }
+-    if (PR.campfoe && !on_spawn && !foes.empty()) {
++    if (PR.campfoe && !on_spawn && !foes.empty() && !v11g_skip) {  // v11g: no campfoe inside a block capture without a real threat
+         int live = 99;
+         for (auto& f : foes)
+             if (!s.en_spawn.is_set(f.p) && !gone(f)) live = std::min(live, f.d);
+@@ -5779,7 +5810,7 @@
+         o.s(" tpc="); o.i(g_tpc_buys); o.s("/"); o.i(g_tpc_uses); o.s(" wd="); o.i(g_wd_drops); o.s(" unreach="); o.i(g_cap_unreach);
+         o.s(" holdto="); o.i(g_hold_to); o.s(" gskip="); o.i(g_guard_skip); o.s(" trip="); o.i(g_trip_keep); o.s(" isle="); o.i(g_isle);
+         o.s(" bcf="); o.i(g_bcf); o.s(" foco="); o.i(g_foco_w); o.s("/"); o.i(g_foco_use); o.s(" shot="); o.i(g_shot); o.s("/"); o.i(g_shot_f); o.s(" cut="); o.i(g_cut); o.s(" rc="); o.i(g_rc_big); o.s("/"); o.i(g_rc_tiny); if (g_esc_k >= 0 || g_v4pub > 0) { o.s(" pl="); o.i(g_pl_on); o.s("/"); o.i(g_pl_off); o.s(" dep="); o.i(g_dep_wait); o.s(" rtog="); o.i(g_rtog); o.s(" eh="); o.i(g_eh); o.s(" fol="); o.i(g_fol); o.s(" v4="); o.i(g_v4pub); o.s("/"); o.i(g_v4f); o.s("/"); o.i(g_v4n); o.s("/"); o.i(g_v4k); o.s(" ball="); o.i(g_ball); o.s(" bw="); o.i(g_bw); o.s(" ef="); o.i(g_ef_rec); o.s("/"); o.i(g_ef_vis); o.s("/"); o.i(g_ef_grp); o.s("/"); o.i(g_ef_n); }
+-        if (P_V9) { o.s(" v9="); o.i(v9::g_role); o.s("/"); o.i(v9::g_leader); o.s("/"); o.i(v9::g_nsq); o.s(" pk="); o.i(v9::g_picks); o.s(" wt="); o.i(v9::g_waits); o.s(" wk="); o.i(v9::g_wakes); o.s(" fi="); o.i(v9::g_fights); o.s(" rt="); o.i(v9::g_retreats); o.s(" sl="); o.i(v9::g_slack); if (P_V11) { o.s(" v11="); o.i(v9::g_nblock); o.s("/"); o.i(X(v9::g_cent)); o.s(","); o.i(Y(v9::g_cent)); o.s(" rl="); o.i(v9::g_rallies); o.s(" ht="); o.i(v9::g_hits); o.s(" rj="); o.i(v9::g_rejoins); o.s(" vr="); o.i(v9::g_vretreats); o.s(" so="); o.i(v9::g_solos); o.s(" id="); o.i(v9::g_idle); o.s(" gt="); o.i(v9::g_gated); o.s("/"); o.i(v9::g_gfall); } }
++        if (P_V9) { o.s(" v9="); o.i(v9::g_role); o.s("/"); o.i(v9::g_leader); o.s("/"); o.i(v9::g_nsq); o.s(" pk="); o.i(v9::g_picks); o.s(" wt="); o.i(v9::g_waits); o.s(" wk="); o.i(v9::g_wakes); o.s(" fi="); o.i(v9::g_fights); o.s(" rt="); o.i(v9::g_retreats); o.s(" sl="); o.i(v9::g_slack); if (P_V11) { o.s(" v11="); o.i(v9::g_nblock); o.s("/"); o.i(X(v9::g_cent)); o.s(","); o.i(Y(v9::g_cent)); o.s(" rl="); o.i(v9::g_rallies); o.s(" ht="); o.i(v9::g_hits); o.s(" rj="); o.i(v9::g_rejoins); o.s(" vr="); o.i(v9::g_vretreats); o.s(" so="); o.i(v9::g_solos); o.s(" id="); o.i(v9::g_idle); o.s(" gt="); o.i(v9::g_gated); o.s("/"); o.i(v9::g_gfall); o.s(" np="); o.i(v9::g_nopre); } }
+         o.end();
+         return true;
+     });
+diff -ru bots/v11f/src/params.h bots/v11g/src/params.h
+--- bots/v11f/src/params.h	2026-10-28 14:12:53.000000000 +0000
++++ bots/v11g/src/params.h	2026-10-28 20:13:07.005231661 +0000
+@@ -521,6 +521,8 @@
+ // P_V11_RALLY rounds) before the first hit; retreat towards the block when outnumbered without allies. P_V11 0: v10 play.
+ #define P_V11 1
+ #define P_V11_MINVAL 20   // gold-equivalent (gold + gems x 5.4) a block target needs; smaller groups only on the way
++#define P_V11G_D 4        // v11g: no-preempt while within this many tiles of a camp of the locked, rallied target
++#define P_V11G_HP 30      // v11g: ... unless my hp is below this % (or 2+ rivals within 6 outnumber us within 6)
+ #define P_V11_RALLY_N 3   // block members within 3 of each other before the camp is hit ...
+ #define P_V11_RALLY 10    // ... waited for at most this many rounds at the rally ring
+ #define P_V11_NEAR 15     // v11c: the next target is within this walk of the leader when one of P_V11_MINVAL+ exists, else the nearest
+diff -ru bots/v11f/src/v9.h bots/v11g/src/v9.h
+--- bots/v11f/src/v9.h	2026-10-28 14:12:53.000000000 +0000
++++ bots/v11g/src/v9.h	2026-10-28 20:13:07.002004543 +0000
+@@ -41,6 +41,7 @@
+ inline bool g_top_gems = true;  // I carry at least as many gems as every other alive member (the carrier)
+ inline int g_go_t = -1;  // v11f: target whose rally condition was met once
+ inline int g_rally_t = -1, g_rally_r0 = -1, g_rallies = 0, g_hits = 0, g_rejoins = 0, g_vretreats = 0;
++inline int g_nopre = 0, g_nopre_r = -1;  // v11g: no-preempt episodes / last round it held
+ inline bool g_hit_logged = false, g_was_home = false, g_lead_changed = false;
+ inline int g_lead_prev = -1, g_prev_claim = -1;
+ inline int g_pick_r = -1, g_solo_r0 = -1, g_solos = 0;  // v11c: pick round of the rally target; first round hitting alone

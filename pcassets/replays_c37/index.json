@@ -1,0 +1,2882 @@
+[
+ {
+  "bot": "kvvl",
+  "file": "kvvl/lost_world_printdontint_f7b3950.repl26a",
+  "match": "4903cd4f-26d0-4a9c-ae36-5956a0b74552",
+  "map": "lost_world",
+  "rival": "print dont int",
+  "result": "loss",
+  "side": "a"
+ },
+ {
+  "bot": "kvvl",
+  "file": "kvvl/guardians_printdontint_f7b3951.repl26a",
+  "match": "e67225a5-227e-4f89-9f67-1a185e9ae5a8",
+  "map": "guardians",
+  "rival": "print dont int",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "kvvl",
+  "file": "kvvl/collision_printdontint_f7b3952.repl26a",
+  "match": "1ed30949-4088-4568-a968-cffb3ce2091f",
+  "map": "collision",
+  "rival": "print dont int",
+  "result": "loss",
+  "side": "a"
+ },
+ {
+  "bot": "kvvl",
+  "file": "kvvl/dunes_printdontint_f7b3953.repl26a",
+  "match": "2aa9f3e6-a0c6-4362-bc75-ac8bbcc9a682",
+  "map": "dunes",
+  "rival": "print dont int",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "kvvl",
+  "file": "kvvl/concentrated_wealth_printdontint_f7b3954.repl26a",
+  "match": "aae566d9-e922-4d2d-9622-ace78d4e5585",
+  "map": "concentrated_wealth",
+  "rival": "print dont int",
+  "result": "loss",
+  "side": "a"
+ },
+ {
+  "bot": "kvvl",
+  "file": "kvvl/broken_curve_ClaudusMaximus_2a29dd0.repl26a",
+  "match": "84a38035-1ccd-4b2d-b081-a52844a064ee",
+  "map": "broken_curve",
+  "rival": "Claudus Maximus",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "kvvl",
+  "file": "kvvl/galaxy_ClaudusMaximus_2a29dd1.repl26a",
+  "match": "700186e8-8c6d-4f88-8075-56c1b6783577",
+  "map": "galaxy",
+  "rival": "Claudus Maximus",
+  "result": "loss",
+  "side": "a"
+ },
+ {
+  "bot": "kvvl",
+  "file": "kvvl/pilgrimage_ClaudusMaximus_2a29dd2.repl26a",
+  "match": "28a27153-0731-419c-983c-5238357246b0",
+  "map": "pilgrimage",
+  "rival": "Claudus Maximus",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "kvvl",
+  "file": "kvvl/gemfight_ClaudusMaximus_2a29dd3.repl26a",
+  "match": "47539215-49cc-44f7-98a3-43fcadef9434",
+  "map": "gemfight",
+  "rival": "Claudus Maximus",
+  "result": "loss",
+  "side": "a"
+ },
+ {
+  "bot": "kvvl",
+  "file": "kvvl/split_ClaudusMaximus_2a29dd4.repl26a",
+  "match": "ba532c0b-f98d-48d9-9bbb-71eae098255d",
+  "map": "split",
+  "rival": "Claudus Maximus",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "kvvl",
+  "file": "kvvl/gift_wrapping_hello_be88240.repl26a",
+  "match": "cefc3c02-393b-4ea8-bb32-54f3b707ae75",
+  "map": "gift_wrapping",
+  "rival": "hello",
+  "result": "loss",
+  "side": "a"
+ },
+ {
+  "bot": "kvvl",
+  "file": "kvvl/ambush_hello_be88241.repl26a",
+  "match": "1b808c81-35f0-4516-af18-0a4dbcfab2b6",
+  "map": "ambush",
+  "rival": "hello",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "kvvl",
+  "file": "kvvl/elk_arena_hello_be88242.repl26a",
+  "match": "75edaf40-826b-40eb-9053-96b08f612348",
+  "map": "elk_arena",
+  "rival": "hello",
+  "result": "loss",
+  "side": "a"
+ },
+ {
+  "bot": "kvvl",
+  "file": "kvvl/rushbait_v2_hello_be88243.repl26a",
+  "match": "7e468c67-946e-420f-a737-424b86f3c51b",
+  "map": "rushbait_v2",
+  "rival": "hello",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "kvvl",
+  "file": "kvvl/gato_gemcombat2_hello_be88244.repl26a",
+  "match": "2d86c8ef-54d8-4abd-a7c8-e2ba13b4012a",
+  "map": "gato_gemcombat2",
+  "rival": "hello",
+  "result": "loss",
+  "side": "a"
+ },
+ {
+  "bot": "kvvl",
+  "file": "kvvl/islands_TrzyKwaterki_af61fe0.repl26a",
+  "match": "fc949ed2-11ee-4642-aa7b-c5665f48bcca",
+  "map": "islands",
+  "rival": "Trzy Kwaterki",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "kvvl",
+  "file": "kvvl/gato_gemcombat5_TrzyKwaterki_af61fe1.repl26a",
+  "match": "4cd08766-ed05-4ebe-90b2-c06dc9235760",
+  "map": "gato_gemcombat5",
+  "rival": "Trzy Kwaterki",
+  "result": "loss",
+  "side": "a"
+ },
+ {
+  "bot": "kvvl",
+  "file": "kvvl/stalactites_TrzyKwaterki_af61fe2.repl26a",
+  "match": "9140f3af-52bb-4b38-821f-d9ba4c7750a2",
+  "map": "stalactites",
+  "rival": "Trzy Kwaterki",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "kvvl",
+  "file": "kvvl/elk_arena_TrzyKwaterki_af61fe3.repl26a",
+  "match": "801cdc8c-f6e0-493a-9c25-948a0b7a35d9",
+  "map": "elk_arena",
+  "rival": "Trzy Kwaterki",
+  "result": "loss",
+  "side": "a"
+ },
+ {
+  "bot": "kvvl",
+  "file": "kvvl/monolith_TrzyKwaterki_af61fe4.repl26a",
+  "match": "d7e14fdc-c7d5-4efc-9864-4d310d2b3f37",
+  "map": "monolith",
+  "rival": "Trzy Kwaterki",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "kvvl",
+  "file": "kvvl/starfish_prismbestgirl_0c85070.repl26a",
+  "match": "7256e29b-e6b8-4b04-8595-fb6fe43f228b",
+  "map": "starfish",
+  "rival": "prism best girl",
+  "result": "loss",
+  "side": "a"
+ },
+ {
+  "bot": "kvvl",
+  "file": "kvvl/the_farm_prismbestgirl_0c85071.repl26a",
+  "match": "ce358cd2-5668-4abc-a113-949d402fa707",
+  "map": "the_farm",
+  "rival": "prism best girl",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "kvvl",
+  "file": "kvvl/fields_prismbestgirl_0c85072.repl26a",
+  "match": "5262bae3-27f9-49b1-aea9-924fc284527b",
+  "map": "fields",
+  "rival": "prism best girl",
+  "result": "loss",
+  "side": "a"
+ },
+ {
+  "bot": "kvvl",
+  "file": "kvvl/breadcrumbs_prismbestgirl_0c85073.repl26a",
+  "match": "d7726128-9479-4ebf-ad7d-02eae31a8864",
+  "map": "breadcrumbs",
+  "rival": "prism best girl",
+  "result": "win",
+  "side": "b"
+ },
+ {
+  "bot": "kvvl",
+  "file": "kvvl/oasis_prismbestgirl_0c85074.repl26a",
+  "match": "acfbae6d-6fd2-4813-a28b-f734c708cbcd",
+  "map": "oasis",
+  "rival": "prism best girl",
+  "result": "loss",
+  "side": "a"
+ },
+ {
+  "bot": "kvvl",
+  "file": "kvvl/contest_SpongeAlbertandB_42e78a0.repl26a",
+  "match": "8498aeaf-3a00-4ff4-8ef8-d2e6ef92205e",
+  "map": "contest",
+  "rival": "Sponge(Albert and Bob)",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "kvvl",
+  "file": "kvvl/gold_rush_SpongeAlbertandB_42e78a1.repl26a",
+  "match": "338fdac6-938d-41f6-9267-4075dc534698",
+  "map": "gold_rush",
+  "rival": "Sponge(Albert and Bob)",
+  "result": "win",
+  "side": "a"
+ },
+ {
+  "bot": "kvvl",
+  "file": "kvvl/gato_gemcombat2_SpongeAlbertandB_42e78a2.repl26a",
+  "match": "f2870084-644c-4cd9-8e7b-060807f63d34",
+  "map": "gato_gemcombat2",
+  "rival": "Sponge(Albert and Bob)",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "kvvl",
+  "file": "kvvl/anvil_SpongeAlbertandB_42e78a3.repl26a",
+  "match": "95edcee2-f8ad-44f3-a55c-943197f4aaa2",
+  "map": "anvil",
+  "rival": "Sponge(Albert and Bob)",
+  "result": "win",
+  "side": "a"
+ },
+ {
+  "bot": "kvvl",
+  "file": "kvvl/corners_SpongeAlbertandB_42e78a4.repl26a",
+  "match": "6ffd2b10-9d08-409b-83a7-11cd61cff1e0",
+  "map": "corners",
+  "rival": "Sponge(Albert and Bob)",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "kvvl",
+  "file": "kvvl/big_world_policywonk_702dc30.repl26a",
+  "match": "27ebee95-08cf-440f-83a2-d045e61340cb",
+  "map": "big_world",
+  "rival": "policy wonk",
+  "result": "loss",
+  "side": "a"
+ },
+ {
+  "bot": "kvvl",
+  "file": "kvvl/guardians_policywonk_702dc31.repl26a",
+  "match": "4fc978cf-73fd-43cd-9bf7-14c6d39797da",
+  "map": "guardians",
+  "rival": "policy wonk",
+  "result": "win",
+  "side": "b"
+ },
+ {
+  "bot": "kvvl",
+  "file": "kvvl/stampede_policywonk_702dc32.repl26a",
+  "match": "4edce7b3-4df3-4300-b3e7-33162553a391",
+  "map": "stampede",
+  "rival": "policy wonk",
+  "result": "loss",
+  "side": "a"
+ },
+ {
+  "bot": "kvvl",
+  "file": "kvvl/arena_policywonk_702dc33.repl26a",
+  "match": "2f738ab0-caad-42e3-902a-984003c07827",
+  "map": "arena",
+  "rival": "policy wonk",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "kvvl",
+  "file": "kvvl/quadrants_policywonk_702dc34.repl26a",
+  "match": "33efa9d0-903a-43a0-b2ab-715b76f158c0",
+  "map": "quadrants",
+  "rival": "policy wonk",
+  "result": "loss",
+  "side": "a"
+ },
+ {
+  "bot": "kvvl",
+  "file": "kvvl/the_line_NEETCoders_9433780.repl26a",
+  "match": "279ff4fe-1935-45f6-b49f-ca37f38f9aca",
+  "map": "the_line",
+  "rival": "NEETCoders",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "kvvl",
+  "file": "kvvl/expanse_NEETCoders_9433781.repl26a",
+  "match": "294453e5-1a43-4670-8d61-b07ca4669eb5",
+  "map": "expanse",
+  "rival": "NEETCoders",
+  "result": "loss",
+  "side": "a"
+ },
+ {
+  "bot": "kvvl",
+  "file": "kvvl/gato_gemcombat4_NEETCoders_9433782.repl26a",
+  "match": "f8a59b20-e51c-4b8e-9a33-d7f57ed4ac00",
+  "map": "gato_gemcombat4",
+  "rival": "NEETCoders",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "kvvl",
+  "file": "kvvl/gift_wrapping_NEETCoders_9433783.repl26a",
+  "match": "cf761f6d-4dae-44d9-9308-5e97b2cf4ad1",
+  "map": "gift_wrapping",
+  "rival": "NEETCoders",
+  "result": "loss",
+  "side": "a"
+ },
+ {
+  "bot": "kvvl",
+  "file": "kvvl/starfish_NEETCoders_9433784.repl26a",
+  "match": "efbe1e35-096c-4c47-af20-8ba3f63327c5",
+  "map": "starfish",
+  "rival": "NEETCoders",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "kvvl",
+  "file": "kvvl/ribs_Supaswag_7917ce0.repl26a",
+  "match": "a9ea9c46-2dc3-4ee5-b595-86a9db567bc7",
+  "map": "ribs",
+  "rival": "Supaswag",
+  "result": "loss",
+  "side": "a"
+ },
+ {
+  "bot": "kvvl",
+  "file": "kvvl/hooks_Supaswag_7917ce1.repl26a",
+  "match": "5e35b1d6-15e2-426d-b305-cdade6d5c0fc",
+  "map": "hooks",
+  "rival": "Supaswag",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "kvvl",
+  "file": "kvvl/shortcut_Supaswag_7917ce2.repl26a",
+  "match": "ee606852-5682-40de-b0e9-63986af79b93",
+  "map": "shortcut",
+  "rival": "Supaswag",
+  "result": "loss",
+  "side": "a"
+ },
+ {
+  "bot": "kvvl",
+  "file": "kvvl/elk_arena_Supaswag_7917ce3.repl26a",
+  "match": "5c3777b9-c01a-409a-bd46-1d8f3799ebce",
+  "map": "elk_arena",
+  "rival": "Supaswag",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "kvvl",
+  "file": "kvvl/islands_Supaswag_7917ce4.repl26a",
+  "match": "1b36d585-8d9e-4c44-a0ed-a9115e98a92e",
+  "map": "islands",
+  "rival": "Supaswag",
+  "result": "loss",
+  "side": "a"
+ },
+ {
+  "bot": "kvvl",
+  "file": "kvvl/gato_gemcombat1_procless_bb3ccf0.repl26a",
+  "match": "f90a4102-2e27-4fe3-b39f-ea427fdf5d1d",
+  "map": "gato_gemcombat1",
+  "rival": "procless",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "kvvl",
+  "file": "kvvl/gato_gemcombat4_procless_bb3ccf1.repl26a",
+  "match": "acc595d2-e474-4859-8816-78b4dbba4d67",
+  "map": "gato_gemcombat4",
+  "rival": "procless",
+  "result": "loss",
+  "side": "a"
+ },
+ {
+  "bot": "kvvl",
+  "file": "kvvl/the_farm_procless_bb3ccf2.repl26a",
+  "match": "92ca134a-710a-4b5d-b870-2a93d2b4640d",
+  "map": "the_farm",
+  "rival": "procless",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "kvvl",
+  "file": "kvvl/monolith_procless_bb3ccf3.repl26a",
+  "match": "3da1a34a-c874-4ac3-a38b-e3b7378e3bff",
+  "map": "monolith",
+  "rival": "procless",
+  "result": "loss",
+  "side": "a"
+ },
+ {
+  "bot": "kvvl",
+  "file": "kvvl/fracture_procless_bb3ccf4.repl26a",
+  "match": "7b92319b-ea8c-4109-b330-1d6bfbe404b9",
+  "map": "fracture",
+  "rival": "procless",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "kvvl",
+  "file": "kvvl/gato_gemcombat5_UnivardistyofShi_3887500.repl26a",
+  "match": "cb59f04e-c052-42e1-be5a-5b2c77b14978",
+  "map": "gato_gemcombat5",
+  "rival": "Univardisty of Shingtonwash",
+  "result": "win",
+  "side": "a"
+ },
+ {
+  "bot": "kvvl",
+  "file": "kvvl/oasis_UnivardistyofShi_3887501.repl26a",
+  "match": "fded6477-252e-4901-8f01-4f9fcee5668a",
+  "map": "oasis",
+  "rival": "Univardisty of Shingtonwash",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "kvvl",
+  "file": "kvvl/fracture_UnivardistyofShi_3887502.repl26a",
+  "match": "570ade55-631f-44a3-9f28-b724cdf9f7c6",
+  "map": "fracture",
+  "rival": "Univardisty of Shingtonwash",
+  "result": "loss",
+  "side": "a"
+ },
+ {
+  "bot": "kvvl",
+  "file": "kvvl/geodes_UnivardistyofShi_3887503.repl26a",
+  "match": "899ce773-ed7a-4c0d-ad50-ad34faa7f8eb",
+  "map": "geodes",
+  "rival": "Univardisty of Shingtonwash",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "kvvl",
+  "file": "kvvl/shortcut_UnivardistyofShi_3887504.repl26a",
+  "match": "dc1435e3-8420-43aa-8527-ea795f714d25",
+  "map": "shortcut",
+  "rival": "Univardisty of Shingtonwash",
+  "result": "loss",
+  "side": "a"
+ },
+ {
+  "bot": "kvvl",
+  "file": "kvvl/the_pack_newteam4_8edba20.repl26a",
+  "match": "01c68524-ecce-4a4a-ae62-3a17c71d9cd9",
+  "map": "the_pack",
+  "rival": "new team(4)",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "kvvl",
+  "file": "kvvl/gato_gemcombat3_newteam4_8edba21.repl26a",
+  "match": "73b22ce4-d9bb-4e45-b0a2-d04603d11c16",
+  "map": "gato_gemcombat3",
+  "rival": "new team(4)",
+  "result": "loss",
+  "side": "a"
+ },
+ {
+  "bot": "kvvl",
+  "file": "kvvl/crossing_newteam4_8edba22.repl26a",
+  "match": "65b17f43-521e-47d1-bef6-2d1aa566d4b0",
+  "map": "crossing",
+  "rival": "new team(4)",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "kvvl",
+  "file": "kvvl/pilgrimage_newteam4_8edba23.repl26a",
+  "match": "214596b0-7801-4c80-8631-e4402844eb32",
+  "map": "pilgrimage",
+  "rival": "new team(4)",
+  "result": "loss",
+  "side": "a"
+ },
+ {
+  "bot": "kvvl",
+  "file": "kvvl/famine_newteam4_8edba24.repl26a",
+  "match": "e85856c3-0503-44ba-a842-81bc106c7363",
+  "map": "famine",
+  "rival": "new team(4)",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "kvvl",
+  "file": "kvvl/monolith_SSSA_817a1e0.repl26a",
+  "match": "3c2b1c63-5b2c-4b2d-a46b-3e19b8814428",
+  "map": "monolith",
+  "rival": "SSSA",
+  "result": "win",
+  "side": "a"
+ },
+ {
+  "bot": "kvvl",
+  "file": "kvvl/corners_SSSA_817a1e1.repl26a",
+  "match": "1e121c45-2638-41c2-9bc5-9a764cf475ed",
+  "map": "corners",
+  "rival": "SSSA",
+  "result": "win",
+  "side": "b"
+ },
+ {
+  "bot": "kvvl",
+  "file": "kvvl/gem_fields_SSSA_817a1e2.repl26a",
+  "match": "6c378b82-77b8-4182-8d4b-ec62c835090c",
+  "map": "gem_fields",
+  "rival": "SSSA",
+  "result": "loss",
+  "side": "a"
+ },
+ {
+  "bot": "kvvl",
+  "file": "kvvl/gato_gemcombat3_SSSA_817a1e3.repl26a",
+  "match": "694cf51f-885f-45ca-a0f7-cfd578b410d1",
+  "map": "gato_gemcombat3",
+  "rival": "SSSA",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "kvvl",
+  "file": "kvvl/dunes_SSSA_817a1e4.repl26a",
+  "match": "6291873b-12d2-4bcc-8f01-09a0c736354c",
+  "map": "dunes",
+  "rival": "SSSA",
+  "result": "loss",
+  "side": "a"
+ },
+ {
+  "bot": "kvvl",
+  "file": "kvvl/yellow_brick_road_3_9157ad0.repl26a",
+  "match": "1933b8e9-37fa-41d3-ae9e-6512297d3921",
+  "map": "yellow_brick_road",
+  "rival": ":3",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "kvvl",
+  "file": "kvvl/vault_3_9157ad1.repl26a",
+  "match": "d256b9d5-875f-4f8b-a72a-fa541ec89ae5",
+  "map": "vault",
+  "rival": ":3",
+  "result": "loss",
+  "side": "a"
+ },
+ {
+  "bot": "kvvl",
+  "file": "kvvl/the_farm_3_9157ad2.repl26a",
+  "match": "3d510177-2b7c-4d36-b377-1dd7ddb31bd9",
+  "map": "the_farm",
+  "rival": ":3",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "kvvl",
+  "file": "kvvl/ribs_3_9157ad3.repl26a",
+  "match": "bd9bb889-4364-4ec8-b727-41ceec0c0014",
+  "map": "ribs",
+  "rival": ":3",
+  "result": "loss",
+  "side": "a"
+ },
+ {
+  "bot": "kvvl",
+  "file": "kvvl/pilgrimage_3_9157ad4.repl26a",
+  "match": "10e5327c-6a21-4865-a69c-320e5fa8d0ba",
+  "map": "pilgrimage",
+  "rival": ":3",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "kvvl",
+  "file": "kvvl/lost_world_meow_ee6f6a0.repl26a",
+  "match": "f2d7eafa-dc72-4fca-ae0a-846635c0629a",
+  "map": "lost_world",
+  "rival": "meow",
+  "result": "loss",
+  "side": "a"
+ },
+ {
+  "bot": "kvvl",
+  "file": "kvvl/gato_gemcombat3_meow_ee6f6a1.repl26a",
+  "match": "1c020391-ff30-489a-b3dd-cb9e7c8543ca",
+  "map": "gato_gemcombat3",
+  "rival": "meow",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "kvvl",
+  "file": "kvvl/treasure_box_meow_ee6f6a2.repl26a",
+  "match": "8f2976bc-8cf7-464b-bf8c-0af82a5194a0",
+  "map": "treasure_box",
+  "rival": "meow",
+  "result": "loss",
+  "side": "a"
+ },
+ {
+  "bot": "kvvl",
+  "file": "kvvl/guardians_meow_ee6f6a3.repl26a",
+  "match": "86518cc5-5e45-4680-a20b-99b60ca960ad",
+  "map": "guardians",
+  "rival": "meow",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "kvvl",
+  "file": "kvvl/breadcrumbs_meow_ee6f6a4.repl26a",
+  "match": "a81f7aa5-8784-4069-b18d-50d9bc5fedc9",
+  "map": "breadcrumbs",
+  "rival": "meow",
+  "result": "loss",
+  "side": "a"
+ },
+ {
+  "bot": "kvvl",
+  "file": "kvvl/quadrants_GermanEmpire_b4fc410.repl26a",
+  "match": "5e4b33b2-f472-4a08-a845-e522a5996f9e",
+  "map": "quadrants",
+  "rival": "German Empire",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "kvvl",
+  "file": "kvvl/islands_GermanEmpire_b4fc411.repl26a",
+  "match": "5c12093d-3ae1-43e2-bc89-2837c8b2859c",
+  "map": "islands",
+  "rival": "German Empire",
+  "result": "win",
+  "side": "a"
+ },
+ {
+  "bot": "kvvl",
+  "file": "kvvl/starvation_GermanEmpire_b4fc412.repl26a",
+  "match": "2eaaf54d-63c1-4566-bc00-a47f61b6c7fa",
+  "map": "starvation",
+  "rival": "German Empire",
+  "result": "win",
+  "side": "b"
+ },
+ {
+  "bot": "kvvl",
+  "file": "kvvl/gato_gemcombat5_GermanEmpire_b4fc413.repl26a",
+  "match": "fb70e593-e8fd-42d6-b6c2-59b063b136ee",
+  "map": "gato_gemcombat5",
+  "rival": "German Empire",
+  "result": "loss",
+  "side": "a"
+ },
+ {
+  "bot": "kvvl",
+  "file": "kvvl/tangle_GermanEmpire_b4fc414.repl26a",
+  "match": "6ea4b112-011d-46af-b03f-d9052a53a1a5",
+  "map": "tangle",
+  "rival": "German Empire",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "v9c",
+  "file": "v9c/lost_world_printdontint_f7b3950.repl26a",
+  "match": "28d1ea72-6a65-48af-a4e4-5447f0074d21",
+  "map": "lost_world",
+  "rival": "print dont int",
+  "result": "loss",
+  "side": "a"
+ },
+ {
+  "bot": "v9c",
+  "file": "v9c/guardians_printdontint_f7b3951.repl26a",
+  "match": "2d0c4cc8-e769-44d0-afeb-6bf2be768839",
+  "map": "guardians",
+  "rival": "print dont int",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "v9c",
+  "file": "v9c/collision_printdontint_f7b3952.repl26a",
+  "match": "4f7b4f96-166e-41d3-bbf9-7505b7ed4210",
+  "map": "collision",
+  "rival": "print dont int",
+  "result": "loss",
+  "side": "a"
+ },
+ {
+  "bot": "v9c",
+  "file": "v9c/dunes_printdontint_f7b3953.repl26a",
+  "match": "28d0654f-acd9-4499-b493-e854f27117d4",
+  "map": "dunes",
+  "rival": "print dont int",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "v9c",
+  "file": "v9c/concentrated_wealth_printdontint_f7b3954.repl26a",
+  "match": "dfc3b47b-df7c-481a-9ce2-fdcc192d8e98",
+  "map": "concentrated_wealth",
+  "rival": "print dont int",
+  "result": "loss",
+  "side": "a"
+ },
+ {
+  "bot": "v9c",
+  "file": "v9c/broken_curve_ClaudusMaximus_2a29dd0.repl26a",
+  "match": "d4f1dc58-e36a-403f-a49e-0e0480982482",
+  "map": "broken_curve",
+  "rival": "Claudus Maximus",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "v9c",
+  "file": "v9c/galaxy_ClaudusMaximus_2a29dd1.repl26a",
+  "match": "521f9ef8-8031-4de0-89e4-c1c75cdb86b9",
+  "map": "galaxy",
+  "rival": "Claudus Maximus",
+  "result": "loss",
+  "side": "a"
+ },
+ {
+  "bot": "v9c",
+  "file": "v9c/pilgrimage_ClaudusMaximus_2a29dd2.repl26a",
+  "match": "88e31cea-1084-4332-8f8b-64589a3967b0",
+  "map": "pilgrimage",
+  "rival": "Claudus Maximus",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "v9c",
+  "file": "v9c/gemfight_ClaudusMaximus_2a29dd3.repl26a",
+  "match": "e25fa665-e37a-4fd5-a44e-7da9e7e261ad",
+  "map": "gemfight",
+  "rival": "Claudus Maximus",
+  "result": "loss",
+  "side": "a"
+ },
+ {
+  "bot": "v9c",
+  "file": "v9c/split_ClaudusMaximus_2a29dd4.repl26a",
+  "match": "ec5e6ed1-3de2-44ee-b270-383d40490a76",
+  "map": "split",
+  "rival": "Claudus Maximus",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "v9c",
+  "file": "v9c/gift_wrapping_hello_be88240.repl26a",
+  "match": "9a0b75c9-49f8-481a-812d-0c0f4bfdb712",
+  "map": "gift_wrapping",
+  "rival": "hello",
+  "result": "loss",
+  "side": "a"
+ },
+ {
+  "bot": "v9c",
+  "file": "v9c/ambush_hello_be88241.repl26a",
+  "match": "3f58f473-29a3-4743-aeb3-d7fd053258a5",
+  "map": "ambush",
+  "rival": "hello",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "v9c",
+  "file": "v9c/elk_arena_hello_be88242.repl26a",
+  "match": "2e0a75d2-42fc-4862-8184-37af5d8ee41b",
+  "map": "elk_arena",
+  "rival": "hello",
+  "result": "loss",
+  "side": "a"
+ },
+ {
+  "bot": "v9c",
+  "file": "v9c/rushbait_v2_hello_be88243.repl26a",
+  "match": "f794414e-c1e7-4428-8a29-f128eae28811",
+  "map": "rushbait_v2",
+  "rival": "hello",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "v9c",
+  "file": "v9c/gato_gemcombat2_hello_be88244.repl26a",
+  "match": "699f6bb9-2c86-46be-8aef-136f1638cee1",
+  "map": "gato_gemcombat2",
+  "rival": "hello",
+  "result": "loss",
+  "side": "a"
+ },
+ {
+  "bot": "v9c",
+  "file": "v9c/islands_TrzyKwaterki_af61fe0.repl26a",
+  "match": "9af8b389-53c2-4855-a9c8-8b492fee9416",
+  "map": "islands",
+  "rival": "Trzy Kwaterki",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "v9c",
+  "file": "v9c/gato_gemcombat5_TrzyKwaterki_af61fe1.repl26a",
+  "match": "bae4ea8b-cb40-4889-8ca8-c417e698f823",
+  "map": "gato_gemcombat5",
+  "rival": "Trzy Kwaterki",
+  "result": "loss",
+  "side": "a"
+ },
+ {
+  "bot": "v9c",
+  "file": "v9c/stalactites_TrzyKwaterki_af61fe2.repl26a",
+  "match": "3bd51bb3-4aa8-4c94-9b2f-0ae617e6df07",
+  "map": "stalactites",
+  "rival": "Trzy Kwaterki",
+  "result": "win",
+  "side": "b"
+ },
+ {
+  "bot": "v9c",
+  "file": "v9c/elk_arena_TrzyKwaterki_af61fe3.repl26a",
+  "match": "4405da56-c811-417c-a41e-dec8bb62fd46",
+  "map": "elk_arena",
+  "rival": "Trzy Kwaterki",
+  "result": "loss",
+  "side": "a"
+ },
+ {
+  "bot": "v9c",
+  "file": "v9c/monolith_TrzyKwaterki_af61fe4.repl26a",
+  "match": "8c0301f8-e89d-496d-9cdc-58dd749b4774",
+  "map": "monolith",
+  "rival": "Trzy Kwaterki",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "v9c",
+  "file": "v9c/starfish_prismbestgirl_0c85070.repl26a",
+  "match": "50714590-ef8e-427a-b789-8f8feb4502df",
+  "map": "starfish",
+  "rival": "prism best girl",
+  "result": "loss",
+  "side": "a"
+ },
+ {
+  "bot": "v9c",
+  "file": "v9c/the_farm_prismbestgirl_0c85071.repl26a",
+  "match": "6da5419a-4496-42bb-a51c-e7aff3d2111c",
+  "map": "the_farm",
+  "rival": "prism best girl",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "v9c",
+  "file": "v9c/fields_prismbestgirl_0c85072.repl26a",
+  "match": "24827c46-176d-47ab-b72f-13b6506505c2",
+  "map": "fields",
+  "rival": "prism best girl",
+  "result": "loss",
+  "side": "a"
+ },
+ {
+  "bot": "v9c",
+  "file": "v9c/breadcrumbs_prismbestgirl_0c85073.repl26a",
+  "match": "145d00fe-dc40-41ad-9b2c-b8926edc94ec",
+  "map": "breadcrumbs",
+  "rival": "prism best girl",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "v9c",
+  "file": "v9c/oasis_prismbestgirl_0c85074.repl26a",
+  "match": "f8fc168b-b70c-4d89-9a8d-e926c484240d",
+  "map": "oasis",
+  "rival": "prism best girl",
+  "result": "loss",
+  "side": "a"
+ },
+ {
+  "bot": "v9c",
+  "file": "v9c/contest_SpongeAlbertandB_42e78a0.repl26a",
+  "match": "de04f472-45a5-42c4-a726-2c2a14614a0d",
+  "map": "contest",
+  "rival": "Sponge(Albert and Bob)",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "v9c",
+  "file": "v9c/gold_rush_SpongeAlbertandB_42e78a1.repl26a",
+  "match": "63497ebc-13ec-47cb-8833-efb9f40ef1d5",
+  "map": "gold_rush",
+  "rival": "Sponge(Albert and Bob)",
+  "result": "loss",
+  "side": "a"
+ },
+ {
+  "bot": "v9c",
+  "file": "v9c/gato_gemcombat2_SpongeAlbertandB_42e78a2.repl26a",
+  "match": "d5a241b5-363a-497a-b512-23861114ba72",
+  "map": "gato_gemcombat2",
+  "rival": "Sponge(Albert and Bob)",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "v9c",
+  "file": "v9c/anvil_SpongeAlbertandB_42e78a3.repl26a",
+  "match": "f61bb347-ef9a-443b-ae88-1839e604f230",
+  "map": "anvil",
+  "rival": "Sponge(Albert and Bob)",
+  "result": "loss",
+  "side": "a"
+ },
+ {
+  "bot": "v9c",
+  "file": "v9c/corners_SpongeAlbertandB_42e78a4.repl26a",
+  "match": "514d9029-e9ac-4aa7-8ff1-c6eacefceb7d",
+  "map": "corners",
+  "rival": "Sponge(Albert and Bob)",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "v9c",
+  "file": "v9c/big_world_policywonk_702dc30.repl26a",
+  "match": "00065ae0-9174-47d1-b873-0279abac2102",
+  "map": "big_world",
+  "rival": "policy wonk",
+  "result": "loss",
+  "side": "a"
+ },
+ {
+  "bot": "v9c",
+  "file": "v9c/guardians_policywonk_702dc31.repl26a",
+  "match": "fdab1928-067c-42de-b101-88f9958d5694",
+  "map": "guardians",
+  "rival": "policy wonk",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "v9c",
+  "file": "v9c/stampede_policywonk_702dc32.repl26a",
+  "match": "6ad9e5ad-e242-433c-85cb-9b049a898db7",
+  "map": "stampede",
+  "rival": "policy wonk",
+  "result": "loss",
+  "side": "a"
+ },
+ {
+  "bot": "v9c",
+  "file": "v9c/arena_policywonk_702dc33.repl26a",
+  "match": "f65f6dbb-26d7-4a62-a399-090af0c5f667",
+  "map": "arena",
+  "rival": "policy wonk",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "v9c",
+  "file": "v9c/quadrants_policywonk_702dc34.repl26a",
+  "match": "77e40d74-8780-4cb2-85c2-07d4d654552c",
+  "map": "quadrants",
+  "rival": "policy wonk",
+  "result": "loss",
+  "side": "a"
+ },
+ {
+  "bot": "v9c",
+  "file": "v9c/the_line_NEETCoders_9433780.repl26a",
+  "match": "461fc3de-1c70-4cb8-9e30-541ee57dceaf",
+  "map": "the_line",
+  "rival": "NEETCoders",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "v9c",
+  "file": "v9c/expanse_NEETCoders_9433781.repl26a",
+  "match": "12f8960c-1779-4ae1-9b4d-d81a4fdd4461",
+  "map": "expanse",
+  "rival": "NEETCoders",
+  "result": "loss",
+  "side": "a"
+ },
+ {
+  "bot": "v9c",
+  "file": "v9c/gato_gemcombat4_NEETCoders_9433782.repl26a",
+  "match": "c8d2877e-7fb5-4247-842e-7b5a7ea4970c",
+  "map": "gato_gemcombat4",
+  "rival": "NEETCoders",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "v9c",
+  "file": "v9c/gift_wrapping_NEETCoders_9433783.repl26a",
+  "match": "52c7b780-422b-4186-93bd-a82506875e56",
+  "map": "gift_wrapping",
+  "rival": "NEETCoders",
+  "result": "loss",
+  "side": "a"
+ },
+ {
+  "bot": "v9c",
+  "file": "v9c/starfish_NEETCoders_9433784.repl26a",
+  "match": "fe74bf8c-dbd4-4750-9a59-851983e920e6",
+  "map": "starfish",
+  "rival": "NEETCoders",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "v9c",
+  "file": "v9c/ribs_Supaswag_7917ce0.repl26a",
+  "match": "3327c124-e6ed-49fe-a84c-83f705914490",
+  "map": "ribs",
+  "rival": "Supaswag",
+  "result": "loss",
+  "side": "a"
+ },
+ {
+  "bot": "v9c",
+  "file": "v9c/hooks_Supaswag_7917ce1.repl26a",
+  "match": "dea5e69f-5df1-42cd-a5ea-9a1166b4d27a",
+  "map": "hooks",
+  "rival": "Supaswag",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "v9c",
+  "file": "v9c/shortcut_Supaswag_7917ce2.repl26a",
+  "match": "cf3229f6-0976-4726-af1d-6cef80b71568",
+  "map": "shortcut",
+  "rival": "Supaswag",
+  "result": "loss",
+  "side": "a"
+ },
+ {
+  "bot": "v9c",
+  "file": "v9c/elk_arena_Supaswag_7917ce3.repl26a",
+  "match": "8fe52ac0-bdc2-44a8-a33b-6b2ad623e807",
+  "map": "elk_arena",
+  "rival": "Supaswag",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "v9c",
+  "file": "v9c/islands_Supaswag_7917ce4.repl26a",
+  "match": "664699a6-86b8-478c-b1b1-42ea4f3f07b9",
+  "map": "islands",
+  "rival": "Supaswag",
+  "result": "loss",
+  "side": "a"
+ },
+ {
+  "bot": "v9c",
+  "file": "v9c/gato_gemcombat1_procless_bb3ccf0.repl26a",
+  "match": "86893f46-c039-4c9f-aff3-5cb99182cd30",
+  "map": "gato_gemcombat1",
+  "rival": "procless",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "v9c",
+  "file": "v9c/gato_gemcombat4_procless_bb3ccf1.repl26a",
+  "match": "56c22a82-6cc7-4c17-b966-56e54fed9d2f",
+  "map": "gato_gemcombat4",
+  "rival": "procless",
+  "result": "loss",
+  "side": "a"
+ },
+ {
+  "bot": "v9c",
+  "file": "v9c/the_farm_procless_bb3ccf2.repl26a",
+  "match": "fac968ac-6a11-42fc-9727-358bc5154a04",
+  "map": "the_farm",
+  "rival": "procless",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "v9c",
+  "file": "v9c/monolith_procless_bb3ccf3.repl26a",
+  "match": "dca8426f-08a3-4289-a5ff-5c28103c0d50",
+  "map": "monolith",
+  "rival": "procless",
+  "result": "loss",
+  "side": "a"
+ },
+ {
+  "bot": "v9c",
+  "file": "v9c/fracture_procless_bb3ccf4.repl26a",
+  "match": "c4029dad-69aa-4d78-b69e-e177a6aee6ed",
+  "map": "fracture",
+  "rival": "procless",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "v9c",
+  "file": "v9c/gato_gemcombat5_UnivardistyofShi_3887500.repl26a",
+  "match": "4decb9c2-9816-4066-80f4-4bc289d039b9",
+  "map": "gato_gemcombat5",
+  "rival": "Univardisty of Shingtonwash",
+  "result": "loss",
+  "side": "a"
+ },
+ {
+  "bot": "v9c",
+  "file": "v9c/oasis_UnivardistyofShi_3887501.repl26a",
+  "match": "0d957aa4-19f3-4b35-989b-0cc420d4c555",
+  "map": "oasis",
+  "rival": "Univardisty of Shingtonwash",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "v9c",
+  "file": "v9c/fracture_UnivardistyofShi_3887502.repl26a",
+  "match": "848233a8-1f8e-489e-993d-3c12366ca7d9",
+  "map": "fracture",
+  "rival": "Univardisty of Shingtonwash",
+  "result": "loss",
+  "side": "a"
+ },
+ {
+  "bot": "v9c",
+  "file": "v9c/geodes_UnivardistyofShi_3887503.repl26a",
+  "match": "81172e1b-ebc6-474e-a23a-27005776c662",
+  "map": "geodes",
+  "rival": "Univardisty of Shingtonwash",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "v9c",
+  "file": "v9c/shortcut_UnivardistyofShi_3887504.repl26a",
+  "match": "c54e12af-2e87-4a8d-893b-fd804a9d6bbc",
+  "map": "shortcut",
+  "rival": "Univardisty of Shingtonwash",
+  "result": "loss",
+  "side": "a"
+ },
+ {
+  "bot": "v9c",
+  "file": "v9c/the_pack_newteam4_8edba20.repl26a",
+  "match": "e9493f1b-2bd2-4526-b56e-9db4e9d784a5",
+  "map": "the_pack",
+  "rival": "new team(4)",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "v9c",
+  "file": "v9c/gato_gemcombat3_newteam4_8edba21.repl26a",
+  "match": "1faa67d7-fa06-483e-b47f-094ad707b1d9",
+  "map": "gato_gemcombat3",
+  "rival": "new team(4)",
+  "result": "loss",
+  "side": "a"
+ },
+ {
+  "bot": "v9c",
+  "file": "v9c/crossing_newteam4_8edba22.repl26a",
+  "match": "082ccfc1-a335-4975-ab48-7f653bc2abf4",
+  "map": "crossing",
+  "rival": "new team(4)",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "v9c",
+  "file": "v9c/pilgrimage_newteam4_8edba23.repl26a",
+  "match": "67ba891a-cff3-432d-bbe5-824992fda96f",
+  "map": "pilgrimage",
+  "rival": "new team(4)",
+  "result": "loss",
+  "side": "a"
+ },
+ {
+  "bot": "v9c",
+  "file": "v9c/famine_newteam4_8edba24.repl26a",
+  "match": "530bd27e-f669-4420-bb6c-a024c427c65c",
+  "map": "famine",
+  "rival": "new team(4)",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "v9c",
+  "file": "v9c/monolith_SSSA_817a1e0.repl26a",
+  "match": "f3d3c056-77ec-4f1f-aa12-44785f1c5eb2",
+  "map": "monolith",
+  "rival": "SSSA",
+  "result": "win",
+  "side": "a"
+ },
+ {
+  "bot": "v9c",
+  "file": "v9c/corners_SSSA_817a1e1.repl26a",
+  "match": "9fe8f01b-2b9c-44d9-b4de-19916096a3ac",
+  "map": "corners",
+  "rival": "SSSA",
+  "result": "win",
+  "side": "b"
+ },
+ {
+  "bot": "v9c",
+  "file": "v9c/gem_fields_SSSA_817a1e2.repl26a",
+  "match": "61bb8676-c87c-40df-a009-3f99ae084d52",
+  "map": "gem_fields",
+  "rival": "SSSA",
+  "result": "loss",
+  "side": "a"
+ },
+ {
+  "bot": "v9c",
+  "file": "v9c/gato_gemcombat3_SSSA_817a1e3.repl26a",
+  "match": "1f153bda-6797-4519-bf65-d8b0eb733932",
+  "map": "gato_gemcombat3",
+  "rival": "SSSA",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "v9c",
+  "file": "v9c/dunes_SSSA_817a1e4.repl26a",
+  "match": "c280ad27-db16-413b-b76e-19483649e5fd",
+  "map": "dunes",
+  "rival": "SSSA",
+  "result": "loss",
+  "side": "a"
+ },
+ {
+  "bot": "v9c",
+  "file": "v9c/yellow_brick_road_3_9157ad0.repl26a",
+  "match": "af0f917b-c29e-4992-b293-f4d6a67839ec",
+  "map": "yellow_brick_road",
+  "rival": ":3",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "v9c",
+  "file": "v9c/vault_3_9157ad1.repl26a",
+  "match": "fa31ba62-0a3b-4b34-a6d7-1c1b747efe95",
+  "map": "vault",
+  "rival": ":3",
+  "result": "loss",
+  "side": "a"
+ },
+ {
+  "bot": "v9c",
+  "file": "v9c/the_farm_3_9157ad2.repl26a",
+  "match": "93bfea73-6eb8-482d-a249-4e5e9c25c9d4",
+  "map": "the_farm",
+  "rival": ":3",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "v9c",
+  "file": "v9c/ribs_3_9157ad3.repl26a",
+  "match": "c69fbe03-e661-4959-a49a-6b37cc57a0b2",
+  "map": "ribs",
+  "rival": ":3",
+  "result": "loss",
+  "side": "a"
+ },
+ {
+  "bot": "v9c",
+  "file": "v9c/pilgrimage_3_9157ad4.repl26a",
+  "match": "7ca4ddb3-6ff3-4434-a187-345a749c4538",
+  "map": "pilgrimage",
+  "rival": ":3",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "v9c",
+  "file": "v9c/lost_world_meow_ee6f6a0.repl26a",
+  "match": "765f5cdc-4288-4724-a6d8-dc96769766e6",
+  "map": "lost_world",
+  "rival": "meow",
+  "result": "loss",
+  "side": "a"
+ },
+ {
+  "bot": "v9c",
+  "file": "v9c/gato_gemcombat3_meow_ee6f6a1.repl26a",
+  "match": "e3a15f45-ccc3-4ccb-8f9a-fd12335241c0",
+  "map": "gato_gemcombat3",
+  "rival": "meow",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "v9c",
+  "file": "v9c/treasure_box_meow_ee6f6a2.repl26a",
+  "match": "4cbffc51-5c41-4315-9a6c-1ac8007cc7b2",
+  "map": "treasure_box",
+  "rival": "meow",
+  "result": "loss",
+  "side": "a"
+ },
+ {
+  "bot": "v9c",
+  "file": "v9c/guardians_meow_ee6f6a3.repl26a",
+  "match": "afd475a2-1a79-4234-9f81-86d531ae0302",
+  "map": "guardians",
+  "rival": "meow",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "v9c",
+  "file": "v9c/breadcrumbs_meow_ee6f6a4.repl26a",
+  "match": "0a06fcf5-94f4-4fc1-81e9-e5a4cc2b451b",
+  "map": "breadcrumbs",
+  "rival": "meow",
+  "result": "loss",
+  "side": "a"
+ },
+ {
+  "bot": "v9c",
+  "file": "v9c/quadrants_GermanEmpire_b4fc410.repl26a",
+  "match": "82b24944-43b9-4c42-afe3-7afd39e651bf",
+  "map": "quadrants",
+  "rival": "German Empire",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "v9c",
+  "file": "v9c/islands_GermanEmpire_b4fc411.repl26a",
+  "match": "0a1c5f71-a2f0-46b0-9fb1-aeea8370fe0f",
+  "map": "islands",
+  "rival": "German Empire",
+  "result": "loss",
+  "side": "a"
+ },
+ {
+  "bot": "v9c",
+  "file": "v9c/starvation_GermanEmpire_b4fc412.repl26a",
+  "match": "638f1d1e-0b0f-4bb6-88a0-ec71aae1d389",
+  "map": "starvation",
+  "rival": "German Empire",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "v9c",
+  "file": "v9c/gato_gemcombat5_GermanEmpire_b4fc413.repl26a",
+  "match": "98df6e6d-3a27-41ba-9ca1-4ddf7ac3b429",
+  "map": "gato_gemcombat5",
+  "rival": "German Empire",
+  "result": "win",
+  "side": "a"
+ },
+ {
+  "bot": "v9c",
+  "file": "v9c/tangle_GermanEmpire_b4fc414.repl26a",
+  "match": "c8c4d62a-6557-4ca9-af27-024f205bd842",
+  "map": "tangle",
+  "rival": "German Empire",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "t10plan4o2",
+  "file": "t10plan4o2/lost_world_printdontint_f7b3950.repl26a",
+  "match": "fdbcd780-45e7-4586-9829-4773b7b1ab15",
+  "map": "lost_world",
+  "rival": "print dont int",
+  "result": "loss",
+  "side": "a"
+ },
+ {
+  "bot": "t10plan4o2",
+  "file": "t10plan4o2/guardians_printdontint_f7b3951.repl26a",
+  "match": "cf01d34c-a595-47cd-b4f4-c3a28edb160b",
+  "map": "guardians",
+  "rival": "print dont int",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "t10plan4o2",
+  "file": "t10plan4o2/collision_printdontint_f7b3952.repl26a",
+  "match": "f6784bcf-a1cb-4e01-a14e-df3252105e76",
+  "map": "collision",
+  "rival": "print dont int",
+  "result": "loss",
+  "side": "a"
+ },
+ {
+  "bot": "t10plan4o2",
+  "file": "t10plan4o2/dunes_printdontint_f7b3953.repl26a",
+  "match": "a0bab2f9-a95f-48d9-9b6f-b8d6bd801426",
+  "map": "dunes",
+  "rival": "print dont int",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "t10plan4o2",
+  "file": "t10plan4o2/concentrated_wealth_printdontint_f7b3954.repl26a",
+  "match": "65cda7fc-ffe5-4167-9b63-738d70ea7fce",
+  "map": "concentrated_wealth",
+  "rival": "print dont int",
+  "result": "loss",
+  "side": "a"
+ },
+ {
+  "bot": "t10plan4o2",
+  "file": "t10plan4o2/broken_curve_ClaudusMaximus_2a29dd0.repl26a",
+  "match": "e9cd5c90-8793-476d-92a0-add82c6a82fd",
+  "map": "broken_curve",
+  "rival": "Claudus Maximus",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "t10plan4o2",
+  "file": "t10plan4o2/galaxy_ClaudusMaximus_2a29dd1.repl26a",
+  "match": "a95ae311-dc08-4330-99fd-82e81c4bf6a5",
+  "map": "galaxy",
+  "rival": "Claudus Maximus",
+  "result": "loss",
+  "side": "a"
+ },
+ {
+  "bot": "t10plan4o2",
+  "file": "t10plan4o2/pilgrimage_ClaudusMaximus_2a29dd2.repl26a",
+  "match": "00b0cd30-9785-4458-83e5-df8466c2d761",
+  "map": "pilgrimage",
+  "rival": "Claudus Maximus",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "t10plan4o2",
+  "file": "t10plan4o2/gemfight_ClaudusMaximus_2a29dd3.repl26a",
+  "match": "20628c3a-0d2f-4cc1-a567-cb00cd16e1a0",
+  "map": "gemfight",
+  "rival": "Claudus Maximus",
+  "result": "loss",
+  "side": "a"
+ },
+ {
+  "bot": "t10plan4o2",
+  "file": "t10plan4o2/split_ClaudusMaximus_2a29dd4.repl26a",
+  "match": "e5d4c850-9c93-4b27-bca2-db34b6e10304",
+  "map": "split",
+  "rival": "Claudus Maximus",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "t10plan4o2",
+  "file": "t10plan4o2/gift_wrapping_hello_be88240.repl26a",
+  "match": "77d13fcb-af19-4d85-bef6-d969b3b427fa",
+  "map": "gift_wrapping",
+  "rival": "hello",
+  "result": "loss",
+  "side": "a"
+ },
+ {
+  "bot": "t10plan4o2",
+  "file": "t10plan4o2/ambush_hello_be88241.repl26a",
+  "match": "b24ab30d-88ed-4ad4-ba93-2fbe1ed0a2f2",
+  "map": "ambush",
+  "rival": "hello",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "t10plan4o2",
+  "file": "t10plan4o2/elk_arena_hello_be88242.repl26a",
+  "match": "7fa9630c-0942-4fe2-9577-6e6f1c0a9201",
+  "map": "elk_arena",
+  "rival": "hello",
+  "result": "loss",
+  "side": "a"
+ },
+ {
+  "bot": "t10plan4o2",
+  "file": "t10plan4o2/rushbait_v2_hello_be88243.repl26a",
+  "match": "6c1138b4-1a63-46d6-8df5-f3030589469b",
+  "map": "rushbait_v2",
+  "rival": "hello",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "t10plan4o2",
+  "file": "t10plan4o2/gato_gemcombat2_hello_be88244.repl26a",
+  "match": "b68b3cca-fe8c-4523-aa28-320bd274022f",
+  "map": "gato_gemcombat2",
+  "rival": "hello",
+  "result": "loss",
+  "side": "a"
+ },
+ {
+  "bot": "t10plan4o2",
+  "file": "t10plan4o2/islands_TrzyKwaterki_af61fe0.repl26a",
+  "match": "dcc8f108-9e7e-4b54-9655-b49e782ba338",
+  "map": "islands",
+  "rival": "Trzy Kwaterki",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "t10plan4o2",
+  "file": "t10plan4o2/gato_gemcombat5_TrzyKwaterki_af61fe1.repl26a",
+  "match": "1ed0d87c-91dd-4961-8c93-4596dd276b5d",
+  "map": "gato_gemcombat5",
+  "rival": "Trzy Kwaterki",
+  "result": "loss",
+  "side": "a"
+ },
+ {
+  "bot": "t10plan4o2",
+  "file": "t10plan4o2/stalactites_TrzyKwaterki_af61fe2.repl26a",
+  "match": "128074b5-5ebf-4b54-999b-bed4f468fe31",
+  "map": "stalactites",
+  "rival": "Trzy Kwaterki",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "t10plan4o2",
+  "file": "t10plan4o2/elk_arena_TrzyKwaterki_af61fe3.repl26a",
+  "match": "d27d26f8-ed85-4f97-802f-ea1ee23cb1b9",
+  "map": "elk_arena",
+  "rival": "Trzy Kwaterki",
+  "result": "loss",
+  "side": "a"
+ },
+ {
+  "bot": "t10plan4o2",
+  "file": "t10plan4o2/monolith_TrzyKwaterki_af61fe4.repl26a",
+  "match": "3868521d-0ec2-4a55-8e13-e43f721ed6ac",
+  "map": "monolith",
+  "rival": "Trzy Kwaterki",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "t10plan4o2",
+  "file": "t10plan4o2/starfish_prismbestgirl_0c85070.repl26a",
+  "match": "75beeefc-b6f3-40c6-a5e7-a10f88e9af37",
+  "map": "starfish",
+  "rival": "prism best girl",
+  "result": "loss",
+  "side": "a"
+ },
+ {
+  "bot": "t10plan4o2",
+  "file": "t10plan4o2/the_farm_prismbestgirl_0c85071.repl26a",
+  "match": "2471eb67-df01-47ce-8c8c-5f297742f27a",
+  "map": "the_farm",
+  "rival": "prism best girl",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "t10plan4o2",
+  "file": "t10plan4o2/fields_prismbestgirl_0c85072.repl26a",
+  "match": "f94bcb94-d4fe-4904-b4f6-9dc284878090",
+  "map": "fields",
+  "rival": "prism best girl",
+  "result": "loss",
+  "side": "a"
+ },
+ {
+  "bot": "t10plan4o2",
+  "file": "t10plan4o2/breadcrumbs_prismbestgirl_0c85073.repl26a",
+  "match": "8725dbca-12d7-48b0-9e4b-99934ff67d9e",
+  "map": "breadcrumbs",
+  "rival": "prism best girl",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "t10plan4o2",
+  "file": "t10plan4o2/oasis_prismbestgirl_0c85074.repl26a",
+  "match": "61435b31-88fc-4b42-b313-b8c82f8bc3fc",
+  "map": "oasis",
+  "rival": "prism best girl",
+  "result": "loss",
+  "side": "a"
+ },
+ {
+  "bot": "t10plan4o2",
+  "file": "t10plan4o2/contest_SpongeAlbertandB_42e78a0.repl26a",
+  "match": "07308993-9ad1-4c95-9a4f-b96706411d2b",
+  "map": "contest",
+  "rival": "Sponge(Albert and Bob)",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "t10plan4o2",
+  "file": "t10plan4o2/gold_rush_SpongeAlbertandB_42e78a1.repl26a",
+  "match": "7cc66b01-2ae6-4a0f-b087-0f82bc8a79eb",
+  "map": "gold_rush",
+  "rival": "Sponge(Albert and Bob)",
+  "result": "loss",
+  "side": "a"
+ },
+ {
+  "bot": "t10plan4o2",
+  "file": "t10plan4o2/gato_gemcombat2_SpongeAlbertandB_42e78a2.repl26a",
+  "match": "2ced7aac-8425-45dc-bd49-5d9c728397e4",
+  "map": "gato_gemcombat2",
+  "rival": "Sponge(Albert and Bob)",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "t10plan4o2",
+  "file": "t10plan4o2/anvil_SpongeAlbertandB_42e78a3.repl26a",
+  "match": "e0d3d734-9a04-40c9-95f0-a447812dcc19",
+  "map": "anvil",
+  "rival": "Sponge(Albert and Bob)",
+  "result": "loss",
+  "side": "a"
+ },
+ {
+  "bot": "t10plan4o2",
+  "file": "t10plan4o2/corners_SpongeAlbertandB_42e78a4.repl26a",
+  "match": "eda7d7fe-3a08-4d5e-93ac-620e53b4951e",
+  "map": "corners",
+  "rival": "Sponge(Albert and Bob)",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "t10plan4o2",
+  "file": "t10plan4o2/big_world_policywonk_702dc30.repl26a",
+  "match": "9bf61194-f12e-4f38-9565-6fc2486764f1",
+  "map": "big_world",
+  "rival": "policy wonk",
+  "result": "loss",
+  "side": "a"
+ },
+ {
+  "bot": "t10plan4o2",
+  "file": "t10plan4o2/guardians_policywonk_702dc31.repl26a",
+  "match": "ef4d8a32-8096-44f8-bd5b-0cba729cc811",
+  "map": "guardians",
+  "rival": "policy wonk",
+  "result": "win",
+  "side": "b"
+ },
+ {
+  "bot": "t10plan4o2",
+  "file": "t10plan4o2/stampede_policywonk_702dc32.repl26a",
+  "match": "f9346344-9cba-4d0a-9082-5f257ebe7027",
+  "map": "stampede",
+  "rival": "policy wonk",
+  "result": "loss",
+  "side": "a"
+ },
+ {
+  "bot": "t10plan4o2",
+  "file": "t10plan4o2/arena_policywonk_702dc33.repl26a",
+  "match": "cb3552a7-199b-4832-b107-da0ddc137c5c",
+  "map": "arena",
+  "rival": "policy wonk",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "t10plan4o2",
+  "file": "t10plan4o2/quadrants_policywonk_702dc34.repl26a",
+  "match": "bf5c601c-ee1c-4efa-9c43-2db498e2343d",
+  "map": "quadrants",
+  "rival": "policy wonk",
+  "result": "loss",
+  "side": "a"
+ },
+ {
+  "bot": "t10plan4o2",
+  "file": "t10plan4o2/the_line_NEETCoders_9433780.repl26a",
+  "match": "b7ff0d8d-ec97-4ef6-8646-307fef894249",
+  "map": "the_line",
+  "rival": "NEETCoders",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "t10plan4o2",
+  "file": "t10plan4o2/expanse_NEETCoders_9433781.repl26a",
+  "match": "da35e2ac-fe51-4d67-b60b-e2464d478c22",
+  "map": "expanse",
+  "rival": "NEETCoders",
+  "result": "loss",
+  "side": "a"
+ },
+ {
+  "bot": "t10plan4o2",
+  "file": "t10plan4o2/gato_gemcombat4_NEETCoders_9433782.repl26a",
+  "match": "8a61b542-39f5-48f0-ab43-740b433ab848",
+  "map": "gato_gemcombat4",
+  "rival": "NEETCoders",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "t10plan4o2",
+  "file": "t10plan4o2/gift_wrapping_NEETCoders_9433783.repl26a",
+  "match": "c70bcff3-9820-4447-927f-133c7b2aae1c",
+  "map": "gift_wrapping",
+  "rival": "NEETCoders",
+  "result": "loss",
+  "side": "a"
+ },
+ {
+  "bot": "t10plan4o2",
+  "file": "t10plan4o2/starfish_NEETCoders_9433784.repl26a",
+  "match": "1e3caa28-4e29-4836-9717-24d4e22b54bd",
+  "map": "starfish",
+  "rival": "NEETCoders",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "t10plan4o2",
+  "file": "t10plan4o2/ribs_Supaswag_7917ce0.repl26a",
+  "match": "c9ef2005-fe05-4d4c-a3f7-141ba512545f",
+  "map": "ribs",
+  "rival": "Supaswag",
+  "result": "loss",
+  "side": "a"
+ },
+ {
+  "bot": "t10plan4o2",
+  "file": "t10plan4o2/hooks_Supaswag_7917ce1.repl26a",
+  "match": "468d3653-a417-4d60-adfc-1e707c1646ca",
+  "map": "hooks",
+  "rival": "Supaswag",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "t10plan4o2",
+  "file": "t10plan4o2/shortcut_Supaswag_7917ce2.repl26a",
+  "match": "f3077bcf-7eed-45e8-a22e-8a1b9765891e",
+  "map": "shortcut",
+  "rival": "Supaswag",
+  "result": "loss",
+  "side": "a"
+ },
+ {
+  "bot": "t10plan4o2",
+  "file": "t10plan4o2/elk_arena_Supaswag_7917ce3.repl26a",
+  "match": "1e8465fa-1164-4788-9c72-8687e6d5e48a",
+  "map": "elk_arena",
+  "rival": "Supaswag",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "t10plan4o2",
+  "file": "t10plan4o2/islands_Supaswag_7917ce4.repl26a",
+  "match": "026d5a0c-6a95-49ff-a6b1-8d2b1d053d2d",
+  "map": "islands",
+  "rival": "Supaswag",
+  "result": "loss",
+  "side": "a"
+ },
+ {
+  "bot": "t10plan4o2",
+  "file": "t10plan4o2/gato_gemcombat1_procless_bb3ccf0.repl26a",
+  "match": "ca7e07b2-28fd-4bb8-bf9c-b6c9a108a88b",
+  "map": "gato_gemcombat1",
+  "rival": "procless",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "t10plan4o2",
+  "file": "t10plan4o2/gato_gemcombat4_procless_bb3ccf1.repl26a",
+  "match": "13111cb0-8943-48a5-aa5e-1840a408dcf3",
+  "map": "gato_gemcombat4",
+  "rival": "procless",
+  "result": "loss",
+  "side": "a"
+ },
+ {
+  "bot": "t10plan4o2",
+  "file": "t10plan4o2/the_farm_procless_bb3ccf2.repl26a",
+  "match": "7008c219-71db-45f0-959d-abadc7a31418",
+  "map": "the_farm",
+  "rival": "procless",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "t10plan4o2",
+  "file": "t10plan4o2/monolith_procless_bb3ccf3.repl26a",
+  "match": "8fd27a83-6e7b-4016-a27b-55d414b5500f",
+  "map": "monolith",
+  "rival": "procless",
+  "result": "loss",
+  "side": "a"
+ },
+ {
+  "bot": "t10plan4o2",
+  "file": "t10plan4o2/fracture_procless_bb3ccf4.repl26a",
+  "match": "6d267a67-a336-4c20-b230-504dab0934ef",
+  "map": "fracture",
+  "rival": "procless",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "t10plan4o2",
+  "file": "t10plan4o2/gato_gemcombat5_UnivardistyofShi_3887500.repl26a",
+  "match": "7b66de06-2564-4013-8ac4-c810026bf5dc",
+  "map": "gato_gemcombat5",
+  "rival": "Univardisty of Shingtonwash",
+  "result": "win",
+  "side": "a"
+ },
+ {
+  "bot": "t10plan4o2",
+  "file": "t10plan4o2/oasis_UnivardistyofShi_3887501.repl26a",
+  "match": "b23ce230-d74a-4c01-96e6-a57865c20310",
+  "map": "oasis",
+  "rival": "Univardisty of Shingtonwash",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "t10plan4o2",
+  "file": "t10plan4o2/fracture_UnivardistyofShi_3887502.repl26a",
+  "match": "0e8fc5c0-d7cf-4ccf-b668-abe9bb3ffd65",
+  "map": "fracture",
+  "rival": "Univardisty of Shingtonwash",
+  "result": "loss",
+  "side": "a"
+ },
+ {
+  "bot": "t10plan4o2",
+  "file": "t10plan4o2/geodes_UnivardistyofShi_3887503.repl26a",
+  "match": "550ffd86-9356-4c7e-b4f0-643385f1de25",
+  "map": "geodes",
+  "rival": "Univardisty of Shingtonwash",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "t10plan4o2",
+  "file": "t10plan4o2/shortcut_UnivardistyofShi_3887504.repl26a",
+  "match": "5168fef1-4631-4259-8f27-95c88803eed0",
+  "map": "shortcut",
+  "rival": "Univardisty of Shingtonwash",
+  "result": "loss",
+  "side": "a"
+ },
+ {
+  "bot": "t10plan4o2",
+  "file": "t10plan4o2/the_pack_newteam4_8edba20.repl26a",
+  "match": "3490ba48-8efd-4e00-81aa-a3114dff1fce",
+  "map": "the_pack",
+  "rival": "new team(4)",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "t10plan4o2",
+  "file": "t10plan4o2/gato_gemcombat3_newteam4_8edba21.repl26a",
+  "match": "bf502908-9c41-40bb-9b85-9983e4f2b94c",
+  "map": "gato_gemcombat3",
+  "rival": "new team(4)",
+  "result": "loss",
+  "side": "a"
+ },
+ {
+  "bot": "t10plan4o2",
+  "file": "t10plan4o2/crossing_newteam4_8edba22.repl26a",
+  "match": "5b3d21bb-118b-46f5-a174-8d50adbb41d6",
+  "map": "crossing",
+  "rival": "new team(4)",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "t10plan4o2",
+  "file": "t10plan4o2/pilgrimage_newteam4_8edba23.repl26a",
+  "match": "d36764d1-bf26-43da-bd62-903a1e2b63a9",
+  "map": "pilgrimage",
+  "rival": "new team(4)",
+  "result": "loss",
+  "side": "a"
+ },
+ {
+  "bot": "t10plan4o2",
+  "file": "t10plan4o2/famine_newteam4_8edba24.repl26a",
+  "match": "2aaa9e5d-d538-4690-9e39-004e732aa4a7",
+  "map": "famine",
+  "rival": "new team(4)",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "t10plan4o2",
+  "file": "t10plan4o2/monolith_SSSA_817a1e0.repl26a",
+  "match": "7df24950-6a10-41d5-94d5-ae880ff7849e",
+  "map": "monolith",
+  "rival": "SSSA",
+  "result": "win",
+  "side": "a"
+ },
+ {
+  "bot": "t10plan4o2",
+  "file": "t10plan4o2/corners_SSSA_817a1e1.repl26a",
+  "match": "e0a16e8b-e627-409d-97f1-3b026dc6fa4f",
+  "map": "corners",
+  "rival": "SSSA",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "t10plan4o2",
+  "file": "t10plan4o2/gem_fields_SSSA_817a1e2.repl26a",
+  "match": "15f4ee38-30db-4b42-843e-500ed9d531d3",
+  "map": "gem_fields",
+  "rival": "SSSA",
+  "result": "loss",
+  "side": "a"
+ },
+ {
+  "bot": "t10plan4o2",
+  "file": "t10plan4o2/gato_gemcombat3_SSSA_817a1e3.repl26a",
+  "match": "a66a0ae1-d011-46a7-b7e0-30c35201ab91",
+  "map": "gato_gemcombat3",
+  "rival": "SSSA",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "t10plan4o2",
+  "file": "t10plan4o2/dunes_SSSA_817a1e4.repl26a",
+  "match": "d4d640ea-1bf3-4db6-94b0-a201fded2de5",
+  "map": "dunes",
+  "rival": "SSSA",
+  "result": "loss",
+  "side": "a"
+ },
+ {
+  "bot": "t10plan4o2",
+  "file": "t10plan4o2/yellow_brick_road_3_9157ad0.repl26a",
+  "match": "ee5c58af-351f-45a4-82f4-abdfd0aaf749",
+  "map": "yellow_brick_road",
+  "rival": ":3",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "t10plan4o2",
+  "file": "t10plan4o2/vault_3_9157ad1.repl26a",
+  "match": "1a01f1e3-db36-4db2-bd15-4835ec07c651",
+  "map": "vault",
+  "rival": ":3",
+  "result": "win",
+  "side": "a"
+ },
+ {
+  "bot": "t10plan4o2",
+  "file": "t10plan4o2/the_farm_3_9157ad2.repl26a",
+  "match": "6ac5078c-12db-45f1-a8f5-3dfa000b17ba",
+  "map": "the_farm",
+  "rival": ":3",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "t10plan4o2",
+  "file": "t10plan4o2/ribs_3_9157ad3.repl26a",
+  "match": "c7cdaac1-c9e3-4312-913c-a0d908d47848",
+  "map": "ribs",
+  "rival": ":3",
+  "result": "loss",
+  "side": "a"
+ },
+ {
+  "bot": "t10plan4o2",
+  "file": "t10plan4o2/pilgrimage_3_9157ad4.repl26a",
+  "match": "8f95a17e-6de8-48e0-9554-a2e67e91b439",
+  "map": "pilgrimage",
+  "rival": ":3",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "t10plan4o2",
+  "file": "t10plan4o2/lost_world_meow_ee6f6a0.repl26a",
+  "match": "033135d6-cc2a-449f-9f22-bc9bcccb4f08",
+  "map": "lost_world",
+  "rival": "meow",
+  "result": "loss",
+  "side": "a"
+ },
+ {
+  "bot": "t10plan4o2",
+  "file": "t10plan4o2/gato_gemcombat3_meow_ee6f6a1.repl26a",
+  "match": "008a6489-b2b2-4f37-ae68-c8cf9bb34a97",
+  "map": "gato_gemcombat3",
+  "rival": "meow",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "t10plan4o2",
+  "file": "t10plan4o2/treasure_box_meow_ee6f6a2.repl26a",
+  "match": "55d895a2-15c8-4111-b34b-211cfcaba14f",
+  "map": "treasure_box",
+  "rival": "meow",
+  "result": "loss",
+  "side": "a"
+ },
+ {
+  "bot": "t10plan4o2",
+  "file": "t10plan4o2/guardians_meow_ee6f6a3.repl26a",
+  "match": "2de42bfa-7df7-4523-ac64-b25b3ec9a211",
+  "map": "guardians",
+  "rival": "meow",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "t10plan4o2",
+  "file": "t10plan4o2/breadcrumbs_meow_ee6f6a4.repl26a",
+  "match": "64396fcf-185c-4632-aac2-4509bcbcfd0b",
+  "map": "breadcrumbs",
+  "rival": "meow",
+  "result": "loss",
+  "side": "a"
+ },
+ {
+  "bot": "t10plan4o2",
+  "file": "t10plan4o2/quadrants_GermanEmpire_b4fc410.repl26a",
+  "match": "2bbdf448-04e8-496e-acb9-bec34b6977f1",
+  "map": "quadrants",
+  "rival": "German Empire",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "t10plan4o2",
+  "file": "t10plan4o2/islands_GermanEmpire_b4fc411.repl26a",
+  "match": "bd789eed-2d8e-45f2-94ba-bb08f4675737",
+  "map": "islands",
+  "rival": "German Empire",
+  "result": "win",
+  "side": "a"
+ },
+ {
+  "bot": "t10plan4o2",
+  "file": "t10plan4o2/starvation_GermanEmpire_b4fc412.repl26a",
+  "match": "846a1c9c-41d1-450e-8eb1-52829f9716c6",
+  "map": "starvation",
+  "rival": "German Empire",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "t10plan4o2",
+  "file": "t10plan4o2/gato_gemcombat5_GermanEmpire_b4fc413.repl26a",
+  "match": "09fafe79-ac0f-472d-8572-d6235ff84cc9",
+  "map": "gato_gemcombat5",
+  "rival": "German Empire",
+  "result": "win",
+  "side": "a"
+ },
+ {
+  "bot": "t10plan4o2",
+  "file": "t10plan4o2/tangle_GermanEmpire_b4fc414.repl26a",
+  "match": "c5aec48a-da3c-4593-a171-18dbb98a8916",
+  "map": "tangle",
+  "rival": "German Empire",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "v10",
+  "file": "v10/lost_world_printdontint_f7b3950.repl26a",
+  "match": "ac452013-7d72-4861-8dce-95a76092e480",
+  "map": "lost_world",
+  "rival": "print dont int",
+  "result": "loss",
+  "side": "a"
+ },
+ {
+  "bot": "v10",
+  "file": "v10/guardians_printdontint_f7b3951.repl26a",
+  "match": "126c678b-1218-4245-a12e-18277bccdea2",
+  "map": "guardians",
+  "rival": "print dont int",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "v10",
+  "file": "v10/collision_printdontint_f7b3952.repl26a",
+  "match": "391d0da2-7a08-41ed-9175-f321087d8b65",
+  "map": "collision",
+  "rival": "print dont int",
+  "result": "loss",
+  "side": "a"
+ },
+ {
+  "bot": "v10",
+  "file": "v10/dunes_printdontint_f7b3953.repl26a",
+  "match": "75755564-8001-49b5-bbb5-5d645281e247",
+  "map": "dunes",
+  "rival": "print dont int",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "v10",
+  "file": "v10/concentrated_wealth_printdontint_f7b3954.repl26a",
+  "match": "fc70d934-78f3-41df-bdc9-606c029e7a1e",
+  "map": "concentrated_wealth",
+  "rival": "print dont int",
+  "result": "loss",
+  "side": "a"
+ },
+ {
+  "bot": "v10",
+  "file": "v10/broken_curve_ClaudusMaximus_2a29dd0.repl26a",
+  "match": "31ef2e5e-ee7d-4ce5-8a8e-e48447d0cd2e",
+  "map": "broken_curve",
+  "rival": "Claudus Maximus",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "v10",
+  "file": "v10/galaxy_ClaudusMaximus_2a29dd1.repl26a",
+  "match": "4a88a237-75fd-429d-92b4-741d9877d1c1",
+  "map": "galaxy",
+  "rival": "Claudus Maximus",
+  "result": "loss",
+  "side": "a"
+ },
+ {
+  "bot": "v10",
+  "file": "v10/pilgrimage_ClaudusMaximus_2a29dd2.repl26a",
+  "match": "ba3c12a1-a82e-44fe-b633-c330d2a568e8",
+  "map": "pilgrimage",
+  "rival": "Claudus Maximus",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "v10",
+  "file": "v10/gemfight_ClaudusMaximus_2a29dd3.repl26a",
+  "match": "a0edeb2a-4634-4034-8c6f-2afb296803e2",
+  "map": "gemfight",
+  "rival": "Claudus Maximus",
+  "result": "loss",
+  "side": "a"
+ },
+ {
+  "bot": "v10",
+  "file": "v10/split_ClaudusMaximus_2a29dd4.repl26a",
+  "match": "011bb1fc-73cf-4015-b5a2-128ae1938e27",
+  "map": "split",
+  "rival": "Claudus Maximus",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "v10",
+  "file": "v10/gift_wrapping_hello_be88240.repl26a",
+  "match": "c42c9ea9-dabf-472f-acfe-33ddb8260434",
+  "map": "gift_wrapping",
+  "rival": "hello",
+  "result": "loss",
+  "side": "a"
+ },
+ {
+  "bot": "v10",
+  "file": "v10/ambush_hello_be88241.repl26a",
+  "match": "0ce36cff-f0be-40d9-accf-e3e0ef23cc3a",
+  "map": "ambush",
+  "rival": "hello",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "v10",
+  "file": "v10/elk_arena_hello_be88242.repl26a",
+  "match": "f4eefe2b-3093-4f26-a46f-6c5633f1cd80",
+  "map": "elk_arena",
+  "rival": "hello",
+  "result": "loss",
+  "side": "a"
+ },
+ {
+  "bot": "v10",
+  "file": "v10/rushbait_v2_hello_be88243.repl26a",
+  "match": "0c3ce990-4742-4c03-88b7-abefd855dd7b",
+  "map": "rushbait_v2",
+  "rival": "hello",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "v10",
+  "file": "v10/gato_gemcombat2_hello_be88244.repl26a",
+  "match": "34172943-a2d9-4a18-88a5-abc787b33a3b",
+  "map": "gato_gemcombat2",
+  "rival": "hello",
+  "result": "loss",
+  "side": "a"
+ },
+ {
+  "bot": "v10",
+  "file": "v10/islands_TrzyKwaterki_af61fe0.repl26a",
+  "match": "0bdc9448-be49-4839-a71f-c22f50f37eae",
+  "map": "islands",
+  "rival": "Trzy Kwaterki",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "v10",
+  "file": "v10/gato_gemcombat5_TrzyKwaterki_af61fe1.repl26a",
+  "match": "14f631d3-141e-41f3-bc65-b0e9e2863fe3",
+  "map": "gato_gemcombat5",
+  "rival": "Trzy Kwaterki",
+  "result": "loss",
+  "side": "a"
+ },
+ {
+  "bot": "v10",
+  "file": "v10/stalactites_TrzyKwaterki_af61fe2.repl26a",
+  "match": "32ad8899-478c-4f9a-90e2-1a4fec34ca8c",
+  "map": "stalactites",
+  "rival": "Trzy Kwaterki",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "v10",
+  "file": "v10/elk_arena_TrzyKwaterki_af61fe3.repl26a",
+  "match": "49a5429a-c191-4e2d-96a5-98f47d023cd7",
+  "map": "elk_arena",
+  "rival": "Trzy Kwaterki",
+  "result": "loss",
+  "side": "a"
+ },
+ {
+  "bot": "v10",
+  "file": "v10/monolith_TrzyKwaterki_af61fe4.repl26a",
+  "match": "58833a66-f2a4-4bcb-b87e-574f36f6f3f4",
+  "map": "monolith",
+  "rival": "Trzy Kwaterki",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "v10",
+  "file": "v10/starfish_prismbestgirl_0c85070.repl26a",
+  "match": "9d078f40-a00d-43bd-b553-584dc815c15c",
+  "map": "starfish",
+  "rival": "prism best girl",
+  "result": "loss",
+  "side": "a"
+ },
+ {
+  "bot": "v10",
+  "file": "v10/the_farm_prismbestgirl_0c85071.repl26a",
+  "match": "25cab0bc-48e1-4408-aad0-533b9b732b52",
+  "map": "the_farm",
+  "rival": "prism best girl",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "v10",
+  "file": "v10/fields_prismbestgirl_0c85072.repl26a",
+  "match": "b918698d-ffb8-479f-9d70-950862bb0298",
+  "map": "fields",
+  "rival": "prism best girl",
+  "result": "loss",
+  "side": "a"
+ },
+ {
+  "bot": "v10",
+  "file": "v10/breadcrumbs_prismbestgirl_0c85073.repl26a",
+  "match": "c0fdfca1-e962-49af-bac5-866a682b36ef",
+  "map": "breadcrumbs",
+  "rival": "prism best girl",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "v10",
+  "file": "v10/oasis_prismbestgirl_0c85074.repl26a",
+  "match": "2bd0ce41-d61b-4e92-85bf-6da2a5d758fd",
+  "map": "oasis",
+  "rival": "prism best girl",
+  "result": "loss",
+  "side": "a"
+ },
+ {
+  "bot": "v10",
+  "file": "v10/contest_SpongeAlbertandB_42e78a0.repl26a",
+  "match": "97c18cbd-4ed5-44de-9cce-cf0b3ae29962",
+  "map": "contest",
+  "rival": "Sponge(Albert and Bob)",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "v10",
+  "file": "v10/gold_rush_SpongeAlbertandB_42e78a1.repl26a",
+  "match": "9cd35967-6aa2-4496-88ab-3bb7abec6b0b",
+  "map": "gold_rush",
+  "rival": "Sponge(Albert and Bob)",
+  "result": "loss",
+  "side": "a"
+ },
+ {
+  "bot": "v10",
+  "file": "v10/gato_gemcombat2_SpongeAlbertandB_42e78a2.repl26a",
+  "match": "7d697571-5e1e-41fb-9180-cf7993746ae7",
+  "map": "gato_gemcombat2",
+  "rival": "Sponge(Albert and Bob)",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "v10",
+  "file": "v10/anvil_SpongeAlbertandB_42e78a3.repl26a",
+  "match": "4dbe349d-4553-4571-ac57-9f7135f10e2a",
+  "map": "anvil",
+  "rival": "Sponge(Albert and Bob)",
+  "result": "loss",
+  "side": "a"
+ },
+ {
+  "bot": "v10",
+  "file": "v10/corners_SpongeAlbertandB_42e78a4.repl26a",
+  "match": "96f54d0b-0697-4b42-ac5c-b22513b52dfd",
+  "map": "corners",
+  "rival": "Sponge(Albert and Bob)",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "v10",
+  "file": "v10/big_world_policywonk_702dc30.repl26a",
+  "match": "ce8acf1d-6e53-45de-8cc9-30e7679ccad0",
+  "map": "big_world",
+  "rival": "policy wonk",
+  "result": "loss",
+  "side": "a"
+ },
+ {
+  "bot": "v10",
+  "file": "v10/guardians_policywonk_702dc31.repl26a",
+  "match": "d1a5803e-5c06-4820-8c70-82ac2ee6ce4e",
+  "map": "guardians",
+  "rival": "policy wonk",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "v10",
+  "file": "v10/stampede_policywonk_702dc32.repl26a",
+  "match": "18f7b0fa-38af-4e1c-9e04-839a106e0349",
+  "map": "stampede",
+  "rival": "policy wonk",
+  "result": "loss",
+  "side": "a"
+ },
+ {
+  "bot": "v10",
+  "file": "v10/arena_policywonk_702dc33.repl26a",
+  "match": "8b43b7e2-3c56-421b-a813-29be4b8815ed",
+  "map": "arena",
+  "rival": "policy wonk",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "v10",
+  "file": "v10/quadrants_policywonk_702dc34.repl26a",
+  "match": "59f01eb7-2b1c-4636-be90-cbf9ea7139ae",
+  "map": "quadrants",
+  "rival": "policy wonk",
+  "result": "loss",
+  "side": "a"
+ },
+ {
+  "bot": "v10",
+  "file": "v10/the_line_NEETCoders_9433780.repl26a",
+  "match": "4060b87c-bda2-42d0-b99e-6d99ea311b8d",
+  "map": "the_line",
+  "rival": "NEETCoders",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "v10",
+  "file": "v10/expanse_NEETCoders_9433781.repl26a",
+  "match": "818ee89f-a68d-43ac-a4de-376bdc510c6c",
+  "map": "expanse",
+  "rival": "NEETCoders",
+  "result": "loss",
+  "side": "a"
+ },
+ {
+  "bot": "v10",
+  "file": "v10/gato_gemcombat4_NEETCoders_9433782.repl26a",
+  "match": "4bf1b24a-004a-4f6a-96d1-fc3c1cfd2ff9",
+  "map": "gato_gemcombat4",
+  "rival": "NEETCoders",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "v10",
+  "file": "v10/gift_wrapping_NEETCoders_9433783.repl26a",
+  "match": "09dd8eeb-03fd-4bd9-9d03-5d9bcc9484a7",
+  "map": "gift_wrapping",
+  "rival": "NEETCoders",
+  "result": "loss",
+  "side": "a"
+ },
+ {
+  "bot": "v10",
+  "file": "v10/starfish_NEETCoders_9433784.repl26a",
+  "match": "2462e41b-0422-4872-973e-99c8ff181c26",
+  "map": "starfish",
+  "rival": "NEETCoders",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "v10",
+  "file": "v10/ribs_Supaswag_7917ce0.repl26a",
+  "match": "57b50e5e-98f6-4acd-a6e2-76d7e118bf96",
+  "map": "ribs",
+  "rival": "Supaswag",
+  "result": "loss",
+  "side": "a"
+ },
+ {
+  "bot": "v10",
+  "file": "v10/hooks_Supaswag_7917ce1.repl26a",
+  "match": "def74be9-0ed6-4c90-bdd2-40515270cd93",
+  "map": "hooks",
+  "rival": "Supaswag",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "v10",
+  "file": "v10/shortcut_Supaswag_7917ce2.repl26a",
+  "match": "68f6be7d-ce71-4788-9f9d-41f30736de8a",
+  "map": "shortcut",
+  "rival": "Supaswag",
+  "result": "loss",
+  "side": "a"
+ },
+ {
+  "bot": "v10",
+  "file": "v10/elk_arena_Supaswag_7917ce3.repl26a",
+  "match": "893137da-25a0-4769-8667-3e9074200da7",
+  "map": "elk_arena",
+  "rival": "Supaswag",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "v10",
+  "file": "v10/islands_Supaswag_7917ce4.repl26a",
+  "match": "decef7e9-9112-4058-89ba-5325db3aa5a1",
+  "map": "islands",
+  "rival": "Supaswag",
+  "result": "loss",
+  "side": "a"
+ },
+ {
+  "bot": "v10",
+  "file": "v10/gato_gemcombat1_procless_bb3ccf0.repl26a",
+  "match": "0132332e-71e2-4647-9893-90652d552263",
+  "map": "gato_gemcombat1",
+  "rival": "procless",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "v10",
+  "file": "v10/gato_gemcombat4_procless_bb3ccf1.repl26a",
+  "match": "13323e53-af5f-42ca-a1d2-efbefd21795c",
+  "map": "gato_gemcombat4",
+  "rival": "procless",
+  "result": "loss",
+  "side": "a"
+ },
+ {
+  "bot": "v10",
+  "file": "v10/the_farm_procless_bb3ccf2.repl26a",
+  "match": "8edb48ee-1a51-4835-9e79-5f3454116279",
+  "map": "the_farm",
+  "rival": "procless",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "v10",
+  "file": "v10/monolith_procless_bb3ccf3.repl26a",
+  "match": "e7f8bb05-ed55-4d6b-84e8-ec036d3ad6be",
+  "map": "monolith",
+  "rival": "procless",
+  "result": "loss",
+  "side": "a"
+ },
+ {
+  "bot": "v10",
+  "file": "v10/fracture_procless_bb3ccf4.repl26a",
+  "match": "26a83b91-3820-4167-8d47-962c9a50d584",
+  "map": "fracture",
+  "rival": "procless",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "v10",
+  "file": "v10/gato_gemcombat5_UnivardistyofShi_3887500.repl26a",
+  "match": "8b2bae6c-d1d4-4f05-86d3-dd5021dbc6ce",
+  "map": "gato_gemcombat5",
+  "rival": "Univardisty of Shingtonwash",
+  "result": "loss",
+  "side": "a"
+ },
+ {
+  "bot": "v10",
+  "file": "v10/oasis_UnivardistyofShi_3887501.repl26a",
+  "match": "8e2e9e8b-5ae9-4cbf-a7e8-206a28200461",
+  "map": "oasis",
+  "rival": "Univardisty of Shingtonwash",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "v10",
+  "file": "v10/fracture_UnivardistyofShi_3887502.repl26a",
+  "match": "622e4c17-d4b1-48e6-a93d-2721c3b0e4cf",
+  "map": "fracture",
+  "rival": "Univardisty of Shingtonwash",
+  "result": "loss",
+  "side": "a"
+ },
+ {
+  "bot": "v10",
+  "file": "v10/geodes_UnivardistyofShi_3887503.repl26a",
+  "match": "5cb58cf8-8260-4529-b625-b49838bf7acf",
+  "map": "geodes",
+  "rival": "Univardisty of Shingtonwash",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "v10",
+  "file": "v10/shortcut_UnivardistyofShi_3887504.repl26a",
+  "match": "69d376a9-7c42-40bb-b3e5-13e65858e4b7",
+  "map": "shortcut",
+  "rival": "Univardisty of Shingtonwash",
+  "result": "loss",
+  "side": "a"
+ },
+ {
+  "bot": "v10",
+  "file": "v10/the_pack_newteam4_8edba20.repl26a",
+  "match": "7ea20ab4-cf69-4c0a-8c26-df6f88991d1a",
+  "map": "the_pack",
+  "rival": "new team(4)",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "v10",
+  "file": "v10/gato_gemcombat3_newteam4_8edba21.repl26a",
+  "match": "1f295b20-bf60-4974-a564-77d5ac5667f8",
+  "map": "gato_gemcombat3",
+  "rival": "new team(4)",
+  "result": "loss",
+  "side": "a"
+ },
+ {
+  "bot": "v10",
+  "file": "v10/crossing_newteam4_8edba22.repl26a",
+  "match": "02ad3fa7-e198-4f50-9661-1ccd4da0a157",
+  "map": "crossing",
+  "rival": "new team(4)",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "v10",
+  "file": "v10/pilgrimage_newteam4_8edba23.repl26a",
+  "match": "bc3ea134-c2ee-4064-b586-470bb1bae4fa",
+  "map": "pilgrimage",
+  "rival": "new team(4)",
+  "result": "loss",
+  "side": "a"
+ },
+ {
+  "bot": "v10",
+  "file": "v10/famine_newteam4_8edba24.repl26a",
+  "match": "0b9f12fb-0887-4763-9008-e0721928e318",
+  "map": "famine",
+  "rival": "new team(4)",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "v10",
+  "file": "v10/monolith_SSSA_817a1e0.repl26a",
+  "match": "d42dccd2-4791-4934-97f6-fdc332f7119f",
+  "map": "monolith",
+  "rival": "SSSA",
+  "result": "loss",
+  "side": "a"
+ },
+ {
+  "bot": "v10",
+  "file": "v10/corners_SSSA_817a1e1.repl26a",
+  "match": "81e84073-6432-431a-bb7e-6643289fcd1a",
+  "map": "corners",
+  "rival": "SSSA",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "v10",
+  "file": "v10/gem_fields_SSSA_817a1e2.repl26a",
+  "match": "a98afa38-939a-4f43-b638-dae34cd13117",
+  "map": "gem_fields",
+  "rival": "SSSA",
+  "result": "loss",
+  "side": "a"
+ },
+ {
+  "bot": "v10",
+  "file": "v10/gato_gemcombat3_SSSA_817a1e3.repl26a",
+  "match": "ae5f4189-1181-419d-83e9-af7565aa9579",
+  "map": "gato_gemcombat3",
+  "rival": "SSSA",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "v10",
+  "file": "v10/dunes_SSSA_817a1e4.repl26a",
+  "match": "6ea8fdee-178f-4498-b2ee-2dcc5fb120cc",
+  "map": "dunes",
+  "rival": "SSSA",
+  "result": "loss",
+  "side": "a"
+ },
+ {
+  "bot": "v10",
+  "file": "v10/yellow_brick_road_3_9157ad0.repl26a",
+  "match": "75a579aa-7a0d-4e4a-8d86-4eb673f10a7b",
+  "map": "yellow_brick_road",
+  "rival": ":3",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "v10",
+  "file": "v10/vault_3_9157ad1.repl26a",
+  "match": "ed6473c4-8832-4686-ab70-6363d1277f05",
+  "map": "vault",
+  "rival": ":3",
+  "result": "loss",
+  "side": "a"
+ },
+ {
+  "bot": "v10",
+  "file": "v10/the_farm_3_9157ad2.repl26a",
+  "match": "0ca4aae6-b3f4-4aba-ab1c-0a8a903ffb51",
+  "map": "the_farm",
+  "rival": ":3",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "v10",
+  "file": "v10/ribs_3_9157ad3.repl26a",
+  "match": "0ec49833-f230-440a-8bba-35ca4475f540",
+  "map": "ribs",
+  "rival": ":3",
+  "result": "loss",
+  "side": "a"
+ },
+ {
+  "bot": "v10",
+  "file": "v10/pilgrimage_3_9157ad4.repl26a",
+  "match": "a2d127cd-77e7-46b2-b19f-8800b6ea2a7b",
+  "map": "pilgrimage",
+  "rival": ":3",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "v10",
+  "file": "v10/lost_world_meow_ee6f6a0.repl26a",
+  "match": "228f67b2-720e-4a3d-a33c-104f9e016ada",
+  "map": "lost_world",
+  "rival": "meow",
+  "result": "loss",
+  "side": "a"
+ },
+ {
+  "bot": "v10",
+  "file": "v10/gato_gemcombat3_meow_ee6f6a1.repl26a",
+  "match": "70a62d82-cc59-40aa-b310-821c95d888cc",
+  "map": "gato_gemcombat3",
+  "rival": "meow",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "v10",
+  "file": "v10/treasure_box_meow_ee6f6a2.repl26a",
+  "match": "8d049a62-6c94-4c62-bd04-024f6a04ff8f",
+  "map": "treasure_box",
+  "rival": "meow",
+  "result": "loss",
+  "side": "a"
+ },
+ {
+  "bot": "v10",
+  "file": "v10/guardians_meow_ee6f6a3.repl26a",
+  "match": "52fca495-83eb-48b9-9070-45cfb3cd03d9",
+  "map": "guardians",
+  "rival": "meow",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "v10",
+  "file": "v10/breadcrumbs_meow_ee6f6a4.repl26a",
+  "match": "17a801d3-034f-454e-875b-c412d7057197",
+  "map": "breadcrumbs",
+  "rival": "meow",
+  "result": "loss",
+  "side": "a"
+ },
+ {
+  "bot": "v10",
+  "file": "v10/quadrants_GermanEmpire_b4fc410.repl26a",
+  "match": "9105f064-49f2-4593-aeb5-61b10614ae71",
+  "map": "quadrants",
+  "rival": "German Empire",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "v10",
+  "file": "v10/islands_GermanEmpire_b4fc411.repl26a",
+  "match": "28e19f8b-47b0-47bc-b21e-b18d2c8dfdb7",
+  "map": "islands",
+  "rival": "German Empire",
+  "result": "win",
+  "side": "a"
+ },
+ {
+  "bot": "v10",
+  "file": "v10/starvation_GermanEmpire_b4fc412.repl26a",
+  "match": "20b2fdcc-2666-43b0-be7f-6fb3f64c6704",
+  "map": "starvation",
+  "rival": "German Empire",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "v10",
+  "file": "v10/gato_gemcombat5_GermanEmpire_b4fc413.repl26a",
+  "match": "0dd30a21-bc11-41b4-a0e2-1564c5c71478",
+  "map": "gato_gemcombat5",
+  "rival": "German Empire",
+  "result": "win",
+  "side": "a"
+ },
+ {
+  "bot": "v10",
+  "file": "v10/tangle_GermanEmpire_b4fc414.repl26a",
+  "match": "af123529-9ca8-451a-a5a5-c9f89043bdf6",
+  "map": "tangle",
+  "rival": "German Empire",
+  "result": "loss",
+  "side": "b"
+ }
+]

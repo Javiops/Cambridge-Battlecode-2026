@@ -1,0 +1,266 @@
+diff -ru v10/src/main.cpp v11/src/main.cpp
+--- v10/src/main.cpp	2026-10-28 12:52:42.482600076 +0000
++++ v11/src/main.cpp	2026-10-28 13:18:05.999240978 +0000
+@@ -2609,7 +2609,7 @@
+         }
+         if (lg >= 0 && s.groups[lg].next_ok <= round && s.groups[lg].bad_until <= round) {
+             const int dl = gds_cheb(s, pos, lg);
+-            if (dl > P_V9_SLACK) {  // v9c slack: far from the leader's group, take a live group of value within P_V9_SLACK_R on the way
++            if (!P_V11 && dl > P_V9_SLACK) {  // v9c slack (off in v11: the block walks together): far from the leader's group, take a live group of value within P_V9_SLACK_R on the way
+                 int bi = -1, bd = 1 << 30;
+                 for (int i = 0; i < static_cast<int>(s.groups.size()); ++i) {
+                     const Group& g = s.groups[i];
+@@ -2822,6 +2822,46 @@
+             if (score > vs) { vs = score; vb = i; vgd = gd; }
+             if (value >= 40 && gd <= 15 && score > bs) { bs = score; bb = i; bgd = gd; br = rounds; }
+         }
++        if (P_V11) {  // v11: the live group of P_V11_MINVAL+ gold-equivalent nearest the block centroid (walk from me must exist)
++            const vec2 cent = v9::g_cent;
++            int best = -1, bd = 1 << 30; double bv = 0;
++            for (int i = 0; i < static_cast<int>(s.groups.size()); ++i) {
++                const Group& g = s.groups[i];
++                if (g.bad_until > round || gds[i] < 0 || g.monolith || g.jackpot || g.gems + g.gold <= 0) continue;
++                const int wait = g.next_ok - round;
++                if (wait > 0 && wait > gds[i] + P_RESPAWN) continue;
++                const double value = g.gold + g.gems * 5.4;
++                if (value < P_V11_MINVAL) continue;
++                int riv = 0;
++                if (s.seen_r >= round - 1) for (auto& o : s.seen) if (dist(o.p, g.center) <= 8) ++riv;
++                if (danger_on && dist(g.center, s.danger_p) <= P_DANGER_R) riv = std::max(riv, nsq + 1);
++                int d = dist(cent, g.center) + std::max(0, wait);
++                if (riv >= 3 || riv > v9::g_nblock) d += 30;
++                if (gc[i].half && round < 300 && !(value >= P_V11_BIG && v9::g_nblock >= 4 && riv < 3)) d += 20;
++                if (gc[i].near_en) d += 10;
++                if (i == s.target) d -= 2;
++                if (d < bd || (d == bd && value > bv)) { bd = d; best = i; bv = value; }
++            }
++            if (best >= 0) {  // a small group (wolves, 4 gold) within 3 of the way is cleared first
++                const int dt = dist(cent, s.groups[best].center);
++                int sb = -1, sd = 1 << 30;
++                for (int i = 0; i < static_cast<int>(s.groups.size()); ++i) {
++                    const Group& g = s.groups[i];
++                    if (i == best || g.bad_until > round || g.next_ok > round || gds[i] < 0 || g.monolith || g.jackpot || g.gems + g.gold <= 0) continue;
++                    if (g.gold + g.gems * 5.4 >= P_V11_MINVAL) continue;
++                    const int d = dist(cent, g.center);
++                    if (d >= dt || d + dist(g.center, s.groups[best].center) > dt + 3) continue;
++                    if (d < sd) { sd = d; sb = i; }
++                }
++                if (sb >= 0) best = sb;
++            }
++            if (best >= 0 && best != s.target) {
++                ++v9::g_picks;
++                if (v9::g_pickdump < 40) { ++v9::g_pickdump; std::printf("[v11-pick] r=%d who=%s pick=%d d=%d val=%.0f cent=%d,%d nblock=%d\n", round, s.name.c_str(), best, bd, bv, X(cent), Y(cent), v9::g_nblock); }
++            }
++            s.target_gd = best >= 0 ? gds[best] : 0;
++            return best;
++        }
+         if (vb >= 0 && vb != s.target) {
+             ++v9::g_picks;
+             if (bb >= 0 && v9::g_pickdump < 40) { ++v9::g_pickdump; std::printf("[v9-pick] r=%d who=%s pick=%d gd=%d score=%.2f big=%d gd=%d score=%.2f rounds=%.0f sdps=%.0f nsq=%d\n", round, s.name.c_str(), vb, vgd, vs, bb, bgd, bs, br, sdps, nsq); }
+@@ -3896,6 +3936,23 @@
+             needed = inc <= std::max(afford, mhp * 0.7) ? 1 : nsq + 1;
+             if (!engaged && needed <= nsq && v9::g_wake_done != s.target) { v9::g_wake_done = s.target; ++v9::g_wakes; std::printf("[v9-wake] r=%d who=%s grp=%d near=%d sdps=%.0f gems=%d\n", round, s.name.c_str(), s.target, v9::near(g.center, P_V9_DPS_R, s.ally_idx, true), sd, g.gems); }
+         }
++        if (P_V11 && v9::active() && !engaged && v9::g_nblock >= 2 && !g.monolith && !g.jackpot) {  // v11: rally before the first hit
++            if (v9::g_rally_t != s.target) { v9::g_rally_t = s.target; v9::g_rally_r0 = -1; v9::g_hit_logged = false; }
++            int dc = 1 << 30, ar = 3;
++            for (auto* c : live) { dc = std::min(dc, dist(pos, c->position())); ar = std::max(ar, camp_range(*c)); }
++            const int nh = v9::near(pos, 3, s.ally_idx, true);
++            const int need = std::min(P_V11_RALLY_N, v9::g_nblock);
++            if (dc <= ar + 3 && v9::g_rally_r0 < 0) { v9::g_rally_r0 = round; ++v9::g_rallies; std::printf("[v11-rally] r=%d who=%s grp=%d near3=%d need=%d nblock=%d\n", round, s.name.c_str(), s.target, nh, need, v9::g_nblock); }
++            const bool go = nh >= need || (v9::g_rally_r0 >= 0 && round - v9::g_rally_r0 >= P_V11_RALLY);
++            if (!go) {
++                g_farm = "v11-rally";
++                bc::bitboard r5, r4;
++                for (auto* c : live) { r5.draw_chebyshev(c->position(), static_cast<float>(ar + 2)); r4.draw_chebyshev(c->position(), static_cast<float>(ar + 1)); }
++                if (!(r5 & ~r4).is_set(pos)) step_towards(s, me, r5 & ~r4, true);
++                return;
++            }
++            if (!v9::g_hit_logged) { v9::g_hit_logged = true; ++v9::g_hits; std::printf("[v11-hit] r=%d who=%s grp=%d near3=%d waited=%d\n", round, s.name.c_str(), s.target, nh, v9::g_rally_r0 >= 0 ? round - v9::g_rally_r0 : -1); }
++        }
+         const bool mono_go = (s.mono_only && g.monolith) || (g.jackpot && round >= P_JACKGO);
+         if (mono_go) needed = std::min(needed, std::max(1, std::min(g.monolith ? s.roster : P_JACKN, s.roster)));
+         if (!engaged && needed > here) {
+@@ -4420,6 +4477,14 @@
+     if (false) s.self_pos = pos;
+     refresh_groups(s, round);
+     if (P_V9) v9::plan(s, me, round);  // t10plan-v9: the squad plan of this round
++    if (P_V11 && v9::v11_on(round)) {
++        if (v9::g_lead_changed && v9::leader() && v9::g_prev_claim >= 0 && v9::g_prev_claim < static_cast<int>(s.groups.size()) &&
++            s.groups[v9::g_prev_claim].next_ok <= round && s.groups[v9::g_prev_claim].bad_until <= round && s.target != v9::g_prev_claim) {
++            s.target = v9::g_prev_claim; s.target_round = round; s.cap_start = -1; write_claim(s, s.target);  // the new leader keeps the block's target
++        }
++        if (on_spawn) v9::g_was_home = true;
++        else if (v9::g_was_home) { v9::g_was_home = false; ++v9::g_rejoins; std::printf("[v11-rejoin] r=%d who=%s cent=%d,%d d=%d\n", round, s.name.c_str(), X(v9::g_cent), Y(v9::g_cent), dist(pos, v9::g_cent)); }
++    }
+     FP(5, "foes");
+ 
+     std::vector<Foe> foes;
+@@ -4847,7 +4912,26 @@
+             if (a.alive && a.seen && !a.recalling && a.hpr >= 0.4 && dist(a.p, pos) <= 6) hs_ours += a.hp;
+         }
+         for (auto& f : foes) if (f.d <= 6 && !s.en_spawn.is_set(f.p)) hs_theirs += f.hp;
+-        const bool win = n > m || (n == m && hs_ours > hs_theirs);  // v9c: enter only with more bodies, or equal bodies and more health
++        bool win = n > m || (n == m && hs_ours > hs_theirs);  // v9c: enter only with more bodies, or equal bodies and more health
++        if (P_V11) {  // v11: alone (fewer than 2 allies within 4) against 2+ rivals -> retreat towards the block; the block fights assembled and n > m
++            int a4 = 0;
++            for (int q = 0; q < v9::g_nsq; ++q) {
++                const int k = v9::g_squad[q];
++                if (k == s.ally_idx) continue;
++                const v9::Ally& a = v9::g_al[k];
++                if (a.alive && a.seen && !a.recalling && !a.home && dist(a.p, pos) <= 4) ++a4;
++            }
++            win = a4 >= 2 && n > m;
++            if (m >= 2 && a4 < 2 && v9::g_nblock >= 2 && dist(pos, v9::g_cent) > 2) {
++                if (v9::g_fstate != 3) { v9::g_fstate = 3; ++v9::g_vretreats; std::printf("[v11-retreat] r=%d who=%s m=%d a4=%d cent=%d,%d d=%d hp=%d\n", round, s.name.c_str(), m, a4, X(v9::g_cent), Y(v9::g_cent), dist(pos, v9::g_cent), static_cast<int>(hpr * 100)); }
++                g_mode = "v11-retreat";
++                const bool hit = fight::hit_now(s, me, foes);
++                bc::bitboard ring; ring.draw_chebyshev(v9::g_cent, 1.0f); ring &= ~s.en_spawn;
++                if (!step_towards(s, me, ring, true) && !flee(s, me)) fight::back_off(s, me, foes, round);
++                else if (!hit) shoot_back(s, me, foes);
++                return;
++            }
++        }
+         if (m > 0 && !win && (nearest_foe <= 3 || hpr < 0.4f)) {
+             if (v9::g_fstate != 2) { v9::g_fstate = 2; ++v9::g_retreats; std::printf("[v9-retreat] r=%d who=%s n=%d m=%d hp=%d\n", round, s.name.c_str(), n, m, static_cast<int>(hpr * 100)); }
+             g_mode = "v9-retreat";
+@@ -5190,7 +5274,15 @@
+     FP(10, "recall/tribute");
+     g_mode = "recall-shop";
+     int home = dist(pos, s.spawn_center);
+-    bool want_recall = hpr * 100 < P.recall_pct || (gold >= P_SHOP_GOLD && hpr < 0.5f) ||
++    int rec_pct = P.recall_pct;
++    if (P_V11 && v9::active() && s.target >= 0 && s.target < static_cast<int>(s.groups.size()) && nearest_foe > 6) {  // v11: in the camp fight, leave at 40%, at 25% once the camp is at 60% or less
++        double rem = 0, mx = 0; bool eng = false;
++        for (auto& c : camps)
++            if (s.groups[s.target].mask.is_set(c.spawn_position()) && dist(pos, c.position()) <= 6)
++                attempt([&] { const double h = c.health(), m2 = c.max_health(); if (h > 0) { rem += h; mx += m2; if (h < m2) eng = true; } return true; });
++        if (eng && mx > 0) rec_pct = rem / mx <= 0.6 ? 25 : 40;
++    }
++    bool want_recall = hpr * 100 < rec_pct || (gold >= P_SHOP_GOLD && hpr < 0.5f) ||
+                        (round - s.need_heal <= 2 && hpr < 0.8f);
+     bool shop_trip = P_SHOP_RECALL && gold >= P_SHOP_RECALL && !tavi::shops_in_field(s) &&
+                      (!P_SHOPFIX || round - s.shop_fail > 150) &&
+@@ -5340,7 +5432,8 @@
+         // (rows winners bank 81 gems a trip; we banked 39).
+         const int bag_q = (s.de_map == v34de::Rows) ? 48 : P_BAG;
+         int bag = (bag_q && round - s.foe_r > P_BAG_QUIET) ? std::max(P.tribute_gems, bag_q) : P.tribute_gems;
+-        const bool old_trip = gems >= bag || late || (gems >= 10 && ad <= (s.de_map == v34de::Rows ? 4 : P_TRIBUTE_NEAR)) || (gems >= 5 && ad <= 2);
++        bool old_trip = gems >= bag || late || (gems >= 10 && ad <= (s.de_map == v34de::Rows ? 4 : P_TRIBUTE_NEAR)) || (gems >= 5 && ad <= 2);
++        if (P_V11 && v9::v11_on(round) && v9::g_nblock >= 2 && !late && !v9::g_top_gems && gems < 2 * bag && ad > 2) old_trip = false;  // v11: the carrier is the member with most gems
+         if (trip_on && !chain && !(cap_pend && !late) && !old_trip) {  // idlefix-v4: counted only where V17 would have left the trip
+             ++g_trip_keep;
+             if (g_trip_keep <= 20 || g_trip_keep % 100 == 0)
+@@ -5533,7 +5626,7 @@
+ }
+ 
+ void log_init(State& s) {
+-    std::printf("[fuelfit] b35nohp o74 nohitpass det + farmeo c95go45e1 o100_incoming o125_holdlate o129_goldopen45 o99_shop2 t10plan-v10\n");
++    std::printf("[fuelfit] b35nohp o74 nohitpass det + farmeo c95go45e1 o100_incoming o125_holdlate o129_goldopen45 o99_shop2 t10plan-v11\n");
+     // v4o: no init line here (an extra printf in the init turn shifted the init of one champion by a round; roles=0 must be e1foco)
+     std::printf("[init] %s melee=%d ally=%d groups=%zu altars=%zu spawn=%zu shards=%zu slots=%s/%s pots=%zu sm=%zu\n",
+                 s.name.c_str(), s.melee ? 1 : 0, s.ally_idx, s.groups.size(), s.altars.size(),
+@@ -5582,7 +5675,7 @@
+         o.s(" tpc="); o.i(g_tpc_buys); o.s("/"); o.i(g_tpc_uses); o.s(" wd="); o.i(g_wd_drops); o.s(" unreach="); o.i(g_cap_unreach);
+         o.s(" holdto="); o.i(g_hold_to); o.s(" gskip="); o.i(g_guard_skip); o.s(" trip="); o.i(g_trip_keep); o.s(" isle="); o.i(g_isle);
+         o.s(" bcf="); o.i(g_bcf); o.s(" foco="); o.i(g_foco_w); o.s("/"); o.i(g_foco_use); o.s(" shot="); o.i(g_shot); o.s("/"); o.i(g_shot_f); o.s(" cut="); o.i(g_cut); o.s(" rc="); o.i(g_rc_big); o.s("/"); o.i(g_rc_tiny); if (g_esc_k >= 0 || g_v4pub > 0) { o.s(" pl="); o.i(g_pl_on); o.s("/"); o.i(g_pl_off); o.s(" dep="); o.i(g_dep_wait); o.s(" rtog="); o.i(g_rtog); o.s(" eh="); o.i(g_eh); o.s(" fol="); o.i(g_fol); o.s(" v4="); o.i(g_v4pub); o.s("/"); o.i(g_v4f); o.s("/"); o.i(g_v4n); o.s("/"); o.i(g_v4k); o.s(" ball="); o.i(g_ball); o.s(" bw="); o.i(g_bw); o.s(" ef="); o.i(g_ef_rec); o.s("/"); o.i(g_ef_vis); o.s("/"); o.i(g_ef_grp); o.s("/"); o.i(g_ef_n); }
+-        if (P_V9) { o.s(" v9="); o.i(v9::g_role); o.s("/"); o.i(v9::g_leader); o.s("/"); o.i(v9::g_nsq); o.s(" pk="); o.i(v9::g_picks); o.s(" wt="); o.i(v9::g_waits); o.s(" wk="); o.i(v9::g_wakes); o.s(" fi="); o.i(v9::g_fights); o.s(" rt="); o.i(v9::g_retreats); o.s(" sl="); o.i(v9::g_slack); }
++        if (P_V9) { o.s(" v9="); o.i(v9::g_role); o.s("/"); o.i(v9::g_leader); o.s("/"); o.i(v9::g_nsq); o.s(" pk="); o.i(v9::g_picks); o.s(" wt="); o.i(v9::g_waits); o.s(" wk="); o.i(v9::g_wakes); o.s(" fi="); o.i(v9::g_fights); o.s(" rt="); o.i(v9::g_retreats); o.s(" sl="); o.i(v9::g_slack); if (P_V11) { o.s(" v11="); o.i(v9::g_nblock); o.s("/"); o.i(X(v9::g_cent)); o.s(","); o.i(Y(v9::g_cent)); o.s(" rl="); o.i(v9::g_rallies); o.s(" ht="); o.i(v9::g_hits); o.s(" rj="); o.i(v9::g_rejoins); o.s(" vr="); o.i(v9::g_vretreats); } }
+         o.end();
+         return true;
+     });
+diff -ru v10/src/params.h v11/src/params.h
+--- v10/src/params.h	2026-10-28 12:52:42.456889448 +0000
++++ v11/src/params.h	2026-10-28 13:18:05.973960939 +0000
+@@ -516,3 +516,11 @@
+ #define P_V9_SLACK 25    // v9c: a follower farther than this from the leader's group takes a group within P_V9_SLACK_R on the way
+ #define P_V9_SLACK_R 10
+ #define P_V9_DPS_R 10    // v9c: squad dps = members within this of the leader
++// t10plan-v11 "bloque" (10-28): one block of all alive champions (the carrier walks home alone and rejoins). Target = the
++// live group of P_V11_MINVAL+ gold-equivalent nearest the block centroid; mandatory rally (P_V11_RALLY_N within 3, at most
++// P_V11_RALLY rounds) before the first hit; retreat towards the block when outnumbered without allies. P_V11 0: v10 play.
++#define P_V11 1
++#define P_V11_MINVAL 20   // gold-equivalent (gold + gems x 5.4) a block target needs; smaller groups only on the way
++#define P_V11_RALLY_N 3   // block members within 3 of each other before the camp is hit ...
++#define P_V11_RALLY 10    // ... waited for at most this many rounds at the rally ring
++#define P_V11_BIG 80      // rival-side groups of this value are contested before r300 with a full block and no rival pack
+diff -ru v10/src/v9.h v11/src/v9.h
+--- v10/src/v9.h	2026-10-28 12:52:42.455878072 +0000
++++ v11/src/v9.h	2026-10-28 13:18:05.973960939 +0000
+@@ -12,6 +12,7 @@
+     double hp = 0;     // absolute health (seen)
+     int claim = -1;    // claimed group (-1 none)
+     double dps = 60;
++    int gems = 0;      // v11: carried gems (carrier choice)
+ };
+ 
+ inline int g_role = 0;          // 0 off / free, 1 leader, 2 follower
+@@ -33,6 +34,15 @@
+ inline int g_ahead_t = -1, g_ahead_n = 0;
+ inline int g_big = -1;          // groups of value >= 40 (gems + gold/5.4) on the map (-1 unknown)
+ inline int g_slack = 0, g_pickdump = 0;
++// t10plan-v11 "bloque": one block of all alive members (the carrier walks home alone and rejoins); the leader targets the
++// live group nearest the block centroid; mandatory rally before the first hit; retreat towards the block, never alone.
++inline vec2 g_cent = vec2(0, 0);       // centroid of the block (alive, not recalling, off the spawn)
++inline int g_nblock = 0;        // members in the block
++inline bool g_top_gems = true;  // I carry at least as many gems as every other alive member (the carrier)
++inline int g_rally_t = -1, g_rally_r0 = -1, g_rallies = 0, g_hits = 0, g_rejoins = 0, g_vretreats = 0;
++inline bool g_hit_logged = false, g_was_home = false, g_lead_changed = false;
++inline int g_lead_prev = -1, g_prev_claim = -1;
++inline bool v11_on(int round) { return P_V9 && P_V11 && round >= P_V9_FROM; }
+ 
+ inline bool on(int round) { return P_V9 && round >= P_V9_FROM; }
+ inline bool is_lead_name(const std::string& n) { return starts_with(n, "vesper") || starts_with(n, "marcella"); }
+@@ -64,6 +74,7 @@
+             a.hp = me.health();
+             a.home = s.my_spawn.is_set(a.p);
+             a.dps = my_dps(s, me);
++            try { a.gems = static_cast<int>(me.gem_count()); } catch (...) {}
+             continue;
+         }
+         try {
+@@ -77,11 +88,44 @@
+             a.hp = allies[k].health();
+             double str = 60, foc = 0;
+             try { str = allies[k].strength(); foc = allies[k].focus(); } catch (...) {}
++            try { a.gems = static_cast<int>(allies[k].gem_count()); } catch (...) {}
+             a.dps = std::max(10.0, str + foc * 1.5 / 8.0);
+         } catch (...) {
+         }
+     }
+     if (g_big < 0) { g_big = 0; for (auto& g : s.groups) if (g.gems + g.gold / 5.4 >= 40) ++g_big; }
++    if (P_V11) {  // v11: one block. Leader = Vesper, else Marcella, else the highest-hp member, among those in the field.
++        const int me_k = s.ally_idx;
++        int L = -1; double bh = -1; int nb = 0; double cx = 0, cy = 0; int topg = 0;
++        for (int pass = 0; pass < 2 && L < 0; ++pass)
++            for (int k = 0; k < g_nal; ++k) {
++                const Ally& a = g_al[k];
++                if (!a.alive) continue;
++                if (pass == 0 && (a.recalling || a.home)) continue;
++                int pri = 0;
++                if (lead_name[k] == 1) { std::string nm; try { nm = norm(bc::to_string(allies[k].champion_name())); } catch (...) {} pri = starts_with(nm, "vesper") ? 3 : 2; }
++                const double sc = pri * 10 + a.hpr;
++                if (sc > bh) { bh = sc; L = k; }
++            }
++        if (L < 0) return;
++        for (int k = 0; k < g_nal; ++k) {
++            const Ally& a = g_al[k];
++            if (!a.alive) continue;
++            g_squad[g_nsq++] = k;
++            if (k != me_k && a.gems > topg) topg = a.gems;
++            if (a.recalling || a.home) continue;
++            ++nb; cx += X(a.p); cy += Y(a.p);
++        }
++        g_nblock = nb;
++        g_cent = nb > 0 ? vec2(static_cast<float>(std::lround(cx / nb)), static_cast<float>(std::lround(cy / nb))) : me.position();
++        g_top_gems = g_al[me_k].gems >= topg;
++        g_role = me_k == L ? 1 : 2; g_leader = L; g_other_leader = -1;
++        g_lead_changed = false;
++        if (L != g_lead_prev) { if (g_lead_prev >= 0 && me_k == L) { g_lead_changed = true; g_prev_claim = g_al[g_lead_prev].claim; } g_lead_prev = L; }
++        ++g_plans;
++        if (g_plans == 1 || round % 100 == 0) std::printf("[v9-plan] r=%d who=%s v11 lead=%d nblock=%d nsq=%d cent=%d,%d role=%d\n", round, s.name.c_str(), L, nb, g_nsq, X(g_cent), Y(g_cent), g_role);
++        return;
++    }
+     // v9c: on maps with fewer than P_V9_BIGMAPS groups of value 40+, only the Vesper pair (2+1+1+1); the rest farm solo as v4o2
+     if (g_big < P_V9_BIGMAPS) {
+         int Lv = -1;

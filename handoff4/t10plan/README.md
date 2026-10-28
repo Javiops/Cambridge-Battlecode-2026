@@ -335,3 +335,41 @@ Zip `zips/e1foco-t10plan-v10.zip` sha256 `fa561dc39ae649de647811cb3a0f3592bb5f50
 - **vs e1foco** (140 partidas): victorias 39/140 (v9c 44); aliado a ≤4 43.3%; muertes r151-600 3.54 (3+ rivales 0.78); rondas-campeón muerto 206; capturas 25.5, de 40+ 1.31 (v9c 1.14), gemas de captura 313; gemas entregadas r300/r600 107/249 (v9c 100/259); capdur: 0.59/partida de 4.33 intentos, 27.0 rondas de media / 23 mediana (v9c 0.49 de 4.02, 24.7 / 24); líneas fight/retreat/wake/pick/slack 57/41/59/21/2.3; combustible 0.
 
 **Lo que dice el mecanismo (v10).** Cambiar la tienda sola no mueve las capturas de 40+ (1.31→1.29 vs kvvl, 1.14→1.31 vs e1foco) ni el tiempo de limpieza (27.6→28.6 vs kvvl, 24.7→27.0 vs e1foco): con 2 cuerpos por captura y 4 intentos por partida de los que solo 0.55 acaban en captura propia, el cuello sigue siendo que la escuadra no se forma (aliado a ≤4 42.8%) y abandona el grupo, no el dps por cuerpo. La mediana de captura de 40+ sigue en r495 (v9c 496): los emblemas de fuerza no adelantan la primera limpieza grande. Victorias 47→41 vs kvvl y 44→39 vs e1foco (rivales locales que farmean oro; no es el juez).
+
+# t10plan-v11 "bloque" (2026-10-28 ~14:00 UTC): un solo bloque de 4-5 con reunión obligatoria antes de atacar — NO PASA LA PUERTA (6/140 vs kvvl)
+Zip `zips/e1foco-t10plan-v11.zip` sha256 `f14aca79a693e0a2421304512c8190df3594455633badc82ef7b2b85532935b7` (src/ como v10 + cambios abajo), diff `src/t10plan-v11_vs_v10.diff` (266 líneas: v9.h, main.cpp, params.h).
+Todo bajo `P_V11` (params.h) además de `P_V9`; nada corre antes de r30 (divergencia antes de r30 frente a v4o2: 3/140, las de v9); una línea por disparo: `[v11-pick]` (≤40), `[v11-rally]`, `[v11-hit]`, `[v11-retreat]`, `[v11-rejoin]`; línea de estado `v11=nbloque/centroide rl= ht= rj= vr=`. Draft, tienda (planes v10) y micro sin cambios.
+
+**Diseño** (la síntesis de an/READ10.md):
+1. **Bloque** (`v9::plan`, rama P_V11): todos los vivos forman una escuadra; líder = Vesper, si no Marcella, si no el de más vida, entre los que están en el campo (ni recall ni spawn); centroide = media de los miembros en el campo. Cuando cambia el líder, el nuevo adopta la reclamación del anterior (no se cambia de grupo por cambiar de líder).
+2. **Objetivo del líder** (choose_target_impl): el grupo vivo de valor ≥20 oro-equivalente (oro + gemas×5.4, `P_V11_MINVAL`) más cercano al centroide del bloque (distancia Chebyshev + espera de respawn; +30 con ≥3 rivales vistos a ≤8, +20 en la mitad rival antes de r300 salvo valor ≥80 con bloque de 4 y sin pack rival, +10 junto a la puerta rival, −2 el actual). Un grupo pequeño (lobos, 4 de oro) a ≤3 del camino se limpia antes. Los seguidores van a la reclamación del líder (sin holgura v9c).
+3. **Reunión** (farm, antes del primer golpe): con campamento vivo y sin dañar, nadie golpea hasta tener ≥3 miembros (`P_V11_RALLY_N`, o todos si son menos) a ≤3 de uno mismo; mientras, se espera en el anillo fuera del alcance del campamento (ar+2); tope 10 rondas (`P_V11_RALLY`) desde que uno llega al anillo, luego ataca con los que haya. `[v11-rally]` al llegar al anillo, `[v11-hit]` al primer golpe (con rondas esperadas).
+4. **Vida en el campamento**: con el campamento dañado y a ≤6, el umbral de recall pasa de 54% a 40%, y a 25% cuando al campamento le queda ≤60%.
+5. **Pelea**: con ≥2 rivales a ≤6 y <2 aliados a ≤4 → retirada hacia el centroide del bloque (anillo de 1; `[v11-retreat]`, nunca persigue); el bloque pelea (pv_fight) solo con ≥2 aliados a ≤4 y n > m; con n < m la retirada a casa de v9c; el resto, el veredicto v4o2.
+6. **Porteador**: el viaje al altar solo lo hace el miembro con más gemas del equipo (los demás siguen hasta 2×umbral); al salir del spawn `[v11-rejoin]`.
+
+**Comprobación local** (70 mapas x 2 lados; an/v11an.py = v9an + cohesión del bloque, muertes 1-contra-N y rondas golpe→captura de grupos de 20+ oro; an/capdur.py; base de divergencia dec/v4o2k):
+
+| | v10 | **v11 (zip)** | v11b (= v11 con reunión de 2 y tope 5; sin zip) |
+|---|---|---|---|
+| victorias vs kvvl | 41/140 | **6/140** | 6/119 |
+| aliado a ≤4 fuera del spawn r50-600 | 42.8% | 67.5% | — |
+| cohesión del bloque (≥3 a ≤4 entre sí, % rondas r50-600 con 3+ en el campo) | 20.9% | 56.6% | — |
+| muertes r151-600 (3+ rivales a ≤6) | 3.18 (0.71) | 2.07 (0.61) | — |
+| muertes 1-contra-N (víctima con <2 aliados a ≤4 y ≥2 rivales a ≤6) | 1.33 | 0.84 | — |
+| capturas ≤600 / de 40+ (v9an) / gemas de captura | 25.7 / 1.29 / 315 | 18.7 / 0.90 / 224 | — |
+| grupos de 20+ oro: capturas con episodio / rondas golpe→captura | 5.28 / 19.8 | 4.81 / 18.3 | — |
+| capdur 40+: capturas (intentos) / rondas media / mediana / cuerpos / ronda mediana | 0.59 (4.33) / 27 / 23 / — / 495 | 0.46 (2.32) / 29.2 / 24 / 3.57 / 456 | — |
+| gemas entregadas r300 / r600 | 106 / 241 | 78 / 174 | — |
+| líneas por partida pick / rally / hit / v11-retreat / rejoin / v9-fight / v9-retreat | 22.9 / — / — / — / — / 61 / 45 | 40.5 / 125 / 83 / 80 / 55 / 50 / — | — |
+| divergencia antes de r30 vs v4o2 / combustible | 3 / 0 | 3 (gato r4, starvation r4, stalactites r25) / 0 | — |
+
+- **vs e1foco** (lado del bot): victorias 2/105 partidas jugadas antes del tope de tiempo (v10 39/140).
+- Puertas: victorias 6 (<40: rota), cohesión 56.6% (objetivo >60%), rondas por captura de oro 18.3 (objetivo 12-15), muertes 2.07 y 1-contra-N 0.84 (bajan), divergencia 3/140 y combustible 0 (pasan).
+
+**Lo que el bloque sigue haciendo mal (3 réplicas, dec/v11k)**:
+1. *big_world_a* r30-100: los 4 del bloque (82,6 → 70,0 → 82,6 → 78,3 → 66,7) caminan 70 rondas sin golpear nada mientras Vesper (líder) se va sola a 47,12 con 15 gemas: el objetivo "más cercano al centroide" cambia según se mueve el centroide (40 `[v11-pick]` por partida frente a 23 de v10) y el bloque persigue el objetivo. Primer golpe r100 (g6), captura r128 (28 rondas con 4 cuerpos); a r200 2 capturas.
+2. *corners_a* r30-70: 12 y 7 esperan en el anillo de un grupo en 36,16 40 rondas ("rally") mientras 1, 0 y 2 están a 20-30 casillas (1 en g6, 0 en g18 a 300hp, 2 en 31,29): el tope de 10 rondas solo cuenta desde que se llega al anillo y los demás nunca llegan (porteador, grupo dañado a ≤3, cada uno por un camino). El rival captura g29/g28/g27 a 5 mientras tanto.
+3. *anvil_a* (3v3) r30-60 y r110-120: el campeón 1 sigue golpeando g0 sola 30 rondas (excepción "campamento ya dañado" salta la reunión) mientras 12 y 7 pasean; r110 12 se retira "hacia el centroide" (13,7) y el centroide está junto a los rivales (16,7): baja de 926 a 129 en 20 rondas. La retirada al bloque no comprueba que el bloque esté lejos de los rivales.
+
+**Lo que dice el mecanismo.** El bloque sí se forma (cohesión 21%→57%, aliado a ≤4 43%→68%) y suprime la mitad de las muertes 1-contra-N (1.33→0.84), pero contra un rival local que farmea con 5 cuerpos separados pierde la economía: 4-5 cuerpos sobre un grupo de 20-60 oro no lo limpian más rápido (18.3 rondas vs 19.8) y entre captura y captura el bloque entero camina (approach es el modo más frecuente), así que las capturas bajan 25.7→18.7 y las gemas a r600 241→174. El tiempo-por-captura no baja a 12-15 porque los miembros llegan de uno en uno al anillo (hit con near3=1 tras 10 rondas en la mayoría de `[v11-hit]`) y el objetivo cambia con el centroide. v11b (reunión de 2, tope 5) no lo arregla (6/119).

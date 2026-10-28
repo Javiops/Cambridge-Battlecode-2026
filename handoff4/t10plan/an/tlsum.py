@@ -22,7 +22,7 @@ def one(pre,m,sd):
         if mm:
             r0=int(mm.group(1))
             if r0<600: caps[0 if r0<150 else 1 if r0<300 else 2]+=int(mm.group(2))
-    hd=re.search(r'rounds (\d+), result (-?\d+)',out); win=('W' if int(hd.group(2))==us else 'L')+' '+hd.group(1)
+    hd=re.search(r'rounds (\d+), result (-?\d+)',out); win=('W' if int(hd.group(2))==us+1 else 'L')+' '+hd.group(1)
     return a/max(n,1),dd,caps,win,out
 print(f'| map side | {sys.argv[1]} ally | deaths | caps | win |'); print('|---|---|---|---|---|')
 tot=[0,0,0]; full=[]

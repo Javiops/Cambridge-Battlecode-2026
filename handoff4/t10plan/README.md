@@ -97,3 +97,30 @@ Alternativa `zips/e1foco-t10plan-v3i2.zip` sha256 `0ffe399e8e351d5ec2e7e675db949
 
 12 partidas con timeline.py (`timeline/summary_v3i.md`, `timeline/timelines_v3i.md`): aliado 44% (v3 50%, e1foco 31%), muertes 4.4 (4.2 / 4.1), 3/12 (9/12 / 7/12).
 Puerta (>55% y muertes < e1foco): ninguna variante pasa del 55%. El log de distancia escolta-carry (`ef=` en la línea de estado) no sale en local: run-batch no guarda el stdout.
+
+Corrección: v3i en las 12 partidas gana 6/12 (el primer resumen leía outcome al revés; v3 9/12 y e1foco 7/12 se mantienen).
+
+# t10plan-v4 / v4b (2026-10-28 ~02:15 UTC): vínculo escolta→carry estructural, sin horario
+- `zips/e1foco-t10plan-v4b.zip` sha256 `9f34c751bb4bfcd114eb354f156b1082eb8f4bf8b2b3ff7f0b8b4e7fce9660dc`, diff `src/t10plan-v4b_vs_e1foco.diff`,
+  marcador `[init] t10plan-v4 neigh=6 v4=1 follow=4 plan=0 cmem=0 ballw=200 bigwait=25 eshome=1 ...`; estado `fol= v4=<publicaciones del carry>/<elecciones de escolta>/<vecino>`.
+- `zips/e1foco-t10plan-v4.zip` sha256 `07475e36dacb22236a1e1d6096bc8e6002da717cd27163b87db162d566a57389` (sin vecino).
+1. El carry, al capturar, elige y publica su siguiente grupo en el mismo turno (nunca claim −1 vivo).
+2. La escolta no puntúa: su objetivo es el grupo del carry; si reaparece, el vivo más cercano a ≤8 de él. v4b: antes, un grupo vivo sin reclamar,
+   sin elk doble, a ≤6 del grupo del carry (la captura propia de la escolta).
+3. Vínculo posicional en play_turn: escolta viva fuera del spawn a >4 del carry (o de su grupo si no lo ve) camina hacia él; en v4b no tira mientras
+   farmea el vecino con el carry a ≤9. Si el carry se va, tira (suelta el vecino). El carry no espera nunca.
+4. Bola fuera; espera de 3 sólo ante jackpot/str≥120 y sólo si otros dos reclaman ese grupo.
+
+| bot vs kvvl (140) | h2h | aliado ≤4 | muertes r50-600 | capturas r<400 | cerca/esc muerta/esc spawn/carry muerto/carry spawn/separados |
+|---|---|---|---|---|---|
+| e1foco | 87 | 43% | 4.9 | 18.6 | 19/11/7/5/7/52 |
+| v3i | 67 | 52% | 4.3 | 16.4 | 31/10/6/5/5/43 |
+| v3i escolta x10 | 60 | 54% | 4.7 | 15.0 | 32/11/6/5/4/41 |
+| v3i + vínculo posicional ≤3 | 56 | 62% | 4.3 | 13.3 | 40/10/6/4/4/35 |
+| v4 | 47 | 63% | 4.3 | 12.7 | 42/10/5/4/4/34 |
+| **v4b** (vecino ≤6) | **56** | **60%** | **4.2** | **14.1** | 38/11/6/5/4/36 |
+| v4c (vecino ≤9) | 49 | 56% | 4.1 | 15.1 | 35/9/7/5/5/39 |
+
+Capturas r<400 por campeón (a ≤1 de una casilla del grupo al capturar): e1foco HoR 3.8, Marcella 3.6, Vesper 3.5, Ryth 2.5, Vendetta 1.3;
+v4 Marcella 4.0, Vesper 3.6, HoR 1.4, Ryth 1.2, Vendetta 0.6; v4b 4.0/3.6/2.1/1.5/0.8. El carry no llega a 7: su tiempo r0-400 es el de e1foco
+(campamento 39-42%, camino 41-43%, spawn 8-9%, muerto 8-9%). Herramientas: an/escort.py, an/capby.py, an/carrytime.py, an/tlsum.py.

@@ -124,3 +124,20 @@ Corrección: v3i en las 12 partidas gana 6/12 (el primer resumen leía outcome a
 Capturas r<400 por campeón (a ≤1 de una casilla del grupo al capturar): e1foco HoR 3.8, Marcella 3.6, Vesper 3.5, Ryth 2.5, Vendetta 1.3;
 v4 Marcella 4.0, Vesper 3.6, HoR 1.4, Ryth 1.2, Vendetta 0.6; v4b 4.0/3.6/2.1/1.5/0.8. El carry no llega a 7: su tiempo r0-400 es el de e1foco
 (campamento 39-42%, camino 41-43%, spawn 8-9%, muerto 8-9%). Herramientas: an/escort.py, an/capby.py, an/carrytime.py, an/tlsum.py.
+
+# t10plan-v4n (2026-10-28 ~02:50 UTC): v4b sólo en mapas cercanos
+`zips/e1foco-t10plan-v4n.zip` sha256 `38a5b2dc943e8124939a743d919e45c386ace177684959848d5758dca45d0d6a`, diff `src/t10plan-v4n_vs_e1foco.diff`.
+Marcadores: `[init] t10plan-v4n nearp=35 neigh=6 v4=1 follow=4 plan=0 ...` y `[t10plan] roles=<0|1> spawn_path=<n> nearp=35`.
+Roles, seguimiento, publicación del carry, salida/recall juntos y espera de 3 sólo si el camino spawn-spawn < 35 (21 de 70 mapas); en el resto, e1foco.
+Motivo: v4b online c34 cercanos 23 vs 20, lejanos 6 vs 11 frente a e1foco; en local igual (tabla).
+
+| vs kvvl, victorias por camino | <35 (42) | 35-50 (44) | ≥50 (54) | total |
+|---|---|---|---|---|
+| e1foco | 25 | 31 | 31 | 87 |
+| v4b | 22 | 17 | 17 | 56 |
+| **v4n** | **21** | **32** | **29** | **82** |
+
+Mapas cercanos (42 partidas), e1foco / v4b / v4n: aliado ≤4 47% / 60% / 60%, muertes r50-600 5.5 / 5.4 / 5.4, capturas r<400 16.6 / 13.4 / 13.3.
+Todo el banco: v4n aliado 45%, muertes 4.4, capturas 17.4, rondas por captura del carry 44.
+Carry mapa a mapa (an/mapcmp.py, timeline/mapcmp_v4b.md, 53 mapas comunes): top 10 ganador vs v4b cúmulo ≥50 0.16/0.10, cúmulo <50 1.89/2.11,
+oro 2.03/2.69, lobos 2.33/2.63, alces 1.79/1.81: el objetivo del carry no es la diferencia.

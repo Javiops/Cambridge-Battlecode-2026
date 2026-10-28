@@ -28,3 +28,12 @@ Hay 115 derrotas y 107 victorias. Tabla por partida: why36_losses.txt. Scripts: 
    - nosotros, en derrotas, 5.53 veces y el 31%; en victorias, 3.33 veces y el 20%.
    - La diferencia ya existe a r150: 47-57 gemas frente a 64-76, y 60 rondas muertos frente a 31.
 6. **c36.** El patrón es el mismo en mapas nuevos (derrotas: muertes r151-600 6.07 frente a 2.39). Nada específico ha cambiado: el +6/+8 de c34 estaba dentro de la barra.
+
+## Actualización 10:15 UTC: c36 casi completo (commit 3d18799; e1foco 54 y v4o2 55 de 75), mismo decodificador
+Son 140 derrotas y 119 victorias. Las cifras de arriba apenas se mueven:
+- **Capturas hasta r600:** 222 frente a 405. Los grupos grandes son 70 frente a 219, el 81% del hueco. Daño a grupos grandes 9.2k frente a 18.2k; cuerpos por captura 1.93 frente a 2.47.
+- **Rondas muerto:** 404 frente a 167.
+- **Muertes r151-600:** 5.98 frente a 2.19, de ellas con 3+ rivales a ≤6: 2.04 frente a 0.31. Morimos más en 98 de 140 derrotas.
+- **Muertes en inferioridad** (285): el 91% empiezan igualadas o a favor; el tercer rival llega 8.7 rondas después; la víctima tiene un 74% de vida y lo ve durante 11.5 rondas; el 76% acaba más cerca de ellos y el 74% no está en un campamento.
+- **Inferioridad de 3+:** en las derrotas nos pasa 5.27 veces por partida y morimos el 31%; al rival le pasa 1.86 veces y muere el 11%. En las victorias nos pasa 3.17 veces (morimos el 20%) y al rival 3.43 (muere el 24%).
+- **Gemas a r150:** 50-55 frente a 71-73.

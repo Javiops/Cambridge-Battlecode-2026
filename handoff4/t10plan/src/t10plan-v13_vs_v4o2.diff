@@ -1,0 +1,259 @@
+diff -ru v4o2/src/champions.h v13/src/champions.h
+--- v4o2/src/champions.h	2026-10-28 21:33:36.126677981 +0000
++++ v13/src/champions.h	2026-10-28 21:37:18.872079317 +0000
+@@ -30,12 +30,13 @@
+ namespace heart_of_ruin {
+ CHAMP_HOOK bool is(const std::string& n);
+ CHAMP_HOOK bool late_mix(const State& s, std::vector<LateFill>& o);
+-CHAMP_HOOK bool shop_plan(State& s);
++CHAMP_HOOK bool shop_plan(State& s, bool v13);
+ CHAMP_HOOK bool keeps_dash_for_attacks(const State& s);
+ template <class U, class A> CHAMP_HOOK bool dash_strike(State& s, bc::champion& me, A& abs, const U& tgt, vec2 tpos, bool champ);
+ }
+ namespace vesper {
+ CHAMP_HOOK bool is(const std::string& n);
++CHAMP_HOOK bool shop_plan(State& s, bool v13);  // v13-shop
+ CHAMP_HOOK bool kite_shoot_first(State& s, bc::champion& me, const std::vector<Foe*>& near, const std::vector<int>& reaches,
+                                  const Foe* focus, vec2 pos, int range, int round);
+ CHAMP_HOOK int carry_rank(const std::string& n);
+@@ -45,18 +46,18 @@
+ CHAMP_HOOK bool is(const std::string& n);
+ CHAMP_HOOK bool cuts_contact(const State& s);  // o95
+ CHAMP_HOOK bool late_mix(const State& s, std::vector<LateFill>& o);
+-CHAMP_HOOK bool shop_plan(State& s);
++CHAMP_HOOK bool shop_plan(State& s, bool v13);
+ }
+ namespace ryth {
+ CHAMP_HOOK bool is(const std::string& n);
+ CHAMP_HOOK bool late_mix(const State& s, std::vector<LateFill>& o);
+-CHAMP_HOOK bool shop_plan(State& s);
++CHAMP_HOOK bool shop_plan(State& s, bool v13);
+ }
+ namespace vendetta {
+ CHAMP_HOOK bool is(const std::string& n);
+ CHAMP_HOOK bool cuts_contact(const State& s);  // o95
+ CHAMP_HOOK bool late_mix(const State& s, std::vector<LateFill>& o);
+-CHAMP_HOOK bool shop_plan(State& s);
++CHAMP_HOOK bool shop_plan(State& s, bool v13);
+ }
+ namespace ren {
+ CHAMP_HOOK bool is(const std::string& n);
+@@ -140,13 +141,31 @@
+ CHAMP_HOOK void shop_plan(State& s) {
+ #if P_T10SHOP
+     if (P_T10SHOP & 1)
+-        vendetta::shop_plan(s) || marcella::shop_plan(s) || ryth::shop_plan(s) || heart_of_ruin::shop_plan(s);
++        vendetta::shop_plan(s, false) || marcella::shop_plan(s, false) || ryth::shop_plan(s, false) || heart_of_ruin::shop_plan(s, false);
+ #endif
+ }
+ 
++// v13-shop (shop(), from P_V13_R): the champion's plan becomes the top-20 rivals' observed purchase order (replays_c37,
++// 160 games vs ranks 5-20, an/shop13plan.py: modal item of the k-th purchase event, deduplicated, then the r300-600 fill).
++// Swapped at the first shop() call of round >= P_V13_R so init stays byte-identical to v4o2. Returns false = plan kept.
++CHAMP_HOOK bool v13_plan(State& s) {
++    return P_V13 && (vesper::shop_plan(s, true) || vendetta::shop_plan(s, true) || marcella::shop_plan(s, true) ||
++                     ryth::shop_plan(s, true) || heart_of_ruin::shop_plan(s, true));
++}
++
++// v13-shop: gold the rival has when it buys its first shards (p25 of the first purchase event per champion type):
++// Vesper 79, Marcella 80, Ryth / Vendetta / HoR 40. Below it the champion does not buy (from P_V13_R).
++CHAMP_HOOK int v13_gold_floor(const State& s) {
++    if (vesper::is(s.name)) return 79;
++    if (marcella::is(s.name)) return 80;
++    if (ryth::is(s.name) || vendetta::is(s.name) || heart_of_ruin::is(s.name)) return 40;
++    return 30;
++}
++
+ // Shop, every buy (shop()): true = the champion's own plan holds its health shards, so hp_pick is off.
+ CHAMP_HOOK bool own_plan(const State& s) {
+-    return P_T10SHOP && (vendetta::is(s.name) || marcella::is(s.name) || ryth::is(s.name) || heart_of_ruin::is(s.name));
++    return P_T10SHOP && (vendetta::is(s.name) || marcella::is(s.name) || ryth::is(s.name) || heart_of_ruin::is(s.name) ||
++                         (P_V13 && vesper::is(s.name)));  // v13-shop: Vesper's plan holds her health shards (durab-h)
+ }
+ 
+ // Shop, every buy (hp_pick): the share of shards that should be health, and the family to buy it in.
+diff -ru v4o2/src/heart_of_ruin.h v13/src/heart_of_ruin.h
+--- v4o2/src/heart_of_ruin.h	2026-10-28 21:33:36.126698839 +0000
++++ v13/src/heart_of_ruin.h	2026-10-28 21:37:18.869424726 +0000
+@@ -9,8 +9,11 @@
+ 
+ // t10shop-v1: top-10 HoR build (45 top-10 games on 1.0.3, 10-22): Treasure first, Jungle-f, Bruiser-h, Durab-h,
+ // then Bruiser-f.
+-CHAMP_HOOK bool shop_plan(State& s) {
++CHAMP_HOOK bool shop_plan(State& s, bool v13) {
+     if (!is(s.name)) return false;
++    if (v13) {  // v13-shop (champ::v13_plan, from P_V13_R); init keeps the v4o2 plan  // v13-shop: top-20 HoR (136 champion-games): treasure-f, jungle-f, bruiser-h, durab-h, then bruiser-f
++    s.plan = {{"treasure", 'f', 1}, {"jungle", 'f', 1}, {"bruiser", 'h', 1}, {"durab", 'h', 1}, {"bruiser", 'f', 99}};
++    } else
+     s.plan = {{"treasure", 'h', 1}, {"jungle", 'f', 1}, {"bruiser", 'h', 1}, {"durab", 'h', 1}, {"bruiser", 'h', 2}, {"bruiser", 'f', 99}};
+     return true;
+ }
+@@ -113,7 +116,8 @@
+ // lshop-v1 weights (Power folded into Bruiser of the same stat): late fill mix from P_LSHOP_R. Heart of Ruin: t10 Bruiser h 1515 / f 1008 + Power-f 735, ours all Bruiser-f.
+ CHAMP_HOOK bool late_mix(const State& s, std::vector<LateFill>& o) {
+     if (!is(s.name)) return false;
+-    o = {{"bruiser", 'h', 1.5f}, {"bruiser", 'f', 1.75f}};
++    if (P_V13) o = {{"bruiser", 'h', 2.5f}, {"durab", 'h', 1.5f}, {"bruiser", 'f', 1.2f}};  // v13-shop: top-20 r300-600 shards a game
++    else o = {{"bruiser", 'h', 1.5f}, {"bruiser", 'f', 1.75f}};
+     return true;
+ }
+ 
+diff -ru v4o2/src/main.cpp v13/src/main.cpp
+--- v4o2/src/main.cpp	2026-10-28 21:33:36.127158221 +0000
++++ v13/src/main.cpp	2026-10-28 21:36:56.019171351 +0000
+@@ -1331,10 +1331,20 @@
+         return true;
+     });
+ #endif
++#if P_V13
++    // v13-shop: from P_V13_R the plan is the rivals' observed order (champ::v13_plan) and the champion buys only with the
++    // gold the rivals have at their first purchase (champ::v13_gold_floor). Nothing of it runs before P_V13_R.
++    static bool v13_on = false;
++    const int v13_round = static_cast<int>(bc::round_number());
++    if (!v13_on && v13_round >= P_V13_R) v13_on = champ::v13_plan(s) || true;
++    const int v13_floor = v13_on ? champ::v13_gold_floor(s) : 30;
++#else
++    const int v13_floor = 30; const bool v13_on = false; const int v13_round = 0;
++#endif
+     std::size_t sig = 0;  // fuelfit o11: the plan signature once per visit, not per buy
+     for (auto& st : s.plan) sig = sig * 1000003u + std::hash<std::string_view>{}(std::string_view(st.family)) * 31u + static_cast<std::size_t>(st.stat) * 7u + static_cast<std::size_t>(st.want);
+     for (int it = 0; it < 12 && fuel_ok(10000); ++it) {
+-        if (me.gold_count() < 30) return;
++        if (me.gold_count() < v13_floor) return;
+         auto counts = me.item_count();
+         const Shard* pick = nullptr;
+         const bool t10plan = champ::own_plan(s);
+@@ -1386,6 +1396,7 @@
+         if (!ok) {
+             return;
+         }
++        if (v13_on) std::printf("[v13-shop] r=%d ch=%s item=%s-%c gold=%d\n", v13_round, s.name.c_str(), pick ? pick->family.c_str() : "fallback", pick ? pick->stat : 'h', static_cast<int>(me.gold_count()));
+     }
+ }
+ 
+diff -ru v4o2/src/marcella.h v13/src/marcella.h
+--- v4o2/src/marcella.h	2026-10-28 21:33:36.126619226 +0000
++++ v13/src/marcella.h	2026-10-28 21:37:18.866181876 +0000
+@@ -12,8 +12,11 @@
+ 
+ // t10shop-v1: top-10 Marcella build (45 top-10 games on 1.0.3, 10-22): Treasure first, Jungle-s, 2 Bruiser-h,
+ // Durab-h, 2 Bruiser-f, then Bruiser-h.
+-CHAMP_HOOK bool shop_plan(State& s) {
++CHAMP_HOOK bool shop_plan(State& s, bool v13) {
+     if (!is(s.name)) return false;
++    if (v13) {  // v13-shop (champ::v13_plan, from P_V13_R); init keeps the v4o2 plan  // v13-shop: top-20 Marcella (144 champion-games): treasure-f, jungle-s, durab-h, bruiser-h, then bruiser-f
++    s.plan = {{"treasure", 'f', 1}, {"jungle", 's', 1}, {"durab", 'h', 1}, {"bruiser", 'h', 1}, {"bruiser", 'f', 99}};
++    } else
+     s.plan = {{"treasure", 'f', 1}, {"bruiser", 'f', 1}, {"jungle", 's', 1}, {"bruiser", 'h', 2}, {"bruiser", 'f', 99}};  // o110 (measurement): Focus first
+     return true;
+ }
+@@ -21,7 +24,8 @@
+ // lshop-v1 weights (Power folded into Bruiser of the same stat): late fill mix from P_LSHOP_R. Marcella: their late hit damage 278 vs our 197 (bcf thread); t10 Bruiser h 3134 / f 2093 / s 1632 + Power-s 878, ours all Bruiser-h.
+ CHAMP_HOOK bool late_mix(const State& s, std::vector<LateFill>& o) {
+     if (!is(s.name)) return false;
+-    o = {{"bruiser", 'h', 3.1f}, {"bruiser", 's', 2.5f}, {"bruiser", 'f', 2.1f}};
++    if (P_V13) o = {{"bruiser", 'f', 6.6f}, {"bruiser", 'h', 5.9f}, {"bruiser", 's', 3.0f}};  // v13-shop: top-20 r300-600 shards a game
++    else o = {{"bruiser", 'h', 3.1f}, {"bruiser", 's', 2.5f}, {"bruiser", 'f', 2.1f}};
+     return true;
+ }
+ 
+diff -ru v4o2/src/params.h v13/src/params.h
+--- v4o2/src/params.h	2026-10-28 21:33:36.126590071 +0000
++++ v13/src/params.h	2026-10-28 21:36:55.990576141 +0000
+@@ -441,8 +441,14 @@
+ #ifndef P_LSHOP
+ #define P_LSHOP 1  // lshop-v2: champion's late fill mix (champ::late_mix) from P_LSHOP_R
+ #endif
++#ifndef P_V13
++#define P_V13 1  // v13-shop: the top-20 rivals' purchase order per champion type (replays_c37, 160 games, an/shop13plan.py); from r30
++#endif
++#ifndef P_V13_R
++#define P_V13_R 30  // v13-shop: nothing new before this round (fuel determinism)
++#endif
+ #ifndef P_LSHOP_R
+-#define P_LSHOP_R 400
++#define P_LSHOP_R (P_V13 ? 300 : 400)
+ #endif
+ #ifndef P_PAIRFARM
+ #define P_PAIRFARM 1     // pairfarm-v2: near maps, r30-150, prefer camps next to an ally's camp (the top 10 are never fully spread)
+diff -ru v4o2/src/ryth.h v13/src/ryth.h
+--- v4o2/src/ryth.h	2026-10-28 21:33:36.126548716 +0000
++++ v13/src/ryth.h	2026-10-28 21:37:18.868362096 +0000
+@@ -6,8 +6,11 @@
+ CHAMP_HOOK bool is(const std::string& n) { return starts_with(n, "ryth"); }
+ 
+ // t10shop-v1: top-10 Ryth build: Treasure first, Jungle-s, Bruiser-h, Durab-h, Bruiser-s, then Bruiser-h.
+-CHAMP_HOOK bool shop_plan(State& s) {
++CHAMP_HOOK bool shop_plan(State& s, bool v13) {
+     if (!is(s.name)) return false;
++    if (v13) {  // v13-shop (champ::v13_plan, from P_V13_R); init keeps the v4o2 plan  // v13-shop: top-20 Ryth (88 champion-games): treasure-h, jungle-s, bruiser-h, durab-h, then bruiser-h
++    s.plan = {{"treasure", 'h', 1}, {"jungle", 's', 1}, {"bruiser", 'h', 1}, {"durab", 'h', 1}, {"bruiser", 'h', 99}};
++    } else
+     s.plan = {{"treasure", 'h', 1}, {"jungle", 's', 1}, {"bruiser", 'h', 1}, {"durab", 'h', 1}, {"bruiser", 's', 1}, {"bruiser", 'h', 99}};
+     return true;
+ }
+@@ -15,7 +18,8 @@
+ // lshop-v1 weights (Power folded into Bruiser of the same stat): late fill mix from P_LSHOP_R. Ryth: t10 Bruiser h 1147 / s 961 + Power-s 392, ours all Bruiser-h.
+ CHAMP_HOOK bool late_mix(const State& s, std::vector<LateFill>& o) {
+     if (!is(s.name)) return false;
+-    o = {{"bruiser", 'h', 1.15f}, {"bruiser", 's', 1.35f}};
++    if (P_V13) o = {{"bruiser", 'h', 2.3f}, {"durab", 'h', 1.3f}, {"jungle", 's', 0.75f}};  // v13-shop: top-20 r300-600 shards a game
++    else o = {{"bruiser", 'h', 1.15f}, {"bruiser", 's', 1.35f}};
+     return true;
+ }
+ 
+diff -ru v4o2/src/vendetta.h v13/src/vendetta.h
+--- v4o2/src/vendetta.h	2026-10-28 21:33:36.127109535 +0000
++++ v13/src/vendetta.h	2026-10-28 21:37:18.867113641 +0000
+@@ -11,8 +11,11 @@
+ CHAMP_HOOK bool cuts_contact(const State& s) { return P_CUT && is(s.name); }
+ 
+ // t10shop-v1: top-10 Vendetta build: Treasure first, Jungle-s, Bruiser-h, Durab-h, then Bruiser-s.
+-CHAMP_HOOK bool shop_plan(State& s) {
++CHAMP_HOOK bool shop_plan(State& s, bool v13) {
+     if (!is(s.name)) return false;
++    if (v13) {  // v13-shop (champ::v13_plan, from P_V13_R); init keeps the v4o2 plan  // v13-shop: top-20 Vendetta (132 champion-games): treasure-s, jungle-s, durab-h, bruiser-h, then bruiser-s
++    s.plan = {{"treasure", 's', 1}, {"jungle", 's', 1}, {"durab", 'h', 1}, {"bruiser", 'h', 1}, {"bruiser", 's', 99}};
++    } else
+     s.plan = {{"treasure", 's', 1}, {"jungle", 's', 1}, {"bruiser", 'h', 1}, {"bruiser", 's', 99}};  // o109: Strength first (top 10 Vendetta 8-9 Strength shards at r400, ours 2-3)
+     return true;
+ }
+@@ -20,7 +23,8 @@
+ // lshop-v1 weights (Power folded into Bruiser of the same stat): late fill mix from P_LSHOP_R. Vendetta: t10 Bruiser s 1840 / h 1144 + Power-s 514, ours all Bruiser-s.
+ CHAMP_HOOK bool late_mix(const State& s, std::vector<LateFill>& o) {
+     if (!is(s.name)) return false;
+-    o = {{"bruiser", 'h', 1.15f}, {"bruiser", 's', 2.35f}};
++    if (P_V13) o = {{"bruiser", 's', 2.5f}, {"bruiser", 'h', 2.3f}, {"durab", 'h', 1.8f}};  // v13-shop: top-20 r300-600 shards a game
++    else o = {{"bruiser", 'h', 1.15f}, {"bruiser", 's', 2.35f}};
+     return true;
+ }
+ 
+diff -ru v4o2/src/vesper.h v13/src/vesper.h
+--- v4o2/src/vesper.h	2026-10-28 21:33:36.127409951 +0000
++++ v13/src/vesper.h	2026-10-28 21:37:18.871130494 +0000
+@@ -10,6 +10,14 @@
+ 
+ int vk_hit = 0, vk_dash = 0;  // vkite-v1 counters ([vk] log lines)
+ 
++// v13-shop: top-20 Vesper (118 champion-games, replays_c37): #1 treasure-s (r71, 40%), #2-4 prospector-s / jungle-s,
++// #5-7 durab-h, from #8 bruiser-s; r300-600 fill bruiser-s 11.2 / bruiser-h 4.0 / power-s 1.5 shards a game.
++CHAMP_HOOK bool shop_plan(State& s, bool v13) {
++    if (!is(s.name) || !v13) return false;  // init: her legacy plan (champions.h); v13-shop from P_V13_R
++    s.plan = {{"treasure", 's', 1}, {"prospector", 's', 1}, {"durab", 'h', 1}, {"bruiser", 's', 99}};
++    return true;
++}
++
+ // vkite-v1 (fight::kite): with the focus in range, shoot first, then dash out of every foe's reach when the dash is
+ // ready; with no dash ready, still shoot unless hurt below P_VKITE_HP% and threatened. true = kite turn done.
+ CHAMP_HOOK bool kite_shoot_first(State& s, bc::champion& me, const std::vector<Foe*>& near, const std::vector<int>& reaches,
+@@ -65,6 +73,10 @@
+ CHAMP_HOOK int carry_rank(const std::string& n) { return is(n) ? 0 : 1; }
+ // lshop-v2: late fill mix from P_LSHOP_R. Vesper: t10 Power-s 4851 / Bruiser-s 3377 / Bruiser-h 964, ours all Bruiser-s.
+ CHAMP_HOOK bool late_mix(const State& s, std::vector<LateFill>& o) {
++    if (P_V13 && is(s.name)) {  // v13-shop: the top-20 Vesper's r300-600 shards
++        o = {{"bruiser", 's', 11.2f}, {"bruiser", 'h', 4.0f}, {"power", 's', 1.5f}};
++        return true;
++    }
+     (void)s; (void)o;
+     return false;  // lshop-v2's Vesper Power-s fill lost (hard panel -16 with it): she keeps the plan's Bruiser-s
+ }

@@ -373,3 +373,47 @@ Todo bajo `P_V11` (params.h) además de `P_V9`; nada corre antes de r30 (diverge
 3. *anvil_a* (3v3) r30-60 y r110-120: el campeón 1 sigue golpeando g0 sola 30 rondas (excepción "campamento ya dañado" salta la reunión) mientras 12 y 7 pasean; r110 12 se retira "hacia el centroide" (13,7) y el centroide está junto a los rivales (16,7): baja de 926 a 129 en 20 rondas. La retirada al bloque no comprueba que el bloque esté lejos de los rivales.
 
 **Lo que dice el mecanismo.** El bloque sí se forma (cohesión 21%→57%, aliado a ≤4 43%→68%) y suprime la mitad de las muertes 1-contra-N (1.33→0.84), pero contra un rival local que farmea con 5 cuerpos separados pierde la economía: 4-5 cuerpos sobre un grupo de 20-60 oro no lo limpian más rápido (18.3 rondas vs 19.8) y entre captura y captura el bloque entero camina (approach es el modo más frecuente), así que las capturas bajan 25.7→18.7 y las gemas a r600 241→174. El tiempo-por-captura no baja a 12-15 porque los miembros llegan de uno en uno al anillo (hit con near3=1 tras 10 rondas en la mayoría de `[v11-hit]`) y el objetivo cambia con el centroide. v11b (reunión de 2, tope 5) no lo arregla (6/119).
+
+# t10plan-v11c (2026-10-28 ~13:45 UTC): v11 con objetivo bloqueado, tope de reunión desde la elección, sin solos y retirada condicionada — SIGUE ROTO (7/140 vs kvvl)
+Zip `zips/e1foco-t10plan-v11c.zip` sha256 `2aa15285e0c69de581c76b47ba41795dac4b4ecbc36e31f673192ac1e3fa9b5b`, diff `src/t10plan-v11c_vs_v11.diff` (146 líneas: v9.h, main.cpp, params.h). Scripts nuevos: an/cap6.py (golpeadores por ronda durante las capturas de 20+ oro), an/trace.py (posiciones/golpes cada 5 rondas de una partida).
+
+**Cambios** (todos bajo `P_V11`; nada antes de r30):
+1. *Objetivo bloqueado* (choose_target_impl, líder): el objetivo se mantiene hasta captura, muerte (next_ok), inválido (pack rival ≥3 a ≤8, sin camino) — nunca se reelige por moverse el centroide; `[v11-unlock]` al soltarlo. La elección se hace por distancia andando desde el LÍDER (no el centroide): el grupo de valor ≥20 más cercano a ≤15 (`P_V11_NEAR`); si no hay, el grupo vivo más cercano de cualquier valor (los grupos con pack ≥3 se descartan). Esto cubre el punto 6 (entre capturas el bloque no cruza el mapa).
+2. *Tope de reunión desde la elección*: `go` a los 10 rondas desde que el miembro recibió el objetivo (`g_pick_r`), no desde que llega al anillo; "need" = min(3, miembros a ≤12 del líder) (`nblk` en `[v11-rally]`).
+3. *Sin solos*: con el campamento ya dañado, el miembro que golpea sin aliado a ≤4 durante 5 rondas (`P_V11_SOLO`) y campamento ≥40% se retira al anillo a reunirse (`[v11-solo]`), salvo que el bloque a ≤12 sea <2 o ya haya 3 a ≤3.
+4. *Retirada*: hacia el centroide solo si el rival más cercano al centroide está más lejos que el más cercano a mí (`to=block`); si no, flee() hacia el spawn (`to=spawn`).
+5. *Líder*: un miembro sin reclamación (viaje al altar, "tribute") no lidera mientras haya otro con reclamación en el campo (réplica big_world_a: Vesper se va al altar con 15 gemas r45-65 y 3 seguidores esperan en `farm=wait target=-1` junto al spawn 20 rondas).
+
+**Eficiencia de limpieza (punto 5, an/cap6.py, capturas de grupos de 20+ oro r≤600, rondas desde el primer golpe del episodio hasta la captura)**:
+
+| | v10k | v11k | v11ck |
+|---|---|---|---|
+| capturas 20+ / rondas media / mediana | 807 / 24.2 / 20 | 726 / 21.3 / 16 | 832 / 21.9 / 17 |
+| rondas de captura con 0 / 1 / 2 / 3 / 4 golpeadores | 51% / 40% / 8% / 1% / 0% | 52% / 27% / 12% / 6% / 3% | 52% / 28% / 12% / 6% / 2% |
+| rondas con un miembro a ≤6 del golpeador sin golpear | 24% | 52% | 46% |
+| rondas con golpes a 2+ campamentos distintos | 3% | 5% | 4% |
+
+No hay reparto de objetivos (4-5% de las rondas): el defecto es que la mitad de las rondas de captura nadie golpea y en otra cuarta parte golpea uno solo con 1-2 miembros ociosos a ≤6 (cadencia de ataque y llegada escalonada), no el foco. No se cambió el foco (ya es "el campamento vivo de menos vida al alcance, si no el de menos vida del grupo").
+
+**Comprobación local** (70 mapas x 2 lados vs kvvl; an/v11an.py, an/capdur.py, an/cap6.py; base de divergencia dec/v4o2k). v11ck = cambios 1-4; v11ck2 = + cambio 5 (líder sin reclamación no lidera) = zip:
+
+| | v10 | v11 | v11ck | **v11ck2 (zip)** |
+|---|---|---|---|---|
+| victorias vs kvvl | 41/140 | 6/140 | 7/140 | **9/140** |
+| aliado a ≤4 fuera del spawn r50-600 | 42.8% | 67.5% | 62.9% | 64.2% |
+| cohesión del bloque | 20.9% | 56.6% | 50.6% | 52.0% |
+| muertes r151-600 (3+ rivales a ≤6) | 3.18 (0.71) | 2.07 (0.61) | 2.75 (0.66) | 2.67 (0.72) |
+| muertes 1-contra-N | 1.33 | 0.84 | 1.14 | 1.13 |
+| capturas ≤600 / de 40+ / gemas de captura | 25.7 / 1.29 / 315 | 18.7 / 0.90 / 224 | 20.8 / 0.95 / 248 | 20.3 / 0.99 / 241 |
+| grupos de 20+ oro: capturas / rondas golpe→captura | 5.28 / 19.8 | 4.81 / 18.3 | 5.55 / 18.5 | 5.43 / 18.9 |
+| capdur 40+: capturas (intentos) / media / mediana / cuerpos | 0.59 (4.33) / 27 / 23 | 0.46 (2.32) / 29.2 / 24 / 3.57 | 0.54 (2.75) / 27.1 / 24 / 3.37 | 0.52 (2.62) / 27.2 / 26 / 3.40 |
+| gemas r300 / r600 | 106 / 241 | 78 / 174 | 86 / 187 | 87 / 185 |
+| líneas/partida pick / unlock / rally / hit / solo / v11-retreat (block:spawn) | 22.9 | 40.5 / — / 125 / 83 / — / 80 | 33.4 / 7.6 / 135 / 129 / 2.2 / 92 (3198:1234) | 30.0 / 12.7 / 129 / 124 / 2.4 / 93 (3230:1345) |
+| divergencia antes de r30 vs v4o2 / combustible | 3 / 0 | 3 / 0 | 3 / 0 | 3 / 0 |
+
+- vs e1foco: no jugado (tope de tiempo).
+- Puertas: victorias 9 (<40: rota), cohesión 52% (<60%), rondas golpe→captura 18.9 (objetivo ≤12), muertes 2.67 y 1-contra-N 1.13 (peor que v11), capturas 20.3 (v10 25.7), gemas r600 185 (v10 241); divergencia 3/140 y combustible 0 (pasan).
+
+**Lo que sigue mal (2 réplicas, dec/v11ck2, an/trace.py)**:
+1. *big_world_a* r40-125: el bloqueo funciona (1 pick en 90 rondas) pero el objetivo bloqueado es g6 (61,10; valor 1560, el "≥20 a ≤15 del líder" más cercano) y el bloque lo alimenta de uno en uno: 0 llega r45 y muere r50 (900→60 en 5 rondas), 2 y 3 bajan a 10% r60-75, 4 llega r75 y baja a 10% r80, el líder 1 muere r90; captura r125 con 2 muertos y 4 recalls. La elección no mira la fuerza del campamento frente al dps del bloque (v9 sí tenía `rounds`/`incoming`), y la regla "sin solos" no salta porque siempre hay un aliado a ≤4 (a 10% de vida en el anillo).
+2. *corners_a* r40-65: 0 y 2 esperan 25 rondas en 36,17 sin golpear (sin `[v11-rally]`: no es reunión sino `wait`/cooldown del objetivo del líder) mientras 3 golpea g18 sola en 19,23 a 30-15% y el líder 1 pasea 10,41→35,18; capturas g3 r75 y g2 r82 (40 rondas después de llegar). El rival captura g29/g28/g27 entretanto. El tope desde la elección no cubre a los seguidores cuyo objetivo (el del líder) está en cooldown: siguen en `wait` del farm v4o2.

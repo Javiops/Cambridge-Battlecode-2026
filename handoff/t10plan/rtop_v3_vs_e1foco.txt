@@ -1,0 +1,45 @@
+== all n=140
+  death_early     base    0.85  var    0.95
+  death_mid       base    1.60  var    1.47
+  death_late      base    5.30  var    6.41
+  death_camp      base    2.16  var    2.76
+  death_champion  base    5.59  var    6.07
+  d400_camp       base    1.03  var    0.96
+  d400_twin       base    0.26  var    0.26
+  d400_solo       base    2.19  var    2.16
+  clears150       base    7.13  var    6.50
+  clears400       base   19.83  var   17.04
+  clears_all      base   65.65  var   56.58
+  gems150         base   45.16  var   50.39
+  gems300         base  122.59  var  126.57
+  gems400         base  183.26  var  180.24
+== flip- n=35
+  death_early     base    0.77  var    1.14
+  death_mid       base    1.40  var    2.00
+  death_late      base    4.43  var    9.66
+  death_camp      base    1.49  var    3.49
+  death_champion  base    5.11  var    9.31
+  d400_camp       base    0.71  var    1.23
+  d400_twin       base    0.34  var    0.46
+  d400_solo       base    1.83  var    2.69
+  clears150       base    6.91  var    5.69
+  clears400       base   19.29  var   14.77
+  clears_all      base   63.86  var   48.03
+  gems150         base   34.83  var   42.20
+  gems300         base  117.43  var   96.26
+  gems400         base  176.06  var  143.91
+== flip+ n=13
+  death_early     base    0.62  var    1.15
+  death_mid       base    2.54  var    1.31
+  death_late      base   12.62  var    5.31
+  death_camp      base    4.62  var    3.92
+  death_champion  base   11.15  var    3.85
+  d400_camp       base    1.77  var    1.15
+  d400_twin       base    0.31  var    0.15
+  d400_solo       base    2.85  var    2.31
+  clears150       base    6.31  var    5.62
+  clears400       base   16.38  var   15.46
+  clears_all      base   49.69  var   52.62
+  gems150         base   65.08  var   64.69
+  gems300         base  126.46  var  143.23
+  gems400         base  176.46  var  205.00

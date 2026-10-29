@@ -1,0 +1,12 @@
+diff -u v17d/src/params.h v19/src/params.h
+--- v17d/src/params.h	2026-10-29 16:59:15.268869110 +0000
++++ v19/src/params.h	2026-10-29 18:25:19.922542840 +0000
+@@ -311,7 +311,7 @@
+ #endif
+ 
+ #ifndef P_NEED_CAP
+-#define P_NEED_CAP 2  // feas-a: a camp group never "needs" more than this many champions
++#define P_NEED_CAP 3  // t10plan-v19: online v17 c37, the centre 40+ gem groups we do take are mostly taken by 1-2 hitters (rivals 3-5, 0.88/game vs our 0.29); a group may now need 3. feas-a: a camp group never "needs" more than this many champions
+ #endif
+ #ifndef P_ISLEFIX
+ #define P_ISLEFIX 10  // islefix-v1: fight-camp turns with no step and no hit before the group is dropped

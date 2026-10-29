@@ -19,3 +19,10 @@ In the 40 rounds before each such rival capture our champions spend 24.8 champio
 by choose_target for P_DANGER_T 45 rounds and the spot is broadcast) now fires on a 3-pack. We concede the centre group we lose anyway
 and spend those rounds on other groups. Zip `zips/e1foco-t10plan-v18.zip`, diff `src/t10plan-v18_vs_v17.diff`.
 Local: 90/140 vs kvvl (v17 92), 67/140 vs v17. Local rivals rarely pack, so only online can judge it.
+
+## 4. v18 online: 9/80 (kvvl 9, net 0); vs v17 one changed game. A 3-pack within 4 of each other is rare online: the rule barely fires.
+
+## 5. v19 = v17 + P_NEED_CAP 3
+The centre 40+ groups we do take go mostly to 1-2 of ours (`an/centre.py`: hitters_us 1 in 0.14 of 0.29/game); rivals use 3-5.
+A group may now "need" 3 champions (rally until 3 are there) instead of being capped at 2. Local 88/140 vs kvvl (v17 92; local deaths
+r30-150 0.56, camp 0.13). Zip `zips/e1foco-t10plan-v19.zip`, diff `src/t10plan-v19_vs_v17.diff`.

@@ -1,0 +1,66 @@
+diff -ru v14/src/params.h v16/src/params.h
+--- v14/src/params.h	2026-10-28 21:59:50.014502362 +0000
++++ v16/src/params.h	2026-10-29 00:02:48.275461892 +0000
+@@ -511,3 +511,8 @@
+ #define P_V14_RATIO 80
+ #define P_V14_LOWHP 50
+ #define P_V14_BAIL 25
++// t10plan-v16 (verdict.h v14_judge): leave when a melee foe with a dash ready is within P_V16_D and 2+ foes within 6, ratio x100 < P_V16_RATIO
++#define P_V16 1
++#define P_V16_R 30
++#define P_V16_D 4
++#define P_V16_RATIO 100
+diff -ru v14/src/verdict.h v16/src/verdict.h
+--- v14/src/verdict.h	2026-10-28 21:59:50.014862727 +0000
++++ v16/src/verdict.h	2026-10-29 00:02:41.278206980 +0000
+@@ -84,6 +84,22 @@
+ // arrive over the next 10 rounds and the held "stay" is never looked at again). With 2+ foes within P_PV_ER and the power
+ // ratio under P_V14_RATIO, or alone under P_V14_LOWHP % hp with any foe within P_PV_ER and the ratio under 1, the verdict
+ // becomes "leave" and holds like a first-contact leave (ends P_PV_GAP rounds after the last foe within 8).
++// t10plan-v16: online v14 deaths r30-150 (death15.py, 80 games): fled and caught by a dash 0.24/game (kvvl 0.12, local 0.03);
++// killers HoR / Vendetta, already within 1-2 tiles for the 8 rounds before the death. A melee foe with a dash ready reaches
++// 2 (dash) + 1 (hit) + 1 (move) = 4 tiles: with 2+ foes within P_PV_ER and such a foe within P_V16_D, leave at ratio < P_V16_RATIO.
++inline bool v16_dash_foe(const Foe& f) {
++    bool d = false;
++    attempt([&] {
++        if (f.c.attack_range() > 1) return true;
++        for (const auto& ab : f.c.abilities())
++            if (ab.is_dash() && ab.cooldown() <= 1) d = true;
++        return true;
++    });
++    return d;
++}
++inline int g_v16n = 0;
++inline bool g_v16 = false;  // the current leave came from the v16 rule (flee by safe_step while a dash foe is near)
++
+ inline void v14_judge(State& s, bc::champion& me, const std::vector<Foe>& foes, int round, bool on_spawn, float hpr) {
+     if (on_spawn || g_verdict == 2) return;
+     int n = 0;
+@@ -104,13 +120,26 @@
+     });
+     if (!(n >= 2 || (al == 0 && hpr * 100 < P_V14_LOWHP))) return;
+     double r = power_ratio(s, me, foes) * 100.0;
+-    const bool leave = (n >= 2 && r < P_V14_RATIO) || (al == 0 && hpr * 100 < P_V14_LOWHP && r < 100);
++    bool leave = (n >= 2 && r < P_V14_RATIO) || (al == 0 && hpr * 100 < P_V14_LOWHP && r < 100);
++    g_v16 = false;
++    if (!leave && P_V16 && round >= P_V16_R && n >= 2 && r < P_V16_RATIO) {
++        int dd = 99;
++        for (auto& f : foes)
++            if (f.d <= P_V16_D && !s.en_spawn.is_set(f.p) && v16_dash_foe(f)) dd = std::min(dd, f.d);
++        if (dd <= P_V16_D) {
++            leave = true;
++            g_v16 = true;
++            std::printf("[v16-dash] r=%d ch=%s foes=%d allies=%d ratio=%d hp=%d d=%d n=%d\n", round, s.name.c_str(), n, al,
++                        static_cast<int>(r), static_cast<int>(hpr * 100), dd, ++g_v16n);
++        }
++    }
+     if (!leave) return;
+     g_verdict = 2;
+     g_judged = true;
+     g_last = round;
+     g_v14 = true;
+     ++g_v14n;
++    if (g_v16) return;
+     std::printf("[v14-leave] r=%d ch=%s foes=%d allies=%d ratio=%d hp=%d n=%d\n", round, s.name.c_str(), n, al, static_cast<int>(r),
+                 static_cast<int>(hpr * 100), g_v14n);
+ }

@@ -5713,5 +5713,509 @@
   "rival": "German Empire",
   "result": "loss",
   "side": "b"
+ },
+ {
+  "bot": "v18",
+  "file": "v18/gato_gemcombat5_TrzyKwaterki_af61fe1.repl26a",
+  "match": "45b2b6d7-4f6d-46b7-8a06-4784d07e870b",
+  "map": "gato_gemcombat5",
+  "rival": "Trzy Kwaterki",
+  "result": "win",
+  "side": "a"
+ },
+ {
+  "bot": "v18",
+  "file": "v18/stalactites_TrzyKwaterki_af61fe2.repl26a",
+  "match": "92acc9d6-8603-4357-9ec0-94e70acb97c8",
+  "map": "stalactites",
+  "rival": "Trzy Kwaterki",
+  "result": "win",
+  "side": "b"
+ },
+ {
+  "bot": "v18",
+  "file": "v18/gato_gemcombat4_procless_bb3ccf1.repl26a",
+  "match": "37e10be3-f904-499a-9a4e-0e1f5989ab62",
+  "map": "gato_gemcombat4",
+  "rival": "procless",
+  "result": "win",
+  "side": "a"
+ },
+ {
+  "bot": "v18",
+  "file": "v18/lost_world_meow_ee6f6a0.repl26a",
+  "match": "1be33381-54cb-4260-84ce-8f5b791588d4",
+  "map": "lost_world",
+  "rival": "meow",
+  "result": "win",
+  "side": "a"
+ },
+ {
+  "bot": "v18",
+  "file": "v18/breadcrumbs_meow_ee6f6a4.repl26a",
+  "match": "ac8dfcc2-10c7-43bb-a9e3-210db1558e3e",
+  "map": "breadcrumbs",
+  "rival": "meow",
+  "result": "win",
+  "side": "a"
+ },
+ {
+  "bot": "v18",
+  "file": "v18/breadcrumbs_prismbestgirl_0c85073.repl26a",
+  "match": "8325e478-1900-4b12-9f3d-1a43a1525149",
+  "map": "breadcrumbs",
+  "rival": "prism best girl",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "v18",
+  "file": "v18/gold_rush_SpongeAlbertandB_42e78a1.repl26a",
+  "match": "6018c3bf-cbf5-4663-9132-031129183af8",
+  "map": "gold_rush",
+  "rival": "Sponge(Albert and Bob)",
+  "result": "loss",
+  "side": "a"
+ },
+ {
+  "bot": "v18",
+  "file": "v18/anvil_SpongeAlbertandB_42e78a3.repl26a",
+  "match": "71d2186f-cc55-4fe4-b242-16d8e9ab7ae1",
+  "map": "anvil",
+  "rival": "Sponge(Albert and Bob)",
+  "result": "loss",
+  "side": "a"
+ },
+ {
+  "bot": "v18",
+  "file": "v18/gato_gemcombat5_UnivardistyofShi_3887500.repl26a",
+  "match": "a474b741-3c9b-423c-9253-3d84e2c96886",
+  "map": "gato_gemcombat5",
+  "rival": "Univardisty of Shingtonwash",
+  "result": "loss",
+  "side": "a"
+ },
+ {
+  "bot": "v18",
+  "file": "v18/starvation_GermanEmpire_b4fc412.repl26a",
+  "match": "74591329-0e36-4dea-8e0c-b3f3ebc72b41",
+  "map": "starvation",
+  "rival": "German Empire",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "v19",
+  "file": "v19/gato_gemcombat5_TrzyKwaterki_af61fe1.repl26a",
+  "match": "3cf07ce7-176a-49ac-81c1-2b673d4c6545",
+  "map": "gato_gemcombat5",
+  "rival": "Trzy Kwaterki",
+  "result": "win",
+  "side": "a"
+ },
+ {
+  "bot": "v19",
+  "file": "v19/stalactites_TrzyKwaterki_af61fe2.repl26a",
+  "match": "41ac81d5-0bf2-47d9-b0fb-dd458cdf700e",
+  "map": "stalactites",
+  "rival": "Trzy Kwaterki",
+  "result": "win",
+  "side": "b"
+ },
+ {
+  "bot": "v19",
+  "file": "v19/gato_gemcombat4_procless_bb3ccf1.repl26a",
+  "match": "b87037b4-ff65-4f63-a1eb-01ffcab1c960",
+  "map": "gato_gemcombat4",
+  "rival": "procless",
+  "result": "win",
+  "side": "a"
+ },
+ {
+  "bot": "v19",
+  "file": "v19/geodes_UnivardistyofShi_3887503.repl26a",
+  "match": "5415b6a9-6c2a-4fe5-a36c-f198dd44fe19",
+  "map": "geodes",
+  "rival": "Univardisty of Shingtonwash",
+  "result": "win",
+  "side": "b"
+ },
+ {
+  "bot": "v19",
+  "file": "v19/breadcrumbs_meow_ee6f6a4.repl26a",
+  "match": "ab44099b-44e8-442b-90e3-cfed961ab456",
+  "map": "breadcrumbs",
+  "rival": "meow",
+  "result": "win",
+  "side": "a"
+ },
+ {
+  "bot": "v19",
+  "file": "v19/gato_gemcombat5_GermanEmpire_b4fc413.repl26a",
+  "match": "ba4e7af3-5733-43e0-82a8-00b0ea7743b0",
+  "map": "gato_gemcombat5",
+  "rival": "German Empire",
+  "result": "win",
+  "side": "a"
+ },
+ {
+  "bot": "v19",
+  "file": "v19/breadcrumbs_prismbestgirl_0c85073.repl26a",
+  "match": "f61da81b-7530-45de-885b-ed710b25623d",
+  "map": "breadcrumbs",
+  "rival": "prism best girl",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "v19",
+  "file": "v19/gold_rush_SpongeAlbertandB_42e78a1.repl26a",
+  "match": "bf65ecfb-dfa5-46d4-acff-79f1cda6672f",
+  "map": "gold_rush",
+  "rival": "Sponge(Albert and Bob)",
+  "result": "loss",
+  "side": "a"
+ },
+ {
+  "bot": "v19",
+  "file": "v19/anvil_SpongeAlbertandB_42e78a3.repl26a",
+  "match": "df255608-c86d-4d75-8e7e-f2d0c5954e5a",
+  "map": "anvil",
+  "rival": "Sponge(Albert and Bob)",
+  "result": "loss",
+  "side": "a"
+ },
+ {
+  "bot": "v19",
+  "file": "v19/gato_gemcombat5_UnivardistyofShi_3887500.repl26a",
+  "match": "e01dc67e-64d6-4377-9453-046b47b82f21",
+  "map": "gato_gemcombat5",
+  "rival": "Univardisty of Shingtonwash",
+  "result": "loss",
+  "side": "a"
+ },
+ {
+  "bot": "v19",
+  "file": "v19/corners_SSSA_817a1e1.repl26a",
+  "match": "0f1368a1-24a2-4ada-8071-279390fda749",
+  "map": "corners",
+  "rival": "SSSA",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "v19",
+  "file": "v19/starvation_GermanEmpire_b4fc412.repl26a",
+  "match": "6eea9c3a-6aca-41e0-8305-e01d68974711",
+  "map": "starvation",
+  "rival": "German Empire",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "v21",
+  "file": "v21/stalactites_TrzyKwaterki_af61fe2.repl26a",
+  "match": "461aa68b-33c4-41a6-8f37-933dbf2decdd",
+  "map": "stalactites",
+  "rival": "Trzy Kwaterki",
+  "result": "win",
+  "side": "b"
+ },
+ {
+  "bot": "v21",
+  "file": "v21/hooks_Supaswag_7917ce1.repl26a",
+  "match": "862aecee-f8fc-4bf7-b1ed-b011fb2cf95d",
+  "map": "hooks",
+  "rival": "Supaswag",
+  "result": "win",
+  "side": "b"
+ },
+ {
+  "bot": "v21",
+  "file": "v21/gato_gemcombat1_procless_bb3ccf0.repl26a",
+  "match": "52188815-d5dc-49b2-9a07-35c632cc47a5",
+  "map": "gato_gemcombat1",
+  "rival": "procless",
+  "result": "win",
+  "side": "b"
+ },
+ {
+  "bot": "v21",
+  "file": "v21/gato_gemcombat4_procless_bb3ccf1.repl26a",
+  "match": "5cadd520-d788-413f-8d0a-812c2d608964",
+  "map": "gato_gemcombat4",
+  "rival": "procless",
+  "result": "win",
+  "side": "a"
+ },
+ {
+  "bot": "v21",
+  "file": "v21/dunes_SSSA_817a1e4.repl26a",
+  "match": "bd810fd9-70c7-4e3d-ba11-7c36163d354a",
+  "map": "dunes",
+  "rival": "SSSA",
+  "result": "win",
+  "side": "a"
+ },
+ {
+  "bot": "v21",
+  "file": "v21/lost_world_meow_ee6f6a0.repl26a",
+  "match": "2815850e-8e1f-466d-a737-c6b77452bcd5",
+  "map": "lost_world",
+  "rival": "meow",
+  "result": "win",
+  "side": "a"
+ },
+ {
+  "bot": "v21",
+  "file": "v21/gato_gemcombat3_meow_ee6f6a1.repl26a",
+  "match": "24f62f45-3fdc-49a1-af5c-fdaf28a93955",
+  "map": "gato_gemcombat3",
+  "rival": "meow",
+  "result": "win",
+  "side": "b"
+ },
+ {
+  "bot": "v21",
+  "file": "v21/breadcrumbs_prismbestgirl_0c85073.repl26a",
+  "match": "a14beb19-a993-428f-928f-c004d11486c4",
+  "map": "breadcrumbs",
+  "rival": "prism best girl",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "v21",
+  "file": "v21/anvil_SpongeAlbertandB_42e78a3.repl26a",
+  "match": "daf1ce29-cf16-441e-aa0c-749e52a3b147",
+  "map": "anvil",
+  "rival": "Sponge(Albert and Bob)",
+  "result": "loss",
+  "side": "a"
+ },
+ {
+  "bot": "v21",
+  "file": "v21/monolith_SSSA_817a1e0.repl26a",
+  "match": "2fce015e-2cd3-4cd1-869f-01fd0831abab",
+  "map": "monolith",
+  "rival": "SSSA",
+  "result": "loss",
+  "side": "a"
+ },
+ {
+  "bot": "v21",
+  "file": "v21/starvation_GermanEmpire_b4fc412.repl26a",
+  "match": "494b7fdb-cd0e-4502-8a97-8b13a91f6ecb",
+  "map": "starvation",
+  "rival": "German Empire",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "v22",
+  "file": "v22/hooks_Supaswag_7917ce1.repl26a",
+  "match": "4fbd0955-ca55-4d61-b17e-3511edbb2412",
+  "map": "hooks",
+  "rival": "Supaswag",
+  "result": "win",
+  "side": "b"
+ },
+ {
+  "bot": "v22",
+  "file": "v22/gato_gemcombat1_procless_bb3ccf0.repl26a",
+  "match": "1b6f1487-219e-4cb3-9ea1-d1e5520ccfe2",
+  "map": "gato_gemcombat1",
+  "rival": "procless",
+  "result": "win",
+  "side": "b"
+ },
+ {
+  "bot": "v22",
+  "file": "v22/gato_gemcombat4_procless_bb3ccf1.repl26a",
+  "match": "9b7ddd45-87d5-430d-8538-b80afdc48ecf",
+  "map": "gato_gemcombat4",
+  "rival": "procless",
+  "result": "win",
+  "side": "a"
+ },
+ {
+  "bot": "v22",
+  "file": "v22/dunes_SSSA_817a1e4.repl26a",
+  "match": "74a24361-df57-4953-8079-0c91f67fd04b",
+  "map": "dunes",
+  "rival": "SSSA",
+  "result": "win",
+  "side": "a"
+ },
+ {
+  "bot": "v22",
+  "file": "v22/lost_world_meow_ee6f6a0.repl26a",
+  "match": "c299ccbc-f338-4e46-91e7-918936f1c48e",
+  "map": "lost_world",
+  "rival": "meow",
+  "result": "win",
+  "side": "a"
+ },
+ {
+  "bot": "v22",
+  "file": "v22/gato_gemcombat3_meow_ee6f6a1.repl26a",
+  "match": "8cd271fc-a576-403d-8e16-ade54c175ab0",
+  "map": "gato_gemcombat3",
+  "rival": "meow",
+  "result": "win",
+  "side": "b"
+ },
+ {
+  "bot": "v22",
+  "file": "v22/breadcrumbs_prismbestgirl_0c85073.repl26a",
+  "match": "78ae5e97-905f-4200-a27b-b30bb17b9da9",
+  "map": "breadcrumbs",
+  "rival": "prism best girl",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "v22",
+  "file": "v22/gold_rush_SpongeAlbertandB_42e78a1.repl26a",
+  "match": "6718be68-d798-4b21-aec1-8e3ac5c75076",
+  "map": "gold_rush",
+  "rival": "Sponge(Albert and Bob)",
+  "result": "loss",
+  "side": "a"
+ },
+ {
+  "bot": "v22",
+  "file": "v22/anvil_SpongeAlbertandB_42e78a3.repl26a",
+  "match": "b7777c33-6bfd-4ad6-98b1-0a86d679cc0c",
+  "map": "anvil",
+  "rival": "Sponge(Albert and Bob)",
+  "result": "loss",
+  "side": "a"
+ },
+ {
+  "bot": "v22",
+  "file": "v22/starvation_GermanEmpire_b4fc412.repl26a",
+  "match": "09349720-376c-4b20-ac32-86506b7a210a",
+  "map": "starvation",
+  "rival": "German Empire",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "v23",
+  "file": "v23/gato_gemcombat5_TrzyKwaterki_af61fe1.repl26a",
+  "match": "4d9524fd-e7c9-466c-af23-74fe98e34151",
+  "map": "gato_gemcombat5",
+  "rival": "Trzy Kwaterki",
+  "result": "win",
+  "side": "a"
+ },
+ {
+  "bot": "v23",
+  "file": "v23/stalactites_TrzyKwaterki_af61fe2.repl26a",
+  "match": "22c35cf7-1906-46e0-8e8c-0212a4e08fd2",
+  "map": "stalactites",
+  "rival": "Trzy Kwaterki",
+  "result": "win",
+  "side": "b"
+ },
+ {
+  "bot": "v23",
+  "file": "v23/hooks_Supaswag_7917ce1.repl26a",
+  "match": "b288177b-4ece-44be-97c6-0ffd51bc1ce3",
+  "map": "hooks",
+  "rival": "Supaswag",
+  "result": "win",
+  "side": "b"
+ },
+ {
+  "bot": "v23",
+  "file": "v23/famine_newteam4_8edba24.repl26a",
+  "match": "2fb4e256-6509-4cd7-87ca-64c612fb438d",
+  "map": "famine",
+  "rival": "new team(4)",
+  "result": "win",
+  "side": "b"
+ },
+ {
+  "bot": "v23",
+  "file": "v23/lost_world_meow_ee6f6a0.repl26a",
+  "match": "0ab279cb-a073-4aba-9562-bf1b38c35585",
+  "map": "lost_world",
+  "rival": "meow",
+  "result": "win",
+  "side": "a"
+ },
+ {
+  "bot": "v23",
+  "file": "v23/gato_gemcombat3_meow_ee6f6a1.repl26a",
+  "match": "75bf8c76-0746-4740-98c8-0f5a76f2f340",
+  "map": "gato_gemcombat3",
+  "rival": "meow",
+  "result": "win",
+  "side": "b"
+ },
+ {
+  "bot": "v23",
+  "file": "v23/breadcrumbs_prismbestgirl_0c85073.repl26a",
+  "match": "cea8357e-7962-4223-a9cd-91c2bfa72fa6",
+  "map": "breadcrumbs",
+  "rival": "prism best girl",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "v23",
+  "file": "v23/gold_rush_SpongeAlbertandB_42e78a1.repl26a",
+  "match": "642ba341-bbc8-4675-99a7-1f01bcb9b7c1",
+  "map": "gold_rush",
+  "rival": "Sponge(Albert and Bob)",
+  "result": "loss",
+  "side": "a"
+ },
+ {
+  "bot": "v23",
+  "file": "v23/anvil_SpongeAlbertandB_42e78a3.repl26a",
+  "match": "35473b1e-938f-4da9-98a9-d09c6fa94111",
+  "map": "anvil",
+  "rival": "Sponge(Albert and Bob)",
+  "result": "loss",
+  "side": "a"
+ },
+ {
+  "bot": "v23",
+  "file": "v23/monolith_SSSA_817a1e0.repl26a",
+  "match": "cbf95623-2432-40b2-8b93-5dea5fb30639",
+  "map": "monolith",
+  "rival": "SSSA",
+  "result": "loss",
+  "side": "a"
+ },
+ {
+  "bot": "v23",
+  "file": "v23/corners_SSSA_817a1e1.repl26a",
+  "match": "0a3a7df5-6cb4-4c22-be43-4c1f203f4afc",
+  "map": "corners",
+  "rival": "SSSA",
+  "result": "loss",
+  "side": "b"
+ },
+ {
+  "bot": "v23",
+  "file": "v23/islands_GermanEmpire_b4fc411.repl26a",
+  "match": "b050a095-ab68-4f9b-aad4-6821c32e664e",
+  "map": "islands",
+  "rival": "German Empire",
+  "result": "loss",
+  "side": "a"
+ },
+ {
+  "bot": "v23",
+  "file": "v23/starvation_GermanEmpire_b4fc412.repl26a",
+  "match": "885dd7ba-6b4c-4c9f-b9bc-24654fef47cf",
+  "map": "starvation",
+  "rival": "German Empire",
+  "result": "loss",
+  "side": "b"
  }
 ]

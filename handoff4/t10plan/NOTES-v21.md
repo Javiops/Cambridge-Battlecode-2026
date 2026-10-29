@@ -69,3 +69,10 @@ Online scoreboard since v17 (kvvl 9/80): v17 10, v18 9, v19 9, v21 12, v22 11, v
 None passes the bar (~6.5). Measured gaps that remain (v21 online, whole game): gold 3.5k vs 6.9k, deaths 13.6 vs 2.8,
 champion-killed deaths with more allies than foes near 3.0 vs 0.9 a game; the allies near a dying champion deal damage in the
 same share as the rival's (37% dealt nothing in 10 rounds, both sides), so no single rule behind it was found.
+
+## 13. Structural tries on v21 (late game grouping; deaths after r300 are 1.4-3.0 per 150 rounds vs rival 0.3-0.8)
+| bot | change | local vs kvvl |
+|---|---|---|
+| v28 | from r300 every non-carry escorts the nearest carry, every map | 59/140 |
+| v28b | from r300 the HoR/Ryth roles on every map (not only near) | 72/140 |
+v21 = 84. Both lose a lot locally (grouping costs farm, as the block line v9-v12 showed); not sent. Diffs in src/.

@@ -1,0 +1,27 @@
+diff -u v21/src/main.cpp v28b/src/main.cpp
+--- v21/src/main.cpp	2026-10-29 18:46:31.133883979 +0000
++++ v28b/src/main.cpp	2026-10-29 21:31:13.743886634 +0000
+@@ -2440,7 +2440,11 @@
+     return on == 1;
+ }
+ // v4o: the pair only after the opening (e1foco's own opening r0-P_T10_ROLEFROM)
+-inline bool t10_act() { return static_cast<int>(bc::round_number()) >= P_T10_ROLEFROM && t10_on(); }  // round first: no spawn-path work in the opening
++inline bool t10_act() {
++    const int r = static_cast<int>(bc::round_number());
++    if (P_V28 && r >= P_V28_R && P_T10ROLES) return true;  // t10plan-v28: roles on every map from r300
++    return r >= P_T10_ROLEFROM && t10_on();
++}  // round first: no spawn-path work in the opening
+ int g_dep_wait = 0, g_rtog = 0, g_esc_k = -1, g_eh = 0;
+ int g_carry_last[8] = {-1, -1, -1, -1, -1, -1, -1, -1};  // v3i: last group each carry claimed (the lead survives the carry's recall)
+ int g_ball_last = -1, g_fol = 0, g_v4pub = 0, g_v4f = 0, g_v4n = 0, g_v4k = 0;
+diff -u v21/src/params.h v28b/src/params.h
+--- v21/src/params.h	2026-10-29 18:46:31.134341639 +0000
++++ v28b/src/params.h	2026-10-29 21:31:13.744357673 +0000
+@@ -520,3 +520,7 @@
+ // 85% hp. Online c37 (v16, 75 games): rival HoR shields 16,895 hp/game, ours 5,188; abilities 14.3 vs 6.4 per 100 alive turns;
+ // rival HoR dies 0.81/game, ours 4.0.
+ #define P_V21 1
++// t10plan-v28b: from round P_V28_R the roles (HoR/Ryth escort Vesper/Marcella) on every map, not only near maps. Online v21: our deaths
++// per 150 rounds after r300 are 1.4-3.0 vs the rival's 0.3-0.8, 42% of champion kills with no ally within 6 (rival 30%).
++#define P_V28 1
++#define P_V28_R 300

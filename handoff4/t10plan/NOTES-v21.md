@@ -86,3 +86,10 @@ whatever the power ratio. No grouping. Local 89/140 vs kvvl (v21 84). Zip `zips/
 ## v30 = v21 without the v14/v16 leave rules (P_V14 0, P_V16 0)
 Every leave rule added online lost to its base (v24 -3, v29 -3; v16's dash leave raised dash deaths 0.24 -> 0.31) while fighting
 stronger (v21 shield) gained. Fled deaths are caught anyway (killer at 1-2 tiles). Local 86/140 vs kvvl (v21 84).
+
+## 16. v30 online 6/80 (v21 -6): the v14/v16 leave rules help; adding more leaving hurts (v24, v29), removing it hurts more.
+## v31 = v21 + durability-h emblem for Marcella and Vendetta
+End-of-game items, v21 online: durability emblems held per champion-game (10% less incoming damage): rival Marcella 0.74, Vendetta
+0.67, Vesper 0.76, HoR 0.50; ours Marcella 0, Vendetta 0 (Vesper 0.82, HoR 0.35). Same direction as the v21 shield: be harder to
+kill. Plans: Marcella treasure-f, bruiser-f, jungle-s, +durab-h, bruiser-h x2...; Vendetta treasure-s, jungle-s, +durab-h, bruiser-h...
+Local 96/140 vs kvvl (v21 84).

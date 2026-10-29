@@ -1,0 +1,26 @@
+diff -u v21/src/marcella.h v31/src/marcella.h
+--- v21/src/marcella.h	2026-10-29 18:46:31.089674478 +0000
++++ v31/src/marcella.h	2026-10-29 23:43:40.409229907 +0000
+@@ -14,7 +14,8 @@
+ // Durab-h, 2 Bruiser-f, then Bruiser-h.
+ CHAMP_HOOK bool shop_plan(State& s) {
+     if (!is(s.name)) return false;
+-    s.plan = {{"treasure", 'f', 1}, {"bruiser", 'f', 1}, {"jungle", 's', 1}, {"bruiser", 'h', 2}, {"bruiser", 'f', 99}};  // o110 (measurement): Focus first
++    // t10plan-v31: + a durability-h emblem (10% less incoming damage) third; online v21 rival Marcella/Vendetta hold 0.74/0.67, ours 0
++    s.plan = {{"treasure", 'f', 1}, {"bruiser", 'f', 1}, {"jungle", 's', 1}, {"durab", 'h', 1}, {"bruiser", 'h', 2}, {"bruiser", 'f', 99}};  // o110 (measurement): Focus first
+     return true;
+ }
+ 
+diff -u v21/src/vendetta.h v31/src/vendetta.h
+--- v21/src/vendetta.h	2026-10-29 18:46:31.089877174 +0000
++++ v31/src/vendetta.h	2026-10-29 23:43:40.409346231 +0000
+@@ -13,7 +13,8 @@
+ // t10shop-v1: top-10 Vendetta build: Treasure first, Jungle-s, Bruiser-h, Durab-h, then Bruiser-s.
+ CHAMP_HOOK bool shop_plan(State& s) {
+     if (!is(s.name)) return false;
+-    s.plan = {{"treasure", 's', 1}, {"jungle", 's', 1}, {"bruiser", 'h', 1}, {"bruiser", 's', 99}};  // o109: Strength first (top 10 Vendetta 8-9 Strength shards at r400, ours 2-3)
++    // t10plan-v31: + a durability-h emblem (10% less incoming damage) third; online v21 rival Marcella/Vendetta hold 0.74/0.67, ours 0
++    s.plan = {{"treasure", 's', 1}, {"jungle", 's', 1}, {"durab", 'h', 1}, {"bruiser", 'h', 1}, {"bruiser", 's', 99}};  // o109: Strength first (top 10 Vendetta 8-9 Strength shards at r400, ours 2-3)
+     return true;
+ }
+ 

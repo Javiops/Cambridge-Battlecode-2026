@@ -32,3 +32,12 @@ vs 17-27). Per-hit damage is equal (HoR basic 32-33, dash on camps 132-136). r30
 17 dash, ours 22 + 11. `my_dps` read HoR as strength 30 (her damage spell is the dash, not in the estimate), so squad admission
 kept her out of groups. v22 adds 29% of the dash damage (the rivals' dash/basic ratio). Local: HoR camp attacks r30-300 35 basic +
 13 dash per game (v21 27 + 11), 94/140 vs kvvl (v21 84, v17 92). Zip `zips/e1foco-t10plan-v22.zip`, diff `src/t10plan-v22_vs_v21.diff`.
+
+## 6. v22 online 11/80 (kvvl +2, v21 -1): v21 stays the base.
+
+## 7. v23 = v21 + reset shot after a kite step (fight::kite)
+`an/abilctx.py` (v17 online, r30-600, foe within 4): our Vesper does 32 basic attacks per 100 fight turns, rival Vespers 49; the other
+champions are within 3-7. A ranged champion that steps cannot attack; kite steps first and then tries to shoot, which fails. The
+attack reset (Vesper) gives the attack back after a step, but it was only used after a hit (double shot). v23: after a kite step,
+with the focus in range and the reset ready, cast it and shoot. Local 82/140 vs kvvl (v21 84); fires in 121/140 games.
+Zip `zips/e1foco-t10plan-v23.zip`, diff `src/t10plan-v23_vs_v21.diff`.

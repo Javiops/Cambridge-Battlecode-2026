@@ -1,0 +1,12 @@
+diff -u v16/src/params.h v17d/src/params.h
+--- v16/src/params.h	2026-10-29 00:02:48.000000000 +0000
++++ v17d/src/params.h	2026-10-29 16:59:15.268869110 +0000
+@@ -335,7 +335,7 @@
+ #define P_MP_HOLE_SMALL 0  // o68 v3: no hole routes at all on maps with fewer tiles than this (0 = no size rule); 2500 covers reverse_spiral (900) and rushbait_v2 (2400)
+ #endif
+ #ifndef P_INC_PCT
+-#define P_INC_PCT 50  // o100: modelled incoming camp damage as % of strength x clear time (measured 46-63%; 100 = old model)
++#define P_INC_PCT 100  // t10plan-v17: back to the full model (kvvl). With 50 (o100) online v16 r30-150 camp deaths were 0.37/game vs kvvl 0.11: full-hp champions die in 7-9 rounds in groups they cannot clear
+ #endif
+ #ifndef P_HOLEFIX
+ #define P_HOLEFIX 12  // holefix-v1: drop a dash-over-hole route after this many rounds without progress (0 = off)

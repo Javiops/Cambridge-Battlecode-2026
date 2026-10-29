@@ -57,3 +57,9 @@ c37 cannot tell single rules of this size apart. v26 = v21 + v22 (HoR dash in my
 mechanism moved as designed and that did not lose online by more than 1 game. Local 82/140. v21 full online replays (`an/abil.py`,
 `an/ahead.py`): HoR monster damage 7.5k vs rival 19.3k, HoR deaths 3.44 vs 0.72; our champion-killed deaths with more allies than
 foes within 6: 2.99/game vs rival 0.90.
+
+## 11. v26 online 9/80 (v21 -3). v27 = v21 with Varg in HoR's draft slot on near/mid maps (Ren stays on far maps)
+Aimed at the big gaps, not a 2-4 game rule. Online v21 (80 games, engine end statistics): our HoR 7.5k monster damage and 3.44
+deaths a game, rival HoR 19.3k / 0.72; rival Varg (9 games) 38.5k / 0.33, the best farmer seen (splash basic attacks, attack
+reset, self-shield; varg.h and the shield/splash code paths already exist). Local 16 games side a: slot-1 monster damage Varg 28.4k
+vs HoR 12.5k, team gold 6.94k vs 6.51k a game; 87/140 vs kvvl (v21 84). v27b (Ren on every map) 87/140, Ren 18.7k: not sent.

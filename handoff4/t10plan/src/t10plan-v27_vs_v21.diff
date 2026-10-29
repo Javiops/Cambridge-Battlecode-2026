@@ -1,0 +1,24 @@
+diff -u v21/src/main.cpp v27/src/main.cpp
+--- v21/src/main.cpp	2026-10-29 18:46:31.133883979 +0000
++++ v27/src/main.cpp	2026-10-29 21:01:02.826192998 +0000
+@@ -392,7 +392,7 @@
+         }
+     }
+     if (P_META) {  // engine-3 meta draft (top-10 games since the 3.0 patch: heart_of_ruin in 67% of sides, core Ren/Stellar/Ryth/Varg)
+-        prefs = {(g_draft_sp >= 60 ? P_FAR_SWAP : "heart"), P_DRAFT_SWAP2 ? "vesper" : "stellar", P_DRAFT_SWAP ? "marcella" : "ren", "ryth", P_DRAFT_SWAP3 ? "vendetta" : "varg"};  // t10draft-v1: top-10 draft 10-22 (45 games): Vesper 21%, Marcella 17%, Ryth 15%, HoR 14%, Vendetta 12% of picks; Varg 1%, Stellar 0%; mv-vesp-v1: rival Stellar wins 48% against us after 10-22 07 UTC, Vesper 51%  // draft-marc-v1: rival Ren wins 31% against us after 10-22 07 UTC, Marcella 52%
++        prefs = {(g_draft_sp >= 60 ? P_FAR_SWAP : P_V27_SLOT1), P_DRAFT_SWAP2 ? "vesper" : "stellar", P_DRAFT_SWAP ? "marcella" : "ren", "ryth", P_DRAFT_SWAP3 ? "vendetta" : "varg"};  // t10draft-v1: top-10 draft 10-22 (45 games): Vesper 21%, Marcella 17%, Ryth 15%, HoR 14%, Vendetta 12% of picks; Varg 1%, Stellar 0%; mv-vesp-v1: rival Stellar wins 48% against us after 10-22 07 UTC, Vesper 51%  // draft-marc-v1: rival Ren wins 31% against us after 10-22 07 UTC, Marcella 52%
+         for (const char* fallback : PREFS) prefs.push_back(fallback);
+     }
+     for (const char* p : prefs)
+diff -u v21/src/params.h v27/src/params.h
+--- v21/src/params.h	2026-10-29 18:46:31.134341639 +0000
++++ v27/src/params.h	2026-10-29 21:01:02.834862526 +0000
+@@ -412,6 +412,8 @@
+ 
+ // farswap-v1: on far maps (spawn path >= 60) draft P_FAR_SWAP instead of HoR (HoR farms 3.1k camp damage by r400; rivals 5.4k)
+ #define P_FAR_SWAP "ren"
++// t10plan-v27: near/mid maps draft this instead of HoR (online v21: our HoR 7.5k monster damage and 3.44 deaths a game, rival HoR 19.3k / 0.72; rival Varg 38.5k / 0.33)
++#define P_V27_SLOT1 "varg"
+ 
+ #ifndef P_FUELCUT
+ #define P_FUELCUT 1  // fuelcut-v1: same decisions, fewer engine calls (shop off spawn, group state)

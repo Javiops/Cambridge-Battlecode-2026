@@ -63,3 +63,9 @@ Aimed at the big gaps, not a 2-4 game rule. Online v21 (80 games, engine end sta
 deaths a game, rival HoR 19.3k / 0.72; rival Varg (9 games) 38.5k / 0.33, the best farmer seen (splash basic attacks, attack
 reset, self-shield; varg.h and the shield/splash code paths already exist). Local 16 games side a: slot-1 monster damage Varg 28.4k
 vs HoR 12.5k, team gold 6.94k vs 6.51k a game; 87/140 vs kvvl (v21 84). v27b (Ren on every map) 87/140, Ren 18.7k: not sent.
+
+## 12. v27 online 8/80 (v21 -4, close maps 1 vs 5): HoR + shield beats Varg. v21 stays the candidate.
+Online scoreboard since v17 (kvvl 9/80): v17 10, v18 9, v19 9, v21 12, v22 11, v23 8, v24 9, v25 9, v26 9, v27 8.
+None passes the bar (~6.5). Measured gaps that remain (v21 online, whole game): gold 3.5k vs 6.9k, deaths 13.6 vs 2.8,
+champion-killed deaths with more allies than foes near 3.0 vs 0.9 a game; the allies near a dying champion deal damage in the
+same share as the rival's (37% dealt nothing in 10 rounds, both sides), so no single rule behind it was found.

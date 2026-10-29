@@ -22,3 +22,13 @@ Rival Varg (self-shield too) 20,731. No other champion we draft shields. Cause: 
 ## 3. v21
 `P_V21 1`: the shield is cast whenever ready in combat (foe within 4 or awake camp near). Local 16 games, side a: HoR shield
 18,149/game (v17 9,402). Local 84/140 vs kvvl (v17 92). Zip `zips/e1foco-t10plan-v21.zip`, diff `src/t10plan-v21_vs_v17.diff`.
+
+## 4. v21 online: 12/80 (kvvl 9: 7 for, 4 against, +3, bar 6.6; v17 +2). Best so far; new base.
+
+## 5. v22 = v21 + HoR dash in the damage estimate (`an/abil.py`, `an/abilctx.py` on ext.py decodes of v17 c37)
+Whole game: rivals earn 6,919 gold vs 3,537 and collect 1,130 gems vs 556; monster damage per champion ~2x.
+Away from fights (no foe within 4, r30-600) the rival HoR does 25.7 basic attacks per 100 alive turns, ours 11.8 (others 15-21
+vs 17-27). Per-hit damage is equal (HoR basic 32-33, dash on camps 132-136). r30-300 camp attacks per HoR game: rival 59 basic +
+17 dash, ours 22 + 11. `my_dps` read HoR as strength 30 (her damage spell is the dash, not in the estimate), so squad admission
+kept her out of groups. v22 adds 29% of the dash damage (the rivals' dash/basic ratio). Local: HoR camp attacks r30-300 35 basic +
+13 dash per game (v21 27 + 11), 94/140 vs kvvl (v21 84, v17 92). Zip `zips/e1foco-t10plan-v22.zip`, diff `src/t10plan-v22_vs_v21.diff`.

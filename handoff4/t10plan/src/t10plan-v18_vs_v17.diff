@@ -1,0 +1,12 @@
+diff -u v17d/src/params.h v18/src/params.h
+--- v17d/src/params.h	2026-10-29 16:59:15.268869110 +0000
++++ v18/src/params.h	2026-10-29 18:09:20.563138184 +0000
+@@ -152,7 +152,7 @@
+ #ifndef P_E1C
+ #define P_E1C 0
+ #endif
+-#define P_DANGER 4
++#define P_DANGER 3  // t10plan-v18: online v17 c37, rivals take the centre 40+ gem groups with 3-5 hitters (0.88/game vs our 0.29) while our champions stand within 8 with foes near (17.6 champion-rounds/game, 0.7 hitting it): concede a 3-pack
+ #define P_DANGER_T 45
+ #define P_DANGER_R 5
+ #define P_JACKPOT (P_E1 ? 550 : 350)  // I042; econ3 E1: 350 -> 550

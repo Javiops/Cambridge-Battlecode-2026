@@ -51,3 +51,9 @@ leave fires. 8 = the whole view: judged earlier, ratio with every foe in view. L
 ## v25 = v21 + wider shield trigger
 support_spells also runs its shield with a foe within 6 or after a camp hit last round (v21: foe within 4 or an awake camp near).
 Local 16 games side a: HoR shield 25.3k/game (v21 18.1k). 93/140 vs kvvl (v21 84). Zip `zips/e1foco-t10plan-v25.zip`.
+
+## 10. v25 online 9/80 (v21 -3, 2/5 all close maps). Since v17 every candidate is 8-12/80 against kvvl 9 with a bar of ~6.5:
+c37 cannot tell single rules of this size apart. v26 = v21 + v22 (HoR dash in my_dps) + v19 (P_NEED_CAP 3), the changes whose
+mechanism moved as designed and that did not lose online by more than 1 game. Local 82/140. v21 full online replays (`an/abil.py`,
+`an/ahead.py`): HoR monster damage 7.5k vs rival 19.3k, HoR deaths 3.44 vs 0.72; our champion-killed deaths with more allies than
+foes within 6: 2.99/game vs rival 0.90.

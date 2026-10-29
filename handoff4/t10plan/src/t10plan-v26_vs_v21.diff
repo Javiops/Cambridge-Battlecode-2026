@@ -1,0 +1,36 @@
+diff -u v21/src/main.cpp v26/src/main.cpp
+--- v21/src/main.cpp	2026-10-29 18:46:31.133883979 +0000
++++ v26/src/main.cpp	2026-10-29 20:37:55.094151022 +0000
+@@ -2269,6 +2269,13 @@
+         s.slots[1] == Slot::Ground)
+         d += me.focus() * 1.5 / 8.0;
+     if (varg::splashes(s)) d *= varg::SPLASH;
++    // t10plan-v22: HoR's dash is her damage spell (camp hit 132-136 online) and was not in the estimate, so squad
++    // admission saw her at strength 30 and she farmed 2.7x fewer camp attacks than rival HoRs (22 vs 59 a game r30-300).
++    if (P_V22 && s.dash_slot >= 0 && starts_with(s.name, "heart")) {
++        double dd = 0;
++        attempt([&] { dd = me.abilities()[s.dash_slot].damage_amount(); return true; });
++        d += dd * P_V22_DASHW / 100.0;
++    }
+     return std::max(d, 10.0);
+ }
+ 
+diff -u v21/src/params.h v26/src/params.h
+--- v21/src/params.h	2026-10-29 18:46:31.134341639 +0000
++++ v26/src/params.h	2026-10-29 20:37:55.104574139 +0000
+@@ -311,7 +311,7 @@
+ #endif
+ 
+ #ifndef P_NEED_CAP
+-#define P_NEED_CAP 2  // feas-a: a camp group never "needs" more than this many champions
++#define P_NEED_CAP 3  // t10plan-v26 (= v19 on v22). feas-a: a camp group never "needs" more than this many champions
+ #endif
+ #ifndef P_ISLEFIX
+ #define P_ISLEFIX 10  // islefix-v1: fight-camp turns with no step and no hit before the group is dropped
+@@ -520,3 +520,6 @@
+ // 85% hp. Online c37 (v16, 75 games): rival HoR shields 16,895 hp/game, ours 5,188; abilities 14.3 vs 6.4 per 100 alive turns;
+ // rival HoR dies 0.81/game, ours 4.0.
+ #define P_V21 1
++// t10plan-v22 (my_dps): HoR's estimate adds P_V22_DASHW % of her dash damage (rival HoRs online: 0.29 dash hits per basic hit)
++#define P_V22 1
++#define P_V22_DASHW 29

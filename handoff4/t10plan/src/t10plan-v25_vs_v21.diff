@@ -1,0 +1,23 @@
+diff -u v21/src/main.cpp v25/src/main.cpp
+--- v21/src/main.cpp	2026-10-29 18:46:31.133883979 +0000
++++ v25/src/main.cpp	2026-10-29 20:02:42.594816334 +0000
+@@ -4464,7 +4464,9 @@
+     }
+ 
+     FP(7, "support");
+-    support_spells(s, me, in_combat);
++    // t10plan-v25: the self-shield also fires with a foe within 6 or right after a camp hit (v21 online: HoR shield 9.6k/game
++    // in 11 games, rival HoRs 16.9k; the shield absorbs more when it is up before the first hits land).
++    support_spells(s, me, in_combat || (P_V25 && (nearest_foe <= 6 || s.cf_recent_camp >= round - 1)));
+     FP(8, "decide/flee");
+ 
+     // Best enemy target: low health, channeling, or carrying gems; never on their spawn.
+diff -u v21/src/params.h v25/src/params.h
+--- v21/src/params.h	2026-10-29 18:46:31.134341639 +0000
++++ v25/src/params.h	2026-10-29 20:02:42.595491345 +0000
+@@ -520,3 +520,5 @@
+ // 85% hp. Online c37 (v16, 75 games): rival HoR shields 16,895 hp/game, ours 5,188; abilities 14.3 vs 6.4 per 100 alive turns;
+ // rival HoR dies 0.81/game, ours 4.0.
+ #define P_V21 1
++// t10plan-v25 (support_spells): shield trigger widened to a foe within 6 or a camp hit last round
++#define P_V25 1

@@ -46,3 +46,8 @@ Zip `zips/e1foco-t10plan-v23.zip`, diff `src/t10plan-v23_vs_v21.diff`.
 Outnumbered deaths are the largest class (v17 online r30-300: 1.30/game vs rival 0.35; 42% with no ally within 6). The fight
 verdict and the v14 every-turn judgement count and weigh foes within P_PV_ER; at 6 the killer is already at 1-2 tiles when the
 leave fires. 8 = the whole view: judged earlier, ratio with every foe in view. Local 85/140 vs kvvl (v21 84).
+
+## 9. v24 online 9/80 (v21 -3): closed. v21 online, first 11 games: HoR shield 9.6k/game (v17 5.0k, rival 16.9k).
+## v25 = v21 + wider shield trigger
+support_spells also runs its shield with a foe within 6 or after a camp hit last round (v21: foe within 4 or an awake camp near).
+Local 16 games side a: HoR shield 25.3k/game (v21 18.1k). 93/140 vs kvvl (v21 84). Zip `zips/e1foco-t10plan-v25.zip`.

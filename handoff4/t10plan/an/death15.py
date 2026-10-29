@@ -36,7 +36,7 @@ for d in dirs:
         for r, at, t, dmg in D['cc']: cc[t].append((r, at, dmg))
         for idx in [c[0] for c in R[0]['c'] if c[1] == us]:
             sp = spawn[us]
-            for r in range(30, 151):
+            for r in range(int(os.environ.get("R0",30)), int(os.environ.get("R1",151))):
                 if r not in byr or r - 1 not in byr or idx not in byr[r]: continue
                 if not (byr[r - 1][idx][9] and not byr[r][idx][9]): continue
                 hp10 = byr[r - 10][idx][5] if r - 10 in byr and byr[r - 10][idx][9] else byr[r - 1][idx][5]

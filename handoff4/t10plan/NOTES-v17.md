@@ -36,3 +36,12 @@ The race rule fires at 60-70% hp and the champion still dies: an awake group cha
 ## 4. Next (v18)
 Dash deaths online (0.31 vs kvvl 0.12): v16's dash leave fires but the champion still gets caught; same lesson as the camps:
 leaving late does not work.
+
+## 5. After v17 (same bench)
+Online r151-300 (`R0=151 R1=300 death15.py`): v16 1.60 deaths/game vs kvvl 1.82; champion-fight deaths v16 1.24 vs kvvl 1.69, camp
+deaths 0.36 vs 0.13. So the fight deaths are not worse than kvvl; the camp gap is the whole death gap in both windows.
+| bot (on v17) | vs kvvl | deaths r30-150 | camp deaths |
+|---|---|---|---|
+| v18a: P_NEED_CAP 3 | 88 | 0.56 | 0.13 |
+| v18b: P_RESERVE_PCT 0 | 88 | 0.69 | 0.24 |
+Neither beats v17 (92): v17 stays the candidate. The next step needs v17's online replays (c37).

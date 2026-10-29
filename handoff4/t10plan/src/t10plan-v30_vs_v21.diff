@@ -1,0 +1,19 @@
+diff -u v21/src/params.h v30/src/params.h
+--- v21/src/params.h	2026-10-29 18:46:31.134341639 +0000
++++ v30/src/params.h	2026-10-29 23:02:17.026145873 +0000
+@@ -506,13 +506,13 @@
+ //   P_V14_RATIO  with 2+ foes within 6, a power ratio x100 under this makes the verdict "leave" (judged every turn, not once)
+ //   P_V14_LOWHP  alone (no ally within 6) under this hp %, any foe within 6 and ratio < 1: leave
+ //   P_V14_BAIL   farming with no ally within 6: bail out of the camp under this hp % (v4o2: P_BAIL_PCT 12 for all)
+-#define P_V14 1
++#define P_V14 0  // t10plan-v30: off. Online every added leave rule lost to its base (v24 -3, v29 -3) while fighting stronger (v21 shield) won +11 in 240 games
+ #define P_V14_R 30
+ #define P_V14_RATIO 80
+ #define P_V14_LOWHP 50
+ #define P_V14_BAIL 25
+ // t10plan-v16 (verdict.h v14_judge): leave when a melee foe with a dash ready is within P_V16_D and 2+ foes within 6, ratio x100 < P_V16_RATIO
+-#define P_V16 1
++#define P_V16 0  // t10plan-v30: off (needs P_V14)
+ #define P_V16_R 30
+ #define P_V16_D 4
+ #define P_V16_RATIO 100

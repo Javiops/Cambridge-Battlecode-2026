@@ -81,3 +81,8 @@ v21 = 84. Both lose a lot locally (grouping costs farm, as the block line v9-v12
 Online v21: 54% of our champion-killed deaths are on our own half (rival 32%), 42% with no ally within 6 (rival 30%).
 verdict.h v14_judge: alone (no ally within 6) on our own half with 2+ foes within 8 (one within 6) -> leave (walk home / recall),
 whatever the power ratio. No grouping. Local 89/140 vs kvvl (v21 84). Zip `zips/e1foco-t10plan-v29.zip`.
+
+## 15. v21 re-judged: 160 fresh games 21 vs kvvl 13 (+8); 240 games +11 (bar 11.1). v29 online 9/80 (v21 -3).
+## v30 = v21 without the v14/v16 leave rules (P_V14 0, P_V16 0)
+Every leave rule added online lost to its base (v24 -3, v29 -3; v16's dash leave raised dash deaths 0.24 -> 0.31) while fighting
+stronger (v21 shield) gained. Fled deaths are caught anyway (killer at 1-2 tiles). Local 86/140 vs kvvl (v21 84).

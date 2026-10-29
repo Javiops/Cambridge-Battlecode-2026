@@ -76,3 +76,8 @@ same share as the rival's (37% dealt nothing in 10 rounds, both sides), so no si
 | v28 | from r300 every non-carry escorts the nearest carry, every map | 59/140 |
 | v28b | from r300 the HoR/Ryth roles on every map (not only near) | 72/140 |
 v21 = 84. Both lose a lot locally (grouping costs farm, as the block line v9-v12 showed); not sent. Diffs in src/.
+
+## 14. v29 = v21 + leave when invaded alone on our own half
+Online v21: 54% of our champion-killed deaths are on our own half (rival 32%), 42% with no ally within 6 (rival 30%).
+verdict.h v14_judge: alone (no ally within 6) on our own half with 2+ foes within 8 (one within 6) -> leave (walk home / recall),
+whatever the power ratio. No grouping. Local 89/140 vs kvvl (v21 84). Zip `zips/e1foco-t10plan-v29.zip`.

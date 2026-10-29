@@ -41,3 +41,8 @@ champions are within 3-7. A ranged champion that steps cannot attack; kite steps
 attack reset (Vesper) gives the attack back after a step, but it was only used after a hit (double shot). v23: after a kite step,
 with the focus in range and the reset ready, cast it and shoot. Local 82/140 vs kvvl (v21 84); fires in 121/140 games.
 Zip `zips/e1foco-t10plan-v23.zip`, diff `src/t10plan-v23_vs_v21.diff`.
+
+## 8. v23 online 8/80 (v21 -4): closed. v24 = v21 + P_PV_ER 6 -> 8
+Outnumbered deaths are the largest class (v17 online r30-300: 1.30/game vs rival 0.35; 42% with no ally within 6). The fight
+verdict and the v14 every-turn judgement count and weigh foes within P_PV_ER; at 6 the killer is already at 1-2 tiles when the
+leave fires. 8 = the whole view: judged earlier, ratio with every foe in view. Local 85/140 vs kvvl (v21 84).

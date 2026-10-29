@@ -1,0 +1,12 @@
+diff -u v21/src/params.h v24/src/params.h
+--- v21/src/params.h	2026-10-29 18:46:31.134341639 +0000
++++ v24/src/params.h	2026-10-29 19:42:17.949683495 +0000
+@@ -168,7 +168,7 @@
+ #define P_TRACK_RET 6
+ #define P_PV 1
+ #define P_PV_LEAVE 60
+-#define P_PV_ER 6
++#define P_PV_ER 8  // t10plan-v24: online v17, 1.30 of our 2.27 champion-killed deaths r30-300 are outnumbered (rival 0.35), 42% with no ally within 6; fled deaths are caught by a killer already at 1-2 tiles: count and judge foes from 8 tiles, 2 rounds earlier
+ #define P_MP_DASHHOLE 4
+ 
+ // Values that used to be #ifndef defaults spread over the headers (base-v53 cleanup: all switches live here).

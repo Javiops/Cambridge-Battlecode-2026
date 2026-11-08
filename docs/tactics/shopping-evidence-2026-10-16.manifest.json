@@ -1,9 +1,0 @@
-{
-  "archive": "shopping-evidence-2026-10-16.zip",
-  "bytes": 13741093,
-  "sha256": "72a71c25cfe4d857883c337c4d6157ae5f6eb2765577ee1a2d565ae375cee5c7",
-  "entries": 74,
-  "payload_manifest_sha256": "29c2e81590ef45f0566ad9a5255514308e1d1e3ef757a20a8219dc51894cc16e",
-  "full_native_state_tree_included": false,
-  "raw_sources_included": false
-}

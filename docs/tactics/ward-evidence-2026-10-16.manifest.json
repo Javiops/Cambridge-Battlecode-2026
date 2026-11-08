@@ -1,9 +1,0 @@
-{
-  "archive": "ward-evidence-2026-10-16.zip",
-  "bytes": 2074426,
-  "sha256": "3c38890fa20ac6ffbfbc993d871a2eea396b6345316aec47b7addec93f0d4559",
-  "entries": 68,
-  "payload_manifest_sha256": "b9dfd5972bc738cf439b0da4819b5cd790b1373241a21d08900583efd2651baf",
-  "raw_sources_included": false,
-  "complete_local_per_placement_traces_included": false
-}

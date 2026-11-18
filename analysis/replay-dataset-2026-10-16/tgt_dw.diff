@@ -1,0 +1,30 @@
+diff -ru im2_a/src/main.cpp im2_t2/src/main.cpp
+--- im2_a/src/main.cpp	2026-10-16 14:08:22.658669695 +0000
++++ im2_t2/src/main.cpp	2026-10-16 14:11:57.975233186 +0000
+@@ -945,6 +945,9 @@
+     return sum;
+ }
+ 
++#ifndef P_TGT_DW
++#define P_TGT_DW 40
++#endif
+ struct Foe {
+     bc::champion c;
+     vec2 p;
+@@ -3105,7 +3108,7 @@
+     };
+     for (auto& f : foes) {
+         if (f.d > 6 || s.en_spawn.is_set(f.p) || gone(f)) continue;
+-        double sc = f.hp - (f.channeling ? 300 : 0) - 5.0 * f.gems + 40.0 * f.d;
++        double sc = f.hp - (f.channeling ? 300 : 0) - 5.0 * f.gems + (double)P_TGT_DW * f.d;  // P_TGT_DW (I061): Mite hits the nearest foe 85%
+         if (sc < tgt_score) { tgt_score = sc; tgt = &f; }
+     }
+ 
+diff -ru im2_a/src/params.h im2_t2/src/params.h
+--- im2_a/src/params.h	2026-10-16 14:08:22.677675462 +0000
++++ im2_t2/src/params.h	2026-10-16 14:11:57.975233186 +0000
+@@ -95,3 +95,4 @@
+ #define P_DANGER_T 45
+ #define P_DANGER_R 5
+ #define P_JACKPOT 350  // I042
++#define P_TGT_DW 400  // I061 target distance weight (40 = base)

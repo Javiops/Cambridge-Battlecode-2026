@@ -1,0 +1,58 @@
+{
+ "engage_vs_retreat": {
+  "n": 41463,
+  "class_share": {
+   "engage": 0.6262,
+   "retreat": 0.3738
+  },
+  "majority_acc": 0.6262,
+  "hp_threshold_acc": 0.7239,
+  "hp_threshold": 0.42,
+  "logreg": {
+   "acc": 0.7397,
+   "bal_acc": 0.7009,
+   "logloss": 0.5362
+  },
+  "mlp16": {
+   "acc": 0.7418,
+   "bal_acc": 0.6998,
+   "logloss": 0.5314
+  }
+ },
+ "action3": {
+  "n": 61966,
+  "class_share": {
+   "engage": 0.419,
+   "hold": 0.3309,
+   "retreat": 0.2501
+  },
+  "majority_acc": 0.419,
+  "logreg": {
+   "acc": 0.5313,
+   "bal_acc": 0.5113,
+   "logloss": 0.9694
+  },
+  "mlp16": {
+   "acc": 0.5437,
+   "bal_acc": 0.5229,
+   "logloss": 0.9547
+  }
+ },
+ "by_team_fit_on_top": {
+  "mite": {
+   "n": 18960,
+   "acc": 0.7754,
+   "retreat_share": 0.3418
+  },
+  "uni": {
+   "n": 22503,
+   "acc": 0.7117,
+   "retreat_share": 0.4007
+  },
+  "opp": {
+   "n": 36239,
+   "acc": 0.6889,
+   "retreat_share": 0.4025
+  }
+ }
+}

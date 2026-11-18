@@ -1,0 +1,23 @@
+{
+ "id": "I062",
+ "title": "Mite retreat curve only when paired (P_IM_PAIRED)",
+ "kind": "fight",
+ "source": "replay imitation",
+ "owner": "Claude",
+ "hypothesis": "alone at 30-50% hp we die 27% (Mite 20%), paired 8.5% (Mite 11%): commit only with an ally within 2",
+ "stage": "local-ok",
+ "created": "2026-10-16T15:13Z",
+ "history": [
+  {
+   "at": "2026-10-16T15:13Z",
+   "stage": "idea",
+   "note": "im2_p = online bot + I060 thresholds when an ally is within 2, v44 thresholds alone. Gate vs online bot: fresh 38-49 p=0.28, panel 22/11 p=0.08, PASS fight. 36 games vs spar11+16: wins 36 vs 34 (online) vs 32 (im_a), deaths 56 vs 34 vs 89. Zip mybot_ga65a6_mono_fuelguard_jackpot_imitation_paired.zip"
+  },
+  {
+   "at": "2026-10-16T15:13Z",
+   "stage": "local-ok",
+   "note": "PASS fight (gate vs bots/online2)"
+  }
+ ],
+ "updated": "2026-10-16T15:13Z"
+}

@@ -1,0 +1,93 @@
+diff -ru im2_p/src/main.cpp im2_b4/src/main.cpp
+--- im2_p/src/main.cpp	2026-10-16 14:42:13.702643439 +0000
++++ im2_b4/src/main.cpp	2026-10-16 15:56:31.978867633 +0000
+@@ -80,6 +80,24 @@
+ // P_IM_PAIRED (I062, replay imitation): Mite's lower retreat thresholds only with an ally within 2 tiles; alone we keep
+ // v44's. In the top-2 replays we die alone at 30-50% hp 27% of the time (Mite 20%) but paired only 8.5% (Mite 11%).
+ static bool g_paired = false;
++#ifndef P_BUDDY
++#define P_BUDDY 0
++#endif
++#ifndef P_BUDDY_F
++#define P_BUDDY_F 4      // frontier: camp no more than this much closer to our spawn than to theirs
++#endif
++#ifndef P_BUDDY_T
++#define P_BUDDY_T 0
++#endif
++#ifndef P_BUDDY_R
++#define P_BUDDY_R 4      // an ally's claimed camp this close counts as company
++#endif
++#ifndef P_BUDDY_ALONE
++#define P_BUDDY_ALONE 50
++#endif
++#ifndef P_BUDDY_JOIN
++#define P_BUDDY_JOIN 150
++#endif
+ #undef P_UNI_FLEE
+ #define P_UNI_FLEE (g_paired ? 33 : 44)
+ #undef P_LOWHP
+@@ -2060,6 +2078,16 @@
+             if (s.pdv.is_set(t)) b = std::min(b, static_cast<int>(s.pdf.get(t)));
+         return b < (1 << 20) ? b : d * 3 / 2;
+     };
++    // P_BUDDY (I063, replay imitation): Mite has an ally within 2 tiles on 59% of its contact turns, we 39%. On the
++    // frontier (camps not clearly on our side) avoid going alone: a camp an ally claims, or next to one, is preferred;
++    // a camp with no ally claim within P_BUDDY_R is discounted. Our own side is untouched (farming speed).
++    std::vector<vec2> buddy_claims;
++    if (P_BUDDY)
++        for (int k = 0; k < claim_slots(s); ++k) {
++            if (k == s.ally_idx) continue;
++            int c = claim_value(s, sm, k);
++            if (c > 0 && c - 1 < static_cast<int>(s.groups.size())) buddy_claims.push_back(s.groups[c - 1].center);
++        }
+     for (int i = 0; i < static_cast<int>(s.groups.size()); ++i) {
+         Group& g = s.groups[i];
+         if (g.bad_until > round) continue;
+@@ -2073,6 +2101,11 @@
+         if (P_JACKPOT && g.jackpot && round < P_JACKPOT) continue;  // farm gold and buy first, as the top teams do (stampede: first visit r350-475)
+         if (P_NOGOLD && g.gems <= 0 && !s.mono_only && !s.jackpot_map) continue;  // gold-only clusters give no gems (but gold is the tiebreak where only monoliths give gems)
+         int claimers = count_claimers(s, sm, i);
++        bool frontier = P_BUDDY && (!P_BUDDY_T || round - s.foe_r <= P_BUDDY_T) && dist(g.center, s.en_center) <= dist(g.center, s.spawn_center) + P_BUDDY_F;  // P_BUDDY_T: only after we saw an enemy champion recently
++        bool buddy = false;
++        if (frontier)
++            for (auto& bp : buddy_claims)
++                if (dist(bp, g.center) <= P_BUDDY_R) { buddy = true; break; }
+         bool free_reward = g.reward_seen >= 0 && round - g.reward_seen < 30;
+         double afford = std::max(1.0, mhp * (1.0 - P_RESERVE_PCT / 100.0));
+         int needed = free_reward ? 1 : squad_needed(g.hp, g.str, dps, afford);
+@@ -2087,6 +2120,7 @@
+         if (P_R34_SHARE && (s.de_map == v34de::Monolith) && !free_reward) cap = std::min(cap, std::max(needed, P_R34_SHARE));
+         if (P_ONE_CAP && free_reward) cap = 1;
+         if (P_PACKOPEN && round < P_PACKOPEN) cap = std::max(cap, s.roster);
++        if (frontier && buddy && claimers < 2) cap = std::max(cap, 2);  // P_BUDDY: a pair may share it
+         if (claimers >= cap && i != s.target && !lead) continue;
+         int team = std::max(1 + claimers, needed);
+         double t_clear = free_reward ? 0.0 : g.hp / (dps * team);
+@@ -2101,13 +2135,14 @@
+         double value = (g.gems + gold_w * g.gold) / (pack ? 1.0 : std::pow(static_cast<double>(team), ((g.monolith || g.hp < P_STACK_HP) ? 100 : P_SHAREEXP) / 100.0));  // big camps (P_STACK_HP+): a joiner keeps more of the value, so champions stack there
+         double score = value / std::max(1.0, rounds);
+         if (needed > 1 + claimers) score *= 0.7;              // still needs company
+-        if (claimers > 0 && g.str == 0 && !(P_PAIR && g.gems > 0 && claimers < P_PAIR) && !(pot && claimers < 2)) score *= pack ? 1.0 : 0.3;  // clusters are a solo job
++        if (claimers > 0 && g.str == 0 && !(frontier && buddy) && !(P_PAIR && g.gems > 0 && claimers < P_PAIR) && !(pot && claimers < 2)) score *= pack ? 1.0 : 0.3;  // clusters are a solo job
+         if (pot) score *= P_POT / 100.0;  // the centre pot pays 48 a pair next to the altar
+         if (dist(g.center, s.en_center) < 8) score *= 0.6;    // stay off their doorstep
+         if (P_HALF && dist(g.center, s.spawn_center) - dist(g.center, s.en_center) > 6) score *= P_HALF / 100.0;
+         if (held) score *= P_HOLD / 100.0;
+         if (lead) score *= (P_BALL && s.casters) ? P_BALL : P_GROUP_W;
+         else if (lead_p && dist(g.center, *lead_p) > 8) score *= 0.3;
++        if (frontier) score *= (buddy ? P_BUDDY_JOIN : P_BUDDY_ALONE) / 100.0;
+         if (i == s.target) score *= P_STICK / 100.0;          // hysteresis
+ #ifdef P_DBGT
+         if (round >= P_DBGT && round < P_DBGT + P_DBGT_LEN) std::printf("[dbgt] r%d %s g%d gems=%d gold=%d d=%d need=%d cl=%d wait=%d score=%.3f\n", round, s.name.c_str(), i, g.gems, g.gold, dist(pos, g.center), needed, claimers, wait, score);
+diff -ru im2_p/src/params.h im2_b4/src/params.h
+--- im2_p/src/params.h	2026-10-16 14:42:13.683692013 +0000
++++ im2_b4/src/params.h	2026-10-16 15:56:31.978867633 +0000
+@@ -95,3 +95,8 @@
+ #define P_DANGER_T 45
+ #define P_DANGER_R 5
+ #define P_JACKPOT 350  // I042
++#define P_BUDDY 1  // I063
++#define P_BUDDY_ALONE 50
++#define P_BUDDY_JOIN 150
++#define P_BUDDY_T 40
++#define P_BUDDY_F 0

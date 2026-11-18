@@ -1,0 +1,19 @@
+choices where candidates carry different gems
+team_tag
+mite       643
+opp       1288
+uni        478
+us_v44     112
+dtype: int64
+          is_most_gems  is_nearest  is_lowest_hp  is_lowest_frac
+team_tag                                                        
+mite             0.434       0.841         0.490           0.546
+opp              0.443       0.818         0.474           0.498
+uni              0.510       0.730         0.450           0.502
+us_v44           0.598       0.759         0.411           0.473
+random baseline team_tag
+mite      0.436
+opp       0.441
+uni       0.440
+us_v44    0.433
+dtype: float64

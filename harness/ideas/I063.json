@@ -1,0 +1,23 @@
+{
+ "id": "I063",
+ "title": "Buddy camp choice on the frontier (P_BUDDY)",
+ "kind": "fight",
+ "source": "replay imitation",
+ "owner": "Claude",
+ "hypothesis": "Mite has an ally within 2 on 59% of contact turns, we 39%: on frontier camps prefer one an ally claims, discount going alone; deaths vs casters down, farming kept",
+ "stage": "rejected",
+ "created": "2026-10-16T16:23Z",
+ "history": [
+  {
+   "at": "2026-10-16T16:23Z",
+   "stage": "idea",
+   "note": "on im_p: b1 (alone x0.5, join x1.5) fresh 1-16, gems/100r 173 vs 186; b2 (x0.3/x2) 2-18; b3 (b1 only within 40 rounds of seeing a foe) 6-18; b4 (b3 + frontier = enemy half only) 40-46 ns, gems kept, panel 10/20. Vs spar11+16 (36 games): deaths b1 43, b2 40, b3 59, b4 62 vs im_p 56; wins 31/32/33/32 vs 36. Rejected."
+  },
+  {
+   "at": "2026-10-16T16:23Z",
+   "stage": "rejected",
+   "note": "farming cost or no death gain; see note"
+  }
+ ],
+ "updated": "2026-10-16T16:23Z"
+}

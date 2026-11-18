@@ -1,0 +1,20 @@
+{
+ "id": "I040",
+ "title": "Deep Q-learning on the micro hook (25-32-7 Q-net over the fight features, offline double DQN from bot logs)",
+ "kind": "fight",
+ "source": "thread 'Deep Q-learning', 16 Oct",
+ "owner": "Javi",
+ "hypothesis": "an offline DQN picking engage/kite/back off/flee/recall/farm vs the rules beats the control on v100",
+ "stage": "rejected",
+ "bot": "tools/ga/dqn.py",
+ "branch": "claude/dqn-micro-suual7",
+ "created": "2026-10-16T13:20Z",
+ "history": [
+  {
+   "at": "2026-10-16T13:20Z",
+   "stage": "rejected",
+   "note": "2 rounds, 3000 games logged (718k decisions). Free DQN 24-198 vs control (coward: deaths -36%, gems -9%). Only when +3 gems over the rules: 51-39 p=0.25 (round 2: 48-45). Not gated, not a candidate. Report /mnt/project-files/analysis/dqn-2026-10-16/README.md"
+  }
+ ],
+ "updated": "2026-10-16T13:20Z"
+}

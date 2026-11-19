@@ -3,7 +3,7 @@
 > **[Tactics handbook](docs/tactics/README.md)** — Our living bot specification: 12 chapters, 96 decision topics, and detailed tactics maintained in English.
 
 Bot en C++ para [CAMBC 2026a](https://2026a.battlecode.co.uk). La versión actual es la **v30** (`bots/v30`),
-la misma que está subida a la web como versión 30. Con la v29 llegamos al puesto 25 del ranking.
+la misma que está subida a la web como versión 30. Con la v29 llegamos al top 100 del ranking.
 
 ## Cómo trabajamos: el harness
 

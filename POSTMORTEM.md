@@ -1,6 +1,6 @@
 # Live Love Larp: Cambridge Battlecode 2026 postmortem
 
-**Peak ladder rank #25** (14 October, about 370 teams on the board, top 7%). **Peak rating 1925.**
+**Peak ladder rank #25** (14 October, about 370 teams on the board, top 7%). **Peak rating 2,019.**
 **87th international** at the close, 125th of 826 teams overall (top 15%). Final bot: v21, site version **212**.
 
 We did not make the finals. This is the write-up of how a small team, working almost entirely through AI coding
@@ -13,7 +13,7 @@ it says so.
 | Season at a glance | |
 | --- | --- |
 | Ladder peak | **#25** on 14 October (site version 29), **#33** on 15 October, **#52** on 24 October after the field doubled |
-| Rating | 1500 → **1925**, including **+207 in two days** (21-23 October) |
+| Rating | 1500 → **2,019** peak, including **+207 in two days** (21-23 October) |
 | Final standing | 125th of 826 overall, 87th international (8 November ladder) |
 | Uploads | 212 site versions in 3 weeks |
 | Online testing | ~150 games per hour of paired challenges from 15 October; 60-80 candidates judged online, fewer than 10 passed |
@@ -99,7 +99,7 @@ t10plan-v2 to v21 → **v21**.
 | 26 Oct | 1875 | Patch 2.0.0 reshuffles everything |
 | 30 Oct | 1876 | v21 goes live as site version 212 |
 | 4 Nov | 1908 | International qualifier (top 8 international teams advance) |
-| 8 Nov | **1925** | Peak rating, with the ladder still open after the qualifier |
+| 8 Nov | 1925 | Ladder still open after the qualifier |
 
 The +207 is worth dwelling on, because it came from three changes that were all, in effect, bug fixes:
 
@@ -326,8 +326,9 @@ well as wins; and a firing counter printed for every new rule, so we knew how of
 ## About the ranking numbers
 
 The ladder peak of #25 and #33 come from our ladder checks on 14 and 15 October, when about 370 teams were rated;
-the board grew to 826 by the end. #52 is the best rank we recorded after it grew (24 October). The 1925 rating is
-the highest we recorded, on 8 November, after the qualifier, while the ladder stayed open. The final placement that
+the board grew to 826 by the end. #52 is the best rank we recorded after it grew (24 October). The peak rating of
+2,019 is the highest on our team's rating history on the competition site; our own snapshots, taken less often,
+topped out at 1925. The final placement that
 counted was 87th among international teams, and the top 8 international teams advanced.
 
 *Thanks to HBH, DOOMSDAY and EvilMangohh for publishing their write-ups; reading them side by side with our own data

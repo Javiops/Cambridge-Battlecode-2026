@@ -1,8 +1,8 @@
 # Cambridge Battlecode 2026a: team Live Love Larp
 
 Our C++ bot for [Cambridge Battlecode 2026a](https://2026a.battlecode.co.uk) (12 October to 18 November 2026).
-We did not qualify for the finals. Our best recorded ladder rank was 52, and on 8 November we were 125th of 826 with
-a rating of 1925.
+We did not qualify for the finals. Our best ladder rank was #25 and our peak rating was 2,019; on 8 November we were
+125th of 826 overall (details in [POSTMORTEM.md](POSTMORTEM.md)).
 
 - **[POSTMORTEM.md](POSTMORTEM.md)**: what we did, what worked, what did not, and what we would do differently.
 - **[bots/live-love-larp/](bots/live-love-larp/src)**: the final bot, version v21 (site version 212). It was live in

@@ -1,200 +1,166 @@
-# Postmortem: Live Love Larp, Cambridge Battlecode 2026a
+# Live Love Larp: Cambridge Battlecode 2026 postmortem
 
-Written 9 November 2026, after the 4 November international qualifier and before the 18 November finals. Every
-number below comes from our own measurements during the competition (replay decodes, online match groups, local
-arenas) or from the public ladder. Where a number is an estimate, it says so.
+**Peak ladder rank #25** (14 October, about 370 teams on the board, top 7%). **Peak rating 1925.**
+**87th international** at the close, 125th of 826 teams overall (top 15%). Final bot: v21, site version **212**.
 
-## Contents
+We did not make the finals. This is the write-up of how a small team, working almost entirely through AI coding
+agents, climbed from a bot that lost 0-5 on day one to the top 7% of the ladder, what we found that most teams never
+measured, and the one design mistake we could see clearly and still never fixed.
 
-1. [Summary](#1-summary)
-2. [The game, briefly](#2-the-game-briefly)
-3. [What we built](#3-what-we-built)
-4. [How we worked](#4-how-we-worked)
-5. [Timeline](#5-timeline)
-6. [Why we lost: the diagnosis](#6-why-we-lost-the-diagnosis)
-7. [What worked](#7-what-worked)
-8. [What did not work: the candidate ledger](#8-what-did-not-work-the-candidate-ledger)
-9. [Why our measurements failed us](#9-why-our-measurements-failed-us)
-10. [Process mistakes](#10-process-mistakes)
-11. [Comparison with the top and with our peers](#11-comparison-with-the-top-and-with-our-peers)
-12. [Lessons, and the plan we would follow next time](#12-lessons-and-the-plan-we-would-follow-next-time)
-13. [Open questions](#13-open-questions)
+Every number here comes from our own logs, online match groups and replay decodes. Where something is an estimate,
+it says so.
 
----
-
-## 1. Summary
-
-**Result.** We did not reach the finals. Our goal was the top 10. Our best recorded ladder rank was 52nd
-(24 October). On 8 November we were 125th of 826 with a rating of 1925, 87th in the international category. Only
-the top 8 international teams went through the 4 November qualifier.
-
-**Where the final bot stood.** v21, live from 30 October, won **7 of 80** games against ladder ranks 5 to 20. Against
-those teams the gap was large in every economic measure. Rivals earned 6,919 gold per game to our 3,537 and
-collected 1,130 gems to our 556. Their Heart of Ruin did 19.3k monster damage per game to ours 7.5k, and died 0.72
-times per game to ours 3.44.
-
-**Thesis.** We did not lose because of one missing rule, and not because we fought worse in even fights. We lost
-because **our champions were alone, and so outnumbered, when contact happened.** From round 150 on, the rival
-brought fights into our half and we died there two to three times as often as they did. Every death cost about 53
-rounds of a dead champion, the gems in the bag, 100 gold for the killer, and the items that gold would have bought.
-That snowball, not farming technique, was most of the economic gap.
-
-We diagnosed this correctly by 18 October and kept confirming it until the end. **We never fixed it**, because:
-
-- **We attacked it with single-rule patches.** "Retreat when outnumbered", "walk with an ally", "join a fight",
-  "defend our half": each one moved its own metric a little and none moved wins. The cause was a team-formation
-  property that needed a design from the draft onward.
-- **Our local judge could not see fight changes.** For about two weeks our online judge could not separate a real
-  +5% change from noise either. We made dozens of decisions on numbers that meant nothing.
-- **We changed method five times in three weeks.** Each new method threw away most of the work before it.
-
-The improvements that held were bug fixes, fuel fixes and changes that made us die less directly. Together they gave
-the one large rating jump of the season, +207 in two days (21 to 23 October).
+| Season at a glance | |
+| --- | --- |
+| Ladder peak | **#25** on 14 October (site version 29), **#33** on 15 October, **#52** on 24 October after the field doubled |
+| Rating | 1500 → **1925**, including **+207 in two days** (21-23 October) |
+| Final standing | 125th of 826 overall, 87th international (8 November ladder) |
+| Uploads | 212 site versions in 3 weeks |
+| Online testing | ~150 games per hour of paired challenges from 15 October; 60-80 candidates judged online, fewer than 10 passed |
+| Final bot | 8,859 lines of C++20, 249 `P_*` switches, one header per champion |
+| Team | One main developer driving ~80 parallel Claude Code threads, a Windows PC for local arenas, one teammate's bot as our mid-season base |
 
 ---
 
-## 2. The game, briefly
+## TL;DR: what every future team should take from this
 
-Two teams draft 3 to 5 champions from a pool of 12. Champions farm neutral camps (wolves, elk, gem and gold clusters,
-golems, 20,000 hp monoliths) for gems and gold. Gems count only once a champion carries them to an altar and
-channels a tribute of ceil(bag/10) turns. A champion who dies drops the whole bag to the killer, who also gets 100
-gold. A dead champion is out for 60 rounds. The first team to bank 1000 gems wins; at round 2000 banked gems, then
-lifetime gold, break the tie.
-
-What shaped the engineering:
-
-- **No shared brain.** Each champion runs its own copy of the bot and sees only its own vision. The team shares 8
-  bytes of memory for the whole game, plus 1024 bytes written during the draft.
-- **Fuel.** Each turn has 100,000 units of fuel, roughly WASM instructions. A trivial C++ loop costs about 10 fuel
-  per iteration and one `printf` about 570. A turn that runs out is suspended mid-code and resumed next round, so
-  expensive planning costs actions.
-- **Determinism.** The same two bots on the same map and sides always play the same game. We found this out on
-  24 October; it mattered a lot more than we realised at first (section 9).
-- **Patches.** Three balance patches in week 2 and patch 2.0.0 on 25 October. That patch rebalanced every
-  champion, added emblem families, cut the camp economy and grew the map pool from 35 to 70 maps.
+1. **The engine is deterministic. Your bot probably isn't.** If any decision reads `fuel_remaining()`, a recompile
+   with no logic change reshuffles about a quarter of your games. A 20-instruction probe changed 248 of 312 of our
+   local games. We fixed it with a deterministic fuel meter and got that to 1 in 52. Do this on day one, or every
+   A/B test you run is noise.
+2. **Games are lost before the first hit.** In equal fights we dealt the same damage as the top 10. We lost because
+   our champions arrived alone. Top-10 contacts started paired 67% of the time, ours 45%. Superiority is decided
+   before contact, not during it.
+3. **Share facts, not orders.** With 8 bytes of team memory, we wrote orders into each other's bytes; 231 of 278
+   were dropped because the receiver knew things the sender didn't. HBH, who reached the international round of 32,
+   shared sightings and let each champion keep deciding. That is the difference in one sentence.
+4. **Local self-play lies about fights.** 0 of 8 fight rules that won locally won online. Judge on paired games
+   against real, current opponents.
+5. **The fastest rating gains are bug fixes.** Our only big jump, +207 in two days, came from removing stalls, a
+   gold-chasing habit and a bad build, not from a clever new idea.
 
 ---
 
-## 3. What we built
+## 1. The game, briefly
 
-### The final bot, v21
+Two teams draft 3 to 5 champions. Champions farm neutral camps (wolves, elk, gem and gold clusters, golems, 20,000 hp
+monoliths), then carry gems to an altar and channel a tribute of ceil(bag/10) turns. First to bank 1,000 gems wins. A
+champion who dies drops the whole bag to the killer, who also gets 100 gold, and sits out 60 rounds.
 
-`bots/live-love-larp/src/`: 8,859 lines of C++20, 249 `P_*` switches in `params.h`. It is the unchanged source of
-the zip that was live on the site as version 212.
+The constraints that shaped everything:
+
+- **No shared brain.** Every champion runs its own copy of the bot with its own vision. The whole team shares
+  **8 bytes** for the entire game, plus 1,024 bytes written during the draft.
+- **Fuel.** 100,000 units per turn, roughly one per WASM instruction (a trivial loop iteration costs about 9, one
+  `printf` about 570). An overrun suspends the bot mid-code until next round.
+- **Determinism.** The same two bots on the same map and sides play the identical game, byte for byte.
+- **Patches.** Three balance patches in week 2, then patch 2.0.0 on 25-26 October rebalanced every champion, cut the
+  camp economy and grew the map pool from 35 to 70.
+
+---
+
+## 2. The final bot: v21 (site version 212)
+
+Source: `bots/live-love-larp/src/`, the unchanged code of the zip that went live on 30 October.
 
 | Part | What it does |
 | --- | --- |
-| Draft (`main.cpp`) | Reads the map in the draft turn. Default 5-pick roster Heart of Ruin, Vesper, Marcella, Ryth, Vendetta, copied from the top-10 picks of 22 October; on far maps (spawn-to-altar path 60 or more) Heart of Ruin is swapped for a far-map pick |
-| Farming | Camp groups claimed through shared memory. A capture is split between every ally on the reward tiles, so one champion captures and the rest move on |
-| `plan_t10.h` | Per-map, per-50-round table of which camp groups top-10 winners spent time on, from about 600 top-10 vs top-10 games; it multiplies our target scores from round 150 to 650 |
-| Roles | Escorts follow the carry (Heart of Ruin with Vesper, Ryth with Marcella) on near maps |
-| Fights (`fight.h`, `verdict.h`, `bcfight.h`) | First-contact verdict from a two-sided damage model; kiting for casters; focus on one target; flee rules when outnumbered |
-| Heart of Ruin (`heart_of_ruin.h`) | v21's own change: self-shield whenever ready in combat. Our shield output was 5.2k per game against the rivals' 16.9k |
-| Banking | Altar choice that does not switch mid-walk (bank-v1b) |
-| Fuel | A deterministic fuel meter (`fuel_okc`): heavy passes are charged a fixed price, so a code change elsewhere does not change decisions |
-| Champions | One header per champion (`<champion>.h`) with its shop plan and special rules |
+| Draft | Reads the map in the draft turn. Default roster Heart of Ruin, Vesper, Marcella, Ryth, Vendetta (the top-10 picks of 22 October); on far maps (spawn-to-altar path 60+) Heart of Ruin is swapped out |
+| Farming | Camp groups claimed through shared memory. One champion captures and the rest move on, since a capture splits between everyone on the reward tiles |
+| `plan_t10.h` | Per-map, per-50-round table of which camp groups top-10 **winners** spent time on, built from about 600 top-10 vs top-10 games. Multiplies our target scores from round 150 to 650 |
+| Roles | On near maps, escorts follow the carry: Heart of Ruin with Vesper, Ryth with Marcella |
+| Fights | First-contact verdict from a two-sided damage model, focus fire on one target, caster kiting, flee rules when outnumbered |
+| Heart of Ruin | v21's own change: self-shield whenever ready in combat. We had measured our shield output at 5.2k per game against the top's 16.9k |
+| Banking | Altar choice that never switches mid-walk |
+| Fuel | Deterministic meter (`fuel_okc`): heavy passes are charged a fixed price, so a change in one place cannot flip decisions elsewhere |
 
-### Lineage
+**How it got in.** v21 was judged on 400 pinned online games against ladder ranks 5 to 20. 47 games changed result:
+34 in its favour, 13 against, **+21 against a pre-set bar of 13.7**. The same build without its flee rules scored
+−6, so the flee rules were carrying real weight.
 
-v3 (13 Oct) → study22-28 (14-15 Oct) → v44 genetic fight parameters (16 Oct) → teammate base v52 → **v53** (16 Oct,
-fight verdict + fuel fix) → bank-v1b, recall escape, team fight (18-19 Oct) → v94-v98 (goldval, horfocus) → V13
-stallfix (22 Oct) → V20 one header per champion (23 Oct) → **kvvl** (v164, deterministic fuel, 24 Oct) → e1foco
-(27 Oct) → top-10 plan line t10plan-v2 to v21 (27-30 Oct) → **v21** (30 Oct).
-
-The site numbered submissions, not versions: v21 went live as site version **212**. That number is the clearest
-measure of how many uploads we made.
+**Lineage.** v3 (13 Oct) → study22-28 → v44 genetic fight parameters → teammate base **v53** → bank-v1b, recall escape,
+team fight → goldval, horfocus, stallfix → V20 (one header per champion) → **kvvl** (deterministic fuel) → e1foco →
+t10plan-v2 to v21 → **v21**.
 
 ---
 
-## 4. How we worked
+## 3. The climb
 
-### People and agents
-
-A small team with one main developer, working mostly through Claude Code sessions: about 80 project threads by
-25 October, each owning one line of work (fights, farm, shop, deaths, the online loop, audits). One Windows PC ran
-local arenas and, later, the online loop. A coordinator session dispatched work between threads.
-
-### Local testing
-
-- **Arena.** `cambc run` in parallel over 9, then 17, 35 and 70 official maps, plus 44 generated maps, 60 sealed
-  hold-out maps and 200 development maps. One local game took about 1.4 seconds. 140 games (70 maps × both sides) took
-  about 2 minutes with 4 jobs.
-- **Sparring bots.** Caster bots (spar11/12/16), hunters (pHuntF), "ghost" bots that replayed a top team's recorded
-  route, and a rival panel of other teams' drafts.
-- **Gates.** `gate.py` with stages (safety, fresh maps with early stopping, caster panel, counter-examples) and
-  later the J2 and "hard panel" judges.
-
-### Online testing (from 15 October)
-
-- The site allowed unranked challenge groups of 5 maps: 30 groups per team per rolling hour (150 games), later 50.
-  The challenger was always side A, and the site always played our **active** submission. Testing a candidate meant
-  making it the live bot for one batch, then switching back.
-- **The judge evolved four times.**
-  1. Win rate on changed games, more than 57%.
-  2. From 18 October, (for − against) ≥ 2·√(changed games), plus a check that our final score was not lower in
-     clearly more pairs.
-  3. From 19 October, a two-step judge with no order bias.
-  4. From 25 October, the candidate alone replayed on the exact pinned groups of the base, against the 15 teams just
-     above us, later ranks 5 to 20.
-
----
-
-## 5. Timeline
-
-### Rating (public ladder samples)
-
-| Date | Rating | Event |
+| Date | Rating | What happened |
 | --- | ---: | --- |
-| 13 Oct | 1500 | First upload (v3) |
-| 15 Oct | 1618 | study26-28, top-2 dissection |
-| 16 Oct | 1669 | Genetic fight parameters (v44), then teammate base |
-| 18 Oct | 1728 | v53 base; online judge becomes the main judge |
-| 19 Oct | 1652 | Recall escape and team fight; week-2 balance patches land |
-| 21 Oct | 1649 | Low point |
-| 22 Oct | 1846 | goldval (v96), horfocus (v98), stallfix (V13) |
-| 24 Oct | 1862 | Best recorded rank, 52nd (on 24 October) |
-| 26 Oct | 1875 | Patch 2.0.0; ladder reshuffles |
-| 27 Oct | 1828 | |
-| 31 Oct | 1876 | v21 live since 30 October |
-| 2 Nov | 1902 | User stops development |
-| 4 Nov | 1908 | International qualifier |
-| 8 Nov | 1925 | Ladder still open; no longer counts |
+| 13 Oct | 1500 | First upload. Lost 0-5. 24% against the top 10 by evening |
+| 14 Oct | | **#25 on the ladder** with site version 29, after a day of studying top-10 replays and coding their habits as switches |
+| 15 Oct | 1618 | #33; top-2 dissection over 101 games; online test loop goes live |
+| 16 Oct | 1669 | Genetic fight parameters (v44), then the teammate's bot becomes our base |
+| 18 Oct | 1728 | v53 base; paired online games become the main judge |
+| 21 Oct | 1649 | Low point: a week of single-rule fight patches |
+| **22-23 Oct** | **1846** | **goldval + horfocus + stallfix: +207 in two days** |
+| 24 Oct | 1862 | #52 on a ladder twice the size; deterministic fuel meter lands |
+| 26 Oct | 1875 | Patch 2.0.0 reshuffles everything |
+| 30 Oct | 1876 | v21 goes live as site version 212 |
+| 4 Nov | 1908 | International qualifier (top 8 international teams advance) |
+| 8 Nov | **1925** | Peak rating, with the ladder still open after the qualifier |
 
-### Phases
+The +207 is worth dwelling on, because it came from three changes that were all, in effect, bug fixes:
 
-| Dates | Phase | What we did | How it ended |
-| --- | --- | --- | --- |
-| 13-14 Oct | First bot and switches | C++ bot; top-5 and top-10 replay studies; each top-team habit coded as a `P_*` switch | Many won locally and lost online. P_HOLD (hold the centre) won locally and went 0-7 online on corners and collision |
-| 15 Oct | Top-2 dissection | Decision-by-decision study of #1 and #2 over 101 games; study26 to study28 | Their edge was dying less, not fighting better. study28 went 24-5 locally and was flat online |
-| 16 Oct | Genetic algorithms, DQN, imitation | 7 cloud islands plus the PC; a 25-32-7 Q-network; cloning the #1 team's fights | All dropped by the evening. The genetic "champion" was selection luck |
-| 16-17 Oct | Teammate base, v52 to v59 | Behaviour fixes on the teammate's bot, first-contact verdict, two-sided fight model, wards | v53 became the base. v54 to v59 were rejected online; lanes collapsed from fuel overruns caused by wards |
-| 17-18 Oct | From-scratch lab | New layered bot following a published top player's method, with a local league | core-v57 ranked 27th of 28 against our own old bots. Back to v53 |
-| 18-24 Oct | Online loop on v53 | Candidates on defence, banking, micro, kills, finishing, draft, duels, shop, farm | A handful passed. On 24 October, 16 online slots and none passed |
-| 24-27 Oct | Deterministic base | kvvl (deterministic fuel); patch 2.0.0; farm pricing, superiority and shop lines | All closed: nothing passed online |
-| 27-30 Oct | Copy the top-10 plan | Per-map plan and escort roles from 600 top-10 vs top-10 games, then t10plan-v5 to v31 | v21 passed over 400 games and went live on 30 October |
-| 2-4 Nov | End | Development stopped on 2 November; qualifier on 4 November | Not qualified |
+| Change | What it fixed | Measured |
+| --- | --- | --- |
+| goldval (v96) | Champions chased gold-only camps before round 940 and died on the way | Deaths per game 9.9 → 7.5 over 143 pairs; +16 online |
+| horfocus (v98) | Heart of Ruin bought a generic build instead of the focus build the top 10 used | Deaths in losses 11.0 → 6.7; +12 online |
+| stallfix (V13) | Stuck and idle champions (one froze for 800 rounds behind a fuel guard) | +11 online |
+
+Earlier fixes in the same spirit: **P_MONO** (our bot ignored monoliths and scored 0 gems on `contest`, 1-43 online
+before a 19-line fix), **bank-v1b** (altar switches on `elkring` went from 16 per game to 0), and fuel fixes that
+stopped `lanes` collapsing from 43 lost turns per game.
 
 ---
 
-## 6. Why we lost: the diagnosis
+## 4. Finding 1: the deterministic engine and the non-deterministic bot
 
-The same picture came back from every study, with every base, against every rank band.
+This is the result we are proudest of, and the one we found too late.
 
-### 6.1 We died more often, not differently
+**The symptom.** Our online judge could not tell a +5% change from noise. Two builds that made the same decisions gave
+different results in 35 of 145 games. Paired games diverged at a median of round 3.
 
-v53 against the top 30, 1,562 online games (18 October), in our losses:
+**The cause.** The engine is fully deterministic: we confirmed 60 duplicated online pairings played identical
+games. But our bot, like most, checked `fuel_ok()` before expensive work. Any recompile shifts real fuel use from
+turn 1. A branch that read "skip the path search, fuel is low" flips on round 2 or 3, and from there the whole game is
+different. In our measurements:
 
-| Per game | Us | Rival |
-| --- | ---: | ---: |
-| Entries into the other half | 5.8 | 16.5 |
-| Deaths | 9.1 | 3.9 |
-| Kills | 2.7 | 7.2 |
-| Share of our deaths on our own half | 70% | |
+- adding a 20-instruction probe that does nothing changed **248 of 312** local games and 43 results;
+- adding one `printf` in init shifted a champion's first turn and changed about **27%** of games;
+- HBH independently measured the same effect at **36-38%** of results flipped by a no-op rebuild.
 
-How deaths happened was the same as theirs: the shares by spell, while fleeing and while alone matched. We simply
-accepted, or failed to avoid, the fights they brought to our camps from round 150 on.
+**The fix: a deterministic fuel meter.** Decisions stop reading real fuel. Instead every section of the turn charges a
+fixed, pre-measured price to a virtual meter: path search 15k, target choice 28k, engage logic 19k, chase 17k, altar
+routing 17k, and so on, scaled by how many foes are within 10 tiles. The turn quota is 88,000 virtual units; real fuel
+only vetoes work below an emergency floor of 9,000.
 
-Death census against the top 10 (67 games of v65, 18 October), deaths per game:
+| Meter version | Games changed by the 20-instruction probe |
+| --- | ---: |
+| No meter (kvvl) | 248 / 312 (79%) |
+| v1, flat prices | 225 / 312 |
+| v2 | 30 / 52 |
+| v3, foe-driven prices | 6 / 52 |
+| **v4** | **1 / 52** |
+
+With it, we could replay a candidate alone on the exact online groups the base had already played, and every changed
+game was caused by the candidate. HBH dealt with the same chaos by playing far more games (about 31,000); we removed
+it at the source instead.
+
+**Lesson.** Before writing a single strategy rule, make a no-op rebuild produce zero changed games. Put the test in CI.
+
+---
+
+## 5. Finding 2: we lost the fight before it started
+
+Every study, with every base, against every rank band, told the same story.
+
+**We did not fight worse in even fights.** Over 677 fights against the top 10 we dealt the same damage and brought them
+low as often as they brought us low. Damage per contact round was equal. Both teams put about 97% of hits on the top
+target. The spell gap we saw on 14 October was closed by the 18th.
+
+**We died far more.** Death census against the top 10, 67 games, deaths per game:
 
 | Situation | Us | Them |
 | --- | ---: | ---: |
@@ -204,286 +170,165 @@ Death census against the top 10 (67 games of v65, 18 October), deaths per game:
 | Fighting, not outnumbered | 1.21 | 0.34 |
 | Hitting a camp | 0.84 | 0.10 |
 | **Total** | **8.78** | **2.69** |
-| On our own half | 5.28 | 1.04 |
 
-### 6.2 Damage was equal; conversion was not
+A champion of ours below 45% hp died **48%** of the time; one of theirs **11%**.
 
-- **677 fights against the top 10 (18 October).** We dealt the same damage and brought them low as often as they did
-  us. But when one of ours dropped below 45% hp it died **48%** of the time; one of theirs, **11%**.
-- **Finishing.** A low rival next to us died 9% of the time; a low one of ours next to them, 40%.
-- **Escaping.** When low, they recalled 41% of the time and died 1% of the time; we recalled 23%.
-- **Conversion against our own band (v72, 19 October).** We died 0.96 times per 1,000 damage taken, they 0.42.
-  Same damage per contact round, same number of drops below 50%.
-- **v17 against ranks 5-20 (29 October), champion-killed deaths in rounds 30-300 by numbers within 6 tiles:**
+**The root: who arrives with more champions.**
 
-| Per game | Us | Rival |
+| Measure | Top 10 / top 5 | Us |
 | --- | ---: | ---: |
-| Outnumbered (foes > allies + 1) | 1.30 | 0.35 |
-| Even | 0.72 | 0.34 |
-| Ahead | 0.25 | 0.33 |
-| **Total** | **2.27** | **1.01** |
+| Contacts that start paired | 67% | 45% |
+| Time with 2+ allies within 10 tiles | 60% | 48% |
+| Opening captures with 3+ champions together | 44% | 21% |
+| Outnumbering episodes per game, rounds 21-100 | 4.0-4.9 | 2.1-2.5 |
+| Deaths per game, rounds 151-300 | 0.61 | 1.79 |
+| Reinforcements in the 3 rounds after contact | ~0 | ~0 |
 
-Stats at round 300 were close (max hp 1249 vs 1360, strength 60 vs 64, items 2.3 vs 2.9).
+That last row is the key. Nobody wins by calling for help once the fight starts. The team that is already there wins.
+Of our deaths in rounds 151-300, 53% had no ally within 6 tiles and 76% were on our own half.
 
-### 6.3 The root: formation before contact
-
-- **Who has more champions at the fight.** The top 5 had 4.0 to 4.9 outnumbering episodes per game in rounds 21-100;
-  we had 2.1 to 2.5. Their kills came mostly from those.
-- **Rounds 151-300.** We died 1.79 times per game, the top 5 0.61. Of our deaths there, 85% were to champions, 53%
-  with no ally within 6, 51% outnumbered and 76% on our own half.
-- **Togetherness.** Top-10 champions had 2 or more allies within 10 tiles 60% of the time; ours 48%. Their opening
-  captures had 3 or more champions together 44% of the time; ours 21%.
-- **Contacts.** Top-10 contacts started paired 67% of the time; ours 45%. Rounds with two of their champions hitting
-  the same foe: 25% vs our 15%.
-- **Reinforcement.** It was about zero for both teams in the 3 rounds after contact. **Superiority is decided before
-  contact, not during it.**
-
-### 6.4 The economic consequence
-
-v63 against the top 10, 65 games (18 October), per game, us / them:
-
-| Measure | Us | Them |
-| --- | ---: | ---: |
-| Banked gems at round 100 | 89 | 68 |
-| Banked gems at round 300 | 317 | 392 |
-| Banked gems at round 500 | 524 | 787 |
-| Share of champion-rounds dead | 17.5% | 4.9% |
-| Gold earned | 3,057 | 4,972 |
-| Gold from kills | about 90 | about 390 |
-| Captures | 26 | 35 |
-| Gems lost on death | 89 | 53 |
-
-We led early. Their income rose after round 200 and ours stayed at about 1.1 gems per round. Among alive rounds the
-split of time between farming and walking was the same. The macro gap was mostly the cost of our deaths.
-
-The farm gap that remained was **which** camps we took, not how fast. Captures per game were similar, but the top 10
-took 12.3 gems per capture to our 8.5 (23 October): we took 4.5 more tiny captures and half as many 40-plus-gem
-groups. The rich two-elk groups needed 3 or 4 champions together, which brings us back to formation.
-
-### 6.5 What was not the cause
-
-We spent days on each of these before ruling it out:
-
-- **Spells.** The 14 October spell gap had closed by 18 October.
-- **Damage concentration.** Both teams put about 97% of hits on the top target.
-- **Shop.** In 375 games on patch 2.0.0 the top 5 used none of the new item families. They bought 1.5 to 2 times
-  more after round 150 because they earned more. Copying their build lost locally.
-- **Draft.** A study of 3,160 top-team games (by another team) found every champion within ±0.5 points once team
-  strength is subtracted. Our own draft-v1 copy lost online, 10 changed games for and 24 against.
-- **Activity mix.** Time camping, fighting, walking and idle was the same as our rank band's.
+**What it cost.** Against the top 10 we led banked gems at round 100 (89 vs 68). By round 500 it was 524 vs 787. Our
+champions spent 17.5% of their rounds dead, theirs 4.9%. Against ranks 5-20 with v17, they earned 6,919 gold per game
+to our 3,537. Most of the economic gap was the price of our deaths, not slower farming.
 
 ---
 
-## 7. What worked
+## 6. Finding 3: coordination in 8 bytes, orders vs facts
 
-| Change | When | What it did | Measured result |
-| --- | --- | --- | --- |
-| goldval (v96) | 21 Oct | Stop chasing gold-only camps before round 940 | Our deaths per game 9.9 → 7.5 (143 pairs); +16 online |
-| horfocus (v98) | 21 Oct | Focus build for Heart of Ruin, as the top 10 did | Deaths in losses 11.0 → 6.7; +12 online |
-| stallfix (V13) | 22 Oct | Remove stuck and idle champions | +11 online |
-| bank-v1b (v65) | 18 Oct | Do not switch altars halfway through a banking trip | Elkring switches 16 → 0 per game; changed games 17 for, 4 against |
-| recall escape (v72) | 19 Oct | Recall out of losing fights | Promoted by the two-step judge |
-| team fight (v76) | 19 Oct | Finishing layer: hit the lowest rival under 50% when safe | Against ranks 31-55: kills +1.33, deaths −1.43 per game |
-| P_MONO | 16 Oct | Fix 0 gems on the contest map (the bot skipped monoliths) | Online 1-43 before the fix |
-| Fuel fixes | 13, 17, 25 Oct | Turns cut by overruns (start-up work, wards reading every group, lanes) | Lanes stopped collapsing |
-| kvvl deterministic fuel | 24 Oct | Decisions stop depending on fuel left | A 20-instruction probe stopped changing 248 of 312 local games |
-| v21 | 29-30 Oct | t10plan-v17 + Heart of Ruin self-shield whenever ready | 400 games against ranks 5-20: 47 changed, 34 for, 13 against, +21 with a bar of 13.7. Without its flee rules (v30): −6 |
+If the problem is arriving together, the 8 shared bytes are where the fix should live. We tried hard. It is the part
+of the season we would do most differently.
 
-**What they have in common.** Each fixed something broken or removed a clear source of deaths. Each mechanism was
-large enough to move a full-game result. None of them was a clever new fight rule.
+**What v21 shipped with:**
+
+| Bytes | Use |
+| --- | --- |
+| 0-3 | Camp claims, 6 bits per champion, with no round stamp |
+| 4 | Focus target |
+| 5-6 | One respawn slot, last writer wins, two meanings |
+| 7 | Danger at an altar, held 45 rounds |
+
+**What we tried and how it failed:**
+
+- **orch (v2 to v14): a free champion writes an order into a teammate's byte.** The receiver accepted it at turn
+  start, then re-checked it against its own state. If its travel estimate was stale it dropped the group; if it
+  arrived at a camp still respawning it dropped it again. On `elk_arena`, **231 of 278 orders were dropped**, and the
+  planner dropped its own group 266 times out of 280.
+- **t10plan v9 to v11c: squads, follow-the-leader, walk in a block.** Champions spent 10 to 25 rounds without
+  hitting anything while they waited for each other. Results: 6 to 47 of 140.
+- **Pair rules (pw3, mgwp, join): walk and wait with an ally.** The "alone" share fell 2 to 3 points online every
+  single time, and wins never moved.
+- **Our teammate's Alerts V2: shared enemy sightings in bytes 4 and 7.** This was the right idea. It shipped as v59
+  **bundled** with wards and a banking switch that broke `lanes`, went 24-116, and was never tested alone. We threw it
+  out with the rest of the bundle.
+
+**What HBH did instead** (from their write-up; they published no code). Each champion publishes "I see an enemy here"
+in the low bits of its own turn-priority integer, a slot only it writes, which does not even spend the 8 bytes. Every
+champion then runs its normal logic with a wider view: engage only if the nearest enemy is within 4 tiles, a depth-3
+team search, camp pricing. Rules constrain that logic but never replace it. If a sighting is stale or missing, the
+champion decides exactly as it would without it.
+
+In one line: theirs was *know more, decide the same*; ours was *do what someone else says, with data they no longer
+have*. And they tested each piece alone on held-out maps with the bar written down before looking.
 
 ---
 
-## 8. What did not work: the candidate ledger
+## 7. Finding 4: copying the top 10, and what actually transferred
 
-The main lines we closed. "Local" means a local judge; "online" means paired online games.
+On 22-28 October we decoded about 600 top-10 vs top-10 games plus our own, with a replay decoder we validated
+against the engine. Some of what we learned:
 
-### Fights and deaths
+- Top-10 winners concentrated their gems: Vesper took 28% and Marcella 30% of the team's gems, about 2,000 gold each,
+  with 0.7 deaths. Our champions were flat at 17-26% each with 2.3-2.9 deaths.
+- The top 10 took **12.3 gems per capture** to our 8.5. We made 4.5 more tiny captures per game and half as many
+  40+ gem groups. The rich two-elk groups needed 3-4 champions together: formation again.
+- Their Heart of Ruin: 2.67 kills and 0.81 deaths per game. Ours: 0.68 and 4.0.
+- Shop: on patch 2.0.0 the top 5 used none of the new item families. They simply bought more after round 150,
+  because they earned more. Copying their build lost locally.
+- Draft: once team strength was subtracted, every champion was within ±0.5 points. The draft was not the lever.
 
-| Line | Dates | Idea | Outcome |
-| --- | --- | --- | --- |
-| P_HOLD, caster ball, group fight, volley | 14 Oct | Copy top-team fight shapes as switches | Won locally, lost online (P_HOLD 0-7) |
-| defense-v1/v2 (DH1-5) | 18 Oct | Defend our half as one module | Local 34% then 55%; online 14% vs 25%: rejected |
-| micro MI1 to MI3 | 18 Oct | Finish low foes; recall to escape; hit whoever dies soonest | MI2 made low-hp deaths worse (22% → 27%); MI1 was parked after 3 versions with no gain; MI3's situation was too rare locally to judge |
-| foe-v1/v2 | 18 Oct | No camp hits with a rival within 4 | Passed locally; tied online (37 for, 39 against) |
-| kill-v1/v2 | 18 Oct | Hunt killable rivals | Finishable rivals killed within 5 rounds 40% → 58% locally, but failed on fuel; rejected online |
-| getout, escape, duel-v1 | 19 Oct | Leave fights when behind | Under the bar; duel-v1's expected gain was −0.3 deaths per game |
-| shop-parity (v77) | 19 Oct | Match rivals' hp share in the shop | Rejected online: max hp is a correlate, not a cause |
-| homedef-v1 (v100) | 21 Oct | A lone champion falls back to an ally when invaded | Rejected (29 up, 46 down); own-half death share unchanged |
-| powerv-v1/v2 | 21 Oct | Walk out below 35-45% local hp share | Local −10 and −38 |
-| pairs line (pw3, mgwp, join) | 24 Oct | Walk and wait with an ally | Alone share −2 to −3 points online, every time; 0 wins |
-| pelea-v1 | 24-25 Oct | Enter fights only with numbers | Not above the bar |
-| superiority u7 | 27 Oct | Flee toward an ally when outnumbered | Online +5 with a bar of 10.4; replays showed the retreat changed nothing (died within 10 rounds 18% vs 19%) |
-| t10plan-v22 to v31 | 29-30 Oct | Heart of Ruin dash, reset shot, earlier verdict, wider shield, durability emblem, Varg instead of Heart of Ruin | 6 to 11 of 80 against v21's 12; none passed |
+**What transferred.** Copying the top-10 camp *schedule* outright cost us 40-44% of our gold captures (online −8 to
+−11). What worked was using it as a soft multiplier on our own target scores, winners only, from round 150, never
+cutting gold-only camps. Stacked with the Heart of Ruin self-shield, that became v21.
 
-### Farm, macro and draft
+---
 
-| Line | Dates | Idea | Outcome |
-| --- | --- | --- | --- |
-| draft-v1 (v67) | 18 Oct | Top-30 draft by team size | Online 10 for, 24 against |
-| finish-v1 to v3 | 18 Oct | Endgame race planner | Failed on fuel three times; closed |
-| caprecall-v1 (v70) | 18 Oct | Capture and recall on the same tile like the top 10 | 16-16 on changed games |
-| value-v1, need2, elksplit | 22 Oct | Value-based target choice | Passed locally (+30 on 720 pairs); small online |
-| opening-near | 24 Oct | Open on near camps like the top 10 | Local state at round 300 worse |
-| o101-o107 farm pricing | 25-27 Oct | Price camps by outnumbering, strong groups, late gold | Every one lost online or on the bench |
-| t10plan schedule (v2-v4q) | 27-28 Oct | Copy the top-10 camp schedule per map and round | Online −8 to +2; the schedule cost 40-44% of gold captures |
+## 8. The graveyard
 
-### Learning approaches (16 October)
+From 18 to 30 October we judged 60 to 80 candidates online. Fewer than 10 passed. A selection:
 
 | Line | Idea | Outcome |
 | --- | --- | --- |
-| Genetic islands | 22 fight parameters, then 48 macro genes, on 8 islands | The 14:15 "champion" was level with v44 on 100 fresh maps: selection luck. One genome (b672) held 34-10 locally but never beat the online bot |
-| DQN | 25-32-7 Q-network on the fight decision hook | Noise; both ideas rejected |
-| Imitation | Clone the #1 team's retreat curve | Died 89 times vs 34 against caster bots; the paired version was neutral online |
-| RL assessment | Full-policy RL | Not viable: no step simulator, about 6 local games a second, and a fuel budget that fits only a 2-5k-multiply network |
+| P_HOLD, caster ball, volley | Copy top-team fight shapes | Won locally; P_HOLD 0-7 online |
+| defense-v1/v2 | Defend our half as one module | Online 14% vs 25%: rejected |
+| kill-v1/v2 | Hunt killable rivals | Kills within 5 rounds 40% → 58% locally; failed on fuel, rejected online |
+| draft-v1 | Top-30 draft by team size | 10 changed games for, 24 against |
+| homedef-v1 | Lone champion falls back to an ally when invaded | 29 up, 46 down |
+| superiority u7 | Flee toward an ally when outnumbered | +5 against a bar of 10.4; replays showed nothing changed (18% vs 19% died within 10 rounds) |
+| Genetic islands | 22 fight genes, then 48 macro genes, 8 islands | The "champion" was selection luck: level with v44 on 100 fresh maps |
+| DQN | 25-32-7 Q-network on the fight hook | Noise |
+| Imitation | Clone the #1 team's retreat curve | Died 89 times vs 34 against caster bots |
+| From-scratch lab | New layered bot following a published top player's method | Ranked 27th of 28 against our own old bots |
 
-**Count.** From 18 October to 30 October we ran something like 60 to 80 online candidates. Fewer than 10 passed.
+What the winners have in common: each fixed something broken or removed a clear source of deaths, and each was
+large enough to move a full game. None was a clever new fight rule.
 
 ---
 
-## 9. Why our measurements failed us
+## 9. Why our measurements lied, and what a good judge looks like
 
-This is the most important section. With a sound judge, a team can recover from bad ideas. We had bad ideas **and**
-a judge that could not tell them apart.
+1. **Local self-play.** Our local rivals were our own old bots. They never invaded in packs or punished a lone walk to
+   the altar. 0 of 8 locally winning fight rules won online. A real 55% change passed our 260-map local gate only 12%
+   of the time.
+2. **Fuel chaos** (section 4), until 24 October.
+3. **Low power.** A batch had 27-38 changed games. A +5-point change passed our first online rule 22% of the time.
+   Most of our pieces were worth +1 to +3%, invisible to a single batch.
+4. **Rival drift.** Top bots changed every few hours; the same pairing and map differed 70-84% of the time after
+   30 minutes.
+5. **Data bugs.** 22% of online records were byte-identical rematches until deduplicated; 4.8% had side and result
+   flipped; an old replay decoder had camps wrong on 18 maps; one "jackpot" finding came from summing a group reward
+   over each camp when the engine pays it once.
 
-1. **Local self-play lied about fights.**
-   - On 16 October, 0 of 8 fight rules that won locally won clearly online.
-   - A real 55% change passed our 260-map local gate only 12% of the time. Threads added maps until one passed.
-   - Our local rivals were our own old bots. They never invaded in packs, never punished a walk to the altar, and
-     never contested the middle. kvvl's J2 local judge said +10.4; online said +4.
-   - Even the "hard panel" overrated small pieces: pw3 was +6 locally and −1 online.
-2. **Fuel chaos.** Any recompile changed real fuel use from the first turn. Decisions that checked `fuel_ok()` then
-   flipped from round 2 or 3, and about one game in four came out different for reasons that had nothing to do with
-   the change. Two builds with the same decisions gave 35 different results in 145 games. Until the deterministic
-   meter of 24 October, every A/B test, local and online, carried this noise.
-3. **Online power was low.**
-   - A batch had about 27 to 38 changed games.
-   - With the 18 October rule, a neutral change passed 2.2% of the time, a +5-point change 22%, a +8-point change
-     50% and a +10-point change 70%.
-   - A +3% change needed about 10 batches to pass, a +5% change about 4.
-   - Most of our pieces were worth +1 to +3%: vco +14 in 500 games, monoguard +6 in 250, kvvl +4.
-4. **Rival drift.** Top bots changed every few hours; the same pairing and map differed 70 to 84% of the time after
-   30 minutes. A week-old benchmark was a different opponent.
-5. **Data bugs.**
-   - 22% of our online game records were byte-identical rematches. Until we deduplicated them, they inflated sample
-     sizes.
-   - 4.8% of rows had flipped side and result.
-   - The old replay decoder had camp positions and rewards wrong on 18 maps.
-   - The 27 October "jackpot" finding (1,018 gems in rounds 151-300) came from summing a group's reward over each of
-     its camps; the engine pays it once. Two candidate lines were built on it.
-6. **Measuring the wrong unit.** For a week we counted wins on changed games. The state model built on 24 October
-   (gold, deaths, monster damage and margin at round 300-400) had half the error. Exposure tracing (how often a rule
-   actually changes a decision) came on 23 October. It showed some pieces changed 1% of decisions and could never be
-   measured.
-
-**What a sound judge would have looked like from day 3:**
-- deterministic fuel;
-- pinned online groups against current strong rivals;
-- a pre-declared sample size;
-- paired state metrics at round 300 as well as wins;
-- a firing counter for every new rule.
-
-We had all of these by 25 October. We needed them by 15 October.
+**The judge we had by 25 October, and should have had by 15 October:** deterministic fuel; the candidate replayed
+alone on the base's pinned online groups against the teams just above us (later ranks 5-20); a pass bar of
+(for − against) ≥ 2·√(changed games) declared before reading; state metrics at round 300 (gold, deaths, margin) as
+well as wins; and a firing counter printed for every new rule, so we knew how often it actually changed a decision.
 
 ---
 
 ## 10. Process mistakes
 
-1. **Five methods in three weeks.** Switches (13-15 October), learning (16 October), the teammate base
-   (16-17 October), the from-scratch lab (17-18 October), the online loop (18-27 October) and copying the top-10 plan
-   (27-30 October). Each switch was a reaction to a bad day, not to evidence that the method was wrong.
-2. **Too many parallel fronts.** On 16 October: 7 genetic islands, a DQN, imitation and three fix threads. On
-   24 October, a 16-slot online day with 7 repeats. Threads stepped on each other's base versions. The online bot was
-   once not the bot the local gate compared against (16 October).
-3. **Symptoms instead of the system.** On 19 October the user asked for exactly the right thing: "the whole system is
-   flawed, we have to pinpoint the main issue", and no single-rule patches. We still produced single-rule
-   candidates for another ten days, because each thread owned one rule and the loop rewarded one rule per batch.
-4. **Ignored interactions.** The 23 October audit found the code did what each candidate claimed in 7 of 7 cases. The
-   failures were known interactions nobody checked:
-   - a shooting rule that rooted Vesper every round she shot;
-   - a fuel guard that froze a champion for 800 rounds;
-   - early gold spent on gems instead of power.
-5. **Operations held together by notes, not code.**
-   - The online loop died with its container.
-   - Status reports were missed for 34 to 61 minutes at a time.
-   - Uploads were duplicated, and an online quota hour was lost.
-   - The shared folder filled up and writes were silently dropped.
-6. **Late study of the top.** Our first deep top-team study was on 15 October, but the decisive measurements
-   (formation, outnumbering rates, pairing at contact) came between 18 and 24 October. The top-10 benchmark on current
-   bots arrived on 23 October.
+- **Five methods in three weeks:** switches, machine learning, the teammate base, a from-scratch lab, the online loop,
+  then copying the top 10. Each switch was a reaction to a bad day, not to evidence.
+- **Too many fronts.** On 16 October we ran 7 genetic islands, a DQN, imitation learning and three fix threads at once.
+  Threads stepped on each other's base versions.
+- **Symptoms instead of the system.** On 19 October we wrote down exactly the right instruction to ourselves: "the
+  whole system is flawed, find the main issue, no single-rule patches". We kept shipping single-rule candidates for
+  ten more days, because every thread owned one rule.
+- **Bundling.** The teammate's sightings died inside a bundle. Test pieces alone.
 
 ---
 
-## 11. Comparison with the top and with our peers
+## 11. Advice for next year's teams
 
-| Measure (source) | Top 5 or top 10 | Us |
-| --- | --- | --- |
-| Deaths per game, rounds 151-300 (top 5, 27 Oct) | 0.61 | 1.79 |
-| Champion below 45% hp dies (677 fights, 18 Oct) | 11% | 48% |
-| Time with 2+ allies within 10 tiles (top 10, 27 Oct) | 60% | 48% |
-| Opening captures with 3+ together, rounds 1-50 | 44% | 21% |
-| Contacts that start paired (24 Oct) | 67% | 45% |
-| Gems per capture (23 Oct) | 12.3 | 8.5 |
-| Strong two-elk groups per game (vs ranks 56-70) | 0.7, with 3-4 champions, no deaths | 0.3, with 2-3 |
-| Heart of Ruin shield per game (v16 online) | 16.9k | 5.2k |
-| Heart of Ruin kills / deaths per game | 2.67 / 0.81 | 0.68 / 4.0 |
-| Gold per game against ranks 5-20 (v17) | 6,919 | 3,537 |
-| Damage in even fights | equal | equal |
-
-**Peers.** [EvilMangohh](https://github.com/toyeshhm/cambridge-battlecode-2026) peaked at rank 22 before the patch
-and was 107th on 8 November, just above us. They won 4 of 100 against the current top 10, close to our 7 of 80
-against ranks 5-20. They worked much like us, with parallel agents, switches and a judge agent, and reached the same
-conclusions:
-- local A/B tests against your own bots lie;
-- merging seven changes hid the four that hurt;
-- wasted turns and replay bugs mattered more than fight logic;
-- every "play safer" rule cost kills.
-
-They did not close the gap either. Two teams with this much tooling stalling at the same level is evidence that the
-missing piece was not tooling but **team-level positioning designed in from the start**.
+1. **Day 1:** deterministic fuel accounting, a replay decoder checked against the engine, and a no-op rebuild that
+   changes zero games.
+2. **Day 2:** a pinned online benchmark against the current top teams, paired by map and side, with the pass bar
+   written before you look.
+3. **Week 1:** remove every stall, loop, overrun and wrong altar. It is the cheapest rating you will ever get.
+4. **Week 2:** measure formation at contact (allies within 4-6 when the first hit lands). If you are below the top,
+   that is your problem, not micro.
+5. **Use the shared memory for facts** (sightings, claims with a round stamp, a muster point), never for orders.
+6. **Test every piece alone.** A good idea bundled with a bad one is a dead idea.
+7. **Freeze three days early.** Upload the exact zip you tested and check its hash.
 
 ---
 
-## 12. Lessons, and the plan we would follow next time
+## About the ranking numbers
 
-### Lessons
+The ladder peak of #25 and #33 come from our ladder checks on 14 and 15 October, when about 370 teams were rated;
+the board grew to 826 by the end. #52 is the best rank we recorded after it grew (24 October). The 1925 rating is
+the highest we recorded, on 8 November, after the qualifier, while the ladder stayed open. The final placement that
+counted was 87th among international teams, and the top 8 international teams advanced.
 
-1. **Build the judge before the bot.** Deterministic fuel accounting from the first line of code. A pinned online
-   benchmark against the current top 10, refreshed every few days. Paired game-by-game comparison with a
-   pre-declared sample size.
-2. **Local tests only check that nothing broke.** Never use them to decide whether an idea is good, least of all for
-   fights.
-3. **Find the one number that separates winners from losers, then design for it.** For this game it was being
-   outnumbered at contact. A team plan from the draft (squads, roles, routes, rally points) was needed, not a rule
-   that fires once enemies are near.
-4. **First stop dying from bugs.** Stalls, recall loops, oscillation, fuel overruns, wrong altars. That was +200
-   rating for us in two days.
-5. **Size every candidate before testing it.** Write down how many decisions per game it changes, the expected effect
-   in deaths or gold, and the interactions it touches. If the expected effect is under the judge's resolution, bundle
-   it or drop it.
-6. **One base, one method, one owner per file.** Change methods only on evidence, and on the same base.
-7. **Check every analysis number against the engine** before building on it.
-8. **No machine learning without the game budget it needs.** At most, CMA-ES on a few dozen constants of a rule bot.
-9. **Automate operations.** Loop liveness, quota use, upload checks and disk alerts belong in code, not in notes.
-
-### A four-week plan, knowing what we know now
-
-| Week | Goal | Exit check |
-| --- | --- | --- |
-| 1 | Rules in our own words, trusted engine and upload path, deterministic fuel meter, replay decoder validated against the engine, online pinned benchmark against the top 10 | A null change scores 0 changed games; decoder totals match the engine on every map |
-| 1-2 | Simple bot: economy, banking, recall, no bugs; one-capturer rule; stalls and fuel fixed | Beats the starter bots everywhere; zero stuck champions in 100 replays |
-| 2 | Study the top 10's formation, routes and contacts from replays, and write the team plan as data | A one-page design with expected numbers (allies within 4, contacts paired) |
-| 2-3 | Implement the team plan as one module from the draft: squads, routes, rally, engage rules | Online: contacts paired from 45% toward 65%; deaths in rounds 151-300 halve |
-| 3-4 | Large candidates only, stacked and sized; refresh the benchmark every 3 days | Each candidate moves its metric and passes the paired online judge |
-| 4 | Freeze 3 days before the deadline; only bug fixes | The upload is the tested zip (hash checked) |
-
----
-
-## 13. Open questions
-
-To check against the finalists' replays and writeups after 18 November:
-
-- How do they keep 2+ allies near without losing farm throughput? By routes planned at the draft, or by local rules?
-- Do they decide engagements by local numbers at contact, or by a team-level plan of where the fight happens?
-- How do they take two-elk groups with 3-4 champions and no deaths? Shield timing, pull order, or positioning?
-- Did any of them use learning, and with what game budget?
+*Thanks to HBH, DOOMSDAY and EvilMangohh for publishing their write-ups; reading them side by side with our own data
+is what made sections 4 and 6 possible.*
